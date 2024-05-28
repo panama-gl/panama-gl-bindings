@@ -2,62 +2,251 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagMIXERCONTROLDETAILS_LISTTEXTW {
+ *     DWORD dwParam1;
+ *     DWORD dwParam2;
+ *     WCHAR szName[64];
+ * }
+ * }
+ */
 public class tagMIXERCONTROLDETAILS_LISTTEXTW {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwParam1"),
-        Constants$root.C_LONG$LAYOUT.withName("dwParam2"),
-        MemoryLayout.sequenceLayout(64, Constants$root.C_SHORT$LAYOUT).withName("szName")
-    ).withName("tagMIXERCONTROLDETAILS_LISTTEXTW");
-    public static MemoryLayout $LAYOUT() {
-        return tagMIXERCONTROLDETAILS_LISTTEXTW.$struct$LAYOUT;
+    tagMIXERCONTROLDETAILS_LISTTEXTW() {
+        // Should not be called directly
     }
-    static final VarHandle dwParam1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwParam1"));
-    public static VarHandle dwParam1$VH() {
-        return tagMIXERCONTROLDETAILS_LISTTEXTW.dwParam1$VH;
-    }
-    public static int dwParam1$get(MemorySegment seg) {
-        return (int)tagMIXERCONTROLDETAILS_LISTTEXTW.dwParam1$VH.get(seg);
-    }
-    public static void dwParam1$set( MemorySegment seg, int x) {
-        tagMIXERCONTROLDETAILS_LISTTEXTW.dwParam1$VH.set(seg, x);
-    }
-    public static int dwParam1$get(MemorySegment seg, long index) {
-        return (int)tagMIXERCONTROLDETAILS_LISTTEXTW.dwParam1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwParam1$set(MemorySegment seg, long index, int x) {
-        tagMIXERCONTROLDETAILS_LISTTEXTW.dwParam1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwParam2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwParam2"));
-    public static VarHandle dwParam2$VH() {
-        return tagMIXERCONTROLDETAILS_LISTTEXTW.dwParam2$VH;
-    }
-    public static int dwParam2$get(MemorySegment seg) {
-        return (int)tagMIXERCONTROLDETAILS_LISTTEXTW.dwParam2$VH.get(seg);
-    }
-    public static void dwParam2$set( MemorySegment seg, int x) {
-        tagMIXERCONTROLDETAILS_LISTTEXTW.dwParam2$VH.set(seg, x);
-    }
-    public static int dwParam2$get(MemorySegment seg, long index) {
-        return (int)tagMIXERCONTROLDETAILS_LISTTEXTW.dwParam2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwParam2$set(MemorySegment seg, long index, int x) {
-        tagMIXERCONTROLDETAILS_LISTTEXTW.dwParam2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment szName$slice(MemorySegment seg) {
-        return seg.asSlice(8, 128);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwParam1"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwParam2"),
+        MemoryLayout.sequenceLayout(64, wgl_h.align(wgl_h.C_SHORT, 1)).withName("szName")
+    ).withName("tagMIXERCONTROLDETAILS_LISTTEXTW");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwParam1$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwParam1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwParam1
+     * }
+     */
+    public static final OfInt dwParam1$layout() {
+        return dwParam1$LAYOUT;
+    }
+
+    private static final long dwParam1$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwParam1
+     * }
+     */
+    public static final long dwParam1$offset() {
+        return dwParam1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwParam1
+     * }
+     */
+    public static int dwParam1(MemorySegment struct) {
+        return struct.get(dwParam1$LAYOUT, dwParam1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwParam1
+     * }
+     */
+    public static void dwParam1(MemorySegment struct, int fieldValue) {
+        struct.set(dwParam1$LAYOUT, dwParam1$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwParam2$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwParam2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwParam2
+     * }
+     */
+    public static final OfInt dwParam2$layout() {
+        return dwParam2$LAYOUT;
+    }
+
+    private static final long dwParam2$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwParam2
+     * }
+     */
+    public static final long dwParam2$offset() {
+        return dwParam2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwParam2
+     * }
+     */
+    public static int dwParam2(MemorySegment struct) {
+        return struct.get(dwParam2$LAYOUT, dwParam2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwParam2
+     * }
+     */
+    public static void dwParam2(MemorySegment struct, int fieldValue) {
+        struct.set(dwParam2$LAYOUT, dwParam2$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout szName$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("szName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR szName[64]
+     * }
+     */
+    public static final SequenceLayout szName$layout() {
+        return szName$LAYOUT;
+    }
+
+    private static final long szName$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR szName[64]
+     * }
+     */
+    public static final long szName$offset() {
+        return szName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR szName[64]
+     * }
+     */
+    public static MemorySegment szName(MemorySegment struct) {
+        return struct.asSlice(szName$OFFSET, szName$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR szName[64]
+     * }
+     */
+    public static void szName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, szName$OFFSET, szName$LAYOUT.byteSize());
+    }
+
+    private static long[] szName$DIMS = { 64 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR szName[64]
+     * }
+     */
+    public static long[] szName$dimensions() {
+        return szName$DIMS;
+    }
+    private static final VarHandle szName$ELEM_HANDLE = szName$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR szName[64]
+     * }
+     */
+    public static short szName(MemorySegment struct, long index0) {
+        return (short)szName$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR szName[64]
+     * }
+     */
+    public static void szName(MemorySegment struct, long index0, short fieldValue) {
+        szName$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

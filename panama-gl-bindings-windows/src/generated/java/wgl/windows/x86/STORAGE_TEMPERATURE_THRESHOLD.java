@@ -2,13 +2,33 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _STORAGE_TEMPERATURE_THRESHOLD {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     WORD Flags;
+ *     WORD Index;
+ *     SHORT Threshold;
+ *     BOOLEAN OverThreshold;
+ *     BYTE Reserved;
+ * } STORAGE_TEMPERATURE_THRESHOLD
+ * }
+ */
 public class STORAGE_TEMPERATURE_THRESHOLD extends _STORAGE_TEMPERATURE_THRESHOLD {
 
+    STORAGE_TEMPERATURE_THRESHOLD() {
+        // Should not be called directly
+    }
 }
-
 

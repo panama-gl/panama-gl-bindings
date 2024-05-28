@@ -2,204 +2,619 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _RPC_ASYNC_STATE {
+ *     unsigned int Size;
+ *     unsigned long Signature;
+ *     long Lock;
+ *     unsigned long Flags;
+ *     void *StubInfo;
+ *     void *UserInfo;
+ *     void *RuntimeInfo;
+ *     RPC_ASYNC_EVENT Event;
+ *     RPC_NOTIFICATION_TYPES NotificationType;
+ *     RPC_ASYNC_NOTIFICATION_INFO u;
+ *     LONG_PTR Reserved[4];
+ * }
+ * }
+ */
 public class _RPC_ASYNC_STATE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("Signature"),
-        Constants$root.C_LONG$LAYOUT.withName("Lock"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_POINTER$LAYOUT.withName("StubInfo"),
-        Constants$root.C_POINTER$LAYOUT.withName("UserInfo"),
-        Constants$root.C_POINTER$LAYOUT.withName("RuntimeInfo"),
-        Constants$root.C_LONG$LAYOUT.withName("Event"),
-        Constants$root.C_LONG$LAYOUT.withName("NotificationType"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_POINTER$LAYOUT.withName("NotificationRoutine"),
-                Constants$root.C_POINTER$LAYOUT.withName("hThread")
-            ).withName("APC"),
-            MemoryLayout.structLayout(
-                Constants$root.C_POINTER$LAYOUT.withName("hIOPort"),
-                Constants$root.C_LONG$LAYOUT.withName("dwNumberOfBytesTransferred"),
-                MemoryLayout.paddingLayout(32),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("dwCompletionKey"),
-                Constants$root.C_POINTER$LAYOUT.withName("lpOverlapped")
-            ).withName("IOC"),
-            MemoryLayout.structLayout(
-                Constants$root.C_POINTER$LAYOUT.withName("hWnd"),
-                Constants$root.C_LONG$LAYOUT.withName("Msg"),
-                MemoryLayout.paddingLayout(32)
-            ).withName("HWND"),
-            Constants$root.C_POINTER$LAYOUT.withName("hEvent"),
-            Constants$root.C_POINTER$LAYOUT.withName("NotificationRoutine")
-        ).withName("u"),
-        MemoryLayout.sequenceLayout(4, Constants$root.C_LONG_LONG$LAYOUT).withName("Reserved")
-    ).withName("_RPC_ASYNC_STATE");
-    public static MemoryLayout $LAYOUT() {
-        return _RPC_ASYNC_STATE.$struct$LAYOUT;
+    _RPC_ASYNC_STATE() {
+        // Should not be called directly
     }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _RPC_ASYNC_STATE.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_RPC_ASYNC_STATE.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _RPC_ASYNC_STATE.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_RPC_ASYNC_STATE.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _RPC_ASYNC_STATE.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Signature$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Signature"));
-    public static VarHandle Signature$VH() {
-        return _RPC_ASYNC_STATE.Signature$VH;
-    }
-    public static int Signature$get(MemorySegment seg) {
-        return (int)_RPC_ASYNC_STATE.Signature$VH.get(seg);
-    }
-    public static void Signature$set( MemorySegment seg, int x) {
-        _RPC_ASYNC_STATE.Signature$VH.set(seg, x);
-    }
-    public static int Signature$get(MemorySegment seg, long index) {
-        return (int)_RPC_ASYNC_STATE.Signature$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Signature$set(MemorySegment seg, long index, int x) {
-        _RPC_ASYNC_STATE.Signature$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Lock$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Lock"));
-    public static VarHandle Lock$VH() {
-        return _RPC_ASYNC_STATE.Lock$VH;
-    }
-    public static int Lock$get(MemorySegment seg) {
-        return (int)_RPC_ASYNC_STATE.Lock$VH.get(seg);
-    }
-    public static void Lock$set( MemorySegment seg, int x) {
-        _RPC_ASYNC_STATE.Lock$VH.set(seg, x);
-    }
-    public static int Lock$get(MemorySegment seg, long index) {
-        return (int)_RPC_ASYNC_STATE.Lock$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Lock$set(MemorySegment seg, long index, int x) {
-        _RPC_ASYNC_STATE.Lock$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _RPC_ASYNC_STATE.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_RPC_ASYNC_STATE.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _RPC_ASYNC_STATE.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_RPC_ASYNC_STATE.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _RPC_ASYNC_STATE.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle StubInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StubInfo"));
-    public static VarHandle StubInfo$VH() {
-        return _RPC_ASYNC_STATE.StubInfo$VH;
-    }
-    public static MemoryAddress StubInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RPC_ASYNC_STATE.StubInfo$VH.get(seg);
-    }
-    public static void StubInfo$set( MemorySegment seg, MemoryAddress x) {
-        _RPC_ASYNC_STATE.StubInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress StubInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RPC_ASYNC_STATE.StubInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StubInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RPC_ASYNC_STATE.StubInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle UserInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UserInfo"));
-    public static VarHandle UserInfo$VH() {
-        return _RPC_ASYNC_STATE.UserInfo$VH;
-    }
-    public static MemoryAddress UserInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RPC_ASYNC_STATE.UserInfo$VH.get(seg);
-    }
-    public static void UserInfo$set( MemorySegment seg, MemoryAddress x) {
-        _RPC_ASYNC_STATE.UserInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress UserInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RPC_ASYNC_STATE.UserInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UserInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RPC_ASYNC_STATE.UserInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RuntimeInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RuntimeInfo"));
-    public static VarHandle RuntimeInfo$VH() {
-        return _RPC_ASYNC_STATE.RuntimeInfo$VH;
-    }
-    public static MemoryAddress RuntimeInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RPC_ASYNC_STATE.RuntimeInfo$VH.get(seg);
-    }
-    public static void RuntimeInfo$set( MemorySegment seg, MemoryAddress x) {
-        _RPC_ASYNC_STATE.RuntimeInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress RuntimeInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RPC_ASYNC_STATE.RuntimeInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RuntimeInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RPC_ASYNC_STATE.RuntimeInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Event$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Event"));
-    public static VarHandle Event$VH() {
-        return _RPC_ASYNC_STATE.Event$VH;
-    }
-    public static int Event$get(MemorySegment seg) {
-        return (int)_RPC_ASYNC_STATE.Event$VH.get(seg);
-    }
-    public static void Event$set( MemorySegment seg, int x) {
-        _RPC_ASYNC_STATE.Event$VH.set(seg, x);
-    }
-    public static int Event$get(MemorySegment seg, long index) {
-        return (int)_RPC_ASYNC_STATE.Event$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Event$set(MemorySegment seg, long index, int x) {
-        _RPC_ASYNC_STATE.Event$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NotificationType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NotificationType"));
-    public static VarHandle NotificationType$VH() {
-        return _RPC_ASYNC_STATE.NotificationType$VH;
-    }
-    public static int NotificationType$get(MemorySegment seg) {
-        return (int)_RPC_ASYNC_STATE.NotificationType$VH.get(seg);
-    }
-    public static void NotificationType$set( MemorySegment seg, int x) {
-        _RPC_ASYNC_STATE.NotificationType$VH.set(seg, x);
-    }
-    public static int NotificationType$get(MemorySegment seg, long index) {
-        return (int)_RPC_ASYNC_STATE.NotificationType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NotificationType$set(MemorySegment seg, long index, int x) {
-        _RPC_ASYNC_STATE.NotificationType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment u$slice(MemorySegment seg) {
-        return seg.asSlice(48, 32);
-    }
-    public static MemorySegment Reserved$slice(MemorySegment seg) {
-        return seg.asSlice(80, 32);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("Size"),
+        wgl_h.C_LONG.withName("Signature"),
+        wgl_h.C_LONG.withName("Lock"),
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_POINTER.withName("StubInfo"),
+        wgl_h.C_POINTER.withName("UserInfo"),
+        wgl_h.C_POINTER.withName("RuntimeInfo"),
+        wgl_h.C_INT.withName("Event"),
+        wgl_h.C_INT.withName("NotificationType"),
+        _RPC_ASYNC_NOTIFICATION_INFO.layout().withName("u"),
+        MemoryLayout.sequenceLayout(4, wgl_h.C_LONG_LONG).withName("Reserved")
+    ).withName("_RPC_ASYNC_STATE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned int Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned int Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned int Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned int Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Signature$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Signature"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long Signature
+     * }
+     */
+    public static final OfInt Signature$layout() {
+        return Signature$LAYOUT;
+    }
+
+    private static final long Signature$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long Signature
+     * }
+     */
+    public static final long Signature$offset() {
+        return Signature$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long Signature
+     * }
+     */
+    public static int Signature(MemorySegment struct) {
+        return struct.get(Signature$LAYOUT, Signature$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long Signature
+     * }
+     */
+    public static void Signature(MemorySegment struct, int fieldValue) {
+        struct.set(Signature$LAYOUT, Signature$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Lock$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Lock"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * long Lock
+     * }
+     */
+    public static final OfInt Lock$layout() {
+        return Lock$LAYOUT;
+    }
+
+    private static final long Lock$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * long Lock
+     * }
+     */
+    public static final long Lock$offset() {
+        return Lock$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * long Lock
+     * }
+     */
+    public static int Lock(MemorySegment struct) {
+        return struct.get(Lock$LAYOUT, Lock$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * long Lock
+     * }
+     */
+    public static void Lock(MemorySegment struct, int fieldValue) {
+        struct.set(Lock$LAYOUT, Lock$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout StubInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("StubInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *StubInfo
+     * }
+     */
+    public static final AddressLayout StubInfo$layout() {
+        return StubInfo$LAYOUT;
+    }
+
+    private static final long StubInfo$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *StubInfo
+     * }
+     */
+    public static final long StubInfo$offset() {
+        return StubInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *StubInfo
+     * }
+     */
+    public static MemorySegment StubInfo(MemorySegment struct) {
+        return struct.get(StubInfo$LAYOUT, StubInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *StubInfo
+     * }
+     */
+    public static void StubInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(StubInfo$LAYOUT, StubInfo$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout UserInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("UserInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *UserInfo
+     * }
+     */
+    public static final AddressLayout UserInfo$layout() {
+        return UserInfo$LAYOUT;
+    }
+
+    private static final long UserInfo$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *UserInfo
+     * }
+     */
+    public static final long UserInfo$offset() {
+        return UserInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *UserInfo
+     * }
+     */
+    public static MemorySegment UserInfo(MemorySegment struct) {
+        return struct.get(UserInfo$LAYOUT, UserInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *UserInfo
+     * }
+     */
+    public static void UserInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(UserInfo$LAYOUT, UserInfo$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout RuntimeInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("RuntimeInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *RuntimeInfo
+     * }
+     */
+    public static final AddressLayout RuntimeInfo$layout() {
+        return RuntimeInfo$LAYOUT;
+    }
+
+    private static final long RuntimeInfo$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *RuntimeInfo
+     * }
+     */
+    public static final long RuntimeInfo$offset() {
+        return RuntimeInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *RuntimeInfo
+     * }
+     */
+    public static MemorySegment RuntimeInfo(MemorySegment struct) {
+        return struct.get(RuntimeInfo$LAYOUT, RuntimeInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *RuntimeInfo
+     * }
+     */
+    public static void RuntimeInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(RuntimeInfo$LAYOUT, RuntimeInfo$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Event$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Event"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RPC_ASYNC_EVENT Event
+     * }
+     */
+    public static final OfInt Event$layout() {
+        return Event$LAYOUT;
+    }
+
+    private static final long Event$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RPC_ASYNC_EVENT Event
+     * }
+     */
+    public static final long Event$offset() {
+        return Event$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RPC_ASYNC_EVENT Event
+     * }
+     */
+    public static int Event(MemorySegment struct) {
+        return struct.get(Event$LAYOUT, Event$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RPC_ASYNC_EVENT Event
+     * }
+     */
+    public static void Event(MemorySegment struct, int fieldValue) {
+        struct.set(Event$LAYOUT, Event$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NotificationType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NotificationType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RPC_NOTIFICATION_TYPES NotificationType
+     * }
+     */
+    public static final OfInt NotificationType$layout() {
+        return NotificationType$LAYOUT;
+    }
+
+    private static final long NotificationType$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RPC_NOTIFICATION_TYPES NotificationType
+     * }
+     */
+    public static final long NotificationType$offset() {
+        return NotificationType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RPC_NOTIFICATION_TYPES NotificationType
+     * }
+     */
+    public static int NotificationType(MemorySegment struct) {
+        return struct.get(NotificationType$LAYOUT, NotificationType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RPC_NOTIFICATION_TYPES NotificationType
+     * }
+     */
+    public static void NotificationType(MemorySegment struct, int fieldValue) {
+        struct.set(NotificationType$LAYOUT, NotificationType$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout u$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("u"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RPC_ASYNC_NOTIFICATION_INFO u
+     * }
+     */
+    public static final GroupLayout u$layout() {
+        return u$LAYOUT;
+    }
+
+    private static final long u$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RPC_ASYNC_NOTIFICATION_INFO u
+     * }
+     */
+    public static final long u$offset() {
+        return u$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RPC_ASYNC_NOTIFICATION_INFO u
+     * }
+     */
+    public static MemorySegment u(MemorySegment struct) {
+        return struct.asSlice(u$OFFSET, u$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RPC_ASYNC_NOTIFICATION_INFO u
+     * }
+     */
+    public static void u(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, u$OFFSET, u$LAYOUT.byteSize());
+    }
+
+    private static final SequenceLayout Reserved$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG_PTR Reserved[4]
+     * }
+     */
+    public static final SequenceLayout Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG_PTR Reserved[4]
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG_PTR Reserved[4]
+     * }
+     */
+    public static MemorySegment Reserved(MemorySegment struct) {
+        return struct.asSlice(Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG_PTR Reserved[4]
+     * }
+     */
+    public static void Reserved(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved$DIMS = { 4 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * LONG_PTR Reserved[4]
+     * }
+     */
+    public static long[] Reserved$dimensions() {
+        return Reserved$DIMS;
+    }
+    private static final VarHandle Reserved$ELEM_HANDLE = Reserved$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * LONG_PTR Reserved[4]
+     * }
+     */
+    public static long Reserved(MemorySegment struct, long index0) {
+        return (long)Reserved$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * LONG_PTR Reserved[4]
+     * }
+     */
+    public static void Reserved(MemorySegment struct, long index0, long fieldValue) {
+        Reserved$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

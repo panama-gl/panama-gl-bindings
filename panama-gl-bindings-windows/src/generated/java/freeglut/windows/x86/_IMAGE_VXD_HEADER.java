@@ -2,878 +2,2459 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _IMAGE_VXD_HEADER {
+ *     WORD e32_magic;
+ *     BYTE e32_border;
+ *     BYTE e32_worder;
+ *     DWORD e32_level;
+ *     WORD e32_cpu;
+ *     WORD e32_os;
+ *     DWORD e32_ver;
+ *     DWORD e32_mflags;
+ *     DWORD e32_mpages;
+ *     DWORD e32_startobj;
+ *     DWORD e32_eip;
+ *     DWORD e32_stackobj;
+ *     DWORD e32_esp;
+ *     DWORD e32_pagesize;
+ *     DWORD e32_lastpagesize;
+ *     DWORD e32_fixupsize;
+ *     DWORD e32_fixupsum;
+ *     DWORD e32_ldrsize;
+ *     DWORD e32_ldrsum;
+ *     DWORD e32_objtab;
+ *     DWORD e32_objcnt;
+ *     DWORD e32_objmap;
+ *     DWORD e32_itermap;
+ *     DWORD e32_rsrctab;
+ *     DWORD e32_rsrccnt;
+ *     DWORD e32_restab;
+ *     DWORD e32_enttab;
+ *     DWORD e32_dirtab;
+ *     DWORD e32_dircnt;
+ *     DWORD e32_fpagetab;
+ *     DWORD e32_frectab;
+ *     DWORD e32_impmod;
+ *     DWORD e32_impmodcnt;
+ *     DWORD e32_impproc;
+ *     DWORD e32_pagesum;
+ *     DWORD e32_datapage;
+ *     DWORD e32_preload;
+ *     DWORD e32_nrestab;
+ *     DWORD e32_cbnrestab;
+ *     DWORD e32_nressum;
+ *     DWORD e32_autodata;
+ *     DWORD e32_debuginfo;
+ *     DWORD e32_debuglen;
+ *     DWORD e32_instpreload;
+ *     DWORD e32_instdemand;
+ *     DWORD e32_heapsize;
+ *     BYTE e32_res3[12];
+ *     DWORD e32_winresoff;
+ *     DWORD e32_winreslen;
+ *     WORD e32_devid;
+ *     WORD e32_ddkver;
+ * }
+ * }
+ */
 public class _IMAGE_VXD_HEADER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("e32_magic"),
-        Constants$root.C_CHAR$LAYOUT.withName("e32_border"),
-        Constants$root.C_CHAR$LAYOUT.withName("e32_worder"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_level"),
-        Constants$root.C_SHORT$LAYOUT.withName("e32_cpu"),
-        Constants$root.C_SHORT$LAYOUT.withName("e32_os"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_ver"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_mflags"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_mpages"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_startobj"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_eip"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_stackobj"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_esp"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_pagesize"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_lastpagesize"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_fixupsize"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_fixupsum"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_ldrsize"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_ldrsum"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_objtab"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_objcnt"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_objmap"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_itermap"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_rsrctab"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_rsrccnt"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_restab"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_enttab"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_dirtab"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_dircnt"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_fpagetab"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_frectab"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_impmod"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_impmodcnt"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_impproc"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_pagesum"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_datapage"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_preload"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_nrestab"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_cbnrestab"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_nressum"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_autodata"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_debuginfo"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_debuglen"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_instpreload"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_instdemand"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_heapsize"),
-        MemoryLayout.sequenceLayout(12, Constants$root.C_CHAR$LAYOUT).withName("e32_res3"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_winresoff"),
-        Constants$root.C_LONG$LAYOUT.withName("e32_winreslen"),
-        Constants$root.C_SHORT$LAYOUT.withName("e32_devid"),
-        Constants$root.C_SHORT$LAYOUT.withName("e32_ddkver")
-    ).withName("_IMAGE_VXD_HEADER");
-    public static MemoryLayout $LAYOUT() {
-        return _IMAGE_VXD_HEADER.$struct$LAYOUT;
+    _IMAGE_VXD_HEADER() {
+        // Should not be called directly
     }
-    static final VarHandle e32_magic$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_magic"));
-    public static VarHandle e32_magic$VH() {
-        return _IMAGE_VXD_HEADER.e32_magic$VH;
-    }
-    public static short e32_magic$get(MemorySegment seg) {
-        return (short)_IMAGE_VXD_HEADER.e32_magic$VH.get(seg);
-    }
-    public static void e32_magic$set( MemorySegment seg, short x) {
-        _IMAGE_VXD_HEADER.e32_magic$VH.set(seg, x);
-    }
-    public static short e32_magic$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_VXD_HEADER.e32_magic$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_magic$set(MemorySegment seg, long index, short x) {
-        _IMAGE_VXD_HEADER.e32_magic$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_border$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_border"));
-    public static VarHandle e32_border$VH() {
-        return _IMAGE_VXD_HEADER.e32_border$VH;
-    }
-    public static byte e32_border$get(MemorySegment seg) {
-        return (byte)_IMAGE_VXD_HEADER.e32_border$VH.get(seg);
-    }
-    public static void e32_border$set( MemorySegment seg, byte x) {
-        _IMAGE_VXD_HEADER.e32_border$VH.set(seg, x);
-    }
-    public static byte e32_border$get(MemorySegment seg, long index) {
-        return (byte)_IMAGE_VXD_HEADER.e32_border$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_border$set(MemorySegment seg, long index, byte x) {
-        _IMAGE_VXD_HEADER.e32_border$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_worder$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_worder"));
-    public static VarHandle e32_worder$VH() {
-        return _IMAGE_VXD_HEADER.e32_worder$VH;
-    }
-    public static byte e32_worder$get(MemorySegment seg) {
-        return (byte)_IMAGE_VXD_HEADER.e32_worder$VH.get(seg);
-    }
-    public static void e32_worder$set( MemorySegment seg, byte x) {
-        _IMAGE_VXD_HEADER.e32_worder$VH.set(seg, x);
-    }
-    public static byte e32_worder$get(MemorySegment seg, long index) {
-        return (byte)_IMAGE_VXD_HEADER.e32_worder$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_worder$set(MemorySegment seg, long index, byte x) {
-        _IMAGE_VXD_HEADER.e32_worder$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_level$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_level"));
-    public static VarHandle e32_level$VH() {
-        return _IMAGE_VXD_HEADER.e32_level$VH;
-    }
-    public static int e32_level$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_level$VH.get(seg);
-    }
-    public static void e32_level$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_level$VH.set(seg, x);
-    }
-    public static int e32_level$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_level$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_level$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_level$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_cpu$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_cpu"));
-    public static VarHandle e32_cpu$VH() {
-        return _IMAGE_VXD_HEADER.e32_cpu$VH;
-    }
-    public static short e32_cpu$get(MemorySegment seg) {
-        return (short)_IMAGE_VXD_HEADER.e32_cpu$VH.get(seg);
-    }
-    public static void e32_cpu$set( MemorySegment seg, short x) {
-        _IMAGE_VXD_HEADER.e32_cpu$VH.set(seg, x);
-    }
-    public static short e32_cpu$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_VXD_HEADER.e32_cpu$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_cpu$set(MemorySegment seg, long index, short x) {
-        _IMAGE_VXD_HEADER.e32_cpu$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_os$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_os"));
-    public static VarHandle e32_os$VH() {
-        return _IMAGE_VXD_HEADER.e32_os$VH;
-    }
-    public static short e32_os$get(MemorySegment seg) {
-        return (short)_IMAGE_VXD_HEADER.e32_os$VH.get(seg);
-    }
-    public static void e32_os$set( MemorySegment seg, short x) {
-        _IMAGE_VXD_HEADER.e32_os$VH.set(seg, x);
-    }
-    public static short e32_os$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_VXD_HEADER.e32_os$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_os$set(MemorySegment seg, long index, short x) {
-        _IMAGE_VXD_HEADER.e32_os$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_ver$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_ver"));
-    public static VarHandle e32_ver$VH() {
-        return _IMAGE_VXD_HEADER.e32_ver$VH;
-    }
-    public static int e32_ver$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_ver$VH.get(seg);
-    }
-    public static void e32_ver$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_ver$VH.set(seg, x);
-    }
-    public static int e32_ver$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_ver$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_ver$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_ver$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_mflags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_mflags"));
-    public static VarHandle e32_mflags$VH() {
-        return _IMAGE_VXD_HEADER.e32_mflags$VH;
-    }
-    public static int e32_mflags$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_mflags$VH.get(seg);
-    }
-    public static void e32_mflags$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_mflags$VH.set(seg, x);
-    }
-    public static int e32_mflags$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_mflags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_mflags$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_mflags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_mpages$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_mpages"));
-    public static VarHandle e32_mpages$VH() {
-        return _IMAGE_VXD_HEADER.e32_mpages$VH;
-    }
-    public static int e32_mpages$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_mpages$VH.get(seg);
-    }
-    public static void e32_mpages$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_mpages$VH.set(seg, x);
-    }
-    public static int e32_mpages$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_mpages$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_mpages$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_mpages$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_startobj$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_startobj"));
-    public static VarHandle e32_startobj$VH() {
-        return _IMAGE_VXD_HEADER.e32_startobj$VH;
-    }
-    public static int e32_startobj$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_startobj$VH.get(seg);
-    }
-    public static void e32_startobj$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_startobj$VH.set(seg, x);
-    }
-    public static int e32_startobj$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_startobj$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_startobj$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_startobj$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_eip$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_eip"));
-    public static VarHandle e32_eip$VH() {
-        return _IMAGE_VXD_HEADER.e32_eip$VH;
-    }
-    public static int e32_eip$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_eip$VH.get(seg);
-    }
-    public static void e32_eip$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_eip$VH.set(seg, x);
-    }
-    public static int e32_eip$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_eip$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_eip$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_eip$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_stackobj$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_stackobj"));
-    public static VarHandle e32_stackobj$VH() {
-        return _IMAGE_VXD_HEADER.e32_stackobj$VH;
-    }
-    public static int e32_stackobj$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_stackobj$VH.get(seg);
-    }
-    public static void e32_stackobj$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_stackobj$VH.set(seg, x);
-    }
-    public static int e32_stackobj$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_stackobj$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_stackobj$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_stackobj$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_esp$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_esp"));
-    public static VarHandle e32_esp$VH() {
-        return _IMAGE_VXD_HEADER.e32_esp$VH;
-    }
-    public static int e32_esp$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_esp$VH.get(seg);
-    }
-    public static void e32_esp$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_esp$VH.set(seg, x);
-    }
-    public static int e32_esp$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_esp$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_esp$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_esp$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_pagesize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_pagesize"));
-    public static VarHandle e32_pagesize$VH() {
-        return _IMAGE_VXD_HEADER.e32_pagesize$VH;
-    }
-    public static int e32_pagesize$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_pagesize$VH.get(seg);
-    }
-    public static void e32_pagesize$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_pagesize$VH.set(seg, x);
-    }
-    public static int e32_pagesize$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_pagesize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_pagesize$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_pagesize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_lastpagesize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_lastpagesize"));
-    public static VarHandle e32_lastpagesize$VH() {
-        return _IMAGE_VXD_HEADER.e32_lastpagesize$VH;
-    }
-    public static int e32_lastpagesize$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_lastpagesize$VH.get(seg);
-    }
-    public static void e32_lastpagesize$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_lastpagesize$VH.set(seg, x);
-    }
-    public static int e32_lastpagesize$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_lastpagesize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_lastpagesize$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_lastpagesize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_fixupsize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_fixupsize"));
-    public static VarHandle e32_fixupsize$VH() {
-        return _IMAGE_VXD_HEADER.e32_fixupsize$VH;
-    }
-    public static int e32_fixupsize$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_fixupsize$VH.get(seg);
-    }
-    public static void e32_fixupsize$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_fixupsize$VH.set(seg, x);
-    }
-    public static int e32_fixupsize$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_fixupsize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_fixupsize$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_fixupsize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_fixupsum$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_fixupsum"));
-    public static VarHandle e32_fixupsum$VH() {
-        return _IMAGE_VXD_HEADER.e32_fixupsum$VH;
-    }
-    public static int e32_fixupsum$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_fixupsum$VH.get(seg);
-    }
-    public static void e32_fixupsum$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_fixupsum$VH.set(seg, x);
-    }
-    public static int e32_fixupsum$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_fixupsum$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_fixupsum$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_fixupsum$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_ldrsize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_ldrsize"));
-    public static VarHandle e32_ldrsize$VH() {
-        return _IMAGE_VXD_HEADER.e32_ldrsize$VH;
-    }
-    public static int e32_ldrsize$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_ldrsize$VH.get(seg);
-    }
-    public static void e32_ldrsize$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_ldrsize$VH.set(seg, x);
-    }
-    public static int e32_ldrsize$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_ldrsize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_ldrsize$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_ldrsize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_ldrsum$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_ldrsum"));
-    public static VarHandle e32_ldrsum$VH() {
-        return _IMAGE_VXD_HEADER.e32_ldrsum$VH;
-    }
-    public static int e32_ldrsum$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_ldrsum$VH.get(seg);
-    }
-    public static void e32_ldrsum$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_ldrsum$VH.set(seg, x);
-    }
-    public static int e32_ldrsum$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_ldrsum$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_ldrsum$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_ldrsum$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_objtab$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_objtab"));
-    public static VarHandle e32_objtab$VH() {
-        return _IMAGE_VXD_HEADER.e32_objtab$VH;
-    }
-    public static int e32_objtab$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_objtab$VH.get(seg);
-    }
-    public static void e32_objtab$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_objtab$VH.set(seg, x);
-    }
-    public static int e32_objtab$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_objtab$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_objtab$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_objtab$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_objcnt$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_objcnt"));
-    public static VarHandle e32_objcnt$VH() {
-        return _IMAGE_VXD_HEADER.e32_objcnt$VH;
-    }
-    public static int e32_objcnt$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_objcnt$VH.get(seg);
-    }
-    public static void e32_objcnt$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_objcnt$VH.set(seg, x);
-    }
-    public static int e32_objcnt$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_objcnt$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_objcnt$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_objcnt$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_objmap$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_objmap"));
-    public static VarHandle e32_objmap$VH() {
-        return _IMAGE_VXD_HEADER.e32_objmap$VH;
-    }
-    public static int e32_objmap$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_objmap$VH.get(seg);
-    }
-    public static void e32_objmap$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_objmap$VH.set(seg, x);
-    }
-    public static int e32_objmap$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_objmap$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_objmap$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_objmap$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_itermap$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_itermap"));
-    public static VarHandle e32_itermap$VH() {
-        return _IMAGE_VXD_HEADER.e32_itermap$VH;
-    }
-    public static int e32_itermap$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_itermap$VH.get(seg);
-    }
-    public static void e32_itermap$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_itermap$VH.set(seg, x);
-    }
-    public static int e32_itermap$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_itermap$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_itermap$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_itermap$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_rsrctab$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_rsrctab"));
-    public static VarHandle e32_rsrctab$VH() {
-        return _IMAGE_VXD_HEADER.e32_rsrctab$VH;
-    }
-    public static int e32_rsrctab$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_rsrctab$VH.get(seg);
-    }
-    public static void e32_rsrctab$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_rsrctab$VH.set(seg, x);
-    }
-    public static int e32_rsrctab$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_rsrctab$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_rsrctab$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_rsrctab$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_rsrccnt$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_rsrccnt"));
-    public static VarHandle e32_rsrccnt$VH() {
-        return _IMAGE_VXD_HEADER.e32_rsrccnt$VH;
-    }
-    public static int e32_rsrccnt$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_rsrccnt$VH.get(seg);
-    }
-    public static void e32_rsrccnt$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_rsrccnt$VH.set(seg, x);
-    }
-    public static int e32_rsrccnt$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_rsrccnt$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_rsrccnt$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_rsrccnt$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_restab$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_restab"));
-    public static VarHandle e32_restab$VH() {
-        return _IMAGE_VXD_HEADER.e32_restab$VH;
-    }
-    public static int e32_restab$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_restab$VH.get(seg);
-    }
-    public static void e32_restab$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_restab$VH.set(seg, x);
-    }
-    public static int e32_restab$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_restab$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_restab$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_restab$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_enttab$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_enttab"));
-    public static VarHandle e32_enttab$VH() {
-        return _IMAGE_VXD_HEADER.e32_enttab$VH;
-    }
-    public static int e32_enttab$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_enttab$VH.get(seg);
-    }
-    public static void e32_enttab$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_enttab$VH.set(seg, x);
-    }
-    public static int e32_enttab$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_enttab$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_enttab$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_enttab$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_dirtab$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_dirtab"));
-    public static VarHandle e32_dirtab$VH() {
-        return _IMAGE_VXD_HEADER.e32_dirtab$VH;
-    }
-    public static int e32_dirtab$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_dirtab$VH.get(seg);
-    }
-    public static void e32_dirtab$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_dirtab$VH.set(seg, x);
-    }
-    public static int e32_dirtab$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_dirtab$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_dirtab$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_dirtab$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_dircnt$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_dircnt"));
-    public static VarHandle e32_dircnt$VH() {
-        return _IMAGE_VXD_HEADER.e32_dircnt$VH;
-    }
-    public static int e32_dircnt$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_dircnt$VH.get(seg);
-    }
-    public static void e32_dircnt$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_dircnt$VH.set(seg, x);
-    }
-    public static int e32_dircnt$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_dircnt$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_dircnt$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_dircnt$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_fpagetab$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_fpagetab"));
-    public static VarHandle e32_fpagetab$VH() {
-        return _IMAGE_VXD_HEADER.e32_fpagetab$VH;
-    }
-    public static int e32_fpagetab$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_fpagetab$VH.get(seg);
-    }
-    public static void e32_fpagetab$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_fpagetab$VH.set(seg, x);
-    }
-    public static int e32_fpagetab$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_fpagetab$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_fpagetab$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_fpagetab$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_frectab$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_frectab"));
-    public static VarHandle e32_frectab$VH() {
-        return _IMAGE_VXD_HEADER.e32_frectab$VH;
-    }
-    public static int e32_frectab$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_frectab$VH.get(seg);
-    }
-    public static void e32_frectab$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_frectab$VH.set(seg, x);
-    }
-    public static int e32_frectab$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_frectab$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_frectab$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_frectab$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_impmod$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_impmod"));
-    public static VarHandle e32_impmod$VH() {
-        return _IMAGE_VXD_HEADER.e32_impmod$VH;
-    }
-    public static int e32_impmod$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_impmod$VH.get(seg);
-    }
-    public static void e32_impmod$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_impmod$VH.set(seg, x);
-    }
-    public static int e32_impmod$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_impmod$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_impmod$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_impmod$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_impmodcnt$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_impmodcnt"));
-    public static VarHandle e32_impmodcnt$VH() {
-        return _IMAGE_VXD_HEADER.e32_impmodcnt$VH;
-    }
-    public static int e32_impmodcnt$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_impmodcnt$VH.get(seg);
-    }
-    public static void e32_impmodcnt$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_impmodcnt$VH.set(seg, x);
-    }
-    public static int e32_impmodcnt$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_impmodcnt$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_impmodcnt$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_impmodcnt$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_impproc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_impproc"));
-    public static VarHandle e32_impproc$VH() {
-        return _IMAGE_VXD_HEADER.e32_impproc$VH;
-    }
-    public static int e32_impproc$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_impproc$VH.get(seg);
-    }
-    public static void e32_impproc$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_impproc$VH.set(seg, x);
-    }
-    public static int e32_impproc$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_impproc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_impproc$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_impproc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_pagesum$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_pagesum"));
-    public static VarHandle e32_pagesum$VH() {
-        return _IMAGE_VXD_HEADER.e32_pagesum$VH;
-    }
-    public static int e32_pagesum$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_pagesum$VH.get(seg);
-    }
-    public static void e32_pagesum$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_pagesum$VH.set(seg, x);
-    }
-    public static int e32_pagesum$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_pagesum$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_pagesum$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_pagesum$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_datapage$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_datapage"));
-    public static VarHandle e32_datapage$VH() {
-        return _IMAGE_VXD_HEADER.e32_datapage$VH;
-    }
-    public static int e32_datapage$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_datapage$VH.get(seg);
-    }
-    public static void e32_datapage$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_datapage$VH.set(seg, x);
-    }
-    public static int e32_datapage$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_datapage$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_datapage$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_datapage$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_preload$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_preload"));
-    public static VarHandle e32_preload$VH() {
-        return _IMAGE_VXD_HEADER.e32_preload$VH;
-    }
-    public static int e32_preload$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_preload$VH.get(seg);
-    }
-    public static void e32_preload$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_preload$VH.set(seg, x);
-    }
-    public static int e32_preload$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_preload$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_preload$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_preload$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_nrestab$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_nrestab"));
-    public static VarHandle e32_nrestab$VH() {
-        return _IMAGE_VXD_HEADER.e32_nrestab$VH;
-    }
-    public static int e32_nrestab$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_nrestab$VH.get(seg);
-    }
-    public static void e32_nrestab$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_nrestab$VH.set(seg, x);
-    }
-    public static int e32_nrestab$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_nrestab$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_nrestab$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_nrestab$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_cbnrestab$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_cbnrestab"));
-    public static VarHandle e32_cbnrestab$VH() {
-        return _IMAGE_VXD_HEADER.e32_cbnrestab$VH;
-    }
-    public static int e32_cbnrestab$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_cbnrestab$VH.get(seg);
-    }
-    public static void e32_cbnrestab$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_cbnrestab$VH.set(seg, x);
-    }
-    public static int e32_cbnrestab$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_cbnrestab$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_cbnrestab$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_cbnrestab$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_nressum$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_nressum"));
-    public static VarHandle e32_nressum$VH() {
-        return _IMAGE_VXD_HEADER.e32_nressum$VH;
-    }
-    public static int e32_nressum$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_nressum$VH.get(seg);
-    }
-    public static void e32_nressum$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_nressum$VH.set(seg, x);
-    }
-    public static int e32_nressum$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_nressum$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_nressum$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_nressum$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_autodata$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_autodata"));
-    public static VarHandle e32_autodata$VH() {
-        return _IMAGE_VXD_HEADER.e32_autodata$VH;
-    }
-    public static int e32_autodata$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_autodata$VH.get(seg);
-    }
-    public static void e32_autodata$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_autodata$VH.set(seg, x);
-    }
-    public static int e32_autodata$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_autodata$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_autodata$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_autodata$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_debuginfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_debuginfo"));
-    public static VarHandle e32_debuginfo$VH() {
-        return _IMAGE_VXD_HEADER.e32_debuginfo$VH;
-    }
-    public static int e32_debuginfo$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_debuginfo$VH.get(seg);
-    }
-    public static void e32_debuginfo$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_debuginfo$VH.set(seg, x);
-    }
-    public static int e32_debuginfo$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_debuginfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_debuginfo$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_debuginfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_debuglen$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_debuglen"));
-    public static VarHandle e32_debuglen$VH() {
-        return _IMAGE_VXD_HEADER.e32_debuglen$VH;
-    }
-    public static int e32_debuglen$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_debuglen$VH.get(seg);
-    }
-    public static void e32_debuglen$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_debuglen$VH.set(seg, x);
-    }
-    public static int e32_debuglen$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_debuglen$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_debuglen$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_debuglen$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_instpreload$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_instpreload"));
-    public static VarHandle e32_instpreload$VH() {
-        return _IMAGE_VXD_HEADER.e32_instpreload$VH;
-    }
-    public static int e32_instpreload$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_instpreload$VH.get(seg);
-    }
-    public static void e32_instpreload$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_instpreload$VH.set(seg, x);
-    }
-    public static int e32_instpreload$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_instpreload$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_instpreload$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_instpreload$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_instdemand$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_instdemand"));
-    public static VarHandle e32_instdemand$VH() {
-        return _IMAGE_VXD_HEADER.e32_instdemand$VH;
-    }
-    public static int e32_instdemand$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_instdemand$VH.get(seg);
-    }
-    public static void e32_instdemand$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_instdemand$VH.set(seg, x);
-    }
-    public static int e32_instdemand$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_instdemand$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_instdemand$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_instdemand$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_heapsize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_heapsize"));
-    public static VarHandle e32_heapsize$VH() {
-        return _IMAGE_VXD_HEADER.e32_heapsize$VH;
-    }
-    public static int e32_heapsize$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_heapsize$VH.get(seg);
-    }
-    public static void e32_heapsize$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_heapsize$VH.set(seg, x);
-    }
-    public static int e32_heapsize$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_heapsize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_heapsize$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_heapsize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment e32_res3$slice(MemorySegment seg) {
-        return seg.asSlice(172, 12);
-    }
-    static final VarHandle e32_winresoff$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_winresoff"));
-    public static VarHandle e32_winresoff$VH() {
-        return _IMAGE_VXD_HEADER.e32_winresoff$VH;
-    }
-    public static int e32_winresoff$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_winresoff$VH.get(seg);
-    }
-    public static void e32_winresoff$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_winresoff$VH.set(seg, x);
-    }
-    public static int e32_winresoff$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_winresoff$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_winresoff$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_winresoff$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_winreslen$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_winreslen"));
-    public static VarHandle e32_winreslen$VH() {
-        return _IMAGE_VXD_HEADER.e32_winreslen$VH;
-    }
-    public static int e32_winreslen$get(MemorySegment seg) {
-        return (int)_IMAGE_VXD_HEADER.e32_winreslen$VH.get(seg);
-    }
-    public static void e32_winreslen$set( MemorySegment seg, int x) {
-        _IMAGE_VXD_HEADER.e32_winreslen$VH.set(seg, x);
-    }
-    public static int e32_winreslen$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_VXD_HEADER.e32_winreslen$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_winreslen$set(MemorySegment seg, long index, int x) {
-        _IMAGE_VXD_HEADER.e32_winreslen$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_devid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_devid"));
-    public static VarHandle e32_devid$VH() {
-        return _IMAGE_VXD_HEADER.e32_devid$VH;
-    }
-    public static short e32_devid$get(MemorySegment seg) {
-        return (short)_IMAGE_VXD_HEADER.e32_devid$VH.get(seg);
-    }
-    public static void e32_devid$set( MemorySegment seg, short x) {
-        _IMAGE_VXD_HEADER.e32_devid$VH.set(seg, x);
-    }
-    public static short e32_devid$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_VXD_HEADER.e32_devid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_devid$set(MemorySegment seg, long index, short x) {
-        _IMAGE_VXD_HEADER.e32_devid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e32_ddkver$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e32_ddkver"));
-    public static VarHandle e32_ddkver$VH() {
-        return _IMAGE_VXD_HEADER.e32_ddkver$VH;
-    }
-    public static short e32_ddkver$get(MemorySegment seg) {
-        return (short)_IMAGE_VXD_HEADER.e32_ddkver$VH.get(seg);
-    }
-    public static void e32_ddkver$set( MemorySegment seg, short x) {
-        _IMAGE_VXD_HEADER.e32_ddkver$VH.set(seg, x);
-    }
-    public static short e32_ddkver$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_VXD_HEADER.e32_ddkver$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e32_ddkver$set(MemorySegment seg, long index, short x) {
-        _IMAGE_VXD_HEADER.e32_ddkver$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_SHORT.withName("e32_magic"),
+        freeglut_h.C_CHAR.withName("e32_border"),
+        freeglut_h.C_CHAR.withName("e32_worder"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_level"),
+        freeglut_h.C_SHORT.withName("e32_cpu"),
+        freeglut_h.C_SHORT.withName("e32_os"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_ver"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_mflags"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_mpages"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_startobj"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_eip"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_stackobj"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_esp"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_pagesize"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_lastpagesize"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_fixupsize"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_fixupsum"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_ldrsize"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_ldrsum"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_objtab"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_objcnt"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_objmap"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_itermap"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_rsrctab"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_rsrccnt"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_restab"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_enttab"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_dirtab"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_dircnt"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_fpagetab"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_frectab"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_impmod"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_impmodcnt"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_impproc"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_pagesum"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_datapage"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_preload"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_nrestab"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_cbnrestab"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_nressum"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_autodata"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_debuginfo"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_debuglen"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_instpreload"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_instdemand"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_heapsize"),
+        MemoryLayout.sequenceLayout(12, freeglut_h.C_CHAR).withName("e32_res3"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_winresoff"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e32_winreslen"),
+        freeglut_h.C_SHORT.withName("e32_devid"),
+        freeglut_h.C_SHORT.withName("e32_ddkver")
+    ).withName("_IMAGE_VXD_HEADER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort e32_magic$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e32_magic"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e32_magic
+     * }
+     */
+    public static final OfShort e32_magic$layout() {
+        return e32_magic$LAYOUT;
+    }
+
+    private static final long e32_magic$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e32_magic
+     * }
+     */
+    public static final long e32_magic$offset() {
+        return e32_magic$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e32_magic
+     * }
+     */
+    public static short e32_magic(MemorySegment struct) {
+        return struct.get(e32_magic$LAYOUT, e32_magic$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e32_magic
+     * }
+     */
+    public static void e32_magic(MemorySegment struct, short fieldValue) {
+        struct.set(e32_magic$LAYOUT, e32_magic$OFFSET, fieldValue);
+    }
+
+    private static final OfByte e32_border$LAYOUT = (OfByte)$LAYOUT.select(groupElement("e32_border"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE e32_border
+     * }
+     */
+    public static final OfByte e32_border$layout() {
+        return e32_border$LAYOUT;
+    }
+
+    private static final long e32_border$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE e32_border
+     * }
+     */
+    public static final long e32_border$offset() {
+        return e32_border$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE e32_border
+     * }
+     */
+    public static byte e32_border(MemorySegment struct) {
+        return struct.get(e32_border$LAYOUT, e32_border$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE e32_border
+     * }
+     */
+    public static void e32_border(MemorySegment struct, byte fieldValue) {
+        struct.set(e32_border$LAYOUT, e32_border$OFFSET, fieldValue);
+    }
+
+    private static final OfByte e32_worder$LAYOUT = (OfByte)$LAYOUT.select(groupElement("e32_worder"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE e32_worder
+     * }
+     */
+    public static final OfByte e32_worder$layout() {
+        return e32_worder$LAYOUT;
+    }
+
+    private static final long e32_worder$OFFSET = 3;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE e32_worder
+     * }
+     */
+    public static final long e32_worder$offset() {
+        return e32_worder$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE e32_worder
+     * }
+     */
+    public static byte e32_worder(MemorySegment struct) {
+        return struct.get(e32_worder$LAYOUT, e32_worder$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE e32_worder
+     * }
+     */
+    public static void e32_worder(MemorySegment struct, byte fieldValue) {
+        struct.set(e32_worder$LAYOUT, e32_worder$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_level$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_level"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_level
+     * }
+     */
+    public static final OfInt e32_level$layout() {
+        return e32_level$LAYOUT;
+    }
+
+    private static final long e32_level$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_level
+     * }
+     */
+    public static final long e32_level$offset() {
+        return e32_level$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_level
+     * }
+     */
+    public static int e32_level(MemorySegment struct) {
+        return struct.get(e32_level$LAYOUT, e32_level$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_level
+     * }
+     */
+    public static void e32_level(MemorySegment struct, int fieldValue) {
+        struct.set(e32_level$LAYOUT, e32_level$OFFSET, fieldValue);
+    }
+
+    private static final OfShort e32_cpu$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e32_cpu"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e32_cpu
+     * }
+     */
+    public static final OfShort e32_cpu$layout() {
+        return e32_cpu$LAYOUT;
+    }
+
+    private static final long e32_cpu$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e32_cpu
+     * }
+     */
+    public static final long e32_cpu$offset() {
+        return e32_cpu$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e32_cpu
+     * }
+     */
+    public static short e32_cpu(MemorySegment struct) {
+        return struct.get(e32_cpu$LAYOUT, e32_cpu$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e32_cpu
+     * }
+     */
+    public static void e32_cpu(MemorySegment struct, short fieldValue) {
+        struct.set(e32_cpu$LAYOUT, e32_cpu$OFFSET, fieldValue);
+    }
+
+    private static final OfShort e32_os$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e32_os"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e32_os
+     * }
+     */
+    public static final OfShort e32_os$layout() {
+        return e32_os$LAYOUT;
+    }
+
+    private static final long e32_os$OFFSET = 10;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e32_os
+     * }
+     */
+    public static final long e32_os$offset() {
+        return e32_os$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e32_os
+     * }
+     */
+    public static short e32_os(MemorySegment struct) {
+        return struct.get(e32_os$LAYOUT, e32_os$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e32_os
+     * }
+     */
+    public static void e32_os(MemorySegment struct, short fieldValue) {
+        struct.set(e32_os$LAYOUT, e32_os$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_ver$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_ver"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_ver
+     * }
+     */
+    public static final OfInt e32_ver$layout() {
+        return e32_ver$LAYOUT;
+    }
+
+    private static final long e32_ver$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_ver
+     * }
+     */
+    public static final long e32_ver$offset() {
+        return e32_ver$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_ver
+     * }
+     */
+    public static int e32_ver(MemorySegment struct) {
+        return struct.get(e32_ver$LAYOUT, e32_ver$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_ver
+     * }
+     */
+    public static void e32_ver(MemorySegment struct, int fieldValue) {
+        struct.set(e32_ver$LAYOUT, e32_ver$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_mflags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_mflags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_mflags
+     * }
+     */
+    public static final OfInt e32_mflags$layout() {
+        return e32_mflags$LAYOUT;
+    }
+
+    private static final long e32_mflags$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_mflags
+     * }
+     */
+    public static final long e32_mflags$offset() {
+        return e32_mflags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_mflags
+     * }
+     */
+    public static int e32_mflags(MemorySegment struct) {
+        return struct.get(e32_mflags$LAYOUT, e32_mflags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_mflags
+     * }
+     */
+    public static void e32_mflags(MemorySegment struct, int fieldValue) {
+        struct.set(e32_mflags$LAYOUT, e32_mflags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_mpages$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_mpages"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_mpages
+     * }
+     */
+    public static final OfInt e32_mpages$layout() {
+        return e32_mpages$LAYOUT;
+    }
+
+    private static final long e32_mpages$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_mpages
+     * }
+     */
+    public static final long e32_mpages$offset() {
+        return e32_mpages$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_mpages
+     * }
+     */
+    public static int e32_mpages(MemorySegment struct) {
+        return struct.get(e32_mpages$LAYOUT, e32_mpages$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_mpages
+     * }
+     */
+    public static void e32_mpages(MemorySegment struct, int fieldValue) {
+        struct.set(e32_mpages$LAYOUT, e32_mpages$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_startobj$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_startobj"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_startobj
+     * }
+     */
+    public static final OfInt e32_startobj$layout() {
+        return e32_startobj$LAYOUT;
+    }
+
+    private static final long e32_startobj$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_startobj
+     * }
+     */
+    public static final long e32_startobj$offset() {
+        return e32_startobj$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_startobj
+     * }
+     */
+    public static int e32_startobj(MemorySegment struct) {
+        return struct.get(e32_startobj$LAYOUT, e32_startobj$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_startobj
+     * }
+     */
+    public static void e32_startobj(MemorySegment struct, int fieldValue) {
+        struct.set(e32_startobj$LAYOUT, e32_startobj$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_eip$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_eip"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_eip
+     * }
+     */
+    public static final OfInt e32_eip$layout() {
+        return e32_eip$LAYOUT;
+    }
+
+    private static final long e32_eip$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_eip
+     * }
+     */
+    public static final long e32_eip$offset() {
+        return e32_eip$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_eip
+     * }
+     */
+    public static int e32_eip(MemorySegment struct) {
+        return struct.get(e32_eip$LAYOUT, e32_eip$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_eip
+     * }
+     */
+    public static void e32_eip(MemorySegment struct, int fieldValue) {
+        struct.set(e32_eip$LAYOUT, e32_eip$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_stackobj$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_stackobj"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_stackobj
+     * }
+     */
+    public static final OfInt e32_stackobj$layout() {
+        return e32_stackobj$LAYOUT;
+    }
+
+    private static final long e32_stackobj$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_stackobj
+     * }
+     */
+    public static final long e32_stackobj$offset() {
+        return e32_stackobj$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_stackobj
+     * }
+     */
+    public static int e32_stackobj(MemorySegment struct) {
+        return struct.get(e32_stackobj$LAYOUT, e32_stackobj$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_stackobj
+     * }
+     */
+    public static void e32_stackobj(MemorySegment struct, int fieldValue) {
+        struct.set(e32_stackobj$LAYOUT, e32_stackobj$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_esp$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_esp"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_esp
+     * }
+     */
+    public static final OfInt e32_esp$layout() {
+        return e32_esp$LAYOUT;
+    }
+
+    private static final long e32_esp$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_esp
+     * }
+     */
+    public static final long e32_esp$offset() {
+        return e32_esp$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_esp
+     * }
+     */
+    public static int e32_esp(MemorySegment struct) {
+        return struct.get(e32_esp$LAYOUT, e32_esp$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_esp
+     * }
+     */
+    public static void e32_esp(MemorySegment struct, int fieldValue) {
+        struct.set(e32_esp$LAYOUT, e32_esp$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_pagesize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_pagesize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_pagesize
+     * }
+     */
+    public static final OfInt e32_pagesize$layout() {
+        return e32_pagesize$LAYOUT;
+    }
+
+    private static final long e32_pagesize$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_pagesize
+     * }
+     */
+    public static final long e32_pagesize$offset() {
+        return e32_pagesize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_pagesize
+     * }
+     */
+    public static int e32_pagesize(MemorySegment struct) {
+        return struct.get(e32_pagesize$LAYOUT, e32_pagesize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_pagesize
+     * }
+     */
+    public static void e32_pagesize(MemorySegment struct, int fieldValue) {
+        struct.set(e32_pagesize$LAYOUT, e32_pagesize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_lastpagesize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_lastpagesize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_lastpagesize
+     * }
+     */
+    public static final OfInt e32_lastpagesize$layout() {
+        return e32_lastpagesize$LAYOUT;
+    }
+
+    private static final long e32_lastpagesize$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_lastpagesize
+     * }
+     */
+    public static final long e32_lastpagesize$offset() {
+        return e32_lastpagesize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_lastpagesize
+     * }
+     */
+    public static int e32_lastpagesize(MemorySegment struct) {
+        return struct.get(e32_lastpagesize$LAYOUT, e32_lastpagesize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_lastpagesize
+     * }
+     */
+    public static void e32_lastpagesize(MemorySegment struct, int fieldValue) {
+        struct.set(e32_lastpagesize$LAYOUT, e32_lastpagesize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_fixupsize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_fixupsize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_fixupsize
+     * }
+     */
+    public static final OfInt e32_fixupsize$layout() {
+        return e32_fixupsize$LAYOUT;
+    }
+
+    private static final long e32_fixupsize$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_fixupsize
+     * }
+     */
+    public static final long e32_fixupsize$offset() {
+        return e32_fixupsize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_fixupsize
+     * }
+     */
+    public static int e32_fixupsize(MemorySegment struct) {
+        return struct.get(e32_fixupsize$LAYOUT, e32_fixupsize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_fixupsize
+     * }
+     */
+    public static void e32_fixupsize(MemorySegment struct, int fieldValue) {
+        struct.set(e32_fixupsize$LAYOUT, e32_fixupsize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_fixupsum$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_fixupsum"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_fixupsum
+     * }
+     */
+    public static final OfInt e32_fixupsum$layout() {
+        return e32_fixupsum$LAYOUT;
+    }
+
+    private static final long e32_fixupsum$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_fixupsum
+     * }
+     */
+    public static final long e32_fixupsum$offset() {
+        return e32_fixupsum$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_fixupsum
+     * }
+     */
+    public static int e32_fixupsum(MemorySegment struct) {
+        return struct.get(e32_fixupsum$LAYOUT, e32_fixupsum$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_fixupsum
+     * }
+     */
+    public static void e32_fixupsum(MemorySegment struct, int fieldValue) {
+        struct.set(e32_fixupsum$LAYOUT, e32_fixupsum$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_ldrsize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_ldrsize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_ldrsize
+     * }
+     */
+    public static final OfInt e32_ldrsize$layout() {
+        return e32_ldrsize$LAYOUT;
+    }
+
+    private static final long e32_ldrsize$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_ldrsize
+     * }
+     */
+    public static final long e32_ldrsize$offset() {
+        return e32_ldrsize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_ldrsize
+     * }
+     */
+    public static int e32_ldrsize(MemorySegment struct) {
+        return struct.get(e32_ldrsize$LAYOUT, e32_ldrsize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_ldrsize
+     * }
+     */
+    public static void e32_ldrsize(MemorySegment struct, int fieldValue) {
+        struct.set(e32_ldrsize$LAYOUT, e32_ldrsize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_ldrsum$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_ldrsum"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_ldrsum
+     * }
+     */
+    public static final OfInt e32_ldrsum$layout() {
+        return e32_ldrsum$LAYOUT;
+    }
+
+    private static final long e32_ldrsum$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_ldrsum
+     * }
+     */
+    public static final long e32_ldrsum$offset() {
+        return e32_ldrsum$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_ldrsum
+     * }
+     */
+    public static int e32_ldrsum(MemorySegment struct) {
+        return struct.get(e32_ldrsum$LAYOUT, e32_ldrsum$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_ldrsum
+     * }
+     */
+    public static void e32_ldrsum(MemorySegment struct, int fieldValue) {
+        struct.set(e32_ldrsum$LAYOUT, e32_ldrsum$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_objtab$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_objtab"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_objtab
+     * }
+     */
+    public static final OfInt e32_objtab$layout() {
+        return e32_objtab$LAYOUT;
+    }
+
+    private static final long e32_objtab$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_objtab
+     * }
+     */
+    public static final long e32_objtab$offset() {
+        return e32_objtab$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_objtab
+     * }
+     */
+    public static int e32_objtab(MemorySegment struct) {
+        return struct.get(e32_objtab$LAYOUT, e32_objtab$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_objtab
+     * }
+     */
+    public static void e32_objtab(MemorySegment struct, int fieldValue) {
+        struct.set(e32_objtab$LAYOUT, e32_objtab$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_objcnt$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_objcnt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_objcnt
+     * }
+     */
+    public static final OfInt e32_objcnt$layout() {
+        return e32_objcnt$LAYOUT;
+    }
+
+    private static final long e32_objcnt$OFFSET = 68;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_objcnt
+     * }
+     */
+    public static final long e32_objcnt$offset() {
+        return e32_objcnt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_objcnt
+     * }
+     */
+    public static int e32_objcnt(MemorySegment struct) {
+        return struct.get(e32_objcnt$LAYOUT, e32_objcnt$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_objcnt
+     * }
+     */
+    public static void e32_objcnt(MemorySegment struct, int fieldValue) {
+        struct.set(e32_objcnt$LAYOUT, e32_objcnt$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_objmap$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_objmap"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_objmap
+     * }
+     */
+    public static final OfInt e32_objmap$layout() {
+        return e32_objmap$LAYOUT;
+    }
+
+    private static final long e32_objmap$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_objmap
+     * }
+     */
+    public static final long e32_objmap$offset() {
+        return e32_objmap$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_objmap
+     * }
+     */
+    public static int e32_objmap(MemorySegment struct) {
+        return struct.get(e32_objmap$LAYOUT, e32_objmap$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_objmap
+     * }
+     */
+    public static void e32_objmap(MemorySegment struct, int fieldValue) {
+        struct.set(e32_objmap$LAYOUT, e32_objmap$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_itermap$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_itermap"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_itermap
+     * }
+     */
+    public static final OfInt e32_itermap$layout() {
+        return e32_itermap$LAYOUT;
+    }
+
+    private static final long e32_itermap$OFFSET = 76;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_itermap
+     * }
+     */
+    public static final long e32_itermap$offset() {
+        return e32_itermap$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_itermap
+     * }
+     */
+    public static int e32_itermap(MemorySegment struct) {
+        return struct.get(e32_itermap$LAYOUT, e32_itermap$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_itermap
+     * }
+     */
+    public static void e32_itermap(MemorySegment struct, int fieldValue) {
+        struct.set(e32_itermap$LAYOUT, e32_itermap$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_rsrctab$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_rsrctab"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_rsrctab
+     * }
+     */
+    public static final OfInt e32_rsrctab$layout() {
+        return e32_rsrctab$LAYOUT;
+    }
+
+    private static final long e32_rsrctab$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_rsrctab
+     * }
+     */
+    public static final long e32_rsrctab$offset() {
+        return e32_rsrctab$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_rsrctab
+     * }
+     */
+    public static int e32_rsrctab(MemorySegment struct) {
+        return struct.get(e32_rsrctab$LAYOUT, e32_rsrctab$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_rsrctab
+     * }
+     */
+    public static void e32_rsrctab(MemorySegment struct, int fieldValue) {
+        struct.set(e32_rsrctab$LAYOUT, e32_rsrctab$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_rsrccnt$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_rsrccnt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_rsrccnt
+     * }
+     */
+    public static final OfInt e32_rsrccnt$layout() {
+        return e32_rsrccnt$LAYOUT;
+    }
+
+    private static final long e32_rsrccnt$OFFSET = 84;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_rsrccnt
+     * }
+     */
+    public static final long e32_rsrccnt$offset() {
+        return e32_rsrccnt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_rsrccnt
+     * }
+     */
+    public static int e32_rsrccnt(MemorySegment struct) {
+        return struct.get(e32_rsrccnt$LAYOUT, e32_rsrccnt$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_rsrccnt
+     * }
+     */
+    public static void e32_rsrccnt(MemorySegment struct, int fieldValue) {
+        struct.set(e32_rsrccnt$LAYOUT, e32_rsrccnt$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_restab$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_restab"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_restab
+     * }
+     */
+    public static final OfInt e32_restab$layout() {
+        return e32_restab$LAYOUT;
+    }
+
+    private static final long e32_restab$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_restab
+     * }
+     */
+    public static final long e32_restab$offset() {
+        return e32_restab$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_restab
+     * }
+     */
+    public static int e32_restab(MemorySegment struct) {
+        return struct.get(e32_restab$LAYOUT, e32_restab$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_restab
+     * }
+     */
+    public static void e32_restab(MemorySegment struct, int fieldValue) {
+        struct.set(e32_restab$LAYOUT, e32_restab$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_enttab$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_enttab"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_enttab
+     * }
+     */
+    public static final OfInt e32_enttab$layout() {
+        return e32_enttab$LAYOUT;
+    }
+
+    private static final long e32_enttab$OFFSET = 92;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_enttab
+     * }
+     */
+    public static final long e32_enttab$offset() {
+        return e32_enttab$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_enttab
+     * }
+     */
+    public static int e32_enttab(MemorySegment struct) {
+        return struct.get(e32_enttab$LAYOUT, e32_enttab$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_enttab
+     * }
+     */
+    public static void e32_enttab(MemorySegment struct, int fieldValue) {
+        struct.set(e32_enttab$LAYOUT, e32_enttab$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_dirtab$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_dirtab"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_dirtab
+     * }
+     */
+    public static final OfInt e32_dirtab$layout() {
+        return e32_dirtab$LAYOUT;
+    }
+
+    private static final long e32_dirtab$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_dirtab
+     * }
+     */
+    public static final long e32_dirtab$offset() {
+        return e32_dirtab$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_dirtab
+     * }
+     */
+    public static int e32_dirtab(MemorySegment struct) {
+        return struct.get(e32_dirtab$LAYOUT, e32_dirtab$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_dirtab
+     * }
+     */
+    public static void e32_dirtab(MemorySegment struct, int fieldValue) {
+        struct.set(e32_dirtab$LAYOUT, e32_dirtab$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_dircnt$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_dircnt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_dircnt
+     * }
+     */
+    public static final OfInt e32_dircnt$layout() {
+        return e32_dircnt$LAYOUT;
+    }
+
+    private static final long e32_dircnt$OFFSET = 100;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_dircnt
+     * }
+     */
+    public static final long e32_dircnt$offset() {
+        return e32_dircnt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_dircnt
+     * }
+     */
+    public static int e32_dircnt(MemorySegment struct) {
+        return struct.get(e32_dircnt$LAYOUT, e32_dircnt$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_dircnt
+     * }
+     */
+    public static void e32_dircnt(MemorySegment struct, int fieldValue) {
+        struct.set(e32_dircnt$LAYOUT, e32_dircnt$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_fpagetab$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_fpagetab"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_fpagetab
+     * }
+     */
+    public static final OfInt e32_fpagetab$layout() {
+        return e32_fpagetab$LAYOUT;
+    }
+
+    private static final long e32_fpagetab$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_fpagetab
+     * }
+     */
+    public static final long e32_fpagetab$offset() {
+        return e32_fpagetab$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_fpagetab
+     * }
+     */
+    public static int e32_fpagetab(MemorySegment struct) {
+        return struct.get(e32_fpagetab$LAYOUT, e32_fpagetab$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_fpagetab
+     * }
+     */
+    public static void e32_fpagetab(MemorySegment struct, int fieldValue) {
+        struct.set(e32_fpagetab$LAYOUT, e32_fpagetab$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_frectab$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_frectab"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_frectab
+     * }
+     */
+    public static final OfInt e32_frectab$layout() {
+        return e32_frectab$LAYOUT;
+    }
+
+    private static final long e32_frectab$OFFSET = 108;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_frectab
+     * }
+     */
+    public static final long e32_frectab$offset() {
+        return e32_frectab$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_frectab
+     * }
+     */
+    public static int e32_frectab(MemorySegment struct) {
+        return struct.get(e32_frectab$LAYOUT, e32_frectab$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_frectab
+     * }
+     */
+    public static void e32_frectab(MemorySegment struct, int fieldValue) {
+        struct.set(e32_frectab$LAYOUT, e32_frectab$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_impmod$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_impmod"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_impmod
+     * }
+     */
+    public static final OfInt e32_impmod$layout() {
+        return e32_impmod$LAYOUT;
+    }
+
+    private static final long e32_impmod$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_impmod
+     * }
+     */
+    public static final long e32_impmod$offset() {
+        return e32_impmod$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_impmod
+     * }
+     */
+    public static int e32_impmod(MemorySegment struct) {
+        return struct.get(e32_impmod$LAYOUT, e32_impmod$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_impmod
+     * }
+     */
+    public static void e32_impmod(MemorySegment struct, int fieldValue) {
+        struct.set(e32_impmod$LAYOUT, e32_impmod$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_impmodcnt$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_impmodcnt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_impmodcnt
+     * }
+     */
+    public static final OfInt e32_impmodcnt$layout() {
+        return e32_impmodcnt$LAYOUT;
+    }
+
+    private static final long e32_impmodcnt$OFFSET = 116;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_impmodcnt
+     * }
+     */
+    public static final long e32_impmodcnt$offset() {
+        return e32_impmodcnt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_impmodcnt
+     * }
+     */
+    public static int e32_impmodcnt(MemorySegment struct) {
+        return struct.get(e32_impmodcnt$LAYOUT, e32_impmodcnt$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_impmodcnt
+     * }
+     */
+    public static void e32_impmodcnt(MemorySegment struct, int fieldValue) {
+        struct.set(e32_impmodcnt$LAYOUT, e32_impmodcnt$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_impproc$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_impproc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_impproc
+     * }
+     */
+    public static final OfInt e32_impproc$layout() {
+        return e32_impproc$LAYOUT;
+    }
+
+    private static final long e32_impproc$OFFSET = 120;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_impproc
+     * }
+     */
+    public static final long e32_impproc$offset() {
+        return e32_impproc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_impproc
+     * }
+     */
+    public static int e32_impproc(MemorySegment struct) {
+        return struct.get(e32_impproc$LAYOUT, e32_impproc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_impproc
+     * }
+     */
+    public static void e32_impproc(MemorySegment struct, int fieldValue) {
+        struct.set(e32_impproc$LAYOUT, e32_impproc$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_pagesum$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_pagesum"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_pagesum
+     * }
+     */
+    public static final OfInt e32_pagesum$layout() {
+        return e32_pagesum$LAYOUT;
+    }
+
+    private static final long e32_pagesum$OFFSET = 124;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_pagesum
+     * }
+     */
+    public static final long e32_pagesum$offset() {
+        return e32_pagesum$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_pagesum
+     * }
+     */
+    public static int e32_pagesum(MemorySegment struct) {
+        return struct.get(e32_pagesum$LAYOUT, e32_pagesum$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_pagesum
+     * }
+     */
+    public static void e32_pagesum(MemorySegment struct, int fieldValue) {
+        struct.set(e32_pagesum$LAYOUT, e32_pagesum$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_datapage$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_datapage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_datapage
+     * }
+     */
+    public static final OfInt e32_datapage$layout() {
+        return e32_datapage$LAYOUT;
+    }
+
+    private static final long e32_datapage$OFFSET = 128;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_datapage
+     * }
+     */
+    public static final long e32_datapage$offset() {
+        return e32_datapage$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_datapage
+     * }
+     */
+    public static int e32_datapage(MemorySegment struct) {
+        return struct.get(e32_datapage$LAYOUT, e32_datapage$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_datapage
+     * }
+     */
+    public static void e32_datapage(MemorySegment struct, int fieldValue) {
+        struct.set(e32_datapage$LAYOUT, e32_datapage$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_preload$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_preload"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_preload
+     * }
+     */
+    public static final OfInt e32_preload$layout() {
+        return e32_preload$LAYOUT;
+    }
+
+    private static final long e32_preload$OFFSET = 132;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_preload
+     * }
+     */
+    public static final long e32_preload$offset() {
+        return e32_preload$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_preload
+     * }
+     */
+    public static int e32_preload(MemorySegment struct) {
+        return struct.get(e32_preload$LAYOUT, e32_preload$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_preload
+     * }
+     */
+    public static void e32_preload(MemorySegment struct, int fieldValue) {
+        struct.set(e32_preload$LAYOUT, e32_preload$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_nrestab$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_nrestab"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_nrestab
+     * }
+     */
+    public static final OfInt e32_nrestab$layout() {
+        return e32_nrestab$LAYOUT;
+    }
+
+    private static final long e32_nrestab$OFFSET = 136;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_nrestab
+     * }
+     */
+    public static final long e32_nrestab$offset() {
+        return e32_nrestab$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_nrestab
+     * }
+     */
+    public static int e32_nrestab(MemorySegment struct) {
+        return struct.get(e32_nrestab$LAYOUT, e32_nrestab$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_nrestab
+     * }
+     */
+    public static void e32_nrestab(MemorySegment struct, int fieldValue) {
+        struct.set(e32_nrestab$LAYOUT, e32_nrestab$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_cbnrestab$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_cbnrestab"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_cbnrestab
+     * }
+     */
+    public static final OfInt e32_cbnrestab$layout() {
+        return e32_cbnrestab$LAYOUT;
+    }
+
+    private static final long e32_cbnrestab$OFFSET = 140;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_cbnrestab
+     * }
+     */
+    public static final long e32_cbnrestab$offset() {
+        return e32_cbnrestab$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_cbnrestab
+     * }
+     */
+    public static int e32_cbnrestab(MemorySegment struct) {
+        return struct.get(e32_cbnrestab$LAYOUT, e32_cbnrestab$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_cbnrestab
+     * }
+     */
+    public static void e32_cbnrestab(MemorySegment struct, int fieldValue) {
+        struct.set(e32_cbnrestab$LAYOUT, e32_cbnrestab$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_nressum$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_nressum"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_nressum
+     * }
+     */
+    public static final OfInt e32_nressum$layout() {
+        return e32_nressum$LAYOUT;
+    }
+
+    private static final long e32_nressum$OFFSET = 144;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_nressum
+     * }
+     */
+    public static final long e32_nressum$offset() {
+        return e32_nressum$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_nressum
+     * }
+     */
+    public static int e32_nressum(MemorySegment struct) {
+        return struct.get(e32_nressum$LAYOUT, e32_nressum$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_nressum
+     * }
+     */
+    public static void e32_nressum(MemorySegment struct, int fieldValue) {
+        struct.set(e32_nressum$LAYOUT, e32_nressum$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_autodata$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_autodata"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_autodata
+     * }
+     */
+    public static final OfInt e32_autodata$layout() {
+        return e32_autodata$LAYOUT;
+    }
+
+    private static final long e32_autodata$OFFSET = 148;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_autodata
+     * }
+     */
+    public static final long e32_autodata$offset() {
+        return e32_autodata$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_autodata
+     * }
+     */
+    public static int e32_autodata(MemorySegment struct) {
+        return struct.get(e32_autodata$LAYOUT, e32_autodata$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_autodata
+     * }
+     */
+    public static void e32_autodata(MemorySegment struct, int fieldValue) {
+        struct.set(e32_autodata$LAYOUT, e32_autodata$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_debuginfo$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_debuginfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_debuginfo
+     * }
+     */
+    public static final OfInt e32_debuginfo$layout() {
+        return e32_debuginfo$LAYOUT;
+    }
+
+    private static final long e32_debuginfo$OFFSET = 152;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_debuginfo
+     * }
+     */
+    public static final long e32_debuginfo$offset() {
+        return e32_debuginfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_debuginfo
+     * }
+     */
+    public static int e32_debuginfo(MemorySegment struct) {
+        return struct.get(e32_debuginfo$LAYOUT, e32_debuginfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_debuginfo
+     * }
+     */
+    public static void e32_debuginfo(MemorySegment struct, int fieldValue) {
+        struct.set(e32_debuginfo$LAYOUT, e32_debuginfo$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_debuglen$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_debuglen"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_debuglen
+     * }
+     */
+    public static final OfInt e32_debuglen$layout() {
+        return e32_debuglen$LAYOUT;
+    }
+
+    private static final long e32_debuglen$OFFSET = 156;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_debuglen
+     * }
+     */
+    public static final long e32_debuglen$offset() {
+        return e32_debuglen$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_debuglen
+     * }
+     */
+    public static int e32_debuglen(MemorySegment struct) {
+        return struct.get(e32_debuglen$LAYOUT, e32_debuglen$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_debuglen
+     * }
+     */
+    public static void e32_debuglen(MemorySegment struct, int fieldValue) {
+        struct.set(e32_debuglen$LAYOUT, e32_debuglen$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_instpreload$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_instpreload"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_instpreload
+     * }
+     */
+    public static final OfInt e32_instpreload$layout() {
+        return e32_instpreload$LAYOUT;
+    }
+
+    private static final long e32_instpreload$OFFSET = 160;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_instpreload
+     * }
+     */
+    public static final long e32_instpreload$offset() {
+        return e32_instpreload$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_instpreload
+     * }
+     */
+    public static int e32_instpreload(MemorySegment struct) {
+        return struct.get(e32_instpreload$LAYOUT, e32_instpreload$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_instpreload
+     * }
+     */
+    public static void e32_instpreload(MemorySegment struct, int fieldValue) {
+        struct.set(e32_instpreload$LAYOUT, e32_instpreload$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_instdemand$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_instdemand"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_instdemand
+     * }
+     */
+    public static final OfInt e32_instdemand$layout() {
+        return e32_instdemand$LAYOUT;
+    }
+
+    private static final long e32_instdemand$OFFSET = 164;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_instdemand
+     * }
+     */
+    public static final long e32_instdemand$offset() {
+        return e32_instdemand$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_instdemand
+     * }
+     */
+    public static int e32_instdemand(MemorySegment struct) {
+        return struct.get(e32_instdemand$LAYOUT, e32_instdemand$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_instdemand
+     * }
+     */
+    public static void e32_instdemand(MemorySegment struct, int fieldValue) {
+        struct.set(e32_instdemand$LAYOUT, e32_instdemand$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_heapsize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_heapsize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_heapsize
+     * }
+     */
+    public static final OfInt e32_heapsize$layout() {
+        return e32_heapsize$LAYOUT;
+    }
+
+    private static final long e32_heapsize$OFFSET = 168;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_heapsize
+     * }
+     */
+    public static final long e32_heapsize$offset() {
+        return e32_heapsize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_heapsize
+     * }
+     */
+    public static int e32_heapsize(MemorySegment struct) {
+        return struct.get(e32_heapsize$LAYOUT, e32_heapsize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_heapsize
+     * }
+     */
+    public static void e32_heapsize(MemorySegment struct, int fieldValue) {
+        struct.set(e32_heapsize$LAYOUT, e32_heapsize$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout e32_res3$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("e32_res3"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE e32_res3[12]
+     * }
+     */
+    public static final SequenceLayout e32_res3$layout() {
+        return e32_res3$LAYOUT;
+    }
+
+    private static final long e32_res3$OFFSET = 172;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE e32_res3[12]
+     * }
+     */
+    public static final long e32_res3$offset() {
+        return e32_res3$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE e32_res3[12]
+     * }
+     */
+    public static MemorySegment e32_res3(MemorySegment struct) {
+        return struct.asSlice(e32_res3$OFFSET, e32_res3$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE e32_res3[12]
+     * }
+     */
+    public static void e32_res3(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, e32_res3$OFFSET, e32_res3$LAYOUT.byteSize());
+    }
+
+    private static long[] e32_res3$DIMS = { 12 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE e32_res3[12]
+     * }
+     */
+    public static long[] e32_res3$dimensions() {
+        return e32_res3$DIMS;
+    }
+    private static final VarHandle e32_res3$ELEM_HANDLE = e32_res3$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE e32_res3[12]
+     * }
+     */
+    public static byte e32_res3(MemorySegment struct, long index0) {
+        return (byte)e32_res3$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE e32_res3[12]
+     * }
+     */
+    public static void e32_res3(MemorySegment struct, long index0, byte fieldValue) {
+        e32_res3$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt e32_winresoff$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_winresoff"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_winresoff
+     * }
+     */
+    public static final OfInt e32_winresoff$layout() {
+        return e32_winresoff$LAYOUT;
+    }
+
+    private static final long e32_winresoff$OFFSET = 184;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_winresoff
+     * }
+     */
+    public static final long e32_winresoff$offset() {
+        return e32_winresoff$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_winresoff
+     * }
+     */
+    public static int e32_winresoff(MemorySegment struct) {
+        return struct.get(e32_winresoff$LAYOUT, e32_winresoff$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_winresoff
+     * }
+     */
+    public static void e32_winresoff(MemorySegment struct, int fieldValue) {
+        struct.set(e32_winresoff$LAYOUT, e32_winresoff$OFFSET, fieldValue);
+    }
+
+    private static final OfInt e32_winreslen$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e32_winreslen"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD e32_winreslen
+     * }
+     */
+    public static final OfInt e32_winreslen$layout() {
+        return e32_winreslen$LAYOUT;
+    }
+
+    private static final long e32_winreslen$OFFSET = 188;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD e32_winreslen
+     * }
+     */
+    public static final long e32_winreslen$offset() {
+        return e32_winreslen$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD e32_winreslen
+     * }
+     */
+    public static int e32_winreslen(MemorySegment struct) {
+        return struct.get(e32_winreslen$LAYOUT, e32_winreslen$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD e32_winreslen
+     * }
+     */
+    public static void e32_winreslen(MemorySegment struct, int fieldValue) {
+        struct.set(e32_winreslen$LAYOUT, e32_winreslen$OFFSET, fieldValue);
+    }
+
+    private static final OfShort e32_devid$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e32_devid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e32_devid
+     * }
+     */
+    public static final OfShort e32_devid$layout() {
+        return e32_devid$LAYOUT;
+    }
+
+    private static final long e32_devid$OFFSET = 192;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e32_devid
+     * }
+     */
+    public static final long e32_devid$offset() {
+        return e32_devid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e32_devid
+     * }
+     */
+    public static short e32_devid(MemorySegment struct) {
+        return struct.get(e32_devid$LAYOUT, e32_devid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e32_devid
+     * }
+     */
+    public static void e32_devid(MemorySegment struct, short fieldValue) {
+        struct.set(e32_devid$LAYOUT, e32_devid$OFFSET, fieldValue);
+    }
+
+    private static final OfShort e32_ddkver$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e32_ddkver"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e32_ddkver
+     * }
+     */
+    public static final OfShort e32_ddkver$layout() {
+        return e32_ddkver$LAYOUT;
+    }
+
+    private static final long e32_ddkver$OFFSET = 194;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e32_ddkver
+     * }
+     */
+    public static final long e32_ddkver$offset() {
+        return e32_ddkver$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e32_ddkver
+     * }
+     */
+    public static short e32_ddkver(MemorySegment struct) {
+        return struct.get(e32_ddkver$LAYOUT, e32_ddkver$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e32_ddkver
+     * }
+     */
+    public static void e32_ddkver(MemorySegment struct, short fieldValue) {
+        struct.set(e32_ddkver$LAYOUT, e32_ddkver$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

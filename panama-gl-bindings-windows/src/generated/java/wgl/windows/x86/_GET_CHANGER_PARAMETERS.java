@@ -2,474 +2,1434 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _GET_CHANGER_PARAMETERS {
+ *     DWORD Size;
+ *     WORD NumberTransportElements;
+ *     WORD NumberStorageElements;
+ *     WORD NumberCleanerSlots;
+ *     WORD NumberIEElements;
+ *     WORD NumberDataTransferElements;
+ *     WORD NumberOfDoors;
+ *     WORD FirstSlotNumber;
+ *     WORD FirstDriveNumber;
+ *     WORD FirstTransportNumber;
+ *     WORD FirstIEPortNumber;
+ *     WORD FirstCleanerSlotAddress;
+ *     WORD MagazineSize;
+ *     DWORD DriveCleanTimeout;
+ *     DWORD Features0;
+ *     DWORD Features1;
+ *     BYTE MoveFromTransport;
+ *     BYTE MoveFromSlot;
+ *     BYTE MoveFromIePort;
+ *     BYTE MoveFromDrive;
+ *     BYTE ExchangeFromTransport;
+ *     BYTE ExchangeFromSlot;
+ *     BYTE ExchangeFromIePort;
+ *     BYTE ExchangeFromDrive;
+ *     BYTE LockUnlockCapabilities;
+ *     BYTE PositionCapabilities;
+ *     BYTE Reserved1[2];
+ *     DWORD Reserved2[2];
+ * }
+ * }
+ */
 public class _GET_CHANGER_PARAMETERS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_SHORT$LAYOUT.withName("NumberTransportElements"),
-        Constants$root.C_SHORT$LAYOUT.withName("NumberStorageElements"),
-        Constants$root.C_SHORT$LAYOUT.withName("NumberCleanerSlots"),
-        Constants$root.C_SHORT$LAYOUT.withName("NumberIEElements"),
-        Constants$root.C_SHORT$LAYOUT.withName("NumberDataTransferElements"),
-        Constants$root.C_SHORT$LAYOUT.withName("NumberOfDoors"),
-        Constants$root.C_SHORT$LAYOUT.withName("FirstSlotNumber"),
-        Constants$root.C_SHORT$LAYOUT.withName("FirstDriveNumber"),
-        Constants$root.C_SHORT$LAYOUT.withName("FirstTransportNumber"),
-        Constants$root.C_SHORT$LAYOUT.withName("FirstIEPortNumber"),
-        Constants$root.C_SHORT$LAYOUT.withName("FirstCleanerSlotAddress"),
-        Constants$root.C_SHORT$LAYOUT.withName("MagazineSize"),
-        Constants$root.C_LONG$LAYOUT.withName("DriveCleanTimeout"),
-        Constants$root.C_LONG$LAYOUT.withName("Features0"),
-        Constants$root.C_LONG$LAYOUT.withName("Features1"),
-        Constants$root.C_CHAR$LAYOUT.withName("MoveFromTransport"),
-        Constants$root.C_CHAR$LAYOUT.withName("MoveFromSlot"),
-        Constants$root.C_CHAR$LAYOUT.withName("MoveFromIePort"),
-        Constants$root.C_CHAR$LAYOUT.withName("MoveFromDrive"),
-        Constants$root.C_CHAR$LAYOUT.withName("ExchangeFromTransport"),
-        Constants$root.C_CHAR$LAYOUT.withName("ExchangeFromSlot"),
-        Constants$root.C_CHAR$LAYOUT.withName("ExchangeFromIePort"),
-        Constants$root.C_CHAR$LAYOUT.withName("ExchangeFromDrive"),
-        Constants$root.C_CHAR$LAYOUT.withName("LockUnlockCapabilities"),
-        Constants$root.C_CHAR$LAYOUT.withName("PositionCapabilities"),
-        MemoryLayout.sequenceLayout(2, Constants$root.C_CHAR$LAYOUT).withName("Reserved1"),
-        MemoryLayout.sequenceLayout(2, Constants$root.C_LONG$LAYOUT).withName("Reserved2")
-    ).withName("_GET_CHANGER_PARAMETERS");
-    public static MemoryLayout $LAYOUT() {
-        return _GET_CHANGER_PARAMETERS.$struct$LAYOUT;
+    _GET_CHANGER_PARAMETERS() {
+        // Should not be called directly
     }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _GET_CHANGER_PARAMETERS.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_GET_CHANGER_PARAMETERS.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _GET_CHANGER_PARAMETERS.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_GET_CHANGER_PARAMETERS.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _GET_CHANGER_PARAMETERS.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberTransportElements$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberTransportElements"));
-    public static VarHandle NumberTransportElements$VH() {
-        return _GET_CHANGER_PARAMETERS.NumberTransportElements$VH;
-    }
-    public static short NumberTransportElements$get(MemorySegment seg) {
-        return (short)_GET_CHANGER_PARAMETERS.NumberTransportElements$VH.get(seg);
-    }
-    public static void NumberTransportElements$set( MemorySegment seg, short x) {
-        _GET_CHANGER_PARAMETERS.NumberTransportElements$VH.set(seg, x);
-    }
-    public static short NumberTransportElements$get(MemorySegment seg, long index) {
-        return (short)_GET_CHANGER_PARAMETERS.NumberTransportElements$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberTransportElements$set(MemorySegment seg, long index, short x) {
-        _GET_CHANGER_PARAMETERS.NumberTransportElements$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberStorageElements$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberStorageElements"));
-    public static VarHandle NumberStorageElements$VH() {
-        return _GET_CHANGER_PARAMETERS.NumberStorageElements$VH;
-    }
-    public static short NumberStorageElements$get(MemorySegment seg) {
-        return (short)_GET_CHANGER_PARAMETERS.NumberStorageElements$VH.get(seg);
-    }
-    public static void NumberStorageElements$set( MemorySegment seg, short x) {
-        _GET_CHANGER_PARAMETERS.NumberStorageElements$VH.set(seg, x);
-    }
-    public static short NumberStorageElements$get(MemorySegment seg, long index) {
-        return (short)_GET_CHANGER_PARAMETERS.NumberStorageElements$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberStorageElements$set(MemorySegment seg, long index, short x) {
-        _GET_CHANGER_PARAMETERS.NumberStorageElements$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberCleanerSlots$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberCleanerSlots"));
-    public static VarHandle NumberCleanerSlots$VH() {
-        return _GET_CHANGER_PARAMETERS.NumberCleanerSlots$VH;
-    }
-    public static short NumberCleanerSlots$get(MemorySegment seg) {
-        return (short)_GET_CHANGER_PARAMETERS.NumberCleanerSlots$VH.get(seg);
-    }
-    public static void NumberCleanerSlots$set( MemorySegment seg, short x) {
-        _GET_CHANGER_PARAMETERS.NumberCleanerSlots$VH.set(seg, x);
-    }
-    public static short NumberCleanerSlots$get(MemorySegment seg, long index) {
-        return (short)_GET_CHANGER_PARAMETERS.NumberCleanerSlots$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberCleanerSlots$set(MemorySegment seg, long index, short x) {
-        _GET_CHANGER_PARAMETERS.NumberCleanerSlots$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberIEElements$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberIEElements"));
-    public static VarHandle NumberIEElements$VH() {
-        return _GET_CHANGER_PARAMETERS.NumberIEElements$VH;
-    }
-    public static short NumberIEElements$get(MemorySegment seg) {
-        return (short)_GET_CHANGER_PARAMETERS.NumberIEElements$VH.get(seg);
-    }
-    public static void NumberIEElements$set( MemorySegment seg, short x) {
-        _GET_CHANGER_PARAMETERS.NumberIEElements$VH.set(seg, x);
-    }
-    public static short NumberIEElements$get(MemorySegment seg, long index) {
-        return (short)_GET_CHANGER_PARAMETERS.NumberIEElements$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberIEElements$set(MemorySegment seg, long index, short x) {
-        _GET_CHANGER_PARAMETERS.NumberIEElements$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberDataTransferElements$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberDataTransferElements"));
-    public static VarHandle NumberDataTransferElements$VH() {
-        return _GET_CHANGER_PARAMETERS.NumberDataTransferElements$VH;
-    }
-    public static short NumberDataTransferElements$get(MemorySegment seg) {
-        return (short)_GET_CHANGER_PARAMETERS.NumberDataTransferElements$VH.get(seg);
-    }
-    public static void NumberDataTransferElements$set( MemorySegment seg, short x) {
-        _GET_CHANGER_PARAMETERS.NumberDataTransferElements$VH.set(seg, x);
-    }
-    public static short NumberDataTransferElements$get(MemorySegment seg, long index) {
-        return (short)_GET_CHANGER_PARAMETERS.NumberDataTransferElements$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberDataTransferElements$set(MemorySegment seg, long index, short x) {
-        _GET_CHANGER_PARAMETERS.NumberDataTransferElements$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberOfDoors$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfDoors"));
-    public static VarHandle NumberOfDoors$VH() {
-        return _GET_CHANGER_PARAMETERS.NumberOfDoors$VH;
-    }
-    public static short NumberOfDoors$get(MemorySegment seg) {
-        return (short)_GET_CHANGER_PARAMETERS.NumberOfDoors$VH.get(seg);
-    }
-    public static void NumberOfDoors$set( MemorySegment seg, short x) {
-        _GET_CHANGER_PARAMETERS.NumberOfDoors$VH.set(seg, x);
-    }
-    public static short NumberOfDoors$get(MemorySegment seg, long index) {
-        return (short)_GET_CHANGER_PARAMETERS.NumberOfDoors$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfDoors$set(MemorySegment seg, long index, short x) {
-        _GET_CHANGER_PARAMETERS.NumberOfDoors$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FirstSlotNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FirstSlotNumber"));
-    public static VarHandle FirstSlotNumber$VH() {
-        return _GET_CHANGER_PARAMETERS.FirstSlotNumber$VH;
-    }
-    public static short FirstSlotNumber$get(MemorySegment seg) {
-        return (short)_GET_CHANGER_PARAMETERS.FirstSlotNumber$VH.get(seg);
-    }
-    public static void FirstSlotNumber$set( MemorySegment seg, short x) {
-        _GET_CHANGER_PARAMETERS.FirstSlotNumber$VH.set(seg, x);
-    }
-    public static short FirstSlotNumber$get(MemorySegment seg, long index) {
-        return (short)_GET_CHANGER_PARAMETERS.FirstSlotNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FirstSlotNumber$set(MemorySegment seg, long index, short x) {
-        _GET_CHANGER_PARAMETERS.FirstSlotNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FirstDriveNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FirstDriveNumber"));
-    public static VarHandle FirstDriveNumber$VH() {
-        return _GET_CHANGER_PARAMETERS.FirstDriveNumber$VH;
-    }
-    public static short FirstDriveNumber$get(MemorySegment seg) {
-        return (short)_GET_CHANGER_PARAMETERS.FirstDriveNumber$VH.get(seg);
-    }
-    public static void FirstDriveNumber$set( MemorySegment seg, short x) {
-        _GET_CHANGER_PARAMETERS.FirstDriveNumber$VH.set(seg, x);
-    }
-    public static short FirstDriveNumber$get(MemorySegment seg, long index) {
-        return (short)_GET_CHANGER_PARAMETERS.FirstDriveNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FirstDriveNumber$set(MemorySegment seg, long index, short x) {
-        _GET_CHANGER_PARAMETERS.FirstDriveNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FirstTransportNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FirstTransportNumber"));
-    public static VarHandle FirstTransportNumber$VH() {
-        return _GET_CHANGER_PARAMETERS.FirstTransportNumber$VH;
-    }
-    public static short FirstTransportNumber$get(MemorySegment seg) {
-        return (short)_GET_CHANGER_PARAMETERS.FirstTransportNumber$VH.get(seg);
-    }
-    public static void FirstTransportNumber$set( MemorySegment seg, short x) {
-        _GET_CHANGER_PARAMETERS.FirstTransportNumber$VH.set(seg, x);
-    }
-    public static short FirstTransportNumber$get(MemorySegment seg, long index) {
-        return (short)_GET_CHANGER_PARAMETERS.FirstTransportNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FirstTransportNumber$set(MemorySegment seg, long index, short x) {
-        _GET_CHANGER_PARAMETERS.FirstTransportNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FirstIEPortNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FirstIEPortNumber"));
-    public static VarHandle FirstIEPortNumber$VH() {
-        return _GET_CHANGER_PARAMETERS.FirstIEPortNumber$VH;
-    }
-    public static short FirstIEPortNumber$get(MemorySegment seg) {
-        return (short)_GET_CHANGER_PARAMETERS.FirstIEPortNumber$VH.get(seg);
-    }
-    public static void FirstIEPortNumber$set( MemorySegment seg, short x) {
-        _GET_CHANGER_PARAMETERS.FirstIEPortNumber$VH.set(seg, x);
-    }
-    public static short FirstIEPortNumber$get(MemorySegment seg, long index) {
-        return (short)_GET_CHANGER_PARAMETERS.FirstIEPortNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FirstIEPortNumber$set(MemorySegment seg, long index, short x) {
-        _GET_CHANGER_PARAMETERS.FirstIEPortNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FirstCleanerSlotAddress$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FirstCleanerSlotAddress"));
-    public static VarHandle FirstCleanerSlotAddress$VH() {
-        return _GET_CHANGER_PARAMETERS.FirstCleanerSlotAddress$VH;
-    }
-    public static short FirstCleanerSlotAddress$get(MemorySegment seg) {
-        return (short)_GET_CHANGER_PARAMETERS.FirstCleanerSlotAddress$VH.get(seg);
-    }
-    public static void FirstCleanerSlotAddress$set( MemorySegment seg, short x) {
-        _GET_CHANGER_PARAMETERS.FirstCleanerSlotAddress$VH.set(seg, x);
-    }
-    public static short FirstCleanerSlotAddress$get(MemorySegment seg, long index) {
-        return (short)_GET_CHANGER_PARAMETERS.FirstCleanerSlotAddress$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FirstCleanerSlotAddress$set(MemorySegment seg, long index, short x) {
-        _GET_CHANGER_PARAMETERS.FirstCleanerSlotAddress$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MagazineSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MagazineSize"));
-    public static VarHandle MagazineSize$VH() {
-        return _GET_CHANGER_PARAMETERS.MagazineSize$VH;
-    }
-    public static short MagazineSize$get(MemorySegment seg) {
-        return (short)_GET_CHANGER_PARAMETERS.MagazineSize$VH.get(seg);
-    }
-    public static void MagazineSize$set( MemorySegment seg, short x) {
-        _GET_CHANGER_PARAMETERS.MagazineSize$VH.set(seg, x);
-    }
-    public static short MagazineSize$get(MemorySegment seg, long index) {
-        return (short)_GET_CHANGER_PARAMETERS.MagazineSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MagazineSize$set(MemorySegment seg, long index, short x) {
-        _GET_CHANGER_PARAMETERS.MagazineSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DriveCleanTimeout$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DriveCleanTimeout"));
-    public static VarHandle DriveCleanTimeout$VH() {
-        return _GET_CHANGER_PARAMETERS.DriveCleanTimeout$VH;
-    }
-    public static int DriveCleanTimeout$get(MemorySegment seg) {
-        return (int)_GET_CHANGER_PARAMETERS.DriveCleanTimeout$VH.get(seg);
-    }
-    public static void DriveCleanTimeout$set( MemorySegment seg, int x) {
-        _GET_CHANGER_PARAMETERS.DriveCleanTimeout$VH.set(seg, x);
-    }
-    public static int DriveCleanTimeout$get(MemorySegment seg, long index) {
-        return (int)_GET_CHANGER_PARAMETERS.DriveCleanTimeout$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DriveCleanTimeout$set(MemorySegment seg, long index, int x) {
-        _GET_CHANGER_PARAMETERS.DriveCleanTimeout$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Features0$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Features0"));
-    public static VarHandle Features0$VH() {
-        return _GET_CHANGER_PARAMETERS.Features0$VH;
-    }
-    public static int Features0$get(MemorySegment seg) {
-        return (int)_GET_CHANGER_PARAMETERS.Features0$VH.get(seg);
-    }
-    public static void Features0$set( MemorySegment seg, int x) {
-        _GET_CHANGER_PARAMETERS.Features0$VH.set(seg, x);
-    }
-    public static int Features0$get(MemorySegment seg, long index) {
-        return (int)_GET_CHANGER_PARAMETERS.Features0$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Features0$set(MemorySegment seg, long index, int x) {
-        _GET_CHANGER_PARAMETERS.Features0$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Features1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Features1"));
-    public static VarHandle Features1$VH() {
-        return _GET_CHANGER_PARAMETERS.Features1$VH;
-    }
-    public static int Features1$get(MemorySegment seg) {
-        return (int)_GET_CHANGER_PARAMETERS.Features1$VH.get(seg);
-    }
-    public static void Features1$set( MemorySegment seg, int x) {
-        _GET_CHANGER_PARAMETERS.Features1$VH.set(seg, x);
-    }
-    public static int Features1$get(MemorySegment seg, long index) {
-        return (int)_GET_CHANGER_PARAMETERS.Features1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Features1$set(MemorySegment seg, long index, int x) {
-        _GET_CHANGER_PARAMETERS.Features1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MoveFromTransport$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MoveFromTransport"));
-    public static VarHandle MoveFromTransport$VH() {
-        return _GET_CHANGER_PARAMETERS.MoveFromTransport$VH;
-    }
-    public static byte MoveFromTransport$get(MemorySegment seg) {
-        return (byte)_GET_CHANGER_PARAMETERS.MoveFromTransport$VH.get(seg);
-    }
-    public static void MoveFromTransport$set( MemorySegment seg, byte x) {
-        _GET_CHANGER_PARAMETERS.MoveFromTransport$VH.set(seg, x);
-    }
-    public static byte MoveFromTransport$get(MemorySegment seg, long index) {
-        return (byte)_GET_CHANGER_PARAMETERS.MoveFromTransport$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MoveFromTransport$set(MemorySegment seg, long index, byte x) {
-        _GET_CHANGER_PARAMETERS.MoveFromTransport$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MoveFromSlot$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MoveFromSlot"));
-    public static VarHandle MoveFromSlot$VH() {
-        return _GET_CHANGER_PARAMETERS.MoveFromSlot$VH;
-    }
-    public static byte MoveFromSlot$get(MemorySegment seg) {
-        return (byte)_GET_CHANGER_PARAMETERS.MoveFromSlot$VH.get(seg);
-    }
-    public static void MoveFromSlot$set( MemorySegment seg, byte x) {
-        _GET_CHANGER_PARAMETERS.MoveFromSlot$VH.set(seg, x);
-    }
-    public static byte MoveFromSlot$get(MemorySegment seg, long index) {
-        return (byte)_GET_CHANGER_PARAMETERS.MoveFromSlot$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MoveFromSlot$set(MemorySegment seg, long index, byte x) {
-        _GET_CHANGER_PARAMETERS.MoveFromSlot$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MoveFromIePort$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MoveFromIePort"));
-    public static VarHandle MoveFromIePort$VH() {
-        return _GET_CHANGER_PARAMETERS.MoveFromIePort$VH;
-    }
-    public static byte MoveFromIePort$get(MemorySegment seg) {
-        return (byte)_GET_CHANGER_PARAMETERS.MoveFromIePort$VH.get(seg);
-    }
-    public static void MoveFromIePort$set( MemorySegment seg, byte x) {
-        _GET_CHANGER_PARAMETERS.MoveFromIePort$VH.set(seg, x);
-    }
-    public static byte MoveFromIePort$get(MemorySegment seg, long index) {
-        return (byte)_GET_CHANGER_PARAMETERS.MoveFromIePort$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MoveFromIePort$set(MemorySegment seg, long index, byte x) {
-        _GET_CHANGER_PARAMETERS.MoveFromIePort$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MoveFromDrive$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MoveFromDrive"));
-    public static VarHandle MoveFromDrive$VH() {
-        return _GET_CHANGER_PARAMETERS.MoveFromDrive$VH;
-    }
-    public static byte MoveFromDrive$get(MemorySegment seg) {
-        return (byte)_GET_CHANGER_PARAMETERS.MoveFromDrive$VH.get(seg);
-    }
-    public static void MoveFromDrive$set( MemorySegment seg, byte x) {
-        _GET_CHANGER_PARAMETERS.MoveFromDrive$VH.set(seg, x);
-    }
-    public static byte MoveFromDrive$get(MemorySegment seg, long index) {
-        return (byte)_GET_CHANGER_PARAMETERS.MoveFromDrive$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MoveFromDrive$set(MemorySegment seg, long index, byte x) {
-        _GET_CHANGER_PARAMETERS.MoveFromDrive$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ExchangeFromTransport$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ExchangeFromTransport"));
-    public static VarHandle ExchangeFromTransport$VH() {
-        return _GET_CHANGER_PARAMETERS.ExchangeFromTransport$VH;
-    }
-    public static byte ExchangeFromTransport$get(MemorySegment seg) {
-        return (byte)_GET_CHANGER_PARAMETERS.ExchangeFromTransport$VH.get(seg);
-    }
-    public static void ExchangeFromTransport$set( MemorySegment seg, byte x) {
-        _GET_CHANGER_PARAMETERS.ExchangeFromTransport$VH.set(seg, x);
-    }
-    public static byte ExchangeFromTransport$get(MemorySegment seg, long index) {
-        return (byte)_GET_CHANGER_PARAMETERS.ExchangeFromTransport$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ExchangeFromTransport$set(MemorySegment seg, long index, byte x) {
-        _GET_CHANGER_PARAMETERS.ExchangeFromTransport$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ExchangeFromSlot$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ExchangeFromSlot"));
-    public static VarHandle ExchangeFromSlot$VH() {
-        return _GET_CHANGER_PARAMETERS.ExchangeFromSlot$VH;
-    }
-    public static byte ExchangeFromSlot$get(MemorySegment seg) {
-        return (byte)_GET_CHANGER_PARAMETERS.ExchangeFromSlot$VH.get(seg);
-    }
-    public static void ExchangeFromSlot$set( MemorySegment seg, byte x) {
-        _GET_CHANGER_PARAMETERS.ExchangeFromSlot$VH.set(seg, x);
-    }
-    public static byte ExchangeFromSlot$get(MemorySegment seg, long index) {
-        return (byte)_GET_CHANGER_PARAMETERS.ExchangeFromSlot$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ExchangeFromSlot$set(MemorySegment seg, long index, byte x) {
-        _GET_CHANGER_PARAMETERS.ExchangeFromSlot$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ExchangeFromIePort$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ExchangeFromIePort"));
-    public static VarHandle ExchangeFromIePort$VH() {
-        return _GET_CHANGER_PARAMETERS.ExchangeFromIePort$VH;
-    }
-    public static byte ExchangeFromIePort$get(MemorySegment seg) {
-        return (byte)_GET_CHANGER_PARAMETERS.ExchangeFromIePort$VH.get(seg);
-    }
-    public static void ExchangeFromIePort$set( MemorySegment seg, byte x) {
-        _GET_CHANGER_PARAMETERS.ExchangeFromIePort$VH.set(seg, x);
-    }
-    public static byte ExchangeFromIePort$get(MemorySegment seg, long index) {
-        return (byte)_GET_CHANGER_PARAMETERS.ExchangeFromIePort$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ExchangeFromIePort$set(MemorySegment seg, long index, byte x) {
-        _GET_CHANGER_PARAMETERS.ExchangeFromIePort$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ExchangeFromDrive$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ExchangeFromDrive"));
-    public static VarHandle ExchangeFromDrive$VH() {
-        return _GET_CHANGER_PARAMETERS.ExchangeFromDrive$VH;
-    }
-    public static byte ExchangeFromDrive$get(MemorySegment seg) {
-        return (byte)_GET_CHANGER_PARAMETERS.ExchangeFromDrive$VH.get(seg);
-    }
-    public static void ExchangeFromDrive$set( MemorySegment seg, byte x) {
-        _GET_CHANGER_PARAMETERS.ExchangeFromDrive$VH.set(seg, x);
-    }
-    public static byte ExchangeFromDrive$get(MemorySegment seg, long index) {
-        return (byte)_GET_CHANGER_PARAMETERS.ExchangeFromDrive$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ExchangeFromDrive$set(MemorySegment seg, long index, byte x) {
-        _GET_CHANGER_PARAMETERS.ExchangeFromDrive$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LockUnlockCapabilities$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LockUnlockCapabilities"));
-    public static VarHandle LockUnlockCapabilities$VH() {
-        return _GET_CHANGER_PARAMETERS.LockUnlockCapabilities$VH;
-    }
-    public static byte LockUnlockCapabilities$get(MemorySegment seg) {
-        return (byte)_GET_CHANGER_PARAMETERS.LockUnlockCapabilities$VH.get(seg);
-    }
-    public static void LockUnlockCapabilities$set( MemorySegment seg, byte x) {
-        _GET_CHANGER_PARAMETERS.LockUnlockCapabilities$VH.set(seg, x);
-    }
-    public static byte LockUnlockCapabilities$get(MemorySegment seg, long index) {
-        return (byte)_GET_CHANGER_PARAMETERS.LockUnlockCapabilities$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LockUnlockCapabilities$set(MemorySegment seg, long index, byte x) {
-        _GET_CHANGER_PARAMETERS.LockUnlockCapabilities$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PositionCapabilities$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PositionCapabilities"));
-    public static VarHandle PositionCapabilities$VH() {
-        return _GET_CHANGER_PARAMETERS.PositionCapabilities$VH;
-    }
-    public static byte PositionCapabilities$get(MemorySegment seg) {
-        return (byte)_GET_CHANGER_PARAMETERS.PositionCapabilities$VH.get(seg);
-    }
-    public static void PositionCapabilities$set( MemorySegment seg, byte x) {
-        _GET_CHANGER_PARAMETERS.PositionCapabilities$VH.set(seg, x);
-    }
-    public static byte PositionCapabilities$get(MemorySegment seg, long index) {
-        return (byte)_GET_CHANGER_PARAMETERS.PositionCapabilities$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PositionCapabilities$set(MemorySegment seg, long index, byte x) {
-        _GET_CHANGER_PARAMETERS.PositionCapabilities$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Reserved1$slice(MemorySegment seg) {
-        return seg.asSlice(50, 2);
-    }
-    public static MemorySegment Reserved2$slice(MemorySegment seg) {
-        return seg.asSlice(52, 8);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_SHORT.withName("NumberTransportElements"),
+        wgl_h.C_SHORT.withName("NumberStorageElements"),
+        wgl_h.C_SHORT.withName("NumberCleanerSlots"),
+        wgl_h.C_SHORT.withName("NumberIEElements"),
+        wgl_h.C_SHORT.withName("NumberDataTransferElements"),
+        wgl_h.C_SHORT.withName("NumberOfDoors"),
+        wgl_h.C_SHORT.withName("FirstSlotNumber"),
+        wgl_h.C_SHORT.withName("FirstDriveNumber"),
+        wgl_h.C_SHORT.withName("FirstTransportNumber"),
+        wgl_h.C_SHORT.withName("FirstIEPortNumber"),
+        wgl_h.C_SHORT.withName("FirstCleanerSlotAddress"),
+        wgl_h.C_SHORT.withName("MagazineSize"),
+        wgl_h.C_LONG.withName("DriveCleanTimeout"),
+        wgl_h.C_LONG.withName("Features0"),
+        wgl_h.C_LONG.withName("Features1"),
+        wgl_h.C_CHAR.withName("MoveFromTransport"),
+        wgl_h.C_CHAR.withName("MoveFromSlot"),
+        wgl_h.C_CHAR.withName("MoveFromIePort"),
+        wgl_h.C_CHAR.withName("MoveFromDrive"),
+        wgl_h.C_CHAR.withName("ExchangeFromTransport"),
+        wgl_h.C_CHAR.withName("ExchangeFromSlot"),
+        wgl_h.C_CHAR.withName("ExchangeFromIePort"),
+        wgl_h.C_CHAR.withName("ExchangeFromDrive"),
+        wgl_h.C_CHAR.withName("LockUnlockCapabilities"),
+        wgl_h.C_CHAR.withName("PositionCapabilities"),
+        MemoryLayout.sequenceLayout(2, wgl_h.C_CHAR).withName("Reserved1"),
+        MemoryLayout.sequenceLayout(2, wgl_h.C_LONG).withName("Reserved2")
+    ).withName("_GET_CHANGER_PARAMETERS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfShort NumberTransportElements$LAYOUT = (OfShort)$LAYOUT.select(groupElement("NumberTransportElements"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD NumberTransportElements
+     * }
+     */
+    public static final OfShort NumberTransportElements$layout() {
+        return NumberTransportElements$LAYOUT;
+    }
+
+    private static final long NumberTransportElements$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD NumberTransportElements
+     * }
+     */
+    public static final long NumberTransportElements$offset() {
+        return NumberTransportElements$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD NumberTransportElements
+     * }
+     */
+    public static short NumberTransportElements(MemorySegment struct) {
+        return struct.get(NumberTransportElements$LAYOUT, NumberTransportElements$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD NumberTransportElements
+     * }
+     */
+    public static void NumberTransportElements(MemorySegment struct, short fieldValue) {
+        struct.set(NumberTransportElements$LAYOUT, NumberTransportElements$OFFSET, fieldValue);
+    }
+
+    private static final OfShort NumberStorageElements$LAYOUT = (OfShort)$LAYOUT.select(groupElement("NumberStorageElements"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD NumberStorageElements
+     * }
+     */
+    public static final OfShort NumberStorageElements$layout() {
+        return NumberStorageElements$LAYOUT;
+    }
+
+    private static final long NumberStorageElements$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD NumberStorageElements
+     * }
+     */
+    public static final long NumberStorageElements$offset() {
+        return NumberStorageElements$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD NumberStorageElements
+     * }
+     */
+    public static short NumberStorageElements(MemorySegment struct) {
+        return struct.get(NumberStorageElements$LAYOUT, NumberStorageElements$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD NumberStorageElements
+     * }
+     */
+    public static void NumberStorageElements(MemorySegment struct, short fieldValue) {
+        struct.set(NumberStorageElements$LAYOUT, NumberStorageElements$OFFSET, fieldValue);
+    }
+
+    private static final OfShort NumberCleanerSlots$LAYOUT = (OfShort)$LAYOUT.select(groupElement("NumberCleanerSlots"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD NumberCleanerSlots
+     * }
+     */
+    public static final OfShort NumberCleanerSlots$layout() {
+        return NumberCleanerSlots$LAYOUT;
+    }
+
+    private static final long NumberCleanerSlots$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD NumberCleanerSlots
+     * }
+     */
+    public static final long NumberCleanerSlots$offset() {
+        return NumberCleanerSlots$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD NumberCleanerSlots
+     * }
+     */
+    public static short NumberCleanerSlots(MemorySegment struct) {
+        return struct.get(NumberCleanerSlots$LAYOUT, NumberCleanerSlots$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD NumberCleanerSlots
+     * }
+     */
+    public static void NumberCleanerSlots(MemorySegment struct, short fieldValue) {
+        struct.set(NumberCleanerSlots$LAYOUT, NumberCleanerSlots$OFFSET, fieldValue);
+    }
+
+    private static final OfShort NumberIEElements$LAYOUT = (OfShort)$LAYOUT.select(groupElement("NumberIEElements"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD NumberIEElements
+     * }
+     */
+    public static final OfShort NumberIEElements$layout() {
+        return NumberIEElements$LAYOUT;
+    }
+
+    private static final long NumberIEElements$OFFSET = 10;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD NumberIEElements
+     * }
+     */
+    public static final long NumberIEElements$offset() {
+        return NumberIEElements$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD NumberIEElements
+     * }
+     */
+    public static short NumberIEElements(MemorySegment struct) {
+        return struct.get(NumberIEElements$LAYOUT, NumberIEElements$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD NumberIEElements
+     * }
+     */
+    public static void NumberIEElements(MemorySegment struct, short fieldValue) {
+        struct.set(NumberIEElements$LAYOUT, NumberIEElements$OFFSET, fieldValue);
+    }
+
+    private static final OfShort NumberDataTransferElements$LAYOUT = (OfShort)$LAYOUT.select(groupElement("NumberDataTransferElements"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD NumberDataTransferElements
+     * }
+     */
+    public static final OfShort NumberDataTransferElements$layout() {
+        return NumberDataTransferElements$LAYOUT;
+    }
+
+    private static final long NumberDataTransferElements$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD NumberDataTransferElements
+     * }
+     */
+    public static final long NumberDataTransferElements$offset() {
+        return NumberDataTransferElements$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD NumberDataTransferElements
+     * }
+     */
+    public static short NumberDataTransferElements(MemorySegment struct) {
+        return struct.get(NumberDataTransferElements$LAYOUT, NumberDataTransferElements$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD NumberDataTransferElements
+     * }
+     */
+    public static void NumberDataTransferElements(MemorySegment struct, short fieldValue) {
+        struct.set(NumberDataTransferElements$LAYOUT, NumberDataTransferElements$OFFSET, fieldValue);
+    }
+
+    private static final OfShort NumberOfDoors$LAYOUT = (OfShort)$LAYOUT.select(groupElement("NumberOfDoors"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD NumberOfDoors
+     * }
+     */
+    public static final OfShort NumberOfDoors$layout() {
+        return NumberOfDoors$LAYOUT;
+    }
+
+    private static final long NumberOfDoors$OFFSET = 14;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD NumberOfDoors
+     * }
+     */
+    public static final long NumberOfDoors$offset() {
+        return NumberOfDoors$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD NumberOfDoors
+     * }
+     */
+    public static short NumberOfDoors(MemorySegment struct) {
+        return struct.get(NumberOfDoors$LAYOUT, NumberOfDoors$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD NumberOfDoors
+     * }
+     */
+    public static void NumberOfDoors(MemorySegment struct, short fieldValue) {
+        struct.set(NumberOfDoors$LAYOUT, NumberOfDoors$OFFSET, fieldValue);
+    }
+
+    private static final OfShort FirstSlotNumber$LAYOUT = (OfShort)$LAYOUT.select(groupElement("FirstSlotNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD FirstSlotNumber
+     * }
+     */
+    public static final OfShort FirstSlotNumber$layout() {
+        return FirstSlotNumber$LAYOUT;
+    }
+
+    private static final long FirstSlotNumber$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD FirstSlotNumber
+     * }
+     */
+    public static final long FirstSlotNumber$offset() {
+        return FirstSlotNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD FirstSlotNumber
+     * }
+     */
+    public static short FirstSlotNumber(MemorySegment struct) {
+        return struct.get(FirstSlotNumber$LAYOUT, FirstSlotNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD FirstSlotNumber
+     * }
+     */
+    public static void FirstSlotNumber(MemorySegment struct, short fieldValue) {
+        struct.set(FirstSlotNumber$LAYOUT, FirstSlotNumber$OFFSET, fieldValue);
+    }
+
+    private static final OfShort FirstDriveNumber$LAYOUT = (OfShort)$LAYOUT.select(groupElement("FirstDriveNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD FirstDriveNumber
+     * }
+     */
+    public static final OfShort FirstDriveNumber$layout() {
+        return FirstDriveNumber$LAYOUT;
+    }
+
+    private static final long FirstDriveNumber$OFFSET = 18;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD FirstDriveNumber
+     * }
+     */
+    public static final long FirstDriveNumber$offset() {
+        return FirstDriveNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD FirstDriveNumber
+     * }
+     */
+    public static short FirstDriveNumber(MemorySegment struct) {
+        return struct.get(FirstDriveNumber$LAYOUT, FirstDriveNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD FirstDriveNumber
+     * }
+     */
+    public static void FirstDriveNumber(MemorySegment struct, short fieldValue) {
+        struct.set(FirstDriveNumber$LAYOUT, FirstDriveNumber$OFFSET, fieldValue);
+    }
+
+    private static final OfShort FirstTransportNumber$LAYOUT = (OfShort)$LAYOUT.select(groupElement("FirstTransportNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD FirstTransportNumber
+     * }
+     */
+    public static final OfShort FirstTransportNumber$layout() {
+        return FirstTransportNumber$LAYOUT;
+    }
+
+    private static final long FirstTransportNumber$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD FirstTransportNumber
+     * }
+     */
+    public static final long FirstTransportNumber$offset() {
+        return FirstTransportNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD FirstTransportNumber
+     * }
+     */
+    public static short FirstTransportNumber(MemorySegment struct) {
+        return struct.get(FirstTransportNumber$LAYOUT, FirstTransportNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD FirstTransportNumber
+     * }
+     */
+    public static void FirstTransportNumber(MemorySegment struct, short fieldValue) {
+        struct.set(FirstTransportNumber$LAYOUT, FirstTransportNumber$OFFSET, fieldValue);
+    }
+
+    private static final OfShort FirstIEPortNumber$LAYOUT = (OfShort)$LAYOUT.select(groupElement("FirstIEPortNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD FirstIEPortNumber
+     * }
+     */
+    public static final OfShort FirstIEPortNumber$layout() {
+        return FirstIEPortNumber$LAYOUT;
+    }
+
+    private static final long FirstIEPortNumber$OFFSET = 22;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD FirstIEPortNumber
+     * }
+     */
+    public static final long FirstIEPortNumber$offset() {
+        return FirstIEPortNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD FirstIEPortNumber
+     * }
+     */
+    public static short FirstIEPortNumber(MemorySegment struct) {
+        return struct.get(FirstIEPortNumber$LAYOUT, FirstIEPortNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD FirstIEPortNumber
+     * }
+     */
+    public static void FirstIEPortNumber(MemorySegment struct, short fieldValue) {
+        struct.set(FirstIEPortNumber$LAYOUT, FirstIEPortNumber$OFFSET, fieldValue);
+    }
+
+    private static final OfShort FirstCleanerSlotAddress$LAYOUT = (OfShort)$LAYOUT.select(groupElement("FirstCleanerSlotAddress"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD FirstCleanerSlotAddress
+     * }
+     */
+    public static final OfShort FirstCleanerSlotAddress$layout() {
+        return FirstCleanerSlotAddress$LAYOUT;
+    }
+
+    private static final long FirstCleanerSlotAddress$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD FirstCleanerSlotAddress
+     * }
+     */
+    public static final long FirstCleanerSlotAddress$offset() {
+        return FirstCleanerSlotAddress$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD FirstCleanerSlotAddress
+     * }
+     */
+    public static short FirstCleanerSlotAddress(MemorySegment struct) {
+        return struct.get(FirstCleanerSlotAddress$LAYOUT, FirstCleanerSlotAddress$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD FirstCleanerSlotAddress
+     * }
+     */
+    public static void FirstCleanerSlotAddress(MemorySegment struct, short fieldValue) {
+        struct.set(FirstCleanerSlotAddress$LAYOUT, FirstCleanerSlotAddress$OFFSET, fieldValue);
+    }
+
+    private static final OfShort MagazineSize$LAYOUT = (OfShort)$LAYOUT.select(groupElement("MagazineSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD MagazineSize
+     * }
+     */
+    public static final OfShort MagazineSize$layout() {
+        return MagazineSize$LAYOUT;
+    }
+
+    private static final long MagazineSize$OFFSET = 26;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD MagazineSize
+     * }
+     */
+    public static final long MagazineSize$offset() {
+        return MagazineSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD MagazineSize
+     * }
+     */
+    public static short MagazineSize(MemorySegment struct) {
+        return struct.get(MagazineSize$LAYOUT, MagazineSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD MagazineSize
+     * }
+     */
+    public static void MagazineSize(MemorySegment struct, short fieldValue) {
+        struct.set(MagazineSize$LAYOUT, MagazineSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DriveCleanTimeout$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DriveCleanTimeout"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DriveCleanTimeout
+     * }
+     */
+    public static final OfInt DriveCleanTimeout$layout() {
+        return DriveCleanTimeout$LAYOUT;
+    }
+
+    private static final long DriveCleanTimeout$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DriveCleanTimeout
+     * }
+     */
+    public static final long DriveCleanTimeout$offset() {
+        return DriveCleanTimeout$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DriveCleanTimeout
+     * }
+     */
+    public static int DriveCleanTimeout(MemorySegment struct) {
+        return struct.get(DriveCleanTimeout$LAYOUT, DriveCleanTimeout$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DriveCleanTimeout
+     * }
+     */
+    public static void DriveCleanTimeout(MemorySegment struct, int fieldValue) {
+        struct.set(DriveCleanTimeout$LAYOUT, DriveCleanTimeout$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Features0$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Features0"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Features0
+     * }
+     */
+    public static final OfInt Features0$layout() {
+        return Features0$LAYOUT;
+    }
+
+    private static final long Features0$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Features0
+     * }
+     */
+    public static final long Features0$offset() {
+        return Features0$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Features0
+     * }
+     */
+    public static int Features0(MemorySegment struct) {
+        return struct.get(Features0$LAYOUT, Features0$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Features0
+     * }
+     */
+    public static void Features0(MemorySegment struct, int fieldValue) {
+        struct.set(Features0$LAYOUT, Features0$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Features1$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Features1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Features1
+     * }
+     */
+    public static final OfInt Features1$layout() {
+        return Features1$LAYOUT;
+    }
+
+    private static final long Features1$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Features1
+     * }
+     */
+    public static final long Features1$offset() {
+        return Features1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Features1
+     * }
+     */
+    public static int Features1(MemorySegment struct) {
+        return struct.get(Features1$LAYOUT, Features1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Features1
+     * }
+     */
+    public static void Features1(MemorySegment struct, int fieldValue) {
+        struct.set(Features1$LAYOUT, Features1$OFFSET, fieldValue);
+    }
+
+    private static final OfByte MoveFromTransport$LAYOUT = (OfByte)$LAYOUT.select(groupElement("MoveFromTransport"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE MoveFromTransport
+     * }
+     */
+    public static final OfByte MoveFromTransport$layout() {
+        return MoveFromTransport$LAYOUT;
+    }
+
+    private static final long MoveFromTransport$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE MoveFromTransport
+     * }
+     */
+    public static final long MoveFromTransport$offset() {
+        return MoveFromTransport$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE MoveFromTransport
+     * }
+     */
+    public static byte MoveFromTransport(MemorySegment struct) {
+        return struct.get(MoveFromTransport$LAYOUT, MoveFromTransport$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE MoveFromTransport
+     * }
+     */
+    public static void MoveFromTransport(MemorySegment struct, byte fieldValue) {
+        struct.set(MoveFromTransport$LAYOUT, MoveFromTransport$OFFSET, fieldValue);
+    }
+
+    private static final OfByte MoveFromSlot$LAYOUT = (OfByte)$LAYOUT.select(groupElement("MoveFromSlot"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE MoveFromSlot
+     * }
+     */
+    public static final OfByte MoveFromSlot$layout() {
+        return MoveFromSlot$LAYOUT;
+    }
+
+    private static final long MoveFromSlot$OFFSET = 41;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE MoveFromSlot
+     * }
+     */
+    public static final long MoveFromSlot$offset() {
+        return MoveFromSlot$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE MoveFromSlot
+     * }
+     */
+    public static byte MoveFromSlot(MemorySegment struct) {
+        return struct.get(MoveFromSlot$LAYOUT, MoveFromSlot$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE MoveFromSlot
+     * }
+     */
+    public static void MoveFromSlot(MemorySegment struct, byte fieldValue) {
+        struct.set(MoveFromSlot$LAYOUT, MoveFromSlot$OFFSET, fieldValue);
+    }
+
+    private static final OfByte MoveFromIePort$LAYOUT = (OfByte)$LAYOUT.select(groupElement("MoveFromIePort"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE MoveFromIePort
+     * }
+     */
+    public static final OfByte MoveFromIePort$layout() {
+        return MoveFromIePort$LAYOUT;
+    }
+
+    private static final long MoveFromIePort$OFFSET = 42;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE MoveFromIePort
+     * }
+     */
+    public static final long MoveFromIePort$offset() {
+        return MoveFromIePort$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE MoveFromIePort
+     * }
+     */
+    public static byte MoveFromIePort(MemorySegment struct) {
+        return struct.get(MoveFromIePort$LAYOUT, MoveFromIePort$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE MoveFromIePort
+     * }
+     */
+    public static void MoveFromIePort(MemorySegment struct, byte fieldValue) {
+        struct.set(MoveFromIePort$LAYOUT, MoveFromIePort$OFFSET, fieldValue);
+    }
+
+    private static final OfByte MoveFromDrive$LAYOUT = (OfByte)$LAYOUT.select(groupElement("MoveFromDrive"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE MoveFromDrive
+     * }
+     */
+    public static final OfByte MoveFromDrive$layout() {
+        return MoveFromDrive$LAYOUT;
+    }
+
+    private static final long MoveFromDrive$OFFSET = 43;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE MoveFromDrive
+     * }
+     */
+    public static final long MoveFromDrive$offset() {
+        return MoveFromDrive$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE MoveFromDrive
+     * }
+     */
+    public static byte MoveFromDrive(MemorySegment struct) {
+        return struct.get(MoveFromDrive$LAYOUT, MoveFromDrive$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE MoveFromDrive
+     * }
+     */
+    public static void MoveFromDrive(MemorySegment struct, byte fieldValue) {
+        struct.set(MoveFromDrive$LAYOUT, MoveFromDrive$OFFSET, fieldValue);
+    }
+
+    private static final OfByte ExchangeFromTransport$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ExchangeFromTransport"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE ExchangeFromTransport
+     * }
+     */
+    public static final OfByte ExchangeFromTransport$layout() {
+        return ExchangeFromTransport$LAYOUT;
+    }
+
+    private static final long ExchangeFromTransport$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE ExchangeFromTransport
+     * }
+     */
+    public static final long ExchangeFromTransport$offset() {
+        return ExchangeFromTransport$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE ExchangeFromTransport
+     * }
+     */
+    public static byte ExchangeFromTransport(MemorySegment struct) {
+        return struct.get(ExchangeFromTransport$LAYOUT, ExchangeFromTransport$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE ExchangeFromTransport
+     * }
+     */
+    public static void ExchangeFromTransport(MemorySegment struct, byte fieldValue) {
+        struct.set(ExchangeFromTransport$LAYOUT, ExchangeFromTransport$OFFSET, fieldValue);
+    }
+
+    private static final OfByte ExchangeFromSlot$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ExchangeFromSlot"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE ExchangeFromSlot
+     * }
+     */
+    public static final OfByte ExchangeFromSlot$layout() {
+        return ExchangeFromSlot$LAYOUT;
+    }
+
+    private static final long ExchangeFromSlot$OFFSET = 45;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE ExchangeFromSlot
+     * }
+     */
+    public static final long ExchangeFromSlot$offset() {
+        return ExchangeFromSlot$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE ExchangeFromSlot
+     * }
+     */
+    public static byte ExchangeFromSlot(MemorySegment struct) {
+        return struct.get(ExchangeFromSlot$LAYOUT, ExchangeFromSlot$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE ExchangeFromSlot
+     * }
+     */
+    public static void ExchangeFromSlot(MemorySegment struct, byte fieldValue) {
+        struct.set(ExchangeFromSlot$LAYOUT, ExchangeFromSlot$OFFSET, fieldValue);
+    }
+
+    private static final OfByte ExchangeFromIePort$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ExchangeFromIePort"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE ExchangeFromIePort
+     * }
+     */
+    public static final OfByte ExchangeFromIePort$layout() {
+        return ExchangeFromIePort$LAYOUT;
+    }
+
+    private static final long ExchangeFromIePort$OFFSET = 46;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE ExchangeFromIePort
+     * }
+     */
+    public static final long ExchangeFromIePort$offset() {
+        return ExchangeFromIePort$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE ExchangeFromIePort
+     * }
+     */
+    public static byte ExchangeFromIePort(MemorySegment struct) {
+        return struct.get(ExchangeFromIePort$LAYOUT, ExchangeFromIePort$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE ExchangeFromIePort
+     * }
+     */
+    public static void ExchangeFromIePort(MemorySegment struct, byte fieldValue) {
+        struct.set(ExchangeFromIePort$LAYOUT, ExchangeFromIePort$OFFSET, fieldValue);
+    }
+
+    private static final OfByte ExchangeFromDrive$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ExchangeFromDrive"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE ExchangeFromDrive
+     * }
+     */
+    public static final OfByte ExchangeFromDrive$layout() {
+        return ExchangeFromDrive$LAYOUT;
+    }
+
+    private static final long ExchangeFromDrive$OFFSET = 47;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE ExchangeFromDrive
+     * }
+     */
+    public static final long ExchangeFromDrive$offset() {
+        return ExchangeFromDrive$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE ExchangeFromDrive
+     * }
+     */
+    public static byte ExchangeFromDrive(MemorySegment struct) {
+        return struct.get(ExchangeFromDrive$LAYOUT, ExchangeFromDrive$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE ExchangeFromDrive
+     * }
+     */
+    public static void ExchangeFromDrive(MemorySegment struct, byte fieldValue) {
+        struct.set(ExchangeFromDrive$LAYOUT, ExchangeFromDrive$OFFSET, fieldValue);
+    }
+
+    private static final OfByte LockUnlockCapabilities$LAYOUT = (OfByte)$LAYOUT.select(groupElement("LockUnlockCapabilities"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE LockUnlockCapabilities
+     * }
+     */
+    public static final OfByte LockUnlockCapabilities$layout() {
+        return LockUnlockCapabilities$LAYOUT;
+    }
+
+    private static final long LockUnlockCapabilities$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE LockUnlockCapabilities
+     * }
+     */
+    public static final long LockUnlockCapabilities$offset() {
+        return LockUnlockCapabilities$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE LockUnlockCapabilities
+     * }
+     */
+    public static byte LockUnlockCapabilities(MemorySegment struct) {
+        return struct.get(LockUnlockCapabilities$LAYOUT, LockUnlockCapabilities$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE LockUnlockCapabilities
+     * }
+     */
+    public static void LockUnlockCapabilities(MemorySegment struct, byte fieldValue) {
+        struct.set(LockUnlockCapabilities$LAYOUT, LockUnlockCapabilities$OFFSET, fieldValue);
+    }
+
+    private static final OfByte PositionCapabilities$LAYOUT = (OfByte)$LAYOUT.select(groupElement("PositionCapabilities"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE PositionCapabilities
+     * }
+     */
+    public static final OfByte PositionCapabilities$layout() {
+        return PositionCapabilities$LAYOUT;
+    }
+
+    private static final long PositionCapabilities$OFFSET = 49;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE PositionCapabilities
+     * }
+     */
+    public static final long PositionCapabilities$offset() {
+        return PositionCapabilities$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE PositionCapabilities
+     * }
+     */
+    public static byte PositionCapabilities(MemorySegment struct) {
+        return struct.get(PositionCapabilities$LAYOUT, PositionCapabilities$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE PositionCapabilities
+     * }
+     */
+    public static void PositionCapabilities(MemorySegment struct, byte fieldValue) {
+        struct.set(PositionCapabilities$LAYOUT, PositionCapabilities$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved1$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[2]
+     * }
+     */
+    public static final SequenceLayout Reserved1$layout() {
+        return Reserved1$LAYOUT;
+    }
+
+    private static final long Reserved1$OFFSET = 50;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[2]
+     * }
+     */
+    public static final long Reserved1$offset() {
+        return Reserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[2]
+     * }
+     */
+    public static MemorySegment Reserved1(MemorySegment struct) {
+        return struct.asSlice(Reserved1$OFFSET, Reserved1$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[2]
+     * }
+     */
+    public static void Reserved1(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved1$OFFSET, Reserved1$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved1$DIMS = { 2 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[2]
+     * }
+     */
+    public static long[] Reserved1$dimensions() {
+        return Reserved1$DIMS;
+    }
+    private static final VarHandle Reserved1$ELEM_HANDLE = Reserved1$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[2]
+     * }
+     */
+    public static byte Reserved1(MemorySegment struct, long index0) {
+        return (byte)Reserved1$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[2]
+     * }
+     */
+    public static void Reserved1(MemorySegment struct, long index0, byte fieldValue) {
+        Reserved1$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved2$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2[2]
+     * }
+     */
+    public static final SequenceLayout Reserved2$layout() {
+        return Reserved2$LAYOUT;
+    }
+
+    private static final long Reserved2$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2[2]
+     * }
+     */
+    public static final long Reserved2$offset() {
+        return Reserved2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2[2]
+     * }
+     */
+    public static MemorySegment Reserved2(MemorySegment struct) {
+        return struct.asSlice(Reserved2$OFFSET, Reserved2$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2[2]
+     * }
+     */
+    public static void Reserved2(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved2$OFFSET, Reserved2$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved2$DIMS = { 2 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DWORD Reserved2[2]
+     * }
+     */
+    public static long[] Reserved2$dimensions() {
+        return Reserved2$DIMS;
+    }
+    private static final VarHandle Reserved2$ELEM_HANDLE = Reserved2$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2[2]
+     * }
+     */
+    public static int Reserved2(MemorySegment struct, long index0) {
+        return (int)Reserved2$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2[2]
+     * }
+     */
+    public static void Reserved2(MemorySegment struct, long index0, int fieldValue) {
+        Reserved2$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

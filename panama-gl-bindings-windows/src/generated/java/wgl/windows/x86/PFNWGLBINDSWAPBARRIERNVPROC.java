@@ -2,27 +2,68 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNWGLBINDSWAPBARRIERNVPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(int group, int barrier);
-    static MemorySegment allocate(PFNWGLBINDSWAPBARRIERNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNWGLBINDSWAPBARRIERNVPROC.class, fi, constants$1408.PFNWGLBINDSWAPBARRIERNVPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PFNWGLBINDSWAPBARRIERNVPROC)(GLuint, GLuint) __attribute__((stdcall))
+ * }
+ */
+public class PFNWGLBINDSWAPBARRIERNVPROC {
+
+    PFNWGLBINDSWAPBARRIERNVPROC() {
+        // Should not be called directly
     }
-    static PFNWGLBINDSWAPBARRIERNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _group, int _barrier) -> {
-            try {
-                return (int)constants$1408.PFNWGLBINDSWAPBARRIERNVPROC$MH.invokeExact((Addressable)symbol, _group, _barrier);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(int group, int barrier);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNWGLBINDSWAPBARRIERNVPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNWGLBINDSWAPBARRIERNVPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,int group, int barrier) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, group, barrier);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

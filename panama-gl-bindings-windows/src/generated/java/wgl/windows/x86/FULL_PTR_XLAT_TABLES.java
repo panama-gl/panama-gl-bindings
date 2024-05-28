@@ -2,13 +2,30 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _FULL_PTR_XLAT_TABLES {
+ *     void *RefIdToPointer;
+ *     void *PointerToRefId;
+ *     unsigned long NextRefId;
+ *     XLAT_SIDE XlatSide;
+ * } FULL_PTR_XLAT_TABLES
+ * }
+ */
 public class FULL_PTR_XLAT_TABLES extends _FULL_PTR_XLAT_TABLES {
 
+    FULL_PTR_XLAT_TABLES() {
+        // Should not be called directly
+    }
 }
-
 

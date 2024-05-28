@@ -2,27 +2,71 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface CS_TYPE_LOCAL_SIZE_ROUTINE {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    void apply(java.lang.foreign.MemoryAddress hBinding, int ulNetworkCodeSet, int ulNetworkBufferSize, java.lang.foreign.MemoryAddress conversionType, java.lang.foreign.MemoryAddress pulLocalBufferSize, java.lang.foreign.MemoryAddress pStatus);
-    static MemorySegment allocate(CS_TYPE_LOCAL_SIZE_ROUTINE fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(CS_TYPE_LOCAL_SIZE_ROUTINE.class, fi, constants$827.CS_TYPE_LOCAL_SIZE_ROUTINE$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef void (*CS_TYPE_LOCAL_SIZE_ROUTINE)(RPC_BINDING_HANDLE, unsigned long, unsigned long, IDL_CS_CONVERT *, unsigned long *, error_status_t *) __attribute__((stdcall))
+ * }
+ */
+public class CS_TYPE_LOCAL_SIZE_ROUTINE {
+
+    CS_TYPE_LOCAL_SIZE_ROUTINE() {
+        // Should not be called directly
     }
-    static CS_TYPE_LOCAL_SIZE_ROUTINE ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _hBinding, int _ulNetworkCodeSet, int _ulNetworkBufferSize, java.lang.foreign.MemoryAddress _conversionType, java.lang.foreign.MemoryAddress _pulLocalBufferSize, java.lang.foreign.MemoryAddress _pStatus) -> {
-            try {
-                constants$827.CS_TYPE_LOCAL_SIZE_ROUTINE$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_hBinding, _ulNetworkCodeSet, _ulNetworkBufferSize, (java.lang.foreign.Addressable)_conversionType, (java.lang.foreign.Addressable)_pulLocalBufferSize, (java.lang.foreign.Addressable)_pStatus);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply(MemorySegment hBinding, int ulNetworkCodeSet, int ulNetworkBufferSize, MemorySegment conversionType, MemorySegment pulLocalBufferSize, MemorySegment pStatus);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+        wgl_h.C_POINTER,
+        wgl_h.C_LONG,
+        wgl_h.C_LONG,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(CS_TYPE_LOCAL_SIZE_ROUTINE.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(CS_TYPE_LOCAL_SIZE_ROUTINE.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr,MemorySegment hBinding, int ulNetworkCodeSet, int ulNetworkBufferSize, MemorySegment conversionType, MemorySegment pulLocalBufferSize, MemorySegment pStatus) {
+        try {
+             DOWN$MH.invokeExact(funcPtr, hBinding, ulNetworkCodeSet, ulNetworkBufferSize, conversionType, pulLocalBufferSize, pStatus);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

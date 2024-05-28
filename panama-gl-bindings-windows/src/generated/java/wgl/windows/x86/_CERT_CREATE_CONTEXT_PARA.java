@@ -2,116 +2,311 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_CREATE_CONTEXT_PARA {
+ *     DWORD cbSize;
+ *     PFN_CRYPT_FREE pfnFree;
+ *     void *pvFree;
+ *     PFN_CERT_CREATE_CONTEXT_SORT_FUNC pfnSort;
+ *     void *pvSort;
+ * }
+ * }
+ */
 public class _CERT_CREATE_CONTEXT_PARA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pfnFree"),
-        Constants$root.C_POINTER$LAYOUT.withName("pvFree"),
-        Constants$root.C_POINTER$LAYOUT.withName("pfnSort"),
-        Constants$root.C_POINTER$LAYOUT.withName("pvSort")
-    ).withName("_CERT_CREATE_CONTEXT_PARA");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_CREATE_CONTEXT_PARA.$struct$LAYOUT;
+    _CERT_CREATE_CONTEXT_PARA() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _CERT_CREATE_CONTEXT_PARA.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_CERT_CREATE_CONTEXT_PARA.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _CERT_CREATE_CONTEXT_PARA.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_CERT_CREATE_CONTEXT_PARA.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _CERT_CREATE_CONTEXT_PARA.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pfnFree$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnFree"));
-    public static VarHandle pfnFree$VH() {
-        return _CERT_CREATE_CONTEXT_PARA.pfnFree$VH;
-    }
-    public static MemoryAddress pfnFree$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CREATE_CONTEXT_PARA.pfnFree$VH.get(seg);
-    }
-    public static void pfnFree$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_CREATE_CONTEXT_PARA.pfnFree$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnFree$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CREATE_CONTEXT_PARA.pfnFree$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnFree$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_CREATE_CONTEXT_PARA.pfnFree$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PFN_CRYPT_FREE pfnFree (MemorySegment segment, MemorySession session) {
-        return PFN_CRYPT_FREE.ofAddress(pfnFree$get(segment), session);
-    }
-    static final VarHandle pvFree$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pvFree"));
-    public static VarHandle pvFree$VH() {
-        return _CERT_CREATE_CONTEXT_PARA.pvFree$VH;
-    }
-    public static MemoryAddress pvFree$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CREATE_CONTEXT_PARA.pvFree$VH.get(seg);
-    }
-    public static void pvFree$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_CREATE_CONTEXT_PARA.pvFree$VH.set(seg, x);
-    }
-    public static MemoryAddress pvFree$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CREATE_CONTEXT_PARA.pvFree$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pvFree$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_CREATE_CONTEXT_PARA.pvFree$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pfnSort$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnSort"));
-    public static VarHandle pfnSort$VH() {
-        return _CERT_CREATE_CONTEXT_PARA.pfnSort$VH;
-    }
-    public static MemoryAddress pfnSort$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CREATE_CONTEXT_PARA.pfnSort$VH.get(seg);
-    }
-    public static void pfnSort$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_CREATE_CONTEXT_PARA.pfnSort$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnSort$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CREATE_CONTEXT_PARA.pfnSort$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnSort$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_CREATE_CONTEXT_PARA.pfnSort$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PFN_CERT_CREATE_CONTEXT_SORT_FUNC pfnSort (MemorySegment segment, MemorySession session) {
-        return PFN_CERT_CREATE_CONTEXT_SORT_FUNC.ofAddress(pfnSort$get(segment), session);
-    }
-    static final VarHandle pvSort$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pvSort"));
-    public static VarHandle pvSort$VH() {
-        return _CERT_CREATE_CONTEXT_PARA.pvSort$VH;
-    }
-    public static MemoryAddress pvSort$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CREATE_CONTEXT_PARA.pvSort$VH.get(seg);
-    }
-    public static void pvSort$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_CREATE_CONTEXT_PARA.pvSort$VH.set(seg, x);
-    }
-    public static MemoryAddress pvSort$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CREATE_CONTEXT_PARA.pvSort$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pvSort$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_CREATE_CONTEXT_PARA.pvSort$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pfnFree"),
+        wgl_h.C_POINTER.withName("pvFree"),
+        wgl_h.C_POINTER.withName("pfnSort"),
+        wgl_h.C_POINTER.withName("pvSort")
+    ).withName("_CERT_CREATE_CONTEXT_PARA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pfnFree$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnFree"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_FREE pfnFree
+     * }
+     */
+    public static final AddressLayout pfnFree$layout() {
+        return pfnFree$LAYOUT;
+    }
+
+    private static final long pfnFree$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_FREE pfnFree
+     * }
+     */
+    public static final long pfnFree$offset() {
+        return pfnFree$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_FREE pfnFree
+     * }
+     */
+    public static MemorySegment pfnFree(MemorySegment struct) {
+        return struct.get(pfnFree$LAYOUT, pfnFree$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_FREE pfnFree
+     * }
+     */
+    public static void pfnFree(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnFree$LAYOUT, pfnFree$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pvFree$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pvFree"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *pvFree
+     * }
+     */
+    public static final AddressLayout pvFree$layout() {
+        return pvFree$LAYOUT;
+    }
+
+    private static final long pvFree$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *pvFree
+     * }
+     */
+    public static final long pvFree$offset() {
+        return pvFree$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *pvFree
+     * }
+     */
+    public static MemorySegment pvFree(MemorySegment struct) {
+        return struct.get(pvFree$LAYOUT, pvFree$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *pvFree
+     * }
+     */
+    public static void pvFree(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pvFree$LAYOUT, pvFree$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pfnSort$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnSort"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PFN_CERT_CREATE_CONTEXT_SORT_FUNC pfnSort
+     * }
+     */
+    public static final AddressLayout pfnSort$layout() {
+        return pfnSort$LAYOUT;
+    }
+
+    private static final long pfnSort$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PFN_CERT_CREATE_CONTEXT_SORT_FUNC pfnSort
+     * }
+     */
+    public static final long pfnSort$offset() {
+        return pfnSort$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PFN_CERT_CREATE_CONTEXT_SORT_FUNC pfnSort
+     * }
+     */
+    public static MemorySegment pfnSort(MemorySegment struct) {
+        return struct.get(pfnSort$LAYOUT, pfnSort$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PFN_CERT_CREATE_CONTEXT_SORT_FUNC pfnSort
+     * }
+     */
+    public static void pfnSort(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnSort$LAYOUT, pfnSort$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pvSort$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pvSort"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *pvSort
+     * }
+     */
+    public static final AddressLayout pvSort$layout() {
+        return pvSort$LAYOUT;
+    }
+
+    private static final long pvSort$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *pvSort
+     * }
+     */
+    public static final long pvSort$offset() {
+        return pvSort$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *pvSort
+     * }
+     */
+    public static MemorySegment pvSort(MemorySegment struct) {
+        return struct.get(pvSort$LAYOUT, pvSort$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *pvSort
+     * }
+     */
+    public static void pvSort(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pvSort$LAYOUT, pvSort$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

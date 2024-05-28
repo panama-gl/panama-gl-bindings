@@ -2,62 +2,172 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagEMRPIXELFORMAT {
+ *     EMR emr;
+ *     PIXELFORMATDESCRIPTOR pfd;
+ * }
+ * }
+ */
 public class tagEMRPIXELFORMAT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("iType"),
-            Constants$root.C_LONG$LAYOUT.withName("nSize")
-        ).withName("emr"),
-        MemoryLayout.structLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("nSize"),
-            Constants$root.C_SHORT$LAYOUT.withName("nVersion"),
-            Constants$root.C_LONG$LAYOUT.withName("dwFlags"),
-            Constants$root.C_CHAR$LAYOUT.withName("iPixelType"),
-            Constants$root.C_CHAR$LAYOUT.withName("cColorBits"),
-            Constants$root.C_CHAR$LAYOUT.withName("cRedBits"),
-            Constants$root.C_CHAR$LAYOUT.withName("cRedShift"),
-            Constants$root.C_CHAR$LAYOUT.withName("cGreenBits"),
-            Constants$root.C_CHAR$LAYOUT.withName("cGreenShift"),
-            Constants$root.C_CHAR$LAYOUT.withName("cBlueBits"),
-            Constants$root.C_CHAR$LAYOUT.withName("cBlueShift"),
-            Constants$root.C_CHAR$LAYOUT.withName("cAlphaBits"),
-            Constants$root.C_CHAR$LAYOUT.withName("cAlphaShift"),
-            Constants$root.C_CHAR$LAYOUT.withName("cAccumBits"),
-            Constants$root.C_CHAR$LAYOUT.withName("cAccumRedBits"),
-            Constants$root.C_CHAR$LAYOUT.withName("cAccumGreenBits"),
-            Constants$root.C_CHAR$LAYOUT.withName("cAccumBlueBits"),
-            Constants$root.C_CHAR$LAYOUT.withName("cAccumAlphaBits"),
-            Constants$root.C_CHAR$LAYOUT.withName("cDepthBits"),
-            Constants$root.C_CHAR$LAYOUT.withName("cStencilBits"),
-            Constants$root.C_CHAR$LAYOUT.withName("cAuxBuffers"),
-            Constants$root.C_CHAR$LAYOUT.withName("iLayerType"),
-            Constants$root.C_CHAR$LAYOUT.withName("bReserved"),
-            Constants$root.C_LONG$LAYOUT.withName("dwLayerMask"),
-            Constants$root.C_LONG$LAYOUT.withName("dwVisibleMask"),
-            Constants$root.C_LONG$LAYOUT.withName("dwDamageMask")
-        ).withName("pfd")
-    ).withName("tagEMRPIXELFORMAT");
-    public static MemoryLayout $LAYOUT() {
-        return tagEMRPIXELFORMAT.$struct$LAYOUT;
+    tagEMRPIXELFORMAT() {
+        // Should not be called directly
     }
-    public static MemorySegment emr$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    public static MemorySegment pfd$slice(MemorySegment seg) {
-        return seg.asSlice(8, 40);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        tagEMR.layout().withName("emr"),
+        tagPIXELFORMATDESCRIPTOR.layout().withName("pfd")
+    ).withName("tagEMRPIXELFORMAT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout emr$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("emr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static final GroupLayout emr$layout() {
+        return emr$LAYOUT;
+    }
+
+    private static final long emr$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static final long emr$offset() {
+        return emr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static MemorySegment emr(MemorySegment struct) {
+        return struct.asSlice(emr$OFFSET, emr$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static void emr(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, emr$OFFSET, emr$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout pfd$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("pfd"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PIXELFORMATDESCRIPTOR pfd
+     * }
+     */
+    public static final GroupLayout pfd$layout() {
+        return pfd$LAYOUT;
+    }
+
+    private static final long pfd$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PIXELFORMATDESCRIPTOR pfd
+     * }
+     */
+    public static final long pfd$offset() {
+        return pfd$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PIXELFORMATDESCRIPTOR pfd
+     * }
+     */
+    public static MemorySegment pfd(MemorySegment struct) {
+        return struct.asSlice(pfd$OFFSET, pfd$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PIXELFORMATDESCRIPTOR pfd
+     * }
+     */
+    public static void pfd(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, pfd$OFFSET, pfd$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

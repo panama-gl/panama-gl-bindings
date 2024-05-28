@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagMCI_ANIM_STEP_PARMS {
+ *     DWORD_PTR dwCallback;
+ *     DWORD dwFrames;
+ * }
+ * }
+ */
 public class tagMCI_ANIM_STEP_PARMS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("dwCallback"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFrames")
-    ).withName("tagMCI_ANIM_STEP_PARMS");
-    public static MemoryLayout $LAYOUT() {
-        return tagMCI_ANIM_STEP_PARMS.$struct$LAYOUT;
+    tagMCI_ANIM_STEP_PARMS() {
+        // Should not be called directly
     }
-    static final VarHandle dwCallback$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwCallback"));
-    public static VarHandle dwCallback$VH() {
-        return tagMCI_ANIM_STEP_PARMS.dwCallback$VH;
-    }
-    public static long dwCallback$get(MemorySegment seg) {
-        return (long)tagMCI_ANIM_STEP_PARMS.dwCallback$VH.get(seg);
-    }
-    public static void dwCallback$set( MemorySegment seg, long x) {
-        tagMCI_ANIM_STEP_PARMS.dwCallback$VH.set(seg, x);
-    }
-    public static long dwCallback$get(MemorySegment seg, long index) {
-        return (long)tagMCI_ANIM_STEP_PARMS.dwCallback$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwCallback$set(MemorySegment seg, long index, long x) {
-        tagMCI_ANIM_STEP_PARMS.dwCallback$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFrames$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFrames"));
-    public static VarHandle dwFrames$VH() {
-        return tagMCI_ANIM_STEP_PARMS.dwFrames$VH;
-    }
-    public static int dwFrames$get(MemorySegment seg) {
-        return (int)tagMCI_ANIM_STEP_PARMS.dwFrames$VH.get(seg);
-    }
-    public static void dwFrames$set( MemorySegment seg, int x) {
-        tagMCI_ANIM_STEP_PARMS.dwFrames$VH.set(seg, x);
-    }
-    public static int dwFrames$get(MemorySegment seg, long index) {
-        return (int)tagMCI_ANIM_STEP_PARMS.dwFrames$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFrames$set(MemorySegment seg, long index, int x) {
-        tagMCI_ANIM_STEP_PARMS.dwFrames$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.align(wgl_h.C_LONG_LONG, 1).withName("dwCallback"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwFrames")
+    ).withName("tagMCI_ANIM_STEP_PARMS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong dwCallback$LAYOUT = (OfLong)$LAYOUT.select(groupElement("dwCallback"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwCallback
+     * }
+     */
+    public static final OfLong dwCallback$layout() {
+        return dwCallback$LAYOUT;
+    }
+
+    private static final long dwCallback$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwCallback
+     * }
+     */
+    public static final long dwCallback$offset() {
+        return dwCallback$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwCallback
+     * }
+     */
+    public static long dwCallback(MemorySegment struct) {
+        return struct.get(dwCallback$LAYOUT, dwCallback$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwCallback
+     * }
+     */
+    public static void dwCallback(MemorySegment struct, long fieldValue) {
+        struct.set(dwCallback$LAYOUT, dwCallback$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFrames$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFrames"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFrames
+     * }
+     */
+    public static final OfInt dwFrames$layout() {
+        return dwFrames$LAYOUT;
+    }
+
+    private static final long dwFrames$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFrames
+     * }
+     */
+    public static final long dwFrames$offset() {
+        return dwFrames$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFrames
+     * }
+     */
+    public static int dwFrames(MemorySegment struct) {
+        return struct.get(dwFrames$LAYOUT, dwFrames$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFrames
+     * }
+     */
+    public static void dwFrames(MemorySegment struct, int fieldValue) {
+        struct.set(dwFrames$LAYOUT, dwFrames$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

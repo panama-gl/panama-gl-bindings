@@ -2,93 +2,265 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagINPUT_INJECTION_VALUE {
+ *     USHORT page;
+ *     USHORT usage;
+ *     INT32 value;
+ *     USHORT index;
+ * }
+ * }
+ */
 public class tagINPUT_INJECTION_VALUE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("page"),
-        Constants$root.C_SHORT$LAYOUT.withName("usage"),
-        Constants$root.C_LONG$LAYOUT.withName("value"),
-        Constants$root.C_SHORT$LAYOUT.withName("index"),
-        MemoryLayout.paddingLayout(16)
-    ).withName("tagINPUT_INJECTION_VALUE");
-    public static MemoryLayout $LAYOUT() {
-        return tagINPUT_INJECTION_VALUE.$struct$LAYOUT;
+    tagINPUT_INJECTION_VALUE() {
+        // Should not be called directly
     }
-    static final VarHandle page$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("page"));
-    public static VarHandle page$VH() {
-        return tagINPUT_INJECTION_VALUE.page$VH;
-    }
-    public static short page$get(MemorySegment seg) {
-        return (short)tagINPUT_INJECTION_VALUE.page$VH.get(seg);
-    }
-    public static void page$set( MemorySegment seg, short x) {
-        tagINPUT_INJECTION_VALUE.page$VH.set(seg, x);
-    }
-    public static short page$get(MemorySegment seg, long index) {
-        return (short)tagINPUT_INJECTION_VALUE.page$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void page$set(MemorySegment seg, long index, short x) {
-        tagINPUT_INJECTION_VALUE.page$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle usage$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("usage"));
-    public static VarHandle usage$VH() {
-        return tagINPUT_INJECTION_VALUE.usage$VH;
-    }
-    public static short usage$get(MemorySegment seg) {
-        return (short)tagINPUT_INJECTION_VALUE.usage$VH.get(seg);
-    }
-    public static void usage$set( MemorySegment seg, short x) {
-        tagINPUT_INJECTION_VALUE.usage$VH.set(seg, x);
-    }
-    public static short usage$get(MemorySegment seg, long index) {
-        return (short)tagINPUT_INJECTION_VALUE.usage$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void usage$set(MemorySegment seg, long index, short x) {
-        tagINPUT_INJECTION_VALUE.usage$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle value$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("value"));
-    public static VarHandle value$VH() {
-        return tagINPUT_INJECTION_VALUE.value$VH;
-    }
-    public static int value$get(MemorySegment seg) {
-        return (int)tagINPUT_INJECTION_VALUE.value$VH.get(seg);
-    }
-    public static void value$set( MemorySegment seg, int x) {
-        tagINPUT_INJECTION_VALUE.value$VH.set(seg, x);
-    }
-    public static int value$get(MemorySegment seg, long index) {
-        return (int)tagINPUT_INJECTION_VALUE.value$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void value$set(MemorySegment seg, long index, int x) {
-        tagINPUT_INJECTION_VALUE.value$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle index$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("index"));
-    public static VarHandle index$VH() {
-        return tagINPUT_INJECTION_VALUE.index$VH;
-    }
-    public static short index$get(MemorySegment seg) {
-        return (short)tagINPUT_INJECTION_VALUE.index$VH.get(seg);
-    }
-    public static void index$set( MemorySegment seg, short x) {
-        tagINPUT_INJECTION_VALUE.index$VH.set(seg, x);
-    }
-    public static short index$get(MemorySegment seg, long index) {
-        return (short)tagINPUT_INJECTION_VALUE.index$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void index$set(MemorySegment seg, long index, short x) {
-        tagINPUT_INJECTION_VALUE.index$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("page"),
+        wgl_h.C_SHORT.withName("usage"),
+        wgl_h.C_INT.withName("value"),
+        wgl_h.C_SHORT.withName("index"),
+        MemoryLayout.paddingLayout(2)
+    ).withName("tagINPUT_INJECTION_VALUE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort page$LAYOUT = (OfShort)$LAYOUT.select(groupElement("page"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT page
+     * }
+     */
+    public static final OfShort page$layout() {
+        return page$LAYOUT;
+    }
+
+    private static final long page$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT page
+     * }
+     */
+    public static final long page$offset() {
+        return page$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT page
+     * }
+     */
+    public static short page(MemorySegment struct) {
+        return struct.get(page$LAYOUT, page$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT page
+     * }
+     */
+    public static void page(MemorySegment struct, short fieldValue) {
+        struct.set(page$LAYOUT, page$OFFSET, fieldValue);
+    }
+
+    private static final OfShort usage$LAYOUT = (OfShort)$LAYOUT.select(groupElement("usage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT usage
+     * }
+     */
+    public static final OfShort usage$layout() {
+        return usage$LAYOUT;
+    }
+
+    private static final long usage$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT usage
+     * }
+     */
+    public static final long usage$offset() {
+        return usage$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT usage
+     * }
+     */
+    public static short usage(MemorySegment struct) {
+        return struct.get(usage$LAYOUT, usage$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT usage
+     * }
+     */
+    public static void usage(MemorySegment struct, short fieldValue) {
+        struct.set(usage$LAYOUT, usage$OFFSET, fieldValue);
+    }
+
+    private static final OfInt value$LAYOUT = (OfInt)$LAYOUT.select(groupElement("value"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * INT32 value
+     * }
+     */
+    public static final OfInt value$layout() {
+        return value$LAYOUT;
+    }
+
+    private static final long value$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * INT32 value
+     * }
+     */
+    public static final long value$offset() {
+        return value$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * INT32 value
+     * }
+     */
+    public static int value(MemorySegment struct) {
+        return struct.get(value$LAYOUT, value$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * INT32 value
+     * }
+     */
+    public static void value(MemorySegment struct, int fieldValue) {
+        struct.set(value$LAYOUT, value$OFFSET, fieldValue);
+    }
+
+    private static final OfShort index$LAYOUT = (OfShort)$LAYOUT.select(groupElement("index"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT index
+     * }
+     */
+    public static final OfShort index$layout() {
+        return index$LAYOUT;
+    }
+
+    private static final long index$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT index
+     * }
+     */
+    public static final long index$offset() {
+        return index$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT index
+     * }
+     */
+    public static short index(MemorySegment struct) {
+        return struct.get(index$LAYOUT, index$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT index
+     * }
+     */
+    public static void index(MemorySegment struct, short fieldValue) {
+        struct.set(index$LAYOUT, index$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

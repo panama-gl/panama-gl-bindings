@@ -2,62 +2,251 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CSV_QUERY_VETO_FILE_DIRECT_IO_OUTPUT {
+ *     DWORDLONG VetoedFromAltitudeIntegral;
+ *     DWORDLONG VetoedFromAltitudeDecimal;
+ *     WCHAR Reason[256];
+ * }
+ * }
+ */
 public class _CSV_QUERY_VETO_FILE_DIRECT_IO_OUTPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("VetoedFromAltitudeIntegral"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("VetoedFromAltitudeDecimal"),
-        MemoryLayout.sequenceLayout(256, Constants$root.C_SHORT$LAYOUT).withName("Reason")
-    ).withName("_CSV_QUERY_VETO_FILE_DIRECT_IO_OUTPUT");
-    public static MemoryLayout $LAYOUT() {
-        return _CSV_QUERY_VETO_FILE_DIRECT_IO_OUTPUT.$struct$LAYOUT;
+    _CSV_QUERY_VETO_FILE_DIRECT_IO_OUTPUT() {
+        // Should not be called directly
     }
-    static final VarHandle VetoedFromAltitudeIntegral$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VetoedFromAltitudeIntegral"));
-    public static VarHandle VetoedFromAltitudeIntegral$VH() {
-        return _CSV_QUERY_VETO_FILE_DIRECT_IO_OUTPUT.VetoedFromAltitudeIntegral$VH;
-    }
-    public static long VetoedFromAltitudeIntegral$get(MemorySegment seg) {
-        return (long)_CSV_QUERY_VETO_FILE_DIRECT_IO_OUTPUT.VetoedFromAltitudeIntegral$VH.get(seg);
-    }
-    public static void VetoedFromAltitudeIntegral$set( MemorySegment seg, long x) {
-        _CSV_QUERY_VETO_FILE_DIRECT_IO_OUTPUT.VetoedFromAltitudeIntegral$VH.set(seg, x);
-    }
-    public static long VetoedFromAltitudeIntegral$get(MemorySegment seg, long index) {
-        return (long)_CSV_QUERY_VETO_FILE_DIRECT_IO_OUTPUT.VetoedFromAltitudeIntegral$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void VetoedFromAltitudeIntegral$set(MemorySegment seg, long index, long x) {
-        _CSV_QUERY_VETO_FILE_DIRECT_IO_OUTPUT.VetoedFromAltitudeIntegral$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle VetoedFromAltitudeDecimal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VetoedFromAltitudeDecimal"));
-    public static VarHandle VetoedFromAltitudeDecimal$VH() {
-        return _CSV_QUERY_VETO_FILE_DIRECT_IO_OUTPUT.VetoedFromAltitudeDecimal$VH;
-    }
-    public static long VetoedFromAltitudeDecimal$get(MemorySegment seg) {
-        return (long)_CSV_QUERY_VETO_FILE_DIRECT_IO_OUTPUT.VetoedFromAltitudeDecimal$VH.get(seg);
-    }
-    public static void VetoedFromAltitudeDecimal$set( MemorySegment seg, long x) {
-        _CSV_QUERY_VETO_FILE_DIRECT_IO_OUTPUT.VetoedFromAltitudeDecimal$VH.set(seg, x);
-    }
-    public static long VetoedFromAltitudeDecimal$get(MemorySegment seg, long index) {
-        return (long)_CSV_QUERY_VETO_FILE_DIRECT_IO_OUTPUT.VetoedFromAltitudeDecimal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void VetoedFromAltitudeDecimal$set(MemorySegment seg, long index, long x) {
-        _CSV_QUERY_VETO_FILE_DIRECT_IO_OUTPUT.VetoedFromAltitudeDecimal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Reason$slice(MemorySegment seg) {
-        return seg.asSlice(16, 512);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG_LONG.withName("VetoedFromAltitudeIntegral"),
+        wgl_h.C_LONG_LONG.withName("VetoedFromAltitudeDecimal"),
+        MemoryLayout.sequenceLayout(256, wgl_h.C_SHORT).withName("Reason")
+    ).withName("_CSV_QUERY_VETO_FILE_DIRECT_IO_OUTPUT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong VetoedFromAltitudeIntegral$LAYOUT = (OfLong)$LAYOUT.select(groupElement("VetoedFromAltitudeIntegral"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG VetoedFromAltitudeIntegral
+     * }
+     */
+    public static final OfLong VetoedFromAltitudeIntegral$layout() {
+        return VetoedFromAltitudeIntegral$LAYOUT;
+    }
+
+    private static final long VetoedFromAltitudeIntegral$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG VetoedFromAltitudeIntegral
+     * }
+     */
+    public static final long VetoedFromAltitudeIntegral$offset() {
+        return VetoedFromAltitudeIntegral$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG VetoedFromAltitudeIntegral
+     * }
+     */
+    public static long VetoedFromAltitudeIntegral(MemorySegment struct) {
+        return struct.get(VetoedFromAltitudeIntegral$LAYOUT, VetoedFromAltitudeIntegral$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG VetoedFromAltitudeIntegral
+     * }
+     */
+    public static void VetoedFromAltitudeIntegral(MemorySegment struct, long fieldValue) {
+        struct.set(VetoedFromAltitudeIntegral$LAYOUT, VetoedFromAltitudeIntegral$OFFSET, fieldValue);
+    }
+
+    private static final OfLong VetoedFromAltitudeDecimal$LAYOUT = (OfLong)$LAYOUT.select(groupElement("VetoedFromAltitudeDecimal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG VetoedFromAltitudeDecimal
+     * }
+     */
+    public static final OfLong VetoedFromAltitudeDecimal$layout() {
+        return VetoedFromAltitudeDecimal$LAYOUT;
+    }
+
+    private static final long VetoedFromAltitudeDecimal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG VetoedFromAltitudeDecimal
+     * }
+     */
+    public static final long VetoedFromAltitudeDecimal$offset() {
+        return VetoedFromAltitudeDecimal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG VetoedFromAltitudeDecimal
+     * }
+     */
+    public static long VetoedFromAltitudeDecimal(MemorySegment struct) {
+        return struct.get(VetoedFromAltitudeDecimal$LAYOUT, VetoedFromAltitudeDecimal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG VetoedFromAltitudeDecimal
+     * }
+     */
+    public static void VetoedFromAltitudeDecimal(MemorySegment struct, long fieldValue) {
+        struct.set(VetoedFromAltitudeDecimal$LAYOUT, VetoedFromAltitudeDecimal$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Reason$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reason"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR Reason[256]
+     * }
+     */
+    public static final SequenceLayout Reason$layout() {
+        return Reason$LAYOUT;
+    }
+
+    private static final long Reason$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR Reason[256]
+     * }
+     */
+    public static final long Reason$offset() {
+        return Reason$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR Reason[256]
+     * }
+     */
+    public static MemorySegment Reason(MemorySegment struct) {
+        return struct.asSlice(Reason$OFFSET, Reason$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR Reason[256]
+     * }
+     */
+    public static void Reason(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reason$OFFSET, Reason$LAYOUT.byteSize());
+    }
+
+    private static long[] Reason$DIMS = { 256 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR Reason[256]
+     * }
+     */
+    public static long[] Reason$dimensions() {
+        return Reason$DIMS;
+    }
+    private static final VarHandle Reason$ELEM_HANDLE = Reason$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR Reason[256]
+     * }
+     */
+    public static short Reason(MemorySegment struct, long index0) {
+        return (short)Reason$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR Reason[256]
+     * }
+     */
+    public static void Reason(MemorySegment struct, long index0, short fieldValue) {
+        Reason$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

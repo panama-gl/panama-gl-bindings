@@ -2,27 +2,71 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNWGLGETGPUINFOAMDPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(int id, int property, int dataType, int size, java.lang.foreign.MemoryAddress data);
-    static MemorySegment allocate(PFNWGLGETGPUINFOAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNWGLGETGPUINFOAMDPROC.class, fi, constants$1384.PFNWGLGETGPUINFOAMDPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef INT (*PFNWGLGETGPUINFOAMDPROC)(UINT, INT, GLenum, UINT, void *) __attribute__((stdcall))
+ * }
+ */
+public class PFNWGLGETGPUINFOAMDPROC {
+
+    PFNWGLGETGPUINFOAMDPROC() {
+        // Should not be called directly
     }
-    static PFNWGLGETGPUINFOAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _id, int _property, int _dataType, int _size, java.lang.foreign.MemoryAddress _data) -> {
-            try {
-                return (int)constants$1384.PFNWGLGETGPUINFOAMDPROC$MH.invokeExact((Addressable)symbol, _id, _property, _dataType, _size, (java.lang.foreign.Addressable)_data);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(int id, int property, int dataType, int size, MemorySegment data);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNWGLGETGPUINFOAMDPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNWGLGETGPUINFOAMDPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,int id, int property, int dataType, int size, MemorySegment data) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, id, property, dataType, size, data);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

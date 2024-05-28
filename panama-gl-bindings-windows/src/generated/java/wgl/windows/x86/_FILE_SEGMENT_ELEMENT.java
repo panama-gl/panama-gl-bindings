@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * union _FILE_SEGMENT_ELEMENT {
+ *     PVOID64 Buffer;
+ *     ULONGLONG Alignment;
+ * }
+ * }
+ */
 public class _FILE_SEGMENT_ELEMENT {
 
-    static final  GroupLayout $union$LAYOUT = MemoryLayout.unionLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("Buffer"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Alignment")
-    ).withName("_FILE_SEGMENT_ELEMENT");
-    public static MemoryLayout $LAYOUT() {
-        return _FILE_SEGMENT_ELEMENT.$union$LAYOUT;
+    _FILE_SEGMENT_ELEMENT() {
+        // Should not be called directly
     }
-    static final VarHandle Buffer$VH = $union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Buffer"));
-    public static VarHandle Buffer$VH() {
-        return _FILE_SEGMENT_ELEMENT.Buffer$VH;
-    }
-    public static MemoryAddress Buffer$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_FILE_SEGMENT_ELEMENT.Buffer$VH.get(seg);
-    }
-    public static void Buffer$set( MemorySegment seg, MemoryAddress x) {
-        _FILE_SEGMENT_ELEMENT.Buffer$VH.set(seg, x);
-    }
-    public static MemoryAddress Buffer$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_FILE_SEGMENT_ELEMENT.Buffer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Buffer$set(MemorySegment seg, long index, MemoryAddress x) {
-        _FILE_SEGMENT_ELEMENT.Buffer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Alignment$VH = $union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Alignment"));
-    public static VarHandle Alignment$VH() {
-        return _FILE_SEGMENT_ELEMENT.Alignment$VH;
-    }
-    public static long Alignment$get(MemorySegment seg) {
-        return (long)_FILE_SEGMENT_ELEMENT.Alignment$VH.get(seg);
-    }
-    public static void Alignment$set( MemorySegment seg, long x) {
-        _FILE_SEGMENT_ELEMENT.Alignment$VH.set(seg, x);
-    }
-    public static long Alignment$get(MemorySegment seg, long index) {
-        return (long)_FILE_SEGMENT_ELEMENT.Alignment$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Alignment$set(MemorySegment seg, long index, long x) {
-        _FILE_SEGMENT_ELEMENT.Alignment$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+        wgl_h.C_POINTER.withName("Buffer"),
+        wgl_h.C_LONG_LONG.withName("Alignment")
+    ).withName("_FILE_SEGMENT_ELEMENT");
+
+    /**
+     * The layout of this union
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout Buffer$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Buffer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PVOID64 Buffer
+     * }
+     */
+    public static final AddressLayout Buffer$layout() {
+        return Buffer$LAYOUT;
+    }
+
+    private static final long Buffer$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PVOID64 Buffer
+     * }
+     */
+    public static final long Buffer$offset() {
+        return Buffer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PVOID64 Buffer
+     * }
+     */
+    public static MemorySegment Buffer(MemorySegment union) {
+        return union.get(Buffer$LAYOUT, Buffer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PVOID64 Buffer
+     * }
+     */
+    public static void Buffer(MemorySegment union, MemorySegment fieldValue) {
+        union.set(Buffer$LAYOUT, Buffer$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Alignment$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Alignment"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG Alignment
+     * }
+     */
+    public static final OfLong Alignment$layout() {
+        return Alignment$LAYOUT;
+    }
+
+    private static final long Alignment$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG Alignment
+     * }
+     */
+    public static final long Alignment$offset() {
+        return Alignment$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG Alignment
+     * }
+     */
+    public static long Alignment(MemorySegment union) {
+        return union.get(Alignment$LAYOUT, Alignment$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG Alignment
+     * }
+     */
+    public static void Alignment(MemorySegment union, long fieldValue) {
+        union.set(Alignment$LAYOUT, Alignment$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this union
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,141 +2,500 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _INPUT_RECORD {
+ *     WORD EventType;
+ *     union {
+ *         KEY_EVENT_RECORD KeyEvent;
+ *         MOUSE_EVENT_RECORD MouseEvent;
+ *         WINDOW_BUFFER_SIZE_RECORD WindowBufferSizeEvent;
+ *         MENU_EVENT_RECORD MenuEvent;
+ *         FOCUS_EVENT_RECORD FocusEvent;
+ *     } Event;
+ * }
+ * }
+ */
 public class _INPUT_RECORD {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("EventType"),
-        MemoryLayout.paddingLayout(16),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("bKeyDown"),
-                Constants$root.C_SHORT$LAYOUT.withName("wRepeatCount"),
-                Constants$root.C_SHORT$LAYOUT.withName("wVirtualKeyCode"),
-                Constants$root.C_SHORT$LAYOUT.withName("wVirtualScanCode"),
-                MemoryLayout.unionLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("UnicodeChar"),
-                    Constants$root.C_CHAR$LAYOUT.withName("AsciiChar")
-                ).withName("uChar"),
-                Constants$root.C_LONG$LAYOUT.withName("dwControlKeyState")
-            ).withName("KeyEvent"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("X"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Y")
-                ).withName("dwMousePosition"),
-                Constants$root.C_LONG$LAYOUT.withName("dwButtonState"),
-                Constants$root.C_LONG$LAYOUT.withName("dwControlKeyState"),
-                Constants$root.C_LONG$LAYOUT.withName("dwEventFlags")
-            ).withName("MouseEvent"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("X"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Y")
-                ).withName("dwSize")
-            ).withName("WindowBufferSizeEvent"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("dwCommandId")
-            ).withName("MenuEvent"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("bSetFocus")
-            ).withName("FocusEvent")
-        ).withName("Event")
+    _INPUT_RECORD() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_SHORT.withName("EventType"),
+        MemoryLayout.paddingLayout(2),
+        _INPUT_RECORD.Event.layout().withName("Event")
     ).withName("_INPUT_RECORD");
-    public static MemoryLayout $LAYOUT() {
-        return _INPUT_RECORD.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle EventType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EventType"));
-    public static VarHandle EventType$VH() {
-        return _INPUT_RECORD.EventType$VH;
+
+    private static final OfShort EventType$LAYOUT = (OfShort)$LAYOUT.select(groupElement("EventType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD EventType
+     * }
+     */
+    public static final OfShort EventType$layout() {
+        return EventType$LAYOUT;
     }
-    public static short EventType$get(MemorySegment seg) {
-        return (short)_INPUT_RECORD.EventType$VH.get(seg);
+
+    private static final long EventType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD EventType
+     * }
+     */
+    public static final long EventType$offset() {
+        return EventType$OFFSET;
     }
-    public static void EventType$set( MemorySegment seg, short x) {
-        _INPUT_RECORD.EventType$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD EventType
+     * }
+     */
+    public static short EventType(MemorySegment struct) {
+        return struct.get(EventType$LAYOUT, EventType$OFFSET);
     }
-    public static short EventType$get(MemorySegment seg, long index) {
-        return (short)_INPUT_RECORD.EventType$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD EventType
+     * }
+     */
+    public static void EventType(MemorySegment struct, short fieldValue) {
+        struct.set(EventType$LAYOUT, EventType$OFFSET, fieldValue);
     }
-    public static void EventType$set(MemorySegment seg, long index, short x) {
-        _INPUT_RECORD.EventType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     KEY_EVENT_RECORD KeyEvent;
+     *     MOUSE_EVENT_RECORD MouseEvent;
+     *     WINDOW_BUFFER_SIZE_RECORD WindowBufferSizeEvent;
+     *     MENU_EVENT_RECORD MenuEvent;
+     *     FOCUS_EVENT_RECORD FocusEvent;
+     * }
+     * }
+     */
     public static class Event {
 
-        static final  GroupLayout Event$union$LAYOUT = MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("bKeyDown"),
-                Constants$root.C_SHORT$LAYOUT.withName("wRepeatCount"),
-                Constants$root.C_SHORT$LAYOUT.withName("wVirtualKeyCode"),
-                Constants$root.C_SHORT$LAYOUT.withName("wVirtualScanCode"),
-                MemoryLayout.unionLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("UnicodeChar"),
-                    Constants$root.C_CHAR$LAYOUT.withName("AsciiChar")
-                ).withName("uChar"),
-                Constants$root.C_LONG$LAYOUT.withName("dwControlKeyState")
-            ).withName("KeyEvent"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("X"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Y")
-                ).withName("dwMousePosition"),
-                Constants$root.C_LONG$LAYOUT.withName("dwButtonState"),
-                Constants$root.C_LONG$LAYOUT.withName("dwControlKeyState"),
-                Constants$root.C_LONG$LAYOUT.withName("dwEventFlags")
-            ).withName("MouseEvent"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("X"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Y")
-                ).withName("dwSize")
-            ).withName("WindowBufferSizeEvent"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("dwCommandId")
-            ).withName("MenuEvent"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("bSetFocus")
-            ).withName("FocusEvent")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return Event.Event$union$LAYOUT;
+        Event() {
+            // Should not be called directly
         }
-        public static MemorySegment KeyEvent$slice(MemorySegment seg) {
-            return seg.asSlice(0, 16);
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            _KEY_EVENT_RECORD.layout().withName("KeyEvent"),
+            _MOUSE_EVENT_RECORD.layout().withName("MouseEvent"),
+            _WINDOW_BUFFER_SIZE_RECORD.layout().withName("WindowBufferSizeEvent"),
+            _MENU_EVENT_RECORD.layout().withName("MenuEvent"),
+            _FOCUS_EVENT_RECORD.layout().withName("FocusEvent")
+        ).withName("$anon$124:5");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static MemorySegment MouseEvent$slice(MemorySegment seg) {
-            return seg.asSlice(0, 16);
+
+        private static final GroupLayout KeyEvent$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("KeyEvent"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * KEY_EVENT_RECORD KeyEvent
+         * }
+         */
+        public static final GroupLayout KeyEvent$layout() {
+            return KeyEvent$LAYOUT;
         }
-        public static MemorySegment WindowBufferSizeEvent$slice(MemorySegment seg) {
-            return seg.asSlice(0, 4);
+
+        private static final long KeyEvent$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * KEY_EVENT_RECORD KeyEvent
+         * }
+         */
+        public static final long KeyEvent$offset() {
+            return KeyEvent$OFFSET;
         }
-        public static MemorySegment MenuEvent$slice(MemorySegment seg) {
-            return seg.asSlice(0, 4);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * KEY_EVENT_RECORD KeyEvent
+         * }
+         */
+        public static MemorySegment KeyEvent(MemorySegment union) {
+            return union.asSlice(KeyEvent$OFFSET, KeyEvent$LAYOUT.byteSize());
         }
-        public static MemorySegment FocusEvent$slice(MemorySegment seg) {
-            return seg.asSlice(0, 4);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * KEY_EVENT_RECORD KeyEvent
+         * }
+         */
+        public static void KeyEvent(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, KeyEvent$OFFSET, KeyEvent$LAYOUT.byteSize());
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        private static final GroupLayout MouseEvent$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("MouseEvent"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * MOUSE_EVENT_RECORD MouseEvent
+         * }
+         */
+        public static final GroupLayout MouseEvent$layout() {
+            return MouseEvent$LAYOUT;
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        private static final long MouseEvent$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * MOUSE_EVENT_RECORD MouseEvent
+         * }
+         */
+        public static final long MouseEvent$offset() {
+            return MouseEvent$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * MOUSE_EVENT_RECORD MouseEvent
+         * }
+         */
+        public static MemorySegment MouseEvent(MemorySegment union) {
+            return union.asSlice(MouseEvent$OFFSET, MouseEvent$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * MOUSE_EVENT_RECORD MouseEvent
+         * }
+         */
+        public static void MouseEvent(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, MouseEvent$OFFSET, MouseEvent$LAYOUT.byteSize());
+        }
+
+        private static final GroupLayout WindowBufferSizeEvent$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("WindowBufferSizeEvent"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * WINDOW_BUFFER_SIZE_RECORD WindowBufferSizeEvent
+         * }
+         */
+        public static final GroupLayout WindowBufferSizeEvent$layout() {
+            return WindowBufferSizeEvent$LAYOUT;
+        }
+
+        private static final long WindowBufferSizeEvent$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * WINDOW_BUFFER_SIZE_RECORD WindowBufferSizeEvent
+         * }
+         */
+        public static final long WindowBufferSizeEvent$offset() {
+            return WindowBufferSizeEvent$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * WINDOW_BUFFER_SIZE_RECORD WindowBufferSizeEvent
+         * }
+         */
+        public static MemorySegment WindowBufferSizeEvent(MemorySegment union) {
+            return union.asSlice(WindowBufferSizeEvent$OFFSET, WindowBufferSizeEvent$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * WINDOW_BUFFER_SIZE_RECORD WindowBufferSizeEvent
+         * }
+         */
+        public static void WindowBufferSizeEvent(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, WindowBufferSizeEvent$OFFSET, WindowBufferSizeEvent$LAYOUT.byteSize());
+        }
+
+        private static final GroupLayout MenuEvent$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("MenuEvent"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * MENU_EVENT_RECORD MenuEvent
+         * }
+         */
+        public static final GroupLayout MenuEvent$layout() {
+            return MenuEvent$LAYOUT;
+        }
+
+        private static final long MenuEvent$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * MENU_EVENT_RECORD MenuEvent
+         * }
+         */
+        public static final long MenuEvent$offset() {
+            return MenuEvent$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * MENU_EVENT_RECORD MenuEvent
+         * }
+         */
+        public static MemorySegment MenuEvent(MemorySegment union) {
+            return union.asSlice(MenuEvent$OFFSET, MenuEvent$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * MENU_EVENT_RECORD MenuEvent
+         * }
+         */
+        public static void MenuEvent(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, MenuEvent$OFFSET, MenuEvent$LAYOUT.byteSize());
+        }
+
+        private static final GroupLayout FocusEvent$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("FocusEvent"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * FOCUS_EVENT_RECORD FocusEvent
+         * }
+         */
+        public static final GroupLayout FocusEvent$layout() {
+            return FocusEvent$LAYOUT;
+        }
+
+        private static final long FocusEvent$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * FOCUS_EVENT_RECORD FocusEvent
+         * }
+         */
+        public static final long FocusEvent$offset() {
+            return FocusEvent$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * FOCUS_EVENT_RECORD FocusEvent
+         * }
+         */
+        public static MemorySegment FocusEvent(MemorySegment union) {
+            return union.asSlice(FocusEvent$OFFSET, FocusEvent$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * FOCUS_EVENT_RECORD FocusEvent
+         * }
+         */
+        public static void FocusEvent(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, FocusEvent$OFFSET, FocusEvent$LAYOUT.byteSize());
+        }
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
+        }
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment Event$slice(MemorySegment seg) {
-        return seg.asSlice(4, 16);
+    private static final GroupLayout Event$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Event"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     KEY_EVENT_RECORD KeyEvent;
+     *     MOUSE_EVENT_RECORD MouseEvent;
+     *     WINDOW_BUFFER_SIZE_RECORD WindowBufferSizeEvent;
+     *     MENU_EVENT_RECORD MenuEvent;
+     *     FOCUS_EVENT_RECORD FocusEvent;
+     * } Event
+     * }
+     */
+    public static final GroupLayout Event$layout() {
+        return Event$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long Event$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     KEY_EVENT_RECORD KeyEvent;
+     *     MOUSE_EVENT_RECORD MouseEvent;
+     *     WINDOW_BUFFER_SIZE_RECORD WindowBufferSizeEvent;
+     *     MENU_EVENT_RECORD MenuEvent;
+     *     FOCUS_EVENT_RECORD FocusEvent;
+     * } Event
+     * }
+     */
+    public static final long Event$offset() {
+        return Event$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     KEY_EVENT_RECORD KeyEvent;
+     *     MOUSE_EVENT_RECORD MouseEvent;
+     *     WINDOW_BUFFER_SIZE_RECORD WindowBufferSizeEvent;
+     *     MENU_EVENT_RECORD MenuEvent;
+     *     FOCUS_EVENT_RECORD FocusEvent;
+     * } Event
+     * }
+     */
+    public static MemorySegment Event(MemorySegment struct) {
+        return struct.asSlice(Event$OFFSET, Event$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     KEY_EVENT_RECORD KeyEvent;
+     *     MOUSE_EVENT_RECORD MouseEvent;
+     *     WINDOW_BUFFER_SIZE_RECORD WindowBufferSizeEvent;
+     *     MENU_EVENT_RECORD MenuEvent;
+     *     FOCUS_EVENT_RECORD FocusEvent;
+     * } Event
+     * }
+     */
+    public static void Event(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Event$OFFSET, Event$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

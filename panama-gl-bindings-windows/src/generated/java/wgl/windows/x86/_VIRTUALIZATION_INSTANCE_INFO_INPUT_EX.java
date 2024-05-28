@@ -2,110 +2,311 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _VIRTUALIZATION_INSTANCE_INFO_INPUT_EX {
+ *     WORD HeaderSize;
+ *     DWORD Flags;
+ *     DWORD NotificationInfoSize;
+ *     WORD NotificationInfoOffset;
+ *     WORD ProviderMajorVersion;
+ * }
+ * }
+ */
 public class _VIRTUALIZATION_INSTANCE_INFO_INPUT_EX {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("HeaderSize"),
-        MemoryLayout.paddingLayout(16),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("NotificationInfoSize"),
-        Constants$root.C_SHORT$LAYOUT.withName("NotificationInfoOffset"),
-        Constants$root.C_SHORT$LAYOUT.withName("ProviderMajorVersion")
-    ).withName("_VIRTUALIZATION_INSTANCE_INFO_INPUT_EX");
-    public static MemoryLayout $LAYOUT() {
-        return _VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.$struct$LAYOUT;
+    _VIRTUALIZATION_INSTANCE_INFO_INPUT_EX() {
+        // Should not be called directly
     }
-    static final VarHandle HeaderSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HeaderSize"));
-    public static VarHandle HeaderSize$VH() {
-        return _VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.HeaderSize$VH;
-    }
-    public static short HeaderSize$get(MemorySegment seg) {
-        return (short)_VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.HeaderSize$VH.get(seg);
-    }
-    public static void HeaderSize$set( MemorySegment seg, short x) {
-        _VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.HeaderSize$VH.set(seg, x);
-    }
-    public static short HeaderSize$get(MemorySegment seg, long index) {
-        return (short)_VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.HeaderSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HeaderSize$set(MemorySegment seg, long index, short x) {
-        _VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.HeaderSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NotificationInfoSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NotificationInfoSize"));
-    public static VarHandle NotificationInfoSize$VH() {
-        return _VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.NotificationInfoSize$VH;
-    }
-    public static int NotificationInfoSize$get(MemorySegment seg) {
-        return (int)_VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.NotificationInfoSize$VH.get(seg);
-    }
-    public static void NotificationInfoSize$set( MemorySegment seg, int x) {
-        _VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.NotificationInfoSize$VH.set(seg, x);
-    }
-    public static int NotificationInfoSize$get(MemorySegment seg, long index) {
-        return (int)_VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.NotificationInfoSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NotificationInfoSize$set(MemorySegment seg, long index, int x) {
-        _VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.NotificationInfoSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NotificationInfoOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NotificationInfoOffset"));
-    public static VarHandle NotificationInfoOffset$VH() {
-        return _VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.NotificationInfoOffset$VH;
-    }
-    public static short NotificationInfoOffset$get(MemorySegment seg) {
-        return (short)_VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.NotificationInfoOffset$VH.get(seg);
-    }
-    public static void NotificationInfoOffset$set( MemorySegment seg, short x) {
-        _VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.NotificationInfoOffset$VH.set(seg, x);
-    }
-    public static short NotificationInfoOffset$get(MemorySegment seg, long index) {
-        return (short)_VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.NotificationInfoOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NotificationInfoOffset$set(MemorySegment seg, long index, short x) {
-        _VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.NotificationInfoOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ProviderMajorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProviderMajorVersion"));
-    public static VarHandle ProviderMajorVersion$VH() {
-        return _VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.ProviderMajorVersion$VH;
-    }
-    public static short ProviderMajorVersion$get(MemorySegment seg) {
-        return (short)_VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.ProviderMajorVersion$VH.get(seg);
-    }
-    public static void ProviderMajorVersion$set( MemorySegment seg, short x) {
-        _VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.ProviderMajorVersion$VH.set(seg, x);
-    }
-    public static short ProviderMajorVersion$get(MemorySegment seg, long index) {
-        return (short)_VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.ProviderMajorVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProviderMajorVersion$set(MemorySegment seg, long index, short x) {
-        _VIRTUALIZATION_INSTANCE_INFO_INPUT_EX.ProviderMajorVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("HeaderSize"),
+        MemoryLayout.paddingLayout(2),
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_LONG.withName("NotificationInfoSize"),
+        wgl_h.C_SHORT.withName("NotificationInfoOffset"),
+        wgl_h.C_SHORT.withName("ProviderMajorVersion")
+    ).withName("_VIRTUALIZATION_INSTANCE_INFO_INPUT_EX");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort HeaderSize$LAYOUT = (OfShort)$LAYOUT.select(groupElement("HeaderSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD HeaderSize
+     * }
+     */
+    public static final OfShort HeaderSize$layout() {
+        return HeaderSize$LAYOUT;
+    }
+
+    private static final long HeaderSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD HeaderSize
+     * }
+     */
+    public static final long HeaderSize$offset() {
+        return HeaderSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD HeaderSize
+     * }
+     */
+    public static short HeaderSize(MemorySegment struct) {
+        return struct.get(HeaderSize$LAYOUT, HeaderSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD HeaderSize
+     * }
+     */
+    public static void HeaderSize(MemorySegment struct, short fieldValue) {
+        struct.set(HeaderSize$LAYOUT, HeaderSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NotificationInfoSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NotificationInfoSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NotificationInfoSize
+     * }
+     */
+    public static final OfInt NotificationInfoSize$layout() {
+        return NotificationInfoSize$LAYOUT;
+    }
+
+    private static final long NotificationInfoSize$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NotificationInfoSize
+     * }
+     */
+    public static final long NotificationInfoSize$offset() {
+        return NotificationInfoSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NotificationInfoSize
+     * }
+     */
+    public static int NotificationInfoSize(MemorySegment struct) {
+        return struct.get(NotificationInfoSize$LAYOUT, NotificationInfoSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NotificationInfoSize
+     * }
+     */
+    public static void NotificationInfoSize(MemorySegment struct, int fieldValue) {
+        struct.set(NotificationInfoSize$LAYOUT, NotificationInfoSize$OFFSET, fieldValue);
+    }
+
+    private static final OfShort NotificationInfoOffset$LAYOUT = (OfShort)$LAYOUT.select(groupElement("NotificationInfoOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD NotificationInfoOffset
+     * }
+     */
+    public static final OfShort NotificationInfoOffset$layout() {
+        return NotificationInfoOffset$LAYOUT;
+    }
+
+    private static final long NotificationInfoOffset$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD NotificationInfoOffset
+     * }
+     */
+    public static final long NotificationInfoOffset$offset() {
+        return NotificationInfoOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD NotificationInfoOffset
+     * }
+     */
+    public static short NotificationInfoOffset(MemorySegment struct) {
+        return struct.get(NotificationInfoOffset$LAYOUT, NotificationInfoOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD NotificationInfoOffset
+     * }
+     */
+    public static void NotificationInfoOffset(MemorySegment struct, short fieldValue) {
+        struct.set(NotificationInfoOffset$LAYOUT, NotificationInfoOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfShort ProviderMajorVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("ProviderMajorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD ProviderMajorVersion
+     * }
+     */
+    public static final OfShort ProviderMajorVersion$layout() {
+        return ProviderMajorVersion$LAYOUT;
+    }
+
+    private static final long ProviderMajorVersion$OFFSET = 14;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD ProviderMajorVersion
+     * }
+     */
+    public static final long ProviderMajorVersion$offset() {
+        return ProviderMajorVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD ProviderMajorVersion
+     * }
+     */
+    public static short ProviderMajorVersion(MemorySegment struct) {
+        return struct.get(ProviderMajorVersion$LAYOUT, ProviderMajorVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD ProviderMajorVersion
+     * }
+     */
+    public static void ProviderMajorVersion(MemorySegment struct, short fieldValue) {
+        struct.set(ProviderMajorVersion$LAYOUT, ProviderMajorVersion$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

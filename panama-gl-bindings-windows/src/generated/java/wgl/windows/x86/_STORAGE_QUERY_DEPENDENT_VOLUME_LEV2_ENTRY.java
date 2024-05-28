@@ -2,240 +2,678 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY {
+ *     DWORD EntryLength;
+ *     DWORD DependencyTypeFlags;
+ *     DWORD ProviderSpecificFlags;
+ *     VIRTUAL_STORAGE_TYPE VirtualStorageType;
+ *     DWORD AncestorLevel;
+ *     DWORD HostVolumeNameOffset;
+ *     DWORD HostVolumeNameSize;
+ *     DWORD DependentVolumeNameOffset;
+ *     DWORD DependentVolumeNameSize;
+ *     DWORD RelativePathOffset;
+ *     DWORD RelativePathSize;
+ *     DWORD DependentDeviceNameOffset;
+ *     DWORD DependentDeviceNameSize;
+ * }
+ * }
+ */
 public class _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("EntryLength"),
-        Constants$root.C_LONG$LAYOUT.withName("DependencyTypeFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("ProviderSpecificFlags"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("DeviceId"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-            ).withName("VendorId")
-        ).withName("VirtualStorageType"),
-        Constants$root.C_LONG$LAYOUT.withName("AncestorLevel"),
-        Constants$root.C_LONG$LAYOUT.withName("HostVolumeNameOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("HostVolumeNameSize"),
-        Constants$root.C_LONG$LAYOUT.withName("DependentVolumeNameOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("DependentVolumeNameSize"),
-        Constants$root.C_LONG$LAYOUT.withName("RelativePathOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("RelativePathSize"),
-        Constants$root.C_LONG$LAYOUT.withName("DependentDeviceNameOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("DependentDeviceNameSize")
-    ).withName("_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.$struct$LAYOUT;
+    _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY() {
+        // Should not be called directly
     }
-    static final VarHandle EntryLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EntryLength"));
-    public static VarHandle EntryLength$VH() {
-        return _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.EntryLength$VH;
-    }
-    public static int EntryLength$get(MemorySegment seg) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.EntryLength$VH.get(seg);
-    }
-    public static void EntryLength$set( MemorySegment seg, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.EntryLength$VH.set(seg, x);
-    }
-    public static int EntryLength$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.EntryLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EntryLength$set(MemorySegment seg, long index, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.EntryLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DependencyTypeFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DependencyTypeFlags"));
-    public static VarHandle DependencyTypeFlags$VH() {
-        return _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependencyTypeFlags$VH;
-    }
-    public static int DependencyTypeFlags$get(MemorySegment seg) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependencyTypeFlags$VH.get(seg);
-    }
-    public static void DependencyTypeFlags$set( MemorySegment seg, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependencyTypeFlags$VH.set(seg, x);
-    }
-    public static int DependencyTypeFlags$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependencyTypeFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DependencyTypeFlags$set(MemorySegment seg, long index, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependencyTypeFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ProviderSpecificFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProviderSpecificFlags"));
-    public static VarHandle ProviderSpecificFlags$VH() {
-        return _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.ProviderSpecificFlags$VH;
-    }
-    public static int ProviderSpecificFlags$get(MemorySegment seg) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.ProviderSpecificFlags$VH.get(seg);
-    }
-    public static void ProviderSpecificFlags$set( MemorySegment seg, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.ProviderSpecificFlags$VH.set(seg, x);
-    }
-    public static int ProviderSpecificFlags$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.ProviderSpecificFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProviderSpecificFlags$set(MemorySegment seg, long index, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.ProviderSpecificFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment VirtualStorageType$slice(MemorySegment seg) {
-        return seg.asSlice(12, 20);
-    }
-    static final VarHandle AncestorLevel$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AncestorLevel"));
-    public static VarHandle AncestorLevel$VH() {
-        return _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.AncestorLevel$VH;
-    }
-    public static int AncestorLevel$get(MemorySegment seg) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.AncestorLevel$VH.get(seg);
-    }
-    public static void AncestorLevel$set( MemorySegment seg, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.AncestorLevel$VH.set(seg, x);
-    }
-    public static int AncestorLevel$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.AncestorLevel$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AncestorLevel$set(MemorySegment seg, long index, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.AncestorLevel$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle HostVolumeNameOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HostVolumeNameOffset"));
-    public static VarHandle HostVolumeNameOffset$VH() {
-        return _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.HostVolumeNameOffset$VH;
-    }
-    public static int HostVolumeNameOffset$get(MemorySegment seg) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.HostVolumeNameOffset$VH.get(seg);
-    }
-    public static void HostVolumeNameOffset$set( MemorySegment seg, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.HostVolumeNameOffset$VH.set(seg, x);
-    }
-    public static int HostVolumeNameOffset$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.HostVolumeNameOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HostVolumeNameOffset$set(MemorySegment seg, long index, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.HostVolumeNameOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle HostVolumeNameSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HostVolumeNameSize"));
-    public static VarHandle HostVolumeNameSize$VH() {
-        return _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.HostVolumeNameSize$VH;
-    }
-    public static int HostVolumeNameSize$get(MemorySegment seg) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.HostVolumeNameSize$VH.get(seg);
-    }
-    public static void HostVolumeNameSize$set( MemorySegment seg, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.HostVolumeNameSize$VH.set(seg, x);
-    }
-    public static int HostVolumeNameSize$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.HostVolumeNameSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HostVolumeNameSize$set(MemorySegment seg, long index, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.HostVolumeNameSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DependentVolumeNameOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DependentVolumeNameOffset"));
-    public static VarHandle DependentVolumeNameOffset$VH() {
-        return _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentVolumeNameOffset$VH;
-    }
-    public static int DependentVolumeNameOffset$get(MemorySegment seg) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentVolumeNameOffset$VH.get(seg);
-    }
-    public static void DependentVolumeNameOffset$set( MemorySegment seg, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentVolumeNameOffset$VH.set(seg, x);
-    }
-    public static int DependentVolumeNameOffset$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentVolumeNameOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DependentVolumeNameOffset$set(MemorySegment seg, long index, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentVolumeNameOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DependentVolumeNameSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DependentVolumeNameSize"));
-    public static VarHandle DependentVolumeNameSize$VH() {
-        return _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentVolumeNameSize$VH;
-    }
-    public static int DependentVolumeNameSize$get(MemorySegment seg) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentVolumeNameSize$VH.get(seg);
-    }
-    public static void DependentVolumeNameSize$set( MemorySegment seg, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentVolumeNameSize$VH.set(seg, x);
-    }
-    public static int DependentVolumeNameSize$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentVolumeNameSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DependentVolumeNameSize$set(MemorySegment seg, long index, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentVolumeNameSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RelativePathOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RelativePathOffset"));
-    public static VarHandle RelativePathOffset$VH() {
-        return _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.RelativePathOffset$VH;
-    }
-    public static int RelativePathOffset$get(MemorySegment seg) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.RelativePathOffset$VH.get(seg);
-    }
-    public static void RelativePathOffset$set( MemorySegment seg, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.RelativePathOffset$VH.set(seg, x);
-    }
-    public static int RelativePathOffset$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.RelativePathOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RelativePathOffset$set(MemorySegment seg, long index, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.RelativePathOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RelativePathSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RelativePathSize"));
-    public static VarHandle RelativePathSize$VH() {
-        return _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.RelativePathSize$VH;
-    }
-    public static int RelativePathSize$get(MemorySegment seg) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.RelativePathSize$VH.get(seg);
-    }
-    public static void RelativePathSize$set( MemorySegment seg, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.RelativePathSize$VH.set(seg, x);
-    }
-    public static int RelativePathSize$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.RelativePathSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RelativePathSize$set(MemorySegment seg, long index, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.RelativePathSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DependentDeviceNameOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DependentDeviceNameOffset"));
-    public static VarHandle DependentDeviceNameOffset$VH() {
-        return _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentDeviceNameOffset$VH;
-    }
-    public static int DependentDeviceNameOffset$get(MemorySegment seg) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentDeviceNameOffset$VH.get(seg);
-    }
-    public static void DependentDeviceNameOffset$set( MemorySegment seg, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentDeviceNameOffset$VH.set(seg, x);
-    }
-    public static int DependentDeviceNameOffset$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentDeviceNameOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DependentDeviceNameOffset$set(MemorySegment seg, long index, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentDeviceNameOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DependentDeviceNameSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DependentDeviceNameSize"));
-    public static VarHandle DependentDeviceNameSize$VH() {
-        return _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentDeviceNameSize$VH;
-    }
-    public static int DependentDeviceNameSize$get(MemorySegment seg) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentDeviceNameSize$VH.get(seg);
-    }
-    public static void DependentDeviceNameSize$set( MemorySegment seg, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentDeviceNameSize$VH.set(seg, x);
-    }
-    public static int DependentDeviceNameSize$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentDeviceNameSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DependentDeviceNameSize$set(MemorySegment seg, long index, int x) {
-        _STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY.DependentDeviceNameSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("EntryLength"),
+        wgl_h.C_LONG.withName("DependencyTypeFlags"),
+        wgl_h.C_LONG.withName("ProviderSpecificFlags"),
+        _VIRTUAL_STORAGE_TYPE.layout().withName("VirtualStorageType"),
+        wgl_h.C_LONG.withName("AncestorLevel"),
+        wgl_h.C_LONG.withName("HostVolumeNameOffset"),
+        wgl_h.C_LONG.withName("HostVolumeNameSize"),
+        wgl_h.C_LONG.withName("DependentVolumeNameOffset"),
+        wgl_h.C_LONG.withName("DependentVolumeNameSize"),
+        wgl_h.C_LONG.withName("RelativePathOffset"),
+        wgl_h.C_LONG.withName("RelativePathSize"),
+        wgl_h.C_LONG.withName("DependentDeviceNameOffset"),
+        wgl_h.C_LONG.withName("DependentDeviceNameSize")
+    ).withName("_STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt EntryLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("EntryLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD EntryLength
+     * }
+     */
+    public static final OfInt EntryLength$layout() {
+        return EntryLength$LAYOUT;
+    }
+
+    private static final long EntryLength$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD EntryLength
+     * }
+     */
+    public static final long EntryLength$offset() {
+        return EntryLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD EntryLength
+     * }
+     */
+    public static int EntryLength(MemorySegment struct) {
+        return struct.get(EntryLength$LAYOUT, EntryLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD EntryLength
+     * }
+     */
+    public static void EntryLength(MemorySegment struct, int fieldValue) {
+        struct.set(EntryLength$LAYOUT, EntryLength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DependencyTypeFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DependencyTypeFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DependencyTypeFlags
+     * }
+     */
+    public static final OfInt DependencyTypeFlags$layout() {
+        return DependencyTypeFlags$LAYOUT;
+    }
+
+    private static final long DependencyTypeFlags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DependencyTypeFlags
+     * }
+     */
+    public static final long DependencyTypeFlags$offset() {
+        return DependencyTypeFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DependencyTypeFlags
+     * }
+     */
+    public static int DependencyTypeFlags(MemorySegment struct) {
+        return struct.get(DependencyTypeFlags$LAYOUT, DependencyTypeFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DependencyTypeFlags
+     * }
+     */
+    public static void DependencyTypeFlags(MemorySegment struct, int fieldValue) {
+        struct.set(DependencyTypeFlags$LAYOUT, DependencyTypeFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ProviderSpecificFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ProviderSpecificFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ProviderSpecificFlags
+     * }
+     */
+    public static final OfInt ProviderSpecificFlags$layout() {
+        return ProviderSpecificFlags$LAYOUT;
+    }
+
+    private static final long ProviderSpecificFlags$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ProviderSpecificFlags
+     * }
+     */
+    public static final long ProviderSpecificFlags$offset() {
+        return ProviderSpecificFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ProviderSpecificFlags
+     * }
+     */
+    public static int ProviderSpecificFlags(MemorySegment struct) {
+        return struct.get(ProviderSpecificFlags$LAYOUT, ProviderSpecificFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ProviderSpecificFlags
+     * }
+     */
+    public static void ProviderSpecificFlags(MemorySegment struct, int fieldValue) {
+        struct.set(ProviderSpecificFlags$LAYOUT, ProviderSpecificFlags$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout VirtualStorageType$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("VirtualStorageType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * VIRTUAL_STORAGE_TYPE VirtualStorageType
+     * }
+     */
+    public static final GroupLayout VirtualStorageType$layout() {
+        return VirtualStorageType$LAYOUT;
+    }
+
+    private static final long VirtualStorageType$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * VIRTUAL_STORAGE_TYPE VirtualStorageType
+     * }
+     */
+    public static final long VirtualStorageType$offset() {
+        return VirtualStorageType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * VIRTUAL_STORAGE_TYPE VirtualStorageType
+     * }
+     */
+    public static MemorySegment VirtualStorageType(MemorySegment struct) {
+        return struct.asSlice(VirtualStorageType$OFFSET, VirtualStorageType$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * VIRTUAL_STORAGE_TYPE VirtualStorageType
+     * }
+     */
+    public static void VirtualStorageType(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, VirtualStorageType$OFFSET, VirtualStorageType$LAYOUT.byteSize());
+    }
+
+    private static final OfInt AncestorLevel$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AncestorLevel"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD AncestorLevel
+     * }
+     */
+    public static final OfInt AncestorLevel$layout() {
+        return AncestorLevel$LAYOUT;
+    }
+
+    private static final long AncestorLevel$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD AncestorLevel
+     * }
+     */
+    public static final long AncestorLevel$offset() {
+        return AncestorLevel$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD AncestorLevel
+     * }
+     */
+    public static int AncestorLevel(MemorySegment struct) {
+        return struct.get(AncestorLevel$LAYOUT, AncestorLevel$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD AncestorLevel
+     * }
+     */
+    public static void AncestorLevel(MemorySegment struct, int fieldValue) {
+        struct.set(AncestorLevel$LAYOUT, AncestorLevel$OFFSET, fieldValue);
+    }
+
+    private static final OfInt HostVolumeNameOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("HostVolumeNameOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD HostVolumeNameOffset
+     * }
+     */
+    public static final OfInt HostVolumeNameOffset$layout() {
+        return HostVolumeNameOffset$LAYOUT;
+    }
+
+    private static final long HostVolumeNameOffset$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD HostVolumeNameOffset
+     * }
+     */
+    public static final long HostVolumeNameOffset$offset() {
+        return HostVolumeNameOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD HostVolumeNameOffset
+     * }
+     */
+    public static int HostVolumeNameOffset(MemorySegment struct) {
+        return struct.get(HostVolumeNameOffset$LAYOUT, HostVolumeNameOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD HostVolumeNameOffset
+     * }
+     */
+    public static void HostVolumeNameOffset(MemorySegment struct, int fieldValue) {
+        struct.set(HostVolumeNameOffset$LAYOUT, HostVolumeNameOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt HostVolumeNameSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("HostVolumeNameSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD HostVolumeNameSize
+     * }
+     */
+    public static final OfInt HostVolumeNameSize$layout() {
+        return HostVolumeNameSize$LAYOUT;
+    }
+
+    private static final long HostVolumeNameSize$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD HostVolumeNameSize
+     * }
+     */
+    public static final long HostVolumeNameSize$offset() {
+        return HostVolumeNameSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD HostVolumeNameSize
+     * }
+     */
+    public static int HostVolumeNameSize(MemorySegment struct) {
+        return struct.get(HostVolumeNameSize$LAYOUT, HostVolumeNameSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD HostVolumeNameSize
+     * }
+     */
+    public static void HostVolumeNameSize(MemorySegment struct, int fieldValue) {
+        struct.set(HostVolumeNameSize$LAYOUT, HostVolumeNameSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DependentVolumeNameOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DependentVolumeNameOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DependentVolumeNameOffset
+     * }
+     */
+    public static final OfInt DependentVolumeNameOffset$layout() {
+        return DependentVolumeNameOffset$LAYOUT;
+    }
+
+    private static final long DependentVolumeNameOffset$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DependentVolumeNameOffset
+     * }
+     */
+    public static final long DependentVolumeNameOffset$offset() {
+        return DependentVolumeNameOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DependentVolumeNameOffset
+     * }
+     */
+    public static int DependentVolumeNameOffset(MemorySegment struct) {
+        return struct.get(DependentVolumeNameOffset$LAYOUT, DependentVolumeNameOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DependentVolumeNameOffset
+     * }
+     */
+    public static void DependentVolumeNameOffset(MemorySegment struct, int fieldValue) {
+        struct.set(DependentVolumeNameOffset$LAYOUT, DependentVolumeNameOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DependentVolumeNameSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DependentVolumeNameSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DependentVolumeNameSize
+     * }
+     */
+    public static final OfInt DependentVolumeNameSize$layout() {
+        return DependentVolumeNameSize$LAYOUT;
+    }
+
+    private static final long DependentVolumeNameSize$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DependentVolumeNameSize
+     * }
+     */
+    public static final long DependentVolumeNameSize$offset() {
+        return DependentVolumeNameSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DependentVolumeNameSize
+     * }
+     */
+    public static int DependentVolumeNameSize(MemorySegment struct) {
+        return struct.get(DependentVolumeNameSize$LAYOUT, DependentVolumeNameSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DependentVolumeNameSize
+     * }
+     */
+    public static void DependentVolumeNameSize(MemorySegment struct, int fieldValue) {
+        struct.set(DependentVolumeNameSize$LAYOUT, DependentVolumeNameSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt RelativePathOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("RelativePathOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD RelativePathOffset
+     * }
+     */
+    public static final OfInt RelativePathOffset$layout() {
+        return RelativePathOffset$LAYOUT;
+    }
+
+    private static final long RelativePathOffset$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD RelativePathOffset
+     * }
+     */
+    public static final long RelativePathOffset$offset() {
+        return RelativePathOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD RelativePathOffset
+     * }
+     */
+    public static int RelativePathOffset(MemorySegment struct) {
+        return struct.get(RelativePathOffset$LAYOUT, RelativePathOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD RelativePathOffset
+     * }
+     */
+    public static void RelativePathOffset(MemorySegment struct, int fieldValue) {
+        struct.set(RelativePathOffset$LAYOUT, RelativePathOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt RelativePathSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("RelativePathSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD RelativePathSize
+     * }
+     */
+    public static final OfInt RelativePathSize$layout() {
+        return RelativePathSize$LAYOUT;
+    }
+
+    private static final long RelativePathSize$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD RelativePathSize
+     * }
+     */
+    public static final long RelativePathSize$offset() {
+        return RelativePathSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD RelativePathSize
+     * }
+     */
+    public static int RelativePathSize(MemorySegment struct) {
+        return struct.get(RelativePathSize$LAYOUT, RelativePathSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD RelativePathSize
+     * }
+     */
+    public static void RelativePathSize(MemorySegment struct, int fieldValue) {
+        struct.set(RelativePathSize$LAYOUT, RelativePathSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DependentDeviceNameOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DependentDeviceNameOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DependentDeviceNameOffset
+     * }
+     */
+    public static final OfInt DependentDeviceNameOffset$layout() {
+        return DependentDeviceNameOffset$LAYOUT;
+    }
+
+    private static final long DependentDeviceNameOffset$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DependentDeviceNameOffset
+     * }
+     */
+    public static final long DependentDeviceNameOffset$offset() {
+        return DependentDeviceNameOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DependentDeviceNameOffset
+     * }
+     */
+    public static int DependentDeviceNameOffset(MemorySegment struct) {
+        return struct.get(DependentDeviceNameOffset$LAYOUT, DependentDeviceNameOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DependentDeviceNameOffset
+     * }
+     */
+    public static void DependentDeviceNameOffset(MemorySegment struct, int fieldValue) {
+        struct.set(DependentDeviceNameOffset$LAYOUT, DependentDeviceNameOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DependentDeviceNameSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DependentDeviceNameSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DependentDeviceNameSize
+     * }
+     */
+    public static final OfInt DependentDeviceNameSize$layout() {
+        return DependentDeviceNameSize$LAYOUT;
+    }
+
+    private static final long DependentDeviceNameSize$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DependentDeviceNameSize
+     * }
+     */
+    public static final long DependentDeviceNameSize$offset() {
+        return DependentDeviceNameSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DependentDeviceNameSize
+     * }
+     */
+    public static int DependentDeviceNameSize(MemorySegment struct) {
+        return struct.get(DependentDeviceNameSize$LAYOUT, DependentDeviceNameSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DependentDeviceNameSize
+     * }
+     */
+    public static void DependentDeviceNameSize(MemorySegment struct, int fieldValue) {
+        struct.set(DependentDeviceNameSize$LAYOUT, DependentDeviceNameSize$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

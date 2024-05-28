@@ -2,229 +2,633 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagSOUNDSENTRYW {
+ *     UINT cbSize;
+ *     DWORD dwFlags;
+ *     DWORD iFSTextEffect;
+ *     DWORD iFSTextEffectMSec;
+ *     DWORD iFSTextEffectColorBits;
+ *     DWORD iFSGrafEffect;
+ *     DWORD iFSGrafEffectMSec;
+ *     DWORD iFSGrafEffectColor;
+ *     DWORD iWindowsEffect;
+ *     DWORD iWindowsEffectMSec;
+ *     LPWSTR lpszWindowsEffectDLL;
+ *     DWORD iWindowsEffectOrdinal;
+ * }
+ * }
+ */
 public class tagSOUNDSENTRYW {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("iFSTextEffect"),
-        Constants$root.C_LONG$LAYOUT.withName("iFSTextEffectMSec"),
-        Constants$root.C_LONG$LAYOUT.withName("iFSTextEffectColorBits"),
-        Constants$root.C_LONG$LAYOUT.withName("iFSGrafEffect"),
-        Constants$root.C_LONG$LAYOUT.withName("iFSGrafEffectMSec"),
-        Constants$root.C_LONG$LAYOUT.withName("iFSGrafEffectColor"),
-        Constants$root.C_LONG$LAYOUT.withName("iWindowsEffect"),
-        Constants$root.C_LONG$LAYOUT.withName("iWindowsEffectMSec"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpszWindowsEffectDLL"),
-        Constants$root.C_LONG$LAYOUT.withName("iWindowsEffectOrdinal"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("tagSOUNDSENTRYW");
-    public static MemoryLayout $LAYOUT() {
-        return tagSOUNDSENTRYW.$struct$LAYOUT;
+    tagSOUNDSENTRYW() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return tagSOUNDSENTRYW.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)tagSOUNDSENTRYW.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        tagSOUNDSENTRYW.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)tagSOUNDSENTRYW.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        tagSOUNDSENTRYW.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFlags"));
-    public static VarHandle dwFlags$VH() {
-        return tagSOUNDSENTRYW.dwFlags$VH;
-    }
-    public static int dwFlags$get(MemorySegment seg) {
-        return (int)tagSOUNDSENTRYW.dwFlags$VH.get(seg);
-    }
-    public static void dwFlags$set( MemorySegment seg, int x) {
-        tagSOUNDSENTRYW.dwFlags$VH.set(seg, x);
-    }
-    public static int dwFlags$get(MemorySegment seg, long index) {
-        return (int)tagSOUNDSENTRYW.dwFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFlags$set(MemorySegment seg, long index, int x) {
-        tagSOUNDSENTRYW.dwFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iFSTextEffect$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iFSTextEffect"));
-    public static VarHandle iFSTextEffect$VH() {
-        return tagSOUNDSENTRYW.iFSTextEffect$VH;
-    }
-    public static int iFSTextEffect$get(MemorySegment seg) {
-        return (int)tagSOUNDSENTRYW.iFSTextEffect$VH.get(seg);
-    }
-    public static void iFSTextEffect$set( MemorySegment seg, int x) {
-        tagSOUNDSENTRYW.iFSTextEffect$VH.set(seg, x);
-    }
-    public static int iFSTextEffect$get(MemorySegment seg, long index) {
-        return (int)tagSOUNDSENTRYW.iFSTextEffect$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iFSTextEffect$set(MemorySegment seg, long index, int x) {
-        tagSOUNDSENTRYW.iFSTextEffect$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iFSTextEffectMSec$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iFSTextEffectMSec"));
-    public static VarHandle iFSTextEffectMSec$VH() {
-        return tagSOUNDSENTRYW.iFSTextEffectMSec$VH;
-    }
-    public static int iFSTextEffectMSec$get(MemorySegment seg) {
-        return (int)tagSOUNDSENTRYW.iFSTextEffectMSec$VH.get(seg);
-    }
-    public static void iFSTextEffectMSec$set( MemorySegment seg, int x) {
-        tagSOUNDSENTRYW.iFSTextEffectMSec$VH.set(seg, x);
-    }
-    public static int iFSTextEffectMSec$get(MemorySegment seg, long index) {
-        return (int)tagSOUNDSENTRYW.iFSTextEffectMSec$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iFSTextEffectMSec$set(MemorySegment seg, long index, int x) {
-        tagSOUNDSENTRYW.iFSTextEffectMSec$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iFSTextEffectColorBits$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iFSTextEffectColorBits"));
-    public static VarHandle iFSTextEffectColorBits$VH() {
-        return tagSOUNDSENTRYW.iFSTextEffectColorBits$VH;
-    }
-    public static int iFSTextEffectColorBits$get(MemorySegment seg) {
-        return (int)tagSOUNDSENTRYW.iFSTextEffectColorBits$VH.get(seg);
-    }
-    public static void iFSTextEffectColorBits$set( MemorySegment seg, int x) {
-        tagSOUNDSENTRYW.iFSTextEffectColorBits$VH.set(seg, x);
-    }
-    public static int iFSTextEffectColorBits$get(MemorySegment seg, long index) {
-        return (int)tagSOUNDSENTRYW.iFSTextEffectColorBits$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iFSTextEffectColorBits$set(MemorySegment seg, long index, int x) {
-        tagSOUNDSENTRYW.iFSTextEffectColorBits$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iFSGrafEffect$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iFSGrafEffect"));
-    public static VarHandle iFSGrafEffect$VH() {
-        return tagSOUNDSENTRYW.iFSGrafEffect$VH;
-    }
-    public static int iFSGrafEffect$get(MemorySegment seg) {
-        return (int)tagSOUNDSENTRYW.iFSGrafEffect$VH.get(seg);
-    }
-    public static void iFSGrafEffect$set( MemorySegment seg, int x) {
-        tagSOUNDSENTRYW.iFSGrafEffect$VH.set(seg, x);
-    }
-    public static int iFSGrafEffect$get(MemorySegment seg, long index) {
-        return (int)tagSOUNDSENTRYW.iFSGrafEffect$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iFSGrafEffect$set(MemorySegment seg, long index, int x) {
-        tagSOUNDSENTRYW.iFSGrafEffect$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iFSGrafEffectMSec$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iFSGrafEffectMSec"));
-    public static VarHandle iFSGrafEffectMSec$VH() {
-        return tagSOUNDSENTRYW.iFSGrafEffectMSec$VH;
-    }
-    public static int iFSGrafEffectMSec$get(MemorySegment seg) {
-        return (int)tagSOUNDSENTRYW.iFSGrafEffectMSec$VH.get(seg);
-    }
-    public static void iFSGrafEffectMSec$set( MemorySegment seg, int x) {
-        tagSOUNDSENTRYW.iFSGrafEffectMSec$VH.set(seg, x);
-    }
-    public static int iFSGrafEffectMSec$get(MemorySegment seg, long index) {
-        return (int)tagSOUNDSENTRYW.iFSGrafEffectMSec$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iFSGrafEffectMSec$set(MemorySegment seg, long index, int x) {
-        tagSOUNDSENTRYW.iFSGrafEffectMSec$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iFSGrafEffectColor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iFSGrafEffectColor"));
-    public static VarHandle iFSGrafEffectColor$VH() {
-        return tagSOUNDSENTRYW.iFSGrafEffectColor$VH;
-    }
-    public static int iFSGrafEffectColor$get(MemorySegment seg) {
-        return (int)tagSOUNDSENTRYW.iFSGrafEffectColor$VH.get(seg);
-    }
-    public static void iFSGrafEffectColor$set( MemorySegment seg, int x) {
-        tagSOUNDSENTRYW.iFSGrafEffectColor$VH.set(seg, x);
-    }
-    public static int iFSGrafEffectColor$get(MemorySegment seg, long index) {
-        return (int)tagSOUNDSENTRYW.iFSGrafEffectColor$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iFSGrafEffectColor$set(MemorySegment seg, long index, int x) {
-        tagSOUNDSENTRYW.iFSGrafEffectColor$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iWindowsEffect$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iWindowsEffect"));
-    public static VarHandle iWindowsEffect$VH() {
-        return tagSOUNDSENTRYW.iWindowsEffect$VH;
-    }
-    public static int iWindowsEffect$get(MemorySegment seg) {
-        return (int)tagSOUNDSENTRYW.iWindowsEffect$VH.get(seg);
-    }
-    public static void iWindowsEffect$set( MemorySegment seg, int x) {
-        tagSOUNDSENTRYW.iWindowsEffect$VH.set(seg, x);
-    }
-    public static int iWindowsEffect$get(MemorySegment seg, long index) {
-        return (int)tagSOUNDSENTRYW.iWindowsEffect$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iWindowsEffect$set(MemorySegment seg, long index, int x) {
-        tagSOUNDSENTRYW.iWindowsEffect$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iWindowsEffectMSec$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iWindowsEffectMSec"));
-    public static VarHandle iWindowsEffectMSec$VH() {
-        return tagSOUNDSENTRYW.iWindowsEffectMSec$VH;
-    }
-    public static int iWindowsEffectMSec$get(MemorySegment seg) {
-        return (int)tagSOUNDSENTRYW.iWindowsEffectMSec$VH.get(seg);
-    }
-    public static void iWindowsEffectMSec$set( MemorySegment seg, int x) {
-        tagSOUNDSENTRYW.iWindowsEffectMSec$VH.set(seg, x);
-    }
-    public static int iWindowsEffectMSec$get(MemorySegment seg, long index) {
-        return (int)tagSOUNDSENTRYW.iWindowsEffectMSec$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iWindowsEffectMSec$set(MemorySegment seg, long index, int x) {
-        tagSOUNDSENTRYW.iWindowsEffectMSec$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpszWindowsEffectDLL$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpszWindowsEffectDLL"));
-    public static VarHandle lpszWindowsEffectDLL$VH() {
-        return tagSOUNDSENTRYW.lpszWindowsEffectDLL$VH;
-    }
-    public static MemoryAddress lpszWindowsEffectDLL$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagSOUNDSENTRYW.lpszWindowsEffectDLL$VH.get(seg);
-    }
-    public static void lpszWindowsEffectDLL$set( MemorySegment seg, MemoryAddress x) {
-        tagSOUNDSENTRYW.lpszWindowsEffectDLL$VH.set(seg, x);
-    }
-    public static MemoryAddress lpszWindowsEffectDLL$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagSOUNDSENTRYW.lpszWindowsEffectDLL$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpszWindowsEffectDLL$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagSOUNDSENTRYW.lpszWindowsEffectDLL$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iWindowsEffectOrdinal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iWindowsEffectOrdinal"));
-    public static VarHandle iWindowsEffectOrdinal$VH() {
-        return tagSOUNDSENTRYW.iWindowsEffectOrdinal$VH;
-    }
-    public static int iWindowsEffectOrdinal$get(MemorySegment seg) {
-        return (int)tagSOUNDSENTRYW.iWindowsEffectOrdinal$VH.get(seg);
-    }
-    public static void iWindowsEffectOrdinal$set( MemorySegment seg, int x) {
-        tagSOUNDSENTRYW.iWindowsEffectOrdinal$VH.set(seg, x);
-    }
-    public static int iWindowsEffectOrdinal$get(MemorySegment seg, long index) {
-        return (int)tagSOUNDSENTRYW.iWindowsEffectOrdinal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iWindowsEffectOrdinal$set(MemorySegment seg, long index, int x) {
-        tagSOUNDSENTRYW.iWindowsEffectOrdinal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_INT.withName("cbSize"),
+        freeglut_h.C_LONG.withName("dwFlags"),
+        freeglut_h.C_LONG.withName("iFSTextEffect"),
+        freeglut_h.C_LONG.withName("iFSTextEffectMSec"),
+        freeglut_h.C_LONG.withName("iFSTextEffectColorBits"),
+        freeglut_h.C_LONG.withName("iFSGrafEffect"),
+        freeglut_h.C_LONG.withName("iFSGrafEffectMSec"),
+        freeglut_h.C_LONG.withName("iFSGrafEffectColor"),
+        freeglut_h.C_LONG.withName("iWindowsEffect"),
+        freeglut_h.C_LONG.withName("iWindowsEffectMSec"),
+        freeglut_h.C_POINTER.withName("lpszWindowsEffectDLL"),
+        freeglut_h.C_LONG.withName("iWindowsEffectOrdinal"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("tagSOUNDSENTRYW");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final OfInt dwFlags$layout() {
+        return dwFlags$LAYOUT;
+    }
+
+    private static final long dwFlags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final long dwFlags$offset() {
+        return dwFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static int dwFlags(MemorySegment struct) {
+        return struct.get(dwFlags$LAYOUT, dwFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static void dwFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwFlags$LAYOUT, dwFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iFSTextEffect$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iFSTextEffect"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD iFSTextEffect
+     * }
+     */
+    public static final OfInt iFSTextEffect$layout() {
+        return iFSTextEffect$LAYOUT;
+    }
+
+    private static final long iFSTextEffect$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD iFSTextEffect
+     * }
+     */
+    public static final long iFSTextEffect$offset() {
+        return iFSTextEffect$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD iFSTextEffect
+     * }
+     */
+    public static int iFSTextEffect(MemorySegment struct) {
+        return struct.get(iFSTextEffect$LAYOUT, iFSTextEffect$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD iFSTextEffect
+     * }
+     */
+    public static void iFSTextEffect(MemorySegment struct, int fieldValue) {
+        struct.set(iFSTextEffect$LAYOUT, iFSTextEffect$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iFSTextEffectMSec$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iFSTextEffectMSec"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD iFSTextEffectMSec
+     * }
+     */
+    public static final OfInt iFSTextEffectMSec$layout() {
+        return iFSTextEffectMSec$LAYOUT;
+    }
+
+    private static final long iFSTextEffectMSec$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD iFSTextEffectMSec
+     * }
+     */
+    public static final long iFSTextEffectMSec$offset() {
+        return iFSTextEffectMSec$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD iFSTextEffectMSec
+     * }
+     */
+    public static int iFSTextEffectMSec(MemorySegment struct) {
+        return struct.get(iFSTextEffectMSec$LAYOUT, iFSTextEffectMSec$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD iFSTextEffectMSec
+     * }
+     */
+    public static void iFSTextEffectMSec(MemorySegment struct, int fieldValue) {
+        struct.set(iFSTextEffectMSec$LAYOUT, iFSTextEffectMSec$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iFSTextEffectColorBits$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iFSTextEffectColorBits"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD iFSTextEffectColorBits
+     * }
+     */
+    public static final OfInt iFSTextEffectColorBits$layout() {
+        return iFSTextEffectColorBits$LAYOUT;
+    }
+
+    private static final long iFSTextEffectColorBits$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD iFSTextEffectColorBits
+     * }
+     */
+    public static final long iFSTextEffectColorBits$offset() {
+        return iFSTextEffectColorBits$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD iFSTextEffectColorBits
+     * }
+     */
+    public static int iFSTextEffectColorBits(MemorySegment struct) {
+        return struct.get(iFSTextEffectColorBits$LAYOUT, iFSTextEffectColorBits$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD iFSTextEffectColorBits
+     * }
+     */
+    public static void iFSTextEffectColorBits(MemorySegment struct, int fieldValue) {
+        struct.set(iFSTextEffectColorBits$LAYOUT, iFSTextEffectColorBits$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iFSGrafEffect$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iFSGrafEffect"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD iFSGrafEffect
+     * }
+     */
+    public static final OfInt iFSGrafEffect$layout() {
+        return iFSGrafEffect$LAYOUT;
+    }
+
+    private static final long iFSGrafEffect$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD iFSGrafEffect
+     * }
+     */
+    public static final long iFSGrafEffect$offset() {
+        return iFSGrafEffect$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD iFSGrafEffect
+     * }
+     */
+    public static int iFSGrafEffect(MemorySegment struct) {
+        return struct.get(iFSGrafEffect$LAYOUT, iFSGrafEffect$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD iFSGrafEffect
+     * }
+     */
+    public static void iFSGrafEffect(MemorySegment struct, int fieldValue) {
+        struct.set(iFSGrafEffect$LAYOUT, iFSGrafEffect$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iFSGrafEffectMSec$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iFSGrafEffectMSec"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD iFSGrafEffectMSec
+     * }
+     */
+    public static final OfInt iFSGrafEffectMSec$layout() {
+        return iFSGrafEffectMSec$LAYOUT;
+    }
+
+    private static final long iFSGrafEffectMSec$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD iFSGrafEffectMSec
+     * }
+     */
+    public static final long iFSGrafEffectMSec$offset() {
+        return iFSGrafEffectMSec$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD iFSGrafEffectMSec
+     * }
+     */
+    public static int iFSGrafEffectMSec(MemorySegment struct) {
+        return struct.get(iFSGrafEffectMSec$LAYOUT, iFSGrafEffectMSec$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD iFSGrafEffectMSec
+     * }
+     */
+    public static void iFSGrafEffectMSec(MemorySegment struct, int fieldValue) {
+        struct.set(iFSGrafEffectMSec$LAYOUT, iFSGrafEffectMSec$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iFSGrafEffectColor$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iFSGrafEffectColor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD iFSGrafEffectColor
+     * }
+     */
+    public static final OfInt iFSGrafEffectColor$layout() {
+        return iFSGrafEffectColor$LAYOUT;
+    }
+
+    private static final long iFSGrafEffectColor$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD iFSGrafEffectColor
+     * }
+     */
+    public static final long iFSGrafEffectColor$offset() {
+        return iFSGrafEffectColor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD iFSGrafEffectColor
+     * }
+     */
+    public static int iFSGrafEffectColor(MemorySegment struct) {
+        return struct.get(iFSGrafEffectColor$LAYOUT, iFSGrafEffectColor$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD iFSGrafEffectColor
+     * }
+     */
+    public static void iFSGrafEffectColor(MemorySegment struct, int fieldValue) {
+        struct.set(iFSGrafEffectColor$LAYOUT, iFSGrafEffectColor$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iWindowsEffect$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iWindowsEffect"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD iWindowsEffect
+     * }
+     */
+    public static final OfInt iWindowsEffect$layout() {
+        return iWindowsEffect$LAYOUT;
+    }
+
+    private static final long iWindowsEffect$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD iWindowsEffect
+     * }
+     */
+    public static final long iWindowsEffect$offset() {
+        return iWindowsEffect$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD iWindowsEffect
+     * }
+     */
+    public static int iWindowsEffect(MemorySegment struct) {
+        return struct.get(iWindowsEffect$LAYOUT, iWindowsEffect$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD iWindowsEffect
+     * }
+     */
+    public static void iWindowsEffect(MemorySegment struct, int fieldValue) {
+        struct.set(iWindowsEffect$LAYOUT, iWindowsEffect$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iWindowsEffectMSec$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iWindowsEffectMSec"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD iWindowsEffectMSec
+     * }
+     */
+    public static final OfInt iWindowsEffectMSec$layout() {
+        return iWindowsEffectMSec$LAYOUT;
+    }
+
+    private static final long iWindowsEffectMSec$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD iWindowsEffectMSec
+     * }
+     */
+    public static final long iWindowsEffectMSec$offset() {
+        return iWindowsEffectMSec$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD iWindowsEffectMSec
+     * }
+     */
+    public static int iWindowsEffectMSec(MemorySegment struct) {
+        return struct.get(iWindowsEffectMSec$LAYOUT, iWindowsEffectMSec$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD iWindowsEffectMSec
+     * }
+     */
+    public static void iWindowsEffectMSec(MemorySegment struct, int fieldValue) {
+        struct.set(iWindowsEffectMSec$LAYOUT, iWindowsEffectMSec$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpszWindowsEffectDLL$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpszWindowsEffectDLL"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR lpszWindowsEffectDLL
+     * }
+     */
+    public static final AddressLayout lpszWindowsEffectDLL$layout() {
+        return lpszWindowsEffectDLL$LAYOUT;
+    }
+
+    private static final long lpszWindowsEffectDLL$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR lpszWindowsEffectDLL
+     * }
+     */
+    public static final long lpszWindowsEffectDLL$offset() {
+        return lpszWindowsEffectDLL$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR lpszWindowsEffectDLL
+     * }
+     */
+    public static MemorySegment lpszWindowsEffectDLL(MemorySegment struct) {
+        return struct.get(lpszWindowsEffectDLL$LAYOUT, lpszWindowsEffectDLL$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR lpszWindowsEffectDLL
+     * }
+     */
+    public static void lpszWindowsEffectDLL(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpszWindowsEffectDLL$LAYOUT, lpszWindowsEffectDLL$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iWindowsEffectOrdinal$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iWindowsEffectOrdinal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD iWindowsEffectOrdinal
+     * }
+     */
+    public static final OfInt iWindowsEffectOrdinal$layout() {
+        return iWindowsEffectOrdinal$LAYOUT;
+    }
+
+    private static final long iWindowsEffectOrdinal$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD iWindowsEffectOrdinal
+     * }
+     */
+    public static final long iWindowsEffectOrdinal$offset() {
+        return iWindowsEffectOrdinal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD iWindowsEffectOrdinal
+     * }
+     */
+    public static int iWindowsEffectOrdinal(MemorySegment struct) {
+        return struct.get(iWindowsEffectOrdinal$LAYOUT, iWindowsEffectOrdinal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD iWindowsEffectOrdinal
+     * }
+     */
+    public static void iWindowsEffectOrdinal(MemorySegment struct, int fieldValue) {
+        struct.set(iWindowsEffectOrdinal$LAYOUT, iWindowsEffectOrdinal$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

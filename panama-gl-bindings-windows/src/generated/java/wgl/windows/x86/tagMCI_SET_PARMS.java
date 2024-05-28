@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagMCI_SET_PARMS {
+ *     DWORD_PTR dwCallback;
+ *     DWORD dwTimeFormat;
+ *     DWORD dwAudio;
+ * }
+ * }
+ */
 public class tagMCI_SET_PARMS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("dwCallback"),
-        Constants$root.C_LONG$LAYOUT.withName("dwTimeFormat"),
-        Constants$root.C_LONG$LAYOUT.withName("dwAudio")
-    ).withName("tagMCI_SET_PARMS");
-    public static MemoryLayout $LAYOUT() {
-        return tagMCI_SET_PARMS.$struct$LAYOUT;
+    tagMCI_SET_PARMS() {
+        // Should not be called directly
     }
-    static final VarHandle dwCallback$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwCallback"));
-    public static VarHandle dwCallback$VH() {
-        return tagMCI_SET_PARMS.dwCallback$VH;
-    }
-    public static long dwCallback$get(MemorySegment seg) {
-        return (long)tagMCI_SET_PARMS.dwCallback$VH.get(seg);
-    }
-    public static void dwCallback$set( MemorySegment seg, long x) {
-        tagMCI_SET_PARMS.dwCallback$VH.set(seg, x);
-    }
-    public static long dwCallback$get(MemorySegment seg, long index) {
-        return (long)tagMCI_SET_PARMS.dwCallback$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwCallback$set(MemorySegment seg, long index, long x) {
-        tagMCI_SET_PARMS.dwCallback$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwTimeFormat$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwTimeFormat"));
-    public static VarHandle dwTimeFormat$VH() {
-        return tagMCI_SET_PARMS.dwTimeFormat$VH;
-    }
-    public static int dwTimeFormat$get(MemorySegment seg) {
-        return (int)tagMCI_SET_PARMS.dwTimeFormat$VH.get(seg);
-    }
-    public static void dwTimeFormat$set( MemorySegment seg, int x) {
-        tagMCI_SET_PARMS.dwTimeFormat$VH.set(seg, x);
-    }
-    public static int dwTimeFormat$get(MemorySegment seg, long index) {
-        return (int)tagMCI_SET_PARMS.dwTimeFormat$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwTimeFormat$set(MemorySegment seg, long index, int x) {
-        tagMCI_SET_PARMS.dwTimeFormat$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwAudio$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwAudio"));
-    public static VarHandle dwAudio$VH() {
-        return tagMCI_SET_PARMS.dwAudio$VH;
-    }
-    public static int dwAudio$get(MemorySegment seg) {
-        return (int)tagMCI_SET_PARMS.dwAudio$VH.get(seg);
-    }
-    public static void dwAudio$set( MemorySegment seg, int x) {
-        tagMCI_SET_PARMS.dwAudio$VH.set(seg, x);
-    }
-    public static int dwAudio$get(MemorySegment seg, long index) {
-        return (int)tagMCI_SET_PARMS.dwAudio$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwAudio$set(MemorySegment seg, long index, int x) {
-        tagMCI_SET_PARMS.dwAudio$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.align(wgl_h.C_LONG_LONG, 1).withName("dwCallback"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwTimeFormat"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwAudio")
+    ).withName("tagMCI_SET_PARMS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong dwCallback$LAYOUT = (OfLong)$LAYOUT.select(groupElement("dwCallback"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwCallback
+     * }
+     */
+    public static final OfLong dwCallback$layout() {
+        return dwCallback$LAYOUT;
+    }
+
+    private static final long dwCallback$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwCallback
+     * }
+     */
+    public static final long dwCallback$offset() {
+        return dwCallback$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwCallback
+     * }
+     */
+    public static long dwCallback(MemorySegment struct) {
+        return struct.get(dwCallback$LAYOUT, dwCallback$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwCallback
+     * }
+     */
+    public static void dwCallback(MemorySegment struct, long fieldValue) {
+        struct.set(dwCallback$LAYOUT, dwCallback$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwTimeFormat$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwTimeFormat"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwTimeFormat
+     * }
+     */
+    public static final OfInt dwTimeFormat$layout() {
+        return dwTimeFormat$LAYOUT;
+    }
+
+    private static final long dwTimeFormat$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwTimeFormat
+     * }
+     */
+    public static final long dwTimeFormat$offset() {
+        return dwTimeFormat$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwTimeFormat
+     * }
+     */
+    public static int dwTimeFormat(MemorySegment struct) {
+        return struct.get(dwTimeFormat$LAYOUT, dwTimeFormat$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwTimeFormat
+     * }
+     */
+    public static void dwTimeFormat(MemorySegment struct, int fieldValue) {
+        struct.set(dwTimeFormat$LAYOUT, dwTimeFormat$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwAudio$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwAudio"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwAudio
+     * }
+     */
+    public static final OfInt dwAudio$layout() {
+        return dwAudio$LAYOUT;
+    }
+
+    private static final long dwAudio$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwAudio
+     * }
+     */
+    public static final long dwAudio$offset() {
+        return dwAudio$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwAudio
+     * }
+     */
+    public static int dwAudio(MemorySegment struct) {
+        return struct.get(dwAudio$LAYOUT, dwAudio$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwAudio
+     * }
+     */
+    public static void dwAudio(MemorySegment struct, int fieldValue) {
+        struct.set(dwAudio$LAYOUT, dwAudio$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

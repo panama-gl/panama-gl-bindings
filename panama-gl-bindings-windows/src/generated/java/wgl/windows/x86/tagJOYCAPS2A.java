@@ -2,420 +2,1421 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagJOYCAPS2A {
+ *     WORD wMid;
+ *     WORD wPid;
+ *     CHAR szPname[32];
+ *     UINT wXmin;
+ *     UINT wXmax;
+ *     UINT wYmin;
+ *     UINT wYmax;
+ *     UINT wZmin;
+ *     UINT wZmax;
+ *     UINT wNumButtons;
+ *     UINT wPeriodMin;
+ *     UINT wPeriodMax;
+ *     UINT wRmin;
+ *     UINT wRmax;
+ *     UINT wUmin;
+ *     UINT wUmax;
+ *     UINT wVmin;
+ *     UINT wVmax;
+ *     UINT wCaps;
+ *     UINT wMaxAxes;
+ *     UINT wNumAxes;
+ *     UINT wMaxButtons;
+ *     CHAR szRegKey[32];
+ *     CHAR szOEMVxD[260];
+ *     GUID ManufacturerGuid;
+ *     GUID ProductGuid;
+ *     GUID NameGuid;
+ * }
+ * }
+ */
 public class tagJOYCAPS2A {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("wMid"),
-        Constants$root.C_SHORT$LAYOUT.withName("wPid"),
-        MemoryLayout.sequenceLayout(32, Constants$root.C_CHAR$LAYOUT).withName("szPname"),
-        Constants$root.C_LONG$LAYOUT.withName("wXmin"),
-        Constants$root.C_LONG$LAYOUT.withName("wXmax"),
-        Constants$root.C_LONG$LAYOUT.withName("wYmin"),
-        Constants$root.C_LONG$LAYOUT.withName("wYmax"),
-        Constants$root.C_LONG$LAYOUT.withName("wZmin"),
-        Constants$root.C_LONG$LAYOUT.withName("wZmax"),
-        Constants$root.C_LONG$LAYOUT.withName("wNumButtons"),
-        Constants$root.C_LONG$LAYOUT.withName("wPeriodMin"),
-        Constants$root.C_LONG$LAYOUT.withName("wPeriodMax"),
-        Constants$root.C_LONG$LAYOUT.withName("wRmin"),
-        Constants$root.C_LONG$LAYOUT.withName("wRmax"),
-        Constants$root.C_LONG$LAYOUT.withName("wUmin"),
-        Constants$root.C_LONG$LAYOUT.withName("wUmax"),
-        Constants$root.C_LONG$LAYOUT.withName("wVmin"),
-        Constants$root.C_LONG$LAYOUT.withName("wVmax"),
-        Constants$root.C_LONG$LAYOUT.withName("wCaps"),
-        Constants$root.C_LONG$LAYOUT.withName("wMaxAxes"),
-        Constants$root.C_LONG$LAYOUT.withName("wNumAxes"),
-        Constants$root.C_LONG$LAYOUT.withName("wMaxButtons"),
-        MemoryLayout.sequenceLayout(32, Constants$root.C_CHAR$LAYOUT).withName("szRegKey"),
-        MemoryLayout.sequenceLayout(260, Constants$root.C_CHAR$LAYOUT).withName("szOEMVxD"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("ManufacturerGuid"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("ProductGuid"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("NameGuid")
-    ).withName("tagJOYCAPS2A");
-    public static MemoryLayout $LAYOUT() {
-        return tagJOYCAPS2A.$struct$LAYOUT;
+    tagJOYCAPS2A() {
+        // Should not be called directly
     }
-    static final VarHandle wMid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wMid"));
-    public static VarHandle wMid$VH() {
-        return tagJOYCAPS2A.wMid$VH;
-    }
-    public static short wMid$get(MemorySegment seg) {
-        return (short)tagJOYCAPS2A.wMid$VH.get(seg);
-    }
-    public static void wMid$set( MemorySegment seg, short x) {
-        tagJOYCAPS2A.wMid$VH.set(seg, x);
-    }
-    public static short wMid$get(MemorySegment seg, long index) {
-        return (short)tagJOYCAPS2A.wMid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wMid$set(MemorySegment seg, long index, short x) {
-        tagJOYCAPS2A.wMid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wPid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wPid"));
-    public static VarHandle wPid$VH() {
-        return tagJOYCAPS2A.wPid$VH;
-    }
-    public static short wPid$get(MemorySegment seg) {
-        return (short)tagJOYCAPS2A.wPid$VH.get(seg);
-    }
-    public static void wPid$set( MemorySegment seg, short x) {
-        tagJOYCAPS2A.wPid$VH.set(seg, x);
-    }
-    public static short wPid$get(MemorySegment seg, long index) {
-        return (short)tagJOYCAPS2A.wPid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wPid$set(MemorySegment seg, long index, short x) {
-        tagJOYCAPS2A.wPid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment szPname$slice(MemorySegment seg) {
-        return seg.asSlice(4, 32);
-    }
-    static final VarHandle wXmin$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wXmin"));
-    public static VarHandle wXmin$VH() {
-        return tagJOYCAPS2A.wXmin$VH;
-    }
-    public static int wXmin$get(MemorySegment seg) {
-        return (int)tagJOYCAPS2A.wXmin$VH.get(seg);
-    }
-    public static void wXmin$set( MemorySegment seg, int x) {
-        tagJOYCAPS2A.wXmin$VH.set(seg, x);
-    }
-    public static int wXmin$get(MemorySegment seg, long index) {
-        return (int)tagJOYCAPS2A.wXmin$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wXmin$set(MemorySegment seg, long index, int x) {
-        tagJOYCAPS2A.wXmin$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wXmax$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wXmax"));
-    public static VarHandle wXmax$VH() {
-        return tagJOYCAPS2A.wXmax$VH;
-    }
-    public static int wXmax$get(MemorySegment seg) {
-        return (int)tagJOYCAPS2A.wXmax$VH.get(seg);
-    }
-    public static void wXmax$set( MemorySegment seg, int x) {
-        tagJOYCAPS2A.wXmax$VH.set(seg, x);
-    }
-    public static int wXmax$get(MemorySegment seg, long index) {
-        return (int)tagJOYCAPS2A.wXmax$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wXmax$set(MemorySegment seg, long index, int x) {
-        tagJOYCAPS2A.wXmax$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wYmin$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wYmin"));
-    public static VarHandle wYmin$VH() {
-        return tagJOYCAPS2A.wYmin$VH;
-    }
-    public static int wYmin$get(MemorySegment seg) {
-        return (int)tagJOYCAPS2A.wYmin$VH.get(seg);
-    }
-    public static void wYmin$set( MemorySegment seg, int x) {
-        tagJOYCAPS2A.wYmin$VH.set(seg, x);
-    }
-    public static int wYmin$get(MemorySegment seg, long index) {
-        return (int)tagJOYCAPS2A.wYmin$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wYmin$set(MemorySegment seg, long index, int x) {
-        tagJOYCAPS2A.wYmin$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wYmax$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wYmax"));
-    public static VarHandle wYmax$VH() {
-        return tagJOYCAPS2A.wYmax$VH;
-    }
-    public static int wYmax$get(MemorySegment seg) {
-        return (int)tagJOYCAPS2A.wYmax$VH.get(seg);
-    }
-    public static void wYmax$set( MemorySegment seg, int x) {
-        tagJOYCAPS2A.wYmax$VH.set(seg, x);
-    }
-    public static int wYmax$get(MemorySegment seg, long index) {
-        return (int)tagJOYCAPS2A.wYmax$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wYmax$set(MemorySegment seg, long index, int x) {
-        tagJOYCAPS2A.wYmax$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wZmin$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wZmin"));
-    public static VarHandle wZmin$VH() {
-        return tagJOYCAPS2A.wZmin$VH;
-    }
-    public static int wZmin$get(MemorySegment seg) {
-        return (int)tagJOYCAPS2A.wZmin$VH.get(seg);
-    }
-    public static void wZmin$set( MemorySegment seg, int x) {
-        tagJOYCAPS2A.wZmin$VH.set(seg, x);
-    }
-    public static int wZmin$get(MemorySegment seg, long index) {
-        return (int)tagJOYCAPS2A.wZmin$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wZmin$set(MemorySegment seg, long index, int x) {
-        tagJOYCAPS2A.wZmin$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wZmax$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wZmax"));
-    public static VarHandle wZmax$VH() {
-        return tagJOYCAPS2A.wZmax$VH;
-    }
-    public static int wZmax$get(MemorySegment seg) {
-        return (int)tagJOYCAPS2A.wZmax$VH.get(seg);
-    }
-    public static void wZmax$set( MemorySegment seg, int x) {
-        tagJOYCAPS2A.wZmax$VH.set(seg, x);
-    }
-    public static int wZmax$get(MemorySegment seg, long index) {
-        return (int)tagJOYCAPS2A.wZmax$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wZmax$set(MemorySegment seg, long index, int x) {
-        tagJOYCAPS2A.wZmax$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wNumButtons$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wNumButtons"));
-    public static VarHandle wNumButtons$VH() {
-        return tagJOYCAPS2A.wNumButtons$VH;
-    }
-    public static int wNumButtons$get(MemorySegment seg) {
-        return (int)tagJOYCAPS2A.wNumButtons$VH.get(seg);
-    }
-    public static void wNumButtons$set( MemorySegment seg, int x) {
-        tagJOYCAPS2A.wNumButtons$VH.set(seg, x);
-    }
-    public static int wNumButtons$get(MemorySegment seg, long index) {
-        return (int)tagJOYCAPS2A.wNumButtons$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wNumButtons$set(MemorySegment seg, long index, int x) {
-        tagJOYCAPS2A.wNumButtons$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wPeriodMin$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wPeriodMin"));
-    public static VarHandle wPeriodMin$VH() {
-        return tagJOYCAPS2A.wPeriodMin$VH;
-    }
-    public static int wPeriodMin$get(MemorySegment seg) {
-        return (int)tagJOYCAPS2A.wPeriodMin$VH.get(seg);
-    }
-    public static void wPeriodMin$set( MemorySegment seg, int x) {
-        tagJOYCAPS2A.wPeriodMin$VH.set(seg, x);
-    }
-    public static int wPeriodMin$get(MemorySegment seg, long index) {
-        return (int)tagJOYCAPS2A.wPeriodMin$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wPeriodMin$set(MemorySegment seg, long index, int x) {
-        tagJOYCAPS2A.wPeriodMin$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wPeriodMax$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wPeriodMax"));
-    public static VarHandle wPeriodMax$VH() {
-        return tagJOYCAPS2A.wPeriodMax$VH;
-    }
-    public static int wPeriodMax$get(MemorySegment seg) {
-        return (int)tagJOYCAPS2A.wPeriodMax$VH.get(seg);
-    }
-    public static void wPeriodMax$set( MemorySegment seg, int x) {
-        tagJOYCAPS2A.wPeriodMax$VH.set(seg, x);
-    }
-    public static int wPeriodMax$get(MemorySegment seg, long index) {
-        return (int)tagJOYCAPS2A.wPeriodMax$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wPeriodMax$set(MemorySegment seg, long index, int x) {
-        tagJOYCAPS2A.wPeriodMax$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wRmin$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wRmin"));
-    public static VarHandle wRmin$VH() {
-        return tagJOYCAPS2A.wRmin$VH;
-    }
-    public static int wRmin$get(MemorySegment seg) {
-        return (int)tagJOYCAPS2A.wRmin$VH.get(seg);
-    }
-    public static void wRmin$set( MemorySegment seg, int x) {
-        tagJOYCAPS2A.wRmin$VH.set(seg, x);
-    }
-    public static int wRmin$get(MemorySegment seg, long index) {
-        return (int)tagJOYCAPS2A.wRmin$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wRmin$set(MemorySegment seg, long index, int x) {
-        tagJOYCAPS2A.wRmin$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wRmax$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wRmax"));
-    public static VarHandle wRmax$VH() {
-        return tagJOYCAPS2A.wRmax$VH;
-    }
-    public static int wRmax$get(MemorySegment seg) {
-        return (int)tagJOYCAPS2A.wRmax$VH.get(seg);
-    }
-    public static void wRmax$set( MemorySegment seg, int x) {
-        tagJOYCAPS2A.wRmax$VH.set(seg, x);
-    }
-    public static int wRmax$get(MemorySegment seg, long index) {
-        return (int)tagJOYCAPS2A.wRmax$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wRmax$set(MemorySegment seg, long index, int x) {
-        tagJOYCAPS2A.wRmax$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wUmin$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wUmin"));
-    public static VarHandle wUmin$VH() {
-        return tagJOYCAPS2A.wUmin$VH;
-    }
-    public static int wUmin$get(MemorySegment seg) {
-        return (int)tagJOYCAPS2A.wUmin$VH.get(seg);
-    }
-    public static void wUmin$set( MemorySegment seg, int x) {
-        tagJOYCAPS2A.wUmin$VH.set(seg, x);
-    }
-    public static int wUmin$get(MemorySegment seg, long index) {
-        return (int)tagJOYCAPS2A.wUmin$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wUmin$set(MemorySegment seg, long index, int x) {
-        tagJOYCAPS2A.wUmin$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wUmax$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wUmax"));
-    public static VarHandle wUmax$VH() {
-        return tagJOYCAPS2A.wUmax$VH;
-    }
-    public static int wUmax$get(MemorySegment seg) {
-        return (int)tagJOYCAPS2A.wUmax$VH.get(seg);
-    }
-    public static void wUmax$set( MemorySegment seg, int x) {
-        tagJOYCAPS2A.wUmax$VH.set(seg, x);
-    }
-    public static int wUmax$get(MemorySegment seg, long index) {
-        return (int)tagJOYCAPS2A.wUmax$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wUmax$set(MemorySegment seg, long index, int x) {
-        tagJOYCAPS2A.wUmax$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wVmin$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wVmin"));
-    public static VarHandle wVmin$VH() {
-        return tagJOYCAPS2A.wVmin$VH;
-    }
-    public static int wVmin$get(MemorySegment seg) {
-        return (int)tagJOYCAPS2A.wVmin$VH.get(seg);
-    }
-    public static void wVmin$set( MemorySegment seg, int x) {
-        tagJOYCAPS2A.wVmin$VH.set(seg, x);
-    }
-    public static int wVmin$get(MemorySegment seg, long index) {
-        return (int)tagJOYCAPS2A.wVmin$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wVmin$set(MemorySegment seg, long index, int x) {
-        tagJOYCAPS2A.wVmin$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wVmax$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wVmax"));
-    public static VarHandle wVmax$VH() {
-        return tagJOYCAPS2A.wVmax$VH;
-    }
-    public static int wVmax$get(MemorySegment seg) {
-        return (int)tagJOYCAPS2A.wVmax$VH.get(seg);
-    }
-    public static void wVmax$set( MemorySegment seg, int x) {
-        tagJOYCAPS2A.wVmax$VH.set(seg, x);
-    }
-    public static int wVmax$get(MemorySegment seg, long index) {
-        return (int)tagJOYCAPS2A.wVmax$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wVmax$set(MemorySegment seg, long index, int x) {
-        tagJOYCAPS2A.wVmax$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wCaps$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wCaps"));
-    public static VarHandle wCaps$VH() {
-        return tagJOYCAPS2A.wCaps$VH;
-    }
-    public static int wCaps$get(MemorySegment seg) {
-        return (int)tagJOYCAPS2A.wCaps$VH.get(seg);
-    }
-    public static void wCaps$set( MemorySegment seg, int x) {
-        tagJOYCAPS2A.wCaps$VH.set(seg, x);
-    }
-    public static int wCaps$get(MemorySegment seg, long index) {
-        return (int)tagJOYCAPS2A.wCaps$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wCaps$set(MemorySegment seg, long index, int x) {
-        tagJOYCAPS2A.wCaps$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wMaxAxes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wMaxAxes"));
-    public static VarHandle wMaxAxes$VH() {
-        return tagJOYCAPS2A.wMaxAxes$VH;
-    }
-    public static int wMaxAxes$get(MemorySegment seg) {
-        return (int)tagJOYCAPS2A.wMaxAxes$VH.get(seg);
-    }
-    public static void wMaxAxes$set( MemorySegment seg, int x) {
-        tagJOYCAPS2A.wMaxAxes$VH.set(seg, x);
-    }
-    public static int wMaxAxes$get(MemorySegment seg, long index) {
-        return (int)tagJOYCAPS2A.wMaxAxes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wMaxAxes$set(MemorySegment seg, long index, int x) {
-        tagJOYCAPS2A.wMaxAxes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wNumAxes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wNumAxes"));
-    public static VarHandle wNumAxes$VH() {
-        return tagJOYCAPS2A.wNumAxes$VH;
-    }
-    public static int wNumAxes$get(MemorySegment seg) {
-        return (int)tagJOYCAPS2A.wNumAxes$VH.get(seg);
-    }
-    public static void wNumAxes$set( MemorySegment seg, int x) {
-        tagJOYCAPS2A.wNumAxes$VH.set(seg, x);
-    }
-    public static int wNumAxes$get(MemorySegment seg, long index) {
-        return (int)tagJOYCAPS2A.wNumAxes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wNumAxes$set(MemorySegment seg, long index, int x) {
-        tagJOYCAPS2A.wNumAxes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wMaxButtons$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wMaxButtons"));
-    public static VarHandle wMaxButtons$VH() {
-        return tagJOYCAPS2A.wMaxButtons$VH;
-    }
-    public static int wMaxButtons$get(MemorySegment seg) {
-        return (int)tagJOYCAPS2A.wMaxButtons$VH.get(seg);
-    }
-    public static void wMaxButtons$set( MemorySegment seg, int x) {
-        tagJOYCAPS2A.wMaxButtons$VH.set(seg, x);
-    }
-    public static int wMaxButtons$get(MemorySegment seg, long index) {
-        return (int)tagJOYCAPS2A.wMaxButtons$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wMaxButtons$set(MemorySegment seg, long index, int x) {
-        tagJOYCAPS2A.wMaxButtons$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment szRegKey$slice(MemorySegment seg) {
-        return seg.asSlice(112, 32);
-    }
-    public static MemorySegment szOEMVxD$slice(MemorySegment seg) {
-        return seg.asSlice(144, 260);
-    }
-    public static MemorySegment ManufacturerGuid$slice(MemorySegment seg) {
-        return seg.asSlice(404, 16);
-    }
-    public static MemorySegment ProductGuid$slice(MemorySegment seg) {
-        return seg.asSlice(420, 16);
-    }
-    public static MemorySegment NameGuid$slice(MemorySegment seg) {
-        return seg.asSlice(436, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.align(wgl_h.C_SHORT, 1).withName("wMid"),
+        wgl_h.align(wgl_h.C_SHORT, 1).withName("wPid"),
+        MemoryLayout.sequenceLayout(32, wgl_h.C_CHAR).withName("szPname"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wXmin"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wXmax"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wYmin"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wYmax"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wZmin"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wZmax"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wNumButtons"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wPeriodMin"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wPeriodMax"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wRmin"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wRmax"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wUmin"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wUmax"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wVmin"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wVmax"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wCaps"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wMaxAxes"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wNumAxes"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wMaxButtons"),
+        MemoryLayout.sequenceLayout(32, wgl_h.C_CHAR).withName("szRegKey"),
+        MemoryLayout.sequenceLayout(260, wgl_h.C_CHAR).withName("szOEMVxD"),
+        wgl_h.align(_GUID.layout(), 1).withName("ManufacturerGuid"),
+        wgl_h.align(_GUID.layout(), 1).withName("ProductGuid"),
+        wgl_h.align(_GUID.layout(), 1).withName("NameGuid")
+    ).withName("tagJOYCAPS2A");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort wMid$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wMid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wMid
+     * }
+     */
+    public static final OfShort wMid$layout() {
+        return wMid$LAYOUT;
+    }
+
+    private static final long wMid$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wMid
+     * }
+     */
+    public static final long wMid$offset() {
+        return wMid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wMid
+     * }
+     */
+    public static short wMid(MemorySegment struct) {
+        return struct.get(wMid$LAYOUT, wMid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wMid
+     * }
+     */
+    public static void wMid(MemorySegment struct, short fieldValue) {
+        struct.set(wMid$LAYOUT, wMid$OFFSET, fieldValue);
+    }
+
+    private static final OfShort wPid$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wPid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wPid
+     * }
+     */
+    public static final OfShort wPid$layout() {
+        return wPid$LAYOUT;
+    }
+
+    private static final long wPid$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wPid
+     * }
+     */
+    public static final long wPid$offset() {
+        return wPid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wPid
+     * }
+     */
+    public static short wPid(MemorySegment struct) {
+        return struct.get(wPid$LAYOUT, wPid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wPid
+     * }
+     */
+    public static void wPid(MemorySegment struct, short fieldValue) {
+        struct.set(wPid$LAYOUT, wPid$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout szPname$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("szPname"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHAR szPname[32]
+     * }
+     */
+    public static final SequenceLayout szPname$layout() {
+        return szPname$LAYOUT;
+    }
+
+    private static final long szPname$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHAR szPname[32]
+     * }
+     */
+    public static final long szPname$offset() {
+        return szPname$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHAR szPname[32]
+     * }
+     */
+    public static MemorySegment szPname(MemorySegment struct) {
+        return struct.asSlice(szPname$OFFSET, szPname$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHAR szPname[32]
+     * }
+     */
+    public static void szPname(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, szPname$OFFSET, szPname$LAYOUT.byteSize());
+    }
+
+    private static long[] szPname$DIMS = { 32 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * CHAR szPname[32]
+     * }
+     */
+    public static long[] szPname$dimensions() {
+        return szPname$DIMS;
+    }
+    private static final VarHandle szPname$ELEM_HANDLE = szPname$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * CHAR szPname[32]
+     * }
+     */
+    public static byte szPname(MemorySegment struct, long index0) {
+        return (byte)szPname$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * CHAR szPname[32]
+     * }
+     */
+    public static void szPname(MemorySegment struct, long index0, byte fieldValue) {
+        szPname$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt wXmin$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wXmin"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wXmin
+     * }
+     */
+    public static final OfInt wXmin$layout() {
+        return wXmin$LAYOUT;
+    }
+
+    private static final long wXmin$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wXmin
+     * }
+     */
+    public static final long wXmin$offset() {
+        return wXmin$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wXmin
+     * }
+     */
+    public static int wXmin(MemorySegment struct) {
+        return struct.get(wXmin$LAYOUT, wXmin$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wXmin
+     * }
+     */
+    public static void wXmin(MemorySegment struct, int fieldValue) {
+        struct.set(wXmin$LAYOUT, wXmin$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wXmax$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wXmax"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wXmax
+     * }
+     */
+    public static final OfInt wXmax$layout() {
+        return wXmax$LAYOUT;
+    }
+
+    private static final long wXmax$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wXmax
+     * }
+     */
+    public static final long wXmax$offset() {
+        return wXmax$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wXmax
+     * }
+     */
+    public static int wXmax(MemorySegment struct) {
+        return struct.get(wXmax$LAYOUT, wXmax$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wXmax
+     * }
+     */
+    public static void wXmax(MemorySegment struct, int fieldValue) {
+        struct.set(wXmax$LAYOUT, wXmax$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wYmin$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wYmin"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wYmin
+     * }
+     */
+    public static final OfInt wYmin$layout() {
+        return wYmin$LAYOUT;
+    }
+
+    private static final long wYmin$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wYmin
+     * }
+     */
+    public static final long wYmin$offset() {
+        return wYmin$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wYmin
+     * }
+     */
+    public static int wYmin(MemorySegment struct) {
+        return struct.get(wYmin$LAYOUT, wYmin$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wYmin
+     * }
+     */
+    public static void wYmin(MemorySegment struct, int fieldValue) {
+        struct.set(wYmin$LAYOUT, wYmin$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wYmax$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wYmax"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wYmax
+     * }
+     */
+    public static final OfInt wYmax$layout() {
+        return wYmax$LAYOUT;
+    }
+
+    private static final long wYmax$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wYmax
+     * }
+     */
+    public static final long wYmax$offset() {
+        return wYmax$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wYmax
+     * }
+     */
+    public static int wYmax(MemorySegment struct) {
+        return struct.get(wYmax$LAYOUT, wYmax$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wYmax
+     * }
+     */
+    public static void wYmax(MemorySegment struct, int fieldValue) {
+        struct.set(wYmax$LAYOUT, wYmax$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wZmin$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wZmin"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wZmin
+     * }
+     */
+    public static final OfInt wZmin$layout() {
+        return wZmin$LAYOUT;
+    }
+
+    private static final long wZmin$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wZmin
+     * }
+     */
+    public static final long wZmin$offset() {
+        return wZmin$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wZmin
+     * }
+     */
+    public static int wZmin(MemorySegment struct) {
+        return struct.get(wZmin$LAYOUT, wZmin$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wZmin
+     * }
+     */
+    public static void wZmin(MemorySegment struct, int fieldValue) {
+        struct.set(wZmin$LAYOUT, wZmin$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wZmax$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wZmax"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wZmax
+     * }
+     */
+    public static final OfInt wZmax$layout() {
+        return wZmax$LAYOUT;
+    }
+
+    private static final long wZmax$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wZmax
+     * }
+     */
+    public static final long wZmax$offset() {
+        return wZmax$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wZmax
+     * }
+     */
+    public static int wZmax(MemorySegment struct) {
+        return struct.get(wZmax$LAYOUT, wZmax$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wZmax
+     * }
+     */
+    public static void wZmax(MemorySegment struct, int fieldValue) {
+        struct.set(wZmax$LAYOUT, wZmax$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wNumButtons$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wNumButtons"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wNumButtons
+     * }
+     */
+    public static final OfInt wNumButtons$layout() {
+        return wNumButtons$LAYOUT;
+    }
+
+    private static final long wNumButtons$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wNumButtons
+     * }
+     */
+    public static final long wNumButtons$offset() {
+        return wNumButtons$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wNumButtons
+     * }
+     */
+    public static int wNumButtons(MemorySegment struct) {
+        return struct.get(wNumButtons$LAYOUT, wNumButtons$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wNumButtons
+     * }
+     */
+    public static void wNumButtons(MemorySegment struct, int fieldValue) {
+        struct.set(wNumButtons$LAYOUT, wNumButtons$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wPeriodMin$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wPeriodMin"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wPeriodMin
+     * }
+     */
+    public static final OfInt wPeriodMin$layout() {
+        return wPeriodMin$LAYOUT;
+    }
+
+    private static final long wPeriodMin$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wPeriodMin
+     * }
+     */
+    public static final long wPeriodMin$offset() {
+        return wPeriodMin$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wPeriodMin
+     * }
+     */
+    public static int wPeriodMin(MemorySegment struct) {
+        return struct.get(wPeriodMin$LAYOUT, wPeriodMin$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wPeriodMin
+     * }
+     */
+    public static void wPeriodMin(MemorySegment struct, int fieldValue) {
+        struct.set(wPeriodMin$LAYOUT, wPeriodMin$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wPeriodMax$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wPeriodMax"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wPeriodMax
+     * }
+     */
+    public static final OfInt wPeriodMax$layout() {
+        return wPeriodMax$LAYOUT;
+    }
+
+    private static final long wPeriodMax$OFFSET = 68;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wPeriodMax
+     * }
+     */
+    public static final long wPeriodMax$offset() {
+        return wPeriodMax$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wPeriodMax
+     * }
+     */
+    public static int wPeriodMax(MemorySegment struct) {
+        return struct.get(wPeriodMax$LAYOUT, wPeriodMax$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wPeriodMax
+     * }
+     */
+    public static void wPeriodMax(MemorySegment struct, int fieldValue) {
+        struct.set(wPeriodMax$LAYOUT, wPeriodMax$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wRmin$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wRmin"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wRmin
+     * }
+     */
+    public static final OfInt wRmin$layout() {
+        return wRmin$LAYOUT;
+    }
+
+    private static final long wRmin$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wRmin
+     * }
+     */
+    public static final long wRmin$offset() {
+        return wRmin$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wRmin
+     * }
+     */
+    public static int wRmin(MemorySegment struct) {
+        return struct.get(wRmin$LAYOUT, wRmin$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wRmin
+     * }
+     */
+    public static void wRmin(MemorySegment struct, int fieldValue) {
+        struct.set(wRmin$LAYOUT, wRmin$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wRmax$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wRmax"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wRmax
+     * }
+     */
+    public static final OfInt wRmax$layout() {
+        return wRmax$LAYOUT;
+    }
+
+    private static final long wRmax$OFFSET = 76;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wRmax
+     * }
+     */
+    public static final long wRmax$offset() {
+        return wRmax$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wRmax
+     * }
+     */
+    public static int wRmax(MemorySegment struct) {
+        return struct.get(wRmax$LAYOUT, wRmax$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wRmax
+     * }
+     */
+    public static void wRmax(MemorySegment struct, int fieldValue) {
+        struct.set(wRmax$LAYOUT, wRmax$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wUmin$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wUmin"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wUmin
+     * }
+     */
+    public static final OfInt wUmin$layout() {
+        return wUmin$LAYOUT;
+    }
+
+    private static final long wUmin$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wUmin
+     * }
+     */
+    public static final long wUmin$offset() {
+        return wUmin$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wUmin
+     * }
+     */
+    public static int wUmin(MemorySegment struct) {
+        return struct.get(wUmin$LAYOUT, wUmin$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wUmin
+     * }
+     */
+    public static void wUmin(MemorySegment struct, int fieldValue) {
+        struct.set(wUmin$LAYOUT, wUmin$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wUmax$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wUmax"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wUmax
+     * }
+     */
+    public static final OfInt wUmax$layout() {
+        return wUmax$LAYOUT;
+    }
+
+    private static final long wUmax$OFFSET = 84;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wUmax
+     * }
+     */
+    public static final long wUmax$offset() {
+        return wUmax$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wUmax
+     * }
+     */
+    public static int wUmax(MemorySegment struct) {
+        return struct.get(wUmax$LAYOUT, wUmax$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wUmax
+     * }
+     */
+    public static void wUmax(MemorySegment struct, int fieldValue) {
+        struct.set(wUmax$LAYOUT, wUmax$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wVmin$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wVmin"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wVmin
+     * }
+     */
+    public static final OfInt wVmin$layout() {
+        return wVmin$LAYOUT;
+    }
+
+    private static final long wVmin$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wVmin
+     * }
+     */
+    public static final long wVmin$offset() {
+        return wVmin$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wVmin
+     * }
+     */
+    public static int wVmin(MemorySegment struct) {
+        return struct.get(wVmin$LAYOUT, wVmin$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wVmin
+     * }
+     */
+    public static void wVmin(MemorySegment struct, int fieldValue) {
+        struct.set(wVmin$LAYOUT, wVmin$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wVmax$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wVmax"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wVmax
+     * }
+     */
+    public static final OfInt wVmax$layout() {
+        return wVmax$LAYOUT;
+    }
+
+    private static final long wVmax$OFFSET = 92;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wVmax
+     * }
+     */
+    public static final long wVmax$offset() {
+        return wVmax$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wVmax
+     * }
+     */
+    public static int wVmax(MemorySegment struct) {
+        return struct.get(wVmax$LAYOUT, wVmax$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wVmax
+     * }
+     */
+    public static void wVmax(MemorySegment struct, int fieldValue) {
+        struct.set(wVmax$LAYOUT, wVmax$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wCaps$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wCaps"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wCaps
+     * }
+     */
+    public static final OfInt wCaps$layout() {
+        return wCaps$LAYOUT;
+    }
+
+    private static final long wCaps$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wCaps
+     * }
+     */
+    public static final long wCaps$offset() {
+        return wCaps$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wCaps
+     * }
+     */
+    public static int wCaps(MemorySegment struct) {
+        return struct.get(wCaps$LAYOUT, wCaps$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wCaps
+     * }
+     */
+    public static void wCaps(MemorySegment struct, int fieldValue) {
+        struct.set(wCaps$LAYOUT, wCaps$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wMaxAxes$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wMaxAxes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wMaxAxes
+     * }
+     */
+    public static final OfInt wMaxAxes$layout() {
+        return wMaxAxes$LAYOUT;
+    }
+
+    private static final long wMaxAxes$OFFSET = 100;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wMaxAxes
+     * }
+     */
+    public static final long wMaxAxes$offset() {
+        return wMaxAxes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wMaxAxes
+     * }
+     */
+    public static int wMaxAxes(MemorySegment struct) {
+        return struct.get(wMaxAxes$LAYOUT, wMaxAxes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wMaxAxes
+     * }
+     */
+    public static void wMaxAxes(MemorySegment struct, int fieldValue) {
+        struct.set(wMaxAxes$LAYOUT, wMaxAxes$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wNumAxes$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wNumAxes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wNumAxes
+     * }
+     */
+    public static final OfInt wNumAxes$layout() {
+        return wNumAxes$LAYOUT;
+    }
+
+    private static final long wNumAxes$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wNumAxes
+     * }
+     */
+    public static final long wNumAxes$offset() {
+        return wNumAxes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wNumAxes
+     * }
+     */
+    public static int wNumAxes(MemorySegment struct) {
+        return struct.get(wNumAxes$LAYOUT, wNumAxes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wNumAxes
+     * }
+     */
+    public static void wNumAxes(MemorySegment struct, int fieldValue) {
+        struct.set(wNumAxes$LAYOUT, wNumAxes$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wMaxButtons$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wMaxButtons"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wMaxButtons
+     * }
+     */
+    public static final OfInt wMaxButtons$layout() {
+        return wMaxButtons$LAYOUT;
+    }
+
+    private static final long wMaxButtons$OFFSET = 108;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wMaxButtons
+     * }
+     */
+    public static final long wMaxButtons$offset() {
+        return wMaxButtons$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wMaxButtons
+     * }
+     */
+    public static int wMaxButtons(MemorySegment struct) {
+        return struct.get(wMaxButtons$LAYOUT, wMaxButtons$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wMaxButtons
+     * }
+     */
+    public static void wMaxButtons(MemorySegment struct, int fieldValue) {
+        struct.set(wMaxButtons$LAYOUT, wMaxButtons$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout szRegKey$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("szRegKey"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHAR szRegKey[32]
+     * }
+     */
+    public static final SequenceLayout szRegKey$layout() {
+        return szRegKey$LAYOUT;
+    }
+
+    private static final long szRegKey$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHAR szRegKey[32]
+     * }
+     */
+    public static final long szRegKey$offset() {
+        return szRegKey$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHAR szRegKey[32]
+     * }
+     */
+    public static MemorySegment szRegKey(MemorySegment struct) {
+        return struct.asSlice(szRegKey$OFFSET, szRegKey$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHAR szRegKey[32]
+     * }
+     */
+    public static void szRegKey(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, szRegKey$OFFSET, szRegKey$LAYOUT.byteSize());
+    }
+
+    private static long[] szRegKey$DIMS = { 32 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * CHAR szRegKey[32]
+     * }
+     */
+    public static long[] szRegKey$dimensions() {
+        return szRegKey$DIMS;
+    }
+    private static final VarHandle szRegKey$ELEM_HANDLE = szRegKey$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * CHAR szRegKey[32]
+     * }
+     */
+    public static byte szRegKey(MemorySegment struct, long index0) {
+        return (byte)szRegKey$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * CHAR szRegKey[32]
+     * }
+     */
+    public static void szRegKey(MemorySegment struct, long index0, byte fieldValue) {
+        szRegKey$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout szOEMVxD$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("szOEMVxD"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHAR szOEMVxD[260]
+     * }
+     */
+    public static final SequenceLayout szOEMVxD$layout() {
+        return szOEMVxD$LAYOUT;
+    }
+
+    private static final long szOEMVxD$OFFSET = 144;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHAR szOEMVxD[260]
+     * }
+     */
+    public static final long szOEMVxD$offset() {
+        return szOEMVxD$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHAR szOEMVxD[260]
+     * }
+     */
+    public static MemorySegment szOEMVxD(MemorySegment struct) {
+        return struct.asSlice(szOEMVxD$OFFSET, szOEMVxD$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHAR szOEMVxD[260]
+     * }
+     */
+    public static void szOEMVxD(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, szOEMVxD$OFFSET, szOEMVxD$LAYOUT.byteSize());
+    }
+
+    private static long[] szOEMVxD$DIMS = { 260 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * CHAR szOEMVxD[260]
+     * }
+     */
+    public static long[] szOEMVxD$dimensions() {
+        return szOEMVxD$DIMS;
+    }
+    private static final VarHandle szOEMVxD$ELEM_HANDLE = szOEMVxD$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * CHAR szOEMVxD[260]
+     * }
+     */
+    public static byte szOEMVxD(MemorySegment struct, long index0) {
+        return (byte)szOEMVxD$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * CHAR szOEMVxD[260]
+     * }
+     */
+    public static void szOEMVxD(MemorySegment struct, long index0, byte fieldValue) {
+        szOEMVxD$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final GroupLayout ManufacturerGuid$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ManufacturerGuid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID ManufacturerGuid
+     * }
+     */
+    public static final GroupLayout ManufacturerGuid$layout() {
+        return ManufacturerGuid$LAYOUT;
+    }
+
+    private static final long ManufacturerGuid$OFFSET = 404;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID ManufacturerGuid
+     * }
+     */
+    public static final long ManufacturerGuid$offset() {
+        return ManufacturerGuid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID ManufacturerGuid
+     * }
+     */
+    public static MemorySegment ManufacturerGuid(MemorySegment struct) {
+        return struct.asSlice(ManufacturerGuid$OFFSET, ManufacturerGuid$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID ManufacturerGuid
+     * }
+     */
+    public static void ManufacturerGuid(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ManufacturerGuid$OFFSET, ManufacturerGuid$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout ProductGuid$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ProductGuid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID ProductGuid
+     * }
+     */
+    public static final GroupLayout ProductGuid$layout() {
+        return ProductGuid$LAYOUT;
+    }
+
+    private static final long ProductGuid$OFFSET = 420;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID ProductGuid
+     * }
+     */
+    public static final long ProductGuid$offset() {
+        return ProductGuid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID ProductGuid
+     * }
+     */
+    public static MemorySegment ProductGuid(MemorySegment struct) {
+        return struct.asSlice(ProductGuid$OFFSET, ProductGuid$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID ProductGuid
+     * }
+     */
+    public static void ProductGuid(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ProductGuid$OFFSET, ProductGuid$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout NameGuid$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("NameGuid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID NameGuid
+     * }
+     */
+    public static final GroupLayout NameGuid$layout() {
+        return NameGuid$LAYOUT;
+    }
+
+    private static final long NameGuid$OFFSET = 436;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID NameGuid
+     * }
+     */
+    public static final long NameGuid$offset() {
+        return NameGuid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID NameGuid
+     * }
+     */
+    public static MemorySegment NameGuid(MemorySegment struct) {
+        return struct.asSlice(NameGuid$OFFSET, NameGuid$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID NameGuid
+     * }
+     */
+    public static void NameGuid(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, NameGuid$OFFSET, NameGuid$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

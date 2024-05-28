@@ -2,65 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagCHARSETINFO {
+ *     UINT ciCharset;
+ *     UINT ciACP;
+ *     FONTSIGNATURE fs;
+ * }
+ * }
+ */
 public class tagCHARSETINFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ciCharset"),
-        Constants$root.C_LONG$LAYOUT.withName("ciACP"),
-        MemoryLayout.structLayout(
-            MemoryLayout.sequenceLayout(4, Constants$root.C_LONG$LAYOUT).withName("fsUsb"),
-            MemoryLayout.sequenceLayout(2, Constants$root.C_LONG$LAYOUT).withName("fsCsb")
-        ).withName("fs")
-    ).withName("tagCHARSETINFO");
-    public static MemoryLayout $LAYOUT() {
-        return tagCHARSETINFO.$struct$LAYOUT;
+    tagCHARSETINFO() {
+        // Should not be called directly
     }
-    static final VarHandle ciCharset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ciCharset"));
-    public static VarHandle ciCharset$VH() {
-        return tagCHARSETINFO.ciCharset$VH;
-    }
-    public static int ciCharset$get(MemorySegment seg) {
-        return (int)tagCHARSETINFO.ciCharset$VH.get(seg);
-    }
-    public static void ciCharset$set( MemorySegment seg, int x) {
-        tagCHARSETINFO.ciCharset$VH.set(seg, x);
-    }
-    public static int ciCharset$get(MemorySegment seg, long index) {
-        return (int)tagCHARSETINFO.ciCharset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ciCharset$set(MemorySegment seg, long index, int x) {
-        tagCHARSETINFO.ciCharset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ciACP$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ciACP"));
-    public static VarHandle ciACP$VH() {
-        return tagCHARSETINFO.ciACP$VH;
-    }
-    public static int ciACP$get(MemorySegment seg) {
-        return (int)tagCHARSETINFO.ciACP$VH.get(seg);
-    }
-    public static void ciACP$set( MemorySegment seg, int x) {
-        tagCHARSETINFO.ciACP$VH.set(seg, x);
-    }
-    public static int ciACP$get(MemorySegment seg, long index) {
-        return (int)tagCHARSETINFO.ciACP$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ciACP$set(MemorySegment seg, long index, int x) {
-        tagCHARSETINFO.ciACP$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment fs$slice(MemorySegment seg) {
-        return seg.asSlice(8, 24);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("ciCharset"),
+        wgl_h.C_INT.withName("ciACP"),
+        tagFONTSIGNATURE.layout().withName("fs")
+    ).withName("tagCHARSETINFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt ciCharset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ciCharset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT ciCharset
+     * }
+     */
+    public static final OfInt ciCharset$layout() {
+        return ciCharset$LAYOUT;
+    }
+
+    private static final long ciCharset$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT ciCharset
+     * }
+     */
+    public static final long ciCharset$offset() {
+        return ciCharset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT ciCharset
+     * }
+     */
+    public static int ciCharset(MemorySegment struct) {
+        return struct.get(ciCharset$LAYOUT, ciCharset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT ciCharset
+     * }
+     */
+    public static void ciCharset(MemorySegment struct, int fieldValue) {
+        struct.set(ciCharset$LAYOUT, ciCharset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ciACP$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ciACP"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT ciACP
+     * }
+     */
+    public static final OfInt ciACP$layout() {
+        return ciACP$LAYOUT;
+    }
+
+    private static final long ciACP$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT ciACP
+     * }
+     */
+    public static final long ciACP$offset() {
+        return ciACP$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT ciACP
+     * }
+     */
+    public static int ciACP(MemorySegment struct) {
+        return struct.get(ciACP$LAYOUT, ciACP$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT ciACP
+     * }
+     */
+    public static void ciACP(MemorySegment struct, int fieldValue) {
+        struct.set(ciACP$LAYOUT, ciACP$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout fs$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("fs"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FONTSIGNATURE fs
+     * }
+     */
+    public static final GroupLayout fs$layout() {
+        return fs$LAYOUT;
+    }
+
+    private static final long fs$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FONTSIGNATURE fs
+     * }
+     */
+    public static final long fs$offset() {
+        return fs$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FONTSIGNATURE fs
+     * }
+     */
+    public static MemorySegment fs(MemorySegment struct) {
+        return struct.asSlice(fs$OFFSET, fs$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FONTSIGNATURE fs
+     * }
+     */
+    public static void fs(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, fs$OFFSET, fs$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

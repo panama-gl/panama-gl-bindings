@@ -2,13 +2,34 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _SE_ACCESS_REQUEST {
+ *     DWORD Size;
+ *     PSE_SECURITY_DESCRIPTOR SeSecurityDescriptor;
+ *     ACCESS_MASK DesiredAccess;
+ *     ACCESS_MASK PreviouslyGrantedAccess;
+ *     PSID PrincipalSelfSid;
+ *     PGENERIC_MAPPING GenericMapping;
+ *     DWORD ObjectTypeListCount;
+ *     POBJECT_TYPE_LIST ObjectTypeList;
+ * } SE_ACCESS_REQUEST
+ * }
+ */
 public class SE_ACCESS_REQUEST extends _SE_ACCESS_REQUEST {
 
+    SE_ACCESS_REQUEST() {
+        // Should not be called directly
+    }
 }
-
 

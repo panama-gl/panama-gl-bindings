@@ -2,161 +2,540 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _TOKEN_STATISTICS {
+ *     LUID TokenId;
+ *     LUID AuthenticationId;
+ *     LARGE_INTEGER ExpirationTime;
+ *     TOKEN_TYPE TokenType;
+ *     SECURITY_IMPERSONATION_LEVEL ImpersonationLevel;
+ *     DWORD DynamicCharged;
+ *     DWORD DynamicAvailable;
+ *     DWORD GroupCount;
+ *     DWORD PrivilegeCount;
+ *     LUID ModifiedId;
+ * }
+ * }
+ */
 public class _TOKEN_STATISTICS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-            Constants$root.C_LONG$LAYOUT.withName("HighPart")
-        ).withName("TokenId"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-            Constants$root.C_LONG$LAYOUT.withName("HighPart")
-        ).withName("AuthenticationId"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("ExpirationTime"),
-        Constants$root.C_LONG$LAYOUT.withName("TokenType"),
-        Constants$root.C_LONG$LAYOUT.withName("ImpersonationLevel"),
-        Constants$root.C_LONG$LAYOUT.withName("DynamicCharged"),
-        Constants$root.C_LONG$LAYOUT.withName("DynamicAvailable"),
-        Constants$root.C_LONG$LAYOUT.withName("GroupCount"),
-        Constants$root.C_LONG$LAYOUT.withName("PrivilegeCount"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-            Constants$root.C_LONG$LAYOUT.withName("HighPart")
-        ).withName("ModifiedId")
-    ).withName("_TOKEN_STATISTICS");
-    public static MemoryLayout $LAYOUT() {
-        return _TOKEN_STATISTICS.$struct$LAYOUT;
+    _TOKEN_STATISTICS() {
+        // Should not be called directly
     }
-    public static MemorySegment TokenId$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    public static MemorySegment AuthenticationId$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    public static MemorySegment ExpirationTime$slice(MemorySegment seg) {
-        return seg.asSlice(16, 8);
-    }
-    static final VarHandle TokenType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TokenType"));
-    public static VarHandle TokenType$VH() {
-        return _TOKEN_STATISTICS.TokenType$VH;
-    }
-    public static int TokenType$get(MemorySegment seg) {
-        return (int)_TOKEN_STATISTICS.TokenType$VH.get(seg);
-    }
-    public static void TokenType$set( MemorySegment seg, int x) {
-        _TOKEN_STATISTICS.TokenType$VH.set(seg, x);
-    }
-    public static int TokenType$get(MemorySegment seg, long index) {
-        return (int)_TOKEN_STATISTICS.TokenType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TokenType$set(MemorySegment seg, long index, int x) {
-        _TOKEN_STATISTICS.TokenType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ImpersonationLevel$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ImpersonationLevel"));
-    public static VarHandle ImpersonationLevel$VH() {
-        return _TOKEN_STATISTICS.ImpersonationLevel$VH;
-    }
-    public static int ImpersonationLevel$get(MemorySegment seg) {
-        return (int)_TOKEN_STATISTICS.ImpersonationLevel$VH.get(seg);
-    }
-    public static void ImpersonationLevel$set( MemorySegment seg, int x) {
-        _TOKEN_STATISTICS.ImpersonationLevel$VH.set(seg, x);
-    }
-    public static int ImpersonationLevel$get(MemorySegment seg, long index) {
-        return (int)_TOKEN_STATISTICS.ImpersonationLevel$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ImpersonationLevel$set(MemorySegment seg, long index, int x) {
-        _TOKEN_STATISTICS.ImpersonationLevel$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DynamicCharged$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DynamicCharged"));
-    public static VarHandle DynamicCharged$VH() {
-        return _TOKEN_STATISTICS.DynamicCharged$VH;
-    }
-    public static int DynamicCharged$get(MemorySegment seg) {
-        return (int)_TOKEN_STATISTICS.DynamicCharged$VH.get(seg);
-    }
-    public static void DynamicCharged$set( MemorySegment seg, int x) {
-        _TOKEN_STATISTICS.DynamicCharged$VH.set(seg, x);
-    }
-    public static int DynamicCharged$get(MemorySegment seg, long index) {
-        return (int)_TOKEN_STATISTICS.DynamicCharged$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DynamicCharged$set(MemorySegment seg, long index, int x) {
-        _TOKEN_STATISTICS.DynamicCharged$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DynamicAvailable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DynamicAvailable"));
-    public static VarHandle DynamicAvailable$VH() {
-        return _TOKEN_STATISTICS.DynamicAvailable$VH;
-    }
-    public static int DynamicAvailable$get(MemorySegment seg) {
-        return (int)_TOKEN_STATISTICS.DynamicAvailable$VH.get(seg);
-    }
-    public static void DynamicAvailable$set( MemorySegment seg, int x) {
-        _TOKEN_STATISTICS.DynamicAvailable$VH.set(seg, x);
-    }
-    public static int DynamicAvailable$get(MemorySegment seg, long index) {
-        return (int)_TOKEN_STATISTICS.DynamicAvailable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DynamicAvailable$set(MemorySegment seg, long index, int x) {
-        _TOKEN_STATISTICS.DynamicAvailable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GroupCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GroupCount"));
-    public static VarHandle GroupCount$VH() {
-        return _TOKEN_STATISTICS.GroupCount$VH;
-    }
-    public static int GroupCount$get(MemorySegment seg) {
-        return (int)_TOKEN_STATISTICS.GroupCount$VH.get(seg);
-    }
-    public static void GroupCount$set( MemorySegment seg, int x) {
-        _TOKEN_STATISTICS.GroupCount$VH.set(seg, x);
-    }
-    public static int GroupCount$get(MemorySegment seg, long index) {
-        return (int)_TOKEN_STATISTICS.GroupCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GroupCount$set(MemorySegment seg, long index, int x) {
-        _TOKEN_STATISTICS.GroupCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PrivilegeCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PrivilegeCount"));
-    public static VarHandle PrivilegeCount$VH() {
-        return _TOKEN_STATISTICS.PrivilegeCount$VH;
-    }
-    public static int PrivilegeCount$get(MemorySegment seg) {
-        return (int)_TOKEN_STATISTICS.PrivilegeCount$VH.get(seg);
-    }
-    public static void PrivilegeCount$set( MemorySegment seg, int x) {
-        _TOKEN_STATISTICS.PrivilegeCount$VH.set(seg, x);
-    }
-    public static int PrivilegeCount$get(MemorySegment seg, long index) {
-        return (int)_TOKEN_STATISTICS.PrivilegeCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PrivilegeCount$set(MemorySegment seg, long index, int x) {
-        _TOKEN_STATISTICS.PrivilegeCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment ModifiedId$slice(MemorySegment seg) {
-        return seg.asSlice(48, 8);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _LUID.layout().withName("TokenId"),
+        _LUID.layout().withName("AuthenticationId"),
+        _LARGE_INTEGER.layout().withName("ExpirationTime"),
+        freeglut_h.C_INT.withName("TokenType"),
+        freeglut_h.C_INT.withName("ImpersonationLevel"),
+        freeglut_h.C_LONG.withName("DynamicCharged"),
+        freeglut_h.C_LONG.withName("DynamicAvailable"),
+        freeglut_h.C_LONG.withName("GroupCount"),
+        freeglut_h.C_LONG.withName("PrivilegeCount"),
+        _LUID.layout().withName("ModifiedId")
+    ).withName("_TOKEN_STATISTICS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout TokenId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("TokenId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LUID TokenId
+     * }
+     */
+    public static final GroupLayout TokenId$layout() {
+        return TokenId$LAYOUT;
+    }
+
+    private static final long TokenId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LUID TokenId
+     * }
+     */
+    public static final long TokenId$offset() {
+        return TokenId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LUID TokenId
+     * }
+     */
+    public static MemorySegment TokenId(MemorySegment struct) {
+        return struct.asSlice(TokenId$OFFSET, TokenId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LUID TokenId
+     * }
+     */
+    public static void TokenId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, TokenId$OFFSET, TokenId$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout AuthenticationId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("AuthenticationId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LUID AuthenticationId
+     * }
+     */
+    public static final GroupLayout AuthenticationId$layout() {
+        return AuthenticationId$LAYOUT;
+    }
+
+    private static final long AuthenticationId$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LUID AuthenticationId
+     * }
+     */
+    public static final long AuthenticationId$offset() {
+        return AuthenticationId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LUID AuthenticationId
+     * }
+     */
+    public static MemorySegment AuthenticationId(MemorySegment struct) {
+        return struct.asSlice(AuthenticationId$OFFSET, AuthenticationId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LUID AuthenticationId
+     * }
+     */
+    public static void AuthenticationId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, AuthenticationId$OFFSET, AuthenticationId$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout ExpirationTime$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ExpirationTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER ExpirationTime
+     * }
+     */
+    public static final GroupLayout ExpirationTime$layout() {
+        return ExpirationTime$LAYOUT;
+    }
+
+    private static final long ExpirationTime$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER ExpirationTime
+     * }
+     */
+    public static final long ExpirationTime$offset() {
+        return ExpirationTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER ExpirationTime
+     * }
+     */
+    public static MemorySegment ExpirationTime(MemorySegment struct) {
+        return struct.asSlice(ExpirationTime$OFFSET, ExpirationTime$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER ExpirationTime
+     * }
+     */
+    public static void ExpirationTime(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ExpirationTime$OFFSET, ExpirationTime$LAYOUT.byteSize());
+    }
+
+    private static final OfInt TokenType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("TokenType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * TOKEN_TYPE TokenType
+     * }
+     */
+    public static final OfInt TokenType$layout() {
+        return TokenType$LAYOUT;
+    }
+
+    private static final long TokenType$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * TOKEN_TYPE TokenType
+     * }
+     */
+    public static final long TokenType$offset() {
+        return TokenType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * TOKEN_TYPE TokenType
+     * }
+     */
+    public static int TokenType(MemorySegment struct) {
+        return struct.get(TokenType$LAYOUT, TokenType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * TOKEN_TYPE TokenType
+     * }
+     */
+    public static void TokenType(MemorySegment struct, int fieldValue) {
+        struct.set(TokenType$LAYOUT, TokenType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ImpersonationLevel$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ImpersonationLevel"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SECURITY_IMPERSONATION_LEVEL ImpersonationLevel
+     * }
+     */
+    public static final OfInt ImpersonationLevel$layout() {
+        return ImpersonationLevel$LAYOUT;
+    }
+
+    private static final long ImpersonationLevel$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SECURITY_IMPERSONATION_LEVEL ImpersonationLevel
+     * }
+     */
+    public static final long ImpersonationLevel$offset() {
+        return ImpersonationLevel$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SECURITY_IMPERSONATION_LEVEL ImpersonationLevel
+     * }
+     */
+    public static int ImpersonationLevel(MemorySegment struct) {
+        return struct.get(ImpersonationLevel$LAYOUT, ImpersonationLevel$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SECURITY_IMPERSONATION_LEVEL ImpersonationLevel
+     * }
+     */
+    public static void ImpersonationLevel(MemorySegment struct, int fieldValue) {
+        struct.set(ImpersonationLevel$LAYOUT, ImpersonationLevel$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DynamicCharged$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DynamicCharged"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DynamicCharged
+     * }
+     */
+    public static final OfInt DynamicCharged$layout() {
+        return DynamicCharged$LAYOUT;
+    }
+
+    private static final long DynamicCharged$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DynamicCharged
+     * }
+     */
+    public static final long DynamicCharged$offset() {
+        return DynamicCharged$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DynamicCharged
+     * }
+     */
+    public static int DynamicCharged(MemorySegment struct) {
+        return struct.get(DynamicCharged$LAYOUT, DynamicCharged$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DynamicCharged
+     * }
+     */
+    public static void DynamicCharged(MemorySegment struct, int fieldValue) {
+        struct.set(DynamicCharged$LAYOUT, DynamicCharged$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DynamicAvailable$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DynamicAvailable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DynamicAvailable
+     * }
+     */
+    public static final OfInt DynamicAvailable$layout() {
+        return DynamicAvailable$LAYOUT;
+    }
+
+    private static final long DynamicAvailable$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DynamicAvailable
+     * }
+     */
+    public static final long DynamicAvailable$offset() {
+        return DynamicAvailable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DynamicAvailable
+     * }
+     */
+    public static int DynamicAvailable(MemorySegment struct) {
+        return struct.get(DynamicAvailable$LAYOUT, DynamicAvailable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DynamicAvailable
+     * }
+     */
+    public static void DynamicAvailable(MemorySegment struct, int fieldValue) {
+        struct.set(DynamicAvailable$LAYOUT, DynamicAvailable$OFFSET, fieldValue);
+    }
+
+    private static final OfInt GroupCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("GroupCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD GroupCount
+     * }
+     */
+    public static final OfInt GroupCount$layout() {
+        return GroupCount$LAYOUT;
+    }
+
+    private static final long GroupCount$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD GroupCount
+     * }
+     */
+    public static final long GroupCount$offset() {
+        return GroupCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD GroupCount
+     * }
+     */
+    public static int GroupCount(MemorySegment struct) {
+        return struct.get(GroupCount$LAYOUT, GroupCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD GroupCount
+     * }
+     */
+    public static void GroupCount(MemorySegment struct, int fieldValue) {
+        struct.set(GroupCount$LAYOUT, GroupCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt PrivilegeCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PrivilegeCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PrivilegeCount
+     * }
+     */
+    public static final OfInt PrivilegeCount$layout() {
+        return PrivilegeCount$LAYOUT;
+    }
+
+    private static final long PrivilegeCount$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PrivilegeCount
+     * }
+     */
+    public static final long PrivilegeCount$offset() {
+        return PrivilegeCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PrivilegeCount
+     * }
+     */
+    public static int PrivilegeCount(MemorySegment struct) {
+        return struct.get(PrivilegeCount$LAYOUT, PrivilegeCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PrivilegeCount
+     * }
+     */
+    public static void PrivilegeCount(MemorySegment struct, int fieldValue) {
+        struct.set(PrivilegeCount$LAYOUT, PrivilegeCount$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout ModifiedId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ModifiedId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LUID ModifiedId
+     * }
+     */
+    public static final GroupLayout ModifiedId$layout() {
+        return ModifiedId$LAYOUT;
+    }
+
+    private static final long ModifiedId$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LUID ModifiedId
+     * }
+     */
+    public static final long ModifiedId$offset() {
+        return ModifiedId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LUID ModifiedId
+     * }
+     */
+    public static MemorySegment ModifiedId(MemorySegment struct) {
+        return struct.asSlice(ModifiedId$OFFSET, ModifiedId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LUID ModifiedId
+     * }
+     */
+    public static void ModifiedId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ModifiedId$OFFSET, ModifiedId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

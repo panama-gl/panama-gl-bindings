@@ -2,109 +2,310 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagMINIMIZEDMETRICS {
+ *     UINT cbSize;
+ *     int iWidth;
+ *     int iHorzGap;
+ *     int iVertGap;
+ *     int iArrange;
+ * }
+ * }
+ */
 public class tagMINIMIZEDMETRICS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        Constants$root.C_LONG$LAYOUT.withName("iWidth"),
-        Constants$root.C_LONG$LAYOUT.withName("iHorzGap"),
-        Constants$root.C_LONG$LAYOUT.withName("iVertGap"),
-        Constants$root.C_LONG$LAYOUT.withName("iArrange")
-    ).withName("tagMINIMIZEDMETRICS");
-    public static MemoryLayout $LAYOUT() {
-        return tagMINIMIZEDMETRICS.$struct$LAYOUT;
+    tagMINIMIZEDMETRICS() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return tagMINIMIZEDMETRICS.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)tagMINIMIZEDMETRICS.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        tagMINIMIZEDMETRICS.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)tagMINIMIZEDMETRICS.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        tagMINIMIZEDMETRICS.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iWidth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iWidth"));
-    public static VarHandle iWidth$VH() {
-        return tagMINIMIZEDMETRICS.iWidth$VH;
-    }
-    public static int iWidth$get(MemorySegment seg) {
-        return (int)tagMINIMIZEDMETRICS.iWidth$VH.get(seg);
-    }
-    public static void iWidth$set( MemorySegment seg, int x) {
-        tagMINIMIZEDMETRICS.iWidth$VH.set(seg, x);
-    }
-    public static int iWidth$get(MemorySegment seg, long index) {
-        return (int)tagMINIMIZEDMETRICS.iWidth$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iWidth$set(MemorySegment seg, long index, int x) {
-        tagMINIMIZEDMETRICS.iWidth$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iHorzGap$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iHorzGap"));
-    public static VarHandle iHorzGap$VH() {
-        return tagMINIMIZEDMETRICS.iHorzGap$VH;
-    }
-    public static int iHorzGap$get(MemorySegment seg) {
-        return (int)tagMINIMIZEDMETRICS.iHorzGap$VH.get(seg);
-    }
-    public static void iHorzGap$set( MemorySegment seg, int x) {
-        tagMINIMIZEDMETRICS.iHorzGap$VH.set(seg, x);
-    }
-    public static int iHorzGap$get(MemorySegment seg, long index) {
-        return (int)tagMINIMIZEDMETRICS.iHorzGap$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iHorzGap$set(MemorySegment seg, long index, int x) {
-        tagMINIMIZEDMETRICS.iHorzGap$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iVertGap$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iVertGap"));
-    public static VarHandle iVertGap$VH() {
-        return tagMINIMIZEDMETRICS.iVertGap$VH;
-    }
-    public static int iVertGap$get(MemorySegment seg) {
-        return (int)tagMINIMIZEDMETRICS.iVertGap$VH.get(seg);
-    }
-    public static void iVertGap$set( MemorySegment seg, int x) {
-        tagMINIMIZEDMETRICS.iVertGap$VH.set(seg, x);
-    }
-    public static int iVertGap$get(MemorySegment seg, long index) {
-        return (int)tagMINIMIZEDMETRICS.iVertGap$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iVertGap$set(MemorySegment seg, long index, int x) {
-        tagMINIMIZEDMETRICS.iVertGap$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iArrange$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iArrange"));
-    public static VarHandle iArrange$VH() {
-        return tagMINIMIZEDMETRICS.iArrange$VH;
-    }
-    public static int iArrange$get(MemorySegment seg) {
-        return (int)tagMINIMIZEDMETRICS.iArrange$VH.get(seg);
-    }
-    public static void iArrange$set( MemorySegment seg, int x) {
-        tagMINIMIZEDMETRICS.iArrange$VH.set(seg, x);
-    }
-    public static int iArrange$get(MemorySegment seg, long index) {
-        return (int)tagMINIMIZEDMETRICS.iArrange$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iArrange$set(MemorySegment seg, long index, int x) {
-        tagMINIMIZEDMETRICS.iArrange$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("cbSize"),
+        wgl_h.C_INT.withName("iWidth"),
+        wgl_h.C_INT.withName("iHorzGap"),
+        wgl_h.C_INT.withName("iVertGap"),
+        wgl_h.C_INT.withName("iArrange")
+    ).withName("tagMINIMIZEDMETRICS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iWidth$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iWidth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iWidth
+     * }
+     */
+    public static final OfInt iWidth$layout() {
+        return iWidth$LAYOUT;
+    }
+
+    private static final long iWidth$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iWidth
+     * }
+     */
+    public static final long iWidth$offset() {
+        return iWidth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iWidth
+     * }
+     */
+    public static int iWidth(MemorySegment struct) {
+        return struct.get(iWidth$LAYOUT, iWidth$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iWidth
+     * }
+     */
+    public static void iWidth(MemorySegment struct, int fieldValue) {
+        struct.set(iWidth$LAYOUT, iWidth$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iHorzGap$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iHorzGap"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iHorzGap
+     * }
+     */
+    public static final OfInt iHorzGap$layout() {
+        return iHorzGap$LAYOUT;
+    }
+
+    private static final long iHorzGap$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iHorzGap
+     * }
+     */
+    public static final long iHorzGap$offset() {
+        return iHorzGap$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iHorzGap
+     * }
+     */
+    public static int iHorzGap(MemorySegment struct) {
+        return struct.get(iHorzGap$LAYOUT, iHorzGap$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iHorzGap
+     * }
+     */
+    public static void iHorzGap(MemorySegment struct, int fieldValue) {
+        struct.set(iHorzGap$LAYOUT, iHorzGap$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iVertGap$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iVertGap"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iVertGap
+     * }
+     */
+    public static final OfInt iVertGap$layout() {
+        return iVertGap$LAYOUT;
+    }
+
+    private static final long iVertGap$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iVertGap
+     * }
+     */
+    public static final long iVertGap$offset() {
+        return iVertGap$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iVertGap
+     * }
+     */
+    public static int iVertGap(MemorySegment struct) {
+        return struct.get(iVertGap$LAYOUT, iVertGap$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iVertGap
+     * }
+     */
+    public static void iVertGap(MemorySegment struct, int fieldValue) {
+        struct.set(iVertGap$LAYOUT, iVertGap$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iArrange$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iArrange"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iArrange
+     * }
+     */
+    public static final OfInt iArrange$layout() {
+        return iArrange$LAYOUT;
+    }
+
+    private static final long iArrange$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iArrange
+     * }
+     */
+    public static final long iArrange$offset() {
+        return iArrange$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iArrange
+     * }
+     */
+    public static int iArrange(MemorySegment struct) {
+        return struct.get(iArrange$LAYOUT, iArrange$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iArrange
+     * }
+     */
+    public static void iArrange(MemorySegment struct, int fieldValue) {
+        struct.set(iArrange$LAYOUT, iArrange$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

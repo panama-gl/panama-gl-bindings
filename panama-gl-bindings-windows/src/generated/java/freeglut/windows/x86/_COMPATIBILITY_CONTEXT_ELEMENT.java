@@ -2,68 +2,219 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _COMPATIBILITY_CONTEXT_ELEMENT {
+ *     GUID Id;
+ *     ACTCTX_COMPATIBILITY_ELEMENT_TYPE Type;
+ *     ULONGLONG MaxVersionTested;
+ * }
+ * }
+ */
 public class _COMPATIBILITY_CONTEXT_ELEMENT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("Id"),
-        Constants$root.C_LONG$LAYOUT.withName("Type"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("MaxVersionTested")
-    ).withName("_COMPATIBILITY_CONTEXT_ELEMENT");
-    public static MemoryLayout $LAYOUT() {
-        return _COMPATIBILITY_CONTEXT_ELEMENT.$struct$LAYOUT;
+    _COMPATIBILITY_CONTEXT_ELEMENT() {
+        // Should not be called directly
     }
-    public static MemorySegment Id$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
-    }
-    static final VarHandle Type$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Type"));
-    public static VarHandle Type$VH() {
-        return _COMPATIBILITY_CONTEXT_ELEMENT.Type$VH;
-    }
-    public static int Type$get(MemorySegment seg) {
-        return (int)_COMPATIBILITY_CONTEXT_ELEMENT.Type$VH.get(seg);
-    }
-    public static void Type$set( MemorySegment seg, int x) {
-        _COMPATIBILITY_CONTEXT_ELEMENT.Type$VH.set(seg, x);
-    }
-    public static int Type$get(MemorySegment seg, long index) {
-        return (int)_COMPATIBILITY_CONTEXT_ELEMENT.Type$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Type$set(MemorySegment seg, long index, int x) {
-        _COMPATIBILITY_CONTEXT_ELEMENT.Type$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaxVersionTested$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaxVersionTested"));
-    public static VarHandle MaxVersionTested$VH() {
-        return _COMPATIBILITY_CONTEXT_ELEMENT.MaxVersionTested$VH;
-    }
-    public static long MaxVersionTested$get(MemorySegment seg) {
-        return (long)_COMPATIBILITY_CONTEXT_ELEMENT.MaxVersionTested$VH.get(seg);
-    }
-    public static void MaxVersionTested$set( MemorySegment seg, long x) {
-        _COMPATIBILITY_CONTEXT_ELEMENT.MaxVersionTested$VH.set(seg, x);
-    }
-    public static long MaxVersionTested$get(MemorySegment seg, long index) {
-        return (long)_COMPATIBILITY_CONTEXT_ELEMENT.MaxVersionTested$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaxVersionTested$set(MemorySegment seg, long index, long x) {
-        _COMPATIBILITY_CONTEXT_ELEMENT.MaxVersionTested$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _GUID.layout().withName("Id"),
+        freeglut_h.C_INT.withName("Type"),
+        MemoryLayout.paddingLayout(4),
+        freeglut_h.C_LONG_LONG.withName("MaxVersionTested")
+    ).withName("_COMPATIBILITY_CONTEXT_ELEMENT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout Id$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Id"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID Id
+     * }
+     */
+    public static final GroupLayout Id$layout() {
+        return Id$LAYOUT;
+    }
+
+    private static final long Id$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID Id
+     * }
+     */
+    public static final long Id$offset() {
+        return Id$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID Id
+     * }
+     */
+    public static MemorySegment Id(MemorySegment struct) {
+        return struct.asSlice(Id$OFFSET, Id$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID Id
+     * }
+     */
+    public static void Id(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Id$OFFSET, Id$LAYOUT.byteSize());
+    }
+
+    private static final OfInt Type$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Type"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ACTCTX_COMPATIBILITY_ELEMENT_TYPE Type
+     * }
+     */
+    public static final OfInt Type$layout() {
+        return Type$LAYOUT;
+    }
+
+    private static final long Type$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ACTCTX_COMPATIBILITY_ELEMENT_TYPE Type
+     * }
+     */
+    public static final long Type$offset() {
+        return Type$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ACTCTX_COMPATIBILITY_ELEMENT_TYPE Type
+     * }
+     */
+    public static int Type(MemorySegment struct) {
+        return struct.get(Type$LAYOUT, Type$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ACTCTX_COMPATIBILITY_ELEMENT_TYPE Type
+     * }
+     */
+    public static void Type(MemorySegment struct, int fieldValue) {
+        struct.set(Type$LAYOUT, Type$OFFSET, fieldValue);
+    }
+
+    private static final OfLong MaxVersionTested$LAYOUT = (OfLong)$LAYOUT.select(groupElement("MaxVersionTested"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG MaxVersionTested
+     * }
+     */
+    public static final OfLong MaxVersionTested$layout() {
+        return MaxVersionTested$LAYOUT;
+    }
+
+    private static final long MaxVersionTested$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG MaxVersionTested
+     * }
+     */
+    public static final long MaxVersionTested$offset() {
+        return MaxVersionTested$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG MaxVersionTested
+     * }
+     */
+    public static long MaxVersionTested(MemorySegment struct) {
+        return struct.get(MaxVersionTested$LAYOUT, MaxVersionTested$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG MaxVersionTested
+     * }
+     */
+    public static void MaxVersionTested(MemorySegment struct, long fieldValue) {
+        struct.set(MaxVersionTested$LAYOUT, MaxVersionTested$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

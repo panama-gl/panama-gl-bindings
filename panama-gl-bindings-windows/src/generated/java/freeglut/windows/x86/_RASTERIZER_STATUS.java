@@ -2,75 +2,218 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _RASTERIZER_STATUS {
+ *     short nSize;
+ *     short wFlags;
+ *     short nLanguageID;
+ * }
+ * }
+ */
 public class _RASTERIZER_STATUS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("nSize"),
-        Constants$root.C_SHORT$LAYOUT.withName("wFlags"),
-        Constants$root.C_SHORT$LAYOUT.withName("nLanguageID")
-    ).withName("_RASTERIZER_STATUS");
-    public static MemoryLayout $LAYOUT() {
-        return _RASTERIZER_STATUS.$struct$LAYOUT;
+    _RASTERIZER_STATUS() {
+        // Should not be called directly
     }
-    static final VarHandle nSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nSize"));
-    public static VarHandle nSize$VH() {
-        return _RASTERIZER_STATUS.nSize$VH;
-    }
-    public static short nSize$get(MemorySegment seg) {
-        return (short)_RASTERIZER_STATUS.nSize$VH.get(seg);
-    }
-    public static void nSize$set( MemorySegment seg, short x) {
-        _RASTERIZER_STATUS.nSize$VH.set(seg, x);
-    }
-    public static short nSize$get(MemorySegment seg, long index) {
-        return (short)_RASTERIZER_STATUS.nSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nSize$set(MemorySegment seg, long index, short x) {
-        _RASTERIZER_STATUS.nSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wFlags"));
-    public static VarHandle wFlags$VH() {
-        return _RASTERIZER_STATUS.wFlags$VH;
-    }
-    public static short wFlags$get(MemorySegment seg) {
-        return (short)_RASTERIZER_STATUS.wFlags$VH.get(seg);
-    }
-    public static void wFlags$set( MemorySegment seg, short x) {
-        _RASTERIZER_STATUS.wFlags$VH.set(seg, x);
-    }
-    public static short wFlags$get(MemorySegment seg, long index) {
-        return (short)_RASTERIZER_STATUS.wFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wFlags$set(MemorySegment seg, long index, short x) {
-        _RASTERIZER_STATUS.wFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nLanguageID$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nLanguageID"));
-    public static VarHandle nLanguageID$VH() {
-        return _RASTERIZER_STATUS.nLanguageID$VH;
-    }
-    public static short nLanguageID$get(MemorySegment seg) {
-        return (short)_RASTERIZER_STATUS.nLanguageID$VH.get(seg);
-    }
-    public static void nLanguageID$set( MemorySegment seg, short x) {
-        _RASTERIZER_STATUS.nLanguageID$VH.set(seg, x);
-    }
-    public static short nLanguageID$get(MemorySegment seg, long index) {
-        return (short)_RASTERIZER_STATUS.nLanguageID$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nLanguageID$set(MemorySegment seg, long index, short x) {
-        _RASTERIZER_STATUS.nLanguageID$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_SHORT.withName("nSize"),
+        freeglut_h.C_SHORT.withName("wFlags"),
+        freeglut_h.C_SHORT.withName("nLanguageID")
+    ).withName("_RASTERIZER_STATUS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort nSize$LAYOUT = (OfShort)$LAYOUT.select(groupElement("nSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * short nSize
+     * }
+     */
+    public static final OfShort nSize$layout() {
+        return nSize$LAYOUT;
+    }
+
+    private static final long nSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * short nSize
+     * }
+     */
+    public static final long nSize$offset() {
+        return nSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * short nSize
+     * }
+     */
+    public static short nSize(MemorySegment struct) {
+        return struct.get(nSize$LAYOUT, nSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * short nSize
+     * }
+     */
+    public static void nSize(MemorySegment struct, short fieldValue) {
+        struct.set(nSize$LAYOUT, nSize$OFFSET, fieldValue);
+    }
+
+    private static final OfShort wFlags$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * short wFlags
+     * }
+     */
+    public static final OfShort wFlags$layout() {
+        return wFlags$LAYOUT;
+    }
+
+    private static final long wFlags$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * short wFlags
+     * }
+     */
+    public static final long wFlags$offset() {
+        return wFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * short wFlags
+     * }
+     */
+    public static short wFlags(MemorySegment struct) {
+        return struct.get(wFlags$LAYOUT, wFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * short wFlags
+     * }
+     */
+    public static void wFlags(MemorySegment struct, short fieldValue) {
+        struct.set(wFlags$LAYOUT, wFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfShort nLanguageID$LAYOUT = (OfShort)$LAYOUT.select(groupElement("nLanguageID"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * short nLanguageID
+     * }
+     */
+    public static final OfShort nLanguageID$layout() {
+        return nLanguageID$LAYOUT;
+    }
+
+    private static final long nLanguageID$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * short nLanguageID
+     * }
+     */
+    public static final long nLanguageID$offset() {
+        return nLanguageID$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * short nLanguageID
+     * }
+     */
+    public static short nLanguageID(MemorySegment struct) {
+        return struct.get(nLanguageID$LAYOUT, nLanguageID$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * short nLanguageID
+     * }
+     */
+    public static void nLanguageID(MemorySegment struct, short fieldValue) {
+        struct.set(nLanguageID$LAYOUT, nLanguageID$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

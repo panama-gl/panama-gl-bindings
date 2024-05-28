@@ -2,13 +2,38 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagACTCTX_SECTION_KEYED_DATA {
+ *     ULONG cbSize;
+ *     ULONG ulDataFormatVersion;
+ *     PVOID lpData;
+ *     ULONG ulLength;
+ *     PVOID lpSectionGlobalData;
+ *     ULONG ulSectionGlobalDataLength;
+ *     PVOID lpSectionBase;
+ *     ULONG ulSectionTotalLength;
+ *     HANDLE hActCtx;
+ *     ULONG ulAssemblyRosterIndex;
+ *     ULONG ulFlags;
+ *     ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA AssemblyMetadata;
+ * } ACTCTX_SECTION_KEYED_DATA
+ * }
+ */
 public class ACTCTX_SECTION_KEYED_DATA extends tagACTCTX_SECTION_KEYED_DATA {
 
+    ACTCTX_SECTION_KEYED_DATA() {
+        // Should not be called directly
+    }
 }
-
 

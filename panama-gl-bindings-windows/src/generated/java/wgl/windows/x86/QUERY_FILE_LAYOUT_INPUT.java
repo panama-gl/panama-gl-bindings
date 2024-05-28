@@ -2,13 +2,38 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _QUERY_FILE_LAYOUT_INPUT {
+ *     union {
+ *         DWORD FilterEntryCount;
+ *         DWORD NumberOfPairs;
+ *     };
+ *     DWORD Flags;
+ *     QUERY_FILE_LAYOUT_FILTER_TYPE FilterType;
+ *     DWORD Reserved;
+ *     union {
+ *         CLUSTER_RANGE ClusterRanges[1];
+ *         FILE_REFERENCE_RANGE FileReferenceRanges[1];
+ *         STORAGE_RESERVE_ID StorageReserveIds[1];
+ *     } Filter;
+ * } QUERY_FILE_LAYOUT_INPUT
+ * }
+ */
 public class QUERY_FILE_LAYOUT_INPUT extends _QUERY_FILE_LAYOUT_INPUT {
 
+    QUERY_FILE_LAYOUT_INPUT() {
+        // Should not be called directly
+    }
 }
-
 

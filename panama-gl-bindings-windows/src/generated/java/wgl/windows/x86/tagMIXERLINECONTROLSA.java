@@ -2,145 +2,406 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagMIXERLINECONTROLSA {
+ *     DWORD cbStruct;
+ *     DWORD dwLineID;
+ *     union {
+ *         DWORD dwControlID;
+ *         DWORD dwControlType;
+ *     };
+ *     DWORD cControls;
+ *     DWORD cbmxctrl;
+ *     LPMIXERCONTROLA pamxctrl;
+ * }
+ * }
+ */
 public class tagMIXERLINECONTROLSA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbStruct"),
-        Constants$root.C_LONG$LAYOUT.withName("dwLineID"),
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwControlID"),
-            Constants$root.C_LONG$LAYOUT.withName("dwControlType")
-        ).withName("$anon$0"),
-        Constants$root.C_LONG$LAYOUT.withName("cControls"),
-        Constants$root.C_LONG$LAYOUT.withName("cbmxctrl"),
-        Constants$root.C_POINTER$LAYOUT.withName("pamxctrl")
-    ).withName("tagMIXERLINECONTROLSA");
-    public static MemoryLayout $LAYOUT() {
-        return tagMIXERLINECONTROLSA.$struct$LAYOUT;
+    tagMIXERLINECONTROLSA() {
+        // Should not be called directly
     }
-    static final VarHandle cbStruct$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbStruct"));
-    public static VarHandle cbStruct$VH() {
-        return tagMIXERLINECONTROLSA.cbStruct$VH;
-    }
-    public static int cbStruct$get(MemorySegment seg) {
-        return (int)tagMIXERLINECONTROLSA.cbStruct$VH.get(seg);
-    }
-    public static void cbStruct$set( MemorySegment seg, int x) {
-        tagMIXERLINECONTROLSA.cbStruct$VH.set(seg, x);
-    }
-    public static int cbStruct$get(MemorySegment seg, long index) {
-        return (int)tagMIXERLINECONTROLSA.cbStruct$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbStruct$set(MemorySegment seg, long index, int x) {
-        tagMIXERLINECONTROLSA.cbStruct$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwLineID$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwLineID"));
-    public static VarHandle dwLineID$VH() {
-        return tagMIXERLINECONTROLSA.dwLineID$VH;
-    }
-    public static int dwLineID$get(MemorySegment seg) {
-        return (int)tagMIXERLINECONTROLSA.dwLineID$VH.get(seg);
-    }
-    public static void dwLineID$set( MemorySegment seg, int x) {
-        tagMIXERLINECONTROLSA.dwLineID$VH.set(seg, x);
-    }
-    public static int dwLineID$get(MemorySegment seg, long index) {
-        return (int)tagMIXERLINECONTROLSA.dwLineID$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwLineID$set(MemorySegment seg, long index, int x) {
-        tagMIXERLINECONTROLSA.dwLineID$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwControlID$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("dwControlID"));
-    public static VarHandle dwControlID$VH() {
-        return tagMIXERLINECONTROLSA.dwControlID$VH;
-    }
-    public static int dwControlID$get(MemorySegment seg) {
-        return (int)tagMIXERLINECONTROLSA.dwControlID$VH.get(seg);
-    }
-    public static void dwControlID$set( MemorySegment seg, int x) {
-        tagMIXERLINECONTROLSA.dwControlID$VH.set(seg, x);
-    }
-    public static int dwControlID$get(MemorySegment seg, long index) {
-        return (int)tagMIXERLINECONTROLSA.dwControlID$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwControlID$set(MemorySegment seg, long index, int x) {
-        tagMIXERLINECONTROLSA.dwControlID$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwControlType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("dwControlType"));
-    public static VarHandle dwControlType$VH() {
-        return tagMIXERLINECONTROLSA.dwControlType$VH;
-    }
-    public static int dwControlType$get(MemorySegment seg) {
-        return (int)tagMIXERLINECONTROLSA.dwControlType$VH.get(seg);
-    }
-    public static void dwControlType$set( MemorySegment seg, int x) {
-        tagMIXERLINECONTROLSA.dwControlType$VH.set(seg, x);
-    }
-    public static int dwControlType$get(MemorySegment seg, long index) {
-        return (int)tagMIXERLINECONTROLSA.dwControlType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwControlType$set(MemorySegment seg, long index, int x) {
-        tagMIXERLINECONTROLSA.dwControlType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cControls$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cControls"));
-    public static VarHandle cControls$VH() {
-        return tagMIXERLINECONTROLSA.cControls$VH;
-    }
-    public static int cControls$get(MemorySegment seg) {
-        return (int)tagMIXERLINECONTROLSA.cControls$VH.get(seg);
-    }
-    public static void cControls$set( MemorySegment seg, int x) {
-        tagMIXERLINECONTROLSA.cControls$VH.set(seg, x);
-    }
-    public static int cControls$get(MemorySegment seg, long index) {
-        return (int)tagMIXERLINECONTROLSA.cControls$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cControls$set(MemorySegment seg, long index, int x) {
-        tagMIXERLINECONTROLSA.cControls$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbmxctrl$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbmxctrl"));
-    public static VarHandle cbmxctrl$VH() {
-        return tagMIXERLINECONTROLSA.cbmxctrl$VH;
-    }
-    public static int cbmxctrl$get(MemorySegment seg) {
-        return (int)tagMIXERLINECONTROLSA.cbmxctrl$VH.get(seg);
-    }
-    public static void cbmxctrl$set( MemorySegment seg, int x) {
-        tagMIXERLINECONTROLSA.cbmxctrl$VH.set(seg, x);
-    }
-    public static int cbmxctrl$get(MemorySegment seg, long index) {
-        return (int)tagMIXERLINECONTROLSA.cbmxctrl$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbmxctrl$set(MemorySegment seg, long index, int x) {
-        tagMIXERLINECONTROLSA.cbmxctrl$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pamxctrl$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pamxctrl"));
-    public static VarHandle pamxctrl$VH() {
-        return tagMIXERLINECONTROLSA.pamxctrl$VH;
-    }
-    public static MemoryAddress pamxctrl$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMIXERLINECONTROLSA.pamxctrl$VH.get(seg);
-    }
-    public static void pamxctrl$set( MemorySegment seg, MemoryAddress x) {
-        tagMIXERLINECONTROLSA.pamxctrl$VH.set(seg, x);
-    }
-    public static MemoryAddress pamxctrl$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMIXERLINECONTROLSA.pamxctrl$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pamxctrl$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMIXERLINECONTROLSA.pamxctrl$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.align(wgl_h.C_LONG, 1).withName("cbStruct"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwLineID"),
+        MemoryLayout.unionLayout(
+            wgl_h.align(wgl_h.C_LONG, 1).withName("dwControlID"),
+            wgl_h.align(wgl_h.C_LONG, 1).withName("dwControlType")
+        ).withName("$anon$2255:5"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("cControls"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("cbmxctrl"),
+        wgl_h.align(wgl_h.C_POINTER, 1).withName("pamxctrl")
+    ).withName("tagMIXERLINECONTROLSA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbStruct$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbStruct"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbStruct
+     * }
+     */
+    public static final OfInt cbStruct$layout() {
+        return cbStruct$LAYOUT;
+    }
+
+    private static final long cbStruct$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbStruct
+     * }
+     */
+    public static final long cbStruct$offset() {
+        return cbStruct$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbStruct
+     * }
+     */
+    public static int cbStruct(MemorySegment struct) {
+        return struct.get(cbStruct$LAYOUT, cbStruct$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbStruct
+     * }
+     */
+    public static void cbStruct(MemorySegment struct, int fieldValue) {
+        struct.set(cbStruct$LAYOUT, cbStruct$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwLineID$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwLineID"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwLineID
+     * }
+     */
+    public static final OfInt dwLineID$layout() {
+        return dwLineID$LAYOUT;
+    }
+
+    private static final long dwLineID$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwLineID
+     * }
+     */
+    public static final long dwLineID$offset() {
+        return dwLineID$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwLineID
+     * }
+     */
+    public static int dwLineID(MemorySegment struct) {
+        return struct.get(dwLineID$LAYOUT, dwLineID$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwLineID
+     * }
+     */
+    public static void dwLineID(MemorySegment struct, int fieldValue) {
+        struct.set(dwLineID$LAYOUT, dwLineID$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwControlID$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$2255:5"), groupElement("dwControlID"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwControlID
+     * }
+     */
+    public static final OfInt dwControlID$layout() {
+        return dwControlID$LAYOUT;
+    }
+
+    private static final long dwControlID$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwControlID
+     * }
+     */
+    public static final long dwControlID$offset() {
+        return dwControlID$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwControlID
+     * }
+     */
+    public static int dwControlID(MemorySegment struct) {
+        return struct.get(dwControlID$LAYOUT, dwControlID$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwControlID
+     * }
+     */
+    public static void dwControlID(MemorySegment struct, int fieldValue) {
+        struct.set(dwControlID$LAYOUT, dwControlID$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwControlType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$2255:5"), groupElement("dwControlType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwControlType
+     * }
+     */
+    public static final OfInt dwControlType$layout() {
+        return dwControlType$LAYOUT;
+    }
+
+    private static final long dwControlType$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwControlType
+     * }
+     */
+    public static final long dwControlType$offset() {
+        return dwControlType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwControlType
+     * }
+     */
+    public static int dwControlType(MemorySegment struct) {
+        return struct.get(dwControlType$LAYOUT, dwControlType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwControlType
+     * }
+     */
+    public static void dwControlType(MemorySegment struct, int fieldValue) {
+        struct.set(dwControlType$LAYOUT, dwControlType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cControls$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cControls"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cControls
+     * }
+     */
+    public static final OfInt cControls$layout() {
+        return cControls$LAYOUT;
+    }
+
+    private static final long cControls$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cControls
+     * }
+     */
+    public static final long cControls$offset() {
+        return cControls$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cControls
+     * }
+     */
+    public static int cControls(MemorySegment struct) {
+        return struct.get(cControls$LAYOUT, cControls$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cControls
+     * }
+     */
+    public static void cControls(MemorySegment struct, int fieldValue) {
+        struct.set(cControls$LAYOUT, cControls$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbmxctrl$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbmxctrl"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbmxctrl
+     * }
+     */
+    public static final OfInt cbmxctrl$layout() {
+        return cbmxctrl$LAYOUT;
+    }
+
+    private static final long cbmxctrl$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbmxctrl
+     * }
+     */
+    public static final long cbmxctrl$offset() {
+        return cbmxctrl$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbmxctrl
+     * }
+     */
+    public static int cbmxctrl(MemorySegment struct) {
+        return struct.get(cbmxctrl$LAYOUT, cbmxctrl$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbmxctrl
+     * }
+     */
+    public static void cbmxctrl(MemorySegment struct, int fieldValue) {
+        struct.set(cbmxctrl$LAYOUT, cbmxctrl$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pamxctrl$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pamxctrl"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPMIXERCONTROLA pamxctrl
+     * }
+     */
+    public static final AddressLayout pamxctrl$layout() {
+        return pamxctrl$LAYOUT;
+    }
+
+    private static final long pamxctrl$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPMIXERCONTROLA pamxctrl
+     * }
+     */
+    public static final long pamxctrl$offset() {
+        return pamxctrl$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPMIXERCONTROLA pamxctrl
+     * }
+     */
+    public static MemorySegment pamxctrl(MemorySegment struct) {
+        return struct.get(pamxctrl$LAYOUT, pamxctrl$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPMIXERCONTROLA pamxctrl
+     * }
+     */
+    public static void pamxctrl(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pamxctrl$LAYOUT, pamxctrl$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

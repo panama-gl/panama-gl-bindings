@@ -2,13 +2,34 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CRYPT_TIMESTAMP_REQUEST {
+ *     DWORD dwVersion;
+ *     CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm;
+ *     CRYPT_DER_BLOB HashedMessage;
+ *     LPSTR pszTSAPolicyId;
+ *     CRYPT_INTEGER_BLOB Nonce;
+ *     BOOL fCertReq;
+ *     DWORD cExtension;
+ *     PCERT_EXTENSION rgExtension;
+ * } CRYPT_TIMESTAMP_REQUEST
+ * }
+ */
 public class CRYPT_TIMESTAMP_REQUEST extends _CRYPT_TIMESTAMP_REQUEST {
 
+    CRYPT_TIMESTAMP_REQUEST() {
+        // Should not be called directly
+    }
 }
-
 

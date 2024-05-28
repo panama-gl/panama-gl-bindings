@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     DWORD Frequency;
+ *     DWORD Flags;
+ *     DWORD PercentFrequency;
+ * }
+ * }
+ */
 public class PPM_WMI_LEGACY_PERFSTATE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Frequency"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("PercentFrequency")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return PPM_WMI_LEGACY_PERFSTATE.$struct$LAYOUT;
+    PPM_WMI_LEGACY_PERFSTATE() {
+        // Should not be called directly
     }
-    static final VarHandle Frequency$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Frequency"));
-    public static VarHandle Frequency$VH() {
-        return PPM_WMI_LEGACY_PERFSTATE.Frequency$VH;
-    }
-    public static int Frequency$get(MemorySegment seg) {
-        return (int)PPM_WMI_LEGACY_PERFSTATE.Frequency$VH.get(seg);
-    }
-    public static void Frequency$set( MemorySegment seg, int x) {
-        PPM_WMI_LEGACY_PERFSTATE.Frequency$VH.set(seg, x);
-    }
-    public static int Frequency$get(MemorySegment seg, long index) {
-        return (int)PPM_WMI_LEGACY_PERFSTATE.Frequency$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Frequency$set(MemorySegment seg, long index, int x) {
-        PPM_WMI_LEGACY_PERFSTATE.Frequency$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return PPM_WMI_LEGACY_PERFSTATE.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)PPM_WMI_LEGACY_PERFSTATE.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        PPM_WMI_LEGACY_PERFSTATE.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)PPM_WMI_LEGACY_PERFSTATE.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        PPM_WMI_LEGACY_PERFSTATE.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PercentFrequency$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PercentFrequency"));
-    public static VarHandle PercentFrequency$VH() {
-        return PPM_WMI_LEGACY_PERFSTATE.PercentFrequency$VH;
-    }
-    public static int PercentFrequency$get(MemorySegment seg) {
-        return (int)PPM_WMI_LEGACY_PERFSTATE.PercentFrequency$VH.get(seg);
-    }
-    public static void PercentFrequency$set( MemorySegment seg, int x) {
-        PPM_WMI_LEGACY_PERFSTATE.PercentFrequency$VH.set(seg, x);
-    }
-    public static int PercentFrequency$get(MemorySegment seg, long index) {
-        return (int)PPM_WMI_LEGACY_PERFSTATE.PercentFrequency$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PercentFrequency$set(MemorySegment seg, long index, int x) {
-        PPM_WMI_LEGACY_PERFSTATE.PercentFrequency$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Frequency"),
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_LONG.withName("PercentFrequency")
+    ).withName("$anon$16213:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Frequency$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Frequency"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Frequency
+     * }
+     */
+    public static final OfInt Frequency$layout() {
+        return Frequency$LAYOUT;
+    }
+
+    private static final long Frequency$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Frequency
+     * }
+     */
+    public static final long Frequency$offset() {
+        return Frequency$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Frequency
+     * }
+     */
+    public static int Frequency(MemorySegment struct) {
+        return struct.get(Frequency$LAYOUT, Frequency$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Frequency
+     * }
+     */
+    public static void Frequency(MemorySegment struct, int fieldValue) {
+        struct.set(Frequency$LAYOUT, Frequency$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt PercentFrequency$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PercentFrequency"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PercentFrequency
+     * }
+     */
+    public static final OfInt PercentFrequency$layout() {
+        return PercentFrequency$LAYOUT;
+    }
+
+    private static final long PercentFrequency$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PercentFrequency
+     * }
+     */
+    public static final long PercentFrequency$offset() {
+        return PercentFrequency$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PercentFrequency
+     * }
+     */
+    public static int PercentFrequency(MemorySegment struct) {
+        return struct.get(PercentFrequency$LAYOUT, PercentFrequency$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PercentFrequency
+     * }
+     */
+    public static void PercentFrequency(MemorySegment struct, int fieldValue) {
+        struct.set(PercentFrequency$LAYOUT, PercentFrequency$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

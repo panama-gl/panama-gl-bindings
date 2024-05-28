@@ -2,13 +2,29 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _ACTION_HEADER {
+ *     ULONG transport_id;
+ *     USHORT action_code;
+ *     USHORT reserved;
+ * } ACTION_HEADER
+ * }
+ */
 public class ACTION_HEADER extends _ACTION_HEADER {
 
+    ACTION_HEADER() {
+        // Should not be called directly
+    }
 }
-
 

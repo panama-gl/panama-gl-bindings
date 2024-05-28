@@ -2,127 +2,439 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagEMRPOLYTEXTOUTA {
+ *     EMR emr;
+ *     RECTL rclBounds;
+ *     DWORD iGraphicsMode;
+ *     FLOAT exScale;
+ *     FLOAT eyScale;
+ *     LONG cStrings;
+ *     EMRTEXT aemrtext[1];
+ * }
+ * }
+ */
 public class tagEMRPOLYTEXTOUTA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("iType"),
-            Constants$root.C_LONG$LAYOUT.withName("nSize")
-        ).withName("emr"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("left"),
-            Constants$root.C_LONG$LAYOUT.withName("top"),
-            Constants$root.C_LONG$LAYOUT.withName("right"),
-            Constants$root.C_LONG$LAYOUT.withName("bottom")
-        ).withName("rclBounds"),
-        Constants$root.C_LONG$LAYOUT.withName("iGraphicsMode"),
-        Constants$root.C_FLOAT$LAYOUT.withName("exScale"),
-        Constants$root.C_FLOAT$LAYOUT.withName("eyScale"),
-        Constants$root.C_LONG$LAYOUT.withName("cStrings"),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("x"),
-                Constants$root.C_LONG$LAYOUT.withName("y")
-            ).withName("ptlReference"),
-            Constants$root.C_LONG$LAYOUT.withName("nChars"),
-            Constants$root.C_LONG$LAYOUT.withName("offString"),
-            Constants$root.C_LONG$LAYOUT.withName("fOptions"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("left"),
-                Constants$root.C_LONG$LAYOUT.withName("top"),
-                Constants$root.C_LONG$LAYOUT.withName("right"),
-                Constants$root.C_LONG$LAYOUT.withName("bottom")
-            ).withName("rcl"),
-            Constants$root.C_LONG$LAYOUT.withName("offDx")
-        ).withName("tagEMRTEXT")).withName("aemrtext")
-    ).withName("tagEMRPOLYTEXTOUTA");
-    public static MemoryLayout $LAYOUT() {
-        return tagEMRPOLYTEXTOUTA.$struct$LAYOUT;
+    tagEMRPOLYTEXTOUTA() {
+        // Should not be called directly
     }
-    public static MemorySegment emr$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    public static MemorySegment rclBounds$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    static final VarHandle iGraphicsMode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iGraphicsMode"));
-    public static VarHandle iGraphicsMode$VH() {
-        return tagEMRPOLYTEXTOUTA.iGraphicsMode$VH;
-    }
-    public static int iGraphicsMode$get(MemorySegment seg) {
-        return (int)tagEMRPOLYTEXTOUTA.iGraphicsMode$VH.get(seg);
-    }
-    public static void iGraphicsMode$set( MemorySegment seg, int x) {
-        tagEMRPOLYTEXTOUTA.iGraphicsMode$VH.set(seg, x);
-    }
-    public static int iGraphicsMode$get(MemorySegment seg, long index) {
-        return (int)tagEMRPOLYTEXTOUTA.iGraphicsMode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iGraphicsMode$set(MemorySegment seg, long index, int x) {
-        tagEMRPOLYTEXTOUTA.iGraphicsMode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle exScale$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("exScale"));
-    public static VarHandle exScale$VH() {
-        return tagEMRPOLYTEXTOUTA.exScale$VH;
-    }
-    public static float exScale$get(MemorySegment seg) {
-        return (float)tagEMRPOLYTEXTOUTA.exScale$VH.get(seg);
-    }
-    public static void exScale$set( MemorySegment seg, float x) {
-        tagEMRPOLYTEXTOUTA.exScale$VH.set(seg, x);
-    }
-    public static float exScale$get(MemorySegment seg, long index) {
-        return (float)tagEMRPOLYTEXTOUTA.exScale$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void exScale$set(MemorySegment seg, long index, float x) {
-        tagEMRPOLYTEXTOUTA.exScale$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle eyScale$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("eyScale"));
-    public static VarHandle eyScale$VH() {
-        return tagEMRPOLYTEXTOUTA.eyScale$VH;
-    }
-    public static float eyScale$get(MemorySegment seg) {
-        return (float)tagEMRPOLYTEXTOUTA.eyScale$VH.get(seg);
-    }
-    public static void eyScale$set( MemorySegment seg, float x) {
-        tagEMRPOLYTEXTOUTA.eyScale$VH.set(seg, x);
-    }
-    public static float eyScale$get(MemorySegment seg, long index) {
-        return (float)tagEMRPOLYTEXTOUTA.eyScale$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void eyScale$set(MemorySegment seg, long index, float x) {
-        tagEMRPOLYTEXTOUTA.eyScale$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cStrings$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cStrings"));
-    public static VarHandle cStrings$VH() {
-        return tagEMRPOLYTEXTOUTA.cStrings$VH;
-    }
-    public static int cStrings$get(MemorySegment seg) {
-        return (int)tagEMRPOLYTEXTOUTA.cStrings$VH.get(seg);
-    }
-    public static void cStrings$set( MemorySegment seg, int x) {
-        tagEMRPOLYTEXTOUTA.cStrings$VH.set(seg, x);
-    }
-    public static int cStrings$get(MemorySegment seg, long index) {
-        return (int)tagEMRPOLYTEXTOUTA.cStrings$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cStrings$set(MemorySegment seg, long index, int x) {
-        tagEMRPOLYTEXTOUTA.cStrings$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment aemrtext$slice(MemorySegment seg) {
-        return seg.asSlice(40, 40);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        tagEMR.layout().withName("emr"),
+        _RECTL.layout().withName("rclBounds"),
+        freeglut_h.C_LONG.withName("iGraphicsMode"),
+        freeglut_h.C_FLOAT.withName("exScale"),
+        freeglut_h.C_FLOAT.withName("eyScale"),
+        freeglut_h.C_LONG.withName("cStrings"),
+        MemoryLayout.sequenceLayout(1, tagEMRTEXT.layout()).withName("aemrtext")
+    ).withName("tagEMRPOLYTEXTOUTA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout emr$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("emr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static final GroupLayout emr$layout() {
+        return emr$LAYOUT;
+    }
+
+    private static final long emr$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static final long emr$offset() {
+        return emr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static MemorySegment emr(MemorySegment struct) {
+        return struct.asSlice(emr$OFFSET, emr$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static void emr(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, emr$OFFSET, emr$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout rclBounds$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("rclBounds"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RECTL rclBounds
+     * }
+     */
+    public static final GroupLayout rclBounds$layout() {
+        return rclBounds$LAYOUT;
+    }
+
+    private static final long rclBounds$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RECTL rclBounds
+     * }
+     */
+    public static final long rclBounds$offset() {
+        return rclBounds$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RECTL rclBounds
+     * }
+     */
+    public static MemorySegment rclBounds(MemorySegment struct) {
+        return struct.asSlice(rclBounds$OFFSET, rclBounds$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RECTL rclBounds
+     * }
+     */
+    public static void rclBounds(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rclBounds$OFFSET, rclBounds$LAYOUT.byteSize());
+    }
+
+    private static final OfInt iGraphicsMode$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iGraphicsMode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD iGraphicsMode
+     * }
+     */
+    public static final OfInt iGraphicsMode$layout() {
+        return iGraphicsMode$LAYOUT;
+    }
+
+    private static final long iGraphicsMode$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD iGraphicsMode
+     * }
+     */
+    public static final long iGraphicsMode$offset() {
+        return iGraphicsMode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD iGraphicsMode
+     * }
+     */
+    public static int iGraphicsMode(MemorySegment struct) {
+        return struct.get(iGraphicsMode$LAYOUT, iGraphicsMode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD iGraphicsMode
+     * }
+     */
+    public static void iGraphicsMode(MemorySegment struct, int fieldValue) {
+        struct.set(iGraphicsMode$LAYOUT, iGraphicsMode$OFFSET, fieldValue);
+    }
+
+    private static final OfFloat exScale$LAYOUT = (OfFloat)$LAYOUT.select(groupElement("exScale"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FLOAT exScale
+     * }
+     */
+    public static final OfFloat exScale$layout() {
+        return exScale$LAYOUT;
+    }
+
+    private static final long exScale$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FLOAT exScale
+     * }
+     */
+    public static final long exScale$offset() {
+        return exScale$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FLOAT exScale
+     * }
+     */
+    public static float exScale(MemorySegment struct) {
+        return struct.get(exScale$LAYOUT, exScale$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FLOAT exScale
+     * }
+     */
+    public static void exScale(MemorySegment struct, float fieldValue) {
+        struct.set(exScale$LAYOUT, exScale$OFFSET, fieldValue);
+    }
+
+    private static final OfFloat eyScale$LAYOUT = (OfFloat)$LAYOUT.select(groupElement("eyScale"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FLOAT eyScale
+     * }
+     */
+    public static final OfFloat eyScale$layout() {
+        return eyScale$LAYOUT;
+    }
+
+    private static final long eyScale$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FLOAT eyScale
+     * }
+     */
+    public static final long eyScale$offset() {
+        return eyScale$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FLOAT eyScale
+     * }
+     */
+    public static float eyScale(MemorySegment struct) {
+        return struct.get(eyScale$LAYOUT, eyScale$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FLOAT eyScale
+     * }
+     */
+    public static void eyScale(MemorySegment struct, float fieldValue) {
+        struct.set(eyScale$LAYOUT, eyScale$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cStrings$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cStrings"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG cStrings
+     * }
+     */
+    public static final OfInt cStrings$layout() {
+        return cStrings$LAYOUT;
+    }
+
+    private static final long cStrings$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG cStrings
+     * }
+     */
+    public static final long cStrings$offset() {
+        return cStrings$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG cStrings
+     * }
+     */
+    public static int cStrings(MemorySegment struct) {
+        return struct.get(cStrings$LAYOUT, cStrings$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG cStrings
+     * }
+     */
+    public static void cStrings(MemorySegment struct, int fieldValue) {
+        struct.set(cStrings$LAYOUT, cStrings$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout aemrtext$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("aemrtext"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * EMRTEXT aemrtext[1]
+     * }
+     */
+    public static final SequenceLayout aemrtext$layout() {
+        return aemrtext$LAYOUT;
+    }
+
+    private static final long aemrtext$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * EMRTEXT aemrtext[1]
+     * }
+     */
+    public static final long aemrtext$offset() {
+        return aemrtext$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * EMRTEXT aemrtext[1]
+     * }
+     */
+    public static MemorySegment aemrtext(MemorySegment struct) {
+        return struct.asSlice(aemrtext$OFFSET, aemrtext$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * EMRTEXT aemrtext[1]
+     * }
+     */
+    public static void aemrtext(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, aemrtext$OFFSET, aemrtext$LAYOUT.byteSize());
+    }
+
+    private static long[] aemrtext$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * EMRTEXT aemrtext[1]
+     * }
+     */
+    public static long[] aemrtext$dimensions() {
+        return aemrtext$DIMS;
+    }
+    private static final MethodHandle aemrtext$ELEM_HANDLE = aemrtext$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * EMRTEXT aemrtext[1]
+     * }
+     */
+    public static MemorySegment aemrtext(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)aemrtext$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * EMRTEXT aemrtext[1]
+     * }
+     */
+    public static void aemrtext(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, aemrtext(struct, index0), 0L, tagEMRTEXT.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

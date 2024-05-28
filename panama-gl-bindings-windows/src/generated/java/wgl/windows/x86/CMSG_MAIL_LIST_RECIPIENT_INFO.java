@@ -2,13 +2,32 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CMSG_MAIL_LIST_RECIPIENT_INFO {
+ *     DWORD dwVersion;
+ *     CRYPT_DATA_BLOB KeyId;
+ *     CRYPT_ALGORITHM_IDENTIFIER KeyEncryptionAlgorithm;
+ *     CRYPT_DATA_BLOB EncryptedKey;
+ *     FILETIME Date;
+ *     PCRYPT_ATTRIBUTE_TYPE_VALUE pOtherAttr;
+ * } CMSG_MAIL_LIST_RECIPIENT_INFO
+ * }
+ */
 public class CMSG_MAIL_LIST_RECIPIENT_INFO extends _CMSG_MAIL_LIST_RECIPIENT_INFO {
 
+    CMSG_MAIL_LIST_RECIPIENT_INFO() {
+        // Should not be called directly
+    }
 }
-
 

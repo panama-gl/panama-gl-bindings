@@ -2,79 +2,219 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _IO_IRP_EXT_TRACK_OFFSET_HEADER {
+ *     WORD Validation;
+ *     WORD Flags;
+ *     PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK TrackedOffsetCallback;
+ * }
+ * }
+ */
 public class _IO_IRP_EXT_TRACK_OFFSET_HEADER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("Validation"),
-        Constants$root.C_SHORT$LAYOUT.withName("Flags"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("TrackedOffsetCallback")
-    ).withName("_IO_IRP_EXT_TRACK_OFFSET_HEADER");
-    public static MemoryLayout $LAYOUT() {
-        return _IO_IRP_EXT_TRACK_OFFSET_HEADER.$struct$LAYOUT;
+    _IO_IRP_EXT_TRACK_OFFSET_HEADER() {
+        // Should not be called directly
     }
-    static final VarHandle Validation$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Validation"));
-    public static VarHandle Validation$VH() {
-        return _IO_IRP_EXT_TRACK_OFFSET_HEADER.Validation$VH;
-    }
-    public static short Validation$get(MemorySegment seg) {
-        return (short)_IO_IRP_EXT_TRACK_OFFSET_HEADER.Validation$VH.get(seg);
-    }
-    public static void Validation$set( MemorySegment seg, short x) {
-        _IO_IRP_EXT_TRACK_OFFSET_HEADER.Validation$VH.set(seg, x);
-    }
-    public static short Validation$get(MemorySegment seg, long index) {
-        return (short)_IO_IRP_EXT_TRACK_OFFSET_HEADER.Validation$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Validation$set(MemorySegment seg, long index, short x) {
-        _IO_IRP_EXT_TRACK_OFFSET_HEADER.Validation$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _IO_IRP_EXT_TRACK_OFFSET_HEADER.Flags$VH;
-    }
-    public static short Flags$get(MemorySegment seg) {
-        return (short)_IO_IRP_EXT_TRACK_OFFSET_HEADER.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, short x) {
-        _IO_IRP_EXT_TRACK_OFFSET_HEADER.Flags$VH.set(seg, x);
-    }
-    public static short Flags$get(MemorySegment seg, long index) {
-        return (short)_IO_IRP_EXT_TRACK_OFFSET_HEADER.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, short x) {
-        _IO_IRP_EXT_TRACK_OFFSET_HEADER.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TrackedOffsetCallback$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TrackedOffsetCallback"));
-    public static VarHandle TrackedOffsetCallback$VH() {
-        return _IO_IRP_EXT_TRACK_OFFSET_HEADER.TrackedOffsetCallback$VH;
-    }
-    public static MemoryAddress TrackedOffsetCallback$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_IO_IRP_EXT_TRACK_OFFSET_HEADER.TrackedOffsetCallback$VH.get(seg);
-    }
-    public static void TrackedOffsetCallback$set( MemorySegment seg, MemoryAddress x) {
-        _IO_IRP_EXT_TRACK_OFFSET_HEADER.TrackedOffsetCallback$VH.set(seg, x);
-    }
-    public static MemoryAddress TrackedOffsetCallback$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_IO_IRP_EXT_TRACK_OFFSET_HEADER.TrackedOffsetCallback$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TrackedOffsetCallback$set(MemorySegment seg, long index, MemoryAddress x) {
-        _IO_IRP_EXT_TRACK_OFFSET_HEADER.TrackedOffsetCallback$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK TrackedOffsetCallback (MemorySegment segment, MemorySession session) {
-        return PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK.ofAddress(TrackedOffsetCallback$get(segment), session);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("Validation"),
+        wgl_h.C_SHORT.withName("Flags"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("TrackedOffsetCallback")
+    ).withName("_IO_IRP_EXT_TRACK_OFFSET_HEADER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort Validation$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Validation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Validation
+     * }
+     */
+    public static final OfShort Validation$layout() {
+        return Validation$LAYOUT;
+    }
+
+    private static final long Validation$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Validation
+     * }
+     */
+    public static final long Validation$offset() {
+        return Validation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Validation
+     * }
+     */
+    public static short Validation(MemorySegment struct) {
+        return struct.get(Validation$LAYOUT, Validation$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Validation
+     * }
+     */
+    public static void Validation(MemorySegment struct, short fieldValue) {
+        struct.set(Validation$LAYOUT, Validation$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Flags$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static final OfShort Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static short Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, short fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout TrackedOffsetCallback$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("TrackedOffsetCallback"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK TrackedOffsetCallback
+     * }
+     */
+    public static final AddressLayout TrackedOffsetCallback$layout() {
+        return TrackedOffsetCallback$LAYOUT;
+    }
+
+    private static final long TrackedOffsetCallback$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK TrackedOffsetCallback
+     * }
+     */
+    public static final long TrackedOffsetCallback$offset() {
+        return TrackedOffsetCallback$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK TrackedOffsetCallback
+     * }
+     */
+    public static MemorySegment TrackedOffsetCallback(MemorySegment struct) {
+        return struct.get(TrackedOffsetCallback$LAYOUT, TrackedOffsetCallback$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK TrackedOffsetCallback
+     * }
+     */
+    public static void TrackedOffsetCallback(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(TrackedOffsetCallback$LAYOUT, TrackedOffsetCallback$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

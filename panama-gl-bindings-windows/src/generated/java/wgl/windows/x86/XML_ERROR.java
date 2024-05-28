@@ -2,13 +2,34 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _xml_error {
+ *     unsigned int _nLine;
+ *     BSTR _pchBuf;
+ *     unsigned int _cchBuf;
+ *     unsigned int _ich;
+ *     BSTR _pszFound;
+ *     BSTR _pszExpected;
+ *     DWORD _reserved1;
+ *     DWORD _reserved2;
+ * } XML_ERROR
+ * }
+ */
 public class XML_ERROR extends _xml_error {
 
+    XML_ERROR() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,427 +2,987 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct IOleClientSiteVtbl {
+ *     HRESULT (*QueryInterface)(IOleClientSite *, const IID *const, void **) __attribute__((stdcall));
+ *     ULONG (*AddRef)(IOleClientSite *) __attribute__((stdcall));
+ *     ULONG (*Release)(IOleClientSite *) __attribute__((stdcall));
+ *     HRESULT (*SaveObject)(IOleClientSite *) __attribute__((stdcall));
+ *     HRESULT (*GetMoniker)(IOleClientSite *, DWORD, DWORD, IMoniker **) __attribute__((stdcall));
+ *     HRESULT (*GetContainer)(IOleClientSite *, IOleContainer **) __attribute__((stdcall));
+ *     HRESULT (*ShowObject)(IOleClientSite *) __attribute__((stdcall));
+ *     HRESULT (*OnShowWindow)(IOleClientSite *, BOOL) __attribute__((stdcall));
+ *     HRESULT (*RequestNewObjectLayout)(IOleClientSite *) __attribute__((stdcall));
+ * }
+ * }
+ */
 public class IOleClientSiteVtbl {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("QueryInterface"),
-        Constants$root.C_POINTER$LAYOUT.withName("AddRef"),
-        Constants$root.C_POINTER$LAYOUT.withName("Release"),
-        Constants$root.C_POINTER$LAYOUT.withName("SaveObject"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetMoniker"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetContainer"),
-        Constants$root.C_POINTER$LAYOUT.withName("ShowObject"),
-        Constants$root.C_POINTER$LAYOUT.withName("OnShowWindow"),
-        Constants$root.C_POINTER$LAYOUT.withName("RequestNewObjectLayout")
+    IOleClientSiteVtbl() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("QueryInterface"),
+        wgl_h.C_POINTER.withName("AddRef"),
+        wgl_h.C_POINTER.withName("Release"),
+        wgl_h.C_POINTER.withName("SaveObject"),
+        wgl_h.C_POINTER.withName("GetMoniker"),
+        wgl_h.C_POINTER.withName("GetContainer"),
+        wgl_h.C_POINTER.withName("ShowObject"),
+        wgl_h.C_POINTER.withName("OnShowWindow"),
+        wgl_h.C_POINTER.withName("RequestNewObjectLayout")
     ).withName("IOleClientSiteVtbl");
-    public static MemoryLayout $LAYOUT() {
-        return IOleClientSiteVtbl.$struct$LAYOUT;
-    }
-    static final FunctionDescriptor QueryInterface$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle QueryInterface$MH = RuntimeHelper.downcallHandle(
-        IOleClientSiteVtbl.QueryInterface$FUNC
-    );
-    public interface QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(QueryInterface fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(QueryInterface.class, fi, IOleClientSiteVtbl.QueryInterface$FUNC, session);
-        }
-        static QueryInterface ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IOleClientSiteVtbl.QueryInterface$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
 
-    static final VarHandle QueryInterface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueryInterface"));
-    public static VarHandle QueryInterface$VH() {
-        return IOleClientSiteVtbl.QueryInterface$VH;
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleClientSiteVtbl.QueryInterface$VH.get(seg);
-    }
-    public static void QueryInterface$set( MemorySegment seg, MemoryAddress x) {
-        IOleClientSiteVtbl.QueryInterface$VH.set(seg, x);
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleClientSiteVtbl.QueryInterface$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void QueryInterface$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleClientSiteVtbl.QueryInterface$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static QueryInterface QueryInterface (MemorySegment segment, MemorySession session) {
-        return QueryInterface.ofAddress(QueryInterface$get(segment), session);
-    }
-    static final FunctionDescriptor AddRef$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle AddRef$MH = RuntimeHelper.downcallHandle(
-        IOleClientSiteVtbl.AddRef$FUNC
-    );
-    public interface AddRef {
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IOleClientSite *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(AddRef fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(AddRef.class, fi, IOleClientSiteVtbl.AddRef$FUNC, session);
+        QueryInterface() {
+            // Should not be called directly
         }
-        static AddRef ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IOleClientSiteVtbl.AddRef$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(QueryInterface.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(QueryInterface.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle AddRef$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddRef"));
-    public static VarHandle AddRef$VH() {
-        return IOleClientSiteVtbl.AddRef$VH;
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleClientSiteVtbl.AddRef$VH.get(seg);
-    }
-    public static void AddRef$set( MemorySegment seg, MemoryAddress x) {
-        IOleClientSiteVtbl.AddRef$VH.set(seg, x);
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleClientSiteVtbl.AddRef$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddRef$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleClientSiteVtbl.AddRef$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static AddRef AddRef (MemorySegment segment, MemorySession session) {
-        return AddRef.ofAddress(AddRef$get(segment), session);
-    }
-    static final FunctionDescriptor Release$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Release$MH = RuntimeHelper.downcallHandle(
-        IOleClientSiteVtbl.Release$FUNC
-    );
-    public interface Release {
+    private static final AddressLayout QueryInterface$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("QueryInterface"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Release fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Release.class, fi, IOleClientSiteVtbl.Release$FUNC, session);
-        }
-        static Release ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IOleClientSiteVtbl.Release$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IOleClientSite *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout QueryInterface$layout() {
+        return QueryInterface$LAYOUT;
     }
 
-    static final VarHandle Release$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Release"));
-    public static VarHandle Release$VH() {
-        return IOleClientSiteVtbl.Release$VH;
-    }
-    public static MemoryAddress Release$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleClientSiteVtbl.Release$VH.get(seg);
-    }
-    public static void Release$set( MemorySegment seg, MemoryAddress x) {
-        IOleClientSiteVtbl.Release$VH.set(seg, x);
-    }
-    public static MemoryAddress Release$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleClientSiteVtbl.Release$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Release$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleClientSiteVtbl.Release$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Release Release (MemorySegment segment, MemorySession session) {
-        return Release.ofAddress(Release$get(segment), session);
-    }
-    static final FunctionDescriptor SaveObject$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle SaveObject$MH = RuntimeHelper.downcallHandle(
-        IOleClientSiteVtbl.SaveObject$FUNC
-    );
-    public interface SaveObject {
+    private static final long QueryInterface$OFFSET = 0;
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(SaveObject fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(SaveObject.class, fi, IOleClientSiteVtbl.SaveObject$FUNC, session);
-        }
-        static SaveObject ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IOleClientSiteVtbl.SaveObject$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IOleClientSite *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long QueryInterface$offset() {
+        return QueryInterface$OFFSET;
     }
 
-    static final VarHandle SaveObject$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SaveObject"));
-    public static VarHandle SaveObject$VH() {
-        return IOleClientSiteVtbl.SaveObject$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IOleClientSite *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment QueryInterface(MemorySegment struct) {
+        return struct.get(QueryInterface$LAYOUT, QueryInterface$OFFSET);
     }
-    public static MemoryAddress SaveObject$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleClientSiteVtbl.SaveObject$VH.get(seg);
-    }
-    public static void SaveObject$set( MemorySegment seg, MemoryAddress x) {
-        IOleClientSiteVtbl.SaveObject$VH.set(seg, x);
-    }
-    public static MemoryAddress SaveObject$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleClientSiteVtbl.SaveObject$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SaveObject$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleClientSiteVtbl.SaveObject$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static SaveObject SaveObject (MemorySegment segment, MemorySession session) {
-        return SaveObject.ofAddress(SaveObject$get(segment), session);
-    }
-    static final FunctionDescriptor GetMoniker$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetMoniker$MH = RuntimeHelper.downcallHandle(
-        IOleClientSiteVtbl.GetMoniker$FUNC
-    );
-    public interface GetMoniker {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, int _x2, java.lang.foreign.MemoryAddress _x3);
-        static MemorySegment allocate(GetMoniker fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetMoniker.class, fi, IOleClientSiteVtbl.GetMoniker$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IOleClientSite *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void QueryInterface(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(QueryInterface$LAYOUT, QueryInterface$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static class AddRef {
+
+        AddRef() {
+            // Should not be called directly
         }
-        static GetMoniker ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, int __x2, java.lang.foreign.MemoryAddress __x3) -> {
-                try {
-                    return (int)IOleClientSiteVtbl.GetMoniker$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, __x2, (java.lang.foreign.Addressable)__x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(AddRef.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(AddRef.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle GetMoniker$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetMoniker"));
-    public static VarHandle GetMoniker$VH() {
-        return IOleClientSiteVtbl.GetMoniker$VH;
-    }
-    public static MemoryAddress GetMoniker$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleClientSiteVtbl.GetMoniker$VH.get(seg);
-    }
-    public static void GetMoniker$set( MemorySegment seg, MemoryAddress x) {
-        IOleClientSiteVtbl.GetMoniker$VH.set(seg, x);
-    }
-    public static MemoryAddress GetMoniker$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleClientSiteVtbl.GetMoniker$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetMoniker$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleClientSiteVtbl.GetMoniker$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetMoniker GetMoniker (MemorySegment segment, MemorySession session) {
-        return GetMoniker.ofAddress(GetMoniker$get(segment), session);
-    }
-    static final FunctionDescriptor GetContainer$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetContainer$MH = RuntimeHelper.downcallHandle(
-        IOleClientSiteVtbl.GetContainer$FUNC
-    );
-    public interface GetContainer {
+    private static final AddressLayout AddRef$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AddRef"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(GetContainer fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetContainer.class, fi, IOleClientSiteVtbl.GetContainer$FUNC, session);
-        }
-        static GetContainer ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IOleClientSiteVtbl.GetContainer$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout AddRef$layout() {
+        return AddRef$LAYOUT;
     }
 
-    static final VarHandle GetContainer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetContainer"));
-    public static VarHandle GetContainer$VH() {
-        return IOleClientSiteVtbl.GetContainer$VH;
-    }
-    public static MemoryAddress GetContainer$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleClientSiteVtbl.GetContainer$VH.get(seg);
-    }
-    public static void GetContainer$set( MemorySegment seg, MemoryAddress x) {
-        IOleClientSiteVtbl.GetContainer$VH.set(seg, x);
-    }
-    public static MemoryAddress GetContainer$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleClientSiteVtbl.GetContainer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetContainer$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleClientSiteVtbl.GetContainer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetContainer GetContainer (MemorySegment segment, MemorySession session) {
-        return GetContainer.ofAddress(GetContainer$get(segment), session);
-    }
-    static final FunctionDescriptor ShowObject$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle ShowObject$MH = RuntimeHelper.downcallHandle(
-        IOleClientSiteVtbl.ShowObject$FUNC
-    );
-    public interface ShowObject {
+    private static final long AddRef$OFFSET = 8;
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(ShowObject fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(ShowObject.class, fi, IOleClientSiteVtbl.ShowObject$FUNC, session);
-        }
-        static ShowObject ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IOleClientSiteVtbl.ShowObject$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final long AddRef$offset() {
+        return AddRef$OFFSET;
     }
 
-    static final VarHandle ShowObject$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ShowObject"));
-    public static VarHandle ShowObject$VH() {
-        return IOleClientSiteVtbl.ShowObject$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment AddRef(MemorySegment struct) {
+        return struct.get(AddRef$LAYOUT, AddRef$OFFSET);
     }
-    public static MemoryAddress ShowObject$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleClientSiteVtbl.ShowObject$VH.get(seg);
-    }
-    public static void ShowObject$set( MemorySegment seg, MemoryAddress x) {
-        IOleClientSiteVtbl.ShowObject$VH.set(seg, x);
-    }
-    public static MemoryAddress ShowObject$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleClientSiteVtbl.ShowObject$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ShowObject$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleClientSiteVtbl.ShowObject$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static ShowObject ShowObject (MemorySegment segment, MemorySession session) {
-        return ShowObject.ofAddress(ShowObject$get(segment), session);
-    }
-    static final FunctionDescriptor OnShowWindow$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle OnShowWindow$MH = RuntimeHelper.downcallHandle(
-        IOleClientSiteVtbl.OnShowWindow$FUNC
-    );
-    public interface OnShowWindow {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1);
-        static MemorySegment allocate(OnShowWindow fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(OnShowWindow.class, fi, IOleClientSiteVtbl.OnShowWindow$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static void AddRef(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AddRef$LAYOUT, AddRef$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*Release)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static class Release {
+
+        Release() {
+            // Should not be called directly
         }
-        static OnShowWindow ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1) -> {
-                try {
-                    return (int)IOleClientSiteVtbl.OnShowWindow$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Release.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Release.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle OnShowWindow$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OnShowWindow"));
-    public static VarHandle OnShowWindow$VH() {
-        return IOleClientSiteVtbl.OnShowWindow$VH;
-    }
-    public static MemoryAddress OnShowWindow$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleClientSiteVtbl.OnShowWindow$VH.get(seg);
-    }
-    public static void OnShowWindow$set( MemorySegment seg, MemoryAddress x) {
-        IOleClientSiteVtbl.OnShowWindow$VH.set(seg, x);
-    }
-    public static MemoryAddress OnShowWindow$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleClientSiteVtbl.OnShowWindow$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void OnShowWindow$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleClientSiteVtbl.OnShowWindow$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static OnShowWindow OnShowWindow (MemorySegment segment, MemorySession session) {
-        return OnShowWindow.ofAddress(OnShowWindow$get(segment), session);
-    }
-    static final FunctionDescriptor RequestNewObjectLayout$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle RequestNewObjectLayout$MH = RuntimeHelper.downcallHandle(
-        IOleClientSiteVtbl.RequestNewObjectLayout$FUNC
-    );
-    public interface RequestNewObjectLayout {
+    private static final AddressLayout Release$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Release"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(RequestNewObjectLayout fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(RequestNewObjectLayout.class, fi, IOleClientSiteVtbl.RequestNewObjectLayout$FUNC, session);
-        }
-        static RequestNewObjectLayout ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IOleClientSiteVtbl.RequestNewObjectLayout$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Release$layout() {
+        return Release$LAYOUT;
     }
 
-    static final VarHandle RequestNewObjectLayout$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RequestNewObjectLayout"));
-    public static VarHandle RequestNewObjectLayout$VH() {
-        return IOleClientSiteVtbl.RequestNewObjectLayout$VH;
+    private static final long Release$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Release$offset() {
+        return Release$OFFSET;
     }
-    public static MemoryAddress RequestNewObjectLayout$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleClientSiteVtbl.RequestNewObjectLayout$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Release(MemorySegment struct) {
+        return struct.get(Release$LAYOUT, Release$OFFSET);
     }
-    public static void RequestNewObjectLayout$set( MemorySegment seg, MemoryAddress x) {
-        IOleClientSiteVtbl.RequestNewObjectLayout$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static void Release(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Release$LAYOUT, Release$OFFSET, fieldValue);
     }
-    public static MemoryAddress RequestNewObjectLayout$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleClientSiteVtbl.RequestNewObjectLayout$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*SaveObject)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static class SaveObject {
+
+        SaveObject() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(SaveObject.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(SaveObject.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
     }
-    public static void RequestNewObjectLayout$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleClientSiteVtbl.RequestNewObjectLayout$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final AddressLayout SaveObject$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SaveObject"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*SaveObject)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout SaveObject$layout() {
+        return SaveObject$LAYOUT;
     }
-    public static RequestNewObjectLayout RequestNewObjectLayout (MemorySegment segment, MemorySession session) {
-        return RequestNewObjectLayout.ofAddress(RequestNewObjectLayout$get(segment), session);
+
+    private static final long SaveObject$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*SaveObject)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final long SaveObject$offset() {
+        return SaveObject$OFFSET;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SaveObject)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment SaveObject(MemorySegment struct) {
+        return struct.get(SaveObject$LAYOUT, SaveObject$OFFSET);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SaveObject)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static void SaveObject(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SaveObject$LAYOUT, SaveObject$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetMoniker)(IOleClientSite *, DWORD, DWORD, IMoniker **) __attribute__((stdcall))
+     * }
+     */
+    public static class GetMoniker {
+
+        GetMoniker() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, int _x2, MemorySegment _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetMoniker.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetMoniker.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, int _x2, MemorySegment _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout GetMoniker$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetMoniker"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetMoniker)(IOleClientSite *, DWORD, DWORD, IMoniker **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetMoniker$layout() {
+        return GetMoniker$LAYOUT;
+    }
+
+    private static final long GetMoniker$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetMoniker)(IOleClientSite *, DWORD, DWORD, IMoniker **) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetMoniker$offset() {
+        return GetMoniker$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetMoniker)(IOleClientSite *, DWORD, DWORD, IMoniker **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetMoniker(MemorySegment struct) {
+        return struct.get(GetMoniker$LAYOUT, GetMoniker$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetMoniker)(IOleClientSite *, DWORD, DWORD, IMoniker **) __attribute__((stdcall))
+     * }
+     */
+    public static void GetMoniker(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetMoniker$LAYOUT, GetMoniker$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetContainer)(IOleClientSite *, IOleContainer **) __attribute__((stdcall))
+     * }
+     */
+    public static class GetContainer {
+
+        GetContainer() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetContainer.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetContainer.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout GetContainer$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetContainer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetContainer)(IOleClientSite *, IOleContainer **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetContainer$layout() {
+        return GetContainer$LAYOUT;
+    }
+
+    private static final long GetContainer$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetContainer)(IOleClientSite *, IOleContainer **) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetContainer$offset() {
+        return GetContainer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetContainer)(IOleClientSite *, IOleContainer **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetContainer(MemorySegment struct) {
+        return struct.get(GetContainer$LAYOUT, GetContainer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetContainer)(IOleClientSite *, IOleContainer **) __attribute__((stdcall))
+     * }
+     */
+    public static void GetContainer(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetContainer$LAYOUT, GetContainer$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*ShowObject)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static class ShowObject {
+
+        ShowObject() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(ShowObject.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(ShowObject.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout ShowObject$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ShowObject"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*ShowObject)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout ShowObject$layout() {
+        return ShowObject$LAYOUT;
+    }
+
+    private static final long ShowObject$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*ShowObject)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final long ShowObject$offset() {
+        return ShowObject$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*ShowObject)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment ShowObject(MemorySegment struct) {
+        return struct.get(ShowObject$LAYOUT, ShowObject$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*ShowObject)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static void ShowObject(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ShowObject$LAYOUT, ShowObject$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*OnShowWindow)(IOleClientSite *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static class OnShowWindow {
+
+        OnShowWindow() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_INT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(OnShowWindow.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(OnShowWindow.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout OnShowWindow$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("OnShowWindow"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnShowWindow)(IOleClientSite *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout OnShowWindow$layout() {
+        return OnShowWindow$LAYOUT;
+    }
+
+    private static final long OnShowWindow$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnShowWindow)(IOleClientSite *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final long OnShowWindow$offset() {
+        return OnShowWindow$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnShowWindow)(IOleClientSite *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment OnShowWindow(MemorySegment struct) {
+        return struct.get(OnShowWindow$LAYOUT, OnShowWindow$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnShowWindow)(IOleClientSite *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static void OnShowWindow(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(OnShowWindow$LAYOUT, OnShowWindow$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*RequestNewObjectLayout)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static class RequestNewObjectLayout {
+
+        RequestNewObjectLayout() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(RequestNewObjectLayout.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(RequestNewObjectLayout.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout RequestNewObjectLayout$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("RequestNewObjectLayout"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*RequestNewObjectLayout)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout RequestNewObjectLayout$layout() {
+        return RequestNewObjectLayout$LAYOUT;
+    }
+
+    private static final long RequestNewObjectLayout$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*RequestNewObjectLayout)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final long RequestNewObjectLayout$offset() {
+        return RequestNewObjectLayout$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*RequestNewObjectLayout)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment RequestNewObjectLayout(MemorySegment struct) {
+        return struct.get(RequestNewObjectLayout$LAYOUT, RequestNewObjectLayout$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*RequestNewObjectLayout)(IOleClientSite *) __attribute__((stdcall))
+     * }
+     */
+    public static void RequestNewObjectLayout(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(RequestNewObjectLayout$LAYOUT, RequestNewObjectLayout$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

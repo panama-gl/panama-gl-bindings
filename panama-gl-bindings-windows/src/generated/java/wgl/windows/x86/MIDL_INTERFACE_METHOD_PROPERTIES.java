@@ -2,13 +2,28 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _MIDL_INTERFACE_METHOD_PROPERTIES {
+ *     unsigned short MethodCount;
+ *     const MIDL_METHOD_PROPERTY_MAP *const *MethodProperties;
+ * } MIDL_INTERFACE_METHOD_PROPERTIES
+ * }
+ */
 public class MIDL_INTERFACE_METHOD_PROPERTIES extends _MIDL_INTERFACE_METHOD_PROPERTIES {
 
+    MIDL_INTERFACE_METHOD_PROPERTIES() {
+        // Should not be called directly
+    }
 }
-
 

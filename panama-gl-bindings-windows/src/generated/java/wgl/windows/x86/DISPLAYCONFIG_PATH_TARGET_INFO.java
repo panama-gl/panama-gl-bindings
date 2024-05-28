@@ -2,182 +2,551 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct DISPLAYCONFIG_PATH_TARGET_INFO {
+ *     LUID adapterId;
+ *     UINT32 id;
+ *     union {
+ *         UINT32 modeInfoIdx;
+ *         struct {
+ *             UINT32 desktopModeInfoIdx : 16;
+ *             UINT32 targetModeInfoIdx : 16;
+ *         };
+ *     };
+ *     DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY outputTechnology;
+ *     DISPLAYCONFIG_ROTATION rotation;
+ *     DISPLAYCONFIG_SCALING scaling;
+ *     DISPLAYCONFIG_RATIONAL refreshRate;
+ *     DISPLAYCONFIG_SCANLINE_ORDERING scanLineOrdering;
+ *     BOOL targetAvailable;
+ *     UINT32 statusFlags;
+ * }
+ * }
+ */
 public class DISPLAYCONFIG_PATH_TARGET_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-            Constants$root.C_LONG$LAYOUT.withName("HighPart")
-        ).withName("adapterId"),
-        Constants$root.C_LONG$LAYOUT.withName("id"),
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("modeInfoIdx"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    MemoryLayout.paddingLayout(16).withName("desktopModeInfoIdx"),
-                    MemoryLayout.paddingLayout(16).withName("targetModeInfoIdx")
-                )
-            ).withName("$anon$0")
-        ).withName("$anon$0"),
-        Constants$root.C_LONG$LAYOUT.withName("outputTechnology"),
-        Constants$root.C_LONG$LAYOUT.withName("rotation"),
-        Constants$root.C_LONG$LAYOUT.withName("scaling"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Numerator"),
-            Constants$root.C_LONG$LAYOUT.withName("Denominator")
-        ).withName("refreshRate"),
-        Constants$root.C_LONG$LAYOUT.withName("scanLineOrdering"),
-        Constants$root.C_LONG$LAYOUT.withName("targetAvailable"),
-        Constants$root.C_LONG$LAYOUT.withName("statusFlags")
-    ).withName("DISPLAYCONFIG_PATH_TARGET_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return DISPLAYCONFIG_PATH_TARGET_INFO.$struct$LAYOUT;
+    DISPLAYCONFIG_PATH_TARGET_INFO() {
+        // Should not be called directly
     }
-    public static MemorySegment adapterId$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    static final VarHandle id$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("id"));
-    public static VarHandle id$VH() {
-        return DISPLAYCONFIG_PATH_TARGET_INFO.id$VH;
-    }
-    public static int id$get(MemorySegment seg) {
-        return (int)DISPLAYCONFIG_PATH_TARGET_INFO.id$VH.get(seg);
-    }
-    public static void id$set( MemorySegment seg, int x) {
-        DISPLAYCONFIG_PATH_TARGET_INFO.id$VH.set(seg, x);
-    }
-    public static int id$get(MemorySegment seg, long index) {
-        return (int)DISPLAYCONFIG_PATH_TARGET_INFO.id$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void id$set(MemorySegment seg, long index, int x) {
-        DISPLAYCONFIG_PATH_TARGET_INFO.id$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle modeInfoIdx$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("modeInfoIdx"));
-    public static VarHandle modeInfoIdx$VH() {
-        return DISPLAYCONFIG_PATH_TARGET_INFO.modeInfoIdx$VH;
-    }
-    public static int modeInfoIdx$get(MemorySegment seg) {
-        return (int)DISPLAYCONFIG_PATH_TARGET_INFO.modeInfoIdx$VH.get(seg);
-    }
-    public static void modeInfoIdx$set( MemorySegment seg, int x) {
-        DISPLAYCONFIG_PATH_TARGET_INFO.modeInfoIdx$VH.set(seg, x);
-    }
-    public static int modeInfoIdx$get(MemorySegment seg, long index) {
-        return (int)DISPLAYCONFIG_PATH_TARGET_INFO.modeInfoIdx$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void modeInfoIdx$set(MemorySegment seg, long index, int x) {
-        DISPLAYCONFIG_PATH_TARGET_INFO.modeInfoIdx$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle outputTechnology$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("outputTechnology"));
-    public static VarHandle outputTechnology$VH() {
-        return DISPLAYCONFIG_PATH_TARGET_INFO.outputTechnology$VH;
-    }
-    public static int outputTechnology$get(MemorySegment seg) {
-        return (int)DISPLAYCONFIG_PATH_TARGET_INFO.outputTechnology$VH.get(seg);
-    }
-    public static void outputTechnology$set( MemorySegment seg, int x) {
-        DISPLAYCONFIG_PATH_TARGET_INFO.outputTechnology$VH.set(seg, x);
-    }
-    public static int outputTechnology$get(MemorySegment seg, long index) {
-        return (int)DISPLAYCONFIG_PATH_TARGET_INFO.outputTechnology$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void outputTechnology$set(MemorySegment seg, long index, int x) {
-        DISPLAYCONFIG_PATH_TARGET_INFO.outputTechnology$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rotation$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rotation"));
-    public static VarHandle rotation$VH() {
-        return DISPLAYCONFIG_PATH_TARGET_INFO.rotation$VH;
-    }
-    public static int rotation$get(MemorySegment seg) {
-        return (int)DISPLAYCONFIG_PATH_TARGET_INFO.rotation$VH.get(seg);
-    }
-    public static void rotation$set( MemorySegment seg, int x) {
-        DISPLAYCONFIG_PATH_TARGET_INFO.rotation$VH.set(seg, x);
-    }
-    public static int rotation$get(MemorySegment seg, long index) {
-        return (int)DISPLAYCONFIG_PATH_TARGET_INFO.rotation$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rotation$set(MemorySegment seg, long index, int x) {
-        DISPLAYCONFIG_PATH_TARGET_INFO.rotation$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle scaling$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("scaling"));
-    public static VarHandle scaling$VH() {
-        return DISPLAYCONFIG_PATH_TARGET_INFO.scaling$VH;
-    }
-    public static int scaling$get(MemorySegment seg) {
-        return (int)DISPLAYCONFIG_PATH_TARGET_INFO.scaling$VH.get(seg);
-    }
-    public static void scaling$set( MemorySegment seg, int x) {
-        DISPLAYCONFIG_PATH_TARGET_INFO.scaling$VH.set(seg, x);
-    }
-    public static int scaling$get(MemorySegment seg, long index) {
-        return (int)DISPLAYCONFIG_PATH_TARGET_INFO.scaling$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void scaling$set(MemorySegment seg, long index, int x) {
-        DISPLAYCONFIG_PATH_TARGET_INFO.scaling$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment refreshRate$slice(MemorySegment seg) {
-        return seg.asSlice(28, 8);
-    }
-    static final VarHandle scanLineOrdering$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("scanLineOrdering"));
-    public static VarHandle scanLineOrdering$VH() {
-        return DISPLAYCONFIG_PATH_TARGET_INFO.scanLineOrdering$VH;
-    }
-    public static int scanLineOrdering$get(MemorySegment seg) {
-        return (int)DISPLAYCONFIG_PATH_TARGET_INFO.scanLineOrdering$VH.get(seg);
-    }
-    public static void scanLineOrdering$set( MemorySegment seg, int x) {
-        DISPLAYCONFIG_PATH_TARGET_INFO.scanLineOrdering$VH.set(seg, x);
-    }
-    public static int scanLineOrdering$get(MemorySegment seg, long index) {
-        return (int)DISPLAYCONFIG_PATH_TARGET_INFO.scanLineOrdering$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void scanLineOrdering$set(MemorySegment seg, long index, int x) {
-        DISPLAYCONFIG_PATH_TARGET_INFO.scanLineOrdering$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle targetAvailable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("targetAvailable"));
-    public static VarHandle targetAvailable$VH() {
-        return DISPLAYCONFIG_PATH_TARGET_INFO.targetAvailable$VH;
-    }
-    public static int targetAvailable$get(MemorySegment seg) {
-        return (int)DISPLAYCONFIG_PATH_TARGET_INFO.targetAvailable$VH.get(seg);
-    }
-    public static void targetAvailable$set( MemorySegment seg, int x) {
-        DISPLAYCONFIG_PATH_TARGET_INFO.targetAvailable$VH.set(seg, x);
-    }
-    public static int targetAvailable$get(MemorySegment seg, long index) {
-        return (int)DISPLAYCONFIG_PATH_TARGET_INFO.targetAvailable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void targetAvailable$set(MemorySegment seg, long index, int x) {
-        DISPLAYCONFIG_PATH_TARGET_INFO.targetAvailable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle statusFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("statusFlags"));
-    public static VarHandle statusFlags$VH() {
-        return DISPLAYCONFIG_PATH_TARGET_INFO.statusFlags$VH;
-    }
-    public static int statusFlags$get(MemorySegment seg) {
-        return (int)DISPLAYCONFIG_PATH_TARGET_INFO.statusFlags$VH.get(seg);
-    }
-    public static void statusFlags$set( MemorySegment seg, int x) {
-        DISPLAYCONFIG_PATH_TARGET_INFO.statusFlags$VH.set(seg, x);
-    }
-    public static int statusFlags$get(MemorySegment seg, long index) {
-        return (int)DISPLAYCONFIG_PATH_TARGET_INFO.statusFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void statusFlags$set(MemorySegment seg, long index, int x) {
-        DISPLAYCONFIG_PATH_TARGET_INFO.statusFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _LUID.layout().withName("adapterId"),
+        wgl_h.C_INT.withName("id"),
+        MemoryLayout.unionLayout(
+            wgl_h.C_INT.withName("modeInfoIdx"),
+            MemoryLayout.structLayout(
+                MemoryLayout.paddingLayout(4)
+            ).withName("$anon$2976:9")
+        ).withName("$anon$2973:5"),
+        wgl_h.C_INT.withName("outputTechnology"),
+        wgl_h.C_INT.withName("rotation"),
+        wgl_h.C_INT.withName("scaling"),
+        DISPLAYCONFIG_RATIONAL.layout().withName("refreshRate"),
+        wgl_h.C_INT.withName("scanLineOrdering"),
+        wgl_h.C_INT.withName("targetAvailable"),
+        wgl_h.C_INT.withName("statusFlags")
+    ).withName("DISPLAYCONFIG_PATH_TARGET_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout adapterId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("adapterId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LUID adapterId
+     * }
+     */
+    public static final GroupLayout adapterId$layout() {
+        return adapterId$LAYOUT;
+    }
+
+    private static final long adapterId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LUID adapterId
+     * }
+     */
+    public static final long adapterId$offset() {
+        return adapterId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LUID adapterId
+     * }
+     */
+    public static MemorySegment adapterId(MemorySegment struct) {
+        return struct.asSlice(adapterId$OFFSET, adapterId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LUID adapterId
+     * }
+     */
+    public static void adapterId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, adapterId$OFFSET, adapterId$LAYOUT.byteSize());
+    }
+
+    private static final OfInt id$LAYOUT = (OfInt)$LAYOUT.select(groupElement("id"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 id
+     * }
+     */
+    public static final OfInt id$layout() {
+        return id$LAYOUT;
+    }
+
+    private static final long id$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 id
+     * }
+     */
+    public static final long id$offset() {
+        return id$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 id
+     * }
+     */
+    public static int id(MemorySegment struct) {
+        return struct.get(id$LAYOUT, id$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 id
+     * }
+     */
+    public static void id(MemorySegment struct, int fieldValue) {
+        struct.set(id$LAYOUT, id$OFFSET, fieldValue);
+    }
+
+    private static final OfInt modeInfoIdx$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$2973:5"), groupElement("modeInfoIdx"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 modeInfoIdx
+     * }
+     */
+    public static final OfInt modeInfoIdx$layout() {
+        return modeInfoIdx$LAYOUT;
+    }
+
+    private static final long modeInfoIdx$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 modeInfoIdx
+     * }
+     */
+    public static final long modeInfoIdx$offset() {
+        return modeInfoIdx$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 modeInfoIdx
+     * }
+     */
+    public static int modeInfoIdx(MemorySegment struct) {
+        return struct.get(modeInfoIdx$LAYOUT, modeInfoIdx$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 modeInfoIdx
+     * }
+     */
+    public static void modeInfoIdx(MemorySegment struct, int fieldValue) {
+        struct.set(modeInfoIdx$LAYOUT, modeInfoIdx$OFFSET, fieldValue);
+    }
+
+    private static final OfInt outputTechnology$LAYOUT = (OfInt)$LAYOUT.select(groupElement("outputTechnology"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY outputTechnology
+     * }
+     */
+    public static final OfInt outputTechnology$layout() {
+        return outputTechnology$LAYOUT;
+    }
+
+    private static final long outputTechnology$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY outputTechnology
+     * }
+     */
+    public static final long outputTechnology$offset() {
+        return outputTechnology$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY outputTechnology
+     * }
+     */
+    public static int outputTechnology(MemorySegment struct) {
+        return struct.get(outputTechnology$LAYOUT, outputTechnology$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY outputTechnology
+     * }
+     */
+    public static void outputTechnology(MemorySegment struct, int fieldValue) {
+        struct.set(outputTechnology$LAYOUT, outputTechnology$OFFSET, fieldValue);
+    }
+
+    private static final OfInt rotation$LAYOUT = (OfInt)$LAYOUT.select(groupElement("rotation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_ROTATION rotation
+     * }
+     */
+    public static final OfInt rotation$layout() {
+        return rotation$LAYOUT;
+    }
+
+    private static final long rotation$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_ROTATION rotation
+     * }
+     */
+    public static final long rotation$offset() {
+        return rotation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_ROTATION rotation
+     * }
+     */
+    public static int rotation(MemorySegment struct) {
+        return struct.get(rotation$LAYOUT, rotation$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_ROTATION rotation
+     * }
+     */
+    public static void rotation(MemorySegment struct, int fieldValue) {
+        struct.set(rotation$LAYOUT, rotation$OFFSET, fieldValue);
+    }
+
+    private static final OfInt scaling$LAYOUT = (OfInt)$LAYOUT.select(groupElement("scaling"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_SCALING scaling
+     * }
+     */
+    public static final OfInt scaling$layout() {
+        return scaling$LAYOUT;
+    }
+
+    private static final long scaling$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_SCALING scaling
+     * }
+     */
+    public static final long scaling$offset() {
+        return scaling$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_SCALING scaling
+     * }
+     */
+    public static int scaling(MemorySegment struct) {
+        return struct.get(scaling$LAYOUT, scaling$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_SCALING scaling
+     * }
+     */
+    public static void scaling(MemorySegment struct, int fieldValue) {
+        struct.set(scaling$LAYOUT, scaling$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout refreshRate$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("refreshRate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_RATIONAL refreshRate
+     * }
+     */
+    public static final GroupLayout refreshRate$layout() {
+        return refreshRate$LAYOUT;
+    }
+
+    private static final long refreshRate$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_RATIONAL refreshRate
+     * }
+     */
+    public static final long refreshRate$offset() {
+        return refreshRate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_RATIONAL refreshRate
+     * }
+     */
+    public static MemorySegment refreshRate(MemorySegment struct) {
+        return struct.asSlice(refreshRate$OFFSET, refreshRate$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_RATIONAL refreshRate
+     * }
+     */
+    public static void refreshRate(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, refreshRate$OFFSET, refreshRate$LAYOUT.byteSize());
+    }
+
+    private static final OfInt scanLineOrdering$LAYOUT = (OfInt)$LAYOUT.select(groupElement("scanLineOrdering"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_SCANLINE_ORDERING scanLineOrdering
+     * }
+     */
+    public static final OfInt scanLineOrdering$layout() {
+        return scanLineOrdering$LAYOUT;
+    }
+
+    private static final long scanLineOrdering$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_SCANLINE_ORDERING scanLineOrdering
+     * }
+     */
+    public static final long scanLineOrdering$offset() {
+        return scanLineOrdering$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_SCANLINE_ORDERING scanLineOrdering
+     * }
+     */
+    public static int scanLineOrdering(MemorySegment struct) {
+        return struct.get(scanLineOrdering$LAYOUT, scanLineOrdering$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_SCANLINE_ORDERING scanLineOrdering
+     * }
+     */
+    public static void scanLineOrdering(MemorySegment struct, int fieldValue) {
+        struct.set(scanLineOrdering$LAYOUT, scanLineOrdering$OFFSET, fieldValue);
+    }
+
+    private static final OfInt targetAvailable$LAYOUT = (OfInt)$LAYOUT.select(groupElement("targetAvailable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL targetAvailable
+     * }
+     */
+    public static final OfInt targetAvailable$layout() {
+        return targetAvailable$LAYOUT;
+    }
+
+    private static final long targetAvailable$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL targetAvailable
+     * }
+     */
+    public static final long targetAvailable$offset() {
+        return targetAvailable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL targetAvailable
+     * }
+     */
+    public static int targetAvailable(MemorySegment struct) {
+        return struct.get(targetAvailable$LAYOUT, targetAvailable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL targetAvailable
+     * }
+     */
+    public static void targetAvailable(MemorySegment struct, int fieldValue) {
+        struct.set(targetAvailable$LAYOUT, targetAvailable$OFFSET, fieldValue);
+    }
+
+    private static final OfInt statusFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("statusFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 statusFlags
+     * }
+     */
+    public static final OfInt statusFlags$layout() {
+        return statusFlags$LAYOUT;
+    }
+
+    private static final long statusFlags$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 statusFlags
+     * }
+     */
+    public static final long statusFlags$offset() {
+        return statusFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 statusFlags
+     * }
+     */
+    public static int statusFlags(MemorySegment struct) {
+        return struct.get(statusFlags$LAYOUT, statusFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 statusFlags
+     * }
+     */
+    public static void statusFlags(MemorySegment struct, int fieldValue) {
+        struct.set(statusFlags$LAYOUT, statusFlags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,13 +2,35 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct midihdr_tag {
+ *     LPSTR lpData;
+ *     DWORD dwBufferLength;
+ *     DWORD dwBytesRecorded;
+ *     DWORD_PTR dwUser;
+ *     DWORD dwFlags;
+ *     struct midihdr_tag *lpNext;
+ *     DWORD_PTR reserved;
+ *     DWORD dwOffset;
+ *     DWORD_PTR dwReserved[8];
+ * } MIDIHDR
+ * }
+ */
 public class MIDIHDR extends midihdr_tag {
 
+    MIDIHDR() {
+        // Should not be called directly
+    }
 }
-
 

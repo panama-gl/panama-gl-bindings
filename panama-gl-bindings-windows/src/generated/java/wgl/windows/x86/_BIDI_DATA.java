@@ -2,147 +2,500 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _BIDI_DATA {
+ *     DWORD dwBidiType;
+ *     union {
+ *         BOOL bData;
+ *         LONG iData;
+ *         LPWSTR sData;
+ *         FLOAT fData;
+ *         BINARY_CONTAINER biData;
+ *     } u;
+ * }
+ * }
+ */
 public class _BIDI_DATA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwBidiType"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("bData"),
-            Constants$root.C_LONG$LAYOUT.withName("iData"),
-            Constants$root.C_POINTER$LAYOUT.withName("sData"),
-            Constants$root.C_FLOAT$LAYOUT.withName("fData"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("cbBuf"),
-                MemoryLayout.paddingLayout(32),
-                Constants$root.C_POINTER$LAYOUT.withName("pData")
-            ).withName("biData")
-        ).withName("u")
+    _BIDI_DATA() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwBidiType"),
+        MemoryLayout.paddingLayout(4),
+        _BIDI_DATA.u.layout().withName("u")
     ).withName("_BIDI_DATA");
-    public static MemoryLayout $LAYOUT() {
-        return _BIDI_DATA.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle dwBidiType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwBidiType"));
-    public static VarHandle dwBidiType$VH() {
-        return _BIDI_DATA.dwBidiType$VH;
+
+    private static final OfInt dwBidiType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwBidiType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwBidiType
+     * }
+     */
+    public static final OfInt dwBidiType$layout() {
+        return dwBidiType$LAYOUT;
     }
-    public static int dwBidiType$get(MemorySegment seg) {
-        return (int)_BIDI_DATA.dwBidiType$VH.get(seg);
+
+    private static final long dwBidiType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwBidiType
+     * }
+     */
+    public static final long dwBidiType$offset() {
+        return dwBidiType$OFFSET;
     }
-    public static void dwBidiType$set( MemorySegment seg, int x) {
-        _BIDI_DATA.dwBidiType$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwBidiType
+     * }
+     */
+    public static int dwBidiType(MemorySegment struct) {
+        return struct.get(dwBidiType$LAYOUT, dwBidiType$OFFSET);
     }
-    public static int dwBidiType$get(MemorySegment seg, long index) {
-        return (int)_BIDI_DATA.dwBidiType$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwBidiType
+     * }
+     */
+    public static void dwBidiType(MemorySegment struct, int fieldValue) {
+        struct.set(dwBidiType$LAYOUT, dwBidiType$OFFSET, fieldValue);
     }
-    public static void dwBidiType$set(MemorySegment seg, long index, int x) {
-        _BIDI_DATA.dwBidiType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     BOOL bData;
+     *     LONG iData;
+     *     LPWSTR sData;
+     *     FLOAT fData;
+     *     BINARY_CONTAINER biData;
+     * }
+     * }
+     */
     public static class u {
 
-        static final  GroupLayout u$union$LAYOUT = MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("bData"),
-            Constants$root.C_LONG$LAYOUT.withName("iData"),
-            Constants$root.C_POINTER$LAYOUT.withName("sData"),
-            Constants$root.C_FLOAT$LAYOUT.withName("fData"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("cbBuf"),
-                MemoryLayout.paddingLayout(32),
-                Constants$root.C_POINTER$LAYOUT.withName("pData")
-            ).withName("biData")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return u.u$union$LAYOUT;
+        u() {
+            // Should not be called directly
         }
-        static final VarHandle bData$VH = u$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bData"));
-        public static VarHandle bData$VH() {
-            return u.bData$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            wgl_h.C_INT.withName("bData"),
+            wgl_h.C_LONG.withName("iData"),
+            wgl_h.C_POINTER.withName("sData"),
+            wgl_h.C_FLOAT.withName("fData"),
+            _BINARY_CONTAINER.layout().withName("biData")
+        ).withName("$anon$2458:9");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static int bData$get(MemorySegment seg) {
-            return (int)u.bData$VH.get(seg);
+
+        private static final OfInt bData$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bData"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * BOOL bData
+         * }
+         */
+        public static final OfInt bData$layout() {
+            return bData$LAYOUT;
         }
-        public static void bData$set( MemorySegment seg, int x) {
-            u.bData$VH.set(seg, x);
+
+        private static final long bData$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * BOOL bData
+         * }
+         */
+        public static final long bData$offset() {
+            return bData$OFFSET;
         }
-        public static int bData$get(MemorySegment seg, long index) {
-            return (int)u.bData$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * BOOL bData
+         * }
+         */
+        public static int bData(MemorySegment union) {
+            return union.get(bData$LAYOUT, bData$OFFSET);
         }
-        public static void bData$set(MemorySegment seg, long index, int x) {
-            u.bData$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * BOOL bData
+         * }
+         */
+        public static void bData(MemorySegment union, int fieldValue) {
+            union.set(bData$LAYOUT, bData$OFFSET, fieldValue);
         }
-        static final VarHandle iData$VH = u$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iData"));
-        public static VarHandle iData$VH() {
-            return u.iData$VH;
+
+        private static final OfInt iData$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iData"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * LONG iData
+         * }
+         */
+        public static final OfInt iData$layout() {
+            return iData$LAYOUT;
         }
-        public static int iData$get(MemorySegment seg) {
-            return (int)u.iData$VH.get(seg);
+
+        private static final long iData$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * LONG iData
+         * }
+         */
+        public static final long iData$offset() {
+            return iData$OFFSET;
         }
-        public static void iData$set( MemorySegment seg, int x) {
-            u.iData$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * LONG iData
+         * }
+         */
+        public static int iData(MemorySegment union) {
+            return union.get(iData$LAYOUT, iData$OFFSET);
         }
-        public static int iData$get(MemorySegment seg, long index) {
-            return (int)u.iData$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * LONG iData
+         * }
+         */
+        public static void iData(MemorySegment union, int fieldValue) {
+            union.set(iData$LAYOUT, iData$OFFSET, fieldValue);
         }
-        public static void iData$set(MemorySegment seg, long index, int x) {
-            u.iData$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final AddressLayout sData$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("sData"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * LPWSTR sData
+         * }
+         */
+        public static final AddressLayout sData$layout() {
+            return sData$LAYOUT;
         }
-        static final VarHandle sData$VH = u$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("sData"));
-        public static VarHandle sData$VH() {
-            return u.sData$VH;
+
+        private static final long sData$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * LPWSTR sData
+         * }
+         */
+        public static final long sData$offset() {
+            return sData$OFFSET;
         }
-        public static MemoryAddress sData$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)u.sData$VH.get(seg);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * LPWSTR sData
+         * }
+         */
+        public static MemorySegment sData(MemorySegment union) {
+            return union.get(sData$LAYOUT, sData$OFFSET);
         }
-        public static void sData$set( MemorySegment seg, MemoryAddress x) {
-            u.sData$VH.set(seg, x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * LPWSTR sData
+         * }
+         */
+        public static void sData(MemorySegment union, MemorySegment fieldValue) {
+            union.set(sData$LAYOUT, sData$OFFSET, fieldValue);
         }
-        public static MemoryAddress sData$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)u.sData$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final OfFloat fData$LAYOUT = (OfFloat)$LAYOUT.select(groupElement("fData"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * FLOAT fData
+         * }
+         */
+        public static final OfFloat fData$layout() {
+            return fData$LAYOUT;
         }
-        public static void sData$set(MemorySegment seg, long index, MemoryAddress x) {
-            u.sData$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final long fData$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * FLOAT fData
+         * }
+         */
+        public static final long fData$offset() {
+            return fData$OFFSET;
         }
-        static final VarHandle fData$VH = u$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fData"));
-        public static VarHandle fData$VH() {
-            return u.fData$VH;
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * FLOAT fData
+         * }
+         */
+        public static float fData(MemorySegment union) {
+            return union.get(fData$LAYOUT, fData$OFFSET);
         }
-        public static float fData$get(MemorySegment seg) {
-            return (float)u.fData$VH.get(seg);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * FLOAT fData
+         * }
+         */
+        public static void fData(MemorySegment union, float fieldValue) {
+            union.set(fData$LAYOUT, fData$OFFSET, fieldValue);
         }
-        public static void fData$set( MemorySegment seg, float x) {
-            u.fData$VH.set(seg, x);
+
+        private static final GroupLayout biData$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("biData"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * BINARY_CONTAINER biData
+         * }
+         */
+        public static final GroupLayout biData$layout() {
+            return biData$LAYOUT;
         }
-        public static float fData$get(MemorySegment seg, long index) {
-            return (float)u.fData$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final long biData$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * BINARY_CONTAINER biData
+         * }
+         */
+        public static final long biData$offset() {
+            return biData$OFFSET;
         }
-        public static void fData$set(MemorySegment seg, long index, float x) {
-            u.fData$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * BINARY_CONTAINER biData
+         * }
+         */
+        public static MemorySegment biData(MemorySegment union) {
+            return union.asSlice(biData$OFFSET, biData$LAYOUT.byteSize());
         }
-        public static MemorySegment biData$slice(MemorySegment seg) {
-            return seg.asSlice(0, 16);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * BINARY_CONTAINER biData
+         * }
+         */
+        public static void biData(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, biData$OFFSET, biData$LAYOUT.byteSize());
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment u$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
+    private static final GroupLayout u$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("u"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     BOOL bData;
+     *     LONG iData;
+     *     LPWSTR sData;
+     *     FLOAT fData;
+     *     BINARY_CONTAINER biData;
+     * } u
+     * }
+     */
+    public static final GroupLayout u$layout() {
+        return u$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long u$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     BOOL bData;
+     *     LONG iData;
+     *     LPWSTR sData;
+     *     FLOAT fData;
+     *     BINARY_CONTAINER biData;
+     * } u
+     * }
+     */
+    public static final long u$offset() {
+        return u$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     BOOL bData;
+     *     LONG iData;
+     *     LPWSTR sData;
+     *     FLOAT fData;
+     *     BINARY_CONTAINER biData;
+     * } u
+     * }
+     */
+    public static MemorySegment u(MemorySegment struct) {
+        return struct.asSlice(u$OFFSET, u$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     BOOL bData;
+     *     LONG iData;
+     *     LPWSTR sData;
+     *     FLOAT fData;
+     *     BINARY_CONTAINER biData;
+     * } u
+     * }
+     */
+    public static void u(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, u$OFFSET, u$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

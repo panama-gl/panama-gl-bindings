@@ -2,78 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CREATE_THREAD_DEBUG_INFO {
+ *     HANDLE hThread;
+ *     LPVOID lpThreadLocalBase;
+ *     LPTHREAD_START_ROUTINE lpStartAddress;
+ * }
+ * }
+ */
 public class _CREATE_THREAD_DEBUG_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("hThread"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpThreadLocalBase"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpStartAddress")
-    ).withName("_CREATE_THREAD_DEBUG_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CREATE_THREAD_DEBUG_INFO.$struct$LAYOUT;
+    _CREATE_THREAD_DEBUG_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle hThread$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hThread"));
-    public static VarHandle hThread$VH() {
-        return _CREATE_THREAD_DEBUG_INFO.hThread$VH;
-    }
-    public static MemoryAddress hThread$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_THREAD_DEBUG_INFO.hThread$VH.get(seg);
-    }
-    public static void hThread$set( MemorySegment seg, MemoryAddress x) {
-        _CREATE_THREAD_DEBUG_INFO.hThread$VH.set(seg, x);
-    }
-    public static MemoryAddress hThread$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_THREAD_DEBUG_INFO.hThread$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hThread$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CREATE_THREAD_DEBUG_INFO.hThread$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpThreadLocalBase$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpThreadLocalBase"));
-    public static VarHandle lpThreadLocalBase$VH() {
-        return _CREATE_THREAD_DEBUG_INFO.lpThreadLocalBase$VH;
-    }
-    public static MemoryAddress lpThreadLocalBase$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_THREAD_DEBUG_INFO.lpThreadLocalBase$VH.get(seg);
-    }
-    public static void lpThreadLocalBase$set( MemorySegment seg, MemoryAddress x) {
-        _CREATE_THREAD_DEBUG_INFO.lpThreadLocalBase$VH.set(seg, x);
-    }
-    public static MemoryAddress lpThreadLocalBase$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_THREAD_DEBUG_INFO.lpThreadLocalBase$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpThreadLocalBase$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CREATE_THREAD_DEBUG_INFO.lpThreadLocalBase$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpStartAddress$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpStartAddress"));
-    public static VarHandle lpStartAddress$VH() {
-        return _CREATE_THREAD_DEBUG_INFO.lpStartAddress$VH;
-    }
-    public static MemoryAddress lpStartAddress$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_THREAD_DEBUG_INFO.lpStartAddress$VH.get(seg);
-    }
-    public static void lpStartAddress$set( MemorySegment seg, MemoryAddress x) {
-        _CREATE_THREAD_DEBUG_INFO.lpStartAddress$VH.set(seg, x);
-    }
-    public static MemoryAddress lpStartAddress$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_THREAD_DEBUG_INFO.lpStartAddress$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpStartAddress$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CREATE_THREAD_DEBUG_INFO.lpStartAddress$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static LPTHREAD_START_ROUTINE lpStartAddress (MemorySegment segment, MemorySession session) {
-        return LPTHREAD_START_ROUTINE.ofAddress(lpStartAddress$get(segment), session);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("hThread"),
+        wgl_h.C_POINTER.withName("lpThreadLocalBase"),
+        wgl_h.C_POINTER.withName("lpStartAddress")
+    ).withName("_CREATE_THREAD_DEBUG_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout hThread$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hThread"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HANDLE hThread
+     * }
+     */
+    public static final AddressLayout hThread$layout() {
+        return hThread$LAYOUT;
+    }
+
+    private static final long hThread$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HANDLE hThread
+     * }
+     */
+    public static final long hThread$offset() {
+        return hThread$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HANDLE hThread
+     * }
+     */
+    public static MemorySegment hThread(MemorySegment struct) {
+        return struct.get(hThread$LAYOUT, hThread$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HANDLE hThread
+     * }
+     */
+    public static void hThread(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hThread$LAYOUT, hThread$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpThreadLocalBase$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpThreadLocalBase"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPVOID lpThreadLocalBase
+     * }
+     */
+    public static final AddressLayout lpThreadLocalBase$layout() {
+        return lpThreadLocalBase$LAYOUT;
+    }
+
+    private static final long lpThreadLocalBase$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPVOID lpThreadLocalBase
+     * }
+     */
+    public static final long lpThreadLocalBase$offset() {
+        return lpThreadLocalBase$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPVOID lpThreadLocalBase
+     * }
+     */
+    public static MemorySegment lpThreadLocalBase(MemorySegment struct) {
+        return struct.get(lpThreadLocalBase$LAYOUT, lpThreadLocalBase$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPVOID lpThreadLocalBase
+     * }
+     */
+    public static void lpThreadLocalBase(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpThreadLocalBase$LAYOUT, lpThreadLocalBase$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpStartAddress$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpStartAddress"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPTHREAD_START_ROUTINE lpStartAddress
+     * }
+     */
+    public static final AddressLayout lpStartAddress$layout() {
+        return lpStartAddress$LAYOUT;
+    }
+
+    private static final long lpStartAddress$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPTHREAD_START_ROUTINE lpStartAddress
+     * }
+     */
+    public static final long lpStartAddress$offset() {
+        return lpStartAddress$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPTHREAD_START_ROUTINE lpStartAddress
+     * }
+     */
+    public static MemorySegment lpStartAddress(MemorySegment struct) {
+        return struct.get(lpStartAddress$LAYOUT, lpStartAddress$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPTHREAD_START_ROUTINE lpStartAddress
+     * }
+     */
+    public static void lpStartAddress(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpStartAddress$LAYOUT, lpStartAddress$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

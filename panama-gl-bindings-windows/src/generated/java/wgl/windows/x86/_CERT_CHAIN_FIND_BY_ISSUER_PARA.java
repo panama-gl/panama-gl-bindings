@@ -2,165 +2,450 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_CHAIN_FIND_BY_ISSUER_PARA {
+ *     DWORD cbSize;
+ *     LPCSTR pszUsageIdentifier;
+ *     DWORD dwKeySpec;
+ *     DWORD dwAcquirePrivateKeyFlags;
+ *     DWORD cIssuer;
+ *     CERT_NAME_BLOB *rgIssuer;
+ *     PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK pfnFindCallback;
+ *     void *pvFindArg;
+ * }
+ * }
+ */
 public class _CERT_CHAIN_FIND_BY_ISSUER_PARA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pszUsageIdentifier"),
-        Constants$root.C_LONG$LAYOUT.withName("dwKeySpec"),
-        Constants$root.C_LONG$LAYOUT.withName("dwAcquirePrivateKeyFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("cIssuer"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgIssuer"),
-        Constants$root.C_POINTER$LAYOUT.withName("pfnFindCallback"),
-        Constants$root.C_POINTER$LAYOUT.withName("pvFindArg")
-    ).withName("_CERT_CHAIN_FIND_BY_ISSUER_PARA");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_CHAIN_FIND_BY_ISSUER_PARA.$struct$LAYOUT;
+    _CERT_CHAIN_FIND_BY_ISSUER_PARA() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _CERT_CHAIN_FIND_BY_ISSUER_PARA.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_CERT_CHAIN_FIND_BY_ISSUER_PARA.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _CERT_CHAIN_FIND_BY_ISSUER_PARA.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_CERT_CHAIN_FIND_BY_ISSUER_PARA.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _CERT_CHAIN_FIND_BY_ISSUER_PARA.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pszUsageIdentifier$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pszUsageIdentifier"));
-    public static VarHandle pszUsageIdentifier$VH() {
-        return _CERT_CHAIN_FIND_BY_ISSUER_PARA.pszUsageIdentifier$VH;
-    }
-    public static MemoryAddress pszUsageIdentifier$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_FIND_BY_ISSUER_PARA.pszUsageIdentifier$VH.get(seg);
-    }
-    public static void pszUsageIdentifier$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_CHAIN_FIND_BY_ISSUER_PARA.pszUsageIdentifier$VH.set(seg, x);
-    }
-    public static MemoryAddress pszUsageIdentifier$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_FIND_BY_ISSUER_PARA.pszUsageIdentifier$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pszUsageIdentifier$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_CHAIN_FIND_BY_ISSUER_PARA.pszUsageIdentifier$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwKeySpec$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwKeySpec"));
-    public static VarHandle dwKeySpec$VH() {
-        return _CERT_CHAIN_FIND_BY_ISSUER_PARA.dwKeySpec$VH;
-    }
-    public static int dwKeySpec$get(MemorySegment seg) {
-        return (int)_CERT_CHAIN_FIND_BY_ISSUER_PARA.dwKeySpec$VH.get(seg);
-    }
-    public static void dwKeySpec$set( MemorySegment seg, int x) {
-        _CERT_CHAIN_FIND_BY_ISSUER_PARA.dwKeySpec$VH.set(seg, x);
-    }
-    public static int dwKeySpec$get(MemorySegment seg, long index) {
-        return (int)_CERT_CHAIN_FIND_BY_ISSUER_PARA.dwKeySpec$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwKeySpec$set(MemorySegment seg, long index, int x) {
-        _CERT_CHAIN_FIND_BY_ISSUER_PARA.dwKeySpec$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwAcquirePrivateKeyFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwAcquirePrivateKeyFlags"));
-    public static VarHandle dwAcquirePrivateKeyFlags$VH() {
-        return _CERT_CHAIN_FIND_BY_ISSUER_PARA.dwAcquirePrivateKeyFlags$VH;
-    }
-    public static int dwAcquirePrivateKeyFlags$get(MemorySegment seg) {
-        return (int)_CERT_CHAIN_FIND_BY_ISSUER_PARA.dwAcquirePrivateKeyFlags$VH.get(seg);
-    }
-    public static void dwAcquirePrivateKeyFlags$set( MemorySegment seg, int x) {
-        _CERT_CHAIN_FIND_BY_ISSUER_PARA.dwAcquirePrivateKeyFlags$VH.set(seg, x);
-    }
-    public static int dwAcquirePrivateKeyFlags$get(MemorySegment seg, long index) {
-        return (int)_CERT_CHAIN_FIND_BY_ISSUER_PARA.dwAcquirePrivateKeyFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwAcquirePrivateKeyFlags$set(MemorySegment seg, long index, int x) {
-        _CERT_CHAIN_FIND_BY_ISSUER_PARA.dwAcquirePrivateKeyFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cIssuer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cIssuer"));
-    public static VarHandle cIssuer$VH() {
-        return _CERT_CHAIN_FIND_BY_ISSUER_PARA.cIssuer$VH;
-    }
-    public static int cIssuer$get(MemorySegment seg) {
-        return (int)_CERT_CHAIN_FIND_BY_ISSUER_PARA.cIssuer$VH.get(seg);
-    }
-    public static void cIssuer$set( MemorySegment seg, int x) {
-        _CERT_CHAIN_FIND_BY_ISSUER_PARA.cIssuer$VH.set(seg, x);
-    }
-    public static int cIssuer$get(MemorySegment seg, long index) {
-        return (int)_CERT_CHAIN_FIND_BY_ISSUER_PARA.cIssuer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cIssuer$set(MemorySegment seg, long index, int x) {
-        _CERT_CHAIN_FIND_BY_ISSUER_PARA.cIssuer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgIssuer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgIssuer"));
-    public static VarHandle rgIssuer$VH() {
-        return _CERT_CHAIN_FIND_BY_ISSUER_PARA.rgIssuer$VH;
-    }
-    public static MemoryAddress rgIssuer$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_FIND_BY_ISSUER_PARA.rgIssuer$VH.get(seg);
-    }
-    public static void rgIssuer$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_CHAIN_FIND_BY_ISSUER_PARA.rgIssuer$VH.set(seg, x);
-    }
-    public static MemoryAddress rgIssuer$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_FIND_BY_ISSUER_PARA.rgIssuer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgIssuer$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_CHAIN_FIND_BY_ISSUER_PARA.rgIssuer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pfnFindCallback$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnFindCallback"));
-    public static VarHandle pfnFindCallback$VH() {
-        return _CERT_CHAIN_FIND_BY_ISSUER_PARA.pfnFindCallback$VH;
-    }
-    public static MemoryAddress pfnFindCallback$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_FIND_BY_ISSUER_PARA.pfnFindCallback$VH.get(seg);
-    }
-    public static void pfnFindCallback$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_CHAIN_FIND_BY_ISSUER_PARA.pfnFindCallback$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnFindCallback$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_FIND_BY_ISSUER_PARA.pfnFindCallback$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnFindCallback$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_CHAIN_FIND_BY_ISSUER_PARA.pfnFindCallback$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK pfnFindCallback (MemorySegment segment, MemorySession session) {
-        return PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK.ofAddress(pfnFindCallback$get(segment), session);
-    }
-    static final VarHandle pvFindArg$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pvFindArg"));
-    public static VarHandle pvFindArg$VH() {
-        return _CERT_CHAIN_FIND_BY_ISSUER_PARA.pvFindArg$VH;
-    }
-    public static MemoryAddress pvFindArg$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_FIND_BY_ISSUER_PARA.pvFindArg$VH.get(seg);
-    }
-    public static void pvFindArg$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_CHAIN_FIND_BY_ISSUER_PARA.pvFindArg$VH.set(seg, x);
-    }
-    public static MemoryAddress pvFindArg$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_FIND_BY_ISSUER_PARA.pvFindArg$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pvFindArg$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_CHAIN_FIND_BY_ISSUER_PARA.pvFindArg$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pszUsageIdentifier"),
+        wgl_h.C_LONG.withName("dwKeySpec"),
+        wgl_h.C_LONG.withName("dwAcquirePrivateKeyFlags"),
+        wgl_h.C_LONG.withName("cIssuer"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgIssuer"),
+        wgl_h.C_POINTER.withName("pfnFindCallback"),
+        wgl_h.C_POINTER.withName("pvFindArg")
+    ).withName("_CERT_CHAIN_FIND_BY_ISSUER_PARA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pszUsageIdentifier$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pszUsageIdentifier"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPCSTR pszUsageIdentifier
+     * }
+     */
+    public static final AddressLayout pszUsageIdentifier$layout() {
+        return pszUsageIdentifier$LAYOUT;
+    }
+
+    private static final long pszUsageIdentifier$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPCSTR pszUsageIdentifier
+     * }
+     */
+    public static final long pszUsageIdentifier$offset() {
+        return pszUsageIdentifier$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPCSTR pszUsageIdentifier
+     * }
+     */
+    public static MemorySegment pszUsageIdentifier(MemorySegment struct) {
+        return struct.get(pszUsageIdentifier$LAYOUT, pszUsageIdentifier$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPCSTR pszUsageIdentifier
+     * }
+     */
+    public static void pszUsageIdentifier(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pszUsageIdentifier$LAYOUT, pszUsageIdentifier$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwKeySpec$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwKeySpec"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwKeySpec
+     * }
+     */
+    public static final OfInt dwKeySpec$layout() {
+        return dwKeySpec$LAYOUT;
+    }
+
+    private static final long dwKeySpec$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwKeySpec
+     * }
+     */
+    public static final long dwKeySpec$offset() {
+        return dwKeySpec$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwKeySpec
+     * }
+     */
+    public static int dwKeySpec(MemorySegment struct) {
+        return struct.get(dwKeySpec$LAYOUT, dwKeySpec$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwKeySpec
+     * }
+     */
+    public static void dwKeySpec(MemorySegment struct, int fieldValue) {
+        struct.set(dwKeySpec$LAYOUT, dwKeySpec$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwAcquirePrivateKeyFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwAcquirePrivateKeyFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwAcquirePrivateKeyFlags
+     * }
+     */
+    public static final OfInt dwAcquirePrivateKeyFlags$layout() {
+        return dwAcquirePrivateKeyFlags$LAYOUT;
+    }
+
+    private static final long dwAcquirePrivateKeyFlags$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwAcquirePrivateKeyFlags
+     * }
+     */
+    public static final long dwAcquirePrivateKeyFlags$offset() {
+        return dwAcquirePrivateKeyFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwAcquirePrivateKeyFlags
+     * }
+     */
+    public static int dwAcquirePrivateKeyFlags(MemorySegment struct) {
+        return struct.get(dwAcquirePrivateKeyFlags$LAYOUT, dwAcquirePrivateKeyFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwAcquirePrivateKeyFlags
+     * }
+     */
+    public static void dwAcquirePrivateKeyFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwAcquirePrivateKeyFlags$LAYOUT, dwAcquirePrivateKeyFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cIssuer$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cIssuer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cIssuer
+     * }
+     */
+    public static final OfInt cIssuer$layout() {
+        return cIssuer$LAYOUT;
+    }
+
+    private static final long cIssuer$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cIssuer
+     * }
+     */
+    public static final long cIssuer$offset() {
+        return cIssuer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cIssuer
+     * }
+     */
+    public static int cIssuer(MemorySegment struct) {
+        return struct.get(cIssuer$LAYOUT, cIssuer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cIssuer
+     * }
+     */
+    public static void cIssuer(MemorySegment struct, int fieldValue) {
+        struct.set(cIssuer$LAYOUT, cIssuer$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgIssuer$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgIssuer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB *rgIssuer
+     * }
+     */
+    public static final AddressLayout rgIssuer$layout() {
+        return rgIssuer$LAYOUT;
+    }
+
+    private static final long rgIssuer$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB *rgIssuer
+     * }
+     */
+    public static final long rgIssuer$offset() {
+        return rgIssuer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB *rgIssuer
+     * }
+     */
+    public static MemorySegment rgIssuer(MemorySegment struct) {
+        return struct.get(rgIssuer$LAYOUT, rgIssuer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB *rgIssuer
+     * }
+     */
+    public static void rgIssuer(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgIssuer$LAYOUT, rgIssuer$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pfnFindCallback$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnFindCallback"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK pfnFindCallback
+     * }
+     */
+    public static final AddressLayout pfnFindCallback$layout() {
+        return pfnFindCallback$LAYOUT;
+    }
+
+    private static final long pfnFindCallback$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK pfnFindCallback
+     * }
+     */
+    public static final long pfnFindCallback$offset() {
+        return pfnFindCallback$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK pfnFindCallback
+     * }
+     */
+    public static MemorySegment pfnFindCallback(MemorySegment struct) {
+        return struct.get(pfnFindCallback$LAYOUT, pfnFindCallback$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK pfnFindCallback
+     * }
+     */
+    public static void pfnFindCallback(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnFindCallback$LAYOUT, pfnFindCallback$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pvFindArg$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pvFindArg"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *pvFindArg
+     * }
+     */
+    public static final AddressLayout pvFindArg$layout() {
+        return pvFindArg$LAYOUT;
+    }
+
+    private static final long pvFindArg$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *pvFindArg
+     * }
+     */
+    public static final long pvFindArg$offset() {
+        return pvFindArg$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *pvFindArg
+     * }
+     */
+    public static MemorySegment pvFindArg(MemorySegment struct) {
+        return struct.get(pvFindArg$LAYOUT, pvFindArg$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *pvFindArg
+     * }
+     */
+    public static void pvFindArg(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pvFindArg$LAYOUT, pvFindArg$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

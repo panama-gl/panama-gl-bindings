@@ -2,27 +2,70 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFN_IMPORT_PRIV_KEY_FUNC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(long hCryptProv, java.lang.foreign.MemoryAddress pPrivateKeyInfo, int dwFlags, java.lang.foreign.MemoryAddress pvAuxInfo);
-    static MemorySegment allocate(PFN_IMPORT_PRIV_KEY_FUNC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFN_IMPORT_PRIV_KEY_FUNC.class, fi, constants$796.PFN_IMPORT_PRIV_KEY_FUNC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PFN_IMPORT_PRIV_KEY_FUNC)(HCRYPTPROV, CRYPT_PRIVATE_KEY_INFO *, DWORD, void *) __attribute__((stdcall))
+ * }
+ */
+public class PFN_IMPORT_PRIV_KEY_FUNC {
+
+    PFN_IMPORT_PRIV_KEY_FUNC() {
+        // Should not be called directly
     }
-    static PFN_IMPORT_PRIV_KEY_FUNC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (long _hCryptProv, java.lang.foreign.MemoryAddress _pPrivateKeyInfo, int _dwFlags, java.lang.foreign.MemoryAddress _pvAuxInfo) -> {
-            try {
-                return (int)constants$796.PFN_IMPORT_PRIV_KEY_FUNC$MH.invokeExact((Addressable)symbol, _hCryptProv, (java.lang.foreign.Addressable)_pPrivateKeyInfo, _dwFlags, (java.lang.foreign.Addressable)_pvAuxInfo);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(long hCryptProv, MemorySegment pPrivateKeyInfo, int dwFlags, MemorySegment pvAuxInfo);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_LONG_LONG,
+        wgl_h.C_POINTER,
+        wgl_h.C_LONG,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFN_IMPORT_PRIV_KEY_FUNC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFN_IMPORT_PRIV_KEY_FUNC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,long hCryptProv, MemorySegment pPrivateKeyInfo, int dwFlags, MemorySegment pvAuxInfo) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, hCryptProv, pPrivateKeyInfo, dwFlags, pvAuxInfo);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

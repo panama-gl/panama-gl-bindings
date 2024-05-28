@@ -2,101 +2,310 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _KCRM_PROTOCOL_BLOB {
+ *     CRM_PROTOCOL_ID ProtocolId;
+ *     ULONG StaticInfoLength;
+ *     ULONG TransactionIdInfoLength;
+ *     ULONG Unused1;
+ *     ULONG Unused2;
+ * }
+ * }
+ */
 public class _KCRM_PROTOCOL_BLOB {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("ProtocolId"),
-        Constants$root.C_LONG$LAYOUT.withName("StaticInfoLength"),
-        Constants$root.C_LONG$LAYOUT.withName("TransactionIdInfoLength"),
-        Constants$root.C_LONG$LAYOUT.withName("Unused1"),
-        Constants$root.C_LONG$LAYOUT.withName("Unused2")
-    ).withName("_KCRM_PROTOCOL_BLOB");
-    public static MemoryLayout $LAYOUT() {
-        return _KCRM_PROTOCOL_BLOB.$struct$LAYOUT;
+    _KCRM_PROTOCOL_BLOB() {
+        // Should not be called directly
     }
-    public static MemorySegment ProtocolId$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
-    }
-    static final VarHandle StaticInfoLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StaticInfoLength"));
-    public static VarHandle StaticInfoLength$VH() {
-        return _KCRM_PROTOCOL_BLOB.StaticInfoLength$VH;
-    }
-    public static int StaticInfoLength$get(MemorySegment seg) {
-        return (int)_KCRM_PROTOCOL_BLOB.StaticInfoLength$VH.get(seg);
-    }
-    public static void StaticInfoLength$set( MemorySegment seg, int x) {
-        _KCRM_PROTOCOL_BLOB.StaticInfoLength$VH.set(seg, x);
-    }
-    public static int StaticInfoLength$get(MemorySegment seg, long index) {
-        return (int)_KCRM_PROTOCOL_BLOB.StaticInfoLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StaticInfoLength$set(MemorySegment seg, long index, int x) {
-        _KCRM_PROTOCOL_BLOB.StaticInfoLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TransactionIdInfoLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TransactionIdInfoLength"));
-    public static VarHandle TransactionIdInfoLength$VH() {
-        return _KCRM_PROTOCOL_BLOB.TransactionIdInfoLength$VH;
-    }
-    public static int TransactionIdInfoLength$get(MemorySegment seg) {
-        return (int)_KCRM_PROTOCOL_BLOB.TransactionIdInfoLength$VH.get(seg);
-    }
-    public static void TransactionIdInfoLength$set( MemorySegment seg, int x) {
-        _KCRM_PROTOCOL_BLOB.TransactionIdInfoLength$VH.set(seg, x);
-    }
-    public static int TransactionIdInfoLength$get(MemorySegment seg, long index) {
-        return (int)_KCRM_PROTOCOL_BLOB.TransactionIdInfoLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TransactionIdInfoLength$set(MemorySegment seg, long index, int x) {
-        _KCRM_PROTOCOL_BLOB.TransactionIdInfoLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Unused1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Unused1"));
-    public static VarHandle Unused1$VH() {
-        return _KCRM_PROTOCOL_BLOB.Unused1$VH;
-    }
-    public static int Unused1$get(MemorySegment seg) {
-        return (int)_KCRM_PROTOCOL_BLOB.Unused1$VH.get(seg);
-    }
-    public static void Unused1$set( MemorySegment seg, int x) {
-        _KCRM_PROTOCOL_BLOB.Unused1$VH.set(seg, x);
-    }
-    public static int Unused1$get(MemorySegment seg, long index) {
-        return (int)_KCRM_PROTOCOL_BLOB.Unused1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Unused1$set(MemorySegment seg, long index, int x) {
-        _KCRM_PROTOCOL_BLOB.Unused1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Unused2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Unused2"));
-    public static VarHandle Unused2$VH() {
-        return _KCRM_PROTOCOL_BLOB.Unused2$VH;
-    }
-    public static int Unused2$get(MemorySegment seg) {
-        return (int)_KCRM_PROTOCOL_BLOB.Unused2$VH.get(seg);
-    }
-    public static void Unused2$set( MemorySegment seg, int x) {
-        _KCRM_PROTOCOL_BLOB.Unused2$VH.set(seg, x);
-    }
-    public static int Unused2$get(MemorySegment seg, long index) {
-        return (int)_KCRM_PROTOCOL_BLOB.Unused2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Unused2$set(MemorySegment seg, long index, int x) {
-        _KCRM_PROTOCOL_BLOB.Unused2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _GUID.layout().withName("ProtocolId"),
+        wgl_h.C_LONG.withName("StaticInfoLength"),
+        wgl_h.C_LONG.withName("TransactionIdInfoLength"),
+        wgl_h.C_LONG.withName("Unused1"),
+        wgl_h.C_LONG.withName("Unused2")
+    ).withName("_KCRM_PROTOCOL_BLOB");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout ProtocolId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ProtocolId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRM_PROTOCOL_ID ProtocolId
+     * }
+     */
+    public static final GroupLayout ProtocolId$layout() {
+        return ProtocolId$LAYOUT;
+    }
+
+    private static final long ProtocolId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRM_PROTOCOL_ID ProtocolId
+     * }
+     */
+    public static final long ProtocolId$offset() {
+        return ProtocolId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRM_PROTOCOL_ID ProtocolId
+     * }
+     */
+    public static MemorySegment ProtocolId(MemorySegment struct) {
+        return struct.asSlice(ProtocolId$OFFSET, ProtocolId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRM_PROTOCOL_ID ProtocolId
+     * }
+     */
+    public static void ProtocolId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ProtocolId$OFFSET, ProtocolId$LAYOUT.byteSize());
+    }
+
+    private static final OfInt StaticInfoLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("StaticInfoLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG StaticInfoLength
+     * }
+     */
+    public static final OfInt StaticInfoLength$layout() {
+        return StaticInfoLength$LAYOUT;
+    }
+
+    private static final long StaticInfoLength$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG StaticInfoLength
+     * }
+     */
+    public static final long StaticInfoLength$offset() {
+        return StaticInfoLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG StaticInfoLength
+     * }
+     */
+    public static int StaticInfoLength(MemorySegment struct) {
+        return struct.get(StaticInfoLength$LAYOUT, StaticInfoLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG StaticInfoLength
+     * }
+     */
+    public static void StaticInfoLength(MemorySegment struct, int fieldValue) {
+        struct.set(StaticInfoLength$LAYOUT, StaticInfoLength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt TransactionIdInfoLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("TransactionIdInfoLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG TransactionIdInfoLength
+     * }
+     */
+    public static final OfInt TransactionIdInfoLength$layout() {
+        return TransactionIdInfoLength$LAYOUT;
+    }
+
+    private static final long TransactionIdInfoLength$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG TransactionIdInfoLength
+     * }
+     */
+    public static final long TransactionIdInfoLength$offset() {
+        return TransactionIdInfoLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG TransactionIdInfoLength
+     * }
+     */
+    public static int TransactionIdInfoLength(MemorySegment struct) {
+        return struct.get(TransactionIdInfoLength$LAYOUT, TransactionIdInfoLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG TransactionIdInfoLength
+     * }
+     */
+    public static void TransactionIdInfoLength(MemorySegment struct, int fieldValue) {
+        struct.set(TransactionIdInfoLength$LAYOUT, TransactionIdInfoLength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Unused1$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Unused1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG Unused1
+     * }
+     */
+    public static final OfInt Unused1$layout() {
+        return Unused1$LAYOUT;
+    }
+
+    private static final long Unused1$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG Unused1
+     * }
+     */
+    public static final long Unused1$offset() {
+        return Unused1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG Unused1
+     * }
+     */
+    public static int Unused1(MemorySegment struct) {
+        return struct.get(Unused1$LAYOUT, Unused1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG Unused1
+     * }
+     */
+    public static void Unused1(MemorySegment struct, int fieldValue) {
+        struct.set(Unused1$LAYOUT, Unused1$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Unused2$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Unused2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG Unused2
+     * }
+     */
+    public static final OfInt Unused2$layout() {
+        return Unused2$LAYOUT;
+    }
+
+    private static final long Unused2$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG Unused2
+     * }
+     */
+    public static final long Unused2$offset() {
+        return Unused2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG Unused2
+     * }
+     */
+    public static int Unused2(MemorySegment struct) {
+        return struct.get(Unused2$LAYOUT, Unused2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG Unused2
+     * }
+     */
+    public static void Unused2(MemorySegment struct, int fieldValue) {
+        struct.set(Unused2$LAYOUT, Unused2$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

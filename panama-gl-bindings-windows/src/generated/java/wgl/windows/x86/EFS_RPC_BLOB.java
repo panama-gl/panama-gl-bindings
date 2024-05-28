@@ -2,13 +2,28 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _EFS_RPC_BLOB {
+ *     DWORD cbData;
+ *     PBYTE pbData;
+ * } EFS_RPC_BLOB
+ * }
+ */
 public class EFS_RPC_BLOB extends _EFS_RPC_BLOB {
 
+    EFS_RPC_BLOB() {
+        // Should not be called directly
+    }
 }
-
 

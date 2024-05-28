@@ -2,147 +2,481 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STORAGE_ALLOCATE_BC_STREAM_INPUT {
+ *     DWORD Version;
+ *     DWORD RequestsPerPeriod;
+ *     DWORD Period;
+ *     BOOLEAN RetryFailures;
+ *     BOOLEAN Discardable;
+ *     BOOLEAN Reserved1[2];
+ *     DWORD AccessType;
+ *     DWORD AccessMode;
+ * }
+ * }
+ */
 public class _STORAGE_ALLOCATE_BC_STREAM_INPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("RequestsPerPeriod"),
-        Constants$root.C_LONG$LAYOUT.withName("Period"),
-        Constants$root.C_CHAR$LAYOUT.withName("RetryFailures"),
-        Constants$root.C_CHAR$LAYOUT.withName("Discardable"),
-        MemoryLayout.sequenceLayout(2, Constants$root.C_CHAR$LAYOUT).withName("Reserved1"),
-        Constants$root.C_LONG$LAYOUT.withName("AccessType"),
-        Constants$root.C_LONG$LAYOUT.withName("AccessMode")
-    ).withName("_STORAGE_ALLOCATE_BC_STREAM_INPUT");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_ALLOCATE_BC_STREAM_INPUT.$struct$LAYOUT;
+    _STORAGE_ALLOCATE_BC_STREAM_INPUT() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _STORAGE_ALLOCATE_BC_STREAM_INPUT.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_STORAGE_ALLOCATE_BC_STREAM_INPUT.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _STORAGE_ALLOCATE_BC_STREAM_INPUT.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_ALLOCATE_BC_STREAM_INPUT.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _STORAGE_ALLOCATE_BC_STREAM_INPUT.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RequestsPerPeriod$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RequestsPerPeriod"));
-    public static VarHandle RequestsPerPeriod$VH() {
-        return _STORAGE_ALLOCATE_BC_STREAM_INPUT.RequestsPerPeriod$VH;
-    }
-    public static int RequestsPerPeriod$get(MemorySegment seg) {
-        return (int)_STORAGE_ALLOCATE_BC_STREAM_INPUT.RequestsPerPeriod$VH.get(seg);
-    }
-    public static void RequestsPerPeriod$set( MemorySegment seg, int x) {
-        _STORAGE_ALLOCATE_BC_STREAM_INPUT.RequestsPerPeriod$VH.set(seg, x);
-    }
-    public static int RequestsPerPeriod$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_ALLOCATE_BC_STREAM_INPUT.RequestsPerPeriod$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RequestsPerPeriod$set(MemorySegment seg, long index, int x) {
-        _STORAGE_ALLOCATE_BC_STREAM_INPUT.RequestsPerPeriod$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Period$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Period"));
-    public static VarHandle Period$VH() {
-        return _STORAGE_ALLOCATE_BC_STREAM_INPUT.Period$VH;
-    }
-    public static int Period$get(MemorySegment seg) {
-        return (int)_STORAGE_ALLOCATE_BC_STREAM_INPUT.Period$VH.get(seg);
-    }
-    public static void Period$set( MemorySegment seg, int x) {
-        _STORAGE_ALLOCATE_BC_STREAM_INPUT.Period$VH.set(seg, x);
-    }
-    public static int Period$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_ALLOCATE_BC_STREAM_INPUT.Period$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Period$set(MemorySegment seg, long index, int x) {
-        _STORAGE_ALLOCATE_BC_STREAM_INPUT.Period$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RetryFailures$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RetryFailures"));
-    public static VarHandle RetryFailures$VH() {
-        return _STORAGE_ALLOCATE_BC_STREAM_INPUT.RetryFailures$VH;
-    }
-    public static byte RetryFailures$get(MemorySegment seg) {
-        return (byte)_STORAGE_ALLOCATE_BC_STREAM_INPUT.RetryFailures$VH.get(seg);
-    }
-    public static void RetryFailures$set( MemorySegment seg, byte x) {
-        _STORAGE_ALLOCATE_BC_STREAM_INPUT.RetryFailures$VH.set(seg, x);
-    }
-    public static byte RetryFailures$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_ALLOCATE_BC_STREAM_INPUT.RetryFailures$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RetryFailures$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_ALLOCATE_BC_STREAM_INPUT.RetryFailures$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Discardable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Discardable"));
-    public static VarHandle Discardable$VH() {
-        return _STORAGE_ALLOCATE_BC_STREAM_INPUT.Discardable$VH;
-    }
-    public static byte Discardable$get(MemorySegment seg) {
-        return (byte)_STORAGE_ALLOCATE_BC_STREAM_INPUT.Discardable$VH.get(seg);
-    }
-    public static void Discardable$set( MemorySegment seg, byte x) {
-        _STORAGE_ALLOCATE_BC_STREAM_INPUT.Discardable$VH.set(seg, x);
-    }
-    public static byte Discardable$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_ALLOCATE_BC_STREAM_INPUT.Discardable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Discardable$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_ALLOCATE_BC_STREAM_INPUT.Discardable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Reserved1$slice(MemorySegment seg) {
-        return seg.asSlice(14, 2);
-    }
-    static final VarHandle AccessType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AccessType"));
-    public static VarHandle AccessType$VH() {
-        return _STORAGE_ALLOCATE_BC_STREAM_INPUT.AccessType$VH;
-    }
-    public static int AccessType$get(MemorySegment seg) {
-        return (int)_STORAGE_ALLOCATE_BC_STREAM_INPUT.AccessType$VH.get(seg);
-    }
-    public static void AccessType$set( MemorySegment seg, int x) {
-        _STORAGE_ALLOCATE_BC_STREAM_INPUT.AccessType$VH.set(seg, x);
-    }
-    public static int AccessType$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_ALLOCATE_BC_STREAM_INPUT.AccessType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AccessType$set(MemorySegment seg, long index, int x) {
-        _STORAGE_ALLOCATE_BC_STREAM_INPUT.AccessType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AccessMode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AccessMode"));
-    public static VarHandle AccessMode$VH() {
-        return _STORAGE_ALLOCATE_BC_STREAM_INPUT.AccessMode$VH;
-    }
-    public static int AccessMode$get(MemorySegment seg) {
-        return (int)_STORAGE_ALLOCATE_BC_STREAM_INPUT.AccessMode$VH.get(seg);
-    }
-    public static void AccessMode$set( MemorySegment seg, int x) {
-        _STORAGE_ALLOCATE_BC_STREAM_INPUT.AccessMode$VH.set(seg, x);
-    }
-    public static int AccessMode$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_ALLOCATE_BC_STREAM_INPUT.AccessMode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AccessMode$set(MemorySegment seg, long index, int x) {
-        _STORAGE_ALLOCATE_BC_STREAM_INPUT.AccessMode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("RequestsPerPeriod"),
+        wgl_h.C_LONG.withName("Period"),
+        wgl_h.C_CHAR.withName("RetryFailures"),
+        wgl_h.C_CHAR.withName("Discardable"),
+        MemoryLayout.sequenceLayout(2, wgl_h.C_CHAR).withName("Reserved1"),
+        wgl_h.C_LONG.withName("AccessType"),
+        wgl_h.C_LONG.withName("AccessMode")
+    ).withName("_STORAGE_ALLOCATE_BC_STREAM_INPUT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt RequestsPerPeriod$LAYOUT = (OfInt)$LAYOUT.select(groupElement("RequestsPerPeriod"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD RequestsPerPeriod
+     * }
+     */
+    public static final OfInt RequestsPerPeriod$layout() {
+        return RequestsPerPeriod$LAYOUT;
+    }
+
+    private static final long RequestsPerPeriod$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD RequestsPerPeriod
+     * }
+     */
+    public static final long RequestsPerPeriod$offset() {
+        return RequestsPerPeriod$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD RequestsPerPeriod
+     * }
+     */
+    public static int RequestsPerPeriod(MemorySegment struct) {
+        return struct.get(RequestsPerPeriod$LAYOUT, RequestsPerPeriod$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD RequestsPerPeriod
+     * }
+     */
+    public static void RequestsPerPeriod(MemorySegment struct, int fieldValue) {
+        struct.set(RequestsPerPeriod$LAYOUT, RequestsPerPeriod$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Period$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Period"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Period
+     * }
+     */
+    public static final OfInt Period$layout() {
+        return Period$LAYOUT;
+    }
+
+    private static final long Period$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Period
+     * }
+     */
+    public static final long Period$offset() {
+        return Period$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Period
+     * }
+     */
+    public static int Period(MemorySegment struct) {
+        return struct.get(Period$LAYOUT, Period$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Period
+     * }
+     */
+    public static void Period(MemorySegment struct, int fieldValue) {
+        struct.set(Period$LAYOUT, Period$OFFSET, fieldValue);
+    }
+
+    private static final OfByte RetryFailures$LAYOUT = (OfByte)$LAYOUT.select(groupElement("RetryFailures"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN RetryFailures
+     * }
+     */
+    public static final OfByte RetryFailures$layout() {
+        return RetryFailures$LAYOUT;
+    }
+
+    private static final long RetryFailures$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN RetryFailures
+     * }
+     */
+    public static final long RetryFailures$offset() {
+        return RetryFailures$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN RetryFailures
+     * }
+     */
+    public static byte RetryFailures(MemorySegment struct) {
+        return struct.get(RetryFailures$LAYOUT, RetryFailures$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN RetryFailures
+     * }
+     */
+    public static void RetryFailures(MemorySegment struct, byte fieldValue) {
+        struct.set(RetryFailures$LAYOUT, RetryFailures$OFFSET, fieldValue);
+    }
+
+    private static final OfByte Discardable$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Discardable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN Discardable
+     * }
+     */
+    public static final OfByte Discardable$layout() {
+        return Discardable$LAYOUT;
+    }
+
+    private static final long Discardable$OFFSET = 13;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN Discardable
+     * }
+     */
+    public static final long Discardable$offset() {
+        return Discardable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN Discardable
+     * }
+     */
+    public static byte Discardable(MemorySegment struct) {
+        return struct.get(Discardable$LAYOUT, Discardable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN Discardable
+     * }
+     */
+    public static void Discardable(MemorySegment struct, byte fieldValue) {
+        struct.set(Discardable$LAYOUT, Discardable$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved1$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN Reserved1[2]
+     * }
+     */
+    public static final SequenceLayout Reserved1$layout() {
+        return Reserved1$LAYOUT;
+    }
+
+    private static final long Reserved1$OFFSET = 14;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN Reserved1[2]
+     * }
+     */
+    public static final long Reserved1$offset() {
+        return Reserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN Reserved1[2]
+     * }
+     */
+    public static MemorySegment Reserved1(MemorySegment struct) {
+        return struct.asSlice(Reserved1$OFFSET, Reserved1$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN Reserved1[2]
+     * }
+     */
+    public static void Reserved1(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved1$OFFSET, Reserved1$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved1$DIMS = { 2 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BOOLEAN Reserved1[2]
+     * }
+     */
+    public static long[] Reserved1$dimensions() {
+        return Reserved1$DIMS;
+    }
+    private static final VarHandle Reserved1$ELEM_HANDLE = Reserved1$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN Reserved1[2]
+     * }
+     */
+    public static byte Reserved1(MemorySegment struct, long index0) {
+        return (byte)Reserved1$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN Reserved1[2]
+     * }
+     */
+    public static void Reserved1(MemorySegment struct, long index0, byte fieldValue) {
+        Reserved1$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt AccessType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AccessType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD AccessType
+     * }
+     */
+    public static final OfInt AccessType$layout() {
+        return AccessType$LAYOUT;
+    }
+
+    private static final long AccessType$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD AccessType
+     * }
+     */
+    public static final long AccessType$offset() {
+        return AccessType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD AccessType
+     * }
+     */
+    public static int AccessType(MemorySegment struct) {
+        return struct.get(AccessType$LAYOUT, AccessType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD AccessType
+     * }
+     */
+    public static void AccessType(MemorySegment struct, int fieldValue) {
+        struct.set(AccessType$LAYOUT, AccessType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt AccessMode$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AccessMode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD AccessMode
+     * }
+     */
+    public static final OfInt AccessMode$layout() {
+        return AccessMode$LAYOUT;
+    }
+
+    private static final long AccessMode$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD AccessMode
+     * }
+     */
+    public static final long AccessMode$offset() {
+        return AccessMode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD AccessMode
+     * }
+     */
+    public static int AccessMode(MemorySegment struct) {
+        return struct.get(AccessMode$LAYOUT, AccessMode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD AccessMode
+     * }
+     */
+    public static void AccessMode(MemorySegment struct, int fieldValue) {
+        struct.set(AccessMode$LAYOUT, AccessMode$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

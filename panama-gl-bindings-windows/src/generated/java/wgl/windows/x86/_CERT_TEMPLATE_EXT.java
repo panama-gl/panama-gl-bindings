@@ -2,93 +2,265 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_TEMPLATE_EXT {
+ *     LPSTR pszObjId;
+ *     DWORD dwMajorVersion;
+ *     BOOL fMinorVersion;
+ *     DWORD dwMinorVersion;
+ * }
+ * }
+ */
 public class _CERT_TEMPLATE_EXT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("pszObjId"),
-        Constants$root.C_LONG$LAYOUT.withName("dwMajorVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("fMinorVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("dwMinorVersion"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_CERT_TEMPLATE_EXT");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_TEMPLATE_EXT.$struct$LAYOUT;
+    _CERT_TEMPLATE_EXT() {
+        // Should not be called directly
     }
-    static final VarHandle pszObjId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pszObjId"));
-    public static VarHandle pszObjId$VH() {
-        return _CERT_TEMPLATE_EXT.pszObjId$VH;
-    }
-    public static MemoryAddress pszObjId$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_TEMPLATE_EXT.pszObjId$VH.get(seg);
-    }
-    public static void pszObjId$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_TEMPLATE_EXT.pszObjId$VH.set(seg, x);
-    }
-    public static MemoryAddress pszObjId$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_TEMPLATE_EXT.pszObjId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pszObjId$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_TEMPLATE_EXT.pszObjId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwMajorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwMajorVersion"));
-    public static VarHandle dwMajorVersion$VH() {
-        return _CERT_TEMPLATE_EXT.dwMajorVersion$VH;
-    }
-    public static int dwMajorVersion$get(MemorySegment seg) {
-        return (int)_CERT_TEMPLATE_EXT.dwMajorVersion$VH.get(seg);
-    }
-    public static void dwMajorVersion$set( MemorySegment seg, int x) {
-        _CERT_TEMPLATE_EXT.dwMajorVersion$VH.set(seg, x);
-    }
-    public static int dwMajorVersion$get(MemorySegment seg, long index) {
-        return (int)_CERT_TEMPLATE_EXT.dwMajorVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwMajorVersion$set(MemorySegment seg, long index, int x) {
-        _CERT_TEMPLATE_EXT.dwMajorVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fMinorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fMinorVersion"));
-    public static VarHandle fMinorVersion$VH() {
-        return _CERT_TEMPLATE_EXT.fMinorVersion$VH;
-    }
-    public static int fMinorVersion$get(MemorySegment seg) {
-        return (int)_CERT_TEMPLATE_EXT.fMinorVersion$VH.get(seg);
-    }
-    public static void fMinorVersion$set( MemorySegment seg, int x) {
-        _CERT_TEMPLATE_EXT.fMinorVersion$VH.set(seg, x);
-    }
-    public static int fMinorVersion$get(MemorySegment seg, long index) {
-        return (int)_CERT_TEMPLATE_EXT.fMinorVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fMinorVersion$set(MemorySegment seg, long index, int x) {
-        _CERT_TEMPLATE_EXT.fMinorVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwMinorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwMinorVersion"));
-    public static VarHandle dwMinorVersion$VH() {
-        return _CERT_TEMPLATE_EXT.dwMinorVersion$VH;
-    }
-    public static int dwMinorVersion$get(MemorySegment seg) {
-        return (int)_CERT_TEMPLATE_EXT.dwMinorVersion$VH.get(seg);
-    }
-    public static void dwMinorVersion$set( MemorySegment seg, int x) {
-        _CERT_TEMPLATE_EXT.dwMinorVersion$VH.set(seg, x);
-    }
-    public static int dwMinorVersion$get(MemorySegment seg, long index) {
-        return (int)_CERT_TEMPLATE_EXT.dwMinorVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwMinorVersion$set(MemorySegment seg, long index, int x) {
-        _CERT_TEMPLATE_EXT.dwMinorVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("pszObjId"),
+        wgl_h.C_LONG.withName("dwMajorVersion"),
+        wgl_h.C_INT.withName("fMinorVersion"),
+        wgl_h.C_LONG.withName("dwMinorVersion"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_CERT_TEMPLATE_EXT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout pszObjId$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pszObjId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pszObjId
+     * }
+     */
+    public static final AddressLayout pszObjId$layout() {
+        return pszObjId$LAYOUT;
+    }
+
+    private static final long pszObjId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pszObjId
+     * }
+     */
+    public static final long pszObjId$offset() {
+        return pszObjId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pszObjId
+     * }
+     */
+    public static MemorySegment pszObjId(MemorySegment struct) {
+        return struct.get(pszObjId$LAYOUT, pszObjId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pszObjId
+     * }
+     */
+    public static void pszObjId(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pszObjId$LAYOUT, pszObjId$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwMajorVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwMajorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwMajorVersion
+     * }
+     */
+    public static final OfInt dwMajorVersion$layout() {
+        return dwMajorVersion$LAYOUT;
+    }
+
+    private static final long dwMajorVersion$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwMajorVersion
+     * }
+     */
+    public static final long dwMajorVersion$offset() {
+        return dwMajorVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwMajorVersion
+     * }
+     */
+    public static int dwMajorVersion(MemorySegment struct) {
+        return struct.get(dwMajorVersion$LAYOUT, dwMajorVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwMajorVersion
+     * }
+     */
+    public static void dwMajorVersion(MemorySegment struct, int fieldValue) {
+        struct.set(dwMajorVersion$LAYOUT, dwMajorVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fMinorVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fMinorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL fMinorVersion
+     * }
+     */
+    public static final OfInt fMinorVersion$layout() {
+        return fMinorVersion$LAYOUT;
+    }
+
+    private static final long fMinorVersion$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL fMinorVersion
+     * }
+     */
+    public static final long fMinorVersion$offset() {
+        return fMinorVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL fMinorVersion
+     * }
+     */
+    public static int fMinorVersion(MemorySegment struct) {
+        return struct.get(fMinorVersion$LAYOUT, fMinorVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL fMinorVersion
+     * }
+     */
+    public static void fMinorVersion(MemorySegment struct, int fieldValue) {
+        struct.set(fMinorVersion$LAYOUT, fMinorVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwMinorVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwMinorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwMinorVersion
+     * }
+     */
+    public static final OfInt dwMinorVersion$layout() {
+        return dwMinorVersion$LAYOUT;
+    }
+
+    private static final long dwMinorVersion$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwMinorVersion
+     * }
+     */
+    public static final long dwMinorVersion$offset() {
+        return dwMinorVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwMinorVersion
+     * }
+     */
+    public static int dwMinorVersion(MemorySegment struct) {
+        return struct.get(dwMinorVersion$LAYOUT, dwMinorVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwMinorVersion
+     * }
+     */
+    public static void dwMinorVersion(MemorySegment struct, int fieldValue) {
+        struct.set(dwMinorVersion$LAYOUT, dwMinorVersion$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

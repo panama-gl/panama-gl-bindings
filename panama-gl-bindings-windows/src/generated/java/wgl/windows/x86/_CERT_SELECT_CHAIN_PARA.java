@@ -2,110 +2,311 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_SELECT_CHAIN_PARA {
+ *     HCERTCHAINENGINE hChainEngine;
+ *     PFILETIME pTime;
+ *     HCERTSTORE hAdditionalStore;
+ *     PCERT_CHAIN_PARA pChainPara;
+ *     DWORD dwFlags;
+ * }
+ * }
+ */
 public class _CERT_SELECT_CHAIN_PARA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("hChainEngine"),
-        Constants$root.C_POINTER$LAYOUT.withName("pTime"),
-        Constants$root.C_POINTER$LAYOUT.withName("hAdditionalStore"),
-        Constants$root.C_POINTER$LAYOUT.withName("pChainPara"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFlags"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_CERT_SELECT_CHAIN_PARA");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_SELECT_CHAIN_PARA.$struct$LAYOUT;
+    _CERT_SELECT_CHAIN_PARA() {
+        // Should not be called directly
     }
-    static final VarHandle hChainEngine$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hChainEngine"));
-    public static VarHandle hChainEngine$VH() {
-        return _CERT_SELECT_CHAIN_PARA.hChainEngine$VH;
-    }
-    public static MemoryAddress hChainEngine$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_SELECT_CHAIN_PARA.hChainEngine$VH.get(seg);
-    }
-    public static void hChainEngine$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_SELECT_CHAIN_PARA.hChainEngine$VH.set(seg, x);
-    }
-    public static MemoryAddress hChainEngine$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_SELECT_CHAIN_PARA.hChainEngine$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hChainEngine$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_SELECT_CHAIN_PARA.hChainEngine$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pTime$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pTime"));
-    public static VarHandle pTime$VH() {
-        return _CERT_SELECT_CHAIN_PARA.pTime$VH;
-    }
-    public static MemoryAddress pTime$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_SELECT_CHAIN_PARA.pTime$VH.get(seg);
-    }
-    public static void pTime$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_SELECT_CHAIN_PARA.pTime$VH.set(seg, x);
-    }
-    public static MemoryAddress pTime$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_SELECT_CHAIN_PARA.pTime$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pTime$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_SELECT_CHAIN_PARA.pTime$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hAdditionalStore$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hAdditionalStore"));
-    public static VarHandle hAdditionalStore$VH() {
-        return _CERT_SELECT_CHAIN_PARA.hAdditionalStore$VH;
-    }
-    public static MemoryAddress hAdditionalStore$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_SELECT_CHAIN_PARA.hAdditionalStore$VH.get(seg);
-    }
-    public static void hAdditionalStore$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_SELECT_CHAIN_PARA.hAdditionalStore$VH.set(seg, x);
-    }
-    public static MemoryAddress hAdditionalStore$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_SELECT_CHAIN_PARA.hAdditionalStore$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hAdditionalStore$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_SELECT_CHAIN_PARA.hAdditionalStore$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pChainPara$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pChainPara"));
-    public static VarHandle pChainPara$VH() {
-        return _CERT_SELECT_CHAIN_PARA.pChainPara$VH;
-    }
-    public static MemoryAddress pChainPara$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_SELECT_CHAIN_PARA.pChainPara$VH.get(seg);
-    }
-    public static void pChainPara$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_SELECT_CHAIN_PARA.pChainPara$VH.set(seg, x);
-    }
-    public static MemoryAddress pChainPara$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_SELECT_CHAIN_PARA.pChainPara$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pChainPara$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_SELECT_CHAIN_PARA.pChainPara$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFlags"));
-    public static VarHandle dwFlags$VH() {
-        return _CERT_SELECT_CHAIN_PARA.dwFlags$VH;
-    }
-    public static int dwFlags$get(MemorySegment seg) {
-        return (int)_CERT_SELECT_CHAIN_PARA.dwFlags$VH.get(seg);
-    }
-    public static void dwFlags$set( MemorySegment seg, int x) {
-        _CERT_SELECT_CHAIN_PARA.dwFlags$VH.set(seg, x);
-    }
-    public static int dwFlags$get(MemorySegment seg, long index) {
-        return (int)_CERT_SELECT_CHAIN_PARA.dwFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFlags$set(MemorySegment seg, long index, int x) {
-        _CERT_SELECT_CHAIN_PARA.dwFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("hChainEngine"),
+        wgl_h.C_POINTER.withName("pTime"),
+        wgl_h.C_POINTER.withName("hAdditionalStore"),
+        wgl_h.C_POINTER.withName("pChainPara"),
+        wgl_h.C_LONG.withName("dwFlags"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_CERT_SELECT_CHAIN_PARA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout hChainEngine$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hChainEngine"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HCERTCHAINENGINE hChainEngine
+     * }
+     */
+    public static final AddressLayout hChainEngine$layout() {
+        return hChainEngine$LAYOUT;
+    }
+
+    private static final long hChainEngine$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HCERTCHAINENGINE hChainEngine
+     * }
+     */
+    public static final long hChainEngine$offset() {
+        return hChainEngine$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HCERTCHAINENGINE hChainEngine
+     * }
+     */
+    public static MemorySegment hChainEngine(MemorySegment struct) {
+        return struct.get(hChainEngine$LAYOUT, hChainEngine$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HCERTCHAINENGINE hChainEngine
+     * }
+     */
+    public static void hChainEngine(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hChainEngine$LAYOUT, hChainEngine$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pTime$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PFILETIME pTime
+     * }
+     */
+    public static final AddressLayout pTime$layout() {
+        return pTime$LAYOUT;
+    }
+
+    private static final long pTime$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PFILETIME pTime
+     * }
+     */
+    public static final long pTime$offset() {
+        return pTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PFILETIME pTime
+     * }
+     */
+    public static MemorySegment pTime(MemorySegment struct) {
+        return struct.get(pTime$LAYOUT, pTime$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PFILETIME pTime
+     * }
+     */
+    public static void pTime(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pTime$LAYOUT, pTime$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hAdditionalStore$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hAdditionalStore"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hAdditionalStore
+     * }
+     */
+    public static final AddressLayout hAdditionalStore$layout() {
+        return hAdditionalStore$LAYOUT;
+    }
+
+    private static final long hAdditionalStore$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hAdditionalStore
+     * }
+     */
+    public static final long hAdditionalStore$offset() {
+        return hAdditionalStore$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hAdditionalStore
+     * }
+     */
+    public static MemorySegment hAdditionalStore(MemorySegment struct) {
+        return struct.get(hAdditionalStore$LAYOUT, hAdditionalStore$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hAdditionalStore
+     * }
+     */
+    public static void hAdditionalStore(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hAdditionalStore$LAYOUT, hAdditionalStore$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pChainPara$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pChainPara"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCERT_CHAIN_PARA pChainPara
+     * }
+     */
+    public static final AddressLayout pChainPara$layout() {
+        return pChainPara$LAYOUT;
+    }
+
+    private static final long pChainPara$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCERT_CHAIN_PARA pChainPara
+     * }
+     */
+    public static final long pChainPara$offset() {
+        return pChainPara$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCERT_CHAIN_PARA pChainPara
+     * }
+     */
+    public static MemorySegment pChainPara(MemorySegment struct) {
+        return struct.get(pChainPara$LAYOUT, pChainPara$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCERT_CHAIN_PARA pChainPara
+     * }
+     */
+    public static void pChainPara(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pChainPara$LAYOUT, pChainPara$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final OfInt dwFlags$layout() {
+        return dwFlags$LAYOUT;
+    }
+
+    private static final long dwFlags$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final long dwFlags$offset() {
+        return dwFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static int dwFlags(MemorySegment struct) {
+        return struct.get(dwFlags$LAYOUT, dwFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static void dwFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwFlags$LAYOUT, dwFlags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,13 +2,29 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _AUTHENTICODE_TS_EXTRA_CERT_CHAIN_POLICY_PARA {
+ *     DWORD cbSize;
+ *     DWORD dwRegPolicySettings;
+ *     BOOL fCommercial;
+ * } AUTHENTICODE_TS_EXTRA_CERT_CHAIN_POLICY_PARA
+ * }
+ */
 public class AUTHENTICODE_TS_EXTRA_CERT_CHAIN_POLICY_PARA extends _AUTHENTICODE_TS_EXTRA_CERT_CHAIN_POLICY_PARA {
 
+    AUTHENTICODE_TS_EXTRA_CERT_CHAIN_POLICY_PARA() {
+        // Should not be called directly
+    }
 }
-
 

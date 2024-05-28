@@ -2,13 +2,36 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _DEVICE_POWER_DESCRIPTOR {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     BOOLEAN DeviceAttentionSupported;
+ *     BOOLEAN AsynchronousNotificationSupported;
+ *     BOOLEAN IdlePowerManagementEnabled;
+ *     BOOLEAN D3ColdEnabled;
+ *     BOOLEAN D3ColdSupported;
+ *     BOOLEAN NoVerifyDuringIdlePower;
+ *     BYTE Reserved[2];
+ *     DWORD IdleTimeoutInMS;
+ * } DEVICE_POWER_DESCRIPTOR
+ * }
+ */
 public class DEVICE_POWER_DESCRIPTOR extends _DEVICE_POWER_DESCRIPTOR {
 
+    DEVICE_POWER_DESCRIPTOR() {
+        // Should not be called directly
+    }
 }
-
 

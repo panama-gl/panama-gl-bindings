@@ -2,104 +2,311 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _TAPE_GET_MEDIA_PARAMETERS {
+ *     LARGE_INTEGER Capacity;
+ *     LARGE_INTEGER Remaining;
+ *     DWORD BlockSize;
+ *     DWORD PartitionCount;
+ *     BOOLEAN WriteProtected;
+ * }
+ * }
+ */
 public class _TAPE_GET_MEDIA_PARAMETERS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("Capacity"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("Remaining"),
-        Constants$root.C_LONG$LAYOUT.withName("BlockSize"),
-        Constants$root.C_LONG$LAYOUT.withName("PartitionCount"),
-        Constants$root.C_CHAR$LAYOUT.withName("WriteProtected"),
-        MemoryLayout.paddingLayout(56)
-    ).withName("_TAPE_GET_MEDIA_PARAMETERS");
-    public static MemoryLayout $LAYOUT() {
-        return _TAPE_GET_MEDIA_PARAMETERS.$struct$LAYOUT;
+    _TAPE_GET_MEDIA_PARAMETERS() {
+        // Should not be called directly
     }
-    public static MemorySegment Capacity$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    public static MemorySegment Remaining$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    static final VarHandle BlockSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BlockSize"));
-    public static VarHandle BlockSize$VH() {
-        return _TAPE_GET_MEDIA_PARAMETERS.BlockSize$VH;
-    }
-    public static int BlockSize$get(MemorySegment seg) {
-        return (int)_TAPE_GET_MEDIA_PARAMETERS.BlockSize$VH.get(seg);
-    }
-    public static void BlockSize$set( MemorySegment seg, int x) {
-        _TAPE_GET_MEDIA_PARAMETERS.BlockSize$VH.set(seg, x);
-    }
-    public static int BlockSize$get(MemorySegment seg, long index) {
-        return (int)_TAPE_GET_MEDIA_PARAMETERS.BlockSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BlockSize$set(MemorySegment seg, long index, int x) {
-        _TAPE_GET_MEDIA_PARAMETERS.BlockSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PartitionCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PartitionCount"));
-    public static VarHandle PartitionCount$VH() {
-        return _TAPE_GET_MEDIA_PARAMETERS.PartitionCount$VH;
-    }
-    public static int PartitionCount$get(MemorySegment seg) {
-        return (int)_TAPE_GET_MEDIA_PARAMETERS.PartitionCount$VH.get(seg);
-    }
-    public static void PartitionCount$set( MemorySegment seg, int x) {
-        _TAPE_GET_MEDIA_PARAMETERS.PartitionCount$VH.set(seg, x);
-    }
-    public static int PartitionCount$get(MemorySegment seg, long index) {
-        return (int)_TAPE_GET_MEDIA_PARAMETERS.PartitionCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PartitionCount$set(MemorySegment seg, long index, int x) {
-        _TAPE_GET_MEDIA_PARAMETERS.PartitionCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle WriteProtected$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("WriteProtected"));
-    public static VarHandle WriteProtected$VH() {
-        return _TAPE_GET_MEDIA_PARAMETERS.WriteProtected$VH;
-    }
-    public static byte WriteProtected$get(MemorySegment seg) {
-        return (byte)_TAPE_GET_MEDIA_PARAMETERS.WriteProtected$VH.get(seg);
-    }
-    public static void WriteProtected$set( MemorySegment seg, byte x) {
-        _TAPE_GET_MEDIA_PARAMETERS.WriteProtected$VH.set(seg, x);
-    }
-    public static byte WriteProtected$get(MemorySegment seg, long index) {
-        return (byte)_TAPE_GET_MEDIA_PARAMETERS.WriteProtected$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void WriteProtected$set(MemorySegment seg, long index, byte x) {
-        _TAPE_GET_MEDIA_PARAMETERS.WriteProtected$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _LARGE_INTEGER.layout().withName("Capacity"),
+        _LARGE_INTEGER.layout().withName("Remaining"),
+        wgl_h.C_LONG.withName("BlockSize"),
+        wgl_h.C_LONG.withName("PartitionCount"),
+        wgl_h.C_CHAR.withName("WriteProtected"),
+        MemoryLayout.paddingLayout(7)
+    ).withName("_TAPE_GET_MEDIA_PARAMETERS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout Capacity$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Capacity"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Capacity
+     * }
+     */
+    public static final GroupLayout Capacity$layout() {
+        return Capacity$LAYOUT;
+    }
+
+    private static final long Capacity$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Capacity
+     * }
+     */
+    public static final long Capacity$offset() {
+        return Capacity$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Capacity
+     * }
+     */
+    public static MemorySegment Capacity(MemorySegment struct) {
+        return struct.asSlice(Capacity$OFFSET, Capacity$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Capacity
+     * }
+     */
+    public static void Capacity(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Capacity$OFFSET, Capacity$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Remaining$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Remaining"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Remaining
+     * }
+     */
+    public static final GroupLayout Remaining$layout() {
+        return Remaining$LAYOUT;
+    }
+
+    private static final long Remaining$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Remaining
+     * }
+     */
+    public static final long Remaining$offset() {
+        return Remaining$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Remaining
+     * }
+     */
+    public static MemorySegment Remaining(MemorySegment struct) {
+        return struct.asSlice(Remaining$OFFSET, Remaining$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Remaining
+     * }
+     */
+    public static void Remaining(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Remaining$OFFSET, Remaining$LAYOUT.byteSize());
+    }
+
+    private static final OfInt BlockSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BlockSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BlockSize
+     * }
+     */
+    public static final OfInt BlockSize$layout() {
+        return BlockSize$LAYOUT;
+    }
+
+    private static final long BlockSize$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BlockSize
+     * }
+     */
+    public static final long BlockSize$offset() {
+        return BlockSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BlockSize
+     * }
+     */
+    public static int BlockSize(MemorySegment struct) {
+        return struct.get(BlockSize$LAYOUT, BlockSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BlockSize
+     * }
+     */
+    public static void BlockSize(MemorySegment struct, int fieldValue) {
+        struct.set(BlockSize$LAYOUT, BlockSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt PartitionCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PartitionCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PartitionCount
+     * }
+     */
+    public static final OfInt PartitionCount$layout() {
+        return PartitionCount$LAYOUT;
+    }
+
+    private static final long PartitionCount$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PartitionCount
+     * }
+     */
+    public static final long PartitionCount$offset() {
+        return PartitionCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PartitionCount
+     * }
+     */
+    public static int PartitionCount(MemorySegment struct) {
+        return struct.get(PartitionCount$LAYOUT, PartitionCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PartitionCount
+     * }
+     */
+    public static void PartitionCount(MemorySegment struct, int fieldValue) {
+        struct.set(PartitionCount$LAYOUT, PartitionCount$OFFSET, fieldValue);
+    }
+
+    private static final OfByte WriteProtected$LAYOUT = (OfByte)$LAYOUT.select(groupElement("WriteProtected"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN WriteProtected
+     * }
+     */
+    public static final OfByte WriteProtected$layout() {
+        return WriteProtected$LAYOUT;
+    }
+
+    private static final long WriteProtected$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN WriteProtected
+     * }
+     */
+    public static final long WriteProtected$offset() {
+        return WriteProtected$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN WriteProtected
+     * }
+     */
+    public static byte WriteProtected(MemorySegment struct) {
+        return struct.get(WriteProtected$LAYOUT, WriteProtected$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN WriteProtected
+     * }
+     */
+    public static void WriteProtected(MemorySegment struct, byte fieldValue) {
+        struct.set(WriteProtected$LAYOUT, WriteProtected$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,76 +2,219 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _RESUME_PERFORMANCE {
+ *     DWORD PostTimeMs;
+ *     ULONGLONG TotalResumeTimeMs;
+ *     ULONGLONG ResumeCompleteTimestamp;
+ * }
+ * }
+ */
 public class _RESUME_PERFORMANCE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("PostTimeMs"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("TotalResumeTimeMs"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ResumeCompleteTimestamp")
-    ).withName("_RESUME_PERFORMANCE");
-    public static MemoryLayout $LAYOUT() {
-        return _RESUME_PERFORMANCE.$struct$LAYOUT;
+    _RESUME_PERFORMANCE() {
+        // Should not be called directly
     }
-    static final VarHandle PostTimeMs$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PostTimeMs"));
-    public static VarHandle PostTimeMs$VH() {
-        return _RESUME_PERFORMANCE.PostTimeMs$VH;
-    }
-    public static int PostTimeMs$get(MemorySegment seg) {
-        return (int)_RESUME_PERFORMANCE.PostTimeMs$VH.get(seg);
-    }
-    public static void PostTimeMs$set( MemorySegment seg, int x) {
-        _RESUME_PERFORMANCE.PostTimeMs$VH.set(seg, x);
-    }
-    public static int PostTimeMs$get(MemorySegment seg, long index) {
-        return (int)_RESUME_PERFORMANCE.PostTimeMs$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PostTimeMs$set(MemorySegment seg, long index, int x) {
-        _RESUME_PERFORMANCE.PostTimeMs$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TotalResumeTimeMs$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TotalResumeTimeMs"));
-    public static VarHandle TotalResumeTimeMs$VH() {
-        return _RESUME_PERFORMANCE.TotalResumeTimeMs$VH;
-    }
-    public static long TotalResumeTimeMs$get(MemorySegment seg) {
-        return (long)_RESUME_PERFORMANCE.TotalResumeTimeMs$VH.get(seg);
-    }
-    public static void TotalResumeTimeMs$set( MemorySegment seg, long x) {
-        _RESUME_PERFORMANCE.TotalResumeTimeMs$VH.set(seg, x);
-    }
-    public static long TotalResumeTimeMs$get(MemorySegment seg, long index) {
-        return (long)_RESUME_PERFORMANCE.TotalResumeTimeMs$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TotalResumeTimeMs$set(MemorySegment seg, long index, long x) {
-        _RESUME_PERFORMANCE.TotalResumeTimeMs$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ResumeCompleteTimestamp$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ResumeCompleteTimestamp"));
-    public static VarHandle ResumeCompleteTimestamp$VH() {
-        return _RESUME_PERFORMANCE.ResumeCompleteTimestamp$VH;
-    }
-    public static long ResumeCompleteTimestamp$get(MemorySegment seg) {
-        return (long)_RESUME_PERFORMANCE.ResumeCompleteTimestamp$VH.get(seg);
-    }
-    public static void ResumeCompleteTimestamp$set( MemorySegment seg, long x) {
-        _RESUME_PERFORMANCE.ResumeCompleteTimestamp$VH.set(seg, x);
-    }
-    public static long ResumeCompleteTimestamp$get(MemorySegment seg, long index) {
-        return (long)_RESUME_PERFORMANCE.ResumeCompleteTimestamp$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ResumeCompleteTimestamp$set(MemorySegment seg, long index, long x) {
-        _RESUME_PERFORMANCE.ResumeCompleteTimestamp$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("PostTimeMs"),
+        MemoryLayout.paddingLayout(4),
+        freeglut_h.C_LONG_LONG.withName("TotalResumeTimeMs"),
+        freeglut_h.C_LONG_LONG.withName("ResumeCompleteTimestamp")
+    ).withName("_RESUME_PERFORMANCE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt PostTimeMs$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PostTimeMs"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PostTimeMs
+     * }
+     */
+    public static final OfInt PostTimeMs$layout() {
+        return PostTimeMs$LAYOUT;
+    }
+
+    private static final long PostTimeMs$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PostTimeMs
+     * }
+     */
+    public static final long PostTimeMs$offset() {
+        return PostTimeMs$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PostTimeMs
+     * }
+     */
+    public static int PostTimeMs(MemorySegment struct) {
+        return struct.get(PostTimeMs$LAYOUT, PostTimeMs$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PostTimeMs
+     * }
+     */
+    public static void PostTimeMs(MemorySegment struct, int fieldValue) {
+        struct.set(PostTimeMs$LAYOUT, PostTimeMs$OFFSET, fieldValue);
+    }
+
+    private static final OfLong TotalResumeTimeMs$LAYOUT = (OfLong)$LAYOUT.select(groupElement("TotalResumeTimeMs"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG TotalResumeTimeMs
+     * }
+     */
+    public static final OfLong TotalResumeTimeMs$layout() {
+        return TotalResumeTimeMs$LAYOUT;
+    }
+
+    private static final long TotalResumeTimeMs$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG TotalResumeTimeMs
+     * }
+     */
+    public static final long TotalResumeTimeMs$offset() {
+        return TotalResumeTimeMs$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG TotalResumeTimeMs
+     * }
+     */
+    public static long TotalResumeTimeMs(MemorySegment struct) {
+        return struct.get(TotalResumeTimeMs$LAYOUT, TotalResumeTimeMs$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG TotalResumeTimeMs
+     * }
+     */
+    public static void TotalResumeTimeMs(MemorySegment struct, long fieldValue) {
+        struct.set(TotalResumeTimeMs$LAYOUT, TotalResumeTimeMs$OFFSET, fieldValue);
+    }
+
+    private static final OfLong ResumeCompleteTimestamp$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ResumeCompleteTimestamp"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG ResumeCompleteTimestamp
+     * }
+     */
+    public static final OfLong ResumeCompleteTimestamp$layout() {
+        return ResumeCompleteTimestamp$LAYOUT;
+    }
+
+    private static final long ResumeCompleteTimestamp$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG ResumeCompleteTimestamp
+     * }
+     */
+    public static final long ResumeCompleteTimestamp$offset() {
+        return ResumeCompleteTimestamp$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG ResumeCompleteTimestamp
+     * }
+     */
+    public static long ResumeCompleteTimestamp(MemorySegment struct) {
+        return struct.get(ResumeCompleteTimestamp$LAYOUT, ResumeCompleteTimestamp$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG ResumeCompleteTimestamp
+     * }
+     */
+    public static void ResumeCompleteTimestamp(MemorySegment struct, long fieldValue) {
+        struct.set(ResumeCompleteTimestamp$LAYOUT, ResumeCompleteTimestamp$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

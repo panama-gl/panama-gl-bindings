@@ -2,432 +2,1422 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STREAM_INFORMATION_ENTRY {
+ *     DWORD Version;
+ *     DWORD Flags;
+ *     union _StreamInformation {
+ *         struct _DesiredStorageClass {
+ *             FILE_STORAGE_TIER_CLASS Class;
+ *             DWORD Flags;
+ *         } DesiredStorageClass;
+ *         struct _DataStream {
+ *             WORD Length;
+ *             WORD Flags;
+ *             DWORD Reserved;
+ *             DWORDLONG Vdl;
+ *         } DataStream;
+ *         struct _Reparse {
+ *             WORD Length;
+ *             WORD Flags;
+ *             DWORD ReparseDataSize;
+ *             DWORD ReparseDataOffset;
+ *         } Reparse;
+ *         struct _Ea {
+ *             WORD Length;
+ *             WORD Flags;
+ *             DWORD EaSize;
+ *             DWORD EaInformationOffset;
+ *         } Ea;
+ *     } StreamInformation;
+ * }
+ * }
+ */
 public class _STREAM_INFORMATION_ENTRY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("Class"),
-                Constants$root.C_LONG$LAYOUT.withName("Flags")
-            ).withName("DesiredStorageClass"),
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("Length"),
-                Constants$root.C_SHORT$LAYOUT.withName("Flags"),
-                Constants$root.C_LONG$LAYOUT.withName("Reserved"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("Vdl")
-            ).withName("DataStream"),
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("Length"),
-                Constants$root.C_SHORT$LAYOUT.withName("Flags"),
-                Constants$root.C_LONG$LAYOUT.withName("ReparseDataSize"),
-                Constants$root.C_LONG$LAYOUT.withName("ReparseDataOffset")
-            ).withName("Reparse"),
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("Length"),
-                Constants$root.C_SHORT$LAYOUT.withName("Flags"),
-                Constants$root.C_LONG$LAYOUT.withName("EaSize"),
-                Constants$root.C_LONG$LAYOUT.withName("EaInformationOffset")
-            ).withName("Ea")
-        ).withName("StreamInformation")
+    _STREAM_INFORMATION_ENTRY() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Flags"),
+        _STREAM_INFORMATION_ENTRY._StreamInformation.layout().withName("StreamInformation")
     ).withName("_STREAM_INFORMATION_ENTRY");
-    public static MemoryLayout $LAYOUT() {
-        return _STREAM_INFORMATION_ENTRY.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _STREAM_INFORMATION_ENTRY.Version$VH;
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
     }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_STREAM_INFORMATION_ENTRY.Version$VH.get(seg);
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
     }
-    public static void Version$set( MemorySegment seg, int x) {
-        _STREAM_INFORMATION_ENTRY.Version$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
     }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_STREAM_INFORMATION_ENTRY.Version$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
     }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _STREAM_INFORMATION_ENTRY.Version$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
     }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _STREAM_INFORMATION_ENTRY.Flags$VH;
+
+    private static final long Flags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
     }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_STREAM_INFORMATION_ENTRY.Flags$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
     }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _STREAM_INFORMATION_ENTRY.Flags$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
     }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_STREAM_INFORMATION_ENTRY.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _STREAM_INFORMATION_ENTRY.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * union _StreamInformation {
+     *     struct _DesiredStorageClass {
+     *         FILE_STORAGE_TIER_CLASS Class;
+     *         DWORD Flags;
+     *     } DesiredStorageClass;
+     *     struct _DataStream {
+     *         WORD Length;
+     *         WORD Flags;
+     *         DWORD Reserved;
+     *         DWORDLONG Vdl;
+     *     } DataStream;
+     *     struct _Reparse {
+     *         WORD Length;
+     *         WORD Flags;
+     *         DWORD ReparseDataSize;
+     *         DWORD ReparseDataOffset;
+     *     } Reparse;
+     *     struct _Ea {
+     *         WORD Length;
+     *         WORD Flags;
+     *         DWORD EaSize;
+     *         DWORD EaInformationOffset;
+     *     } Ea;
+     * }
+     * }
+     */
     public static class _StreamInformation {
 
-        static final  GroupLayout _StreamInformation$union$LAYOUT = MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("Class"),
-                Constants$root.C_LONG$LAYOUT.withName("Flags")
-            ).withName("DesiredStorageClass"),
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("Length"),
-                Constants$root.C_SHORT$LAYOUT.withName("Flags"),
-                Constants$root.C_LONG$LAYOUT.withName("Reserved"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("Vdl")
-            ).withName("DataStream"),
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("Length"),
-                Constants$root.C_SHORT$LAYOUT.withName("Flags"),
-                Constants$root.C_LONG$LAYOUT.withName("ReparseDataSize"),
-                Constants$root.C_LONG$LAYOUT.withName("ReparseDataOffset")
-            ).withName("Reparse"),
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("Length"),
-                Constants$root.C_SHORT$LAYOUT.withName("Flags"),
-                Constants$root.C_LONG$LAYOUT.withName("EaSize"),
-                Constants$root.C_LONG$LAYOUT.withName("EaInformationOffset")
-            ).withName("Ea")
-        ).withName("_StreamInformation");
-        public static MemoryLayout $LAYOUT() {
-            return _StreamInformation._StreamInformation$union$LAYOUT;
+        _StreamInformation() {
+            // Should not be called directly
         }
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            _STREAM_INFORMATION_ENTRY._StreamInformation._DesiredStorageClass.layout().withName("DesiredStorageClass"),
+            _STREAM_INFORMATION_ENTRY._StreamInformation._DataStream.layout().withName("DataStream"),
+            _STREAM_INFORMATION_ENTRY._StreamInformation._Reparse.layout().withName("Reparse"),
+            _STREAM_INFORMATION_ENTRY._StreamInformation._Ea.layout().withName("Ea")
+        ).withName("_StreamInformation");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
+        }
+
+        /**
+         * {@snippet lang=c :
+         * struct _DesiredStorageClass {
+         *     FILE_STORAGE_TIER_CLASS Class;
+         *     DWORD Flags;
+         * }
+         * }
+         */
         public static class _DesiredStorageClass {
 
-            static final  GroupLayout _StreamInformation$_DesiredStorageClass$struct$LAYOUT = MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("Class"),
-                Constants$root.C_LONG$LAYOUT.withName("Flags")
+            _DesiredStorageClass() {
+                // Should not be called directly
+            }
+
+            private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                wgl_h.C_INT.withName("Class"),
+                wgl_h.C_LONG.withName("Flags")
             ).withName("_DesiredStorageClass");
-            public static MemoryLayout $LAYOUT() {
-                return _DesiredStorageClass._StreamInformation$_DesiredStorageClass$struct$LAYOUT;
+
+            /**
+             * The layout of this struct
+             */
+            public static final GroupLayout layout() {
+                return $LAYOUT;
             }
-            static final VarHandle Class$VH = _StreamInformation$_DesiredStorageClass$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Class"));
-            public static VarHandle Class$VH() {
-                return _DesiredStorageClass.Class$VH;
+
+            private static final OfInt Class$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Class"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * FILE_STORAGE_TIER_CLASS Class
+             * }
+             */
+            public static final OfInt Class$layout() {
+                return Class$LAYOUT;
             }
-            public static int Class$get(MemorySegment seg) {
-                return (int)_DesiredStorageClass.Class$VH.get(seg);
+
+            private static final long Class$OFFSET = 0;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * FILE_STORAGE_TIER_CLASS Class
+             * }
+             */
+            public static final long Class$offset() {
+                return Class$OFFSET;
             }
-            public static void Class$set( MemorySegment seg, int x) {
-                _DesiredStorageClass.Class$VH.set(seg, x);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * FILE_STORAGE_TIER_CLASS Class
+             * }
+             */
+            public static int Class(MemorySegment struct) {
+                return struct.get(Class$LAYOUT, Class$OFFSET);
             }
-            public static int Class$get(MemorySegment seg, long index) {
-                return (int)_DesiredStorageClass.Class$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * FILE_STORAGE_TIER_CLASS Class
+             * }
+             */
+            public static void Class(MemorySegment struct, int fieldValue) {
+                struct.set(Class$LAYOUT, Class$OFFSET, fieldValue);
             }
-            public static void Class$set(MemorySegment seg, long index, int x) {
-                _DesiredStorageClass.Class$VH.set(seg.asSlice(index*sizeof()), x);
+
+            private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD Flags
+             * }
+             */
+            public static final OfInt Flags$layout() {
+                return Flags$LAYOUT;
             }
-            static final VarHandle Flags$VH = _StreamInformation$_DesiredStorageClass$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-            public static VarHandle Flags$VH() {
-                return _DesiredStorageClass.Flags$VH;
+
+            private static final long Flags$OFFSET = 4;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD Flags
+             * }
+             */
+            public static final long Flags$offset() {
+                return Flags$OFFSET;
             }
-            public static int Flags$get(MemorySegment seg) {
-                return (int)_DesiredStorageClass.Flags$VH.get(seg);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD Flags
+             * }
+             */
+            public static int Flags(MemorySegment struct) {
+                return struct.get(Flags$LAYOUT, Flags$OFFSET);
             }
-            public static void Flags$set( MemorySegment seg, int x) {
-                _DesiredStorageClass.Flags$VH.set(seg, x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD Flags
+             * }
+             */
+            public static void Flags(MemorySegment struct, int fieldValue) {
+                struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
             }
-            public static int Flags$get(MemorySegment seg, long index) {
-                return (int)_DesiredStorageClass.Flags$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+             * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+             */
+            public static MemorySegment asSlice(MemorySegment array, long index) {
+                return array.asSlice(layout().byteSize() * index);
             }
-            public static void Flags$set(MemorySegment seg, long index, int x) {
-                _DesiredStorageClass.Flags$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * The size (in bytes) of this struct
+             */
+            public static long sizeof() { return layout().byteSize(); }
+
+            /**
+             * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+             */
+            public static MemorySegment allocate(SegmentAllocator allocator) {
+                return allocator.allocate(layout());
             }
-            public static long sizeof() { return $LAYOUT().byteSize(); }
-            public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-            public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+            /**
+             * Allocate an array of size {@code elementCount} using {@code allocator}.
+             * The returned segment has size {@code elementCount * layout().byteSize()}.
+             */
+            public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
             }
-            public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                return reinterpret(addr, 1, arena, cleanup);
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code elementCount * layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+            }
         }
 
-        public static MemorySegment DesiredStorageClass$slice(MemorySegment seg) {
-            return seg.asSlice(0, 8);
+        private static final GroupLayout DesiredStorageClass$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("DesiredStorageClass"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * struct _DesiredStorageClass DesiredStorageClass
+         * }
+         */
+        public static final GroupLayout DesiredStorageClass$layout() {
+            return DesiredStorageClass$LAYOUT;
         }
+
+        private static final long DesiredStorageClass$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * struct _DesiredStorageClass DesiredStorageClass
+         * }
+         */
+        public static final long DesiredStorageClass$offset() {
+            return DesiredStorageClass$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * struct _DesiredStorageClass DesiredStorageClass
+         * }
+         */
+        public static MemorySegment DesiredStorageClass(MemorySegment union) {
+            return union.asSlice(DesiredStorageClass$OFFSET, DesiredStorageClass$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * struct _DesiredStorageClass DesiredStorageClass
+         * }
+         */
+        public static void DesiredStorageClass(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, DesiredStorageClass$OFFSET, DesiredStorageClass$LAYOUT.byteSize());
+        }
+
+        /**
+         * {@snippet lang=c :
+         * struct _DataStream {
+         *     WORD Length;
+         *     WORD Flags;
+         *     DWORD Reserved;
+         *     DWORDLONG Vdl;
+         * }
+         * }
+         */
         public static class _DataStream {
 
-            static final  GroupLayout _StreamInformation$_DataStream$struct$LAYOUT = MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("Length"),
-                Constants$root.C_SHORT$LAYOUT.withName("Flags"),
-                Constants$root.C_LONG$LAYOUT.withName("Reserved"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("Vdl")
+            _DataStream() {
+                // Should not be called directly
+            }
+
+            private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                wgl_h.C_SHORT.withName("Length"),
+                wgl_h.C_SHORT.withName("Flags"),
+                wgl_h.C_LONG.withName("Reserved"),
+                wgl_h.C_LONG_LONG.withName("Vdl")
             ).withName("_DataStream");
-            public static MemoryLayout $LAYOUT() {
-                return _DataStream._StreamInformation$_DataStream$struct$LAYOUT;
+
+            /**
+             * The layout of this struct
+             */
+            public static final GroupLayout layout() {
+                return $LAYOUT;
             }
-            static final VarHandle Length$VH = _StreamInformation$_DataStream$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Length"));
-            public static VarHandle Length$VH() {
-                return _DataStream.Length$VH;
+
+            private static final OfShort Length$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Length"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * WORD Length
+             * }
+             */
+            public static final OfShort Length$layout() {
+                return Length$LAYOUT;
             }
-            public static short Length$get(MemorySegment seg) {
-                return (short)_DataStream.Length$VH.get(seg);
+
+            private static final long Length$OFFSET = 0;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * WORD Length
+             * }
+             */
+            public static final long Length$offset() {
+                return Length$OFFSET;
             }
-            public static void Length$set( MemorySegment seg, short x) {
-                _DataStream.Length$VH.set(seg, x);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * WORD Length
+             * }
+             */
+            public static short Length(MemorySegment struct) {
+                return struct.get(Length$LAYOUT, Length$OFFSET);
             }
-            public static short Length$get(MemorySegment seg, long index) {
-                return (short)_DataStream.Length$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * WORD Length
+             * }
+             */
+            public static void Length(MemorySegment struct, short fieldValue) {
+                struct.set(Length$LAYOUT, Length$OFFSET, fieldValue);
             }
-            public static void Length$set(MemorySegment seg, long index, short x) {
-                _DataStream.Length$VH.set(seg.asSlice(index*sizeof()), x);
+
+            private static final OfShort Flags$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Flags"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * WORD Flags
+             * }
+             */
+            public static final OfShort Flags$layout() {
+                return Flags$LAYOUT;
             }
-            static final VarHandle Flags$VH = _StreamInformation$_DataStream$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-            public static VarHandle Flags$VH() {
-                return _DataStream.Flags$VH;
+
+            private static final long Flags$OFFSET = 2;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * WORD Flags
+             * }
+             */
+            public static final long Flags$offset() {
+                return Flags$OFFSET;
             }
-            public static short Flags$get(MemorySegment seg) {
-                return (short)_DataStream.Flags$VH.get(seg);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * WORD Flags
+             * }
+             */
+            public static short Flags(MemorySegment struct) {
+                return struct.get(Flags$LAYOUT, Flags$OFFSET);
             }
-            public static void Flags$set( MemorySegment seg, short x) {
-                _DataStream.Flags$VH.set(seg, x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * WORD Flags
+             * }
+             */
+            public static void Flags(MemorySegment struct, short fieldValue) {
+                struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
             }
-            public static short Flags$get(MemorySegment seg, long index) {
-                return (short)_DataStream.Flags$VH.get(seg.asSlice(index*sizeof()));
+
+            private static final OfInt Reserved$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD Reserved
+             * }
+             */
+            public static final OfInt Reserved$layout() {
+                return Reserved$LAYOUT;
             }
-            public static void Flags$set(MemorySegment seg, long index, short x) {
-                _DataStream.Flags$VH.set(seg.asSlice(index*sizeof()), x);
+
+            private static final long Reserved$OFFSET = 4;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD Reserved
+             * }
+             */
+            public static final long Reserved$offset() {
+                return Reserved$OFFSET;
             }
-            static final VarHandle Reserved$VH = _StreamInformation$_DataStream$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved"));
-            public static VarHandle Reserved$VH() {
-                return _DataStream.Reserved$VH;
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD Reserved
+             * }
+             */
+            public static int Reserved(MemorySegment struct) {
+                return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
             }
-            public static int Reserved$get(MemorySegment seg) {
-                return (int)_DataStream.Reserved$VH.get(seg);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD Reserved
+             * }
+             */
+            public static void Reserved(MemorySegment struct, int fieldValue) {
+                struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
             }
-            public static void Reserved$set( MemorySegment seg, int x) {
-                _DataStream.Reserved$VH.set(seg, x);
+
+            private static final OfLong Vdl$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Vdl"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORDLONG Vdl
+             * }
+             */
+            public static final OfLong Vdl$layout() {
+                return Vdl$LAYOUT;
             }
-            public static int Reserved$get(MemorySegment seg, long index) {
-                return (int)_DataStream.Reserved$VH.get(seg.asSlice(index*sizeof()));
+
+            private static final long Vdl$OFFSET = 8;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORDLONG Vdl
+             * }
+             */
+            public static final long Vdl$offset() {
+                return Vdl$OFFSET;
             }
-            public static void Reserved$set(MemorySegment seg, long index, int x) {
-                _DataStream.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORDLONG Vdl
+             * }
+             */
+            public static long Vdl(MemorySegment struct) {
+                return struct.get(Vdl$LAYOUT, Vdl$OFFSET);
             }
-            static final VarHandle Vdl$VH = _StreamInformation$_DataStream$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Vdl"));
-            public static VarHandle Vdl$VH() {
-                return _DataStream.Vdl$VH;
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORDLONG Vdl
+             * }
+             */
+            public static void Vdl(MemorySegment struct, long fieldValue) {
+                struct.set(Vdl$LAYOUT, Vdl$OFFSET, fieldValue);
             }
-            public static long Vdl$get(MemorySegment seg) {
-                return (long)_DataStream.Vdl$VH.get(seg);
+
+            /**
+             * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+             * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+             */
+            public static MemorySegment asSlice(MemorySegment array, long index) {
+                return array.asSlice(layout().byteSize() * index);
             }
-            public static void Vdl$set( MemorySegment seg, long x) {
-                _DataStream.Vdl$VH.set(seg, x);
+
+            /**
+             * The size (in bytes) of this struct
+             */
+            public static long sizeof() { return layout().byteSize(); }
+
+            /**
+             * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+             */
+            public static MemorySegment allocate(SegmentAllocator allocator) {
+                return allocator.allocate(layout());
             }
-            public static long Vdl$get(MemorySegment seg, long index) {
-                return (long)_DataStream.Vdl$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Allocate an array of size {@code elementCount} using {@code allocator}.
+             * The returned segment has size {@code elementCount * layout().byteSize()}.
+             */
+            public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
             }
-            public static void Vdl$set(MemorySegment seg, long index, long x) {
-                _DataStream.Vdl$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                return reinterpret(addr, 1, arena, cleanup);
             }
-            public static long sizeof() { return $LAYOUT().byteSize(); }
-            public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-            public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code elementCount * layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
             }
-            public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
         }
 
-        public static MemorySegment DataStream$slice(MemorySegment seg) {
-            return seg.asSlice(0, 16);
+        private static final GroupLayout DataStream$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("DataStream"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * struct _DataStream DataStream
+         * }
+         */
+        public static final GroupLayout DataStream$layout() {
+            return DataStream$LAYOUT;
         }
+
+        private static final long DataStream$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * struct _DataStream DataStream
+         * }
+         */
+        public static final long DataStream$offset() {
+            return DataStream$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * struct _DataStream DataStream
+         * }
+         */
+        public static MemorySegment DataStream(MemorySegment union) {
+            return union.asSlice(DataStream$OFFSET, DataStream$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * struct _DataStream DataStream
+         * }
+         */
+        public static void DataStream(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, DataStream$OFFSET, DataStream$LAYOUT.byteSize());
+        }
+
+        /**
+         * {@snippet lang=c :
+         * struct _Reparse {
+         *     WORD Length;
+         *     WORD Flags;
+         *     DWORD ReparseDataSize;
+         *     DWORD ReparseDataOffset;
+         * }
+         * }
+         */
         public static class _Reparse {
 
-            static final  GroupLayout _StreamInformation$_Reparse$struct$LAYOUT = MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("Length"),
-                Constants$root.C_SHORT$LAYOUT.withName("Flags"),
-                Constants$root.C_LONG$LAYOUT.withName("ReparseDataSize"),
-                Constants$root.C_LONG$LAYOUT.withName("ReparseDataOffset")
+            _Reparse() {
+                // Should not be called directly
+            }
+
+            private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                wgl_h.C_SHORT.withName("Length"),
+                wgl_h.C_SHORT.withName("Flags"),
+                wgl_h.C_LONG.withName("ReparseDataSize"),
+                wgl_h.C_LONG.withName("ReparseDataOffset")
             ).withName("_Reparse");
-            public static MemoryLayout $LAYOUT() {
-                return _Reparse._StreamInformation$_Reparse$struct$LAYOUT;
+
+            /**
+             * The layout of this struct
+             */
+            public static final GroupLayout layout() {
+                return $LAYOUT;
             }
-            static final VarHandle Length$VH = _StreamInformation$_Reparse$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Length"));
-            public static VarHandle Length$VH() {
-                return _Reparse.Length$VH;
+
+            private static final OfShort Length$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Length"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * WORD Length
+             * }
+             */
+            public static final OfShort Length$layout() {
+                return Length$LAYOUT;
             }
-            public static short Length$get(MemorySegment seg) {
-                return (short)_Reparse.Length$VH.get(seg);
+
+            private static final long Length$OFFSET = 0;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * WORD Length
+             * }
+             */
+            public static final long Length$offset() {
+                return Length$OFFSET;
             }
-            public static void Length$set( MemorySegment seg, short x) {
-                _Reparse.Length$VH.set(seg, x);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * WORD Length
+             * }
+             */
+            public static short Length(MemorySegment struct) {
+                return struct.get(Length$LAYOUT, Length$OFFSET);
             }
-            public static short Length$get(MemorySegment seg, long index) {
-                return (short)_Reparse.Length$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * WORD Length
+             * }
+             */
+            public static void Length(MemorySegment struct, short fieldValue) {
+                struct.set(Length$LAYOUT, Length$OFFSET, fieldValue);
             }
-            public static void Length$set(MemorySegment seg, long index, short x) {
-                _Reparse.Length$VH.set(seg.asSlice(index*sizeof()), x);
+
+            private static final OfShort Flags$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Flags"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * WORD Flags
+             * }
+             */
+            public static final OfShort Flags$layout() {
+                return Flags$LAYOUT;
             }
-            static final VarHandle Flags$VH = _StreamInformation$_Reparse$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-            public static VarHandle Flags$VH() {
-                return _Reparse.Flags$VH;
+
+            private static final long Flags$OFFSET = 2;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * WORD Flags
+             * }
+             */
+            public static final long Flags$offset() {
+                return Flags$OFFSET;
             }
-            public static short Flags$get(MemorySegment seg) {
-                return (short)_Reparse.Flags$VH.get(seg);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * WORD Flags
+             * }
+             */
+            public static short Flags(MemorySegment struct) {
+                return struct.get(Flags$LAYOUT, Flags$OFFSET);
             }
-            public static void Flags$set( MemorySegment seg, short x) {
-                _Reparse.Flags$VH.set(seg, x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * WORD Flags
+             * }
+             */
+            public static void Flags(MemorySegment struct, short fieldValue) {
+                struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
             }
-            public static short Flags$get(MemorySegment seg, long index) {
-                return (short)_Reparse.Flags$VH.get(seg.asSlice(index*sizeof()));
+
+            private static final OfInt ReparseDataSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ReparseDataSize"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD ReparseDataSize
+             * }
+             */
+            public static final OfInt ReparseDataSize$layout() {
+                return ReparseDataSize$LAYOUT;
             }
-            public static void Flags$set(MemorySegment seg, long index, short x) {
-                _Reparse.Flags$VH.set(seg.asSlice(index*sizeof()), x);
+
+            private static final long ReparseDataSize$OFFSET = 4;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD ReparseDataSize
+             * }
+             */
+            public static final long ReparseDataSize$offset() {
+                return ReparseDataSize$OFFSET;
             }
-            static final VarHandle ReparseDataSize$VH = _StreamInformation$_Reparse$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ReparseDataSize"));
-            public static VarHandle ReparseDataSize$VH() {
-                return _Reparse.ReparseDataSize$VH;
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD ReparseDataSize
+             * }
+             */
+            public static int ReparseDataSize(MemorySegment struct) {
+                return struct.get(ReparseDataSize$LAYOUT, ReparseDataSize$OFFSET);
             }
-            public static int ReparseDataSize$get(MemorySegment seg) {
-                return (int)_Reparse.ReparseDataSize$VH.get(seg);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD ReparseDataSize
+             * }
+             */
+            public static void ReparseDataSize(MemorySegment struct, int fieldValue) {
+                struct.set(ReparseDataSize$LAYOUT, ReparseDataSize$OFFSET, fieldValue);
             }
-            public static void ReparseDataSize$set( MemorySegment seg, int x) {
-                _Reparse.ReparseDataSize$VH.set(seg, x);
+
+            private static final OfInt ReparseDataOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ReparseDataOffset"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD ReparseDataOffset
+             * }
+             */
+            public static final OfInt ReparseDataOffset$layout() {
+                return ReparseDataOffset$LAYOUT;
             }
-            public static int ReparseDataSize$get(MemorySegment seg, long index) {
-                return (int)_Reparse.ReparseDataSize$VH.get(seg.asSlice(index*sizeof()));
+
+            private static final long ReparseDataOffset$OFFSET = 8;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD ReparseDataOffset
+             * }
+             */
+            public static final long ReparseDataOffset$offset() {
+                return ReparseDataOffset$OFFSET;
             }
-            public static void ReparseDataSize$set(MemorySegment seg, long index, int x) {
-                _Reparse.ReparseDataSize$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD ReparseDataOffset
+             * }
+             */
+            public static int ReparseDataOffset(MemorySegment struct) {
+                return struct.get(ReparseDataOffset$LAYOUT, ReparseDataOffset$OFFSET);
             }
-            static final VarHandle ReparseDataOffset$VH = _StreamInformation$_Reparse$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ReparseDataOffset"));
-            public static VarHandle ReparseDataOffset$VH() {
-                return _Reparse.ReparseDataOffset$VH;
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD ReparseDataOffset
+             * }
+             */
+            public static void ReparseDataOffset(MemorySegment struct, int fieldValue) {
+                struct.set(ReparseDataOffset$LAYOUT, ReparseDataOffset$OFFSET, fieldValue);
             }
-            public static int ReparseDataOffset$get(MemorySegment seg) {
-                return (int)_Reparse.ReparseDataOffset$VH.get(seg);
+
+            /**
+             * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+             * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+             */
+            public static MemorySegment asSlice(MemorySegment array, long index) {
+                return array.asSlice(layout().byteSize() * index);
             }
-            public static void ReparseDataOffset$set( MemorySegment seg, int x) {
-                _Reparse.ReparseDataOffset$VH.set(seg, x);
+
+            /**
+             * The size (in bytes) of this struct
+             */
+            public static long sizeof() { return layout().byteSize(); }
+
+            /**
+             * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+             */
+            public static MemorySegment allocate(SegmentAllocator allocator) {
+                return allocator.allocate(layout());
             }
-            public static int ReparseDataOffset$get(MemorySegment seg, long index) {
-                return (int)_Reparse.ReparseDataOffset$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Allocate an array of size {@code elementCount} using {@code allocator}.
+             * The returned segment has size {@code elementCount * layout().byteSize()}.
+             */
+            public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
             }
-            public static void ReparseDataOffset$set(MemorySegment seg, long index, int x) {
-                _Reparse.ReparseDataOffset$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                return reinterpret(addr, 1, arena, cleanup);
             }
-            public static long sizeof() { return $LAYOUT().byteSize(); }
-            public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-            public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code elementCount * layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
             }
-            public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
         }
 
-        public static MemorySegment Reparse$slice(MemorySegment seg) {
-            return seg.asSlice(0, 12);
+        private static final GroupLayout Reparse$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Reparse"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * struct _Reparse Reparse
+         * }
+         */
+        public static final GroupLayout Reparse$layout() {
+            return Reparse$LAYOUT;
         }
+
+        private static final long Reparse$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * struct _Reparse Reparse
+         * }
+         */
+        public static final long Reparse$offset() {
+            return Reparse$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * struct _Reparse Reparse
+         * }
+         */
+        public static MemorySegment Reparse(MemorySegment union) {
+            return union.asSlice(Reparse$OFFSET, Reparse$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * struct _Reparse Reparse
+         * }
+         */
+        public static void Reparse(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, Reparse$OFFSET, Reparse$LAYOUT.byteSize());
+        }
+
+        /**
+         * {@snippet lang=c :
+         * struct _Ea {
+         *     WORD Length;
+         *     WORD Flags;
+         *     DWORD EaSize;
+         *     DWORD EaInformationOffset;
+         * }
+         * }
+         */
         public static class _Ea {
 
-            static final  GroupLayout _StreamInformation$_Ea$struct$LAYOUT = MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("Length"),
-                Constants$root.C_SHORT$LAYOUT.withName("Flags"),
-                Constants$root.C_LONG$LAYOUT.withName("EaSize"),
-                Constants$root.C_LONG$LAYOUT.withName("EaInformationOffset")
+            _Ea() {
+                // Should not be called directly
+            }
+
+            private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                wgl_h.C_SHORT.withName("Length"),
+                wgl_h.C_SHORT.withName("Flags"),
+                wgl_h.C_LONG.withName("EaSize"),
+                wgl_h.C_LONG.withName("EaInformationOffset")
             ).withName("_Ea");
-            public static MemoryLayout $LAYOUT() {
-                return _Ea._StreamInformation$_Ea$struct$LAYOUT;
+
+            /**
+             * The layout of this struct
+             */
+            public static final GroupLayout layout() {
+                return $LAYOUT;
             }
-            static final VarHandle Length$VH = _StreamInformation$_Ea$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Length"));
-            public static VarHandle Length$VH() {
-                return _Ea.Length$VH;
+
+            private static final OfShort Length$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Length"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * WORD Length
+             * }
+             */
+            public static final OfShort Length$layout() {
+                return Length$LAYOUT;
             }
-            public static short Length$get(MemorySegment seg) {
-                return (short)_Ea.Length$VH.get(seg);
+
+            private static final long Length$OFFSET = 0;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * WORD Length
+             * }
+             */
+            public static final long Length$offset() {
+                return Length$OFFSET;
             }
-            public static void Length$set( MemorySegment seg, short x) {
-                _Ea.Length$VH.set(seg, x);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * WORD Length
+             * }
+             */
+            public static short Length(MemorySegment struct) {
+                return struct.get(Length$LAYOUT, Length$OFFSET);
             }
-            public static short Length$get(MemorySegment seg, long index) {
-                return (short)_Ea.Length$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * WORD Length
+             * }
+             */
+            public static void Length(MemorySegment struct, short fieldValue) {
+                struct.set(Length$LAYOUT, Length$OFFSET, fieldValue);
             }
-            public static void Length$set(MemorySegment seg, long index, short x) {
-                _Ea.Length$VH.set(seg.asSlice(index*sizeof()), x);
+
+            private static final OfShort Flags$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Flags"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * WORD Flags
+             * }
+             */
+            public static final OfShort Flags$layout() {
+                return Flags$LAYOUT;
             }
-            static final VarHandle Flags$VH = _StreamInformation$_Ea$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-            public static VarHandle Flags$VH() {
-                return _Ea.Flags$VH;
+
+            private static final long Flags$OFFSET = 2;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * WORD Flags
+             * }
+             */
+            public static final long Flags$offset() {
+                return Flags$OFFSET;
             }
-            public static short Flags$get(MemorySegment seg) {
-                return (short)_Ea.Flags$VH.get(seg);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * WORD Flags
+             * }
+             */
+            public static short Flags(MemorySegment struct) {
+                return struct.get(Flags$LAYOUT, Flags$OFFSET);
             }
-            public static void Flags$set( MemorySegment seg, short x) {
-                _Ea.Flags$VH.set(seg, x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * WORD Flags
+             * }
+             */
+            public static void Flags(MemorySegment struct, short fieldValue) {
+                struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
             }
-            public static short Flags$get(MemorySegment seg, long index) {
-                return (short)_Ea.Flags$VH.get(seg.asSlice(index*sizeof()));
+
+            private static final OfInt EaSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("EaSize"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD EaSize
+             * }
+             */
+            public static final OfInt EaSize$layout() {
+                return EaSize$LAYOUT;
             }
-            public static void Flags$set(MemorySegment seg, long index, short x) {
-                _Ea.Flags$VH.set(seg.asSlice(index*sizeof()), x);
+
+            private static final long EaSize$OFFSET = 4;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD EaSize
+             * }
+             */
+            public static final long EaSize$offset() {
+                return EaSize$OFFSET;
             }
-            static final VarHandle EaSize$VH = _StreamInformation$_Ea$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EaSize"));
-            public static VarHandle EaSize$VH() {
-                return _Ea.EaSize$VH;
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD EaSize
+             * }
+             */
+            public static int EaSize(MemorySegment struct) {
+                return struct.get(EaSize$LAYOUT, EaSize$OFFSET);
             }
-            public static int EaSize$get(MemorySegment seg) {
-                return (int)_Ea.EaSize$VH.get(seg);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD EaSize
+             * }
+             */
+            public static void EaSize(MemorySegment struct, int fieldValue) {
+                struct.set(EaSize$LAYOUT, EaSize$OFFSET, fieldValue);
             }
-            public static void EaSize$set( MemorySegment seg, int x) {
-                _Ea.EaSize$VH.set(seg, x);
+
+            private static final OfInt EaInformationOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("EaInformationOffset"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD EaInformationOffset
+             * }
+             */
+            public static final OfInt EaInformationOffset$layout() {
+                return EaInformationOffset$LAYOUT;
             }
-            public static int EaSize$get(MemorySegment seg, long index) {
-                return (int)_Ea.EaSize$VH.get(seg.asSlice(index*sizeof()));
+
+            private static final long EaInformationOffset$OFFSET = 8;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD EaInformationOffset
+             * }
+             */
+            public static final long EaInformationOffset$offset() {
+                return EaInformationOffset$OFFSET;
             }
-            public static void EaSize$set(MemorySegment seg, long index, int x) {
-                _Ea.EaSize$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD EaInformationOffset
+             * }
+             */
+            public static int EaInformationOffset(MemorySegment struct) {
+                return struct.get(EaInformationOffset$LAYOUT, EaInformationOffset$OFFSET);
             }
-            static final VarHandle EaInformationOffset$VH = _StreamInformation$_Ea$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EaInformationOffset"));
-            public static VarHandle EaInformationOffset$VH() {
-                return _Ea.EaInformationOffset$VH;
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD EaInformationOffset
+             * }
+             */
+            public static void EaInformationOffset(MemorySegment struct, int fieldValue) {
+                struct.set(EaInformationOffset$LAYOUT, EaInformationOffset$OFFSET, fieldValue);
             }
-            public static int EaInformationOffset$get(MemorySegment seg) {
-                return (int)_Ea.EaInformationOffset$VH.get(seg);
+
+            /**
+             * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+             * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+             */
+            public static MemorySegment asSlice(MemorySegment array, long index) {
+                return array.asSlice(layout().byteSize() * index);
             }
-            public static void EaInformationOffset$set( MemorySegment seg, int x) {
-                _Ea.EaInformationOffset$VH.set(seg, x);
+
+            /**
+             * The size (in bytes) of this struct
+             */
+            public static long sizeof() { return layout().byteSize(); }
+
+            /**
+             * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+             */
+            public static MemorySegment allocate(SegmentAllocator allocator) {
+                return allocator.allocate(layout());
             }
-            public static int EaInformationOffset$get(MemorySegment seg, long index) {
-                return (int)_Ea.EaInformationOffset$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Allocate an array of size {@code elementCount} using {@code allocator}.
+             * The returned segment has size {@code elementCount * layout().byteSize()}.
+             */
+            public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
             }
-            public static void EaInformationOffset$set(MemorySegment seg, long index, int x) {
-                _Ea.EaInformationOffset$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                return reinterpret(addr, 1, arena, cleanup);
             }
-            public static long sizeof() { return $LAYOUT().byteSize(); }
-            public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-            public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code elementCount * layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
             }
-            public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
         }
 
-        public static MemorySegment Ea$slice(MemorySegment seg) {
-            return seg.asSlice(0, 12);
+        private static final GroupLayout Ea$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Ea"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * struct _Ea Ea
+         * }
+         */
+        public static final GroupLayout Ea$layout() {
+            return Ea$LAYOUT;
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        private static final long Ea$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * struct _Ea Ea
+         * }
+         */
+        public static final long Ea$offset() {
+            return Ea$OFFSET;
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * struct _Ea Ea
+         * }
+         */
+        public static MemorySegment Ea(MemorySegment union) {
+            return union.asSlice(Ea$OFFSET, Ea$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * struct _Ea Ea
+         * }
+         */
+        public static void Ea(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, Ea$OFFSET, Ea$LAYOUT.byteSize());
+        }
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
+        }
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment StreamInformation$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
+    private static final GroupLayout StreamInformation$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("StreamInformation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union _StreamInformation StreamInformation
+     * }
+     */
+    public static final GroupLayout StreamInformation$layout() {
+        return StreamInformation$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long StreamInformation$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union _StreamInformation StreamInformation
+     * }
+     */
+    public static final long StreamInformation$offset() {
+        return StreamInformation$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union _StreamInformation StreamInformation
+     * }
+     */
+    public static MemorySegment StreamInformation(MemorySegment struct) {
+        return struct.asSlice(StreamInformation$OFFSET, StreamInformation$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union _StreamInformation StreamInformation
+     * }
+     */
+    public static void StreamInformation(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, StreamInformation$OFFSET, StreamInformation$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

@@ -2,27 +2,67 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface IViewObject_Draw_Proxy$pfnContinue {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(long _x0);
-    static MemorySegment allocate(IViewObject_Draw_Proxy$pfnContinue fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(IViewObject_Draw_Proxy$pfnContinue.class, fi, constants$1121.IViewObject_Draw_Proxy$pfnContinue$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * BOOL (*pfnContinue)(ULONG_PTR) __attribute__((stdcall))
+ * }
+ */
+public class IViewObject_Draw_Proxy$pfnContinue {
+
+    IViewObject_Draw_Proxy$pfnContinue() {
+        // Should not be called directly
     }
-    static IViewObject_Draw_Proxy$pfnContinue ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (long __x0) -> {
-            try {
-                return (int)constants$1121.IViewObject_Draw_Proxy$pfnContinue$MH.invokeExact((Addressable)symbol, __x0);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(long _x0);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_LONG_LONG
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(IViewObject_Draw_Proxy$pfnContinue.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(IViewObject_Draw_Proxy$pfnContinue.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,long _x0) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

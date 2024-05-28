@@ -2,27 +2,69 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNWGLMAKECONTEXTCURRENTARBPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemoryAddress hDrawDC, java.lang.foreign.MemoryAddress hReadDC, java.lang.foreign.MemoryAddress hglrc);
-    static MemorySegment allocate(PFNWGLMAKECONTEXTCURRENTARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNWGLMAKECONTEXTCURRENTARBPROC.class, fi, constants$1379.PFNWGLMAKECONTEXTCURRENTARBPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PFNWGLMAKECONTEXTCURRENTARBPROC)(HDC, HDC, HGLRC) __attribute__((stdcall))
+ * }
+ */
+public class PFNWGLMAKECONTEXTCURRENTARBPROC {
+
+    PFNWGLMAKECONTEXTCURRENTARBPROC() {
+        // Should not be called directly
     }
-    static PFNWGLMAKECONTEXTCURRENTARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _hDrawDC, java.lang.foreign.MemoryAddress _hReadDC, java.lang.foreign.MemoryAddress _hglrc) -> {
-            try {
-                return (int)constants$1379.PFNWGLMAKECONTEXTCURRENTARBPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_hDrawDC, (java.lang.foreign.Addressable)_hReadDC, (java.lang.foreign.Addressable)_hglrc);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment hDrawDC, MemorySegment hReadDC, MemorySegment hglrc);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNWGLMAKECONTEXTCURRENTARBPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNWGLMAKECONTEXTCURRENTARBPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment hDrawDC, MemorySegment hReadDC, MemorySegment hglrc) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, hDrawDC, hReadDC, hglrc);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

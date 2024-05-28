@@ -2,263 +2,923 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _XSAVE_FORMAT {
+ *     WORD ControlWord;
+ *     WORD StatusWord;
+ *     BYTE TagWord;
+ *     BYTE Reserved1;
+ *     WORD ErrorOpcode;
+ *     DWORD ErrorOffset;
+ *     WORD ErrorSelector;
+ *     WORD Reserved2;
+ *     DWORD DataOffset;
+ *     WORD DataSelector;
+ *     WORD Reserved3;
+ *     DWORD MxCsr;
+ *     DWORD MxCsr_Mask;
+ *     M128A FloatRegisters[8];
+ *     M128A XmmRegisters[16];
+ *     BYTE Reserved4[96];
+ * }
+ * }
+ */
 public class _XSAVE_FORMAT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("ControlWord"),
-        Constants$root.C_SHORT$LAYOUT.withName("StatusWord"),
-        Constants$root.C_CHAR$LAYOUT.withName("TagWord"),
-        Constants$root.C_CHAR$LAYOUT.withName("Reserved1"),
-        Constants$root.C_SHORT$LAYOUT.withName("ErrorOpcode"),
-        Constants$root.C_LONG$LAYOUT.withName("ErrorOffset"),
-        Constants$root.C_SHORT$LAYOUT.withName("ErrorSelector"),
-        Constants$root.C_SHORT$LAYOUT.withName("Reserved2"),
-        Constants$root.C_LONG$LAYOUT.withName("DataOffset"),
-        Constants$root.C_SHORT$LAYOUT.withName("DataSelector"),
-        Constants$root.C_SHORT$LAYOUT.withName("Reserved3"),
-        Constants$root.C_LONG$LAYOUT.withName("MxCsr"),
-        Constants$root.C_LONG$LAYOUT.withName("MxCsr_Mask"),
-        MemoryLayout.sequenceLayout(8, MemoryLayout.structLayout(
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-        ).withName("_M128A")).withName("FloatRegisters"),
-        MemoryLayout.sequenceLayout(16, MemoryLayout.structLayout(
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-        ).withName("_M128A")).withName("XmmRegisters"),
-        MemoryLayout.sequenceLayout(96, Constants$root.C_CHAR$LAYOUT).withName("Reserved4")
-    ).withName("_XSAVE_FORMAT");
-    public static MemoryLayout $LAYOUT() {
-        return _XSAVE_FORMAT.$struct$LAYOUT;
+    _XSAVE_FORMAT() {
+        // Should not be called directly
     }
-    static final VarHandle ControlWord$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ControlWord"));
-    public static VarHandle ControlWord$VH() {
-        return _XSAVE_FORMAT.ControlWord$VH;
-    }
-    public static short ControlWord$get(MemorySegment seg) {
-        return (short)_XSAVE_FORMAT.ControlWord$VH.get(seg);
-    }
-    public static void ControlWord$set( MemorySegment seg, short x) {
-        _XSAVE_FORMAT.ControlWord$VH.set(seg, x);
-    }
-    public static short ControlWord$get(MemorySegment seg, long index) {
-        return (short)_XSAVE_FORMAT.ControlWord$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ControlWord$set(MemorySegment seg, long index, short x) {
-        _XSAVE_FORMAT.ControlWord$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle StatusWord$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StatusWord"));
-    public static VarHandle StatusWord$VH() {
-        return _XSAVE_FORMAT.StatusWord$VH;
-    }
-    public static short StatusWord$get(MemorySegment seg) {
-        return (short)_XSAVE_FORMAT.StatusWord$VH.get(seg);
-    }
-    public static void StatusWord$set( MemorySegment seg, short x) {
-        _XSAVE_FORMAT.StatusWord$VH.set(seg, x);
-    }
-    public static short StatusWord$get(MemorySegment seg, long index) {
-        return (short)_XSAVE_FORMAT.StatusWord$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StatusWord$set(MemorySegment seg, long index, short x) {
-        _XSAVE_FORMAT.StatusWord$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TagWord$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TagWord"));
-    public static VarHandle TagWord$VH() {
-        return _XSAVE_FORMAT.TagWord$VH;
-    }
-    public static byte TagWord$get(MemorySegment seg) {
-        return (byte)_XSAVE_FORMAT.TagWord$VH.get(seg);
-    }
-    public static void TagWord$set( MemorySegment seg, byte x) {
-        _XSAVE_FORMAT.TagWord$VH.set(seg, x);
-    }
-    public static byte TagWord$get(MemorySegment seg, long index) {
-        return (byte)_XSAVE_FORMAT.TagWord$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TagWord$set(MemorySegment seg, long index, byte x) {
-        _XSAVE_FORMAT.TagWord$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved1"));
-    public static VarHandle Reserved1$VH() {
-        return _XSAVE_FORMAT.Reserved1$VH;
-    }
-    public static byte Reserved1$get(MemorySegment seg) {
-        return (byte)_XSAVE_FORMAT.Reserved1$VH.get(seg);
-    }
-    public static void Reserved1$set( MemorySegment seg, byte x) {
-        _XSAVE_FORMAT.Reserved1$VH.set(seg, x);
-    }
-    public static byte Reserved1$get(MemorySegment seg, long index) {
-        return (byte)_XSAVE_FORMAT.Reserved1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved1$set(MemorySegment seg, long index, byte x) {
-        _XSAVE_FORMAT.Reserved1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ErrorOpcode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ErrorOpcode"));
-    public static VarHandle ErrorOpcode$VH() {
-        return _XSAVE_FORMAT.ErrorOpcode$VH;
-    }
-    public static short ErrorOpcode$get(MemorySegment seg) {
-        return (short)_XSAVE_FORMAT.ErrorOpcode$VH.get(seg);
-    }
-    public static void ErrorOpcode$set( MemorySegment seg, short x) {
-        _XSAVE_FORMAT.ErrorOpcode$VH.set(seg, x);
-    }
-    public static short ErrorOpcode$get(MemorySegment seg, long index) {
-        return (short)_XSAVE_FORMAT.ErrorOpcode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ErrorOpcode$set(MemorySegment seg, long index, short x) {
-        _XSAVE_FORMAT.ErrorOpcode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ErrorOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ErrorOffset"));
-    public static VarHandle ErrorOffset$VH() {
-        return _XSAVE_FORMAT.ErrorOffset$VH;
-    }
-    public static int ErrorOffset$get(MemorySegment seg) {
-        return (int)_XSAVE_FORMAT.ErrorOffset$VH.get(seg);
-    }
-    public static void ErrorOffset$set( MemorySegment seg, int x) {
-        _XSAVE_FORMAT.ErrorOffset$VH.set(seg, x);
-    }
-    public static int ErrorOffset$get(MemorySegment seg, long index) {
-        return (int)_XSAVE_FORMAT.ErrorOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ErrorOffset$set(MemorySegment seg, long index, int x) {
-        _XSAVE_FORMAT.ErrorOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ErrorSelector$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ErrorSelector"));
-    public static VarHandle ErrorSelector$VH() {
-        return _XSAVE_FORMAT.ErrorSelector$VH;
-    }
-    public static short ErrorSelector$get(MemorySegment seg) {
-        return (short)_XSAVE_FORMAT.ErrorSelector$VH.get(seg);
-    }
-    public static void ErrorSelector$set( MemorySegment seg, short x) {
-        _XSAVE_FORMAT.ErrorSelector$VH.set(seg, x);
-    }
-    public static short ErrorSelector$get(MemorySegment seg, long index) {
-        return (short)_XSAVE_FORMAT.ErrorSelector$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ErrorSelector$set(MemorySegment seg, long index, short x) {
-        _XSAVE_FORMAT.ErrorSelector$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved2"));
-    public static VarHandle Reserved2$VH() {
-        return _XSAVE_FORMAT.Reserved2$VH;
-    }
-    public static short Reserved2$get(MemorySegment seg) {
-        return (short)_XSAVE_FORMAT.Reserved2$VH.get(seg);
-    }
-    public static void Reserved2$set( MemorySegment seg, short x) {
-        _XSAVE_FORMAT.Reserved2$VH.set(seg, x);
-    }
-    public static short Reserved2$get(MemorySegment seg, long index) {
-        return (short)_XSAVE_FORMAT.Reserved2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved2$set(MemorySegment seg, long index, short x) {
-        _XSAVE_FORMAT.Reserved2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DataOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DataOffset"));
-    public static VarHandle DataOffset$VH() {
-        return _XSAVE_FORMAT.DataOffset$VH;
-    }
-    public static int DataOffset$get(MemorySegment seg) {
-        return (int)_XSAVE_FORMAT.DataOffset$VH.get(seg);
-    }
-    public static void DataOffset$set( MemorySegment seg, int x) {
-        _XSAVE_FORMAT.DataOffset$VH.set(seg, x);
-    }
-    public static int DataOffset$get(MemorySegment seg, long index) {
-        return (int)_XSAVE_FORMAT.DataOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DataOffset$set(MemorySegment seg, long index, int x) {
-        _XSAVE_FORMAT.DataOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DataSelector$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DataSelector"));
-    public static VarHandle DataSelector$VH() {
-        return _XSAVE_FORMAT.DataSelector$VH;
-    }
-    public static short DataSelector$get(MemorySegment seg) {
-        return (short)_XSAVE_FORMAT.DataSelector$VH.get(seg);
-    }
-    public static void DataSelector$set( MemorySegment seg, short x) {
-        _XSAVE_FORMAT.DataSelector$VH.set(seg, x);
-    }
-    public static short DataSelector$get(MemorySegment seg, long index) {
-        return (short)_XSAVE_FORMAT.DataSelector$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DataSelector$set(MemorySegment seg, long index, short x) {
-        _XSAVE_FORMAT.DataSelector$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved3$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved3"));
-    public static VarHandle Reserved3$VH() {
-        return _XSAVE_FORMAT.Reserved3$VH;
-    }
-    public static short Reserved3$get(MemorySegment seg) {
-        return (short)_XSAVE_FORMAT.Reserved3$VH.get(seg);
-    }
-    public static void Reserved3$set( MemorySegment seg, short x) {
-        _XSAVE_FORMAT.Reserved3$VH.set(seg, x);
-    }
-    public static short Reserved3$get(MemorySegment seg, long index) {
-        return (short)_XSAVE_FORMAT.Reserved3$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved3$set(MemorySegment seg, long index, short x) {
-        _XSAVE_FORMAT.Reserved3$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MxCsr$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MxCsr"));
-    public static VarHandle MxCsr$VH() {
-        return _XSAVE_FORMAT.MxCsr$VH;
-    }
-    public static int MxCsr$get(MemorySegment seg) {
-        return (int)_XSAVE_FORMAT.MxCsr$VH.get(seg);
-    }
-    public static void MxCsr$set( MemorySegment seg, int x) {
-        _XSAVE_FORMAT.MxCsr$VH.set(seg, x);
-    }
-    public static int MxCsr$get(MemorySegment seg, long index) {
-        return (int)_XSAVE_FORMAT.MxCsr$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MxCsr$set(MemorySegment seg, long index, int x) {
-        _XSAVE_FORMAT.MxCsr$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MxCsr_Mask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MxCsr_Mask"));
-    public static VarHandle MxCsr_Mask$VH() {
-        return _XSAVE_FORMAT.MxCsr_Mask$VH;
-    }
-    public static int MxCsr_Mask$get(MemorySegment seg) {
-        return (int)_XSAVE_FORMAT.MxCsr_Mask$VH.get(seg);
-    }
-    public static void MxCsr_Mask$set( MemorySegment seg, int x) {
-        _XSAVE_FORMAT.MxCsr_Mask$VH.set(seg, x);
-    }
-    public static int MxCsr_Mask$get(MemorySegment seg, long index) {
-        return (int)_XSAVE_FORMAT.MxCsr_Mask$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MxCsr_Mask$set(MemorySegment seg, long index, int x) {
-        _XSAVE_FORMAT.MxCsr_Mask$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment FloatRegisters$slice(MemorySegment seg) {
-        return seg.asSlice(32, 128);
-    }
-    public static MemorySegment XmmRegisters$slice(MemorySegment seg) {
-        return seg.asSlice(160, 256);
-    }
-    public static MemorySegment Reserved4$slice(MemorySegment seg) {
-        return seg.asSlice(416, 96);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_SHORT.withName("ControlWord"),
+        freeglut_h.C_SHORT.withName("StatusWord"),
+        freeglut_h.C_CHAR.withName("TagWord"),
+        freeglut_h.C_CHAR.withName("Reserved1"),
+        freeglut_h.C_SHORT.withName("ErrorOpcode"),
+        freeglut_h.C_LONG.withName("ErrorOffset"),
+        freeglut_h.C_SHORT.withName("ErrorSelector"),
+        freeglut_h.C_SHORT.withName("Reserved2"),
+        freeglut_h.C_LONG.withName("DataOffset"),
+        freeglut_h.C_SHORT.withName("DataSelector"),
+        freeglut_h.C_SHORT.withName("Reserved3"),
+        freeglut_h.C_LONG.withName("MxCsr"),
+        freeglut_h.C_LONG.withName("MxCsr_Mask"),
+        MemoryLayout.sequenceLayout(8, _M128A.layout()).withName("FloatRegisters"),
+        MemoryLayout.sequenceLayout(16, _M128A.layout()).withName("XmmRegisters"),
+        MemoryLayout.sequenceLayout(96, freeglut_h.C_CHAR).withName("Reserved4")
+    ).withName("_XSAVE_FORMAT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort ControlWord$LAYOUT = (OfShort)$LAYOUT.select(groupElement("ControlWord"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD ControlWord
+     * }
+     */
+    public static final OfShort ControlWord$layout() {
+        return ControlWord$LAYOUT;
+    }
+
+    private static final long ControlWord$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD ControlWord
+     * }
+     */
+    public static final long ControlWord$offset() {
+        return ControlWord$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD ControlWord
+     * }
+     */
+    public static short ControlWord(MemorySegment struct) {
+        return struct.get(ControlWord$LAYOUT, ControlWord$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD ControlWord
+     * }
+     */
+    public static void ControlWord(MemorySegment struct, short fieldValue) {
+        struct.set(ControlWord$LAYOUT, ControlWord$OFFSET, fieldValue);
+    }
+
+    private static final OfShort StatusWord$LAYOUT = (OfShort)$LAYOUT.select(groupElement("StatusWord"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD StatusWord
+     * }
+     */
+    public static final OfShort StatusWord$layout() {
+        return StatusWord$LAYOUT;
+    }
+
+    private static final long StatusWord$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD StatusWord
+     * }
+     */
+    public static final long StatusWord$offset() {
+        return StatusWord$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD StatusWord
+     * }
+     */
+    public static short StatusWord(MemorySegment struct) {
+        return struct.get(StatusWord$LAYOUT, StatusWord$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD StatusWord
+     * }
+     */
+    public static void StatusWord(MemorySegment struct, short fieldValue) {
+        struct.set(StatusWord$LAYOUT, StatusWord$OFFSET, fieldValue);
+    }
+
+    private static final OfByte TagWord$LAYOUT = (OfByte)$LAYOUT.select(groupElement("TagWord"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE TagWord
+     * }
+     */
+    public static final OfByte TagWord$layout() {
+        return TagWord$LAYOUT;
+    }
+
+    private static final long TagWord$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE TagWord
+     * }
+     */
+    public static final long TagWord$offset() {
+        return TagWord$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE TagWord
+     * }
+     */
+    public static byte TagWord(MemorySegment struct) {
+        return struct.get(TagWord$LAYOUT, TagWord$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE TagWord
+     * }
+     */
+    public static void TagWord(MemorySegment struct, byte fieldValue) {
+        struct.set(TagWord$LAYOUT, TagWord$OFFSET, fieldValue);
+    }
+
+    private static final OfByte Reserved1$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Reserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1
+     * }
+     */
+    public static final OfByte Reserved1$layout() {
+        return Reserved1$LAYOUT;
+    }
+
+    private static final long Reserved1$OFFSET = 5;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1
+     * }
+     */
+    public static final long Reserved1$offset() {
+        return Reserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1
+     * }
+     */
+    public static byte Reserved1(MemorySegment struct) {
+        return struct.get(Reserved1$LAYOUT, Reserved1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1
+     * }
+     */
+    public static void Reserved1(MemorySegment struct, byte fieldValue) {
+        struct.set(Reserved1$LAYOUT, Reserved1$OFFSET, fieldValue);
+    }
+
+    private static final OfShort ErrorOpcode$LAYOUT = (OfShort)$LAYOUT.select(groupElement("ErrorOpcode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD ErrorOpcode
+     * }
+     */
+    public static final OfShort ErrorOpcode$layout() {
+        return ErrorOpcode$LAYOUT;
+    }
+
+    private static final long ErrorOpcode$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD ErrorOpcode
+     * }
+     */
+    public static final long ErrorOpcode$offset() {
+        return ErrorOpcode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD ErrorOpcode
+     * }
+     */
+    public static short ErrorOpcode(MemorySegment struct) {
+        return struct.get(ErrorOpcode$LAYOUT, ErrorOpcode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD ErrorOpcode
+     * }
+     */
+    public static void ErrorOpcode(MemorySegment struct, short fieldValue) {
+        struct.set(ErrorOpcode$LAYOUT, ErrorOpcode$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ErrorOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ErrorOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ErrorOffset
+     * }
+     */
+    public static final OfInt ErrorOffset$layout() {
+        return ErrorOffset$LAYOUT;
+    }
+
+    private static final long ErrorOffset$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ErrorOffset
+     * }
+     */
+    public static final long ErrorOffset$offset() {
+        return ErrorOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ErrorOffset
+     * }
+     */
+    public static int ErrorOffset(MemorySegment struct) {
+        return struct.get(ErrorOffset$LAYOUT, ErrorOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ErrorOffset
+     * }
+     */
+    public static void ErrorOffset(MemorySegment struct, int fieldValue) {
+        struct.set(ErrorOffset$LAYOUT, ErrorOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfShort ErrorSelector$LAYOUT = (OfShort)$LAYOUT.select(groupElement("ErrorSelector"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD ErrorSelector
+     * }
+     */
+    public static final OfShort ErrorSelector$layout() {
+        return ErrorSelector$LAYOUT;
+    }
+
+    private static final long ErrorSelector$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD ErrorSelector
+     * }
+     */
+    public static final long ErrorSelector$offset() {
+        return ErrorSelector$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD ErrorSelector
+     * }
+     */
+    public static short ErrorSelector(MemorySegment struct) {
+        return struct.get(ErrorSelector$LAYOUT, ErrorSelector$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD ErrorSelector
+     * }
+     */
+    public static void ErrorSelector(MemorySegment struct, short fieldValue) {
+        struct.set(ErrorSelector$LAYOUT, ErrorSelector$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Reserved2$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Reserved2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Reserved2
+     * }
+     */
+    public static final OfShort Reserved2$layout() {
+        return Reserved2$LAYOUT;
+    }
+
+    private static final long Reserved2$OFFSET = 14;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Reserved2
+     * }
+     */
+    public static final long Reserved2$offset() {
+        return Reserved2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Reserved2
+     * }
+     */
+    public static short Reserved2(MemorySegment struct) {
+        return struct.get(Reserved2$LAYOUT, Reserved2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Reserved2
+     * }
+     */
+    public static void Reserved2(MemorySegment struct, short fieldValue) {
+        struct.set(Reserved2$LAYOUT, Reserved2$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DataOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DataOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DataOffset
+     * }
+     */
+    public static final OfInt DataOffset$layout() {
+        return DataOffset$LAYOUT;
+    }
+
+    private static final long DataOffset$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DataOffset
+     * }
+     */
+    public static final long DataOffset$offset() {
+        return DataOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DataOffset
+     * }
+     */
+    public static int DataOffset(MemorySegment struct) {
+        return struct.get(DataOffset$LAYOUT, DataOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DataOffset
+     * }
+     */
+    public static void DataOffset(MemorySegment struct, int fieldValue) {
+        struct.set(DataOffset$LAYOUT, DataOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfShort DataSelector$LAYOUT = (OfShort)$LAYOUT.select(groupElement("DataSelector"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD DataSelector
+     * }
+     */
+    public static final OfShort DataSelector$layout() {
+        return DataSelector$LAYOUT;
+    }
+
+    private static final long DataSelector$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD DataSelector
+     * }
+     */
+    public static final long DataSelector$offset() {
+        return DataSelector$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD DataSelector
+     * }
+     */
+    public static short DataSelector(MemorySegment struct) {
+        return struct.get(DataSelector$LAYOUT, DataSelector$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD DataSelector
+     * }
+     */
+    public static void DataSelector(MemorySegment struct, short fieldValue) {
+        struct.set(DataSelector$LAYOUT, DataSelector$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Reserved3$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Reserved3"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Reserved3
+     * }
+     */
+    public static final OfShort Reserved3$layout() {
+        return Reserved3$LAYOUT;
+    }
+
+    private static final long Reserved3$OFFSET = 22;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Reserved3
+     * }
+     */
+    public static final long Reserved3$offset() {
+        return Reserved3$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Reserved3
+     * }
+     */
+    public static short Reserved3(MemorySegment struct) {
+        return struct.get(Reserved3$LAYOUT, Reserved3$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Reserved3
+     * }
+     */
+    public static void Reserved3(MemorySegment struct, short fieldValue) {
+        struct.set(Reserved3$LAYOUT, Reserved3$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MxCsr$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MxCsr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MxCsr
+     * }
+     */
+    public static final OfInt MxCsr$layout() {
+        return MxCsr$LAYOUT;
+    }
+
+    private static final long MxCsr$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MxCsr
+     * }
+     */
+    public static final long MxCsr$offset() {
+        return MxCsr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MxCsr
+     * }
+     */
+    public static int MxCsr(MemorySegment struct) {
+        return struct.get(MxCsr$LAYOUT, MxCsr$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MxCsr
+     * }
+     */
+    public static void MxCsr(MemorySegment struct, int fieldValue) {
+        struct.set(MxCsr$LAYOUT, MxCsr$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MxCsr_Mask$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MxCsr_Mask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MxCsr_Mask
+     * }
+     */
+    public static final OfInt MxCsr_Mask$layout() {
+        return MxCsr_Mask$LAYOUT;
+    }
+
+    private static final long MxCsr_Mask$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MxCsr_Mask
+     * }
+     */
+    public static final long MxCsr_Mask$offset() {
+        return MxCsr_Mask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MxCsr_Mask
+     * }
+     */
+    public static int MxCsr_Mask(MemorySegment struct) {
+        return struct.get(MxCsr_Mask$LAYOUT, MxCsr_Mask$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MxCsr_Mask
+     * }
+     */
+    public static void MxCsr_Mask(MemorySegment struct, int fieldValue) {
+        struct.set(MxCsr_Mask$LAYOUT, MxCsr_Mask$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout FloatRegisters$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("FloatRegisters"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A FloatRegisters[8]
+     * }
+     */
+    public static final SequenceLayout FloatRegisters$layout() {
+        return FloatRegisters$LAYOUT;
+    }
+
+    private static final long FloatRegisters$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A FloatRegisters[8]
+     * }
+     */
+    public static final long FloatRegisters$offset() {
+        return FloatRegisters$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A FloatRegisters[8]
+     * }
+     */
+    public static MemorySegment FloatRegisters(MemorySegment struct) {
+        return struct.asSlice(FloatRegisters$OFFSET, FloatRegisters$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A FloatRegisters[8]
+     * }
+     */
+    public static void FloatRegisters(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, FloatRegisters$OFFSET, FloatRegisters$LAYOUT.byteSize());
+    }
+
+    private static long[] FloatRegisters$DIMS = { 8 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * M128A FloatRegisters[8]
+     * }
+     */
+    public static long[] FloatRegisters$dimensions() {
+        return FloatRegisters$DIMS;
+    }
+    private static final MethodHandle FloatRegisters$ELEM_HANDLE = FloatRegisters$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * M128A FloatRegisters[8]
+     * }
+     */
+    public static MemorySegment FloatRegisters(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)FloatRegisters$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * M128A FloatRegisters[8]
+     * }
+     */
+    public static void FloatRegisters(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, FloatRegisters(struct, index0), 0L, _M128A.layout().byteSize());
+    }
+
+    private static final SequenceLayout XmmRegisters$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("XmmRegisters"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A XmmRegisters[16]
+     * }
+     */
+    public static final SequenceLayout XmmRegisters$layout() {
+        return XmmRegisters$LAYOUT;
+    }
+
+    private static final long XmmRegisters$OFFSET = 160;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A XmmRegisters[16]
+     * }
+     */
+    public static final long XmmRegisters$offset() {
+        return XmmRegisters$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A XmmRegisters[16]
+     * }
+     */
+    public static MemorySegment XmmRegisters(MemorySegment struct) {
+        return struct.asSlice(XmmRegisters$OFFSET, XmmRegisters$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A XmmRegisters[16]
+     * }
+     */
+    public static void XmmRegisters(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, XmmRegisters$OFFSET, XmmRegisters$LAYOUT.byteSize());
+    }
+
+    private static long[] XmmRegisters$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * M128A XmmRegisters[16]
+     * }
+     */
+    public static long[] XmmRegisters$dimensions() {
+        return XmmRegisters$DIMS;
+    }
+    private static final MethodHandle XmmRegisters$ELEM_HANDLE = XmmRegisters$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * M128A XmmRegisters[16]
+     * }
+     */
+    public static MemorySegment XmmRegisters(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)XmmRegisters$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * M128A XmmRegisters[16]
+     * }
+     */
+    public static void XmmRegisters(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, XmmRegisters(struct, index0), 0L, _M128A.layout().byteSize());
+    }
+
+    private static final SequenceLayout Reserved4$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved4"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Reserved4[96]
+     * }
+     */
+    public static final SequenceLayout Reserved4$layout() {
+        return Reserved4$LAYOUT;
+    }
+
+    private static final long Reserved4$OFFSET = 416;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Reserved4[96]
+     * }
+     */
+    public static final long Reserved4$offset() {
+        return Reserved4$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved4[96]
+     * }
+     */
+    public static MemorySegment Reserved4(MemorySegment struct) {
+        return struct.asSlice(Reserved4$OFFSET, Reserved4$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved4[96]
+     * }
+     */
+    public static void Reserved4(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved4$OFFSET, Reserved4$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved4$DIMS = { 96 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Reserved4[96]
+     * }
+     */
+    public static long[] Reserved4$dimensions() {
+        return Reserved4$DIMS;
+    }
+    private static final VarHandle Reserved4$ELEM_HANDLE = Reserved4$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved4[96]
+     * }
+     */
+    public static byte Reserved4(MemorySegment struct, long index0) {
+        return (byte)Reserved4$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved4[96]
+     * }
+     */
+    public static void Reserved4(MemorySegment struct, long index0, byte fieldValue) {
+        Reserved4$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

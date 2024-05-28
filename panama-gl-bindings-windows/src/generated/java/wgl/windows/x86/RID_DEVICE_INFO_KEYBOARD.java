@@ -2,13 +2,32 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagRID_DEVICE_INFO_KEYBOARD {
+ *     DWORD dwType;
+ *     DWORD dwSubType;
+ *     DWORD dwKeyboardMode;
+ *     DWORD dwNumberOfFunctionKeys;
+ *     DWORD dwNumberOfIndicators;
+ *     DWORD dwNumberOfKeysTotal;
+ * } RID_DEVICE_INFO_KEYBOARD
+ * }
+ */
 public class RID_DEVICE_INFO_KEYBOARD extends tagRID_DEVICE_INFO_KEYBOARD {
 
+    RID_DEVICE_INFO_KEYBOARD() {
+        // Should not be called directly
+    }
 }
-
 

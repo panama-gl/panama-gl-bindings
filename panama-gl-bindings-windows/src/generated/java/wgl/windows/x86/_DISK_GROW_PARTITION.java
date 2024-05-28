@@ -2,56 +2,173 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DISK_GROW_PARTITION {
+ *     DWORD PartitionNumber;
+ *     LARGE_INTEGER BytesToGrow;
+ * }
+ * }
+ */
 public class _DISK_GROW_PARTITION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("PartitionNumber"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("BytesToGrow")
-    ).withName("_DISK_GROW_PARTITION");
-    public static MemoryLayout $LAYOUT() {
-        return _DISK_GROW_PARTITION.$struct$LAYOUT;
+    _DISK_GROW_PARTITION() {
+        // Should not be called directly
     }
-    static final VarHandle PartitionNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PartitionNumber"));
-    public static VarHandle PartitionNumber$VH() {
-        return _DISK_GROW_PARTITION.PartitionNumber$VH;
-    }
-    public static int PartitionNumber$get(MemorySegment seg) {
-        return (int)_DISK_GROW_PARTITION.PartitionNumber$VH.get(seg);
-    }
-    public static void PartitionNumber$set( MemorySegment seg, int x) {
-        _DISK_GROW_PARTITION.PartitionNumber$VH.set(seg, x);
-    }
-    public static int PartitionNumber$get(MemorySegment seg, long index) {
-        return (int)_DISK_GROW_PARTITION.PartitionNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PartitionNumber$set(MemorySegment seg, long index, int x) {
-        _DISK_GROW_PARTITION.PartitionNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment BytesToGrow$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("PartitionNumber"),
+        MemoryLayout.paddingLayout(4),
+        _LARGE_INTEGER.layout().withName("BytesToGrow")
+    ).withName("_DISK_GROW_PARTITION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt PartitionNumber$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PartitionNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PartitionNumber
+     * }
+     */
+    public static final OfInt PartitionNumber$layout() {
+        return PartitionNumber$LAYOUT;
+    }
+
+    private static final long PartitionNumber$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PartitionNumber
+     * }
+     */
+    public static final long PartitionNumber$offset() {
+        return PartitionNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PartitionNumber
+     * }
+     */
+    public static int PartitionNumber(MemorySegment struct) {
+        return struct.get(PartitionNumber$LAYOUT, PartitionNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PartitionNumber
+     * }
+     */
+    public static void PartitionNumber(MemorySegment struct, int fieldValue) {
+        struct.set(PartitionNumber$LAYOUT, PartitionNumber$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout BytesToGrow$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("BytesToGrow"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER BytesToGrow
+     * }
+     */
+    public static final GroupLayout BytesToGrow$layout() {
+        return BytesToGrow$LAYOUT;
+    }
+
+    private static final long BytesToGrow$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER BytesToGrow
+     * }
+     */
+    public static final long BytesToGrow$offset() {
+        return BytesToGrow$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER BytesToGrow
+     * }
+     */
+    public static MemorySegment BytesToGrow(MemorySegment struct) {
+        return struct.asSlice(BytesToGrow$OFFSET, BytesToGrow$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER BytesToGrow
+     * }
+     */
+    public static void BytesToGrow(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, BytesToGrow$OFFSET, BytesToGrow$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

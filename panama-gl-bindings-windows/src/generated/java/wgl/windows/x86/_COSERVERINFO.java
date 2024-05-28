@@ -2,94 +2,266 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _COSERVERINFO {
+ *     DWORD dwReserved1;
+ *     LPWSTR pwszName;
+ *     COAUTHINFO *pAuthInfo;
+ *     DWORD dwReserved2;
+ * }
+ * }
+ */
 public class _COSERVERINFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwReserved1"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pwszName"),
-        Constants$root.C_POINTER$LAYOUT.withName("pAuthInfo"),
-        Constants$root.C_LONG$LAYOUT.withName("dwReserved2"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_COSERVERINFO");
-    public static MemoryLayout $LAYOUT() {
-        return _COSERVERINFO.$struct$LAYOUT;
+    _COSERVERINFO() {
+        // Should not be called directly
     }
-    static final VarHandle dwReserved1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwReserved1"));
-    public static VarHandle dwReserved1$VH() {
-        return _COSERVERINFO.dwReserved1$VH;
-    }
-    public static int dwReserved1$get(MemorySegment seg) {
-        return (int)_COSERVERINFO.dwReserved1$VH.get(seg);
-    }
-    public static void dwReserved1$set( MemorySegment seg, int x) {
-        _COSERVERINFO.dwReserved1$VH.set(seg, x);
-    }
-    public static int dwReserved1$get(MemorySegment seg, long index) {
-        return (int)_COSERVERINFO.dwReserved1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwReserved1$set(MemorySegment seg, long index, int x) {
-        _COSERVERINFO.dwReserved1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pwszName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pwszName"));
-    public static VarHandle pwszName$VH() {
-        return _COSERVERINFO.pwszName$VH;
-    }
-    public static MemoryAddress pwszName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_COSERVERINFO.pwszName$VH.get(seg);
-    }
-    public static void pwszName$set( MemorySegment seg, MemoryAddress x) {
-        _COSERVERINFO.pwszName$VH.set(seg, x);
-    }
-    public static MemoryAddress pwszName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_COSERVERINFO.pwszName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pwszName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _COSERVERINFO.pwszName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pAuthInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pAuthInfo"));
-    public static VarHandle pAuthInfo$VH() {
-        return _COSERVERINFO.pAuthInfo$VH;
-    }
-    public static MemoryAddress pAuthInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_COSERVERINFO.pAuthInfo$VH.get(seg);
-    }
-    public static void pAuthInfo$set( MemorySegment seg, MemoryAddress x) {
-        _COSERVERINFO.pAuthInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress pAuthInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_COSERVERINFO.pAuthInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pAuthInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _COSERVERINFO.pAuthInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwReserved2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwReserved2"));
-    public static VarHandle dwReserved2$VH() {
-        return _COSERVERINFO.dwReserved2$VH;
-    }
-    public static int dwReserved2$get(MemorySegment seg) {
-        return (int)_COSERVERINFO.dwReserved2$VH.get(seg);
-    }
-    public static void dwReserved2$set( MemorySegment seg, int x) {
-        _COSERVERINFO.dwReserved2$VH.set(seg, x);
-    }
-    public static int dwReserved2$get(MemorySegment seg, long index) {
-        return (int)_COSERVERINFO.dwReserved2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwReserved2$set(MemorySegment seg, long index, int x) {
-        _COSERVERINFO.dwReserved2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwReserved1"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pwszName"),
+        wgl_h.C_POINTER.withName("pAuthInfo"),
+        wgl_h.C_LONG.withName("dwReserved2"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_COSERVERINFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwReserved1$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwReserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved1
+     * }
+     */
+    public static final OfInt dwReserved1$layout() {
+        return dwReserved1$LAYOUT;
+    }
+
+    private static final long dwReserved1$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved1
+     * }
+     */
+    public static final long dwReserved1$offset() {
+        return dwReserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved1
+     * }
+     */
+    public static int dwReserved1(MemorySegment struct) {
+        return struct.get(dwReserved1$LAYOUT, dwReserved1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved1
+     * }
+     */
+    public static void dwReserved1(MemorySegment struct, int fieldValue) {
+        struct.set(dwReserved1$LAYOUT, dwReserved1$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pwszName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pwszName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszName
+     * }
+     */
+    public static final AddressLayout pwszName$layout() {
+        return pwszName$LAYOUT;
+    }
+
+    private static final long pwszName$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszName
+     * }
+     */
+    public static final long pwszName$offset() {
+        return pwszName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszName
+     * }
+     */
+    public static MemorySegment pwszName(MemorySegment struct) {
+        return struct.get(pwszName$LAYOUT, pwszName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszName
+     * }
+     */
+    public static void pwszName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pwszName$LAYOUT, pwszName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pAuthInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pAuthInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * COAUTHINFO *pAuthInfo
+     * }
+     */
+    public static final AddressLayout pAuthInfo$layout() {
+        return pAuthInfo$LAYOUT;
+    }
+
+    private static final long pAuthInfo$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * COAUTHINFO *pAuthInfo
+     * }
+     */
+    public static final long pAuthInfo$offset() {
+        return pAuthInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * COAUTHINFO *pAuthInfo
+     * }
+     */
+    public static MemorySegment pAuthInfo(MemorySegment struct) {
+        return struct.get(pAuthInfo$LAYOUT, pAuthInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * COAUTHINFO *pAuthInfo
+     * }
+     */
+    public static void pAuthInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pAuthInfo$LAYOUT, pAuthInfo$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwReserved2$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwReserved2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved2
+     * }
+     */
+    public static final OfInt dwReserved2$layout() {
+        return dwReserved2$LAYOUT;
+    }
+
+    private static final long dwReserved2$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved2
+     * }
+     */
+    public static final long dwReserved2$offset() {
+        return dwReserved2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved2
+     * }
+     */
+    public static int dwReserved2(MemorySegment struct) {
+        return struct.get(dwReserved2$LAYOUT, dwReserved2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved2
+     * }
+     */
+    public static void dwReserved2(MemorySegment struct, int fieldValue) {
+        struct.set(dwReserved2$LAYOUT, dwReserved2$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

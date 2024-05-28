@@ -2,13 +2,49 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagOFNW {
+ *     DWORD lStructSize;
+ *     HWND hwndOwner;
+ *     HINSTANCE hInstance;
+ *     LPCWSTR lpstrFilter;
+ *     LPWSTR lpstrCustomFilter;
+ *     DWORD nMaxCustFilter;
+ *     DWORD nFilterIndex;
+ *     LPWSTR lpstrFile;
+ *     DWORD nMaxFile;
+ *     LPWSTR lpstrFileTitle;
+ *     DWORD nMaxFileTitle;
+ *     LPCWSTR lpstrInitialDir;
+ *     LPCWSTR lpstrTitle;
+ *     DWORD Flags;
+ *     WORD nFileOffset;
+ *     WORD nFileExtension;
+ *     LPCWSTR lpstrDefExt;
+ *     LPARAM lCustData;
+ *     LPOFNHOOKPROC lpfnHook;
+ *     LPCWSTR lpTemplateName;
+ *     void *pvReserved;
+ *     DWORD dwReserved;
+ *     DWORD FlagsEx;
+ * } OPENFILENAMEW
+ * }
+ */
 public class OPENFILENAMEW extends tagOFNW {
 
+    OPENFILENAMEW() {
+        // Should not be called directly
+    }
 }
-
 

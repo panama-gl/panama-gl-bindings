@@ -2,111 +2,312 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     unsigned long Version;
+ *     RPC_CSTR ProtSeq;
+ *     RPC_CSTR Endpoint;
+ *     void *SecurityDescriptor;
+ *     unsigned long Backlog;
+ * }
+ * }
+ */
 public class RPC_ENDPOINT_TEMPLATEA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("ProtSeq"),
-        Constants$root.C_POINTER$LAYOUT.withName("Endpoint"),
-        Constants$root.C_POINTER$LAYOUT.withName("SecurityDescriptor"),
-        Constants$root.C_LONG$LAYOUT.withName("Backlog"),
-        MemoryLayout.paddingLayout(32)
-    );
-    public static MemoryLayout $LAYOUT() {
-        return RPC_ENDPOINT_TEMPLATEA.$struct$LAYOUT;
+    RPC_ENDPOINT_TEMPLATEA() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return RPC_ENDPOINT_TEMPLATEA.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)RPC_ENDPOINT_TEMPLATEA.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        RPC_ENDPOINT_TEMPLATEA.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)RPC_ENDPOINT_TEMPLATEA.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        RPC_ENDPOINT_TEMPLATEA.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ProtSeq$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProtSeq"));
-    public static VarHandle ProtSeq$VH() {
-        return RPC_ENDPOINT_TEMPLATEA.ProtSeq$VH;
-    }
-    public static MemoryAddress ProtSeq$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)RPC_ENDPOINT_TEMPLATEA.ProtSeq$VH.get(seg);
-    }
-    public static void ProtSeq$set( MemorySegment seg, MemoryAddress x) {
-        RPC_ENDPOINT_TEMPLATEA.ProtSeq$VH.set(seg, x);
-    }
-    public static MemoryAddress ProtSeq$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)RPC_ENDPOINT_TEMPLATEA.ProtSeq$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProtSeq$set(MemorySegment seg, long index, MemoryAddress x) {
-        RPC_ENDPOINT_TEMPLATEA.ProtSeq$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Endpoint$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Endpoint"));
-    public static VarHandle Endpoint$VH() {
-        return RPC_ENDPOINT_TEMPLATEA.Endpoint$VH;
-    }
-    public static MemoryAddress Endpoint$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)RPC_ENDPOINT_TEMPLATEA.Endpoint$VH.get(seg);
-    }
-    public static void Endpoint$set( MemorySegment seg, MemoryAddress x) {
-        RPC_ENDPOINT_TEMPLATEA.Endpoint$VH.set(seg, x);
-    }
-    public static MemoryAddress Endpoint$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)RPC_ENDPOINT_TEMPLATEA.Endpoint$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Endpoint$set(MemorySegment seg, long index, MemoryAddress x) {
-        RPC_ENDPOINT_TEMPLATEA.Endpoint$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SecurityDescriptor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SecurityDescriptor"));
-    public static VarHandle SecurityDescriptor$VH() {
-        return RPC_ENDPOINT_TEMPLATEA.SecurityDescriptor$VH;
-    }
-    public static MemoryAddress SecurityDescriptor$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)RPC_ENDPOINT_TEMPLATEA.SecurityDescriptor$VH.get(seg);
-    }
-    public static void SecurityDescriptor$set( MemorySegment seg, MemoryAddress x) {
-        RPC_ENDPOINT_TEMPLATEA.SecurityDescriptor$VH.set(seg, x);
-    }
-    public static MemoryAddress SecurityDescriptor$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)RPC_ENDPOINT_TEMPLATEA.SecurityDescriptor$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SecurityDescriptor$set(MemorySegment seg, long index, MemoryAddress x) {
-        RPC_ENDPOINT_TEMPLATEA.SecurityDescriptor$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Backlog$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Backlog"));
-    public static VarHandle Backlog$VH() {
-        return RPC_ENDPOINT_TEMPLATEA.Backlog$VH;
-    }
-    public static int Backlog$get(MemorySegment seg) {
-        return (int)RPC_ENDPOINT_TEMPLATEA.Backlog$VH.get(seg);
-    }
-    public static void Backlog$set( MemorySegment seg, int x) {
-        RPC_ENDPOINT_TEMPLATEA.Backlog$VH.set(seg, x);
-    }
-    public static int Backlog$get(MemorySegment seg, long index) {
-        return (int)RPC_ENDPOINT_TEMPLATEA.Backlog$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Backlog$set(MemorySegment seg, long index, int x) {
-        RPC_ENDPOINT_TEMPLATEA.Backlog$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("ProtSeq"),
+        wgl_h.C_POINTER.withName("Endpoint"),
+        wgl_h.C_POINTER.withName("SecurityDescriptor"),
+        wgl_h.C_LONG.withName("Backlog"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("$anon$3154:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ProtSeq$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ProtSeq"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RPC_CSTR ProtSeq
+     * }
+     */
+    public static final AddressLayout ProtSeq$layout() {
+        return ProtSeq$LAYOUT;
+    }
+
+    private static final long ProtSeq$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RPC_CSTR ProtSeq
+     * }
+     */
+    public static final long ProtSeq$offset() {
+        return ProtSeq$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RPC_CSTR ProtSeq
+     * }
+     */
+    public static MemorySegment ProtSeq(MemorySegment struct) {
+        return struct.get(ProtSeq$LAYOUT, ProtSeq$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RPC_CSTR ProtSeq
+     * }
+     */
+    public static void ProtSeq(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ProtSeq$LAYOUT, ProtSeq$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout Endpoint$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Endpoint"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RPC_CSTR Endpoint
+     * }
+     */
+    public static final AddressLayout Endpoint$layout() {
+        return Endpoint$LAYOUT;
+    }
+
+    private static final long Endpoint$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RPC_CSTR Endpoint
+     * }
+     */
+    public static final long Endpoint$offset() {
+        return Endpoint$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RPC_CSTR Endpoint
+     * }
+     */
+    public static MemorySegment Endpoint(MemorySegment struct) {
+        return struct.get(Endpoint$LAYOUT, Endpoint$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RPC_CSTR Endpoint
+     * }
+     */
+    public static void Endpoint(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Endpoint$LAYOUT, Endpoint$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout SecurityDescriptor$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SecurityDescriptor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *SecurityDescriptor
+     * }
+     */
+    public static final AddressLayout SecurityDescriptor$layout() {
+        return SecurityDescriptor$LAYOUT;
+    }
+
+    private static final long SecurityDescriptor$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *SecurityDescriptor
+     * }
+     */
+    public static final long SecurityDescriptor$offset() {
+        return SecurityDescriptor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *SecurityDescriptor
+     * }
+     */
+    public static MemorySegment SecurityDescriptor(MemorySegment struct) {
+        return struct.get(SecurityDescriptor$LAYOUT, SecurityDescriptor$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *SecurityDescriptor
+     * }
+     */
+    public static void SecurityDescriptor(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SecurityDescriptor$LAYOUT, SecurityDescriptor$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Backlog$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Backlog"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long Backlog
+     * }
+     */
+    public static final OfInt Backlog$layout() {
+        return Backlog$LAYOUT;
+    }
+
+    private static final long Backlog$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long Backlog
+     * }
+     */
+    public static final long Backlog$offset() {
+        return Backlog$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long Backlog
+     * }
+     */
+    public static int Backlog(MemorySegment struct) {
+        return struct.get(Backlog$LAYOUT, Backlog$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long Backlog
+     * }
+     */
+    public static void Backlog(MemorySegment struct, int fieldValue) {
+        struct.set(Backlog$LAYOUT, Backlog$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

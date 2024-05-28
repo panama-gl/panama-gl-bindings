@@ -2,126 +2,356 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct JOBOBJECT_IO_RATE_CONTROL_INFORMATION {
+ *     LONG64 MaxIops;
+ *     LONG64 MaxBandwidth;
+ *     LONG64 ReservationIops;
+ *     PCWSTR VolumeName;
+ *     ULONG BaseIoSize;
+ *     ULONG ControlFlags;
+ * }
+ * }
+ */
 public class JOBOBJECT_IO_RATE_CONTROL_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("MaxIops"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("MaxBandwidth"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ReservationIops"),
-        Constants$root.C_POINTER$LAYOUT.withName("VolumeName"),
-        Constants$root.C_LONG$LAYOUT.withName("BaseIoSize"),
-        Constants$root.C_LONG$LAYOUT.withName("ControlFlags")
-    ).withName("JOBOBJECT_IO_RATE_CONTROL_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return JOBOBJECT_IO_RATE_CONTROL_INFORMATION.$struct$LAYOUT;
+    JOBOBJECT_IO_RATE_CONTROL_INFORMATION() {
+        // Should not be called directly
     }
-    static final VarHandle MaxIops$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaxIops"));
-    public static VarHandle MaxIops$VH() {
-        return JOBOBJECT_IO_RATE_CONTROL_INFORMATION.MaxIops$VH;
-    }
-    public static long MaxIops$get(MemorySegment seg) {
-        return (long)JOBOBJECT_IO_RATE_CONTROL_INFORMATION.MaxIops$VH.get(seg);
-    }
-    public static void MaxIops$set( MemorySegment seg, long x) {
-        JOBOBJECT_IO_RATE_CONTROL_INFORMATION.MaxIops$VH.set(seg, x);
-    }
-    public static long MaxIops$get(MemorySegment seg, long index) {
-        return (long)JOBOBJECT_IO_RATE_CONTROL_INFORMATION.MaxIops$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaxIops$set(MemorySegment seg, long index, long x) {
-        JOBOBJECT_IO_RATE_CONTROL_INFORMATION.MaxIops$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaxBandwidth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaxBandwidth"));
-    public static VarHandle MaxBandwidth$VH() {
-        return JOBOBJECT_IO_RATE_CONTROL_INFORMATION.MaxBandwidth$VH;
-    }
-    public static long MaxBandwidth$get(MemorySegment seg) {
-        return (long)JOBOBJECT_IO_RATE_CONTROL_INFORMATION.MaxBandwidth$VH.get(seg);
-    }
-    public static void MaxBandwidth$set( MemorySegment seg, long x) {
-        JOBOBJECT_IO_RATE_CONTROL_INFORMATION.MaxBandwidth$VH.set(seg, x);
-    }
-    public static long MaxBandwidth$get(MemorySegment seg, long index) {
-        return (long)JOBOBJECT_IO_RATE_CONTROL_INFORMATION.MaxBandwidth$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaxBandwidth$set(MemorySegment seg, long index, long x) {
-        JOBOBJECT_IO_RATE_CONTROL_INFORMATION.MaxBandwidth$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ReservationIops$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ReservationIops"));
-    public static VarHandle ReservationIops$VH() {
-        return JOBOBJECT_IO_RATE_CONTROL_INFORMATION.ReservationIops$VH;
-    }
-    public static long ReservationIops$get(MemorySegment seg) {
-        return (long)JOBOBJECT_IO_RATE_CONTROL_INFORMATION.ReservationIops$VH.get(seg);
-    }
-    public static void ReservationIops$set( MemorySegment seg, long x) {
-        JOBOBJECT_IO_RATE_CONTROL_INFORMATION.ReservationIops$VH.set(seg, x);
-    }
-    public static long ReservationIops$get(MemorySegment seg, long index) {
-        return (long)JOBOBJECT_IO_RATE_CONTROL_INFORMATION.ReservationIops$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ReservationIops$set(MemorySegment seg, long index, long x) {
-        JOBOBJECT_IO_RATE_CONTROL_INFORMATION.ReservationIops$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle VolumeName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VolumeName"));
-    public static VarHandle VolumeName$VH() {
-        return JOBOBJECT_IO_RATE_CONTROL_INFORMATION.VolumeName$VH;
-    }
-    public static MemoryAddress VolumeName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)JOBOBJECT_IO_RATE_CONTROL_INFORMATION.VolumeName$VH.get(seg);
-    }
-    public static void VolumeName$set( MemorySegment seg, MemoryAddress x) {
-        JOBOBJECT_IO_RATE_CONTROL_INFORMATION.VolumeName$VH.set(seg, x);
-    }
-    public static MemoryAddress VolumeName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)JOBOBJECT_IO_RATE_CONTROL_INFORMATION.VolumeName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void VolumeName$set(MemorySegment seg, long index, MemoryAddress x) {
-        JOBOBJECT_IO_RATE_CONTROL_INFORMATION.VolumeName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BaseIoSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BaseIoSize"));
-    public static VarHandle BaseIoSize$VH() {
-        return JOBOBJECT_IO_RATE_CONTROL_INFORMATION.BaseIoSize$VH;
-    }
-    public static int BaseIoSize$get(MemorySegment seg) {
-        return (int)JOBOBJECT_IO_RATE_CONTROL_INFORMATION.BaseIoSize$VH.get(seg);
-    }
-    public static void BaseIoSize$set( MemorySegment seg, int x) {
-        JOBOBJECT_IO_RATE_CONTROL_INFORMATION.BaseIoSize$VH.set(seg, x);
-    }
-    public static int BaseIoSize$get(MemorySegment seg, long index) {
-        return (int)JOBOBJECT_IO_RATE_CONTROL_INFORMATION.BaseIoSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BaseIoSize$set(MemorySegment seg, long index, int x) {
-        JOBOBJECT_IO_RATE_CONTROL_INFORMATION.BaseIoSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ControlFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ControlFlags"));
-    public static VarHandle ControlFlags$VH() {
-        return JOBOBJECT_IO_RATE_CONTROL_INFORMATION.ControlFlags$VH;
-    }
-    public static int ControlFlags$get(MemorySegment seg) {
-        return (int)JOBOBJECT_IO_RATE_CONTROL_INFORMATION.ControlFlags$VH.get(seg);
-    }
-    public static void ControlFlags$set( MemorySegment seg, int x) {
-        JOBOBJECT_IO_RATE_CONTROL_INFORMATION.ControlFlags$VH.set(seg, x);
-    }
-    public static int ControlFlags$get(MemorySegment seg, long index) {
-        return (int)JOBOBJECT_IO_RATE_CONTROL_INFORMATION.ControlFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ControlFlags$set(MemorySegment seg, long index, int x) {
-        JOBOBJECT_IO_RATE_CONTROL_INFORMATION.ControlFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG_LONG.withName("MaxIops"),
+        freeglut_h.C_LONG_LONG.withName("MaxBandwidth"),
+        freeglut_h.C_LONG_LONG.withName("ReservationIops"),
+        freeglut_h.C_POINTER.withName("VolumeName"),
+        freeglut_h.C_LONG.withName("BaseIoSize"),
+        freeglut_h.C_LONG.withName("ControlFlags")
+    ).withName("JOBOBJECT_IO_RATE_CONTROL_INFORMATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong MaxIops$LAYOUT = (OfLong)$LAYOUT.select(groupElement("MaxIops"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG64 MaxIops
+     * }
+     */
+    public static final OfLong MaxIops$layout() {
+        return MaxIops$LAYOUT;
+    }
+
+    private static final long MaxIops$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG64 MaxIops
+     * }
+     */
+    public static final long MaxIops$offset() {
+        return MaxIops$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG64 MaxIops
+     * }
+     */
+    public static long MaxIops(MemorySegment struct) {
+        return struct.get(MaxIops$LAYOUT, MaxIops$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG64 MaxIops
+     * }
+     */
+    public static void MaxIops(MemorySegment struct, long fieldValue) {
+        struct.set(MaxIops$LAYOUT, MaxIops$OFFSET, fieldValue);
+    }
+
+    private static final OfLong MaxBandwidth$LAYOUT = (OfLong)$LAYOUT.select(groupElement("MaxBandwidth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG64 MaxBandwidth
+     * }
+     */
+    public static final OfLong MaxBandwidth$layout() {
+        return MaxBandwidth$LAYOUT;
+    }
+
+    private static final long MaxBandwidth$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG64 MaxBandwidth
+     * }
+     */
+    public static final long MaxBandwidth$offset() {
+        return MaxBandwidth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG64 MaxBandwidth
+     * }
+     */
+    public static long MaxBandwidth(MemorySegment struct) {
+        return struct.get(MaxBandwidth$LAYOUT, MaxBandwidth$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG64 MaxBandwidth
+     * }
+     */
+    public static void MaxBandwidth(MemorySegment struct, long fieldValue) {
+        struct.set(MaxBandwidth$LAYOUT, MaxBandwidth$OFFSET, fieldValue);
+    }
+
+    private static final OfLong ReservationIops$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ReservationIops"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG64 ReservationIops
+     * }
+     */
+    public static final OfLong ReservationIops$layout() {
+        return ReservationIops$LAYOUT;
+    }
+
+    private static final long ReservationIops$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG64 ReservationIops
+     * }
+     */
+    public static final long ReservationIops$offset() {
+        return ReservationIops$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG64 ReservationIops
+     * }
+     */
+    public static long ReservationIops(MemorySegment struct) {
+        return struct.get(ReservationIops$LAYOUT, ReservationIops$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG64 ReservationIops
+     * }
+     */
+    public static void ReservationIops(MemorySegment struct, long fieldValue) {
+        struct.set(ReservationIops$LAYOUT, ReservationIops$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout VolumeName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("VolumeName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCWSTR VolumeName
+     * }
+     */
+    public static final AddressLayout VolumeName$layout() {
+        return VolumeName$LAYOUT;
+    }
+
+    private static final long VolumeName$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCWSTR VolumeName
+     * }
+     */
+    public static final long VolumeName$offset() {
+        return VolumeName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCWSTR VolumeName
+     * }
+     */
+    public static MemorySegment VolumeName(MemorySegment struct) {
+        return struct.get(VolumeName$LAYOUT, VolumeName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCWSTR VolumeName
+     * }
+     */
+    public static void VolumeName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(VolumeName$LAYOUT, VolumeName$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BaseIoSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BaseIoSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG BaseIoSize
+     * }
+     */
+    public static final OfInt BaseIoSize$layout() {
+        return BaseIoSize$LAYOUT;
+    }
+
+    private static final long BaseIoSize$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG BaseIoSize
+     * }
+     */
+    public static final long BaseIoSize$offset() {
+        return BaseIoSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG BaseIoSize
+     * }
+     */
+    public static int BaseIoSize(MemorySegment struct) {
+        return struct.get(BaseIoSize$LAYOUT, BaseIoSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG BaseIoSize
+     * }
+     */
+    public static void BaseIoSize(MemorySegment struct, int fieldValue) {
+        struct.set(BaseIoSize$LAYOUT, BaseIoSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ControlFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ControlFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG ControlFlags
+     * }
+     */
+    public static final OfInt ControlFlags$layout() {
+        return ControlFlags$LAYOUT;
+    }
+
+    private static final long ControlFlags$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG ControlFlags
+     * }
+     */
+    public static final long ControlFlags$offset() {
+        return ControlFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG ControlFlags
+     * }
+     */
+    public static int ControlFlags(MemorySegment struct) {
+        return struct.get(ControlFlags$LAYOUT, ControlFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG ControlFlags
+     * }
+     */
+    public static void ControlFlags(MemorySegment struct, int fieldValue) {
+        struct.set(ControlFlags$LAYOUT, ControlFlags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

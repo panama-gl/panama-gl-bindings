@@ -2,51 +2,209 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _TOKEN_PRIVILEGES {
+ *     DWORD PrivilegeCount;
+ *     LUID_AND_ATTRIBUTES Privileges[1];
+ * }
+ * }
+ */
 public class _TOKEN_PRIVILEGES {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("PrivilegeCount"),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("Luid"),
-            Constants$root.C_LONG$LAYOUT.withName("Attributes")
-        ).withName("_LUID_AND_ATTRIBUTES")).withName("Privileges")
-    ).withName("_TOKEN_PRIVILEGES");
-    public static MemoryLayout $LAYOUT() {
-        return _TOKEN_PRIVILEGES.$struct$LAYOUT;
+    _TOKEN_PRIVILEGES() {
+        // Should not be called directly
     }
-    static final VarHandle PrivilegeCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PrivilegeCount"));
-    public static VarHandle PrivilegeCount$VH() {
-        return _TOKEN_PRIVILEGES.PrivilegeCount$VH;
-    }
-    public static int PrivilegeCount$get(MemorySegment seg) {
-        return (int)_TOKEN_PRIVILEGES.PrivilegeCount$VH.get(seg);
-    }
-    public static void PrivilegeCount$set( MemorySegment seg, int x) {
-        _TOKEN_PRIVILEGES.PrivilegeCount$VH.set(seg, x);
-    }
-    public static int PrivilegeCount$get(MemorySegment seg, long index) {
-        return (int)_TOKEN_PRIVILEGES.PrivilegeCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PrivilegeCount$set(MemorySegment seg, long index, int x) {
-        _TOKEN_PRIVILEGES.PrivilegeCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Privileges$slice(MemorySegment seg) {
-        return seg.asSlice(4, 12);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("PrivilegeCount"),
+        MemoryLayout.sequenceLayout(1, _LUID_AND_ATTRIBUTES.layout()).withName("Privileges")
+    ).withName("_TOKEN_PRIVILEGES");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt PrivilegeCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PrivilegeCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PrivilegeCount
+     * }
+     */
+    public static final OfInt PrivilegeCount$layout() {
+        return PrivilegeCount$LAYOUT;
+    }
+
+    private static final long PrivilegeCount$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PrivilegeCount
+     * }
+     */
+    public static final long PrivilegeCount$offset() {
+        return PrivilegeCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PrivilegeCount
+     * }
+     */
+    public static int PrivilegeCount(MemorySegment struct) {
+        return struct.get(PrivilegeCount$LAYOUT, PrivilegeCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PrivilegeCount
+     * }
+     */
+    public static void PrivilegeCount(MemorySegment struct, int fieldValue) {
+        struct.set(PrivilegeCount$LAYOUT, PrivilegeCount$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Privileges$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Privileges"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LUID_AND_ATTRIBUTES Privileges[1]
+     * }
+     */
+    public static final SequenceLayout Privileges$layout() {
+        return Privileges$LAYOUT;
+    }
+
+    private static final long Privileges$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LUID_AND_ATTRIBUTES Privileges[1]
+     * }
+     */
+    public static final long Privileges$offset() {
+        return Privileges$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LUID_AND_ATTRIBUTES Privileges[1]
+     * }
+     */
+    public static MemorySegment Privileges(MemorySegment struct) {
+        return struct.asSlice(Privileges$OFFSET, Privileges$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LUID_AND_ATTRIBUTES Privileges[1]
+     * }
+     */
+    public static void Privileges(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Privileges$OFFSET, Privileges$LAYOUT.byteSize());
+    }
+
+    private static long[] Privileges$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * LUID_AND_ATTRIBUTES Privileges[1]
+     * }
+     */
+    public static long[] Privileges$dimensions() {
+        return Privileges$DIMS;
+    }
+    private static final MethodHandle Privileges$ELEM_HANDLE = Privileges$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * LUID_AND_ATTRIBUTES Privileges[1]
+     * }
+     */
+    public static MemorySegment Privileges(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)Privileges$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * LUID_AND_ATTRIBUTES Privileges[1]
+     * }
+     */
+    public static void Privileges(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, Privileges(struct, index0), 0L, _LUID_AND_ATTRIBUTES.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

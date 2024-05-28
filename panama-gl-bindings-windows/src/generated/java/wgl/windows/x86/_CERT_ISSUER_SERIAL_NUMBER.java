@@ -2,40 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_ISSUER_SERIAL_NUMBER {
+ *     CERT_NAME_BLOB Issuer;
+ *     CRYPT_INTEGER_BLOB SerialNumber;
+ * }
+ * }
+ */
 public class _CERT_ISSUER_SERIAL_NUMBER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData")
-        ).withName("Issuer"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData")
-        ).withName("SerialNumber")
-    ).withName("_CERT_ISSUER_SERIAL_NUMBER");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_ISSUER_SERIAL_NUMBER.$struct$LAYOUT;
+    _CERT_ISSUER_SERIAL_NUMBER() {
+        // Should not be called directly
     }
-    public static MemorySegment Issuer$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
-    }
-    public static MemorySegment SerialNumber$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _CRYPTOAPI_BLOB.layout().withName("Issuer"),
+        _CRYPTOAPI_BLOB.layout().withName("SerialNumber")
+    ).withName("_CERT_ISSUER_SERIAL_NUMBER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout Issuer$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Issuer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB Issuer
+     * }
+     */
+    public static final GroupLayout Issuer$layout() {
+        return Issuer$LAYOUT;
+    }
+
+    private static final long Issuer$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB Issuer
+     * }
+     */
+    public static final long Issuer$offset() {
+        return Issuer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB Issuer
+     * }
+     */
+    public static MemorySegment Issuer(MemorySegment struct) {
+        return struct.asSlice(Issuer$OFFSET, Issuer$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB Issuer
+     * }
+     */
+    public static void Issuer(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Issuer$OFFSET, Issuer$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout SerialNumber$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("SerialNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_INTEGER_BLOB SerialNumber
+     * }
+     */
+    public static final GroupLayout SerialNumber$layout() {
+        return SerialNumber$LAYOUT;
+    }
+
+    private static final long SerialNumber$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_INTEGER_BLOB SerialNumber
+     * }
+     */
+    public static final long SerialNumber$offset() {
+        return SerialNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_INTEGER_BLOB SerialNumber
+     * }
+     */
+    public static MemorySegment SerialNumber(MemorySegment struct) {
+        return struct.asSlice(SerialNumber$OFFSET, SerialNumber$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_INTEGER_BLOB SerialNumber
+     * }
+     */
+    public static void SerialNumber(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, SerialNumber$OFFSET, SerialNumber$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

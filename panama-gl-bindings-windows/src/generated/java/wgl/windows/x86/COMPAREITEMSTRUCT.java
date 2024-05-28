@@ -2,13 +2,34 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagCOMPAREITEMSTRUCT {
+ *     UINT CtlType;
+ *     UINT CtlID;
+ *     HWND hwndItem;
+ *     UINT itemID1;
+ *     ULONG_PTR itemData1;
+ *     UINT itemID2;
+ *     ULONG_PTR itemData2;
+ *     DWORD dwLocaleId;
+ * } COMPAREITEMSTRUCT
+ * }
+ */
 public class COMPAREITEMSTRUCT extends tagCOMPAREITEMSTRUCT {
 
+    COMPAREITEMSTRUCT() {
+        // Should not be called directly
+    }
 }
-
 

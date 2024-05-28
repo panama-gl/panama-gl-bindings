@@ -2,96 +2,343 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS {
+ *     DWORD cbSize;
+ *     DWORD dwErrorLevel;
+ *     DWORD dwErrorCategory;
+ *     DWORD dwReserved;
+ *     WCHAR wszErrorText[256];
+ * }
+ * }
+ */
 public class _SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        Constants$root.C_LONG$LAYOUT.withName("dwErrorLevel"),
-        Constants$root.C_LONG$LAYOUT.withName("dwErrorCategory"),
-        Constants$root.C_LONG$LAYOUT.withName("dwReserved"),
-        MemoryLayout.sequenceLayout(256, Constants$root.C_SHORT$LAYOUT).withName("wszErrorText")
-    ).withName("_SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS");
-    public static MemoryLayout $LAYOUT() {
-        return _SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.$struct$LAYOUT;
+    _SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwErrorLevel$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwErrorLevel"));
-    public static VarHandle dwErrorLevel$VH() {
-        return _SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.dwErrorLevel$VH;
-    }
-    public static int dwErrorLevel$get(MemorySegment seg) {
-        return (int)_SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.dwErrorLevel$VH.get(seg);
-    }
-    public static void dwErrorLevel$set( MemorySegment seg, int x) {
-        _SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.dwErrorLevel$VH.set(seg, x);
-    }
-    public static int dwErrorLevel$get(MemorySegment seg, long index) {
-        return (int)_SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.dwErrorLevel$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwErrorLevel$set(MemorySegment seg, long index, int x) {
-        _SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.dwErrorLevel$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwErrorCategory$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwErrorCategory"));
-    public static VarHandle dwErrorCategory$VH() {
-        return _SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.dwErrorCategory$VH;
-    }
-    public static int dwErrorCategory$get(MemorySegment seg) {
-        return (int)_SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.dwErrorCategory$VH.get(seg);
-    }
-    public static void dwErrorCategory$set( MemorySegment seg, int x) {
-        _SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.dwErrorCategory$VH.set(seg, x);
-    }
-    public static int dwErrorCategory$get(MemorySegment seg, long index) {
-        return (int)_SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.dwErrorCategory$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwErrorCategory$set(MemorySegment seg, long index, int x) {
-        _SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.dwErrorCategory$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwReserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwReserved"));
-    public static VarHandle dwReserved$VH() {
-        return _SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.dwReserved$VH;
-    }
-    public static int dwReserved$get(MemorySegment seg) {
-        return (int)_SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.dwReserved$VH.get(seg);
-    }
-    public static void dwReserved$set( MemorySegment seg, int x) {
-        _SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.dwReserved$VH.set(seg, x);
-    }
-    public static int dwReserved$get(MemorySegment seg, long index) {
-        return (int)_SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.dwReserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwReserved$set(MemorySegment seg, long index, int x) {
-        _SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS.dwReserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment wszErrorText$slice(MemorySegment seg) {
-        return seg.asSlice(16, 512);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        wgl_h.C_LONG.withName("dwErrorLevel"),
+        wgl_h.C_LONG.withName("dwErrorCategory"),
+        wgl_h.C_LONG.withName("dwReserved"),
+        MemoryLayout.sequenceLayout(256, wgl_h.C_SHORT).withName("wszErrorText")
+    ).withName("_SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwErrorLevel$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwErrorLevel"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwErrorLevel
+     * }
+     */
+    public static final OfInt dwErrorLevel$layout() {
+        return dwErrorLevel$LAYOUT;
+    }
+
+    private static final long dwErrorLevel$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwErrorLevel
+     * }
+     */
+    public static final long dwErrorLevel$offset() {
+        return dwErrorLevel$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwErrorLevel
+     * }
+     */
+    public static int dwErrorLevel(MemorySegment struct) {
+        return struct.get(dwErrorLevel$LAYOUT, dwErrorLevel$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwErrorLevel
+     * }
+     */
+    public static void dwErrorLevel(MemorySegment struct, int fieldValue) {
+        struct.set(dwErrorLevel$LAYOUT, dwErrorLevel$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwErrorCategory$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwErrorCategory"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwErrorCategory
+     * }
+     */
+    public static final OfInt dwErrorCategory$layout() {
+        return dwErrorCategory$LAYOUT;
+    }
+
+    private static final long dwErrorCategory$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwErrorCategory
+     * }
+     */
+    public static final long dwErrorCategory$offset() {
+        return dwErrorCategory$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwErrorCategory
+     * }
+     */
+    public static int dwErrorCategory(MemorySegment struct) {
+        return struct.get(dwErrorCategory$LAYOUT, dwErrorCategory$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwErrorCategory
+     * }
+     */
+    public static void dwErrorCategory(MemorySegment struct, int fieldValue) {
+        struct.set(dwErrorCategory$LAYOUT, dwErrorCategory$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwReserved$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved
+     * }
+     */
+    public static final OfInt dwReserved$layout() {
+        return dwReserved$LAYOUT;
+    }
+
+    private static final long dwReserved$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved
+     * }
+     */
+    public static final long dwReserved$offset() {
+        return dwReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved
+     * }
+     */
+    public static int dwReserved(MemorySegment struct) {
+        return struct.get(dwReserved$LAYOUT, dwReserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved
+     * }
+     */
+    public static void dwReserved(MemorySegment struct, int fieldValue) {
+        struct.set(dwReserved$LAYOUT, dwReserved$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout wszErrorText$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("wszErrorText"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR wszErrorText[256]
+     * }
+     */
+    public static final SequenceLayout wszErrorText$layout() {
+        return wszErrorText$LAYOUT;
+    }
+
+    private static final long wszErrorText$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR wszErrorText[256]
+     * }
+     */
+    public static final long wszErrorText$offset() {
+        return wszErrorText$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR wszErrorText[256]
+     * }
+     */
+    public static MemorySegment wszErrorText(MemorySegment struct) {
+        return struct.asSlice(wszErrorText$OFFSET, wszErrorText$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR wszErrorText[256]
+     * }
+     */
+    public static void wszErrorText(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, wszErrorText$OFFSET, wszErrorText$LAYOUT.byteSize());
+    }
+
+    private static long[] wszErrorText$DIMS = { 256 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR wszErrorText[256]
+     * }
+     */
+    public static long[] wszErrorText$dimensions() {
+        return wszErrorText$DIMS;
+    }
+    private static final VarHandle wszErrorText$ELEM_HANDLE = wszErrorText$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR wszErrorText[256]
+     * }
+     */
+    public static short wszErrorText(MemorySegment struct, long index0) {
+        return (short)wszErrorText$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR wszErrorText[256]
+     * }
+     */
+    public static void wszErrorText(MemorySegment struct, long index0, short fieldValue) {
+        wszErrorText$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

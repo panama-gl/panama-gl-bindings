@@ -2,13 +2,28 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _XSAVE_AREA {
+ *     XSAVE_FORMAT LegacyState;
+ *     XSAVE_AREA_HEADER Header;
+ * } XSAVE_AREA
+ * }
+ */
 public class XSAVE_AREA extends _XSAVE_AREA {
 
+    XSAVE_AREA() {
+        // Should not be called directly
+    }
 }
-
 

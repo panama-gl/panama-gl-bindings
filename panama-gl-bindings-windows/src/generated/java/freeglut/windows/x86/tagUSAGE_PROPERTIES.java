@@ -2,196 +2,542 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagUSAGE_PROPERTIES {
+ *     USHORT level;
+ *     USHORT page;
+ *     USHORT usage;
+ *     INT32 logicalMinimum;
+ *     INT32 logicalMaximum;
+ *     USHORT unit;
+ *     USHORT exponent;
+ *     BYTE count;
+ *     INT32 physicalMinimum;
+ *     INT32 physicalMaximum;
+ * }
+ * }
+ */
 public class tagUSAGE_PROPERTIES {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("level"),
-        Constants$root.C_SHORT$LAYOUT.withName("page"),
-        Constants$root.C_SHORT$LAYOUT.withName("usage"),
-        MemoryLayout.paddingLayout(16),
-        Constants$root.C_LONG$LAYOUT.withName("logicalMinimum"),
-        Constants$root.C_LONG$LAYOUT.withName("logicalMaximum"),
-        Constants$root.C_SHORT$LAYOUT.withName("unit"),
-        Constants$root.C_SHORT$LAYOUT.withName("exponent"),
-        Constants$root.C_CHAR$LAYOUT.withName("count"),
-        MemoryLayout.paddingLayout(24),
-        Constants$root.C_LONG$LAYOUT.withName("physicalMinimum"),
-        Constants$root.C_LONG$LAYOUT.withName("physicalMaximum")
-    ).withName("tagUSAGE_PROPERTIES");
-    public static MemoryLayout $LAYOUT() {
-        return tagUSAGE_PROPERTIES.$struct$LAYOUT;
+    tagUSAGE_PROPERTIES() {
+        // Should not be called directly
     }
-    static final VarHandle level$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("level"));
-    public static VarHandle level$VH() {
-        return tagUSAGE_PROPERTIES.level$VH;
-    }
-    public static short level$get(MemorySegment seg) {
-        return (short)tagUSAGE_PROPERTIES.level$VH.get(seg);
-    }
-    public static void level$set( MemorySegment seg, short x) {
-        tagUSAGE_PROPERTIES.level$VH.set(seg, x);
-    }
-    public static short level$get(MemorySegment seg, long index) {
-        return (short)tagUSAGE_PROPERTIES.level$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void level$set(MemorySegment seg, long index, short x) {
-        tagUSAGE_PROPERTIES.level$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle page$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("page"));
-    public static VarHandle page$VH() {
-        return tagUSAGE_PROPERTIES.page$VH;
-    }
-    public static short page$get(MemorySegment seg) {
-        return (short)tagUSAGE_PROPERTIES.page$VH.get(seg);
-    }
-    public static void page$set( MemorySegment seg, short x) {
-        tagUSAGE_PROPERTIES.page$VH.set(seg, x);
-    }
-    public static short page$get(MemorySegment seg, long index) {
-        return (short)tagUSAGE_PROPERTIES.page$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void page$set(MemorySegment seg, long index, short x) {
-        tagUSAGE_PROPERTIES.page$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle usage$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("usage"));
-    public static VarHandle usage$VH() {
-        return tagUSAGE_PROPERTIES.usage$VH;
-    }
-    public static short usage$get(MemorySegment seg) {
-        return (short)tagUSAGE_PROPERTIES.usage$VH.get(seg);
-    }
-    public static void usage$set( MemorySegment seg, short x) {
-        tagUSAGE_PROPERTIES.usage$VH.set(seg, x);
-    }
-    public static short usage$get(MemorySegment seg, long index) {
-        return (short)tagUSAGE_PROPERTIES.usage$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void usage$set(MemorySegment seg, long index, short x) {
-        tagUSAGE_PROPERTIES.usage$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle logicalMinimum$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("logicalMinimum"));
-    public static VarHandle logicalMinimum$VH() {
-        return tagUSAGE_PROPERTIES.logicalMinimum$VH;
-    }
-    public static int logicalMinimum$get(MemorySegment seg) {
-        return (int)tagUSAGE_PROPERTIES.logicalMinimum$VH.get(seg);
-    }
-    public static void logicalMinimum$set( MemorySegment seg, int x) {
-        tagUSAGE_PROPERTIES.logicalMinimum$VH.set(seg, x);
-    }
-    public static int logicalMinimum$get(MemorySegment seg, long index) {
-        return (int)tagUSAGE_PROPERTIES.logicalMinimum$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void logicalMinimum$set(MemorySegment seg, long index, int x) {
-        tagUSAGE_PROPERTIES.logicalMinimum$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle logicalMaximum$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("logicalMaximum"));
-    public static VarHandle logicalMaximum$VH() {
-        return tagUSAGE_PROPERTIES.logicalMaximum$VH;
-    }
-    public static int logicalMaximum$get(MemorySegment seg) {
-        return (int)tagUSAGE_PROPERTIES.logicalMaximum$VH.get(seg);
-    }
-    public static void logicalMaximum$set( MemorySegment seg, int x) {
-        tagUSAGE_PROPERTIES.logicalMaximum$VH.set(seg, x);
-    }
-    public static int logicalMaximum$get(MemorySegment seg, long index) {
-        return (int)tagUSAGE_PROPERTIES.logicalMaximum$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void logicalMaximum$set(MemorySegment seg, long index, int x) {
-        tagUSAGE_PROPERTIES.logicalMaximum$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle unit$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("unit"));
-    public static VarHandle unit$VH() {
-        return tagUSAGE_PROPERTIES.unit$VH;
-    }
-    public static short unit$get(MemorySegment seg) {
-        return (short)tagUSAGE_PROPERTIES.unit$VH.get(seg);
-    }
-    public static void unit$set( MemorySegment seg, short x) {
-        tagUSAGE_PROPERTIES.unit$VH.set(seg, x);
-    }
-    public static short unit$get(MemorySegment seg, long index) {
-        return (short)tagUSAGE_PROPERTIES.unit$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void unit$set(MemorySegment seg, long index, short x) {
-        tagUSAGE_PROPERTIES.unit$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle exponent$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("exponent"));
-    public static VarHandle exponent$VH() {
-        return tagUSAGE_PROPERTIES.exponent$VH;
-    }
-    public static short exponent$get(MemorySegment seg) {
-        return (short)tagUSAGE_PROPERTIES.exponent$VH.get(seg);
-    }
-    public static void exponent$set( MemorySegment seg, short x) {
-        tagUSAGE_PROPERTIES.exponent$VH.set(seg, x);
-    }
-    public static short exponent$get(MemorySegment seg, long index) {
-        return (short)tagUSAGE_PROPERTIES.exponent$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void exponent$set(MemorySegment seg, long index, short x) {
-        tagUSAGE_PROPERTIES.exponent$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle count$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("count"));
-    public static VarHandle count$VH() {
-        return tagUSAGE_PROPERTIES.count$VH;
-    }
-    public static byte count$get(MemorySegment seg) {
-        return (byte)tagUSAGE_PROPERTIES.count$VH.get(seg);
-    }
-    public static void count$set( MemorySegment seg, byte x) {
-        tagUSAGE_PROPERTIES.count$VH.set(seg, x);
-    }
-    public static byte count$get(MemorySegment seg, long index) {
-        return (byte)tagUSAGE_PROPERTIES.count$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void count$set(MemorySegment seg, long index, byte x) {
-        tagUSAGE_PROPERTIES.count$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle physicalMinimum$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("physicalMinimum"));
-    public static VarHandle physicalMinimum$VH() {
-        return tagUSAGE_PROPERTIES.physicalMinimum$VH;
-    }
-    public static int physicalMinimum$get(MemorySegment seg) {
-        return (int)tagUSAGE_PROPERTIES.physicalMinimum$VH.get(seg);
-    }
-    public static void physicalMinimum$set( MemorySegment seg, int x) {
-        tagUSAGE_PROPERTIES.physicalMinimum$VH.set(seg, x);
-    }
-    public static int physicalMinimum$get(MemorySegment seg, long index) {
-        return (int)tagUSAGE_PROPERTIES.physicalMinimum$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void physicalMinimum$set(MemorySegment seg, long index, int x) {
-        tagUSAGE_PROPERTIES.physicalMinimum$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle physicalMaximum$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("physicalMaximum"));
-    public static VarHandle physicalMaximum$VH() {
-        return tagUSAGE_PROPERTIES.physicalMaximum$VH;
-    }
-    public static int physicalMaximum$get(MemorySegment seg) {
-        return (int)tagUSAGE_PROPERTIES.physicalMaximum$VH.get(seg);
-    }
-    public static void physicalMaximum$set( MemorySegment seg, int x) {
-        tagUSAGE_PROPERTIES.physicalMaximum$VH.set(seg, x);
-    }
-    public static int physicalMaximum$get(MemorySegment seg, long index) {
-        return (int)tagUSAGE_PROPERTIES.physicalMaximum$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void physicalMaximum$set(MemorySegment seg, long index, int x) {
-        tagUSAGE_PROPERTIES.physicalMaximum$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_SHORT.withName("level"),
+        freeglut_h.C_SHORT.withName("page"),
+        freeglut_h.C_SHORT.withName("usage"),
+        MemoryLayout.paddingLayout(2),
+        freeglut_h.C_INT.withName("logicalMinimum"),
+        freeglut_h.C_INT.withName("logicalMaximum"),
+        freeglut_h.C_SHORT.withName("unit"),
+        freeglut_h.C_SHORT.withName("exponent"),
+        freeglut_h.C_CHAR.withName("count"),
+        MemoryLayout.paddingLayout(3),
+        freeglut_h.C_INT.withName("physicalMinimum"),
+        freeglut_h.C_INT.withName("physicalMaximum")
+    ).withName("tagUSAGE_PROPERTIES");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort level$LAYOUT = (OfShort)$LAYOUT.select(groupElement("level"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT level
+     * }
+     */
+    public static final OfShort level$layout() {
+        return level$LAYOUT;
+    }
+
+    private static final long level$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT level
+     * }
+     */
+    public static final long level$offset() {
+        return level$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT level
+     * }
+     */
+    public static short level(MemorySegment struct) {
+        return struct.get(level$LAYOUT, level$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT level
+     * }
+     */
+    public static void level(MemorySegment struct, short fieldValue) {
+        struct.set(level$LAYOUT, level$OFFSET, fieldValue);
+    }
+
+    private static final OfShort page$LAYOUT = (OfShort)$LAYOUT.select(groupElement("page"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT page
+     * }
+     */
+    public static final OfShort page$layout() {
+        return page$LAYOUT;
+    }
+
+    private static final long page$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT page
+     * }
+     */
+    public static final long page$offset() {
+        return page$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT page
+     * }
+     */
+    public static short page(MemorySegment struct) {
+        return struct.get(page$LAYOUT, page$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT page
+     * }
+     */
+    public static void page(MemorySegment struct, short fieldValue) {
+        struct.set(page$LAYOUT, page$OFFSET, fieldValue);
+    }
+
+    private static final OfShort usage$LAYOUT = (OfShort)$LAYOUT.select(groupElement("usage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT usage
+     * }
+     */
+    public static final OfShort usage$layout() {
+        return usage$LAYOUT;
+    }
+
+    private static final long usage$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT usage
+     * }
+     */
+    public static final long usage$offset() {
+        return usage$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT usage
+     * }
+     */
+    public static short usage(MemorySegment struct) {
+        return struct.get(usage$LAYOUT, usage$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT usage
+     * }
+     */
+    public static void usage(MemorySegment struct, short fieldValue) {
+        struct.set(usage$LAYOUT, usage$OFFSET, fieldValue);
+    }
+
+    private static final OfInt logicalMinimum$LAYOUT = (OfInt)$LAYOUT.select(groupElement("logicalMinimum"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * INT32 logicalMinimum
+     * }
+     */
+    public static final OfInt logicalMinimum$layout() {
+        return logicalMinimum$LAYOUT;
+    }
+
+    private static final long logicalMinimum$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * INT32 logicalMinimum
+     * }
+     */
+    public static final long logicalMinimum$offset() {
+        return logicalMinimum$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * INT32 logicalMinimum
+     * }
+     */
+    public static int logicalMinimum(MemorySegment struct) {
+        return struct.get(logicalMinimum$LAYOUT, logicalMinimum$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * INT32 logicalMinimum
+     * }
+     */
+    public static void logicalMinimum(MemorySegment struct, int fieldValue) {
+        struct.set(logicalMinimum$LAYOUT, logicalMinimum$OFFSET, fieldValue);
+    }
+
+    private static final OfInt logicalMaximum$LAYOUT = (OfInt)$LAYOUT.select(groupElement("logicalMaximum"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * INT32 logicalMaximum
+     * }
+     */
+    public static final OfInt logicalMaximum$layout() {
+        return logicalMaximum$LAYOUT;
+    }
+
+    private static final long logicalMaximum$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * INT32 logicalMaximum
+     * }
+     */
+    public static final long logicalMaximum$offset() {
+        return logicalMaximum$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * INT32 logicalMaximum
+     * }
+     */
+    public static int logicalMaximum(MemorySegment struct) {
+        return struct.get(logicalMaximum$LAYOUT, logicalMaximum$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * INT32 logicalMaximum
+     * }
+     */
+    public static void logicalMaximum(MemorySegment struct, int fieldValue) {
+        struct.set(logicalMaximum$LAYOUT, logicalMaximum$OFFSET, fieldValue);
+    }
+
+    private static final OfShort unit$LAYOUT = (OfShort)$LAYOUT.select(groupElement("unit"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT unit
+     * }
+     */
+    public static final OfShort unit$layout() {
+        return unit$LAYOUT;
+    }
+
+    private static final long unit$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT unit
+     * }
+     */
+    public static final long unit$offset() {
+        return unit$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT unit
+     * }
+     */
+    public static short unit(MemorySegment struct) {
+        return struct.get(unit$LAYOUT, unit$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT unit
+     * }
+     */
+    public static void unit(MemorySegment struct, short fieldValue) {
+        struct.set(unit$LAYOUT, unit$OFFSET, fieldValue);
+    }
+
+    private static final OfShort exponent$LAYOUT = (OfShort)$LAYOUT.select(groupElement("exponent"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT exponent
+     * }
+     */
+    public static final OfShort exponent$layout() {
+        return exponent$LAYOUT;
+    }
+
+    private static final long exponent$OFFSET = 18;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT exponent
+     * }
+     */
+    public static final long exponent$offset() {
+        return exponent$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT exponent
+     * }
+     */
+    public static short exponent(MemorySegment struct) {
+        return struct.get(exponent$LAYOUT, exponent$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT exponent
+     * }
+     */
+    public static void exponent(MemorySegment struct, short fieldValue) {
+        struct.set(exponent$LAYOUT, exponent$OFFSET, fieldValue);
+    }
+
+    private static final OfByte count$LAYOUT = (OfByte)$LAYOUT.select(groupElement("count"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE count
+     * }
+     */
+    public static final OfByte count$layout() {
+        return count$LAYOUT;
+    }
+
+    private static final long count$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE count
+     * }
+     */
+    public static final long count$offset() {
+        return count$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE count
+     * }
+     */
+    public static byte count(MemorySegment struct) {
+        return struct.get(count$LAYOUT, count$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE count
+     * }
+     */
+    public static void count(MemorySegment struct, byte fieldValue) {
+        struct.set(count$LAYOUT, count$OFFSET, fieldValue);
+    }
+
+    private static final OfInt physicalMinimum$LAYOUT = (OfInt)$LAYOUT.select(groupElement("physicalMinimum"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * INT32 physicalMinimum
+     * }
+     */
+    public static final OfInt physicalMinimum$layout() {
+        return physicalMinimum$LAYOUT;
+    }
+
+    private static final long physicalMinimum$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * INT32 physicalMinimum
+     * }
+     */
+    public static final long physicalMinimum$offset() {
+        return physicalMinimum$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * INT32 physicalMinimum
+     * }
+     */
+    public static int physicalMinimum(MemorySegment struct) {
+        return struct.get(physicalMinimum$LAYOUT, physicalMinimum$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * INT32 physicalMinimum
+     * }
+     */
+    public static void physicalMinimum(MemorySegment struct, int fieldValue) {
+        struct.set(physicalMinimum$LAYOUT, physicalMinimum$OFFSET, fieldValue);
+    }
+
+    private static final OfInt physicalMaximum$LAYOUT = (OfInt)$LAYOUT.select(groupElement("physicalMaximum"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * INT32 physicalMaximum
+     * }
+     */
+    public static final OfInt physicalMaximum$layout() {
+        return physicalMaximum$LAYOUT;
+    }
+
+    private static final long physicalMaximum$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * INT32 physicalMaximum
+     * }
+     */
+    public static final long physicalMaximum$offset() {
+        return physicalMaximum$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * INT32 physicalMaximum
+     * }
+     */
+    public static int physicalMaximum(MemorySegment struct) {
+        return struct.get(physicalMaximum$LAYOUT, physicalMaximum$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * INT32 physicalMaximum
+     * }
+     */
+    public static void physicalMaximum(MemorySegment struct, int fieldValue) {
+        struct.set(physicalMaximum$LAYOUT, physicalMaximum$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

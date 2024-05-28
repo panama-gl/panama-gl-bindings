@@ -2,135 +2,752 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _FILE_QUERY_ON_DISK_VOL_INFO_BUFFER {
+ *     LARGE_INTEGER DirectoryCount;
+ *     LARGE_INTEGER FileCount;
+ *     WORD FsFormatMajVersion;
+ *     WORD FsFormatMinVersion;
+ *     WCHAR FsFormatName[12];
+ *     LARGE_INTEGER FormatTime;
+ *     LARGE_INTEGER LastUpdateTime;
+ *     WCHAR CopyrightInfo[34];
+ *     WCHAR AbstractInfo[34];
+ *     WCHAR FormattingImplementationInfo[34];
+ *     WCHAR LastModifyingImplementationInfo[34];
+ * }
+ * }
+ */
 public class _FILE_QUERY_ON_DISK_VOL_INFO_BUFFER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("DirectoryCount"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("FileCount"),
-        Constants$root.C_SHORT$LAYOUT.withName("FsFormatMajVersion"),
-        Constants$root.C_SHORT$LAYOUT.withName("FsFormatMinVersion"),
-        MemoryLayout.sequenceLayout(12, Constants$root.C_SHORT$LAYOUT).withName("FsFormatName"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("FormatTime"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("LastUpdateTime"),
-        MemoryLayout.sequenceLayout(34, Constants$root.C_SHORT$LAYOUT).withName("CopyrightInfo"),
-        MemoryLayout.sequenceLayout(34, Constants$root.C_SHORT$LAYOUT).withName("AbstractInfo"),
-        MemoryLayout.sequenceLayout(34, Constants$root.C_SHORT$LAYOUT).withName("FormattingImplementationInfo"),
-        MemoryLayout.sequenceLayout(34, Constants$root.C_SHORT$LAYOUT).withName("LastModifyingImplementationInfo")
-    ).withName("_FILE_QUERY_ON_DISK_VOL_INFO_BUFFER");
-    public static MemoryLayout $LAYOUT() {
-        return _FILE_QUERY_ON_DISK_VOL_INFO_BUFFER.$struct$LAYOUT;
+    _FILE_QUERY_ON_DISK_VOL_INFO_BUFFER() {
+        // Should not be called directly
     }
-    public static MemorySegment DirectoryCount$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    public static MemorySegment FileCount$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    static final VarHandle FsFormatMajVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FsFormatMajVersion"));
-    public static VarHandle FsFormatMajVersion$VH() {
-        return _FILE_QUERY_ON_DISK_VOL_INFO_BUFFER.FsFormatMajVersion$VH;
-    }
-    public static short FsFormatMajVersion$get(MemorySegment seg) {
-        return (short)_FILE_QUERY_ON_DISK_VOL_INFO_BUFFER.FsFormatMajVersion$VH.get(seg);
-    }
-    public static void FsFormatMajVersion$set( MemorySegment seg, short x) {
-        _FILE_QUERY_ON_DISK_VOL_INFO_BUFFER.FsFormatMajVersion$VH.set(seg, x);
-    }
-    public static short FsFormatMajVersion$get(MemorySegment seg, long index) {
-        return (short)_FILE_QUERY_ON_DISK_VOL_INFO_BUFFER.FsFormatMajVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FsFormatMajVersion$set(MemorySegment seg, long index, short x) {
-        _FILE_QUERY_ON_DISK_VOL_INFO_BUFFER.FsFormatMajVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FsFormatMinVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FsFormatMinVersion"));
-    public static VarHandle FsFormatMinVersion$VH() {
-        return _FILE_QUERY_ON_DISK_VOL_INFO_BUFFER.FsFormatMinVersion$VH;
-    }
-    public static short FsFormatMinVersion$get(MemorySegment seg) {
-        return (short)_FILE_QUERY_ON_DISK_VOL_INFO_BUFFER.FsFormatMinVersion$VH.get(seg);
-    }
-    public static void FsFormatMinVersion$set( MemorySegment seg, short x) {
-        _FILE_QUERY_ON_DISK_VOL_INFO_BUFFER.FsFormatMinVersion$VH.set(seg, x);
-    }
-    public static short FsFormatMinVersion$get(MemorySegment seg, long index) {
-        return (short)_FILE_QUERY_ON_DISK_VOL_INFO_BUFFER.FsFormatMinVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FsFormatMinVersion$set(MemorySegment seg, long index, short x) {
-        _FILE_QUERY_ON_DISK_VOL_INFO_BUFFER.FsFormatMinVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment FsFormatName$slice(MemorySegment seg) {
-        return seg.asSlice(20, 24);
-    }
-    public static MemorySegment FormatTime$slice(MemorySegment seg) {
-        return seg.asSlice(48, 8);
-    }
-    public static MemorySegment LastUpdateTime$slice(MemorySegment seg) {
-        return seg.asSlice(56, 8);
-    }
-    public static MemorySegment CopyrightInfo$slice(MemorySegment seg) {
-        return seg.asSlice(64, 68);
-    }
-    public static MemorySegment AbstractInfo$slice(MemorySegment seg) {
-        return seg.asSlice(132, 68);
-    }
-    public static MemorySegment FormattingImplementationInfo$slice(MemorySegment seg) {
-        return seg.asSlice(200, 68);
-    }
-    public static MemorySegment LastModifyingImplementationInfo$slice(MemorySegment seg) {
-        return seg.asSlice(268, 68);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _LARGE_INTEGER.layout().withName("DirectoryCount"),
+        _LARGE_INTEGER.layout().withName("FileCount"),
+        wgl_h.C_SHORT.withName("FsFormatMajVersion"),
+        wgl_h.C_SHORT.withName("FsFormatMinVersion"),
+        MemoryLayout.sequenceLayout(12, wgl_h.C_SHORT).withName("FsFormatName"),
+        MemoryLayout.paddingLayout(4),
+        _LARGE_INTEGER.layout().withName("FormatTime"),
+        _LARGE_INTEGER.layout().withName("LastUpdateTime"),
+        MemoryLayout.sequenceLayout(34, wgl_h.C_SHORT).withName("CopyrightInfo"),
+        MemoryLayout.sequenceLayout(34, wgl_h.C_SHORT).withName("AbstractInfo"),
+        MemoryLayout.sequenceLayout(34, wgl_h.C_SHORT).withName("FormattingImplementationInfo"),
+        MemoryLayout.sequenceLayout(34, wgl_h.C_SHORT).withName("LastModifyingImplementationInfo")
+    ).withName("_FILE_QUERY_ON_DISK_VOL_INFO_BUFFER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout DirectoryCount$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("DirectoryCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER DirectoryCount
+     * }
+     */
+    public static final GroupLayout DirectoryCount$layout() {
+        return DirectoryCount$LAYOUT;
+    }
+
+    private static final long DirectoryCount$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER DirectoryCount
+     * }
+     */
+    public static final long DirectoryCount$offset() {
+        return DirectoryCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER DirectoryCount
+     * }
+     */
+    public static MemorySegment DirectoryCount(MemorySegment struct) {
+        return struct.asSlice(DirectoryCount$OFFSET, DirectoryCount$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER DirectoryCount
+     * }
+     */
+    public static void DirectoryCount(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, DirectoryCount$OFFSET, DirectoryCount$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout FileCount$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("FileCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FileCount
+     * }
+     */
+    public static final GroupLayout FileCount$layout() {
+        return FileCount$LAYOUT;
+    }
+
+    private static final long FileCount$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FileCount
+     * }
+     */
+    public static final long FileCount$offset() {
+        return FileCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FileCount
+     * }
+     */
+    public static MemorySegment FileCount(MemorySegment struct) {
+        return struct.asSlice(FileCount$OFFSET, FileCount$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FileCount
+     * }
+     */
+    public static void FileCount(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, FileCount$OFFSET, FileCount$LAYOUT.byteSize());
+    }
+
+    private static final OfShort FsFormatMajVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("FsFormatMajVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD FsFormatMajVersion
+     * }
+     */
+    public static final OfShort FsFormatMajVersion$layout() {
+        return FsFormatMajVersion$LAYOUT;
+    }
+
+    private static final long FsFormatMajVersion$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD FsFormatMajVersion
+     * }
+     */
+    public static final long FsFormatMajVersion$offset() {
+        return FsFormatMajVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD FsFormatMajVersion
+     * }
+     */
+    public static short FsFormatMajVersion(MemorySegment struct) {
+        return struct.get(FsFormatMajVersion$LAYOUT, FsFormatMajVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD FsFormatMajVersion
+     * }
+     */
+    public static void FsFormatMajVersion(MemorySegment struct, short fieldValue) {
+        struct.set(FsFormatMajVersion$LAYOUT, FsFormatMajVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfShort FsFormatMinVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("FsFormatMinVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD FsFormatMinVersion
+     * }
+     */
+    public static final OfShort FsFormatMinVersion$layout() {
+        return FsFormatMinVersion$LAYOUT;
+    }
+
+    private static final long FsFormatMinVersion$OFFSET = 18;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD FsFormatMinVersion
+     * }
+     */
+    public static final long FsFormatMinVersion$offset() {
+        return FsFormatMinVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD FsFormatMinVersion
+     * }
+     */
+    public static short FsFormatMinVersion(MemorySegment struct) {
+        return struct.get(FsFormatMinVersion$LAYOUT, FsFormatMinVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD FsFormatMinVersion
+     * }
+     */
+    public static void FsFormatMinVersion(MemorySegment struct, short fieldValue) {
+        struct.set(FsFormatMinVersion$LAYOUT, FsFormatMinVersion$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout FsFormatName$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("FsFormatName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR FsFormatName[12]
+     * }
+     */
+    public static final SequenceLayout FsFormatName$layout() {
+        return FsFormatName$LAYOUT;
+    }
+
+    private static final long FsFormatName$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR FsFormatName[12]
+     * }
+     */
+    public static final long FsFormatName$offset() {
+        return FsFormatName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR FsFormatName[12]
+     * }
+     */
+    public static MemorySegment FsFormatName(MemorySegment struct) {
+        return struct.asSlice(FsFormatName$OFFSET, FsFormatName$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR FsFormatName[12]
+     * }
+     */
+    public static void FsFormatName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, FsFormatName$OFFSET, FsFormatName$LAYOUT.byteSize());
+    }
+
+    private static long[] FsFormatName$DIMS = { 12 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR FsFormatName[12]
+     * }
+     */
+    public static long[] FsFormatName$dimensions() {
+        return FsFormatName$DIMS;
+    }
+    private static final VarHandle FsFormatName$ELEM_HANDLE = FsFormatName$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR FsFormatName[12]
+     * }
+     */
+    public static short FsFormatName(MemorySegment struct, long index0) {
+        return (short)FsFormatName$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR FsFormatName[12]
+     * }
+     */
+    public static void FsFormatName(MemorySegment struct, long index0, short fieldValue) {
+        FsFormatName$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final GroupLayout FormatTime$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("FormatTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FormatTime
+     * }
+     */
+    public static final GroupLayout FormatTime$layout() {
+        return FormatTime$LAYOUT;
+    }
+
+    private static final long FormatTime$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FormatTime
+     * }
+     */
+    public static final long FormatTime$offset() {
+        return FormatTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FormatTime
+     * }
+     */
+    public static MemorySegment FormatTime(MemorySegment struct) {
+        return struct.asSlice(FormatTime$OFFSET, FormatTime$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FormatTime
+     * }
+     */
+    public static void FormatTime(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, FormatTime$OFFSET, FormatTime$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout LastUpdateTime$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("LastUpdateTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER LastUpdateTime
+     * }
+     */
+    public static final GroupLayout LastUpdateTime$layout() {
+        return LastUpdateTime$LAYOUT;
+    }
+
+    private static final long LastUpdateTime$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER LastUpdateTime
+     * }
+     */
+    public static final long LastUpdateTime$offset() {
+        return LastUpdateTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER LastUpdateTime
+     * }
+     */
+    public static MemorySegment LastUpdateTime(MemorySegment struct) {
+        return struct.asSlice(LastUpdateTime$OFFSET, LastUpdateTime$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER LastUpdateTime
+     * }
+     */
+    public static void LastUpdateTime(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, LastUpdateTime$OFFSET, LastUpdateTime$LAYOUT.byteSize());
+    }
+
+    private static final SequenceLayout CopyrightInfo$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("CopyrightInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR CopyrightInfo[34]
+     * }
+     */
+    public static final SequenceLayout CopyrightInfo$layout() {
+        return CopyrightInfo$LAYOUT;
+    }
+
+    private static final long CopyrightInfo$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR CopyrightInfo[34]
+     * }
+     */
+    public static final long CopyrightInfo$offset() {
+        return CopyrightInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR CopyrightInfo[34]
+     * }
+     */
+    public static MemorySegment CopyrightInfo(MemorySegment struct) {
+        return struct.asSlice(CopyrightInfo$OFFSET, CopyrightInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR CopyrightInfo[34]
+     * }
+     */
+    public static void CopyrightInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, CopyrightInfo$OFFSET, CopyrightInfo$LAYOUT.byteSize());
+    }
+
+    private static long[] CopyrightInfo$DIMS = { 34 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR CopyrightInfo[34]
+     * }
+     */
+    public static long[] CopyrightInfo$dimensions() {
+        return CopyrightInfo$DIMS;
+    }
+    private static final VarHandle CopyrightInfo$ELEM_HANDLE = CopyrightInfo$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR CopyrightInfo[34]
+     * }
+     */
+    public static short CopyrightInfo(MemorySegment struct, long index0) {
+        return (short)CopyrightInfo$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR CopyrightInfo[34]
+     * }
+     */
+    public static void CopyrightInfo(MemorySegment struct, long index0, short fieldValue) {
+        CopyrightInfo$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout AbstractInfo$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("AbstractInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR AbstractInfo[34]
+     * }
+     */
+    public static final SequenceLayout AbstractInfo$layout() {
+        return AbstractInfo$LAYOUT;
+    }
+
+    private static final long AbstractInfo$OFFSET = 132;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR AbstractInfo[34]
+     * }
+     */
+    public static final long AbstractInfo$offset() {
+        return AbstractInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR AbstractInfo[34]
+     * }
+     */
+    public static MemorySegment AbstractInfo(MemorySegment struct) {
+        return struct.asSlice(AbstractInfo$OFFSET, AbstractInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR AbstractInfo[34]
+     * }
+     */
+    public static void AbstractInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, AbstractInfo$OFFSET, AbstractInfo$LAYOUT.byteSize());
+    }
+
+    private static long[] AbstractInfo$DIMS = { 34 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR AbstractInfo[34]
+     * }
+     */
+    public static long[] AbstractInfo$dimensions() {
+        return AbstractInfo$DIMS;
+    }
+    private static final VarHandle AbstractInfo$ELEM_HANDLE = AbstractInfo$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR AbstractInfo[34]
+     * }
+     */
+    public static short AbstractInfo(MemorySegment struct, long index0) {
+        return (short)AbstractInfo$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR AbstractInfo[34]
+     * }
+     */
+    public static void AbstractInfo(MemorySegment struct, long index0, short fieldValue) {
+        AbstractInfo$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout FormattingImplementationInfo$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("FormattingImplementationInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR FormattingImplementationInfo[34]
+     * }
+     */
+    public static final SequenceLayout FormattingImplementationInfo$layout() {
+        return FormattingImplementationInfo$LAYOUT;
+    }
+
+    private static final long FormattingImplementationInfo$OFFSET = 200;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR FormattingImplementationInfo[34]
+     * }
+     */
+    public static final long FormattingImplementationInfo$offset() {
+        return FormattingImplementationInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR FormattingImplementationInfo[34]
+     * }
+     */
+    public static MemorySegment FormattingImplementationInfo(MemorySegment struct) {
+        return struct.asSlice(FormattingImplementationInfo$OFFSET, FormattingImplementationInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR FormattingImplementationInfo[34]
+     * }
+     */
+    public static void FormattingImplementationInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, FormattingImplementationInfo$OFFSET, FormattingImplementationInfo$LAYOUT.byteSize());
+    }
+
+    private static long[] FormattingImplementationInfo$DIMS = { 34 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR FormattingImplementationInfo[34]
+     * }
+     */
+    public static long[] FormattingImplementationInfo$dimensions() {
+        return FormattingImplementationInfo$DIMS;
+    }
+    private static final VarHandle FormattingImplementationInfo$ELEM_HANDLE = FormattingImplementationInfo$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR FormattingImplementationInfo[34]
+     * }
+     */
+    public static short FormattingImplementationInfo(MemorySegment struct, long index0) {
+        return (short)FormattingImplementationInfo$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR FormattingImplementationInfo[34]
+     * }
+     */
+    public static void FormattingImplementationInfo(MemorySegment struct, long index0, short fieldValue) {
+        FormattingImplementationInfo$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout LastModifyingImplementationInfo$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("LastModifyingImplementationInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR LastModifyingImplementationInfo[34]
+     * }
+     */
+    public static final SequenceLayout LastModifyingImplementationInfo$layout() {
+        return LastModifyingImplementationInfo$LAYOUT;
+    }
+
+    private static final long LastModifyingImplementationInfo$OFFSET = 268;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR LastModifyingImplementationInfo[34]
+     * }
+     */
+    public static final long LastModifyingImplementationInfo$offset() {
+        return LastModifyingImplementationInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR LastModifyingImplementationInfo[34]
+     * }
+     */
+    public static MemorySegment LastModifyingImplementationInfo(MemorySegment struct) {
+        return struct.asSlice(LastModifyingImplementationInfo$OFFSET, LastModifyingImplementationInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR LastModifyingImplementationInfo[34]
+     * }
+     */
+    public static void LastModifyingImplementationInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, LastModifyingImplementationInfo$OFFSET, LastModifyingImplementationInfo$LAYOUT.byteSize());
+    }
+
+    private static long[] LastModifyingImplementationInfo$DIMS = { 34 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR LastModifyingImplementationInfo[34]
+     * }
+     */
+    public static long[] LastModifyingImplementationInfo$dimensions() {
+        return LastModifyingImplementationInfo$DIMS;
+    }
+    private static final VarHandle LastModifyingImplementationInfo$ELEM_HANDLE = LastModifyingImplementationInfo$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR LastModifyingImplementationInfo[34]
+     * }
+     */
+    public static short LastModifyingImplementationInfo(MemorySegment struct, long index0) {
+        return (short)LastModifyingImplementationInfo$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR LastModifyingImplementationInfo[34]
+     * }
+     */
+    public static void LastModifyingImplementationInfo(MemorySegment struct, long index0, short fieldValue) {
+        LastModifyingImplementationInfo$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

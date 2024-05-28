@@ -2,92 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _tagDATAINFO {
+ *     ULONG ulTotalSize;
+ *     ULONG ulavrPacketSize;
+ *     ULONG ulConnectSpeed;
+ *     ULONG ulProcessorSpeed;
+ * }
+ * }
+ */
 public class _tagDATAINFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ulTotalSize"),
-        Constants$root.C_LONG$LAYOUT.withName("ulavrPacketSize"),
-        Constants$root.C_LONG$LAYOUT.withName("ulConnectSpeed"),
-        Constants$root.C_LONG$LAYOUT.withName("ulProcessorSpeed")
-    ).withName("_tagDATAINFO");
-    public static MemoryLayout $LAYOUT() {
-        return _tagDATAINFO.$struct$LAYOUT;
+    _tagDATAINFO() {
+        // Should not be called directly
     }
-    static final VarHandle ulTotalSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ulTotalSize"));
-    public static VarHandle ulTotalSize$VH() {
-        return _tagDATAINFO.ulTotalSize$VH;
-    }
-    public static int ulTotalSize$get(MemorySegment seg) {
-        return (int)_tagDATAINFO.ulTotalSize$VH.get(seg);
-    }
-    public static void ulTotalSize$set( MemorySegment seg, int x) {
-        _tagDATAINFO.ulTotalSize$VH.set(seg, x);
-    }
-    public static int ulTotalSize$get(MemorySegment seg, long index) {
-        return (int)_tagDATAINFO.ulTotalSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ulTotalSize$set(MemorySegment seg, long index, int x) {
-        _tagDATAINFO.ulTotalSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ulavrPacketSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ulavrPacketSize"));
-    public static VarHandle ulavrPacketSize$VH() {
-        return _tagDATAINFO.ulavrPacketSize$VH;
-    }
-    public static int ulavrPacketSize$get(MemorySegment seg) {
-        return (int)_tagDATAINFO.ulavrPacketSize$VH.get(seg);
-    }
-    public static void ulavrPacketSize$set( MemorySegment seg, int x) {
-        _tagDATAINFO.ulavrPacketSize$VH.set(seg, x);
-    }
-    public static int ulavrPacketSize$get(MemorySegment seg, long index) {
-        return (int)_tagDATAINFO.ulavrPacketSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ulavrPacketSize$set(MemorySegment seg, long index, int x) {
-        _tagDATAINFO.ulavrPacketSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ulConnectSpeed$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ulConnectSpeed"));
-    public static VarHandle ulConnectSpeed$VH() {
-        return _tagDATAINFO.ulConnectSpeed$VH;
-    }
-    public static int ulConnectSpeed$get(MemorySegment seg) {
-        return (int)_tagDATAINFO.ulConnectSpeed$VH.get(seg);
-    }
-    public static void ulConnectSpeed$set( MemorySegment seg, int x) {
-        _tagDATAINFO.ulConnectSpeed$VH.set(seg, x);
-    }
-    public static int ulConnectSpeed$get(MemorySegment seg, long index) {
-        return (int)_tagDATAINFO.ulConnectSpeed$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ulConnectSpeed$set(MemorySegment seg, long index, int x) {
-        _tagDATAINFO.ulConnectSpeed$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ulProcessorSpeed$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ulProcessorSpeed"));
-    public static VarHandle ulProcessorSpeed$VH() {
-        return _tagDATAINFO.ulProcessorSpeed$VH;
-    }
-    public static int ulProcessorSpeed$get(MemorySegment seg) {
-        return (int)_tagDATAINFO.ulProcessorSpeed$VH.get(seg);
-    }
-    public static void ulProcessorSpeed$set( MemorySegment seg, int x) {
-        _tagDATAINFO.ulProcessorSpeed$VH.set(seg, x);
-    }
-    public static int ulProcessorSpeed$get(MemorySegment seg, long index) {
-        return (int)_tagDATAINFO.ulProcessorSpeed$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ulProcessorSpeed$set(MemorySegment seg, long index, int x) {
-        _tagDATAINFO.ulProcessorSpeed$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("ulTotalSize"),
+        wgl_h.C_LONG.withName("ulavrPacketSize"),
+        wgl_h.C_LONG.withName("ulConnectSpeed"),
+        wgl_h.C_LONG.withName("ulProcessorSpeed")
+    ).withName("_tagDATAINFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt ulTotalSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ulTotalSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG ulTotalSize
+     * }
+     */
+    public static final OfInt ulTotalSize$layout() {
+        return ulTotalSize$LAYOUT;
+    }
+
+    private static final long ulTotalSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG ulTotalSize
+     * }
+     */
+    public static final long ulTotalSize$offset() {
+        return ulTotalSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG ulTotalSize
+     * }
+     */
+    public static int ulTotalSize(MemorySegment struct) {
+        return struct.get(ulTotalSize$LAYOUT, ulTotalSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG ulTotalSize
+     * }
+     */
+    public static void ulTotalSize(MemorySegment struct, int fieldValue) {
+        struct.set(ulTotalSize$LAYOUT, ulTotalSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ulavrPacketSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ulavrPacketSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG ulavrPacketSize
+     * }
+     */
+    public static final OfInt ulavrPacketSize$layout() {
+        return ulavrPacketSize$LAYOUT;
+    }
+
+    private static final long ulavrPacketSize$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG ulavrPacketSize
+     * }
+     */
+    public static final long ulavrPacketSize$offset() {
+        return ulavrPacketSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG ulavrPacketSize
+     * }
+     */
+    public static int ulavrPacketSize(MemorySegment struct) {
+        return struct.get(ulavrPacketSize$LAYOUT, ulavrPacketSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG ulavrPacketSize
+     * }
+     */
+    public static void ulavrPacketSize(MemorySegment struct, int fieldValue) {
+        struct.set(ulavrPacketSize$LAYOUT, ulavrPacketSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ulConnectSpeed$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ulConnectSpeed"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG ulConnectSpeed
+     * }
+     */
+    public static final OfInt ulConnectSpeed$layout() {
+        return ulConnectSpeed$LAYOUT;
+    }
+
+    private static final long ulConnectSpeed$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG ulConnectSpeed
+     * }
+     */
+    public static final long ulConnectSpeed$offset() {
+        return ulConnectSpeed$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG ulConnectSpeed
+     * }
+     */
+    public static int ulConnectSpeed(MemorySegment struct) {
+        return struct.get(ulConnectSpeed$LAYOUT, ulConnectSpeed$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG ulConnectSpeed
+     * }
+     */
+    public static void ulConnectSpeed(MemorySegment struct, int fieldValue) {
+        struct.set(ulConnectSpeed$LAYOUT, ulConnectSpeed$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ulProcessorSpeed$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ulProcessorSpeed"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG ulProcessorSpeed
+     * }
+     */
+    public static final OfInt ulProcessorSpeed$layout() {
+        return ulProcessorSpeed$LAYOUT;
+    }
+
+    private static final long ulProcessorSpeed$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG ulProcessorSpeed
+     * }
+     */
+    public static final long ulProcessorSpeed$offset() {
+        return ulProcessorSpeed$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG ulProcessorSpeed
+     * }
+     */
+    public static int ulProcessorSpeed(MemorySegment struct) {
+        return struct.get(ulProcessorSpeed$LAYOUT, ulProcessorSpeed$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG ulProcessorSpeed
+     * }
+     */
+    public static void ulProcessorSpeed(MemorySegment struct, int fieldValue) {
+        struct.set(ulProcessorSpeed$LAYOUT, ulProcessorSpeed$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

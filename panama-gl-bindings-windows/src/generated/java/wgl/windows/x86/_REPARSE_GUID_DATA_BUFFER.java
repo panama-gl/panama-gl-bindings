@@ -2,110 +2,467 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _REPARSE_GUID_DATA_BUFFER {
+ *     DWORD ReparseTag;
+ *     WORD ReparseDataLength;
+ *     WORD Reserved;
+ *     GUID ReparseGuid;
+ *     struct {
+ *         BYTE DataBuffer[1];
+ *     } GenericReparseBuffer;
+ * }
+ * }
+ */
 public class _REPARSE_GUID_DATA_BUFFER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ReparseTag"),
-        Constants$root.C_SHORT$LAYOUT.withName("ReparseDataLength"),
-        Constants$root.C_SHORT$LAYOUT.withName("Reserved"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("ReparseGuid"),
-        MemoryLayout.structLayout(
-            MemoryLayout.sequenceLayout(1, Constants$root.C_CHAR$LAYOUT).withName("DataBuffer")
-        ).withName("GenericReparseBuffer"),
-        MemoryLayout.paddingLayout(24)
+    _REPARSE_GUID_DATA_BUFFER() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("ReparseTag"),
+        wgl_h.C_SHORT.withName("ReparseDataLength"),
+        wgl_h.C_SHORT.withName("Reserved"),
+        _GUID.layout().withName("ReparseGuid"),
+        _REPARSE_GUID_DATA_BUFFER.GenericReparseBuffer.layout().withName("GenericReparseBuffer"),
+        MemoryLayout.paddingLayout(3)
     ).withName("_REPARSE_GUID_DATA_BUFFER");
-    public static MemoryLayout $LAYOUT() {
-        return _REPARSE_GUID_DATA_BUFFER.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle ReparseTag$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ReparseTag"));
-    public static VarHandle ReparseTag$VH() {
-        return _REPARSE_GUID_DATA_BUFFER.ReparseTag$VH;
+
+    private static final OfInt ReparseTag$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ReparseTag"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ReparseTag
+     * }
+     */
+    public static final OfInt ReparseTag$layout() {
+        return ReparseTag$LAYOUT;
     }
-    public static int ReparseTag$get(MemorySegment seg) {
-        return (int)_REPARSE_GUID_DATA_BUFFER.ReparseTag$VH.get(seg);
+
+    private static final long ReparseTag$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ReparseTag
+     * }
+     */
+    public static final long ReparseTag$offset() {
+        return ReparseTag$OFFSET;
     }
-    public static void ReparseTag$set( MemorySegment seg, int x) {
-        _REPARSE_GUID_DATA_BUFFER.ReparseTag$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ReparseTag
+     * }
+     */
+    public static int ReparseTag(MemorySegment struct) {
+        return struct.get(ReparseTag$LAYOUT, ReparseTag$OFFSET);
     }
-    public static int ReparseTag$get(MemorySegment seg, long index) {
-        return (int)_REPARSE_GUID_DATA_BUFFER.ReparseTag$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ReparseTag
+     * }
+     */
+    public static void ReparseTag(MemorySegment struct, int fieldValue) {
+        struct.set(ReparseTag$LAYOUT, ReparseTag$OFFSET, fieldValue);
     }
-    public static void ReparseTag$set(MemorySegment seg, long index, int x) {
-        _REPARSE_GUID_DATA_BUFFER.ReparseTag$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfShort ReparseDataLength$LAYOUT = (OfShort)$LAYOUT.select(groupElement("ReparseDataLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD ReparseDataLength
+     * }
+     */
+    public static final OfShort ReparseDataLength$layout() {
+        return ReparseDataLength$LAYOUT;
     }
-    static final VarHandle ReparseDataLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ReparseDataLength"));
-    public static VarHandle ReparseDataLength$VH() {
-        return _REPARSE_GUID_DATA_BUFFER.ReparseDataLength$VH;
+
+    private static final long ReparseDataLength$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD ReparseDataLength
+     * }
+     */
+    public static final long ReparseDataLength$offset() {
+        return ReparseDataLength$OFFSET;
     }
-    public static short ReparseDataLength$get(MemorySegment seg) {
-        return (short)_REPARSE_GUID_DATA_BUFFER.ReparseDataLength$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD ReparseDataLength
+     * }
+     */
+    public static short ReparseDataLength(MemorySegment struct) {
+        return struct.get(ReparseDataLength$LAYOUT, ReparseDataLength$OFFSET);
     }
-    public static void ReparseDataLength$set( MemorySegment seg, short x) {
-        _REPARSE_GUID_DATA_BUFFER.ReparseDataLength$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD ReparseDataLength
+     * }
+     */
+    public static void ReparseDataLength(MemorySegment struct, short fieldValue) {
+        struct.set(ReparseDataLength$LAYOUT, ReparseDataLength$OFFSET, fieldValue);
     }
-    public static short ReparseDataLength$get(MemorySegment seg, long index) {
-        return (short)_REPARSE_GUID_DATA_BUFFER.ReparseDataLength$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfShort Reserved$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Reserved
+     * }
+     */
+    public static final OfShort Reserved$layout() {
+        return Reserved$LAYOUT;
     }
-    public static void ReparseDataLength$set(MemorySegment seg, long index, short x) {
-        _REPARSE_GUID_DATA_BUFFER.ReparseDataLength$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long Reserved$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Reserved
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
     }
-    static final VarHandle Reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved"));
-    public static VarHandle Reserved$VH() {
-        return _REPARSE_GUID_DATA_BUFFER.Reserved$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Reserved
+     * }
+     */
+    public static short Reserved(MemorySegment struct) {
+        return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
     }
-    public static short Reserved$get(MemorySegment seg) {
-        return (short)_REPARSE_GUID_DATA_BUFFER.Reserved$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Reserved
+     * }
+     */
+    public static void Reserved(MemorySegment struct, short fieldValue) {
+        struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
     }
-    public static void Reserved$set( MemorySegment seg, short x) {
-        _REPARSE_GUID_DATA_BUFFER.Reserved$VH.set(seg, x);
+
+    private static final GroupLayout ReparseGuid$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ReparseGuid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID ReparseGuid
+     * }
+     */
+    public static final GroupLayout ReparseGuid$layout() {
+        return ReparseGuid$LAYOUT;
     }
-    public static short Reserved$get(MemorySegment seg, long index) {
-        return (short)_REPARSE_GUID_DATA_BUFFER.Reserved$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long ReparseGuid$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID ReparseGuid
+     * }
+     */
+    public static final long ReparseGuid$offset() {
+        return ReparseGuid$OFFSET;
     }
-    public static void Reserved$set(MemorySegment seg, long index, short x) {
-        _REPARSE_GUID_DATA_BUFFER.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID ReparseGuid
+     * }
+     */
+    public static MemorySegment ReparseGuid(MemorySegment struct) {
+        return struct.asSlice(ReparseGuid$OFFSET, ReparseGuid$LAYOUT.byteSize());
     }
-    public static MemorySegment ReparseGuid$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID ReparseGuid
+     * }
+     */
+    public static void ReparseGuid(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ReparseGuid$OFFSET, ReparseGuid$LAYOUT.byteSize());
     }
+
+    /**
+     * {@snippet lang=c :
+     * struct {
+     *     BYTE DataBuffer[1];
+     * }
+     * }
+     */
     public static class GenericReparseBuffer {
 
-        static final  GroupLayout GenericReparseBuffer$struct$LAYOUT = MemoryLayout.structLayout(
-            MemoryLayout.sequenceLayout(1, Constants$root.C_CHAR$LAYOUT).withName("DataBuffer")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return GenericReparseBuffer.GenericReparseBuffer$struct$LAYOUT;
+        GenericReparseBuffer() {
+            // Should not be called directly
         }
-        public static MemorySegment DataBuffer$slice(MemorySegment seg) {
-            return seg.asSlice(0, 1);
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+            MemoryLayout.sequenceLayout(1, wgl_h.C_CHAR).withName("DataBuffer")
+        ).withName("$anon$13453:5");
+
+        /**
+         * The layout of this struct
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        private static final SequenceLayout DataBuffer$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("DataBuffer"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * BYTE DataBuffer[1]
+         * }
+         */
+        public static final SequenceLayout DataBuffer$layout() {
+            return DataBuffer$LAYOUT;
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        private static final long DataBuffer$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * BYTE DataBuffer[1]
+         * }
+         */
+        public static final long DataBuffer$offset() {
+            return DataBuffer$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * BYTE DataBuffer[1]
+         * }
+         */
+        public static MemorySegment DataBuffer(MemorySegment struct) {
+            return struct.asSlice(DataBuffer$OFFSET, DataBuffer$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * BYTE DataBuffer[1]
+         * }
+         */
+        public static void DataBuffer(MemorySegment struct, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, struct, DataBuffer$OFFSET, DataBuffer$LAYOUT.byteSize());
+        }
+
+        private static long[] DataBuffer$DIMS = { 1 };
+
+        /**
+         * Dimensions for array field:
+         * {@snippet lang=c :
+         * BYTE DataBuffer[1]
+         * }
+         */
+        public static long[] DataBuffer$dimensions() {
+            return DataBuffer$DIMS;
+        }
+        private static final VarHandle DataBuffer$ELEM_HANDLE = DataBuffer$LAYOUT.varHandle(sequenceElement());
+
+        /**
+         * Indexed getter for field:
+         * {@snippet lang=c :
+         * BYTE DataBuffer[1]
+         * }
+         */
+        public static byte DataBuffer(MemorySegment struct, long index0) {
+            return (byte)DataBuffer$ELEM_HANDLE.get(struct, 0L, index0);
+        }
+
+        /**
+         * Indexed setter for field:
+         * {@snippet lang=c :
+         * BYTE DataBuffer[1]
+         * }
+         */
+        public static void DataBuffer(MemorySegment struct, long index0, byte fieldValue) {
+            DataBuffer$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+        }
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
+        }
+
+        /**
+         * The size (in bytes) of this struct
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment GenericReparseBuffer$slice(MemorySegment seg) {
-        return seg.asSlice(24, 1);
+    private static final GroupLayout GenericReparseBuffer$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("GenericReparseBuffer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct {
+     *     BYTE DataBuffer[1];
+     * } GenericReparseBuffer
+     * }
+     */
+    public static final GroupLayout GenericReparseBuffer$layout() {
+        return GenericReparseBuffer$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long GenericReparseBuffer$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct {
+     *     BYTE DataBuffer[1];
+     * } GenericReparseBuffer
+     * }
+     */
+    public static final long GenericReparseBuffer$offset() {
+        return GenericReparseBuffer$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     BYTE DataBuffer[1];
+     * } GenericReparseBuffer
+     * }
+     */
+    public static MemorySegment GenericReparseBuffer(MemorySegment struct) {
+        return struct.asSlice(GenericReparseBuffer$OFFSET, GenericReparseBuffer$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     BYTE DataBuffer[1];
+     * } GenericReparseBuffer
+     * }
+     */
+    public static void GenericReparseBuffer(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, GenericReparseBuffer$OFFSET, GenericReparseBuffer$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

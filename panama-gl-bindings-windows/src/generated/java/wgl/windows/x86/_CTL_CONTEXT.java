@@ -2,163 +2,451 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CTL_CONTEXT {
+ *     DWORD dwMsgAndCertEncodingType;
+ *     BYTE *pbCtlEncoded;
+ *     DWORD cbCtlEncoded;
+ *     PCTL_INFO pCtlInfo;
+ *     HCERTSTORE hCertStore;
+ *     HCRYPTMSG hCryptMsg;
+ *     BYTE *pbCtlContent;
+ *     DWORD cbCtlContent;
+ * }
+ * }
+ */
 public class _CTL_CONTEXT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwMsgAndCertEncodingType"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pbCtlEncoded"),
-        Constants$root.C_LONG$LAYOUT.withName("cbCtlEncoded"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pCtlInfo"),
-        Constants$root.C_POINTER$LAYOUT.withName("hCertStore"),
-        Constants$root.C_POINTER$LAYOUT.withName("hCryptMsg"),
-        Constants$root.C_POINTER$LAYOUT.withName("pbCtlContent"),
-        Constants$root.C_LONG$LAYOUT.withName("cbCtlContent"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_CTL_CONTEXT");
-    public static MemoryLayout $LAYOUT() {
-        return _CTL_CONTEXT.$struct$LAYOUT;
+    _CTL_CONTEXT() {
+        // Should not be called directly
     }
-    static final VarHandle dwMsgAndCertEncodingType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwMsgAndCertEncodingType"));
-    public static VarHandle dwMsgAndCertEncodingType$VH() {
-        return _CTL_CONTEXT.dwMsgAndCertEncodingType$VH;
-    }
-    public static int dwMsgAndCertEncodingType$get(MemorySegment seg) {
-        return (int)_CTL_CONTEXT.dwMsgAndCertEncodingType$VH.get(seg);
-    }
-    public static void dwMsgAndCertEncodingType$set( MemorySegment seg, int x) {
-        _CTL_CONTEXT.dwMsgAndCertEncodingType$VH.set(seg, x);
-    }
-    public static int dwMsgAndCertEncodingType$get(MemorySegment seg, long index) {
-        return (int)_CTL_CONTEXT.dwMsgAndCertEncodingType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwMsgAndCertEncodingType$set(MemorySegment seg, long index, int x) {
-        _CTL_CONTEXT.dwMsgAndCertEncodingType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pbCtlEncoded$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pbCtlEncoded"));
-    public static VarHandle pbCtlEncoded$VH() {
-        return _CTL_CONTEXT.pbCtlEncoded$VH;
-    }
-    public static MemoryAddress pbCtlEncoded$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CTL_CONTEXT.pbCtlEncoded$VH.get(seg);
-    }
-    public static void pbCtlEncoded$set( MemorySegment seg, MemoryAddress x) {
-        _CTL_CONTEXT.pbCtlEncoded$VH.set(seg, x);
-    }
-    public static MemoryAddress pbCtlEncoded$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CTL_CONTEXT.pbCtlEncoded$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pbCtlEncoded$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CTL_CONTEXT.pbCtlEncoded$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbCtlEncoded$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbCtlEncoded"));
-    public static VarHandle cbCtlEncoded$VH() {
-        return _CTL_CONTEXT.cbCtlEncoded$VH;
-    }
-    public static int cbCtlEncoded$get(MemorySegment seg) {
-        return (int)_CTL_CONTEXT.cbCtlEncoded$VH.get(seg);
-    }
-    public static void cbCtlEncoded$set( MemorySegment seg, int x) {
-        _CTL_CONTEXT.cbCtlEncoded$VH.set(seg, x);
-    }
-    public static int cbCtlEncoded$get(MemorySegment seg, long index) {
-        return (int)_CTL_CONTEXT.cbCtlEncoded$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbCtlEncoded$set(MemorySegment seg, long index, int x) {
-        _CTL_CONTEXT.cbCtlEncoded$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pCtlInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pCtlInfo"));
-    public static VarHandle pCtlInfo$VH() {
-        return _CTL_CONTEXT.pCtlInfo$VH;
-    }
-    public static MemoryAddress pCtlInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CTL_CONTEXT.pCtlInfo$VH.get(seg);
-    }
-    public static void pCtlInfo$set( MemorySegment seg, MemoryAddress x) {
-        _CTL_CONTEXT.pCtlInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress pCtlInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CTL_CONTEXT.pCtlInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pCtlInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CTL_CONTEXT.pCtlInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hCertStore$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hCertStore"));
-    public static VarHandle hCertStore$VH() {
-        return _CTL_CONTEXT.hCertStore$VH;
-    }
-    public static MemoryAddress hCertStore$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CTL_CONTEXT.hCertStore$VH.get(seg);
-    }
-    public static void hCertStore$set( MemorySegment seg, MemoryAddress x) {
-        _CTL_CONTEXT.hCertStore$VH.set(seg, x);
-    }
-    public static MemoryAddress hCertStore$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CTL_CONTEXT.hCertStore$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hCertStore$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CTL_CONTEXT.hCertStore$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hCryptMsg$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hCryptMsg"));
-    public static VarHandle hCryptMsg$VH() {
-        return _CTL_CONTEXT.hCryptMsg$VH;
-    }
-    public static MemoryAddress hCryptMsg$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CTL_CONTEXT.hCryptMsg$VH.get(seg);
-    }
-    public static void hCryptMsg$set( MemorySegment seg, MemoryAddress x) {
-        _CTL_CONTEXT.hCryptMsg$VH.set(seg, x);
-    }
-    public static MemoryAddress hCryptMsg$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CTL_CONTEXT.hCryptMsg$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hCryptMsg$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CTL_CONTEXT.hCryptMsg$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pbCtlContent$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pbCtlContent"));
-    public static VarHandle pbCtlContent$VH() {
-        return _CTL_CONTEXT.pbCtlContent$VH;
-    }
-    public static MemoryAddress pbCtlContent$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CTL_CONTEXT.pbCtlContent$VH.get(seg);
-    }
-    public static void pbCtlContent$set( MemorySegment seg, MemoryAddress x) {
-        _CTL_CONTEXT.pbCtlContent$VH.set(seg, x);
-    }
-    public static MemoryAddress pbCtlContent$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CTL_CONTEXT.pbCtlContent$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pbCtlContent$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CTL_CONTEXT.pbCtlContent$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbCtlContent$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbCtlContent"));
-    public static VarHandle cbCtlContent$VH() {
-        return _CTL_CONTEXT.cbCtlContent$VH;
-    }
-    public static int cbCtlContent$get(MemorySegment seg) {
-        return (int)_CTL_CONTEXT.cbCtlContent$VH.get(seg);
-    }
-    public static void cbCtlContent$set( MemorySegment seg, int x) {
-        _CTL_CONTEXT.cbCtlContent$VH.set(seg, x);
-    }
-    public static int cbCtlContent$get(MemorySegment seg, long index) {
-        return (int)_CTL_CONTEXT.cbCtlContent$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbCtlContent$set(MemorySegment seg, long index, int x) {
-        _CTL_CONTEXT.cbCtlContent$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwMsgAndCertEncodingType"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pbCtlEncoded"),
+        wgl_h.C_LONG.withName("cbCtlEncoded"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pCtlInfo"),
+        wgl_h.C_POINTER.withName("hCertStore"),
+        wgl_h.C_POINTER.withName("hCryptMsg"),
+        wgl_h.C_POINTER.withName("pbCtlContent"),
+        wgl_h.C_LONG.withName("cbCtlContent"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_CTL_CONTEXT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwMsgAndCertEncodingType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwMsgAndCertEncodingType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwMsgAndCertEncodingType
+     * }
+     */
+    public static final OfInt dwMsgAndCertEncodingType$layout() {
+        return dwMsgAndCertEncodingType$LAYOUT;
+    }
+
+    private static final long dwMsgAndCertEncodingType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwMsgAndCertEncodingType
+     * }
+     */
+    public static final long dwMsgAndCertEncodingType$offset() {
+        return dwMsgAndCertEncodingType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwMsgAndCertEncodingType
+     * }
+     */
+    public static int dwMsgAndCertEncodingType(MemorySegment struct) {
+        return struct.get(dwMsgAndCertEncodingType$LAYOUT, dwMsgAndCertEncodingType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwMsgAndCertEncodingType
+     * }
+     */
+    public static void dwMsgAndCertEncodingType(MemorySegment struct, int fieldValue) {
+        struct.set(dwMsgAndCertEncodingType$LAYOUT, dwMsgAndCertEncodingType$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pbCtlEncoded$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pbCtlEncoded"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE *pbCtlEncoded
+     * }
+     */
+    public static final AddressLayout pbCtlEncoded$layout() {
+        return pbCtlEncoded$LAYOUT;
+    }
+
+    private static final long pbCtlEncoded$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE *pbCtlEncoded
+     * }
+     */
+    public static final long pbCtlEncoded$offset() {
+        return pbCtlEncoded$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE *pbCtlEncoded
+     * }
+     */
+    public static MemorySegment pbCtlEncoded(MemorySegment struct) {
+        return struct.get(pbCtlEncoded$LAYOUT, pbCtlEncoded$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE *pbCtlEncoded
+     * }
+     */
+    public static void pbCtlEncoded(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pbCtlEncoded$LAYOUT, pbCtlEncoded$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbCtlEncoded$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbCtlEncoded"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbCtlEncoded
+     * }
+     */
+    public static final OfInt cbCtlEncoded$layout() {
+        return cbCtlEncoded$LAYOUT;
+    }
+
+    private static final long cbCtlEncoded$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbCtlEncoded
+     * }
+     */
+    public static final long cbCtlEncoded$offset() {
+        return cbCtlEncoded$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbCtlEncoded
+     * }
+     */
+    public static int cbCtlEncoded(MemorySegment struct) {
+        return struct.get(cbCtlEncoded$LAYOUT, cbCtlEncoded$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbCtlEncoded
+     * }
+     */
+    public static void cbCtlEncoded(MemorySegment struct, int fieldValue) {
+        struct.set(cbCtlEncoded$LAYOUT, cbCtlEncoded$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pCtlInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pCtlInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCTL_INFO pCtlInfo
+     * }
+     */
+    public static final AddressLayout pCtlInfo$layout() {
+        return pCtlInfo$LAYOUT;
+    }
+
+    private static final long pCtlInfo$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCTL_INFO pCtlInfo
+     * }
+     */
+    public static final long pCtlInfo$offset() {
+        return pCtlInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCTL_INFO pCtlInfo
+     * }
+     */
+    public static MemorySegment pCtlInfo(MemorySegment struct) {
+        return struct.get(pCtlInfo$LAYOUT, pCtlInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCTL_INFO pCtlInfo
+     * }
+     */
+    public static void pCtlInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pCtlInfo$LAYOUT, pCtlInfo$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hCertStore$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hCertStore"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hCertStore
+     * }
+     */
+    public static final AddressLayout hCertStore$layout() {
+        return hCertStore$LAYOUT;
+    }
+
+    private static final long hCertStore$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hCertStore
+     * }
+     */
+    public static final long hCertStore$offset() {
+        return hCertStore$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hCertStore
+     * }
+     */
+    public static MemorySegment hCertStore(MemorySegment struct) {
+        return struct.get(hCertStore$LAYOUT, hCertStore$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hCertStore
+     * }
+     */
+    public static void hCertStore(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hCertStore$LAYOUT, hCertStore$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hCryptMsg$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hCryptMsg"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HCRYPTMSG hCryptMsg
+     * }
+     */
+    public static final AddressLayout hCryptMsg$layout() {
+        return hCryptMsg$LAYOUT;
+    }
+
+    private static final long hCryptMsg$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HCRYPTMSG hCryptMsg
+     * }
+     */
+    public static final long hCryptMsg$offset() {
+        return hCryptMsg$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HCRYPTMSG hCryptMsg
+     * }
+     */
+    public static MemorySegment hCryptMsg(MemorySegment struct) {
+        return struct.get(hCryptMsg$LAYOUT, hCryptMsg$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HCRYPTMSG hCryptMsg
+     * }
+     */
+    public static void hCryptMsg(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hCryptMsg$LAYOUT, hCryptMsg$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pbCtlContent$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pbCtlContent"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE *pbCtlContent
+     * }
+     */
+    public static final AddressLayout pbCtlContent$layout() {
+        return pbCtlContent$LAYOUT;
+    }
+
+    private static final long pbCtlContent$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE *pbCtlContent
+     * }
+     */
+    public static final long pbCtlContent$offset() {
+        return pbCtlContent$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE *pbCtlContent
+     * }
+     */
+    public static MemorySegment pbCtlContent(MemorySegment struct) {
+        return struct.get(pbCtlContent$LAYOUT, pbCtlContent$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE *pbCtlContent
+     * }
+     */
+    public static void pbCtlContent(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pbCtlContent$LAYOUT, pbCtlContent$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbCtlContent$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbCtlContent"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbCtlContent
+     * }
+     */
+    public static final OfInt cbCtlContent$layout() {
+        return cbCtlContent$LAYOUT;
+    }
+
+    private static final long cbCtlContent$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbCtlContent
+     * }
+     */
+    public static final long cbCtlContent$offset() {
+        return cbCtlContent$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbCtlContent
+     * }
+     */
+    public static int cbCtlContent(MemorySegment struct) {
+        return struct.get(cbCtlContent$LAYOUT, cbCtlContent$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbCtlContent
+     * }
+     */
+    public static void cbCtlContent(MemorySegment struct, int fieldValue) {
+        struct.set(cbCtlContent$LAYOUT, cbCtlContent$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

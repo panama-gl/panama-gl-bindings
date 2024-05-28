@@ -2,13 +2,28 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CERT_ISSUER_SERIAL_NUMBER {
+ *     CERT_NAME_BLOB Issuer;
+ *     CRYPT_INTEGER_BLOB SerialNumber;
+ * } CERT_ISSUER_SERIAL_NUMBER
+ * }
+ */
 public class CERT_ISSUER_SERIAL_NUMBER extends _CERT_ISSUER_SERIAL_NUMBER {
 
+    CERT_ISSUER_SERIAL_NUMBER() {
+        // Should not be called directly
+    }
 }
-
 

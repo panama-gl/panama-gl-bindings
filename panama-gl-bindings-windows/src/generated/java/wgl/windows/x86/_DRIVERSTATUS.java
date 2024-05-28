@@ -2,66 +2,330 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DRIVERSTATUS {
+ *     BYTE bDriverError;
+ *     BYTE bIDEError;
+ *     BYTE bReserved[2];
+ *     DWORD dwReserved[2];
+ * }
+ * }
+ */
 public class _DRIVERSTATUS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("bDriverError"),
-        Constants$root.C_CHAR$LAYOUT.withName("bIDEError"),
-        MemoryLayout.sequenceLayout(2, Constants$root.C_CHAR$LAYOUT).withName("bReserved"),
-        MemoryLayout.sequenceLayout(2, Constants$root.C_LONG$LAYOUT).withName("dwReserved")
-    ).withName("_DRIVERSTATUS");
-    public static MemoryLayout $LAYOUT() {
-        return _DRIVERSTATUS.$struct$LAYOUT;
+    _DRIVERSTATUS() {
+        // Should not be called directly
     }
-    static final VarHandle bDriverError$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bDriverError"));
-    public static VarHandle bDriverError$VH() {
-        return _DRIVERSTATUS.bDriverError$VH;
-    }
-    public static byte bDriverError$get(MemorySegment seg) {
-        return (byte)_DRIVERSTATUS.bDriverError$VH.get(seg);
-    }
-    public static void bDriverError$set( MemorySegment seg, byte x) {
-        _DRIVERSTATUS.bDriverError$VH.set(seg, x);
-    }
-    public static byte bDriverError$get(MemorySegment seg, long index) {
-        return (byte)_DRIVERSTATUS.bDriverError$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bDriverError$set(MemorySegment seg, long index, byte x) {
-        _DRIVERSTATUS.bDriverError$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bIDEError$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bIDEError"));
-    public static VarHandle bIDEError$VH() {
-        return _DRIVERSTATUS.bIDEError$VH;
-    }
-    public static byte bIDEError$get(MemorySegment seg) {
-        return (byte)_DRIVERSTATUS.bIDEError$VH.get(seg);
-    }
-    public static void bIDEError$set( MemorySegment seg, byte x) {
-        _DRIVERSTATUS.bIDEError$VH.set(seg, x);
-    }
-    public static byte bIDEError$get(MemorySegment seg, long index) {
-        return (byte)_DRIVERSTATUS.bIDEError$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bIDEError$set(MemorySegment seg, long index, byte x) {
-        _DRIVERSTATUS.bIDEError$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment bReserved$slice(MemorySegment seg) {
-        return seg.asSlice(2, 2);
-    }
-    public static MemorySegment dwReserved$slice(MemorySegment seg) {
-        return seg.asSlice(4, 8);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_CHAR.withName("bDriverError"),
+        wgl_h.C_CHAR.withName("bIDEError"),
+        MemoryLayout.sequenceLayout(2, wgl_h.C_CHAR).withName("bReserved"),
+        MemoryLayout.sequenceLayout(2, wgl_h.align(wgl_h.C_LONG, 1)).withName("dwReserved")
+    ).withName("_DRIVERSTATUS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte bDriverError$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bDriverError"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bDriverError
+     * }
+     */
+    public static final OfByte bDriverError$layout() {
+        return bDriverError$LAYOUT;
+    }
+
+    private static final long bDriverError$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bDriverError
+     * }
+     */
+    public static final long bDriverError$offset() {
+        return bDriverError$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bDriverError
+     * }
+     */
+    public static byte bDriverError(MemorySegment struct) {
+        return struct.get(bDriverError$LAYOUT, bDriverError$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bDriverError
+     * }
+     */
+    public static void bDriverError(MemorySegment struct, byte fieldValue) {
+        struct.set(bDriverError$LAYOUT, bDriverError$OFFSET, fieldValue);
+    }
+
+    private static final OfByte bIDEError$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bIDEError"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bIDEError
+     * }
+     */
+    public static final OfByte bIDEError$layout() {
+        return bIDEError$LAYOUT;
+    }
+
+    private static final long bIDEError$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bIDEError
+     * }
+     */
+    public static final long bIDEError$offset() {
+        return bIDEError$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bIDEError
+     * }
+     */
+    public static byte bIDEError(MemorySegment struct) {
+        return struct.get(bIDEError$LAYOUT, bIDEError$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bIDEError
+     * }
+     */
+    public static void bIDEError(MemorySegment struct, byte fieldValue) {
+        struct.set(bIDEError$LAYOUT, bIDEError$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout bReserved$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("bReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bReserved[2]
+     * }
+     */
+    public static final SequenceLayout bReserved$layout() {
+        return bReserved$LAYOUT;
+    }
+
+    private static final long bReserved$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bReserved[2]
+     * }
+     */
+    public static final long bReserved$offset() {
+        return bReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bReserved[2]
+     * }
+     */
+    public static MemorySegment bReserved(MemorySegment struct) {
+        return struct.asSlice(bReserved$OFFSET, bReserved$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bReserved[2]
+     * }
+     */
+    public static void bReserved(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, bReserved$OFFSET, bReserved$LAYOUT.byteSize());
+    }
+
+    private static long[] bReserved$DIMS = { 2 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE bReserved[2]
+     * }
+     */
+    public static long[] bReserved$dimensions() {
+        return bReserved$DIMS;
+    }
+    private static final VarHandle bReserved$ELEM_HANDLE = bReserved$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE bReserved[2]
+     * }
+     */
+    public static byte bReserved(MemorySegment struct, long index0) {
+        return (byte)bReserved$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE bReserved[2]
+     * }
+     */
+    public static void bReserved(MemorySegment struct, long index0, byte fieldValue) {
+        bReserved$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout dwReserved$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("dwReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved[2]
+     * }
+     */
+    public static final SequenceLayout dwReserved$layout() {
+        return dwReserved$LAYOUT;
+    }
+
+    private static final long dwReserved$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved[2]
+     * }
+     */
+    public static final long dwReserved$offset() {
+        return dwReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved[2]
+     * }
+     */
+    public static MemorySegment dwReserved(MemorySegment struct) {
+        return struct.asSlice(dwReserved$OFFSET, dwReserved$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved[2]
+     * }
+     */
+    public static void dwReserved(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, dwReserved$OFFSET, dwReserved$LAYOUT.byteSize());
+    }
+
+    private static long[] dwReserved$DIMS = { 2 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DWORD dwReserved[2]
+     * }
+     */
+    public static long[] dwReserved$dimensions() {
+        return dwReserved$DIMS;
+    }
+    private static final VarHandle dwReserved$ELEM_HANDLE = dwReserved$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved[2]
+     * }
+     */
+    public static int dwReserved(MemorySegment struct, long index0) {
+        return (int)dwReserved$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved[2]
+     * }
+     */
+    public static void dwReserved(MemorySegment struct, long index0, int fieldValue) {
+        dwReserved$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,177 +2,494 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _EXFAT_STATISTICS {
+ *     DWORD CreateHits;
+ *     DWORD SuccessfulCreates;
+ *     DWORD FailedCreates;
+ *     DWORD NonCachedReads;
+ *     DWORD NonCachedReadBytes;
+ *     DWORD NonCachedWrites;
+ *     DWORD NonCachedWriteBytes;
+ *     DWORD NonCachedDiskReads;
+ *     DWORD NonCachedDiskWrites;
+ * }
+ * }
+ */
 public class _EXFAT_STATISTICS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("CreateHits"),
-        Constants$root.C_LONG$LAYOUT.withName("SuccessfulCreates"),
-        Constants$root.C_LONG$LAYOUT.withName("FailedCreates"),
-        Constants$root.C_LONG$LAYOUT.withName("NonCachedReads"),
-        Constants$root.C_LONG$LAYOUT.withName("NonCachedReadBytes"),
-        Constants$root.C_LONG$LAYOUT.withName("NonCachedWrites"),
-        Constants$root.C_LONG$LAYOUT.withName("NonCachedWriteBytes"),
-        Constants$root.C_LONG$LAYOUT.withName("NonCachedDiskReads"),
-        Constants$root.C_LONG$LAYOUT.withName("NonCachedDiskWrites")
-    ).withName("_EXFAT_STATISTICS");
-    public static MemoryLayout $LAYOUT() {
-        return _EXFAT_STATISTICS.$struct$LAYOUT;
+    _EXFAT_STATISTICS() {
+        // Should not be called directly
     }
-    static final VarHandle CreateHits$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CreateHits"));
-    public static VarHandle CreateHits$VH() {
-        return _EXFAT_STATISTICS.CreateHits$VH;
-    }
-    public static int CreateHits$get(MemorySegment seg) {
-        return (int)_EXFAT_STATISTICS.CreateHits$VH.get(seg);
-    }
-    public static void CreateHits$set( MemorySegment seg, int x) {
-        _EXFAT_STATISTICS.CreateHits$VH.set(seg, x);
-    }
-    public static int CreateHits$get(MemorySegment seg, long index) {
-        return (int)_EXFAT_STATISTICS.CreateHits$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CreateHits$set(MemorySegment seg, long index, int x) {
-        _EXFAT_STATISTICS.CreateHits$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SuccessfulCreates$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SuccessfulCreates"));
-    public static VarHandle SuccessfulCreates$VH() {
-        return _EXFAT_STATISTICS.SuccessfulCreates$VH;
-    }
-    public static int SuccessfulCreates$get(MemorySegment seg) {
-        return (int)_EXFAT_STATISTICS.SuccessfulCreates$VH.get(seg);
-    }
-    public static void SuccessfulCreates$set( MemorySegment seg, int x) {
-        _EXFAT_STATISTICS.SuccessfulCreates$VH.set(seg, x);
-    }
-    public static int SuccessfulCreates$get(MemorySegment seg, long index) {
-        return (int)_EXFAT_STATISTICS.SuccessfulCreates$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SuccessfulCreates$set(MemorySegment seg, long index, int x) {
-        _EXFAT_STATISTICS.SuccessfulCreates$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FailedCreates$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FailedCreates"));
-    public static VarHandle FailedCreates$VH() {
-        return _EXFAT_STATISTICS.FailedCreates$VH;
-    }
-    public static int FailedCreates$get(MemorySegment seg) {
-        return (int)_EXFAT_STATISTICS.FailedCreates$VH.get(seg);
-    }
-    public static void FailedCreates$set( MemorySegment seg, int x) {
-        _EXFAT_STATISTICS.FailedCreates$VH.set(seg, x);
-    }
-    public static int FailedCreates$get(MemorySegment seg, long index) {
-        return (int)_EXFAT_STATISTICS.FailedCreates$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FailedCreates$set(MemorySegment seg, long index, int x) {
-        _EXFAT_STATISTICS.FailedCreates$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NonCachedReads$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NonCachedReads"));
-    public static VarHandle NonCachedReads$VH() {
-        return _EXFAT_STATISTICS.NonCachedReads$VH;
-    }
-    public static int NonCachedReads$get(MemorySegment seg) {
-        return (int)_EXFAT_STATISTICS.NonCachedReads$VH.get(seg);
-    }
-    public static void NonCachedReads$set( MemorySegment seg, int x) {
-        _EXFAT_STATISTICS.NonCachedReads$VH.set(seg, x);
-    }
-    public static int NonCachedReads$get(MemorySegment seg, long index) {
-        return (int)_EXFAT_STATISTICS.NonCachedReads$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NonCachedReads$set(MemorySegment seg, long index, int x) {
-        _EXFAT_STATISTICS.NonCachedReads$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NonCachedReadBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NonCachedReadBytes"));
-    public static VarHandle NonCachedReadBytes$VH() {
-        return _EXFAT_STATISTICS.NonCachedReadBytes$VH;
-    }
-    public static int NonCachedReadBytes$get(MemorySegment seg) {
-        return (int)_EXFAT_STATISTICS.NonCachedReadBytes$VH.get(seg);
-    }
-    public static void NonCachedReadBytes$set( MemorySegment seg, int x) {
-        _EXFAT_STATISTICS.NonCachedReadBytes$VH.set(seg, x);
-    }
-    public static int NonCachedReadBytes$get(MemorySegment seg, long index) {
-        return (int)_EXFAT_STATISTICS.NonCachedReadBytes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NonCachedReadBytes$set(MemorySegment seg, long index, int x) {
-        _EXFAT_STATISTICS.NonCachedReadBytes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NonCachedWrites$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NonCachedWrites"));
-    public static VarHandle NonCachedWrites$VH() {
-        return _EXFAT_STATISTICS.NonCachedWrites$VH;
-    }
-    public static int NonCachedWrites$get(MemorySegment seg) {
-        return (int)_EXFAT_STATISTICS.NonCachedWrites$VH.get(seg);
-    }
-    public static void NonCachedWrites$set( MemorySegment seg, int x) {
-        _EXFAT_STATISTICS.NonCachedWrites$VH.set(seg, x);
-    }
-    public static int NonCachedWrites$get(MemorySegment seg, long index) {
-        return (int)_EXFAT_STATISTICS.NonCachedWrites$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NonCachedWrites$set(MemorySegment seg, long index, int x) {
-        _EXFAT_STATISTICS.NonCachedWrites$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NonCachedWriteBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NonCachedWriteBytes"));
-    public static VarHandle NonCachedWriteBytes$VH() {
-        return _EXFAT_STATISTICS.NonCachedWriteBytes$VH;
-    }
-    public static int NonCachedWriteBytes$get(MemorySegment seg) {
-        return (int)_EXFAT_STATISTICS.NonCachedWriteBytes$VH.get(seg);
-    }
-    public static void NonCachedWriteBytes$set( MemorySegment seg, int x) {
-        _EXFAT_STATISTICS.NonCachedWriteBytes$VH.set(seg, x);
-    }
-    public static int NonCachedWriteBytes$get(MemorySegment seg, long index) {
-        return (int)_EXFAT_STATISTICS.NonCachedWriteBytes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NonCachedWriteBytes$set(MemorySegment seg, long index, int x) {
-        _EXFAT_STATISTICS.NonCachedWriteBytes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NonCachedDiskReads$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NonCachedDiskReads"));
-    public static VarHandle NonCachedDiskReads$VH() {
-        return _EXFAT_STATISTICS.NonCachedDiskReads$VH;
-    }
-    public static int NonCachedDiskReads$get(MemorySegment seg) {
-        return (int)_EXFAT_STATISTICS.NonCachedDiskReads$VH.get(seg);
-    }
-    public static void NonCachedDiskReads$set( MemorySegment seg, int x) {
-        _EXFAT_STATISTICS.NonCachedDiskReads$VH.set(seg, x);
-    }
-    public static int NonCachedDiskReads$get(MemorySegment seg, long index) {
-        return (int)_EXFAT_STATISTICS.NonCachedDiskReads$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NonCachedDiskReads$set(MemorySegment seg, long index, int x) {
-        _EXFAT_STATISTICS.NonCachedDiskReads$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NonCachedDiskWrites$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NonCachedDiskWrites"));
-    public static VarHandle NonCachedDiskWrites$VH() {
-        return _EXFAT_STATISTICS.NonCachedDiskWrites$VH;
-    }
-    public static int NonCachedDiskWrites$get(MemorySegment seg) {
-        return (int)_EXFAT_STATISTICS.NonCachedDiskWrites$VH.get(seg);
-    }
-    public static void NonCachedDiskWrites$set( MemorySegment seg, int x) {
-        _EXFAT_STATISTICS.NonCachedDiskWrites$VH.set(seg, x);
-    }
-    public static int NonCachedDiskWrites$get(MemorySegment seg, long index) {
-        return (int)_EXFAT_STATISTICS.NonCachedDiskWrites$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NonCachedDiskWrites$set(MemorySegment seg, long index, int x) {
-        _EXFAT_STATISTICS.NonCachedDiskWrites$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("CreateHits"),
+        wgl_h.C_LONG.withName("SuccessfulCreates"),
+        wgl_h.C_LONG.withName("FailedCreates"),
+        wgl_h.C_LONG.withName("NonCachedReads"),
+        wgl_h.C_LONG.withName("NonCachedReadBytes"),
+        wgl_h.C_LONG.withName("NonCachedWrites"),
+        wgl_h.C_LONG.withName("NonCachedWriteBytes"),
+        wgl_h.C_LONG.withName("NonCachedDiskReads"),
+        wgl_h.C_LONG.withName("NonCachedDiskWrites")
+    ).withName("_EXFAT_STATISTICS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt CreateHits$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CreateHits"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD CreateHits
+     * }
+     */
+    public static final OfInt CreateHits$layout() {
+        return CreateHits$LAYOUT;
+    }
+
+    private static final long CreateHits$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD CreateHits
+     * }
+     */
+    public static final long CreateHits$offset() {
+        return CreateHits$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD CreateHits
+     * }
+     */
+    public static int CreateHits(MemorySegment struct) {
+        return struct.get(CreateHits$LAYOUT, CreateHits$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD CreateHits
+     * }
+     */
+    public static void CreateHits(MemorySegment struct, int fieldValue) {
+        struct.set(CreateHits$LAYOUT, CreateHits$OFFSET, fieldValue);
+    }
+
+    private static final OfInt SuccessfulCreates$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SuccessfulCreates"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SuccessfulCreates
+     * }
+     */
+    public static final OfInt SuccessfulCreates$layout() {
+        return SuccessfulCreates$LAYOUT;
+    }
+
+    private static final long SuccessfulCreates$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SuccessfulCreates
+     * }
+     */
+    public static final long SuccessfulCreates$offset() {
+        return SuccessfulCreates$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SuccessfulCreates
+     * }
+     */
+    public static int SuccessfulCreates(MemorySegment struct) {
+        return struct.get(SuccessfulCreates$LAYOUT, SuccessfulCreates$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SuccessfulCreates
+     * }
+     */
+    public static void SuccessfulCreates(MemorySegment struct, int fieldValue) {
+        struct.set(SuccessfulCreates$LAYOUT, SuccessfulCreates$OFFSET, fieldValue);
+    }
+
+    private static final OfInt FailedCreates$LAYOUT = (OfInt)$LAYOUT.select(groupElement("FailedCreates"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD FailedCreates
+     * }
+     */
+    public static final OfInt FailedCreates$layout() {
+        return FailedCreates$LAYOUT;
+    }
+
+    private static final long FailedCreates$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD FailedCreates
+     * }
+     */
+    public static final long FailedCreates$offset() {
+        return FailedCreates$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD FailedCreates
+     * }
+     */
+    public static int FailedCreates(MemorySegment struct) {
+        return struct.get(FailedCreates$LAYOUT, FailedCreates$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD FailedCreates
+     * }
+     */
+    public static void FailedCreates(MemorySegment struct, int fieldValue) {
+        struct.set(FailedCreates$LAYOUT, FailedCreates$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NonCachedReads$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NonCachedReads"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedReads
+     * }
+     */
+    public static final OfInt NonCachedReads$layout() {
+        return NonCachedReads$LAYOUT;
+    }
+
+    private static final long NonCachedReads$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedReads
+     * }
+     */
+    public static final long NonCachedReads$offset() {
+        return NonCachedReads$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedReads
+     * }
+     */
+    public static int NonCachedReads(MemorySegment struct) {
+        return struct.get(NonCachedReads$LAYOUT, NonCachedReads$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedReads
+     * }
+     */
+    public static void NonCachedReads(MemorySegment struct, int fieldValue) {
+        struct.set(NonCachedReads$LAYOUT, NonCachedReads$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NonCachedReadBytes$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NonCachedReadBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedReadBytes
+     * }
+     */
+    public static final OfInt NonCachedReadBytes$layout() {
+        return NonCachedReadBytes$LAYOUT;
+    }
+
+    private static final long NonCachedReadBytes$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedReadBytes
+     * }
+     */
+    public static final long NonCachedReadBytes$offset() {
+        return NonCachedReadBytes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedReadBytes
+     * }
+     */
+    public static int NonCachedReadBytes(MemorySegment struct) {
+        return struct.get(NonCachedReadBytes$LAYOUT, NonCachedReadBytes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedReadBytes
+     * }
+     */
+    public static void NonCachedReadBytes(MemorySegment struct, int fieldValue) {
+        struct.set(NonCachedReadBytes$LAYOUT, NonCachedReadBytes$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NonCachedWrites$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NonCachedWrites"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedWrites
+     * }
+     */
+    public static final OfInt NonCachedWrites$layout() {
+        return NonCachedWrites$LAYOUT;
+    }
+
+    private static final long NonCachedWrites$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedWrites
+     * }
+     */
+    public static final long NonCachedWrites$offset() {
+        return NonCachedWrites$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedWrites
+     * }
+     */
+    public static int NonCachedWrites(MemorySegment struct) {
+        return struct.get(NonCachedWrites$LAYOUT, NonCachedWrites$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedWrites
+     * }
+     */
+    public static void NonCachedWrites(MemorySegment struct, int fieldValue) {
+        struct.set(NonCachedWrites$LAYOUT, NonCachedWrites$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NonCachedWriteBytes$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NonCachedWriteBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedWriteBytes
+     * }
+     */
+    public static final OfInt NonCachedWriteBytes$layout() {
+        return NonCachedWriteBytes$LAYOUT;
+    }
+
+    private static final long NonCachedWriteBytes$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedWriteBytes
+     * }
+     */
+    public static final long NonCachedWriteBytes$offset() {
+        return NonCachedWriteBytes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedWriteBytes
+     * }
+     */
+    public static int NonCachedWriteBytes(MemorySegment struct) {
+        return struct.get(NonCachedWriteBytes$LAYOUT, NonCachedWriteBytes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedWriteBytes
+     * }
+     */
+    public static void NonCachedWriteBytes(MemorySegment struct, int fieldValue) {
+        struct.set(NonCachedWriteBytes$LAYOUT, NonCachedWriteBytes$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NonCachedDiskReads$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NonCachedDiskReads"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedDiskReads
+     * }
+     */
+    public static final OfInt NonCachedDiskReads$layout() {
+        return NonCachedDiskReads$LAYOUT;
+    }
+
+    private static final long NonCachedDiskReads$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedDiskReads
+     * }
+     */
+    public static final long NonCachedDiskReads$offset() {
+        return NonCachedDiskReads$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedDiskReads
+     * }
+     */
+    public static int NonCachedDiskReads(MemorySegment struct) {
+        return struct.get(NonCachedDiskReads$LAYOUT, NonCachedDiskReads$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedDiskReads
+     * }
+     */
+    public static void NonCachedDiskReads(MemorySegment struct, int fieldValue) {
+        struct.set(NonCachedDiskReads$LAYOUT, NonCachedDiskReads$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NonCachedDiskWrites$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NonCachedDiskWrites"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedDiskWrites
+     * }
+     */
+    public static final OfInt NonCachedDiskWrites$layout() {
+        return NonCachedDiskWrites$LAYOUT;
+    }
+
+    private static final long NonCachedDiskWrites$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedDiskWrites
+     * }
+     */
+    public static final long NonCachedDiskWrites$offset() {
+        return NonCachedDiskWrites$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedDiskWrites
+     * }
+     */
+    public static int NonCachedDiskWrites(MemorySegment struct) {
+        return struct.get(NonCachedDiskWrites$LAYOUT, NonCachedDiskWrites$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NonCachedDiskWrites
+     * }
+     */
+    public static void NonCachedDiskWrites(MemorySegment struct, int fieldValue) {
+        struct.set(NonCachedDiskWrites$LAYOUT, NonCachedDiskWrites$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

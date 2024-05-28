@@ -2,59 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _XSAVE_AREA {
+ *     XSAVE_FORMAT LegacyState;
+ *     XSAVE_AREA_HEADER Header;
+ * }
+ * }
+ */
 public class _XSAVE_AREA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("ControlWord"),
-            Constants$root.C_SHORT$LAYOUT.withName("StatusWord"),
-            Constants$root.C_CHAR$LAYOUT.withName("TagWord"),
-            Constants$root.C_CHAR$LAYOUT.withName("Reserved1"),
-            Constants$root.C_SHORT$LAYOUT.withName("ErrorOpcode"),
-            Constants$root.C_LONG$LAYOUT.withName("ErrorOffset"),
-            Constants$root.C_SHORT$LAYOUT.withName("ErrorSelector"),
-            Constants$root.C_SHORT$LAYOUT.withName("Reserved2"),
-            Constants$root.C_LONG$LAYOUT.withName("DataOffset"),
-            Constants$root.C_SHORT$LAYOUT.withName("DataSelector"),
-            Constants$root.C_SHORT$LAYOUT.withName("Reserved3"),
-            Constants$root.C_LONG$LAYOUT.withName("MxCsr"),
-            Constants$root.C_LONG$LAYOUT.withName("MxCsr_Mask"),
-            MemoryLayout.sequenceLayout(8, MemoryLayout.structLayout(
-                Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-            ).withName("_M128A")).withName("FloatRegisters"),
-            MemoryLayout.sequenceLayout(16, MemoryLayout.structLayout(
-                Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-            ).withName("_M128A")).withName("XmmRegisters"),
-            MemoryLayout.sequenceLayout(96, Constants$root.C_CHAR$LAYOUT).withName("Reserved4")
-        ).withName("LegacyState"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Mask"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("CompactionMask"),
-            MemoryLayout.sequenceLayout(6, Constants$root.C_LONG_LONG$LAYOUT).withName("Reserved2")
-        ).withName("Header")
-    ).withName("_XSAVE_AREA");
-    public static MemoryLayout $LAYOUT() {
-        return _XSAVE_AREA.$struct$LAYOUT;
+    _XSAVE_AREA() {
+        // Should not be called directly
     }
-    public static MemorySegment LegacyState$slice(MemorySegment seg) {
-        return seg.asSlice(0, 512);
-    }
-    public static MemorySegment Header$slice(MemorySegment seg) {
-        return seg.asSlice(512, 64);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _XSAVE_FORMAT.layout().withName("LegacyState"),
+        _XSAVE_AREA_HEADER.layout().withName("Header")
+    ).withName("_XSAVE_AREA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout LegacyState$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("LegacyState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * XSAVE_FORMAT LegacyState
+     * }
+     */
+    public static final GroupLayout LegacyState$layout() {
+        return LegacyState$LAYOUT;
+    }
+
+    private static final long LegacyState$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * XSAVE_FORMAT LegacyState
+     * }
+     */
+    public static final long LegacyState$offset() {
+        return LegacyState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * XSAVE_FORMAT LegacyState
+     * }
+     */
+    public static MemorySegment LegacyState(MemorySegment struct) {
+        return struct.asSlice(LegacyState$OFFSET, LegacyState$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * XSAVE_FORMAT LegacyState
+     * }
+     */
+    public static void LegacyState(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, LegacyState$OFFSET, LegacyState$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Header$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Header"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * XSAVE_AREA_HEADER Header
+     * }
+     */
+    public static final GroupLayout Header$layout() {
+        return Header$LAYOUT;
+    }
+
+    private static final long Header$OFFSET = 512;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * XSAVE_AREA_HEADER Header
+     * }
+     */
+    public static final long Header$offset() {
+        return Header$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * XSAVE_AREA_HEADER Header
+     * }
+     */
+    public static MemorySegment Header(MemorySegment struct) {
+        return struct.asSlice(Header$OFFSET, Header$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * XSAVE_AREA_HEADER Header
+     * }
+     */
+    public static void Header(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Header$OFFSET, Header$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

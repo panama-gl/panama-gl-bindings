@@ -2,122 +2,326 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct WIN32_MEMORY_REGION_INFORMATION {
+ *     PVOID AllocationBase;
+ *     ULONG AllocationProtect;
+ *     union {
+ *         ULONG Flags;
+ *         struct {
+ *             ULONG Private : 1;
+ *             ULONG MappedDataFile : 1;
+ *             ULONG MappedImage : 1;
+ *             ULONG MappedPageFile : 1;
+ *             ULONG MappedPhysical : 1;
+ *             ULONG DirectMapped : 1;
+ *             ULONG Reserved : 26;
+ *         };
+ *     };
+ *     SIZE_T RegionSize;
+ *     SIZE_T CommitSize;
+ * }
+ * }
+ */
 public class WIN32_MEMORY_REGION_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("AllocationBase"),
-        Constants$root.C_LONG$LAYOUT.withName("AllocationProtect"),
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Flags"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    MemoryLayout.paddingLayout(1).withName("Private"),
-                    MemoryLayout.paddingLayout(1).withName("MappedDataFile"),
-                    MemoryLayout.paddingLayout(1).withName("MappedImage"),
-                    MemoryLayout.paddingLayout(1).withName("MappedPageFile"),
-                    MemoryLayout.paddingLayout(1).withName("MappedPhysical"),
-                    MemoryLayout.paddingLayout(1).withName("DirectMapped"),
-                    MemoryLayout.paddingLayout(26).withName("Reserved")
-                )
-            ).withName("$anon$0")
-        ).withName("$anon$0"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("RegionSize"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("CommitSize")
-    ).withName("WIN32_MEMORY_REGION_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return WIN32_MEMORY_REGION_INFORMATION.$struct$LAYOUT;
+    WIN32_MEMORY_REGION_INFORMATION() {
+        // Should not be called directly
     }
-    static final VarHandle AllocationBase$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AllocationBase"));
-    public static VarHandle AllocationBase$VH() {
-        return WIN32_MEMORY_REGION_INFORMATION.AllocationBase$VH;
-    }
-    public static MemoryAddress AllocationBase$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)WIN32_MEMORY_REGION_INFORMATION.AllocationBase$VH.get(seg);
-    }
-    public static void AllocationBase$set( MemorySegment seg, MemoryAddress x) {
-        WIN32_MEMORY_REGION_INFORMATION.AllocationBase$VH.set(seg, x);
-    }
-    public static MemoryAddress AllocationBase$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)WIN32_MEMORY_REGION_INFORMATION.AllocationBase$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AllocationBase$set(MemorySegment seg, long index, MemoryAddress x) {
-        WIN32_MEMORY_REGION_INFORMATION.AllocationBase$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AllocationProtect$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AllocationProtect"));
-    public static VarHandle AllocationProtect$VH() {
-        return WIN32_MEMORY_REGION_INFORMATION.AllocationProtect$VH;
-    }
-    public static int AllocationProtect$get(MemorySegment seg) {
-        return (int)WIN32_MEMORY_REGION_INFORMATION.AllocationProtect$VH.get(seg);
-    }
-    public static void AllocationProtect$set( MemorySegment seg, int x) {
-        WIN32_MEMORY_REGION_INFORMATION.AllocationProtect$VH.set(seg, x);
-    }
-    public static int AllocationProtect$get(MemorySegment seg, long index) {
-        return (int)WIN32_MEMORY_REGION_INFORMATION.AllocationProtect$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AllocationProtect$set(MemorySegment seg, long index, int x) {
-        WIN32_MEMORY_REGION_INFORMATION.AllocationProtect$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return WIN32_MEMORY_REGION_INFORMATION.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)WIN32_MEMORY_REGION_INFORMATION.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        WIN32_MEMORY_REGION_INFORMATION.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)WIN32_MEMORY_REGION_INFORMATION.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        WIN32_MEMORY_REGION_INFORMATION.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RegionSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RegionSize"));
-    public static VarHandle RegionSize$VH() {
-        return WIN32_MEMORY_REGION_INFORMATION.RegionSize$VH;
-    }
-    public static long RegionSize$get(MemorySegment seg) {
-        return (long)WIN32_MEMORY_REGION_INFORMATION.RegionSize$VH.get(seg);
-    }
-    public static void RegionSize$set( MemorySegment seg, long x) {
-        WIN32_MEMORY_REGION_INFORMATION.RegionSize$VH.set(seg, x);
-    }
-    public static long RegionSize$get(MemorySegment seg, long index) {
-        return (long)WIN32_MEMORY_REGION_INFORMATION.RegionSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RegionSize$set(MemorySegment seg, long index, long x) {
-        WIN32_MEMORY_REGION_INFORMATION.RegionSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CommitSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CommitSize"));
-    public static VarHandle CommitSize$VH() {
-        return WIN32_MEMORY_REGION_INFORMATION.CommitSize$VH;
-    }
-    public static long CommitSize$get(MemorySegment seg) {
-        return (long)WIN32_MEMORY_REGION_INFORMATION.CommitSize$VH.get(seg);
-    }
-    public static void CommitSize$set( MemorySegment seg, long x) {
-        WIN32_MEMORY_REGION_INFORMATION.CommitSize$VH.set(seg, x);
-    }
-    public static long CommitSize$get(MemorySegment seg, long index) {
-        return (long)WIN32_MEMORY_REGION_INFORMATION.CommitSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CommitSize$set(MemorySegment seg, long index, long x) {
-        WIN32_MEMORY_REGION_INFORMATION.CommitSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("AllocationBase"),
+        wgl_h.C_LONG.withName("AllocationProtect"),
+        MemoryLayout.unionLayout(
+            wgl_h.C_LONG.withName("Flags"),
+            MemoryLayout.structLayout(
+                MemoryLayout.paddingLayout(4)
+            ).withName("$anon$909:9")
+        ).withName("$anon$906:5"),
+        wgl_h.C_LONG_LONG.withName("RegionSize"),
+        wgl_h.C_LONG_LONG.withName("CommitSize")
+    ).withName("WIN32_MEMORY_REGION_INFORMATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout AllocationBase$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AllocationBase"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PVOID AllocationBase
+     * }
+     */
+    public static final AddressLayout AllocationBase$layout() {
+        return AllocationBase$LAYOUT;
+    }
+
+    private static final long AllocationBase$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PVOID AllocationBase
+     * }
+     */
+    public static final long AllocationBase$offset() {
+        return AllocationBase$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PVOID AllocationBase
+     * }
+     */
+    public static MemorySegment AllocationBase(MemorySegment struct) {
+        return struct.get(AllocationBase$LAYOUT, AllocationBase$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PVOID AllocationBase
+     * }
+     */
+    public static void AllocationBase(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AllocationBase$LAYOUT, AllocationBase$OFFSET, fieldValue);
+    }
+
+    private static final OfInt AllocationProtect$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AllocationProtect"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG AllocationProtect
+     * }
+     */
+    public static final OfInt AllocationProtect$layout() {
+        return AllocationProtect$LAYOUT;
+    }
+
+    private static final long AllocationProtect$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG AllocationProtect
+     * }
+     */
+    public static final long AllocationProtect$offset() {
+        return AllocationProtect$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG AllocationProtect
+     * }
+     */
+    public static int AllocationProtect(MemorySegment struct) {
+        return struct.get(AllocationProtect$LAYOUT, AllocationProtect$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG AllocationProtect
+     * }
+     */
+    public static void AllocationProtect(MemorySegment struct, int fieldValue) {
+        struct.set(AllocationProtect$LAYOUT, AllocationProtect$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$906:5"), groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfLong RegionSize$LAYOUT = (OfLong)$LAYOUT.select(groupElement("RegionSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SIZE_T RegionSize
+     * }
+     */
+    public static final OfLong RegionSize$layout() {
+        return RegionSize$LAYOUT;
+    }
+
+    private static final long RegionSize$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SIZE_T RegionSize
+     * }
+     */
+    public static final long RegionSize$offset() {
+        return RegionSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SIZE_T RegionSize
+     * }
+     */
+    public static long RegionSize(MemorySegment struct) {
+        return struct.get(RegionSize$LAYOUT, RegionSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SIZE_T RegionSize
+     * }
+     */
+    public static void RegionSize(MemorySegment struct, long fieldValue) {
+        struct.set(RegionSize$LAYOUT, RegionSize$OFFSET, fieldValue);
+    }
+
+    private static final OfLong CommitSize$LAYOUT = (OfLong)$LAYOUT.select(groupElement("CommitSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SIZE_T CommitSize
+     * }
+     */
+    public static final OfLong CommitSize$layout() {
+        return CommitSize$LAYOUT;
+    }
+
+    private static final long CommitSize$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SIZE_T CommitSize
+     * }
+     */
+    public static final long CommitSize$offset() {
+        return CommitSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SIZE_T CommitSize
+     * }
+     */
+    public static long CommitSize(MemorySegment struct) {
+        return struct.get(CommitSize$LAYOUT, CommitSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SIZE_T CommitSize
+     * }
+     */
+    public static void CommitSize(MemorySegment struct, long fieldValue) {
+        struct.set(CommitSize$LAYOUT, CommitSize$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

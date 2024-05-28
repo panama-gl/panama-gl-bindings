@@ -2,213 +2,588 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _RPC_MESSAGE {
+ *     RPC_BINDING_HANDLE Handle;
+ *     unsigned long DataRepresentation;
+ *     void *Buffer;
+ *     unsigned int BufferLength;
+ *     unsigned int ProcNum;
+ *     PRPC_SYNTAX_IDENTIFIER TransferSyntax;
+ *     void *RpcInterfaceInformation;
+ *     void *ReservedForRuntime;
+ *     void *ManagerEpv;
+ *     void *ImportContext;
+ *     unsigned long RpcFlags;
+ * }
+ * }
+ */
 public class _RPC_MESSAGE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("Handle"),
-        Constants$root.C_LONG$LAYOUT.withName("DataRepresentation"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("Buffer"),
-        Constants$root.C_LONG$LAYOUT.withName("BufferLength"),
-        Constants$root.C_LONG$LAYOUT.withName("ProcNum"),
-        Constants$root.C_POINTER$LAYOUT.withName("TransferSyntax"),
-        Constants$root.C_POINTER$LAYOUT.withName("RpcInterfaceInformation"),
-        Constants$root.C_POINTER$LAYOUT.withName("ReservedForRuntime"),
-        Constants$root.C_POINTER$LAYOUT.withName("ManagerEpv"),
-        Constants$root.C_POINTER$LAYOUT.withName("ImportContext"),
-        Constants$root.C_LONG$LAYOUT.withName("RpcFlags"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_RPC_MESSAGE");
-    public static MemoryLayout $LAYOUT() {
-        return _RPC_MESSAGE.$struct$LAYOUT;
+    _RPC_MESSAGE() {
+        // Should not be called directly
     }
-    static final VarHandle Handle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Handle"));
-    public static VarHandle Handle$VH() {
-        return _RPC_MESSAGE.Handle$VH;
-    }
-    public static MemoryAddress Handle$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RPC_MESSAGE.Handle$VH.get(seg);
-    }
-    public static void Handle$set( MemorySegment seg, MemoryAddress x) {
-        _RPC_MESSAGE.Handle$VH.set(seg, x);
-    }
-    public static MemoryAddress Handle$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RPC_MESSAGE.Handle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Handle$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RPC_MESSAGE.Handle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DataRepresentation$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DataRepresentation"));
-    public static VarHandle DataRepresentation$VH() {
-        return _RPC_MESSAGE.DataRepresentation$VH;
-    }
-    public static int DataRepresentation$get(MemorySegment seg) {
-        return (int)_RPC_MESSAGE.DataRepresentation$VH.get(seg);
-    }
-    public static void DataRepresentation$set( MemorySegment seg, int x) {
-        _RPC_MESSAGE.DataRepresentation$VH.set(seg, x);
-    }
-    public static int DataRepresentation$get(MemorySegment seg, long index) {
-        return (int)_RPC_MESSAGE.DataRepresentation$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DataRepresentation$set(MemorySegment seg, long index, int x) {
-        _RPC_MESSAGE.DataRepresentation$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Buffer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Buffer"));
-    public static VarHandle Buffer$VH() {
-        return _RPC_MESSAGE.Buffer$VH;
-    }
-    public static MemoryAddress Buffer$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RPC_MESSAGE.Buffer$VH.get(seg);
-    }
-    public static void Buffer$set( MemorySegment seg, MemoryAddress x) {
-        _RPC_MESSAGE.Buffer$VH.set(seg, x);
-    }
-    public static MemoryAddress Buffer$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RPC_MESSAGE.Buffer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Buffer$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RPC_MESSAGE.Buffer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BufferLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BufferLength"));
-    public static VarHandle BufferLength$VH() {
-        return _RPC_MESSAGE.BufferLength$VH;
-    }
-    public static int BufferLength$get(MemorySegment seg) {
-        return (int)_RPC_MESSAGE.BufferLength$VH.get(seg);
-    }
-    public static void BufferLength$set( MemorySegment seg, int x) {
-        _RPC_MESSAGE.BufferLength$VH.set(seg, x);
-    }
-    public static int BufferLength$get(MemorySegment seg, long index) {
-        return (int)_RPC_MESSAGE.BufferLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BufferLength$set(MemorySegment seg, long index, int x) {
-        _RPC_MESSAGE.BufferLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ProcNum$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProcNum"));
-    public static VarHandle ProcNum$VH() {
-        return _RPC_MESSAGE.ProcNum$VH;
-    }
-    public static int ProcNum$get(MemorySegment seg) {
-        return (int)_RPC_MESSAGE.ProcNum$VH.get(seg);
-    }
-    public static void ProcNum$set( MemorySegment seg, int x) {
-        _RPC_MESSAGE.ProcNum$VH.set(seg, x);
-    }
-    public static int ProcNum$get(MemorySegment seg, long index) {
-        return (int)_RPC_MESSAGE.ProcNum$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProcNum$set(MemorySegment seg, long index, int x) {
-        _RPC_MESSAGE.ProcNum$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TransferSyntax$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TransferSyntax"));
-    public static VarHandle TransferSyntax$VH() {
-        return _RPC_MESSAGE.TransferSyntax$VH;
-    }
-    public static MemoryAddress TransferSyntax$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RPC_MESSAGE.TransferSyntax$VH.get(seg);
-    }
-    public static void TransferSyntax$set( MemorySegment seg, MemoryAddress x) {
-        _RPC_MESSAGE.TransferSyntax$VH.set(seg, x);
-    }
-    public static MemoryAddress TransferSyntax$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RPC_MESSAGE.TransferSyntax$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TransferSyntax$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RPC_MESSAGE.TransferSyntax$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RpcInterfaceInformation$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RpcInterfaceInformation"));
-    public static VarHandle RpcInterfaceInformation$VH() {
-        return _RPC_MESSAGE.RpcInterfaceInformation$VH;
-    }
-    public static MemoryAddress RpcInterfaceInformation$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RPC_MESSAGE.RpcInterfaceInformation$VH.get(seg);
-    }
-    public static void RpcInterfaceInformation$set( MemorySegment seg, MemoryAddress x) {
-        _RPC_MESSAGE.RpcInterfaceInformation$VH.set(seg, x);
-    }
-    public static MemoryAddress RpcInterfaceInformation$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RPC_MESSAGE.RpcInterfaceInformation$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RpcInterfaceInformation$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RPC_MESSAGE.RpcInterfaceInformation$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ReservedForRuntime$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ReservedForRuntime"));
-    public static VarHandle ReservedForRuntime$VH() {
-        return _RPC_MESSAGE.ReservedForRuntime$VH;
-    }
-    public static MemoryAddress ReservedForRuntime$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RPC_MESSAGE.ReservedForRuntime$VH.get(seg);
-    }
-    public static void ReservedForRuntime$set( MemorySegment seg, MemoryAddress x) {
-        _RPC_MESSAGE.ReservedForRuntime$VH.set(seg, x);
-    }
-    public static MemoryAddress ReservedForRuntime$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RPC_MESSAGE.ReservedForRuntime$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ReservedForRuntime$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RPC_MESSAGE.ReservedForRuntime$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ManagerEpv$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ManagerEpv"));
-    public static VarHandle ManagerEpv$VH() {
-        return _RPC_MESSAGE.ManagerEpv$VH;
-    }
-    public static MemoryAddress ManagerEpv$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RPC_MESSAGE.ManagerEpv$VH.get(seg);
-    }
-    public static void ManagerEpv$set( MemorySegment seg, MemoryAddress x) {
-        _RPC_MESSAGE.ManagerEpv$VH.set(seg, x);
-    }
-    public static MemoryAddress ManagerEpv$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RPC_MESSAGE.ManagerEpv$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ManagerEpv$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RPC_MESSAGE.ManagerEpv$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ImportContext$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ImportContext"));
-    public static VarHandle ImportContext$VH() {
-        return _RPC_MESSAGE.ImportContext$VH;
-    }
-    public static MemoryAddress ImportContext$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RPC_MESSAGE.ImportContext$VH.get(seg);
-    }
-    public static void ImportContext$set( MemorySegment seg, MemoryAddress x) {
-        _RPC_MESSAGE.ImportContext$VH.set(seg, x);
-    }
-    public static MemoryAddress ImportContext$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RPC_MESSAGE.ImportContext$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ImportContext$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RPC_MESSAGE.ImportContext$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RpcFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RpcFlags"));
-    public static VarHandle RpcFlags$VH() {
-        return _RPC_MESSAGE.RpcFlags$VH;
-    }
-    public static int RpcFlags$get(MemorySegment seg) {
-        return (int)_RPC_MESSAGE.RpcFlags$VH.get(seg);
-    }
-    public static void RpcFlags$set( MemorySegment seg, int x) {
-        _RPC_MESSAGE.RpcFlags$VH.set(seg, x);
-    }
-    public static int RpcFlags$get(MemorySegment seg, long index) {
-        return (int)_RPC_MESSAGE.RpcFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RpcFlags$set(MemorySegment seg, long index, int x) {
-        _RPC_MESSAGE.RpcFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("Handle"),
+        wgl_h.C_LONG.withName("DataRepresentation"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("Buffer"),
+        wgl_h.C_INT.withName("BufferLength"),
+        wgl_h.C_INT.withName("ProcNum"),
+        wgl_h.C_POINTER.withName("TransferSyntax"),
+        wgl_h.C_POINTER.withName("RpcInterfaceInformation"),
+        wgl_h.C_POINTER.withName("ReservedForRuntime"),
+        wgl_h.C_POINTER.withName("ManagerEpv"),
+        wgl_h.C_POINTER.withName("ImportContext"),
+        wgl_h.C_LONG.withName("RpcFlags"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_RPC_MESSAGE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout Handle$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Handle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RPC_BINDING_HANDLE Handle
+     * }
+     */
+    public static final AddressLayout Handle$layout() {
+        return Handle$LAYOUT;
+    }
+
+    private static final long Handle$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RPC_BINDING_HANDLE Handle
+     * }
+     */
+    public static final long Handle$offset() {
+        return Handle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RPC_BINDING_HANDLE Handle
+     * }
+     */
+    public static MemorySegment Handle(MemorySegment struct) {
+        return struct.get(Handle$LAYOUT, Handle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RPC_BINDING_HANDLE Handle
+     * }
+     */
+    public static void Handle(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Handle$LAYOUT, Handle$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DataRepresentation$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DataRepresentation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long DataRepresentation
+     * }
+     */
+    public static final OfInt DataRepresentation$layout() {
+        return DataRepresentation$LAYOUT;
+    }
+
+    private static final long DataRepresentation$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long DataRepresentation
+     * }
+     */
+    public static final long DataRepresentation$offset() {
+        return DataRepresentation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long DataRepresentation
+     * }
+     */
+    public static int DataRepresentation(MemorySegment struct) {
+        return struct.get(DataRepresentation$LAYOUT, DataRepresentation$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long DataRepresentation
+     * }
+     */
+    public static void DataRepresentation(MemorySegment struct, int fieldValue) {
+        struct.set(DataRepresentation$LAYOUT, DataRepresentation$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout Buffer$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Buffer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *Buffer
+     * }
+     */
+    public static final AddressLayout Buffer$layout() {
+        return Buffer$LAYOUT;
+    }
+
+    private static final long Buffer$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *Buffer
+     * }
+     */
+    public static final long Buffer$offset() {
+        return Buffer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *Buffer
+     * }
+     */
+    public static MemorySegment Buffer(MemorySegment struct) {
+        return struct.get(Buffer$LAYOUT, Buffer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *Buffer
+     * }
+     */
+    public static void Buffer(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Buffer$LAYOUT, Buffer$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BufferLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BufferLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned int BufferLength
+     * }
+     */
+    public static final OfInt BufferLength$layout() {
+        return BufferLength$LAYOUT;
+    }
+
+    private static final long BufferLength$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned int BufferLength
+     * }
+     */
+    public static final long BufferLength$offset() {
+        return BufferLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned int BufferLength
+     * }
+     */
+    public static int BufferLength(MemorySegment struct) {
+        return struct.get(BufferLength$LAYOUT, BufferLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned int BufferLength
+     * }
+     */
+    public static void BufferLength(MemorySegment struct, int fieldValue) {
+        struct.set(BufferLength$LAYOUT, BufferLength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ProcNum$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ProcNum"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned int ProcNum
+     * }
+     */
+    public static final OfInt ProcNum$layout() {
+        return ProcNum$LAYOUT;
+    }
+
+    private static final long ProcNum$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned int ProcNum
+     * }
+     */
+    public static final long ProcNum$offset() {
+        return ProcNum$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned int ProcNum
+     * }
+     */
+    public static int ProcNum(MemorySegment struct) {
+        return struct.get(ProcNum$LAYOUT, ProcNum$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned int ProcNum
+     * }
+     */
+    public static void ProcNum(MemorySegment struct, int fieldValue) {
+        struct.set(ProcNum$LAYOUT, ProcNum$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout TransferSyntax$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("TransferSyntax"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PRPC_SYNTAX_IDENTIFIER TransferSyntax
+     * }
+     */
+    public static final AddressLayout TransferSyntax$layout() {
+        return TransferSyntax$LAYOUT;
+    }
+
+    private static final long TransferSyntax$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PRPC_SYNTAX_IDENTIFIER TransferSyntax
+     * }
+     */
+    public static final long TransferSyntax$offset() {
+        return TransferSyntax$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PRPC_SYNTAX_IDENTIFIER TransferSyntax
+     * }
+     */
+    public static MemorySegment TransferSyntax(MemorySegment struct) {
+        return struct.get(TransferSyntax$LAYOUT, TransferSyntax$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PRPC_SYNTAX_IDENTIFIER TransferSyntax
+     * }
+     */
+    public static void TransferSyntax(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(TransferSyntax$LAYOUT, TransferSyntax$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout RpcInterfaceInformation$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("RpcInterfaceInformation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *RpcInterfaceInformation
+     * }
+     */
+    public static final AddressLayout RpcInterfaceInformation$layout() {
+        return RpcInterfaceInformation$LAYOUT;
+    }
+
+    private static final long RpcInterfaceInformation$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *RpcInterfaceInformation
+     * }
+     */
+    public static final long RpcInterfaceInformation$offset() {
+        return RpcInterfaceInformation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *RpcInterfaceInformation
+     * }
+     */
+    public static MemorySegment RpcInterfaceInformation(MemorySegment struct) {
+        return struct.get(RpcInterfaceInformation$LAYOUT, RpcInterfaceInformation$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *RpcInterfaceInformation
+     * }
+     */
+    public static void RpcInterfaceInformation(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(RpcInterfaceInformation$LAYOUT, RpcInterfaceInformation$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ReservedForRuntime$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ReservedForRuntime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *ReservedForRuntime
+     * }
+     */
+    public static final AddressLayout ReservedForRuntime$layout() {
+        return ReservedForRuntime$LAYOUT;
+    }
+
+    private static final long ReservedForRuntime$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *ReservedForRuntime
+     * }
+     */
+    public static final long ReservedForRuntime$offset() {
+        return ReservedForRuntime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *ReservedForRuntime
+     * }
+     */
+    public static MemorySegment ReservedForRuntime(MemorySegment struct) {
+        return struct.get(ReservedForRuntime$LAYOUT, ReservedForRuntime$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *ReservedForRuntime
+     * }
+     */
+    public static void ReservedForRuntime(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ReservedForRuntime$LAYOUT, ReservedForRuntime$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ManagerEpv$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ManagerEpv"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *ManagerEpv
+     * }
+     */
+    public static final AddressLayout ManagerEpv$layout() {
+        return ManagerEpv$LAYOUT;
+    }
+
+    private static final long ManagerEpv$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *ManagerEpv
+     * }
+     */
+    public static final long ManagerEpv$offset() {
+        return ManagerEpv$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *ManagerEpv
+     * }
+     */
+    public static MemorySegment ManagerEpv(MemorySegment struct) {
+        return struct.get(ManagerEpv$LAYOUT, ManagerEpv$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *ManagerEpv
+     * }
+     */
+    public static void ManagerEpv(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ManagerEpv$LAYOUT, ManagerEpv$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ImportContext$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ImportContext"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *ImportContext
+     * }
+     */
+    public static final AddressLayout ImportContext$layout() {
+        return ImportContext$LAYOUT;
+    }
+
+    private static final long ImportContext$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *ImportContext
+     * }
+     */
+    public static final long ImportContext$offset() {
+        return ImportContext$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *ImportContext
+     * }
+     */
+    public static MemorySegment ImportContext(MemorySegment struct) {
+        return struct.get(ImportContext$LAYOUT, ImportContext$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *ImportContext
+     * }
+     */
+    public static void ImportContext(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ImportContext$LAYOUT, ImportContext$OFFSET, fieldValue);
+    }
+
+    private static final OfInt RpcFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("RpcFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long RpcFlags
+     * }
+     */
+    public static final OfInt RpcFlags$layout() {
+        return RpcFlags$LAYOUT;
+    }
+
+    private static final long RpcFlags$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long RpcFlags
+     * }
+     */
+    public static final long RpcFlags$offset() {
+        return RpcFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long RpcFlags
+     * }
+     */
+    public static int RpcFlags(MemorySegment struct) {
+        return struct.get(RpcFlags$LAYOUT, RpcFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long RpcFlags
+     * }
+     */
+    public static void RpcFlags(MemorySegment struct, int fieldValue) {
+        struct.set(RpcFlags$LAYOUT, RpcFlags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

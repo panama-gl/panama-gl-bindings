@@ -2,92 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CONSOLE_HISTORY_INFO {
+ *     UINT cbSize;
+ *     UINT HistoryBufferSize;
+ *     UINT NumberOfHistoryBuffers;
+ *     DWORD dwFlags;
+ * }
+ * }
+ */
 public class _CONSOLE_HISTORY_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        Constants$root.C_LONG$LAYOUT.withName("HistoryBufferSize"),
-        Constants$root.C_LONG$LAYOUT.withName("NumberOfHistoryBuffers"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFlags")
-    ).withName("_CONSOLE_HISTORY_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CONSOLE_HISTORY_INFO.$struct$LAYOUT;
+    _CONSOLE_HISTORY_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _CONSOLE_HISTORY_INFO.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_CONSOLE_HISTORY_INFO.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _CONSOLE_HISTORY_INFO.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_CONSOLE_HISTORY_INFO.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _CONSOLE_HISTORY_INFO.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle HistoryBufferSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HistoryBufferSize"));
-    public static VarHandle HistoryBufferSize$VH() {
-        return _CONSOLE_HISTORY_INFO.HistoryBufferSize$VH;
-    }
-    public static int HistoryBufferSize$get(MemorySegment seg) {
-        return (int)_CONSOLE_HISTORY_INFO.HistoryBufferSize$VH.get(seg);
-    }
-    public static void HistoryBufferSize$set( MemorySegment seg, int x) {
-        _CONSOLE_HISTORY_INFO.HistoryBufferSize$VH.set(seg, x);
-    }
-    public static int HistoryBufferSize$get(MemorySegment seg, long index) {
-        return (int)_CONSOLE_HISTORY_INFO.HistoryBufferSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HistoryBufferSize$set(MemorySegment seg, long index, int x) {
-        _CONSOLE_HISTORY_INFO.HistoryBufferSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberOfHistoryBuffers$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfHistoryBuffers"));
-    public static VarHandle NumberOfHistoryBuffers$VH() {
-        return _CONSOLE_HISTORY_INFO.NumberOfHistoryBuffers$VH;
-    }
-    public static int NumberOfHistoryBuffers$get(MemorySegment seg) {
-        return (int)_CONSOLE_HISTORY_INFO.NumberOfHistoryBuffers$VH.get(seg);
-    }
-    public static void NumberOfHistoryBuffers$set( MemorySegment seg, int x) {
-        _CONSOLE_HISTORY_INFO.NumberOfHistoryBuffers$VH.set(seg, x);
-    }
-    public static int NumberOfHistoryBuffers$get(MemorySegment seg, long index) {
-        return (int)_CONSOLE_HISTORY_INFO.NumberOfHistoryBuffers$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfHistoryBuffers$set(MemorySegment seg, long index, int x) {
-        _CONSOLE_HISTORY_INFO.NumberOfHistoryBuffers$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFlags"));
-    public static VarHandle dwFlags$VH() {
-        return _CONSOLE_HISTORY_INFO.dwFlags$VH;
-    }
-    public static int dwFlags$get(MemorySegment seg) {
-        return (int)_CONSOLE_HISTORY_INFO.dwFlags$VH.get(seg);
-    }
-    public static void dwFlags$set( MemorySegment seg, int x) {
-        _CONSOLE_HISTORY_INFO.dwFlags$VH.set(seg, x);
-    }
-    public static int dwFlags$get(MemorySegment seg, long index) {
-        return (int)_CONSOLE_HISTORY_INFO.dwFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFlags$set(MemorySegment seg, long index, int x) {
-        _CONSOLE_HISTORY_INFO.dwFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("cbSize"),
+        wgl_h.C_INT.withName("HistoryBufferSize"),
+        wgl_h.C_INT.withName("NumberOfHistoryBuffers"),
+        wgl_h.C_LONG.withName("dwFlags")
+    ).withName("_CONSOLE_HISTORY_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt HistoryBufferSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("HistoryBufferSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT HistoryBufferSize
+     * }
+     */
+    public static final OfInt HistoryBufferSize$layout() {
+        return HistoryBufferSize$LAYOUT;
+    }
+
+    private static final long HistoryBufferSize$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT HistoryBufferSize
+     * }
+     */
+    public static final long HistoryBufferSize$offset() {
+        return HistoryBufferSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT HistoryBufferSize
+     * }
+     */
+    public static int HistoryBufferSize(MemorySegment struct) {
+        return struct.get(HistoryBufferSize$LAYOUT, HistoryBufferSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT HistoryBufferSize
+     * }
+     */
+    public static void HistoryBufferSize(MemorySegment struct, int fieldValue) {
+        struct.set(HistoryBufferSize$LAYOUT, HistoryBufferSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NumberOfHistoryBuffers$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberOfHistoryBuffers"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT NumberOfHistoryBuffers
+     * }
+     */
+    public static final OfInt NumberOfHistoryBuffers$layout() {
+        return NumberOfHistoryBuffers$LAYOUT;
+    }
+
+    private static final long NumberOfHistoryBuffers$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT NumberOfHistoryBuffers
+     * }
+     */
+    public static final long NumberOfHistoryBuffers$offset() {
+        return NumberOfHistoryBuffers$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT NumberOfHistoryBuffers
+     * }
+     */
+    public static int NumberOfHistoryBuffers(MemorySegment struct) {
+        return struct.get(NumberOfHistoryBuffers$LAYOUT, NumberOfHistoryBuffers$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT NumberOfHistoryBuffers
+     * }
+     */
+    public static void NumberOfHistoryBuffers(MemorySegment struct, int fieldValue) {
+        struct.set(NumberOfHistoryBuffers$LAYOUT, NumberOfHistoryBuffers$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final OfInt dwFlags$layout() {
+        return dwFlags$LAYOUT;
+    }
+
+    private static final long dwFlags$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final long dwFlags$offset() {
+        return dwFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static int dwFlags(MemorySegment struct) {
+        return struct.get(dwFlags$LAYOUT, dwFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static void dwFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwFlags$LAYOUT, dwFlags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

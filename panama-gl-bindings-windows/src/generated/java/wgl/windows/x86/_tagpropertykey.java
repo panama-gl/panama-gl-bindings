@@ -2,50 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _tagpropertykey {
+ *     GUID fmtid;
+ *     DWORD pid;
+ * }
+ * }
+ */
 public class _tagpropertykey {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("fmtid"),
-        Constants$root.C_LONG$LAYOUT.withName("pid")
-    ).withName("_tagpropertykey");
-    public static MemoryLayout $LAYOUT() {
-        return _tagpropertykey.$struct$LAYOUT;
+    _tagpropertykey() {
+        // Should not be called directly
     }
-    public static MemorySegment fmtid$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
-    }
-    static final VarHandle pid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pid"));
-    public static VarHandle pid$VH() {
-        return _tagpropertykey.pid$VH;
-    }
-    public static int pid$get(MemorySegment seg) {
-        return (int)_tagpropertykey.pid$VH.get(seg);
-    }
-    public static void pid$set( MemorySegment seg, int x) {
-        _tagpropertykey.pid$VH.set(seg, x);
-    }
-    public static int pid$get(MemorySegment seg, long index) {
-        return (int)_tagpropertykey.pid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pid$set(MemorySegment seg, long index, int x) {
-        _tagpropertykey.pid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _GUID.layout().withName("fmtid"),
+        wgl_h.C_LONG.withName("pid")
+    ).withName("_tagpropertykey");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout fmtid$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("fmtid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID fmtid
+     * }
+     */
+    public static final GroupLayout fmtid$layout() {
+        return fmtid$LAYOUT;
+    }
+
+    private static final long fmtid$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID fmtid
+     * }
+     */
+    public static final long fmtid$offset() {
+        return fmtid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID fmtid
+     * }
+     */
+    public static MemorySegment fmtid(MemorySegment struct) {
+        return struct.asSlice(fmtid$OFFSET, fmtid$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID fmtid
+     * }
+     */
+    public static void fmtid(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, fmtid$OFFSET, fmtid$LAYOUT.byteSize());
+    }
+
+    private static final OfInt pid$LAYOUT = (OfInt)$LAYOUT.select(groupElement("pid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD pid
+     * }
+     */
+    public static final OfInt pid$layout() {
+        return pid$LAYOUT;
+    }
+
+    private static final long pid$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD pid
+     * }
+     */
+    public static final long pid$offset() {
+        return pid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD pid
+     * }
+     */
+    public static int pid(MemorySegment struct) {
+        return struct.get(pid$LAYOUT, pid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD pid
+     * }
+     */
+    public static void pid(MemorySegment struct, int fieldValue) {
+        struct.set(pid$LAYOUT, pid$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

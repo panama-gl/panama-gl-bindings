@@ -2,27 +2,70 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface LANGGROUPLOCALE_ENUMPROCA {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(int _x0, int _x1, java.lang.foreign.MemoryAddress _x2, long _x3);
-    static MemorySegment allocate(LANGGROUPLOCALE_ENUMPROCA fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(LANGGROUPLOCALE_ENUMPROCA.class, fi, constants$540.LANGGROUPLOCALE_ENUMPROCA$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*LANGGROUPLOCALE_ENUMPROCA)(LGRPID, LCID, LPSTR, LONG_PTR) __attribute__((stdcall))
+ * }
+ */
+public class LANGGROUPLOCALE_ENUMPROCA {
+
+    LANGGROUPLOCALE_ENUMPROCA() {
+        // Should not be called directly
     }
-    static LANGGROUPLOCALE_ENUMPROCA ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int __x0, int __x1, java.lang.foreign.MemoryAddress __x2, long __x3) -> {
-            try {
-                return (int)constants$540.LANGGROUPLOCALE_ENUMPROCA$MH.invokeExact((Addressable)symbol, __x0, __x1, (java.lang.foreign.Addressable)__x2, __x3);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(int _x0, int _x1, MemorySegment _x2, long _x3);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        freeglut_h.C_INT,
+        freeglut_h.C_LONG,
+        freeglut_h.C_LONG,
+        freeglut_h.C_POINTER,
+        freeglut_h.C_LONG_LONG
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = freeglut_h.upcallHandle(LANGGROUPLOCALE_ENUMPROCA.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(LANGGROUPLOCALE_ENUMPROCA.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,int _x0, int _x1, MemorySegment _x2, long _x3) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

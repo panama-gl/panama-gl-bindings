@@ -2,764 +2,2104 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _IMAGE_LOAD_CONFIG_DIRECTORY64 {
+ *     DWORD Size;
+ *     DWORD TimeDateStamp;
+ *     WORD MajorVersion;
+ *     WORD MinorVersion;
+ *     DWORD GlobalFlagsClear;
+ *     DWORD GlobalFlagsSet;
+ *     DWORD CriticalSectionDefaultTimeout;
+ *     ULONGLONG DeCommitFreeBlockThreshold;
+ *     ULONGLONG DeCommitTotalFreeThreshold;
+ *     ULONGLONG LockPrefixTable;
+ *     ULONGLONG MaximumAllocationSize;
+ *     ULONGLONG VirtualMemoryThreshold;
+ *     ULONGLONG ProcessAffinityMask;
+ *     DWORD ProcessHeapFlags;
+ *     WORD CSDVersion;
+ *     WORD DependentLoadFlags;
+ *     ULONGLONG EditList;
+ *     ULONGLONG SecurityCookie;
+ *     ULONGLONG SEHandlerTable;
+ *     ULONGLONG SEHandlerCount;
+ *     ULONGLONG GuardCFCheckFunctionPointer;
+ *     ULONGLONG GuardCFDispatchFunctionPointer;
+ *     ULONGLONG GuardCFFunctionTable;
+ *     ULONGLONG GuardCFFunctionCount;
+ *     DWORD GuardFlags;
+ *     IMAGE_LOAD_CONFIG_CODE_INTEGRITY CodeIntegrity;
+ *     ULONGLONG GuardAddressTakenIatEntryTable;
+ *     ULONGLONG GuardAddressTakenIatEntryCount;
+ *     ULONGLONG GuardLongJumpTargetTable;
+ *     ULONGLONG GuardLongJumpTargetCount;
+ *     ULONGLONG DynamicValueRelocTable;
+ *     ULONGLONG CHPEMetadataPointer;
+ *     ULONGLONG GuardRFFailureRoutine;
+ *     ULONGLONG GuardRFFailureRoutineFunctionPointer;
+ *     DWORD DynamicValueRelocTableOffset;
+ *     WORD DynamicValueRelocTableSection;
+ *     WORD Reserved2;
+ *     ULONGLONG GuardRFVerifyStackPointerFunctionPointer;
+ *     DWORD HotPatchTableOffset;
+ *     DWORD Reserved3;
+ *     ULONGLONG EnclaveConfigurationPointer;
+ *     ULONGLONG VolatileMetadataPointer;
+ *     ULONGLONG GuardEHContinuationTable;
+ *     ULONGLONG GuardEHContinuationCount;
+ * }
+ * }
+ */
 public class _IMAGE_LOAD_CONFIG_DIRECTORY64 {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("TimeDateStamp"),
-        Constants$root.C_SHORT$LAYOUT.withName("MajorVersion"),
-        Constants$root.C_SHORT$LAYOUT.withName("MinorVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("GlobalFlagsClear"),
-        Constants$root.C_LONG$LAYOUT.withName("GlobalFlagsSet"),
-        Constants$root.C_LONG$LAYOUT.withName("CriticalSectionDefaultTimeout"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("DeCommitFreeBlockThreshold"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("DeCommitTotalFreeThreshold"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("LockPrefixTable"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("MaximumAllocationSize"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("VirtualMemoryThreshold"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ProcessAffinityMask"),
-        Constants$root.C_LONG$LAYOUT.withName("ProcessHeapFlags"),
-        Constants$root.C_SHORT$LAYOUT.withName("CSDVersion"),
-        Constants$root.C_SHORT$LAYOUT.withName("DependentLoadFlags"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("EditList"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("SecurityCookie"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("SEHandlerTable"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("SEHandlerCount"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("GuardCFCheckFunctionPointer"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("GuardCFDispatchFunctionPointer"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("GuardCFFunctionTable"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("GuardCFFunctionCount"),
-        Constants$root.C_LONG$LAYOUT.withName("GuardFlags"),
-        MemoryLayout.structLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("Flags"),
-            Constants$root.C_SHORT$LAYOUT.withName("Catalog"),
-            Constants$root.C_LONG$LAYOUT.withName("CatalogOffset"),
-            Constants$root.C_LONG$LAYOUT.withName("Reserved")
-        ).withName("CodeIntegrity"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("GuardAddressTakenIatEntryTable"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("GuardAddressTakenIatEntryCount"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("GuardLongJumpTargetTable"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("GuardLongJumpTargetCount"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("DynamicValueRelocTable"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("CHPEMetadataPointer"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("GuardRFFailureRoutine"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("GuardRFFailureRoutineFunctionPointer"),
-        Constants$root.C_LONG$LAYOUT.withName("DynamicValueRelocTableOffset"),
-        Constants$root.C_SHORT$LAYOUT.withName("DynamicValueRelocTableSection"),
-        Constants$root.C_SHORT$LAYOUT.withName("Reserved2"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("GuardRFVerifyStackPointerFunctionPointer"),
-        Constants$root.C_LONG$LAYOUT.withName("HotPatchTableOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("Reserved3"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("EnclaveConfigurationPointer"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("VolatileMetadataPointer"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("GuardEHContinuationTable"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("GuardEHContinuationCount")
-    ).withName("_IMAGE_LOAD_CONFIG_DIRECTORY64");
-    public static MemoryLayout $LAYOUT() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.$struct$LAYOUT;
+    _IMAGE_LOAD_CONFIG_DIRECTORY64() {
+        // Should not be called directly
     }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TimeDateStamp$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TimeDateStamp"));
-    public static VarHandle TimeDateStamp$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.TimeDateStamp$VH;
-    }
-    public static int TimeDateStamp$get(MemorySegment seg) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.TimeDateStamp$VH.get(seg);
-    }
-    public static void TimeDateStamp$set( MemorySegment seg, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.TimeDateStamp$VH.set(seg, x);
-    }
-    public static int TimeDateStamp$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.TimeDateStamp$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TimeDateStamp$set(MemorySegment seg, long index, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.TimeDateStamp$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MajorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MajorVersion"));
-    public static VarHandle MajorVersion$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.MajorVersion$VH;
-    }
-    public static short MajorVersion$get(MemorySegment seg) {
-        return (short)_IMAGE_LOAD_CONFIG_DIRECTORY64.MajorVersion$VH.get(seg);
-    }
-    public static void MajorVersion$set( MemorySegment seg, short x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.MajorVersion$VH.set(seg, x);
-    }
-    public static short MajorVersion$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_LOAD_CONFIG_DIRECTORY64.MajorVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MajorVersion$set(MemorySegment seg, long index, short x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.MajorVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MinorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MinorVersion"));
-    public static VarHandle MinorVersion$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.MinorVersion$VH;
-    }
-    public static short MinorVersion$get(MemorySegment seg) {
-        return (short)_IMAGE_LOAD_CONFIG_DIRECTORY64.MinorVersion$VH.get(seg);
-    }
-    public static void MinorVersion$set( MemorySegment seg, short x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.MinorVersion$VH.set(seg, x);
-    }
-    public static short MinorVersion$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_LOAD_CONFIG_DIRECTORY64.MinorVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MinorVersion$set(MemorySegment seg, long index, short x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.MinorVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GlobalFlagsClear$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GlobalFlagsClear"));
-    public static VarHandle GlobalFlagsClear$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.GlobalFlagsClear$VH;
-    }
-    public static int GlobalFlagsClear$get(MemorySegment seg) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.GlobalFlagsClear$VH.get(seg);
-    }
-    public static void GlobalFlagsClear$set( MemorySegment seg, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GlobalFlagsClear$VH.set(seg, x);
-    }
-    public static int GlobalFlagsClear$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.GlobalFlagsClear$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GlobalFlagsClear$set(MemorySegment seg, long index, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GlobalFlagsClear$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GlobalFlagsSet$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GlobalFlagsSet"));
-    public static VarHandle GlobalFlagsSet$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.GlobalFlagsSet$VH;
-    }
-    public static int GlobalFlagsSet$get(MemorySegment seg) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.GlobalFlagsSet$VH.get(seg);
-    }
-    public static void GlobalFlagsSet$set( MemorySegment seg, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GlobalFlagsSet$VH.set(seg, x);
-    }
-    public static int GlobalFlagsSet$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.GlobalFlagsSet$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GlobalFlagsSet$set(MemorySegment seg, long index, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GlobalFlagsSet$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CriticalSectionDefaultTimeout$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CriticalSectionDefaultTimeout"));
-    public static VarHandle CriticalSectionDefaultTimeout$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.CriticalSectionDefaultTimeout$VH;
-    }
-    public static int CriticalSectionDefaultTimeout$get(MemorySegment seg) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.CriticalSectionDefaultTimeout$VH.get(seg);
-    }
-    public static void CriticalSectionDefaultTimeout$set( MemorySegment seg, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.CriticalSectionDefaultTimeout$VH.set(seg, x);
-    }
-    public static int CriticalSectionDefaultTimeout$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.CriticalSectionDefaultTimeout$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CriticalSectionDefaultTimeout$set(MemorySegment seg, long index, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.CriticalSectionDefaultTimeout$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DeCommitFreeBlockThreshold$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DeCommitFreeBlockThreshold"));
-    public static VarHandle DeCommitFreeBlockThreshold$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.DeCommitFreeBlockThreshold$VH;
-    }
-    public static long DeCommitFreeBlockThreshold$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.DeCommitFreeBlockThreshold$VH.get(seg);
-    }
-    public static void DeCommitFreeBlockThreshold$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.DeCommitFreeBlockThreshold$VH.set(seg, x);
-    }
-    public static long DeCommitFreeBlockThreshold$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.DeCommitFreeBlockThreshold$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DeCommitFreeBlockThreshold$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.DeCommitFreeBlockThreshold$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DeCommitTotalFreeThreshold$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DeCommitTotalFreeThreshold"));
-    public static VarHandle DeCommitTotalFreeThreshold$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.DeCommitTotalFreeThreshold$VH;
-    }
-    public static long DeCommitTotalFreeThreshold$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.DeCommitTotalFreeThreshold$VH.get(seg);
-    }
-    public static void DeCommitTotalFreeThreshold$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.DeCommitTotalFreeThreshold$VH.set(seg, x);
-    }
-    public static long DeCommitTotalFreeThreshold$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.DeCommitTotalFreeThreshold$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DeCommitTotalFreeThreshold$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.DeCommitTotalFreeThreshold$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LockPrefixTable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LockPrefixTable"));
-    public static VarHandle LockPrefixTable$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.LockPrefixTable$VH;
-    }
-    public static long LockPrefixTable$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.LockPrefixTable$VH.get(seg);
-    }
-    public static void LockPrefixTable$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.LockPrefixTable$VH.set(seg, x);
-    }
-    public static long LockPrefixTable$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.LockPrefixTable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LockPrefixTable$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.LockPrefixTable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaximumAllocationSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaximumAllocationSize"));
-    public static VarHandle MaximumAllocationSize$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.MaximumAllocationSize$VH;
-    }
-    public static long MaximumAllocationSize$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.MaximumAllocationSize$VH.get(seg);
-    }
-    public static void MaximumAllocationSize$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.MaximumAllocationSize$VH.set(seg, x);
-    }
-    public static long MaximumAllocationSize$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.MaximumAllocationSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaximumAllocationSize$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.MaximumAllocationSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle VirtualMemoryThreshold$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VirtualMemoryThreshold"));
-    public static VarHandle VirtualMemoryThreshold$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.VirtualMemoryThreshold$VH;
-    }
-    public static long VirtualMemoryThreshold$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.VirtualMemoryThreshold$VH.get(seg);
-    }
-    public static void VirtualMemoryThreshold$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.VirtualMemoryThreshold$VH.set(seg, x);
-    }
-    public static long VirtualMemoryThreshold$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.VirtualMemoryThreshold$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void VirtualMemoryThreshold$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.VirtualMemoryThreshold$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ProcessAffinityMask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProcessAffinityMask"));
-    public static VarHandle ProcessAffinityMask$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.ProcessAffinityMask$VH;
-    }
-    public static long ProcessAffinityMask$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.ProcessAffinityMask$VH.get(seg);
-    }
-    public static void ProcessAffinityMask$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.ProcessAffinityMask$VH.set(seg, x);
-    }
-    public static long ProcessAffinityMask$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.ProcessAffinityMask$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProcessAffinityMask$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.ProcessAffinityMask$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ProcessHeapFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProcessHeapFlags"));
-    public static VarHandle ProcessHeapFlags$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.ProcessHeapFlags$VH;
-    }
-    public static int ProcessHeapFlags$get(MemorySegment seg) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.ProcessHeapFlags$VH.get(seg);
-    }
-    public static void ProcessHeapFlags$set( MemorySegment seg, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.ProcessHeapFlags$VH.set(seg, x);
-    }
-    public static int ProcessHeapFlags$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.ProcessHeapFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProcessHeapFlags$set(MemorySegment seg, long index, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.ProcessHeapFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CSDVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CSDVersion"));
-    public static VarHandle CSDVersion$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.CSDVersion$VH;
-    }
-    public static short CSDVersion$get(MemorySegment seg) {
-        return (short)_IMAGE_LOAD_CONFIG_DIRECTORY64.CSDVersion$VH.get(seg);
-    }
-    public static void CSDVersion$set( MemorySegment seg, short x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.CSDVersion$VH.set(seg, x);
-    }
-    public static short CSDVersion$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_LOAD_CONFIG_DIRECTORY64.CSDVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CSDVersion$set(MemorySegment seg, long index, short x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.CSDVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DependentLoadFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DependentLoadFlags"));
-    public static VarHandle DependentLoadFlags$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.DependentLoadFlags$VH;
-    }
-    public static short DependentLoadFlags$get(MemorySegment seg) {
-        return (short)_IMAGE_LOAD_CONFIG_DIRECTORY64.DependentLoadFlags$VH.get(seg);
-    }
-    public static void DependentLoadFlags$set( MemorySegment seg, short x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.DependentLoadFlags$VH.set(seg, x);
-    }
-    public static short DependentLoadFlags$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_LOAD_CONFIG_DIRECTORY64.DependentLoadFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DependentLoadFlags$set(MemorySegment seg, long index, short x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.DependentLoadFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EditList$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EditList"));
-    public static VarHandle EditList$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.EditList$VH;
-    }
-    public static long EditList$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.EditList$VH.get(seg);
-    }
-    public static void EditList$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.EditList$VH.set(seg, x);
-    }
-    public static long EditList$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.EditList$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EditList$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.EditList$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SecurityCookie$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SecurityCookie"));
-    public static VarHandle SecurityCookie$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.SecurityCookie$VH;
-    }
-    public static long SecurityCookie$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.SecurityCookie$VH.get(seg);
-    }
-    public static void SecurityCookie$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.SecurityCookie$VH.set(seg, x);
-    }
-    public static long SecurityCookie$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.SecurityCookie$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SecurityCookie$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.SecurityCookie$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SEHandlerTable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SEHandlerTable"));
-    public static VarHandle SEHandlerTable$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.SEHandlerTable$VH;
-    }
-    public static long SEHandlerTable$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.SEHandlerTable$VH.get(seg);
-    }
-    public static void SEHandlerTable$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.SEHandlerTable$VH.set(seg, x);
-    }
-    public static long SEHandlerTable$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.SEHandlerTable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SEHandlerTable$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.SEHandlerTable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SEHandlerCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SEHandlerCount"));
-    public static VarHandle SEHandlerCount$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.SEHandlerCount$VH;
-    }
-    public static long SEHandlerCount$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.SEHandlerCount$VH.get(seg);
-    }
-    public static void SEHandlerCount$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.SEHandlerCount$VH.set(seg, x);
-    }
-    public static long SEHandlerCount$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.SEHandlerCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SEHandlerCount$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.SEHandlerCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GuardCFCheckFunctionPointer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GuardCFCheckFunctionPointer"));
-    public static VarHandle GuardCFCheckFunctionPointer$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFCheckFunctionPointer$VH;
-    }
-    public static long GuardCFCheckFunctionPointer$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFCheckFunctionPointer$VH.get(seg);
-    }
-    public static void GuardCFCheckFunctionPointer$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFCheckFunctionPointer$VH.set(seg, x);
-    }
-    public static long GuardCFCheckFunctionPointer$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFCheckFunctionPointer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GuardCFCheckFunctionPointer$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFCheckFunctionPointer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GuardCFDispatchFunctionPointer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GuardCFDispatchFunctionPointer"));
-    public static VarHandle GuardCFDispatchFunctionPointer$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFDispatchFunctionPointer$VH;
-    }
-    public static long GuardCFDispatchFunctionPointer$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFDispatchFunctionPointer$VH.get(seg);
-    }
-    public static void GuardCFDispatchFunctionPointer$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFDispatchFunctionPointer$VH.set(seg, x);
-    }
-    public static long GuardCFDispatchFunctionPointer$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFDispatchFunctionPointer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GuardCFDispatchFunctionPointer$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFDispatchFunctionPointer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GuardCFFunctionTable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GuardCFFunctionTable"));
-    public static VarHandle GuardCFFunctionTable$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFFunctionTable$VH;
-    }
-    public static long GuardCFFunctionTable$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFFunctionTable$VH.get(seg);
-    }
-    public static void GuardCFFunctionTable$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFFunctionTable$VH.set(seg, x);
-    }
-    public static long GuardCFFunctionTable$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFFunctionTable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GuardCFFunctionTable$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFFunctionTable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GuardCFFunctionCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GuardCFFunctionCount"));
-    public static VarHandle GuardCFFunctionCount$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFFunctionCount$VH;
-    }
-    public static long GuardCFFunctionCount$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFFunctionCount$VH.get(seg);
-    }
-    public static void GuardCFFunctionCount$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFFunctionCount$VH.set(seg, x);
-    }
-    public static long GuardCFFunctionCount$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFFunctionCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GuardCFFunctionCount$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardCFFunctionCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GuardFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GuardFlags"));
-    public static VarHandle GuardFlags$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardFlags$VH;
-    }
-    public static int GuardFlags$get(MemorySegment seg) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardFlags$VH.get(seg);
-    }
-    public static void GuardFlags$set( MemorySegment seg, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardFlags$VH.set(seg, x);
-    }
-    public static int GuardFlags$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GuardFlags$set(MemorySegment seg, long index, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment CodeIntegrity$slice(MemorySegment seg) {
-        return seg.asSlice(148, 12);
-    }
-    static final VarHandle GuardAddressTakenIatEntryTable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GuardAddressTakenIatEntryTable"));
-    public static VarHandle GuardAddressTakenIatEntryTable$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardAddressTakenIatEntryTable$VH;
-    }
-    public static long GuardAddressTakenIatEntryTable$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardAddressTakenIatEntryTable$VH.get(seg);
-    }
-    public static void GuardAddressTakenIatEntryTable$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardAddressTakenIatEntryTable$VH.set(seg, x);
-    }
-    public static long GuardAddressTakenIatEntryTable$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardAddressTakenIatEntryTable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GuardAddressTakenIatEntryTable$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardAddressTakenIatEntryTable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GuardAddressTakenIatEntryCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GuardAddressTakenIatEntryCount"));
-    public static VarHandle GuardAddressTakenIatEntryCount$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardAddressTakenIatEntryCount$VH;
-    }
-    public static long GuardAddressTakenIatEntryCount$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardAddressTakenIatEntryCount$VH.get(seg);
-    }
-    public static void GuardAddressTakenIatEntryCount$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardAddressTakenIatEntryCount$VH.set(seg, x);
-    }
-    public static long GuardAddressTakenIatEntryCount$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardAddressTakenIatEntryCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GuardAddressTakenIatEntryCount$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardAddressTakenIatEntryCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GuardLongJumpTargetTable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GuardLongJumpTargetTable"));
-    public static VarHandle GuardLongJumpTargetTable$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardLongJumpTargetTable$VH;
-    }
-    public static long GuardLongJumpTargetTable$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardLongJumpTargetTable$VH.get(seg);
-    }
-    public static void GuardLongJumpTargetTable$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardLongJumpTargetTable$VH.set(seg, x);
-    }
-    public static long GuardLongJumpTargetTable$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardLongJumpTargetTable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GuardLongJumpTargetTable$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardLongJumpTargetTable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GuardLongJumpTargetCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GuardLongJumpTargetCount"));
-    public static VarHandle GuardLongJumpTargetCount$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardLongJumpTargetCount$VH;
-    }
-    public static long GuardLongJumpTargetCount$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardLongJumpTargetCount$VH.get(seg);
-    }
-    public static void GuardLongJumpTargetCount$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardLongJumpTargetCount$VH.set(seg, x);
-    }
-    public static long GuardLongJumpTargetCount$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardLongJumpTargetCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GuardLongJumpTargetCount$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardLongJumpTargetCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DynamicValueRelocTable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DynamicValueRelocTable"));
-    public static VarHandle DynamicValueRelocTable$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.DynamicValueRelocTable$VH;
-    }
-    public static long DynamicValueRelocTable$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.DynamicValueRelocTable$VH.get(seg);
-    }
-    public static void DynamicValueRelocTable$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.DynamicValueRelocTable$VH.set(seg, x);
-    }
-    public static long DynamicValueRelocTable$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.DynamicValueRelocTable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DynamicValueRelocTable$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.DynamicValueRelocTable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CHPEMetadataPointer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CHPEMetadataPointer"));
-    public static VarHandle CHPEMetadataPointer$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.CHPEMetadataPointer$VH;
-    }
-    public static long CHPEMetadataPointer$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.CHPEMetadataPointer$VH.get(seg);
-    }
-    public static void CHPEMetadataPointer$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.CHPEMetadataPointer$VH.set(seg, x);
-    }
-    public static long CHPEMetadataPointer$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.CHPEMetadataPointer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CHPEMetadataPointer$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.CHPEMetadataPointer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GuardRFFailureRoutine$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GuardRFFailureRoutine"));
-    public static VarHandle GuardRFFailureRoutine$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardRFFailureRoutine$VH;
-    }
-    public static long GuardRFFailureRoutine$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardRFFailureRoutine$VH.get(seg);
-    }
-    public static void GuardRFFailureRoutine$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardRFFailureRoutine$VH.set(seg, x);
-    }
-    public static long GuardRFFailureRoutine$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardRFFailureRoutine$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GuardRFFailureRoutine$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardRFFailureRoutine$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GuardRFFailureRoutineFunctionPointer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GuardRFFailureRoutineFunctionPointer"));
-    public static VarHandle GuardRFFailureRoutineFunctionPointer$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardRFFailureRoutineFunctionPointer$VH;
-    }
-    public static long GuardRFFailureRoutineFunctionPointer$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardRFFailureRoutineFunctionPointer$VH.get(seg);
-    }
-    public static void GuardRFFailureRoutineFunctionPointer$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardRFFailureRoutineFunctionPointer$VH.set(seg, x);
-    }
-    public static long GuardRFFailureRoutineFunctionPointer$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardRFFailureRoutineFunctionPointer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GuardRFFailureRoutineFunctionPointer$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardRFFailureRoutineFunctionPointer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DynamicValueRelocTableOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DynamicValueRelocTableOffset"));
-    public static VarHandle DynamicValueRelocTableOffset$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.DynamicValueRelocTableOffset$VH;
-    }
-    public static int DynamicValueRelocTableOffset$get(MemorySegment seg) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.DynamicValueRelocTableOffset$VH.get(seg);
-    }
-    public static void DynamicValueRelocTableOffset$set( MemorySegment seg, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.DynamicValueRelocTableOffset$VH.set(seg, x);
-    }
-    public static int DynamicValueRelocTableOffset$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.DynamicValueRelocTableOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DynamicValueRelocTableOffset$set(MemorySegment seg, long index, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.DynamicValueRelocTableOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DynamicValueRelocTableSection$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DynamicValueRelocTableSection"));
-    public static VarHandle DynamicValueRelocTableSection$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.DynamicValueRelocTableSection$VH;
-    }
-    public static short DynamicValueRelocTableSection$get(MemorySegment seg) {
-        return (short)_IMAGE_LOAD_CONFIG_DIRECTORY64.DynamicValueRelocTableSection$VH.get(seg);
-    }
-    public static void DynamicValueRelocTableSection$set( MemorySegment seg, short x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.DynamicValueRelocTableSection$VH.set(seg, x);
-    }
-    public static short DynamicValueRelocTableSection$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_LOAD_CONFIG_DIRECTORY64.DynamicValueRelocTableSection$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DynamicValueRelocTableSection$set(MemorySegment seg, long index, short x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.DynamicValueRelocTableSection$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved2"));
-    public static VarHandle Reserved2$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.Reserved2$VH;
-    }
-    public static short Reserved2$get(MemorySegment seg) {
-        return (short)_IMAGE_LOAD_CONFIG_DIRECTORY64.Reserved2$VH.get(seg);
-    }
-    public static void Reserved2$set( MemorySegment seg, short x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.Reserved2$VH.set(seg, x);
-    }
-    public static short Reserved2$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_LOAD_CONFIG_DIRECTORY64.Reserved2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved2$set(MemorySegment seg, long index, short x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.Reserved2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GuardRFVerifyStackPointerFunctionPointer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GuardRFVerifyStackPointerFunctionPointer"));
-    public static VarHandle GuardRFVerifyStackPointerFunctionPointer$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardRFVerifyStackPointerFunctionPointer$VH;
-    }
-    public static long GuardRFVerifyStackPointerFunctionPointer$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardRFVerifyStackPointerFunctionPointer$VH.get(seg);
-    }
-    public static void GuardRFVerifyStackPointerFunctionPointer$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardRFVerifyStackPointerFunctionPointer$VH.set(seg, x);
-    }
-    public static long GuardRFVerifyStackPointerFunctionPointer$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardRFVerifyStackPointerFunctionPointer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GuardRFVerifyStackPointerFunctionPointer$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardRFVerifyStackPointerFunctionPointer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle HotPatchTableOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HotPatchTableOffset"));
-    public static VarHandle HotPatchTableOffset$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.HotPatchTableOffset$VH;
-    }
-    public static int HotPatchTableOffset$get(MemorySegment seg) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.HotPatchTableOffset$VH.get(seg);
-    }
-    public static void HotPatchTableOffset$set( MemorySegment seg, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.HotPatchTableOffset$VH.set(seg, x);
-    }
-    public static int HotPatchTableOffset$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.HotPatchTableOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HotPatchTableOffset$set(MemorySegment seg, long index, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.HotPatchTableOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved3$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved3"));
-    public static VarHandle Reserved3$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.Reserved3$VH;
-    }
-    public static int Reserved3$get(MemorySegment seg) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.Reserved3$VH.get(seg);
-    }
-    public static void Reserved3$set( MemorySegment seg, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.Reserved3$VH.set(seg, x);
-    }
-    public static int Reserved3$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_LOAD_CONFIG_DIRECTORY64.Reserved3$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved3$set(MemorySegment seg, long index, int x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.Reserved3$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EnclaveConfigurationPointer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EnclaveConfigurationPointer"));
-    public static VarHandle EnclaveConfigurationPointer$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.EnclaveConfigurationPointer$VH;
-    }
-    public static long EnclaveConfigurationPointer$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.EnclaveConfigurationPointer$VH.get(seg);
-    }
-    public static void EnclaveConfigurationPointer$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.EnclaveConfigurationPointer$VH.set(seg, x);
-    }
-    public static long EnclaveConfigurationPointer$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.EnclaveConfigurationPointer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EnclaveConfigurationPointer$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.EnclaveConfigurationPointer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle VolatileMetadataPointer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VolatileMetadataPointer"));
-    public static VarHandle VolatileMetadataPointer$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.VolatileMetadataPointer$VH;
-    }
-    public static long VolatileMetadataPointer$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.VolatileMetadataPointer$VH.get(seg);
-    }
-    public static void VolatileMetadataPointer$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.VolatileMetadataPointer$VH.set(seg, x);
-    }
-    public static long VolatileMetadataPointer$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.VolatileMetadataPointer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void VolatileMetadataPointer$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.VolatileMetadataPointer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GuardEHContinuationTable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GuardEHContinuationTable"));
-    public static VarHandle GuardEHContinuationTable$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardEHContinuationTable$VH;
-    }
-    public static long GuardEHContinuationTable$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardEHContinuationTable$VH.get(seg);
-    }
-    public static void GuardEHContinuationTable$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardEHContinuationTable$VH.set(seg, x);
-    }
-    public static long GuardEHContinuationTable$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardEHContinuationTable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GuardEHContinuationTable$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardEHContinuationTable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GuardEHContinuationCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GuardEHContinuationCount"));
-    public static VarHandle GuardEHContinuationCount$VH() {
-        return _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardEHContinuationCount$VH;
-    }
-    public static long GuardEHContinuationCount$get(MemorySegment seg) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardEHContinuationCount$VH.get(seg);
-    }
-    public static void GuardEHContinuationCount$set( MemorySegment seg, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardEHContinuationCount$VH.set(seg, x);
-    }
-    public static long GuardEHContinuationCount$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_LOAD_CONFIG_DIRECTORY64.GuardEHContinuationCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GuardEHContinuationCount$set(MemorySegment seg, long index, long x) {
-        _IMAGE_LOAD_CONFIG_DIRECTORY64.GuardEHContinuationCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_LONG.withName("TimeDateStamp"),
+        wgl_h.C_SHORT.withName("MajorVersion"),
+        wgl_h.C_SHORT.withName("MinorVersion"),
+        wgl_h.C_LONG.withName("GlobalFlagsClear"),
+        wgl_h.C_LONG.withName("GlobalFlagsSet"),
+        wgl_h.C_LONG.withName("CriticalSectionDefaultTimeout"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("DeCommitFreeBlockThreshold"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("DeCommitTotalFreeThreshold"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("LockPrefixTable"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("MaximumAllocationSize"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("VirtualMemoryThreshold"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("ProcessAffinityMask"),
+        wgl_h.C_LONG.withName("ProcessHeapFlags"),
+        wgl_h.C_SHORT.withName("CSDVersion"),
+        wgl_h.C_SHORT.withName("DependentLoadFlags"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("EditList"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("SecurityCookie"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("SEHandlerTable"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("SEHandlerCount"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("GuardCFCheckFunctionPointer"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("GuardCFDispatchFunctionPointer"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("GuardCFFunctionTable"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("GuardCFFunctionCount"),
+        wgl_h.C_LONG.withName("GuardFlags"),
+        _IMAGE_LOAD_CONFIG_CODE_INTEGRITY.layout().withName("CodeIntegrity"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("GuardAddressTakenIatEntryTable"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("GuardAddressTakenIatEntryCount"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("GuardLongJumpTargetTable"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("GuardLongJumpTargetCount"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("DynamicValueRelocTable"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("CHPEMetadataPointer"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("GuardRFFailureRoutine"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("GuardRFFailureRoutineFunctionPointer"),
+        wgl_h.C_LONG.withName("DynamicValueRelocTableOffset"),
+        wgl_h.C_SHORT.withName("DynamicValueRelocTableSection"),
+        wgl_h.C_SHORT.withName("Reserved2"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("GuardRFVerifyStackPointerFunctionPointer"),
+        wgl_h.C_LONG.withName("HotPatchTableOffset"),
+        wgl_h.C_LONG.withName("Reserved3"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("EnclaveConfigurationPointer"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("VolatileMetadataPointer"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("GuardEHContinuationTable"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("GuardEHContinuationCount")
+    ).withName("_IMAGE_LOAD_CONFIG_DIRECTORY64");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt TimeDateStamp$LAYOUT = (OfInt)$LAYOUT.select(groupElement("TimeDateStamp"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static final OfInt TimeDateStamp$layout() {
+        return TimeDateStamp$LAYOUT;
+    }
+
+    private static final long TimeDateStamp$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static final long TimeDateStamp$offset() {
+        return TimeDateStamp$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static int TimeDateStamp(MemorySegment struct) {
+        return struct.get(TimeDateStamp$LAYOUT, TimeDateStamp$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static void TimeDateStamp(MemorySegment struct, int fieldValue) {
+        struct.set(TimeDateStamp$LAYOUT, TimeDateStamp$OFFSET, fieldValue);
+    }
+
+    private static final OfShort MajorVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("MajorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD MajorVersion
+     * }
+     */
+    public static final OfShort MajorVersion$layout() {
+        return MajorVersion$LAYOUT;
+    }
+
+    private static final long MajorVersion$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD MajorVersion
+     * }
+     */
+    public static final long MajorVersion$offset() {
+        return MajorVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD MajorVersion
+     * }
+     */
+    public static short MajorVersion(MemorySegment struct) {
+        return struct.get(MajorVersion$LAYOUT, MajorVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD MajorVersion
+     * }
+     */
+    public static void MajorVersion(MemorySegment struct, short fieldValue) {
+        struct.set(MajorVersion$LAYOUT, MajorVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfShort MinorVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("MinorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD MinorVersion
+     * }
+     */
+    public static final OfShort MinorVersion$layout() {
+        return MinorVersion$LAYOUT;
+    }
+
+    private static final long MinorVersion$OFFSET = 10;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD MinorVersion
+     * }
+     */
+    public static final long MinorVersion$offset() {
+        return MinorVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD MinorVersion
+     * }
+     */
+    public static short MinorVersion(MemorySegment struct) {
+        return struct.get(MinorVersion$LAYOUT, MinorVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD MinorVersion
+     * }
+     */
+    public static void MinorVersion(MemorySegment struct, short fieldValue) {
+        struct.set(MinorVersion$LAYOUT, MinorVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt GlobalFlagsClear$LAYOUT = (OfInt)$LAYOUT.select(groupElement("GlobalFlagsClear"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD GlobalFlagsClear
+     * }
+     */
+    public static final OfInt GlobalFlagsClear$layout() {
+        return GlobalFlagsClear$LAYOUT;
+    }
+
+    private static final long GlobalFlagsClear$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD GlobalFlagsClear
+     * }
+     */
+    public static final long GlobalFlagsClear$offset() {
+        return GlobalFlagsClear$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD GlobalFlagsClear
+     * }
+     */
+    public static int GlobalFlagsClear(MemorySegment struct) {
+        return struct.get(GlobalFlagsClear$LAYOUT, GlobalFlagsClear$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD GlobalFlagsClear
+     * }
+     */
+    public static void GlobalFlagsClear(MemorySegment struct, int fieldValue) {
+        struct.set(GlobalFlagsClear$LAYOUT, GlobalFlagsClear$OFFSET, fieldValue);
+    }
+
+    private static final OfInt GlobalFlagsSet$LAYOUT = (OfInt)$LAYOUT.select(groupElement("GlobalFlagsSet"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD GlobalFlagsSet
+     * }
+     */
+    public static final OfInt GlobalFlagsSet$layout() {
+        return GlobalFlagsSet$LAYOUT;
+    }
+
+    private static final long GlobalFlagsSet$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD GlobalFlagsSet
+     * }
+     */
+    public static final long GlobalFlagsSet$offset() {
+        return GlobalFlagsSet$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD GlobalFlagsSet
+     * }
+     */
+    public static int GlobalFlagsSet(MemorySegment struct) {
+        return struct.get(GlobalFlagsSet$LAYOUT, GlobalFlagsSet$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD GlobalFlagsSet
+     * }
+     */
+    public static void GlobalFlagsSet(MemorySegment struct, int fieldValue) {
+        struct.set(GlobalFlagsSet$LAYOUT, GlobalFlagsSet$OFFSET, fieldValue);
+    }
+
+    private static final OfInt CriticalSectionDefaultTimeout$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CriticalSectionDefaultTimeout"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD CriticalSectionDefaultTimeout
+     * }
+     */
+    public static final OfInt CriticalSectionDefaultTimeout$layout() {
+        return CriticalSectionDefaultTimeout$LAYOUT;
+    }
+
+    private static final long CriticalSectionDefaultTimeout$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD CriticalSectionDefaultTimeout
+     * }
+     */
+    public static final long CriticalSectionDefaultTimeout$offset() {
+        return CriticalSectionDefaultTimeout$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD CriticalSectionDefaultTimeout
+     * }
+     */
+    public static int CriticalSectionDefaultTimeout(MemorySegment struct) {
+        return struct.get(CriticalSectionDefaultTimeout$LAYOUT, CriticalSectionDefaultTimeout$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD CriticalSectionDefaultTimeout
+     * }
+     */
+    public static void CriticalSectionDefaultTimeout(MemorySegment struct, int fieldValue) {
+        struct.set(CriticalSectionDefaultTimeout$LAYOUT, CriticalSectionDefaultTimeout$OFFSET, fieldValue);
+    }
+
+    private static final OfLong DeCommitFreeBlockThreshold$LAYOUT = (OfLong)$LAYOUT.select(groupElement("DeCommitFreeBlockThreshold"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG DeCommitFreeBlockThreshold
+     * }
+     */
+    public static final OfLong DeCommitFreeBlockThreshold$layout() {
+        return DeCommitFreeBlockThreshold$LAYOUT;
+    }
+
+    private static final long DeCommitFreeBlockThreshold$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG DeCommitFreeBlockThreshold
+     * }
+     */
+    public static final long DeCommitFreeBlockThreshold$offset() {
+        return DeCommitFreeBlockThreshold$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG DeCommitFreeBlockThreshold
+     * }
+     */
+    public static long DeCommitFreeBlockThreshold(MemorySegment struct) {
+        return struct.get(DeCommitFreeBlockThreshold$LAYOUT, DeCommitFreeBlockThreshold$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG DeCommitFreeBlockThreshold
+     * }
+     */
+    public static void DeCommitFreeBlockThreshold(MemorySegment struct, long fieldValue) {
+        struct.set(DeCommitFreeBlockThreshold$LAYOUT, DeCommitFreeBlockThreshold$OFFSET, fieldValue);
+    }
+
+    private static final OfLong DeCommitTotalFreeThreshold$LAYOUT = (OfLong)$LAYOUT.select(groupElement("DeCommitTotalFreeThreshold"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG DeCommitTotalFreeThreshold
+     * }
+     */
+    public static final OfLong DeCommitTotalFreeThreshold$layout() {
+        return DeCommitTotalFreeThreshold$LAYOUT;
+    }
+
+    private static final long DeCommitTotalFreeThreshold$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG DeCommitTotalFreeThreshold
+     * }
+     */
+    public static final long DeCommitTotalFreeThreshold$offset() {
+        return DeCommitTotalFreeThreshold$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG DeCommitTotalFreeThreshold
+     * }
+     */
+    public static long DeCommitTotalFreeThreshold(MemorySegment struct) {
+        return struct.get(DeCommitTotalFreeThreshold$LAYOUT, DeCommitTotalFreeThreshold$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG DeCommitTotalFreeThreshold
+     * }
+     */
+    public static void DeCommitTotalFreeThreshold(MemorySegment struct, long fieldValue) {
+        struct.set(DeCommitTotalFreeThreshold$LAYOUT, DeCommitTotalFreeThreshold$OFFSET, fieldValue);
+    }
+
+    private static final OfLong LockPrefixTable$LAYOUT = (OfLong)$LAYOUT.select(groupElement("LockPrefixTable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG LockPrefixTable
+     * }
+     */
+    public static final OfLong LockPrefixTable$layout() {
+        return LockPrefixTable$LAYOUT;
+    }
+
+    private static final long LockPrefixTable$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG LockPrefixTable
+     * }
+     */
+    public static final long LockPrefixTable$offset() {
+        return LockPrefixTable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG LockPrefixTable
+     * }
+     */
+    public static long LockPrefixTable(MemorySegment struct) {
+        return struct.get(LockPrefixTable$LAYOUT, LockPrefixTable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG LockPrefixTable
+     * }
+     */
+    public static void LockPrefixTable(MemorySegment struct, long fieldValue) {
+        struct.set(LockPrefixTable$LAYOUT, LockPrefixTable$OFFSET, fieldValue);
+    }
+
+    private static final OfLong MaximumAllocationSize$LAYOUT = (OfLong)$LAYOUT.select(groupElement("MaximumAllocationSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG MaximumAllocationSize
+     * }
+     */
+    public static final OfLong MaximumAllocationSize$layout() {
+        return MaximumAllocationSize$LAYOUT;
+    }
+
+    private static final long MaximumAllocationSize$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG MaximumAllocationSize
+     * }
+     */
+    public static final long MaximumAllocationSize$offset() {
+        return MaximumAllocationSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG MaximumAllocationSize
+     * }
+     */
+    public static long MaximumAllocationSize(MemorySegment struct) {
+        return struct.get(MaximumAllocationSize$LAYOUT, MaximumAllocationSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG MaximumAllocationSize
+     * }
+     */
+    public static void MaximumAllocationSize(MemorySegment struct, long fieldValue) {
+        struct.set(MaximumAllocationSize$LAYOUT, MaximumAllocationSize$OFFSET, fieldValue);
+    }
+
+    private static final OfLong VirtualMemoryThreshold$LAYOUT = (OfLong)$LAYOUT.select(groupElement("VirtualMemoryThreshold"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG VirtualMemoryThreshold
+     * }
+     */
+    public static final OfLong VirtualMemoryThreshold$layout() {
+        return VirtualMemoryThreshold$LAYOUT;
+    }
+
+    private static final long VirtualMemoryThreshold$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG VirtualMemoryThreshold
+     * }
+     */
+    public static final long VirtualMemoryThreshold$offset() {
+        return VirtualMemoryThreshold$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG VirtualMemoryThreshold
+     * }
+     */
+    public static long VirtualMemoryThreshold(MemorySegment struct) {
+        return struct.get(VirtualMemoryThreshold$LAYOUT, VirtualMemoryThreshold$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG VirtualMemoryThreshold
+     * }
+     */
+    public static void VirtualMemoryThreshold(MemorySegment struct, long fieldValue) {
+        struct.set(VirtualMemoryThreshold$LAYOUT, VirtualMemoryThreshold$OFFSET, fieldValue);
+    }
+
+    private static final OfLong ProcessAffinityMask$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ProcessAffinityMask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG ProcessAffinityMask
+     * }
+     */
+    public static final OfLong ProcessAffinityMask$layout() {
+        return ProcessAffinityMask$LAYOUT;
+    }
+
+    private static final long ProcessAffinityMask$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG ProcessAffinityMask
+     * }
+     */
+    public static final long ProcessAffinityMask$offset() {
+        return ProcessAffinityMask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG ProcessAffinityMask
+     * }
+     */
+    public static long ProcessAffinityMask(MemorySegment struct) {
+        return struct.get(ProcessAffinityMask$LAYOUT, ProcessAffinityMask$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG ProcessAffinityMask
+     * }
+     */
+    public static void ProcessAffinityMask(MemorySegment struct, long fieldValue) {
+        struct.set(ProcessAffinityMask$LAYOUT, ProcessAffinityMask$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ProcessHeapFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ProcessHeapFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ProcessHeapFlags
+     * }
+     */
+    public static final OfInt ProcessHeapFlags$layout() {
+        return ProcessHeapFlags$LAYOUT;
+    }
+
+    private static final long ProcessHeapFlags$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ProcessHeapFlags
+     * }
+     */
+    public static final long ProcessHeapFlags$offset() {
+        return ProcessHeapFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ProcessHeapFlags
+     * }
+     */
+    public static int ProcessHeapFlags(MemorySegment struct) {
+        return struct.get(ProcessHeapFlags$LAYOUT, ProcessHeapFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ProcessHeapFlags
+     * }
+     */
+    public static void ProcessHeapFlags(MemorySegment struct, int fieldValue) {
+        struct.set(ProcessHeapFlags$LAYOUT, ProcessHeapFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfShort CSDVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("CSDVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD CSDVersion
+     * }
+     */
+    public static final OfShort CSDVersion$layout() {
+        return CSDVersion$LAYOUT;
+    }
+
+    private static final long CSDVersion$OFFSET = 76;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD CSDVersion
+     * }
+     */
+    public static final long CSDVersion$offset() {
+        return CSDVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD CSDVersion
+     * }
+     */
+    public static short CSDVersion(MemorySegment struct) {
+        return struct.get(CSDVersion$LAYOUT, CSDVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD CSDVersion
+     * }
+     */
+    public static void CSDVersion(MemorySegment struct, short fieldValue) {
+        struct.set(CSDVersion$LAYOUT, CSDVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfShort DependentLoadFlags$LAYOUT = (OfShort)$LAYOUT.select(groupElement("DependentLoadFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD DependentLoadFlags
+     * }
+     */
+    public static final OfShort DependentLoadFlags$layout() {
+        return DependentLoadFlags$LAYOUT;
+    }
+
+    private static final long DependentLoadFlags$OFFSET = 78;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD DependentLoadFlags
+     * }
+     */
+    public static final long DependentLoadFlags$offset() {
+        return DependentLoadFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD DependentLoadFlags
+     * }
+     */
+    public static short DependentLoadFlags(MemorySegment struct) {
+        return struct.get(DependentLoadFlags$LAYOUT, DependentLoadFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD DependentLoadFlags
+     * }
+     */
+    public static void DependentLoadFlags(MemorySegment struct, short fieldValue) {
+        struct.set(DependentLoadFlags$LAYOUT, DependentLoadFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfLong EditList$LAYOUT = (OfLong)$LAYOUT.select(groupElement("EditList"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG EditList
+     * }
+     */
+    public static final OfLong EditList$layout() {
+        return EditList$LAYOUT;
+    }
+
+    private static final long EditList$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG EditList
+     * }
+     */
+    public static final long EditList$offset() {
+        return EditList$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG EditList
+     * }
+     */
+    public static long EditList(MemorySegment struct) {
+        return struct.get(EditList$LAYOUT, EditList$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG EditList
+     * }
+     */
+    public static void EditList(MemorySegment struct, long fieldValue) {
+        struct.set(EditList$LAYOUT, EditList$OFFSET, fieldValue);
+    }
+
+    private static final OfLong SecurityCookie$LAYOUT = (OfLong)$LAYOUT.select(groupElement("SecurityCookie"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG SecurityCookie
+     * }
+     */
+    public static final OfLong SecurityCookie$layout() {
+        return SecurityCookie$LAYOUT;
+    }
+
+    private static final long SecurityCookie$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG SecurityCookie
+     * }
+     */
+    public static final long SecurityCookie$offset() {
+        return SecurityCookie$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG SecurityCookie
+     * }
+     */
+    public static long SecurityCookie(MemorySegment struct) {
+        return struct.get(SecurityCookie$LAYOUT, SecurityCookie$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG SecurityCookie
+     * }
+     */
+    public static void SecurityCookie(MemorySegment struct, long fieldValue) {
+        struct.set(SecurityCookie$LAYOUT, SecurityCookie$OFFSET, fieldValue);
+    }
+
+    private static final OfLong SEHandlerTable$LAYOUT = (OfLong)$LAYOUT.select(groupElement("SEHandlerTable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG SEHandlerTable
+     * }
+     */
+    public static final OfLong SEHandlerTable$layout() {
+        return SEHandlerTable$LAYOUT;
+    }
+
+    private static final long SEHandlerTable$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG SEHandlerTable
+     * }
+     */
+    public static final long SEHandlerTable$offset() {
+        return SEHandlerTable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG SEHandlerTable
+     * }
+     */
+    public static long SEHandlerTable(MemorySegment struct) {
+        return struct.get(SEHandlerTable$LAYOUT, SEHandlerTable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG SEHandlerTable
+     * }
+     */
+    public static void SEHandlerTable(MemorySegment struct, long fieldValue) {
+        struct.set(SEHandlerTable$LAYOUT, SEHandlerTable$OFFSET, fieldValue);
+    }
+
+    private static final OfLong SEHandlerCount$LAYOUT = (OfLong)$LAYOUT.select(groupElement("SEHandlerCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG SEHandlerCount
+     * }
+     */
+    public static final OfLong SEHandlerCount$layout() {
+        return SEHandlerCount$LAYOUT;
+    }
+
+    private static final long SEHandlerCount$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG SEHandlerCount
+     * }
+     */
+    public static final long SEHandlerCount$offset() {
+        return SEHandlerCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG SEHandlerCount
+     * }
+     */
+    public static long SEHandlerCount(MemorySegment struct) {
+        return struct.get(SEHandlerCount$LAYOUT, SEHandlerCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG SEHandlerCount
+     * }
+     */
+    public static void SEHandlerCount(MemorySegment struct, long fieldValue) {
+        struct.set(SEHandlerCount$LAYOUT, SEHandlerCount$OFFSET, fieldValue);
+    }
+
+    private static final OfLong GuardCFCheckFunctionPointer$LAYOUT = (OfLong)$LAYOUT.select(groupElement("GuardCFCheckFunctionPointer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardCFCheckFunctionPointer
+     * }
+     */
+    public static final OfLong GuardCFCheckFunctionPointer$layout() {
+        return GuardCFCheckFunctionPointer$LAYOUT;
+    }
+
+    private static final long GuardCFCheckFunctionPointer$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardCFCheckFunctionPointer
+     * }
+     */
+    public static final long GuardCFCheckFunctionPointer$offset() {
+        return GuardCFCheckFunctionPointer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardCFCheckFunctionPointer
+     * }
+     */
+    public static long GuardCFCheckFunctionPointer(MemorySegment struct) {
+        return struct.get(GuardCFCheckFunctionPointer$LAYOUT, GuardCFCheckFunctionPointer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardCFCheckFunctionPointer
+     * }
+     */
+    public static void GuardCFCheckFunctionPointer(MemorySegment struct, long fieldValue) {
+        struct.set(GuardCFCheckFunctionPointer$LAYOUT, GuardCFCheckFunctionPointer$OFFSET, fieldValue);
+    }
+
+    private static final OfLong GuardCFDispatchFunctionPointer$LAYOUT = (OfLong)$LAYOUT.select(groupElement("GuardCFDispatchFunctionPointer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardCFDispatchFunctionPointer
+     * }
+     */
+    public static final OfLong GuardCFDispatchFunctionPointer$layout() {
+        return GuardCFDispatchFunctionPointer$LAYOUT;
+    }
+
+    private static final long GuardCFDispatchFunctionPointer$OFFSET = 120;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardCFDispatchFunctionPointer
+     * }
+     */
+    public static final long GuardCFDispatchFunctionPointer$offset() {
+        return GuardCFDispatchFunctionPointer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardCFDispatchFunctionPointer
+     * }
+     */
+    public static long GuardCFDispatchFunctionPointer(MemorySegment struct) {
+        return struct.get(GuardCFDispatchFunctionPointer$LAYOUT, GuardCFDispatchFunctionPointer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardCFDispatchFunctionPointer
+     * }
+     */
+    public static void GuardCFDispatchFunctionPointer(MemorySegment struct, long fieldValue) {
+        struct.set(GuardCFDispatchFunctionPointer$LAYOUT, GuardCFDispatchFunctionPointer$OFFSET, fieldValue);
+    }
+
+    private static final OfLong GuardCFFunctionTable$LAYOUT = (OfLong)$LAYOUT.select(groupElement("GuardCFFunctionTable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardCFFunctionTable
+     * }
+     */
+    public static final OfLong GuardCFFunctionTable$layout() {
+        return GuardCFFunctionTable$LAYOUT;
+    }
+
+    private static final long GuardCFFunctionTable$OFFSET = 128;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardCFFunctionTable
+     * }
+     */
+    public static final long GuardCFFunctionTable$offset() {
+        return GuardCFFunctionTable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardCFFunctionTable
+     * }
+     */
+    public static long GuardCFFunctionTable(MemorySegment struct) {
+        return struct.get(GuardCFFunctionTable$LAYOUT, GuardCFFunctionTable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardCFFunctionTable
+     * }
+     */
+    public static void GuardCFFunctionTable(MemorySegment struct, long fieldValue) {
+        struct.set(GuardCFFunctionTable$LAYOUT, GuardCFFunctionTable$OFFSET, fieldValue);
+    }
+
+    private static final OfLong GuardCFFunctionCount$LAYOUT = (OfLong)$LAYOUT.select(groupElement("GuardCFFunctionCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardCFFunctionCount
+     * }
+     */
+    public static final OfLong GuardCFFunctionCount$layout() {
+        return GuardCFFunctionCount$LAYOUT;
+    }
+
+    private static final long GuardCFFunctionCount$OFFSET = 136;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardCFFunctionCount
+     * }
+     */
+    public static final long GuardCFFunctionCount$offset() {
+        return GuardCFFunctionCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardCFFunctionCount
+     * }
+     */
+    public static long GuardCFFunctionCount(MemorySegment struct) {
+        return struct.get(GuardCFFunctionCount$LAYOUT, GuardCFFunctionCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardCFFunctionCount
+     * }
+     */
+    public static void GuardCFFunctionCount(MemorySegment struct, long fieldValue) {
+        struct.set(GuardCFFunctionCount$LAYOUT, GuardCFFunctionCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt GuardFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("GuardFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD GuardFlags
+     * }
+     */
+    public static final OfInt GuardFlags$layout() {
+        return GuardFlags$LAYOUT;
+    }
+
+    private static final long GuardFlags$OFFSET = 144;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD GuardFlags
+     * }
+     */
+    public static final long GuardFlags$offset() {
+        return GuardFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD GuardFlags
+     * }
+     */
+    public static int GuardFlags(MemorySegment struct) {
+        return struct.get(GuardFlags$LAYOUT, GuardFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD GuardFlags
+     * }
+     */
+    public static void GuardFlags(MemorySegment struct, int fieldValue) {
+        struct.set(GuardFlags$LAYOUT, GuardFlags$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout CodeIntegrity$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("CodeIntegrity"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IMAGE_LOAD_CONFIG_CODE_INTEGRITY CodeIntegrity
+     * }
+     */
+    public static final GroupLayout CodeIntegrity$layout() {
+        return CodeIntegrity$LAYOUT;
+    }
+
+    private static final long CodeIntegrity$OFFSET = 148;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IMAGE_LOAD_CONFIG_CODE_INTEGRITY CodeIntegrity
+     * }
+     */
+    public static final long CodeIntegrity$offset() {
+        return CodeIntegrity$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IMAGE_LOAD_CONFIG_CODE_INTEGRITY CodeIntegrity
+     * }
+     */
+    public static MemorySegment CodeIntegrity(MemorySegment struct) {
+        return struct.asSlice(CodeIntegrity$OFFSET, CodeIntegrity$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IMAGE_LOAD_CONFIG_CODE_INTEGRITY CodeIntegrity
+     * }
+     */
+    public static void CodeIntegrity(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, CodeIntegrity$OFFSET, CodeIntegrity$LAYOUT.byteSize());
+    }
+
+    private static final OfLong GuardAddressTakenIatEntryTable$LAYOUT = (OfLong)$LAYOUT.select(groupElement("GuardAddressTakenIatEntryTable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardAddressTakenIatEntryTable
+     * }
+     */
+    public static final OfLong GuardAddressTakenIatEntryTable$layout() {
+        return GuardAddressTakenIatEntryTable$LAYOUT;
+    }
+
+    private static final long GuardAddressTakenIatEntryTable$OFFSET = 160;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardAddressTakenIatEntryTable
+     * }
+     */
+    public static final long GuardAddressTakenIatEntryTable$offset() {
+        return GuardAddressTakenIatEntryTable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardAddressTakenIatEntryTable
+     * }
+     */
+    public static long GuardAddressTakenIatEntryTable(MemorySegment struct) {
+        return struct.get(GuardAddressTakenIatEntryTable$LAYOUT, GuardAddressTakenIatEntryTable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardAddressTakenIatEntryTable
+     * }
+     */
+    public static void GuardAddressTakenIatEntryTable(MemorySegment struct, long fieldValue) {
+        struct.set(GuardAddressTakenIatEntryTable$LAYOUT, GuardAddressTakenIatEntryTable$OFFSET, fieldValue);
+    }
+
+    private static final OfLong GuardAddressTakenIatEntryCount$LAYOUT = (OfLong)$LAYOUT.select(groupElement("GuardAddressTakenIatEntryCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardAddressTakenIatEntryCount
+     * }
+     */
+    public static final OfLong GuardAddressTakenIatEntryCount$layout() {
+        return GuardAddressTakenIatEntryCount$LAYOUT;
+    }
+
+    private static final long GuardAddressTakenIatEntryCount$OFFSET = 168;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardAddressTakenIatEntryCount
+     * }
+     */
+    public static final long GuardAddressTakenIatEntryCount$offset() {
+        return GuardAddressTakenIatEntryCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardAddressTakenIatEntryCount
+     * }
+     */
+    public static long GuardAddressTakenIatEntryCount(MemorySegment struct) {
+        return struct.get(GuardAddressTakenIatEntryCount$LAYOUT, GuardAddressTakenIatEntryCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardAddressTakenIatEntryCount
+     * }
+     */
+    public static void GuardAddressTakenIatEntryCount(MemorySegment struct, long fieldValue) {
+        struct.set(GuardAddressTakenIatEntryCount$LAYOUT, GuardAddressTakenIatEntryCount$OFFSET, fieldValue);
+    }
+
+    private static final OfLong GuardLongJumpTargetTable$LAYOUT = (OfLong)$LAYOUT.select(groupElement("GuardLongJumpTargetTable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardLongJumpTargetTable
+     * }
+     */
+    public static final OfLong GuardLongJumpTargetTable$layout() {
+        return GuardLongJumpTargetTable$LAYOUT;
+    }
+
+    private static final long GuardLongJumpTargetTable$OFFSET = 176;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardLongJumpTargetTable
+     * }
+     */
+    public static final long GuardLongJumpTargetTable$offset() {
+        return GuardLongJumpTargetTable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardLongJumpTargetTable
+     * }
+     */
+    public static long GuardLongJumpTargetTable(MemorySegment struct) {
+        return struct.get(GuardLongJumpTargetTable$LAYOUT, GuardLongJumpTargetTable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardLongJumpTargetTable
+     * }
+     */
+    public static void GuardLongJumpTargetTable(MemorySegment struct, long fieldValue) {
+        struct.set(GuardLongJumpTargetTable$LAYOUT, GuardLongJumpTargetTable$OFFSET, fieldValue);
+    }
+
+    private static final OfLong GuardLongJumpTargetCount$LAYOUT = (OfLong)$LAYOUT.select(groupElement("GuardLongJumpTargetCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardLongJumpTargetCount
+     * }
+     */
+    public static final OfLong GuardLongJumpTargetCount$layout() {
+        return GuardLongJumpTargetCount$LAYOUT;
+    }
+
+    private static final long GuardLongJumpTargetCount$OFFSET = 184;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardLongJumpTargetCount
+     * }
+     */
+    public static final long GuardLongJumpTargetCount$offset() {
+        return GuardLongJumpTargetCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardLongJumpTargetCount
+     * }
+     */
+    public static long GuardLongJumpTargetCount(MemorySegment struct) {
+        return struct.get(GuardLongJumpTargetCount$LAYOUT, GuardLongJumpTargetCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardLongJumpTargetCount
+     * }
+     */
+    public static void GuardLongJumpTargetCount(MemorySegment struct, long fieldValue) {
+        struct.set(GuardLongJumpTargetCount$LAYOUT, GuardLongJumpTargetCount$OFFSET, fieldValue);
+    }
+
+    private static final OfLong DynamicValueRelocTable$LAYOUT = (OfLong)$LAYOUT.select(groupElement("DynamicValueRelocTable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG DynamicValueRelocTable
+     * }
+     */
+    public static final OfLong DynamicValueRelocTable$layout() {
+        return DynamicValueRelocTable$LAYOUT;
+    }
+
+    private static final long DynamicValueRelocTable$OFFSET = 192;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG DynamicValueRelocTable
+     * }
+     */
+    public static final long DynamicValueRelocTable$offset() {
+        return DynamicValueRelocTable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG DynamicValueRelocTable
+     * }
+     */
+    public static long DynamicValueRelocTable(MemorySegment struct) {
+        return struct.get(DynamicValueRelocTable$LAYOUT, DynamicValueRelocTable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG DynamicValueRelocTable
+     * }
+     */
+    public static void DynamicValueRelocTable(MemorySegment struct, long fieldValue) {
+        struct.set(DynamicValueRelocTable$LAYOUT, DynamicValueRelocTable$OFFSET, fieldValue);
+    }
+
+    private static final OfLong CHPEMetadataPointer$LAYOUT = (OfLong)$LAYOUT.select(groupElement("CHPEMetadataPointer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG CHPEMetadataPointer
+     * }
+     */
+    public static final OfLong CHPEMetadataPointer$layout() {
+        return CHPEMetadataPointer$LAYOUT;
+    }
+
+    private static final long CHPEMetadataPointer$OFFSET = 200;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG CHPEMetadataPointer
+     * }
+     */
+    public static final long CHPEMetadataPointer$offset() {
+        return CHPEMetadataPointer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG CHPEMetadataPointer
+     * }
+     */
+    public static long CHPEMetadataPointer(MemorySegment struct) {
+        return struct.get(CHPEMetadataPointer$LAYOUT, CHPEMetadataPointer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG CHPEMetadataPointer
+     * }
+     */
+    public static void CHPEMetadataPointer(MemorySegment struct, long fieldValue) {
+        struct.set(CHPEMetadataPointer$LAYOUT, CHPEMetadataPointer$OFFSET, fieldValue);
+    }
+
+    private static final OfLong GuardRFFailureRoutine$LAYOUT = (OfLong)$LAYOUT.select(groupElement("GuardRFFailureRoutine"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardRFFailureRoutine
+     * }
+     */
+    public static final OfLong GuardRFFailureRoutine$layout() {
+        return GuardRFFailureRoutine$LAYOUT;
+    }
+
+    private static final long GuardRFFailureRoutine$OFFSET = 208;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardRFFailureRoutine
+     * }
+     */
+    public static final long GuardRFFailureRoutine$offset() {
+        return GuardRFFailureRoutine$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardRFFailureRoutine
+     * }
+     */
+    public static long GuardRFFailureRoutine(MemorySegment struct) {
+        return struct.get(GuardRFFailureRoutine$LAYOUT, GuardRFFailureRoutine$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardRFFailureRoutine
+     * }
+     */
+    public static void GuardRFFailureRoutine(MemorySegment struct, long fieldValue) {
+        struct.set(GuardRFFailureRoutine$LAYOUT, GuardRFFailureRoutine$OFFSET, fieldValue);
+    }
+
+    private static final OfLong GuardRFFailureRoutineFunctionPointer$LAYOUT = (OfLong)$LAYOUT.select(groupElement("GuardRFFailureRoutineFunctionPointer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardRFFailureRoutineFunctionPointer
+     * }
+     */
+    public static final OfLong GuardRFFailureRoutineFunctionPointer$layout() {
+        return GuardRFFailureRoutineFunctionPointer$LAYOUT;
+    }
+
+    private static final long GuardRFFailureRoutineFunctionPointer$OFFSET = 216;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardRFFailureRoutineFunctionPointer
+     * }
+     */
+    public static final long GuardRFFailureRoutineFunctionPointer$offset() {
+        return GuardRFFailureRoutineFunctionPointer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardRFFailureRoutineFunctionPointer
+     * }
+     */
+    public static long GuardRFFailureRoutineFunctionPointer(MemorySegment struct) {
+        return struct.get(GuardRFFailureRoutineFunctionPointer$LAYOUT, GuardRFFailureRoutineFunctionPointer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardRFFailureRoutineFunctionPointer
+     * }
+     */
+    public static void GuardRFFailureRoutineFunctionPointer(MemorySegment struct, long fieldValue) {
+        struct.set(GuardRFFailureRoutineFunctionPointer$LAYOUT, GuardRFFailureRoutineFunctionPointer$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DynamicValueRelocTableOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DynamicValueRelocTableOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DynamicValueRelocTableOffset
+     * }
+     */
+    public static final OfInt DynamicValueRelocTableOffset$layout() {
+        return DynamicValueRelocTableOffset$LAYOUT;
+    }
+
+    private static final long DynamicValueRelocTableOffset$OFFSET = 224;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DynamicValueRelocTableOffset
+     * }
+     */
+    public static final long DynamicValueRelocTableOffset$offset() {
+        return DynamicValueRelocTableOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DynamicValueRelocTableOffset
+     * }
+     */
+    public static int DynamicValueRelocTableOffset(MemorySegment struct) {
+        return struct.get(DynamicValueRelocTableOffset$LAYOUT, DynamicValueRelocTableOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DynamicValueRelocTableOffset
+     * }
+     */
+    public static void DynamicValueRelocTableOffset(MemorySegment struct, int fieldValue) {
+        struct.set(DynamicValueRelocTableOffset$LAYOUT, DynamicValueRelocTableOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfShort DynamicValueRelocTableSection$LAYOUT = (OfShort)$LAYOUT.select(groupElement("DynamicValueRelocTableSection"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD DynamicValueRelocTableSection
+     * }
+     */
+    public static final OfShort DynamicValueRelocTableSection$layout() {
+        return DynamicValueRelocTableSection$LAYOUT;
+    }
+
+    private static final long DynamicValueRelocTableSection$OFFSET = 228;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD DynamicValueRelocTableSection
+     * }
+     */
+    public static final long DynamicValueRelocTableSection$offset() {
+        return DynamicValueRelocTableSection$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD DynamicValueRelocTableSection
+     * }
+     */
+    public static short DynamicValueRelocTableSection(MemorySegment struct) {
+        return struct.get(DynamicValueRelocTableSection$LAYOUT, DynamicValueRelocTableSection$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD DynamicValueRelocTableSection
+     * }
+     */
+    public static void DynamicValueRelocTableSection(MemorySegment struct, short fieldValue) {
+        struct.set(DynamicValueRelocTableSection$LAYOUT, DynamicValueRelocTableSection$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Reserved2$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Reserved2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Reserved2
+     * }
+     */
+    public static final OfShort Reserved2$layout() {
+        return Reserved2$LAYOUT;
+    }
+
+    private static final long Reserved2$OFFSET = 230;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Reserved2
+     * }
+     */
+    public static final long Reserved2$offset() {
+        return Reserved2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Reserved2
+     * }
+     */
+    public static short Reserved2(MemorySegment struct) {
+        return struct.get(Reserved2$LAYOUT, Reserved2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Reserved2
+     * }
+     */
+    public static void Reserved2(MemorySegment struct, short fieldValue) {
+        struct.set(Reserved2$LAYOUT, Reserved2$OFFSET, fieldValue);
+    }
+
+    private static final OfLong GuardRFVerifyStackPointerFunctionPointer$LAYOUT = (OfLong)$LAYOUT.select(groupElement("GuardRFVerifyStackPointerFunctionPointer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardRFVerifyStackPointerFunctionPointer
+     * }
+     */
+    public static final OfLong GuardRFVerifyStackPointerFunctionPointer$layout() {
+        return GuardRFVerifyStackPointerFunctionPointer$LAYOUT;
+    }
+
+    private static final long GuardRFVerifyStackPointerFunctionPointer$OFFSET = 232;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardRFVerifyStackPointerFunctionPointer
+     * }
+     */
+    public static final long GuardRFVerifyStackPointerFunctionPointer$offset() {
+        return GuardRFVerifyStackPointerFunctionPointer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardRFVerifyStackPointerFunctionPointer
+     * }
+     */
+    public static long GuardRFVerifyStackPointerFunctionPointer(MemorySegment struct) {
+        return struct.get(GuardRFVerifyStackPointerFunctionPointer$LAYOUT, GuardRFVerifyStackPointerFunctionPointer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardRFVerifyStackPointerFunctionPointer
+     * }
+     */
+    public static void GuardRFVerifyStackPointerFunctionPointer(MemorySegment struct, long fieldValue) {
+        struct.set(GuardRFVerifyStackPointerFunctionPointer$LAYOUT, GuardRFVerifyStackPointerFunctionPointer$OFFSET, fieldValue);
+    }
+
+    private static final OfInt HotPatchTableOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("HotPatchTableOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD HotPatchTableOffset
+     * }
+     */
+    public static final OfInt HotPatchTableOffset$layout() {
+        return HotPatchTableOffset$LAYOUT;
+    }
+
+    private static final long HotPatchTableOffset$OFFSET = 240;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD HotPatchTableOffset
+     * }
+     */
+    public static final long HotPatchTableOffset$offset() {
+        return HotPatchTableOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD HotPatchTableOffset
+     * }
+     */
+    public static int HotPatchTableOffset(MemorySegment struct) {
+        return struct.get(HotPatchTableOffset$LAYOUT, HotPatchTableOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD HotPatchTableOffset
+     * }
+     */
+    public static void HotPatchTableOffset(MemorySegment struct, int fieldValue) {
+        struct.set(HotPatchTableOffset$LAYOUT, HotPatchTableOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Reserved3$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved3"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved3
+     * }
+     */
+    public static final OfInt Reserved3$layout() {
+        return Reserved3$LAYOUT;
+    }
+
+    private static final long Reserved3$OFFSET = 244;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved3
+     * }
+     */
+    public static final long Reserved3$offset() {
+        return Reserved3$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved3
+     * }
+     */
+    public static int Reserved3(MemorySegment struct) {
+        return struct.get(Reserved3$LAYOUT, Reserved3$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved3
+     * }
+     */
+    public static void Reserved3(MemorySegment struct, int fieldValue) {
+        struct.set(Reserved3$LAYOUT, Reserved3$OFFSET, fieldValue);
+    }
+
+    private static final OfLong EnclaveConfigurationPointer$LAYOUT = (OfLong)$LAYOUT.select(groupElement("EnclaveConfigurationPointer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG EnclaveConfigurationPointer
+     * }
+     */
+    public static final OfLong EnclaveConfigurationPointer$layout() {
+        return EnclaveConfigurationPointer$LAYOUT;
+    }
+
+    private static final long EnclaveConfigurationPointer$OFFSET = 248;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG EnclaveConfigurationPointer
+     * }
+     */
+    public static final long EnclaveConfigurationPointer$offset() {
+        return EnclaveConfigurationPointer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG EnclaveConfigurationPointer
+     * }
+     */
+    public static long EnclaveConfigurationPointer(MemorySegment struct) {
+        return struct.get(EnclaveConfigurationPointer$LAYOUT, EnclaveConfigurationPointer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG EnclaveConfigurationPointer
+     * }
+     */
+    public static void EnclaveConfigurationPointer(MemorySegment struct, long fieldValue) {
+        struct.set(EnclaveConfigurationPointer$LAYOUT, EnclaveConfigurationPointer$OFFSET, fieldValue);
+    }
+
+    private static final OfLong VolatileMetadataPointer$LAYOUT = (OfLong)$LAYOUT.select(groupElement("VolatileMetadataPointer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG VolatileMetadataPointer
+     * }
+     */
+    public static final OfLong VolatileMetadataPointer$layout() {
+        return VolatileMetadataPointer$LAYOUT;
+    }
+
+    private static final long VolatileMetadataPointer$OFFSET = 256;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG VolatileMetadataPointer
+     * }
+     */
+    public static final long VolatileMetadataPointer$offset() {
+        return VolatileMetadataPointer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG VolatileMetadataPointer
+     * }
+     */
+    public static long VolatileMetadataPointer(MemorySegment struct) {
+        return struct.get(VolatileMetadataPointer$LAYOUT, VolatileMetadataPointer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG VolatileMetadataPointer
+     * }
+     */
+    public static void VolatileMetadataPointer(MemorySegment struct, long fieldValue) {
+        struct.set(VolatileMetadataPointer$LAYOUT, VolatileMetadataPointer$OFFSET, fieldValue);
+    }
+
+    private static final OfLong GuardEHContinuationTable$LAYOUT = (OfLong)$LAYOUT.select(groupElement("GuardEHContinuationTable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardEHContinuationTable
+     * }
+     */
+    public static final OfLong GuardEHContinuationTable$layout() {
+        return GuardEHContinuationTable$LAYOUT;
+    }
+
+    private static final long GuardEHContinuationTable$OFFSET = 264;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardEHContinuationTable
+     * }
+     */
+    public static final long GuardEHContinuationTable$offset() {
+        return GuardEHContinuationTable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardEHContinuationTable
+     * }
+     */
+    public static long GuardEHContinuationTable(MemorySegment struct) {
+        return struct.get(GuardEHContinuationTable$LAYOUT, GuardEHContinuationTable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardEHContinuationTable
+     * }
+     */
+    public static void GuardEHContinuationTable(MemorySegment struct, long fieldValue) {
+        struct.set(GuardEHContinuationTable$LAYOUT, GuardEHContinuationTable$OFFSET, fieldValue);
+    }
+
+    private static final OfLong GuardEHContinuationCount$LAYOUT = (OfLong)$LAYOUT.select(groupElement("GuardEHContinuationCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardEHContinuationCount
+     * }
+     */
+    public static final OfLong GuardEHContinuationCount$layout() {
+        return GuardEHContinuationCount$LAYOUT;
+    }
+
+    private static final long GuardEHContinuationCount$OFFSET = 272;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardEHContinuationCount
+     * }
+     */
+    public static final long GuardEHContinuationCount$offset() {
+        return GuardEHContinuationCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardEHContinuationCount
+     * }
+     */
+    public static long GuardEHContinuationCount(MemorySegment struct) {
+        return struct.get(GuardEHContinuationCount$LAYOUT, GuardEHContinuationCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG GuardEHContinuationCount
+     * }
+     */
+    public static void GuardEHContinuationCount(MemorySegment struct, long fieldValue) {
+        struct.set(GuardEHContinuationCount$LAYOUT, GuardEHContinuationCount$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

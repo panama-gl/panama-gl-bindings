@@ -2,13 +2,30 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CONSOLE_HISTORY_INFO {
+ *     UINT cbSize;
+ *     UINT HistoryBufferSize;
+ *     UINT NumberOfHistoryBuffers;
+ *     DWORD dwFlags;
+ * } CONSOLE_HISTORY_INFO
+ * }
+ */
 public class CONSOLE_HISTORY_INFO extends _CONSOLE_HISTORY_INFO {
 
+    CONSOLE_HISTORY_INFO() {
+        // Should not be called directly
+    }
 }
-
 

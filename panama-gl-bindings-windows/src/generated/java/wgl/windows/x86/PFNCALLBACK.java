@@ -2,27 +2,74 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNCALLBACK {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    java.lang.foreign.Addressable apply(int wType, int wFmt, java.lang.foreign.MemoryAddress hConv, java.lang.foreign.MemoryAddress hsz1, java.lang.foreign.MemoryAddress hsz2, java.lang.foreign.MemoryAddress hData, long dwData1, long dwData2);
-    static MemorySegment allocate(PFNCALLBACK fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNCALLBACK.class, fi, constants$605.PFNCALLBACK$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef HDDEDATA (*PFNCALLBACK)(UINT, UINT, HCONV, HSZ, HSZ, HDDEDATA, ULONG_PTR, ULONG_PTR) __attribute__((stdcall))
+ * }
+ */
+public class PFNCALLBACK {
+
+    PFNCALLBACK() {
+        // Should not be called directly
     }
-    static PFNCALLBACK ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _wType, int _wFmt, java.lang.foreign.MemoryAddress _hConv, java.lang.foreign.MemoryAddress _hsz1, java.lang.foreign.MemoryAddress _hsz2, java.lang.foreign.MemoryAddress _hData, long _dwData1, long _dwData2) -> {
-            try {
-                return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)constants$605.PFNCALLBACK$MH.invokeExact((Addressable)symbol, _wType, _wFmt, (java.lang.foreign.Addressable)_hConv, (java.lang.foreign.Addressable)_hsz1, (java.lang.foreign.Addressable)_hsz2, (java.lang.foreign.Addressable)_hData, _dwData1, _dwData2);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        MemorySegment apply(int wType, int wFmt, MemorySegment hConv, MemorySegment hsz1, MemorySegment hsz2, MemorySegment hData, long dwData1, long dwData2);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_POINTER,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_LONG_LONG,
+        wgl_h.C_LONG_LONG
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNCALLBACK.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNCALLBACK.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static MemorySegment invoke(MemorySegment funcPtr,int wType, int wFmt, MemorySegment hConv, MemorySegment hsz1, MemorySegment hsz2, MemorySegment hData, long dwData1, long dwData2) {
+        try {
+            return (MemorySegment) DOWN$MH.invokeExact(funcPtr, wType, wFmt, hConv, hsz1, hsz2, hData, dwData1, dwData2);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

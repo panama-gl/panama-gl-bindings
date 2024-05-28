@@ -2,7684 +2,18048 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
- class wgl_h_26 extends wgl_h_25 {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    public static MethodHandle CreateDispTypeInfo$MH() {
-        return RuntimeHelper.requireNonNull(constants$1243.CreateDispTypeInfo$MH,"CreateDispTypeInfo");
-    }
-    public static int CreateDispTypeInfo ( Addressable pidata,  int lcid,  Addressable pptinfo) {
-        var mh$ = CreateDispTypeInfo$MH();
-        try {
-            return (int)mh$.invokeExact(pidata, lcid, pptinfo);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle CreateStdDispatch$MH() {
-        return RuntimeHelper.requireNonNull(constants$1243.CreateStdDispatch$MH,"CreateStdDispatch");
-    }
-    public static int CreateStdDispatch ( Addressable punkOuter,  Addressable pvThis,  Addressable ptinfo,  Addressable ppunkStdDisp) {
-        var mh$ = CreateStdDispatch$MH();
-        try {
-            return (int)mh$.invokeExact(punkOuter, pvThis, ptinfo, ppunkStdDisp);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle DispCallFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$1243.DispCallFunc$MH,"DispCallFunc");
-    }
-    public static int DispCallFunc ( Addressable pvInstance,  long oVft,  int cc,  short vtReturn,  int cActuals,  Addressable prgvt,  Addressable prgpvarg,  Addressable pvargResult) {
-        var mh$ = DispCallFunc$MH();
-        try {
-            return (int)mh$.invokeExact(pvInstance, oVft, cc, vtReturn, cActuals, prgvt, prgpvarg, pvargResult);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle RegisterActiveObject$MH() {
-        return RuntimeHelper.requireNonNull(constants$1244.RegisterActiveObject$MH,"RegisterActiveObject");
-    }
-    public static int RegisterActiveObject ( Addressable punk,  Addressable rclsid,  int dwFlags,  Addressable pdwRegister) {
-        var mh$ = RegisterActiveObject$MH();
-        try {
-            return (int)mh$.invokeExact(punk, rclsid, dwFlags, pdwRegister);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle RevokeActiveObject$MH() {
-        return RuntimeHelper.requireNonNull(constants$1244.RevokeActiveObject$MH,"RevokeActiveObject");
-    }
-    public static int RevokeActiveObject ( int dwRegister,  Addressable pvReserved) {
-        var mh$ = RevokeActiveObject$MH();
-        try {
-            return (int)mh$.invokeExact(dwRegister, pvReserved);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle GetActiveObject$MH() {
-        return RuntimeHelper.requireNonNull(constants$1244.GetActiveObject$MH,"GetActiveObject");
-    }
-    public static int GetActiveObject ( Addressable rclsid,  Addressable pvReserved,  Addressable ppunk) {
-        var mh$ = GetActiveObject$MH();
-        try {
-            return (int)mh$.invokeExact(rclsid, pvReserved, ppunk);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle SetErrorInfo$MH() {
-        return RuntimeHelper.requireNonNull(constants$1244.SetErrorInfo$MH,"SetErrorInfo");
-    }
-    public static int SetErrorInfo ( int dwReserved,  Addressable perrinfo) {
-        var mh$ = SetErrorInfo$MH();
-        try {
-            return (int)mh$.invokeExact(dwReserved, perrinfo);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle GetErrorInfo$MH() {
-        return RuntimeHelper.requireNonNull(constants$1244.GetErrorInfo$MH,"GetErrorInfo");
-    }
-    public static int GetErrorInfo ( int dwReserved,  Addressable pperrinfo) {
-        var mh$ = GetErrorInfo$MH();
-        try {
-            return (int)mh$.invokeExact(dwReserved, pperrinfo);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle CreateErrorInfo$MH() {
-        return RuntimeHelper.requireNonNull(constants$1244.CreateErrorInfo$MH,"CreateErrorInfo");
-    }
-    public static int CreateErrorInfo ( Addressable pperrinfo) {
-        var mh$ = CreateErrorInfo$MH();
-        try {
-            return (int)mh$.invokeExact(pperrinfo);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle GetRecordInfoFromTypeInfo$MH() {
-        return RuntimeHelper.requireNonNull(constants$1245.GetRecordInfoFromTypeInfo$MH,"GetRecordInfoFromTypeInfo");
-    }
-    public static int GetRecordInfoFromTypeInfo ( Addressable pTypeInfo,  Addressable ppRecInfo) {
-        var mh$ = GetRecordInfoFromTypeInfo$MH();
-        try {
-            return (int)mh$.invokeExact(pTypeInfo, ppRecInfo);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle GetRecordInfoFromGuids$MH() {
-        return RuntimeHelper.requireNonNull(constants$1245.GetRecordInfoFromGuids$MH,"GetRecordInfoFromGuids");
-    }
-    public static int GetRecordInfoFromGuids ( Addressable rGuidTypeLib,  int uVerMajor,  int uVerMinor,  int lcid,  Addressable rGuidTypeInfo,  Addressable ppRecInfo) {
-        var mh$ = GetRecordInfoFromGuids$MH();
-        try {
-            return (int)mh$.invokeExact(rGuidTypeLib, uVerMajor, uVerMinor, lcid, rGuidTypeInfo, ppRecInfo);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OaBuildVersion$MH() {
-        return RuntimeHelper.requireNonNull(constants$1245.OaBuildVersion$MH,"OaBuildVersion");
-    }
-    public static int OaBuildVersion () {
-        var mh$ = OaBuildVersion$MH();
-        try {
-            return (int)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ClearCustData$MH() {
-        return RuntimeHelper.requireNonNull(constants$1245.ClearCustData$MH,"ClearCustData");
-    }
-    public static void ClearCustData ( Addressable pCustData) {
-        var mh$ = ClearCustData$MH();
-        try {
-            mh$.invokeExact(pCustData);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OaEnablePerUserTLibRegistration$MH() {
-        return RuntimeHelper.requireNonNull(constants$1245.OaEnablePerUserTLibRegistration$MH,"OaEnablePerUserTLibRegistration");
-    }
-    public static void OaEnablePerUserTLibRegistration () {
-        var mh$ = OaEnablePerUserTLibRegistration$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleBuildVersion$MH() {
-        return RuntimeHelper.requireNonNull(constants$1245.OleBuildVersion$MH,"OleBuildVersion");
-    }
-    public static int OleBuildVersion () {
-        var mh$ = OleBuildVersion$MH();
-        try {
-            return (int)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteFmtUserTypeStg$MH() {
-        return RuntimeHelper.requireNonNull(constants$1246.WriteFmtUserTypeStg$MH,"WriteFmtUserTypeStg");
-    }
-    public static int WriteFmtUserTypeStg ( Addressable pstg,  short cf,  Addressable lpszUserType) {
-        var mh$ = WriteFmtUserTypeStg$MH();
-        try {
-            return (int)mh$.invokeExact(pstg, cf, lpszUserType);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadFmtUserTypeStg$MH() {
-        return RuntimeHelper.requireNonNull(constants$1246.ReadFmtUserTypeStg$MH,"ReadFmtUserTypeStg");
-    }
-    public static int ReadFmtUserTypeStg ( Addressable pstg,  Addressable pcf,  Addressable lplpszUserType) {
-        var mh$ = ReadFmtUserTypeStg$MH();
-        try {
-            return (int)mh$.invokeExact(pstg, pcf, lplpszUserType);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleInitialize$MH() {
-        return RuntimeHelper.requireNonNull(constants$1246.OleInitialize$MH,"OleInitialize");
-    }
-    public static int OleInitialize ( Addressable pvReserved) {
-        var mh$ = OleInitialize$MH();
-        try {
-            return (int)mh$.invokeExact(pvReserved);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleUninitialize$MH() {
-        return RuntimeHelper.requireNonNull(constants$1246.OleUninitialize$MH,"OleUninitialize");
-    }
-    public static void OleUninitialize () {
-        var mh$ = OleUninitialize$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleQueryLinkFromData$MH() {
-        return RuntimeHelper.requireNonNull(constants$1246.OleQueryLinkFromData$MH,"OleQueryLinkFromData");
-    }
-    public static int OleQueryLinkFromData ( Addressable pSrcDataObject) {
-        var mh$ = OleQueryLinkFromData$MH();
-        try {
-            return (int)mh$.invokeExact(pSrcDataObject);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleQueryCreateFromData$MH() {
-        return RuntimeHelper.requireNonNull(constants$1246.OleQueryCreateFromData$MH,"OleQueryCreateFromData");
-    }
-    public static int OleQueryCreateFromData ( Addressable pSrcDataObject) {
-        var mh$ = OleQueryCreateFromData$MH();
-        try {
-            return (int)mh$.invokeExact(pSrcDataObject);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleCreate$MH() {
-        return RuntimeHelper.requireNonNull(constants$1247.OleCreate$MH,"OleCreate");
-    }
-    public static int OleCreate ( Addressable rclsid,  Addressable riid,  int renderopt,  Addressable pFormatEtc,  Addressable pClientSite,  Addressable pStg,  Addressable ppvObj) {
-        var mh$ = OleCreate$MH();
-        try {
-            return (int)mh$.invokeExact(rclsid, riid, renderopt, pFormatEtc, pClientSite, pStg, ppvObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleCreateEx$MH() {
-        return RuntimeHelper.requireNonNull(constants$1247.OleCreateEx$MH,"OleCreateEx");
-    }
-    public static int OleCreateEx ( Addressable rclsid,  Addressable riid,  int dwFlags,  int renderopt,  int cFormats,  Addressable rgAdvf,  Addressable rgFormatEtc,  Addressable lpAdviseSink,  Addressable rgdwConnection,  Addressable pClientSite,  Addressable pStg,  Addressable ppvObj) {
-        var mh$ = OleCreateEx$MH();
-        try {
-            return (int)mh$.invokeExact(rclsid, riid, dwFlags, renderopt, cFormats, rgAdvf, rgFormatEtc, lpAdviseSink, rgdwConnection, pClientSite, pStg, ppvObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleCreateFromData$MH() {
-        return RuntimeHelper.requireNonNull(constants$1247.OleCreateFromData$MH,"OleCreateFromData");
-    }
-    public static int OleCreateFromData ( Addressable pSrcDataObj,  Addressable riid,  int renderopt,  Addressable pFormatEtc,  Addressable pClientSite,  Addressable pStg,  Addressable ppvObj) {
-        var mh$ = OleCreateFromData$MH();
-        try {
-            return (int)mh$.invokeExact(pSrcDataObj, riid, renderopt, pFormatEtc, pClientSite, pStg, ppvObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleCreateFromDataEx$MH() {
-        return RuntimeHelper.requireNonNull(constants$1247.OleCreateFromDataEx$MH,"OleCreateFromDataEx");
-    }
-    public static int OleCreateFromDataEx ( Addressable pSrcDataObj,  Addressable riid,  int dwFlags,  int renderopt,  int cFormats,  Addressable rgAdvf,  Addressable rgFormatEtc,  Addressable lpAdviseSink,  Addressable rgdwConnection,  Addressable pClientSite,  Addressable pStg,  Addressable ppvObj) {
-        var mh$ = OleCreateFromDataEx$MH();
-        try {
-            return (int)mh$.invokeExact(pSrcDataObj, riid, dwFlags, renderopt, cFormats, rgAdvf, rgFormatEtc, lpAdviseSink, rgdwConnection, pClientSite, pStg, ppvObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleCreateLinkFromData$MH() {
-        return RuntimeHelper.requireNonNull(constants$1247.OleCreateLinkFromData$MH,"OleCreateLinkFromData");
-    }
-    public static int OleCreateLinkFromData ( Addressable pSrcDataObj,  Addressable riid,  int renderopt,  Addressable pFormatEtc,  Addressable pClientSite,  Addressable pStg,  Addressable ppvObj) {
-        var mh$ = OleCreateLinkFromData$MH();
-        try {
-            return (int)mh$.invokeExact(pSrcDataObj, riid, renderopt, pFormatEtc, pClientSite, pStg, ppvObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleCreateLinkFromDataEx$MH() {
-        return RuntimeHelper.requireNonNull(constants$1247.OleCreateLinkFromDataEx$MH,"OleCreateLinkFromDataEx");
-    }
-    public static int OleCreateLinkFromDataEx ( Addressable pSrcDataObj,  Addressable riid,  int dwFlags,  int renderopt,  int cFormats,  Addressable rgAdvf,  Addressable rgFormatEtc,  Addressable lpAdviseSink,  Addressable rgdwConnection,  Addressable pClientSite,  Addressable pStg,  Addressable ppvObj) {
-        var mh$ = OleCreateLinkFromDataEx$MH();
-        try {
-            return (int)mh$.invokeExact(pSrcDataObj, riid, dwFlags, renderopt, cFormats, rgAdvf, rgFormatEtc, lpAdviseSink, rgdwConnection, pClientSite, pStg, ppvObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleCreateStaticFromData$MH() {
-        return RuntimeHelper.requireNonNull(constants$1248.OleCreateStaticFromData$MH,"OleCreateStaticFromData");
-    }
-    public static int OleCreateStaticFromData ( Addressable pSrcDataObj,  Addressable iid,  int renderopt,  Addressable pFormatEtc,  Addressable pClientSite,  Addressable pStg,  Addressable ppvObj) {
-        var mh$ = OleCreateStaticFromData$MH();
-        try {
-            return (int)mh$.invokeExact(pSrcDataObj, iid, renderopt, pFormatEtc, pClientSite, pStg, ppvObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleCreateLink$MH() {
-        return RuntimeHelper.requireNonNull(constants$1248.OleCreateLink$MH,"OleCreateLink");
-    }
-    public static int OleCreateLink ( Addressable pmkLinkSrc,  Addressable riid,  int renderopt,  Addressable lpFormatEtc,  Addressable pClientSite,  Addressable pStg,  Addressable ppvObj) {
-        var mh$ = OleCreateLink$MH();
-        try {
-            return (int)mh$.invokeExact(pmkLinkSrc, riid, renderopt, lpFormatEtc, pClientSite, pStg, ppvObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleCreateLinkEx$MH() {
-        return RuntimeHelper.requireNonNull(constants$1248.OleCreateLinkEx$MH,"OleCreateLinkEx");
-    }
-    public static int OleCreateLinkEx ( Addressable pmkLinkSrc,  Addressable riid,  int dwFlags,  int renderopt,  int cFormats,  Addressable rgAdvf,  Addressable rgFormatEtc,  Addressable lpAdviseSink,  Addressable rgdwConnection,  Addressable pClientSite,  Addressable pStg,  Addressable ppvObj) {
-        var mh$ = OleCreateLinkEx$MH();
-        try {
-            return (int)mh$.invokeExact(pmkLinkSrc, riid, dwFlags, renderopt, cFormats, rgAdvf, rgFormatEtc, lpAdviseSink, rgdwConnection, pClientSite, pStg, ppvObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleCreateLinkToFile$MH() {
-        return RuntimeHelper.requireNonNull(constants$1248.OleCreateLinkToFile$MH,"OleCreateLinkToFile");
-    }
-    public static int OleCreateLinkToFile ( Addressable lpszFileName,  Addressable riid,  int renderopt,  Addressable lpFormatEtc,  Addressable pClientSite,  Addressable pStg,  Addressable ppvObj) {
-        var mh$ = OleCreateLinkToFile$MH();
-        try {
-            return (int)mh$.invokeExact(lpszFileName, riid, renderopt, lpFormatEtc, pClientSite, pStg, ppvObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleCreateLinkToFileEx$MH() {
-        return RuntimeHelper.requireNonNull(constants$1248.OleCreateLinkToFileEx$MH,"OleCreateLinkToFileEx");
-    }
-    public static int OleCreateLinkToFileEx ( Addressable lpszFileName,  Addressable riid,  int dwFlags,  int renderopt,  int cFormats,  Addressable rgAdvf,  Addressable rgFormatEtc,  Addressable lpAdviseSink,  Addressable rgdwConnection,  Addressable pClientSite,  Addressable pStg,  Addressable ppvObj) {
-        var mh$ = OleCreateLinkToFileEx$MH();
-        try {
-            return (int)mh$.invokeExact(lpszFileName, riid, dwFlags, renderopt, cFormats, rgAdvf, rgFormatEtc, lpAdviseSink, rgdwConnection, pClientSite, pStg, ppvObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleCreateFromFile$MH() {
-        return RuntimeHelper.requireNonNull(constants$1248.OleCreateFromFile$MH,"OleCreateFromFile");
-    }
-    public static int OleCreateFromFile ( Addressable rclsid,  Addressable lpszFileName,  Addressable riid,  int renderopt,  Addressable lpFormatEtc,  Addressable pClientSite,  Addressable pStg,  Addressable ppvObj) {
-        var mh$ = OleCreateFromFile$MH();
-        try {
-            return (int)mh$.invokeExact(rclsid, lpszFileName, riid, renderopt, lpFormatEtc, pClientSite, pStg, ppvObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleCreateFromFileEx$MH() {
-        return RuntimeHelper.requireNonNull(constants$1249.OleCreateFromFileEx$MH,"OleCreateFromFileEx");
-    }
-    public static int OleCreateFromFileEx ( Addressable rclsid,  Addressable lpszFileName,  Addressable riid,  int dwFlags,  int renderopt,  int cFormats,  Addressable rgAdvf,  Addressable rgFormatEtc,  Addressable lpAdviseSink,  Addressable rgdwConnection,  Addressable pClientSite,  Addressable pStg,  Addressable ppvObj) {
-        var mh$ = OleCreateFromFileEx$MH();
-        try {
-            return (int)mh$.invokeExact(rclsid, lpszFileName, riid, dwFlags, renderopt, cFormats, rgAdvf, rgFormatEtc, lpAdviseSink, rgdwConnection, pClientSite, pStg, ppvObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleLoad$MH() {
-        return RuntimeHelper.requireNonNull(constants$1249.OleLoad$MH,"OleLoad");
-    }
-    public static int OleLoad ( Addressable pStg,  Addressable riid,  Addressable pClientSite,  Addressable ppvObj) {
-        var mh$ = OleLoad$MH();
-        try {
-            return (int)mh$.invokeExact(pStg, riid, pClientSite, ppvObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleSave$MH() {
-        return RuntimeHelper.requireNonNull(constants$1249.OleSave$MH,"OleSave");
-    }
-    public static int OleSave ( Addressable pPS,  Addressable pStg,  int fSameAsLoad) {
-        var mh$ = OleSave$MH();
-        try {
-            return (int)mh$.invokeExact(pPS, pStg, fSameAsLoad);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleLoadFromStream$MH() {
-        return RuntimeHelper.requireNonNull(constants$1249.OleLoadFromStream$MH,"OleLoadFromStream");
-    }
-    public static int OleLoadFromStream ( Addressable pStm,  Addressable iidInterface,  Addressable ppvObj) {
-        var mh$ = OleLoadFromStream$MH();
-        try {
-            return (int)mh$.invokeExact(pStm, iidInterface, ppvObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleSaveToStream$MH() {
-        return RuntimeHelper.requireNonNull(constants$1249.OleSaveToStream$MH,"OleSaveToStream");
-    }
-    public static int OleSaveToStream ( Addressable pPStm,  Addressable pStm) {
-        var mh$ = OleSaveToStream$MH();
-        try {
-            return (int)mh$.invokeExact(pPStm, pStm);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleSetContainedObject$MH() {
-        return RuntimeHelper.requireNonNull(constants$1249.OleSetContainedObject$MH,"OleSetContainedObject");
-    }
-    public static int OleSetContainedObject ( Addressable pUnknown,  int fContained) {
-        var mh$ = OleSetContainedObject$MH();
-        try {
-            return (int)mh$.invokeExact(pUnknown, fContained);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleNoteObjectVisible$MH() {
-        return RuntimeHelper.requireNonNull(constants$1250.OleNoteObjectVisible$MH,"OleNoteObjectVisible");
-    }
-    public static int OleNoteObjectVisible ( Addressable pUnknown,  int fVisible) {
-        var mh$ = OleNoteObjectVisible$MH();
-        try {
-            return (int)mh$.invokeExact(pUnknown, fVisible);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle RegisterDragDrop$MH() {
-        return RuntimeHelper.requireNonNull(constants$1250.RegisterDragDrop$MH,"RegisterDragDrop");
-    }
-    public static int RegisterDragDrop ( Addressable hwnd,  Addressable pDropTarget) {
-        var mh$ = RegisterDragDrop$MH();
-        try {
-            return (int)mh$.invokeExact(hwnd, pDropTarget);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle RevokeDragDrop$MH() {
-        return RuntimeHelper.requireNonNull(constants$1250.RevokeDragDrop$MH,"RevokeDragDrop");
-    }
-    public static int RevokeDragDrop ( Addressable hwnd) {
-        var mh$ = RevokeDragDrop$MH();
-        try {
-            return (int)mh$.invokeExact(hwnd);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle DoDragDrop$MH() {
-        return RuntimeHelper.requireNonNull(constants$1250.DoDragDrop$MH,"DoDragDrop");
-    }
-    public static int DoDragDrop ( Addressable pDataObj,  Addressable pDropSource,  int dwOKEffects,  Addressable pdwEffect) {
-        var mh$ = DoDragDrop$MH();
-        try {
-            return (int)mh$.invokeExact(pDataObj, pDropSource, dwOKEffects, pdwEffect);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleSetClipboard$MH() {
-        return RuntimeHelper.requireNonNull(constants$1250.OleSetClipboard$MH,"OleSetClipboard");
-    }
-    public static int OleSetClipboard ( Addressable pDataObj) {
-        var mh$ = OleSetClipboard$MH();
-        try {
-            return (int)mh$.invokeExact(pDataObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleGetClipboard$MH() {
-        return RuntimeHelper.requireNonNull(constants$1250.OleGetClipboard$MH,"OleGetClipboard");
-    }
-    public static int OleGetClipboard ( Addressable ppDataObj) {
-        var mh$ = OleGetClipboard$MH();
-        try {
-            return (int)mh$.invokeExact(ppDataObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleGetClipboardWithEnterpriseInfo$MH() {
-        return RuntimeHelper.requireNonNull(constants$1251.OleGetClipboardWithEnterpriseInfo$MH,"OleGetClipboardWithEnterpriseInfo");
-    }
-    public static int OleGetClipboardWithEnterpriseInfo ( Addressable dataObject,  Addressable dataEnterpriseId,  Addressable sourceDescription,  Addressable targetDescription,  Addressable dataDescription) {
-        var mh$ = OleGetClipboardWithEnterpriseInfo$MH();
-        try {
-            return (int)mh$.invokeExact(dataObject, dataEnterpriseId, sourceDescription, targetDescription, dataDescription);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleFlushClipboard$MH() {
-        return RuntimeHelper.requireNonNull(constants$1251.OleFlushClipboard$MH,"OleFlushClipboard");
-    }
-    public static int OleFlushClipboard () {
-        var mh$ = OleFlushClipboard$MH();
-        try {
-            return (int)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleIsCurrentClipboard$MH() {
-        return RuntimeHelper.requireNonNull(constants$1251.OleIsCurrentClipboard$MH,"OleIsCurrentClipboard");
-    }
-    public static int OleIsCurrentClipboard ( Addressable pDataObj) {
-        var mh$ = OleIsCurrentClipboard$MH();
-        try {
-            return (int)mh$.invokeExact(pDataObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleCreateMenuDescriptor$MH() {
-        return RuntimeHelper.requireNonNull(constants$1251.OleCreateMenuDescriptor$MH,"OleCreateMenuDescriptor");
-    }
-    public static MemoryAddress OleCreateMenuDescriptor ( Addressable hmenuCombined,  Addressable lpMenuWidths) {
-        var mh$ = OleCreateMenuDescriptor$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(hmenuCombined, lpMenuWidths);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleSetMenuDescriptor$MH() {
-        return RuntimeHelper.requireNonNull(constants$1251.OleSetMenuDescriptor$MH,"OleSetMenuDescriptor");
-    }
-    public static int OleSetMenuDescriptor ( Addressable holemenu,  Addressable hwndFrame,  Addressable hwndActiveObject,  Addressable lpFrame,  Addressable lpActiveObj) {
-        var mh$ = OleSetMenuDescriptor$MH();
-        try {
-            return (int)mh$.invokeExact(holemenu, hwndFrame, hwndActiveObject, lpFrame, lpActiveObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleDestroyMenuDescriptor$MH() {
-        return RuntimeHelper.requireNonNull(constants$1251.OleDestroyMenuDescriptor$MH,"OleDestroyMenuDescriptor");
-    }
-    public static int OleDestroyMenuDescriptor ( Addressable holemenu) {
-        var mh$ = OleDestroyMenuDescriptor$MH();
-        try {
-            return (int)mh$.invokeExact(holemenu);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleTranslateAccelerator$MH() {
-        return RuntimeHelper.requireNonNull(constants$1252.OleTranslateAccelerator$MH,"OleTranslateAccelerator");
-    }
-    public static int OleTranslateAccelerator ( Addressable lpFrame,  Addressable lpFrameInfo,  Addressable lpmsg) {
-        var mh$ = OleTranslateAccelerator$MH();
-        try {
-            return (int)mh$.invokeExact(lpFrame, lpFrameInfo, lpmsg);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleDuplicateData$MH() {
-        return RuntimeHelper.requireNonNull(constants$1252.OleDuplicateData$MH,"OleDuplicateData");
-    }
-    public static MemoryAddress OleDuplicateData ( Addressable hSrc,  short cfFormat,  int uiFlags) {
-        var mh$ = OleDuplicateData$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(hSrc, cfFormat, uiFlags);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleDraw$MH() {
-        return RuntimeHelper.requireNonNull(constants$1252.OleDraw$MH,"OleDraw");
-    }
-    public static int OleDraw ( Addressable pUnknown,  int dwAspect,  Addressable hdcDraw,  Addressable lprcBounds) {
-        var mh$ = OleDraw$MH();
-        try {
-            return (int)mh$.invokeExact(pUnknown, dwAspect, hdcDraw, lprcBounds);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleRun$MH() {
-        return RuntimeHelper.requireNonNull(constants$1252.OleRun$MH,"OleRun");
-    }
-    public static int OleRun ( Addressable pUnknown) {
-        var mh$ = OleRun$MH();
-        try {
-            return (int)mh$.invokeExact(pUnknown);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleIsRunning$MH() {
-        return RuntimeHelper.requireNonNull(constants$1252.OleIsRunning$MH,"OleIsRunning");
-    }
-    public static int OleIsRunning ( Addressable pObject) {
-        var mh$ = OleIsRunning$MH();
-        try {
-            return (int)mh$.invokeExact(pObject);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleLockRunning$MH() {
-        return RuntimeHelper.requireNonNull(constants$1252.OleLockRunning$MH,"OleLockRunning");
-    }
-    public static int OleLockRunning ( Addressable pUnknown,  int fLock,  int fLastUnlockCloses) {
-        var mh$ = OleLockRunning$MH();
-        try {
-            return (int)mh$.invokeExact(pUnknown, fLock, fLastUnlockCloses);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReleaseStgMedium$MH() {
-        return RuntimeHelper.requireNonNull(constants$1253.ReleaseStgMedium$MH,"ReleaseStgMedium");
-    }
-    public static void ReleaseStgMedium ( Addressable x0) {
-        var mh$ = ReleaseStgMedium$MH();
-        try {
-            mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle CreateOleAdviseHolder$MH() {
-        return RuntimeHelper.requireNonNull(constants$1253.CreateOleAdviseHolder$MH,"CreateOleAdviseHolder");
-    }
-    public static int CreateOleAdviseHolder ( Addressable ppOAHolder) {
-        var mh$ = CreateOleAdviseHolder$MH();
-        try {
-            return (int)mh$.invokeExact(ppOAHolder);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleCreateDefaultHandler$MH() {
-        return RuntimeHelper.requireNonNull(constants$1253.OleCreateDefaultHandler$MH,"OleCreateDefaultHandler");
-    }
-    public static int OleCreateDefaultHandler ( Addressable clsid,  Addressable pUnkOuter,  Addressable riid,  Addressable lplpObj) {
-        var mh$ = OleCreateDefaultHandler$MH();
-        try {
-            return (int)mh$.invokeExact(clsid, pUnkOuter, riid, lplpObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleCreateEmbeddingHelper$MH() {
-        return RuntimeHelper.requireNonNull(constants$1253.OleCreateEmbeddingHelper$MH,"OleCreateEmbeddingHelper");
-    }
-    public static int OleCreateEmbeddingHelper ( Addressable clsid,  Addressable pUnkOuter,  int flags,  Addressable pCF,  Addressable riid,  Addressable lplpObj) {
-        var mh$ = OleCreateEmbeddingHelper$MH();
-        try {
-            return (int)mh$.invokeExact(clsid, pUnkOuter, flags, pCF, riid, lplpObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle IsAccelerator$MH() {
-        return RuntimeHelper.requireNonNull(constants$1253.IsAccelerator$MH,"IsAccelerator");
-    }
-    public static int IsAccelerator ( Addressable hAccel,  int cAccelEntries,  Addressable lpMsg,  Addressable lpwCmd) {
-        var mh$ = IsAccelerator$MH();
-        try {
-            return (int)mh$.invokeExact(hAccel, cAccelEntries, lpMsg, lpwCmd);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleGetIconOfFile$MH() {
-        return RuntimeHelper.requireNonNull(constants$1253.OleGetIconOfFile$MH,"OleGetIconOfFile");
-    }
-    public static MemoryAddress OleGetIconOfFile ( Addressable lpszPath,  int fUseFileAsLabel) {
-        var mh$ = OleGetIconOfFile$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(lpszPath, fUseFileAsLabel);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleGetIconOfClass$MH() {
-        return RuntimeHelper.requireNonNull(constants$1254.OleGetIconOfClass$MH,"OleGetIconOfClass");
-    }
-    public static MemoryAddress OleGetIconOfClass ( Addressable rclsid,  Addressable lpszLabel,  int fUseTypeAsLabel) {
-        var mh$ = OleGetIconOfClass$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(rclsid, lpszLabel, fUseTypeAsLabel);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleMetafilePictFromIconAndLabel$MH() {
-        return RuntimeHelper.requireNonNull(constants$1254.OleMetafilePictFromIconAndLabel$MH,"OleMetafilePictFromIconAndLabel");
-    }
-    public static MemoryAddress OleMetafilePictFromIconAndLabel ( Addressable hIcon,  Addressable lpszLabel,  Addressable lpszSourceFile,  int iIconIndex) {
-        var mh$ = OleMetafilePictFromIconAndLabel$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(hIcon, lpszLabel, lpszSourceFile, iIconIndex);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleRegGetUserType$MH() {
-        return RuntimeHelper.requireNonNull(constants$1254.OleRegGetUserType$MH,"OleRegGetUserType");
-    }
-    public static int OleRegGetUserType ( Addressable clsid,  int dwFormOfType,  Addressable pszUserType) {
-        var mh$ = OleRegGetUserType$MH();
-        try {
-            return (int)mh$.invokeExact(clsid, dwFormOfType, pszUserType);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleRegGetMiscStatus$MH() {
-        return RuntimeHelper.requireNonNull(constants$1254.OleRegGetMiscStatus$MH,"OleRegGetMiscStatus");
-    }
-    public static int OleRegGetMiscStatus ( Addressable clsid,  int dwAspect,  Addressable pdwStatus) {
-        var mh$ = OleRegGetMiscStatus$MH();
-        try {
-            return (int)mh$.invokeExact(clsid, dwAspect, pdwStatus);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleRegEnumFormatEtc$MH() {
-        return RuntimeHelper.requireNonNull(constants$1254.OleRegEnumFormatEtc$MH,"OleRegEnumFormatEtc");
-    }
-    public static int OleRegEnumFormatEtc ( Addressable clsid,  int dwDirection,  Addressable ppenum) {
-        var mh$ = OleRegEnumFormatEtc$MH();
-        try {
-            return (int)mh$.invokeExact(clsid, dwDirection, ppenum);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleRegEnumVerbs$MH() {
-        return RuntimeHelper.requireNonNull(constants$1254.OleRegEnumVerbs$MH,"OleRegEnumVerbs");
-    }
-    public static int OleRegEnumVerbs ( Addressable clsid,  Addressable ppenum) {
-        var mh$ = OleRegEnumVerbs$MH();
-        try {
-            return (int)mh$.invokeExact(clsid, ppenum);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfAddress LPOLESTREAM = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPOLESTREAMVTBL = Constants$root.C_POINTER$LAYOUT;
-    public static MethodHandle OleConvertOLESTREAMToIStorage$MH() {
-        return RuntimeHelper.requireNonNull(constants$1255.OleConvertOLESTREAMToIStorage$MH,"OleConvertOLESTREAMToIStorage");
-    }
-    public static int OleConvertOLESTREAMToIStorage ( Addressable lpolestream,  Addressable pstg,  Addressable ptd) {
-        var mh$ = OleConvertOLESTREAMToIStorage$MH();
-        try {
-            return (int)mh$.invokeExact(lpolestream, pstg, ptd);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleConvertIStorageToOLESTREAM$MH() {
-        return RuntimeHelper.requireNonNull(constants$1255.OleConvertIStorageToOLESTREAM$MH,"OleConvertIStorageToOLESTREAM");
-    }
-    public static int OleConvertIStorageToOLESTREAM ( Addressable pstg,  Addressable lpolestream) {
-        var mh$ = OleConvertIStorageToOLESTREAM$MH();
-        try {
-            return (int)mh$.invokeExact(pstg, lpolestream);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleDoAutoConvert$MH() {
-        return RuntimeHelper.requireNonNull(constants$1255.OleDoAutoConvert$MH,"OleDoAutoConvert");
-    }
-    public static int OleDoAutoConvert ( Addressable pStg,  Addressable pClsidNew) {
-        var mh$ = OleDoAutoConvert$MH();
-        try {
-            return (int)mh$.invokeExact(pStg, pClsidNew);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleGetAutoConvert$MH() {
-        return RuntimeHelper.requireNonNull(constants$1255.OleGetAutoConvert$MH,"OleGetAutoConvert");
-    }
-    public static int OleGetAutoConvert ( Addressable clsidOld,  Addressable pClsidNew) {
-        var mh$ = OleGetAutoConvert$MH();
-        try {
-            return (int)mh$.invokeExact(clsidOld, pClsidNew);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleSetAutoConvert$MH() {
-        return RuntimeHelper.requireNonNull(constants$1255.OleSetAutoConvert$MH,"OleSetAutoConvert");
-    }
-    public static int OleSetAutoConvert ( Addressable clsidOld,  Addressable clsidNew) {
-        var mh$ = OleSetAutoConvert$MH();
-        try {
-            return (int)mh$.invokeExact(clsidOld, clsidNew);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle SetConvertStg$MH() {
-        return RuntimeHelper.requireNonNull(constants$1255.SetConvertStg$MH,"SetConvertStg");
-    }
-    public static int SetConvertStg ( Addressable pStg,  int fConvert) {
-        var mh$ = SetConvertStg$MH();
-        try {
-            return (int)mh$.invokeExact(pStg, fConvert);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleConvertIStorageToOLESTREAMEx$MH() {
-        return RuntimeHelper.requireNonNull(constants$1256.OleConvertIStorageToOLESTREAMEx$MH,"OleConvertIStorageToOLESTREAMEx");
-    }
-    public static int OleConvertIStorageToOLESTREAMEx ( Addressable pstg,  short cfFormat,  int lWidth,  int lHeight,  int dwSize,  Addressable pmedium,  Addressable polestm) {
-        var mh$ = OleConvertIStorageToOLESTREAMEx$MH();
-        try {
-            return (int)mh$.invokeExact(pstg, cfFormat, lWidth, lHeight, dwSize, pmedium, polestm);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OleConvertOLESTREAMToIStorageEx$MH() {
-        return RuntimeHelper.requireNonNull(constants$1256.OleConvertOLESTREAMToIStorageEx$MH,"OleConvertOLESTREAMToIStorageEx");
-    }
-    public static int OleConvertOLESTREAMToIStorageEx ( Addressable polestm,  Addressable pstg,  Addressable pcfFormat,  Addressable plwWidth,  Addressable plHeight,  Addressable pdwSize,  Addressable pmedium) {
-        var mh$ = OleConvertOLESTREAMToIStorageEx$MH();
-        try {
-            return (int)mh$.invokeExact(polestm, pstg, pcfFormat, plwWidth, plHeight, pdwSize, pmedium);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MemorySegment IID_IPrintDialogCallback$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$1256.IID_IPrintDialogCallback$SEGMENT,"IID_IPrintDialogCallback");
-    }
-    public static MemorySegment IID_IPrintDialogServices$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$1256.IID_IPrintDialogServices$SEGMENT,"IID_IPrintDialogServices");
-    }
-    public static OfAddress LPOPENFILENAME_NT4A = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPOPENFILENAME_NT4W = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPOPENFILENAME_NT4 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPOPENFILENAMEA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPOPENFILENAMEW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPOPENFILENAME = Constants$root.C_POINTER$LAYOUT;
-    public static MethodHandle GetOpenFileNameA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1257.GetOpenFileNameA$MH,"GetOpenFileNameA");
-    }
-    public static int GetOpenFileNameA ( Addressable x0) {
-        var mh$ = GetOpenFileNameA$MH();
-        try {
-            return (int)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle GetOpenFileNameW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1257.GetOpenFileNameW$MH,"GetOpenFileNameW");
-    }
-    public static int GetOpenFileNameW ( Addressable x0) {
-        var mh$ = GetOpenFileNameW$MH();
-        try {
-            return (int)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle GetSaveFileNameA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1257.GetSaveFileNameA$MH,"GetSaveFileNameA");
-    }
-    public static int GetSaveFileNameA ( Addressable x0) {
-        var mh$ = GetSaveFileNameA$MH();
-        try {
-            return (int)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle GetSaveFileNameW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1257.GetSaveFileNameW$MH,"GetSaveFileNameW");
-    }
-    public static int GetSaveFileNameW ( Addressable x0) {
-        var mh$ = GetSaveFileNameW$MH();
-        try {
-            return (int)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle GetFileTitleA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1257.GetFileTitleA$MH,"GetFileTitleA");
-    }
-    public static short GetFileTitleA ( Addressable x0,  Addressable Buf,  short cchSize) {
-        var mh$ = GetFileTitleA$MH();
-        try {
-            return (short)mh$.invokeExact(x0, Buf, cchSize);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle GetFileTitleW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1257.GetFileTitleW$MH,"GetFileTitleW");
-    }
-    public static short GetFileTitleW ( Addressable x0,  Addressable Buf,  short cchSize) {
-        var mh$ = GetFileTitleW$MH();
-        try {
-            return (short)mh$.invokeExact(x0, Buf, cchSize);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfAddress LPOFNOTIFYA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPOFNOTIFYW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPOFNOTIFY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPOFNOTIFYEXA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPOFNOTIFYEXW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPOFNOTIFYEX = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCHOOSECOLORA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCHOOSECOLORW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCHOOSECOLOR = Constants$root.C_POINTER$LAYOUT;
-    public static MethodHandle ChooseColorA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1258.ChooseColorA$MH,"ChooseColorA");
-    }
-    public static int ChooseColorA ( Addressable x0) {
-        var mh$ = ChooseColorA$MH();
-        try {
-            return (int)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ChooseColorW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1258.ChooseColorW$MH,"ChooseColorW");
-    }
-    public static int ChooseColorW ( Addressable x0) {
-        var mh$ = ChooseColorW$MH();
-        try {
-            return (int)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfAddress LPFINDREPLACEA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPFINDREPLACEW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPFINDREPLACE = Constants$root.C_POINTER$LAYOUT;
-    public static MethodHandle FindTextA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1259.FindTextA$MH,"FindTextA");
-    }
-    public static MemoryAddress FindTextA ( Addressable x0) {
-        var mh$ = FindTextA$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle FindTextW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1259.FindTextW$MH,"FindTextW");
-    }
-    public static MemoryAddress FindTextW ( Addressable x0) {
-        var mh$ = FindTextW$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReplaceTextA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1259.ReplaceTextA$MH,"ReplaceTextA");
-    }
-    public static MemoryAddress ReplaceTextA ( Addressable x0) {
-        var mh$ = ReplaceTextA$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReplaceTextW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1259.ReplaceTextW$MH,"ReplaceTextW");
-    }
-    public static MemoryAddress ReplaceTextW ( Addressable x0) {
-        var mh$ = ReplaceTextW$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfAddress LPCHOOSEFONTA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCHOOSEFONTW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCHOOSEFONT = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCCHOOSEFONTA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCCHOOSEFONTW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCCHOOSEFONT = Constants$root.C_POINTER$LAYOUT;
-    public static MethodHandle ChooseFontA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1260.ChooseFontA$MH,"ChooseFontA");
-    }
-    public static int ChooseFontA ( Addressable x0) {
-        var mh$ = ChooseFontA$MH();
-        try {
-            return (int)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ChooseFontW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1260.ChooseFontW$MH,"ChooseFontW");
-    }
-    public static int ChooseFontW ( Addressable x0) {
-        var mh$ = ChooseFontW$MH();
-        try {
-            return (int)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfAddress LPPRINTDLGA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPPRINTDLGW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPPRINTDLG = Constants$root.C_POINTER$LAYOUT;
-    public static MethodHandle PrintDlgA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1261.PrintDlgA$MH,"PrintDlgA");
-    }
-    public static int PrintDlgA ( Addressable pPD) {
-        var mh$ = PrintDlgA$MH();
-        try {
-            return (int)mh$.invokeExact(pPD);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle PrintDlgW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1261.PrintDlgW$MH,"PrintDlgW");
-    }
-    public static int PrintDlgW ( Addressable pPD) {
-        var mh$ = PrintDlgW$MH();
-        try {
-            return (int)mh$.invokeExact(pPD);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfAddress LPPRINTPAGERANGE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCPRINTPAGERANGE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPPRINTDLGEXA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPPRINTDLGEXW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPPRINTDLGEX = Constants$root.C_POINTER$LAYOUT;
-    public static MethodHandle PrintDlgExA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1261.PrintDlgExA$MH,"PrintDlgExA");
-    }
-    public static int PrintDlgExA ( Addressable pPD) {
-        var mh$ = PrintDlgExA$MH();
-        try {
-            return (int)mh$.invokeExact(pPD);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle PrintDlgExW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1261.PrintDlgExW$MH,"PrintDlgExW");
-    }
-    public static int PrintDlgExW ( Addressable pPD) {
-        var mh$ = PrintDlgExW$MH();
-        try {
-            return (int)mh$.invokeExact(pPD);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfAddress LPDEVNAMES = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCDEVNAMES = Constants$root.C_POINTER$LAYOUT;
-    public static MethodHandle CommDlgExtendedError$MH() {
-        return RuntimeHelper.requireNonNull(constants$1261.CommDlgExtendedError$MH,"CommDlgExtendedError");
-    }
-    public static int CommDlgExtendedError () {
-        var mh$ = CommDlgExtendedError$MH();
-        try {
-            return (int)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfAddress LPPAGESETUPDLGA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPPAGESETUPDLGW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPPAGESETUPDLG = Constants$root.C_POINTER$LAYOUT;
-    public static MethodHandle PageSetupDlgA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1262.PageSetupDlgA$MH,"PageSetupDlgA");
-    }
-    public static int PageSetupDlgA ( Addressable x0) {
-        var mh$ = PageSetupDlgA$MH();
-        try {
-            return (int)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle PageSetupDlgW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1262.PageSetupDlgW$MH,"PageSetupDlgW");
-    }
-    public static int PageSetupDlgW ( Addressable x0) {
-        var mh$ = PageSetupDlgW$MH();
-        try {
-            return (int)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle uaw_CharUpperW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1262.uaw_CharUpperW$MH,"uaw_CharUpperW");
-    }
-    public static MemoryAddress uaw_CharUpperW ( Addressable String_) {
-        var mh$ = uaw_CharUpperW$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(String_);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle uaw_lstrcmpW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1263.uaw_lstrcmpW$MH,"uaw_lstrcmpW");
-    }
-    public static int uaw_lstrcmpW ( Addressable String1,  Addressable String2) {
-        var mh$ = uaw_lstrcmpW$MH();
-        try {
-            return (int)mh$.invokeExact(String1, String2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle uaw_lstrcmpiW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1263.uaw_lstrcmpiW$MH,"uaw_lstrcmpiW");
-    }
-    public static int uaw_lstrcmpiW ( Addressable String1,  Addressable String2) {
-        var mh$ = uaw_lstrcmpiW$MH();
-        try {
-            return (int)mh$.invokeExact(String1, String2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle uaw_lstrlenW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1263.uaw_lstrlenW$MH,"uaw_lstrlenW");
-    }
-    public static int uaw_lstrlenW ( Addressable String_) {
-        var mh$ = uaw_lstrlenW$MH();
-        try {
-            return (int)mh$.invokeExact(String_);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle uaw_wcschr$MH() {
-        return RuntimeHelper.requireNonNull(constants$1263.uaw_wcschr$MH,"uaw_wcschr");
-    }
-    public static MemoryAddress uaw_wcschr ( Addressable String_,  short Character) {
-        var mh$ = uaw_wcschr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(String_, Character);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle uaw_wcscpy$MH() {
-        return RuntimeHelper.requireNonNull(constants$1263.uaw_wcscpy$MH,"uaw_wcscpy");
-    }
-    public static MemoryAddress uaw_wcscpy ( Addressable Destination,  Addressable Source) {
-        var mh$ = uaw_wcscpy$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(Destination, Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle uaw_wcsicmp$MH() {
-        return RuntimeHelper.requireNonNull(constants$1263.uaw_wcsicmp$MH,"uaw_wcsicmp");
-    }
-    public static int uaw_wcsicmp ( Addressable String1,  Addressable String2) {
-        var mh$ = uaw_wcsicmp$MH();
-        try {
-            return (int)mh$.invokeExact(String1, String2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle uaw_wcslen$MH() {
-        return RuntimeHelper.requireNonNull(constants$1264.uaw_wcslen$MH,"uaw_wcslen");
-    }
-    public static long uaw_wcslen ( Addressable String_) {
-        var mh$ = uaw_wcslen$MH();
-        try {
-            return (long)mh$.invokeExact(String_);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle uaw_wcsrchr$MH() {
-        return RuntimeHelper.requireNonNull(constants$1264.uaw_wcsrchr$MH,"uaw_wcsrchr");
-    }
-    public static MemoryAddress uaw_wcsrchr ( Addressable String_,  short Character) {
-        var mh$ = uaw_wcsrchr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(String_, Character);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ua_CharUpperW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1264.ua_CharUpperW$MH,"ua_CharUpperW");
-    }
-    public static MemoryAddress ua_CharUpperW ( Addressable String_) {
-        var mh$ = ua_CharUpperW$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(String_);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ua_lstrcmpW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1264.ua_lstrcmpW$MH,"ua_lstrcmpW");
-    }
-    public static int ua_lstrcmpW ( Addressable String1,  Addressable String2) {
-        var mh$ = ua_lstrcmpW$MH();
-        try {
-            return (int)mh$.invokeExact(String1, String2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ua_lstrcmpiW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1264.ua_lstrcmpiW$MH,"ua_lstrcmpiW");
-    }
-    public static int ua_lstrcmpiW ( Addressable String1,  Addressable String2) {
-        var mh$ = ua_lstrcmpiW$MH();
-        try {
-            return (int)mh$.invokeExact(String1, String2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ua_lstrlenW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1264.ua_lstrlenW$MH,"ua_lstrlenW");
-    }
-    public static int ua_lstrlenW ( Addressable String_) {
-        var mh$ = ua_lstrlenW$MH();
-        try {
-            return (int)mh$.invokeExact(String_);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfAddress PUWSTR_C = Constants$root.C_POINTER$LAYOUT;
-    public static MethodHandle ua_wcschr$MH() {
-        return RuntimeHelper.requireNonNull(constants$1265.ua_wcschr$MH,"ua_wcschr");
-    }
-    public static MemoryAddress ua_wcschr ( Addressable String_,  short Character) {
-        var mh$ = ua_wcschr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(String_, Character);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ua_wcsrchr$MH() {
-        return RuntimeHelper.requireNonNull(constants$1265.ua_wcsrchr$MH,"ua_wcsrchr");
-    }
-    public static MemoryAddress ua_wcsrchr ( Addressable String_,  short Character) {
-        var mh$ = ua_wcsrchr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(String_, Character);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ua_wcscpy$MH() {
-        return RuntimeHelper.requireNonNull(constants$1265.ua_wcscpy$MH,"ua_wcscpy");
-    }
-    public static MemoryAddress ua_wcscpy ( Addressable Destination,  Addressable Source) {
-        var mh$ = ua_wcscpy$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(Destination, Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ua_wcscpy_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$1265.ua_wcscpy_s$MH,"ua_wcscpy_s");
-    }
-    public static MemoryAddress ua_wcscpy_s ( Addressable Destination,  long DestinationSize,  Addressable Source) {
-        var mh$ = ua_wcscpy_s$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(Destination, DestinationSize, Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ua_wcslen$MH() {
-        return RuntimeHelper.requireNonNull(constants$1265.ua_wcslen$MH,"ua_wcslen");
-    }
-    public static long ua_wcslen ( Addressable String_) {
-        var mh$ = ua_wcslen$MH();
-        try {
-            return (long)mh$.invokeExact(String_);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ua_wcsicmp$MH() {
-        return RuntimeHelper.requireNonNull(constants$1265.ua_wcsicmp$MH,"ua_wcsicmp");
-    }
-    public static int ua_wcsicmp ( Addressable String1,  Addressable String2) {
-        var mh$ = ua_wcsicmp$MH();
-        try {
-            return (int)mh$.invokeExact(String1, String2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MemorySegment NETWORK_MANAGER_FIRST_IP_ADDRESS_ARRIVAL_GUID$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$1266.NETWORK_MANAGER_FIRST_IP_ADDRESS_ARRIVAL_GUID$SEGMENT,"NETWORK_MANAGER_FIRST_IP_ADDRESS_ARRIVAL_GUID");
-    }
-    public static MemorySegment NETWORK_MANAGER_LAST_IP_ADDRESS_REMOVAL_GUID$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$1266.NETWORK_MANAGER_LAST_IP_ADDRESS_REMOVAL_GUID$SEGMENT,"NETWORK_MANAGER_LAST_IP_ADDRESS_REMOVAL_GUID");
-    }
-    public static MemorySegment DOMAIN_JOIN_GUID$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$1266.DOMAIN_JOIN_GUID$SEGMENT,"DOMAIN_JOIN_GUID");
-    }
-    public static MemorySegment DOMAIN_LEAVE_GUID$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$1266.DOMAIN_LEAVE_GUID$SEGMENT,"DOMAIN_LEAVE_GUID");
-    }
-    public static MemorySegment FIREWALL_PORT_OPEN_GUID$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$1266.FIREWALL_PORT_OPEN_GUID$SEGMENT,"FIREWALL_PORT_OPEN_GUID");
-    }
-    public static MemorySegment FIREWALL_PORT_CLOSE_GUID$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$1266.FIREWALL_PORT_CLOSE_GUID$SEGMENT,"FIREWALL_PORT_CLOSE_GUID");
-    }
-    public static MemorySegment MACHINE_POLICY_PRESENT_GUID$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$1267.MACHINE_POLICY_PRESENT_GUID$SEGMENT,"MACHINE_POLICY_PRESENT_GUID");
-    }
-    public static MemorySegment USER_POLICY_PRESENT_GUID$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$1267.USER_POLICY_PRESENT_GUID$SEGMENT,"USER_POLICY_PRESENT_GUID");
-    }
-    public static MemorySegment RPC_INTERFACE_EVENT_GUID$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$1267.RPC_INTERFACE_EVENT_GUID$SEGMENT,"RPC_INTERFACE_EVENT_GUID");
-    }
-    public static MemorySegment NAMED_PIPE_EVENT_GUID$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$1267.NAMED_PIPE_EVENT_GUID$SEGMENT,"NAMED_PIPE_EVENT_GUID");
-    }
-    public static MemorySegment CUSTOM_SYSTEM_STATE_CHANGE_EVENT_GUID$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$1267.CUSTOM_SYSTEM_STATE_CHANGE_EVENT_GUID$SEGMENT,"CUSTOM_SYSTEM_STATE_CHANGE_EVENT_GUID");
-    }
-    public static OfAddress LPSERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSERVICE_DESCRIPTIONA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSERVICE_DESCRIPTIONW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSERVICE_DESCRIPTION = Constants$root.C_POINTER$LAYOUT;
-    public static int SC_ACTION_NONE() {
-        return (int)0L;
-    }
-    public static int SC_ACTION_RESTART() {
-        return (int)1L;
-    }
-    public static int SC_ACTION_REBOOT() {
-        return (int)2L;
-    }
-    public static int SC_ACTION_RUN_COMMAND() {
-        return (int)3L;
-    }
-    public static int SC_ACTION_OWN_RESTART() {
-        return (int)4L;
-    }
-    public static OfAddress LPSC_ACTION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSERVICE_FAILURE_ACTIONSA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSERVICE_FAILURE_ACTIONSW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSERVICE_FAILURE_ACTIONS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSERVICE_DELAYED_AUTO_START_INFO = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSERVICE_FAILURE_ACTIONS_FLAG = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSERVICE_SID_INFO = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSERVICE_REQUIRED_PRIVILEGES_INFOA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSERVICE_REQUIRED_PRIVILEGES_INFOW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSERVICE_REQUIRED_PRIVILEGES_INFO = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSERVICE_PRESHUTDOWN_INFO = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSERVICE_TRIGGER_SPECIFIC_DATA_ITEM = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSERVICE_TRIGGER = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSERVICE_TRIGGER_INFO = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSERVICE_PREFERRED_NODE_INFO = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSERVICE_TIMECHANGE_INFO = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSERVICE_LAUNCH_PROTECTED_INFO = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress SC_HANDLE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSC_HANDLE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress SERVICE_STATUS_HANDLE = Constants$root.C_POINTER$LAYOUT;
-    public static int SC_STATUS_PROCESS_INFO() {
-        return (int)0L;
-    }
-    public static int SC_ENUM_PROCESS_INFO() {
-        return (int)0L;
-    }
-    public static OfAddress LPSERVICE_STATUS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSERVICE_STATUS_PROCESS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPENUM_SERVICE_STATUSA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPENUM_SERVICE_STATUSW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPENUM_SERVICE_STATUS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPENUM_SERVICE_STATUS_PROCESSA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPENUM_SERVICE_STATUS_PROCESSW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPENUM_SERVICE_STATUS_PROCESS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress SC_LOCK = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPQUERY_SERVICE_LOCK_STATUSA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPQUERY_SERVICE_LOCK_STATUSW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPQUERY_SERVICE_LOCK_STATUS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPQUERY_SERVICE_CONFIGA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPQUERY_SERVICE_CONFIGW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPQUERY_SERVICE_CONFIG = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSERVICE_TABLE_ENTRYA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSERVICE_TABLE_ENTRYW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSERVICE_TABLE_ENTRY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSERVICE_NOTIFY_1 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSERVICE_NOTIFY_2A = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSERVICE_NOTIFY_2W = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSERVICE_NOTIFY_2 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSERVICE_NOTIFYA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSERVICE_NOTIFYW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSERVICE_NOTIFY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSERVICE_CONTROL_STATUS_REASON_PARAMSA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSERVICE_CONTROL_STATUS_REASON_PARAMSW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSERVICE_CONTROL_STATUS_REASON_PARAMS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSERVICE_START_REASON = Constants$root.C_POINTER$LAYOUT;
-    public static MethodHandle ChangeServiceConfigA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1270.ChangeServiceConfigA$MH,"ChangeServiceConfigA");
-    }
-    public static int ChangeServiceConfigA ( Addressable hService,  int dwServiceType,  int dwStartType,  int dwErrorControl,  Addressable lpBinaryPathName,  Addressable lpLoadOrderGroup,  Addressable lpdwTagId,  Addressable lpDependencies,  Addressable lpServiceStartName,  Addressable lpPassword,  Addressable lpDisplayName) {
-        var mh$ = ChangeServiceConfigA$MH();
-        try {
-            return (int)mh$.invokeExact(hService, dwServiceType, dwStartType, dwErrorControl, lpBinaryPathName, lpLoadOrderGroup, lpdwTagId, lpDependencies, lpServiceStartName, lpPassword, lpDisplayName);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ChangeServiceConfigW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1271.ChangeServiceConfigW$MH,"ChangeServiceConfigW");
-    }
-    public static int ChangeServiceConfigW ( Addressable hService,  int dwServiceType,  int dwStartType,  int dwErrorControl,  Addressable lpBinaryPathName,  Addressable lpLoadOrderGroup,  Addressable lpdwTagId,  Addressable lpDependencies,  Addressable lpServiceStartName,  Addressable lpPassword,  Addressable lpDisplayName) {
-        var mh$ = ChangeServiceConfigW$MH();
-        try {
-            return (int)mh$.invokeExact(hService, dwServiceType, dwStartType, dwErrorControl, lpBinaryPathName, lpLoadOrderGroup, lpdwTagId, lpDependencies, lpServiceStartName, lpPassword, lpDisplayName);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ChangeServiceConfig2A$MH() {
-        return RuntimeHelper.requireNonNull(constants$1271.ChangeServiceConfig2A$MH,"ChangeServiceConfig2A");
-    }
-    public static int ChangeServiceConfig2A ( Addressable hService,  int dwInfoLevel,  Addressable lpInfo) {
-        var mh$ = ChangeServiceConfig2A$MH();
-        try {
-            return (int)mh$.invokeExact(hService, dwInfoLevel, lpInfo);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ChangeServiceConfig2W$MH() {
-        return RuntimeHelper.requireNonNull(constants$1271.ChangeServiceConfig2W$MH,"ChangeServiceConfig2W");
-    }
-    public static int ChangeServiceConfig2W ( Addressable hService,  int dwInfoLevel,  Addressable lpInfo) {
-        var mh$ = ChangeServiceConfig2W$MH();
-        try {
-            return (int)mh$.invokeExact(hService, dwInfoLevel, lpInfo);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle CloseServiceHandle$MH() {
-        return RuntimeHelper.requireNonNull(constants$1271.CloseServiceHandle$MH,"CloseServiceHandle");
-    }
-    public static int CloseServiceHandle ( Addressable hSCObject) {
-        var mh$ = CloseServiceHandle$MH();
-        try {
-            return (int)mh$.invokeExact(hSCObject);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ControlService$MH() {
-        return RuntimeHelper.requireNonNull(constants$1271.ControlService$MH,"ControlService");
-    }
-    public static int ControlService ( Addressable hService,  int dwControl,  Addressable lpServiceStatus) {
-        var mh$ = ControlService$MH();
-        try {
-            return (int)mh$.invokeExact(hService, dwControl, lpServiceStatus);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle CreateServiceA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1271.CreateServiceA$MH,"CreateServiceA");
-    }
-    public static MemoryAddress CreateServiceA ( Addressable hSCManager,  Addressable lpServiceName,  Addressable lpDisplayName,  int dwDesiredAccess,  int dwServiceType,  int dwStartType,  int dwErrorControl,  Addressable lpBinaryPathName,  Addressable lpLoadOrderGroup,  Addressable lpdwTagId,  Addressable lpDependencies,  Addressable lpServiceStartName,  Addressable lpPassword) {
-        var mh$ = CreateServiceA$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(hSCManager, lpServiceName, lpDisplayName, dwDesiredAccess, dwServiceType, dwStartType, dwErrorControl, lpBinaryPathName, lpLoadOrderGroup, lpdwTagId, lpDependencies, lpServiceStartName, lpPassword);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle CreateServiceW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1272.CreateServiceW$MH,"CreateServiceW");
-    }
-    public static MemoryAddress CreateServiceW ( Addressable hSCManager,  Addressable lpServiceName,  Addressable lpDisplayName,  int dwDesiredAccess,  int dwServiceType,  int dwStartType,  int dwErrorControl,  Addressable lpBinaryPathName,  Addressable lpLoadOrderGroup,  Addressable lpdwTagId,  Addressable lpDependencies,  Addressable lpServiceStartName,  Addressable lpPassword) {
-        var mh$ = CreateServiceW$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(hSCManager, lpServiceName, lpDisplayName, dwDesiredAccess, dwServiceType, dwStartType, dwErrorControl, lpBinaryPathName, lpLoadOrderGroup, lpdwTagId, lpDependencies, lpServiceStartName, lpPassword);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle DeleteService$MH() {
-        return RuntimeHelper.requireNonNull(constants$1272.DeleteService$MH,"DeleteService");
-    }
-    public static int DeleteService ( Addressable hService) {
-        var mh$ = DeleteService$MH();
-        try {
-            return (int)mh$.invokeExact(hService);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle EnumDependentServicesA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1272.EnumDependentServicesA$MH,"EnumDependentServicesA");
-    }
-    public static int EnumDependentServicesA ( Addressable hService,  int dwServiceState,  Addressable lpServices,  int cbBufSize,  Addressable pcbBytesNeeded,  Addressable lpServicesReturned) {
-        var mh$ = EnumDependentServicesA$MH();
-        try {
-            return (int)mh$.invokeExact(hService, dwServiceState, lpServices, cbBufSize, pcbBytesNeeded, lpServicesReturned);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle EnumDependentServicesW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1272.EnumDependentServicesW$MH,"EnumDependentServicesW");
-    }
-    public static int EnumDependentServicesW ( Addressable hService,  int dwServiceState,  Addressable lpServices,  int cbBufSize,  Addressable pcbBytesNeeded,  Addressable lpServicesReturned) {
-        var mh$ = EnumDependentServicesW$MH();
-        try {
-            return (int)mh$.invokeExact(hService, dwServiceState, lpServices, cbBufSize, pcbBytesNeeded, lpServicesReturned);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle EnumServicesStatusA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1272.EnumServicesStatusA$MH,"EnumServicesStatusA");
-    }
-    public static int EnumServicesStatusA ( Addressable hSCManager,  int dwServiceType,  int dwServiceState,  Addressable lpServices,  int cbBufSize,  Addressable pcbBytesNeeded,  Addressable lpServicesReturned,  Addressable lpResumeHandle) {
-        var mh$ = EnumServicesStatusA$MH();
-        try {
-            return (int)mh$.invokeExact(hSCManager, dwServiceType, dwServiceState, lpServices, cbBufSize, pcbBytesNeeded, lpServicesReturned, lpResumeHandle);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle EnumServicesStatusW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1272.EnumServicesStatusW$MH,"EnumServicesStatusW");
-    }
-    public static int EnumServicesStatusW ( Addressable hSCManager,  int dwServiceType,  int dwServiceState,  Addressable lpServices,  int cbBufSize,  Addressable pcbBytesNeeded,  Addressable lpServicesReturned,  Addressable lpResumeHandle) {
-        var mh$ = EnumServicesStatusW$MH();
-        try {
-            return (int)mh$.invokeExact(hSCManager, dwServiceType, dwServiceState, lpServices, cbBufSize, pcbBytesNeeded, lpServicesReturned, lpResumeHandle);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle EnumServicesStatusExA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1273.EnumServicesStatusExA$MH,"EnumServicesStatusExA");
-    }
-    public static int EnumServicesStatusExA ( Addressable hSCManager,  int InfoLevel,  int dwServiceType,  int dwServiceState,  Addressable lpServices,  int cbBufSize,  Addressable pcbBytesNeeded,  Addressable lpServicesReturned,  Addressable lpResumeHandle,  Addressable pszGroupName) {
-        var mh$ = EnumServicesStatusExA$MH();
-        try {
-            return (int)mh$.invokeExact(hSCManager, InfoLevel, dwServiceType, dwServiceState, lpServices, cbBufSize, pcbBytesNeeded, lpServicesReturned, lpResumeHandle, pszGroupName);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle EnumServicesStatusExW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1273.EnumServicesStatusExW$MH,"EnumServicesStatusExW");
-    }
-    public static int EnumServicesStatusExW ( Addressable hSCManager,  int InfoLevel,  int dwServiceType,  int dwServiceState,  Addressable lpServices,  int cbBufSize,  Addressable pcbBytesNeeded,  Addressable lpServicesReturned,  Addressable lpResumeHandle,  Addressable pszGroupName) {
-        var mh$ = EnumServicesStatusExW$MH();
-        try {
-            return (int)mh$.invokeExact(hSCManager, InfoLevel, dwServiceType, dwServiceState, lpServices, cbBufSize, pcbBytesNeeded, lpServicesReturned, lpResumeHandle, pszGroupName);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle GetServiceKeyNameA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1273.GetServiceKeyNameA$MH,"GetServiceKeyNameA");
-    }
-    public static int GetServiceKeyNameA ( Addressable hSCManager,  Addressable lpDisplayName,  Addressable lpServiceName,  Addressable lpcchBuffer) {
-        var mh$ = GetServiceKeyNameA$MH();
-        try {
-            return (int)mh$.invokeExact(hSCManager, lpDisplayName, lpServiceName, lpcchBuffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle GetServiceKeyNameW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1273.GetServiceKeyNameW$MH,"GetServiceKeyNameW");
-    }
-    public static int GetServiceKeyNameW ( Addressable hSCManager,  Addressable lpDisplayName,  Addressable lpServiceName,  Addressable lpcchBuffer) {
-        var mh$ = GetServiceKeyNameW$MH();
-        try {
-            return (int)mh$.invokeExact(hSCManager, lpDisplayName, lpServiceName, lpcchBuffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle GetServiceDisplayNameA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1273.GetServiceDisplayNameA$MH,"GetServiceDisplayNameA");
-    }
-    public static int GetServiceDisplayNameA ( Addressable hSCManager,  Addressable lpServiceName,  Addressable lpDisplayName,  Addressable lpcchBuffer) {
-        var mh$ = GetServiceDisplayNameA$MH();
-        try {
-            return (int)mh$.invokeExact(hSCManager, lpServiceName, lpDisplayName, lpcchBuffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle GetServiceDisplayNameW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1273.GetServiceDisplayNameW$MH,"GetServiceDisplayNameW");
-    }
-    public static int GetServiceDisplayNameW ( Addressable hSCManager,  Addressable lpServiceName,  Addressable lpDisplayName,  Addressable lpcchBuffer) {
-        var mh$ = GetServiceDisplayNameW$MH();
-        try {
-            return (int)mh$.invokeExact(hSCManager, lpServiceName, lpDisplayName, lpcchBuffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle LockServiceDatabase$MH() {
-        return RuntimeHelper.requireNonNull(constants$1274.LockServiceDatabase$MH,"LockServiceDatabase");
-    }
-    public static MemoryAddress LockServiceDatabase ( Addressable hSCManager) {
-        var mh$ = LockServiceDatabase$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(hSCManager);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle NotifyBootConfigStatus$MH() {
-        return RuntimeHelper.requireNonNull(constants$1274.NotifyBootConfigStatus$MH,"NotifyBootConfigStatus");
-    }
-    public static int NotifyBootConfigStatus ( int BootAcceptable) {
-        var mh$ = NotifyBootConfigStatus$MH();
-        try {
-            return (int)mh$.invokeExact(BootAcceptable);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OpenSCManagerA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1274.OpenSCManagerA$MH,"OpenSCManagerA");
-    }
-    public static MemoryAddress OpenSCManagerA ( Addressable lpMachineName,  Addressable lpDatabaseName,  int dwDesiredAccess) {
-        var mh$ = OpenSCManagerA$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(lpMachineName, lpDatabaseName, dwDesiredAccess);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OpenSCManagerW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1274.OpenSCManagerW$MH,"OpenSCManagerW");
-    }
-    public static MemoryAddress OpenSCManagerW ( Addressable lpMachineName,  Addressable lpDatabaseName,  int dwDesiredAccess) {
-        var mh$ = OpenSCManagerW$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(lpMachineName, lpDatabaseName, dwDesiredAccess);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OpenServiceA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1274.OpenServiceA$MH,"OpenServiceA");
-    }
-    public static MemoryAddress OpenServiceA ( Addressable hSCManager,  Addressable lpServiceName,  int dwDesiredAccess) {
-        var mh$ = OpenServiceA$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(hSCManager, lpServiceName, dwDesiredAccess);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle OpenServiceW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1274.OpenServiceW$MH,"OpenServiceW");
-    }
-    public static MemoryAddress OpenServiceW ( Addressable hSCManager,  Addressable lpServiceName,  int dwDesiredAccess) {
-        var mh$ = OpenServiceW$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(hSCManager, lpServiceName, dwDesiredAccess);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle QueryServiceConfigA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1275.QueryServiceConfigA$MH,"QueryServiceConfigA");
-    }
-    public static int QueryServiceConfigA ( Addressable hService,  Addressable lpServiceConfig,  int cbBufSize,  Addressable pcbBytesNeeded) {
-        var mh$ = QueryServiceConfigA$MH();
-        try {
-            return (int)mh$.invokeExact(hService, lpServiceConfig, cbBufSize, pcbBytesNeeded);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle QueryServiceConfigW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1275.QueryServiceConfigW$MH,"QueryServiceConfigW");
-    }
-    public static int QueryServiceConfigW ( Addressable hService,  Addressable lpServiceConfig,  int cbBufSize,  Addressable pcbBytesNeeded) {
-        var mh$ = QueryServiceConfigW$MH();
-        try {
-            return (int)mh$.invokeExact(hService, lpServiceConfig, cbBufSize, pcbBytesNeeded);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle QueryServiceConfig2A$MH() {
-        return RuntimeHelper.requireNonNull(constants$1275.QueryServiceConfig2A$MH,"QueryServiceConfig2A");
-    }
-    public static int QueryServiceConfig2A ( Addressable hService,  int dwInfoLevel,  Addressable lpBuffer,  int cbBufSize,  Addressable pcbBytesNeeded) {
-        var mh$ = QueryServiceConfig2A$MH();
-        try {
-            return (int)mh$.invokeExact(hService, dwInfoLevel, lpBuffer, cbBufSize, pcbBytesNeeded);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle QueryServiceConfig2W$MH() {
-        return RuntimeHelper.requireNonNull(constants$1275.QueryServiceConfig2W$MH,"QueryServiceConfig2W");
-    }
-    public static int QueryServiceConfig2W ( Addressable hService,  int dwInfoLevel,  Addressable lpBuffer,  int cbBufSize,  Addressable pcbBytesNeeded) {
-        var mh$ = QueryServiceConfig2W$MH();
-        try {
-            return (int)mh$.invokeExact(hService, dwInfoLevel, lpBuffer, cbBufSize, pcbBytesNeeded);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle QueryServiceLockStatusA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1275.QueryServiceLockStatusA$MH,"QueryServiceLockStatusA");
-    }
-    public static int QueryServiceLockStatusA ( Addressable hSCManager,  Addressable lpLockStatus,  int cbBufSize,  Addressable pcbBytesNeeded) {
-        var mh$ = QueryServiceLockStatusA$MH();
-        try {
-            return (int)mh$.invokeExact(hSCManager, lpLockStatus, cbBufSize, pcbBytesNeeded);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle QueryServiceLockStatusW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1275.QueryServiceLockStatusW$MH,"QueryServiceLockStatusW");
-    }
-    public static int QueryServiceLockStatusW ( Addressable hSCManager,  Addressable lpLockStatus,  int cbBufSize,  Addressable pcbBytesNeeded) {
-        var mh$ = QueryServiceLockStatusW$MH();
-        try {
-            return (int)mh$.invokeExact(hSCManager, lpLockStatus, cbBufSize, pcbBytesNeeded);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle QueryServiceObjectSecurity$MH() {
-        return RuntimeHelper.requireNonNull(constants$1276.QueryServiceObjectSecurity$MH,"QueryServiceObjectSecurity");
-    }
-    public static int QueryServiceObjectSecurity ( Addressable hService,  int dwSecurityInformation,  Addressable lpSecurityDescriptor,  int cbBufSize,  Addressable pcbBytesNeeded) {
-        var mh$ = QueryServiceObjectSecurity$MH();
-        try {
-            return (int)mh$.invokeExact(hService, dwSecurityInformation, lpSecurityDescriptor, cbBufSize, pcbBytesNeeded);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle QueryServiceStatus$MH() {
-        return RuntimeHelper.requireNonNull(constants$1276.QueryServiceStatus$MH,"QueryServiceStatus");
-    }
-    public static int QueryServiceStatus ( Addressable hService,  Addressable lpServiceStatus) {
-        var mh$ = QueryServiceStatus$MH();
-        try {
-            return (int)mh$.invokeExact(hService, lpServiceStatus);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle QueryServiceStatusEx$MH() {
-        return RuntimeHelper.requireNonNull(constants$1276.QueryServiceStatusEx$MH,"QueryServiceStatusEx");
-    }
-    public static int QueryServiceStatusEx ( Addressable hService,  int InfoLevel,  Addressable lpBuffer,  int cbBufSize,  Addressable pcbBytesNeeded) {
-        var mh$ = QueryServiceStatusEx$MH();
-        try {
-            return (int)mh$.invokeExact(hService, InfoLevel, lpBuffer, cbBufSize, pcbBytesNeeded);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle RegisterServiceCtrlHandlerA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1276.RegisterServiceCtrlHandlerA$MH,"RegisterServiceCtrlHandlerA");
-    }
-    public static MemoryAddress RegisterServiceCtrlHandlerA ( Addressable lpServiceName,  Addressable lpHandlerProc) {
-        var mh$ = RegisterServiceCtrlHandlerA$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(lpServiceName, lpHandlerProc);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle RegisterServiceCtrlHandlerW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1276.RegisterServiceCtrlHandlerW$MH,"RegisterServiceCtrlHandlerW");
-    }
-    public static MemoryAddress RegisterServiceCtrlHandlerW ( Addressable lpServiceName,  Addressable lpHandlerProc) {
-        var mh$ = RegisterServiceCtrlHandlerW$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(lpServiceName, lpHandlerProc);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle RegisterServiceCtrlHandlerExA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1276.RegisterServiceCtrlHandlerExA$MH,"RegisterServiceCtrlHandlerExA");
-    }
-    public static MemoryAddress RegisterServiceCtrlHandlerExA ( Addressable lpServiceName,  Addressable lpHandlerProc,  Addressable lpContext) {
-        var mh$ = RegisterServiceCtrlHandlerExA$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(lpServiceName, lpHandlerProc, lpContext);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle RegisterServiceCtrlHandlerExW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1277.RegisterServiceCtrlHandlerExW$MH,"RegisterServiceCtrlHandlerExW");
-    }
-    public static MemoryAddress RegisterServiceCtrlHandlerExW ( Addressable lpServiceName,  Addressable lpHandlerProc,  Addressable lpContext) {
-        var mh$ = RegisterServiceCtrlHandlerExW$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(lpServiceName, lpHandlerProc, lpContext);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle SetServiceObjectSecurity$MH() {
-        return RuntimeHelper.requireNonNull(constants$1277.SetServiceObjectSecurity$MH,"SetServiceObjectSecurity");
-    }
-    public static int SetServiceObjectSecurity ( Addressable hService,  int dwSecurityInformation,  Addressable lpSecurityDescriptor) {
-        var mh$ = SetServiceObjectSecurity$MH();
-        try {
-            return (int)mh$.invokeExact(hService, dwSecurityInformation, lpSecurityDescriptor);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle SetServiceStatus$MH() {
-        return RuntimeHelper.requireNonNull(constants$1277.SetServiceStatus$MH,"SetServiceStatus");
-    }
-    public static int SetServiceStatus ( Addressable hServiceStatus,  Addressable lpServiceStatus) {
-        var mh$ = SetServiceStatus$MH();
-        try {
-            return (int)mh$.invokeExact(hServiceStatus, lpServiceStatus);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle StartServiceCtrlDispatcherA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1277.StartServiceCtrlDispatcherA$MH,"StartServiceCtrlDispatcherA");
-    }
-    public static int StartServiceCtrlDispatcherA ( Addressable lpServiceStartTable) {
-        var mh$ = StartServiceCtrlDispatcherA$MH();
-        try {
-            return (int)mh$.invokeExact(lpServiceStartTable);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle StartServiceCtrlDispatcherW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1277.StartServiceCtrlDispatcherW$MH,"StartServiceCtrlDispatcherW");
-    }
-    public static int StartServiceCtrlDispatcherW ( Addressable lpServiceStartTable) {
-        var mh$ = StartServiceCtrlDispatcherW$MH();
-        try {
-            return (int)mh$.invokeExact(lpServiceStartTable);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle StartServiceA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1277.StartServiceA$MH,"StartServiceA");
-    }
-    public static int StartServiceA ( Addressable hService,  int dwNumServiceArgs,  Addressable lpServiceArgVectors) {
-        var mh$ = StartServiceA$MH();
-        try {
-            return (int)mh$.invokeExact(hService, dwNumServiceArgs, lpServiceArgVectors);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle StartServiceW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1278.StartServiceW$MH,"StartServiceW");
-    }
-    public static int StartServiceW ( Addressable hService,  int dwNumServiceArgs,  Addressable lpServiceArgVectors) {
-        var mh$ = StartServiceW$MH();
-        try {
-            return (int)mh$.invokeExact(hService, dwNumServiceArgs, lpServiceArgVectors);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle UnlockServiceDatabase$MH() {
-        return RuntimeHelper.requireNonNull(constants$1278.UnlockServiceDatabase$MH,"UnlockServiceDatabase");
-    }
-    public static int UnlockServiceDatabase ( Addressable ScLock) {
-        var mh$ = UnlockServiceDatabase$MH();
-        try {
-            return (int)mh$.invokeExact(ScLock);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle NotifyServiceStatusChangeA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1278.NotifyServiceStatusChangeA$MH,"NotifyServiceStatusChangeA");
-    }
-    public static int NotifyServiceStatusChangeA ( Addressable hService,  int dwNotifyMask,  Addressable pNotifyBuffer) {
-        var mh$ = NotifyServiceStatusChangeA$MH();
-        try {
-            return (int)mh$.invokeExact(hService, dwNotifyMask, pNotifyBuffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle NotifyServiceStatusChangeW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1278.NotifyServiceStatusChangeW$MH,"NotifyServiceStatusChangeW");
-    }
-    public static int NotifyServiceStatusChangeW ( Addressable hService,  int dwNotifyMask,  Addressable pNotifyBuffer) {
-        var mh$ = NotifyServiceStatusChangeW$MH();
-        try {
-            return (int)mh$.invokeExact(hService, dwNotifyMask, pNotifyBuffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ControlServiceExA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1278.ControlServiceExA$MH,"ControlServiceExA");
-    }
-    public static int ControlServiceExA ( Addressable hService,  int dwControl,  int dwInfoLevel,  Addressable pControlParams) {
-        var mh$ = ControlServiceExA$MH();
-        try {
-            return (int)mh$.invokeExact(hService, dwControl, dwInfoLevel, pControlParams);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ControlServiceExW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1278.ControlServiceExW$MH,"ControlServiceExW");
-    }
-    public static int ControlServiceExW ( Addressable hService,  int dwControl,  int dwInfoLevel,  Addressable pControlParams) {
-        var mh$ = ControlServiceExW$MH();
-        try {
-            return (int)mh$.invokeExact(hService, dwControl, dwInfoLevel, pControlParams);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle QueryServiceDynamicInformation$MH() {
-        return RuntimeHelper.requireNonNull(constants$1279.QueryServiceDynamicInformation$MH,"QueryServiceDynamicInformation");
-    }
-    public static int QueryServiceDynamicInformation ( Addressable hServiceStatus,  int dwInfoLevel,  Addressable ppDynamicInfo) {
-        var mh$ = QueryServiceDynamicInformation$MH();
-        try {
-            return (int)mh$.invokeExact(hServiceStatus, dwInfoLevel, ppDynamicInfo);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static int SC_EVENT_DATABASE_CHANGE() {
-        return (int)0L;
-    }
-    public static int SC_EVENT_PROPERTY_CHANGE() {
-        return (int)1L;
-    }
-    public static int SC_EVENT_STATUS_CHANGE() {
-        return (int)2L;
-    }
-    public static OfAddress PSC_EVENT_TYPE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSC_NOTIFICATION_REGISTRATION = Constants$root.C_POINTER$LAYOUT;
-    public static MethodHandle SubscribeServiceChangeNotifications$MH() {
-        return RuntimeHelper.requireNonNull(constants$1279.SubscribeServiceChangeNotifications$MH,"SubscribeServiceChangeNotifications");
-    }
-    public static int SubscribeServiceChangeNotifications ( Addressable hService,  int eEventType,  Addressable pCallback,  Addressable pCallbackContext,  Addressable pSubscription) {
-        var mh$ = SubscribeServiceChangeNotifications$MH();
-        try {
-            return (int)mh$.invokeExact(hService, eEventType, pCallback, pCallbackContext, pSubscription);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle UnsubscribeServiceChangeNotifications$MH() {
-        return RuntimeHelper.requireNonNull(constants$1280.UnsubscribeServiceChangeNotifications$MH,"UnsubscribeServiceChangeNotifications");
-    }
-    public static void UnsubscribeServiceChangeNotifications ( Addressable pSubscription) {
-        var mh$ = UnsubscribeServiceChangeNotifications$MH();
-        try {
-            mh$.invokeExact(pSubscription);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WaitServiceState$MH() {
-        return RuntimeHelper.requireNonNull(constants$1280.WaitServiceState$MH,"WaitServiceState");
-    }
-    public static int WaitServiceState ( Addressable hService,  int dwNotify,  int dwTimeout,  Addressable hCancelEvent) {
-        var mh$ = WaitServiceState$MH();
-        try {
-            return (int)mh$.invokeExact(hService, dwNotify, dwTimeout, hCancelEvent);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static int ServiceRegistryStateParameters() {
-        return (int)0L;
-    }
-    public static int ServiceRegistryStatePersistent() {
-        return (int)1L;
-    }
-    public static int MaxServiceRegistryStateType() {
-        return (int)2L;
-    }
-    public static MethodHandle GetServiceRegistryStateKey$MH() {
-        return RuntimeHelper.requireNonNull(constants$1280.GetServiceRegistryStateKey$MH,"GetServiceRegistryStateKey");
-    }
-    public static int GetServiceRegistryStateKey ( Addressable ServiceStatusHandle,  int StateType,  int AccessMask,  Addressable ServiceStateKey) {
-        var mh$ = GetServiceRegistryStateKey$MH();
-        try {
-            return (int)mh$.invokeExact(ServiceStatusHandle, StateType, AccessMask, ServiceStateKey);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static int ServiceDirectoryPersistentState() {
-        return (int)0L;
-    }
-    public static int ServiceDirectoryTypeMax() {
-        return (int)1L;
-    }
-    public static MethodHandle GetServiceDirectory$MH() {
-        return RuntimeHelper.requireNonNull(constants$1280.GetServiceDirectory$MH,"GetServiceDirectory");
-    }
-    public static int GetServiceDirectory ( Addressable hServiceStatus,  int eDirectoryType,  Addressable lpPathBuffer,  int cchPathBufferLength,  Addressable lpcchRequiredBufferLength) {
-        var mh$ = GetServiceDirectory$MH();
-        try {
-            return (int)mh$.invokeExact(hServiceStatus, eDirectoryType, lpPathBuffer, cchPathBufferLength, lpcchRequiredBufferLength);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfAddress PMODEMDEVCAPS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPMODEMDEVCAPS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PMODEMSETTINGS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPMODEMSETTINGS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress HIMC = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress HIMCC = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPHKL = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPUINT = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCOMPOSITIONFORM = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress NPCOMPOSITIONFORM = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCOMPOSITIONFORM = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCANDIDATEFORM = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress NPCANDIDATEFORM = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCANDIDATEFORM = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCANDIDATELIST = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress NPCANDIDATELIST = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCANDIDATELIST = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PREGISTERWORDA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress NPREGISTERWORDA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPREGISTERWORDA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PREGISTERWORDW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress NPREGISTERWORDW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPREGISTERWORDW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PREGISTERWORD = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress NPREGISTERWORD = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPREGISTERWORD = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PRECONVERTSTRING = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress NPRECONVERTSTRING = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPRECONVERTSTRING = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSTYLEBUFA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress NPSTYLEBUFA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSTYLEBUFA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSTYLEBUFW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress NPSTYLEBUFW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSTYLEBUFW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSTYLEBUF = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress NPSTYLEBUF = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSTYLEBUF = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PIMEMENUITEMINFOA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress NPIMEMENUITEMINFOA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPIMEMENUITEMINFOA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PIMEMENUITEMINFOW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress NPIMEMENUITEMINFOW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPIMEMENUITEMINFOW = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PIMEMENUITEMINFO = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress NPIMEMENUITEMINFO = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPIMEMENUITEMINFO = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PIMECHARPOSITION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress NPIMECHARPOSITION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPIMECHARPOSITION = Constants$root.C_POINTER$LAYOUT;
-    public static MethodHandle ImmInstallIMEA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1281.ImmInstallIMEA$MH,"ImmInstallIMEA");
-    }
-    public static MemoryAddress ImmInstallIMEA ( Addressable lpszIMEFileName,  Addressable lpszLayoutText) {
-        var mh$ = ImmInstallIMEA$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(lpszIMEFileName, lpszLayoutText);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmInstallIMEW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1281.ImmInstallIMEW$MH,"ImmInstallIMEW");
-    }
-    public static MemoryAddress ImmInstallIMEW ( Addressable lpszIMEFileName,  Addressable lpszLayoutText) {
-        var mh$ = ImmInstallIMEW$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(lpszIMEFileName, lpszLayoutText);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetDefaultIMEWnd$MH() {
-        return RuntimeHelper.requireNonNull(constants$1281.ImmGetDefaultIMEWnd$MH,"ImmGetDefaultIMEWnd");
-    }
-    public static MemoryAddress ImmGetDefaultIMEWnd ( Addressable x0) {
-        var mh$ = ImmGetDefaultIMEWnd$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetDescriptionA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1281.ImmGetDescriptionA$MH,"ImmGetDescriptionA");
-    }
-    public static int ImmGetDescriptionA ( Addressable x0,  Addressable lpszDescription,  int uBufLen) {
-        var mh$ = ImmGetDescriptionA$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lpszDescription, uBufLen);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetDescriptionW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1281.ImmGetDescriptionW$MH,"ImmGetDescriptionW");
-    }
-    public static int ImmGetDescriptionW ( Addressable x0,  Addressable lpszDescription,  int uBufLen) {
-        var mh$ = ImmGetDescriptionW$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lpszDescription, uBufLen);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetIMEFileNameA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1281.ImmGetIMEFileNameA$MH,"ImmGetIMEFileNameA");
-    }
-    public static int ImmGetIMEFileNameA ( Addressable x0,  Addressable lpszFileName,  int uBufLen) {
-        var mh$ = ImmGetIMEFileNameA$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lpszFileName, uBufLen);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetIMEFileNameW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1282.ImmGetIMEFileNameW$MH,"ImmGetIMEFileNameW");
-    }
-    public static int ImmGetIMEFileNameW ( Addressable x0,  Addressable lpszFileName,  int uBufLen) {
-        var mh$ = ImmGetIMEFileNameW$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lpszFileName, uBufLen);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetProperty$MH() {
-        return RuntimeHelper.requireNonNull(constants$1282.ImmGetProperty$MH,"ImmGetProperty");
-    }
-    public static int ImmGetProperty ( Addressable x0,  int x1) {
-        var mh$ = ImmGetProperty$MH();
-        try {
-            return (int)mh$.invokeExact(x0, x1);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmIsIME$MH() {
-        return RuntimeHelper.requireNonNull(constants$1282.ImmIsIME$MH,"ImmIsIME");
-    }
-    public static int ImmIsIME ( Addressable x0) {
-        var mh$ = ImmIsIME$MH();
-        try {
-            return (int)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmSimulateHotKey$MH() {
-        return RuntimeHelper.requireNonNull(constants$1282.ImmSimulateHotKey$MH,"ImmSimulateHotKey");
-    }
-    public static int ImmSimulateHotKey ( Addressable x0,  int x1) {
-        var mh$ = ImmSimulateHotKey$MH();
-        try {
-            return (int)mh$.invokeExact(x0, x1);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmCreateContext$MH() {
-        return RuntimeHelper.requireNonNull(constants$1282.ImmCreateContext$MH,"ImmCreateContext");
-    }
-    public static MemoryAddress ImmCreateContext () {
-        var mh$ = ImmCreateContext$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmDestroyContext$MH() {
-        return RuntimeHelper.requireNonNull(constants$1282.ImmDestroyContext$MH,"ImmDestroyContext");
-    }
-    public static int ImmDestroyContext ( Addressable x0) {
-        var mh$ = ImmDestroyContext$MH();
-        try {
-            return (int)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetContext$MH() {
-        return RuntimeHelper.requireNonNull(constants$1283.ImmGetContext$MH,"ImmGetContext");
-    }
-    public static MemoryAddress ImmGetContext ( Addressable x0) {
-        var mh$ = ImmGetContext$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmReleaseContext$MH() {
-        return RuntimeHelper.requireNonNull(constants$1283.ImmReleaseContext$MH,"ImmReleaseContext");
-    }
-    public static int ImmReleaseContext ( Addressable x0,  Addressable x1) {
-        var mh$ = ImmReleaseContext$MH();
-        try {
-            return (int)mh$.invokeExact(x0, x1);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmAssociateContext$MH() {
-        return RuntimeHelper.requireNonNull(constants$1283.ImmAssociateContext$MH,"ImmAssociateContext");
-    }
-    public static MemoryAddress ImmAssociateContext ( Addressable x0,  Addressable x1) {
-        var mh$ = ImmAssociateContext$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(x0, x1);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmAssociateContextEx$MH() {
-        return RuntimeHelper.requireNonNull(constants$1283.ImmAssociateContextEx$MH,"ImmAssociateContextEx");
-    }
-    public static int ImmAssociateContextEx ( Addressable x0,  Addressable x1,  int x2) {
-        var mh$ = ImmAssociateContextEx$MH();
-        try {
-            return (int)mh$.invokeExact(x0, x1, x2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetCompositionStringA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1283.ImmGetCompositionStringA$MH,"ImmGetCompositionStringA");
-    }
-    public static int ImmGetCompositionStringA ( Addressable x0,  int x1,  Addressable lpBuf,  int dwBufLen) {
-        var mh$ = ImmGetCompositionStringA$MH();
-        try {
-            return (int)mh$.invokeExact(x0, x1, lpBuf, dwBufLen);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetCompositionStringW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1283.ImmGetCompositionStringW$MH,"ImmGetCompositionStringW");
-    }
-    public static int ImmGetCompositionStringW ( Addressable x0,  int x1,  Addressable lpBuf,  int dwBufLen) {
-        var mh$ = ImmGetCompositionStringW$MH();
-        try {
-            return (int)mh$.invokeExact(x0, x1, lpBuf, dwBufLen);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmSetCompositionStringA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1284.ImmSetCompositionStringA$MH,"ImmSetCompositionStringA");
-    }
-    public static int ImmSetCompositionStringA ( Addressable x0,  int dwIndex,  Addressable lpComp,  int dwCompLen,  Addressable lpRead,  int dwReadLen) {
-        var mh$ = ImmSetCompositionStringA$MH();
-        try {
-            return (int)mh$.invokeExact(x0, dwIndex, lpComp, dwCompLen, lpRead, dwReadLen);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmSetCompositionStringW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1284.ImmSetCompositionStringW$MH,"ImmSetCompositionStringW");
-    }
-    public static int ImmSetCompositionStringW ( Addressable x0,  int dwIndex,  Addressable lpComp,  int dwCompLen,  Addressable lpRead,  int dwReadLen) {
-        var mh$ = ImmSetCompositionStringW$MH();
-        try {
-            return (int)mh$.invokeExact(x0, dwIndex, lpComp, dwCompLen, lpRead, dwReadLen);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetCandidateListCountA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1284.ImmGetCandidateListCountA$MH,"ImmGetCandidateListCountA");
-    }
-    public static int ImmGetCandidateListCountA ( Addressable x0,  Addressable lpdwListCount) {
-        var mh$ = ImmGetCandidateListCountA$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lpdwListCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetCandidateListCountW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1284.ImmGetCandidateListCountW$MH,"ImmGetCandidateListCountW");
-    }
-    public static int ImmGetCandidateListCountW ( Addressable x0,  Addressable lpdwListCount) {
-        var mh$ = ImmGetCandidateListCountW$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lpdwListCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetCandidateListA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1284.ImmGetCandidateListA$MH,"ImmGetCandidateListA");
-    }
-    public static int ImmGetCandidateListA ( Addressable x0,  int deIndex,  Addressable lpCandList,  int dwBufLen) {
-        var mh$ = ImmGetCandidateListA$MH();
-        try {
-            return (int)mh$.invokeExact(x0, deIndex, lpCandList, dwBufLen);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetCandidateListW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1284.ImmGetCandidateListW$MH,"ImmGetCandidateListW");
-    }
-    public static int ImmGetCandidateListW ( Addressable x0,  int deIndex,  Addressable lpCandList,  int dwBufLen) {
-        var mh$ = ImmGetCandidateListW$MH();
-        try {
-            return (int)mh$.invokeExact(x0, deIndex, lpCandList, dwBufLen);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetGuideLineA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1285.ImmGetGuideLineA$MH,"ImmGetGuideLineA");
-    }
-    public static int ImmGetGuideLineA ( Addressable x0,  int dwIndex,  Addressable lpBuf,  int dwBufLen) {
-        var mh$ = ImmGetGuideLineA$MH();
-        try {
-            return (int)mh$.invokeExact(x0, dwIndex, lpBuf, dwBufLen);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetGuideLineW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1285.ImmGetGuideLineW$MH,"ImmGetGuideLineW");
-    }
-    public static int ImmGetGuideLineW ( Addressable x0,  int dwIndex,  Addressable lpBuf,  int dwBufLen) {
-        var mh$ = ImmGetGuideLineW$MH();
-        try {
-            return (int)mh$.invokeExact(x0, dwIndex, lpBuf, dwBufLen);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetConversionStatus$MH() {
-        return RuntimeHelper.requireNonNull(constants$1285.ImmGetConversionStatus$MH,"ImmGetConversionStatus");
-    }
-    public static int ImmGetConversionStatus ( Addressable x0,  Addressable lpfdwConversion,  Addressable lpfdwSentence) {
-        var mh$ = ImmGetConversionStatus$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lpfdwConversion, lpfdwSentence);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmSetConversionStatus$MH() {
-        return RuntimeHelper.requireNonNull(constants$1285.ImmSetConversionStatus$MH,"ImmSetConversionStatus");
-    }
-    public static int ImmSetConversionStatus ( Addressable x0,  int x1,  int x2) {
-        var mh$ = ImmSetConversionStatus$MH();
-        try {
-            return (int)mh$.invokeExact(x0, x1, x2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetOpenStatus$MH() {
-        return RuntimeHelper.requireNonNull(constants$1285.ImmGetOpenStatus$MH,"ImmGetOpenStatus");
-    }
-    public static int ImmGetOpenStatus ( Addressable x0) {
-        var mh$ = ImmGetOpenStatus$MH();
-        try {
-            return (int)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmSetOpenStatus$MH() {
-        return RuntimeHelper.requireNonNull(constants$1285.ImmSetOpenStatus$MH,"ImmSetOpenStatus");
-    }
-    public static int ImmSetOpenStatus ( Addressable x0,  int x1) {
-        var mh$ = ImmSetOpenStatus$MH();
-        try {
-            return (int)mh$.invokeExact(x0, x1);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetCompositionFontA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1286.ImmGetCompositionFontA$MH,"ImmGetCompositionFontA");
-    }
-    public static int ImmGetCompositionFontA ( Addressable x0,  Addressable lplf) {
-        var mh$ = ImmGetCompositionFontA$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lplf);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetCompositionFontW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1286.ImmGetCompositionFontW$MH,"ImmGetCompositionFontW");
-    }
-    public static int ImmGetCompositionFontW ( Addressable x0,  Addressable lplf) {
-        var mh$ = ImmGetCompositionFontW$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lplf);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmSetCompositionFontA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1286.ImmSetCompositionFontA$MH,"ImmSetCompositionFontA");
-    }
-    public static int ImmSetCompositionFontA ( Addressable x0,  Addressable lplf) {
-        var mh$ = ImmSetCompositionFontA$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lplf);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmSetCompositionFontW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1286.ImmSetCompositionFontW$MH,"ImmSetCompositionFontW");
-    }
-    public static int ImmSetCompositionFontW ( Addressable x0,  Addressable lplf) {
-        var mh$ = ImmSetCompositionFontW$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lplf);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmConfigureIMEA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1286.ImmConfigureIMEA$MH,"ImmConfigureIMEA");
-    }
-    public static int ImmConfigureIMEA ( Addressable x0,  Addressable x1,  int x2,  Addressable x3) {
-        var mh$ = ImmConfigureIMEA$MH();
-        try {
-            return (int)mh$.invokeExact(x0, x1, x2, x3);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmConfigureIMEW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1286.ImmConfigureIMEW$MH,"ImmConfigureIMEW");
-    }
-    public static int ImmConfigureIMEW ( Addressable x0,  Addressable x1,  int x2,  Addressable x3) {
-        var mh$ = ImmConfigureIMEW$MH();
-        try {
-            return (int)mh$.invokeExact(x0, x1, x2, x3);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmEscapeA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1287.ImmEscapeA$MH,"ImmEscapeA");
-    }
-    public static long ImmEscapeA ( Addressable x0,  Addressable x1,  int x2,  Addressable x3) {
-        var mh$ = ImmEscapeA$MH();
-        try {
-            return (long)mh$.invokeExact(x0, x1, x2, x3);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmEscapeW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1287.ImmEscapeW$MH,"ImmEscapeW");
-    }
-    public static long ImmEscapeW ( Addressable x0,  Addressable x1,  int x2,  Addressable x3) {
-        var mh$ = ImmEscapeW$MH();
-        try {
-            return (long)mh$.invokeExact(x0, x1, x2, x3);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetConversionListA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1287.ImmGetConversionListA$MH,"ImmGetConversionListA");
-    }
-    public static int ImmGetConversionListA ( Addressable x0,  Addressable x1,  Addressable lpSrc,  Addressable lpDst,  int dwBufLen,  int uFlag) {
-        var mh$ = ImmGetConversionListA$MH();
-        try {
-            return (int)mh$.invokeExact(x0, x1, lpSrc, lpDst, dwBufLen, uFlag);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetConversionListW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1287.ImmGetConversionListW$MH,"ImmGetConversionListW");
-    }
-    public static int ImmGetConversionListW ( Addressable x0,  Addressable x1,  Addressable lpSrc,  Addressable lpDst,  int dwBufLen,  int uFlag) {
-        var mh$ = ImmGetConversionListW$MH();
-        try {
-            return (int)mh$.invokeExact(x0, x1, lpSrc, lpDst, dwBufLen, uFlag);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmNotifyIME$MH() {
-        return RuntimeHelper.requireNonNull(constants$1287.ImmNotifyIME$MH,"ImmNotifyIME");
-    }
-    public static int ImmNotifyIME ( Addressable x0,  int dwAction,  int dwIndex,  int dwValue) {
-        var mh$ = ImmNotifyIME$MH();
-        try {
-            return (int)mh$.invokeExact(x0, dwAction, dwIndex, dwValue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetStatusWindowPos$MH() {
-        return RuntimeHelper.requireNonNull(constants$1287.ImmGetStatusWindowPos$MH,"ImmGetStatusWindowPos");
-    }
-    public static int ImmGetStatusWindowPos ( Addressable x0,  Addressable lpptPos) {
-        var mh$ = ImmGetStatusWindowPos$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lpptPos);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmSetStatusWindowPos$MH() {
-        return RuntimeHelper.requireNonNull(constants$1288.ImmSetStatusWindowPos$MH,"ImmSetStatusWindowPos");
-    }
-    public static int ImmSetStatusWindowPos ( Addressable x0,  Addressable lpptPos) {
-        var mh$ = ImmSetStatusWindowPos$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lpptPos);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetCompositionWindow$MH() {
-        return RuntimeHelper.requireNonNull(constants$1288.ImmGetCompositionWindow$MH,"ImmGetCompositionWindow");
-    }
-    public static int ImmGetCompositionWindow ( Addressable x0,  Addressable lpCompForm) {
-        var mh$ = ImmGetCompositionWindow$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lpCompForm);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmSetCompositionWindow$MH() {
-        return RuntimeHelper.requireNonNull(constants$1288.ImmSetCompositionWindow$MH,"ImmSetCompositionWindow");
-    }
-    public static int ImmSetCompositionWindow ( Addressable x0,  Addressable lpCompForm) {
-        var mh$ = ImmSetCompositionWindow$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lpCompForm);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetCandidateWindow$MH() {
-        return RuntimeHelper.requireNonNull(constants$1288.ImmGetCandidateWindow$MH,"ImmGetCandidateWindow");
-    }
-    public static int ImmGetCandidateWindow ( Addressable x0,  int x1,  Addressable lpCandidate) {
-        var mh$ = ImmGetCandidateWindow$MH();
-        try {
-            return (int)mh$.invokeExact(x0, x1, lpCandidate);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmSetCandidateWindow$MH() {
-        return RuntimeHelper.requireNonNull(constants$1288.ImmSetCandidateWindow$MH,"ImmSetCandidateWindow");
-    }
-    public static int ImmSetCandidateWindow ( Addressable x0,  Addressable lpCandidate) {
-        var mh$ = ImmSetCandidateWindow$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lpCandidate);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmIsUIMessageA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1288.ImmIsUIMessageA$MH,"ImmIsUIMessageA");
-    }
-    public static int ImmIsUIMessageA ( Addressable x0,  int x1,  long x2,  long x3) {
-        var mh$ = ImmIsUIMessageA$MH();
-        try {
-            return (int)mh$.invokeExact(x0, x1, x2, x3);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmIsUIMessageW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1289.ImmIsUIMessageW$MH,"ImmIsUIMessageW");
-    }
-    public static int ImmIsUIMessageW ( Addressable x0,  int x1,  long x2,  long x3) {
-        var mh$ = ImmIsUIMessageW$MH();
-        try {
-            return (int)mh$.invokeExact(x0, x1, x2, x3);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetVirtualKey$MH() {
-        return RuntimeHelper.requireNonNull(constants$1289.ImmGetVirtualKey$MH,"ImmGetVirtualKey");
-    }
-    public static int ImmGetVirtualKey ( Addressable x0) {
-        var mh$ = ImmGetVirtualKey$MH();
-        try {
-            return (int)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmRegisterWordA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1290.ImmRegisterWordA$MH,"ImmRegisterWordA");
-    }
-    public static int ImmRegisterWordA ( Addressable x0,  Addressable lpszReading,  int x2,  Addressable lpszRegister) {
-        var mh$ = ImmRegisterWordA$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lpszReading, x2, lpszRegister);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmRegisterWordW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1290.ImmRegisterWordW$MH,"ImmRegisterWordW");
-    }
-    public static int ImmRegisterWordW ( Addressable x0,  Addressable lpszReading,  int x2,  Addressable lpszRegister) {
-        var mh$ = ImmRegisterWordW$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lpszReading, x2, lpszRegister);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmUnregisterWordA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1290.ImmUnregisterWordA$MH,"ImmUnregisterWordA");
-    }
-    public static int ImmUnregisterWordA ( Addressable x0,  Addressable lpszReading,  int x2,  Addressable lpszUnregister) {
-        var mh$ = ImmUnregisterWordA$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lpszReading, x2, lpszUnregister);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmUnregisterWordW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1290.ImmUnregisterWordW$MH,"ImmUnregisterWordW");
-    }
-    public static int ImmUnregisterWordW ( Addressable x0,  Addressable lpszReading,  int x2,  Addressable lpszUnregister) {
-        var mh$ = ImmUnregisterWordW$MH();
-        try {
-            return (int)mh$.invokeExact(x0, lpszReading, x2, lpszUnregister);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetRegisterWordStyleA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1290.ImmGetRegisterWordStyleA$MH,"ImmGetRegisterWordStyleA");
-    }
-    public static int ImmGetRegisterWordStyleA ( Addressable x0,  int nItem,  Addressable lpStyleBuf) {
-        var mh$ = ImmGetRegisterWordStyleA$MH();
-        try {
-            return (int)mh$.invokeExact(x0, nItem, lpStyleBuf);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetRegisterWordStyleW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1290.ImmGetRegisterWordStyleW$MH,"ImmGetRegisterWordStyleW");
-    }
-    public static int ImmGetRegisterWordStyleW ( Addressable x0,  int nItem,  Addressable lpStyleBuf) {
-        var mh$ = ImmGetRegisterWordStyleW$MH();
-        try {
-            return (int)mh$.invokeExact(x0, nItem, lpStyleBuf);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmEnumRegisterWordA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1291.ImmEnumRegisterWordA$MH,"ImmEnumRegisterWordA");
-    }
-    public static int ImmEnumRegisterWordA ( Addressable x0,  Addressable x1,  Addressable lpszReading,  int x3,  Addressable lpszRegister,  Addressable x5) {
-        var mh$ = ImmEnumRegisterWordA$MH();
-        try {
-            return (int)mh$.invokeExact(x0, x1, lpszReading, x3, lpszRegister, x5);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmEnumRegisterWordW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1291.ImmEnumRegisterWordW$MH,"ImmEnumRegisterWordW");
-    }
-    public static int ImmEnumRegisterWordW ( Addressable x0,  Addressable x1,  Addressable lpszReading,  int x3,  Addressable lpszRegister,  Addressable x5) {
-        var mh$ = ImmEnumRegisterWordW$MH();
-        try {
-            return (int)mh$.invokeExact(x0, x1, lpszReading, x3, lpszRegister, x5);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmDisableIME$MH() {
-        return RuntimeHelper.requireNonNull(constants$1291.ImmDisableIME$MH,"ImmDisableIME");
-    }
-    public static int ImmDisableIME ( int x0) {
-        var mh$ = ImmDisableIME$MH();
-        try {
-            return (int)mh$.invokeExact(x0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmEnumInputContext$MH() {
-        return RuntimeHelper.requireNonNull(constants$1291.ImmEnumInputContext$MH,"ImmEnumInputContext");
-    }
-    public static int ImmEnumInputContext ( int idThread,  Addressable lpfn,  long lParam) {
-        var mh$ = ImmEnumInputContext$MH();
-        try {
-            return (int)mh$.invokeExact(idThread, lpfn, lParam);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetImeMenuItemsA$MH() {
-        return RuntimeHelper.requireNonNull(constants$1291.ImmGetImeMenuItemsA$MH,"ImmGetImeMenuItemsA");
-    }
-    public static int ImmGetImeMenuItemsA ( Addressable x0,  int x1,  int x2,  Addressable lpImeParentMenu,  Addressable lpImeMenu,  int dwSize) {
-        var mh$ = ImmGetImeMenuItemsA$MH();
-        try {
-            return (int)mh$.invokeExact(x0, x1, x2, lpImeParentMenu, lpImeMenu, dwSize);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmGetImeMenuItemsW$MH() {
-        return RuntimeHelper.requireNonNull(constants$1291.ImmGetImeMenuItemsW$MH,"ImmGetImeMenuItemsW");
-    }
-    public static int ImmGetImeMenuItemsW ( Addressable x0,  int x1,  int x2,  Addressable lpImeParentMenu,  Addressable lpImeMenu,  int dwSize) {
-        var mh$ = ImmGetImeMenuItemsW$MH();
-        try {
-            return (int)mh$.invokeExact(x0, x1, x2, lpImeParentMenu, lpImeMenu, dwSize);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmDisableTextFrameService$MH() {
-        return RuntimeHelper.requireNonNull(constants$1292.ImmDisableTextFrameService$MH,"ImmDisableTextFrameService");
-    }
-    public static int ImmDisableTextFrameService ( int idThread) {
-        var mh$ = ImmDisableTextFrameService$MH();
-        try {
-            return (int)mh$.invokeExact(idThread);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ImmDisableLegacyIME$MH() {
-        return RuntimeHelper.requireNonNull(constants$1292.ImmDisableLegacyIME$MH,"ImmDisableLegacyIME");
-    }
-    public static int ImmDisableLegacyIME () {
-        var mh$ = ImmDisableLegacyIME$MH();
-        try {
-            return (int)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfShort GLshort = Constants$root.C_SHORT$LAYOUT;
-    public static OfInt GLint = Constants$root.C_LONG$LAYOUT;
-    public static OfInt GLsizei = Constants$root.C_LONG$LAYOUT;
-    public static OfFloat GLfloat = Constants$root.C_FLOAT$LAYOUT;
-    public static OfFloat GLclampf = Constants$root.C_FLOAT$LAYOUT;
-    public static OfDouble GLdouble = Constants$root.C_DOUBLE$LAYOUT;
-    public static OfDouble GLclampd = Constants$root.C_DOUBLE$LAYOUT;
-    public static MethodHandle glAccum$MH() {
-        return RuntimeHelper.requireNonNull(constants$1292.glAccum$MH,"glAccum");
-    }
-    public static void glAccum ( int op,  float value) {
-        var mh$ = glAccum$MH();
-        try {
-            mh$.invokeExact(op, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glAlphaFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$1292.glAlphaFunc$MH,"glAlphaFunc");
-    }
-    public static void glAlphaFunc ( int func,  float ref) {
-        var mh$ = glAlphaFunc$MH();
-        try {
-            mh$.invokeExact(func, ref);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glAreTexturesResident$MH() {
-        return RuntimeHelper.requireNonNull(constants$1292.glAreTexturesResident$MH,"glAreTexturesResident");
-    }
-    public static byte glAreTexturesResident ( int n,  Addressable textures,  Addressable residences) {
-        var mh$ = glAreTexturesResident$MH();
-        try {
-            return (byte)mh$.invokeExact(n, textures, residences);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glArrayElement$MH() {
-        return RuntimeHelper.requireNonNull(constants$1292.glArrayElement$MH,"glArrayElement");
-    }
-    public static void glArrayElement ( int i) {
-        var mh$ = glArrayElement$MH();
-        try {
-            mh$.invokeExact(i);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBegin$MH() {
-        return RuntimeHelper.requireNonNull(constants$1293.glBegin$MH,"glBegin");
-    }
-    public static void glBegin ( int mode) {
-        var mh$ = glBegin$MH();
-        try {
-            mh$.invokeExact(mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBindTexture$MH() {
-        return RuntimeHelper.requireNonNull(constants$1293.glBindTexture$MH,"glBindTexture");
-    }
-    public static void glBindTexture ( int target,  int texture) {
-        var mh$ = glBindTexture$MH();
-        try {
-            mh$.invokeExact(target, texture);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBitmap$MH() {
-        return RuntimeHelper.requireNonNull(constants$1293.glBitmap$MH,"glBitmap");
-    }
-    public static void glBitmap ( int width,  int height,  float xorig,  float yorig,  float xmove,  float ymove,  Addressable bitmap) {
-        var mh$ = glBitmap$MH();
-        try {
-            mh$.invokeExact(width, height, xorig, yorig, xmove, ymove, bitmap);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBlendFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$1293.glBlendFunc$MH,"glBlendFunc");
-    }
-    public static void glBlendFunc ( int sfactor,  int dfactor) {
-        var mh$ = glBlendFunc$MH();
-        try {
-            mh$.invokeExact(sfactor, dfactor);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCallList$MH() {
-        return RuntimeHelper.requireNonNull(constants$1293.glCallList$MH,"glCallList");
-    }
-    public static void glCallList ( int list) {
-        var mh$ = glCallList$MH();
-        try {
-            mh$.invokeExact(list);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCallLists$MH() {
-        return RuntimeHelper.requireNonNull(constants$1293.glCallLists$MH,"glCallLists");
-    }
-    public static void glCallLists ( int n,  int type,  Addressable lists) {
-        var mh$ = glCallLists$MH();
-        try {
-            mh$.invokeExact(n, type, lists);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glClear$MH() {
-        return RuntimeHelper.requireNonNull(constants$1294.glClear$MH,"glClear");
-    }
-    public static void glClear ( int mask) {
-        var mh$ = glClear$MH();
-        try {
-            mh$.invokeExact(mask);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glClearAccum$MH() {
-        return RuntimeHelper.requireNonNull(constants$1294.glClearAccum$MH,"glClearAccum");
-    }
-    public static void glClearAccum ( float red,  float green,  float blue,  float alpha) {
-        var mh$ = glClearAccum$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glClearColor$MH() {
-        return RuntimeHelper.requireNonNull(constants$1294.glClearColor$MH,"glClearColor");
-    }
-    public static void glClearColor ( float red,  float green,  float blue,  float alpha) {
-        var mh$ = glClearColor$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glClearDepth$MH() {
-        return RuntimeHelper.requireNonNull(constants$1294.glClearDepth$MH,"glClearDepth");
-    }
-    public static void glClearDepth ( double depth) {
-        var mh$ = glClearDepth$MH();
-        try {
-            mh$.invokeExact(depth);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glClearIndex$MH() {
-        return RuntimeHelper.requireNonNull(constants$1294.glClearIndex$MH,"glClearIndex");
-    }
-    public static void glClearIndex ( float c) {
-        var mh$ = glClearIndex$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glClearStencil$MH() {
-        return RuntimeHelper.requireNonNull(constants$1294.glClearStencil$MH,"glClearStencil");
-    }
-    public static void glClearStencil ( int s) {
-        var mh$ = glClearStencil$MH();
-        try {
-            mh$.invokeExact(s);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glClipPlane$MH() {
-        return RuntimeHelper.requireNonNull(constants$1295.glClipPlane$MH,"glClipPlane");
-    }
-    public static void glClipPlane ( int plane,  Addressable equation) {
-        var mh$ = glClipPlane$MH();
-        try {
-            mh$.invokeExact(plane, equation);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3b$MH() {
-        return RuntimeHelper.requireNonNull(constants$1295.glColor3b$MH,"glColor3b");
-    }
-    public static void glColor3b ( byte red,  byte green,  byte blue) {
-        var mh$ = glColor3b$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3bv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1295.glColor3bv$MH,"glColor3bv");
-    }
-    public static void glColor3bv ( Addressable v) {
-        var mh$ = glColor3bv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3d$MH() {
-        return RuntimeHelper.requireNonNull(constants$1295.glColor3d$MH,"glColor3d");
-    }
-    public static void glColor3d ( double red,  double green,  double blue) {
-        var mh$ = glColor3d$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3dv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1295.glColor3dv$MH,"glColor3dv");
-    }
-    public static void glColor3dv ( Addressable v) {
-        var mh$ = glColor3dv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3f$MH() {
-        return RuntimeHelper.requireNonNull(constants$1295.glColor3f$MH,"glColor3f");
-    }
-    public static void glColor3f ( float red,  float green,  float blue) {
-        var mh$ = glColor3f$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3fv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1296.glColor3fv$MH,"glColor3fv");
-    }
-    public static void glColor3fv ( Addressable v) {
-        var mh$ = glColor3fv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3i$MH() {
-        return RuntimeHelper.requireNonNull(constants$1296.glColor3i$MH,"glColor3i");
-    }
-    public static void glColor3i ( int red,  int green,  int blue) {
-        var mh$ = glColor3i$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3iv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1296.glColor3iv$MH,"glColor3iv");
-    }
-    public static void glColor3iv ( Addressable v) {
-        var mh$ = glColor3iv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3s$MH() {
-        return RuntimeHelper.requireNonNull(constants$1296.glColor3s$MH,"glColor3s");
-    }
-    public static void glColor3s ( short red,  short green,  short blue) {
-        var mh$ = glColor3s$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3sv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1296.glColor3sv$MH,"glColor3sv");
-    }
-    public static void glColor3sv ( Addressable v) {
-        var mh$ = glColor3sv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3ub$MH() {
-        return RuntimeHelper.requireNonNull(constants$1296.glColor3ub$MH,"glColor3ub");
-    }
-    public static void glColor3ub ( byte red,  byte green,  byte blue) {
-        var mh$ = glColor3ub$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3ubv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1297.glColor3ubv$MH,"glColor3ubv");
-    }
-    public static void glColor3ubv ( Addressable v) {
-        var mh$ = glColor3ubv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3ui$MH() {
-        return RuntimeHelper.requireNonNull(constants$1297.glColor3ui$MH,"glColor3ui");
-    }
-    public static void glColor3ui ( int red,  int green,  int blue) {
-        var mh$ = glColor3ui$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3uiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1297.glColor3uiv$MH,"glColor3uiv");
-    }
-    public static void glColor3uiv ( Addressable v) {
-        var mh$ = glColor3uiv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3us$MH() {
-        return RuntimeHelper.requireNonNull(constants$1297.glColor3us$MH,"glColor3us");
-    }
-    public static void glColor3us ( short red,  short green,  short blue) {
-        var mh$ = glColor3us$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3usv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1297.glColor3usv$MH,"glColor3usv");
-    }
-    public static void glColor3usv ( Addressable v) {
-        var mh$ = glColor3usv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4b$MH() {
-        return RuntimeHelper.requireNonNull(constants$1297.glColor4b$MH,"glColor4b");
-    }
-    public static void glColor4b ( byte red,  byte green,  byte blue,  byte alpha) {
-        var mh$ = glColor4b$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4bv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1298.glColor4bv$MH,"glColor4bv");
-    }
-    public static void glColor4bv ( Addressable v) {
-        var mh$ = glColor4bv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4d$MH() {
-        return RuntimeHelper.requireNonNull(constants$1298.glColor4d$MH,"glColor4d");
-    }
-    public static void glColor4d ( double red,  double green,  double blue,  double alpha) {
-        var mh$ = glColor4d$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4dv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1298.glColor4dv$MH,"glColor4dv");
-    }
-    public static void glColor4dv ( Addressable v) {
-        var mh$ = glColor4dv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4f$MH() {
-        return RuntimeHelper.requireNonNull(constants$1298.glColor4f$MH,"glColor4f");
-    }
-    public static void glColor4f ( float red,  float green,  float blue,  float alpha) {
-        var mh$ = glColor4f$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4fv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1298.glColor4fv$MH,"glColor4fv");
-    }
-    public static void glColor4fv ( Addressable v) {
-        var mh$ = glColor4fv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4i$MH() {
-        return RuntimeHelper.requireNonNull(constants$1298.glColor4i$MH,"glColor4i");
-    }
-    public static void glColor4i ( int red,  int green,  int blue,  int alpha) {
-        var mh$ = glColor4i$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4iv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1299.glColor4iv$MH,"glColor4iv");
-    }
-    public static void glColor4iv ( Addressable v) {
-        var mh$ = glColor4iv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4s$MH() {
-        return RuntimeHelper.requireNonNull(constants$1299.glColor4s$MH,"glColor4s");
-    }
-    public static void glColor4s ( short red,  short green,  short blue,  short alpha) {
-        var mh$ = glColor4s$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4sv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1299.glColor4sv$MH,"glColor4sv");
-    }
-    public static void glColor4sv ( Addressable v) {
-        var mh$ = glColor4sv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4ub$MH() {
-        return RuntimeHelper.requireNonNull(constants$1299.glColor4ub$MH,"glColor4ub");
-    }
-    public static void glColor4ub ( byte red,  byte green,  byte blue,  byte alpha) {
-        var mh$ = glColor4ub$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4ubv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1299.glColor4ubv$MH,"glColor4ubv");
-    }
-    public static void glColor4ubv ( Addressable v) {
-        var mh$ = glColor4ubv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4ui$MH() {
-        return RuntimeHelper.requireNonNull(constants$1299.glColor4ui$MH,"glColor4ui");
-    }
-    public static void glColor4ui ( int red,  int green,  int blue,  int alpha) {
-        var mh$ = glColor4ui$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4uiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1300.glColor4uiv$MH,"glColor4uiv");
-    }
-    public static void glColor4uiv ( Addressable v) {
-        var mh$ = glColor4uiv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4us$MH() {
-        return RuntimeHelper.requireNonNull(constants$1300.glColor4us$MH,"glColor4us");
-    }
-    public static void glColor4us ( short red,  short green,  short blue,  short alpha) {
-        var mh$ = glColor4us$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4usv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1300.glColor4usv$MH,"glColor4usv");
-    }
-    public static void glColor4usv ( Addressable v) {
-        var mh$ = glColor4usv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColorMask$MH() {
-        return RuntimeHelper.requireNonNull(constants$1300.glColorMask$MH,"glColorMask");
-    }
-    public static void glColorMask ( byte red,  byte green,  byte blue,  byte alpha) {
-        var mh$ = glColorMask$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColorMaterial$MH() {
-        return RuntimeHelper.requireNonNull(constants$1300.glColorMaterial$MH,"glColorMaterial");
-    }
-    public static void glColorMaterial ( int face,  int mode) {
-        var mh$ = glColorMaterial$MH();
-        try {
-            mh$.invokeExact(face, mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColorPointer$MH() {
-        return RuntimeHelper.requireNonNull(constants$1300.glColorPointer$MH,"glColorPointer");
-    }
-    public static void glColorPointer ( int size,  int type,  int stride,  Addressable pointer) {
-        var mh$ = glColorPointer$MH();
-        try {
-            mh$.invokeExact(size, type, stride, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCopyPixels$MH() {
-        return RuntimeHelper.requireNonNull(constants$1301.glCopyPixels$MH,"glCopyPixels");
-    }
-    public static void glCopyPixels ( int x,  int y,  int width,  int height,  int type) {
-        var mh$ = glCopyPixels$MH();
-        try {
-            mh$.invokeExact(x, y, width, height, type);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCopyTexImage1D$MH() {
-        return RuntimeHelper.requireNonNull(constants$1301.glCopyTexImage1D$MH,"glCopyTexImage1D");
-    }
-    public static void glCopyTexImage1D ( int target,  int level,  int internalFormat,  int x,  int y,  int width,  int border) {
-        var mh$ = glCopyTexImage1D$MH();
-        try {
-            mh$.invokeExact(target, level, internalFormat, x, y, width, border);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCopyTexImage2D$MH() {
-        return RuntimeHelper.requireNonNull(constants$1301.glCopyTexImage2D$MH,"glCopyTexImage2D");
-    }
-    public static void glCopyTexImage2D ( int target,  int level,  int internalFormat,  int x,  int y,  int width,  int height,  int border) {
-        var mh$ = glCopyTexImage2D$MH();
-        try {
-            mh$.invokeExact(target, level, internalFormat, x, y, width, height, border);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCopyTexSubImage1D$MH() {
-        return RuntimeHelper.requireNonNull(constants$1301.glCopyTexSubImage1D$MH,"glCopyTexSubImage1D");
-    }
-    public static void glCopyTexSubImage1D ( int target,  int level,  int xoffset,  int x,  int y,  int width) {
-        var mh$ = glCopyTexSubImage1D$MH();
-        try {
-            mh$.invokeExact(target, level, xoffset, x, y, width);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCopyTexSubImage2D$MH() {
-        return RuntimeHelper.requireNonNull(constants$1301.glCopyTexSubImage2D$MH,"glCopyTexSubImage2D");
-    }
-    public static void glCopyTexSubImage2D ( int target,  int level,  int xoffset,  int yoffset,  int x,  int y,  int width,  int height) {
-        var mh$ = glCopyTexSubImage2D$MH();
-        try {
-            mh$.invokeExact(target, level, xoffset, yoffset, x, y, width, height);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCullFace$MH() {
-        return RuntimeHelper.requireNonNull(constants$1301.glCullFace$MH,"glCullFace");
-    }
-    public static void glCullFace ( int mode) {
-        var mh$ = glCullFace$MH();
-        try {
-            mh$.invokeExact(mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDeleteLists$MH() {
-        return RuntimeHelper.requireNonNull(constants$1302.glDeleteLists$MH,"glDeleteLists");
-    }
-    public static void glDeleteLists ( int list,  int range) {
-        var mh$ = glDeleteLists$MH();
-        try {
-            mh$.invokeExact(list, range);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDeleteTextures$MH() {
-        return RuntimeHelper.requireNonNull(constants$1302.glDeleteTextures$MH,"glDeleteTextures");
-    }
-    public static void glDeleteTextures ( int n,  Addressable textures) {
-        var mh$ = glDeleteTextures$MH();
-        try {
-            mh$.invokeExact(n, textures);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDepthFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$1302.glDepthFunc$MH,"glDepthFunc");
-    }
-    public static void glDepthFunc ( int func) {
-        var mh$ = glDepthFunc$MH();
-        try {
-            mh$.invokeExact(func);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDepthMask$MH() {
-        return RuntimeHelper.requireNonNull(constants$1302.glDepthMask$MH,"glDepthMask");
-    }
-    public static void glDepthMask ( byte flag) {
-        var mh$ = glDepthMask$MH();
-        try {
-            mh$.invokeExact(flag);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDepthRange$MH() {
-        return RuntimeHelper.requireNonNull(constants$1302.glDepthRange$MH,"glDepthRange");
-    }
-    public static void glDepthRange ( double zNear,  double zFar) {
-        var mh$ = glDepthRange$MH();
-        try {
-            mh$.invokeExact(zNear, zFar);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDisable$MH() {
-        return RuntimeHelper.requireNonNull(constants$1302.glDisable$MH,"glDisable");
-    }
-    public static void glDisable ( int cap) {
-        var mh$ = glDisable$MH();
-        try {
-            mh$.invokeExact(cap);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDisableClientState$MH() {
-        return RuntimeHelper.requireNonNull(constants$1303.glDisableClientState$MH,"glDisableClientState");
-    }
-    public static void glDisableClientState ( int array) {
-        var mh$ = glDisableClientState$MH();
-        try {
-            mh$.invokeExact(array);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDrawArrays$MH() {
-        return RuntimeHelper.requireNonNull(constants$1303.glDrawArrays$MH,"glDrawArrays");
-    }
-    public static void glDrawArrays ( int mode,  int first,  int count) {
-        var mh$ = glDrawArrays$MH();
-        try {
-            mh$.invokeExact(mode, first, count);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDrawBuffer$MH() {
-        return RuntimeHelper.requireNonNull(constants$1303.glDrawBuffer$MH,"glDrawBuffer");
-    }
-    public static void glDrawBuffer ( int mode) {
-        var mh$ = glDrawBuffer$MH();
-        try {
-            mh$.invokeExact(mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDrawElements$MH() {
-        return RuntimeHelper.requireNonNull(constants$1303.glDrawElements$MH,"glDrawElements");
-    }
-    public static void glDrawElements ( int mode,  int count,  int type,  Addressable indices) {
-        var mh$ = glDrawElements$MH();
-        try {
-            mh$.invokeExact(mode, count, type, indices);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDrawPixels$MH() {
-        return RuntimeHelper.requireNonNull(constants$1303.glDrawPixels$MH,"glDrawPixels");
-    }
-    public static void glDrawPixels ( int width,  int height,  int format,  int type,  Addressable pixels) {
-        var mh$ = glDrawPixels$MH();
-        try {
-            mh$.invokeExact(width, height, format, type, pixels);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEdgeFlag$MH() {
-        return RuntimeHelper.requireNonNull(constants$1303.glEdgeFlag$MH,"glEdgeFlag");
-    }
-    public static void glEdgeFlag ( byte flag) {
-        var mh$ = glEdgeFlag$MH();
-        try {
-            mh$.invokeExact(flag);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEdgeFlagPointer$MH() {
-        return RuntimeHelper.requireNonNull(constants$1304.glEdgeFlagPointer$MH,"glEdgeFlagPointer");
-    }
-    public static void glEdgeFlagPointer ( int stride,  Addressable pointer) {
-        var mh$ = glEdgeFlagPointer$MH();
-        try {
-            mh$.invokeExact(stride, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEdgeFlagv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1304.glEdgeFlagv$MH,"glEdgeFlagv");
-    }
-    public static void glEdgeFlagv ( Addressable flag) {
-        var mh$ = glEdgeFlagv$MH();
-        try {
-            mh$.invokeExact(flag);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEnable$MH() {
-        return RuntimeHelper.requireNonNull(constants$1304.glEnable$MH,"glEnable");
-    }
-    public static void glEnable ( int cap) {
-        var mh$ = glEnable$MH();
-        try {
-            mh$.invokeExact(cap);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEnableClientState$MH() {
-        return RuntimeHelper.requireNonNull(constants$1304.glEnableClientState$MH,"glEnableClientState");
-    }
-    public static void glEnableClientState ( int array) {
-        var mh$ = glEnableClientState$MH();
-        try {
-            mh$.invokeExact(array);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEnd$MH() {
-        return RuntimeHelper.requireNonNull(constants$1304.glEnd$MH,"glEnd");
-    }
-    public static void glEnd () {
-        var mh$ = glEnd$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEndList$MH() {
-        return RuntimeHelper.requireNonNull(constants$1304.glEndList$MH,"glEndList");
-    }
-    public static void glEndList () {
-        var mh$ = glEndList$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalCoord1d$MH() {
-        return RuntimeHelper.requireNonNull(constants$1305.glEvalCoord1d$MH,"glEvalCoord1d");
-    }
-    public static void glEvalCoord1d ( double u) {
-        var mh$ = glEvalCoord1d$MH();
-        try {
-            mh$.invokeExact(u);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalCoord1dv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1305.glEvalCoord1dv$MH,"glEvalCoord1dv");
-    }
-    public static void glEvalCoord1dv ( Addressable u) {
-        var mh$ = glEvalCoord1dv$MH();
-        try {
-            mh$.invokeExact(u);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalCoord1f$MH() {
-        return RuntimeHelper.requireNonNull(constants$1305.glEvalCoord1f$MH,"glEvalCoord1f");
-    }
-    public static void glEvalCoord1f ( float u) {
-        var mh$ = glEvalCoord1f$MH();
-        try {
-            mh$.invokeExact(u);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalCoord1fv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1305.glEvalCoord1fv$MH,"glEvalCoord1fv");
-    }
-    public static void glEvalCoord1fv ( Addressable u) {
-        var mh$ = glEvalCoord1fv$MH();
-        try {
-            mh$.invokeExact(u);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalCoord2d$MH() {
-        return RuntimeHelper.requireNonNull(constants$1305.glEvalCoord2d$MH,"glEvalCoord2d");
-    }
-    public static void glEvalCoord2d ( double u,  double v) {
-        var mh$ = glEvalCoord2d$MH();
-        try {
-            mh$.invokeExact(u, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalCoord2dv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1305.glEvalCoord2dv$MH,"glEvalCoord2dv");
-    }
-    public static void glEvalCoord2dv ( Addressable u) {
-        var mh$ = glEvalCoord2dv$MH();
-        try {
-            mh$.invokeExact(u);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalCoord2f$MH() {
-        return RuntimeHelper.requireNonNull(constants$1306.glEvalCoord2f$MH,"glEvalCoord2f");
-    }
-    public static void glEvalCoord2f ( float u,  float v) {
-        var mh$ = glEvalCoord2f$MH();
-        try {
-            mh$.invokeExact(u, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalCoord2fv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1306.glEvalCoord2fv$MH,"glEvalCoord2fv");
-    }
-    public static void glEvalCoord2fv ( Addressable u) {
-        var mh$ = glEvalCoord2fv$MH();
-        try {
-            mh$.invokeExact(u);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalMesh1$MH() {
-        return RuntimeHelper.requireNonNull(constants$1306.glEvalMesh1$MH,"glEvalMesh1");
-    }
-    public static void glEvalMesh1 ( int mode,  int i1,  int i2) {
-        var mh$ = glEvalMesh1$MH();
-        try {
-            mh$.invokeExact(mode, i1, i2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalMesh2$MH() {
-        return RuntimeHelper.requireNonNull(constants$1306.glEvalMesh2$MH,"glEvalMesh2");
-    }
-    public static void glEvalMesh2 ( int mode,  int i1,  int i2,  int j1,  int j2) {
-        var mh$ = glEvalMesh2$MH();
-        try {
-            mh$.invokeExact(mode, i1, i2, j1, j2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalPoint1$MH() {
-        return RuntimeHelper.requireNonNull(constants$1306.glEvalPoint1$MH,"glEvalPoint1");
-    }
-    public static void glEvalPoint1 ( int i) {
-        var mh$ = glEvalPoint1$MH();
-        try {
-            mh$.invokeExact(i);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalPoint2$MH() {
-        return RuntimeHelper.requireNonNull(constants$1306.glEvalPoint2$MH,"glEvalPoint2");
-    }
-    public static void glEvalPoint2 ( int i,  int j) {
-        var mh$ = glEvalPoint2$MH();
-        try {
-            mh$.invokeExact(i, j);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFeedbackBuffer$MH() {
-        return RuntimeHelper.requireNonNull(constants$1307.glFeedbackBuffer$MH,"glFeedbackBuffer");
-    }
-    public static void glFeedbackBuffer ( int size,  int type,  Addressable buffer) {
-        var mh$ = glFeedbackBuffer$MH();
-        try {
-            mh$.invokeExact(size, type, buffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFinish$MH() {
-        return RuntimeHelper.requireNonNull(constants$1307.glFinish$MH,"glFinish");
-    }
-    public static void glFinish () {
-        var mh$ = glFinish$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFlush$MH() {
-        return RuntimeHelper.requireNonNull(constants$1307.glFlush$MH,"glFlush");
-    }
-    public static void glFlush () {
-        var mh$ = glFlush$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFogf$MH() {
-        return RuntimeHelper.requireNonNull(constants$1307.glFogf$MH,"glFogf");
-    }
-    public static void glFogf ( int pname,  float param) {
-        var mh$ = glFogf$MH();
-        try {
-            mh$.invokeExact(pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFogfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1307.glFogfv$MH,"glFogfv");
-    }
-    public static void glFogfv ( int pname,  Addressable params) {
-        var mh$ = glFogfv$MH();
-        try {
-            mh$.invokeExact(pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFogi$MH() {
-        return RuntimeHelper.requireNonNull(constants$1307.glFogi$MH,"glFogi");
-    }
-    public static void glFogi ( int pname,  int param) {
-        var mh$ = glFogi$MH();
-        try {
-            mh$.invokeExact(pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFogiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1308.glFogiv$MH,"glFogiv");
-    }
-    public static void glFogiv ( int pname,  Addressable params) {
-        var mh$ = glFogiv$MH();
-        try {
-            mh$.invokeExact(pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFrontFace$MH() {
-        return RuntimeHelper.requireNonNull(constants$1308.glFrontFace$MH,"glFrontFace");
-    }
-    public static void glFrontFace ( int mode) {
-        var mh$ = glFrontFace$MH();
-        try {
-            mh$.invokeExact(mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFrustum$MH() {
-        return RuntimeHelper.requireNonNull(constants$1308.glFrustum$MH,"glFrustum");
-    }
-    public static void glFrustum ( double left,  double right,  double bottom,  double top,  double zNear,  double zFar) {
-        var mh$ = glFrustum$MH();
-        try {
-            mh$.invokeExact(left, right, bottom, top, zNear, zFar);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGenLists$MH() {
-        return RuntimeHelper.requireNonNull(constants$1308.glGenLists$MH,"glGenLists");
-    }
-    public static int glGenLists ( int range) {
-        var mh$ = glGenLists$MH();
-        try {
-            return (int)mh$.invokeExact(range);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGenTextures$MH() {
-        return RuntimeHelper.requireNonNull(constants$1308.glGenTextures$MH,"glGenTextures");
-    }
-    public static void glGenTextures ( int n,  Addressable textures) {
-        var mh$ = glGenTextures$MH();
-        try {
-            mh$.invokeExact(n, textures);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetBooleanv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1308.glGetBooleanv$MH,"glGetBooleanv");
-    }
-    public static void glGetBooleanv ( int pname,  Addressable params) {
-        var mh$ = glGetBooleanv$MH();
-        try {
-            mh$.invokeExact(pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetClipPlane$MH() {
-        return RuntimeHelper.requireNonNull(constants$1309.glGetClipPlane$MH,"glGetClipPlane");
-    }
-    public static void glGetClipPlane ( int plane,  Addressable equation) {
-        var mh$ = glGetClipPlane$MH();
-        try {
-            mh$.invokeExact(plane, equation);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetDoublev$MH() {
-        return RuntimeHelper.requireNonNull(constants$1309.glGetDoublev$MH,"glGetDoublev");
-    }
-    public static void glGetDoublev ( int pname,  Addressable params) {
-        var mh$ = glGetDoublev$MH();
-        try {
-            mh$.invokeExact(pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetError$MH() {
-        return RuntimeHelper.requireNonNull(constants$1309.glGetError$MH,"glGetError");
-    }
-    public static int glGetError () {
-        var mh$ = glGetError$MH();
-        try {
-            return (int)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetFloatv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1309.glGetFloatv$MH,"glGetFloatv");
-    }
-    public static void glGetFloatv ( int pname,  Addressable params) {
-        var mh$ = glGetFloatv$MH();
-        try {
-            mh$.invokeExact(pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetIntegerv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1309.glGetIntegerv$MH,"glGetIntegerv");
-    }
-    public static void glGetIntegerv ( int pname,  Addressable params) {
-        var mh$ = glGetIntegerv$MH();
-        try {
-            mh$.invokeExact(pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetLightfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1309.glGetLightfv$MH,"glGetLightfv");
-    }
-    public static void glGetLightfv ( int light,  int pname,  Addressable params) {
-        var mh$ = glGetLightfv$MH();
-        try {
-            mh$.invokeExact(light, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetLightiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1310.glGetLightiv$MH,"glGetLightiv");
-    }
-    public static void glGetLightiv ( int light,  int pname,  Addressable params) {
-        var mh$ = glGetLightiv$MH();
-        try {
-            mh$.invokeExact(light, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetMapdv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1310.glGetMapdv$MH,"glGetMapdv");
-    }
-    public static void glGetMapdv ( int target,  int query,  Addressable v) {
-        var mh$ = glGetMapdv$MH();
-        try {
-            mh$.invokeExact(target, query, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetMapfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1310.glGetMapfv$MH,"glGetMapfv");
-    }
-    public static void glGetMapfv ( int target,  int query,  Addressable v) {
-        var mh$ = glGetMapfv$MH();
-        try {
-            mh$.invokeExact(target, query, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetMapiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1310.glGetMapiv$MH,"glGetMapiv");
-    }
-    public static void glGetMapiv ( int target,  int query,  Addressable v) {
-        var mh$ = glGetMapiv$MH();
-        try {
-            mh$.invokeExact(target, query, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetMaterialfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1310.glGetMaterialfv$MH,"glGetMaterialfv");
-    }
-    public static void glGetMaterialfv ( int face,  int pname,  Addressable params) {
-        var mh$ = glGetMaterialfv$MH();
-        try {
-            mh$.invokeExact(face, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetMaterialiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1310.glGetMaterialiv$MH,"glGetMaterialiv");
-    }
-    public static void glGetMaterialiv ( int face,  int pname,  Addressable params) {
-        var mh$ = glGetMaterialiv$MH();
-        try {
-            mh$.invokeExact(face, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetPixelMapfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1311.glGetPixelMapfv$MH,"glGetPixelMapfv");
-    }
-    public static void glGetPixelMapfv ( int map,  Addressable values) {
-        var mh$ = glGetPixelMapfv$MH();
-        try {
-            mh$.invokeExact(map, values);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetPixelMapuiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1311.glGetPixelMapuiv$MH,"glGetPixelMapuiv");
-    }
-    public static void glGetPixelMapuiv ( int map,  Addressable values) {
-        var mh$ = glGetPixelMapuiv$MH();
-        try {
-            mh$.invokeExact(map, values);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetPixelMapusv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1311.glGetPixelMapusv$MH,"glGetPixelMapusv");
-    }
-    public static void glGetPixelMapusv ( int map,  Addressable values) {
-        var mh$ = glGetPixelMapusv$MH();
-        try {
-            mh$.invokeExact(map, values);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetPointerv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1311.glGetPointerv$MH,"glGetPointerv");
-    }
-    public static void glGetPointerv ( int pname,  Addressable params) {
-        var mh$ = glGetPointerv$MH();
-        try {
-            mh$.invokeExact(pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetPolygonStipple$MH() {
-        return RuntimeHelper.requireNonNull(constants$1311.glGetPolygonStipple$MH,"glGetPolygonStipple");
-    }
-    public static void glGetPolygonStipple ( Addressable mask) {
-        var mh$ = glGetPolygonStipple$MH();
-        try {
-            mh$.invokeExact(mask);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetString$MH() {
-        return RuntimeHelper.requireNonNull(constants$1311.glGetString$MH,"glGetString");
-    }
-    public static MemoryAddress glGetString ( int name) {
-        var mh$ = glGetString$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(name);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexEnvfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1312.glGetTexEnvfv$MH,"glGetTexEnvfv");
-    }
-    public static void glGetTexEnvfv ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetTexEnvfv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexEnviv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1312.glGetTexEnviv$MH,"glGetTexEnviv");
-    }
-    public static void glGetTexEnviv ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetTexEnviv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexGendv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1312.glGetTexGendv$MH,"glGetTexGendv");
-    }
-    public static void glGetTexGendv ( int coord,  int pname,  Addressable params) {
-        var mh$ = glGetTexGendv$MH();
-        try {
-            mh$.invokeExact(coord, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexGenfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1312.glGetTexGenfv$MH,"glGetTexGenfv");
-    }
-    public static void glGetTexGenfv ( int coord,  int pname,  Addressable params) {
-        var mh$ = glGetTexGenfv$MH();
-        try {
-            mh$.invokeExact(coord, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexGeniv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1312.glGetTexGeniv$MH,"glGetTexGeniv");
-    }
-    public static void glGetTexGeniv ( int coord,  int pname,  Addressable params) {
-        var mh$ = glGetTexGeniv$MH();
-        try {
-            mh$.invokeExact(coord, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexImage$MH() {
-        return RuntimeHelper.requireNonNull(constants$1312.glGetTexImage$MH,"glGetTexImage");
-    }
-    public static void glGetTexImage ( int target,  int level,  int format,  int type,  Addressable pixels) {
-        var mh$ = glGetTexImage$MH();
-        try {
-            mh$.invokeExact(target, level, format, type, pixels);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexLevelParameterfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1313.glGetTexLevelParameterfv$MH,"glGetTexLevelParameterfv");
-    }
-    public static void glGetTexLevelParameterfv ( int target,  int level,  int pname,  Addressable params) {
-        var mh$ = glGetTexLevelParameterfv$MH();
-        try {
-            mh$.invokeExact(target, level, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexLevelParameteriv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1313.glGetTexLevelParameteriv$MH,"glGetTexLevelParameteriv");
-    }
-    public static void glGetTexLevelParameteriv ( int target,  int level,  int pname,  Addressable params) {
-        var mh$ = glGetTexLevelParameteriv$MH();
-        try {
-            mh$.invokeExact(target, level, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexParameterfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1313.glGetTexParameterfv$MH,"glGetTexParameterfv");
-    }
-    public static void glGetTexParameterfv ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetTexParameterfv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexParameteriv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1313.glGetTexParameteriv$MH,"glGetTexParameteriv");
-    }
-    public static void glGetTexParameteriv ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetTexParameteriv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glHint$MH() {
-        return RuntimeHelper.requireNonNull(constants$1313.glHint$MH,"glHint");
-    }
-    public static void glHint ( int target,  int mode) {
-        var mh$ = glHint$MH();
-        try {
-            mh$.invokeExact(target, mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexMask$MH() {
-        return RuntimeHelper.requireNonNull(constants$1313.glIndexMask$MH,"glIndexMask");
-    }
-    public static void glIndexMask ( int mask) {
-        var mh$ = glIndexMask$MH();
-        try {
-            mh$.invokeExact(mask);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexPointer$MH() {
-        return RuntimeHelper.requireNonNull(constants$1314.glIndexPointer$MH,"glIndexPointer");
-    }
-    public static void glIndexPointer ( int type,  int stride,  Addressable pointer) {
-        var mh$ = glIndexPointer$MH();
-        try {
-            mh$.invokeExact(type, stride, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexd$MH() {
-        return RuntimeHelper.requireNonNull(constants$1314.glIndexd$MH,"glIndexd");
-    }
-    public static void glIndexd ( double c) {
-        var mh$ = glIndexd$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexdv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1314.glIndexdv$MH,"glIndexdv");
-    }
-    public static void glIndexdv ( Addressable c) {
-        var mh$ = glIndexdv$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexf$MH() {
-        return RuntimeHelper.requireNonNull(constants$1314.glIndexf$MH,"glIndexf");
-    }
-    public static void glIndexf ( float c) {
-        var mh$ = glIndexf$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1314.glIndexfv$MH,"glIndexfv");
-    }
-    public static void glIndexfv ( Addressable c) {
-        var mh$ = glIndexfv$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexi$MH() {
-        return RuntimeHelper.requireNonNull(constants$1314.glIndexi$MH,"glIndexi");
-    }
-    public static void glIndexi ( int c) {
-        var mh$ = glIndexi$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1315.glIndexiv$MH,"glIndexiv");
-    }
-    public static void glIndexiv ( Addressable c) {
-        var mh$ = glIndexiv$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexs$MH() {
-        return RuntimeHelper.requireNonNull(constants$1315.glIndexs$MH,"glIndexs");
-    }
-    public static void glIndexs ( short c) {
-        var mh$ = glIndexs$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexsv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1315.glIndexsv$MH,"glIndexsv");
-    }
-    public static void glIndexsv ( Addressable c) {
-        var mh$ = glIndexsv$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexub$MH() {
-        return RuntimeHelper.requireNonNull(constants$1315.glIndexub$MH,"glIndexub");
-    }
-    public static void glIndexub ( byte c) {
-        var mh$ = glIndexub$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexubv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1315.glIndexubv$MH,"glIndexubv");
-    }
-    public static void glIndexubv ( Addressable c) {
-        var mh$ = glIndexubv$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glInitNames$MH() {
-        return RuntimeHelper.requireNonNull(constants$1315.glInitNames$MH,"glInitNames");
-    }
-    public static void glInitNames () {
-        var mh$ = glInitNames$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glInterleavedArrays$MH() {
-        return RuntimeHelper.requireNonNull(constants$1316.glInterleavedArrays$MH,"glInterleavedArrays");
-    }
-    public static void glInterleavedArrays ( int format,  int stride,  Addressable pointer) {
-        var mh$ = glInterleavedArrays$MH();
-        try {
-            mh$.invokeExact(format, stride, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIsEnabled$MH() {
-        return RuntimeHelper.requireNonNull(constants$1316.glIsEnabled$MH,"glIsEnabled");
-    }
-    public static byte glIsEnabled ( int cap) {
-        var mh$ = glIsEnabled$MH();
-        try {
-            return (byte)mh$.invokeExact(cap);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIsList$MH() {
-        return RuntimeHelper.requireNonNull(constants$1316.glIsList$MH,"glIsList");
-    }
-    public static byte glIsList ( int list) {
-        var mh$ = glIsList$MH();
-        try {
-            return (byte)mh$.invokeExact(list);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIsTexture$MH() {
-        return RuntimeHelper.requireNonNull(constants$1316.glIsTexture$MH,"glIsTexture");
-    }
-    public static byte glIsTexture ( int texture) {
-        var mh$ = glIsTexture$MH();
-        try {
-            return (byte)mh$.invokeExact(texture);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glLightModelf$MH() {
-        return RuntimeHelper.requireNonNull(constants$1316.glLightModelf$MH,"glLightModelf");
-    }
-    public static void glLightModelf ( int pname,  float param) {
-        var mh$ = glLightModelf$MH();
-        try {
-            mh$.invokeExact(pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glLightModelfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1316.glLightModelfv$MH,"glLightModelfv");
-    }
-    public static void glLightModelfv ( int pname,  Addressable params) {
-        var mh$ = glLightModelfv$MH();
-        try {
-            mh$.invokeExact(pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glLightModeli$MH() {
-        return RuntimeHelper.requireNonNull(constants$1317.glLightModeli$MH,"glLightModeli");
-    }
-    public static void glLightModeli ( int pname,  int param) {
-        var mh$ = glLightModeli$MH();
-        try {
-            mh$.invokeExact(pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glLightModeliv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1317.glLightModeliv$MH,"glLightModeliv");
-    }
-    public static void glLightModeliv ( int pname,  Addressable params) {
-        var mh$ = glLightModeliv$MH();
-        try {
-            mh$.invokeExact(pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glLightf$MH() {
-        return RuntimeHelper.requireNonNull(constants$1317.glLightf$MH,"glLightf");
-    }
-    public static void glLightf ( int light,  int pname,  float param) {
-        var mh$ = glLightf$MH();
-        try {
-            mh$.invokeExact(light, pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glLightfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1317.glLightfv$MH,"glLightfv");
-    }
-    public static void glLightfv ( int light,  int pname,  Addressable params) {
-        var mh$ = glLightfv$MH();
-        try {
-            mh$.invokeExact(light, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glLighti$MH() {
-        return RuntimeHelper.requireNonNull(constants$1317.glLighti$MH,"glLighti");
-    }
-    public static void glLighti ( int light,  int pname,  int param) {
-        var mh$ = glLighti$MH();
-        try {
-            mh$.invokeExact(light, pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glLightiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1317.glLightiv$MH,"glLightiv");
-    }
-    public static void glLightiv ( int light,  int pname,  Addressable params) {
-        var mh$ = glLightiv$MH();
-        try {
-            mh$.invokeExact(light, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glLineStipple$MH() {
-        return RuntimeHelper.requireNonNull(constants$1318.glLineStipple$MH,"glLineStipple");
-    }
-    public static void glLineStipple ( int factor,  short pattern) {
-        var mh$ = glLineStipple$MH();
-        try {
-            mh$.invokeExact(factor, pattern);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glLineWidth$MH() {
-        return RuntimeHelper.requireNonNull(constants$1318.glLineWidth$MH,"glLineWidth");
-    }
-    public static void glLineWidth ( float width) {
-        var mh$ = glLineWidth$MH();
-        try {
-            mh$.invokeExact(width);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glListBase$MH() {
-        return RuntimeHelper.requireNonNull(constants$1318.glListBase$MH,"glListBase");
-    }
-    public static void glListBase ( int base) {
-        var mh$ = glListBase$MH();
-        try {
-            mh$.invokeExact(base);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glLoadIdentity$MH() {
-        return RuntimeHelper.requireNonNull(constants$1318.glLoadIdentity$MH,"glLoadIdentity");
-    }
-    public static void glLoadIdentity () {
-        var mh$ = glLoadIdentity$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glLoadMatrixd$MH() {
-        return RuntimeHelper.requireNonNull(constants$1318.glLoadMatrixd$MH,"glLoadMatrixd");
-    }
-    public static void glLoadMatrixd ( Addressable m) {
-        var mh$ = glLoadMatrixd$MH();
-        try {
-            mh$.invokeExact(m);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glLoadMatrixf$MH() {
-        return RuntimeHelper.requireNonNull(constants$1318.glLoadMatrixf$MH,"glLoadMatrixf");
-    }
-    public static void glLoadMatrixf ( Addressable m) {
-        var mh$ = glLoadMatrixf$MH();
-        try {
-            mh$.invokeExact(m);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glLoadName$MH() {
-        return RuntimeHelper.requireNonNull(constants$1319.glLoadName$MH,"glLoadName");
-    }
-    public static void glLoadName ( int name) {
-        var mh$ = glLoadName$MH();
-        try {
-            mh$.invokeExact(name);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glLogicOp$MH() {
-        return RuntimeHelper.requireNonNull(constants$1319.glLogicOp$MH,"glLogicOp");
-    }
-    public static void glLogicOp ( int opcode) {
-        var mh$ = glLogicOp$MH();
-        try {
-            mh$.invokeExact(opcode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMap1d$MH() {
-        return RuntimeHelper.requireNonNull(constants$1319.glMap1d$MH,"glMap1d");
-    }
-    public static void glMap1d ( int target,  double u1,  double u2,  int stride,  int order,  Addressable points) {
-        var mh$ = glMap1d$MH();
-        try {
-            mh$.invokeExact(target, u1, u2, stride, order, points);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMap1f$MH() {
-        return RuntimeHelper.requireNonNull(constants$1319.glMap1f$MH,"glMap1f");
-    }
-    public static void glMap1f ( int target,  float u1,  float u2,  int stride,  int order,  Addressable points) {
-        var mh$ = glMap1f$MH();
-        try {
-            mh$.invokeExact(target, u1, u2, stride, order, points);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMap2d$MH() {
-        return RuntimeHelper.requireNonNull(constants$1319.glMap2d$MH,"glMap2d");
-    }
-    public static void glMap2d ( int target,  double u1,  double u2,  int ustride,  int uorder,  double v1,  double v2,  int vstride,  int vorder,  Addressable points) {
-        var mh$ = glMap2d$MH();
-        try {
-            mh$.invokeExact(target, u1, u2, ustride, uorder, v1, v2, vstride, vorder, points);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMap2f$MH() {
-        return RuntimeHelper.requireNonNull(constants$1319.glMap2f$MH,"glMap2f");
-    }
-    public static void glMap2f ( int target,  float u1,  float u2,  int ustride,  int uorder,  float v1,  float v2,  int vstride,  int vorder,  Addressable points) {
-        var mh$ = glMap2f$MH();
-        try {
-            mh$.invokeExact(target, u1, u2, ustride, uorder, v1, v2, vstride, vorder, points);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMapGrid1d$MH() {
-        return RuntimeHelper.requireNonNull(constants$1320.glMapGrid1d$MH,"glMapGrid1d");
-    }
-    public static void glMapGrid1d ( int un,  double u1,  double u2) {
-        var mh$ = glMapGrid1d$MH();
-        try {
-            mh$.invokeExact(un, u1, u2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMapGrid1f$MH() {
-        return RuntimeHelper.requireNonNull(constants$1320.glMapGrid1f$MH,"glMapGrid1f");
-    }
-    public static void glMapGrid1f ( int un,  float u1,  float u2) {
-        var mh$ = glMapGrid1f$MH();
-        try {
-            mh$.invokeExact(un, u1, u2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMapGrid2d$MH() {
-        return RuntimeHelper.requireNonNull(constants$1320.glMapGrid2d$MH,"glMapGrid2d");
-    }
-    public static void glMapGrid2d ( int un,  double u1,  double u2,  int vn,  double v1,  double v2) {
-        var mh$ = glMapGrid2d$MH();
-        try {
-            mh$.invokeExact(un, u1, u2, vn, v1, v2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMapGrid2f$MH() {
-        return RuntimeHelper.requireNonNull(constants$1320.glMapGrid2f$MH,"glMapGrid2f");
-    }
-    public static void glMapGrid2f ( int un,  float u1,  float u2,  int vn,  float v1,  float v2) {
-        var mh$ = glMapGrid2f$MH();
-        try {
-            mh$.invokeExact(un, u1, u2, vn, v1, v2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMaterialf$MH() {
-        return RuntimeHelper.requireNonNull(constants$1320.glMaterialf$MH,"glMaterialf");
-    }
-    public static void glMaterialf ( int face,  int pname,  float param) {
-        var mh$ = glMaterialf$MH();
-        try {
-            mh$.invokeExact(face, pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMaterialfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1320.glMaterialfv$MH,"glMaterialfv");
-    }
-    public static void glMaterialfv ( int face,  int pname,  Addressable params) {
-        var mh$ = glMaterialfv$MH();
-        try {
-            mh$.invokeExact(face, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMateriali$MH() {
-        return RuntimeHelper.requireNonNull(constants$1321.glMateriali$MH,"glMateriali");
-    }
-    public static void glMateriali ( int face,  int pname,  int param) {
-        var mh$ = glMateriali$MH();
-        try {
-            mh$.invokeExact(face, pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMaterialiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1321.glMaterialiv$MH,"glMaterialiv");
-    }
-    public static void glMaterialiv ( int face,  int pname,  Addressable params) {
-        var mh$ = glMaterialiv$MH();
-        try {
-            mh$.invokeExact(face, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMatrixMode$MH() {
-        return RuntimeHelper.requireNonNull(constants$1321.glMatrixMode$MH,"glMatrixMode");
-    }
-    public static void glMatrixMode ( int mode) {
-        var mh$ = glMatrixMode$MH();
-        try {
-            mh$.invokeExact(mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultMatrixd$MH() {
-        return RuntimeHelper.requireNonNull(constants$1321.glMultMatrixd$MH,"glMultMatrixd");
-    }
-    public static void glMultMatrixd ( Addressable m) {
-        var mh$ = glMultMatrixd$MH();
-        try {
-            mh$.invokeExact(m);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultMatrixf$MH() {
-        return RuntimeHelper.requireNonNull(constants$1321.glMultMatrixf$MH,"glMultMatrixf");
-    }
-    public static void glMultMatrixf ( Addressable m) {
-        var mh$ = glMultMatrixf$MH();
-        try {
-            mh$.invokeExact(m);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glNewList$MH() {
-        return RuntimeHelper.requireNonNull(constants$1321.glNewList$MH,"glNewList");
-    }
-    public static void glNewList ( int list,  int mode) {
-        var mh$ = glNewList$MH();
-        try {
-            mh$.invokeExact(list, mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glNormal3b$MH() {
-        return RuntimeHelper.requireNonNull(constants$1322.glNormal3b$MH,"glNormal3b");
-    }
-    public static void glNormal3b ( byte nx,  byte ny,  byte nz) {
-        var mh$ = glNormal3b$MH();
-        try {
-            mh$.invokeExact(nx, ny, nz);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glNormal3bv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1322.glNormal3bv$MH,"glNormal3bv");
-    }
-    public static void glNormal3bv ( Addressable v) {
-        var mh$ = glNormal3bv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glNormal3d$MH() {
-        return RuntimeHelper.requireNonNull(constants$1322.glNormal3d$MH,"glNormal3d");
-    }
-    public static void glNormal3d ( double nx,  double ny,  double nz) {
-        var mh$ = glNormal3d$MH();
-        try {
-            mh$.invokeExact(nx, ny, nz);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glNormal3dv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1322.glNormal3dv$MH,"glNormal3dv");
-    }
-    public static void glNormal3dv ( Addressable v) {
-        var mh$ = glNormal3dv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glNormal3f$MH() {
-        return RuntimeHelper.requireNonNull(constants$1322.glNormal3f$MH,"glNormal3f");
-    }
-    public static void glNormal3f ( float nx,  float ny,  float nz) {
-        var mh$ = glNormal3f$MH();
-        try {
-            mh$.invokeExact(nx, ny, nz);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glNormal3fv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1322.glNormal3fv$MH,"glNormal3fv");
-    }
-    public static void glNormal3fv ( Addressable v) {
-        var mh$ = glNormal3fv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glNormal3i$MH() {
-        return RuntimeHelper.requireNonNull(constants$1323.glNormal3i$MH,"glNormal3i");
-    }
-    public static void glNormal3i ( int nx,  int ny,  int nz) {
-        var mh$ = glNormal3i$MH();
-        try {
-            mh$.invokeExact(nx, ny, nz);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glNormal3iv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1323.glNormal3iv$MH,"glNormal3iv");
-    }
-    public static void glNormal3iv ( Addressable v) {
-        var mh$ = glNormal3iv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glNormal3s$MH() {
-        return RuntimeHelper.requireNonNull(constants$1323.glNormal3s$MH,"glNormal3s");
-    }
-    public static void glNormal3s ( short nx,  short ny,  short nz) {
-        var mh$ = glNormal3s$MH();
-        try {
-            mh$.invokeExact(nx, ny, nz);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glNormal3sv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1323.glNormal3sv$MH,"glNormal3sv");
-    }
-    public static void glNormal3sv ( Addressable v) {
-        var mh$ = glNormal3sv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glNormalPointer$MH() {
-        return RuntimeHelper.requireNonNull(constants$1323.glNormalPointer$MH,"glNormalPointer");
-    }
-    public static void glNormalPointer ( int type,  int stride,  Addressable pointer) {
-        var mh$ = glNormalPointer$MH();
-        try {
-            mh$.invokeExact(type, stride, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glOrtho$MH() {
-        return RuntimeHelper.requireNonNull(constants$1323.glOrtho$MH,"glOrtho");
-    }
-    public static void glOrtho ( double left,  double right,  double bottom,  double top,  double zNear,  double zFar) {
-        var mh$ = glOrtho$MH();
-        try {
-            mh$.invokeExact(left, right, bottom, top, zNear, zFar);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPassThrough$MH() {
-        return RuntimeHelper.requireNonNull(constants$1324.glPassThrough$MH,"glPassThrough");
-    }
-    public static void glPassThrough ( float token) {
-        var mh$ = glPassThrough$MH();
-        try {
-            mh$.invokeExact(token);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPixelMapfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1324.glPixelMapfv$MH,"glPixelMapfv");
-    }
-    public static void glPixelMapfv ( int map,  int mapsize,  Addressable values) {
-        var mh$ = glPixelMapfv$MH();
-        try {
-            mh$.invokeExact(map, mapsize, values);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPixelMapuiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1324.glPixelMapuiv$MH,"glPixelMapuiv");
-    }
-    public static void glPixelMapuiv ( int map,  int mapsize,  Addressable values) {
-        var mh$ = glPixelMapuiv$MH();
-        try {
-            mh$.invokeExact(map, mapsize, values);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPixelMapusv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1324.glPixelMapusv$MH,"glPixelMapusv");
-    }
-    public static void glPixelMapusv ( int map,  int mapsize,  Addressable values) {
-        var mh$ = glPixelMapusv$MH();
-        try {
-            mh$.invokeExact(map, mapsize, values);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPixelStoref$MH() {
-        return RuntimeHelper.requireNonNull(constants$1324.glPixelStoref$MH,"glPixelStoref");
-    }
-    public static void glPixelStoref ( int pname,  float param) {
-        var mh$ = glPixelStoref$MH();
-        try {
-            mh$.invokeExact(pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPixelStorei$MH() {
-        return RuntimeHelper.requireNonNull(constants$1324.glPixelStorei$MH,"glPixelStorei");
-    }
-    public static void glPixelStorei ( int pname,  int param) {
-        var mh$ = glPixelStorei$MH();
-        try {
-            mh$.invokeExact(pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPixelTransferf$MH() {
-        return RuntimeHelper.requireNonNull(constants$1325.glPixelTransferf$MH,"glPixelTransferf");
-    }
-    public static void glPixelTransferf ( int pname,  float param) {
-        var mh$ = glPixelTransferf$MH();
-        try {
-            mh$.invokeExact(pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPixelTransferi$MH() {
-        return RuntimeHelper.requireNonNull(constants$1325.glPixelTransferi$MH,"glPixelTransferi");
-    }
-    public static void glPixelTransferi ( int pname,  int param) {
-        var mh$ = glPixelTransferi$MH();
-        try {
-            mh$.invokeExact(pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPixelZoom$MH() {
-        return RuntimeHelper.requireNonNull(constants$1325.glPixelZoom$MH,"glPixelZoom");
-    }
-    public static void glPixelZoom ( float xfactor,  float yfactor) {
-        var mh$ = glPixelZoom$MH();
-        try {
-            mh$.invokeExact(xfactor, yfactor);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPointSize$MH() {
-        return RuntimeHelper.requireNonNull(constants$1325.glPointSize$MH,"glPointSize");
-    }
-    public static void glPointSize ( float size) {
-        var mh$ = glPointSize$MH();
-        try {
-            mh$.invokeExact(size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPolygonMode$MH() {
-        return RuntimeHelper.requireNonNull(constants$1325.glPolygonMode$MH,"glPolygonMode");
-    }
-    public static void glPolygonMode ( int face,  int mode) {
-        var mh$ = glPolygonMode$MH();
-        try {
-            mh$.invokeExact(face, mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPolygonOffset$MH() {
-        return RuntimeHelper.requireNonNull(constants$1325.glPolygonOffset$MH,"glPolygonOffset");
-    }
-    public static void glPolygonOffset ( float factor,  float units) {
-        var mh$ = glPolygonOffset$MH();
-        try {
-            mh$.invokeExact(factor, units);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPolygonStipple$MH() {
-        return RuntimeHelper.requireNonNull(constants$1326.glPolygonStipple$MH,"glPolygonStipple");
-    }
-    public static void glPolygonStipple ( Addressable mask) {
-        var mh$ = glPolygonStipple$MH();
-        try {
-            mh$.invokeExact(mask);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPopAttrib$MH() {
-        return RuntimeHelper.requireNonNull(constants$1326.glPopAttrib$MH,"glPopAttrib");
-    }
-    public static void glPopAttrib () {
-        var mh$ = glPopAttrib$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPopClientAttrib$MH() {
-        return RuntimeHelper.requireNonNull(constants$1326.glPopClientAttrib$MH,"glPopClientAttrib");
-    }
-    public static void glPopClientAttrib () {
-        var mh$ = glPopClientAttrib$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPopMatrix$MH() {
-        return RuntimeHelper.requireNonNull(constants$1326.glPopMatrix$MH,"glPopMatrix");
-    }
-    public static void glPopMatrix () {
-        var mh$ = glPopMatrix$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPopName$MH() {
-        return RuntimeHelper.requireNonNull(constants$1326.glPopName$MH,"glPopName");
-    }
-    public static void glPopName () {
-        var mh$ = glPopName$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPrioritizeTextures$MH() {
-        return RuntimeHelper.requireNonNull(constants$1326.glPrioritizeTextures$MH,"glPrioritizeTextures");
-    }
-    public static void glPrioritizeTextures ( int n,  Addressable textures,  Addressable priorities) {
-        var mh$ = glPrioritizeTextures$MH();
-        try {
-            mh$.invokeExact(n, textures, priorities);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPushAttrib$MH() {
-        return RuntimeHelper.requireNonNull(constants$1327.glPushAttrib$MH,"glPushAttrib");
-    }
-    public static void glPushAttrib ( int mask) {
-        var mh$ = glPushAttrib$MH();
-        try {
-            mh$.invokeExact(mask);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPushClientAttrib$MH() {
-        return RuntimeHelper.requireNonNull(constants$1327.glPushClientAttrib$MH,"glPushClientAttrib");
-    }
-    public static void glPushClientAttrib ( int mask) {
-        var mh$ = glPushClientAttrib$MH();
-        try {
-            mh$.invokeExact(mask);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPushMatrix$MH() {
-        return RuntimeHelper.requireNonNull(constants$1327.glPushMatrix$MH,"glPushMatrix");
-    }
-    public static void glPushMatrix () {
-        var mh$ = glPushMatrix$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPushName$MH() {
-        return RuntimeHelper.requireNonNull(constants$1327.glPushName$MH,"glPushName");
-    }
-    public static void glPushName ( int name) {
-        var mh$ = glPushName$MH();
-        try {
-            mh$.invokeExact(name);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos2d$MH() {
-        return RuntimeHelper.requireNonNull(constants$1327.glRasterPos2d$MH,"glRasterPos2d");
-    }
-    public static void glRasterPos2d ( double x,  double y) {
-        var mh$ = glRasterPos2d$MH();
-        try {
-            mh$.invokeExact(x, y);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos2dv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1327.glRasterPos2dv$MH,"glRasterPos2dv");
-    }
-    public static void glRasterPos2dv ( Addressable v) {
-        var mh$ = glRasterPos2dv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos2f$MH() {
-        return RuntimeHelper.requireNonNull(constants$1328.glRasterPos2f$MH,"glRasterPos2f");
-    }
-    public static void glRasterPos2f ( float x,  float y) {
-        var mh$ = glRasterPos2f$MH();
-        try {
-            mh$.invokeExact(x, y);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos2fv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1328.glRasterPos2fv$MH,"glRasterPos2fv");
-    }
-    public static void glRasterPos2fv ( Addressable v) {
-        var mh$ = glRasterPos2fv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos2i$MH() {
-        return RuntimeHelper.requireNonNull(constants$1328.glRasterPos2i$MH,"glRasterPos2i");
-    }
-    public static void glRasterPos2i ( int x,  int y) {
-        var mh$ = glRasterPos2i$MH();
-        try {
-            mh$.invokeExact(x, y);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos2iv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1328.glRasterPos2iv$MH,"glRasterPos2iv");
-    }
-    public static void glRasterPos2iv ( Addressable v) {
-        var mh$ = glRasterPos2iv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos2s$MH() {
-        return RuntimeHelper.requireNonNull(constants$1328.glRasterPos2s$MH,"glRasterPos2s");
-    }
-    public static void glRasterPos2s ( short x,  short y) {
-        var mh$ = glRasterPos2s$MH();
-        try {
-            mh$.invokeExact(x, y);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos2sv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1328.glRasterPos2sv$MH,"glRasterPos2sv");
-    }
-    public static void glRasterPos2sv ( Addressable v) {
-        var mh$ = glRasterPos2sv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos3d$MH() {
-        return RuntimeHelper.requireNonNull(constants$1329.glRasterPos3d$MH,"glRasterPos3d");
-    }
-    public static void glRasterPos3d ( double x,  double y,  double z) {
-        var mh$ = glRasterPos3d$MH();
-        try {
-            mh$.invokeExact(x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos3dv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1329.glRasterPos3dv$MH,"glRasterPos3dv");
-    }
-    public static void glRasterPos3dv ( Addressable v) {
-        var mh$ = glRasterPos3dv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos3f$MH() {
-        return RuntimeHelper.requireNonNull(constants$1329.glRasterPos3f$MH,"glRasterPos3f");
-    }
-    public static void glRasterPos3f ( float x,  float y,  float z) {
-        var mh$ = glRasterPos3f$MH();
-        try {
-            mh$.invokeExact(x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos3fv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1329.glRasterPos3fv$MH,"glRasterPos3fv");
-    }
-    public static void glRasterPos3fv ( Addressable v) {
-        var mh$ = glRasterPos3fv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos3i$MH() {
-        return RuntimeHelper.requireNonNull(constants$1329.glRasterPos3i$MH,"glRasterPos3i");
-    }
-    public static void glRasterPos3i ( int x,  int y,  int z) {
-        var mh$ = glRasterPos3i$MH();
-        try {
-            mh$.invokeExact(x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos3iv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1329.glRasterPos3iv$MH,"glRasterPos3iv");
-    }
-    public static void glRasterPos3iv ( Addressable v) {
-        var mh$ = glRasterPos3iv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos3s$MH() {
-        return RuntimeHelper.requireNonNull(constants$1330.glRasterPos3s$MH,"glRasterPos3s");
-    }
-    public static void glRasterPos3s ( short x,  short y,  short z) {
-        var mh$ = glRasterPos3s$MH();
-        try {
-            mh$.invokeExact(x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos3sv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1330.glRasterPos3sv$MH,"glRasterPos3sv");
-    }
-    public static void glRasterPos3sv ( Addressable v) {
-        var mh$ = glRasterPos3sv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos4d$MH() {
-        return RuntimeHelper.requireNonNull(constants$1330.glRasterPos4d$MH,"glRasterPos4d");
-    }
-    public static void glRasterPos4d ( double x,  double y,  double z,  double w) {
-        var mh$ = glRasterPos4d$MH();
-        try {
-            mh$.invokeExact(x, y, z, w);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos4dv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1330.glRasterPos4dv$MH,"glRasterPos4dv");
-    }
-    public static void glRasterPos4dv ( Addressable v) {
-        var mh$ = glRasterPos4dv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos4f$MH() {
-        return RuntimeHelper.requireNonNull(constants$1330.glRasterPos4f$MH,"glRasterPos4f");
-    }
-    public static void glRasterPos4f ( float x,  float y,  float z,  float w) {
-        var mh$ = glRasterPos4f$MH();
-        try {
-            mh$.invokeExact(x, y, z, w);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos4fv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1330.glRasterPos4fv$MH,"glRasterPos4fv");
-    }
-    public static void glRasterPos4fv ( Addressable v) {
-        var mh$ = glRasterPos4fv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos4i$MH() {
-        return RuntimeHelper.requireNonNull(constants$1331.glRasterPos4i$MH,"glRasterPos4i");
-    }
-    public static void glRasterPos4i ( int x,  int y,  int z,  int w) {
-        var mh$ = glRasterPos4i$MH();
-        try {
-            mh$.invokeExact(x, y, z, w);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos4iv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1331.glRasterPos4iv$MH,"glRasterPos4iv");
-    }
-    public static void glRasterPos4iv ( Addressable v) {
-        var mh$ = glRasterPos4iv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos4s$MH() {
-        return RuntimeHelper.requireNonNull(constants$1331.glRasterPos4s$MH,"glRasterPos4s");
-    }
-    public static void glRasterPos4s ( short x,  short y,  short z,  short w) {
-        var mh$ = glRasterPos4s$MH();
-        try {
-            mh$.invokeExact(x, y, z, w);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRasterPos4sv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1331.glRasterPos4sv$MH,"glRasterPos4sv");
-    }
-    public static void glRasterPos4sv ( Addressable v) {
-        var mh$ = glRasterPos4sv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glReadBuffer$MH() {
-        return RuntimeHelper.requireNonNull(constants$1331.glReadBuffer$MH,"glReadBuffer");
-    }
-    public static void glReadBuffer ( int mode) {
-        var mh$ = glReadBuffer$MH();
-        try {
-            mh$.invokeExact(mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glReadPixels$MH() {
-        return RuntimeHelper.requireNonNull(constants$1331.glReadPixels$MH,"glReadPixels");
-    }
-    public static void glReadPixels ( int x,  int y,  int width,  int height,  int format,  int type,  Addressable pixels) {
-        var mh$ = glReadPixels$MH();
-        try {
-            mh$.invokeExact(x, y, width, height, format, type, pixels);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRectd$MH() {
-        return RuntimeHelper.requireNonNull(constants$1332.glRectd$MH,"glRectd");
-    }
-    public static void glRectd ( double x1,  double y1,  double x2,  double y2) {
-        var mh$ = glRectd$MH();
-        try {
-            mh$.invokeExact(x1, y1, x2, y2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRectdv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1332.glRectdv$MH,"glRectdv");
-    }
-    public static void glRectdv ( Addressable v1,  Addressable v2) {
-        var mh$ = glRectdv$MH();
-        try {
-            mh$.invokeExact(v1, v2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRectf$MH() {
-        return RuntimeHelper.requireNonNull(constants$1332.glRectf$MH,"glRectf");
-    }
-    public static void glRectf ( float x1,  float y1,  float x2,  float y2) {
-        var mh$ = glRectf$MH();
-        try {
-            mh$.invokeExact(x1, y1, x2, y2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRectfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1332.glRectfv$MH,"glRectfv");
-    }
-    public static void glRectfv ( Addressable v1,  Addressable v2) {
-        var mh$ = glRectfv$MH();
-        try {
-            mh$.invokeExact(v1, v2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRecti$MH() {
-        return RuntimeHelper.requireNonNull(constants$1332.glRecti$MH,"glRecti");
-    }
-    public static void glRecti ( int x1,  int y1,  int x2,  int y2) {
-        var mh$ = glRecti$MH();
-        try {
-            mh$.invokeExact(x1, y1, x2, y2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRectiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1332.glRectiv$MH,"glRectiv");
-    }
-    public static void glRectiv ( Addressable v1,  Addressable v2) {
-        var mh$ = glRectiv$MH();
-        try {
-            mh$.invokeExact(v1, v2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRects$MH() {
-        return RuntimeHelper.requireNonNull(constants$1333.glRects$MH,"glRects");
-    }
-    public static void glRects ( short x1,  short y1,  short x2,  short y2) {
-        var mh$ = glRects$MH();
-        try {
-            mh$.invokeExact(x1, y1, x2, y2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRectsv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1333.glRectsv$MH,"glRectsv");
-    }
-    public static void glRectsv ( Addressable v1,  Addressable v2) {
-        var mh$ = glRectsv$MH();
-        try {
-            mh$.invokeExact(v1, v2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRenderMode$MH() {
-        return RuntimeHelper.requireNonNull(constants$1333.glRenderMode$MH,"glRenderMode");
-    }
-    public static int glRenderMode ( int mode) {
-        var mh$ = glRenderMode$MH();
-        try {
-            return (int)mh$.invokeExact(mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRotated$MH() {
-        return RuntimeHelper.requireNonNull(constants$1333.glRotated$MH,"glRotated");
-    }
-    public static void glRotated ( double angle,  double x,  double y,  double z) {
-        var mh$ = glRotated$MH();
-        try {
-            mh$.invokeExact(angle, x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRotatef$MH() {
-        return RuntimeHelper.requireNonNull(constants$1333.glRotatef$MH,"glRotatef");
-    }
-    public static void glRotatef ( float angle,  float x,  float y,  float z) {
-        var mh$ = glRotatef$MH();
-        try {
-            mh$.invokeExact(angle, x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glScaled$MH() {
-        return RuntimeHelper.requireNonNull(constants$1333.glScaled$MH,"glScaled");
-    }
-    public static void glScaled ( double x,  double y,  double z) {
-        var mh$ = glScaled$MH();
-        try {
-            mh$.invokeExact(x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glScalef$MH() {
-        return RuntimeHelper.requireNonNull(constants$1334.glScalef$MH,"glScalef");
-    }
-    public static void glScalef ( float x,  float y,  float z) {
-        var mh$ = glScalef$MH();
-        try {
-            mh$.invokeExact(x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glScissor$MH() {
-        return RuntimeHelper.requireNonNull(constants$1334.glScissor$MH,"glScissor");
-    }
-    public static void glScissor ( int x,  int y,  int width,  int height) {
-        var mh$ = glScissor$MH();
-        try {
-            mh$.invokeExact(x, y, width, height);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSelectBuffer$MH() {
-        return RuntimeHelper.requireNonNull(constants$1334.glSelectBuffer$MH,"glSelectBuffer");
-    }
-    public static void glSelectBuffer ( int size,  Addressable buffer) {
-        var mh$ = glSelectBuffer$MH();
-        try {
-            mh$.invokeExact(size, buffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glShadeModel$MH() {
-        return RuntimeHelper.requireNonNull(constants$1334.glShadeModel$MH,"glShadeModel");
-    }
-    public static void glShadeModel ( int mode) {
-        var mh$ = glShadeModel$MH();
-        try {
-            mh$.invokeExact(mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glStencilFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$1334.glStencilFunc$MH,"glStencilFunc");
-    }
-    public static void glStencilFunc ( int func,  int ref,  int mask) {
-        var mh$ = glStencilFunc$MH();
-        try {
-            mh$.invokeExact(func, ref, mask);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glStencilMask$MH() {
-        return RuntimeHelper.requireNonNull(constants$1334.glStencilMask$MH,"glStencilMask");
-    }
-    public static void glStencilMask ( int mask) {
-        var mh$ = glStencilMask$MH();
-        try {
-            mh$.invokeExact(mask);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glStencilOp$MH() {
-        return RuntimeHelper.requireNonNull(constants$1335.glStencilOp$MH,"glStencilOp");
-    }
-    public static void glStencilOp ( int fail,  int zfail,  int zpass) {
-        var mh$ = glStencilOp$MH();
-        try {
-            mh$.invokeExact(fail, zfail, zpass);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord1d$MH() {
-        return RuntimeHelper.requireNonNull(constants$1335.glTexCoord1d$MH,"glTexCoord1d");
-    }
-    public static void glTexCoord1d ( double s) {
-        var mh$ = glTexCoord1d$MH();
-        try {
-            mh$.invokeExact(s);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord1dv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1335.glTexCoord1dv$MH,"glTexCoord1dv");
-    }
-    public static void glTexCoord1dv ( Addressable v) {
-        var mh$ = glTexCoord1dv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord1f$MH() {
-        return RuntimeHelper.requireNonNull(constants$1335.glTexCoord1f$MH,"glTexCoord1f");
-    }
-    public static void glTexCoord1f ( float s) {
-        var mh$ = glTexCoord1f$MH();
-        try {
-            mh$.invokeExact(s);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord1fv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1335.glTexCoord1fv$MH,"glTexCoord1fv");
-    }
-    public static void glTexCoord1fv ( Addressable v) {
-        var mh$ = glTexCoord1fv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord1i$MH() {
-        return RuntimeHelper.requireNonNull(constants$1335.glTexCoord1i$MH,"glTexCoord1i");
-    }
-    public static void glTexCoord1i ( int s) {
-        var mh$ = glTexCoord1i$MH();
-        try {
-            mh$.invokeExact(s);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord1iv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1336.glTexCoord1iv$MH,"glTexCoord1iv");
-    }
-    public static void glTexCoord1iv ( Addressable v) {
-        var mh$ = glTexCoord1iv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord1s$MH() {
-        return RuntimeHelper.requireNonNull(constants$1336.glTexCoord1s$MH,"glTexCoord1s");
-    }
-    public static void glTexCoord1s ( short s) {
-        var mh$ = glTexCoord1s$MH();
-        try {
-            mh$.invokeExact(s);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord1sv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1336.glTexCoord1sv$MH,"glTexCoord1sv");
-    }
-    public static void glTexCoord1sv ( Addressable v) {
-        var mh$ = glTexCoord1sv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord2d$MH() {
-        return RuntimeHelper.requireNonNull(constants$1336.glTexCoord2d$MH,"glTexCoord2d");
-    }
-    public static void glTexCoord2d ( double s,  double t) {
-        var mh$ = glTexCoord2d$MH();
-        try {
-            mh$.invokeExact(s, t);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord2dv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1336.glTexCoord2dv$MH,"glTexCoord2dv");
-    }
-    public static void glTexCoord2dv ( Addressable v) {
-        var mh$ = glTexCoord2dv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord2f$MH() {
-        return RuntimeHelper.requireNonNull(constants$1336.glTexCoord2f$MH,"glTexCoord2f");
-    }
-    public static void glTexCoord2f ( float s,  float t) {
-        var mh$ = glTexCoord2f$MH();
-        try {
-            mh$.invokeExact(s, t);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord2fv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1337.glTexCoord2fv$MH,"glTexCoord2fv");
-    }
-    public static void glTexCoord2fv ( Addressable v) {
-        var mh$ = glTexCoord2fv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord2i$MH() {
-        return RuntimeHelper.requireNonNull(constants$1337.glTexCoord2i$MH,"glTexCoord2i");
-    }
-    public static void glTexCoord2i ( int s,  int t) {
-        var mh$ = glTexCoord2i$MH();
-        try {
-            mh$.invokeExact(s, t);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord2iv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1337.glTexCoord2iv$MH,"glTexCoord2iv");
-    }
-    public static void glTexCoord2iv ( Addressable v) {
-        var mh$ = glTexCoord2iv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord2s$MH() {
-        return RuntimeHelper.requireNonNull(constants$1337.glTexCoord2s$MH,"glTexCoord2s");
-    }
-    public static void glTexCoord2s ( short s,  short t) {
-        var mh$ = glTexCoord2s$MH();
-        try {
-            mh$.invokeExact(s, t);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord2sv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1337.glTexCoord2sv$MH,"glTexCoord2sv");
-    }
-    public static void glTexCoord2sv ( Addressable v) {
-        var mh$ = glTexCoord2sv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord3d$MH() {
-        return RuntimeHelper.requireNonNull(constants$1337.glTexCoord3d$MH,"glTexCoord3d");
-    }
-    public static void glTexCoord3d ( double s,  double t,  double r) {
-        var mh$ = glTexCoord3d$MH();
-        try {
-            mh$.invokeExact(s, t, r);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord3dv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1338.glTexCoord3dv$MH,"glTexCoord3dv");
-    }
-    public static void glTexCoord3dv ( Addressable v) {
-        var mh$ = glTexCoord3dv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord3f$MH() {
-        return RuntimeHelper.requireNonNull(constants$1338.glTexCoord3f$MH,"glTexCoord3f");
-    }
-    public static void glTexCoord3f ( float s,  float t,  float r) {
-        var mh$ = glTexCoord3f$MH();
-        try {
-            mh$.invokeExact(s, t, r);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord3fv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1338.glTexCoord3fv$MH,"glTexCoord3fv");
-    }
-    public static void glTexCoord3fv ( Addressable v) {
-        var mh$ = glTexCoord3fv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord3i$MH() {
-        return RuntimeHelper.requireNonNull(constants$1338.glTexCoord3i$MH,"glTexCoord3i");
-    }
-    public static void glTexCoord3i ( int s,  int t,  int r) {
-        var mh$ = glTexCoord3i$MH();
-        try {
-            mh$.invokeExact(s, t, r);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord3iv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1338.glTexCoord3iv$MH,"glTexCoord3iv");
-    }
-    public static void glTexCoord3iv ( Addressable v) {
-        var mh$ = glTexCoord3iv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord3s$MH() {
-        return RuntimeHelper.requireNonNull(constants$1338.glTexCoord3s$MH,"glTexCoord3s");
-    }
-    public static void glTexCoord3s ( short s,  short t,  short r) {
-        var mh$ = glTexCoord3s$MH();
-        try {
-            mh$.invokeExact(s, t, r);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord3sv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1339.glTexCoord3sv$MH,"glTexCoord3sv");
-    }
-    public static void glTexCoord3sv ( Addressable v) {
-        var mh$ = glTexCoord3sv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord4d$MH() {
-        return RuntimeHelper.requireNonNull(constants$1339.glTexCoord4d$MH,"glTexCoord4d");
-    }
-    public static void glTexCoord4d ( double s,  double t,  double r,  double q) {
-        var mh$ = glTexCoord4d$MH();
-        try {
-            mh$.invokeExact(s, t, r, q);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord4dv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1339.glTexCoord4dv$MH,"glTexCoord4dv");
-    }
-    public static void glTexCoord4dv ( Addressable v) {
-        var mh$ = glTexCoord4dv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord4f$MH() {
-        return RuntimeHelper.requireNonNull(constants$1339.glTexCoord4f$MH,"glTexCoord4f");
-    }
-    public static void glTexCoord4f ( float s,  float t,  float r,  float q) {
-        var mh$ = glTexCoord4f$MH();
-        try {
-            mh$.invokeExact(s, t, r, q);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord4fv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1339.glTexCoord4fv$MH,"glTexCoord4fv");
-    }
-    public static void glTexCoord4fv ( Addressable v) {
-        var mh$ = glTexCoord4fv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord4i$MH() {
-        return RuntimeHelper.requireNonNull(constants$1339.glTexCoord4i$MH,"glTexCoord4i");
-    }
-    public static void glTexCoord4i ( int s,  int t,  int r,  int q) {
-        var mh$ = glTexCoord4i$MH();
-        try {
-            mh$.invokeExact(s, t, r, q);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord4iv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1340.glTexCoord4iv$MH,"glTexCoord4iv");
-    }
-    public static void glTexCoord4iv ( Addressable v) {
-        var mh$ = glTexCoord4iv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord4s$MH() {
-        return RuntimeHelper.requireNonNull(constants$1340.glTexCoord4s$MH,"glTexCoord4s");
-    }
-    public static void glTexCoord4s ( short s,  short t,  short r,  short q) {
-        var mh$ = glTexCoord4s$MH();
-        try {
-            mh$.invokeExact(s, t, r, q);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoord4sv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1340.glTexCoord4sv$MH,"glTexCoord4sv");
-    }
-    public static void glTexCoord4sv ( Addressable v) {
-        var mh$ = glTexCoord4sv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexCoordPointer$MH() {
-        return RuntimeHelper.requireNonNull(constants$1340.glTexCoordPointer$MH,"glTexCoordPointer");
-    }
-    public static void glTexCoordPointer ( int size,  int type,  int stride,  Addressable pointer) {
-        var mh$ = glTexCoordPointer$MH();
-        try {
-            mh$.invokeExact(size, type, stride, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexEnvf$MH() {
-        return RuntimeHelper.requireNonNull(constants$1340.glTexEnvf$MH,"glTexEnvf");
-    }
-    public static void glTexEnvf ( int target,  int pname,  float param) {
-        var mh$ = glTexEnvf$MH();
-        try {
-            mh$.invokeExact(target, pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexEnvfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1340.glTexEnvfv$MH,"glTexEnvfv");
-    }
-    public static void glTexEnvfv ( int target,  int pname,  Addressable params) {
-        var mh$ = glTexEnvfv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexEnvi$MH() {
-        return RuntimeHelper.requireNonNull(constants$1341.glTexEnvi$MH,"glTexEnvi");
-    }
-    public static void glTexEnvi ( int target,  int pname,  int param) {
-        var mh$ = glTexEnvi$MH();
-        try {
-            mh$.invokeExact(target, pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexEnviv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1341.glTexEnviv$MH,"glTexEnviv");
-    }
-    public static void glTexEnviv ( int target,  int pname,  Addressable params) {
-        var mh$ = glTexEnviv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexGend$MH() {
-        return RuntimeHelper.requireNonNull(constants$1341.glTexGend$MH,"glTexGend");
-    }
-    public static void glTexGend ( int coord,  int pname,  double param) {
-        var mh$ = glTexGend$MH();
-        try {
-            mh$.invokeExact(coord, pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexGendv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1341.glTexGendv$MH,"glTexGendv");
-    }
-    public static void glTexGendv ( int coord,  int pname,  Addressable params) {
-        var mh$ = glTexGendv$MH();
-        try {
-            mh$.invokeExact(coord, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexGenf$MH() {
-        return RuntimeHelper.requireNonNull(constants$1341.glTexGenf$MH,"glTexGenf");
-    }
-    public static void glTexGenf ( int coord,  int pname,  float param) {
-        var mh$ = glTexGenf$MH();
-        try {
-            mh$.invokeExact(coord, pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexGenfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1341.glTexGenfv$MH,"glTexGenfv");
-    }
-    public static void glTexGenfv ( int coord,  int pname,  Addressable params) {
-        var mh$ = glTexGenfv$MH();
-        try {
-            mh$.invokeExact(coord, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexGeni$MH() {
-        return RuntimeHelper.requireNonNull(constants$1342.glTexGeni$MH,"glTexGeni");
-    }
-    public static void glTexGeni ( int coord,  int pname,  int param) {
-        var mh$ = glTexGeni$MH();
-        try {
-            mh$.invokeExact(coord, pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexGeniv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1342.glTexGeniv$MH,"glTexGeniv");
-    }
-    public static void glTexGeniv ( int coord,  int pname,  Addressable params) {
-        var mh$ = glTexGeniv$MH();
-        try {
-            mh$.invokeExact(coord, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexImage1D$MH() {
-        return RuntimeHelper.requireNonNull(constants$1342.glTexImage1D$MH,"glTexImage1D");
-    }
-    public static void glTexImage1D ( int target,  int level,  int internalformat,  int width,  int border,  int format,  int type,  Addressable pixels) {
-        var mh$ = glTexImage1D$MH();
-        try {
-            mh$.invokeExact(target, level, internalformat, width, border, format, type, pixels);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexImage2D$MH() {
-        return RuntimeHelper.requireNonNull(constants$1342.glTexImage2D$MH,"glTexImage2D");
-    }
-    public static void glTexImage2D ( int target,  int level,  int internalformat,  int width,  int height,  int border,  int format,  int type,  Addressable pixels) {
-        var mh$ = glTexImage2D$MH();
-        try {
-            mh$.invokeExact(target, level, internalformat, width, height, border, format, type, pixels);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexParameterf$MH() {
-        return RuntimeHelper.requireNonNull(constants$1342.glTexParameterf$MH,"glTexParameterf");
-    }
-    public static void glTexParameterf ( int target,  int pname,  float param) {
-        var mh$ = glTexParameterf$MH();
-        try {
-            mh$.invokeExact(target, pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexParameterfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1342.glTexParameterfv$MH,"glTexParameterfv");
-    }
-    public static void glTexParameterfv ( int target,  int pname,  Addressable params) {
-        var mh$ = glTexParameterfv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexParameteri$MH() {
-        return RuntimeHelper.requireNonNull(constants$1343.glTexParameteri$MH,"glTexParameteri");
-    }
-    public static void glTexParameteri ( int target,  int pname,  int param) {
-        var mh$ = glTexParameteri$MH();
-        try {
-            mh$.invokeExact(target, pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexParameteriv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1343.glTexParameteriv$MH,"glTexParameteriv");
-    }
-    public static void glTexParameteriv ( int target,  int pname,  Addressable params) {
-        var mh$ = glTexParameteriv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexSubImage1D$MH() {
-        return RuntimeHelper.requireNonNull(constants$1343.glTexSubImage1D$MH,"glTexSubImage1D");
-    }
-    public static void glTexSubImage1D ( int target,  int level,  int xoffset,  int width,  int format,  int type,  Addressable pixels) {
-        var mh$ = glTexSubImage1D$MH();
-        try {
-            mh$.invokeExact(target, level, xoffset, width, format, type, pixels);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexSubImage2D$MH() {
-        return RuntimeHelper.requireNonNull(constants$1343.glTexSubImage2D$MH,"glTexSubImage2D");
-    }
-    public static void glTexSubImage2D ( int target,  int level,  int xoffset,  int yoffset,  int width,  int height,  int format,  int type,  Addressable pixels) {
-        var mh$ = glTexSubImage2D$MH();
-        try {
-            mh$.invokeExact(target, level, xoffset, yoffset, width, height, format, type, pixels);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTranslated$MH() {
-        return RuntimeHelper.requireNonNull(constants$1343.glTranslated$MH,"glTranslated");
-    }
-    public static void glTranslated ( double x,  double y,  double z) {
-        var mh$ = glTranslated$MH();
-        try {
-            mh$.invokeExact(x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTranslatef$MH() {
-        return RuntimeHelper.requireNonNull(constants$1343.glTranslatef$MH,"glTranslatef");
-    }
-    public static void glTranslatef ( float x,  float y,  float z) {
-        var mh$ = glTranslatef$MH();
-        try {
-            mh$.invokeExact(x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex2d$MH() {
-        return RuntimeHelper.requireNonNull(constants$1344.glVertex2d$MH,"glVertex2d");
-    }
-    public static void glVertex2d ( double x,  double y) {
-        var mh$ = glVertex2d$MH();
-        try {
-            mh$.invokeExact(x, y);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex2dv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1344.glVertex2dv$MH,"glVertex2dv");
-    }
-    public static void glVertex2dv ( Addressable v) {
-        var mh$ = glVertex2dv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex2f$MH() {
-        return RuntimeHelper.requireNonNull(constants$1344.glVertex2f$MH,"glVertex2f");
-    }
-    public static void glVertex2f ( float x,  float y) {
-        var mh$ = glVertex2f$MH();
-        try {
-            mh$.invokeExact(x, y);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex2fv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1344.glVertex2fv$MH,"glVertex2fv");
-    }
-    public static void glVertex2fv ( Addressable v) {
-        var mh$ = glVertex2fv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex2i$MH() {
-        return RuntimeHelper.requireNonNull(constants$1344.glVertex2i$MH,"glVertex2i");
-    }
-    public static void glVertex2i ( int x,  int y) {
-        var mh$ = glVertex2i$MH();
-        try {
-            mh$.invokeExact(x, y);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex2iv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1344.glVertex2iv$MH,"glVertex2iv");
-    }
-    public static void glVertex2iv ( Addressable v) {
-        var mh$ = glVertex2iv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex2s$MH() {
-        return RuntimeHelper.requireNonNull(constants$1345.glVertex2s$MH,"glVertex2s");
-    }
-    public static void glVertex2s ( short x,  short y) {
-        var mh$ = glVertex2s$MH();
-        try {
-            mh$.invokeExact(x, y);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex2sv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1345.glVertex2sv$MH,"glVertex2sv");
-    }
-    public static void glVertex2sv ( Addressable v) {
-        var mh$ = glVertex2sv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex3d$MH() {
-        return RuntimeHelper.requireNonNull(constants$1345.glVertex3d$MH,"glVertex3d");
-    }
-    public static void glVertex3d ( double x,  double y,  double z) {
-        var mh$ = glVertex3d$MH();
-        try {
-            mh$.invokeExact(x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex3dv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1345.glVertex3dv$MH,"glVertex3dv");
-    }
-    public static void glVertex3dv ( Addressable v) {
-        var mh$ = glVertex3dv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex3f$MH() {
-        return RuntimeHelper.requireNonNull(constants$1345.glVertex3f$MH,"glVertex3f");
-    }
-    public static void glVertex3f ( float x,  float y,  float z) {
-        var mh$ = glVertex3f$MH();
-        try {
-            mh$.invokeExact(x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex3fv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1345.glVertex3fv$MH,"glVertex3fv");
-    }
-    public static void glVertex3fv ( Addressable v) {
-        var mh$ = glVertex3fv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex3i$MH() {
-        return RuntimeHelper.requireNonNull(constants$1346.glVertex3i$MH,"glVertex3i");
-    }
-    public static void glVertex3i ( int x,  int y,  int z) {
-        var mh$ = glVertex3i$MH();
-        try {
-            mh$.invokeExact(x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex3iv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1346.glVertex3iv$MH,"glVertex3iv");
-    }
-    public static void glVertex3iv ( Addressable v) {
-        var mh$ = glVertex3iv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex3s$MH() {
-        return RuntimeHelper.requireNonNull(constants$1346.glVertex3s$MH,"glVertex3s");
-    }
-    public static void glVertex3s ( short x,  short y,  short z) {
-        var mh$ = glVertex3s$MH();
-        try {
-            mh$.invokeExact(x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex3sv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1346.glVertex3sv$MH,"glVertex3sv");
-    }
-    public static void glVertex3sv ( Addressable v) {
-        var mh$ = glVertex3sv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex4d$MH() {
-        return RuntimeHelper.requireNonNull(constants$1346.glVertex4d$MH,"glVertex4d");
-    }
-    public static void glVertex4d ( double x,  double y,  double z,  double w) {
-        var mh$ = glVertex4d$MH();
-        try {
-            mh$.invokeExact(x, y, z, w);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex4dv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1346.glVertex4dv$MH,"glVertex4dv");
-    }
-    public static void glVertex4dv ( Addressable v) {
-        var mh$ = glVertex4dv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex4f$MH() {
-        return RuntimeHelper.requireNonNull(constants$1347.glVertex4f$MH,"glVertex4f");
-    }
-    public static void glVertex4f ( float x,  float y,  float z,  float w) {
-        var mh$ = glVertex4f$MH();
-        try {
-            mh$.invokeExact(x, y, z, w);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex4fv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1347.glVertex4fv$MH,"glVertex4fv");
-    }
-    public static void glVertex4fv ( Addressable v) {
-        var mh$ = glVertex4fv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex4i$MH() {
-        return RuntimeHelper.requireNonNull(constants$1347.glVertex4i$MH,"glVertex4i");
-    }
-    public static void glVertex4i ( int x,  int y,  int z,  int w) {
-        var mh$ = glVertex4i$MH();
-        try {
-            mh$.invokeExact(x, y, z, w);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex4iv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1347.glVertex4iv$MH,"glVertex4iv");
-    }
-    public static void glVertex4iv ( Addressable v) {
-        var mh$ = glVertex4iv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex4s$MH() {
-        return RuntimeHelper.requireNonNull(constants$1347.glVertex4s$MH,"glVertex4s");
-    }
-    public static void glVertex4s ( short x,  short y,  short z,  short w) {
-        var mh$ = glVertex4s$MH();
-        try {
-            mh$.invokeExact(x, y, z, w);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertex4sv$MH() {
-        return RuntimeHelper.requireNonNull(constants$1347.glVertex4sv$MH,"glVertex4sv");
-    }
-    public static void glVertex4sv ( Addressable v) {
-        var mh$ = glVertex4sv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexPointer$MH() {
-        return RuntimeHelper.requireNonNull(constants$1348.glVertexPointer$MH,"glVertexPointer");
-    }
-    public static void glVertexPointer ( int size,  int type,  int stride,  Addressable pointer) {
-        var mh$ = glVertexPointer$MH();
-        try {
-            mh$.invokeExact(size, type, stride, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glViewport$MH() {
-        return RuntimeHelper.requireNonNull(constants$1348.glViewport$MH,"glViewport");
-    }
-    public static void glViewport ( int x,  int y,  int width,  int height) {
-        var mh$ = glViewport$MH();
-        try {
-            mh$.invokeExact(x, y, width, height);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluErrorString$MH() {
-        return RuntimeHelper.requireNonNull(constants$1354.gluErrorString$MH,"gluErrorString");
-    }
-    public static MemoryAddress gluErrorString ( int errCode) {
-        var mh$ = gluErrorString$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(errCode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluErrorUnicodeStringEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$1354.gluErrorUnicodeStringEXT$MH,"gluErrorUnicodeStringEXT");
-    }
-    public static MemoryAddress gluErrorUnicodeStringEXT ( int errCode) {
-        var mh$ = gluErrorUnicodeStringEXT$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(errCode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluGetString$MH() {
-        return RuntimeHelper.requireNonNull(constants$1354.gluGetString$MH,"gluGetString");
-    }
-    public static MemoryAddress gluGetString ( int name) {
-        var mh$ = gluGetString$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(name);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluOrtho2D$MH() {
-        return RuntimeHelper.requireNonNull(constants$1354.gluOrtho2D$MH,"gluOrtho2D");
-    }
-    public static void gluOrtho2D ( double left,  double right,  double bottom,  double top) {
-        var mh$ = gluOrtho2D$MH();
-        try {
-            mh$.invokeExact(left, right, bottom, top);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluPerspective$MH() {
-        return RuntimeHelper.requireNonNull(constants$1354.gluPerspective$MH,"gluPerspective");
-    }
-    public static void gluPerspective ( double fovy,  double aspect,  double zNear,  double zFar) {
-        var mh$ = gluPerspective$MH();
-        try {
-            mh$.invokeExact(fovy, aspect, zNear, zFar);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluPickMatrix$MH() {
-        return RuntimeHelper.requireNonNull(constants$1354.gluPickMatrix$MH,"gluPickMatrix");
-    }
-    public static void gluPickMatrix ( double x,  double y,  double width,  double height,  Addressable viewport) {
-        var mh$ = gluPickMatrix$MH();
-        try {
-            mh$.invokeExact(x, y, width, height, viewport);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluLookAt$MH() {
-        return RuntimeHelper.requireNonNull(constants$1355.gluLookAt$MH,"gluLookAt");
-    }
-    public static void gluLookAt ( double eyex,  double eyey,  double eyez,  double centerx,  double centery,  double centerz,  double upx,  double upy,  double upz) {
-        var mh$ = gluLookAt$MH();
-        try {
-            mh$.invokeExact(eyex, eyey, eyez, centerx, centery, centerz, upx, upy, upz);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluProject$MH() {
-        return RuntimeHelper.requireNonNull(constants$1355.gluProject$MH,"gluProject");
-    }
-    public static int gluProject ( double objx,  double objy,  double objz,  Addressable modelMatrix,  Addressable projMatrix,  Addressable viewport,  Addressable winx,  Addressable winy,  Addressable winz) {
-        var mh$ = gluProject$MH();
-        try {
-            return (int)mh$.invokeExact(objx, objy, objz, modelMatrix, projMatrix, viewport, winx, winy, winz);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluUnProject$MH() {
-        return RuntimeHelper.requireNonNull(constants$1355.gluUnProject$MH,"gluUnProject");
-    }
-    public static int gluUnProject ( double winx,  double winy,  double winz,  Addressable modelMatrix,  Addressable projMatrix,  Addressable viewport,  Addressable objx,  Addressable objy,  Addressable objz) {
-        var mh$ = gluUnProject$MH();
-        try {
-            return (int)mh$.invokeExact(winx, winy, winz, modelMatrix, projMatrix, viewport, objx, objy, objz);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluScaleImage$MH() {
-        return RuntimeHelper.requireNonNull(constants$1355.gluScaleImage$MH,"gluScaleImage");
-    }
-    public static int gluScaleImage ( int format,  int widthin,  int heightin,  int typein,  Addressable datain,  int widthout,  int heightout,  int typeout,  Addressable dataout) {
-        var mh$ = gluScaleImage$MH();
-        try {
-            return (int)mh$.invokeExact(format, widthin, heightin, typein, datain, widthout, heightout, typeout, dataout);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluBuild1DMipmaps$MH() {
-        return RuntimeHelper.requireNonNull(constants$1355.gluBuild1DMipmaps$MH,"gluBuild1DMipmaps");
-    }
-    public static int gluBuild1DMipmaps ( int target,  int components,  int width,  int format,  int type,  Addressable data) {
-        var mh$ = gluBuild1DMipmaps$MH();
-        try {
-            return (int)mh$.invokeExact(target, components, width, format, type, data);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluBuild2DMipmaps$MH() {
-        return RuntimeHelper.requireNonNull(constants$1355.gluBuild2DMipmaps$MH,"gluBuild2DMipmaps");
-    }
-    public static int gluBuild2DMipmaps ( int target,  int components,  int width,  int height,  int format,  int type,  Addressable data) {
-        var mh$ = gluBuild2DMipmaps$MH();
-        try {
-            return (int)mh$.invokeExact(target, components, width, height, format, type, data);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluNewQuadric$MH() {
-        return RuntimeHelper.requireNonNull(constants$1356.gluNewQuadric$MH,"gluNewQuadric");
-    }
-    public static MemoryAddress gluNewQuadric () {
-        var mh$ = gluNewQuadric$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluDeleteQuadric$MH() {
-        return RuntimeHelper.requireNonNull(constants$1356.gluDeleteQuadric$MH,"gluDeleteQuadric");
-    }
-    public static void gluDeleteQuadric ( Addressable state) {
-        var mh$ = gluDeleteQuadric$MH();
-        try {
-            mh$.invokeExact(state);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluQuadricNormals$MH() {
-        return RuntimeHelper.requireNonNull(constants$1356.gluQuadricNormals$MH,"gluQuadricNormals");
-    }
-    public static void gluQuadricNormals ( Addressable quadObject,  int normals) {
-        var mh$ = gluQuadricNormals$MH();
-        try {
-            mh$.invokeExact(quadObject, normals);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluQuadricTexture$MH() {
-        return RuntimeHelper.requireNonNull(constants$1356.gluQuadricTexture$MH,"gluQuadricTexture");
-    }
-    public static void gluQuadricTexture ( Addressable quadObject,  byte textureCoords) {
-        var mh$ = gluQuadricTexture$MH();
-        try {
-            mh$.invokeExact(quadObject, textureCoords);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluQuadricOrientation$MH() {
-        return RuntimeHelper.requireNonNull(constants$1356.gluQuadricOrientation$MH,"gluQuadricOrientation");
-    }
-    public static void gluQuadricOrientation ( Addressable quadObject,  int orientation) {
-        var mh$ = gluQuadricOrientation$MH();
-        try {
-            mh$.invokeExact(quadObject, orientation);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluQuadricDrawStyle$MH() {
-        return RuntimeHelper.requireNonNull(constants$1356.gluQuadricDrawStyle$MH,"gluQuadricDrawStyle");
-    }
-    public static void gluQuadricDrawStyle ( Addressable quadObject,  int drawStyle) {
-        var mh$ = gluQuadricDrawStyle$MH();
-        try {
-            mh$.invokeExact(quadObject, drawStyle);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluCylinder$MH() {
-        return RuntimeHelper.requireNonNull(constants$1357.gluCylinder$MH,"gluCylinder");
-    }
-    public static void gluCylinder ( Addressable qobj,  double baseRadius,  double topRadius,  double height,  int slices,  int stacks) {
-        var mh$ = gluCylinder$MH();
-        try {
-            mh$.invokeExact(qobj, baseRadius, topRadius, height, slices, stacks);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluDisk$MH() {
-        return RuntimeHelper.requireNonNull(constants$1357.gluDisk$MH,"gluDisk");
-    }
-    public static void gluDisk ( Addressable qobj,  double innerRadius,  double outerRadius,  int slices,  int loops) {
-        var mh$ = gluDisk$MH();
-        try {
-            mh$.invokeExact(qobj, innerRadius, outerRadius, slices, loops);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluPartialDisk$MH() {
-        return RuntimeHelper.requireNonNull(constants$1357.gluPartialDisk$MH,"gluPartialDisk");
-    }
-    public static void gluPartialDisk ( Addressable qobj,  double innerRadius,  double outerRadius,  int slices,  int loops,  double startAngle,  double sweepAngle) {
-        var mh$ = gluPartialDisk$MH();
-        try {
-            mh$.invokeExact(qobj, innerRadius, outerRadius, slices, loops, startAngle, sweepAngle);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluSphere$MH() {
-        return RuntimeHelper.requireNonNull(constants$1357.gluSphere$MH,"gluSphere");
-    }
-    public static void gluSphere ( Addressable qobj,  double radius,  int slices,  int stacks) {
-        var mh$ = gluSphere$MH();
-        try {
-            mh$.invokeExact(qobj, radius, slices, stacks);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluQuadricCallback$MH() {
-        return RuntimeHelper.requireNonNull(constants$1358.gluQuadricCallback$MH,"gluQuadricCallback");
-    }
-    public static void gluQuadricCallback ( Addressable qobj,  int which,  Addressable fn) {
-        var mh$ = gluQuadricCallback$MH();
-        try {
-            mh$.invokeExact(qobj, which, fn);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluNewTess$MH() {
-        return RuntimeHelper.requireNonNull(constants$1358.gluNewTess$MH,"gluNewTess");
-    }
-    public static MemoryAddress gluNewTess () {
-        var mh$ = gluNewTess$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluDeleteTess$MH() {
-        return RuntimeHelper.requireNonNull(constants$1358.gluDeleteTess$MH,"gluDeleteTess");
-    }
-    public static void gluDeleteTess ( Addressable tess) {
-        var mh$ = gluDeleteTess$MH();
-        try {
-            mh$.invokeExact(tess);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluTessBeginPolygon$MH() {
-        return RuntimeHelper.requireNonNull(constants$1358.gluTessBeginPolygon$MH,"gluTessBeginPolygon");
-    }
-    public static void gluTessBeginPolygon ( Addressable tess,  Addressable polygon_data) {
-        var mh$ = gluTessBeginPolygon$MH();
-        try {
-            mh$.invokeExact(tess, polygon_data);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluTessBeginContour$MH() {
-        return RuntimeHelper.requireNonNull(constants$1358.gluTessBeginContour$MH,"gluTessBeginContour");
-    }
-    public static void gluTessBeginContour ( Addressable tess) {
-        var mh$ = gluTessBeginContour$MH();
-        try {
-            mh$.invokeExact(tess);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluTessVertex$MH() {
-        return RuntimeHelper.requireNonNull(constants$1358.gluTessVertex$MH,"gluTessVertex");
-    }
-    public static void gluTessVertex ( Addressable tess,  Addressable coords,  Addressable data) {
-        var mh$ = gluTessVertex$MH();
-        try {
-            mh$.invokeExact(tess, coords, data);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluTessEndContour$MH() {
-        return RuntimeHelper.requireNonNull(constants$1359.gluTessEndContour$MH,"gluTessEndContour");
-    }
-    public static void gluTessEndContour ( Addressable tess) {
-        var mh$ = gluTessEndContour$MH();
-        try {
-            mh$.invokeExact(tess);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluTessEndPolygon$MH() {
-        return RuntimeHelper.requireNonNull(constants$1359.gluTessEndPolygon$MH,"gluTessEndPolygon");
-    }
-    public static void gluTessEndPolygon ( Addressable tess) {
-        var mh$ = gluTessEndPolygon$MH();
-        try {
-            mh$.invokeExact(tess);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluTessProperty$MH() {
-        return RuntimeHelper.requireNonNull(constants$1359.gluTessProperty$MH,"gluTessProperty");
-    }
-    public static void gluTessProperty ( Addressable tess,  int which,  double value) {
-        var mh$ = gluTessProperty$MH();
-        try {
-            mh$.invokeExact(tess, which, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluTessNormal$MH() {
-        return RuntimeHelper.requireNonNull(constants$1359.gluTessNormal$MH,"gluTessNormal");
-    }
-    public static void gluTessNormal ( Addressable tess,  double x,  double y,  double z) {
-        var mh$ = gluTessNormal$MH();
-        try {
-            mh$.invokeExact(tess, x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluTessCallback$MH() {
-        return RuntimeHelper.requireNonNull(constants$1360.gluTessCallback$MH,"gluTessCallback");
-    }
-    public static void gluTessCallback ( Addressable tess,  int which,  Addressable fn) {
-        var mh$ = gluTessCallback$MH();
-        try {
-            mh$.invokeExact(tess, which, fn);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluGetTessProperty$MH() {
-        return RuntimeHelper.requireNonNull(constants$1360.gluGetTessProperty$MH,"gluGetTessProperty");
-    }
-    public static void gluGetTessProperty ( Addressable tess,  int which,  Addressable value) {
-        var mh$ = gluGetTessProperty$MH();
-        try {
-            mh$.invokeExact(tess, which, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluNewNurbsRenderer$MH() {
-        return RuntimeHelper.requireNonNull(constants$1360.gluNewNurbsRenderer$MH,"gluNewNurbsRenderer");
-    }
-    public static MemoryAddress gluNewNurbsRenderer () {
-        var mh$ = gluNewNurbsRenderer$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluDeleteNurbsRenderer$MH() {
-        return RuntimeHelper.requireNonNull(constants$1360.gluDeleteNurbsRenderer$MH,"gluDeleteNurbsRenderer");
-    }
-    public static void gluDeleteNurbsRenderer ( Addressable nobj) {
-        var mh$ = gluDeleteNurbsRenderer$MH();
-        try {
-            mh$.invokeExact(nobj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluBeginSurface$MH() {
-        return RuntimeHelper.requireNonNull(constants$1360.gluBeginSurface$MH,"gluBeginSurface");
-    }
-    public static void gluBeginSurface ( Addressable nobj) {
-        var mh$ = gluBeginSurface$MH();
-        try {
-            mh$.invokeExact(nobj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluBeginCurve$MH() {
-        return RuntimeHelper.requireNonNull(constants$1360.gluBeginCurve$MH,"gluBeginCurve");
-    }
-    public static void gluBeginCurve ( Addressable nobj) {
-        var mh$ = gluBeginCurve$MH();
-        try {
-            mh$.invokeExact(nobj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluEndCurve$MH() {
-        return RuntimeHelper.requireNonNull(constants$1361.gluEndCurve$MH,"gluEndCurve");
-    }
-    public static void gluEndCurve ( Addressable nobj) {
-        var mh$ = gluEndCurve$MH();
-        try {
-            mh$.invokeExact(nobj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluEndSurface$MH() {
-        return RuntimeHelper.requireNonNull(constants$1361.gluEndSurface$MH,"gluEndSurface");
-    }
-    public static void gluEndSurface ( Addressable nobj) {
-        var mh$ = gluEndSurface$MH();
-        try {
-            mh$.invokeExact(nobj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluBeginTrim$MH() {
-        return RuntimeHelper.requireNonNull(constants$1361.gluBeginTrim$MH,"gluBeginTrim");
-    }
-    public static void gluBeginTrim ( Addressable nobj) {
-        var mh$ = gluBeginTrim$MH();
-        try {
-            mh$.invokeExact(nobj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluEndTrim$MH() {
-        return RuntimeHelper.requireNonNull(constants$1361.gluEndTrim$MH,"gluEndTrim");
-    }
-    public static void gluEndTrim ( Addressable nobj) {
-        var mh$ = gluEndTrim$MH();
-        try {
-            mh$.invokeExact(nobj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluPwlCurve$MH() {
-        return RuntimeHelper.requireNonNull(constants$1361.gluPwlCurve$MH,"gluPwlCurve");
-    }
-    public static void gluPwlCurve ( Addressable nobj,  int count,  Addressable array,  int stride,  int type) {
-        var mh$ = gluPwlCurve$MH();
-        try {
-            mh$.invokeExact(nobj, count, array, stride, type);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluNurbsCurve$MH() {
-        return RuntimeHelper.requireNonNull(constants$1361.gluNurbsCurve$MH,"gluNurbsCurve");
-    }
-    public static void gluNurbsCurve ( Addressable nobj,  int nknots,  Addressable knot,  int stride,  Addressable ctlarray,  int order,  int type) {
-        var mh$ = gluNurbsCurve$MH();
-        try {
-            mh$.invokeExact(nobj, nknots, knot, stride, ctlarray, order, type);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluNurbsSurface$MH() {
-        return RuntimeHelper.requireNonNull(constants$1362.gluNurbsSurface$MH,"gluNurbsSurface");
-    }
-    public static void gluNurbsSurface ( Addressable nobj,  int sknot_count,  Addressable sknot,  int tknot_count,  Addressable tknot,  int s_stride,  int t_stride,  Addressable ctlarray,  int sorder,  int torder,  int type) {
-        var mh$ = gluNurbsSurface$MH();
-        try {
-            mh$.invokeExact(nobj, sknot_count, sknot, tknot_count, tknot, s_stride, t_stride, ctlarray, sorder, torder, type);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluLoadSamplingMatrices$MH() {
-        return RuntimeHelper.requireNonNull(constants$1362.gluLoadSamplingMatrices$MH,"gluLoadSamplingMatrices");
-    }
-    public static void gluLoadSamplingMatrices ( Addressable nobj,  Addressable modelMatrix,  Addressable projMatrix,  Addressable viewport) {
-        var mh$ = gluLoadSamplingMatrices$MH();
-        try {
-            mh$.invokeExact(nobj, modelMatrix, projMatrix, viewport);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluNurbsProperty$MH() {
-        return RuntimeHelper.requireNonNull(constants$1362.gluNurbsProperty$MH,"gluNurbsProperty");
-    }
-    public static void gluNurbsProperty ( Addressable nobj,  int property,  float value) {
-        var mh$ = gluNurbsProperty$MH();
-        try {
-            mh$.invokeExact(nobj, property, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluGetNurbsProperty$MH() {
-        return RuntimeHelper.requireNonNull(constants$1362.gluGetNurbsProperty$MH,"gluGetNurbsProperty");
-    }
-    public static void gluGetNurbsProperty ( Addressable nobj,  int property,  Addressable value) {
-        var mh$ = gluGetNurbsProperty$MH();
-        try {
-            mh$.invokeExact(nobj, property, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluNurbsCallback$MH() {
-        return RuntimeHelper.requireNonNull(constants$1363.gluNurbsCallback$MH,"gluNurbsCallback");
-    }
-    public static void gluNurbsCallback ( Addressable nobj,  int which,  Addressable fn) {
-        var mh$ = gluNurbsCallback$MH();
-        try {
-            mh$.invokeExact(nobj, which, fn);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluBeginPolygon$MH() {
-        return RuntimeHelper.requireNonNull(constants$1367.gluBeginPolygon$MH,"gluBeginPolygon");
-    }
-    public static void gluBeginPolygon ( Addressable tess) {
-        var mh$ = gluBeginPolygon$MH();
-        try {
-            mh$.invokeExact(tess);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluNextContour$MH() {
-        return RuntimeHelper.requireNonNull(constants$1368.gluNextContour$MH,"gluNextContour");
-    }
-    public static void gluNextContour ( Addressable tess,  int type) {
-        var mh$ = gluNextContour$MH();
-        try {
-            mh$.invokeExact(tess, type);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gluEndPolygon$MH() {
-        return RuntimeHelper.requireNonNull(constants$1368.gluEndPolygon$MH,"gluEndPolygon");
-    }
-    public static void gluEndPolygon ( Addressable tess) {
-        var mh$ = gluEndPolygon$MH();
-        try {
-            mh$.invokeExact(tess);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfAddress HPBUFFERARB = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress HPBUFFEREXT = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress HGPUNV = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PGPU_DEVICE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress HVIDEOOUTPUTDEVICENV = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress HVIDEOINPUTDEVICENV = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress HPVIDEODEV = Constants$root.C_POINTER$LAYOUT;
-    public static int WINAPI_PARTITION_SERVER() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_WINTRUST() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_WEBSERVICES() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_EVENTLOGSERVICE() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_VHD() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_PERFCOUNTER() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_SECURESTARTUP() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_REMOTEFS() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_BOOTABLESKU() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_CMDTOOLS() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_DISM() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_CORESETUP() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_APPRUNTIME() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_ESENT() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_WINMGMT() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_WNV() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_CLUSTER() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_VSS() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_TRAFFIC() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_ISCSI() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_STORAGE() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_MPSSVC() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_APPXDEPLOYMENT() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PKG_WER() {
-        return (int)0L;
-    }
-    public static int WINAPI_FAMILY_APP() {
-        return (int)2L;
-    }
-    public static int WINAPI_FAMILY() {
-        return (int)100L;
-    }
-    public static int WINAPI_PARTITION_DESKTOP() {
-        return (int)1L;
-    }
-    public static int WINAPI_PARTITION_APP() {
-        return (int)1L;
-    }
-    public static int WINAPI_PARTITION_PC_APP() {
-        return (int)1L;
-    }
-    public static int WINAPI_PARTITION_PHONE_APP() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_GAMES() {
-        return (int)1L;
-    }
-    public static int WINAPI_PARTITION_SYSTEM() {
-        return (int)0L;
-    }
-    public static int WINAPI_PARTITION_PHONE() {
-        return (int)0L;
-    }
-    public static int _WIN32_IE_NT4() {
-        return (int)512L;
-    }
-    public static int _WIN32_IE_NT4SP1() {
-        return (int)512L;
-    }
-    public static int _WIN32_IE_NT4SP2() {
-        return (int)512L;
-    }
-    public static int _WIN32_IE_NT4SP3() {
-        return (int)770L;
-    }
-    public static int _WIN32_IE_NT4SP4() {
-        return (int)1025L;
-    }
-    public static int _WIN32_IE_NT4SP5() {
-        return (int)1025L;
-    }
-    public static int _WIN32_IE_NT4SP6() {
-        return (int)1280L;
-    }
-    public static int _WIN32_IE_WIN98() {
-        return (int)1025L;
-    }
-    public static int _WIN32_IE_WIN98SE() {
-        return (int)1280L;
-    }
-    public static int _WIN32_IE_WINME() {
-        return (int)1360L;
-    }
-    public static int _WIN32_IE_WIN2K() {
-        return (int)1281L;
-    }
-    public static int _WIN32_IE_WIN2KSP1() {
-        return (int)1281L;
-    }
-    public static int _WIN32_IE_WIN2KSP2() {
-        return (int)1281L;
-    }
-    public static int _WIN32_IE_WIN2KSP3() {
-        return (int)1281L;
-    }
-    public static int _WIN32_IE_WIN2KSP4() {
-        return (int)1281L;
-    }
-    public static int _WIN32_IE_XP() {
-        return (int)1536L;
-    }
-    public static int _WIN32_IE_XPSP1() {
-        return (int)1537L;
-    }
-    public static int _WIN32_IE_XPSP2() {
-        return (int)1539L;
-    }
-    public static int _WIN32_IE_WS03SP1() {
-        return (int)1539L;
-    }
-    public static int _WIN32_IE_WIN6() {
-        return (int)1792L;
-    }
-    public static int _WIN32_IE_LONGHORN() {
-        return (int)1792L;
-    }
-    public static int _WIN32_IE_WIN7() {
-        return (int)2048L;
-    }
-    public static int _WIN32_IE_WIN8() {
-        return (int)2560L;
-    }
-    public static int _WIN32_IE_WINBLUE() {
-        return (int)2560L;
-    }
-    public static int _WIN32_IE_WINTHRESHOLD() {
-        return (int)2560L;
-    }
-    public static int _WIN32_IE_WIN10() {
-        return (int)2560L;
-    }
-    public static int NTDDI_VISTA() {
-        return (int)100663296L;
-    }
-    public static int NTDDI_VISTASP1() {
-        return (int)100663552L;
-    }
-    public static int NTDDI_VISTASP2() {
-        return (int)100663808L;
-    }
-    public static int NTDDI_VISTASP3() {
-        return (int)100664064L;
-    }
-    public static int NTDDI_VISTASP4() {
-        return (int)100664320L;
-    }
-    public static int NTDDI_LONGHORN() {
-        return (int)100663296L;
-    }
-    public static int NTDDI_WS08() {
-        return (int)100663552L;
-    }
-    public static int NTDDI_WS08SP2() {
-        return (int)100663808L;
-    }
-    public static int NTDDI_WS08SP3() {
-        return (int)100664064L;
-    }
-    public static int NTDDI_WS08SP4() {
-        return (int)100664320L;
-    }
-    public static int WDK_NTDDI_VERSION() {
-        return (int)167772168L;
-    }
-    public static int OSVERSION_MASK() {
-        return (int)4294901760L;
-    }
-    public static int NTDDI_VERSION() {
-        return (int)167772168L;
-    }
-    public static int WINVER() {
-        return (int)2560L;
-    }
-    public static int _VCRUNTIME_DISABLED_WARNINGS() {
-        return (int)4514L;
-    }
-    public static MemoryAddress NULL() {
-        return constants$1416.NULL$ADDR;
-    }
-    public static int EXCEPTION_CONTINUE_EXECUTION() {
-        return (int)-1L;
-    }
-    public static int _UCRT_DISABLED_WARNINGS() {
-        return (int)4324L;
-    }
-    public static long _TRUNCATE() {
-        return -1L;
-    }
-    public static long _CRT_SIZE_MAX() {
-        return -1L;
-    }
-    public static MemorySegment __FILEW__() {
-        return constants$1416.__FILEW__$SEGMENT;
-    }
-    public static int __STDC_SECURE_LIB__() {
-        return (int)200411L;
-    }
-    public static int __GOT_SECURE_LIB__() {
-        return (int)200411L;
-    }
-    public static short WEOF() {
-        return (short)65535L;
-    }
-    public static int _ALPHA() {
-        return (int)259L;
-    }
-    public static long MAX_NATURAL_ALIGNMENT() {
-        return 8L;
-    }
-    public static long ADDRESS_TAG_BIT() {
-        return 4398046511104L;
-    }
-    public static long MAXUINT_PTR() {
-        return -1L;
-    }
-    public static long MAXINT_PTR() {
-        return 9223372036854775807L;
-    }
-    public static long MININT_PTR() {
-        return -9223372036854775808L;
-    }
-    public static long MAXULONG_PTR() {
-        return -1L;
-    }
-    public static long MAXLONG_PTR() {
-        return 9223372036854775807L;
-    }
-    public static long MINLONG_PTR() {
-        return -9223372036854775808L;
-    }
-    public static int MAXUHALF_PTR() {
-        return (int)4294967295L;
-    }
-    public static int MAXHALF_PTR() {
-        return (int)2147483647L;
-    }
-    public static int MINHALF_PTR() {
-        return (int)-2147483648L;
-    }
-    public static byte MAXUINT8() {
-        return (byte)255L;
-    }
-    public static byte MAXINT8() {
-        return (byte)127L;
-    }
-    public static byte MININT8() {
-        return (byte)-128L;
-    }
-    public static short MAXUINT16() {
-        return (short)65535L;
-    }
-    public static short MAXINT16() {
-        return (short)32767L;
-    }
-    public static short MININT16() {
-        return (short)-32768L;
-    }
-    public static int MAXUINT32() {
-        return (int)4294967295L;
-    }
-    public static int MAXINT32() {
-        return (int)2147483647L;
-    }
-    public static int MININT32() {
-        return (int)-2147483648L;
-    }
-    public static long MAXUINT64() {
-        return -1L;
-    }
-    public static long MAXINT64() {
-        return 9223372036854775807L;
-    }
-    public static long MININT64() {
-        return -9223372036854775808L;
-    }
-    public static int MAXULONG32() {
-        return (int)4294967295L;
-    }
-    public static int MAXLONG32() {
-        return (int)2147483647L;
-    }
-    public static int MINLONG32() {
-        return (int)-2147483648L;
-    }
-    public static long MAXULONG64() {
-        return -1L;
-    }
-    public static long MAXLONG64() {
-        return 9223372036854775807L;
-    }
-    public static long MINLONG64() {
-        return -9223372036854775808L;
-    }
-    public static long MAXULONGLONG() {
-        return -1L;
-    }
-    public static long MINLONGLONG() {
-        return -9223372036854775808L;
-    }
-    public static long MAXSIZE_T() {
-        return -1L;
-    }
-    public static long MAXSSIZE_T() {
-        return 9223372036854775807L;
-    }
-    public static long MINSSIZE_T() {
-        return -9223372036854775808L;
-    }
-    public static int MAXUINT() {
-        return (int)4294967295L;
-    }
-    public static int MAXINT() {
-        return (int)2147483647L;
-    }
-    public static int MININT() {
-        return (int)-2147483648L;
-    }
-    public static int MAXDWORD32() {
-        return (int)4294967295L;
-    }
-    public static long MAXDWORD64() {
-        return -1L;
-    }
-    public static int UCSCHAR_INVALID_CHARACTER() {
-        return (int)4294967295L;
-    }
-    public static int MIN_UCSCHAR() {
-        return (int)0L;
-    }
-    public static int MAX_UCSCHAR() {
-        return (int)1114111L;
-    }
-    public static int MAXIMUM_PROCESSORS() {
-        return (int)64L;
-    }
-    public static int ERROR_SEVERITY_WARNING() {
-        return (int)2147483648L;
-    }
-    public static int ERROR_SEVERITY_ERROR() {
-        return (int)3221225472L;
-    }
-    public static long MAXLONGLONG() {
-        return 9223372036854775807L;
-    }
-    public static byte ANSI_NULL() {
-        return (byte)0L;
-    }
-    public static short UNICODE_NULL() {
-        return (short)0L;
-    }
-    public static short UNICODE_STRING_MAX_BYTES() {
-        return (short)65534L;
-    }
-    public static int UNICODE_STRING_MAX_CHARS() {
-        return (int)32767L;
-    }
-    public static int EDEADLOCK() {
-        return (int)36L;
-    }
-    public static int _NLSCMPERROR() {
-        return (int)2147483647L;
-    }
-    public static int MINLONG() {
-        return (int)2147483648L;
-    }
-    public static int MAXDWORD() {
-        return (int)4294967295L;
-    }
-    public static int VER_SERVER_NT() {
-        return (int)2147483648L;
-    }
-    public static int PRODUCT_UNLICENSED() {
-        return (int)2882382797L;
-    }
-    public static int LANG_SYSTEM_DEFAULT() {
-        return (int)2048L;
-    }
-    public static int LANG_USER_DEFAULT() {
-        return (int)1024L;
-    }
-    public static int LOCALE_SYSTEM_DEFAULT() {
-        return (int)2048L;
-    }
-    public static int LOCALE_USER_DEFAULT() {
-        return (int)1024L;
-    }
-    public static int LOCALE_CUSTOM_DEFAULT() {
-        return (int)3072L;
-    }
-    public static int LOCALE_CUSTOM_UNSPECIFIED() {
-        return (int)4096L;
-    }
-    public static int LOCALE_CUSTOM_UI_DEFAULT() {
-        return (int)5120L;
-    }
-    public static int LOCALE_NEUTRAL() {
-        return (int)0L;
-    }
-    public static int LOCALE_INVARIANT() {
-        return (int)127L;
-    }
-    public static int LOCALE_UNASSIGNED_LCID() {
-        return (int)4096L;
-    }
-    public static int STATUS_WAIT_0() {
-        return (int)0L;
-    }
-    public static int STATUS_ABANDONED_WAIT_0() {
-        return (int)128L;
-    }
-    public static int STATUS_USER_APC() {
-        return (int)192L;
-    }
-    public static int STATUS_TIMEOUT() {
-        return (int)258L;
-    }
-    public static int STATUS_PENDING() {
-        return (int)259L;
-    }
-    public static int DBG_EXCEPTION_HANDLED() {
-        return (int)65537L;
-    }
-    public static int DBG_CONTINUE() {
-        return (int)65538L;
-    }
-    public static int STATUS_SEGMENT_NOTIFICATION() {
-        return (int)1073741829L;
-    }
-    public static int STATUS_FATAL_APP_EXIT() {
-        return (int)1073741845L;
-    }
-    public static int DBG_REPLY_LATER() {
-        return (int)1073807361L;
-    }
-    public static int DBG_TERMINATE_THREAD() {
-        return (int)1073807363L;
-    }
-    public static int DBG_TERMINATE_PROCESS() {
-        return (int)1073807364L;
-    }
-    public static int DBG_CONTROL_C() {
-        return (int)1073807365L;
-    }
-    public static int DBG_PRINTEXCEPTION_C() {
-        return (int)1073807366L;
-    }
-    public static int DBG_RIPEXCEPTION() {
-        return (int)1073807367L;
-    }
-    public static int DBG_CONTROL_BREAK() {
-        return (int)1073807368L;
-    }
-    public static int DBG_COMMAND_EXCEPTION() {
-        return (int)1073807369L;
-    }
-    public static int DBG_PRINTEXCEPTION_WIDE_C() {
-        return (int)1073807370L;
-    }
-    public static int STATUS_GUARD_PAGE_VIOLATION() {
-        return (int)2147483649L;
-    }
-    public static int STATUS_DATATYPE_MISALIGNMENT() {
-        return (int)2147483650L;
-    }
-    public static int STATUS_BREAKPOINT() {
-        return (int)2147483651L;
-    }
-    public static int STATUS_SINGLE_STEP() {
-        return (int)2147483652L;
-    }
-    public static int STATUS_LONGJUMP() {
-        return (int)2147483686L;
-    }
-    public static int STATUS_UNWIND_CONSOLIDATE() {
-        return (int)2147483689L;
-    }
-    public static int DBG_EXCEPTION_NOT_HANDLED() {
-        return (int)2147549185L;
-    }
-    public static int STATUS_ACCESS_VIOLATION() {
-        return (int)3221225477L;
-    }
-    public static int STATUS_IN_PAGE_ERROR() {
-        return (int)3221225478L;
-    }
-    public static int STATUS_INVALID_HANDLE() {
-        return (int)3221225480L;
-    }
-    public static int STATUS_INVALID_PARAMETER() {
-        return (int)3221225485L;
-    }
-    public static int STATUS_NO_MEMORY() {
-        return (int)3221225495L;
-    }
-    public static int STATUS_ILLEGAL_INSTRUCTION() {
-        return (int)3221225501L;
-    }
-    public static int STATUS_NONCONTINUABLE_EXCEPTION() {
-        return (int)3221225509L;
-    }
-    public static int STATUS_INVALID_DISPOSITION() {
-        return (int)3221225510L;
-    }
-    public static int STATUS_ARRAY_BOUNDS_EXCEEDED() {
-        return (int)3221225612L;
-    }
-    public static int STATUS_FLOAT_DENORMAL_OPERAND() {
-        return (int)3221225613L;
-    }
-    public static int STATUS_FLOAT_DIVIDE_BY_ZERO() {
-        return (int)3221225614L;
-    }
-    public static int STATUS_FLOAT_INEXACT_RESULT() {
-        return (int)3221225615L;
-    }
-    public static int STATUS_FLOAT_INVALID_OPERATION() {
-        return (int)3221225616L;
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+public class wgl_h_26 extends wgl_h_27 {
+
+    wgl_h_26() {
+        // Should not be called directly
+    }
+    private static final int ProcessFontDisablePolicy = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * enum _PROCESS_MITIGATION_POLICY.ProcessFontDisablePolicy = 9
+     * }
+     */
+    public static int ProcessFontDisablePolicy() {
+        return ProcessFontDisablePolicy;
+    }
+    private static final int ProcessImageLoadPolicy = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * enum _PROCESS_MITIGATION_POLICY.ProcessImageLoadPolicy = 10
+     * }
+     */
+    public static int ProcessImageLoadPolicy() {
+        return ProcessImageLoadPolicy;
+    }
+    private static final int ProcessSystemCallFilterPolicy = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * enum _PROCESS_MITIGATION_POLICY.ProcessSystemCallFilterPolicy = 11
+     * }
+     */
+    public static int ProcessSystemCallFilterPolicy() {
+        return ProcessSystemCallFilterPolicy;
+    }
+    private static final int ProcessPayloadRestrictionPolicy = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * enum _PROCESS_MITIGATION_POLICY.ProcessPayloadRestrictionPolicy = 12
+     * }
+     */
+    public static int ProcessPayloadRestrictionPolicy() {
+        return ProcessPayloadRestrictionPolicy;
+    }
+    private static final int ProcessChildProcessPolicy = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * enum _PROCESS_MITIGATION_POLICY.ProcessChildProcessPolicy = 13
+     * }
+     */
+    public static int ProcessChildProcessPolicy() {
+        return ProcessChildProcessPolicy;
+    }
+    private static final int ProcessSideChannelIsolationPolicy = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * enum _PROCESS_MITIGATION_POLICY.ProcessSideChannelIsolationPolicy = 14
+     * }
+     */
+    public static int ProcessSideChannelIsolationPolicy() {
+        return ProcessSideChannelIsolationPolicy;
+    }
+    private static final int ProcessUserShadowStackPolicy = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * enum _PROCESS_MITIGATION_POLICY.ProcessUserShadowStackPolicy = 15
+     * }
+     */
+    public static int ProcessUserShadowStackPolicy() {
+        return ProcessUserShadowStackPolicy;
+    }
+    private static final int MaxProcessMitigationPolicy = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * enum _PROCESS_MITIGATION_POLICY.MaxProcessMitigationPolicy = 16
+     * }
+     */
+    public static int MaxProcessMitigationPolicy() {
+        return MaxProcessMitigationPolicy;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef enum _PROCESS_MITIGATION_POLICY {
+     *     ProcessDEPPolicy,
+     *     ProcessASLRPolicy,
+     *     ProcessDynamicCodePolicy,
+     *     ProcessStrictHandleCheckPolicy,
+     *     ProcessSystemCallDisablePolicy,
+     *     ProcessMitigationOptionsMask,
+     *     ProcessExtensionPointDisablePolicy,
+     *     ProcessControlFlowGuardPolicy,
+     *     ProcessSignaturePolicy,
+     *     ProcessFontDisablePolicy,
+     *     ProcessImageLoadPolicy,
+     *     ProcessSystemCallFilterPolicy,
+     *     ProcessPayloadRestrictionPolicy,
+     *     ProcessChildProcessPolicy,
+     *     ProcessSideChannelIsolationPolicy,
+     *     ProcessUserShadowStackPolicy,
+     *     MaxProcessMitigationPolicy
+     * } *PPROCESS_MITIGATION_POLICY
+     * }
+     */
+    public static final AddressLayout PPROCESS_MITIGATION_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PROCESS_MITIGATION_ASLR_POLICY {
+     *     union {
+     *         DWORD Flags;
+     *         struct {
+     *             DWORD EnableBottomUpRandomization : 1;
+     *             DWORD EnableForceRelocateImages : 1;
+     *             DWORD EnableHighEntropy : 1;
+     *             DWORD DisallowStrippedImages : 1;
+     *             DWORD ReservedFlags : 28;
+     *         };
+     *     };
+     * } *PPROCESS_MITIGATION_ASLR_POLICY
+     * }
+     */
+    public static final AddressLayout PPROCESS_MITIGATION_ASLR_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PROCESS_MITIGATION_DEP_POLICY {
+     *     union {
+     *         DWORD Flags;
+     *         struct {
+     *             DWORD Enable : 1;
+     *             DWORD DisableAtlThunkEmulation : 1;
+     *             DWORD ReservedFlags : 30;
+     *         };
+     *     };
+     *     BOOLEAN Permanent;
+     * } *PPROCESS_MITIGATION_DEP_POLICY
+     * }
+     */
+    public static final AddressLayout PPROCESS_MITIGATION_DEP_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY {
+     *     union {
+     *         DWORD Flags;
+     *         struct {
+     *             DWORD RaiseExceptionOnInvalidHandleReference : 1;
+     *             DWORD HandleExceptionsPermanentlyEnabled : 1;
+     *             DWORD ReservedFlags : 30;
+     *         };
+     *     };
+     * } *PPROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY
+     * }
+     */
+    public static final AddressLayout PPROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY {
+     *     union {
+     *         DWORD Flags;
+     *         struct {
+     *             DWORD DisallowWin32kSystemCalls : 1;
+     *             DWORD AuditDisallowWin32kSystemCalls : 1;
+     *             DWORD ReservedFlags : 30;
+     *         };
+     *     };
+     * } *PPROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY
+     * }
+     */
+    public static final AddressLayout PPROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY {
+     *     union {
+     *         DWORD Flags;
+     *         struct {
+     *             DWORD DisableExtensionPoints : 1;
+     *             DWORD ReservedFlags : 31;
+     *         };
+     *     };
+     * } *PPROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY
+     * }
+     */
+    public static final AddressLayout PPROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PROCESS_MITIGATION_DYNAMIC_CODE_POLICY {
+     *     union {
+     *         DWORD Flags;
+     *         struct {
+     *             DWORD ProhibitDynamicCode : 1;
+     *             DWORD AllowThreadOptOut : 1;
+     *             DWORD AllowRemoteDowngrade : 1;
+     *             DWORD AuditProhibitDynamicCode : 1;
+     *             DWORD ReservedFlags : 28;
+     *         };
+     *     };
+     * } *PPROCESS_MITIGATION_DYNAMIC_CODE_POLICY
+     * }
+     */
+    public static final AddressLayout PPROCESS_MITIGATION_DYNAMIC_CODE_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY {
+     *     union {
+     *         DWORD Flags;
+     *         struct {
+     *             DWORD EnableControlFlowGuard : 1;
+     *             DWORD EnableExportSuppression : 1;
+     *             DWORD StrictMode : 1;
+     *             DWORD ReservedFlags : 29;
+     *         };
+     *     };
+     * } *PPROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY
+     * }
+     */
+    public static final AddressLayout PPROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY {
+     *     union {
+     *         DWORD Flags;
+     *         struct {
+     *             DWORD MicrosoftSignedOnly : 1;
+     *             DWORD StoreSignedOnly : 1;
+     *             DWORD MitigationOptIn : 1;
+     *             DWORD AuditMicrosoftSignedOnly : 1;
+     *             DWORD AuditStoreSignedOnly : 1;
+     *             DWORD ReservedFlags : 27;
+     *         };
+     *     };
+     * } *PPROCESS_MITIGATION_BINARY_SIGNATURE_POLICY
+     * }
+     */
+    public static final AddressLayout PPROCESS_MITIGATION_BINARY_SIGNATURE_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PROCESS_MITIGATION_FONT_DISABLE_POLICY {
+     *     union {
+     *         DWORD Flags;
+     *         struct {
+     *             DWORD DisableNonSystemFonts : 1;
+     *             DWORD AuditNonSystemFontLoading : 1;
+     *             DWORD ReservedFlags : 30;
+     *         };
+     *     };
+     * } *PPROCESS_MITIGATION_FONT_DISABLE_POLICY
+     * }
+     */
+    public static final AddressLayout PPROCESS_MITIGATION_FONT_DISABLE_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PROCESS_MITIGATION_IMAGE_LOAD_POLICY {
+     *     union {
+     *         DWORD Flags;
+     *         struct {
+     *             DWORD NoRemoteImages : 1;
+     *             DWORD NoLowMandatoryLabelImages : 1;
+     *             DWORD PreferSystem32Images : 1;
+     *             DWORD AuditNoRemoteImages : 1;
+     *             DWORD AuditNoLowMandatoryLabelImages : 1;
+     *             DWORD ReservedFlags : 27;
+     *         };
+     *     };
+     * } *PPROCESS_MITIGATION_IMAGE_LOAD_POLICY
+     * }
+     */
+    public static final AddressLayout PPROCESS_MITIGATION_IMAGE_LOAD_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY {
+     *     union {
+     *         DWORD Flags;
+     *         struct {
+     *             DWORD FilterId : 4;
+     *             DWORD ReservedFlags : 28;
+     *         };
+     *     };
+     * } *PPROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY
+     * }
+     */
+    public static final AddressLayout PPROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY {
+     *     union {
+     *         DWORD Flags;
+     *         struct {
+     *             DWORD EnableExportAddressFilter : 1;
+     *             DWORD AuditExportAddressFilter : 1;
+     *             DWORD EnableExportAddressFilterPlus : 1;
+     *             DWORD AuditExportAddressFilterPlus : 1;
+     *             DWORD EnableImportAddressFilter : 1;
+     *             DWORD AuditImportAddressFilter : 1;
+     *             DWORD EnableRopStackPivot : 1;
+     *             DWORD AuditRopStackPivot : 1;
+     *             DWORD EnableRopCallerCheck : 1;
+     *             DWORD AuditRopCallerCheck : 1;
+     *             DWORD EnableRopSimExec : 1;
+     *             DWORD AuditRopSimExec : 1;
+     *             DWORD ReservedFlags : 20;
+     *         };
+     *     };
+     * } *PPROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY
+     * }
+     */
+    public static final AddressLayout PPROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PROCESS_MITIGATION_CHILD_PROCESS_POLICY {
+     *     union {
+     *         DWORD Flags;
+     *         struct {
+     *             DWORD NoChildProcessCreation : 1;
+     *             DWORD AuditNoChildProcessCreation : 1;
+     *             DWORD AllowSecureProcessCreation : 1;
+     *             DWORD ReservedFlags : 29;
+     *         };
+     *     };
+     * } *PPROCESS_MITIGATION_CHILD_PROCESS_POLICY
+     * }
+     */
+    public static final AddressLayout PPROCESS_MITIGATION_CHILD_PROCESS_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PROCESS_MITIGATION_SIDE_CHANNEL_ISOLATION_POLICY {
+     *     union {
+     *         DWORD Flags;
+     *         struct {
+     *             DWORD SmtBranchTargetIsolation : 1;
+     *             DWORD IsolateSecurityDomain : 1;
+     *             DWORD DisablePageCombine : 1;
+     *             DWORD SpeculativeStoreBypassDisable : 1;
+     *             DWORD ReservedFlags : 28;
+     *         };
+     *     };
+     * } *PPROCESS_MITIGATION_SIDE_CHANNEL_ISOLATION_POLICY
+     * }
+     */
+    public static final AddressLayout PPROCESS_MITIGATION_SIDE_CHANNEL_ISOLATION_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PROCESS_MITIGATION_USER_SHADOW_STACK_POLICY {
+     *     union {
+     *         DWORD Flags;
+     *         struct {
+     *             DWORD EnableUserShadowStack : 1;
+     *             DWORD AuditUserShadowStack : 1;
+     *             DWORD SetContextIpValidation : 1;
+     *             DWORD AuditSetContextIpValidation : 1;
+     *             DWORD EnableUserShadowStackStrictMode : 1;
+     *             DWORD BlockNonCetBinaries : 1;
+     *             DWORD BlockNonCetBinariesNonEhcont : 1;
+     *             DWORD AuditBlockNonCetBinaries : 1;
+     *             DWORD CetDynamicApisOutOfProcOnly : 1;
+     *             DWORD SetContextIpValidationRelaxedMode : 1;
+     *             DWORD ReservedFlags : 22;
+     *         };
+     *     };
+     * } *PPROCESS_MITIGATION_USER_SHADOW_STACK_POLICY
+     * }
+     */
+    public static final AddressLayout PPROCESS_MITIGATION_USER_SHADOW_STACK_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _JOBOBJECT_BASIC_ACCOUNTING_INFORMATION {
+     *     LARGE_INTEGER TotalUserTime;
+     *     LARGE_INTEGER TotalKernelTime;
+     *     LARGE_INTEGER ThisPeriodTotalUserTime;
+     *     LARGE_INTEGER ThisPeriodTotalKernelTime;
+     *     DWORD TotalPageFaultCount;
+     *     DWORD TotalProcesses;
+     *     DWORD ActiveProcesses;
+     *     DWORD TotalTerminatedProcesses;
+     * } *PJOBOBJECT_BASIC_ACCOUNTING_INFORMATION
+     * }
+     */
+    public static final AddressLayout PJOBOBJECT_BASIC_ACCOUNTING_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _JOBOBJECT_BASIC_LIMIT_INFORMATION {
+     *     LARGE_INTEGER PerProcessUserTimeLimit;
+     *     LARGE_INTEGER PerJobUserTimeLimit;
+     *     DWORD LimitFlags;
+     *     SIZE_T MinimumWorkingSetSize;
+     *     SIZE_T MaximumWorkingSetSize;
+     *     DWORD ActiveProcessLimit;
+     *     ULONG_PTR Affinity;
+     *     DWORD PriorityClass;
+     *     DWORD SchedulingClass;
+     * } *PJOBOBJECT_BASIC_LIMIT_INFORMATION
+     * }
+     */
+    public static final AddressLayout PJOBOBJECT_BASIC_LIMIT_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _JOBOBJECT_EXTENDED_LIMIT_INFORMATION {
+     *     JOBOBJECT_BASIC_LIMIT_INFORMATION BasicLimitInformation;
+     *     IO_COUNTERS IoInfo;
+     *     SIZE_T ProcessMemoryLimit;
+     *     SIZE_T JobMemoryLimit;
+     *     SIZE_T PeakProcessMemoryUsed;
+     *     SIZE_T PeakJobMemoryUsed;
+     * } *PJOBOBJECT_EXTENDED_LIMIT_INFORMATION
+     * }
+     */
+    public static final AddressLayout PJOBOBJECT_EXTENDED_LIMIT_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _JOBOBJECT_BASIC_PROCESS_ID_LIST {
+     *     DWORD NumberOfAssignedProcesses;
+     *     DWORD NumberOfProcessIdsInList;
+     *     ULONG_PTR ProcessIdList[1];
+     * } *PJOBOBJECT_BASIC_PROCESS_ID_LIST
+     * }
+     */
+    public static final AddressLayout PJOBOBJECT_BASIC_PROCESS_ID_LIST = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _JOBOBJECT_BASIC_UI_RESTRICTIONS {
+     *     DWORD UIRestrictionsClass;
+     * } *PJOBOBJECT_BASIC_UI_RESTRICTIONS
+     * }
+     */
+    public static final AddressLayout PJOBOBJECT_BASIC_UI_RESTRICTIONS = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _JOBOBJECT_SECURITY_LIMIT_INFORMATION {
+     *     DWORD SecurityLimitFlags;
+     *     HANDLE JobToken;
+     *     PTOKEN_GROUPS SidsToDisable;
+     *     PTOKEN_PRIVILEGES PrivilegesToDelete;
+     *     PTOKEN_GROUPS RestrictedSids;
+     * } *PJOBOBJECT_SECURITY_LIMIT_INFORMATION
+     * }
+     */
+    public static final AddressLayout PJOBOBJECT_SECURITY_LIMIT_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _JOBOBJECT_END_OF_JOB_TIME_INFORMATION {
+     *     DWORD EndOfJobTimeAction;
+     * } *PJOBOBJECT_END_OF_JOB_TIME_INFORMATION
+     * }
+     */
+    public static final AddressLayout PJOBOBJECT_END_OF_JOB_TIME_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _JOBOBJECT_ASSOCIATE_COMPLETION_PORT {
+     *     PVOID CompletionKey;
+     *     HANDLE CompletionPort;
+     * } *PJOBOBJECT_ASSOCIATE_COMPLETION_PORT
+     * }
+     */
+    public static final AddressLayout PJOBOBJECT_ASSOCIATE_COMPLETION_PORT = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION {
+     *     JOBOBJECT_BASIC_ACCOUNTING_INFORMATION BasicInfo;
+     *     IO_COUNTERS IoInfo;
+     * } *PJOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION
+     * }
+     */
+    public static final AddressLayout PJOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _JOBOBJECT_JOBSET_INFORMATION {
+     *     DWORD MemberLevel;
+     * } *PJOBOBJECT_JOBSET_INFORMATION
+     * }
+     */
+    public static final AddressLayout PJOBOBJECT_JOBSET_INFORMATION = wgl_h.C_POINTER;
+    private static final int ToleranceLow = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECT_RATE_CONTROL_TOLERANCE.ToleranceLow = 1
+     * }
+     */
+    public static int ToleranceLow() {
+        return ToleranceLow;
+    }
+    private static final int ToleranceMedium = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECT_RATE_CONTROL_TOLERANCE.ToleranceMedium = 2
+     * }
+     */
+    public static int ToleranceMedium() {
+        return ToleranceMedium;
+    }
+    private static final int ToleranceHigh = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECT_RATE_CONTROL_TOLERANCE.ToleranceHigh = 3
+     * }
+     */
+    public static int ToleranceHigh() {
+        return ToleranceHigh;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef enum _JOBOBJECT_RATE_CONTROL_TOLERANCE {
+     *     ToleranceLow = 1,
+     *     ToleranceMedium,
+     *     ToleranceHigh
+     * } *PJOBOBJECT_RATE_CONTROL_TOLERANCE
+     * }
+     */
+    public static final AddressLayout PJOBOBJECT_RATE_CONTROL_TOLERANCE = wgl_h.C_POINTER;
+    private static final int ToleranceIntervalShort = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL.ToleranceIntervalShort = 1
+     * }
+     */
+    public static int ToleranceIntervalShort() {
+        return ToleranceIntervalShort;
+    }
+    private static final int ToleranceIntervalMedium = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL.ToleranceIntervalMedium = 2
+     * }
+     */
+    public static int ToleranceIntervalMedium() {
+        return ToleranceIntervalMedium;
+    }
+    private static final int ToleranceIntervalLong = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL.ToleranceIntervalLong = 3
+     * }
+     */
+    public static int ToleranceIntervalLong() {
+        return ToleranceIntervalLong;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef enum _JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL {
+     *     ToleranceIntervalShort = 1,
+     *     ToleranceIntervalMedium,
+     *     ToleranceIntervalLong
+     * } *PJOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL
+     * }
+     */
+    public static final AddressLayout PJOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION {
+     *     DWORD64 IoReadBytesLimit;
+     *     DWORD64 IoWriteBytesLimit;
+     *     LARGE_INTEGER PerJobUserTimeLimit;
+     *     DWORD64 JobMemoryLimit;
+     *     JOBOBJECT_RATE_CONTROL_TOLERANCE RateControlTolerance;
+     *     JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL RateControlToleranceInterval;
+     *     DWORD LimitFlags;
+     * } *PJOBOBJECT_NOTIFICATION_LIMIT_INFORMATION
+     * }
+     */
+    public static final AddressLayout PJOBOBJECT_NOTIFICATION_LIMIT_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _JOBOBJECT_LIMIT_VIOLATION_INFORMATION {
+     *     DWORD LimitFlags;
+     *     DWORD ViolationLimitFlags;
+     *     DWORD64 IoReadBytes;
+     *     DWORD64 IoReadBytesLimit;
+     *     DWORD64 IoWriteBytes;
+     *     DWORD64 IoWriteBytesLimit;
+     *     LARGE_INTEGER PerJobUserTime;
+     *     LARGE_INTEGER PerJobUserTimeLimit;
+     *     DWORD64 JobMemory;
+     *     DWORD64 JobMemoryLimit;
+     *     JOBOBJECT_RATE_CONTROL_TOLERANCE RateControlTolerance;
+     *     JOBOBJECT_RATE_CONTROL_TOLERANCE RateControlToleranceLimit;
+     * } *PJOBOBJECT_LIMIT_VIOLATION_INFORMATION
+     * }
+     */
+    public static final AddressLayout PJOBOBJECT_LIMIT_VIOLATION_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _JOBOBJECT_CPU_RATE_CONTROL_INFORMATION {
+     *     DWORD ControlFlags;
+     *     union {
+     *         DWORD CpuRate;
+     *         DWORD Weight;
+     *         struct {
+     *             WORD MinRate;
+     *             WORD MaxRate;
+     *         };
+     *     };
+     * } *PJOBOBJECT_CPU_RATE_CONTROL_INFORMATION
+     * }
+     */
+    public static final AddressLayout PJOBOBJECT_CPU_RATE_CONTROL_INFORMATION = wgl_h.C_POINTER;
+    private static final int JOB_OBJECT_NET_RATE_CONTROL_ENABLE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum JOB_OBJECT_NET_RATE_CONTROL_FLAGS.JOB_OBJECT_NET_RATE_CONTROL_ENABLE = 1
+     * }
+     */
+    public static int JOB_OBJECT_NET_RATE_CONTROL_ENABLE() {
+        return JOB_OBJECT_NET_RATE_CONTROL_ENABLE;
+    }
+    private static final int JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum JOB_OBJECT_NET_RATE_CONTROL_FLAGS.JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH = 2
+     * }
+     */
+    public static int JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH() {
+        return JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH;
+    }
+    private static final int JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum JOB_OBJECT_NET_RATE_CONTROL_FLAGS.JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG = 4
+     * }
+     */
+    public static int JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG() {
+        return JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG;
+    }
+    private static final int JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum JOB_OBJECT_NET_RATE_CONTROL_FLAGS.JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS = 7
+     * }
+     */
+    public static int JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS() {
+        return JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS;
+    }
+    private static final int JOB_OBJECT_IO_RATE_CONTROL_ENABLE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum JOB_OBJECT_IO_RATE_CONTROL_FLAGS.JOB_OBJECT_IO_RATE_CONTROL_ENABLE = 1
+     * }
+     */
+    public static int JOB_OBJECT_IO_RATE_CONTROL_ENABLE() {
+        return JOB_OBJECT_IO_RATE_CONTROL_ENABLE;
+    }
+    private static final int JOB_OBJECT_IO_RATE_CONTROL_STANDALONE_VOLUME = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum JOB_OBJECT_IO_RATE_CONTROL_FLAGS.JOB_OBJECT_IO_RATE_CONTROL_STANDALONE_VOLUME = 2
+     * }
+     */
+    public static int JOB_OBJECT_IO_RATE_CONTROL_STANDALONE_VOLUME() {
+        return JOB_OBJECT_IO_RATE_CONTROL_STANDALONE_VOLUME;
+    }
+    private static final int JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ALL = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum JOB_OBJECT_IO_RATE_CONTROL_FLAGS.JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ALL = 4
+     * }
+     */
+    public static int JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ALL() {
+        return JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ALL;
+    }
+    private static final int JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ON_SOFT_CAP = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum JOB_OBJECT_IO_RATE_CONTROL_FLAGS.JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ON_SOFT_CAP = 8
+     * }
+     */
+    public static int JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ON_SOFT_CAP() {
+        return JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ON_SOFT_CAP;
+    }
+    private static final int JOB_OBJECT_IO_RATE_CONTROL_VALID_FLAGS = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * enum JOB_OBJECT_IO_RATE_CONTROL_FLAGS.JOB_OBJECT_IO_RATE_CONTROL_VALID_FLAGS = 15
+     * }
+     */
+    public static int JOB_OBJECT_IO_RATE_CONTROL_VALID_FLAGS() {
+        return JOB_OBJECT_IO_RATE_CONTROL_VALID_FLAGS;
+    }
+    private static final int JOBOBJECT_IO_ATTRIBUTION_CONTROL_ENABLE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS.JOBOBJECT_IO_ATTRIBUTION_CONTROL_ENABLE = 1
+     * }
+     */
+    public static int JOBOBJECT_IO_ATTRIBUTION_CONTROL_ENABLE() {
+        return JOBOBJECT_IO_ATTRIBUTION_CONTROL_ENABLE;
+    }
+    private static final int JOBOBJECT_IO_ATTRIBUTION_CONTROL_DISABLE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS.JOBOBJECT_IO_ATTRIBUTION_CONTROL_DISABLE = 2
+     * }
+     */
+    public static int JOBOBJECT_IO_ATTRIBUTION_CONTROL_DISABLE() {
+        return JOBOBJECT_IO_ATTRIBUTION_CONTROL_DISABLE;
+    }
+    private static final int JOBOBJECT_IO_ATTRIBUTION_CONTROL_VALID_FLAGS = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS.JOBOBJECT_IO_ATTRIBUTION_CONTROL_VALID_FLAGS = 3
+     * }
+     */
+    public static int JOBOBJECT_IO_ATTRIBUTION_CONTROL_VALID_FLAGS() {
+        return JOBOBJECT_IO_ATTRIBUTION_CONTROL_VALID_FLAGS;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct _JOBOBJECT_IO_ATTRIBUTION_STATS {
+     *     ULONG_PTR IoCount;
+     *     ULONGLONG TotalNonOverlappedQueueTime;
+     *     ULONGLONG TotalNonOverlappedServiceTime;
+     *     ULONGLONG TotalSize;
+     * } *PJOBOBJECT_IO_ATTRIBUTION_STATS
+     * }
+     */
+    public static final AddressLayout PJOBOBJECT_IO_ATTRIBUTION_STATS = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _JOBOBJECT_IO_ATTRIBUTION_INFORMATION {
+     *     DWORD ControlFlags;
+     *     JOBOBJECT_IO_ATTRIBUTION_STATS ReadStats;
+     *     JOBOBJECT_IO_ATTRIBUTION_STATS WriteStats;
+     * } *PJOBOBJECT_IO_ATTRIBUTION_INFORMATION
+     * }
+     */
+    public static final AddressLayout PJOBOBJECT_IO_ATTRIBUTION_INFORMATION = wgl_h.C_POINTER;
+    private static final int JobObjectBasicAccountingInformation = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectBasicAccountingInformation = 1
+     * }
+     */
+    public static int JobObjectBasicAccountingInformation() {
+        return JobObjectBasicAccountingInformation;
+    }
+    private static final int JobObjectBasicLimitInformation = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectBasicLimitInformation = 2
+     * }
+     */
+    public static int JobObjectBasicLimitInformation() {
+        return JobObjectBasicLimitInformation;
+    }
+    private static final int JobObjectBasicProcessIdList = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectBasicProcessIdList = 3
+     * }
+     */
+    public static int JobObjectBasicProcessIdList() {
+        return JobObjectBasicProcessIdList;
+    }
+    private static final int JobObjectBasicUIRestrictions = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectBasicUIRestrictions = 4
+     * }
+     */
+    public static int JobObjectBasicUIRestrictions() {
+        return JobObjectBasicUIRestrictions;
+    }
+    private static final int JobObjectSecurityLimitInformation = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectSecurityLimitInformation = 5
+     * }
+     */
+    public static int JobObjectSecurityLimitInformation() {
+        return JobObjectSecurityLimitInformation;
+    }
+    private static final int JobObjectEndOfJobTimeInformation = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectEndOfJobTimeInformation = 6
+     * }
+     */
+    public static int JobObjectEndOfJobTimeInformation() {
+        return JobObjectEndOfJobTimeInformation;
+    }
+    private static final int JobObjectAssociateCompletionPortInformation = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectAssociateCompletionPortInformation = 7
+     * }
+     */
+    public static int JobObjectAssociateCompletionPortInformation() {
+        return JobObjectAssociateCompletionPortInformation;
+    }
+    private static final int JobObjectBasicAndIoAccountingInformation = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectBasicAndIoAccountingInformation = 8
+     * }
+     */
+    public static int JobObjectBasicAndIoAccountingInformation() {
+        return JobObjectBasicAndIoAccountingInformation;
+    }
+    private static final int JobObjectExtendedLimitInformation = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectExtendedLimitInformation = 9
+     * }
+     */
+    public static int JobObjectExtendedLimitInformation() {
+        return JobObjectExtendedLimitInformation;
+    }
+    private static final int JobObjectJobSetInformation = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectJobSetInformation = 10
+     * }
+     */
+    public static int JobObjectJobSetInformation() {
+        return JobObjectJobSetInformation;
+    }
+    private static final int JobObjectGroupInformation = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectGroupInformation = 11
+     * }
+     */
+    public static int JobObjectGroupInformation() {
+        return JobObjectGroupInformation;
+    }
+    private static final int JobObjectNotificationLimitInformation = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectNotificationLimitInformation = 12
+     * }
+     */
+    public static int JobObjectNotificationLimitInformation() {
+        return JobObjectNotificationLimitInformation;
+    }
+    private static final int JobObjectLimitViolationInformation = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectLimitViolationInformation = 13
+     * }
+     */
+    public static int JobObjectLimitViolationInformation() {
+        return JobObjectLimitViolationInformation;
+    }
+    private static final int JobObjectGroupInformationEx = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectGroupInformationEx = 14
+     * }
+     */
+    public static int JobObjectGroupInformationEx() {
+        return JobObjectGroupInformationEx;
+    }
+    private static final int JobObjectCpuRateControlInformation = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectCpuRateControlInformation = 15
+     * }
+     */
+    public static int JobObjectCpuRateControlInformation() {
+        return JobObjectCpuRateControlInformation;
+    }
+    private static final int JobObjectCompletionFilter = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectCompletionFilter = 16
+     * }
+     */
+    public static int JobObjectCompletionFilter() {
+        return JobObjectCompletionFilter;
+    }
+    private static final int JobObjectCompletionCounter = (int)17L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectCompletionCounter = 17
+     * }
+     */
+    public static int JobObjectCompletionCounter() {
+        return JobObjectCompletionCounter;
+    }
+    private static final int JobObjectReserved1Information = (int)18L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved1Information = 18
+     * }
+     */
+    public static int JobObjectReserved1Information() {
+        return JobObjectReserved1Information;
+    }
+    private static final int JobObjectReserved2Information = (int)19L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved2Information = 19
+     * }
+     */
+    public static int JobObjectReserved2Information() {
+        return JobObjectReserved2Information;
+    }
+    private static final int JobObjectReserved3Information = (int)20L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved3Information = 20
+     * }
+     */
+    public static int JobObjectReserved3Information() {
+        return JobObjectReserved3Information;
+    }
+    private static final int JobObjectReserved4Information = (int)21L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved4Information = 21
+     * }
+     */
+    public static int JobObjectReserved4Information() {
+        return JobObjectReserved4Information;
+    }
+    private static final int JobObjectReserved5Information = (int)22L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved5Information = 22
+     * }
+     */
+    public static int JobObjectReserved5Information() {
+        return JobObjectReserved5Information;
+    }
+    private static final int JobObjectReserved6Information = (int)23L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved6Information = 23
+     * }
+     */
+    public static int JobObjectReserved6Information() {
+        return JobObjectReserved6Information;
+    }
+    private static final int JobObjectReserved7Information = (int)24L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved7Information = 24
+     * }
+     */
+    public static int JobObjectReserved7Information() {
+        return JobObjectReserved7Information;
+    }
+    private static final int JobObjectReserved8Information = (int)25L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved8Information = 25
+     * }
+     */
+    public static int JobObjectReserved8Information() {
+        return JobObjectReserved8Information;
+    }
+    private static final int JobObjectReserved9Information = (int)26L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved9Information = 26
+     * }
+     */
+    public static int JobObjectReserved9Information() {
+        return JobObjectReserved9Information;
+    }
+    private static final int JobObjectReserved10Information = (int)27L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved10Information = 27
+     * }
+     */
+    public static int JobObjectReserved10Information() {
+        return JobObjectReserved10Information;
+    }
+    private static final int JobObjectReserved11Information = (int)28L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved11Information = 28
+     * }
+     */
+    public static int JobObjectReserved11Information() {
+        return JobObjectReserved11Information;
+    }
+    private static final int JobObjectReserved12Information = (int)29L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved12Information = 29
+     * }
+     */
+    public static int JobObjectReserved12Information() {
+        return JobObjectReserved12Information;
+    }
+    private static final int JobObjectReserved13Information = (int)30L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved13Information = 30
+     * }
+     */
+    public static int JobObjectReserved13Information() {
+        return JobObjectReserved13Information;
+    }
+    private static final int JobObjectReserved14Information = (int)31L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved14Information = 31
+     * }
+     */
+    public static int JobObjectReserved14Information() {
+        return JobObjectReserved14Information;
+    }
+    private static final int JobObjectNetRateControlInformation = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectNetRateControlInformation = 32
+     * }
+     */
+    public static int JobObjectNetRateControlInformation() {
+        return JobObjectNetRateControlInformation;
+    }
+    private static final int JobObjectNotificationLimitInformation2 = (int)33L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectNotificationLimitInformation2 = 33
+     * }
+     */
+    public static int JobObjectNotificationLimitInformation2() {
+        return JobObjectNotificationLimitInformation2;
+    }
+    private static final int JobObjectLimitViolationInformation2 = (int)34L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectLimitViolationInformation2 = 34
+     * }
+     */
+    public static int JobObjectLimitViolationInformation2() {
+        return JobObjectLimitViolationInformation2;
+    }
+    private static final int JobObjectCreateSilo = (int)35L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectCreateSilo = 35
+     * }
+     */
+    public static int JobObjectCreateSilo() {
+        return JobObjectCreateSilo;
+    }
+    private static final int JobObjectSiloBasicInformation = (int)36L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectSiloBasicInformation = 36
+     * }
+     */
+    public static int JobObjectSiloBasicInformation() {
+        return JobObjectSiloBasicInformation;
+    }
+    private static final int JobObjectReserved15Information = (int)37L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved15Information = 37
+     * }
+     */
+    public static int JobObjectReserved15Information() {
+        return JobObjectReserved15Information;
+    }
+    private static final int JobObjectReserved16Information = (int)38L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved16Information = 38
+     * }
+     */
+    public static int JobObjectReserved16Information() {
+        return JobObjectReserved16Information;
+    }
+    private static final int JobObjectReserved17Information = (int)39L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved17Information = 39
+     * }
+     */
+    public static int JobObjectReserved17Information() {
+        return JobObjectReserved17Information;
+    }
+    private static final int JobObjectReserved18Information = (int)40L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved18Information = 40
+     * }
+     */
+    public static int JobObjectReserved18Information() {
+        return JobObjectReserved18Information;
+    }
+    private static final int JobObjectReserved19Information = (int)41L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved19Information = 41
+     * }
+     */
+    public static int JobObjectReserved19Information() {
+        return JobObjectReserved19Information;
+    }
+    private static final int JobObjectReserved20Information = (int)42L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved20Information = 42
+     * }
+     */
+    public static int JobObjectReserved20Information() {
+        return JobObjectReserved20Information;
+    }
+    private static final int JobObjectReserved21Information = (int)43L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved21Information = 43
+     * }
+     */
+    public static int JobObjectReserved21Information() {
+        return JobObjectReserved21Information;
+    }
+    private static final int JobObjectReserved22Information = (int)44L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved22Information = 44
+     * }
+     */
+    public static int JobObjectReserved22Information() {
+        return JobObjectReserved22Information;
+    }
+    private static final int JobObjectReserved23Information = (int)45L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved23Information = 45
+     * }
+     */
+    public static int JobObjectReserved23Information() {
+        return JobObjectReserved23Information;
+    }
+    private static final int JobObjectReserved24Information = (int)46L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved24Information = 46
+     * }
+     */
+    public static int JobObjectReserved24Information() {
+        return JobObjectReserved24Information;
+    }
+    private static final int JobObjectReserved25Information = (int)47L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.JobObjectReserved25Information = 47
+     * }
+     */
+    public static int JobObjectReserved25Information() {
+        return JobObjectReserved25Information;
+    }
+    private static final int MaxJobObjectInfoClass = (int)48L;
+    /**
+     * {@snippet lang=c :
+     * enum _JOBOBJECTINFOCLASS.MaxJobObjectInfoClass = 48
+     * }
+     */
+    public static int MaxJobObjectInfoClass() {
+        return MaxJobObjectInfoClass;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct _SILOOBJECT_BASIC_INFORMATION {
+     *     DWORD SiloId;
+     *     DWORD SiloParentId;
+     *     DWORD NumberOfProcesses;
+     *     BOOLEAN IsInServerSilo;
+     *     BYTE Reserved[3];
+     * } *PSILOOBJECT_BASIC_INFORMATION
+     * }
+     */
+    public static final AddressLayout PSILOOBJECT_BASIC_INFORMATION = wgl_h.C_POINTER;
+    private static final int SERVERSILO_INITING = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _SERVERSILO_STATE.SERVERSILO_INITING = 0
+     * }
+     */
+    public static int SERVERSILO_INITING() {
+        return SERVERSILO_INITING;
+    }
+    private static final int SERVERSILO_STARTED = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _SERVERSILO_STATE.SERVERSILO_STARTED = 1
+     * }
+     */
+    public static int SERVERSILO_STARTED() {
+        return SERVERSILO_STARTED;
+    }
+    private static final int SERVERSILO_SHUTTING_DOWN = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _SERVERSILO_STATE.SERVERSILO_SHUTTING_DOWN = 2
+     * }
+     */
+    public static int SERVERSILO_SHUTTING_DOWN() {
+        return SERVERSILO_SHUTTING_DOWN;
+    }
+    private static final int SERVERSILO_TERMINATING = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _SERVERSILO_STATE.SERVERSILO_TERMINATING = 3
+     * }
+     */
+    public static int SERVERSILO_TERMINATING() {
+        return SERVERSILO_TERMINATING;
+    }
+    private static final int SERVERSILO_TERMINATED = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum _SERVERSILO_STATE.SERVERSILO_TERMINATED = 4
+     * }
+     */
+    public static int SERVERSILO_TERMINATED() {
+        return SERVERSILO_TERMINATED;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef enum _SERVERSILO_STATE {
+     *     SERVERSILO_INITING = 0,
+     *     SERVERSILO_STARTED,
+     *     SERVERSILO_SHUTTING_DOWN,
+     *     SERVERSILO_TERMINATING,
+     *     SERVERSILO_TERMINATED
+     * } *PSERVERSILO_STATE
+     * }
+     */
+    public static final AddressLayout PSERVERSILO_STATE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _SERVERSILO_BASIC_INFORMATION {
+     *     DWORD ServiceSessionId;
+     *     SERVERSILO_STATE State;
+     *     DWORD ExitStatus;
+     *     BOOLEAN IsDownlevelContainer;
+     *     PVOID ApiSetSchema;
+     *     PVOID HostApiSetSchema;
+     * } *PSERVERSILO_BASIC_INFORMATION
+     * }
+     */
+    public static final AddressLayout PSERVERSILO_BASIC_INFORMATION = wgl_h.C_POINTER;
+    private static final int FirmwareTypeUnknown = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _FIRMWARE_TYPE.FirmwareTypeUnknown = 0
+     * }
+     */
+    public static int FirmwareTypeUnknown() {
+        return FirmwareTypeUnknown;
+    }
+    private static final int FirmwareTypeBios = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _FIRMWARE_TYPE.FirmwareTypeBios = 1
+     * }
+     */
+    public static int FirmwareTypeBios() {
+        return FirmwareTypeBios;
+    }
+    private static final int FirmwareTypeUefi = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _FIRMWARE_TYPE.FirmwareTypeUefi = 2
+     * }
+     */
+    public static int FirmwareTypeUefi() {
+        return FirmwareTypeUefi;
+    }
+    private static final int FirmwareTypeMax = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _FIRMWARE_TYPE.FirmwareTypeMax = 3
+     * }
+     */
+    public static int FirmwareTypeMax() {
+        return FirmwareTypeMax;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef enum _FIRMWARE_TYPE {
+     *     FirmwareTypeUnknown,
+     *     FirmwareTypeBios,
+     *     FirmwareTypeUefi,
+     *     FirmwareTypeMax
+     * } *PFIRMWARE_TYPE
+     * }
+     */
+    public static final AddressLayout PFIRMWARE_TYPE = wgl_h.C_POINTER;
+    private static final int RelationProcessorCore = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _LOGICAL_PROCESSOR_RELATIONSHIP.RelationProcessorCore = 0
+     * }
+     */
+    public static int RelationProcessorCore() {
+        return RelationProcessorCore;
+    }
+    private static final int RelationNumaNode = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _LOGICAL_PROCESSOR_RELATIONSHIP.RelationNumaNode = 1
+     * }
+     */
+    public static int RelationNumaNode() {
+        return RelationNumaNode;
+    }
+    private static final int RelationCache = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _LOGICAL_PROCESSOR_RELATIONSHIP.RelationCache = 2
+     * }
+     */
+    public static int RelationCache() {
+        return RelationCache;
+    }
+    private static final int RelationProcessorPackage = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _LOGICAL_PROCESSOR_RELATIONSHIP.RelationProcessorPackage = 3
+     * }
+     */
+    public static int RelationProcessorPackage() {
+        return RelationProcessorPackage;
+    }
+    private static final int RelationGroup = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum _LOGICAL_PROCESSOR_RELATIONSHIP.RelationGroup = 4
+     * }
+     */
+    public static int RelationGroup() {
+        return RelationGroup;
+    }
+    private static final int RelationAll = (int)65535L;
+    /**
+     * {@snippet lang=c :
+     * enum _LOGICAL_PROCESSOR_RELATIONSHIP.RelationAll = 65535
+     * }
+     */
+    public static int RelationAll() {
+        return RelationAll;
+    }
+    private static final int CacheUnified = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _PROCESSOR_CACHE_TYPE.CacheUnified = 0
+     * }
+     */
+    public static int CacheUnified() {
+        return CacheUnified;
+    }
+    private static final int CacheInstruction = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _PROCESSOR_CACHE_TYPE.CacheInstruction = 1
+     * }
+     */
+    public static int CacheInstruction() {
+        return CacheInstruction;
+    }
+    private static final int CacheData = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _PROCESSOR_CACHE_TYPE.CacheData = 2
+     * }
+     */
+    public static int CacheData() {
+        return CacheData;
+    }
+    private static final int CacheTrace = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _PROCESSOR_CACHE_TYPE.CacheTrace = 3
+     * }
+     */
+    public static int CacheTrace() {
+        return CacheTrace;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct _CACHE_DESCRIPTOR {
+     *     BYTE Level;
+     *     BYTE Associativity;
+     *     WORD LineSize;
+     *     DWORD Size;
+     *     PROCESSOR_CACHE_TYPE Type;
+     * } *PCACHE_DESCRIPTOR
+     * }
+     */
+    public static final AddressLayout PCACHE_DESCRIPTOR = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION {
+     *     ULONG_PTR ProcessorMask;
+     *     LOGICAL_PROCESSOR_RELATIONSHIP Relationship;
+     *     union {
+     *         struct {
+     *             BYTE Flags;
+     *         } ProcessorCore;
+     *         struct {
+     *             DWORD NodeNumber;
+     *         } NumaNode;
+     *         CACHE_DESCRIPTOR Cache;
+     *         ULONGLONG Reserved[2];
+     *     };
+     * } *PSYSTEM_LOGICAL_PROCESSOR_INFORMATION
+     * }
+     */
+    public static final AddressLayout PSYSTEM_LOGICAL_PROCESSOR_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PROCESSOR_RELATIONSHIP {
+     *     BYTE Flags;
+     *     BYTE EfficiencyClass;
+     *     BYTE Reserved[20];
+     *     WORD GroupCount;
+     *     GROUP_AFFINITY GroupMask[1];
+     * } *PPROCESSOR_RELATIONSHIP
+     * }
+     */
+    public static final AddressLayout PPROCESSOR_RELATIONSHIP = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _NUMA_NODE_RELATIONSHIP {
+     *     DWORD NodeNumber;
+     *     BYTE Reserved[20];
+     *     GROUP_AFFINITY GroupMask;
+     * } *PNUMA_NODE_RELATIONSHIP
+     * }
+     */
+    public static final AddressLayout PNUMA_NODE_RELATIONSHIP = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _CACHE_RELATIONSHIP {
+     *     BYTE Level;
+     *     BYTE Associativity;
+     *     WORD LineSize;
+     *     DWORD CacheSize;
+     *     PROCESSOR_CACHE_TYPE Type;
+     *     BYTE Reserved[20];
+     *     GROUP_AFFINITY GroupMask;
+     * } *PCACHE_RELATIONSHIP
+     * }
+     */
+    public static final AddressLayout PCACHE_RELATIONSHIP = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PROCESSOR_GROUP_INFO {
+     *     BYTE MaximumProcessorCount;
+     *     BYTE ActiveProcessorCount;
+     *     BYTE Reserved[38];
+     *     KAFFINITY ActiveProcessorMask;
+     * } *PPROCESSOR_GROUP_INFO
+     * }
+     */
+    public static final AddressLayout PPROCESSOR_GROUP_INFO = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _GROUP_RELATIONSHIP {
+     *     WORD MaximumGroupCount;
+     *     WORD ActiveGroupCount;
+     *     BYTE Reserved[20];
+     *     PROCESSOR_GROUP_INFO GroupInfo[1];
+     * } *PGROUP_RELATIONSHIP
+     * }
+     */
+    public static final AddressLayout PGROUP_RELATIONSHIP = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX {
+     *     LOGICAL_PROCESSOR_RELATIONSHIP Relationship;
+     *     DWORD Size;
+     *     union {
+     *         PROCESSOR_RELATIONSHIP Processor;
+     *         NUMA_NODE_RELATIONSHIP NumaNode;
+     *         CACHE_RELATIONSHIP Cache;
+     *         GROUP_RELATIONSHIP Group;
+     *     };
+     * } *PSYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX
+     * }
+     */
+    public static final AddressLayout PSYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX = wgl_h.C_POINTER;
+    private static final int CpuSetInformation = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _CPU_SET_INFORMATION_TYPE.CpuSetInformation = 0
+     * }
+     */
+    public static int CpuSetInformation() {
+        return CpuSetInformation;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef enum _CPU_SET_INFORMATION_TYPE {
+     *     CpuSetInformation
+     * } *PCPU_SET_INFORMATION_TYPE
+     * }
+     */
+    public static final AddressLayout PCPU_SET_INFORMATION_TYPE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _SYSTEM_CPU_SET_INFORMATION {
+     *     DWORD Size;
+     *     CPU_SET_INFORMATION_TYPE Type;
+     *     union {
+     *         struct {
+     *             DWORD Id;
+     *             WORD Group;
+     *             BYTE LogicalProcessorIndex;
+     *             BYTE CoreIndex;
+     *             BYTE LastLevelCacheIndex;
+     *             BYTE NumaNodeIndex;
+     *             BYTE EfficiencyClass;
+     *             union {
+     *                 BYTE AllFlags;
+     *                 struct {
+     *                     BYTE Parked : 1;
+     *                     BYTE Allocated : 1;
+     *                     BYTE AllocatedToTargetProcess : 1;
+     *                     BYTE RealTime : 1;
+     *                     BYTE ReservedFlags : 4;
+     *                 };
+     *             };
+     *             union {
+     *                 DWORD Reserved;
+     *                 BYTE SchedulingClass;
+     *             };
+     *             DWORD64 AllocationTag;
+     *         } CpuSet;
+     *     };
+     * } *PSYSTEM_CPU_SET_INFORMATION
+     * }
+     */
+    public static final AddressLayout PSYSTEM_CPU_SET_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _SYSTEM_POOL_ZEROING_INFORMATION {
+     *     BOOLEAN PoolZeroingSupportPresent;
+     * } *PSYSTEM_POOL_ZEROING_INFORMATION
+     * }
+     */
+    public static final AddressLayout PSYSTEM_POOL_ZEROING_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION {
+     *     DWORD64 CycleTime;
+     * } *PSYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION
+     * }
+     */
+    public static final AddressLayout PSYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _XSTATE_FEATURE {
+     *     DWORD Offset;
+     *     DWORD Size;
+     * } *PXSTATE_FEATURE
+     * }
+     */
+    public static final AddressLayout PXSTATE_FEATURE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _XSTATE_CONFIGURATION {
+     *     DWORD64 EnabledFeatures;
+     *     DWORD64 EnabledVolatileFeatures;
+     *     DWORD Size;
+     *     union {
+     *         DWORD ControlFlags;
+     *         struct {
+     *             DWORD OptimizedSave : 1;
+     *             DWORD CompactionEnabled : 1;
+     *         };
+     *     };
+     *     XSTATE_FEATURE Features[64];
+     *     DWORD64 EnabledSupervisorFeatures;
+     *     DWORD64 AlignedFeatures;
+     *     DWORD AllFeatureSize;
+     *     DWORD AllFeatures[64];
+     *     DWORD64 EnabledUserVisibleSupervisorFeatures;
+     * } *PXSTATE_CONFIGURATION
+     * }
+     */
+    public static final AddressLayout PXSTATE_CONFIGURATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _MEMORY_BASIC_INFORMATION {
+     *     PVOID BaseAddress;
+     *     PVOID AllocationBase;
+     *     DWORD AllocationProtect;
+     *     WORD PartitionId;
+     *     SIZE_T RegionSize;
+     *     DWORD State;
+     *     DWORD Protect;
+     *     DWORD Type;
+     * } *PMEMORY_BASIC_INFORMATION
+     * }
+     */
+    public static final AddressLayout PMEMORY_BASIC_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _MEMORY_BASIC_INFORMATION32 {
+     *     DWORD BaseAddress;
+     *     DWORD AllocationBase;
+     *     DWORD AllocationProtect;
+     *     DWORD RegionSize;
+     *     DWORD State;
+     *     DWORD Protect;
+     *     DWORD Type;
+     * } *PMEMORY_BASIC_INFORMATION32
+     * }
+     */
+    public static final AddressLayout PMEMORY_BASIC_INFORMATION32 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _MEMORY_BASIC_INFORMATION64 {
+     *     ULONGLONG BaseAddress;
+     *     ULONGLONG AllocationBase;
+     *     DWORD AllocationProtect;
+     *     DWORD __alignment1;
+     *     ULONGLONG RegionSize;
+     *     DWORD State;
+     *     DWORD Protect;
+     *     DWORD Type;
+     *     DWORD __alignment2;
+     * } *PMEMORY_BASIC_INFORMATION64
+     * }
+     */
+    public static final AddressLayout PMEMORY_BASIC_INFORMATION64 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _CFG_CALL_TARGET_INFO {
+     *     ULONG_PTR Offset;
+     *     ULONG_PTR Flags;
+     * } *PCFG_CALL_TARGET_INFO
+     * }
+     */
+    public static final AddressLayout PCFG_CALL_TARGET_INFO = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _MEM_ADDRESS_REQUIREMENTS {
+     *     PVOID LowestStartingAddress;
+     *     PVOID HighestEndingAddress;
+     *     SIZE_T Alignment;
+     * } *PMEM_ADDRESS_REQUIREMENTS
+     * }
+     */
+    public static final AddressLayout PMEM_ADDRESS_REQUIREMENTS = wgl_h.C_POINTER;
+    private static final int MemExtendedParameterInvalidType = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterInvalidType = 0
+     * }
+     */
+    public static int MemExtendedParameterInvalidType() {
+        return MemExtendedParameterInvalidType;
+    }
+    private static final int MemExtendedParameterAddressRequirements = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterAddressRequirements = 1
+     * }
+     */
+    public static int MemExtendedParameterAddressRequirements() {
+        return MemExtendedParameterAddressRequirements;
+    }
+    private static final int MemExtendedParameterNumaNode = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterNumaNode = 2
+     * }
+     */
+    public static int MemExtendedParameterNumaNode() {
+        return MemExtendedParameterNumaNode;
+    }
+    private static final int MemExtendedParameterPartitionHandle = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterPartitionHandle = 3
+     * }
+     */
+    public static int MemExtendedParameterPartitionHandle() {
+        return MemExtendedParameterPartitionHandle;
+    }
+    private static final int MemExtendedParameterUserPhysicalHandle = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterUserPhysicalHandle = 4
+     * }
+     */
+    public static int MemExtendedParameterUserPhysicalHandle() {
+        return MemExtendedParameterUserPhysicalHandle;
+    }
+    private static final int MemExtendedParameterAttributeFlags = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterAttributeFlags = 5
+     * }
+     */
+    public static int MemExtendedParameterAttributeFlags() {
+        return MemExtendedParameterAttributeFlags;
+    }
+    private static final int MemExtendedParameterMax = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterMax = 6
+     * }
+     */
+    public static int MemExtendedParameterMax() {
+        return MemExtendedParameterMax;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef enum MEM_EXTENDED_PARAMETER_TYPE {
+     *     MemExtendedParameterInvalidType = 0,
+     *     MemExtendedParameterAddressRequirements,
+     *     MemExtendedParameterNumaNode,
+     *     MemExtendedParameterPartitionHandle,
+     *     MemExtendedParameterUserPhysicalHandle,
+     *     MemExtendedParameterAttributeFlags,
+     *     MemExtendedParameterMax
+     * } *PMEM_EXTENDED_PARAMETER_TYPE
+     * }
+     */
+    public static final AddressLayout PMEM_EXTENDED_PARAMETER_TYPE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct MEM_EXTENDED_PARAMETER {
+     *     struct {
+     *         DWORD64 Type : 8;
+     *         DWORD64 Reserved : 64 - 8;
+     *     };
+     *     union {
+     *         DWORD64 ULong64;
+     *         PVOID Pointer;
+     *         SIZE_T Size;
+     *         HANDLE Handle;
+     *         DWORD ULong;
+     *     };
+     * } *PMEM_EXTENDED_PARAMETER
+     * }
+     */
+    public static final AddressLayout PMEM_EXTENDED_PARAMETER = wgl_h.C_POINTER;
+    private static final int MemSectionExtendedParameterInvalidType = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum MEM_SECTION_EXTENDED_PARAMETER_TYPE.MemSectionExtendedParameterInvalidType = 0
+     * }
+     */
+    public static int MemSectionExtendedParameterInvalidType() {
+        return MemSectionExtendedParameterInvalidType;
+    }
+    private static final int MemSectionExtendedParameterUserPhysicalFlags = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum MEM_SECTION_EXTENDED_PARAMETER_TYPE.MemSectionExtendedParameterUserPhysicalFlags = 1
+     * }
+     */
+    public static int MemSectionExtendedParameterUserPhysicalFlags() {
+        return MemSectionExtendedParameterUserPhysicalFlags;
+    }
+    private static final int MemSectionExtendedParameterNumaNode = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum MEM_SECTION_EXTENDED_PARAMETER_TYPE.MemSectionExtendedParameterNumaNode = 2
+     * }
+     */
+    public static int MemSectionExtendedParameterNumaNode() {
+        return MemSectionExtendedParameterNumaNode;
+    }
+    private static final int MemSectionExtendedParameterMax = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum MEM_SECTION_EXTENDED_PARAMETER_TYPE.MemSectionExtendedParameterMax = 3
+     * }
+     */
+    public static int MemSectionExtendedParameterMax() {
+        return MemSectionExtendedParameterMax;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef enum MEM_SECTION_EXTENDED_PARAMETER_TYPE {
+     *     MemSectionExtendedParameterInvalidType = 0,
+     *     MemSectionExtendedParameterUserPhysicalFlags,
+     *     MemSectionExtendedParameterNumaNode,
+     *     MemSectionExtendedParameterMax
+     * } *PMEM_SECTION_EXTENDED_PARAMETER_TYPE
+     * }
+     */
+    public static final AddressLayout PMEM_SECTION_EXTENDED_PARAMETER_TYPE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _ENCLAVE_CREATE_INFO_SGX {
+     *     BYTE Secs[4096];
+     * } *PENCLAVE_CREATE_INFO_SGX
+     * }
+     */
+    public static final AddressLayout PENCLAVE_CREATE_INFO_SGX = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _ENCLAVE_INIT_INFO_SGX {
+     *     BYTE SigStruct[1808];
+     *     BYTE Reserved1[240];
+     *     BYTE EInitToken[304];
+     *     BYTE Reserved2[1744];
+     * } *PENCLAVE_INIT_INFO_SGX
+     * }
+     */
+    public static final AddressLayout PENCLAVE_INIT_INFO_SGX = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _ENCLAVE_CREATE_INFO_VBS {
+     *     DWORD Flags;
+     *     BYTE OwnerID[32];
+     * } *PENCLAVE_CREATE_INFO_VBS
+     * }
+     */
+    public static final AddressLayout PENCLAVE_CREATE_INFO_VBS = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _ENCLAVE_CREATE_INFO_VBS_BASIC {
+     *     DWORD Flags;
+     *     BYTE OwnerID[32];
+     * } *PENCLAVE_CREATE_INFO_VBS_BASIC
+     * }
+     */
+    public static final AddressLayout PENCLAVE_CREATE_INFO_VBS_BASIC = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _ENCLAVE_LOAD_DATA_VBS_BASIC {
+     *     DWORD PageType;
+     * } *PENCLAVE_LOAD_DATA_VBS_BASIC
+     * }
+     */
+    public static final AddressLayout PENCLAVE_LOAD_DATA_VBS_BASIC = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _ENCLAVE_INIT_INFO_VBS_BASIC {
+     *     BYTE FamilyId[16];
+     *     BYTE ImageId[16];
+     *     ULONGLONG EnclaveSize;
+     *     DWORD EnclaveSvn;
+     *     DWORD Reserved;
+     *     union {
+     *         HANDLE SignatureInfoHandle;
+     *         ULONGLONG Unused;
+     *     };
+     * } *PENCLAVE_INIT_INFO_VBS_BASIC
+     * }
+     */
+    public static final AddressLayout PENCLAVE_INIT_INFO_VBS_BASIC = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _ENCLAVE_INIT_INFO_VBS {
+     *     DWORD Length;
+     *     DWORD ThreadCount;
+     * } *PENCLAVE_INIT_INFO_VBS
+     * }
+     */
+    public static final AddressLayout PENCLAVE_INIT_INFO_VBS = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _FILE_ID_128 {
+     *     BYTE Identifier[16];
+     * } *PFILE_ID_128
+     * }
+     */
+    public static final AddressLayout PFILE_ID_128 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _FILE_NOTIFY_INFORMATION {
+     *     DWORD NextEntryOffset;
+     *     DWORD Action;
+     *     DWORD FileNameLength;
+     *     WCHAR FileName[1];
+     * } *PFILE_NOTIFY_INFORMATION
+     * }
+     */
+    public static final AddressLayout PFILE_NOTIFY_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _FILE_NOTIFY_EXTENDED_INFORMATION {
+     *     DWORD NextEntryOffset;
+     *     DWORD Action;
+     *     LARGE_INTEGER CreationTime;
+     *     LARGE_INTEGER LastModificationTime;
+     *     LARGE_INTEGER LastChangeTime;
+     *     LARGE_INTEGER LastAccessTime;
+     *     LARGE_INTEGER AllocatedLength;
+     *     LARGE_INTEGER FileSize;
+     *     DWORD FileAttributes;
+     *     DWORD ReparsePointTag;
+     *     LARGE_INTEGER FileId;
+     *     LARGE_INTEGER ParentFileId;
+     *     DWORD FileNameLength;
+     *     WCHAR FileName[1];
+     * } *PFILE_NOTIFY_EXTENDED_INFORMATION
+     * }
+     */
+    public static final AddressLayout PFILE_NOTIFY_EXTENDED_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef union _FILE_SEGMENT_ELEMENT {
+     *     PVOID64 Buffer;
+     *     ULONGLONG Alignment;
+     * } *PFILE_SEGMENT_ELEMENT
+     * }
+     */
+    public static final AddressLayout PFILE_SEGMENT_ELEMENT = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _REPARSE_GUID_DATA_BUFFER {
+     *     DWORD ReparseTag;
+     *     WORD ReparseDataLength;
+     *     WORD Reserved;
+     *     GUID ReparseGuid;
+     *     struct {
+     *         BYTE DataBuffer[1];
+     *     } GenericReparseBuffer;
+     * } *PREPARSE_GUID_DATA_BUFFER
+     * }
+     */
+    public static final AddressLayout PREPARSE_GUID_DATA_BUFFER = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _SCRUB_DATA_INPUT {
+     *     DWORD Size;
+     *     DWORD Flags;
+     *     DWORD MaximumIos;
+     *     DWORD ObjectId[4];
+     *     DWORD Reserved[25];
+     *     BYTE ResumeContext[816];
+     * } *PSCRUB_DATA_INPUT
+     * }
+     */
+    public static final AddressLayout PSCRUB_DATA_INPUT = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _SCRUB_PARITY_EXTENT {
+     *     LONGLONG Offset;
+     *     ULONGLONG Length;
+     * } *PSCRUB_PARITY_EXTENT
+     * }
+     */
+    public static final AddressLayout PSCRUB_PARITY_EXTENT = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _SCRUB_PARITY_EXTENT_DATA {
+     *     WORD Size;
+     *     WORD Flags;
+     *     WORD NumberOfParityExtents;
+     *     WORD MaximumNumberOfParityExtents;
+     *     SCRUB_PARITY_EXTENT ParityExtents[1];
+     * } *PSCRUB_PARITY_EXTENT_DATA
+     * }
+     */
+    public static final AddressLayout PSCRUB_PARITY_EXTENT_DATA = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _SCRUB_DATA_OUTPUT {
+     *     DWORD Size;
+     *     DWORD Flags;
+     *     DWORD Status;
+     *     ULONGLONG ErrorFileOffset;
+     *     ULONGLONG ErrorLength;
+     *     ULONGLONG NumberOfBytesRepaired;
+     *     ULONGLONG NumberOfBytesFailed;
+     *     ULONGLONG InternalFileReference;
+     *     WORD ResumeContextLength;
+     *     WORD ParityExtentDataOffset;
+     *     DWORD Reserved[9];
+     *     ULONGLONG NumberOfMetadataBytesProcessed;
+     *     ULONGLONG NumberOfDataBytesProcessed;
+     *     ULONGLONG TotalNumberOfMetadataBytesInUse;
+     *     ULONGLONG TotalNumberOfDataBytesInUse;
+     *     BYTE ResumeContext[816];
+     * } *PSCRUB_DATA_OUTPUT
+     * }
+     */
+    public static final AddressLayout PSCRUB_DATA_OUTPUT = wgl_h.C_POINTER;
+    private static final int SharedVirtualDisksUnsupported = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _SharedVirtualDiskSupportType.SharedVirtualDisksUnsupported = 0
+     * }
+     */
+    public static int SharedVirtualDisksUnsupported() {
+        return SharedVirtualDisksUnsupported;
+    }
+    private static final int SharedVirtualDisksSupported = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _SharedVirtualDiskSupportType.SharedVirtualDisksSupported = 1
+     * }
+     */
+    public static int SharedVirtualDisksSupported() {
+        return SharedVirtualDisksSupported;
+    }
+    private static final int SharedVirtualDiskSnapshotsSupported = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _SharedVirtualDiskSupportType.SharedVirtualDiskSnapshotsSupported = 3
+     * }
+     */
+    public static int SharedVirtualDiskSnapshotsSupported() {
+        return SharedVirtualDiskSnapshotsSupported;
+    }
+    private static final int SharedVirtualDiskCDPSnapshotsSupported = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum _SharedVirtualDiskSupportType.SharedVirtualDiskCDPSnapshotsSupported = 7
+     * }
+     */
+    public static int SharedVirtualDiskCDPSnapshotsSupported() {
+        return SharedVirtualDiskCDPSnapshotsSupported;
+    }
+    private static final int SharedVirtualDiskHandleStateNone = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _SharedVirtualDiskHandleState.SharedVirtualDiskHandleStateNone = 0
+     * }
+     */
+    public static int SharedVirtualDiskHandleStateNone() {
+        return SharedVirtualDiskHandleStateNone;
+    }
+    private static final int SharedVirtualDiskHandleStateFileShared = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _SharedVirtualDiskHandleState.SharedVirtualDiskHandleStateFileShared = 1
+     * }
+     */
+    public static int SharedVirtualDiskHandleStateFileShared() {
+        return SharedVirtualDiskHandleStateFileShared;
+    }
+    private static final int SharedVirtualDiskHandleStateHandleShared = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _SharedVirtualDiskHandleState.SharedVirtualDiskHandleStateHandleShared = 3
+     * }
+     */
+    public static int SharedVirtualDiskHandleStateHandleShared() {
+        return SharedVirtualDiskHandleStateHandleShared;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct _SHARED_VIRTUAL_DISK_SUPPORT {
+     *     SharedVirtualDiskSupportType SharedVirtualDiskSupport;
+     *     SharedVirtualDiskHandleState HandleState;
+     * } *PSHARED_VIRTUAL_DISK_SUPPORT
+     * }
+     */
+    public static final AddressLayout PSHARED_VIRTUAL_DISK_SUPPORT = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _REARRANGE_FILE_DATA {
+     *     ULONGLONG SourceStartingOffset;
+     *     ULONGLONG TargetOffset;
+     *     HANDLE SourceFileHandle;
+     *     DWORD Length;
+     *     DWORD Flags;
+     * } *PREARRANGE_FILE_DATA
+     * }
+     */
+    public static final AddressLayout PREARRANGE_FILE_DATA = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _REARRANGE_FILE_DATA32 {
+     *     ULONGLONG SourceStartingOffset;
+     *     ULONGLONG TargetOffset;
+     *     UINT32 SourceFileHandle;
+     *     DWORD Length;
+     *     DWORD Flags;
+     * } *PREARRANGE_FILE_DATA32
+     * }
+     */
+    public static final AddressLayout PREARRANGE_FILE_DATA32 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _SHUFFLE_FILE_DATA {
+     *     LONGLONG StartingOffset;
+     *     LONGLONG Length;
+     *     DWORD Flags;
+     * } *PSHUFFLE_FILE_DATA
+     * }
+     */
+    public static final AddressLayout PSHUFFLE_FILE_DATA = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _NETWORK_APP_INSTANCE_EA {
+     *     GUID AppInstanceID;
+     *     DWORD CsvFlags;
+     * } *PNETWORK_APP_INSTANCE_EA
+     * }
+     */
+    public static final AddressLayout PNETWORK_APP_INSTANCE_EA = wgl_h.C_POINTER;
+
+    private static class GUID_MAX_POWER_SAVINGS$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_MAX_POWER_SAVINGS").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_MAX_POWER_SAVINGS
+     * }
+     */
+    public static GroupLayout GUID_MAX_POWER_SAVINGS$layout() {
+        return GUID_MAX_POWER_SAVINGS$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_MAX_POWER_SAVINGS
+     * }
+     */
+    public static MemorySegment GUID_MAX_POWER_SAVINGS() {
+        return GUID_MAX_POWER_SAVINGS$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_MAX_POWER_SAVINGS
+     * }
+     */
+    public static void GUID_MAX_POWER_SAVINGS(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_MAX_POWER_SAVINGS$constants.SEGMENT, 0L, GUID_MAX_POWER_SAVINGS$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_MIN_POWER_SAVINGS$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_MIN_POWER_SAVINGS").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_MIN_POWER_SAVINGS
+     * }
+     */
+    public static GroupLayout GUID_MIN_POWER_SAVINGS$layout() {
+        return GUID_MIN_POWER_SAVINGS$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_MIN_POWER_SAVINGS
+     * }
+     */
+    public static MemorySegment GUID_MIN_POWER_SAVINGS() {
+        return GUID_MIN_POWER_SAVINGS$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_MIN_POWER_SAVINGS
+     * }
+     */
+    public static void GUID_MIN_POWER_SAVINGS(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_MIN_POWER_SAVINGS$constants.SEGMENT, 0L, GUID_MIN_POWER_SAVINGS$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_TYPICAL_POWER_SAVINGS$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_TYPICAL_POWER_SAVINGS").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_TYPICAL_POWER_SAVINGS
+     * }
+     */
+    public static GroupLayout GUID_TYPICAL_POWER_SAVINGS$layout() {
+        return GUID_TYPICAL_POWER_SAVINGS$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_TYPICAL_POWER_SAVINGS
+     * }
+     */
+    public static MemorySegment GUID_TYPICAL_POWER_SAVINGS() {
+        return GUID_TYPICAL_POWER_SAVINGS$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_TYPICAL_POWER_SAVINGS
+     * }
+     */
+    public static void GUID_TYPICAL_POWER_SAVINGS(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_TYPICAL_POWER_SAVINGS$constants.SEGMENT, 0L, GUID_TYPICAL_POWER_SAVINGS$constants.LAYOUT.byteSize());
+    }
+
+    private static class NO_SUBGROUP_GUID$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("NO_SUBGROUP_GUID").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID NO_SUBGROUP_GUID
+     * }
+     */
+    public static GroupLayout NO_SUBGROUP_GUID$layout() {
+        return NO_SUBGROUP_GUID$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID NO_SUBGROUP_GUID
+     * }
+     */
+    public static MemorySegment NO_SUBGROUP_GUID() {
+        return NO_SUBGROUP_GUID$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID NO_SUBGROUP_GUID
+     * }
+     */
+    public static void NO_SUBGROUP_GUID(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, NO_SUBGROUP_GUID$constants.SEGMENT, 0L, NO_SUBGROUP_GUID$constants.LAYOUT.byteSize());
+    }
+
+    private static class ALL_POWERSCHEMES_GUID$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("ALL_POWERSCHEMES_GUID").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID ALL_POWERSCHEMES_GUID
+     * }
+     */
+    public static GroupLayout ALL_POWERSCHEMES_GUID$layout() {
+        return ALL_POWERSCHEMES_GUID$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID ALL_POWERSCHEMES_GUID
+     * }
+     */
+    public static MemorySegment ALL_POWERSCHEMES_GUID() {
+        return ALL_POWERSCHEMES_GUID$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID ALL_POWERSCHEMES_GUID
+     * }
+     */
+    public static void ALL_POWERSCHEMES_GUID(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, ALL_POWERSCHEMES_GUID$constants.SEGMENT, 0L, ALL_POWERSCHEMES_GUID$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_POWERSCHEME_PERSONALITY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_POWERSCHEME_PERSONALITY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_POWERSCHEME_PERSONALITY
+     * }
+     */
+    public static GroupLayout GUID_POWERSCHEME_PERSONALITY$layout() {
+        return GUID_POWERSCHEME_PERSONALITY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_POWERSCHEME_PERSONALITY
+     * }
+     */
+    public static MemorySegment GUID_POWERSCHEME_PERSONALITY() {
+        return GUID_POWERSCHEME_PERSONALITY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_POWERSCHEME_PERSONALITY
+     * }
+     */
+    public static void GUID_POWERSCHEME_PERSONALITY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_POWERSCHEME_PERSONALITY$constants.SEGMENT, 0L, GUID_POWERSCHEME_PERSONALITY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_ACTIVE_POWERSCHEME$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_ACTIVE_POWERSCHEME").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ACTIVE_POWERSCHEME
+     * }
+     */
+    public static GroupLayout GUID_ACTIVE_POWERSCHEME$layout() {
+        return GUID_ACTIVE_POWERSCHEME$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ACTIVE_POWERSCHEME
+     * }
+     */
+    public static MemorySegment GUID_ACTIVE_POWERSCHEME() {
+        return GUID_ACTIVE_POWERSCHEME$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ACTIVE_POWERSCHEME
+     * }
+     */
+    public static void GUID_ACTIVE_POWERSCHEME(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_ACTIVE_POWERSCHEME$constants.SEGMENT, 0L, GUID_ACTIVE_POWERSCHEME$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_IDLE_RESILIENCY_SUBGROUP$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_IDLE_RESILIENCY_SUBGROUP").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_IDLE_RESILIENCY_SUBGROUP
+     * }
+     */
+    public static GroupLayout GUID_IDLE_RESILIENCY_SUBGROUP$layout() {
+        return GUID_IDLE_RESILIENCY_SUBGROUP$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_IDLE_RESILIENCY_SUBGROUP
+     * }
+     */
+    public static MemorySegment GUID_IDLE_RESILIENCY_SUBGROUP() {
+        return GUID_IDLE_RESILIENCY_SUBGROUP$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_IDLE_RESILIENCY_SUBGROUP
+     * }
+     */
+    public static void GUID_IDLE_RESILIENCY_SUBGROUP(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_IDLE_RESILIENCY_SUBGROUP$constants.SEGMENT, 0L, GUID_IDLE_RESILIENCY_SUBGROUP$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_IDLE_RESILIENCY_PERIOD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_IDLE_RESILIENCY_PERIOD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_IDLE_RESILIENCY_PERIOD
+     * }
+     */
+    public static GroupLayout GUID_IDLE_RESILIENCY_PERIOD$layout() {
+        return GUID_IDLE_RESILIENCY_PERIOD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_IDLE_RESILIENCY_PERIOD
+     * }
+     */
+    public static MemorySegment GUID_IDLE_RESILIENCY_PERIOD() {
+        return GUID_IDLE_RESILIENCY_PERIOD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_IDLE_RESILIENCY_PERIOD
+     * }
+     */
+    public static void GUID_IDLE_RESILIENCY_PERIOD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_IDLE_RESILIENCY_PERIOD$constants.SEGMENT, 0L, GUID_IDLE_RESILIENCY_PERIOD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_DEEP_SLEEP_ENABLED$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_DEEP_SLEEP_ENABLED").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DEEP_SLEEP_ENABLED
+     * }
+     */
+    public static GroupLayout GUID_DEEP_SLEEP_ENABLED$layout() {
+        return GUID_DEEP_SLEEP_ENABLED$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DEEP_SLEEP_ENABLED
+     * }
+     */
+    public static MemorySegment GUID_DEEP_SLEEP_ENABLED() {
+        return GUID_DEEP_SLEEP_ENABLED$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DEEP_SLEEP_ENABLED
+     * }
+     */
+    public static void GUID_DEEP_SLEEP_ENABLED(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_DEEP_SLEEP_ENABLED$constants.SEGMENT, 0L, GUID_DEEP_SLEEP_ENABLED$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_DEEP_SLEEP_PLATFORM_STATE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_DEEP_SLEEP_PLATFORM_STATE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DEEP_SLEEP_PLATFORM_STATE
+     * }
+     */
+    public static GroupLayout GUID_DEEP_SLEEP_PLATFORM_STATE$layout() {
+        return GUID_DEEP_SLEEP_PLATFORM_STATE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DEEP_SLEEP_PLATFORM_STATE
+     * }
+     */
+    public static MemorySegment GUID_DEEP_SLEEP_PLATFORM_STATE() {
+        return GUID_DEEP_SLEEP_PLATFORM_STATE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DEEP_SLEEP_PLATFORM_STATE
+     * }
+     */
+    public static void GUID_DEEP_SLEEP_PLATFORM_STATE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_DEEP_SLEEP_PLATFORM_STATE$constants.SEGMENT, 0L, GUID_DEEP_SLEEP_PLATFORM_STATE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_DISK_COALESCING_POWERDOWN_TIMEOUT$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_DISK_COALESCING_POWERDOWN_TIMEOUT").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_COALESCING_POWERDOWN_TIMEOUT
+     * }
+     */
+    public static GroupLayout GUID_DISK_COALESCING_POWERDOWN_TIMEOUT$layout() {
+        return GUID_DISK_COALESCING_POWERDOWN_TIMEOUT$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_COALESCING_POWERDOWN_TIMEOUT
+     * }
+     */
+    public static MemorySegment GUID_DISK_COALESCING_POWERDOWN_TIMEOUT() {
+        return GUID_DISK_COALESCING_POWERDOWN_TIMEOUT$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_COALESCING_POWERDOWN_TIMEOUT
+     * }
+     */
+    public static void GUID_DISK_COALESCING_POWERDOWN_TIMEOUT(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_DISK_COALESCING_POWERDOWN_TIMEOUT$constants.SEGMENT, 0L, GUID_DISK_COALESCING_POWERDOWN_TIMEOUT$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_EXECUTION_REQUIRED_REQUEST_TIMEOUT$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_EXECUTION_REQUIRED_REQUEST_TIMEOUT").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_EXECUTION_REQUIRED_REQUEST_TIMEOUT
+     * }
+     */
+    public static GroupLayout GUID_EXECUTION_REQUIRED_REQUEST_TIMEOUT$layout() {
+        return GUID_EXECUTION_REQUIRED_REQUEST_TIMEOUT$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_EXECUTION_REQUIRED_REQUEST_TIMEOUT
+     * }
+     */
+    public static MemorySegment GUID_EXECUTION_REQUIRED_REQUEST_TIMEOUT() {
+        return GUID_EXECUTION_REQUIRED_REQUEST_TIMEOUT$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_EXECUTION_REQUIRED_REQUEST_TIMEOUT
+     * }
+     */
+    public static void GUID_EXECUTION_REQUIRED_REQUEST_TIMEOUT(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_EXECUTION_REQUIRED_REQUEST_TIMEOUT$constants.SEGMENT, 0L, GUID_EXECUTION_REQUIRED_REQUEST_TIMEOUT$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_VIDEO_SUBGROUP$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_VIDEO_SUBGROUP").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_SUBGROUP
+     * }
+     */
+    public static GroupLayout GUID_VIDEO_SUBGROUP$layout() {
+        return GUID_VIDEO_SUBGROUP$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_SUBGROUP
+     * }
+     */
+    public static MemorySegment GUID_VIDEO_SUBGROUP() {
+        return GUID_VIDEO_SUBGROUP$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_SUBGROUP
+     * }
+     */
+    public static void GUID_VIDEO_SUBGROUP(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_VIDEO_SUBGROUP$constants.SEGMENT, 0L, GUID_VIDEO_SUBGROUP$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_VIDEO_POWERDOWN_TIMEOUT$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_VIDEO_POWERDOWN_TIMEOUT").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_POWERDOWN_TIMEOUT
+     * }
+     */
+    public static GroupLayout GUID_VIDEO_POWERDOWN_TIMEOUT$layout() {
+        return GUID_VIDEO_POWERDOWN_TIMEOUT$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_POWERDOWN_TIMEOUT
+     * }
+     */
+    public static MemorySegment GUID_VIDEO_POWERDOWN_TIMEOUT() {
+        return GUID_VIDEO_POWERDOWN_TIMEOUT$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_POWERDOWN_TIMEOUT
+     * }
+     */
+    public static void GUID_VIDEO_POWERDOWN_TIMEOUT(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_VIDEO_POWERDOWN_TIMEOUT$constants.SEGMENT, 0L, GUID_VIDEO_POWERDOWN_TIMEOUT$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_VIDEO_ANNOYANCE_TIMEOUT$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_VIDEO_ANNOYANCE_TIMEOUT").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_ANNOYANCE_TIMEOUT
+     * }
+     */
+    public static GroupLayout GUID_VIDEO_ANNOYANCE_TIMEOUT$layout() {
+        return GUID_VIDEO_ANNOYANCE_TIMEOUT$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_ANNOYANCE_TIMEOUT
+     * }
+     */
+    public static MemorySegment GUID_VIDEO_ANNOYANCE_TIMEOUT() {
+        return GUID_VIDEO_ANNOYANCE_TIMEOUT$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_ANNOYANCE_TIMEOUT
+     * }
+     */
+    public static void GUID_VIDEO_ANNOYANCE_TIMEOUT(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_VIDEO_ANNOYANCE_TIMEOUT$constants.SEGMENT, 0L, GUID_VIDEO_ANNOYANCE_TIMEOUT$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_VIDEO_ADAPTIVE_PERCENT_INCREASE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_VIDEO_ADAPTIVE_PERCENT_INCREASE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_ADAPTIVE_PERCENT_INCREASE
+     * }
+     */
+    public static GroupLayout GUID_VIDEO_ADAPTIVE_PERCENT_INCREASE$layout() {
+        return GUID_VIDEO_ADAPTIVE_PERCENT_INCREASE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_ADAPTIVE_PERCENT_INCREASE
+     * }
+     */
+    public static MemorySegment GUID_VIDEO_ADAPTIVE_PERCENT_INCREASE() {
+        return GUID_VIDEO_ADAPTIVE_PERCENT_INCREASE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_ADAPTIVE_PERCENT_INCREASE
+     * }
+     */
+    public static void GUID_VIDEO_ADAPTIVE_PERCENT_INCREASE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_VIDEO_ADAPTIVE_PERCENT_INCREASE$constants.SEGMENT, 0L, GUID_VIDEO_ADAPTIVE_PERCENT_INCREASE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_VIDEO_DIM_TIMEOUT$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_VIDEO_DIM_TIMEOUT").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_DIM_TIMEOUT
+     * }
+     */
+    public static GroupLayout GUID_VIDEO_DIM_TIMEOUT$layout() {
+        return GUID_VIDEO_DIM_TIMEOUT$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_DIM_TIMEOUT
+     * }
+     */
+    public static MemorySegment GUID_VIDEO_DIM_TIMEOUT() {
+        return GUID_VIDEO_DIM_TIMEOUT$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_DIM_TIMEOUT
+     * }
+     */
+    public static void GUID_VIDEO_DIM_TIMEOUT(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_VIDEO_DIM_TIMEOUT$constants.SEGMENT, 0L, GUID_VIDEO_DIM_TIMEOUT$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_VIDEO_ADAPTIVE_POWERDOWN$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_VIDEO_ADAPTIVE_POWERDOWN").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_ADAPTIVE_POWERDOWN
+     * }
+     */
+    public static GroupLayout GUID_VIDEO_ADAPTIVE_POWERDOWN$layout() {
+        return GUID_VIDEO_ADAPTIVE_POWERDOWN$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_ADAPTIVE_POWERDOWN
+     * }
+     */
+    public static MemorySegment GUID_VIDEO_ADAPTIVE_POWERDOWN() {
+        return GUID_VIDEO_ADAPTIVE_POWERDOWN$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_ADAPTIVE_POWERDOWN
+     * }
+     */
+    public static void GUID_VIDEO_ADAPTIVE_POWERDOWN(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_VIDEO_ADAPTIVE_POWERDOWN$constants.SEGMENT, 0L, GUID_VIDEO_ADAPTIVE_POWERDOWN$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_MONITOR_POWER_ON$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_MONITOR_POWER_ON").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_MONITOR_POWER_ON
+     * }
+     */
+    public static GroupLayout GUID_MONITOR_POWER_ON$layout() {
+        return GUID_MONITOR_POWER_ON$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_MONITOR_POWER_ON
+     * }
+     */
+    public static MemorySegment GUID_MONITOR_POWER_ON() {
+        return GUID_MONITOR_POWER_ON$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_MONITOR_POWER_ON
+     * }
+     */
+    public static void GUID_MONITOR_POWER_ON(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_MONITOR_POWER_ON$constants.SEGMENT, 0L, GUID_MONITOR_POWER_ON$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS
+     * }
+     */
+    public static GroupLayout GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS$layout() {
+        return GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS
+     * }
+     */
+    public static MemorySegment GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS() {
+        return GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS
+     * }
+     */
+    public static void GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS$constants.SEGMENT, 0L, GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_DEVICE_POWER_POLICY_VIDEO_DIM_BRIGHTNESS$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_DEVICE_POWER_POLICY_VIDEO_DIM_BRIGHTNESS").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DEVICE_POWER_POLICY_VIDEO_DIM_BRIGHTNESS
+     * }
+     */
+    public static GroupLayout GUID_DEVICE_POWER_POLICY_VIDEO_DIM_BRIGHTNESS$layout() {
+        return GUID_DEVICE_POWER_POLICY_VIDEO_DIM_BRIGHTNESS$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DEVICE_POWER_POLICY_VIDEO_DIM_BRIGHTNESS
+     * }
+     */
+    public static MemorySegment GUID_DEVICE_POWER_POLICY_VIDEO_DIM_BRIGHTNESS() {
+        return GUID_DEVICE_POWER_POLICY_VIDEO_DIM_BRIGHTNESS$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DEVICE_POWER_POLICY_VIDEO_DIM_BRIGHTNESS
+     * }
+     */
+    public static void GUID_DEVICE_POWER_POLICY_VIDEO_DIM_BRIGHTNESS(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_DEVICE_POWER_POLICY_VIDEO_DIM_BRIGHTNESS$constants.SEGMENT, 0L, GUID_DEVICE_POWER_POLICY_VIDEO_DIM_BRIGHTNESS$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_VIDEO_CURRENT_MONITOR_BRIGHTNESS$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_VIDEO_CURRENT_MONITOR_BRIGHTNESS").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_CURRENT_MONITOR_BRIGHTNESS
+     * }
+     */
+    public static GroupLayout GUID_VIDEO_CURRENT_MONITOR_BRIGHTNESS$layout() {
+        return GUID_VIDEO_CURRENT_MONITOR_BRIGHTNESS$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_CURRENT_MONITOR_BRIGHTNESS
+     * }
+     */
+    public static MemorySegment GUID_VIDEO_CURRENT_MONITOR_BRIGHTNESS() {
+        return GUID_VIDEO_CURRENT_MONITOR_BRIGHTNESS$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_CURRENT_MONITOR_BRIGHTNESS
+     * }
+     */
+    public static void GUID_VIDEO_CURRENT_MONITOR_BRIGHTNESS(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_VIDEO_CURRENT_MONITOR_BRIGHTNESS$constants.SEGMENT, 0L, GUID_VIDEO_CURRENT_MONITOR_BRIGHTNESS$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_VIDEO_ADAPTIVE_DISPLAY_BRIGHTNESS$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_VIDEO_ADAPTIVE_DISPLAY_BRIGHTNESS").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_ADAPTIVE_DISPLAY_BRIGHTNESS
+     * }
+     */
+    public static GroupLayout GUID_VIDEO_ADAPTIVE_DISPLAY_BRIGHTNESS$layout() {
+        return GUID_VIDEO_ADAPTIVE_DISPLAY_BRIGHTNESS$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_ADAPTIVE_DISPLAY_BRIGHTNESS
+     * }
+     */
+    public static MemorySegment GUID_VIDEO_ADAPTIVE_DISPLAY_BRIGHTNESS() {
+        return GUID_VIDEO_ADAPTIVE_DISPLAY_BRIGHTNESS$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_ADAPTIVE_DISPLAY_BRIGHTNESS
+     * }
+     */
+    public static void GUID_VIDEO_ADAPTIVE_DISPLAY_BRIGHTNESS(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_VIDEO_ADAPTIVE_DISPLAY_BRIGHTNESS$constants.SEGMENT, 0L, GUID_VIDEO_ADAPTIVE_DISPLAY_BRIGHTNESS$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_CONSOLE_DISPLAY_STATE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_CONSOLE_DISPLAY_STATE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_CONSOLE_DISPLAY_STATE
+     * }
+     */
+    public static GroupLayout GUID_CONSOLE_DISPLAY_STATE$layout() {
+        return GUID_CONSOLE_DISPLAY_STATE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_CONSOLE_DISPLAY_STATE
+     * }
+     */
+    public static MemorySegment GUID_CONSOLE_DISPLAY_STATE() {
+        return GUID_CONSOLE_DISPLAY_STATE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_CONSOLE_DISPLAY_STATE
+     * }
+     */
+    public static void GUID_CONSOLE_DISPLAY_STATE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_CONSOLE_DISPLAY_STATE$constants.SEGMENT, 0L, GUID_CONSOLE_DISPLAY_STATE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_ALLOW_DISPLAY_REQUIRED$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_ALLOW_DISPLAY_REQUIRED").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ALLOW_DISPLAY_REQUIRED
+     * }
+     */
+    public static GroupLayout GUID_ALLOW_DISPLAY_REQUIRED$layout() {
+        return GUID_ALLOW_DISPLAY_REQUIRED$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ALLOW_DISPLAY_REQUIRED
+     * }
+     */
+    public static MemorySegment GUID_ALLOW_DISPLAY_REQUIRED() {
+        return GUID_ALLOW_DISPLAY_REQUIRED$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ALLOW_DISPLAY_REQUIRED
+     * }
+     */
+    public static void GUID_ALLOW_DISPLAY_REQUIRED(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_ALLOW_DISPLAY_REQUIRED$constants.SEGMENT, 0L, GUID_ALLOW_DISPLAY_REQUIRED$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_VIDEO_CONSOLE_LOCK_TIMEOUT$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_VIDEO_CONSOLE_LOCK_TIMEOUT").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_CONSOLE_LOCK_TIMEOUT
+     * }
+     */
+    public static GroupLayout GUID_VIDEO_CONSOLE_LOCK_TIMEOUT$layout() {
+        return GUID_VIDEO_CONSOLE_LOCK_TIMEOUT$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_CONSOLE_LOCK_TIMEOUT
+     * }
+     */
+    public static MemorySegment GUID_VIDEO_CONSOLE_LOCK_TIMEOUT() {
+        return GUID_VIDEO_CONSOLE_LOCK_TIMEOUT$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_VIDEO_CONSOLE_LOCK_TIMEOUT
+     * }
+     */
+    public static void GUID_VIDEO_CONSOLE_LOCK_TIMEOUT(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_VIDEO_CONSOLE_LOCK_TIMEOUT$constants.SEGMENT, 0L, GUID_VIDEO_CONSOLE_LOCK_TIMEOUT$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_ADVANCED_COLOR_QUALITY_BIAS$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_ADVANCED_COLOR_QUALITY_BIAS").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ADVANCED_COLOR_QUALITY_BIAS
+     * }
+     */
+    public static GroupLayout GUID_ADVANCED_COLOR_QUALITY_BIAS$layout() {
+        return GUID_ADVANCED_COLOR_QUALITY_BIAS$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ADVANCED_COLOR_QUALITY_BIAS
+     * }
+     */
+    public static MemorySegment GUID_ADVANCED_COLOR_QUALITY_BIAS() {
+        return GUID_ADVANCED_COLOR_QUALITY_BIAS$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ADVANCED_COLOR_QUALITY_BIAS
+     * }
+     */
+    public static void GUID_ADVANCED_COLOR_QUALITY_BIAS(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_ADVANCED_COLOR_QUALITY_BIAS$constants.SEGMENT, 0L, GUID_ADVANCED_COLOR_QUALITY_BIAS$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_ADAPTIVE_POWER_BEHAVIOR_SUBGROUP$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_ADAPTIVE_POWER_BEHAVIOR_SUBGROUP").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ADAPTIVE_POWER_BEHAVIOR_SUBGROUP
+     * }
+     */
+    public static GroupLayout GUID_ADAPTIVE_POWER_BEHAVIOR_SUBGROUP$layout() {
+        return GUID_ADAPTIVE_POWER_BEHAVIOR_SUBGROUP$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ADAPTIVE_POWER_BEHAVIOR_SUBGROUP
+     * }
+     */
+    public static MemorySegment GUID_ADAPTIVE_POWER_BEHAVIOR_SUBGROUP() {
+        return GUID_ADAPTIVE_POWER_BEHAVIOR_SUBGROUP$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ADAPTIVE_POWER_BEHAVIOR_SUBGROUP
+     * }
+     */
+    public static void GUID_ADAPTIVE_POWER_BEHAVIOR_SUBGROUP(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_ADAPTIVE_POWER_BEHAVIOR_SUBGROUP$constants.SEGMENT, 0L, GUID_ADAPTIVE_POWER_BEHAVIOR_SUBGROUP$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_NON_ADAPTIVE_INPUT_TIMEOUT$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_NON_ADAPTIVE_INPUT_TIMEOUT").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_NON_ADAPTIVE_INPUT_TIMEOUT
+     * }
+     */
+    public static GroupLayout GUID_NON_ADAPTIVE_INPUT_TIMEOUT$layout() {
+        return GUID_NON_ADAPTIVE_INPUT_TIMEOUT$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_NON_ADAPTIVE_INPUT_TIMEOUT
+     * }
+     */
+    public static MemorySegment GUID_NON_ADAPTIVE_INPUT_TIMEOUT() {
+        return GUID_NON_ADAPTIVE_INPUT_TIMEOUT$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_NON_ADAPTIVE_INPUT_TIMEOUT
+     * }
+     */
+    public static void GUID_NON_ADAPTIVE_INPUT_TIMEOUT(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_NON_ADAPTIVE_INPUT_TIMEOUT$constants.SEGMENT, 0L, GUID_NON_ADAPTIVE_INPUT_TIMEOUT$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_ADAPTIVE_INPUT_CONTROLLER_STATE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_ADAPTIVE_INPUT_CONTROLLER_STATE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ADAPTIVE_INPUT_CONTROLLER_STATE
+     * }
+     */
+    public static GroupLayout GUID_ADAPTIVE_INPUT_CONTROLLER_STATE$layout() {
+        return GUID_ADAPTIVE_INPUT_CONTROLLER_STATE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ADAPTIVE_INPUT_CONTROLLER_STATE
+     * }
+     */
+    public static MemorySegment GUID_ADAPTIVE_INPUT_CONTROLLER_STATE() {
+        return GUID_ADAPTIVE_INPUT_CONTROLLER_STATE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ADAPTIVE_INPUT_CONTROLLER_STATE
+     * }
+     */
+    public static void GUID_ADAPTIVE_INPUT_CONTROLLER_STATE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_ADAPTIVE_INPUT_CONTROLLER_STATE$constants.SEGMENT, 0L, GUID_ADAPTIVE_INPUT_CONTROLLER_STATE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_DISK_SUBGROUP$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_DISK_SUBGROUP").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_SUBGROUP
+     * }
+     */
+    public static GroupLayout GUID_DISK_SUBGROUP$layout() {
+        return GUID_DISK_SUBGROUP$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_SUBGROUP
+     * }
+     */
+    public static MemorySegment GUID_DISK_SUBGROUP() {
+        return GUID_DISK_SUBGROUP$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_SUBGROUP
+     * }
+     */
+    public static void GUID_DISK_SUBGROUP(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_DISK_SUBGROUP$constants.SEGMENT, 0L, GUID_DISK_SUBGROUP$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_DISK_MAX_POWER$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_DISK_MAX_POWER").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_MAX_POWER
+     * }
+     */
+    public static GroupLayout GUID_DISK_MAX_POWER$layout() {
+        return GUID_DISK_MAX_POWER$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_MAX_POWER
+     * }
+     */
+    public static MemorySegment GUID_DISK_MAX_POWER() {
+        return GUID_DISK_MAX_POWER$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_MAX_POWER
+     * }
+     */
+    public static void GUID_DISK_MAX_POWER(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_DISK_MAX_POWER$constants.SEGMENT, 0L, GUID_DISK_MAX_POWER$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_DISK_POWERDOWN_TIMEOUT$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_DISK_POWERDOWN_TIMEOUT").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_POWERDOWN_TIMEOUT
+     * }
+     */
+    public static GroupLayout GUID_DISK_POWERDOWN_TIMEOUT$layout() {
+        return GUID_DISK_POWERDOWN_TIMEOUT$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_POWERDOWN_TIMEOUT
+     * }
+     */
+    public static MemorySegment GUID_DISK_POWERDOWN_TIMEOUT() {
+        return GUID_DISK_POWERDOWN_TIMEOUT$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_POWERDOWN_TIMEOUT
+     * }
+     */
+    public static void GUID_DISK_POWERDOWN_TIMEOUT(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_DISK_POWERDOWN_TIMEOUT$constants.SEGMENT, 0L, GUID_DISK_POWERDOWN_TIMEOUT$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_DISK_IDLE_TIMEOUT$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_DISK_IDLE_TIMEOUT").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_IDLE_TIMEOUT
+     * }
+     */
+    public static GroupLayout GUID_DISK_IDLE_TIMEOUT$layout() {
+        return GUID_DISK_IDLE_TIMEOUT$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_IDLE_TIMEOUT
+     * }
+     */
+    public static MemorySegment GUID_DISK_IDLE_TIMEOUT() {
+        return GUID_DISK_IDLE_TIMEOUT$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_IDLE_TIMEOUT
+     * }
+     */
+    public static void GUID_DISK_IDLE_TIMEOUT(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_DISK_IDLE_TIMEOUT$constants.SEGMENT, 0L, GUID_DISK_IDLE_TIMEOUT$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_DISK_BURST_IGNORE_THRESHOLD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_DISK_BURST_IGNORE_THRESHOLD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_BURST_IGNORE_THRESHOLD
+     * }
+     */
+    public static GroupLayout GUID_DISK_BURST_IGNORE_THRESHOLD$layout() {
+        return GUID_DISK_BURST_IGNORE_THRESHOLD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_BURST_IGNORE_THRESHOLD
+     * }
+     */
+    public static MemorySegment GUID_DISK_BURST_IGNORE_THRESHOLD() {
+        return GUID_DISK_BURST_IGNORE_THRESHOLD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_BURST_IGNORE_THRESHOLD
+     * }
+     */
+    public static void GUID_DISK_BURST_IGNORE_THRESHOLD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_DISK_BURST_IGNORE_THRESHOLD$constants.SEGMENT, 0L, GUID_DISK_BURST_IGNORE_THRESHOLD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_DISK_ADAPTIVE_POWERDOWN$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_DISK_ADAPTIVE_POWERDOWN").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_ADAPTIVE_POWERDOWN
+     * }
+     */
+    public static GroupLayout GUID_DISK_ADAPTIVE_POWERDOWN$layout() {
+        return GUID_DISK_ADAPTIVE_POWERDOWN$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_ADAPTIVE_POWERDOWN
+     * }
+     */
+    public static MemorySegment GUID_DISK_ADAPTIVE_POWERDOWN() {
+        return GUID_DISK_ADAPTIVE_POWERDOWN$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_ADAPTIVE_POWERDOWN
+     * }
+     */
+    public static void GUID_DISK_ADAPTIVE_POWERDOWN(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_DISK_ADAPTIVE_POWERDOWN$constants.SEGMENT, 0L, GUID_DISK_ADAPTIVE_POWERDOWN$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_DISK_NVME_NOPPME$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_DISK_NVME_NOPPME").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_NVME_NOPPME
+     * }
+     */
+    public static GroupLayout GUID_DISK_NVME_NOPPME$layout() {
+        return GUID_DISK_NVME_NOPPME$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_NVME_NOPPME
+     * }
+     */
+    public static MemorySegment GUID_DISK_NVME_NOPPME() {
+        return GUID_DISK_NVME_NOPPME$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISK_NVME_NOPPME
+     * }
+     */
+    public static void GUID_DISK_NVME_NOPPME(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_DISK_NVME_NOPPME$constants.SEGMENT, 0L, GUID_DISK_NVME_NOPPME$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_SLEEP_SUBGROUP$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_SLEEP_SUBGROUP").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SLEEP_SUBGROUP
+     * }
+     */
+    public static GroupLayout GUID_SLEEP_SUBGROUP$layout() {
+        return GUID_SLEEP_SUBGROUP$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SLEEP_SUBGROUP
+     * }
+     */
+    public static MemorySegment GUID_SLEEP_SUBGROUP() {
+        return GUID_SLEEP_SUBGROUP$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SLEEP_SUBGROUP
+     * }
+     */
+    public static void GUID_SLEEP_SUBGROUP(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_SLEEP_SUBGROUP$constants.SEGMENT, 0L, GUID_SLEEP_SUBGROUP$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_SLEEP_IDLE_THRESHOLD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_SLEEP_IDLE_THRESHOLD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SLEEP_IDLE_THRESHOLD
+     * }
+     */
+    public static GroupLayout GUID_SLEEP_IDLE_THRESHOLD$layout() {
+        return GUID_SLEEP_IDLE_THRESHOLD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SLEEP_IDLE_THRESHOLD
+     * }
+     */
+    public static MemorySegment GUID_SLEEP_IDLE_THRESHOLD() {
+        return GUID_SLEEP_IDLE_THRESHOLD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SLEEP_IDLE_THRESHOLD
+     * }
+     */
+    public static void GUID_SLEEP_IDLE_THRESHOLD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_SLEEP_IDLE_THRESHOLD$constants.SEGMENT, 0L, GUID_SLEEP_IDLE_THRESHOLD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_STANDBY_TIMEOUT$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_STANDBY_TIMEOUT").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_STANDBY_TIMEOUT
+     * }
+     */
+    public static GroupLayout GUID_STANDBY_TIMEOUT$layout() {
+        return GUID_STANDBY_TIMEOUT$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_STANDBY_TIMEOUT
+     * }
+     */
+    public static MemorySegment GUID_STANDBY_TIMEOUT() {
+        return GUID_STANDBY_TIMEOUT$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_STANDBY_TIMEOUT
+     * }
+     */
+    public static void GUID_STANDBY_TIMEOUT(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_STANDBY_TIMEOUT$constants.SEGMENT, 0L, GUID_STANDBY_TIMEOUT$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_UNATTEND_SLEEP_TIMEOUT$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_UNATTEND_SLEEP_TIMEOUT").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_UNATTEND_SLEEP_TIMEOUT
+     * }
+     */
+    public static GroupLayout GUID_UNATTEND_SLEEP_TIMEOUT$layout() {
+        return GUID_UNATTEND_SLEEP_TIMEOUT$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_UNATTEND_SLEEP_TIMEOUT
+     * }
+     */
+    public static MemorySegment GUID_UNATTEND_SLEEP_TIMEOUT() {
+        return GUID_UNATTEND_SLEEP_TIMEOUT$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_UNATTEND_SLEEP_TIMEOUT
+     * }
+     */
+    public static void GUID_UNATTEND_SLEEP_TIMEOUT(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_UNATTEND_SLEEP_TIMEOUT$constants.SEGMENT, 0L, GUID_UNATTEND_SLEEP_TIMEOUT$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_HIBERNATE_TIMEOUT$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_HIBERNATE_TIMEOUT").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_HIBERNATE_TIMEOUT
+     * }
+     */
+    public static GroupLayout GUID_HIBERNATE_TIMEOUT$layout() {
+        return GUID_HIBERNATE_TIMEOUT$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_HIBERNATE_TIMEOUT
+     * }
+     */
+    public static MemorySegment GUID_HIBERNATE_TIMEOUT() {
+        return GUID_HIBERNATE_TIMEOUT$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_HIBERNATE_TIMEOUT
+     * }
+     */
+    public static void GUID_HIBERNATE_TIMEOUT(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_HIBERNATE_TIMEOUT$constants.SEGMENT, 0L, GUID_HIBERNATE_TIMEOUT$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_HIBERNATE_FASTS4_POLICY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_HIBERNATE_FASTS4_POLICY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_HIBERNATE_FASTS4_POLICY
+     * }
+     */
+    public static GroupLayout GUID_HIBERNATE_FASTS4_POLICY$layout() {
+        return GUID_HIBERNATE_FASTS4_POLICY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_HIBERNATE_FASTS4_POLICY
+     * }
+     */
+    public static MemorySegment GUID_HIBERNATE_FASTS4_POLICY() {
+        return GUID_HIBERNATE_FASTS4_POLICY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_HIBERNATE_FASTS4_POLICY
+     * }
+     */
+    public static void GUID_HIBERNATE_FASTS4_POLICY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_HIBERNATE_FASTS4_POLICY$constants.SEGMENT, 0L, GUID_HIBERNATE_FASTS4_POLICY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_CRITICAL_POWER_TRANSITION$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_CRITICAL_POWER_TRANSITION").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_CRITICAL_POWER_TRANSITION
+     * }
+     */
+    public static GroupLayout GUID_CRITICAL_POWER_TRANSITION$layout() {
+        return GUID_CRITICAL_POWER_TRANSITION$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_CRITICAL_POWER_TRANSITION
+     * }
+     */
+    public static MemorySegment GUID_CRITICAL_POWER_TRANSITION() {
+        return GUID_CRITICAL_POWER_TRANSITION$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_CRITICAL_POWER_TRANSITION
+     * }
+     */
+    public static void GUID_CRITICAL_POWER_TRANSITION(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_CRITICAL_POWER_TRANSITION$constants.SEGMENT, 0L, GUID_CRITICAL_POWER_TRANSITION$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_SYSTEM_AWAYMODE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_SYSTEM_AWAYMODE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SYSTEM_AWAYMODE
+     * }
+     */
+    public static GroupLayout GUID_SYSTEM_AWAYMODE$layout() {
+        return GUID_SYSTEM_AWAYMODE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SYSTEM_AWAYMODE
+     * }
+     */
+    public static MemorySegment GUID_SYSTEM_AWAYMODE() {
+        return GUID_SYSTEM_AWAYMODE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SYSTEM_AWAYMODE
+     * }
+     */
+    public static void GUID_SYSTEM_AWAYMODE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_SYSTEM_AWAYMODE$constants.SEGMENT, 0L, GUID_SYSTEM_AWAYMODE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_ALLOW_AWAYMODE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_ALLOW_AWAYMODE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ALLOW_AWAYMODE
+     * }
+     */
+    public static GroupLayout GUID_ALLOW_AWAYMODE$layout() {
+        return GUID_ALLOW_AWAYMODE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ALLOW_AWAYMODE
+     * }
+     */
+    public static MemorySegment GUID_ALLOW_AWAYMODE() {
+        return GUID_ALLOW_AWAYMODE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ALLOW_AWAYMODE
+     * }
+     */
+    public static void GUID_ALLOW_AWAYMODE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_ALLOW_AWAYMODE$constants.SEGMENT, 0L, GUID_ALLOW_AWAYMODE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_USER_PRESENCE_PREDICTION$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_USER_PRESENCE_PREDICTION").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_USER_PRESENCE_PREDICTION
+     * }
+     */
+    public static GroupLayout GUID_USER_PRESENCE_PREDICTION$layout() {
+        return GUID_USER_PRESENCE_PREDICTION$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_USER_PRESENCE_PREDICTION
+     * }
+     */
+    public static MemorySegment GUID_USER_PRESENCE_PREDICTION() {
+        return GUID_USER_PRESENCE_PREDICTION$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_USER_PRESENCE_PREDICTION
+     * }
+     */
+    public static void GUID_USER_PRESENCE_PREDICTION(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_USER_PRESENCE_PREDICTION$constants.SEGMENT, 0L, GUID_USER_PRESENCE_PREDICTION$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_STANDBY_BUDGET_GRACE_PERIOD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_STANDBY_BUDGET_GRACE_PERIOD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_STANDBY_BUDGET_GRACE_PERIOD
+     * }
+     */
+    public static GroupLayout GUID_STANDBY_BUDGET_GRACE_PERIOD$layout() {
+        return GUID_STANDBY_BUDGET_GRACE_PERIOD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_STANDBY_BUDGET_GRACE_PERIOD
+     * }
+     */
+    public static MemorySegment GUID_STANDBY_BUDGET_GRACE_PERIOD() {
+        return GUID_STANDBY_BUDGET_GRACE_PERIOD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_STANDBY_BUDGET_GRACE_PERIOD
+     * }
+     */
+    public static void GUID_STANDBY_BUDGET_GRACE_PERIOD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_STANDBY_BUDGET_GRACE_PERIOD$constants.SEGMENT, 0L, GUID_STANDBY_BUDGET_GRACE_PERIOD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_STANDBY_BUDGET_PERCENT$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_STANDBY_BUDGET_PERCENT").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_STANDBY_BUDGET_PERCENT
+     * }
+     */
+    public static GroupLayout GUID_STANDBY_BUDGET_PERCENT$layout() {
+        return GUID_STANDBY_BUDGET_PERCENT$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_STANDBY_BUDGET_PERCENT
+     * }
+     */
+    public static MemorySegment GUID_STANDBY_BUDGET_PERCENT() {
+        return GUID_STANDBY_BUDGET_PERCENT$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_STANDBY_BUDGET_PERCENT
+     * }
+     */
+    public static void GUID_STANDBY_BUDGET_PERCENT(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_STANDBY_BUDGET_PERCENT$constants.SEGMENT, 0L, GUID_STANDBY_BUDGET_PERCENT$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_STANDBY_RESERVE_GRACE_PERIOD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_STANDBY_RESERVE_GRACE_PERIOD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_STANDBY_RESERVE_GRACE_PERIOD
+     * }
+     */
+    public static GroupLayout GUID_STANDBY_RESERVE_GRACE_PERIOD$layout() {
+        return GUID_STANDBY_RESERVE_GRACE_PERIOD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_STANDBY_RESERVE_GRACE_PERIOD
+     * }
+     */
+    public static MemorySegment GUID_STANDBY_RESERVE_GRACE_PERIOD() {
+        return GUID_STANDBY_RESERVE_GRACE_PERIOD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_STANDBY_RESERVE_GRACE_PERIOD
+     * }
+     */
+    public static void GUID_STANDBY_RESERVE_GRACE_PERIOD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_STANDBY_RESERVE_GRACE_PERIOD$constants.SEGMENT, 0L, GUID_STANDBY_RESERVE_GRACE_PERIOD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_STANDBY_RESERVE_TIME$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_STANDBY_RESERVE_TIME").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_STANDBY_RESERVE_TIME
+     * }
+     */
+    public static GroupLayout GUID_STANDBY_RESERVE_TIME$layout() {
+        return GUID_STANDBY_RESERVE_TIME$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_STANDBY_RESERVE_TIME
+     * }
+     */
+    public static MemorySegment GUID_STANDBY_RESERVE_TIME() {
+        return GUID_STANDBY_RESERVE_TIME$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_STANDBY_RESERVE_TIME
+     * }
+     */
+    public static void GUID_STANDBY_RESERVE_TIME(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_STANDBY_RESERVE_TIME$constants.SEGMENT, 0L, GUID_STANDBY_RESERVE_TIME$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_STANDBY_RESET_PERCENT$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_STANDBY_RESET_PERCENT").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_STANDBY_RESET_PERCENT
+     * }
+     */
+    public static GroupLayout GUID_STANDBY_RESET_PERCENT$layout() {
+        return GUID_STANDBY_RESET_PERCENT$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_STANDBY_RESET_PERCENT
+     * }
+     */
+    public static MemorySegment GUID_STANDBY_RESET_PERCENT() {
+        return GUID_STANDBY_RESET_PERCENT$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_STANDBY_RESET_PERCENT
+     * }
+     */
+    public static void GUID_STANDBY_RESET_PERCENT(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_STANDBY_RESET_PERCENT$constants.SEGMENT, 0L, GUID_STANDBY_RESET_PERCENT$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_ALLOW_STANDBY_STATES$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_ALLOW_STANDBY_STATES").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ALLOW_STANDBY_STATES
+     * }
+     */
+    public static GroupLayout GUID_ALLOW_STANDBY_STATES$layout() {
+        return GUID_ALLOW_STANDBY_STATES$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ALLOW_STANDBY_STATES
+     * }
+     */
+    public static MemorySegment GUID_ALLOW_STANDBY_STATES() {
+        return GUID_ALLOW_STANDBY_STATES$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ALLOW_STANDBY_STATES
+     * }
+     */
+    public static void GUID_ALLOW_STANDBY_STATES(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_ALLOW_STANDBY_STATES$constants.SEGMENT, 0L, GUID_ALLOW_STANDBY_STATES$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_ALLOW_RTC_WAKE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_ALLOW_RTC_WAKE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ALLOW_RTC_WAKE
+     * }
+     */
+    public static GroupLayout GUID_ALLOW_RTC_WAKE$layout() {
+        return GUID_ALLOW_RTC_WAKE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ALLOW_RTC_WAKE
+     * }
+     */
+    public static MemorySegment GUID_ALLOW_RTC_WAKE() {
+        return GUID_ALLOW_RTC_WAKE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ALLOW_RTC_WAKE
+     * }
+     */
+    public static void GUID_ALLOW_RTC_WAKE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_ALLOW_RTC_WAKE$constants.SEGMENT, 0L, GUID_ALLOW_RTC_WAKE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_LEGACY_RTC_MITIGATION$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_LEGACY_RTC_MITIGATION").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_LEGACY_RTC_MITIGATION
+     * }
+     */
+    public static GroupLayout GUID_LEGACY_RTC_MITIGATION$layout() {
+        return GUID_LEGACY_RTC_MITIGATION$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_LEGACY_RTC_MITIGATION
+     * }
+     */
+    public static MemorySegment GUID_LEGACY_RTC_MITIGATION() {
+        return GUID_LEGACY_RTC_MITIGATION$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_LEGACY_RTC_MITIGATION
+     * }
+     */
+    public static void GUID_LEGACY_RTC_MITIGATION(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_LEGACY_RTC_MITIGATION$constants.SEGMENT, 0L, GUID_LEGACY_RTC_MITIGATION$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_ALLOW_SYSTEM_REQUIRED$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_ALLOW_SYSTEM_REQUIRED").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ALLOW_SYSTEM_REQUIRED
+     * }
+     */
+    public static GroupLayout GUID_ALLOW_SYSTEM_REQUIRED$layout() {
+        return GUID_ALLOW_SYSTEM_REQUIRED$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ALLOW_SYSTEM_REQUIRED
+     * }
+     */
+    public static MemorySegment GUID_ALLOW_SYSTEM_REQUIRED() {
+        return GUID_ALLOW_SYSTEM_REQUIRED$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ALLOW_SYSTEM_REQUIRED
+     * }
+     */
+    public static void GUID_ALLOW_SYSTEM_REQUIRED(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_ALLOW_SYSTEM_REQUIRED$constants.SEGMENT, 0L, GUID_ALLOW_SYSTEM_REQUIRED$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_POWER_SAVING_STATUS$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_POWER_SAVING_STATUS").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_POWER_SAVING_STATUS
+     * }
+     */
+    public static GroupLayout GUID_POWER_SAVING_STATUS$layout() {
+        return GUID_POWER_SAVING_STATUS$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_POWER_SAVING_STATUS
+     * }
+     */
+    public static MemorySegment GUID_POWER_SAVING_STATUS() {
+        return GUID_POWER_SAVING_STATUS$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_POWER_SAVING_STATUS
+     * }
+     */
+    public static void GUID_POWER_SAVING_STATUS(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_POWER_SAVING_STATUS$constants.SEGMENT, 0L, GUID_POWER_SAVING_STATUS$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_ENERGY_SAVER_SUBGROUP$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_ENERGY_SAVER_SUBGROUP").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ENERGY_SAVER_SUBGROUP
+     * }
+     */
+    public static GroupLayout GUID_ENERGY_SAVER_SUBGROUP$layout() {
+        return GUID_ENERGY_SAVER_SUBGROUP$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ENERGY_SAVER_SUBGROUP
+     * }
+     */
+    public static MemorySegment GUID_ENERGY_SAVER_SUBGROUP() {
+        return GUID_ENERGY_SAVER_SUBGROUP$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ENERGY_SAVER_SUBGROUP
+     * }
+     */
+    public static void GUID_ENERGY_SAVER_SUBGROUP(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_ENERGY_SAVER_SUBGROUP$constants.SEGMENT, 0L, GUID_ENERGY_SAVER_SUBGROUP$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_ENERGY_SAVER_BATTERY_THRESHOLD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_ENERGY_SAVER_BATTERY_THRESHOLD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ENERGY_SAVER_BATTERY_THRESHOLD
+     * }
+     */
+    public static GroupLayout GUID_ENERGY_SAVER_BATTERY_THRESHOLD$layout() {
+        return GUID_ENERGY_SAVER_BATTERY_THRESHOLD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ENERGY_SAVER_BATTERY_THRESHOLD
+     * }
+     */
+    public static MemorySegment GUID_ENERGY_SAVER_BATTERY_THRESHOLD() {
+        return GUID_ENERGY_SAVER_BATTERY_THRESHOLD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ENERGY_SAVER_BATTERY_THRESHOLD
+     * }
+     */
+    public static void GUID_ENERGY_SAVER_BATTERY_THRESHOLD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_ENERGY_SAVER_BATTERY_THRESHOLD$constants.SEGMENT, 0L, GUID_ENERGY_SAVER_BATTERY_THRESHOLD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_ENERGY_SAVER_BRIGHTNESS$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_ENERGY_SAVER_BRIGHTNESS").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ENERGY_SAVER_BRIGHTNESS
+     * }
+     */
+    public static GroupLayout GUID_ENERGY_SAVER_BRIGHTNESS$layout() {
+        return GUID_ENERGY_SAVER_BRIGHTNESS$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ENERGY_SAVER_BRIGHTNESS
+     * }
+     */
+    public static MemorySegment GUID_ENERGY_SAVER_BRIGHTNESS() {
+        return GUID_ENERGY_SAVER_BRIGHTNESS$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ENERGY_SAVER_BRIGHTNESS
+     * }
+     */
+    public static void GUID_ENERGY_SAVER_BRIGHTNESS(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_ENERGY_SAVER_BRIGHTNESS$constants.SEGMENT, 0L, GUID_ENERGY_SAVER_BRIGHTNESS$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_ENERGY_SAVER_POLICY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_ENERGY_SAVER_POLICY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ENERGY_SAVER_POLICY
+     * }
+     */
+    public static GroupLayout GUID_ENERGY_SAVER_POLICY$layout() {
+        return GUID_ENERGY_SAVER_POLICY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ENERGY_SAVER_POLICY
+     * }
+     */
+    public static MemorySegment GUID_ENERGY_SAVER_POLICY() {
+        return GUID_ENERGY_SAVER_POLICY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ENERGY_SAVER_POLICY
+     * }
+     */
+    public static void GUID_ENERGY_SAVER_POLICY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_ENERGY_SAVER_POLICY$constants.SEGMENT, 0L, GUID_ENERGY_SAVER_POLICY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_SYSTEM_BUTTON_SUBGROUP$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_SYSTEM_BUTTON_SUBGROUP").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SYSTEM_BUTTON_SUBGROUP
+     * }
+     */
+    public static GroupLayout GUID_SYSTEM_BUTTON_SUBGROUP$layout() {
+        return GUID_SYSTEM_BUTTON_SUBGROUP$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SYSTEM_BUTTON_SUBGROUP
+     * }
+     */
+    public static MemorySegment GUID_SYSTEM_BUTTON_SUBGROUP() {
+        return GUID_SYSTEM_BUTTON_SUBGROUP$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SYSTEM_BUTTON_SUBGROUP
+     * }
+     */
+    public static void GUID_SYSTEM_BUTTON_SUBGROUP(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_SYSTEM_BUTTON_SUBGROUP$constants.SEGMENT, 0L, GUID_SYSTEM_BUTTON_SUBGROUP$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_POWERBUTTON_ACTION$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_POWERBUTTON_ACTION").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_POWERBUTTON_ACTION
+     * }
+     */
+    public static GroupLayout GUID_POWERBUTTON_ACTION$layout() {
+        return GUID_POWERBUTTON_ACTION$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_POWERBUTTON_ACTION
+     * }
+     */
+    public static MemorySegment GUID_POWERBUTTON_ACTION() {
+        return GUID_POWERBUTTON_ACTION$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_POWERBUTTON_ACTION
+     * }
+     */
+    public static void GUID_POWERBUTTON_ACTION(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_POWERBUTTON_ACTION$constants.SEGMENT, 0L, GUID_POWERBUTTON_ACTION$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_SLEEPBUTTON_ACTION$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_SLEEPBUTTON_ACTION").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SLEEPBUTTON_ACTION
+     * }
+     */
+    public static GroupLayout GUID_SLEEPBUTTON_ACTION$layout() {
+        return GUID_SLEEPBUTTON_ACTION$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SLEEPBUTTON_ACTION
+     * }
+     */
+    public static MemorySegment GUID_SLEEPBUTTON_ACTION() {
+        return GUID_SLEEPBUTTON_ACTION$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SLEEPBUTTON_ACTION
+     * }
+     */
+    public static void GUID_SLEEPBUTTON_ACTION(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_SLEEPBUTTON_ACTION$constants.SEGMENT, 0L, GUID_SLEEPBUTTON_ACTION$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_USERINTERFACEBUTTON_ACTION$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_USERINTERFACEBUTTON_ACTION").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_USERINTERFACEBUTTON_ACTION
+     * }
+     */
+    public static GroupLayout GUID_USERINTERFACEBUTTON_ACTION$layout() {
+        return GUID_USERINTERFACEBUTTON_ACTION$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_USERINTERFACEBUTTON_ACTION
+     * }
+     */
+    public static MemorySegment GUID_USERINTERFACEBUTTON_ACTION() {
+        return GUID_USERINTERFACEBUTTON_ACTION$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_USERINTERFACEBUTTON_ACTION
+     * }
+     */
+    public static void GUID_USERINTERFACEBUTTON_ACTION(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_USERINTERFACEBUTTON_ACTION$constants.SEGMENT, 0L, GUID_USERINTERFACEBUTTON_ACTION$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_LIDCLOSE_ACTION$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_LIDCLOSE_ACTION").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_LIDCLOSE_ACTION
+     * }
+     */
+    public static GroupLayout GUID_LIDCLOSE_ACTION$layout() {
+        return GUID_LIDCLOSE_ACTION$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_LIDCLOSE_ACTION
+     * }
+     */
+    public static MemorySegment GUID_LIDCLOSE_ACTION() {
+        return GUID_LIDCLOSE_ACTION$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_LIDCLOSE_ACTION
+     * }
+     */
+    public static void GUID_LIDCLOSE_ACTION(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_LIDCLOSE_ACTION$constants.SEGMENT, 0L, GUID_LIDCLOSE_ACTION$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_LIDOPEN_POWERSTATE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_LIDOPEN_POWERSTATE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_LIDOPEN_POWERSTATE
+     * }
+     */
+    public static GroupLayout GUID_LIDOPEN_POWERSTATE$layout() {
+        return GUID_LIDOPEN_POWERSTATE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_LIDOPEN_POWERSTATE
+     * }
+     */
+    public static MemorySegment GUID_LIDOPEN_POWERSTATE() {
+        return GUID_LIDOPEN_POWERSTATE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_LIDOPEN_POWERSTATE
+     * }
+     */
+    public static void GUID_LIDOPEN_POWERSTATE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_LIDOPEN_POWERSTATE$constants.SEGMENT, 0L, GUID_LIDOPEN_POWERSTATE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_BATTERY_SUBGROUP$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_BATTERY_SUBGROUP").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_SUBGROUP
+     * }
+     */
+    public static GroupLayout GUID_BATTERY_SUBGROUP$layout() {
+        return GUID_BATTERY_SUBGROUP$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_SUBGROUP
+     * }
+     */
+    public static MemorySegment GUID_BATTERY_SUBGROUP() {
+        return GUID_BATTERY_SUBGROUP$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_SUBGROUP
+     * }
+     */
+    public static void GUID_BATTERY_SUBGROUP(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_BATTERY_SUBGROUP$constants.SEGMENT, 0L, GUID_BATTERY_SUBGROUP$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_BATTERY_DISCHARGE_ACTION_0$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_BATTERY_DISCHARGE_ACTION_0").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_ACTION_0
+     * }
+     */
+    public static GroupLayout GUID_BATTERY_DISCHARGE_ACTION_0$layout() {
+        return GUID_BATTERY_DISCHARGE_ACTION_0$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_ACTION_0
+     * }
+     */
+    public static MemorySegment GUID_BATTERY_DISCHARGE_ACTION_0() {
+        return GUID_BATTERY_DISCHARGE_ACTION_0$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_ACTION_0
+     * }
+     */
+    public static void GUID_BATTERY_DISCHARGE_ACTION_0(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_BATTERY_DISCHARGE_ACTION_0$constants.SEGMENT, 0L, GUID_BATTERY_DISCHARGE_ACTION_0$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_BATTERY_DISCHARGE_LEVEL_0$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_BATTERY_DISCHARGE_LEVEL_0").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_LEVEL_0
+     * }
+     */
+    public static GroupLayout GUID_BATTERY_DISCHARGE_LEVEL_0$layout() {
+        return GUID_BATTERY_DISCHARGE_LEVEL_0$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_LEVEL_0
+     * }
+     */
+    public static MemorySegment GUID_BATTERY_DISCHARGE_LEVEL_0() {
+        return GUID_BATTERY_DISCHARGE_LEVEL_0$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_LEVEL_0
+     * }
+     */
+    public static void GUID_BATTERY_DISCHARGE_LEVEL_0(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_BATTERY_DISCHARGE_LEVEL_0$constants.SEGMENT, 0L, GUID_BATTERY_DISCHARGE_LEVEL_0$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_BATTERY_DISCHARGE_FLAGS_0$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_BATTERY_DISCHARGE_FLAGS_0").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_FLAGS_0
+     * }
+     */
+    public static GroupLayout GUID_BATTERY_DISCHARGE_FLAGS_0$layout() {
+        return GUID_BATTERY_DISCHARGE_FLAGS_0$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_FLAGS_0
+     * }
+     */
+    public static MemorySegment GUID_BATTERY_DISCHARGE_FLAGS_0() {
+        return GUID_BATTERY_DISCHARGE_FLAGS_0$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_FLAGS_0
+     * }
+     */
+    public static void GUID_BATTERY_DISCHARGE_FLAGS_0(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_BATTERY_DISCHARGE_FLAGS_0$constants.SEGMENT, 0L, GUID_BATTERY_DISCHARGE_FLAGS_0$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_BATTERY_DISCHARGE_ACTION_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_BATTERY_DISCHARGE_ACTION_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_ACTION_1
+     * }
+     */
+    public static GroupLayout GUID_BATTERY_DISCHARGE_ACTION_1$layout() {
+        return GUID_BATTERY_DISCHARGE_ACTION_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_ACTION_1
+     * }
+     */
+    public static MemorySegment GUID_BATTERY_DISCHARGE_ACTION_1() {
+        return GUID_BATTERY_DISCHARGE_ACTION_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_ACTION_1
+     * }
+     */
+    public static void GUID_BATTERY_DISCHARGE_ACTION_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_BATTERY_DISCHARGE_ACTION_1$constants.SEGMENT, 0L, GUID_BATTERY_DISCHARGE_ACTION_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_BATTERY_DISCHARGE_LEVEL_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_BATTERY_DISCHARGE_LEVEL_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_LEVEL_1
+     * }
+     */
+    public static GroupLayout GUID_BATTERY_DISCHARGE_LEVEL_1$layout() {
+        return GUID_BATTERY_DISCHARGE_LEVEL_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_LEVEL_1
+     * }
+     */
+    public static MemorySegment GUID_BATTERY_DISCHARGE_LEVEL_1() {
+        return GUID_BATTERY_DISCHARGE_LEVEL_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_LEVEL_1
+     * }
+     */
+    public static void GUID_BATTERY_DISCHARGE_LEVEL_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_BATTERY_DISCHARGE_LEVEL_1$constants.SEGMENT, 0L, GUID_BATTERY_DISCHARGE_LEVEL_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_BATTERY_DISCHARGE_FLAGS_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_BATTERY_DISCHARGE_FLAGS_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_FLAGS_1
+     * }
+     */
+    public static GroupLayout GUID_BATTERY_DISCHARGE_FLAGS_1$layout() {
+        return GUID_BATTERY_DISCHARGE_FLAGS_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_FLAGS_1
+     * }
+     */
+    public static MemorySegment GUID_BATTERY_DISCHARGE_FLAGS_1() {
+        return GUID_BATTERY_DISCHARGE_FLAGS_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_FLAGS_1
+     * }
+     */
+    public static void GUID_BATTERY_DISCHARGE_FLAGS_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_BATTERY_DISCHARGE_FLAGS_1$constants.SEGMENT, 0L, GUID_BATTERY_DISCHARGE_FLAGS_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_BATTERY_DISCHARGE_ACTION_2$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_BATTERY_DISCHARGE_ACTION_2").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_ACTION_2
+     * }
+     */
+    public static GroupLayout GUID_BATTERY_DISCHARGE_ACTION_2$layout() {
+        return GUID_BATTERY_DISCHARGE_ACTION_2$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_ACTION_2
+     * }
+     */
+    public static MemorySegment GUID_BATTERY_DISCHARGE_ACTION_2() {
+        return GUID_BATTERY_DISCHARGE_ACTION_2$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_ACTION_2
+     * }
+     */
+    public static void GUID_BATTERY_DISCHARGE_ACTION_2(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_BATTERY_DISCHARGE_ACTION_2$constants.SEGMENT, 0L, GUID_BATTERY_DISCHARGE_ACTION_2$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_BATTERY_DISCHARGE_LEVEL_2$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_BATTERY_DISCHARGE_LEVEL_2").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_LEVEL_2
+     * }
+     */
+    public static GroupLayout GUID_BATTERY_DISCHARGE_LEVEL_2$layout() {
+        return GUID_BATTERY_DISCHARGE_LEVEL_2$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_LEVEL_2
+     * }
+     */
+    public static MemorySegment GUID_BATTERY_DISCHARGE_LEVEL_2() {
+        return GUID_BATTERY_DISCHARGE_LEVEL_2$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_LEVEL_2
+     * }
+     */
+    public static void GUID_BATTERY_DISCHARGE_LEVEL_2(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_BATTERY_DISCHARGE_LEVEL_2$constants.SEGMENT, 0L, GUID_BATTERY_DISCHARGE_LEVEL_2$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_BATTERY_DISCHARGE_FLAGS_2$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_BATTERY_DISCHARGE_FLAGS_2").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_FLAGS_2
+     * }
+     */
+    public static GroupLayout GUID_BATTERY_DISCHARGE_FLAGS_2$layout() {
+        return GUID_BATTERY_DISCHARGE_FLAGS_2$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_FLAGS_2
+     * }
+     */
+    public static MemorySegment GUID_BATTERY_DISCHARGE_FLAGS_2() {
+        return GUID_BATTERY_DISCHARGE_FLAGS_2$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_FLAGS_2
+     * }
+     */
+    public static void GUID_BATTERY_DISCHARGE_FLAGS_2(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_BATTERY_DISCHARGE_FLAGS_2$constants.SEGMENT, 0L, GUID_BATTERY_DISCHARGE_FLAGS_2$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_BATTERY_DISCHARGE_ACTION_3$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_BATTERY_DISCHARGE_ACTION_3").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_ACTION_3
+     * }
+     */
+    public static GroupLayout GUID_BATTERY_DISCHARGE_ACTION_3$layout() {
+        return GUID_BATTERY_DISCHARGE_ACTION_3$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_ACTION_3
+     * }
+     */
+    public static MemorySegment GUID_BATTERY_DISCHARGE_ACTION_3() {
+        return GUID_BATTERY_DISCHARGE_ACTION_3$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_ACTION_3
+     * }
+     */
+    public static void GUID_BATTERY_DISCHARGE_ACTION_3(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_BATTERY_DISCHARGE_ACTION_3$constants.SEGMENT, 0L, GUID_BATTERY_DISCHARGE_ACTION_3$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_BATTERY_DISCHARGE_LEVEL_3$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_BATTERY_DISCHARGE_LEVEL_3").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_LEVEL_3
+     * }
+     */
+    public static GroupLayout GUID_BATTERY_DISCHARGE_LEVEL_3$layout() {
+        return GUID_BATTERY_DISCHARGE_LEVEL_3$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_LEVEL_3
+     * }
+     */
+    public static MemorySegment GUID_BATTERY_DISCHARGE_LEVEL_3() {
+        return GUID_BATTERY_DISCHARGE_LEVEL_3$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_LEVEL_3
+     * }
+     */
+    public static void GUID_BATTERY_DISCHARGE_LEVEL_3(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_BATTERY_DISCHARGE_LEVEL_3$constants.SEGMENT, 0L, GUID_BATTERY_DISCHARGE_LEVEL_3$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_BATTERY_DISCHARGE_FLAGS_3$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_BATTERY_DISCHARGE_FLAGS_3").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_FLAGS_3
+     * }
+     */
+    public static GroupLayout GUID_BATTERY_DISCHARGE_FLAGS_3$layout() {
+        return GUID_BATTERY_DISCHARGE_FLAGS_3$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_FLAGS_3
+     * }
+     */
+    public static MemorySegment GUID_BATTERY_DISCHARGE_FLAGS_3() {
+        return GUID_BATTERY_DISCHARGE_FLAGS_3$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_DISCHARGE_FLAGS_3
+     * }
+     */
+    public static void GUID_BATTERY_DISCHARGE_FLAGS_3(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_BATTERY_DISCHARGE_FLAGS_3$constants.SEGMENT, 0L, GUID_BATTERY_DISCHARGE_FLAGS_3$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_SETTINGS_SUBGROUP$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_SETTINGS_SUBGROUP").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_SETTINGS_SUBGROUP
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_SETTINGS_SUBGROUP$layout() {
+        return GUID_PROCESSOR_SETTINGS_SUBGROUP$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_SETTINGS_SUBGROUP
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_SETTINGS_SUBGROUP() {
+        return GUID_PROCESSOR_SETTINGS_SUBGROUP$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_SETTINGS_SUBGROUP
+     * }
+     */
+    public static void GUID_PROCESSOR_SETTINGS_SUBGROUP(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_SETTINGS_SUBGROUP$constants.SEGMENT, 0L, GUID_PROCESSOR_SETTINGS_SUBGROUP$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_THROTTLE_POLICY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_THROTTLE_POLICY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_THROTTLE_POLICY
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_THROTTLE_POLICY$layout() {
+        return GUID_PROCESSOR_THROTTLE_POLICY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_THROTTLE_POLICY
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_THROTTLE_POLICY() {
+        return GUID_PROCESSOR_THROTTLE_POLICY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_THROTTLE_POLICY
+     * }
+     */
+    public static void GUID_PROCESSOR_THROTTLE_POLICY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_THROTTLE_POLICY$constants.SEGMENT, 0L, GUID_PROCESSOR_THROTTLE_POLICY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_THROTTLE_MAXIMUM$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_THROTTLE_MAXIMUM").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_THROTTLE_MAXIMUM
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_THROTTLE_MAXIMUM$layout() {
+        return GUID_PROCESSOR_THROTTLE_MAXIMUM$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_THROTTLE_MAXIMUM
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_THROTTLE_MAXIMUM() {
+        return GUID_PROCESSOR_THROTTLE_MAXIMUM$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_THROTTLE_MAXIMUM
+     * }
+     */
+    public static void GUID_PROCESSOR_THROTTLE_MAXIMUM(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_THROTTLE_MAXIMUM$constants.SEGMENT, 0L, GUID_PROCESSOR_THROTTLE_MAXIMUM$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_THROTTLE_MAXIMUM_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_THROTTLE_MAXIMUM_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_THROTTLE_MAXIMUM_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_THROTTLE_MAXIMUM_1$layout() {
+        return GUID_PROCESSOR_THROTTLE_MAXIMUM_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_THROTTLE_MAXIMUM_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_THROTTLE_MAXIMUM_1() {
+        return GUID_PROCESSOR_THROTTLE_MAXIMUM_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_THROTTLE_MAXIMUM_1
+     * }
+     */
+    public static void GUID_PROCESSOR_THROTTLE_MAXIMUM_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_THROTTLE_MAXIMUM_1$constants.SEGMENT, 0L, GUID_PROCESSOR_THROTTLE_MAXIMUM_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_THROTTLE_MINIMUM$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_THROTTLE_MINIMUM").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_THROTTLE_MINIMUM
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_THROTTLE_MINIMUM$layout() {
+        return GUID_PROCESSOR_THROTTLE_MINIMUM$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_THROTTLE_MINIMUM
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_THROTTLE_MINIMUM() {
+        return GUID_PROCESSOR_THROTTLE_MINIMUM$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_THROTTLE_MINIMUM
+     * }
+     */
+    public static void GUID_PROCESSOR_THROTTLE_MINIMUM(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_THROTTLE_MINIMUM$constants.SEGMENT, 0L, GUID_PROCESSOR_THROTTLE_MINIMUM$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_THROTTLE_MINIMUM_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_THROTTLE_MINIMUM_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_THROTTLE_MINIMUM_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_THROTTLE_MINIMUM_1$layout() {
+        return GUID_PROCESSOR_THROTTLE_MINIMUM_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_THROTTLE_MINIMUM_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_THROTTLE_MINIMUM_1() {
+        return GUID_PROCESSOR_THROTTLE_MINIMUM_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_THROTTLE_MINIMUM_1
+     * }
+     */
+    public static void GUID_PROCESSOR_THROTTLE_MINIMUM_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_THROTTLE_MINIMUM_1$constants.SEGMENT, 0L, GUID_PROCESSOR_THROTTLE_MINIMUM_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_FREQUENCY_LIMIT$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_FREQUENCY_LIMIT").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_FREQUENCY_LIMIT
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_FREQUENCY_LIMIT$layout() {
+        return GUID_PROCESSOR_FREQUENCY_LIMIT$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_FREQUENCY_LIMIT
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_FREQUENCY_LIMIT() {
+        return GUID_PROCESSOR_FREQUENCY_LIMIT$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_FREQUENCY_LIMIT
+     * }
+     */
+    public static void GUID_PROCESSOR_FREQUENCY_LIMIT(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_FREQUENCY_LIMIT$constants.SEGMENT, 0L, GUID_PROCESSOR_FREQUENCY_LIMIT$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_FREQUENCY_LIMIT_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_FREQUENCY_LIMIT_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_FREQUENCY_LIMIT_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_FREQUENCY_LIMIT_1$layout() {
+        return GUID_PROCESSOR_FREQUENCY_LIMIT_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_FREQUENCY_LIMIT_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_FREQUENCY_LIMIT_1() {
+        return GUID_PROCESSOR_FREQUENCY_LIMIT_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_FREQUENCY_LIMIT_1
+     * }
+     */
+    public static void GUID_PROCESSOR_FREQUENCY_LIMIT_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_FREQUENCY_LIMIT_1$constants.SEGMENT, 0L, GUID_PROCESSOR_FREQUENCY_LIMIT_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_ALLOW_THROTTLING$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_ALLOW_THROTTLING").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_ALLOW_THROTTLING
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_ALLOW_THROTTLING$layout() {
+        return GUID_PROCESSOR_ALLOW_THROTTLING$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_ALLOW_THROTTLING
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_ALLOW_THROTTLING() {
+        return GUID_PROCESSOR_ALLOW_THROTTLING$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_ALLOW_THROTTLING
+     * }
+     */
+    public static void GUID_PROCESSOR_ALLOW_THROTTLING(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_ALLOW_THROTTLING$constants.SEGMENT, 0L, GUID_PROCESSOR_ALLOW_THROTTLING$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_IDLESTATE_POLICY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_IDLESTATE_POLICY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLESTATE_POLICY
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_IDLESTATE_POLICY$layout() {
+        return GUID_PROCESSOR_IDLESTATE_POLICY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLESTATE_POLICY
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_IDLESTATE_POLICY() {
+        return GUID_PROCESSOR_IDLESTATE_POLICY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLESTATE_POLICY
+     * }
+     */
+    public static void GUID_PROCESSOR_IDLESTATE_POLICY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_IDLESTATE_POLICY$constants.SEGMENT, 0L, GUID_PROCESSOR_IDLESTATE_POLICY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERFSTATE_POLICY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERFSTATE_POLICY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERFSTATE_POLICY
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERFSTATE_POLICY$layout() {
+        return GUID_PROCESSOR_PERFSTATE_POLICY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERFSTATE_POLICY
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERFSTATE_POLICY() {
+        return GUID_PROCESSOR_PERFSTATE_POLICY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERFSTATE_POLICY
+     * }
+     */
+    public static void GUID_PROCESSOR_PERFSTATE_POLICY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERFSTATE_POLICY$constants.SEGMENT, 0L, GUID_PROCESSOR_PERFSTATE_POLICY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_INCREASE_THRESHOLD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_INCREASE_THRESHOLD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_THRESHOLD
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_INCREASE_THRESHOLD$layout() {
+        return GUID_PROCESSOR_PERF_INCREASE_THRESHOLD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_THRESHOLD
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_INCREASE_THRESHOLD() {
+        return GUID_PROCESSOR_PERF_INCREASE_THRESHOLD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_THRESHOLD
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_INCREASE_THRESHOLD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_INCREASE_THRESHOLD$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_INCREASE_THRESHOLD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_INCREASE_THRESHOLD_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_INCREASE_THRESHOLD_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_THRESHOLD_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_INCREASE_THRESHOLD_1$layout() {
+        return GUID_PROCESSOR_PERF_INCREASE_THRESHOLD_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_THRESHOLD_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_INCREASE_THRESHOLD_1() {
+        return GUID_PROCESSOR_PERF_INCREASE_THRESHOLD_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_THRESHOLD_1
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_INCREASE_THRESHOLD_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_INCREASE_THRESHOLD_1$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_INCREASE_THRESHOLD_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_DECREASE_THRESHOLD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_DECREASE_THRESHOLD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_THRESHOLD
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_DECREASE_THRESHOLD$layout() {
+        return GUID_PROCESSOR_PERF_DECREASE_THRESHOLD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_THRESHOLD
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_DECREASE_THRESHOLD() {
+        return GUID_PROCESSOR_PERF_DECREASE_THRESHOLD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_THRESHOLD
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_DECREASE_THRESHOLD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_DECREASE_THRESHOLD$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_DECREASE_THRESHOLD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_DECREASE_THRESHOLD_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_DECREASE_THRESHOLD_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_THRESHOLD_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_DECREASE_THRESHOLD_1$layout() {
+        return GUID_PROCESSOR_PERF_DECREASE_THRESHOLD_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_THRESHOLD_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_DECREASE_THRESHOLD_1() {
+        return GUID_PROCESSOR_PERF_DECREASE_THRESHOLD_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_THRESHOLD_1
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_DECREASE_THRESHOLD_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_DECREASE_THRESHOLD_1$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_DECREASE_THRESHOLD_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_INCREASE_POLICY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_INCREASE_POLICY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_POLICY
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_INCREASE_POLICY$layout() {
+        return GUID_PROCESSOR_PERF_INCREASE_POLICY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_POLICY
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_INCREASE_POLICY() {
+        return GUID_PROCESSOR_PERF_INCREASE_POLICY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_POLICY
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_INCREASE_POLICY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_INCREASE_POLICY$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_INCREASE_POLICY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_INCREASE_POLICY_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_INCREASE_POLICY_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_POLICY_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_INCREASE_POLICY_1$layout() {
+        return GUID_PROCESSOR_PERF_INCREASE_POLICY_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_POLICY_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_INCREASE_POLICY_1() {
+        return GUID_PROCESSOR_PERF_INCREASE_POLICY_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_POLICY_1
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_INCREASE_POLICY_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_INCREASE_POLICY_1$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_INCREASE_POLICY_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_DECREASE_POLICY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_DECREASE_POLICY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_POLICY
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_DECREASE_POLICY$layout() {
+        return GUID_PROCESSOR_PERF_DECREASE_POLICY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_POLICY
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_DECREASE_POLICY() {
+        return GUID_PROCESSOR_PERF_DECREASE_POLICY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_POLICY
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_DECREASE_POLICY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_DECREASE_POLICY$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_DECREASE_POLICY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_DECREASE_POLICY_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_DECREASE_POLICY_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_POLICY_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_DECREASE_POLICY_1$layout() {
+        return GUID_PROCESSOR_PERF_DECREASE_POLICY_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_POLICY_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_DECREASE_POLICY_1() {
+        return GUID_PROCESSOR_PERF_DECREASE_POLICY_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_POLICY_1
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_DECREASE_POLICY_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_DECREASE_POLICY_1$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_DECREASE_POLICY_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_INCREASE_TIME$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_INCREASE_TIME").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_TIME
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_INCREASE_TIME$layout() {
+        return GUID_PROCESSOR_PERF_INCREASE_TIME$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_TIME
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_INCREASE_TIME() {
+        return GUID_PROCESSOR_PERF_INCREASE_TIME$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_TIME
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_INCREASE_TIME(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_INCREASE_TIME$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_INCREASE_TIME$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_INCREASE_TIME_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_INCREASE_TIME_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_TIME_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_INCREASE_TIME_1$layout() {
+        return GUID_PROCESSOR_PERF_INCREASE_TIME_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_TIME_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_INCREASE_TIME_1() {
+        return GUID_PROCESSOR_PERF_INCREASE_TIME_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_TIME_1
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_INCREASE_TIME_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_INCREASE_TIME_1$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_INCREASE_TIME_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_DECREASE_TIME$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_DECREASE_TIME").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_TIME
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_DECREASE_TIME$layout() {
+        return GUID_PROCESSOR_PERF_DECREASE_TIME$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_TIME
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_DECREASE_TIME() {
+        return GUID_PROCESSOR_PERF_DECREASE_TIME$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_TIME
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_DECREASE_TIME(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_DECREASE_TIME$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_DECREASE_TIME$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_DECREASE_TIME_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_DECREASE_TIME_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_TIME_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_DECREASE_TIME_1$layout() {
+        return GUID_PROCESSOR_PERF_DECREASE_TIME_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_TIME_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_DECREASE_TIME_1() {
+        return GUID_PROCESSOR_PERF_DECREASE_TIME_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_TIME_1
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_DECREASE_TIME_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_DECREASE_TIME_1$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_DECREASE_TIME_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_TIME_CHECK$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_TIME_CHECK").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_TIME_CHECK
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_TIME_CHECK$layout() {
+        return GUID_PROCESSOR_PERF_TIME_CHECK$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_TIME_CHECK
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_TIME_CHECK() {
+        return GUID_PROCESSOR_PERF_TIME_CHECK$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_TIME_CHECK
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_TIME_CHECK(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_TIME_CHECK$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_TIME_CHECK$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_BOOST_POLICY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_BOOST_POLICY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_BOOST_POLICY
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_BOOST_POLICY$layout() {
+        return GUID_PROCESSOR_PERF_BOOST_POLICY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_BOOST_POLICY
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_BOOST_POLICY() {
+        return GUID_PROCESSOR_PERF_BOOST_POLICY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_BOOST_POLICY
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_BOOST_POLICY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_BOOST_POLICY$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_BOOST_POLICY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_BOOST_MODE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_BOOST_MODE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_BOOST_MODE
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_BOOST_MODE$layout() {
+        return GUID_PROCESSOR_PERF_BOOST_MODE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_BOOST_MODE
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_BOOST_MODE() {
+        return GUID_PROCESSOR_PERF_BOOST_MODE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_BOOST_MODE
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_BOOST_MODE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_BOOST_MODE$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_BOOST_MODE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_AUTONOMOUS_MODE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_AUTONOMOUS_MODE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_AUTONOMOUS_MODE
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_AUTONOMOUS_MODE$layout() {
+        return GUID_PROCESSOR_PERF_AUTONOMOUS_MODE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_AUTONOMOUS_MODE
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_AUTONOMOUS_MODE() {
+        return GUID_PROCESSOR_PERF_AUTONOMOUS_MODE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_AUTONOMOUS_MODE
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_AUTONOMOUS_MODE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_AUTONOMOUS_MODE$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_AUTONOMOUS_MODE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE$layout() {
+        return GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE() {
+        return GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE_1$layout() {
+        return GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE_1() {
+        return GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE_1
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE_1$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_ENERGY_PERFORMANCE_PREFERENCE_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_AUTONOMOUS_ACTIVITY_WINDOW$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_AUTONOMOUS_ACTIVITY_WINDOW").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_AUTONOMOUS_ACTIVITY_WINDOW
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_AUTONOMOUS_ACTIVITY_WINDOW$layout() {
+        return GUID_PROCESSOR_PERF_AUTONOMOUS_ACTIVITY_WINDOW$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_AUTONOMOUS_ACTIVITY_WINDOW
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_AUTONOMOUS_ACTIVITY_WINDOW() {
+        return GUID_PROCESSOR_PERF_AUTONOMOUS_ACTIVITY_WINDOW$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_AUTONOMOUS_ACTIVITY_WINDOW
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_AUTONOMOUS_ACTIVITY_WINDOW(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_AUTONOMOUS_ACTIVITY_WINDOW$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_AUTONOMOUS_ACTIVITY_WINDOW$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_DUTY_CYCLING$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_DUTY_CYCLING").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_DUTY_CYCLING
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_DUTY_CYCLING$layout() {
+        return GUID_PROCESSOR_DUTY_CYCLING$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_DUTY_CYCLING
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_DUTY_CYCLING() {
+        return GUID_PROCESSOR_DUTY_CYCLING$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_DUTY_CYCLING
+     * }
+     */
+    public static void GUID_PROCESSOR_DUTY_CYCLING(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_DUTY_CYCLING$constants.SEGMENT, 0L, GUID_PROCESSOR_DUTY_CYCLING$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_IDLE_ALLOW_SCALING$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_IDLE_ALLOW_SCALING").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLE_ALLOW_SCALING
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_IDLE_ALLOW_SCALING$layout() {
+        return GUID_PROCESSOR_IDLE_ALLOW_SCALING$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLE_ALLOW_SCALING
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_IDLE_ALLOW_SCALING() {
+        return GUID_PROCESSOR_IDLE_ALLOW_SCALING$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLE_ALLOW_SCALING
+     * }
+     */
+    public static void GUID_PROCESSOR_IDLE_ALLOW_SCALING(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_IDLE_ALLOW_SCALING$constants.SEGMENT, 0L, GUID_PROCESSOR_IDLE_ALLOW_SCALING$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_IDLE_DISABLE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_IDLE_DISABLE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLE_DISABLE
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_IDLE_DISABLE$layout() {
+        return GUID_PROCESSOR_IDLE_DISABLE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLE_DISABLE
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_IDLE_DISABLE() {
+        return GUID_PROCESSOR_IDLE_DISABLE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLE_DISABLE
+     * }
+     */
+    public static void GUID_PROCESSOR_IDLE_DISABLE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_IDLE_DISABLE$constants.SEGMENT, 0L, GUID_PROCESSOR_IDLE_DISABLE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_IDLE_STATE_MAXIMUM$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_IDLE_STATE_MAXIMUM").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLE_STATE_MAXIMUM
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_IDLE_STATE_MAXIMUM$layout() {
+        return GUID_PROCESSOR_IDLE_STATE_MAXIMUM$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLE_STATE_MAXIMUM
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_IDLE_STATE_MAXIMUM() {
+        return GUID_PROCESSOR_IDLE_STATE_MAXIMUM$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLE_STATE_MAXIMUM
+     * }
+     */
+    public static void GUID_PROCESSOR_IDLE_STATE_MAXIMUM(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_IDLE_STATE_MAXIMUM$constants.SEGMENT, 0L, GUID_PROCESSOR_IDLE_STATE_MAXIMUM$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_IDLE_TIME_CHECK$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_IDLE_TIME_CHECK").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLE_TIME_CHECK
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_IDLE_TIME_CHECK$layout() {
+        return GUID_PROCESSOR_IDLE_TIME_CHECK$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLE_TIME_CHECK
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_IDLE_TIME_CHECK() {
+        return GUID_PROCESSOR_IDLE_TIME_CHECK$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLE_TIME_CHECK
+     * }
+     */
+    public static void GUID_PROCESSOR_IDLE_TIME_CHECK(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_IDLE_TIME_CHECK$constants.SEGMENT, 0L, GUID_PROCESSOR_IDLE_TIME_CHECK$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_IDLE_DEMOTE_THRESHOLD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_IDLE_DEMOTE_THRESHOLD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLE_DEMOTE_THRESHOLD
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_IDLE_DEMOTE_THRESHOLD$layout() {
+        return GUID_PROCESSOR_IDLE_DEMOTE_THRESHOLD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLE_DEMOTE_THRESHOLD
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_IDLE_DEMOTE_THRESHOLD() {
+        return GUID_PROCESSOR_IDLE_DEMOTE_THRESHOLD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLE_DEMOTE_THRESHOLD
+     * }
+     */
+    public static void GUID_PROCESSOR_IDLE_DEMOTE_THRESHOLD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_IDLE_DEMOTE_THRESHOLD$constants.SEGMENT, 0L, GUID_PROCESSOR_IDLE_DEMOTE_THRESHOLD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_IDLE_PROMOTE_THRESHOLD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_IDLE_PROMOTE_THRESHOLD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLE_PROMOTE_THRESHOLD
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_IDLE_PROMOTE_THRESHOLD$layout() {
+        return GUID_PROCESSOR_IDLE_PROMOTE_THRESHOLD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLE_PROMOTE_THRESHOLD
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_IDLE_PROMOTE_THRESHOLD() {
+        return GUID_PROCESSOR_IDLE_PROMOTE_THRESHOLD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_IDLE_PROMOTE_THRESHOLD
+     * }
+     */
+    public static void GUID_PROCESSOR_IDLE_PROMOTE_THRESHOLD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_IDLE_PROMOTE_THRESHOLD$constants.SEGMENT, 0L, GUID_PROCESSOR_IDLE_PROMOTE_THRESHOLD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_CORE_PARKING_INCREASE_THRESHOLD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_CORE_PARKING_INCREASE_THRESHOLD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_INCREASE_THRESHOLD
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_CORE_PARKING_INCREASE_THRESHOLD$layout() {
+        return GUID_PROCESSOR_CORE_PARKING_INCREASE_THRESHOLD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_INCREASE_THRESHOLD
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_CORE_PARKING_INCREASE_THRESHOLD() {
+        return GUID_PROCESSOR_CORE_PARKING_INCREASE_THRESHOLD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_INCREASE_THRESHOLD
+     * }
+     */
+    public static void GUID_PROCESSOR_CORE_PARKING_INCREASE_THRESHOLD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_CORE_PARKING_INCREASE_THRESHOLD$constants.SEGMENT, 0L, GUID_PROCESSOR_CORE_PARKING_INCREASE_THRESHOLD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_CORE_PARKING_DECREASE_THRESHOLD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_CORE_PARKING_DECREASE_THRESHOLD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_DECREASE_THRESHOLD
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_CORE_PARKING_DECREASE_THRESHOLD$layout() {
+        return GUID_PROCESSOR_CORE_PARKING_DECREASE_THRESHOLD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_DECREASE_THRESHOLD
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_CORE_PARKING_DECREASE_THRESHOLD() {
+        return GUID_PROCESSOR_CORE_PARKING_DECREASE_THRESHOLD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_DECREASE_THRESHOLD
+     * }
+     */
+    public static void GUID_PROCESSOR_CORE_PARKING_DECREASE_THRESHOLD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_CORE_PARKING_DECREASE_THRESHOLD$constants.SEGMENT, 0L, GUID_PROCESSOR_CORE_PARKING_DECREASE_THRESHOLD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_CORE_PARKING_INCREASE_POLICY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_CORE_PARKING_INCREASE_POLICY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_INCREASE_POLICY
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_CORE_PARKING_INCREASE_POLICY$layout() {
+        return GUID_PROCESSOR_CORE_PARKING_INCREASE_POLICY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_INCREASE_POLICY
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_CORE_PARKING_INCREASE_POLICY() {
+        return GUID_PROCESSOR_CORE_PARKING_INCREASE_POLICY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_INCREASE_POLICY
+     * }
+     */
+    public static void GUID_PROCESSOR_CORE_PARKING_INCREASE_POLICY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_CORE_PARKING_INCREASE_POLICY$constants.SEGMENT, 0L, GUID_PROCESSOR_CORE_PARKING_INCREASE_POLICY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_CORE_PARKING_DECREASE_POLICY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_CORE_PARKING_DECREASE_POLICY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_DECREASE_POLICY
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_CORE_PARKING_DECREASE_POLICY$layout() {
+        return GUID_PROCESSOR_CORE_PARKING_DECREASE_POLICY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_DECREASE_POLICY
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_CORE_PARKING_DECREASE_POLICY() {
+        return GUID_PROCESSOR_CORE_PARKING_DECREASE_POLICY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_DECREASE_POLICY
+     * }
+     */
+    public static void GUID_PROCESSOR_CORE_PARKING_DECREASE_POLICY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_CORE_PARKING_DECREASE_POLICY$constants.SEGMENT, 0L, GUID_PROCESSOR_CORE_PARKING_DECREASE_POLICY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_CORE_PARKING_MAX_CORES$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_CORE_PARKING_MAX_CORES").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_MAX_CORES
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_CORE_PARKING_MAX_CORES$layout() {
+        return GUID_PROCESSOR_CORE_PARKING_MAX_CORES$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_MAX_CORES
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_CORE_PARKING_MAX_CORES() {
+        return GUID_PROCESSOR_CORE_PARKING_MAX_CORES$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_MAX_CORES
+     * }
+     */
+    public static void GUID_PROCESSOR_CORE_PARKING_MAX_CORES(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_CORE_PARKING_MAX_CORES$constants.SEGMENT, 0L, GUID_PROCESSOR_CORE_PARKING_MAX_CORES$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_CORE_PARKING_MAX_CORES_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_CORE_PARKING_MAX_CORES_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_MAX_CORES_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_CORE_PARKING_MAX_CORES_1$layout() {
+        return GUID_PROCESSOR_CORE_PARKING_MAX_CORES_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_MAX_CORES_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_CORE_PARKING_MAX_CORES_1() {
+        return GUID_PROCESSOR_CORE_PARKING_MAX_CORES_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_MAX_CORES_1
+     * }
+     */
+    public static void GUID_PROCESSOR_CORE_PARKING_MAX_CORES_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_CORE_PARKING_MAX_CORES_1$constants.SEGMENT, 0L, GUID_PROCESSOR_CORE_PARKING_MAX_CORES_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_CORE_PARKING_MIN_CORES$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_CORE_PARKING_MIN_CORES").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_MIN_CORES
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_CORE_PARKING_MIN_CORES$layout() {
+        return GUID_PROCESSOR_CORE_PARKING_MIN_CORES$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_MIN_CORES
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_CORE_PARKING_MIN_CORES() {
+        return GUID_PROCESSOR_CORE_PARKING_MIN_CORES$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_MIN_CORES
+     * }
+     */
+    public static void GUID_PROCESSOR_CORE_PARKING_MIN_CORES(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_CORE_PARKING_MIN_CORES$constants.SEGMENT, 0L, GUID_PROCESSOR_CORE_PARKING_MIN_CORES$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_CORE_PARKING_MIN_CORES_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_CORE_PARKING_MIN_CORES_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_MIN_CORES_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_CORE_PARKING_MIN_CORES_1$layout() {
+        return GUID_PROCESSOR_CORE_PARKING_MIN_CORES_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_MIN_CORES_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_CORE_PARKING_MIN_CORES_1() {
+        return GUID_PROCESSOR_CORE_PARKING_MIN_CORES_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_MIN_CORES_1
+     * }
+     */
+    public static void GUID_PROCESSOR_CORE_PARKING_MIN_CORES_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_CORE_PARKING_MIN_CORES_1$constants.SEGMENT, 0L, GUID_PROCESSOR_CORE_PARKING_MIN_CORES_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_CORE_PARKING_INCREASE_TIME$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_CORE_PARKING_INCREASE_TIME").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_INCREASE_TIME
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_CORE_PARKING_INCREASE_TIME$layout() {
+        return GUID_PROCESSOR_CORE_PARKING_INCREASE_TIME$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_INCREASE_TIME
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_CORE_PARKING_INCREASE_TIME() {
+        return GUID_PROCESSOR_CORE_PARKING_INCREASE_TIME$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_INCREASE_TIME
+     * }
+     */
+    public static void GUID_PROCESSOR_CORE_PARKING_INCREASE_TIME(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_CORE_PARKING_INCREASE_TIME$constants.SEGMENT, 0L, GUID_PROCESSOR_CORE_PARKING_INCREASE_TIME$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_CORE_PARKING_DECREASE_TIME$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_CORE_PARKING_DECREASE_TIME").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_DECREASE_TIME
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_CORE_PARKING_DECREASE_TIME$layout() {
+        return GUID_PROCESSOR_CORE_PARKING_DECREASE_TIME$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_DECREASE_TIME
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_CORE_PARKING_DECREASE_TIME() {
+        return GUID_PROCESSOR_CORE_PARKING_DECREASE_TIME$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_DECREASE_TIME
+     * }
+     */
+    public static void GUID_PROCESSOR_CORE_PARKING_DECREASE_TIME(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_CORE_PARKING_DECREASE_TIME$constants.SEGMENT, 0L, GUID_PROCESSOR_CORE_PARKING_DECREASE_TIME$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_DECREASE_FACTOR$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_DECREASE_FACTOR").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_DECREASE_FACTOR
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_DECREASE_FACTOR$layout() {
+        return GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_DECREASE_FACTOR$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_DECREASE_FACTOR
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_DECREASE_FACTOR() {
+        return GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_DECREASE_FACTOR$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_DECREASE_FACTOR
+     * }
+     */
+    public static void GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_DECREASE_FACTOR(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_DECREASE_FACTOR$constants.SEGMENT, 0L, GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_DECREASE_FACTOR$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_THRESHOLD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_THRESHOLD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_THRESHOLD
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_THRESHOLD$layout() {
+        return GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_THRESHOLD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_THRESHOLD
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_THRESHOLD() {
+        return GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_THRESHOLD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_THRESHOLD
+     * }
+     */
+    public static void GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_THRESHOLD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_THRESHOLD$constants.SEGMENT, 0L, GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_THRESHOLD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_CORE_PARKING_AFFINITY_WEIGHTING$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_CORE_PARKING_AFFINITY_WEIGHTING").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_AFFINITY_WEIGHTING
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_CORE_PARKING_AFFINITY_WEIGHTING$layout() {
+        return GUID_PROCESSOR_CORE_PARKING_AFFINITY_WEIGHTING$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_AFFINITY_WEIGHTING
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_CORE_PARKING_AFFINITY_WEIGHTING() {
+        return GUID_PROCESSOR_CORE_PARKING_AFFINITY_WEIGHTING$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_AFFINITY_WEIGHTING
+     * }
+     */
+    public static void GUID_PROCESSOR_CORE_PARKING_AFFINITY_WEIGHTING(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_CORE_PARKING_AFFINITY_WEIGHTING$constants.SEGMENT, 0L, GUID_PROCESSOR_CORE_PARKING_AFFINITY_WEIGHTING$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_DECREASE_FACTOR$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_DECREASE_FACTOR").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_DECREASE_FACTOR
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_DECREASE_FACTOR$layout() {
+        return GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_DECREASE_FACTOR$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_DECREASE_FACTOR
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_DECREASE_FACTOR() {
+        return GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_DECREASE_FACTOR$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_DECREASE_FACTOR
+     * }
+     */
+    public static void GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_DECREASE_FACTOR(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_DECREASE_FACTOR$constants.SEGMENT, 0L, GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_DECREASE_FACTOR$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_THRESHOLD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_THRESHOLD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_THRESHOLD
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_THRESHOLD$layout() {
+        return GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_THRESHOLD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_THRESHOLD
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_THRESHOLD() {
+        return GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_THRESHOLD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_THRESHOLD
+     * }
+     */
+    public static void GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_THRESHOLD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_THRESHOLD$constants.SEGMENT, 0L, GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_THRESHOLD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_WEIGHTING$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_WEIGHTING").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_WEIGHTING
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_WEIGHTING$layout() {
+        return GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_WEIGHTING$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_WEIGHTING
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_WEIGHTING() {
+        return GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_WEIGHTING$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_WEIGHTING
+     * }
+     */
+    public static void GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_WEIGHTING(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_WEIGHTING$constants.SEGMENT, 0L, GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_WEIGHTING$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_THRESHOLD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_THRESHOLD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_THRESHOLD
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_THRESHOLD$layout() {
+        return GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_THRESHOLD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_THRESHOLD
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_THRESHOLD() {
+        return GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_THRESHOLD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_THRESHOLD
+     * }
+     */
+    public static void GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_THRESHOLD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_THRESHOLD$constants.SEGMENT, 0L, GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_THRESHOLD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PARKING_CORE_OVERRIDE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PARKING_CORE_OVERRIDE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PARKING_CORE_OVERRIDE
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PARKING_CORE_OVERRIDE$layout() {
+        return GUID_PROCESSOR_PARKING_CORE_OVERRIDE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PARKING_CORE_OVERRIDE
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PARKING_CORE_OVERRIDE() {
+        return GUID_PROCESSOR_PARKING_CORE_OVERRIDE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PARKING_CORE_OVERRIDE
+     * }
+     */
+    public static void GUID_PROCESSOR_PARKING_CORE_OVERRIDE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PARKING_CORE_OVERRIDE$constants.SEGMENT, 0L, GUID_PROCESSOR_PARKING_CORE_OVERRIDE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PARKING_PERF_STATE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PARKING_PERF_STATE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PARKING_PERF_STATE
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PARKING_PERF_STATE$layout() {
+        return GUID_PROCESSOR_PARKING_PERF_STATE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PARKING_PERF_STATE
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PARKING_PERF_STATE() {
+        return GUID_PROCESSOR_PARKING_PERF_STATE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PARKING_PERF_STATE
+     * }
+     */
+    public static void GUID_PROCESSOR_PARKING_PERF_STATE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PARKING_PERF_STATE$constants.SEGMENT, 0L, GUID_PROCESSOR_PARKING_PERF_STATE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PARKING_PERF_STATE_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PARKING_PERF_STATE_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PARKING_PERF_STATE_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PARKING_PERF_STATE_1$layout() {
+        return GUID_PROCESSOR_PARKING_PERF_STATE_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PARKING_PERF_STATE_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PARKING_PERF_STATE_1() {
+        return GUID_PROCESSOR_PARKING_PERF_STATE_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PARKING_PERF_STATE_1
+     * }
+     */
+    public static void GUID_PROCESSOR_PARKING_PERF_STATE_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PARKING_PERF_STATE_1$constants.SEGMENT, 0L, GUID_PROCESSOR_PARKING_PERF_STATE_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PARKING_CONCURRENCY_THRESHOLD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PARKING_CONCURRENCY_THRESHOLD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PARKING_CONCURRENCY_THRESHOLD
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PARKING_CONCURRENCY_THRESHOLD$layout() {
+        return GUID_PROCESSOR_PARKING_CONCURRENCY_THRESHOLD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PARKING_CONCURRENCY_THRESHOLD
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PARKING_CONCURRENCY_THRESHOLD() {
+        return GUID_PROCESSOR_PARKING_CONCURRENCY_THRESHOLD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PARKING_CONCURRENCY_THRESHOLD
+     * }
+     */
+    public static void GUID_PROCESSOR_PARKING_CONCURRENCY_THRESHOLD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PARKING_CONCURRENCY_THRESHOLD$constants.SEGMENT, 0L, GUID_PROCESSOR_PARKING_CONCURRENCY_THRESHOLD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PARKING_HEADROOM_THRESHOLD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PARKING_HEADROOM_THRESHOLD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PARKING_HEADROOM_THRESHOLD
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PARKING_HEADROOM_THRESHOLD$layout() {
+        return GUID_PROCESSOR_PARKING_HEADROOM_THRESHOLD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PARKING_HEADROOM_THRESHOLD
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PARKING_HEADROOM_THRESHOLD() {
+        return GUID_PROCESSOR_PARKING_HEADROOM_THRESHOLD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PARKING_HEADROOM_THRESHOLD
+     * }
+     */
+    public static void GUID_PROCESSOR_PARKING_HEADROOM_THRESHOLD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PARKING_HEADROOM_THRESHOLD$constants.SEGMENT, 0L, GUID_PROCESSOR_PARKING_HEADROOM_THRESHOLD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PARKING_DISTRIBUTION_THRESHOLD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PARKING_DISTRIBUTION_THRESHOLD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PARKING_DISTRIBUTION_THRESHOLD
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PARKING_DISTRIBUTION_THRESHOLD$layout() {
+        return GUID_PROCESSOR_PARKING_DISTRIBUTION_THRESHOLD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PARKING_DISTRIBUTION_THRESHOLD
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PARKING_DISTRIBUTION_THRESHOLD() {
+        return GUID_PROCESSOR_PARKING_DISTRIBUTION_THRESHOLD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PARKING_DISTRIBUTION_THRESHOLD
+     * }
+     */
+    public static void GUID_PROCESSOR_PARKING_DISTRIBUTION_THRESHOLD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PARKING_DISTRIBUTION_THRESHOLD$constants.SEGMENT, 0L, GUID_PROCESSOR_PARKING_DISTRIBUTION_THRESHOLD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_SOFT_PARKING_LATENCY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_SOFT_PARKING_LATENCY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_SOFT_PARKING_LATENCY
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_SOFT_PARKING_LATENCY$layout() {
+        return GUID_PROCESSOR_SOFT_PARKING_LATENCY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_SOFT_PARKING_LATENCY
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_SOFT_PARKING_LATENCY() {
+        return GUID_PROCESSOR_SOFT_PARKING_LATENCY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_SOFT_PARKING_LATENCY
+     * }
+     */
+    public static void GUID_PROCESSOR_SOFT_PARKING_LATENCY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_SOFT_PARKING_LATENCY$constants.SEGMENT, 0L, GUID_PROCESSOR_SOFT_PARKING_LATENCY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_HISTORY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_HISTORY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_HISTORY
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_HISTORY$layout() {
+        return GUID_PROCESSOR_PERF_HISTORY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_HISTORY
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_HISTORY() {
+        return GUID_PROCESSOR_PERF_HISTORY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_HISTORY
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_HISTORY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_HISTORY$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_HISTORY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_HISTORY_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_HISTORY_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_HISTORY_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_HISTORY_1$layout() {
+        return GUID_PROCESSOR_PERF_HISTORY_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_HISTORY_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_HISTORY_1() {
+        return GUID_PROCESSOR_PERF_HISTORY_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_HISTORY_1
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_HISTORY_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_HISTORY_1$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_HISTORY_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_INCREASE_HISTORY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_INCREASE_HISTORY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_HISTORY
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_INCREASE_HISTORY$layout() {
+        return GUID_PROCESSOR_PERF_INCREASE_HISTORY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_HISTORY
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_INCREASE_HISTORY() {
+        return GUID_PROCESSOR_PERF_INCREASE_HISTORY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_INCREASE_HISTORY
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_INCREASE_HISTORY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_INCREASE_HISTORY$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_INCREASE_HISTORY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_DECREASE_HISTORY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_DECREASE_HISTORY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_HISTORY
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_DECREASE_HISTORY$layout() {
+        return GUID_PROCESSOR_PERF_DECREASE_HISTORY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_HISTORY
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_DECREASE_HISTORY() {
+        return GUID_PROCESSOR_PERF_DECREASE_HISTORY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_DECREASE_HISTORY
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_DECREASE_HISTORY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_DECREASE_HISTORY$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_DECREASE_HISTORY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_CORE_PARKING_HISTORY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_CORE_PARKING_HISTORY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_CORE_PARKING_HISTORY
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_CORE_PARKING_HISTORY$layout() {
+        return GUID_PROCESSOR_PERF_CORE_PARKING_HISTORY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_CORE_PARKING_HISTORY
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_CORE_PARKING_HISTORY() {
+        return GUID_PROCESSOR_PERF_CORE_PARKING_HISTORY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_CORE_PARKING_HISTORY
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_CORE_PARKING_HISTORY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_CORE_PARKING_HISTORY$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_CORE_PARKING_HISTORY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_LATENCY_HINT$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_LATENCY_HINT").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_LATENCY_HINT
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_LATENCY_HINT$layout() {
+        return GUID_PROCESSOR_PERF_LATENCY_HINT$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_LATENCY_HINT
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_LATENCY_HINT() {
+        return GUID_PROCESSOR_PERF_LATENCY_HINT$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_LATENCY_HINT
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_LATENCY_HINT(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_LATENCY_HINT$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_LATENCY_HINT$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_LATENCY_HINT_PERF$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_LATENCY_HINT_PERF").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_LATENCY_HINT_PERF
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_LATENCY_HINT_PERF$layout() {
+        return GUID_PROCESSOR_PERF_LATENCY_HINT_PERF$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_LATENCY_HINT_PERF
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_LATENCY_HINT_PERF() {
+        return GUID_PROCESSOR_PERF_LATENCY_HINT_PERF$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_LATENCY_HINT_PERF
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_LATENCY_HINT_PERF(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_LATENCY_HINT_PERF$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_LATENCY_HINT_PERF$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_PERF_LATENCY_HINT_PERF_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_PERF_LATENCY_HINT_PERF_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_LATENCY_HINT_PERF_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_PERF_LATENCY_HINT_PERF_1$layout() {
+        return GUID_PROCESSOR_PERF_LATENCY_HINT_PERF_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_LATENCY_HINT_PERF_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_PERF_LATENCY_HINT_PERF_1() {
+        return GUID_PROCESSOR_PERF_LATENCY_HINT_PERF_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_PERF_LATENCY_HINT_PERF_1
+     * }
+     */
+    public static void GUID_PROCESSOR_PERF_LATENCY_HINT_PERF_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_PERF_LATENCY_HINT_PERF_1$constants.SEGMENT, 0L, GUID_PROCESSOR_PERF_LATENCY_HINT_PERF_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK$layout() {
+        return GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK() {
+        return GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK
+     * }
+     */
+    public static void GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK$constants.SEGMENT, 0L, GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK_1$layout() {
+        return GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK_1() {
+        return GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK_1
+     * }
+     */
+    public static void GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK_1$constants.SEGMENT, 0L, GUID_PROCESSOR_LATENCY_HINT_MIN_UNPARK_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_DISTRIBUTE_UTILITY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_DISTRIBUTE_UTILITY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_DISTRIBUTE_UTILITY
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_DISTRIBUTE_UTILITY$layout() {
+        return GUID_PROCESSOR_DISTRIBUTE_UTILITY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_DISTRIBUTE_UTILITY
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_DISTRIBUTE_UTILITY() {
+        return GUID_PROCESSOR_DISTRIBUTE_UTILITY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_DISTRIBUTE_UTILITY
+     * }
+     */
+    public static void GUID_PROCESSOR_DISTRIBUTE_UTILITY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_DISTRIBUTE_UTILITY$constants.SEGMENT, 0L, GUID_PROCESSOR_DISTRIBUTE_UTILITY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_HETEROGENEOUS_POLICY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_HETEROGENEOUS_POLICY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_HETEROGENEOUS_POLICY
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_HETEROGENEOUS_POLICY$layout() {
+        return GUID_PROCESSOR_HETEROGENEOUS_POLICY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_HETEROGENEOUS_POLICY
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_HETEROGENEOUS_POLICY() {
+        return GUID_PROCESSOR_HETEROGENEOUS_POLICY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_HETEROGENEOUS_POLICY
+     * }
+     */
+    public static void GUID_PROCESSOR_HETEROGENEOUS_POLICY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_HETEROGENEOUS_POLICY$constants.SEGMENT, 0L, GUID_PROCESSOR_HETEROGENEOUS_POLICY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_HETERO_DECREASE_TIME$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_HETERO_DECREASE_TIME").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_HETERO_DECREASE_TIME
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_HETERO_DECREASE_TIME$layout() {
+        return GUID_PROCESSOR_HETERO_DECREASE_TIME$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_HETERO_DECREASE_TIME
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_HETERO_DECREASE_TIME() {
+        return GUID_PROCESSOR_HETERO_DECREASE_TIME$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_HETERO_DECREASE_TIME
+     * }
+     */
+    public static void GUID_PROCESSOR_HETERO_DECREASE_TIME(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_HETERO_DECREASE_TIME$constants.SEGMENT, 0L, GUID_PROCESSOR_HETERO_DECREASE_TIME$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_HETERO_INCREASE_TIME$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_HETERO_INCREASE_TIME").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_HETERO_INCREASE_TIME
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_HETERO_INCREASE_TIME$layout() {
+        return GUID_PROCESSOR_HETERO_INCREASE_TIME$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_HETERO_INCREASE_TIME
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_HETERO_INCREASE_TIME() {
+        return GUID_PROCESSOR_HETERO_INCREASE_TIME$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_HETERO_INCREASE_TIME
+     * }
+     */
+    public static void GUID_PROCESSOR_HETERO_INCREASE_TIME(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_HETERO_INCREASE_TIME$constants.SEGMENT, 0L, GUID_PROCESSOR_HETERO_INCREASE_TIME$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_HETERO_DECREASE_THRESHOLD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_HETERO_DECREASE_THRESHOLD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_HETERO_DECREASE_THRESHOLD
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_HETERO_DECREASE_THRESHOLD$layout() {
+        return GUID_PROCESSOR_HETERO_DECREASE_THRESHOLD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_HETERO_DECREASE_THRESHOLD
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_HETERO_DECREASE_THRESHOLD() {
+        return GUID_PROCESSOR_HETERO_DECREASE_THRESHOLD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_HETERO_DECREASE_THRESHOLD
+     * }
+     */
+    public static void GUID_PROCESSOR_HETERO_DECREASE_THRESHOLD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_HETERO_DECREASE_THRESHOLD$constants.SEGMENT, 0L, GUID_PROCESSOR_HETERO_DECREASE_THRESHOLD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_HETERO_INCREASE_THRESHOLD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_HETERO_INCREASE_THRESHOLD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_HETERO_INCREASE_THRESHOLD
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_HETERO_INCREASE_THRESHOLD$layout() {
+        return GUID_PROCESSOR_HETERO_INCREASE_THRESHOLD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_HETERO_INCREASE_THRESHOLD
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_HETERO_INCREASE_THRESHOLD() {
+        return GUID_PROCESSOR_HETERO_INCREASE_THRESHOLD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_HETERO_INCREASE_THRESHOLD
+     * }
+     */
+    public static void GUID_PROCESSOR_HETERO_INCREASE_THRESHOLD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_HETERO_INCREASE_THRESHOLD$constants.SEGMENT, 0L, GUID_PROCESSOR_HETERO_INCREASE_THRESHOLD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_CLASS0_FLOOR_PERF$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_CLASS0_FLOOR_PERF").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CLASS0_FLOOR_PERF
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_CLASS0_FLOOR_PERF$layout() {
+        return GUID_PROCESSOR_CLASS0_FLOOR_PERF$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CLASS0_FLOOR_PERF
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_CLASS0_FLOOR_PERF() {
+        return GUID_PROCESSOR_CLASS0_FLOOR_PERF$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CLASS0_FLOOR_PERF
+     * }
+     */
+    public static void GUID_PROCESSOR_CLASS0_FLOOR_PERF(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_CLASS0_FLOOR_PERF$constants.SEGMENT, 0L, GUID_PROCESSOR_CLASS0_FLOOR_PERF$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_CLASS1_INITIAL_PERF$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_CLASS1_INITIAL_PERF").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CLASS1_INITIAL_PERF
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_CLASS1_INITIAL_PERF$layout() {
+        return GUID_PROCESSOR_CLASS1_INITIAL_PERF$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CLASS1_INITIAL_PERF
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_CLASS1_INITIAL_PERF() {
+        return GUID_PROCESSOR_CLASS1_INITIAL_PERF$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_CLASS1_INITIAL_PERF
+     * }
+     */
+    public static void GUID_PROCESSOR_CLASS1_INITIAL_PERF(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_CLASS1_INITIAL_PERF$constants.SEGMENT, 0L, GUID_PROCESSOR_CLASS1_INITIAL_PERF$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_THREAD_SCHEDULING_POLICY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_THREAD_SCHEDULING_POLICY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_THREAD_SCHEDULING_POLICY
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_THREAD_SCHEDULING_POLICY$layout() {
+        return GUID_PROCESSOR_THREAD_SCHEDULING_POLICY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_THREAD_SCHEDULING_POLICY
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_THREAD_SCHEDULING_POLICY() {
+        return GUID_PROCESSOR_THREAD_SCHEDULING_POLICY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_THREAD_SCHEDULING_POLICY
+     * }
+     */
+    public static void GUID_PROCESSOR_THREAD_SCHEDULING_POLICY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_THREAD_SCHEDULING_POLICY$constants.SEGMENT, 0L, GUID_PROCESSOR_THREAD_SCHEDULING_POLICY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_SHORT_THREAD_SCHEDULING_POLICY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_SHORT_THREAD_SCHEDULING_POLICY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_SHORT_THREAD_SCHEDULING_POLICY
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_SHORT_THREAD_SCHEDULING_POLICY$layout() {
+        return GUID_PROCESSOR_SHORT_THREAD_SCHEDULING_POLICY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_SHORT_THREAD_SCHEDULING_POLICY
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_SHORT_THREAD_SCHEDULING_POLICY() {
+        return GUID_PROCESSOR_SHORT_THREAD_SCHEDULING_POLICY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_SHORT_THREAD_SCHEDULING_POLICY
+     * }
+     */
+    public static void GUID_PROCESSOR_SHORT_THREAD_SCHEDULING_POLICY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_SHORT_THREAD_SCHEDULING_POLICY$constants.SEGMENT, 0L, GUID_PROCESSOR_SHORT_THREAD_SCHEDULING_POLICY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_SYSTEM_COOLING_POLICY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_SYSTEM_COOLING_POLICY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SYSTEM_COOLING_POLICY
+     * }
+     */
+    public static GroupLayout GUID_SYSTEM_COOLING_POLICY$layout() {
+        return GUID_SYSTEM_COOLING_POLICY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SYSTEM_COOLING_POLICY
+     * }
+     */
+    public static MemorySegment GUID_SYSTEM_COOLING_POLICY() {
+        return GUID_SYSTEM_COOLING_POLICY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SYSTEM_COOLING_POLICY
+     * }
+     */
+    public static void GUID_SYSTEM_COOLING_POLICY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_SYSTEM_COOLING_POLICY$constants.SEGMENT, 0L, GUID_SYSTEM_COOLING_POLICY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD$layout() {
+        return GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD() {
+        return GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD
+     * }
+     */
+    public static void GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD$constants.SEGMENT, 0L, GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD_1$layout() {
+        return GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD_1() {
+        return GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD_1
+     * }
+     */
+    public static void GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD_1$constants.SEGMENT, 0L, GUID_PROCESSOR_RESPONSIVENESS_DISABLE_THRESHOLD_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD$layout() {
+        return GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD() {
+        return GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD
+     * }
+     */
+    public static void GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD$constants.SEGMENT, 0L, GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD_1$layout() {
+        return GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD_1() {
+        return GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD_1
+     * }
+     */
+    public static void GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD_1$constants.SEGMENT, 0L, GUID_PROCESSOR_RESPONSIVENESS_ENABLE_THRESHOLD_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME$layout() {
+        return GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME() {
+        return GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME
+     * }
+     */
+    public static void GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME$constants.SEGMENT, 0L, GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME_1$layout() {
+        return GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME_1() {
+        return GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME_1
+     * }
+     */
+    public static void GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME_1$constants.SEGMENT, 0L, GUID_PROCESSOR_RESPONSIVENESS_DISABLE_TIME_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME$layout() {
+        return GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME() {
+        return GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME
+     * }
+     */
+    public static void GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME$constants.SEGMENT, 0L, GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME_1$layout() {
+        return GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME_1() {
+        return GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME_1
+     * }
+     */
+    public static void GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME_1$constants.SEGMENT, 0L, GUID_PROCESSOR_RESPONSIVENESS_ENABLE_TIME_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING$layout() {
+        return GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING() {
+        return GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING
+     * }
+     */
+    public static void GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING$constants.SEGMENT, 0L, GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING_1$layout() {
+        return GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING_1() {
+        return GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING_1
+     * }
+     */
+    public static void GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING_1$constants.SEGMENT, 0L, GUID_PROCESSOR_RESPONSIVENESS_EPP_CEILING_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR$layout() {
+        return GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR() {
+        return GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR
+     * }
+     */
+    public static void GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR$constants.SEGMENT, 0L, GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR_1$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR_1").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR_1
+     * }
+     */
+    public static GroupLayout GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR_1$layout() {
+        return GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR_1$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR_1
+     * }
+     */
+    public static MemorySegment GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR_1() {
+        return GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR_1$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR_1
+     * }
+     */
+    public static void GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR_1(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR_1$constants.SEGMENT, 0L, GUID_PROCESSOR_RESPONSIVENESS_PERF_FLOOR_1$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_LOCK_CONSOLE_ON_WAKE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_LOCK_CONSOLE_ON_WAKE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_LOCK_CONSOLE_ON_WAKE
+     * }
+     */
+    public static GroupLayout GUID_LOCK_CONSOLE_ON_WAKE$layout() {
+        return GUID_LOCK_CONSOLE_ON_WAKE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_LOCK_CONSOLE_ON_WAKE
+     * }
+     */
+    public static MemorySegment GUID_LOCK_CONSOLE_ON_WAKE() {
+        return GUID_LOCK_CONSOLE_ON_WAKE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_LOCK_CONSOLE_ON_WAKE
+     * }
+     */
+    public static void GUID_LOCK_CONSOLE_ON_WAKE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_LOCK_CONSOLE_ON_WAKE$constants.SEGMENT, 0L, GUID_LOCK_CONSOLE_ON_WAKE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_DEVICE_IDLE_POLICY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_DEVICE_IDLE_POLICY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DEVICE_IDLE_POLICY
+     * }
+     */
+    public static GroupLayout GUID_DEVICE_IDLE_POLICY$layout() {
+        return GUID_DEVICE_IDLE_POLICY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DEVICE_IDLE_POLICY
+     * }
+     */
+    public static MemorySegment GUID_DEVICE_IDLE_POLICY() {
+        return GUID_DEVICE_IDLE_POLICY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DEVICE_IDLE_POLICY
+     * }
+     */
+    public static void GUID_DEVICE_IDLE_POLICY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_DEVICE_IDLE_POLICY$constants.SEGMENT, 0L, GUID_DEVICE_IDLE_POLICY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_CONNECTIVITY_IN_STANDBY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_CONNECTIVITY_IN_STANDBY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_CONNECTIVITY_IN_STANDBY
+     * }
+     */
+    public static GroupLayout GUID_CONNECTIVITY_IN_STANDBY$layout() {
+        return GUID_CONNECTIVITY_IN_STANDBY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_CONNECTIVITY_IN_STANDBY
+     * }
+     */
+    public static MemorySegment GUID_CONNECTIVITY_IN_STANDBY() {
+        return GUID_CONNECTIVITY_IN_STANDBY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_CONNECTIVITY_IN_STANDBY
+     * }
+     */
+    public static void GUID_CONNECTIVITY_IN_STANDBY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_CONNECTIVITY_IN_STANDBY$constants.SEGMENT, 0L, GUID_CONNECTIVITY_IN_STANDBY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_DISCONNECTED_STANDBY_MODE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_DISCONNECTED_STANDBY_MODE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISCONNECTED_STANDBY_MODE
+     * }
+     */
+    public static GroupLayout GUID_DISCONNECTED_STANDBY_MODE$layout() {
+        return GUID_DISCONNECTED_STANDBY_MODE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISCONNECTED_STANDBY_MODE
+     * }
+     */
+    public static MemorySegment GUID_DISCONNECTED_STANDBY_MODE() {
+        return GUID_DISCONNECTED_STANDBY_MODE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_DISCONNECTED_STANDBY_MODE
+     * }
+     */
+    public static void GUID_DISCONNECTED_STANDBY_MODE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_DISCONNECTED_STANDBY_MODE$constants.SEGMENT, 0L, GUID_DISCONNECTED_STANDBY_MODE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_ACDC_POWER_SOURCE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_ACDC_POWER_SOURCE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ACDC_POWER_SOURCE
+     * }
+     */
+    public static GroupLayout GUID_ACDC_POWER_SOURCE$layout() {
+        return GUID_ACDC_POWER_SOURCE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ACDC_POWER_SOURCE
+     * }
+     */
+    public static MemorySegment GUID_ACDC_POWER_SOURCE() {
+        return GUID_ACDC_POWER_SOURCE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ACDC_POWER_SOURCE
+     * }
+     */
+    public static void GUID_ACDC_POWER_SOURCE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_ACDC_POWER_SOURCE$constants.SEGMENT, 0L, GUID_ACDC_POWER_SOURCE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_LIDSWITCH_STATE_CHANGE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_LIDSWITCH_STATE_CHANGE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_LIDSWITCH_STATE_CHANGE
+     * }
+     */
+    public static GroupLayout GUID_LIDSWITCH_STATE_CHANGE$layout() {
+        return GUID_LIDSWITCH_STATE_CHANGE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_LIDSWITCH_STATE_CHANGE
+     * }
+     */
+    public static MemorySegment GUID_LIDSWITCH_STATE_CHANGE() {
+        return GUID_LIDSWITCH_STATE_CHANGE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_LIDSWITCH_STATE_CHANGE
+     * }
+     */
+    public static void GUID_LIDSWITCH_STATE_CHANGE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_LIDSWITCH_STATE_CHANGE$constants.SEGMENT, 0L, GUID_LIDSWITCH_STATE_CHANGE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_BATTERY_PERCENTAGE_REMAINING$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_BATTERY_PERCENTAGE_REMAINING").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_PERCENTAGE_REMAINING
+     * }
+     */
+    public static GroupLayout GUID_BATTERY_PERCENTAGE_REMAINING$layout() {
+        return GUID_BATTERY_PERCENTAGE_REMAINING$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_PERCENTAGE_REMAINING
+     * }
+     */
+    public static MemorySegment GUID_BATTERY_PERCENTAGE_REMAINING() {
+        return GUID_BATTERY_PERCENTAGE_REMAINING$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_PERCENTAGE_REMAINING
+     * }
+     */
+    public static void GUID_BATTERY_PERCENTAGE_REMAINING(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_BATTERY_PERCENTAGE_REMAINING$constants.SEGMENT, 0L, GUID_BATTERY_PERCENTAGE_REMAINING$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_BATTERY_COUNT$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_BATTERY_COUNT").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_COUNT
+     * }
+     */
+    public static GroupLayout GUID_BATTERY_COUNT$layout() {
+        return GUID_BATTERY_COUNT$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_COUNT
+     * }
+     */
+    public static MemorySegment GUID_BATTERY_COUNT() {
+        return GUID_BATTERY_COUNT$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BATTERY_COUNT
+     * }
+     */
+    public static void GUID_BATTERY_COUNT(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_BATTERY_COUNT$constants.SEGMENT, 0L, GUID_BATTERY_COUNT$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_GLOBAL_USER_PRESENCE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_GLOBAL_USER_PRESENCE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_GLOBAL_USER_PRESENCE
+     * }
+     */
+    public static GroupLayout GUID_GLOBAL_USER_PRESENCE$layout() {
+        return GUID_GLOBAL_USER_PRESENCE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_GLOBAL_USER_PRESENCE
+     * }
+     */
+    public static MemorySegment GUID_GLOBAL_USER_PRESENCE() {
+        return GUID_GLOBAL_USER_PRESENCE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_GLOBAL_USER_PRESENCE
+     * }
+     */
+    public static void GUID_GLOBAL_USER_PRESENCE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_GLOBAL_USER_PRESENCE$constants.SEGMENT, 0L, GUID_GLOBAL_USER_PRESENCE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_SESSION_DISPLAY_STATUS$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_SESSION_DISPLAY_STATUS").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SESSION_DISPLAY_STATUS
+     * }
+     */
+    public static GroupLayout GUID_SESSION_DISPLAY_STATUS$layout() {
+        return GUID_SESSION_DISPLAY_STATUS$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SESSION_DISPLAY_STATUS
+     * }
+     */
+    public static MemorySegment GUID_SESSION_DISPLAY_STATUS() {
+        return GUID_SESSION_DISPLAY_STATUS$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SESSION_DISPLAY_STATUS
+     * }
+     */
+    public static void GUID_SESSION_DISPLAY_STATUS(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_SESSION_DISPLAY_STATUS$constants.SEGMENT, 0L, GUID_SESSION_DISPLAY_STATUS$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_SESSION_USER_PRESENCE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_SESSION_USER_PRESENCE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SESSION_USER_PRESENCE
+     * }
+     */
+    public static GroupLayout GUID_SESSION_USER_PRESENCE$layout() {
+        return GUID_SESSION_USER_PRESENCE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SESSION_USER_PRESENCE
+     * }
+     */
+    public static MemorySegment GUID_SESSION_USER_PRESENCE() {
+        return GUID_SESSION_USER_PRESENCE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SESSION_USER_PRESENCE
+     * }
+     */
+    public static void GUID_SESSION_USER_PRESENCE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_SESSION_USER_PRESENCE$constants.SEGMENT, 0L, GUID_SESSION_USER_PRESENCE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_IDLE_BACKGROUND_TASK$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_IDLE_BACKGROUND_TASK").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_IDLE_BACKGROUND_TASK
+     * }
+     */
+    public static GroupLayout GUID_IDLE_BACKGROUND_TASK$layout() {
+        return GUID_IDLE_BACKGROUND_TASK$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_IDLE_BACKGROUND_TASK
+     * }
+     */
+    public static MemorySegment GUID_IDLE_BACKGROUND_TASK() {
+        return GUID_IDLE_BACKGROUND_TASK$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_IDLE_BACKGROUND_TASK
+     * }
+     */
+    public static void GUID_IDLE_BACKGROUND_TASK(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_IDLE_BACKGROUND_TASK$constants.SEGMENT, 0L, GUID_IDLE_BACKGROUND_TASK$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_BACKGROUND_TASK_NOTIFICATION$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_BACKGROUND_TASK_NOTIFICATION").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BACKGROUND_TASK_NOTIFICATION
+     * }
+     */
+    public static GroupLayout GUID_BACKGROUND_TASK_NOTIFICATION$layout() {
+        return GUID_BACKGROUND_TASK_NOTIFICATION$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BACKGROUND_TASK_NOTIFICATION
+     * }
+     */
+    public static MemorySegment GUID_BACKGROUND_TASK_NOTIFICATION() {
+        return GUID_BACKGROUND_TASK_NOTIFICATION$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_BACKGROUND_TASK_NOTIFICATION
+     * }
+     */
+    public static void GUID_BACKGROUND_TASK_NOTIFICATION(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_BACKGROUND_TASK_NOTIFICATION$constants.SEGMENT, 0L, GUID_BACKGROUND_TASK_NOTIFICATION$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_APPLAUNCH_BUTTON$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_APPLAUNCH_BUTTON").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_APPLAUNCH_BUTTON
+     * }
+     */
+    public static GroupLayout GUID_APPLAUNCH_BUTTON$layout() {
+        return GUID_APPLAUNCH_BUTTON$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_APPLAUNCH_BUTTON
+     * }
+     */
+    public static MemorySegment GUID_APPLAUNCH_BUTTON() {
+        return GUID_APPLAUNCH_BUTTON$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_APPLAUNCH_BUTTON
+     * }
+     */
+    public static void GUID_APPLAUNCH_BUTTON(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_APPLAUNCH_BUTTON$constants.SEGMENT, 0L, GUID_APPLAUNCH_BUTTON$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PCIEXPRESS_SETTINGS_SUBGROUP$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PCIEXPRESS_SETTINGS_SUBGROUP").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PCIEXPRESS_SETTINGS_SUBGROUP
+     * }
+     */
+    public static GroupLayout GUID_PCIEXPRESS_SETTINGS_SUBGROUP$layout() {
+        return GUID_PCIEXPRESS_SETTINGS_SUBGROUP$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PCIEXPRESS_SETTINGS_SUBGROUP
+     * }
+     */
+    public static MemorySegment GUID_PCIEXPRESS_SETTINGS_SUBGROUP() {
+        return GUID_PCIEXPRESS_SETTINGS_SUBGROUP$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PCIEXPRESS_SETTINGS_SUBGROUP
+     * }
+     */
+    public static void GUID_PCIEXPRESS_SETTINGS_SUBGROUP(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PCIEXPRESS_SETTINGS_SUBGROUP$constants.SEGMENT, 0L, GUID_PCIEXPRESS_SETTINGS_SUBGROUP$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_PCIEXPRESS_ASPM_POLICY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_PCIEXPRESS_ASPM_POLICY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PCIEXPRESS_ASPM_POLICY
+     * }
+     */
+    public static GroupLayout GUID_PCIEXPRESS_ASPM_POLICY$layout() {
+        return GUID_PCIEXPRESS_ASPM_POLICY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PCIEXPRESS_ASPM_POLICY
+     * }
+     */
+    public static MemorySegment GUID_PCIEXPRESS_ASPM_POLICY() {
+        return GUID_PCIEXPRESS_ASPM_POLICY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_PCIEXPRESS_ASPM_POLICY
+     * }
+     */
+    public static void GUID_PCIEXPRESS_ASPM_POLICY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_PCIEXPRESS_ASPM_POLICY$constants.SEGMENT, 0L, GUID_PCIEXPRESS_ASPM_POLICY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_ENABLE_SWITCH_FORCED_SHUTDOWN$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_ENABLE_SWITCH_FORCED_SHUTDOWN").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ENABLE_SWITCH_FORCED_SHUTDOWN
+     * }
+     */
+    public static GroupLayout GUID_ENABLE_SWITCH_FORCED_SHUTDOWN$layout() {
+        return GUID_ENABLE_SWITCH_FORCED_SHUTDOWN$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ENABLE_SWITCH_FORCED_SHUTDOWN
+     * }
+     */
+    public static MemorySegment GUID_ENABLE_SWITCH_FORCED_SHUTDOWN() {
+        return GUID_ENABLE_SWITCH_FORCED_SHUTDOWN$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_ENABLE_SWITCH_FORCED_SHUTDOWN
+     * }
+     */
+    public static void GUID_ENABLE_SWITCH_FORCED_SHUTDOWN(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_ENABLE_SWITCH_FORCED_SHUTDOWN$constants.SEGMENT, 0L, GUID_ENABLE_SWITCH_FORCED_SHUTDOWN$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_INTSTEER_SUBGROUP$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_INTSTEER_SUBGROUP").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_INTSTEER_SUBGROUP
+     * }
+     */
+    public static GroupLayout GUID_INTSTEER_SUBGROUP$layout() {
+        return GUID_INTSTEER_SUBGROUP$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_INTSTEER_SUBGROUP
+     * }
+     */
+    public static MemorySegment GUID_INTSTEER_SUBGROUP() {
+        return GUID_INTSTEER_SUBGROUP$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_INTSTEER_SUBGROUP
+     * }
+     */
+    public static void GUID_INTSTEER_SUBGROUP(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_INTSTEER_SUBGROUP$constants.SEGMENT, 0L, GUID_INTSTEER_SUBGROUP$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_INTSTEER_MODE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_INTSTEER_MODE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_INTSTEER_MODE
+     * }
+     */
+    public static GroupLayout GUID_INTSTEER_MODE$layout() {
+        return GUID_INTSTEER_MODE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_INTSTEER_MODE
+     * }
+     */
+    public static MemorySegment GUID_INTSTEER_MODE() {
+        return GUID_INTSTEER_MODE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_INTSTEER_MODE
+     * }
+     */
+    public static void GUID_INTSTEER_MODE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_INTSTEER_MODE$constants.SEGMENT, 0L, GUID_INTSTEER_MODE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_INTSTEER_LOAD_PER_PROC_TRIGGER$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_INTSTEER_LOAD_PER_PROC_TRIGGER").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_INTSTEER_LOAD_PER_PROC_TRIGGER
+     * }
+     */
+    public static GroupLayout GUID_INTSTEER_LOAD_PER_PROC_TRIGGER$layout() {
+        return GUID_INTSTEER_LOAD_PER_PROC_TRIGGER$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_INTSTEER_LOAD_PER_PROC_TRIGGER
+     * }
+     */
+    public static MemorySegment GUID_INTSTEER_LOAD_PER_PROC_TRIGGER() {
+        return GUID_INTSTEER_LOAD_PER_PROC_TRIGGER$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_INTSTEER_LOAD_PER_PROC_TRIGGER
+     * }
+     */
+    public static void GUID_INTSTEER_LOAD_PER_PROC_TRIGGER(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_INTSTEER_LOAD_PER_PROC_TRIGGER$constants.SEGMENT, 0L, GUID_INTSTEER_LOAD_PER_PROC_TRIGGER$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_INTSTEER_TIME_UNPARK_TRIGGER$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_INTSTEER_TIME_UNPARK_TRIGGER").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_INTSTEER_TIME_UNPARK_TRIGGER
+     * }
+     */
+    public static GroupLayout GUID_INTSTEER_TIME_UNPARK_TRIGGER$layout() {
+        return GUID_INTSTEER_TIME_UNPARK_TRIGGER$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_INTSTEER_TIME_UNPARK_TRIGGER
+     * }
+     */
+    public static MemorySegment GUID_INTSTEER_TIME_UNPARK_TRIGGER() {
+        return GUID_INTSTEER_TIME_UNPARK_TRIGGER$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_INTSTEER_TIME_UNPARK_TRIGGER
+     * }
+     */
+    public static void GUID_INTSTEER_TIME_UNPARK_TRIGGER(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_INTSTEER_TIME_UNPARK_TRIGGER$constants.SEGMENT, 0L, GUID_INTSTEER_TIME_UNPARK_TRIGGER$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_GRAPHICS_SUBGROUP$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_GRAPHICS_SUBGROUP").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_GRAPHICS_SUBGROUP
+     * }
+     */
+    public static GroupLayout GUID_GRAPHICS_SUBGROUP$layout() {
+        return GUID_GRAPHICS_SUBGROUP$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_GRAPHICS_SUBGROUP
+     * }
+     */
+    public static MemorySegment GUID_GRAPHICS_SUBGROUP() {
+        return GUID_GRAPHICS_SUBGROUP$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_GRAPHICS_SUBGROUP
+     * }
+     */
+    public static void GUID_GRAPHICS_SUBGROUP(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_GRAPHICS_SUBGROUP$constants.SEGMENT, 0L, GUID_GRAPHICS_SUBGROUP$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_GPU_PREFERENCE_POLICY$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_GPU_PREFERENCE_POLICY").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_GPU_PREFERENCE_POLICY
+     * }
+     */
+    public static GroupLayout GUID_GPU_PREFERENCE_POLICY$layout() {
+        return GUID_GPU_PREFERENCE_POLICY$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_GPU_PREFERENCE_POLICY
+     * }
+     */
+    public static MemorySegment GUID_GPU_PREFERENCE_POLICY() {
+        return GUID_GPU_PREFERENCE_POLICY$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_GPU_PREFERENCE_POLICY
+     * }
+     */
+    public static void GUID_GPU_PREFERENCE_POLICY(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_GPU_PREFERENCE_POLICY$constants.SEGMENT, 0L, GUID_GPU_PREFERENCE_POLICY$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_MIXED_REALITY_MODE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_MIXED_REALITY_MODE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_MIXED_REALITY_MODE
+     * }
+     */
+    public static GroupLayout GUID_MIXED_REALITY_MODE$layout() {
+        return GUID_MIXED_REALITY_MODE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_MIXED_REALITY_MODE
+     * }
+     */
+    public static MemorySegment GUID_MIXED_REALITY_MODE() {
+        return GUID_MIXED_REALITY_MODE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_MIXED_REALITY_MODE
+     * }
+     */
+    public static void GUID_MIXED_REALITY_MODE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_MIXED_REALITY_MODE$constants.SEGMENT, 0L, GUID_MIXED_REALITY_MODE$constants.LAYOUT.byteSize());
+    }
+
+    private static class GUID_SPR_ACTIVE_SESSION_CHANGE$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("GUID_SPR_ACTIVE_SESSION_CHANGE").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SPR_ACTIVE_SESSION_CHANGE
+     * }
+     */
+    public static GroupLayout GUID_SPR_ACTIVE_SESSION_CHANGE$layout() {
+        return GUID_SPR_ACTIVE_SESSION_CHANGE$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SPR_ACTIVE_SESSION_CHANGE
+     * }
+     */
+    public static MemorySegment GUID_SPR_ACTIVE_SESSION_CHANGE() {
+        return GUID_SPR_ACTIVE_SESSION_CHANGE$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID GUID_SPR_ACTIVE_SESSION_CHANGE
+     * }
+     */
+    public static void GUID_SPR_ACTIVE_SESSION_CHANGE(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, GUID_SPR_ACTIVE_SESSION_CHANGE$constants.SEGMENT, 0L, GUID_SPR_ACTIVE_SESSION_CHANGE$constants.LAYOUT.byteSize());
+    }
+    private static final int PowerSystemUnspecified = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _SYSTEM_POWER_STATE.PowerSystemUnspecified = 0
+     * }
+     */
+    public static int PowerSystemUnspecified() {
+        return PowerSystemUnspecified;
+    }
+    private static final int PowerSystemWorking = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _SYSTEM_POWER_STATE.PowerSystemWorking = 1
+     * }
+     */
+    public static int PowerSystemWorking() {
+        return PowerSystemWorking;
+    }
+    private static final int PowerSystemSleeping1 = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _SYSTEM_POWER_STATE.PowerSystemSleeping1 = 2
+     * }
+     */
+    public static int PowerSystemSleeping1() {
+        return PowerSystemSleeping1;
+    }
+    private static final int PowerSystemSleeping2 = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _SYSTEM_POWER_STATE.PowerSystemSleeping2 = 3
+     * }
+     */
+    public static int PowerSystemSleeping2() {
+        return PowerSystemSleeping2;
+    }
+    private static final int PowerSystemSleeping3 = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum _SYSTEM_POWER_STATE.PowerSystemSleeping3 = 4
+     * }
+     */
+    public static int PowerSystemSleeping3() {
+        return PowerSystemSleeping3;
+    }
+    private static final int PowerSystemHibernate = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum _SYSTEM_POWER_STATE.PowerSystemHibernate = 5
+     * }
+     */
+    public static int PowerSystemHibernate() {
+        return PowerSystemHibernate;
+    }
+    private static final int PowerSystemShutdown = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum _SYSTEM_POWER_STATE.PowerSystemShutdown = 6
+     * }
+     */
+    public static int PowerSystemShutdown() {
+        return PowerSystemShutdown;
+    }
+    private static final int PowerSystemMaximum = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum _SYSTEM_POWER_STATE.PowerSystemMaximum = 7
+     * }
+     */
+    public static int PowerSystemMaximum() {
+        return PowerSystemMaximum;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef enum _SYSTEM_POWER_STATE {
+     *     PowerSystemUnspecified = 0,
+     *     PowerSystemWorking = 1,
+     *     PowerSystemSleeping1 = 2,
+     *     PowerSystemSleeping2 = 3,
+     *     PowerSystemSleeping3 = 4,
+     *     PowerSystemHibernate = 5,
+     *     PowerSystemShutdown = 6,
+     *     PowerSystemMaximum = 7
+     * } *PSYSTEM_POWER_STATE
+     * }
+     */
+    public static final AddressLayout PSYSTEM_POWER_STATE = wgl_h.C_POINTER;
+    private static final int PowerActionNone = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PowerActionNone = 0
+     * }
+     */
+    public static int PowerActionNone() {
+        return PowerActionNone;
+    }
+    private static final int PowerActionReserved = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PowerActionReserved = 1
+     * }
+     */
+    public static int PowerActionReserved() {
+        return PowerActionReserved;
+    }
+    private static final int PowerActionSleep = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PowerActionSleep = 2
+     * }
+     */
+    public static int PowerActionSleep() {
+        return PowerActionSleep;
+    }
+    private static final int PowerActionHibernate = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PowerActionHibernate = 3
+     * }
+     */
+    public static int PowerActionHibernate() {
+        return PowerActionHibernate;
+    }
+    private static final int PowerActionShutdown = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PowerActionShutdown = 4
+     * }
+     */
+    public static int PowerActionShutdown() {
+        return PowerActionShutdown;
+    }
+    private static final int PowerActionShutdownReset = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PowerActionShutdownReset = 5
+     * }
+     */
+    public static int PowerActionShutdownReset() {
+        return PowerActionShutdownReset;
+    }
+    private static final int PowerActionShutdownOff = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PowerActionShutdownOff = 6
+     * }
+     */
+    public static int PowerActionShutdownOff() {
+        return PowerActionShutdownOff;
+    }
+    private static final int PowerActionWarmEject = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PowerActionWarmEject = 7
+     * }
+     */
+    public static int PowerActionWarmEject() {
+        return PowerActionWarmEject;
+    }
+    private static final int PowerActionDisplayOff = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PowerActionDisplayOff = 8
+     * }
+     */
+    public static int PowerActionDisplayOff() {
+        return PowerActionDisplayOff;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef enum {
+     *     PowerActionNone = 0,
+     *     PowerActionReserved,
+     *     PowerActionSleep,
+     *     PowerActionHibernate,
+     *     PowerActionShutdown,
+     *     PowerActionShutdownReset,
+     *     PowerActionShutdownOff,
+     *     PowerActionWarmEject,
+     *     PowerActionDisplayOff
+     * } *PPOWER_ACTION
+     * }
+     */
+    public static final AddressLayout PPOWER_ACTION = wgl_h.C_POINTER;
+    private static final int PowerDeviceUnspecified = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _DEVICE_POWER_STATE.PowerDeviceUnspecified = 0
+     * }
+     */
+    public static int PowerDeviceUnspecified() {
+        return PowerDeviceUnspecified;
+    }
+    private static final int PowerDeviceD0 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _DEVICE_POWER_STATE.PowerDeviceD0 = 1
+     * }
+     */
+    public static int PowerDeviceD0() {
+        return PowerDeviceD0;
+    }
+    private static final int PowerDeviceD1 = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _DEVICE_POWER_STATE.PowerDeviceD1 = 2
+     * }
+     */
+    public static int PowerDeviceD1() {
+        return PowerDeviceD1;
+    }
+    private static final int PowerDeviceD2 = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _DEVICE_POWER_STATE.PowerDeviceD2 = 3
+     * }
+     */
+    public static int PowerDeviceD2() {
+        return PowerDeviceD2;
+    }
+    private static final int PowerDeviceD3 = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum _DEVICE_POWER_STATE.PowerDeviceD3 = 4
+     * }
+     */
+    public static int PowerDeviceD3() {
+        return PowerDeviceD3;
+    }
+    private static final int PowerDeviceMaximum = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum _DEVICE_POWER_STATE.PowerDeviceMaximum = 5
+     * }
+     */
+    public static int PowerDeviceMaximum() {
+        return PowerDeviceMaximum;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef enum _DEVICE_POWER_STATE {
+     *     PowerDeviceUnspecified = 0,
+     *     PowerDeviceD0,
+     *     PowerDeviceD1,
+     *     PowerDeviceD2,
+     *     PowerDeviceD3,
+     *     PowerDeviceMaximum
+     * } *PDEVICE_POWER_STATE
+     * }
+     */
+    public static final AddressLayout PDEVICE_POWER_STATE = wgl_h.C_POINTER;
+    private static final int PowerMonitorOff = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _MONITOR_DISPLAY_STATE.PowerMonitorOff = 0
+     * }
+     */
+    public static int PowerMonitorOff() {
+        return PowerMonitorOff;
+    }
+    private static final int PowerMonitorOn = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _MONITOR_DISPLAY_STATE.PowerMonitorOn = 1
+     * }
+     */
+    public static int PowerMonitorOn() {
+        return PowerMonitorOn;
+    }
+    private static final int PowerMonitorDim = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _MONITOR_DISPLAY_STATE.PowerMonitorDim = 2
+     * }
+     */
+    public static int PowerMonitorDim() {
+        return PowerMonitorDim;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef enum _MONITOR_DISPLAY_STATE {
+     *     PowerMonitorOff = 0,
+     *     PowerMonitorOn,
+     *     PowerMonitorDim
+     * } *PMONITOR_DISPLAY_STATE
+     * }
+     */
+    public static final AddressLayout PMONITOR_DISPLAY_STATE = wgl_h.C_POINTER;
+    private static final int PowerUserPresent = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _USER_ACTIVITY_PRESENCE.PowerUserPresent = 0
+     * }
+     */
+    public static int PowerUserPresent() {
+        return PowerUserPresent;
+    }
+    private static final int PowerUserNotPresent = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _USER_ACTIVITY_PRESENCE.PowerUserNotPresent = 1
+     * }
+     */
+    public static int PowerUserNotPresent() {
+        return PowerUserNotPresent;
+    }
+    private static final int PowerUserInactive = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _USER_ACTIVITY_PRESENCE.PowerUserInactive = 2
+     * }
+     */
+    public static int PowerUserInactive() {
+        return PowerUserInactive;
+    }
+    private static final int PowerUserMaximum = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _USER_ACTIVITY_PRESENCE.PowerUserMaximum = 3
+     * }
+     */
+    public static int PowerUserMaximum() {
+        return PowerUserMaximum;
+    }
+    private static final int PowerUserInvalid = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _USER_ACTIVITY_PRESENCE.PowerUserInvalid = 3
+     * }
+     */
+    public static int PowerUserInvalid() {
+        return PowerUserInvalid;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef enum _USER_ACTIVITY_PRESENCE {
+     *     PowerUserPresent = 0,
+     *     PowerUserNotPresent,
+     *     PowerUserInactive,
+     *     PowerUserMaximum,
+     *     PowerUserInvalid = PowerUserMaximum
+     * } *PUSER_ACTIVITY_PRESENCE
+     * }
+     */
+    public static final AddressLayout PUSER_ACTIVITY_PRESENCE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef DWORD EXECUTION_STATE
+     * }
+     */
+    public static final OfInt EXECUTION_STATE = wgl_h.C_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef DWORD *PEXECUTION_STATE
+     * }
+     */
+    public static final AddressLayout PEXECUTION_STATE = wgl_h.C_POINTER;
+    private static final int LT_DONT_CARE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.LT_DONT_CARE = 0
+     * }
+     */
+    public static int LT_DONT_CARE() {
+        return LT_DONT_CARE;
+    }
+    private static final int LT_LOWEST_LATENCY = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.LT_LOWEST_LATENCY = 1
+     * }
+     */
+    public static int LT_LOWEST_LATENCY() {
+        return LT_LOWEST_LATENCY;
+    }
+    private static final int PowerRequestDisplayRequired = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _POWER_REQUEST_TYPE.PowerRequestDisplayRequired = 0
+     * }
+     */
+    public static int PowerRequestDisplayRequired() {
+        return PowerRequestDisplayRequired;
+    }
+    private static final int PowerRequestSystemRequired = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _POWER_REQUEST_TYPE.PowerRequestSystemRequired = 1
+     * }
+     */
+    public static int PowerRequestSystemRequired() {
+        return PowerRequestSystemRequired;
+    }
+    private static final int PowerRequestAwayModeRequired = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _POWER_REQUEST_TYPE.PowerRequestAwayModeRequired = 2
+     * }
+     */
+    public static int PowerRequestAwayModeRequired() {
+        return PowerRequestAwayModeRequired;
+    }
+    private static final int PowerRequestExecutionRequired = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _POWER_REQUEST_TYPE.PowerRequestExecutionRequired = 3
+     * }
+     */
+    public static int PowerRequestExecutionRequired() {
+        return PowerRequestExecutionRequired;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef enum _POWER_REQUEST_TYPE {
+     *     PowerRequestDisplayRequired,
+     *     PowerRequestSystemRequired,
+     *     PowerRequestAwayModeRequired,
+     *     PowerRequestExecutionRequired
+     * } *PPOWER_REQUEST_TYPE
+     * }
+     */
+    public static final AddressLayout PPOWER_REQUEST_TYPE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct CM_Power_Data_s {
+     *     DWORD PD_Size;
+     *     DEVICE_POWER_STATE PD_MostRecentPowerState;
+     *     DWORD PD_Capabilities;
+     *     DWORD PD_D1Latency;
+     *     DWORD PD_D2Latency;
+     *     DWORD PD_D3Latency;
+     *     DEVICE_POWER_STATE PD_PowerStateMapping[7];
+     *     SYSTEM_POWER_STATE PD_DeepestSystemWake;
+     * } *PCM_POWER_DATA
+     * }
+     */
+    public static final AddressLayout PCM_POWER_DATA = wgl_h.C_POINTER;
+    private static final int SystemPowerPolicyAc = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemPowerPolicyAc = 0
+     * }
+     */
+    public static int SystemPowerPolicyAc() {
+        return SystemPowerPolicyAc;
+    }
+    private static final int SystemPowerPolicyDc = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemPowerPolicyDc = 1
+     * }
+     */
+    public static int SystemPowerPolicyDc() {
+        return SystemPowerPolicyDc;
+    }
+    private static final int VerifySystemPolicyAc = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.VerifySystemPolicyAc = 2
+     * }
+     */
+    public static int VerifySystemPolicyAc() {
+        return VerifySystemPolicyAc;
+    }
+    private static final int VerifySystemPolicyDc = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.VerifySystemPolicyDc = 3
+     * }
+     */
+    public static int VerifySystemPolicyDc() {
+        return VerifySystemPolicyDc;
+    }
+    private static final int SystemPowerCapabilities = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemPowerCapabilities = 4
+     * }
+     */
+    public static int SystemPowerCapabilities() {
+        return SystemPowerCapabilities;
+    }
+    private static final int SystemBatteryState = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemBatteryState = 5
+     * }
+     */
+    public static int SystemBatteryState() {
+        return SystemBatteryState;
+    }
+    private static final int SystemPowerStateHandler = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemPowerStateHandler = 6
+     * }
+     */
+    public static int SystemPowerStateHandler() {
+        return SystemPowerStateHandler;
+    }
+    private static final int ProcessorStateHandler = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ProcessorStateHandler = 7
+     * }
+     */
+    public static int ProcessorStateHandler() {
+        return ProcessorStateHandler;
+    }
+    private static final int SystemPowerPolicyCurrent = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemPowerPolicyCurrent = 8
+     * }
+     */
+    public static int SystemPowerPolicyCurrent() {
+        return SystemPowerPolicyCurrent;
+    }
+    private static final int AdministratorPowerPolicy = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.AdministratorPowerPolicy = 9
+     * }
+     */
+    public static int AdministratorPowerPolicy() {
+        return AdministratorPowerPolicy;
+    }
+    private static final int SystemReserveHiberFile = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemReserveHiberFile = 10
+     * }
+     */
+    public static int SystemReserveHiberFile() {
+        return SystemReserveHiberFile;
+    }
+    private static final int ProcessorInformation = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ProcessorInformation = 11
+     * }
+     */
+    public static int ProcessorInformation() {
+        return ProcessorInformation;
+    }
+    private static final int SystemPowerInformation = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemPowerInformation = 12
+     * }
+     */
+    public static int SystemPowerInformation() {
+        return SystemPowerInformation;
+    }
+    private static final int ProcessorStateHandler2 = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ProcessorStateHandler2 = 13
+     * }
+     */
+    public static int ProcessorStateHandler2() {
+        return ProcessorStateHandler2;
+    }
+    private static final int LastWakeTime = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.LastWakeTime = 14
+     * }
+     */
+    public static int LastWakeTime() {
+        return LastWakeTime;
+    }
+    private static final int LastSleepTime = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.LastSleepTime = 15
+     * }
+     */
+    public static int LastSleepTime() {
+        return LastSleepTime;
+    }
+    private static final int SystemExecutionState = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemExecutionState = 16
+     * }
+     */
+    public static int SystemExecutionState() {
+        return SystemExecutionState;
+    }
+    private static final int SystemPowerStateNotifyHandler = (int)17L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemPowerStateNotifyHandler = 17
+     * }
+     */
+    public static int SystemPowerStateNotifyHandler() {
+        return SystemPowerStateNotifyHandler;
+    }
+    private static final int ProcessorPowerPolicyAc = (int)18L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ProcessorPowerPolicyAc = 18
+     * }
+     */
+    public static int ProcessorPowerPolicyAc() {
+        return ProcessorPowerPolicyAc;
+    }
+    private static final int ProcessorPowerPolicyDc = (int)19L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ProcessorPowerPolicyDc = 19
+     * }
+     */
+    public static int ProcessorPowerPolicyDc() {
+        return ProcessorPowerPolicyDc;
+    }
+    private static final int VerifyProcessorPowerPolicyAc = (int)20L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.VerifyProcessorPowerPolicyAc = 20
+     * }
+     */
+    public static int VerifyProcessorPowerPolicyAc() {
+        return VerifyProcessorPowerPolicyAc;
+    }
+    private static final int VerifyProcessorPowerPolicyDc = (int)21L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.VerifyProcessorPowerPolicyDc = 21
+     * }
+     */
+    public static int VerifyProcessorPowerPolicyDc() {
+        return VerifyProcessorPowerPolicyDc;
+    }
+    private static final int ProcessorPowerPolicyCurrent = (int)22L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ProcessorPowerPolicyCurrent = 22
+     * }
+     */
+    public static int ProcessorPowerPolicyCurrent() {
+        return ProcessorPowerPolicyCurrent;
+    }
+    private static final int SystemPowerStateLogging = (int)23L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemPowerStateLogging = 23
+     * }
+     */
+    public static int SystemPowerStateLogging() {
+        return SystemPowerStateLogging;
+    }
+    private static final int SystemPowerLoggingEntry = (int)24L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemPowerLoggingEntry = 24
+     * }
+     */
+    public static int SystemPowerLoggingEntry() {
+        return SystemPowerLoggingEntry;
+    }
+    private static final int SetPowerSettingValue = (int)25L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SetPowerSettingValue = 25
+     * }
+     */
+    public static int SetPowerSettingValue() {
+        return SetPowerSettingValue;
+    }
+    private static final int NotifyUserPowerSetting = (int)26L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.NotifyUserPowerSetting = 26
+     * }
+     */
+    public static int NotifyUserPowerSetting() {
+        return NotifyUserPowerSetting;
+    }
+    private static final int PowerInformationLevelUnused0 = (int)27L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PowerInformationLevelUnused0 = 27
+     * }
+     */
+    public static int PowerInformationLevelUnused0() {
+        return PowerInformationLevelUnused0;
+    }
+    private static final int SystemMonitorHiberBootPowerOff = (int)28L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemMonitorHiberBootPowerOff = 28
+     * }
+     */
+    public static int SystemMonitorHiberBootPowerOff() {
+        return SystemMonitorHiberBootPowerOff;
+    }
+    private static final int SystemVideoState = (int)29L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemVideoState = 29
+     * }
+     */
+    public static int SystemVideoState() {
+        return SystemVideoState;
+    }
+    private static final int TraceApplicationPowerMessage = (int)30L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.TraceApplicationPowerMessage = 30
+     * }
+     */
+    public static int TraceApplicationPowerMessage() {
+        return TraceApplicationPowerMessage;
+    }
+    private static final int TraceApplicationPowerMessageEnd = (int)31L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.TraceApplicationPowerMessageEnd = 31
+     * }
+     */
+    public static int TraceApplicationPowerMessageEnd() {
+        return TraceApplicationPowerMessageEnd;
+    }
+    private static final int ProcessorPerfStates = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ProcessorPerfStates = 32
+     * }
+     */
+    public static int ProcessorPerfStates() {
+        return ProcessorPerfStates;
+    }
+    private static final int ProcessorIdleStates = (int)33L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ProcessorIdleStates = 33
+     * }
+     */
+    public static int ProcessorIdleStates() {
+        return ProcessorIdleStates;
+    }
+    private static final int ProcessorCap = (int)34L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ProcessorCap = 34
+     * }
+     */
+    public static int ProcessorCap() {
+        return ProcessorCap;
+    }
+    private static final int SystemWakeSource = (int)35L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemWakeSource = 35
+     * }
+     */
+    public static int SystemWakeSource() {
+        return SystemWakeSource;
+    }
+    private static final int SystemHiberFileInformation = (int)36L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemHiberFileInformation = 36
+     * }
+     */
+    public static int SystemHiberFileInformation() {
+        return SystemHiberFileInformation;
+    }
+    private static final int TraceServicePowerMessage = (int)37L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.TraceServicePowerMessage = 37
+     * }
+     */
+    public static int TraceServicePowerMessage() {
+        return TraceServicePowerMessage;
+    }
+    private static final int ProcessorLoad = (int)38L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ProcessorLoad = 38
+     * }
+     */
+    public static int ProcessorLoad() {
+        return ProcessorLoad;
+    }
+    private static final int PowerShutdownNotification = (int)39L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PowerShutdownNotification = 39
+     * }
+     */
+    public static int PowerShutdownNotification() {
+        return PowerShutdownNotification;
+    }
+    private static final int MonitorCapabilities = (int)40L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorCapabilities = 40
+     * }
+     */
+    public static int MonitorCapabilities() {
+        return MonitorCapabilities;
+    }
+    private static final int SessionPowerInit = (int)41L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SessionPowerInit = 41
+     * }
+     */
+    public static int SessionPowerInit() {
+        return SessionPowerInit;
+    }
+    private static final int SessionDisplayState = (int)42L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SessionDisplayState = 42
+     * }
+     */
+    public static int SessionDisplayState() {
+        return SessionDisplayState;
+    }
+    private static final int PowerRequestCreate = (int)43L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PowerRequestCreate = 43
+     * }
+     */
+    public static int PowerRequestCreate() {
+        return PowerRequestCreate;
+    }
+    private static final int PowerRequestAction = (int)44L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PowerRequestAction = 44
+     * }
+     */
+    public static int PowerRequestAction() {
+        return PowerRequestAction;
+    }
+    private static final int GetPowerRequestList = (int)45L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.GetPowerRequestList = 45
+     * }
+     */
+    public static int GetPowerRequestList() {
+        return GetPowerRequestList;
+    }
+    private static final int ProcessorInformationEx = (int)46L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ProcessorInformationEx = 46
+     * }
+     */
+    public static int ProcessorInformationEx() {
+        return ProcessorInformationEx;
+    }
+    private static final int NotifyUserModeLegacyPowerEvent = (int)47L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.NotifyUserModeLegacyPowerEvent = 47
+     * }
+     */
+    public static int NotifyUserModeLegacyPowerEvent() {
+        return NotifyUserModeLegacyPowerEvent;
+    }
+    private static final int GroupPark = (int)48L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.GroupPark = 48
+     * }
+     */
+    public static int GroupPark() {
+        return GroupPark;
+    }
+    private static final int ProcessorIdleDomains = (int)49L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ProcessorIdleDomains = 49
+     * }
+     */
+    public static int ProcessorIdleDomains() {
+        return ProcessorIdleDomains;
+    }
+    private static final int WakeTimerList = (int)50L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.WakeTimerList = 50
+     * }
+     */
+    public static int WakeTimerList() {
+        return WakeTimerList;
+    }
+    private static final int SystemHiberFileSize = (int)51L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemHiberFileSize = 51
+     * }
+     */
+    public static int SystemHiberFileSize() {
+        return SystemHiberFileSize;
+    }
+    private static final int ProcessorIdleStatesHv = (int)52L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ProcessorIdleStatesHv = 52
+     * }
+     */
+    public static int ProcessorIdleStatesHv() {
+        return ProcessorIdleStatesHv;
+    }
+    private static final int ProcessorPerfStatesHv = (int)53L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ProcessorPerfStatesHv = 53
+     * }
+     */
+    public static int ProcessorPerfStatesHv() {
+        return ProcessorPerfStatesHv;
+    }
+    private static final int ProcessorPerfCapHv = (int)54L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ProcessorPerfCapHv = 54
+     * }
+     */
+    public static int ProcessorPerfCapHv() {
+        return ProcessorPerfCapHv;
+    }
+    private static final int ProcessorSetIdle = (int)55L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ProcessorSetIdle = 55
+     * }
+     */
+    public static int ProcessorSetIdle() {
+        return ProcessorSetIdle;
+    }
+    private static final int LogicalProcessorIdling = (int)56L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.LogicalProcessorIdling = 56
+     * }
+     */
+    public static int LogicalProcessorIdling() {
+        return LogicalProcessorIdling;
+    }
+    private static final int UserPresence = (int)57L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.UserPresence = 57
+     * }
+     */
+    public static int UserPresence() {
+        return UserPresence;
+    }
+    private static final int PowerSettingNotificationName = (int)58L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PowerSettingNotificationName = 58
+     * }
+     */
+    public static int PowerSettingNotificationName() {
+        return PowerSettingNotificationName;
+    }
+    private static final int GetPowerSettingValue = (int)59L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.GetPowerSettingValue = 59
+     * }
+     */
+    public static int GetPowerSettingValue() {
+        return GetPowerSettingValue;
+    }
+    private static final int IdleResiliency = (int)60L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.IdleResiliency = 60
+     * }
+     */
+    public static int IdleResiliency() {
+        return IdleResiliency;
+    }
+    private static final int SessionRITState = (int)61L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SessionRITState = 61
+     * }
+     */
+    public static int SessionRITState() {
+        return SessionRITState;
+    }
+    private static final int SessionConnectNotification = (int)62L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SessionConnectNotification = 62
+     * }
+     */
+    public static int SessionConnectNotification() {
+        return SessionConnectNotification;
+    }
+    private static final int SessionPowerCleanup = (int)63L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SessionPowerCleanup = 63
+     * }
+     */
+    public static int SessionPowerCleanup() {
+        return SessionPowerCleanup;
+    }
+    private static final int SessionLockState = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SessionLockState = 64
+     * }
+     */
+    public static int SessionLockState() {
+        return SessionLockState;
+    }
+    private static final int SystemHiberbootState = (int)65L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemHiberbootState = 65
+     * }
+     */
+    public static int SystemHiberbootState() {
+        return SystemHiberbootState;
+    }
+    private static final int PlatformInformation = (int)66L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PlatformInformation = 66
+     * }
+     */
+    public static int PlatformInformation() {
+        return PlatformInformation;
+    }
+    private static final int PdcInvocation = (int)67L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PdcInvocation = 67
+     * }
+     */
+    public static int PdcInvocation() {
+        return PdcInvocation;
+    }
+    private static final int MonitorInvocation = (int)68L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorInvocation = 68
+     * }
+     */
+    public static int MonitorInvocation() {
+        return MonitorInvocation;
+    }
+    private static final int FirmwareTableInformationRegistered = (int)69L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.FirmwareTableInformationRegistered = 69
+     * }
+     */
+    public static int FirmwareTableInformationRegistered() {
+        return FirmwareTableInformationRegistered;
+    }
+    private static final int SetShutdownSelectedTime = (int)70L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SetShutdownSelectedTime = 70
+     * }
+     */
+    public static int SetShutdownSelectedTime() {
+        return SetShutdownSelectedTime;
+    }
+    private static final int SuspendResumeInvocation = (int)71L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SuspendResumeInvocation = 71
+     * }
+     */
+    public static int SuspendResumeInvocation() {
+        return SuspendResumeInvocation;
+    }
+    private static final int PlmPowerRequestCreate = (int)72L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PlmPowerRequestCreate = 72
+     * }
+     */
+    public static int PlmPowerRequestCreate() {
+        return PlmPowerRequestCreate;
+    }
+    private static final int ScreenOff = (int)73L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ScreenOff = 73
+     * }
+     */
+    public static int ScreenOff() {
+        return ScreenOff;
+    }
+    private static final int CsDeviceNotification = (int)74L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.CsDeviceNotification = 74
+     * }
+     */
+    public static int CsDeviceNotification() {
+        return CsDeviceNotification;
+    }
+    private static final int PlatformRole = (int)75L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PlatformRole = 75
+     * }
+     */
+    public static int PlatformRole() {
+        return PlatformRole;
+    }
+    private static final int LastResumePerformance = (int)76L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.LastResumePerformance = 76
+     * }
+     */
+    public static int LastResumePerformance() {
+        return LastResumePerformance;
+    }
+    private static final int DisplayBurst = (int)77L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.DisplayBurst = 77
+     * }
+     */
+    public static int DisplayBurst() {
+        return DisplayBurst;
+    }
+    private static final int ExitLatencySamplingPercentage = (int)78L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ExitLatencySamplingPercentage = 78
+     * }
+     */
+    public static int ExitLatencySamplingPercentage() {
+        return ExitLatencySamplingPercentage;
+    }
+    private static final int RegisterSpmPowerSettings = (int)79L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.RegisterSpmPowerSettings = 79
+     * }
+     */
+    public static int RegisterSpmPowerSettings() {
+        return RegisterSpmPowerSettings;
+    }
+    private static final int PlatformIdleStates = (int)80L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PlatformIdleStates = 80
+     * }
+     */
+    public static int PlatformIdleStates() {
+        return PlatformIdleStates;
+    }
+    private static final int ProcessorIdleVeto = (int)81L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ProcessorIdleVeto = 81
+     * }
+     */
+    public static int ProcessorIdleVeto() {
+        return ProcessorIdleVeto;
+    }
+    private static final int PlatformIdleVeto = (int)82L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PlatformIdleVeto = 82
+     * }
+     */
+    public static int PlatformIdleVeto() {
+        return PlatformIdleVeto;
+    }
+    private static final int SystemBatteryStatePrecise = (int)83L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemBatteryStatePrecise = 83
+     * }
+     */
+    public static int SystemBatteryStatePrecise() {
+        return SystemBatteryStatePrecise;
+    }
+    private static final int ThermalEvent = (int)84L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ThermalEvent = 84
+     * }
+     */
+    public static int ThermalEvent() {
+        return ThermalEvent;
+    }
+    private static final int PowerRequestActionInternal = (int)85L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PowerRequestActionInternal = 85
+     * }
+     */
+    public static int PowerRequestActionInternal() {
+        return PowerRequestActionInternal;
+    }
+    private static final int BatteryDeviceState = (int)86L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.BatteryDeviceState = 86
+     * }
+     */
+    public static int BatteryDeviceState() {
+        return BatteryDeviceState;
+    }
+    private static final int PowerInformationInternal = (int)87L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PowerInformationInternal = 87
+     * }
+     */
+    public static int PowerInformationInternal() {
+        return PowerInformationInternal;
+    }
+    private static final int ThermalStandby = (int)88L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ThermalStandby = 88
+     * }
+     */
+    public static int ThermalStandby() {
+        return ThermalStandby;
+    }
+    private static final int SystemHiberFileType = (int)89L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SystemHiberFileType = 89
+     * }
+     */
+    public static int SystemHiberFileType() {
+        return SystemHiberFileType;
+    }
+    private static final int PhysicalPowerButtonPress = (int)90L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PhysicalPowerButtonPress = 90
+     * }
+     */
+    public static int PhysicalPowerButtonPress() {
+        return PhysicalPowerButtonPress;
+    }
+    private static final int QueryPotentialDripsConstraint = (int)91L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.QueryPotentialDripsConstraint = 91
+     * }
+     */
+    public static int QueryPotentialDripsConstraint() {
+        return QueryPotentialDripsConstraint;
+    }
+    private static final int EnergyTrackerCreate = (int)92L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.EnergyTrackerCreate = 92
+     * }
+     */
+    public static int EnergyTrackerCreate() {
+        return EnergyTrackerCreate;
+    }
+    private static final int EnergyTrackerQuery = (int)93L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.EnergyTrackerQuery = 93
+     * }
+     */
+    public static int EnergyTrackerQuery() {
+        return EnergyTrackerQuery;
+    }
+    private static final int UpdateBlackBoxRecorder = (int)94L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.UpdateBlackBoxRecorder = 94
+     * }
+     */
+    public static int UpdateBlackBoxRecorder() {
+        return UpdateBlackBoxRecorder;
+    }
+    private static final int SessionAllowExternalDmaDevices = (int)95L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.SessionAllowExternalDmaDevices = 95
+     * }
+     */
+    public static int SessionAllowExternalDmaDevices() {
+        return SessionAllowExternalDmaDevices;
+    }
+    private static final int PowerInformationLevelMaximum = (int)96L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PowerInformationLevelMaximum = 96
+     * }
+     */
+    public static int PowerInformationLevelMaximum() {
+        return PowerInformationLevelMaximum;
+    }
+    private static final int UserNotPresent = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.UserNotPresent = 0
+     * }
+     */
+    public static int UserNotPresent() {
+        return UserNotPresent;
+    }
+    private static final int UserPresent = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.UserPresent = 1
+     * }
+     */
+    public static int UserPresent() {
+        return UserPresent;
+    }
+    private static final int UserUnknown = (int)255L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.UserUnknown = 255
+     * }
+     */
+    public static int UserUnknown() {
+        return UserUnknown;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef enum {
+     *     UserNotPresent = 0,
+     *     UserPresent = 1,
+     *     UserUnknown = 255
+     * } *PPOWER_USER_PRESENCE_TYPE
+     * }
+     */
+    public static final AddressLayout PPOWER_USER_PRESENCE_TYPE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _POWER_USER_PRESENCE {
+     *     POWER_USER_PRESENCE_TYPE UserPresence;
+     * } *PPOWER_USER_PRESENCE
+     * }
+     */
+    public static final AddressLayout PPOWER_USER_PRESENCE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _POWER_SESSION_CONNECT {
+     *     BOOLEAN Connected;
+     *     BOOLEAN Console;
+     * } *PPOWER_SESSION_CONNECT
+     * }
+     */
+    public static final AddressLayout PPOWER_SESSION_CONNECT = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _POWER_SESSION_TIMEOUTS {
+     *     DWORD InputTimeout;
+     *     DWORD DisplayTimeout;
+     * } *PPOWER_SESSION_TIMEOUTS
+     * }
+     */
+    public static final AddressLayout PPOWER_SESSION_TIMEOUTS = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _POWER_SESSION_RIT_STATE {
+     *     BOOLEAN Active;
+     *     DWORD LastInputTime;
+     * } *PPOWER_SESSION_RIT_STATE
+     * }
+     */
+    public static final AddressLayout PPOWER_SESSION_RIT_STATE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _POWER_SESSION_WINLOGON {
+     *     DWORD SessionId;
+     *     BOOLEAN Console;
+     *     BOOLEAN Locked;
+     * } *PPOWER_SESSION_WINLOGON
+     * }
+     */
+    public static final AddressLayout PPOWER_SESSION_WINLOGON = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _POWER_SESSION_ALLOW_EXTERNAL_DMA_DEVICES {
+     *     BOOLEAN IsAllowed;
+     * } *PPOWER_SESSION_ALLOW_EXTERNAL_DMA_DEVICES
+     * }
+     */
+    public static final AddressLayout PPOWER_SESSION_ALLOW_EXTERNAL_DMA_DEVICES = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _POWER_IDLE_RESILIENCY {
+     *     DWORD CoalescingTimeout;
+     *     DWORD IdleResiliencyPeriod;
+     * } *PPOWER_IDLE_RESILIENCY
+     * }
+     */
+    public static final AddressLayout PPOWER_IDLE_RESILIENCY = wgl_h.C_POINTER;
+    private static final int MonitorRequestReasonUnknown = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonUnknown = 0
+     * }
+     */
+    public static int MonitorRequestReasonUnknown() {
+        return MonitorRequestReasonUnknown;
+    }
+    private static final int MonitorRequestReasonPowerButton = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonPowerButton = 1
+     * }
+     */
+    public static int MonitorRequestReasonPowerButton() {
+        return MonitorRequestReasonPowerButton;
+    }
+    private static final int MonitorRequestReasonRemoteConnection = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonRemoteConnection = 2
+     * }
+     */
+    public static int MonitorRequestReasonRemoteConnection() {
+        return MonitorRequestReasonRemoteConnection;
+    }
+    private static final int MonitorRequestReasonScMonitorpower = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonScMonitorpower = 3
+     * }
+     */
+    public static int MonitorRequestReasonScMonitorpower() {
+        return MonitorRequestReasonScMonitorpower;
+    }
+    private static final int MonitorRequestReasonUserInput = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonUserInput = 4
+     * }
+     */
+    public static int MonitorRequestReasonUserInput() {
+        return MonitorRequestReasonUserInput;
+    }
+    private static final int MonitorRequestReasonAcDcDisplayBurst = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonAcDcDisplayBurst = 5
+     * }
+     */
+    public static int MonitorRequestReasonAcDcDisplayBurst() {
+        return MonitorRequestReasonAcDcDisplayBurst;
+    }
+    private static final int MonitorRequestReasonUserDisplayBurst = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonUserDisplayBurst = 6
+     * }
+     */
+    public static int MonitorRequestReasonUserDisplayBurst() {
+        return MonitorRequestReasonUserDisplayBurst;
+    }
+    private static final int MonitorRequestReasonPoSetSystemState = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonPoSetSystemState = 7
+     * }
+     */
+    public static int MonitorRequestReasonPoSetSystemState() {
+        return MonitorRequestReasonPoSetSystemState;
+    }
+    private static final int MonitorRequestReasonSetThreadExecutionState = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonSetThreadExecutionState = 8
+     * }
+     */
+    public static int MonitorRequestReasonSetThreadExecutionState() {
+        return MonitorRequestReasonSetThreadExecutionState;
+    }
+    private static final int MonitorRequestReasonFullWake = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonFullWake = 9
+     * }
+     */
+    public static int MonitorRequestReasonFullWake() {
+        return MonitorRequestReasonFullWake;
+    }
+    private static final int MonitorRequestReasonSessionUnlock = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonSessionUnlock = 10
+     * }
+     */
+    public static int MonitorRequestReasonSessionUnlock() {
+        return MonitorRequestReasonSessionUnlock;
+    }
+    private static final int MonitorRequestReasonScreenOffRequest = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonScreenOffRequest = 11
+     * }
+     */
+    public static int MonitorRequestReasonScreenOffRequest() {
+        return MonitorRequestReasonScreenOffRequest;
+    }
+    private static final int MonitorRequestReasonIdleTimeout = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonIdleTimeout = 12
+     * }
+     */
+    public static int MonitorRequestReasonIdleTimeout() {
+        return MonitorRequestReasonIdleTimeout;
+    }
+    private static final int MonitorRequestReasonPolicyChange = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonPolicyChange = 13
+     * }
+     */
+    public static int MonitorRequestReasonPolicyChange() {
+        return MonitorRequestReasonPolicyChange;
+    }
+    private static final int MonitorRequestReasonSleepButton = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonSleepButton = 14
+     * }
+     */
+    public static int MonitorRequestReasonSleepButton() {
+        return MonitorRequestReasonSleepButton;
+    }
+    private static final int MonitorRequestReasonLid = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonLid = 15
+     * }
+     */
+    public static int MonitorRequestReasonLid() {
+        return MonitorRequestReasonLid;
+    }
+    private static final int MonitorRequestReasonBatteryCountChange = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonBatteryCountChange = 16
+     * }
+     */
+    public static int MonitorRequestReasonBatteryCountChange() {
+        return MonitorRequestReasonBatteryCountChange;
+    }
+    private static final int MonitorRequestReasonGracePeriod = (int)17L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonGracePeriod = 17
+     * }
+     */
+    public static int MonitorRequestReasonGracePeriod() {
+        return MonitorRequestReasonGracePeriod;
+    }
+    private static final int MonitorRequestReasonPnP = (int)18L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonPnP = 18
+     * }
+     */
+    public static int MonitorRequestReasonPnP() {
+        return MonitorRequestReasonPnP;
+    }
+    private static final int MonitorRequestReasonDP = (int)19L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonDP = 19
+     * }
+     */
+    public static int MonitorRequestReasonDP() {
+        return MonitorRequestReasonDP;
+    }
+    private static final int MonitorRequestReasonSxTransition = (int)20L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonSxTransition = 20
+     * }
+     */
+    public static int MonitorRequestReasonSxTransition() {
+        return MonitorRequestReasonSxTransition;
+    }
+    private static final int MonitorRequestReasonSystemIdle = (int)21L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonSystemIdle = 21
+     * }
+     */
+    public static int MonitorRequestReasonSystemIdle() {
+        return MonitorRequestReasonSystemIdle;
+    }
+    private static final int MonitorRequestReasonNearProximity = (int)22L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonNearProximity = 22
+     * }
+     */
+    public static int MonitorRequestReasonNearProximity() {
+        return MonitorRequestReasonNearProximity;
+    }
+    private static final int MonitorRequestReasonThermalStandby = (int)23L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonThermalStandby = 23
+     * }
+     */
+    public static int MonitorRequestReasonThermalStandby() {
+        return MonitorRequestReasonThermalStandby;
+    }
+    private static final int MonitorRequestReasonResumePdc = (int)24L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonResumePdc = 24
+     * }
+     */
+    public static int MonitorRequestReasonResumePdc() {
+        return MonitorRequestReasonResumePdc;
+    }
+    private static final int MonitorRequestReasonResumeS4 = (int)25L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonResumeS4 = 25
+     * }
+     */
+    public static int MonitorRequestReasonResumeS4() {
+        return MonitorRequestReasonResumeS4;
+    }
+    private static final int MonitorRequestReasonTerminal = (int)26L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonTerminal = 26
+     * }
+     */
+    public static int MonitorRequestReasonTerminal() {
+        return MonitorRequestReasonTerminal;
+    }
+    private static final int MonitorRequestReasonPdcSignal = (int)27L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonPdcSignal = 27
+     * }
+     */
+    public static int MonitorRequestReasonPdcSignal() {
+        return MonitorRequestReasonPdcSignal;
+    }
+    private static final int MonitorRequestReasonAcDcDisplayBurstSuppressed = (int)28L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonAcDcDisplayBurstSuppressed = 28
+     * }
+     */
+    public static int MonitorRequestReasonAcDcDisplayBurstSuppressed() {
+        return MonitorRequestReasonAcDcDisplayBurstSuppressed;
+    }
+    private static final int MonitorRequestReasonSystemStateEntered = (int)29L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonSystemStateEntered = 29
+     * }
+     */
+    public static int MonitorRequestReasonSystemStateEntered() {
+        return MonitorRequestReasonSystemStateEntered;
+    }
+    private static final int MonitorRequestReasonWinrt = (int)30L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonWinrt = 30
+     * }
+     */
+    public static int MonitorRequestReasonWinrt() {
+        return MonitorRequestReasonWinrt;
+    }
+    private static final int MonitorRequestReasonUserInputKeyboard = (int)31L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonUserInputKeyboard = 31
+     * }
+     */
+    public static int MonitorRequestReasonUserInputKeyboard() {
+        return MonitorRequestReasonUserInputKeyboard;
+    }
+    private static final int MonitorRequestReasonUserInputMouse = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonUserInputMouse = 32
+     * }
+     */
+    public static int MonitorRequestReasonUserInputMouse() {
+        return MonitorRequestReasonUserInputMouse;
+    }
+    private static final int MonitorRequestReasonUserInputTouch = (int)33L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonUserInputTouch = 33
+     * }
+     */
+    public static int MonitorRequestReasonUserInputTouch() {
+        return MonitorRequestReasonUserInputTouch;
+    }
+    private static final int MonitorRequestReasonUserInputPen = (int)34L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonUserInputPen = 34
+     * }
+     */
+    public static int MonitorRequestReasonUserInputPen() {
+        return MonitorRequestReasonUserInputPen;
+    }
+    private static final int MonitorRequestReasonUserInputAccelerometer = (int)35L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonUserInputAccelerometer = 35
+     * }
+     */
+    public static int MonitorRequestReasonUserInputAccelerometer() {
+        return MonitorRequestReasonUserInputAccelerometer;
+    }
+    private static final int MonitorRequestReasonUserInputHid = (int)36L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonUserInputHid = 36
+     * }
+     */
+    public static int MonitorRequestReasonUserInputHid() {
+        return MonitorRequestReasonUserInputHid;
+    }
+    private static final int MonitorRequestReasonUserInputPoUserPresent = (int)37L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonUserInputPoUserPresent = 37
+     * }
+     */
+    public static int MonitorRequestReasonUserInputPoUserPresent() {
+        return MonitorRequestReasonUserInputPoUserPresent;
+    }
+    private static final int MonitorRequestReasonUserInputSessionSwitch = (int)38L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonUserInputSessionSwitch = 38
+     * }
+     */
+    public static int MonitorRequestReasonUserInputSessionSwitch() {
+        return MonitorRequestReasonUserInputSessionSwitch;
+    }
+    private static final int MonitorRequestReasonUserInputInitialization = (int)39L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonUserInputInitialization = 39
+     * }
+     */
+    public static int MonitorRequestReasonUserInputInitialization() {
+        return MonitorRequestReasonUserInputInitialization;
+    }
+    private static final int MonitorRequestReasonPdcSignalWindowsMobilePwrNotif = (int)40L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonPdcSignalWindowsMobilePwrNotif = 40
+     * }
+     */
+    public static int MonitorRequestReasonPdcSignalWindowsMobilePwrNotif() {
+        return MonitorRequestReasonPdcSignalWindowsMobilePwrNotif;
+    }
+    private static final int MonitorRequestReasonPdcSignalWindowsMobileShell = (int)41L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonPdcSignalWindowsMobileShell = 41
+     * }
+     */
+    public static int MonitorRequestReasonPdcSignalWindowsMobileShell() {
+        return MonitorRequestReasonPdcSignalWindowsMobileShell;
+    }
+    private static final int MonitorRequestReasonPdcSignalHeyCortana = (int)42L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonPdcSignalHeyCortana = 42
+     * }
+     */
+    public static int MonitorRequestReasonPdcSignalHeyCortana() {
+        return MonitorRequestReasonPdcSignalHeyCortana;
+    }
+    private static final int MonitorRequestReasonPdcSignalHolographicShell = (int)43L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonPdcSignalHolographicShell = 43
+     * }
+     */
+    public static int MonitorRequestReasonPdcSignalHolographicShell() {
+        return MonitorRequestReasonPdcSignalHolographicShell;
+    }
+    private static final int MonitorRequestReasonPdcSignalFingerprint = (int)44L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonPdcSignalFingerprint = 44
+     * }
+     */
+    public static int MonitorRequestReasonPdcSignalFingerprint() {
+        return MonitorRequestReasonPdcSignalFingerprint;
+    }
+    private static final int MonitorRequestReasonDirectedDrips = (int)45L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonDirectedDrips = 45
+     * }
+     */
+    public static int MonitorRequestReasonDirectedDrips() {
+        return MonitorRequestReasonDirectedDrips;
+    }
+    private static final int MonitorRequestReasonDim = (int)46L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonDim = 46
+     * }
+     */
+    public static int MonitorRequestReasonDim() {
+        return MonitorRequestReasonDim;
+    }
+    private static final int MonitorRequestReasonBuiltinPanel = (int)47L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonBuiltinPanel = 47
+     * }
+     */
+    public static int MonitorRequestReasonBuiltinPanel() {
+        return MonitorRequestReasonBuiltinPanel;
+    }
+    private static final int MonitorRequestReasonDisplayRequiredUnDim = (int)48L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonDisplayRequiredUnDim = 48
+     * }
+     */
+    public static int MonitorRequestReasonDisplayRequiredUnDim() {
+        return MonitorRequestReasonDisplayRequiredUnDim;
+    }
+    private static final int MonitorRequestReasonBatteryCountChangeSuppressed = (int)49L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonBatteryCountChangeSuppressed = 49
+     * }
+     */
+    public static int MonitorRequestReasonBatteryCountChangeSuppressed() {
+        return MonitorRequestReasonBatteryCountChangeSuppressed;
+    }
+    private static final int MonitorRequestReasonResumeModernStandby = (int)50L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonResumeModernStandby = 50
+     * }
+     */
+    public static int MonitorRequestReasonResumeModernStandby() {
+        return MonitorRequestReasonResumeModernStandby;
+    }
+    private static final int MonitorRequestReasonMax = (int)51L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MonitorRequestReasonMax = 51
+     * }
+     */
+    public static int MonitorRequestReasonMax() {
+        return MonitorRequestReasonMax;
+    }
+    private static final int MonitorRequestTypeOff = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _POWER_MONITOR_REQUEST_TYPE.MonitorRequestTypeOff = 0
+     * }
+     */
+    public static int MonitorRequestTypeOff() {
+        return MonitorRequestTypeOff;
+    }
+    private static final int MonitorRequestTypeOnAndPresent = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _POWER_MONITOR_REQUEST_TYPE.MonitorRequestTypeOnAndPresent = 1
+     * }
+     */
+    public static int MonitorRequestTypeOnAndPresent() {
+        return MonitorRequestTypeOnAndPresent;
+    }
+    private static final int MonitorRequestTypeToggleOn = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _POWER_MONITOR_REQUEST_TYPE.MonitorRequestTypeToggleOn = 2
+     * }
+     */
+    public static int MonitorRequestTypeToggleOn() {
+        return MonitorRequestTypeToggleOn;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct _POWER_MONITOR_INVOCATION {
+     *     BOOLEAN Console;
+     *     POWER_MONITOR_REQUEST_REASON RequestReason;
+     * } *PPOWER_MONITOR_INVOCATION
+     * }
+     */
+    public static final AddressLayout PPOWER_MONITOR_INVOCATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _RESUME_PERFORMANCE {
+     *     DWORD PostTimeMs;
+     *     ULONGLONG TotalResumeTimeMs;
+     *     ULONGLONG ResumeCompleteTimestamp;
+     * } *PRESUME_PERFORMANCE
+     * }
+     */
+    public static final AddressLayout PRESUME_PERFORMANCE = wgl_h.C_POINTER;
+    private static final int PoAc = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PoAc = 0
+     * }
+     */
+    public static int PoAc() {
+        return PoAc;
+    }
+    private static final int PoDc = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PoDc = 1
+     * }
+     */
+    public static int PoDc() {
+        return PoDc;
+    }
+    private static final int PoHot = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PoHot = 2
+     * }
+     */
+    public static int PoHot() {
+        return PoHot;
+    }
+    private static final int PoConditionMaximum = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.PoConditionMaximum = 3
+     * }
+     */
+    public static int PoConditionMaximum() {
+        return PoConditionMaximum;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD Version;
+     *     GUID Guid;
+     *     SYSTEM_POWER_CONDITION PowerCondition;
+     *     DWORD DataLength;
+     *     BYTE Data[1];
+     * } *PSET_POWER_SETTING_VALUE
+     * }
+     */
+    public static final AddressLayout PSET_POWER_SETTING_VALUE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     GUID Guid;
+     * } *PNOTIFY_USER_POWER_SETTING
+     * }
+     */
+    public static final AddressLayout PNOTIFY_USER_POWER_SETTING = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _APPLICATIONLAUNCH_SETTING_VALUE {
+     *     LARGE_INTEGER ActivationTime;
+     *     DWORD Flags;
+     *     DWORD ButtonInstanceID;
+     * } *PAPPLICATIONLAUNCH_SETTING_VALUE
+     * }
+     */
+    public static final AddressLayout PAPPLICATIONLAUNCH_SETTING_VALUE = wgl_h.C_POINTER;
+    private static final int PlatformRoleUnspecified = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _POWER_PLATFORM_ROLE.PlatformRoleUnspecified = 0
+     * }
+     */
+    public static int PlatformRoleUnspecified() {
+        return PlatformRoleUnspecified;
+    }
+    private static final int PlatformRoleDesktop = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _POWER_PLATFORM_ROLE.PlatformRoleDesktop = 1
+     * }
+     */
+    public static int PlatformRoleDesktop() {
+        return PlatformRoleDesktop;
+    }
+    private static final int PlatformRoleMobile = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _POWER_PLATFORM_ROLE.PlatformRoleMobile = 2
+     * }
+     */
+    public static int PlatformRoleMobile() {
+        return PlatformRoleMobile;
+    }
+    private static final int PlatformRoleWorkstation = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _POWER_PLATFORM_ROLE.PlatformRoleWorkstation = 3
+     * }
+     */
+    public static int PlatformRoleWorkstation() {
+        return PlatformRoleWorkstation;
+    }
+    private static final int PlatformRoleEnterpriseServer = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum _POWER_PLATFORM_ROLE.PlatformRoleEnterpriseServer = 4
+     * }
+     */
+    public static int PlatformRoleEnterpriseServer() {
+        return PlatformRoleEnterpriseServer;
+    }
+    private static final int PlatformRoleSOHOServer = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum _POWER_PLATFORM_ROLE.PlatformRoleSOHOServer = 5
+     * }
+     */
+    public static int PlatformRoleSOHOServer() {
+        return PlatformRoleSOHOServer;
+    }
+    private static final int PlatformRoleAppliancePC = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum _POWER_PLATFORM_ROLE.PlatformRoleAppliancePC = 6
+     * }
+     */
+    public static int PlatformRoleAppliancePC() {
+        return PlatformRoleAppliancePC;
+    }
+    private static final int PlatformRolePerformanceServer = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum _POWER_PLATFORM_ROLE.PlatformRolePerformanceServer = 7
+     * }
+     */
+    public static int PlatformRolePerformanceServer() {
+        return PlatformRolePerformanceServer;
+    }
+    private static final int PlatformRoleSlate = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum _POWER_PLATFORM_ROLE.PlatformRoleSlate = 8
+     * }
+     */
+    public static int PlatformRoleSlate() {
+        return PlatformRoleSlate;
+    }
+    private static final int PlatformRoleMaximum = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * enum _POWER_PLATFORM_ROLE.PlatformRoleMaximum = 9
+     * }
+     */
+    public static int PlatformRoleMaximum() {
+        return PlatformRoleMaximum;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef enum _POWER_PLATFORM_ROLE {
+     *     PlatformRoleUnspecified = 0,
+     *     PlatformRoleDesktop,
+     *     PlatformRoleMobile,
+     *     PlatformRoleWorkstation,
+     *     PlatformRoleEnterpriseServer,
+     *     PlatformRoleSOHOServer,
+     *     PlatformRoleAppliancePC,
+     *     PlatformRolePerformanceServer,
+     *     PlatformRoleSlate,
+     *     PlatformRoleMaximum
+     * } *PPOWER_PLATFORM_ROLE
+     * }
+     */
+    public static final AddressLayout PPOWER_PLATFORM_ROLE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _POWER_PLATFORM_INFORMATION {
+     *     BOOLEAN AoAc;
+     * } *PPOWER_PLATFORM_INFORMATION
+     * }
+     */
+    public static final AddressLayout PPOWER_PLATFORM_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD Granularity;
+     *     DWORD Capacity;
+     * } *PBATTERY_REPORTING_SCALE
+     * }
+     */
+    public static final AddressLayout PBATTERY_REPORTING_SCALE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD Frequency;
+     *     DWORD Flags;
+     *     DWORD PercentFrequency;
+     * } *PPPM_WMI_LEGACY_PERFSTATE
+     * }
+     */
+    public static final AddressLayout PPPM_WMI_LEGACY_PERFSTATE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD Latency;
+     *     DWORD Power;
+     *     DWORD TimeCheck;
+     *     BYTE PromotePercent;
+     *     BYTE DemotePercent;
+     *     BYTE StateType;
+     *     BYTE Reserved;
+     *     DWORD StateFlags;
+     *     DWORD Context;
+     *     DWORD IdleHandler;
+     *     DWORD Reserved1;
+     * } *PPPM_WMI_IDLE_STATE
+     * }
+     */
+    public static final AddressLayout PPPM_WMI_IDLE_STATE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD Type;
+     *     DWORD Count;
+     *     DWORD TargetState;
+     *     DWORD OldState;
+     *     DWORD64 TargetProcessors;
+     *     PPM_WMI_IDLE_STATE State[1];
+     * } *PPPM_WMI_IDLE_STATES
+     * }
+     */
+    public static final AddressLayout PPPM_WMI_IDLE_STATES = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD Type;
+     *     DWORD Count;
+     *     DWORD TargetState;
+     *     DWORD OldState;
+     *     PVOID TargetProcessors;
+     *     PPM_WMI_IDLE_STATE State[1];
+     * } *PPPM_WMI_IDLE_STATES_EX
+     * }
+     */
+    public static final AddressLayout PPPM_WMI_IDLE_STATES_EX = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD Frequency;
+     *     DWORD Power;
+     *     BYTE PercentFrequency;
+     *     BYTE IncreaseLevel;
+     *     BYTE DecreaseLevel;
+     *     BYTE Type;
+     *     DWORD IncreaseTime;
+     *     DWORD DecreaseTime;
+     *     DWORD64 Control;
+     *     DWORD64 Status;
+     *     DWORD HitCount;
+     *     DWORD Reserved1;
+     *     DWORD64 Reserved2;
+     *     DWORD64 Reserved3;
+     * } *PPPM_WMI_PERF_STATE
+     * }
+     */
+    public static final AddressLayout PPPM_WMI_PERF_STATE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD Count;
+     *     DWORD MaxFrequency;
+     *     DWORD CurrentState;
+     *     DWORD MaxPerfState;
+     *     DWORD MinPerfState;
+     *     DWORD LowestPerfState;
+     *     DWORD ThermalConstraint;
+     *     BYTE BusyAdjThreshold;
+     *     BYTE PolicyType;
+     *     BYTE Type;
+     *     BYTE Reserved;
+     *     DWORD TimerInterval;
+     *     DWORD64 TargetProcessors;
+     *     DWORD PStateHandler;
+     *     DWORD PStateContext;
+     *     DWORD TStateHandler;
+     *     DWORD TStateContext;
+     *     DWORD FeedbackHandler;
+     *     DWORD Reserved1;
+     *     DWORD64 Reserved2;
+     *     PPM_WMI_PERF_STATE State[1];
+     * } *PPPM_WMI_PERF_STATES
+     * }
+     */
+    public static final AddressLayout PPPM_WMI_PERF_STATES = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD Count;
+     *     DWORD MaxFrequency;
+     *     DWORD CurrentState;
+     *     DWORD MaxPerfState;
+     *     DWORD MinPerfState;
+     *     DWORD LowestPerfState;
+     *     DWORD ThermalConstraint;
+     *     BYTE BusyAdjThreshold;
+     *     BYTE PolicyType;
+     *     BYTE Type;
+     *     BYTE Reserved;
+     *     DWORD TimerInterval;
+     *     PVOID TargetProcessors;
+     *     DWORD PStateHandler;
+     *     DWORD PStateContext;
+     *     DWORD TStateHandler;
+     *     DWORD TStateContext;
+     *     DWORD FeedbackHandler;
+     *     DWORD Reserved1;
+     *     DWORD64 Reserved2;
+     *     PPM_WMI_PERF_STATE State[1];
+     * } *PPPM_WMI_PERF_STATES_EX
+     * }
+     */
+    public static final AddressLayout PPPM_WMI_PERF_STATES_EX = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD IdleTransitions;
+     *     DWORD FailedTransitions;
+     *     DWORD InvalidBucketIndex;
+     *     DWORD64 TotalTime;
+     *     DWORD IdleTimeBuckets[6];
+     * } *PPPM_IDLE_STATE_ACCOUNTING
+     * }
+     */
+    public static final AddressLayout PPPM_IDLE_STATE_ACCOUNTING = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD StateCount;
+     *     DWORD TotalTransitions;
+     *     DWORD ResetCount;
+     *     DWORD64 StartTime;
+     *     PPM_IDLE_STATE_ACCOUNTING State[1];
+     * } *PPPM_IDLE_ACCOUNTING
+     * }
+     */
+    public static final AddressLayout PPPM_IDLE_ACCOUNTING = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD64 TotalTimeUs;
+     *     DWORD MinTimeUs;
+     *     DWORD MaxTimeUs;
+     *     DWORD Count;
+     * } *PPPM_IDLE_STATE_BUCKET_EX
+     * }
+     */
+    public static final AddressLayout PPPM_IDLE_STATE_BUCKET_EX = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD64 TotalTime;
+     *     DWORD IdleTransitions;
+     *     DWORD FailedTransitions;
+     *     DWORD InvalidBucketIndex;
+     *     DWORD MinTimeUs;
+     *     DWORD MaxTimeUs;
+     *     DWORD CancelledTransitions;
+     *     PPM_IDLE_STATE_BUCKET_EX IdleTimeBuckets[16];
+     * } *PPPM_IDLE_STATE_ACCOUNTING_EX
+     * }
+     */
+    public static final AddressLayout PPPM_IDLE_STATE_ACCOUNTING_EX = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD StateCount;
+     *     DWORD TotalTransitions;
+     *     DWORD ResetCount;
+     *     DWORD AbortCount;
+     *     DWORD64 StartTime;
+     *     PPM_IDLE_STATE_ACCOUNTING_EX State[1];
+     * } *PPPM_IDLE_ACCOUNTING_EX
+     * }
+     */
+    public static final AddressLayout PPPM_IDLE_ACCOUNTING_EX = wgl_h.C_POINTER;
+
+    private static class PPM_PERFSTATE_CHANGE_GUID$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("PPM_PERFSTATE_CHANGE_GUID").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_PERFSTATE_CHANGE_GUID
+     * }
+     */
+    public static GroupLayout PPM_PERFSTATE_CHANGE_GUID$layout() {
+        return PPM_PERFSTATE_CHANGE_GUID$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_PERFSTATE_CHANGE_GUID
+     * }
+     */
+    public static MemorySegment PPM_PERFSTATE_CHANGE_GUID() {
+        return PPM_PERFSTATE_CHANGE_GUID$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_PERFSTATE_CHANGE_GUID
+     * }
+     */
+    public static void PPM_PERFSTATE_CHANGE_GUID(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, PPM_PERFSTATE_CHANGE_GUID$constants.SEGMENT, 0L, PPM_PERFSTATE_CHANGE_GUID$constants.LAYOUT.byteSize());
+    }
+
+    private static class PPM_PERFSTATE_DOMAIN_CHANGE_GUID$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("PPM_PERFSTATE_DOMAIN_CHANGE_GUID").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_PERFSTATE_DOMAIN_CHANGE_GUID
+     * }
+     */
+    public static GroupLayout PPM_PERFSTATE_DOMAIN_CHANGE_GUID$layout() {
+        return PPM_PERFSTATE_DOMAIN_CHANGE_GUID$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_PERFSTATE_DOMAIN_CHANGE_GUID
+     * }
+     */
+    public static MemorySegment PPM_PERFSTATE_DOMAIN_CHANGE_GUID() {
+        return PPM_PERFSTATE_DOMAIN_CHANGE_GUID$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_PERFSTATE_DOMAIN_CHANGE_GUID
+     * }
+     */
+    public static void PPM_PERFSTATE_DOMAIN_CHANGE_GUID(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, PPM_PERFSTATE_DOMAIN_CHANGE_GUID$constants.SEGMENT, 0L, PPM_PERFSTATE_DOMAIN_CHANGE_GUID$constants.LAYOUT.byteSize());
+    }
+
+    private static class PPM_IDLESTATE_CHANGE_GUID$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("PPM_IDLESTATE_CHANGE_GUID").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_IDLESTATE_CHANGE_GUID
+     * }
+     */
+    public static GroupLayout PPM_IDLESTATE_CHANGE_GUID$layout() {
+        return PPM_IDLESTATE_CHANGE_GUID$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_IDLESTATE_CHANGE_GUID
+     * }
+     */
+    public static MemorySegment PPM_IDLESTATE_CHANGE_GUID() {
+        return PPM_IDLESTATE_CHANGE_GUID$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_IDLESTATE_CHANGE_GUID
+     * }
+     */
+    public static void PPM_IDLESTATE_CHANGE_GUID(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, PPM_IDLESTATE_CHANGE_GUID$constants.SEGMENT, 0L, PPM_IDLESTATE_CHANGE_GUID$constants.LAYOUT.byteSize());
+    }
+
+    private static class PPM_PERFSTATES_DATA_GUID$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("PPM_PERFSTATES_DATA_GUID").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_PERFSTATES_DATA_GUID
+     * }
+     */
+    public static GroupLayout PPM_PERFSTATES_DATA_GUID$layout() {
+        return PPM_PERFSTATES_DATA_GUID$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_PERFSTATES_DATA_GUID
+     * }
+     */
+    public static MemorySegment PPM_PERFSTATES_DATA_GUID() {
+        return PPM_PERFSTATES_DATA_GUID$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_PERFSTATES_DATA_GUID
+     * }
+     */
+    public static void PPM_PERFSTATES_DATA_GUID(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, PPM_PERFSTATES_DATA_GUID$constants.SEGMENT, 0L, PPM_PERFSTATES_DATA_GUID$constants.LAYOUT.byteSize());
+    }
+
+    private static class PPM_IDLESTATES_DATA_GUID$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("PPM_IDLESTATES_DATA_GUID").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_IDLESTATES_DATA_GUID
+     * }
+     */
+    public static GroupLayout PPM_IDLESTATES_DATA_GUID$layout() {
+        return PPM_IDLESTATES_DATA_GUID$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_IDLESTATES_DATA_GUID
+     * }
+     */
+    public static MemorySegment PPM_IDLESTATES_DATA_GUID() {
+        return PPM_IDLESTATES_DATA_GUID$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_IDLESTATES_DATA_GUID
+     * }
+     */
+    public static void PPM_IDLESTATES_DATA_GUID(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, PPM_IDLESTATES_DATA_GUID$constants.SEGMENT, 0L, PPM_IDLESTATES_DATA_GUID$constants.LAYOUT.byteSize());
+    }
+
+    private static class PPM_IDLE_ACCOUNTING_GUID$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("PPM_IDLE_ACCOUNTING_GUID").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_IDLE_ACCOUNTING_GUID
+     * }
+     */
+    public static GroupLayout PPM_IDLE_ACCOUNTING_GUID$layout() {
+        return PPM_IDLE_ACCOUNTING_GUID$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_IDLE_ACCOUNTING_GUID
+     * }
+     */
+    public static MemorySegment PPM_IDLE_ACCOUNTING_GUID() {
+        return PPM_IDLE_ACCOUNTING_GUID$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_IDLE_ACCOUNTING_GUID
+     * }
+     */
+    public static void PPM_IDLE_ACCOUNTING_GUID(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, PPM_IDLE_ACCOUNTING_GUID$constants.SEGMENT, 0L, PPM_IDLE_ACCOUNTING_GUID$constants.LAYOUT.byteSize());
+    }
+
+    private static class PPM_IDLE_ACCOUNTING_EX_GUID$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("PPM_IDLE_ACCOUNTING_EX_GUID").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_IDLE_ACCOUNTING_EX_GUID
+     * }
+     */
+    public static GroupLayout PPM_IDLE_ACCOUNTING_EX_GUID$layout() {
+        return PPM_IDLE_ACCOUNTING_EX_GUID$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_IDLE_ACCOUNTING_EX_GUID
+     * }
+     */
+    public static MemorySegment PPM_IDLE_ACCOUNTING_EX_GUID() {
+        return PPM_IDLE_ACCOUNTING_EX_GUID$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_IDLE_ACCOUNTING_EX_GUID
+     * }
+     */
+    public static void PPM_IDLE_ACCOUNTING_EX_GUID(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, PPM_IDLE_ACCOUNTING_EX_GUID$constants.SEGMENT, 0L, PPM_IDLE_ACCOUNTING_EX_GUID$constants.LAYOUT.byteSize());
+    }
+
+    private static class PPM_THERMALCONSTRAINT_GUID$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("PPM_THERMALCONSTRAINT_GUID").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_THERMALCONSTRAINT_GUID
+     * }
+     */
+    public static GroupLayout PPM_THERMALCONSTRAINT_GUID$layout() {
+        return PPM_THERMALCONSTRAINT_GUID$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_THERMALCONSTRAINT_GUID
+     * }
+     */
+    public static MemorySegment PPM_THERMALCONSTRAINT_GUID() {
+        return PPM_THERMALCONSTRAINT_GUID$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_THERMALCONSTRAINT_GUID
+     * }
+     */
+    public static void PPM_THERMALCONSTRAINT_GUID(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, PPM_THERMALCONSTRAINT_GUID$constants.SEGMENT, 0L, PPM_THERMALCONSTRAINT_GUID$constants.LAYOUT.byteSize());
+    }
+
+    private static class PPM_PERFMON_PERFSTATE_GUID$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("PPM_PERFMON_PERFSTATE_GUID").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_PERFMON_PERFSTATE_GUID
+     * }
+     */
+    public static GroupLayout PPM_PERFMON_PERFSTATE_GUID$layout() {
+        return PPM_PERFMON_PERFSTATE_GUID$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_PERFMON_PERFSTATE_GUID
+     * }
+     */
+    public static MemorySegment PPM_PERFMON_PERFSTATE_GUID() {
+        return PPM_PERFMON_PERFSTATE_GUID$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_PERFMON_PERFSTATE_GUID
+     * }
+     */
+    public static void PPM_PERFMON_PERFSTATE_GUID(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, PPM_PERFMON_PERFSTATE_GUID$constants.SEGMENT, 0L, PPM_PERFMON_PERFSTATE_GUID$constants.LAYOUT.byteSize());
+    }
+
+    private static class PPM_THERMAL_POLICY_CHANGE_GUID$constants {
+        public static final GroupLayout LAYOUT = _GUID.layout();
+        public static final MemorySegment SEGMENT = wgl_h.findOrThrow("PPM_THERMAL_POLICY_CHANGE_GUID").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_THERMAL_POLICY_CHANGE_GUID
+     * }
+     */
+    public static GroupLayout PPM_THERMAL_POLICY_CHANGE_GUID$layout() {
+        return PPM_THERMAL_POLICY_CHANGE_GUID$constants.LAYOUT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_THERMAL_POLICY_CHANGE_GUID
+     * }
+     */
+    public static MemorySegment PPM_THERMAL_POLICY_CHANGE_GUID() {
+        return PPM_THERMAL_POLICY_CHANGE_GUID$constants.SEGMENT;
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern const GUID PPM_THERMAL_POLICY_CHANGE_GUID
+     * }
+     */
+    public static void PPM_THERMAL_POLICY_CHANGE_GUID(MemorySegment varValue) {
+        MemorySegment.copy(varValue, 0L, PPM_THERMAL_POLICY_CHANGE_GUID$constants.SEGMENT, 0L, PPM_THERMAL_POLICY_CHANGE_GUID$constants.LAYOUT.byteSize());
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD State;
+     *     DWORD Status;
+     *     DWORD Latency;
+     *     DWORD Speed;
+     *     DWORD Processor;
+     * } *PPPM_PERFSTATE_EVENT
+     * }
+     */
+    public static final AddressLayout PPPM_PERFSTATE_EVENT = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD State;
+     *     DWORD Latency;
+     *     DWORD Speed;
+     *     DWORD64 Processors;
+     * } *PPPM_PERFSTATE_DOMAIN_EVENT
+     * }
+     */
+    public static final AddressLayout PPPM_PERFSTATE_DOMAIN_EVENT = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD NewState;
+     *     DWORD OldState;
+     *     DWORD64 Processors;
+     * } *PPPM_IDLESTATE_EVENT
+     * }
+     */
+    public static final AddressLayout PPPM_IDLESTATE_EVENT = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD ThermalConstraint;
+     *     DWORD64 Processors;
+     * } *PPPM_THERMALCHANGE_EVENT
+     * }
+     */
+    public static final AddressLayout PPPM_THERMALCHANGE_EVENT = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     BYTE Mode;
+     *     DWORD64 Processors;
+     * } *PPPM_THERMAL_POLICY_EVENT
+     * }
+     */
+    public static final AddressLayout PPPM_THERMAL_POLICY_EVENT = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     POWER_ACTION Action;
+     *     DWORD Flags;
+     *     DWORD EventCode;
+     * } *PPOWER_ACTION_POLICY
+     * }
+     */
+    public static final AddressLayout PPOWER_ACTION_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     BOOLEAN Enable;
+     *     BYTE Spare[3];
+     *     DWORD BatteryLevel;
+     *     POWER_ACTION_POLICY PowerPolicy;
+     *     SYSTEM_POWER_STATE MinSystemState;
+     * } *PSYSTEM_POWER_LEVEL
+     * }
+     */
+    public static final AddressLayout PSYSTEM_POWER_LEVEL = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _SYSTEM_POWER_POLICY {
+     *     DWORD Revision;
+     *     POWER_ACTION_POLICY PowerButton;
+     *     POWER_ACTION_POLICY SleepButton;
+     *     POWER_ACTION_POLICY LidClose;
+     *     SYSTEM_POWER_STATE LidOpenWake;
+     *     DWORD Reserved;
+     *     POWER_ACTION_POLICY Idle;
+     *     DWORD IdleTimeout;
+     *     BYTE IdleSensitivity;
+     *     BYTE DynamicThrottle;
+     *     BYTE Spare2[2];
+     *     SYSTEM_POWER_STATE MinSleep;
+     *     SYSTEM_POWER_STATE MaxSleep;
+     *     SYSTEM_POWER_STATE ReducedLatencySleep;
+     *     DWORD WinLogonFlags;
+     *     DWORD Spare3;
+     *     DWORD DozeS4Timeout;
+     *     DWORD BroadcastCapacityResolution;
+     *     SYSTEM_POWER_LEVEL DischargePolicy[4];
+     *     DWORD VideoTimeout;
+     *     BOOLEAN VideoDimDisplay;
+     *     DWORD VideoReserved[3];
+     *     DWORD SpindownTimeout;
+     *     BOOLEAN OptimizeForPower;
+     *     BYTE FanThrottleTolerance;
+     *     BYTE ForcedThrottle;
+     *     BYTE MinThrottle;
+     *     POWER_ACTION_POLICY OverThrottled;
+     * } *PSYSTEM_POWER_POLICY
+     * }
+     */
+    public static final AddressLayout PSYSTEM_POWER_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD TimeCheck;
+     *     BYTE DemotePercent;
+     *     BYTE PromotePercent;
+     *     BYTE Spare[2];
+     * } *PPROCESSOR_IDLESTATE_INFO
+     * }
+     */
+    public static final AddressLayout PPROCESSOR_IDLESTATE_INFO = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     WORD Revision;
+     *     union {
+     *         WORD AsWORD;
+     *         struct {
+     *             WORD AllowScaling : 1;
+     *             WORD Disabled : 1;
+     *             WORD Reserved : 14;
+     *         };
+     *     } Flags;
+     *     DWORD PolicyCount;
+     *     PROCESSOR_IDLESTATE_INFO Policy[3];
+     * } *PPROCESSOR_IDLESTATE_POLICY
+     * }
+     */
+    public static final AddressLayout PPROCESSOR_IDLESTATE_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PROCESSOR_POWER_POLICY_INFO {
+     *     DWORD TimeCheck;
+     *     DWORD DemoteLimit;
+     *     DWORD PromoteLimit;
+     *     BYTE DemotePercent;
+     *     BYTE PromotePercent;
+     *     BYTE Spare[2];
+     *     DWORD AllowDemotion : 1;
+     *     DWORD AllowPromotion : 1;
+     *     DWORD Reserved : 30;
+     * } *PPROCESSOR_POWER_POLICY_INFO
+     * }
+     */
+    public static final AddressLayout PPROCESSOR_POWER_POLICY_INFO = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PROCESSOR_POWER_POLICY {
+     *     DWORD Revision;
+     *     BYTE DynamicThrottle;
+     *     BYTE Spare[3];
+     *     DWORD DisableCStates : 1;
+     *     DWORD Reserved : 31;
+     *     DWORD PolicyCount;
+     *     PROCESSOR_POWER_POLICY_INFO Policy[3];
+     * } *PPROCESSOR_POWER_POLICY
+     * }
+     */
+    public static final AddressLayout PPROCESSOR_POWER_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     DWORD Revision;
+     *     BYTE MaxThrottle;
+     *     BYTE MinThrottle;
+     *     BYTE BusyAdjThreshold;
+     *     union {
+     *         BYTE Spare;
+     *         union {
+     *             BYTE AsBYTE;
+     *             struct {
+     *                 BYTE NoDomainAccounting : 1;
+     *                 BYTE IncreasePolicy : 2;
+     *                 BYTE DecreasePolicy : 2;
+     *                 BYTE Reserved : 3;
+     *             };
+     *         } Flags;
+     *     };
+     *     DWORD TimeCheck;
+     *     DWORD IncreaseTime;
+     *     DWORD DecreaseTime;
+     *     DWORD IncreasePercent;
+     *     DWORD DecreasePercent;
+     * } *PPROCESSOR_PERFSTATE_POLICY
+     * }
+     */
+    public static final AddressLayout PPROCESSOR_PERFSTATE_POLICY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _ADMINISTRATOR_POWER_POLICY {
+     *     SYSTEM_POWER_STATE MinSleep;
+     *     SYSTEM_POWER_STATE MaxSleep;
+     *     DWORD MinVideoTimeout;
+     *     DWORD MaxVideoTimeout;
+     *     DWORD MinSpindownTimeout;
+     *     DWORD MaxSpindownTimeout;
+     * } *PADMINISTRATOR_POWER_POLICY
+     * }
+     */
+    public static final AddressLayout PADMINISTRATOR_POWER_POLICY = wgl_h.C_POINTER;
+    private static final int HiberFileBucket1GB = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _HIBERFILE_BUCKET_SIZE.HiberFileBucket1GB = 0
+     * }
+     */
+    public static int HiberFileBucket1GB() {
+        return HiberFileBucket1GB;
+    }
+    private static final int HiberFileBucket2GB = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _HIBERFILE_BUCKET_SIZE.HiberFileBucket2GB = 1
+     * }
+     */
+    public static int HiberFileBucket2GB() {
+        return HiberFileBucket2GB;
+    }
+    private static final int HiberFileBucket4GB = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _HIBERFILE_BUCKET_SIZE.HiberFileBucket4GB = 2
+     * }
+     */
+    public static int HiberFileBucket4GB() {
+        return HiberFileBucket4GB;
+    }
+    private static final int HiberFileBucket8GB = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _HIBERFILE_BUCKET_SIZE.HiberFileBucket8GB = 3
+     * }
+     */
+    public static int HiberFileBucket8GB() {
+        return HiberFileBucket8GB;
+    }
+    private static final int HiberFileBucket16GB = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum _HIBERFILE_BUCKET_SIZE.HiberFileBucket16GB = 4
+     * }
+     */
+    public static int HiberFileBucket16GB() {
+        return HiberFileBucket16GB;
+    }
+    private static final int HiberFileBucket32GB = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum _HIBERFILE_BUCKET_SIZE.HiberFileBucket32GB = 5
+     * }
+     */
+    public static int HiberFileBucket32GB() {
+        return HiberFileBucket32GB;
+    }
+    private static final int HiberFileBucketUnlimited = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum _HIBERFILE_BUCKET_SIZE.HiberFileBucketUnlimited = 6
+     * }
+     */
+    public static int HiberFileBucketUnlimited() {
+        return HiberFileBucketUnlimited;
+    }
+    private static final int HiberFileBucketMax = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum _HIBERFILE_BUCKET_SIZE.HiberFileBucketMax = 7
+     * }
+     */
+    public static int HiberFileBucketMax() {
+        return HiberFileBucketMax;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef enum _HIBERFILE_BUCKET_SIZE {
+     *     HiberFileBucket1GB = 0,
+     *     HiberFileBucket2GB,
+     *     HiberFileBucket4GB,
+     *     HiberFileBucket8GB,
+     *     HiberFileBucket16GB,
+     *     HiberFileBucket32GB,
+     *     HiberFileBucketUnlimited,
+     *     HiberFileBucketMax
+     * } *PHIBERFILE_BUCKET_SIZE
+     * }
+     */
+    public static final AddressLayout PHIBERFILE_BUCKET_SIZE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _HIBERFILE_BUCKET {
+     *     DWORD64 MaxPhysicalMemory;
+     *     DWORD PhysicalMemoryPercent[3];
+     * } *PHIBERFILE_BUCKET
+     * }
+     */
+    public static final AddressLayout PHIBERFILE_BUCKET = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     BOOLEAN PowerButtonPresent;
+     *     BOOLEAN SleepButtonPresent;
+     *     BOOLEAN LidPresent;
+     *     BOOLEAN SystemS1;
+     *     BOOLEAN SystemS2;
+     *     BOOLEAN SystemS3;
+     *     BOOLEAN SystemS4;
+     *     BOOLEAN SystemS5;
+     *     BOOLEAN HiberFilePresent;
+     *     BOOLEAN FullWake;
+     *     BOOLEAN VideoDimPresent;
+     *     BOOLEAN ApmPresent;
+     *     BOOLEAN UpsPresent;
+     *     BOOLEAN ThermalControl;
+     *     BOOLEAN ProcessorThrottle;
+     *     BYTE ProcessorMinThrottle;
+     *     BYTE ProcessorMaxThrottle;
+     *     BOOLEAN FastSystemS4;
+     *     BOOLEAN Hiberboot;
+     *     BOOLEAN WakeAlarmPresent;
+     *     BOOLEAN AoAc;
+     *     BOOLEAN DiskSpinDown;
+     *     BYTE HiberFileType;
+     *     BOOLEAN AoAcConnectivitySupported;
+     *     BYTE spare3[6];
+     *     BOOLEAN SystemBatteriesPresent;
+     *     BOOLEAN BatteriesAreShortTerm;
+     *     BATTERY_REPORTING_SCALE BatteryScale[3];
+     *     SYSTEM_POWER_STATE AcOnLineWake;
+     *     SYSTEM_POWER_STATE SoftLidWake;
+     *     SYSTEM_POWER_STATE RtcWake;
+     *     SYSTEM_POWER_STATE MinDeviceWakeState;
+     *     SYSTEM_POWER_STATE DefaultLowLatencyWake;
+     * } *PSYSTEM_POWER_CAPABILITIES
+     * }
+     */
+    public static final AddressLayout PSYSTEM_POWER_CAPABILITIES = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct {
+     *     BOOLEAN AcOnLine;
+     *     BOOLEAN BatteryPresent;
+     *     BOOLEAN Charging;
+     *     BOOLEAN Discharging;
+     *     BOOLEAN Spare1[3];
+     *     BYTE Tag;
+     *     DWORD MaxCapacity;
+     *     DWORD RemainingCapacity;
+     *     DWORD Rate;
+     *     DWORD EstimatedTime;
+     *     DWORD DefaultAlert1;
+     *     DWORD DefaultAlert2;
+     * } *PSYSTEM_BATTERY_STATE
+     * }
+     */
+    public static final AddressLayout PSYSTEM_BATTERY_STATE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_DOS_HEADER {
+     *     WORD e_magic;
+     *     WORD e_cblp;
+     *     WORD e_cp;
+     *     WORD e_crlc;
+     *     WORD e_cparhdr;
+     *     WORD e_minalloc;
+     *     WORD e_maxalloc;
+     *     WORD e_ss;
+     *     WORD e_sp;
+     *     WORD e_csum;
+     *     WORD e_ip;
+     *     WORD e_cs;
+     *     WORD e_lfarlc;
+     *     WORD e_ovno;
+     *     WORD e_res[4];
+     *     WORD e_oemid;
+     *     WORD e_oeminfo;
+     *     WORD e_res2[10];
+     *     LONG e_lfanew;
+     * } *PIMAGE_DOS_HEADER
+     * }
+     */
+    public static final AddressLayout PIMAGE_DOS_HEADER = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_OS2_HEADER {
+     *     WORD ne_magic;
+     *     CHAR ne_ver;
+     *     CHAR ne_rev;
+     *     WORD ne_enttab;
+     *     WORD ne_cbenttab;
+     *     LONG ne_crc;
+     *     WORD ne_flags;
+     *     WORD ne_autodata;
+     *     WORD ne_heap;
+     *     WORD ne_stack;
+     *     LONG ne_csip;
+     *     LONG ne_sssp;
+     *     WORD ne_cseg;
+     *     WORD ne_cmod;
+     *     WORD ne_cbnrestab;
+     *     WORD ne_segtab;
+     *     WORD ne_rsrctab;
+     *     WORD ne_restab;
+     *     WORD ne_modtab;
+     *     WORD ne_imptab;
+     *     LONG ne_nrestab;
+     *     WORD ne_cmovent;
+     *     WORD ne_align;
+     *     WORD ne_cres;
+     *     BYTE ne_exetyp;
+     *     BYTE ne_flagsothers;
+     *     WORD ne_pretthunks;
+     *     WORD ne_psegrefbytes;
+     *     WORD ne_swaparea;
+     *     WORD ne_expver;
+     * } *PIMAGE_OS2_HEADER
+     * }
+     */
+    public static final AddressLayout PIMAGE_OS2_HEADER = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_VXD_HEADER {
+     *     WORD e32_magic;
+     *     BYTE e32_border;
+     *     BYTE e32_worder;
+     *     DWORD e32_level;
+     *     WORD e32_cpu;
+     *     WORD e32_os;
+     *     DWORD e32_ver;
+     *     DWORD e32_mflags;
+     *     DWORD e32_mpages;
+     *     DWORD e32_startobj;
+     *     DWORD e32_eip;
+     *     DWORD e32_stackobj;
+     *     DWORD e32_esp;
+     *     DWORD e32_pagesize;
+     *     DWORD e32_lastpagesize;
+     *     DWORD e32_fixupsize;
+     *     DWORD e32_fixupsum;
+     *     DWORD e32_ldrsize;
+     *     DWORD e32_ldrsum;
+     *     DWORD e32_objtab;
+     *     DWORD e32_objcnt;
+     *     DWORD e32_objmap;
+     *     DWORD e32_itermap;
+     *     DWORD e32_rsrctab;
+     *     DWORD e32_rsrccnt;
+     *     DWORD e32_restab;
+     *     DWORD e32_enttab;
+     *     DWORD e32_dirtab;
+     *     DWORD e32_dircnt;
+     *     DWORD e32_fpagetab;
+     *     DWORD e32_frectab;
+     *     DWORD e32_impmod;
+     *     DWORD e32_impmodcnt;
+     *     DWORD e32_impproc;
+     *     DWORD e32_pagesum;
+     *     DWORD e32_datapage;
+     *     DWORD e32_preload;
+     *     DWORD e32_nrestab;
+     *     DWORD e32_cbnrestab;
+     *     DWORD e32_nressum;
+     *     DWORD e32_autodata;
+     *     DWORD e32_debuginfo;
+     *     DWORD e32_debuglen;
+     *     DWORD e32_instpreload;
+     *     DWORD e32_instdemand;
+     *     DWORD e32_heapsize;
+     *     BYTE e32_res3[12];
+     *     DWORD e32_winresoff;
+     *     DWORD e32_winreslen;
+     *     WORD e32_devid;
+     *     WORD e32_ddkver;
+     * } *PIMAGE_VXD_HEADER
+     * }
+     */
+    public static final AddressLayout PIMAGE_VXD_HEADER = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_FILE_HEADER {
+     *     WORD Machine;
+     *     WORD NumberOfSections;
+     *     DWORD TimeDateStamp;
+     *     DWORD PointerToSymbolTable;
+     *     DWORD NumberOfSymbols;
+     *     WORD SizeOfOptionalHeader;
+     *     WORD Characteristics;
+     * } *PIMAGE_FILE_HEADER
+     * }
+     */
+    public static final AddressLayout PIMAGE_FILE_HEADER = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_DATA_DIRECTORY {
+     *     DWORD VirtualAddress;
+     *     DWORD Size;
+     * } *PIMAGE_DATA_DIRECTORY
+     * }
+     */
+    public static final AddressLayout PIMAGE_DATA_DIRECTORY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_OPTIONAL_HEADER {
+     *     WORD Magic;
+     *     BYTE MajorLinkerVersion;
+     *     BYTE MinorLinkerVersion;
+     *     DWORD SizeOfCode;
+     *     DWORD SizeOfInitializedData;
+     *     DWORD SizeOfUninitializedData;
+     *     DWORD AddressOfEntryPoint;
+     *     DWORD BaseOfCode;
+     *     DWORD BaseOfData;
+     *     DWORD ImageBase;
+     *     DWORD SectionAlignment;
+     *     DWORD FileAlignment;
+     *     WORD MajorOperatingSystemVersion;
+     *     WORD MinorOperatingSystemVersion;
+     *     WORD MajorImageVersion;
+     *     WORD MinorImageVersion;
+     *     WORD MajorSubsystemVersion;
+     *     WORD MinorSubsystemVersion;
+     *     DWORD Win32VersionValue;
+     *     DWORD SizeOfImage;
+     *     DWORD SizeOfHeaders;
+     *     DWORD CheckSum;
+     *     WORD Subsystem;
+     *     WORD DllCharacteristics;
+     *     DWORD SizeOfStackReserve;
+     *     DWORD SizeOfStackCommit;
+     *     DWORD SizeOfHeapReserve;
+     *     DWORD SizeOfHeapCommit;
+     *     DWORD LoaderFlags;
+     *     DWORD NumberOfRvaAndSizes;
+     *     IMAGE_DATA_DIRECTORY DataDirectory[16];
+     * } *PIMAGE_OPTIONAL_HEADER32
+     * }
+     */
+    public static final AddressLayout PIMAGE_OPTIONAL_HEADER32 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_ROM_OPTIONAL_HEADER {
+     *     WORD Magic;
+     *     BYTE MajorLinkerVersion;
+     *     BYTE MinorLinkerVersion;
+     *     DWORD SizeOfCode;
+     *     DWORD SizeOfInitializedData;
+     *     DWORD SizeOfUninitializedData;
+     *     DWORD AddressOfEntryPoint;
+     *     DWORD BaseOfCode;
+     *     DWORD BaseOfData;
+     *     DWORD BaseOfBss;
+     *     DWORD GprMask;
+     *     DWORD CprMask[4];
+     *     DWORD GpValue;
+     * } *PIMAGE_ROM_OPTIONAL_HEADER
+     * }
+     */
+    public static final AddressLayout PIMAGE_ROM_OPTIONAL_HEADER = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_OPTIONAL_HEADER64 {
+     *     WORD Magic;
+     *     BYTE MajorLinkerVersion;
+     *     BYTE MinorLinkerVersion;
+     *     DWORD SizeOfCode;
+     *     DWORD SizeOfInitializedData;
+     *     DWORD SizeOfUninitializedData;
+     *     DWORD AddressOfEntryPoint;
+     *     DWORD BaseOfCode;
+     *     ULONGLONG ImageBase;
+     *     DWORD SectionAlignment;
+     *     DWORD FileAlignment;
+     *     WORD MajorOperatingSystemVersion;
+     *     WORD MinorOperatingSystemVersion;
+     *     WORD MajorImageVersion;
+     *     WORD MinorImageVersion;
+     *     WORD MajorSubsystemVersion;
+     *     WORD MinorSubsystemVersion;
+     *     DWORD Win32VersionValue;
+     *     DWORD SizeOfImage;
+     *     DWORD SizeOfHeaders;
+     *     DWORD CheckSum;
+     *     WORD Subsystem;
+     *     WORD DllCharacteristics;
+     *     ULONGLONG SizeOfStackReserve;
+     *     ULONGLONG SizeOfStackCommit;
+     *     ULONGLONG SizeOfHeapReserve;
+     *     ULONGLONG SizeOfHeapCommit;
+     *     DWORD LoaderFlags;
+     *     DWORD NumberOfRvaAndSizes;
+     *     IMAGE_DATA_DIRECTORY DataDirectory[16];
+     * } *PIMAGE_OPTIONAL_HEADER64
+     * }
+     */
+    public static final AddressLayout PIMAGE_OPTIONAL_HEADER64 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef PIMAGE_OPTIONAL_HEADER64 PIMAGE_OPTIONAL_HEADER
+     * }
+     */
+    public static final AddressLayout PIMAGE_OPTIONAL_HEADER = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_NT_HEADERS64 {
+     *     DWORD Signature;
+     *     IMAGE_FILE_HEADER FileHeader;
+     *     IMAGE_OPTIONAL_HEADER64 OptionalHeader;
+     * } *PIMAGE_NT_HEADERS64
+     * }
+     */
+    public static final AddressLayout PIMAGE_NT_HEADERS64 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_NT_HEADERS {
+     *     DWORD Signature;
+     *     IMAGE_FILE_HEADER FileHeader;
+     *     IMAGE_OPTIONAL_HEADER32 OptionalHeader;
+     * } *PIMAGE_NT_HEADERS32
+     * }
+     */
+    public static final AddressLayout PIMAGE_NT_HEADERS32 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_ROM_HEADERS {
+     *     IMAGE_FILE_HEADER FileHeader;
+     *     IMAGE_ROM_OPTIONAL_HEADER OptionalHeader;
+     * } *PIMAGE_ROM_HEADERS
+     * }
+     */
+    public static final AddressLayout PIMAGE_ROM_HEADERS = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef PIMAGE_NT_HEADERS64 PIMAGE_NT_HEADERS
+     * }
+     */
+    public static final AddressLayout PIMAGE_NT_HEADERS = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_SECTION_HEADER {
+     *     BYTE Name[8];
+     *     union {
+     *         DWORD PhysicalAddress;
+     *         DWORD VirtualSize;
+     *     } Misc;
+     *     DWORD VirtualAddress;
+     *     DWORD SizeOfRawData;
+     *     DWORD PointerToRawData;
+     *     DWORD PointerToRelocations;
+     *     DWORD PointerToLinenumbers;
+     *     WORD NumberOfRelocations;
+     *     WORD NumberOfLinenumbers;
+     *     DWORD Characteristics;
+     * } *PIMAGE_SECTION_HEADER
+     * }
+     */
+    public static final AddressLayout PIMAGE_SECTION_HEADER = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef __unaligned IMAGE_SYMBOL *PIMAGE_SYMBOL
+     * }
+     */
+    public static final AddressLayout PIMAGE_SYMBOL = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef __unaligned IMAGE_SYMBOL_EX *PIMAGE_SYMBOL_EX
+     * }
+     */
+    public static final AddressLayout PIMAGE_SYMBOL_EX = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef __unaligned IMAGE_AUX_SYMBOL_TOKEN_DEF *PIMAGE_AUX_SYMBOL_TOKEN_DEF
+     * }
+     */
+    public static final AddressLayout PIMAGE_AUX_SYMBOL_TOKEN_DEF = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef __unaligned IMAGE_AUX_SYMBOL *PIMAGE_AUX_SYMBOL
+     * }
+     */
+    public static final AddressLayout PIMAGE_AUX_SYMBOL = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef __unaligned IMAGE_AUX_SYMBOL_EX *PIMAGE_AUX_SYMBOL_EX
+     * }
+     */
+    public static final AddressLayout PIMAGE_AUX_SYMBOL_EX = wgl_h.C_POINTER;
+    private static final int IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum IMAGE_AUX_SYMBOL_TYPE.IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF = 1
+     * }
+     */
+    public static int IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF() {
+        return IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef __unaligned IMAGE_RELOCATION *PIMAGE_RELOCATION
+     * }
+     */
+    public static final AddressLayout PIMAGE_RELOCATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef __unaligned IMAGE_LINENUMBER *PIMAGE_LINENUMBER
+     * }
+     */
+    public static final AddressLayout PIMAGE_LINENUMBER = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef __unaligned IMAGE_BASE_RELOCATION *PIMAGE_BASE_RELOCATION
+     * }
+     */
+    public static final AddressLayout PIMAGE_BASE_RELOCATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_ARCHIVE_MEMBER_HEADER {
+     *     BYTE Name[16];
+     *     BYTE Date[12];
+     *     BYTE UserID[6];
+     *     BYTE GroupID[6];
+     *     BYTE Mode[8];
+     *     BYTE Size[10];
+     *     BYTE EndHeader[2];
+     * } *PIMAGE_ARCHIVE_MEMBER_HEADER
+     * }
+     */
+    public static final AddressLayout PIMAGE_ARCHIVE_MEMBER_HEADER = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_EXPORT_DIRECTORY {
+     *     DWORD Characteristics;
+     *     DWORD TimeDateStamp;
+     *     WORD MajorVersion;
+     *     WORD MinorVersion;
+     *     DWORD Name;
+     *     DWORD Base;
+     *     DWORD NumberOfFunctions;
+     *     DWORD NumberOfNames;
+     *     DWORD AddressOfFunctions;
+     *     DWORD AddressOfNames;
+     *     DWORD AddressOfNameOrdinals;
+     * } *PIMAGE_EXPORT_DIRECTORY
+     * }
+     */
+    public static final AddressLayout PIMAGE_EXPORT_DIRECTORY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_IMPORT_BY_NAME {
+     *     WORD Hint;
+     *     CHAR Name[1];
+     * } *PIMAGE_IMPORT_BY_NAME
+     * }
+     */
+    public static final AddressLayout PIMAGE_IMPORT_BY_NAME = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef IMAGE_THUNK_DATA64 *PIMAGE_THUNK_DATA64
+     * }
+     */
+    public static final AddressLayout PIMAGE_THUNK_DATA64 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef IMAGE_THUNK_DATA32 *PIMAGE_THUNK_DATA32
+     * }
+     */
+    public static final AddressLayout PIMAGE_THUNK_DATA32 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef IMAGE_TLS_DIRECTORY64 *PIMAGE_TLS_DIRECTORY64
+     * }
+     */
+    public static final AddressLayout PIMAGE_TLS_DIRECTORY64 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef IMAGE_TLS_DIRECTORY32 *PIMAGE_TLS_DIRECTORY32
+     * }
+     */
+    public static final AddressLayout PIMAGE_TLS_DIRECTORY32 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef PIMAGE_THUNK_DATA64 PIMAGE_THUNK_DATA
+     * }
+     */
+    public static final AddressLayout PIMAGE_THUNK_DATA = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef PIMAGE_TLS_DIRECTORY64 PIMAGE_TLS_DIRECTORY
+     * }
+     */
+    public static final AddressLayout PIMAGE_TLS_DIRECTORY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef __unaligned IMAGE_IMPORT_DESCRIPTOR *PIMAGE_IMPORT_DESCRIPTOR
+     * }
+     */
+    public static final AddressLayout PIMAGE_IMPORT_DESCRIPTOR = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_BOUND_IMPORT_DESCRIPTOR {
+     *     DWORD TimeDateStamp;
+     *     WORD OffsetModuleName;
+     *     WORD NumberOfModuleForwarderRefs;
+     * } *PIMAGE_BOUND_IMPORT_DESCRIPTOR
+     * }
+     */
+    public static final AddressLayout PIMAGE_BOUND_IMPORT_DESCRIPTOR = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_BOUND_FORWARDER_REF {
+     *     DWORD TimeDateStamp;
+     *     WORD OffsetModuleName;
+     *     WORD Reserved;
+     * } *PIMAGE_BOUND_FORWARDER_REF
+     * }
+     */
+    public static final AddressLayout PIMAGE_BOUND_FORWARDER_REF = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_DELAYLOAD_DESCRIPTOR {
+     *     union {
+     *         DWORD AllAttributes;
+     *         struct {
+     *             DWORD RvaBased : 1;
+     *             DWORD ReservedAttributes : 31;
+     *         };
+     *     } Attributes;
+     *     DWORD DllNameRVA;
+     *     DWORD ModuleHandleRVA;
+     *     DWORD ImportAddressTableRVA;
+     *     DWORD ImportNameTableRVA;
+     *     DWORD BoundImportAddressTableRVA;
+     *     DWORD UnloadInformationTableRVA;
+     *     DWORD TimeDateStamp;
+     * } *PIMAGE_DELAYLOAD_DESCRIPTOR
+     * }
+     */
+    public static final AddressLayout PIMAGE_DELAYLOAD_DESCRIPTOR = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const IMAGE_DELAYLOAD_DESCRIPTOR *PCIMAGE_DELAYLOAD_DESCRIPTOR
+     * }
+     */
+    public static final AddressLayout PCIMAGE_DELAYLOAD_DESCRIPTOR = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_RESOURCE_DIRECTORY {
+     *     DWORD Characteristics;
+     *     DWORD TimeDateStamp;
+     *     WORD MajorVersion;
+     *     WORD MinorVersion;
+     *     WORD NumberOfNamedEntries;
+     *     WORD NumberOfIdEntries;
+     * } *PIMAGE_RESOURCE_DIRECTORY
+     * }
+     */
+    public static final AddressLayout PIMAGE_RESOURCE_DIRECTORY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_RESOURCE_DIRECTORY_ENTRY {
+     *     union {
+     *         struct {
+     *             DWORD NameOffset : 31;
+     *             DWORD NameIsString : 1;
+     *         };
+     *         DWORD Name;
+     *         WORD Id;
+     *     };
+     *     union {
+     *         DWORD OffsetToData;
+     *         struct {
+     *             DWORD OffsetToDirectory : 31;
+     *             DWORD DataIsDirectory : 1;
+     *         };
+     *     };
+     * } *PIMAGE_RESOURCE_DIRECTORY_ENTRY
+     * }
+     */
+    public static final AddressLayout PIMAGE_RESOURCE_DIRECTORY_ENTRY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_RESOURCE_DIRECTORY_STRING {
+     *     WORD Length;
+     *     CHAR NameString[1];
+     * } *PIMAGE_RESOURCE_DIRECTORY_STRING
+     * }
+     */
+    public static final AddressLayout PIMAGE_RESOURCE_DIRECTORY_STRING = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_RESOURCE_DIR_STRING_U {
+     *     WORD Length;
+     *     WCHAR NameString[1];
+     * } *PIMAGE_RESOURCE_DIR_STRING_U
+     * }
+     */
+    public static final AddressLayout PIMAGE_RESOURCE_DIR_STRING_U = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_RESOURCE_DATA_ENTRY {
+     *     DWORD OffsetToData;
+     *     DWORD Size;
+     *     DWORD CodePage;
+     *     DWORD Reserved;
+     * } *PIMAGE_RESOURCE_DATA_ENTRY
+     * }
+     */
+    public static final AddressLayout PIMAGE_RESOURCE_DATA_ENTRY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_LOAD_CONFIG_CODE_INTEGRITY {
+     *     WORD Flags;
+     *     WORD Catalog;
+     *     DWORD CatalogOffset;
+     *     DWORD Reserved;
+     * } *PIMAGE_LOAD_CONFIG_CODE_INTEGRITY
+     * }
+     */
+    public static final AddressLayout PIMAGE_LOAD_CONFIG_CODE_INTEGRITY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_DYNAMIC_RELOCATION_TABLE {
+     *     DWORD Version;
+     *     DWORD Size;
+     * } *PIMAGE_DYNAMIC_RELOCATION_TABLE
+     * }
+     */
+    public static final AddressLayout PIMAGE_DYNAMIC_RELOCATION_TABLE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_DYNAMIC_RELOCATION32 {
+     *     DWORD Symbol;
+     *     DWORD BaseRelocSize;
+     * } *PIMAGE_DYNAMIC_RELOCATION32
+     * }
+     */
+    public static final AddressLayout PIMAGE_DYNAMIC_RELOCATION32 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_DYNAMIC_RELOCATION64 {
+     *     ULONGLONG Symbol;
+     *     DWORD BaseRelocSize;
+     * } *PIMAGE_DYNAMIC_RELOCATION64
+     * }
+     */
+    public static final AddressLayout PIMAGE_DYNAMIC_RELOCATION64 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_DYNAMIC_RELOCATION32_V2 {
+     *     DWORD HeaderSize;
+     *     DWORD FixupInfoSize;
+     *     DWORD Symbol;
+     *     DWORD SymbolGroup;
+     *     DWORD Flags;
+     * } *PIMAGE_DYNAMIC_RELOCATION32_V2
+     * }
+     */
+    public static final AddressLayout PIMAGE_DYNAMIC_RELOCATION32_V2 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_DYNAMIC_RELOCATION64_V2 {
+     *     DWORD HeaderSize;
+     *     DWORD FixupInfoSize;
+     *     ULONGLONG Symbol;
+     *     DWORD SymbolGroup;
+     *     DWORD Flags;
+     * } *PIMAGE_DYNAMIC_RELOCATION64_V2
+     * }
+     */
+    public static final AddressLayout PIMAGE_DYNAMIC_RELOCATION64_V2 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef PIMAGE_DYNAMIC_RELOCATION64 PIMAGE_DYNAMIC_RELOCATION
+     * }
+     */
+    public static final AddressLayout PIMAGE_DYNAMIC_RELOCATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef PIMAGE_DYNAMIC_RELOCATION64_V2 PIMAGE_DYNAMIC_RELOCATION_V2
+     * }
+     */
+    public static final AddressLayout PIMAGE_DYNAMIC_RELOCATION_V2 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef __unaligned IMAGE_PROLOGUE_DYNAMIC_RELOCATION_HEADER *PIMAGE_PROLOGUE_DYNAMIC_RELOCATION_HEADER
+     * }
+     */
+    public static final AddressLayout PIMAGE_PROLOGUE_DYNAMIC_RELOCATION_HEADER = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef __unaligned IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER *PIMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER
+     * }
+     */
+    public static final AddressLayout PIMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef __unaligned IMAGE_IMPORT_CONTROL_TRANSFER_DYNAMIC_RELOCATION *PIMAGE_IMPORT_CONTROL_TRANSFER_DYNAMIC_RELOCATION
+     * }
+     */
+    public static final AddressLayout PIMAGE_IMPORT_CONTROL_TRANSFER_DYNAMIC_RELOCATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef __unaligned IMAGE_INDIR_CONTROL_TRANSFER_DYNAMIC_RELOCATION *PIMAGE_INDIR_CONTROL_TRANSFER_DYNAMIC_RELOCATION
+     * }
+     */
+    public static final AddressLayout PIMAGE_INDIR_CONTROL_TRANSFER_DYNAMIC_RELOCATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef __unaligned IMAGE_SWITCHTABLE_BRANCH_DYNAMIC_RELOCATION *PIMAGE_SWITCHTABLE_BRANCH_DYNAMIC_RELOCATION
+     * }
+     */
+    public static final AddressLayout PIMAGE_SWITCHTABLE_BRANCH_DYNAMIC_RELOCATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_LOAD_CONFIG_DIRECTORY32 {
+     *     DWORD Size;
+     *     DWORD TimeDateStamp;
+     *     WORD MajorVersion;
+     *     WORD MinorVersion;
+     *     DWORD GlobalFlagsClear;
+     *     DWORD GlobalFlagsSet;
+     *     DWORD CriticalSectionDefaultTimeout;
+     *     DWORD DeCommitFreeBlockThreshold;
+     *     DWORD DeCommitTotalFreeThreshold;
+     *     DWORD LockPrefixTable;
+     *     DWORD MaximumAllocationSize;
+     *     DWORD VirtualMemoryThreshold;
+     *     DWORD ProcessHeapFlags;
+     *     DWORD ProcessAffinityMask;
+     *     WORD CSDVersion;
+     *     WORD DependentLoadFlags;
+     *     DWORD EditList;
+     *     DWORD SecurityCookie;
+     *     DWORD SEHandlerTable;
+     *     DWORD SEHandlerCount;
+     *     DWORD GuardCFCheckFunctionPointer;
+     *     DWORD GuardCFDispatchFunctionPointer;
+     *     DWORD GuardCFFunctionTable;
+     *     DWORD GuardCFFunctionCount;
+     *     DWORD GuardFlags;
+     *     IMAGE_LOAD_CONFIG_CODE_INTEGRITY CodeIntegrity;
+     *     DWORD GuardAddressTakenIatEntryTable;
+     *     DWORD GuardAddressTakenIatEntryCount;
+     *     DWORD GuardLongJumpTargetTable;
+     *     DWORD GuardLongJumpTargetCount;
+     *     DWORD DynamicValueRelocTable;
+     *     DWORD CHPEMetadataPointer;
+     *     DWORD GuardRFFailureRoutine;
+     *     DWORD GuardRFFailureRoutineFunctionPointer;
+     *     DWORD DynamicValueRelocTableOffset;
+     *     WORD DynamicValueRelocTableSection;
+     *     WORD Reserved2;
+     *     DWORD GuardRFVerifyStackPointerFunctionPointer;
+     *     DWORD HotPatchTableOffset;
+     *     DWORD Reserved3;
+     *     DWORD EnclaveConfigurationPointer;
+     *     DWORD VolatileMetadataPointer;
+     *     DWORD GuardEHContinuationTable;
+     *     DWORD GuardEHContinuationCount;
+     * } *PIMAGE_LOAD_CONFIG_DIRECTORY32
+     * }
+     */
+    public static final AddressLayout PIMAGE_LOAD_CONFIG_DIRECTORY32 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_LOAD_CONFIG_DIRECTORY64 {
+     *     DWORD Size;
+     *     DWORD TimeDateStamp;
+     *     WORD MajorVersion;
+     *     WORD MinorVersion;
+     *     DWORD GlobalFlagsClear;
+     *     DWORD GlobalFlagsSet;
+     *     DWORD CriticalSectionDefaultTimeout;
+     *     ULONGLONG DeCommitFreeBlockThreshold;
+     *     ULONGLONG DeCommitTotalFreeThreshold;
+     *     ULONGLONG LockPrefixTable;
+     *     ULONGLONG MaximumAllocationSize;
+     *     ULONGLONG VirtualMemoryThreshold;
+     *     ULONGLONG ProcessAffinityMask;
+     *     DWORD ProcessHeapFlags;
+     *     WORD CSDVersion;
+     *     WORD DependentLoadFlags;
+     *     ULONGLONG EditList;
+     *     ULONGLONG SecurityCookie;
+     *     ULONGLONG SEHandlerTable;
+     *     ULONGLONG SEHandlerCount;
+     *     ULONGLONG GuardCFCheckFunctionPointer;
+     *     ULONGLONG GuardCFDispatchFunctionPointer;
+     *     ULONGLONG GuardCFFunctionTable;
+     *     ULONGLONG GuardCFFunctionCount;
+     *     DWORD GuardFlags;
+     *     IMAGE_LOAD_CONFIG_CODE_INTEGRITY CodeIntegrity;
+     *     ULONGLONG GuardAddressTakenIatEntryTable;
+     *     ULONGLONG GuardAddressTakenIatEntryCount;
+     *     ULONGLONG GuardLongJumpTargetTable;
+     *     ULONGLONG GuardLongJumpTargetCount;
+     *     ULONGLONG DynamicValueRelocTable;
+     *     ULONGLONG CHPEMetadataPointer;
+     *     ULONGLONG GuardRFFailureRoutine;
+     *     ULONGLONG GuardRFFailureRoutineFunctionPointer;
+     *     DWORD DynamicValueRelocTableOffset;
+     *     WORD DynamicValueRelocTableSection;
+     *     WORD Reserved2;
+     *     ULONGLONG GuardRFVerifyStackPointerFunctionPointer;
+     *     DWORD HotPatchTableOffset;
+     *     DWORD Reserved3;
+     *     ULONGLONG EnclaveConfigurationPointer;
+     *     ULONGLONG VolatileMetadataPointer;
+     *     ULONGLONG GuardEHContinuationTable;
+     *     ULONGLONG GuardEHContinuationCount;
+     * } *PIMAGE_LOAD_CONFIG_DIRECTORY64
+     * }
+     */
+    public static final AddressLayout PIMAGE_LOAD_CONFIG_DIRECTORY64 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef PIMAGE_LOAD_CONFIG_DIRECTORY64 PIMAGE_LOAD_CONFIG_DIRECTORY
+     * }
+     */
+    public static final AddressLayout PIMAGE_LOAD_CONFIG_DIRECTORY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_HOT_PATCH_INFO {
+     *     DWORD Version;
+     *     DWORD Size;
+     *     DWORD SequenceNumber;
+     *     DWORD BaseImageList;
+     *     DWORD BaseImageCount;
+     *     DWORD BufferOffset;
+     *     DWORD ExtraPatchSize;
+     * } *PIMAGE_HOT_PATCH_INFO
+     * }
+     */
+    public static final AddressLayout PIMAGE_HOT_PATCH_INFO = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_HOT_PATCH_BASE {
+     *     DWORD SequenceNumber;
+     *     DWORD Flags;
+     *     DWORD OriginalTimeDateStamp;
+     *     DWORD OriginalCheckSum;
+     *     DWORD CodeIntegrityInfo;
+     *     DWORD CodeIntegritySize;
+     *     DWORD PatchTable;
+     *     DWORD BufferOffset;
+     * } *PIMAGE_HOT_PATCH_BASE
+     * }
+     */
+    public static final AddressLayout PIMAGE_HOT_PATCH_BASE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_HOT_PATCH_HASHES {
+     *     BYTE SHA256[32];
+     *     BYTE SHA1[20];
+     * } *PIMAGE_HOT_PATCH_HASHES
+     * }
+     */
+    public static final AddressLayout PIMAGE_HOT_PATCH_HASHES = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_CE_RUNTIME_FUNCTION_ENTRY {
+     *     DWORD FuncStart;
+     *     DWORD PrologLen : 8;
+     *     DWORD FuncLen : 22;
+     *     DWORD ThirtyTwoBit : 1;
+     *     DWORD ExceptionFlag : 1;
+     * } *PIMAGE_CE_RUNTIME_FUNCTION_ENTRY
+     * }
+     */
+    public static final AddressLayout PIMAGE_CE_RUNTIME_FUNCTION_ENTRY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_ARM_RUNTIME_FUNCTION_ENTRY {
+     *     DWORD BeginAddress;
+     *     union {
+     *         DWORD UnwindData;
+     *         struct {
+     *             DWORD Flag : 2;
+     *             DWORD FunctionLength : 11;
+     *             DWORD Ret : 2;
+     *             DWORD H : 1;
+     *             DWORD Reg : 3;
+     *             DWORD R : 1;
+     *             DWORD L : 1;
+     *             DWORD C : 1;
+     *             DWORD StackAdjust : 10;
+     *         };
+     *     };
+     * } *PIMAGE_ARM_RUNTIME_FUNCTION_ENTRY
+     * }
+     */
+    public static final AddressLayout PIMAGE_ARM_RUNTIME_FUNCTION_ENTRY = wgl_h.C_POINTER;
+    private static final int PdataRefToFullXdata = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum ARM64_FNPDATA_FLAGS.PdataRefToFullXdata = 0
+     * }
+     */
+    public static int PdataRefToFullXdata() {
+        return PdataRefToFullXdata;
+    }
+    private static final int PdataPackedUnwindFunction = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum ARM64_FNPDATA_FLAGS.PdataPackedUnwindFunction = 1
+     * }
+     */
+    public static int PdataPackedUnwindFunction() {
+        return PdataPackedUnwindFunction;
+    }
+    private static final int PdataPackedUnwindFragment = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum ARM64_FNPDATA_FLAGS.PdataPackedUnwindFragment = 2
+     * }
+     */
+    public static int PdataPackedUnwindFragment() {
+        return PdataPackedUnwindFragment;
+    }
+    private static final int PdataCrUnchained = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum ARM64_FNPDATA_CR.PdataCrUnchained = 0
+     * }
+     */
+    public static int PdataCrUnchained() {
+        return PdataCrUnchained;
+    }
+    private static final int PdataCrUnchainedSavedLr = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum ARM64_FNPDATA_CR.PdataCrUnchainedSavedLr = 1
+     * }
+     */
+    public static int PdataCrUnchainedSavedLr() {
+        return PdataCrUnchainedSavedLr;
+    }
+    private static final int PdataCrChainedWithPac = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum ARM64_FNPDATA_CR.PdataCrChainedWithPac = 2
+     * }
+     */
+    public static int PdataCrChainedWithPac() {
+        return PdataCrChainedWithPac;
+    }
+    private static final int PdataCrChained = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum ARM64_FNPDATA_CR.PdataCrChained = 3
+     * }
+     */
+    public static int PdataCrChained() {
+        return PdataCrChained;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY {
+     *     DWORD BeginAddress;
+     *     union {
+     *         DWORD UnwindData;
+     *         struct {
+     *             DWORD Flag : 2;
+     *             DWORD FunctionLength : 11;
+     *             DWORD RegF : 3;
+     *             DWORD RegI : 4;
+     *             DWORD H : 1;
+     *             DWORD CR : 2;
+     *             DWORD FrameSize : 9;
+     *         };
+     *     };
+     * } *PIMAGE_ARM64_RUNTIME_FUNCTION_ENTRY
+     * }
+     */
+    public static final AddressLayout PIMAGE_ARM64_RUNTIME_FUNCTION_ENTRY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY {
+     *     ULONGLONG BeginAddress;
+     *     ULONGLONG EndAddress;
+     *     ULONGLONG ExceptionHandler;
+     *     ULONGLONG HandlerData;
+     *     ULONGLONG PrologEndAddress;
+     * } *PIMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY
+     * }
+     */
+    public static final AddressLayout PIMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY {
+     *     DWORD BeginAddress;
+     *     DWORD EndAddress;
+     *     DWORD ExceptionHandler;
+     *     DWORD HandlerData;
+     *     DWORD PrologEndAddress;
+     * } *PIMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY
+     * }
+     */
+    public static final AddressLayout PIMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_RUNTIME_FUNCTION_ENTRY {
+     *     DWORD BeginAddress;
+     *     DWORD EndAddress;
+     *     union {
+     *         DWORD UnwindInfoAddress;
+     *         DWORD UnwindData;
+     *     };
+     * } *_PIMAGE_RUNTIME_FUNCTION_ENTRY
+     * }
+     */
+    public static final AddressLayout _PIMAGE_RUNTIME_FUNCTION_ENTRY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef _PIMAGE_RUNTIME_FUNCTION_ENTRY PIMAGE_IA64_RUNTIME_FUNCTION_ENTRY
+     * }
+     */
+    public static final AddressLayout PIMAGE_IA64_RUNTIME_FUNCTION_ENTRY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef _PIMAGE_RUNTIME_FUNCTION_ENTRY PIMAGE_RUNTIME_FUNCTION_ENTRY
+     * }
+     */
+    public static final AddressLayout PIMAGE_RUNTIME_FUNCTION_ENTRY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_ENCLAVE_CONFIG32 {
+     *     DWORD Size;
+     *     DWORD MinimumRequiredConfigSize;
+     *     DWORD PolicyFlags;
+     *     DWORD NumberOfImports;
+     *     DWORD ImportList;
+     *     DWORD ImportEntrySize;
+     *     BYTE FamilyID[16];
+     *     BYTE ImageID[16];
+     *     DWORD ImageVersion;
+     *     DWORD SecurityVersion;
+     *     DWORD EnclaveSize;
+     *     DWORD NumberOfThreads;
+     *     DWORD EnclaveFlags;
+     * } *PIMAGE_ENCLAVE_CONFIG32
+     * }
+     */
+    public static final AddressLayout PIMAGE_ENCLAVE_CONFIG32 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_ENCLAVE_CONFIG64 {
+     *     DWORD Size;
+     *     DWORD MinimumRequiredConfigSize;
+     *     DWORD PolicyFlags;
+     *     DWORD NumberOfImports;
+     *     DWORD ImportList;
+     *     DWORD ImportEntrySize;
+     *     BYTE FamilyID[16];
+     *     BYTE ImageID[16];
+     *     DWORD ImageVersion;
+     *     DWORD SecurityVersion;
+     *     ULONGLONG EnclaveSize;
+     *     DWORD NumberOfThreads;
+     *     DWORD EnclaveFlags;
+     * } *PIMAGE_ENCLAVE_CONFIG64
+     * }
+     */
+    public static final AddressLayout PIMAGE_ENCLAVE_CONFIG64 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef PIMAGE_ENCLAVE_CONFIG64 PIMAGE_ENCLAVE_CONFIG
+     * }
+     */
+    public static final AddressLayout PIMAGE_ENCLAVE_CONFIG = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_ENCLAVE_IMPORT {
+     *     DWORD MatchType;
+     *     DWORD MinimumSecurityVersion;
+     *     BYTE UniqueOrAuthorID[32];
+     *     BYTE FamilyID[16];
+     *     BYTE ImageID[16];
+     *     DWORD ImportName;
+     *     DWORD Reserved;
+     * } *PIMAGE_ENCLAVE_IMPORT
+     * }
+     */
+    public static final AddressLayout PIMAGE_ENCLAVE_IMPORT = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_DEBUG_DIRECTORY {
+     *     DWORD Characteristics;
+     *     DWORD TimeDateStamp;
+     *     WORD MajorVersion;
+     *     WORD MinorVersion;
+     *     DWORD Type;
+     *     DWORD SizeOfData;
+     *     DWORD AddressOfRawData;
+     *     DWORD PointerToRawData;
+     * } *PIMAGE_DEBUG_DIRECTORY
+     * }
+     */
+    public static final AddressLayout PIMAGE_DEBUG_DIRECTORY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_COFF_SYMBOLS_HEADER {
+     *     DWORD NumberOfSymbols;
+     *     DWORD LvaToFirstSymbol;
+     *     DWORD NumberOfLinenumbers;
+     *     DWORD LvaToFirstLinenumber;
+     *     DWORD RvaToFirstByteOfCode;
+     *     DWORD RvaToLastByteOfCode;
+     *     DWORD RvaToFirstByteOfData;
+     *     DWORD RvaToLastByteOfData;
+     * } *PIMAGE_COFF_SYMBOLS_HEADER
+     * }
+     */
+    public static final AddressLayout PIMAGE_COFF_SYMBOLS_HEADER = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _FPO_DATA {
+     *     DWORD ulOffStart;
+     *     DWORD cbProcSize;
+     *     DWORD cdwLocals;
+     *     WORD cdwParams;
+     *     WORD cbProlog : 8;
+     *     WORD cbRegs : 3;
+     *     WORD fHasSEH : 1;
+     *     WORD fUseBP : 1;
+     *     WORD reserved : 1;
+     *     WORD cbFrame : 2;
+     * } *PFPO_DATA
+     * }
+     */
+    public static final AddressLayout PFPO_DATA = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_DEBUG_MISC {
+     *     DWORD DataType;
+     *     DWORD Length;
+     *     BOOLEAN Unicode;
+     *     BYTE Reserved[3];
+     *     BYTE Data[1];
+     * } *PIMAGE_DEBUG_MISC
+     * }
+     */
+    public static final AddressLayout PIMAGE_DEBUG_MISC = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_FUNCTION_ENTRY {
+     *     DWORD StartingAddress;
+     *     DWORD EndingAddress;
+     *     DWORD EndOfPrologue;
+     * } *PIMAGE_FUNCTION_ENTRY
+     * }
+     */
+    public static final AddressLayout PIMAGE_FUNCTION_ENTRY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_FUNCTION_ENTRY64 {
+     *     ULONGLONG StartingAddress;
+     *     ULONGLONG EndingAddress;
+     *     union {
+     *         ULONGLONG EndOfPrologue;
+     *         ULONGLONG UnwindInfoAddress;
+     *     };
+     * } *PIMAGE_FUNCTION_ENTRY64
+     * }
+     */
+    public static final AddressLayout PIMAGE_FUNCTION_ENTRY64 = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _IMAGE_SEPARATE_DEBUG_HEADER {
+     *     WORD Signature;
+     *     WORD Flags;
+     *     WORD Machine;
+     *     WORD Characteristics;
+     *     DWORD TimeDateStamp;
+     *     DWORD CheckSum;
+     *     DWORD ImageBase;
+     *     DWORD SizeOfImage;
+     *     DWORD NumberOfSections;
+     *     DWORD ExportedNamesSize;
+     *     DWORD DebugDirectorySize;
+     *     DWORD SectionAlignment;
+     *     DWORD Reserved[2];
+     * } *PIMAGE_SEPARATE_DEBUG_HEADER
+     * }
+     */
+    public static final AddressLayout PIMAGE_SEPARATE_DEBUG_HEADER = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _NON_PAGED_DEBUG_INFO {
+     *     WORD Signature;
+     *     WORD Flags;
+     *     DWORD Size;
+     *     WORD Machine;
+     *     WORD Characteristics;
+     *     DWORD TimeDateStamp;
+     *     DWORD CheckSum;
+     *     DWORD SizeOfImage;
+     *     ULONGLONG ImageBase;
+     * } *PNON_PAGED_DEBUG_INFO
+     * }
+     */
+    public static final AddressLayout PNON_PAGED_DEBUG_INFO = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _ImageArchitectureHeader {
+     *     unsigned int AmaskValue : 1;
+     *     int : 7;
+     *     unsigned int AmaskShift : 8;
+     *     int : 16;
+     *     DWORD FirstEntryRVA;
+     * } *PIMAGE_ARCHITECTURE_HEADER
+     * }
+     */
+    public static final AddressLayout PIMAGE_ARCHITECTURE_HEADER = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _ImageArchitectureEntry {
+     *     DWORD FixupInstRVA;
+     *     DWORD NewInst;
+     * } *PIMAGE_ARCHITECTURE_ENTRY
+     * }
+     */
+    public static final AddressLayout PIMAGE_ARCHITECTURE_ENTRY = wgl_h.C_POINTER;
+    private static final int IMPORT_OBJECT_CODE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum IMPORT_OBJECT_TYPE.IMPORT_OBJECT_CODE = 0
+     * }
+     */
+    public static int IMPORT_OBJECT_CODE() {
+        return IMPORT_OBJECT_CODE;
+    }
+    private static final int IMPORT_OBJECT_DATA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum IMPORT_OBJECT_TYPE.IMPORT_OBJECT_DATA = 1
+     * }
+     */
+    public static int IMPORT_OBJECT_DATA() {
+        return IMPORT_OBJECT_DATA;
+    }
+    private static final int IMPORT_OBJECT_CONST = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum IMPORT_OBJECT_TYPE.IMPORT_OBJECT_CONST = 2
+     * }
+     */
+    public static int IMPORT_OBJECT_CONST() {
+        return IMPORT_OBJECT_CONST;
+    }
+    private static final int IMPORT_OBJECT_ORDINAL = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum IMPORT_OBJECT_NAME_TYPE.IMPORT_OBJECT_ORDINAL = 0
+     * }
+     */
+    public static int IMPORT_OBJECT_ORDINAL() {
+        return IMPORT_OBJECT_ORDINAL;
+    }
+    private static final int IMPORT_OBJECT_NAME = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum IMPORT_OBJECT_NAME_TYPE.IMPORT_OBJECT_NAME = 1
+     * }
+     */
+    public static int IMPORT_OBJECT_NAME() {
+        return IMPORT_OBJECT_NAME;
+    }
+    private static final int IMPORT_OBJECT_NAME_NO_PREFIX = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum IMPORT_OBJECT_NAME_TYPE.IMPORT_OBJECT_NAME_NO_PREFIX = 2
+     * }
+     */
+    public static int IMPORT_OBJECT_NAME_NO_PREFIX() {
+        return IMPORT_OBJECT_NAME_NO_PREFIX;
+    }
+    private static final int IMPORT_OBJECT_NAME_UNDECORATE = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum IMPORT_OBJECT_NAME_TYPE.IMPORT_OBJECT_NAME_UNDECORATE = 3
+     * }
+     */
+    public static int IMPORT_OBJECT_NAME_UNDECORATE() {
+        return IMPORT_OBJECT_NAME_UNDECORATE;
+    }
+    private static final int IMPORT_OBJECT_NAME_EXPORTAS = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum IMPORT_OBJECT_NAME_TYPE.IMPORT_OBJECT_NAME_EXPORTAS = 4
+     * }
+     */
+    public static int IMPORT_OBJECT_NAME_EXPORTAS() {
+        return IMPORT_OBJECT_NAME_EXPORTAS;
+    }
+    private static final int COMIMAGE_FLAGS_ILONLY = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_ILONLY = 1
+     * }
+     */
+    public static int COMIMAGE_FLAGS_ILONLY() {
+        return COMIMAGE_FLAGS_ILONLY;
+    }
+    private static final int COMIMAGE_FLAGS_32BITREQUIRED = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_32BITREQUIRED = 2
+     * }
+     */
+    public static int COMIMAGE_FLAGS_32BITREQUIRED() {
+        return COMIMAGE_FLAGS_32BITREQUIRED;
+    }
+    private static final int COMIMAGE_FLAGS_IL_LIBRARY = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_IL_LIBRARY = 4
+     * }
+     */
+    public static int COMIMAGE_FLAGS_IL_LIBRARY() {
+        return COMIMAGE_FLAGS_IL_LIBRARY;
+    }
+    private static final int COMIMAGE_FLAGS_STRONGNAMESIGNED = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_STRONGNAMESIGNED = 8
+     * }
+     */
+    public static int COMIMAGE_FLAGS_STRONGNAMESIGNED() {
+        return COMIMAGE_FLAGS_STRONGNAMESIGNED;
+    }
+    private static final int COMIMAGE_FLAGS_NATIVE_ENTRYPOINT = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_NATIVE_ENTRYPOINT = 16
+     * }
+     */
+    public static int COMIMAGE_FLAGS_NATIVE_ENTRYPOINT() {
+        return COMIMAGE_FLAGS_NATIVE_ENTRYPOINT;
+    }
+    private static final int COMIMAGE_FLAGS_TRACKDEBUGDATA = (int)65536L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_TRACKDEBUGDATA = 65536
+     * }
+     */
+    public static int COMIMAGE_FLAGS_TRACKDEBUGDATA() {
+        return COMIMAGE_FLAGS_TRACKDEBUGDATA;
+    }
+    private static final int COMIMAGE_FLAGS_32BITPREFERRED = (int)131072L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_32BITPREFERRED = 131072
+     * }
+     */
+    public static int COMIMAGE_FLAGS_32BITPREFERRED() {
+        return COMIMAGE_FLAGS_32BITPREFERRED;
+    }
+    private static final int COR_VERSION_MAJOR_V2 = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.COR_VERSION_MAJOR_V2 = 2
+     * }
+     */
+    public static int COR_VERSION_MAJOR_V2() {
+        return COR_VERSION_MAJOR_V2;
+    }
+    private static final int COR_VERSION_MAJOR = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.COR_VERSION_MAJOR = 2
+     * }
+     */
+    public static int COR_VERSION_MAJOR() {
+        return COR_VERSION_MAJOR;
+    }
+    private static final int COR_VERSION_MINOR = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.COR_VERSION_MINOR = 5
+     * }
+     */
+    public static int COR_VERSION_MINOR() {
+        return COR_VERSION_MINOR;
+    }
+    private static final int COR_DELETED_NAME_LENGTH = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.COR_DELETED_NAME_LENGTH = 8
+     * }
+     */
+    public static int COR_DELETED_NAME_LENGTH() {
+        return COR_DELETED_NAME_LENGTH;
+    }
+    private static final int COR_VTABLEGAP_NAME_LENGTH = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.COR_VTABLEGAP_NAME_LENGTH = 8
+     * }
+     */
+    public static int COR_VTABLEGAP_NAME_LENGTH() {
+        return COR_VTABLEGAP_NAME_LENGTH;
+    }
+    private static final int NATIVE_TYPE_MAX_CB = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.NATIVE_TYPE_MAX_CB = 1
+     * }
+     */
+    public static int NATIVE_TYPE_MAX_CB() {
+        return NATIVE_TYPE_MAX_CB;
+    }
+    private static final int COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE = (int)255L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE = 255
+     * }
+     */
+    public static int COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE() {
+        return COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE;
+    }
+    private static final int IMAGE_COR_MIH_METHODRVA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.IMAGE_COR_MIH_METHODRVA = 1
+     * }
+     */
+    public static int IMAGE_COR_MIH_METHODRVA() {
+        return IMAGE_COR_MIH_METHODRVA;
+    }
+    private static final int IMAGE_COR_MIH_EHRVA = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.IMAGE_COR_MIH_EHRVA = 2
+     * }
+     */
+    public static int IMAGE_COR_MIH_EHRVA() {
+        return IMAGE_COR_MIH_EHRVA;
+    }
+    private static final int IMAGE_COR_MIH_BASICBLOCK = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.IMAGE_COR_MIH_BASICBLOCK = 8
+     * }
+     */
+    public static int IMAGE_COR_MIH_BASICBLOCK() {
+        return IMAGE_COR_MIH_BASICBLOCK;
+    }
+    private static final int COR_VTABLE_32BIT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.COR_VTABLE_32BIT = 1
+     * }
+     */
+    public static int COR_VTABLE_32BIT() {
+        return COR_VTABLE_32BIT;
+    }
+    private static final int COR_VTABLE_64BIT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.COR_VTABLE_64BIT = 2
+     * }
+     */
+    public static int COR_VTABLE_64BIT() {
+        return COR_VTABLE_64BIT;
+    }
+    private static final int COR_VTABLE_FROM_UNMANAGED = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.COR_VTABLE_FROM_UNMANAGED = 4
+     * }
+     */
+    public static int COR_VTABLE_FROM_UNMANAGED() {
+        return COR_VTABLE_FROM_UNMANAGED;
+    }
+    private static final int COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN = 8
+     * }
+     */
+    public static int COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN() {
+        return COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN;
+    }
+    private static final int COR_VTABLE_CALL_MOST_DERIVED = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.COR_VTABLE_CALL_MOST_DERIVED = 16
+     * }
+     */
+    public static int COR_VTABLE_CALL_MOST_DERIVED() {
+        return COR_VTABLE_CALL_MOST_DERIVED;
+    }
+    private static final int IMAGE_COR_EATJ_THUNK_SIZE = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.IMAGE_COR_EATJ_THUNK_SIZE = 32
+     * }
+     */
+    public static int IMAGE_COR_EATJ_THUNK_SIZE() {
+        return IMAGE_COR_EATJ_THUNK_SIZE;
+    }
+    private static final int MAX_CLASS_NAME = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.MAX_CLASS_NAME = 1024
+     * }
+     */
+    public static int MAX_CLASS_NAME() {
+        return MAX_CLASS_NAME;
+    }
+    private static final int MAX_PACKAGE_NAME = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * enum ReplacesCorHdrNumericDefines.MAX_PACKAGE_NAME = 1024
+     * }
+     */
+    public static int MAX_PACKAGE_NAME() {
+        return MAX_PACKAGE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct IMAGE_COR20_HEADER {
+     *     DWORD cb;
+     *     WORD MajorRuntimeVersion;
+     *     WORD MinorRuntimeVersion;
+     *     IMAGE_DATA_DIRECTORY MetaData;
+     *     DWORD Flags;
+     *     union {
+     *         DWORD EntryPointToken;
+     *         DWORD EntryPointRVA;
+     *     };
+     *     IMAGE_DATA_DIRECTORY Resources;
+     *     IMAGE_DATA_DIRECTORY StrongNameSignature;
+     *     IMAGE_DATA_DIRECTORY CodeManagerTable;
+     *     IMAGE_DATA_DIRECTORY VTableFixups;
+     *     IMAGE_DATA_DIRECTORY ExportAddressTableJumps;
+     *     IMAGE_DATA_DIRECTORY ManagedNativeHeader;
+     * } *PIMAGE_COR20_HEADER
+     * }
+     */
+    public static final AddressLayout PIMAGE_COR20_HEADER = wgl_h.C_POINTER;
+
+    private static class RtlCaptureStackBackTrace {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_SHORT,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlCaptureStackBackTrace");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * WORD RtlCaptureStackBackTrace(DWORD FramesToSkip, DWORD FramesToCapture, PVOID *BackTrace, PDWORD BackTraceHash)
+     * }
+     */
+    public static FunctionDescriptor RtlCaptureStackBackTrace$descriptor() {
+        return RtlCaptureStackBackTrace.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * WORD RtlCaptureStackBackTrace(DWORD FramesToSkip, DWORD FramesToCapture, PVOID *BackTrace, PDWORD BackTraceHash)
+     * }
+     */
+    public static MethodHandle RtlCaptureStackBackTrace$handle() {
+        return RtlCaptureStackBackTrace.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * WORD RtlCaptureStackBackTrace(DWORD FramesToSkip, DWORD FramesToCapture, PVOID *BackTrace, PDWORD BackTraceHash)
+     * }
+     */
+    public static MemorySegment RtlCaptureStackBackTrace$address() {
+        return RtlCaptureStackBackTrace.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * WORD RtlCaptureStackBackTrace(DWORD FramesToSkip, DWORD FramesToCapture, PVOID *BackTrace, PDWORD BackTraceHash)
+     * }
+     */
+    public static short RtlCaptureStackBackTrace(int FramesToSkip, int FramesToCapture, MemorySegment BackTrace, MemorySegment BackTraceHash) {
+        var mh$ = RtlCaptureStackBackTrace.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlCaptureStackBackTrace", FramesToSkip, FramesToCapture, BackTrace, BackTraceHash);
+            }
+            return (short)mh$.invokeExact(FramesToSkip, FramesToCapture, BackTrace, BackTraceHash);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlCaptureContext {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlCaptureContext");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void RtlCaptureContext(PCONTEXT ContextRecord)
+     * }
+     */
+    public static FunctionDescriptor RtlCaptureContext$descriptor() {
+        return RtlCaptureContext.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void RtlCaptureContext(PCONTEXT ContextRecord)
+     * }
+     */
+    public static MethodHandle RtlCaptureContext$handle() {
+        return RtlCaptureContext.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * void RtlCaptureContext(PCONTEXT ContextRecord)
+     * }
+     */
+    public static MemorySegment RtlCaptureContext$address() {
+        return RtlCaptureContext.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void RtlCaptureContext(PCONTEXT ContextRecord)
+     * }
+     */
+    public static void RtlCaptureContext(MemorySegment ContextRecord) {
+        var mh$ = RtlCaptureContext.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlCaptureContext", ContextRecord);
+            }
+            mh$.invokeExact(ContextRecord);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlCaptureContext2 {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlCaptureContext2");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void RtlCaptureContext2(PCONTEXT ContextRecord)
+     * }
+     */
+    public static FunctionDescriptor RtlCaptureContext2$descriptor() {
+        return RtlCaptureContext2.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void RtlCaptureContext2(PCONTEXT ContextRecord)
+     * }
+     */
+    public static MethodHandle RtlCaptureContext2$handle() {
+        return RtlCaptureContext2.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * void RtlCaptureContext2(PCONTEXT ContextRecord)
+     * }
+     */
+    public static MemorySegment RtlCaptureContext2$address() {
+        return RtlCaptureContext2.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void RtlCaptureContext2(PCONTEXT ContextRecord)
+     * }
+     */
+    public static void RtlCaptureContext2(MemorySegment ContextRecord) {
+        var mh$ = RtlCaptureContext2.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlCaptureContext2", ContextRecord);
+            }
+            mh$.invokeExact(ContextRecord);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlUnwind {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlUnwind");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void RtlUnwind(PVOID TargetFrame, PVOID TargetIp, PEXCEPTION_RECORD ExceptionRecord, PVOID ReturnValue)
+     * }
+     */
+    public static FunctionDescriptor RtlUnwind$descriptor() {
+        return RtlUnwind.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void RtlUnwind(PVOID TargetFrame, PVOID TargetIp, PEXCEPTION_RECORD ExceptionRecord, PVOID ReturnValue)
+     * }
+     */
+    public static MethodHandle RtlUnwind$handle() {
+        return RtlUnwind.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * void RtlUnwind(PVOID TargetFrame, PVOID TargetIp, PEXCEPTION_RECORD ExceptionRecord, PVOID ReturnValue)
+     * }
+     */
+    public static MemorySegment RtlUnwind$address() {
+        return RtlUnwind.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void RtlUnwind(PVOID TargetFrame, PVOID TargetIp, PEXCEPTION_RECORD ExceptionRecord, PVOID ReturnValue)
+     * }
+     */
+    public static void RtlUnwind(MemorySegment TargetFrame, MemorySegment TargetIp, MemorySegment ExceptionRecord, MemorySegment ReturnValue) {
+        var mh$ = RtlUnwind.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlUnwind", TargetFrame, TargetIp, ExceptionRecord, ReturnValue);
+            }
+            mh$.invokeExact(TargetFrame, TargetIp, ExceptionRecord, ReturnValue);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlAddFunctionTable {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_CHAR,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG_LONG
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlAddFunctionTable");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * BOOLEAN RtlAddFunctionTable(PRUNTIME_FUNCTION FunctionTable, DWORD EntryCount, DWORD64 BaseAddress)
+     * }
+     */
+    public static FunctionDescriptor RtlAddFunctionTable$descriptor() {
+        return RtlAddFunctionTable.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * BOOLEAN RtlAddFunctionTable(PRUNTIME_FUNCTION FunctionTable, DWORD EntryCount, DWORD64 BaseAddress)
+     * }
+     */
+    public static MethodHandle RtlAddFunctionTable$handle() {
+        return RtlAddFunctionTable.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * BOOLEAN RtlAddFunctionTable(PRUNTIME_FUNCTION FunctionTable, DWORD EntryCount, DWORD64 BaseAddress)
+     * }
+     */
+    public static MemorySegment RtlAddFunctionTable$address() {
+        return RtlAddFunctionTable.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * BOOLEAN RtlAddFunctionTable(PRUNTIME_FUNCTION FunctionTable, DWORD EntryCount, DWORD64 BaseAddress)
+     * }
+     */
+    public static byte RtlAddFunctionTable(MemorySegment FunctionTable, int EntryCount, long BaseAddress) {
+        var mh$ = RtlAddFunctionTable.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlAddFunctionTable", FunctionTable, EntryCount, BaseAddress);
+            }
+            return (byte)mh$.invokeExact(FunctionTable, EntryCount, BaseAddress);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlDeleteFunctionTable {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_CHAR,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlDeleteFunctionTable");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * BOOLEAN RtlDeleteFunctionTable(PRUNTIME_FUNCTION FunctionTable)
+     * }
+     */
+    public static FunctionDescriptor RtlDeleteFunctionTable$descriptor() {
+        return RtlDeleteFunctionTable.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * BOOLEAN RtlDeleteFunctionTable(PRUNTIME_FUNCTION FunctionTable)
+     * }
+     */
+    public static MethodHandle RtlDeleteFunctionTable$handle() {
+        return RtlDeleteFunctionTable.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * BOOLEAN RtlDeleteFunctionTable(PRUNTIME_FUNCTION FunctionTable)
+     * }
+     */
+    public static MemorySegment RtlDeleteFunctionTable$address() {
+        return RtlDeleteFunctionTable.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * BOOLEAN RtlDeleteFunctionTable(PRUNTIME_FUNCTION FunctionTable)
+     * }
+     */
+    public static byte RtlDeleteFunctionTable(MemorySegment FunctionTable) {
+        var mh$ = RtlDeleteFunctionTable.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlDeleteFunctionTable", FunctionTable);
+            }
+            return (byte)mh$.invokeExact(FunctionTable);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlInstallFunctionTableCallback {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_CHAR,
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlInstallFunctionTableCallback");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * BOOLEAN RtlInstallFunctionTableCallback(DWORD64 TableIdentifier, DWORD64 BaseAddress, DWORD Length, PGET_RUNTIME_FUNCTION_CALLBACK Callback, PVOID Context, PCWSTR OutOfProcessCallbackDll)
+     * }
+     */
+    public static FunctionDescriptor RtlInstallFunctionTableCallback$descriptor() {
+        return RtlInstallFunctionTableCallback.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * BOOLEAN RtlInstallFunctionTableCallback(DWORD64 TableIdentifier, DWORD64 BaseAddress, DWORD Length, PGET_RUNTIME_FUNCTION_CALLBACK Callback, PVOID Context, PCWSTR OutOfProcessCallbackDll)
+     * }
+     */
+    public static MethodHandle RtlInstallFunctionTableCallback$handle() {
+        return RtlInstallFunctionTableCallback.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * BOOLEAN RtlInstallFunctionTableCallback(DWORD64 TableIdentifier, DWORD64 BaseAddress, DWORD Length, PGET_RUNTIME_FUNCTION_CALLBACK Callback, PVOID Context, PCWSTR OutOfProcessCallbackDll)
+     * }
+     */
+    public static MemorySegment RtlInstallFunctionTableCallback$address() {
+        return RtlInstallFunctionTableCallback.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * BOOLEAN RtlInstallFunctionTableCallback(DWORD64 TableIdentifier, DWORD64 BaseAddress, DWORD Length, PGET_RUNTIME_FUNCTION_CALLBACK Callback, PVOID Context, PCWSTR OutOfProcessCallbackDll)
+     * }
+     */
+    public static byte RtlInstallFunctionTableCallback(long TableIdentifier, long BaseAddress, int Length, MemorySegment Callback, MemorySegment Context, MemorySegment OutOfProcessCallbackDll) {
+        var mh$ = RtlInstallFunctionTableCallback.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlInstallFunctionTableCallback", TableIdentifier, BaseAddress, Length, Callback, Context, OutOfProcessCallbackDll);
+            }
+            return (byte)mh$.invokeExact(TableIdentifier, BaseAddress, Length, Callback, Context, OutOfProcessCallbackDll);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlAddGrowableFunctionTable {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_LONG_LONG
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlAddGrowableFunctionTable");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * DWORD RtlAddGrowableFunctionTable(PVOID *DynamicTable, PRUNTIME_FUNCTION FunctionTable, DWORD EntryCount, DWORD MaximumEntryCount, ULONG_PTR RangeBase, ULONG_PTR RangeEnd)
+     * }
+     */
+    public static FunctionDescriptor RtlAddGrowableFunctionTable$descriptor() {
+        return RtlAddGrowableFunctionTable.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * DWORD RtlAddGrowableFunctionTable(PVOID *DynamicTable, PRUNTIME_FUNCTION FunctionTable, DWORD EntryCount, DWORD MaximumEntryCount, ULONG_PTR RangeBase, ULONG_PTR RangeEnd)
+     * }
+     */
+    public static MethodHandle RtlAddGrowableFunctionTable$handle() {
+        return RtlAddGrowableFunctionTable.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * DWORD RtlAddGrowableFunctionTable(PVOID *DynamicTable, PRUNTIME_FUNCTION FunctionTable, DWORD EntryCount, DWORD MaximumEntryCount, ULONG_PTR RangeBase, ULONG_PTR RangeEnd)
+     * }
+     */
+    public static MemorySegment RtlAddGrowableFunctionTable$address() {
+        return RtlAddGrowableFunctionTable.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * DWORD RtlAddGrowableFunctionTable(PVOID *DynamicTable, PRUNTIME_FUNCTION FunctionTable, DWORD EntryCount, DWORD MaximumEntryCount, ULONG_PTR RangeBase, ULONG_PTR RangeEnd)
+     * }
+     */
+    public static int RtlAddGrowableFunctionTable(MemorySegment DynamicTable, MemorySegment FunctionTable, int EntryCount, int MaximumEntryCount, long RangeBase, long RangeEnd) {
+        var mh$ = RtlAddGrowableFunctionTable.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlAddGrowableFunctionTable", DynamicTable, FunctionTable, EntryCount, MaximumEntryCount, RangeBase, RangeEnd);
+            }
+            return (int)mh$.invokeExact(DynamicTable, FunctionTable, EntryCount, MaximumEntryCount, RangeBase, RangeEnd);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlGrowFunctionTable {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlGrowFunctionTable");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void RtlGrowFunctionTable(PVOID DynamicTable, DWORD NewEntryCount)
+     * }
+     */
+    public static FunctionDescriptor RtlGrowFunctionTable$descriptor() {
+        return RtlGrowFunctionTable.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void RtlGrowFunctionTable(PVOID DynamicTable, DWORD NewEntryCount)
+     * }
+     */
+    public static MethodHandle RtlGrowFunctionTable$handle() {
+        return RtlGrowFunctionTable.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * void RtlGrowFunctionTable(PVOID DynamicTable, DWORD NewEntryCount)
+     * }
+     */
+    public static MemorySegment RtlGrowFunctionTable$address() {
+        return RtlGrowFunctionTable.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void RtlGrowFunctionTable(PVOID DynamicTable, DWORD NewEntryCount)
+     * }
+     */
+    public static void RtlGrowFunctionTable(MemorySegment DynamicTable, int NewEntryCount) {
+        var mh$ = RtlGrowFunctionTable.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlGrowFunctionTable", DynamicTable, NewEntryCount);
+            }
+            mh$.invokeExact(DynamicTable, NewEntryCount);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlDeleteGrowableFunctionTable {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlDeleteGrowableFunctionTable");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void RtlDeleteGrowableFunctionTable(PVOID DynamicTable)
+     * }
+     */
+    public static FunctionDescriptor RtlDeleteGrowableFunctionTable$descriptor() {
+        return RtlDeleteGrowableFunctionTable.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void RtlDeleteGrowableFunctionTable(PVOID DynamicTable)
+     * }
+     */
+    public static MethodHandle RtlDeleteGrowableFunctionTable$handle() {
+        return RtlDeleteGrowableFunctionTable.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * void RtlDeleteGrowableFunctionTable(PVOID DynamicTable)
+     * }
+     */
+    public static MemorySegment RtlDeleteGrowableFunctionTable$address() {
+        return RtlDeleteGrowableFunctionTable.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void RtlDeleteGrowableFunctionTable(PVOID DynamicTable)
+     * }
+     */
+    public static void RtlDeleteGrowableFunctionTable(MemorySegment DynamicTable) {
+        var mh$ = RtlDeleteGrowableFunctionTable.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlDeleteGrowableFunctionTable", DynamicTable);
+            }
+            mh$.invokeExact(DynamicTable);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlLookupFunctionEntry {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlLookupFunctionEntry");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * PRUNTIME_FUNCTION RtlLookupFunctionEntry(DWORD64 ControlPc, PDWORD64 ImageBase, PUNWIND_HISTORY_TABLE HistoryTable)
+     * }
+     */
+    public static FunctionDescriptor RtlLookupFunctionEntry$descriptor() {
+        return RtlLookupFunctionEntry.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * PRUNTIME_FUNCTION RtlLookupFunctionEntry(DWORD64 ControlPc, PDWORD64 ImageBase, PUNWIND_HISTORY_TABLE HistoryTable)
+     * }
+     */
+    public static MethodHandle RtlLookupFunctionEntry$handle() {
+        return RtlLookupFunctionEntry.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * PRUNTIME_FUNCTION RtlLookupFunctionEntry(DWORD64 ControlPc, PDWORD64 ImageBase, PUNWIND_HISTORY_TABLE HistoryTable)
+     * }
+     */
+    public static MemorySegment RtlLookupFunctionEntry$address() {
+        return RtlLookupFunctionEntry.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * PRUNTIME_FUNCTION RtlLookupFunctionEntry(DWORD64 ControlPc, PDWORD64 ImageBase, PUNWIND_HISTORY_TABLE HistoryTable)
+     * }
+     */
+    public static MemorySegment RtlLookupFunctionEntry(long ControlPc, MemorySegment ImageBase, MemorySegment HistoryTable) {
+        var mh$ = RtlLookupFunctionEntry.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlLookupFunctionEntry", ControlPc, ImageBase, HistoryTable);
+            }
+            return (MemorySegment)mh$.invokeExact(ControlPc, ImageBase, HistoryTable);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlRestoreContext {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlRestoreContext");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void RtlRestoreContext(PCONTEXT ContextRecord, struct _EXCEPTION_RECORD *ExceptionRecord)
+     * }
+     */
+    public static FunctionDescriptor RtlRestoreContext$descriptor() {
+        return RtlRestoreContext.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void RtlRestoreContext(PCONTEXT ContextRecord, struct _EXCEPTION_RECORD *ExceptionRecord)
+     * }
+     */
+    public static MethodHandle RtlRestoreContext$handle() {
+        return RtlRestoreContext.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * void RtlRestoreContext(PCONTEXT ContextRecord, struct _EXCEPTION_RECORD *ExceptionRecord)
+     * }
+     */
+    public static MemorySegment RtlRestoreContext$address() {
+        return RtlRestoreContext.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void RtlRestoreContext(PCONTEXT ContextRecord, struct _EXCEPTION_RECORD *ExceptionRecord)
+     * }
+     */
+    public static void RtlRestoreContext(MemorySegment ContextRecord, MemorySegment ExceptionRecord) {
+        var mh$ = RtlRestoreContext.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlRestoreContext", ContextRecord, ExceptionRecord);
+            }
+            mh$.invokeExact(ContextRecord, ExceptionRecord);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlUnwindEx {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlUnwindEx");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void RtlUnwindEx(PVOID TargetFrame, PVOID TargetIp, PEXCEPTION_RECORD ExceptionRecord, PVOID ReturnValue, PCONTEXT ContextRecord, PUNWIND_HISTORY_TABLE HistoryTable)
+     * }
+     */
+    public static FunctionDescriptor RtlUnwindEx$descriptor() {
+        return RtlUnwindEx.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void RtlUnwindEx(PVOID TargetFrame, PVOID TargetIp, PEXCEPTION_RECORD ExceptionRecord, PVOID ReturnValue, PCONTEXT ContextRecord, PUNWIND_HISTORY_TABLE HistoryTable)
+     * }
+     */
+    public static MethodHandle RtlUnwindEx$handle() {
+        return RtlUnwindEx.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * void RtlUnwindEx(PVOID TargetFrame, PVOID TargetIp, PEXCEPTION_RECORD ExceptionRecord, PVOID ReturnValue, PCONTEXT ContextRecord, PUNWIND_HISTORY_TABLE HistoryTable)
+     * }
+     */
+    public static MemorySegment RtlUnwindEx$address() {
+        return RtlUnwindEx.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void RtlUnwindEx(PVOID TargetFrame, PVOID TargetIp, PEXCEPTION_RECORD ExceptionRecord, PVOID ReturnValue, PCONTEXT ContextRecord, PUNWIND_HISTORY_TABLE HistoryTable)
+     * }
+     */
+    public static void RtlUnwindEx(MemorySegment TargetFrame, MemorySegment TargetIp, MemorySegment ExceptionRecord, MemorySegment ReturnValue, MemorySegment ContextRecord, MemorySegment HistoryTable) {
+        var mh$ = RtlUnwindEx.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlUnwindEx", TargetFrame, TargetIp, ExceptionRecord, ReturnValue, ContextRecord, HistoryTable);
+            }
+            mh$.invokeExact(TargetFrame, TargetIp, ExceptionRecord, ReturnValue, ContextRecord, HistoryTable);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlVirtualUnwind {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlVirtualUnwind");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * PEXCEPTION_ROUTINE RtlVirtualUnwind(DWORD HandlerType, DWORD64 ImageBase, DWORD64 ControlPc, PRUNTIME_FUNCTION FunctionEntry, PCONTEXT ContextRecord, PVOID *HandlerData, PDWORD64 EstablisherFrame, PKNONVOLATILE_CONTEXT_POINTERS ContextPointers)
+     * }
+     */
+    public static FunctionDescriptor RtlVirtualUnwind$descriptor() {
+        return RtlVirtualUnwind.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * PEXCEPTION_ROUTINE RtlVirtualUnwind(DWORD HandlerType, DWORD64 ImageBase, DWORD64 ControlPc, PRUNTIME_FUNCTION FunctionEntry, PCONTEXT ContextRecord, PVOID *HandlerData, PDWORD64 EstablisherFrame, PKNONVOLATILE_CONTEXT_POINTERS ContextPointers)
+     * }
+     */
+    public static MethodHandle RtlVirtualUnwind$handle() {
+        return RtlVirtualUnwind.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * PEXCEPTION_ROUTINE RtlVirtualUnwind(DWORD HandlerType, DWORD64 ImageBase, DWORD64 ControlPc, PRUNTIME_FUNCTION FunctionEntry, PCONTEXT ContextRecord, PVOID *HandlerData, PDWORD64 EstablisherFrame, PKNONVOLATILE_CONTEXT_POINTERS ContextPointers)
+     * }
+     */
+    public static MemorySegment RtlVirtualUnwind$address() {
+        return RtlVirtualUnwind.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * PEXCEPTION_ROUTINE RtlVirtualUnwind(DWORD HandlerType, DWORD64 ImageBase, DWORD64 ControlPc, PRUNTIME_FUNCTION FunctionEntry, PCONTEXT ContextRecord, PVOID *HandlerData, PDWORD64 EstablisherFrame, PKNONVOLATILE_CONTEXT_POINTERS ContextPointers)
+     * }
+     */
+    public static MemorySegment RtlVirtualUnwind(int HandlerType, long ImageBase, long ControlPc, MemorySegment FunctionEntry, MemorySegment ContextRecord, MemorySegment HandlerData, MemorySegment EstablisherFrame, MemorySegment ContextPointers) {
+        var mh$ = RtlVirtualUnwind.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlVirtualUnwind", HandlerType, ImageBase, ControlPc, FunctionEntry, ContextRecord, HandlerData, EstablisherFrame, ContextPointers);
+            }
+            return (MemorySegment)mh$.invokeExact(HandlerType, ImageBase, ControlPc, FunctionEntry, ContextRecord, HandlerData, EstablisherFrame, ContextPointers);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlRaiseException {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlRaiseException");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void RtlRaiseException(PEXCEPTION_RECORD ExceptionRecord)
+     * }
+     */
+    public static FunctionDescriptor RtlRaiseException$descriptor() {
+        return RtlRaiseException.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void RtlRaiseException(PEXCEPTION_RECORD ExceptionRecord)
+     * }
+     */
+    public static MethodHandle RtlRaiseException$handle() {
+        return RtlRaiseException.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * void RtlRaiseException(PEXCEPTION_RECORD ExceptionRecord)
+     * }
+     */
+    public static MemorySegment RtlRaiseException$address() {
+        return RtlRaiseException.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void RtlRaiseException(PEXCEPTION_RECORD ExceptionRecord)
+     * }
+     */
+    public static void RtlRaiseException(MemorySegment ExceptionRecord) {
+        var mh$ = RtlRaiseException.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlRaiseException", ExceptionRecord);
+            }
+            mh$.invokeExact(ExceptionRecord);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlPcToFileHeader {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlPcToFileHeader");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * PVOID RtlPcToFileHeader(PVOID PcValue, PVOID *BaseOfImage)
+     * }
+     */
+    public static FunctionDescriptor RtlPcToFileHeader$descriptor() {
+        return RtlPcToFileHeader.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * PVOID RtlPcToFileHeader(PVOID PcValue, PVOID *BaseOfImage)
+     * }
+     */
+    public static MethodHandle RtlPcToFileHeader$handle() {
+        return RtlPcToFileHeader.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * PVOID RtlPcToFileHeader(PVOID PcValue, PVOID *BaseOfImage)
+     * }
+     */
+    public static MemorySegment RtlPcToFileHeader$address() {
+        return RtlPcToFileHeader.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * PVOID RtlPcToFileHeader(PVOID PcValue, PVOID *BaseOfImage)
+     * }
+     */
+    public static MemorySegment RtlPcToFileHeader(MemorySegment PcValue, MemorySegment BaseOfImage) {
+        var mh$ = RtlPcToFileHeader.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlPcToFileHeader", PcValue, BaseOfImage);
+            }
+            return (MemorySegment)mh$.invokeExact(PcValue, BaseOfImage);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlCompareMemory {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG_LONG
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlCompareMemory");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * SIZE_T RtlCompareMemory(const void *Source1, const void *Source2, SIZE_T Length)
+     * }
+     */
+    public static FunctionDescriptor RtlCompareMemory$descriptor() {
+        return RtlCompareMemory.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * SIZE_T RtlCompareMemory(const void *Source1, const void *Source2, SIZE_T Length)
+     * }
+     */
+    public static MethodHandle RtlCompareMemory$handle() {
+        return RtlCompareMemory.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * SIZE_T RtlCompareMemory(const void *Source1, const void *Source2, SIZE_T Length)
+     * }
+     */
+    public static MemorySegment RtlCompareMemory$address() {
+        return RtlCompareMemory.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * SIZE_T RtlCompareMemory(const void *Source1, const void *Source2, SIZE_T Length)
+     * }
+     */
+    public static long RtlCompareMemory(MemorySegment Source1, MemorySegment Source2, long Length) {
+        var mh$ = RtlCompareMemory.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlCompareMemory", Source1, Source2, Length);
+            }
+            return (long)mh$.invokeExact(Source1, Source2, Length);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct _SLIST_ENTRY {
+     *     struct _SLIST_ENTRY *Next;
+     * } *PSLIST_ENTRY
+     * }
+     */
+    public static final AddressLayout PSLIST_ENTRY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef union _SLIST_HEADER {
+     *     struct {
+     *         ULONGLONG Alignment;
+     *         ULONGLONG Region;
+     *     };
+     *     struct {
+     *         ULONGLONG Depth : 16;
+     *         ULONGLONG Sequence : 48;
+     *         ULONGLONG Reserved : 4;
+     *         ULONGLONG NextEntry : 60;
+     *     } HeaderX64;
+     * } *PSLIST_HEADER
+     * }
+     */
+    public static final AddressLayout PSLIST_HEADER = wgl_h.C_POINTER;
+
+    private static class RtlInitializeSListHead {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlInitializeSListHead");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void RtlInitializeSListHead(PSLIST_HEADER ListHead)
+     * }
+     */
+    public static FunctionDescriptor RtlInitializeSListHead$descriptor() {
+        return RtlInitializeSListHead.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void RtlInitializeSListHead(PSLIST_HEADER ListHead)
+     * }
+     */
+    public static MethodHandle RtlInitializeSListHead$handle() {
+        return RtlInitializeSListHead.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * void RtlInitializeSListHead(PSLIST_HEADER ListHead)
+     * }
+     */
+    public static MemorySegment RtlInitializeSListHead$address() {
+        return RtlInitializeSListHead.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void RtlInitializeSListHead(PSLIST_HEADER ListHead)
+     * }
+     */
+    public static void RtlInitializeSListHead(MemorySegment ListHead) {
+        var mh$ = RtlInitializeSListHead.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlInitializeSListHead", ListHead);
+            }
+            mh$.invokeExact(ListHead);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlFirstEntrySList {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlFirstEntrySList");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlFirstEntrySList(const SLIST_HEADER *ListHead)
+     * }
+     */
+    public static FunctionDescriptor RtlFirstEntrySList$descriptor() {
+        return RtlFirstEntrySList.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlFirstEntrySList(const SLIST_HEADER *ListHead)
+     * }
+     */
+    public static MethodHandle RtlFirstEntrySList$handle() {
+        return RtlFirstEntrySList.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlFirstEntrySList(const SLIST_HEADER *ListHead)
+     * }
+     */
+    public static MemorySegment RtlFirstEntrySList$address() {
+        return RtlFirstEntrySList.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlFirstEntrySList(const SLIST_HEADER *ListHead)
+     * }
+     */
+    public static MemorySegment RtlFirstEntrySList(MemorySegment ListHead) {
+        var mh$ = RtlFirstEntrySList.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlFirstEntrySList", ListHead);
+            }
+            return (MemorySegment)mh$.invokeExact(ListHead);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlInterlockedPopEntrySList {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlInterlockedPopEntrySList");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlInterlockedPopEntrySList(PSLIST_HEADER ListHead)
+     * }
+     */
+    public static FunctionDescriptor RtlInterlockedPopEntrySList$descriptor() {
+        return RtlInterlockedPopEntrySList.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlInterlockedPopEntrySList(PSLIST_HEADER ListHead)
+     * }
+     */
+    public static MethodHandle RtlInterlockedPopEntrySList$handle() {
+        return RtlInterlockedPopEntrySList.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlInterlockedPopEntrySList(PSLIST_HEADER ListHead)
+     * }
+     */
+    public static MemorySegment RtlInterlockedPopEntrySList$address() {
+        return RtlInterlockedPopEntrySList.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlInterlockedPopEntrySList(PSLIST_HEADER ListHead)
+     * }
+     */
+    public static MemorySegment RtlInterlockedPopEntrySList(MemorySegment ListHead) {
+        var mh$ = RtlInterlockedPopEntrySList.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlInterlockedPopEntrySList", ListHead);
+            }
+            return (MemorySegment)mh$.invokeExact(ListHead);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlInterlockedPushEntrySList {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlInterlockedPushEntrySList");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlInterlockedPushEntrySList(PSLIST_HEADER ListHead, PSLIST_ENTRY ListEntry)
+     * }
+     */
+    public static FunctionDescriptor RtlInterlockedPushEntrySList$descriptor() {
+        return RtlInterlockedPushEntrySList.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlInterlockedPushEntrySList(PSLIST_HEADER ListHead, PSLIST_ENTRY ListEntry)
+     * }
+     */
+    public static MethodHandle RtlInterlockedPushEntrySList$handle() {
+        return RtlInterlockedPushEntrySList.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlInterlockedPushEntrySList(PSLIST_HEADER ListHead, PSLIST_ENTRY ListEntry)
+     * }
+     */
+    public static MemorySegment RtlInterlockedPushEntrySList$address() {
+        return RtlInterlockedPushEntrySList.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlInterlockedPushEntrySList(PSLIST_HEADER ListHead, PSLIST_ENTRY ListEntry)
+     * }
+     */
+    public static MemorySegment RtlInterlockedPushEntrySList(MemorySegment ListHead, MemorySegment ListEntry) {
+        var mh$ = RtlInterlockedPushEntrySList.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlInterlockedPushEntrySList", ListHead, ListEntry);
+            }
+            return (MemorySegment)mh$.invokeExact(ListHead, ListEntry);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlInterlockedPushListSListEx {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlInterlockedPushListSListEx");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlInterlockedPushListSListEx(PSLIST_HEADER ListHead, PSLIST_ENTRY List, PSLIST_ENTRY ListEnd, DWORD Count)
+     * }
+     */
+    public static FunctionDescriptor RtlInterlockedPushListSListEx$descriptor() {
+        return RtlInterlockedPushListSListEx.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlInterlockedPushListSListEx(PSLIST_HEADER ListHead, PSLIST_ENTRY List, PSLIST_ENTRY ListEnd, DWORD Count)
+     * }
+     */
+    public static MethodHandle RtlInterlockedPushListSListEx$handle() {
+        return RtlInterlockedPushListSListEx.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlInterlockedPushListSListEx(PSLIST_HEADER ListHead, PSLIST_ENTRY List, PSLIST_ENTRY ListEnd, DWORD Count)
+     * }
+     */
+    public static MemorySegment RtlInterlockedPushListSListEx$address() {
+        return RtlInterlockedPushListSListEx.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlInterlockedPushListSListEx(PSLIST_HEADER ListHead, PSLIST_ENTRY List, PSLIST_ENTRY ListEnd, DWORD Count)
+     * }
+     */
+    public static MemorySegment RtlInterlockedPushListSListEx(MemorySegment ListHead, MemorySegment List, MemorySegment ListEnd, int Count) {
+        var mh$ = RtlInterlockedPushListSListEx.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlInterlockedPushListSListEx", ListHead, List, ListEnd, Count);
+            }
+            return (MemorySegment)mh$.invokeExact(ListHead, List, ListEnd, Count);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlInterlockedFlushSList {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlInterlockedFlushSList");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlInterlockedFlushSList(PSLIST_HEADER ListHead)
+     * }
+     */
+    public static FunctionDescriptor RtlInterlockedFlushSList$descriptor() {
+        return RtlInterlockedFlushSList.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlInterlockedFlushSList(PSLIST_HEADER ListHead)
+     * }
+     */
+    public static MethodHandle RtlInterlockedFlushSList$handle() {
+        return RtlInterlockedFlushSList.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlInterlockedFlushSList(PSLIST_HEADER ListHead)
+     * }
+     */
+    public static MemorySegment RtlInterlockedFlushSList$address() {
+        return RtlInterlockedFlushSList.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * PSLIST_ENTRY RtlInterlockedFlushSList(PSLIST_HEADER ListHead)
+     * }
+     */
+    public static MemorySegment RtlInterlockedFlushSList(MemorySegment ListHead) {
+        var mh$ = RtlInterlockedFlushSList.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlInterlockedFlushSList", ListHead);
+            }
+            return (MemorySegment)mh$.invokeExact(ListHead);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlQueryDepthSList {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_SHORT,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlQueryDepthSList");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * WORD RtlQueryDepthSList(PSLIST_HEADER ListHead)
+     * }
+     */
+    public static FunctionDescriptor RtlQueryDepthSList$descriptor() {
+        return RtlQueryDepthSList.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * WORD RtlQueryDepthSList(PSLIST_HEADER ListHead)
+     * }
+     */
+    public static MethodHandle RtlQueryDepthSList$handle() {
+        return RtlQueryDepthSList.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * WORD RtlQueryDepthSList(PSLIST_HEADER ListHead)
+     * }
+     */
+    public static MemorySegment RtlQueryDepthSList$address() {
+        return RtlQueryDepthSList.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * WORD RtlQueryDepthSList(PSLIST_HEADER ListHead)
+     * }
+     */
+    public static short RtlQueryDepthSList(MemorySegment ListHead) {
+        var mh$ = RtlQueryDepthSList.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlQueryDepthSList", ListHead);
+            }
+            return (short)mh$.invokeExact(ListHead);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlGetReturnAddressHijackTarget {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG_LONG    );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlGetReturnAddressHijackTarget");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * ULONG_PTR RtlGetReturnAddressHijackTarget()
+     * }
+     */
+    public static FunctionDescriptor RtlGetReturnAddressHijackTarget$descriptor() {
+        return RtlGetReturnAddressHijackTarget.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * ULONG_PTR RtlGetReturnAddressHijackTarget()
+     * }
+     */
+    public static MethodHandle RtlGetReturnAddressHijackTarget$handle() {
+        return RtlGetReturnAddressHijackTarget.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * ULONG_PTR RtlGetReturnAddressHijackTarget()
+     * }
+     */
+    public static MemorySegment RtlGetReturnAddressHijackTarget$address() {
+        return RtlGetReturnAddressHijackTarget.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG_PTR RtlGetReturnAddressHijackTarget()
+     * }
+     */
+    public static long RtlGetReturnAddressHijackTarget() {
+        var mh$ = RtlGetReturnAddressHijackTarget.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlGetReturnAddressHijackTarget");
+            }
+            return (long)mh$.invokeExact();
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef union _RTL_RUN_ONCE {
+     *     PVOID Ptr;
+     * } *PRTL_RUN_ONCE
+     * }
+     */
+    public static final AddressLayout PRTL_RUN_ONCE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _RTL_BARRIER {
+     *     DWORD Reserved1;
+     *     DWORD Reserved2;
+     *     ULONG_PTR Reserved3[2];
+     *     DWORD Reserved4;
+     *     DWORD Reserved5;
+     * } *PRTL_BARRIER
+     * }
+     */
+    public static final AddressLayout PRTL_BARRIER = wgl_h.C_POINTER;
+
+    private static class __fastfail {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("__fastfail");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void __fastfail(unsigned int Code)
+     * }
+     */
+    public static FunctionDescriptor __fastfail$descriptor() {
+        return __fastfail.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void __fastfail(unsigned int Code)
+     * }
+     */
+    public static MethodHandle __fastfail$handle() {
+        return __fastfail.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * void __fastfail(unsigned int Code)
+     * }
+     */
+    public static MemorySegment __fastfail$address() {
+        return __fastfail.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void __fastfail(unsigned int Code)
+     * }
+     */
+    public static void __fastfail(int Code) {
+        var mh$ = __fastfail.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("__fastfail", Code);
+            }
+            mh$.invokeExact(Code);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct _MESSAGE_RESOURCE_ENTRY {
+     *     WORD Length;
+     *     WORD Flags;
+     *     BYTE Text[1];
+     * } *PMESSAGE_RESOURCE_ENTRY
+     * }
+     */
+    public static final AddressLayout PMESSAGE_RESOURCE_ENTRY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _MESSAGE_RESOURCE_BLOCK {
+     *     DWORD LowId;
+     *     DWORD HighId;
+     *     DWORD OffsetToEntries;
+     * } *PMESSAGE_RESOURCE_BLOCK
+     * }
+     */
+    public static final AddressLayout PMESSAGE_RESOURCE_BLOCK = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _MESSAGE_RESOURCE_DATA {
+     *     DWORD NumberOfBlocks;
+     *     MESSAGE_RESOURCE_BLOCK Blocks[1];
+     * } *PMESSAGE_RESOURCE_DATA
+     * }
+     */
+    public static final AddressLayout PMESSAGE_RESOURCE_DATA = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _OSVERSIONINFOA {
+     *     DWORD dwOSVersionInfoSize;
+     *     DWORD dwMajorVersion;
+     *     DWORD dwMinorVersion;
+     *     DWORD dwBuildNumber;
+     *     DWORD dwPlatformId;
+     *     CHAR szCSDVersion[128];
+     * } *POSVERSIONINFOA
+     * }
+     */
+    public static final AddressLayout POSVERSIONINFOA = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _OSVERSIONINFOA {
+     *     DWORD dwOSVersionInfoSize;
+     *     DWORD dwMajorVersion;
+     *     DWORD dwMinorVersion;
+     *     DWORD dwBuildNumber;
+     *     DWORD dwPlatformId;
+     *     CHAR szCSDVersion[128];
+     * } *LPOSVERSIONINFOA
+     * }
+     */
+    public static final AddressLayout LPOSVERSIONINFOA = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _OSVERSIONINFOW {
+     *     DWORD dwOSVersionInfoSize;
+     *     DWORD dwMajorVersion;
+     *     DWORD dwMinorVersion;
+     *     DWORD dwBuildNumber;
+     *     DWORD dwPlatformId;
+     *     WCHAR szCSDVersion[128];
+     * } *POSVERSIONINFOW
+     * }
+     */
+    public static final AddressLayout POSVERSIONINFOW = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _OSVERSIONINFOW {
+     *     DWORD dwOSVersionInfoSize;
+     *     DWORD dwMajorVersion;
+     *     DWORD dwMinorVersion;
+     *     DWORD dwBuildNumber;
+     *     DWORD dwPlatformId;
+     *     WCHAR szCSDVersion[128];
+     * } *LPOSVERSIONINFOW
+     * }
+     */
+    public static final AddressLayout LPOSVERSIONINFOW = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _OSVERSIONINFOW {
+     *     DWORD dwOSVersionInfoSize;
+     *     DWORD dwMajorVersion;
+     *     DWORD dwMinorVersion;
+     *     DWORD dwBuildNumber;
+     *     DWORD dwPlatformId;
+     *     WCHAR szCSDVersion[128];
+     * } *PRTL_OSVERSIONINFOW
+     * }
+     */
+    public static final AddressLayout PRTL_OSVERSIONINFOW = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef POSVERSIONINFOA POSVERSIONINFO
+     * }
+     */
+    public static final AddressLayout POSVERSIONINFO = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef LPOSVERSIONINFOA LPOSVERSIONINFO
+     * }
+     */
+    public static final AddressLayout LPOSVERSIONINFO = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _OSVERSIONINFOEXA {
+     *     DWORD dwOSVersionInfoSize;
+     *     DWORD dwMajorVersion;
+     *     DWORD dwMinorVersion;
+     *     DWORD dwBuildNumber;
+     *     DWORD dwPlatformId;
+     *     CHAR szCSDVersion[128];
+     *     WORD wServicePackMajor;
+     *     WORD wServicePackMinor;
+     *     WORD wSuiteMask;
+     *     BYTE wProductType;
+     *     BYTE wReserved;
+     * } *POSVERSIONINFOEXA
+     * }
+     */
+    public static final AddressLayout POSVERSIONINFOEXA = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _OSVERSIONINFOEXA {
+     *     DWORD dwOSVersionInfoSize;
+     *     DWORD dwMajorVersion;
+     *     DWORD dwMinorVersion;
+     *     DWORD dwBuildNumber;
+     *     DWORD dwPlatformId;
+     *     CHAR szCSDVersion[128];
+     *     WORD wServicePackMajor;
+     *     WORD wServicePackMinor;
+     *     WORD wSuiteMask;
+     *     BYTE wProductType;
+     *     BYTE wReserved;
+     * } *LPOSVERSIONINFOEXA
+     * }
+     */
+    public static final AddressLayout LPOSVERSIONINFOEXA = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _OSVERSIONINFOEXW {
+     *     DWORD dwOSVersionInfoSize;
+     *     DWORD dwMajorVersion;
+     *     DWORD dwMinorVersion;
+     *     DWORD dwBuildNumber;
+     *     DWORD dwPlatformId;
+     *     WCHAR szCSDVersion[128];
+     *     WORD wServicePackMajor;
+     *     WORD wServicePackMinor;
+     *     WORD wSuiteMask;
+     *     BYTE wProductType;
+     *     BYTE wReserved;
+     * } *POSVERSIONINFOEXW
+     * }
+     */
+    public static final AddressLayout POSVERSIONINFOEXW = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _OSVERSIONINFOEXW {
+     *     DWORD dwOSVersionInfoSize;
+     *     DWORD dwMajorVersion;
+     *     DWORD dwMinorVersion;
+     *     DWORD dwBuildNumber;
+     *     DWORD dwPlatformId;
+     *     WCHAR szCSDVersion[128];
+     *     WORD wServicePackMajor;
+     *     WORD wServicePackMinor;
+     *     WORD wSuiteMask;
+     *     BYTE wProductType;
+     *     BYTE wReserved;
+     * } *LPOSVERSIONINFOEXW
+     * }
+     */
+    public static final AddressLayout LPOSVERSIONINFOEXW = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _OSVERSIONINFOEXW {
+     *     DWORD dwOSVersionInfoSize;
+     *     DWORD dwMajorVersion;
+     *     DWORD dwMinorVersion;
+     *     DWORD dwBuildNumber;
+     *     DWORD dwPlatformId;
+     *     WCHAR szCSDVersion[128];
+     *     WORD wServicePackMajor;
+     *     WORD wServicePackMinor;
+     *     WORD wSuiteMask;
+     *     BYTE wProductType;
+     *     BYTE wReserved;
+     * } *PRTL_OSVERSIONINFOEXW
+     * }
+     */
+    public static final AddressLayout PRTL_OSVERSIONINFOEXW = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef POSVERSIONINFOEXA POSVERSIONINFOEX
+     * }
+     */
+    public static final AddressLayout POSVERSIONINFOEX = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef LPOSVERSIONINFOEXA LPOSVERSIONINFOEX
+     * }
+     */
+    public static final AddressLayout LPOSVERSIONINFOEX = wgl_h.C_POINTER;
+
+    private static class VerSetConditionMask {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_LONG,
+            wgl_h.C_CHAR
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("VerSetConditionMask");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * ULONGLONG VerSetConditionMask(ULONGLONG ConditionMask, DWORD TypeMask, BYTE Condition)
+     * }
+     */
+    public static FunctionDescriptor VerSetConditionMask$descriptor() {
+        return VerSetConditionMask.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * ULONGLONG VerSetConditionMask(ULONGLONG ConditionMask, DWORD TypeMask, BYTE Condition)
+     * }
+     */
+    public static MethodHandle VerSetConditionMask$handle() {
+        return VerSetConditionMask.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * ULONGLONG VerSetConditionMask(ULONGLONG ConditionMask, DWORD TypeMask, BYTE Condition)
+     * }
+     */
+    public static MemorySegment VerSetConditionMask$address() {
+        return VerSetConditionMask.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONGLONG VerSetConditionMask(ULONGLONG ConditionMask, DWORD TypeMask, BYTE Condition)
+     * }
+     */
+    public static long VerSetConditionMask(long ConditionMask, int TypeMask, byte Condition) {
+        var mh$ = VerSetConditionMask.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("VerSetConditionMask", ConditionMask, TypeMask, Condition);
+            }
+            return (long)mh$.invokeExact(ConditionMask, TypeMask, Condition);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlGetProductInfo {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_CHAR,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlGetProductInfo");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * BOOLEAN RtlGetProductInfo(DWORD OSMajorVersion, DWORD OSMinorVersion, DWORD SpMajorVersion, DWORD SpMinorVersion, PDWORD ReturnedProductType)
+     * }
+     */
+    public static FunctionDescriptor RtlGetProductInfo$descriptor() {
+        return RtlGetProductInfo.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * BOOLEAN RtlGetProductInfo(DWORD OSMajorVersion, DWORD OSMinorVersion, DWORD SpMajorVersion, DWORD SpMinorVersion, PDWORD ReturnedProductType)
+     * }
+     */
+    public static MethodHandle RtlGetProductInfo$handle() {
+        return RtlGetProductInfo.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * BOOLEAN RtlGetProductInfo(DWORD OSMajorVersion, DWORD OSMinorVersion, DWORD SpMajorVersion, DWORD SpMinorVersion, PDWORD ReturnedProductType)
+     * }
+     */
+    public static MemorySegment RtlGetProductInfo$address() {
+        return RtlGetProductInfo.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * BOOLEAN RtlGetProductInfo(DWORD OSMajorVersion, DWORD OSMinorVersion, DWORD SpMajorVersion, DWORD SpMinorVersion, PDWORD ReturnedProductType)
+     * }
+     */
+    public static byte RtlGetProductInfo(int OSMajorVersion, int OSMinorVersion, int SpMajorVersion, int SpMinorVersion, MemorySegment ReturnedProductType) {
+        var mh$ = RtlGetProductInfo.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlGetProductInfo", OSMajorVersion, OSMinorVersion, SpMajorVersion, SpMinorVersion, ReturnedProductType);
+            }
+            return (byte)mh$.invokeExact(OSMajorVersion, OSMinorVersion, SpMajorVersion, SpMinorVersion, ReturnedProductType);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    private static final int UmsThreadInvalidInfoClass = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _RTL_UMS_THREAD_INFO_CLASS.UmsThreadInvalidInfoClass = 0
+     * }
+     */
+    public static int UmsThreadInvalidInfoClass() {
+        return UmsThreadInvalidInfoClass;
+    }
+    private static final int UmsThreadUserContext = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _RTL_UMS_THREAD_INFO_CLASS.UmsThreadUserContext = 1
+     * }
+     */
+    public static int UmsThreadUserContext() {
+        return UmsThreadUserContext;
+    }
+    private static final int UmsThreadPriority = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _RTL_UMS_THREAD_INFO_CLASS.UmsThreadPriority = 2
+     * }
+     */
+    public static int UmsThreadPriority() {
+        return UmsThreadPriority;
+    }
+    private static final int UmsThreadAffinity = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _RTL_UMS_THREAD_INFO_CLASS.UmsThreadAffinity = 3
+     * }
+     */
+    public static int UmsThreadAffinity() {
+        return UmsThreadAffinity;
+    }
+    private static final int UmsThreadTeb = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum _RTL_UMS_THREAD_INFO_CLASS.UmsThreadTeb = 4
+     * }
+     */
+    public static int UmsThreadTeb() {
+        return UmsThreadTeb;
+    }
+    private static final int UmsThreadIsSuspended = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum _RTL_UMS_THREAD_INFO_CLASS.UmsThreadIsSuspended = 5
+     * }
+     */
+    public static int UmsThreadIsSuspended() {
+        return UmsThreadIsSuspended;
+    }
+    private static final int UmsThreadIsTerminated = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum _RTL_UMS_THREAD_INFO_CLASS.UmsThreadIsTerminated = 6
+     * }
+     */
+    public static int UmsThreadIsTerminated() {
+        return UmsThreadIsTerminated;
+    }
+    private static final int UmsThreadMaxInfoClass = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum _RTL_UMS_THREAD_INFO_CLASS.UmsThreadMaxInfoClass = 7
+     * }
+     */
+    public static int UmsThreadMaxInfoClass() {
+        return UmsThreadMaxInfoClass;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef enum _RTL_UMS_THREAD_INFO_CLASS {
+     *     UmsThreadInvalidInfoClass = 0,
+     *     UmsThreadUserContext,
+     *     UmsThreadPriority,
+     *     UmsThreadAffinity,
+     *     UmsThreadTeb,
+     *     UmsThreadIsSuspended,
+     *     UmsThreadIsTerminated,
+     *     UmsThreadMaxInfoClass
+     * } *PRTL_UMS_THREAD_INFO_CLASS
+     * }
+     */
+    public static final AddressLayout PRTL_UMS_THREAD_INFO_CLASS = wgl_h.C_POINTER;
+    private static final int UmsSchedulerStartup = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _RTL_UMS_SCHEDULER_REASON.UmsSchedulerStartup = 0
+     * }
+     */
+    public static int UmsSchedulerStartup() {
+        return UmsSchedulerStartup;
+    }
+    private static final int UmsSchedulerThreadBlocked = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _RTL_UMS_SCHEDULER_REASON.UmsSchedulerThreadBlocked = 1
+     * }
+     */
+    public static int UmsSchedulerThreadBlocked() {
+        return UmsSchedulerThreadBlocked;
+    }
+    private static final int UmsSchedulerThreadYield = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _RTL_UMS_SCHEDULER_REASON.UmsSchedulerThreadYield = 2
+     * }
+     */
+    public static int UmsSchedulerThreadYield() {
+        return UmsSchedulerThreadYield;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef enum _RTL_UMS_SCHEDULER_REASON {
+     *     UmsSchedulerStartup = 0,
+     *     UmsSchedulerThreadBlocked,
+     *     UmsSchedulerThreadYield
+     * } *PRTL_UMS_SCHEDULER_REASON
+     * }
+     */
+    public static final AddressLayout PRTL_UMS_SCHEDULER_REASON = wgl_h.C_POINTER;
+
+    private static class RtlCrc32 {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_LONG
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlCrc32");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * DWORD RtlCrc32(const void *Buffer, size_t Size, DWORD InitialCrc)
+     * }
+     */
+    public static FunctionDescriptor RtlCrc32$descriptor() {
+        return RtlCrc32.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * DWORD RtlCrc32(const void *Buffer, size_t Size, DWORD InitialCrc)
+     * }
+     */
+    public static MethodHandle RtlCrc32$handle() {
+        return RtlCrc32.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * DWORD RtlCrc32(const void *Buffer, size_t Size, DWORD InitialCrc)
+     * }
+     */
+    public static MemorySegment RtlCrc32$address() {
+        return RtlCrc32.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * DWORD RtlCrc32(const void *Buffer, size_t Size, DWORD InitialCrc)
+     * }
+     */
+    public static int RtlCrc32(MemorySegment Buffer, long Size, int InitialCrc) {
+        var mh$ = RtlCrc32.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlCrc32", Buffer, Size, InitialCrc);
+            }
+            return (int)mh$.invokeExact(Buffer, Size, InitialCrc);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlCrc64 {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_LONG_LONG
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlCrc64");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * ULONGLONG RtlCrc64(const void *Buffer, size_t Size, ULONGLONG InitialCrc)
+     * }
+     */
+    public static FunctionDescriptor RtlCrc64$descriptor() {
+        return RtlCrc64.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * ULONGLONG RtlCrc64(const void *Buffer, size_t Size, ULONGLONG InitialCrc)
+     * }
+     */
+    public static MethodHandle RtlCrc64$handle() {
+        return RtlCrc64.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * ULONGLONG RtlCrc64(const void *Buffer, size_t Size, ULONGLONG InitialCrc)
+     * }
+     */
+    public static MemorySegment RtlCrc64$address() {
+        return RtlCrc64.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONGLONG RtlCrc64(const void *Buffer, size_t Size, ULONGLONG InitialCrc)
+     * }
+     */
+    public static long RtlCrc64(MemorySegment Buffer, long Size, long InitialCrc) {
+        var mh$ = RtlCrc64.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlCrc64", Buffer, Size, InitialCrc);
+            }
+            return (long)mh$.invokeExact(Buffer, Size, InitialCrc);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    private static final int OS_DEPLOYMENT_STANDARD = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _OS_DEPLOYEMENT_STATE_VALUES.OS_DEPLOYMENT_STANDARD = 1
+     * }
+     */
+    public static int OS_DEPLOYMENT_STANDARD() {
+        return OS_DEPLOYMENT_STANDARD;
+    }
+    private static final int OS_DEPLOYMENT_COMPACT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _OS_DEPLOYEMENT_STATE_VALUES.OS_DEPLOYMENT_COMPACT = 2
+     * }
+     */
+    public static int OS_DEPLOYMENT_COMPACT() {
+        return OS_DEPLOYMENT_COMPACT;
+    }
+
+    private static class RtlOsDeploymentState {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_INT,
+            wgl_h.C_LONG
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlOsDeploymentState");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * OS_DEPLOYEMENT_STATE_VALUES RtlOsDeploymentState(DWORD Flags)
+     * }
+     */
+    public static FunctionDescriptor RtlOsDeploymentState$descriptor() {
+        return RtlOsDeploymentState.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * OS_DEPLOYEMENT_STATE_VALUES RtlOsDeploymentState(DWORD Flags)
+     * }
+     */
+    public static MethodHandle RtlOsDeploymentState$handle() {
+        return RtlOsDeploymentState.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * OS_DEPLOYEMENT_STATE_VALUES RtlOsDeploymentState(DWORD Flags)
+     * }
+     */
+    public static MemorySegment RtlOsDeploymentState$address() {
+        return RtlOsDeploymentState.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * OS_DEPLOYEMENT_STATE_VALUES RtlOsDeploymentState(DWORD Flags)
+     * }
+     */
+    public static int RtlOsDeploymentState(int Flags) {
+        var mh$ = RtlOsDeploymentState.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlOsDeploymentState", Flags);
+            }
+            return (int)mh$.invokeExact(Flags);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct _NV_MEMORY_RANGE {
+     *     void *BaseAddress;
+     *     SIZE_T Length;
+     * } *PNV_MEMORY_RANGE
+     * }
+     */
+    public static final AddressLayout PNV_MEMORY_RANGE = wgl_h.C_POINTER;
+
+    private static class RtlGetNonVolatileToken {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlGetNonVolatileToken");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * DWORD RtlGetNonVolatileToken(PVOID NvBuffer, SIZE_T Size, PVOID *NvToken)
+     * }
+     */
+    public static FunctionDescriptor RtlGetNonVolatileToken$descriptor() {
+        return RtlGetNonVolatileToken.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * DWORD RtlGetNonVolatileToken(PVOID NvBuffer, SIZE_T Size, PVOID *NvToken)
+     * }
+     */
+    public static MethodHandle RtlGetNonVolatileToken$handle() {
+        return RtlGetNonVolatileToken.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * DWORD RtlGetNonVolatileToken(PVOID NvBuffer, SIZE_T Size, PVOID *NvToken)
+     * }
+     */
+    public static MemorySegment RtlGetNonVolatileToken$address() {
+        return RtlGetNonVolatileToken.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * DWORD RtlGetNonVolatileToken(PVOID NvBuffer, SIZE_T Size, PVOID *NvToken)
+     * }
+     */
+    public static int RtlGetNonVolatileToken(MemorySegment NvBuffer, long Size, MemorySegment NvToken) {
+        var mh$ = RtlGetNonVolatileToken.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlGetNonVolatileToken", NvBuffer, Size, NvToken);
+            }
+            return (int)mh$.invokeExact(NvBuffer, Size, NvToken);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlFreeNonVolatileToken {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlFreeNonVolatileToken");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * DWORD RtlFreeNonVolatileToken(PVOID NvToken)
+     * }
+     */
+    public static FunctionDescriptor RtlFreeNonVolatileToken$descriptor() {
+        return RtlFreeNonVolatileToken.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * DWORD RtlFreeNonVolatileToken(PVOID NvToken)
+     * }
+     */
+    public static MethodHandle RtlFreeNonVolatileToken$handle() {
+        return RtlFreeNonVolatileToken.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * DWORD RtlFreeNonVolatileToken(PVOID NvToken)
+     * }
+     */
+    public static MemorySegment RtlFreeNonVolatileToken$address() {
+        return RtlFreeNonVolatileToken.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * DWORD RtlFreeNonVolatileToken(PVOID NvToken)
+     * }
+     */
+    public static int RtlFreeNonVolatileToken(MemorySegment NvToken) {
+        var mh$ = RtlFreeNonVolatileToken.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlFreeNonVolatileToken", NvToken);
+            }
+            return (int)mh$.invokeExact(NvToken);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlFlushNonVolatileMemory {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_LONG
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlFlushNonVolatileMemory");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * DWORD RtlFlushNonVolatileMemory(PVOID NvToken, PVOID NvBuffer, SIZE_T Size, DWORD Flags)
+     * }
+     */
+    public static FunctionDescriptor RtlFlushNonVolatileMemory$descriptor() {
+        return RtlFlushNonVolatileMemory.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * DWORD RtlFlushNonVolatileMemory(PVOID NvToken, PVOID NvBuffer, SIZE_T Size, DWORD Flags)
+     * }
+     */
+    public static MethodHandle RtlFlushNonVolatileMemory$handle() {
+        return RtlFlushNonVolatileMemory.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * DWORD RtlFlushNonVolatileMemory(PVOID NvToken, PVOID NvBuffer, SIZE_T Size, DWORD Flags)
+     * }
+     */
+    public static MemorySegment RtlFlushNonVolatileMemory$address() {
+        return RtlFlushNonVolatileMemory.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * DWORD RtlFlushNonVolatileMemory(PVOID NvToken, PVOID NvBuffer, SIZE_T Size, DWORD Flags)
+     * }
+     */
+    public static int RtlFlushNonVolatileMemory(MemorySegment NvToken, MemorySegment NvBuffer, long Size, int Flags) {
+        var mh$ = RtlFlushNonVolatileMemory.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlFlushNonVolatileMemory", NvToken, NvBuffer, Size, Flags);
+            }
+            return (int)mh$.invokeExact(NvToken, NvBuffer, Size, Flags);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlDrainNonVolatileFlush {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlDrainNonVolatileFlush");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * DWORD RtlDrainNonVolatileFlush(PVOID NvToken)
+     * }
+     */
+    public static FunctionDescriptor RtlDrainNonVolatileFlush$descriptor() {
+        return RtlDrainNonVolatileFlush.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * DWORD RtlDrainNonVolatileFlush(PVOID NvToken)
+     * }
+     */
+    public static MethodHandle RtlDrainNonVolatileFlush$handle() {
+        return RtlDrainNonVolatileFlush.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * DWORD RtlDrainNonVolatileFlush(PVOID NvToken)
+     * }
+     */
+    public static MemorySegment RtlDrainNonVolatileFlush$address() {
+        return RtlDrainNonVolatileFlush.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * DWORD RtlDrainNonVolatileFlush(PVOID NvToken)
+     * }
+     */
+    public static int RtlDrainNonVolatileFlush(MemorySegment NvToken) {
+        var mh$ = RtlDrainNonVolatileFlush.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlDrainNonVolatileFlush", NvToken);
+            }
+            return (int)mh$.invokeExact(NvToken);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlWriteNonVolatileMemory {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_LONG
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlWriteNonVolatileMemory");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * DWORD RtlWriteNonVolatileMemory(PVOID NvToken, __unaligned void *NvDestination, const __unaligned void *Source, SIZE_T Size, DWORD Flags)
+     * }
+     */
+    public static FunctionDescriptor RtlWriteNonVolatileMemory$descriptor() {
+        return RtlWriteNonVolatileMemory.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * DWORD RtlWriteNonVolatileMemory(PVOID NvToken, __unaligned void *NvDestination, const __unaligned void *Source, SIZE_T Size, DWORD Flags)
+     * }
+     */
+    public static MethodHandle RtlWriteNonVolatileMemory$handle() {
+        return RtlWriteNonVolatileMemory.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * DWORD RtlWriteNonVolatileMemory(PVOID NvToken, __unaligned void *NvDestination, const __unaligned void *Source, SIZE_T Size, DWORD Flags)
+     * }
+     */
+    public static MemorySegment RtlWriteNonVolatileMemory$address() {
+        return RtlWriteNonVolatileMemory.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * DWORD RtlWriteNonVolatileMemory(PVOID NvToken, __unaligned void *NvDestination, const __unaligned void *Source, SIZE_T Size, DWORD Flags)
+     * }
+     */
+    public static int RtlWriteNonVolatileMemory(MemorySegment NvToken, MemorySegment NvDestination, MemorySegment Source, long Size, int Flags) {
+        var mh$ = RtlWriteNonVolatileMemory.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlWriteNonVolatileMemory", NvToken, NvDestination, Source, Size, Flags);
+            }
+            return (int)mh$.invokeExact(NvToken, NvDestination, Source, Size, Flags);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlFillNonVolatileMemory {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_CHAR,
+            wgl_h.C_LONG
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlFillNonVolatileMemory");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * DWORD RtlFillNonVolatileMemory(PVOID NvToken, __unaligned void *NvDestination, SIZE_T Size, const BYTE Value, DWORD Flags)
+     * }
+     */
+    public static FunctionDescriptor RtlFillNonVolatileMemory$descriptor() {
+        return RtlFillNonVolatileMemory.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * DWORD RtlFillNonVolatileMemory(PVOID NvToken, __unaligned void *NvDestination, SIZE_T Size, const BYTE Value, DWORD Flags)
+     * }
+     */
+    public static MethodHandle RtlFillNonVolatileMemory$handle() {
+        return RtlFillNonVolatileMemory.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * DWORD RtlFillNonVolatileMemory(PVOID NvToken, __unaligned void *NvDestination, SIZE_T Size, const BYTE Value, DWORD Flags)
+     * }
+     */
+    public static MemorySegment RtlFillNonVolatileMemory$address() {
+        return RtlFillNonVolatileMemory.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * DWORD RtlFillNonVolatileMemory(PVOID NvToken, __unaligned void *NvDestination, SIZE_T Size, const BYTE Value, DWORD Flags)
+     * }
+     */
+    public static int RtlFillNonVolatileMemory(MemorySegment NvToken, MemorySegment NvDestination, long Size, byte Value, int Flags) {
+        var mh$ = RtlFillNonVolatileMemory.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlFillNonVolatileMemory", NvToken, NvDestination, Size, Value, Flags);
+            }
+            return (int)mh$.invokeExact(NvToken, NvDestination, Size, Value, Flags);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlFlushNonVolatileMemoryRanges {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_LONG
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlFlushNonVolatileMemoryRanges");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * DWORD RtlFlushNonVolatileMemoryRanges(PVOID NvToken, PNV_MEMORY_RANGE NvRanges, SIZE_T NumRanges, DWORD Flags)
+     * }
+     */
+    public static FunctionDescriptor RtlFlushNonVolatileMemoryRanges$descriptor() {
+        return RtlFlushNonVolatileMemoryRanges.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * DWORD RtlFlushNonVolatileMemoryRanges(PVOID NvToken, PNV_MEMORY_RANGE NvRanges, SIZE_T NumRanges, DWORD Flags)
+     * }
+     */
+    public static MethodHandle RtlFlushNonVolatileMemoryRanges$handle() {
+        return RtlFlushNonVolatileMemoryRanges.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * DWORD RtlFlushNonVolatileMemoryRanges(PVOID NvToken, PNV_MEMORY_RANGE NvRanges, SIZE_T NumRanges, DWORD Flags)
+     * }
+     */
+    public static MemorySegment RtlFlushNonVolatileMemoryRanges$address() {
+        return RtlFlushNonVolatileMemoryRanges.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * DWORD RtlFlushNonVolatileMemoryRanges(PVOID NvToken, PNV_MEMORY_RANGE NvRanges, SIZE_T NumRanges, DWORD Flags)
+     * }
+     */
+    public static int RtlFlushNonVolatileMemoryRanges(MemorySegment NvToken, MemorySegment NvRanges, long NumRanges, int Flags) {
+        var mh$ = RtlFlushNonVolatileMemoryRanges.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlFlushNonVolatileMemoryRanges", NvToken, NvRanges, NumRanges, Flags);
+            }
+            return (int)mh$.invokeExact(NvToken, NvRanges, NumRanges, Flags);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef CORRELATION_VECTOR *PCORRELATION_VECTOR
+     * }
+     */
+    public static final AddressLayout PCORRELATION_VECTOR = wgl_h.C_POINTER;
+
+    private static class RtlInitializeCorrelationVector {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_INT,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlInitializeCorrelationVector");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * DWORD RtlInitializeCorrelationVector(PCORRELATION_VECTOR CorrelationVector, int Version, const GUID *Guid)
+     * }
+     */
+    public static FunctionDescriptor RtlInitializeCorrelationVector$descriptor() {
+        return RtlInitializeCorrelationVector.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * DWORD RtlInitializeCorrelationVector(PCORRELATION_VECTOR CorrelationVector, int Version, const GUID *Guid)
+     * }
+     */
+    public static MethodHandle RtlInitializeCorrelationVector$handle() {
+        return RtlInitializeCorrelationVector.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * DWORD RtlInitializeCorrelationVector(PCORRELATION_VECTOR CorrelationVector, int Version, const GUID *Guid)
+     * }
+     */
+    public static MemorySegment RtlInitializeCorrelationVector$address() {
+        return RtlInitializeCorrelationVector.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * DWORD RtlInitializeCorrelationVector(PCORRELATION_VECTOR CorrelationVector, int Version, const GUID *Guid)
+     * }
+     */
+    public static int RtlInitializeCorrelationVector(MemorySegment CorrelationVector, int Version, MemorySegment Guid) {
+        var mh$ = RtlInitializeCorrelationVector.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlInitializeCorrelationVector", CorrelationVector, Version, Guid);
+            }
+            return (int)mh$.invokeExact(CorrelationVector, Version, Guid);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlIncrementCorrelationVector {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlIncrementCorrelationVector");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * DWORD RtlIncrementCorrelationVector(PCORRELATION_VECTOR CorrelationVector)
+     * }
+     */
+    public static FunctionDescriptor RtlIncrementCorrelationVector$descriptor() {
+        return RtlIncrementCorrelationVector.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * DWORD RtlIncrementCorrelationVector(PCORRELATION_VECTOR CorrelationVector)
+     * }
+     */
+    public static MethodHandle RtlIncrementCorrelationVector$handle() {
+        return RtlIncrementCorrelationVector.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * DWORD RtlIncrementCorrelationVector(PCORRELATION_VECTOR CorrelationVector)
+     * }
+     */
+    public static MemorySegment RtlIncrementCorrelationVector$address() {
+        return RtlIncrementCorrelationVector.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * DWORD RtlIncrementCorrelationVector(PCORRELATION_VECTOR CorrelationVector)
+     * }
+     */
+    public static int RtlIncrementCorrelationVector(MemorySegment CorrelationVector) {
+        var mh$ = RtlIncrementCorrelationVector.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlIncrementCorrelationVector", CorrelationVector);
+            }
+            return (int)mh$.invokeExact(CorrelationVector);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlExtendCorrelationVector {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlExtendCorrelationVector");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * DWORD RtlExtendCorrelationVector(PCORRELATION_VECTOR CorrelationVector)
+     * }
+     */
+    public static FunctionDescriptor RtlExtendCorrelationVector$descriptor() {
+        return RtlExtendCorrelationVector.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * DWORD RtlExtendCorrelationVector(PCORRELATION_VECTOR CorrelationVector)
+     * }
+     */
+    public static MethodHandle RtlExtendCorrelationVector$handle() {
+        return RtlExtendCorrelationVector.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * DWORD RtlExtendCorrelationVector(PCORRELATION_VECTOR CorrelationVector)
+     * }
+     */
+    public static MemorySegment RtlExtendCorrelationVector$address() {
+        return RtlExtendCorrelationVector.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * DWORD RtlExtendCorrelationVector(PCORRELATION_VECTOR CorrelationVector)
+     * }
+     */
+    public static int RtlExtendCorrelationVector(MemorySegment CorrelationVector) {
+        var mh$ = RtlExtendCorrelationVector.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlExtendCorrelationVector", CorrelationVector);
+            }
+            return (int)mh$.invokeExact(CorrelationVector);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlValidateCorrelationVector {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlValidateCorrelationVector");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * DWORD RtlValidateCorrelationVector(PCORRELATION_VECTOR Vector)
+     * }
+     */
+    public static FunctionDescriptor RtlValidateCorrelationVector$descriptor() {
+        return RtlValidateCorrelationVector.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * DWORD RtlValidateCorrelationVector(PCORRELATION_VECTOR Vector)
+     * }
+     */
+    public static MethodHandle RtlValidateCorrelationVector$handle() {
+        return RtlValidateCorrelationVector.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * DWORD RtlValidateCorrelationVector(PCORRELATION_VECTOR Vector)
+     * }
+     */
+    public static MemorySegment RtlValidateCorrelationVector$address() {
+        return RtlValidateCorrelationVector.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * DWORD RtlValidateCorrelationVector(PCORRELATION_VECTOR Vector)
+     * }
+     */
+    public static int RtlValidateCorrelationVector(MemorySegment Vector) {
+        var mh$ = RtlValidateCorrelationVector.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlValidateCorrelationVector", Vector);
+            }
+            return (int)mh$.invokeExact(Vector);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct _CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG {
+     *     DWORD Size;
+     *     PCWSTR TriggerId;
+     * } *PCUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG
+     * }
+     */
+    public static final AddressLayout PCUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG = wgl_h.C_POINTER;
+
+    private static class RtlRaiseCustomSystemEventTrigger {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlRaiseCustomSystemEventTrigger");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * DWORD RtlRaiseCustomSystemEventTrigger(PCUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG TriggerConfig)
+     * }
+     */
+    public static FunctionDescriptor RtlRaiseCustomSystemEventTrigger$descriptor() {
+        return RtlRaiseCustomSystemEventTrigger.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * DWORD RtlRaiseCustomSystemEventTrigger(PCUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG TriggerConfig)
+     * }
+     */
+    public static MethodHandle RtlRaiseCustomSystemEventTrigger$handle() {
+        return RtlRaiseCustomSystemEventTrigger.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * DWORD RtlRaiseCustomSystemEventTrigger(PCUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG TriggerConfig)
+     * }
+     */
+    public static MemorySegment RtlRaiseCustomSystemEventTrigger$address() {
+        return RtlRaiseCustomSystemEventTrigger.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * DWORD RtlRaiseCustomSystemEventTrigger(PCUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG TriggerConfig)
+     * }
+     */
+    public static int RtlRaiseCustomSystemEventTrigger(MemorySegment TriggerConfig) {
+        var mh$ = RtlRaiseCustomSystemEventTrigger.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlRaiseCustomSystemEventTrigger", TriggerConfig);
+            }
+            return (int)mh$.invokeExact(TriggerConfig);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    private static final int ImagePolicyEntryTypeNone = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeNone = 0
+     * }
+     */
+    public static int ImagePolicyEntryTypeNone() {
+        return ImagePolicyEntryTypeNone;
+    }
+    private static final int ImagePolicyEntryTypeBool = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeBool = 1
+     * }
+     */
+    public static int ImagePolicyEntryTypeBool() {
+        return ImagePolicyEntryTypeBool;
+    }
+    private static final int ImagePolicyEntryTypeInt8 = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeInt8 = 2
+     * }
+     */
+    public static int ImagePolicyEntryTypeInt8() {
+        return ImagePolicyEntryTypeInt8;
+    }
+    private static final int ImagePolicyEntryTypeUInt8 = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeUInt8 = 3
+     * }
+     */
+    public static int ImagePolicyEntryTypeUInt8() {
+        return ImagePolicyEntryTypeUInt8;
+    }
+    private static final int ImagePolicyEntryTypeInt16 = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeInt16 = 4
+     * }
+     */
+    public static int ImagePolicyEntryTypeInt16() {
+        return ImagePolicyEntryTypeInt16;
+    }
+    private static final int ImagePolicyEntryTypeUInt16 = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeUInt16 = 5
+     * }
+     */
+    public static int ImagePolicyEntryTypeUInt16() {
+        return ImagePolicyEntryTypeUInt16;
+    }
+    private static final int ImagePolicyEntryTypeInt32 = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeInt32 = 6
+     * }
+     */
+    public static int ImagePolicyEntryTypeInt32() {
+        return ImagePolicyEntryTypeInt32;
+    }
+    private static final int ImagePolicyEntryTypeUInt32 = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeUInt32 = 7
+     * }
+     */
+    public static int ImagePolicyEntryTypeUInt32() {
+        return ImagePolicyEntryTypeUInt32;
+    }
+    private static final int ImagePolicyEntryTypeInt64 = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeInt64 = 8
+     * }
+     */
+    public static int ImagePolicyEntryTypeInt64() {
+        return ImagePolicyEntryTypeInt64;
+    }
+    private static final int ImagePolicyEntryTypeUInt64 = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeUInt64 = 9
+     * }
+     */
+    public static int ImagePolicyEntryTypeUInt64() {
+        return ImagePolicyEntryTypeUInt64;
+    }
+    private static final int ImagePolicyEntryTypeAnsiString = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeAnsiString = 10
+     * }
+     */
+    public static int ImagePolicyEntryTypeAnsiString() {
+        return ImagePolicyEntryTypeAnsiString;
+    }
+    private static final int ImagePolicyEntryTypeUnicodeString = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeUnicodeString = 11
+     * }
+     */
+    public static int ImagePolicyEntryTypeUnicodeString() {
+        return ImagePolicyEntryTypeUnicodeString;
+    }
+    private static final int ImagePolicyEntryTypeOverride = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeOverride = 12
+     * }
+     */
+    public static int ImagePolicyEntryTypeOverride() {
+        return ImagePolicyEntryTypeOverride;
+    }
+    private static final int ImagePolicyEntryTypeMaximum = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeMaximum = 13
+     * }
+     */
+    public static int ImagePolicyEntryTypeMaximum() {
+        return ImagePolicyEntryTypeMaximum;
+    }
+    private static final int ImagePolicyIdNone = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ID.ImagePolicyIdNone = 0
+     * }
+     */
+    public static int ImagePolicyIdNone() {
+        return ImagePolicyIdNone;
+    }
+    private static final int ImagePolicyIdEtw = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ID.ImagePolicyIdEtw = 1
+     * }
+     */
+    public static int ImagePolicyIdEtw() {
+        return ImagePolicyIdEtw;
+    }
+    private static final int ImagePolicyIdDebug = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ID.ImagePolicyIdDebug = 2
+     * }
+     */
+    public static int ImagePolicyIdDebug() {
+        return ImagePolicyIdDebug;
+    }
+    private static final int ImagePolicyIdCrashDump = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ID.ImagePolicyIdCrashDump = 3
+     * }
+     */
+    public static int ImagePolicyIdCrashDump() {
+        return ImagePolicyIdCrashDump;
+    }
+    private static final int ImagePolicyIdCrashDumpKey = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ID.ImagePolicyIdCrashDumpKey = 4
+     * }
+     */
+    public static int ImagePolicyIdCrashDumpKey() {
+        return ImagePolicyIdCrashDumpKey;
+    }
+    private static final int ImagePolicyIdCrashDumpKeyGuid = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ID.ImagePolicyIdCrashDumpKeyGuid = 5
+     * }
+     */
+    public static int ImagePolicyIdCrashDumpKeyGuid() {
+        return ImagePolicyIdCrashDumpKeyGuid;
+    }
+    private static final int ImagePolicyIdParentSd = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ID.ImagePolicyIdParentSd = 6
+     * }
+     */
+    public static int ImagePolicyIdParentSd() {
+        return ImagePolicyIdParentSd;
+    }
+    private static final int ImagePolicyIdParentSdRev = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ID.ImagePolicyIdParentSdRev = 7
+     * }
+     */
+    public static int ImagePolicyIdParentSdRev() {
+        return ImagePolicyIdParentSdRev;
+    }
+    private static final int ImagePolicyIdSvn = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ID.ImagePolicyIdSvn = 8
+     * }
+     */
+    public static int ImagePolicyIdSvn() {
+        return ImagePolicyIdSvn;
+    }
+    private static final int ImagePolicyIdDeviceId = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ID.ImagePolicyIdDeviceId = 9
+     * }
+     */
+    public static int ImagePolicyIdDeviceId() {
+        return ImagePolicyIdDeviceId;
+    }
+    private static final int ImagePolicyIdCapability = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ID.ImagePolicyIdCapability = 10
+     * }
+     */
+    public static int ImagePolicyIdCapability() {
+        return ImagePolicyIdCapability;
+    }
+    private static final int ImagePolicyIdScenarioId = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ID.ImagePolicyIdScenarioId = 11
+     * }
+     */
+    public static int ImagePolicyIdScenarioId() {
+        return ImagePolicyIdScenarioId;
+    }
+    private static final int ImagePolicyIdMaximum = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * enum _IMAGE_POLICY_ID.ImagePolicyIdMaximum = 12
+     * }
+     */
+    public static int ImagePolicyIdMaximum() {
+        return ImagePolicyIdMaximum;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef const IMAGE_POLICY_ENTRY *PCIMAGE_POLICY_ENTRY
+     * }
+     */
+    public static final AddressLayout PCIMAGE_POLICY_ENTRY = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const IMAGE_POLICY_METADATA *PCIMAGE_POLICY_METADATA
+     * }
+     */
+    public static final AddressLayout PCIMAGE_POLICY_METADATA = wgl_h.C_POINTER;
+
+    private static class RtlIsZeroMemory {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_CHAR,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG_LONG
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlIsZeroMemory");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * BOOLEAN RtlIsZeroMemory(PVOID Buffer, SIZE_T Length)
+     * }
+     */
+    public static FunctionDescriptor RtlIsZeroMemory$descriptor() {
+        return RtlIsZeroMemory.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * BOOLEAN RtlIsZeroMemory(PVOID Buffer, SIZE_T Length)
+     * }
+     */
+    public static MethodHandle RtlIsZeroMemory$handle() {
+        return RtlIsZeroMemory.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * BOOLEAN RtlIsZeroMemory(PVOID Buffer, SIZE_T Length)
+     * }
+     */
+    public static MemorySegment RtlIsZeroMemory$address() {
+        return RtlIsZeroMemory.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * BOOLEAN RtlIsZeroMemory(PVOID Buffer, SIZE_T Length)
+     * }
+     */
+    public static byte RtlIsZeroMemory(MemorySegment Buffer, long Length) {
+        var mh$ = RtlIsZeroMemory.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlIsZeroMemory", Buffer, Length);
+            }
+            return (byte)mh$.invokeExact(Buffer, Length);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlNormalizeSecurityDescriptor {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_CHAR,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_CHAR
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlNormalizeSecurityDescriptor");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * BOOLEAN RtlNormalizeSecurityDescriptor(PSECURITY_DESCRIPTOR *SecurityDescriptor, DWORD SecurityDescriptorLength, PSECURITY_DESCRIPTOR *NewSecurityDescriptor, PDWORD NewSecurityDescriptorLength, BOOLEAN CheckOnly)
+     * }
+     */
+    public static FunctionDescriptor RtlNormalizeSecurityDescriptor$descriptor() {
+        return RtlNormalizeSecurityDescriptor.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * BOOLEAN RtlNormalizeSecurityDescriptor(PSECURITY_DESCRIPTOR *SecurityDescriptor, DWORD SecurityDescriptorLength, PSECURITY_DESCRIPTOR *NewSecurityDescriptor, PDWORD NewSecurityDescriptorLength, BOOLEAN CheckOnly)
+     * }
+     */
+    public static MethodHandle RtlNormalizeSecurityDescriptor$handle() {
+        return RtlNormalizeSecurityDescriptor.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * BOOLEAN RtlNormalizeSecurityDescriptor(PSECURITY_DESCRIPTOR *SecurityDescriptor, DWORD SecurityDescriptorLength, PSECURITY_DESCRIPTOR *NewSecurityDescriptor, PDWORD NewSecurityDescriptorLength, BOOLEAN CheckOnly)
+     * }
+     */
+    public static MemorySegment RtlNormalizeSecurityDescriptor$address() {
+        return RtlNormalizeSecurityDescriptor.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * BOOLEAN RtlNormalizeSecurityDescriptor(PSECURITY_DESCRIPTOR *SecurityDescriptor, DWORD SecurityDescriptorLength, PSECURITY_DESCRIPTOR *NewSecurityDescriptor, PDWORD NewSecurityDescriptorLength, BOOLEAN CheckOnly)
+     * }
+     */
+    public static byte RtlNormalizeSecurityDescriptor(MemorySegment SecurityDescriptor, int SecurityDescriptorLength, MemorySegment NewSecurityDescriptor, MemorySegment NewSecurityDescriptorLength, byte CheckOnly) {
+        var mh$ = RtlNormalizeSecurityDescriptor.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlNormalizeSecurityDescriptor", SecurityDescriptor, SecurityDescriptorLength, NewSecurityDescriptor, NewSecurityDescriptorLength, CheckOnly);
+            }
+            return (byte)mh$.invokeExact(SecurityDescriptor, SecurityDescriptorLength, NewSecurityDescriptor, NewSecurityDescriptorLength, CheckOnly);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct _RTL_CRITICAL_SECTION_DEBUG {
+     *     WORD Type;
+     *     WORD CreatorBackTraceIndex;
+     *     struct _RTL_CRITICAL_SECTION *CriticalSection;
+     *     LIST_ENTRY ProcessLocksList;
+     *     DWORD EntryCount;
+     *     DWORD ContentionCount;
+     *     DWORD Flags;
+     *     WORD CreatorBackTraceIndexHigh;
+     *     WORD SpareWORD;
+     * } *PRTL_CRITICAL_SECTION_DEBUG
+     * }
+     */
+    public static final AddressLayout PRTL_CRITICAL_SECTION_DEBUG = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _RTL_CRITICAL_SECTION_DEBUG {
+     *     WORD Type;
+     *     WORD CreatorBackTraceIndex;
+     *     struct _RTL_CRITICAL_SECTION *CriticalSection;
+     *     LIST_ENTRY ProcessLocksList;
+     *     DWORD EntryCount;
+     *     DWORD ContentionCount;
+     *     DWORD Flags;
+     *     WORD CreatorBackTraceIndexHigh;
+     *     WORD SpareWORD;
+     * } *PRTL_RESOURCE_DEBUG
+     * }
+     */
+    public static final AddressLayout PRTL_RESOURCE_DEBUG = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _RTL_CRITICAL_SECTION {
+     *     PRTL_CRITICAL_SECTION_DEBUG DebugInfo;
+     *     LONG LockCount;
+     *     LONG RecursionCount;
+     *     HANDLE OwningThread;
+     *     HANDLE LockSemaphore;
+     *     ULONG_PTR SpinCount;
+     * } *PRTL_CRITICAL_SECTION
+     * }
+     */
+    public static final AddressLayout PRTL_CRITICAL_SECTION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _RTL_SRWLOCK {
+     *     PVOID Ptr;
+     * } *PRTL_SRWLOCK
+     * }
+     */
+    public static final AddressLayout PRTL_SRWLOCK = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _RTL_CONDITION_VARIABLE {
+     *     PVOID Ptr;
+     * } *PRTL_CONDITION_VARIABLE
+     * }
+     */
+    public static final AddressLayout PRTL_CONDITION_VARIABLE = wgl_h.C_POINTER;
+    private static final int HeapCompatibilityInformation = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _HEAP_INFORMATION_CLASS.HeapCompatibilityInformation = 0
+     * }
+     */
+    public static int HeapCompatibilityInformation() {
+        return HeapCompatibilityInformation;
+    }
+    private static final int HeapEnableTerminationOnCorruption = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _HEAP_INFORMATION_CLASS.HeapEnableTerminationOnCorruption = 1
+     * }
+     */
+    public static int HeapEnableTerminationOnCorruption() {
+        return HeapEnableTerminationOnCorruption;
+    }
+    private static final int HeapOptimizeResources = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _HEAP_INFORMATION_CLASS.HeapOptimizeResources = 3
+     * }
+     */
+    public static int HeapOptimizeResources() {
+        return HeapOptimizeResources;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct _HEAP_OPTIMIZE_RESOURCES_INFORMATION {
+     *     DWORD Version;
+     *     DWORD Flags;
+     * } *PHEAP_OPTIMIZE_RESOURCES_INFORMATION
+     * }
+     */
+    public static final AddressLayout PHEAP_OPTIMIZE_RESOURCES_INFORMATION = wgl_h.C_POINTER;
+    private static final int ActivationContextBasicInformation = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _ACTIVATION_CONTEXT_INFO_CLASS.ActivationContextBasicInformation = 1
+     * }
+     */
+    public static int ActivationContextBasicInformation() {
+        return ActivationContextBasicInformation;
+    }
+    private static final int ActivationContextDetailedInformation = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _ACTIVATION_CONTEXT_INFO_CLASS.ActivationContextDetailedInformation = 2
+     * }
+     */
+    public static int ActivationContextDetailedInformation() {
+        return ActivationContextDetailedInformation;
+    }
+    private static final int AssemblyDetailedInformationInActivationContext = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _ACTIVATION_CONTEXT_INFO_CLASS.AssemblyDetailedInformationInActivationContext = 3
+     * }
+     */
+    public static int AssemblyDetailedInformationInActivationContext() {
+        return AssemblyDetailedInformationInActivationContext;
+    }
+    private static final int FileInformationInAssemblyOfAssemblyInActivationContext = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum _ACTIVATION_CONTEXT_INFO_CLASS.FileInformationInAssemblyOfAssemblyInActivationContext = 4
+     * }
+     */
+    public static int FileInformationInAssemblyOfAssemblyInActivationContext() {
+        return FileInformationInAssemblyOfAssemblyInActivationContext;
+    }
+    private static final int RunlevelInformationInActivationContext = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum _ACTIVATION_CONTEXT_INFO_CLASS.RunlevelInformationInActivationContext = 5
+     * }
+     */
+    public static int RunlevelInformationInActivationContext() {
+        return RunlevelInformationInActivationContext;
+    }
+    private static final int CompatibilityInformationInActivationContext = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum _ACTIVATION_CONTEXT_INFO_CLASS.CompatibilityInformationInActivationContext = 6
+     * }
+     */
+    public static int CompatibilityInformationInActivationContext() {
+        return CompatibilityInformationInActivationContext;
+    }
+    private static final int ActivationContextManifestResourceName = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum _ACTIVATION_CONTEXT_INFO_CLASS.ActivationContextManifestResourceName = 7
+     * }
+     */
+    public static int ActivationContextManifestResourceName() {
+        return ActivationContextManifestResourceName;
+    }
+    private static final int MaxActivationContextInfoClass = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum _ACTIVATION_CONTEXT_INFO_CLASS.MaxActivationContextInfoClass = 8
+     * }
+     */
+    public static int MaxActivationContextInfoClass() {
+        return MaxActivationContextInfoClass;
+    }
+    private static final int AssemblyDetailedInformationInActivationContxt = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _ACTIVATION_CONTEXT_INFO_CLASS.AssemblyDetailedInformationInActivationContxt = 3
+     * }
+     */
+    public static int AssemblyDetailedInformationInActivationContxt() {
+        return AssemblyDetailedInformationInActivationContxt;
+    }
+    private static final int FileInformationInAssemblyOfAssemblyInActivationContxt = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum _ACTIVATION_CONTEXT_INFO_CLASS.FileInformationInAssemblyOfAssemblyInActivationContxt = 4
+     * }
+     */
+    public static int FileInformationInAssemblyOfAssemblyInActivationContxt() {
+        return FileInformationInAssemblyOfAssemblyInActivationContxt;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct _ACTIVATION_CONTEXT_QUERY_INDEX {
+     *     DWORD ulAssemblyIndex;
+     *     DWORD ulFileIndexInAssembly;
+     * } *PACTIVATION_CONTEXT_QUERY_INDEX
+     * }
+     */
+    public static final AddressLayout PACTIVATION_CONTEXT_QUERY_INDEX = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const struct _ACTIVATION_CONTEXT_QUERY_INDEX {
+     *     DWORD ulAssemblyIndex;
+     *     DWORD ulFileIndexInAssembly;
+     * } *PCACTIVATION_CONTEXT_QUERY_INDEX
+     * }
+     */
+    public static final AddressLayout PCACTIVATION_CONTEXT_QUERY_INDEX = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _ASSEMBLY_FILE_DETAILED_INFORMATION {
+     *     DWORD ulFlags;
+     *     DWORD ulFilenameLength;
+     *     DWORD ulPathLength;
+     *     PCWSTR lpFileName;
+     *     PCWSTR lpFilePath;
+     * } *PASSEMBLY_FILE_DETAILED_INFORMATION
+     * }
+     */
+    public static final AddressLayout PASSEMBLY_FILE_DETAILED_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const ASSEMBLY_FILE_DETAILED_INFORMATION *PCASSEMBLY_FILE_DETAILED_INFORMATION
+     * }
+     */
+    public static final AddressLayout PCASSEMBLY_FILE_DETAILED_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION {
+     *     DWORD ulFlags;
+     *     DWORD ulEncodedAssemblyIdentityLength;
+     *     DWORD ulManifestPathType;
+     *     DWORD ulManifestPathLength;
+     *     LARGE_INTEGER liManifestLastWriteTime;
+     *     DWORD ulPolicyPathType;
+     *     DWORD ulPolicyPathLength;
+     *     LARGE_INTEGER liPolicyLastWriteTime;
+     *     DWORD ulMetadataSatelliteRosterIndex;
+     *     DWORD ulManifestVersionMajor;
+     *     DWORD ulManifestVersionMinor;
+     *     DWORD ulPolicyVersionMajor;
+     *     DWORD ulPolicyVersionMinor;
+     *     DWORD ulAssemblyDirectoryNameLength;
+     *     PCWSTR lpAssemblyEncodedAssemblyIdentity;
+     *     PCWSTR lpAssemblyManifestPath;
+     *     PCWSTR lpAssemblyPolicyPath;
+     *     PCWSTR lpAssemblyDirectoryName;
+     *     DWORD ulFileCount;
+     * } *PACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION
+     * }
+     */
+    public static final AddressLayout PACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const struct _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION {
+     *     DWORD ulFlags;
+     *     DWORD ulEncodedAssemblyIdentityLength;
+     *     DWORD ulManifestPathType;
+     *     DWORD ulManifestPathLength;
+     *     LARGE_INTEGER liManifestLastWriteTime;
+     *     DWORD ulPolicyPathType;
+     *     DWORD ulPolicyPathLength;
+     *     LARGE_INTEGER liPolicyLastWriteTime;
+     *     DWORD ulMetadataSatelliteRosterIndex;
+     *     DWORD ulManifestVersionMajor;
+     *     DWORD ulManifestVersionMinor;
+     *     DWORD ulPolicyVersionMajor;
+     *     DWORD ulPolicyVersionMinor;
+     *     DWORD ulAssemblyDirectoryNameLength;
+     *     PCWSTR lpAssemblyEncodedAssemblyIdentity;
+     *     PCWSTR lpAssemblyManifestPath;
+     *     PCWSTR lpAssemblyPolicyPath;
+     *     PCWSTR lpAssemblyDirectoryName;
+     *     DWORD ulFileCount;
+     * } *PCACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION
+     * }
+     */
+    public static final AddressLayout PCACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = wgl_h.C_POINTER;
+    private static final int ACTCTX_RUN_LEVEL_UNSPECIFIED = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ACTCTX_RUN_LEVEL_UNSPECIFIED = 0
+     * }
+     */
+    public static int ACTCTX_RUN_LEVEL_UNSPECIFIED() {
+        return ACTCTX_RUN_LEVEL_UNSPECIFIED;
+    }
+    private static final int ACTCTX_RUN_LEVEL_AS_INVOKER = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ACTCTX_RUN_LEVEL_AS_INVOKER = 1
+     * }
+     */
+    public static int ACTCTX_RUN_LEVEL_AS_INVOKER() {
+        return ACTCTX_RUN_LEVEL_AS_INVOKER;
+    }
+    private static final int ACTCTX_RUN_LEVEL_HIGHEST_AVAILABLE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ACTCTX_RUN_LEVEL_HIGHEST_AVAILABLE = 2
+     * }
+     */
+    public static int ACTCTX_RUN_LEVEL_HIGHEST_AVAILABLE() {
+        return ACTCTX_RUN_LEVEL_HIGHEST_AVAILABLE;
+    }
+    private static final int ACTCTX_RUN_LEVEL_REQUIRE_ADMIN = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ACTCTX_RUN_LEVEL_REQUIRE_ADMIN = 3
+     * }
+     */
+    public static int ACTCTX_RUN_LEVEL_REQUIRE_ADMIN() {
+        return ACTCTX_RUN_LEVEL_REQUIRE_ADMIN;
+    }
+    private static final int ACTCTX_RUN_LEVEL_NUMBERS = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ACTCTX_RUN_LEVEL_NUMBERS = 4
+     * }
+     */
+    public static int ACTCTX_RUN_LEVEL_NUMBERS() {
+        return ACTCTX_RUN_LEVEL_NUMBERS;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct _ACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION {
+     *     DWORD ulFlags;
+     *     ACTCTX_REQUESTED_RUN_LEVEL RunLevel;
+     *     DWORD UiAccess;
+     * } *PACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION
+     * }
+     */
+    public static final AddressLayout PACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const struct _ACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION {
+     *     DWORD ulFlags;
+     *     ACTCTX_REQUESTED_RUN_LEVEL RunLevel;
+     *     DWORD UiAccess;
+     * } *PCACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION
+     * }
+     */
+    public static final AddressLayout PCACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION = wgl_h.C_POINTER;
+    private static final int ACTCTX_COMPATIBILITY_ELEMENT_TYPE_UNKNOWN = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ACTCTX_COMPATIBILITY_ELEMENT_TYPE_UNKNOWN = 0
+     * }
+     */
+    public static int ACTCTX_COMPATIBILITY_ELEMENT_TYPE_UNKNOWN() {
+        return ACTCTX_COMPATIBILITY_ELEMENT_TYPE_UNKNOWN;
+    }
+    private static final int ACTCTX_COMPATIBILITY_ELEMENT_TYPE_OS = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ACTCTX_COMPATIBILITY_ELEMENT_TYPE_OS = 1
+     * }
+     */
+    public static int ACTCTX_COMPATIBILITY_ELEMENT_TYPE_OS() {
+        return ACTCTX_COMPATIBILITY_ELEMENT_TYPE_OS;
+    }
+    private static final int ACTCTX_COMPATIBILITY_ELEMENT_TYPE_MITIGATION = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ACTCTX_COMPATIBILITY_ELEMENT_TYPE_MITIGATION = 2
+     * }
+     */
+    public static int ACTCTX_COMPATIBILITY_ELEMENT_TYPE_MITIGATION() {
+        return ACTCTX_COMPATIBILITY_ELEMENT_TYPE_MITIGATION;
+    }
+    private static final int ACTCTX_COMPATIBILITY_ELEMENT_TYPE_MAXVERSIONTESTED = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ACTCTX_COMPATIBILITY_ELEMENT_TYPE_MAXVERSIONTESTED = 3
+     * }
+     */
+    public static int ACTCTX_COMPATIBILITY_ELEMENT_TYPE_MAXVERSIONTESTED() {
+        return ACTCTX_COMPATIBILITY_ELEMENT_TYPE_MAXVERSIONTESTED;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct _COMPATIBILITY_CONTEXT_ELEMENT {
+     *     GUID Id;
+     *     ACTCTX_COMPATIBILITY_ELEMENT_TYPE Type;
+     *     ULONGLONG MaxVersionTested;
+     * } *PCOMPATIBILITY_CONTEXT_ELEMENT
+     * }
+     */
+    public static final AddressLayout PCOMPATIBILITY_CONTEXT_ELEMENT = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const struct _COMPATIBILITY_CONTEXT_ELEMENT {
+     *     GUID Id;
+     *     ACTCTX_COMPATIBILITY_ELEMENT_TYPE Type;
+     *     ULONGLONG MaxVersionTested;
+     * } *PCCOMPATIBILITY_CONTEXT_ELEMENT
+     * }
+     */
+    public static final AddressLayout PCCOMPATIBILITY_CONTEXT_ELEMENT = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION {
+     *     DWORD ElementCount;
+     *     COMPATIBILITY_CONTEXT_ELEMENT Elements[];
+     * } *PACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION
+     * }
+     */
+    public static final AddressLayout PACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const struct _ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION {
+     *     DWORD ElementCount;
+     *     COMPATIBILITY_CONTEXT_ELEMENT Elements[];
+     * } *PCACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION
+     * }
+     */
+    public static final AddressLayout PCACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _SUPPORTED_OS_INFO {
+     *     WORD MajorVersion;
+     *     WORD MinorVersion;
+     * } *PSUPPORTED_OS_INFO
+     * }
+     */
+    public static final AddressLayout PSUPPORTED_OS_INFO = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _MAXVERSIONTESTED_INFO {
+     *     ULONGLONG MaxVersionTested;
+     * } *PMAXVERSIONTESTED_INFO
+     * }
+     */
+    public static final AddressLayout PMAXVERSIONTESTED_INFO = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _ACTIVATION_CONTEXT_DETAILED_INFORMATION {
+     *     DWORD dwFlags;
+     *     DWORD ulFormatVersion;
+     *     DWORD ulAssemblyCount;
+     *     DWORD ulRootManifestPathType;
+     *     DWORD ulRootManifestPathChars;
+     *     DWORD ulRootConfigurationPathType;
+     *     DWORD ulRootConfigurationPathChars;
+     *     DWORD ulAppDirPathType;
+     *     DWORD ulAppDirPathChars;
+     *     PCWSTR lpRootManifestPath;
+     *     PCWSTR lpRootConfigurationPath;
+     *     PCWSTR lpAppDirPath;
+     * } *PACTIVATION_CONTEXT_DETAILED_INFORMATION
+     * }
+     */
+    public static final AddressLayout PACTIVATION_CONTEXT_DETAILED_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const struct _ACTIVATION_CONTEXT_DETAILED_INFORMATION {
+     *     DWORD dwFlags;
+     *     DWORD ulFormatVersion;
+     *     DWORD ulAssemblyCount;
+     *     DWORD ulRootManifestPathType;
+     *     DWORD ulRootManifestPathChars;
+     *     DWORD ulRootConfigurationPathType;
+     *     DWORD ulRootConfigurationPathChars;
+     *     DWORD ulAppDirPathType;
+     *     DWORD ulAppDirPathChars;
+     *     PCWSTR lpRootManifestPath;
+     *     PCWSTR lpRootConfigurationPath;
+     *     PCWSTR lpAppDirPath;
+     * } *PCACTIVATION_CONTEXT_DETAILED_INFORMATION
+     * }
+     */
+    public static final AddressLayout PCACTIVATION_CONTEXT_DETAILED_INFORMATION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _HARDWARE_COUNTER_DATA {
+     *     HARDWARE_COUNTER_TYPE Type;
+     *     DWORD Reserved;
+     *     DWORD64 Value;
+     * } *PHARDWARE_COUNTER_DATA
+     * }
+     */
+    public static final AddressLayout PHARDWARE_COUNTER_DATA = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PERFORMANCE_DATA {
+     *     WORD Size;
+     *     BYTE Version;
+     *     BYTE HwCountersCount;
+     *     DWORD ContextSwitchCount;
+     *     DWORD64 WaitReasonBitMap;
+     *     DWORD64 CycleTime;
+     *     DWORD RetryCount;
+     *     DWORD Reserved;
+     *     HARDWARE_COUNTER_DATA HwCounters[16];
+     * } *PPERFORMANCE_DATA
+     * }
+     */
+    public static final AddressLayout PPERFORMANCE_DATA = wgl_h.C_POINTER;
+
+    private static class RtlGetDeviceFamilyInfoEnum {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlGetDeviceFamilyInfoEnum");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void RtlGetDeviceFamilyInfoEnum(ULONGLONG *pullUAPInfo, DWORD *pulDeviceFamily, DWORD *pulDeviceForm)
+     * }
+     */
+    public static FunctionDescriptor RtlGetDeviceFamilyInfoEnum$descriptor() {
+        return RtlGetDeviceFamilyInfoEnum.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void RtlGetDeviceFamilyInfoEnum(ULONGLONG *pullUAPInfo, DWORD *pulDeviceFamily, DWORD *pulDeviceForm)
+     * }
+     */
+    public static MethodHandle RtlGetDeviceFamilyInfoEnum$handle() {
+        return RtlGetDeviceFamilyInfoEnum.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * void RtlGetDeviceFamilyInfoEnum(ULONGLONG *pullUAPInfo, DWORD *pulDeviceFamily, DWORD *pulDeviceForm)
+     * }
+     */
+    public static MemorySegment RtlGetDeviceFamilyInfoEnum$address() {
+        return RtlGetDeviceFamilyInfoEnum.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void RtlGetDeviceFamilyInfoEnum(ULONGLONG *pullUAPInfo, DWORD *pulDeviceFamily, DWORD *pulDeviceForm)
+     * }
+     */
+    public static void RtlGetDeviceFamilyInfoEnum(MemorySegment pullUAPInfo, MemorySegment pulDeviceFamily, MemorySegment pulDeviceForm) {
+        var mh$ = RtlGetDeviceFamilyInfoEnum.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlGetDeviceFamilyInfoEnum", pullUAPInfo, pulDeviceFamily, pulDeviceForm);
+            }
+            mh$.invokeExact(pullUAPInfo, pulDeviceFamily, pulDeviceForm);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlConvertDeviceFamilyInfoToString {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlConvertDeviceFamilyInfoToString");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * DWORD RtlConvertDeviceFamilyInfoToString(PDWORD pulDeviceFamilyBufferSize, PDWORD pulDeviceFormBufferSize, PWSTR DeviceFamily, PWSTR DeviceForm)
+     * }
+     */
+    public static FunctionDescriptor RtlConvertDeviceFamilyInfoToString$descriptor() {
+        return RtlConvertDeviceFamilyInfoToString.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * DWORD RtlConvertDeviceFamilyInfoToString(PDWORD pulDeviceFamilyBufferSize, PDWORD pulDeviceFormBufferSize, PWSTR DeviceFamily, PWSTR DeviceForm)
+     * }
+     */
+    public static MethodHandle RtlConvertDeviceFamilyInfoToString$handle() {
+        return RtlConvertDeviceFamilyInfoToString.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * DWORD RtlConvertDeviceFamilyInfoToString(PDWORD pulDeviceFamilyBufferSize, PDWORD pulDeviceFormBufferSize, PWSTR DeviceFamily, PWSTR DeviceForm)
+     * }
+     */
+    public static MemorySegment RtlConvertDeviceFamilyInfoToString$address() {
+        return RtlConvertDeviceFamilyInfoToString.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * DWORD RtlConvertDeviceFamilyInfoToString(PDWORD pulDeviceFamilyBufferSize, PDWORD pulDeviceFormBufferSize, PWSTR DeviceFamily, PWSTR DeviceForm)
+     * }
+     */
+    public static int RtlConvertDeviceFamilyInfoToString(MemorySegment pulDeviceFamilyBufferSize, MemorySegment pulDeviceFormBufferSize, MemorySegment DeviceFamily, MemorySegment DeviceForm) {
+        var mh$ = RtlConvertDeviceFamilyInfoToString.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlConvertDeviceFamilyInfoToString", pulDeviceFamilyBufferSize, pulDeviceFormBufferSize, DeviceFamily, DeviceForm);
+            }
+            return (int)mh$.invokeExact(pulDeviceFamilyBufferSize, pulDeviceFormBufferSize, DeviceFamily, DeviceForm);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class RtlSwitchedVVI {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG_LONG
+        );
+
+        public static final MemorySegment ADDR = wgl_h.findOrThrow("RtlSwitchedVVI");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * DWORD RtlSwitchedVVI(PRTL_OSVERSIONINFOEXW VersionInfo, DWORD TypeMask, ULONGLONG ConditionMask)
+     * }
+     */
+    public static FunctionDescriptor RtlSwitchedVVI$descriptor() {
+        return RtlSwitchedVVI.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * DWORD RtlSwitchedVVI(PRTL_OSVERSIONINFOEXW VersionInfo, DWORD TypeMask, ULONGLONG ConditionMask)
+     * }
+     */
+    public static MethodHandle RtlSwitchedVVI$handle() {
+        return RtlSwitchedVVI.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * DWORD RtlSwitchedVVI(PRTL_OSVERSIONINFOEXW VersionInfo, DWORD TypeMask, ULONGLONG ConditionMask)
+     * }
+     */
+    public static MemorySegment RtlSwitchedVVI$address() {
+        return RtlSwitchedVVI.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * DWORD RtlSwitchedVVI(PRTL_OSVERSIONINFOEXW VersionInfo, DWORD TypeMask, ULONGLONG ConditionMask)
+     * }
+     */
+    public static int RtlSwitchedVVI(MemorySegment VersionInfo, int TypeMask, long ConditionMask) {
+        var mh$ = RtlSwitchedVVI.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("RtlSwitchedVVI", VersionInfo, TypeMask, ConditionMask);
+            }
+            return (int)mh$.invokeExact(VersionInfo, TypeMask, ConditionMask);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct _EVENTLOGRECORD {
+     *     DWORD Length;
+     *     DWORD Reserved;
+     *     DWORD RecordNumber;
+     *     DWORD TimeGenerated;
+     *     DWORD TimeWritten;
+     *     DWORD EventID;
+     *     WORD EventType;
+     *     WORD NumStrings;
+     *     WORD EventCategory;
+     *     WORD ReservedFlags;
+     *     DWORD ClosingRecordNumber;
+     *     DWORD StringOffset;
+     *     DWORD UserSidLength;
+     *     DWORD UserSidOffset;
+     *     DWORD DataLength;
+     *     DWORD DataOffset;
+     * } *PEVENTLOGRECORD
+     * }
+     */
+    public static final AddressLayout PEVENTLOGRECORD = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _EVENTSFORLOGFILE {
+     *     DWORD ulSize;
+     *     WCHAR szLogicalLogFile[256];
+     *     DWORD ulNumRecords;
+     *     EVENTLOGRECORD pEventLogRecords[];
+     * } *PEVENTSFORLOGFILE
+     * }
+     */
+    public static final AddressLayout PEVENTSFORLOGFILE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _PACKEDEVENTINFO {
+     *     DWORD ulSize;
+     *     DWORD ulNumEventsForLogFile;
+     *     DWORD ulOffsets[];
+     * } *PPACKEDEVENTINFO
+     * }
+     */
+    public static final AddressLayout PPACKEDEVENTINFO = wgl_h.C_POINTER;
+    private static final int DriverType = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _CM_SERVICE_NODE_TYPE.DriverType = 1
+     * }
+     */
+    public static int DriverType() {
+        return DriverType;
+    }
+    private static final int FileSystemType = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _CM_SERVICE_NODE_TYPE.FileSystemType = 2
+     * }
+     */
+    public static int FileSystemType() {
+        return FileSystemType;
+    }
+    private static final int Win32ServiceOwnProcess = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * enum _CM_SERVICE_NODE_TYPE.Win32ServiceOwnProcess = 16
+     * }
+     */
+    public static int Win32ServiceOwnProcess() {
+        return Win32ServiceOwnProcess;
+    }
+    private static final int Win32ServiceShareProcess = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * enum _CM_SERVICE_NODE_TYPE.Win32ServiceShareProcess = 32
+     * }
+     */
+    public static int Win32ServiceShareProcess() {
+        return Win32ServiceShareProcess;
+    }
+    private static final int AdapterType = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum _CM_SERVICE_NODE_TYPE.AdapterType = 4
+     * }
+     */
+    public static int AdapterType() {
+        return AdapterType;
+    }
+    private static final int RecognizerType = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum _CM_SERVICE_NODE_TYPE.RecognizerType = 8
+     * }
+     */
+    public static int RecognizerType() {
+        return RecognizerType;
+    }
+    private static final int BootLoad = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _CM_SERVICE_LOAD_TYPE.BootLoad = 0
+     * }
+     */
+    public static int BootLoad() {
+        return BootLoad;
+    }
+    private static final int SystemLoad = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _CM_SERVICE_LOAD_TYPE.SystemLoad = 1
+     * }
+     */
+    public static int SystemLoad() {
+        return SystemLoad;
+    }
+    private static final int AutoLoad = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _CM_SERVICE_LOAD_TYPE.AutoLoad = 2
+     * }
+     */
+    public static int AutoLoad() {
+        return AutoLoad;
+    }
+    private static final int DemandLoad = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _CM_SERVICE_LOAD_TYPE.DemandLoad = 3
+     * }
+     */
+    public static int DemandLoad() {
+        return DemandLoad;
+    }
+    private static final int DisableLoad = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum _CM_SERVICE_LOAD_TYPE.DisableLoad = 4
+     * }
+     */
+    public static int DisableLoad() {
+        return DisableLoad;
+    }
+    private static final int IgnoreError = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _CM_ERROR_CONTROL_TYPE.IgnoreError = 0
+     * }
+     */
+    public static int IgnoreError() {
+        return IgnoreError;
+    }
+    private static final int NormalError = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _CM_ERROR_CONTROL_TYPE.NormalError = 1
+     * }
+     */
+    public static int NormalError() {
+        return NormalError;
+    }
+    private static final int SevereError = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _CM_ERROR_CONTROL_TYPE.SevereError = 2
+     * }
+     */
+    public static int SevereError() {
+        return SevereError;
+    }
+    private static final int CriticalError = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _CM_ERROR_CONTROL_TYPE.CriticalError = 3
+     * }
+     */
+    public static int CriticalError() {
+        return CriticalError;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef struct _TAPE_ERASE {
+     *     DWORD Type;
+     *     BOOLEAN Immediate;
+     * } *PTAPE_ERASE
+     * }
+     */
+    public static final AddressLayout PTAPE_ERASE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _TAPE_PREPARE {
+     *     DWORD Operation;
+     *     BOOLEAN Immediate;
+     * } *PTAPE_PREPARE
+     * }
+     */
+    public static final AddressLayout PTAPE_PREPARE = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _TAPE_WRITE_MARKS {
+     *     DWORD Type;
+     *     DWORD Count;
+     *     BOOLEAN Immediate;
+     * } *PTAPE_WRITE_MARKS
+     * }
+     */
+    public static final AddressLayout PTAPE_WRITE_MARKS = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _TAPE_GET_POSITION {
+     *     DWORD Type;
+     *     DWORD Partition;
+     *     LARGE_INTEGER Offset;
+     * } *PTAPE_GET_POSITION
+     * }
+     */
+    public static final AddressLayout PTAPE_GET_POSITION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _TAPE_SET_POSITION {
+     *     DWORD Method;
+     *     DWORD Partition;
+     *     LARGE_INTEGER Offset;
+     *     BOOLEAN Immediate;
+     * } *PTAPE_SET_POSITION
+     * }
+     */
+    public static final AddressLayout PTAPE_SET_POSITION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _TAPE_GET_DRIVE_PARAMETERS {
+     *     BOOLEAN ECC;
+     *     BOOLEAN Compression;
+     *     BOOLEAN DataPadding;
+     *     BOOLEAN ReportSetmarks;
+     *     DWORD DefaultBlockSize;
+     *     DWORD MaximumBlockSize;
+     *     DWORD MinimumBlockSize;
+     *     DWORD MaximumPartitionCount;
+     *     DWORD FeaturesLow;
+     *     DWORD FeaturesHigh;
+     *     DWORD EOTWarningZoneSize;
+     * } *PTAPE_GET_DRIVE_PARAMETERS
+     * }
+     */
+    public static final AddressLayout PTAPE_GET_DRIVE_PARAMETERS = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _TAPE_SET_DRIVE_PARAMETERS {
+     *     BOOLEAN ECC;
+     *     BOOLEAN Compression;
+     *     BOOLEAN DataPadding;
+     *     BOOLEAN ReportSetmarks;
+     *     DWORD EOTWarningZoneSize;
+     * } *PTAPE_SET_DRIVE_PARAMETERS
+     * }
+     */
+    public static final AddressLayout PTAPE_SET_DRIVE_PARAMETERS = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _TAPE_GET_MEDIA_PARAMETERS {
+     *     LARGE_INTEGER Capacity;
+     *     LARGE_INTEGER Remaining;
+     *     DWORD BlockSize;
+     *     DWORD PartitionCount;
+     *     BOOLEAN WriteProtected;
+     * } *PTAPE_GET_MEDIA_PARAMETERS
+     * }
+     */
+    public static final AddressLayout PTAPE_GET_MEDIA_PARAMETERS = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _TAPE_SET_MEDIA_PARAMETERS {
+     *     DWORD BlockSize;
+     * } *PTAPE_SET_MEDIA_PARAMETERS
+     * }
+     */
+    public static final AddressLayout PTAPE_SET_MEDIA_PARAMETERS = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _TAPE_CREATE_PARTITION {
+     *     DWORD Method;
+     *     DWORD Count;
+     *     DWORD Size;
+     * } *PTAPE_CREATE_PARTITION
+     * }
+     */
+    public static final AddressLayout PTAPE_CREATE_PARTITION = wgl_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef struct _TAPE_WMI_OPERATIONS {
+     *     DWORD Method;
+     *     DWORD DataBufferSize;
+     *     PVOID DataBuffer;
+     * } *PTAPE_WMI_OPERATIONS
+     * }
+     */
+    public static final AddressLayout PTAPE_WMI_OPERATIONS = wgl_h.C_POINTER;
+    private static final int TapeDriveProblemNone = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _TAPE_DRIVE_PROBLEM_TYPE.TapeDriveProblemNone = 0
+     * }
+     */
+    public static int TapeDriveProblemNone() {
+        return TapeDriveProblemNone;
+    }
+    private static final int TapeDriveReadWriteWarning = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _TAPE_DRIVE_PROBLEM_TYPE.TapeDriveReadWriteWarning = 1
+     * }
+     */
+    public static int TapeDriveReadWriteWarning() {
+        return TapeDriveReadWriteWarning;
+    }
+    private static final int TapeDriveReadWriteError = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _TAPE_DRIVE_PROBLEM_TYPE.TapeDriveReadWriteError = 2
+     * }
+     */
+    public static int TapeDriveReadWriteError() {
+        return TapeDriveReadWriteError;
+    }
+    private static final int TapeDriveReadWarning = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _TAPE_DRIVE_PROBLEM_TYPE.TapeDriveReadWarning = 3
+     * }
+     */
+    public static int TapeDriveReadWarning() {
+        return TapeDriveReadWarning;
+    }
+    private static final int TapeDriveWriteWarning = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * enum _TAPE_DRIVE_PROBLEM_TYPE.TapeDriveWriteWarning = 4
+     * }
+     */
+    public static int TapeDriveWriteWarning() {
+        return TapeDriveWriteWarning;
+    }
+    private static final int TapeDriveReadError = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * enum _TAPE_DRIVE_PROBLEM_TYPE.TapeDriveReadError = 5
+     * }
+     */
+    public static int TapeDriveReadError() {
+        return TapeDriveReadError;
+    }
+    private static final int TapeDriveWriteError = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * enum _TAPE_DRIVE_PROBLEM_TYPE.TapeDriveWriteError = 6
+     * }
+     */
+    public static int TapeDriveWriteError() {
+        return TapeDriveWriteError;
+    }
+    private static final int TapeDriveHardwareError = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * enum _TAPE_DRIVE_PROBLEM_TYPE.TapeDriveHardwareError = 7
+     * }
+     */
+    public static int TapeDriveHardwareError() {
+        return TapeDriveHardwareError;
+    }
+    private static final int TapeDriveUnsupportedMedia = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * enum _TAPE_DRIVE_PROBLEM_TYPE.TapeDriveUnsupportedMedia = 8
+     * }
+     */
+    public static int TapeDriveUnsupportedMedia() {
+        return TapeDriveUnsupportedMedia;
+    }
+    private static final int TapeDriveScsiConnectionError = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * enum _TAPE_DRIVE_PROBLEM_TYPE.TapeDriveScsiConnectionError = 9
+     * }
+     */
+    public static int TapeDriveScsiConnectionError() {
+        return TapeDriveScsiConnectionError;
+    }
+    private static final int TapeDriveTimetoClean = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * enum _TAPE_DRIVE_PROBLEM_TYPE.TapeDriveTimetoClean = 10
+     * }
+     */
+    public static int TapeDriveTimetoClean() {
+        return TapeDriveTimetoClean;
+    }
+    private static final int TapeDriveCleanDriveNow = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * enum _TAPE_DRIVE_PROBLEM_TYPE.TapeDriveCleanDriveNow = 11
+     * }
+     */
+    public static int TapeDriveCleanDriveNow() {
+        return TapeDriveCleanDriveNow;
+    }
+    private static final int TapeDriveMediaLifeExpired = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * enum _TAPE_DRIVE_PROBLEM_TYPE.TapeDriveMediaLifeExpired = 12
+     * }
+     */
+    public static int TapeDriveMediaLifeExpired() {
+        return TapeDriveMediaLifeExpired;
+    }
+    private static final int TapeDriveSnappedTape = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * enum _TAPE_DRIVE_PROBLEM_TYPE.TapeDriveSnappedTape = 13
+     * }
+     */
+    public static int TapeDriveSnappedTape() {
+        return TapeDriveSnappedTape;
     }
 }
-
 

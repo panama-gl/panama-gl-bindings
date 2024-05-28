@@ -2,76 +2,219 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PRINTER_DEFAULTSW {
+ *     LPWSTR pDatatype;
+ *     LPDEVMODEW pDevMode;
+ *     ACCESS_MASK DesiredAccess;
+ * }
+ * }
+ */
 public class _PRINTER_DEFAULTSW {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("pDatatype"),
-        Constants$root.C_POINTER$LAYOUT.withName("pDevMode"),
-        Constants$root.C_LONG$LAYOUT.withName("DesiredAccess"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_PRINTER_DEFAULTSW");
-    public static MemoryLayout $LAYOUT() {
-        return _PRINTER_DEFAULTSW.$struct$LAYOUT;
+    _PRINTER_DEFAULTSW() {
+        // Should not be called directly
     }
-    static final VarHandle pDatatype$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pDatatype"));
-    public static VarHandle pDatatype$VH() {
-        return _PRINTER_DEFAULTSW.pDatatype$VH;
-    }
-    public static MemoryAddress pDatatype$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_DEFAULTSW.pDatatype$VH.get(seg);
-    }
-    public static void pDatatype$set( MemorySegment seg, MemoryAddress x) {
-        _PRINTER_DEFAULTSW.pDatatype$VH.set(seg, x);
-    }
-    public static MemoryAddress pDatatype$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_DEFAULTSW.pDatatype$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pDatatype$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PRINTER_DEFAULTSW.pDatatype$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pDevMode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pDevMode"));
-    public static VarHandle pDevMode$VH() {
-        return _PRINTER_DEFAULTSW.pDevMode$VH;
-    }
-    public static MemoryAddress pDevMode$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_DEFAULTSW.pDevMode$VH.get(seg);
-    }
-    public static void pDevMode$set( MemorySegment seg, MemoryAddress x) {
-        _PRINTER_DEFAULTSW.pDevMode$VH.set(seg, x);
-    }
-    public static MemoryAddress pDevMode$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_DEFAULTSW.pDevMode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pDevMode$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PRINTER_DEFAULTSW.pDevMode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DesiredAccess$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DesiredAccess"));
-    public static VarHandle DesiredAccess$VH() {
-        return _PRINTER_DEFAULTSW.DesiredAccess$VH;
-    }
-    public static int DesiredAccess$get(MemorySegment seg) {
-        return (int)_PRINTER_DEFAULTSW.DesiredAccess$VH.get(seg);
-    }
-    public static void DesiredAccess$set( MemorySegment seg, int x) {
-        _PRINTER_DEFAULTSW.DesiredAccess$VH.set(seg, x);
-    }
-    public static int DesiredAccess$get(MemorySegment seg, long index) {
-        return (int)_PRINTER_DEFAULTSW.DesiredAccess$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DesiredAccess$set(MemorySegment seg, long index, int x) {
-        _PRINTER_DEFAULTSW.DesiredAccess$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("pDatatype"),
+        wgl_h.C_POINTER.withName("pDevMode"),
+        wgl_h.C_LONG.withName("DesiredAccess"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_PRINTER_DEFAULTSW");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout pDatatype$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pDatatype"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pDatatype
+     * }
+     */
+    public static final AddressLayout pDatatype$layout() {
+        return pDatatype$LAYOUT;
+    }
+
+    private static final long pDatatype$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pDatatype
+     * }
+     */
+    public static final long pDatatype$offset() {
+        return pDatatype$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pDatatype
+     * }
+     */
+    public static MemorySegment pDatatype(MemorySegment struct) {
+        return struct.get(pDatatype$LAYOUT, pDatatype$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pDatatype
+     * }
+     */
+    public static void pDatatype(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pDatatype$LAYOUT, pDatatype$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pDevMode$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pDevMode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPDEVMODEW pDevMode
+     * }
+     */
+    public static final AddressLayout pDevMode$layout() {
+        return pDevMode$LAYOUT;
+    }
+
+    private static final long pDevMode$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPDEVMODEW pDevMode
+     * }
+     */
+    public static final long pDevMode$offset() {
+        return pDevMode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPDEVMODEW pDevMode
+     * }
+     */
+    public static MemorySegment pDevMode(MemorySegment struct) {
+        return struct.get(pDevMode$LAYOUT, pDevMode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPDEVMODEW pDevMode
+     * }
+     */
+    public static void pDevMode(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pDevMode$LAYOUT, pDevMode$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DesiredAccess$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DesiredAccess"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK DesiredAccess
+     * }
+     */
+    public static final OfInt DesiredAccess$layout() {
+        return DesiredAccess$LAYOUT;
+    }
+
+    private static final long DesiredAccess$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK DesiredAccess
+     * }
+     */
+    public static final long DesiredAccess$offset() {
+        return DesiredAccess$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK DesiredAccess
+     * }
+     */
+    public static int DesiredAccess(MemorySegment struct) {
+        return struct.get(DesiredAccess$LAYOUT, DesiredAccess$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK DesiredAccess
+     * }
+     */
+    public static void DesiredAccess(MemorySegment struct, int fieldValue) {
+        struct.set(DesiredAccess$LAYOUT, DesiredAccess$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

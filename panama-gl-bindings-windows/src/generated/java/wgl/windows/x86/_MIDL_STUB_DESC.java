@@ -2,476 +2,1333 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _MIDL_STUB_DESC {
+ *     void *RpcInterfaceInformation;
+ *     void *(*pfnAllocate)(size_t) __attribute__((stdcall));
+ *     void (*pfnFree)(void *) __attribute__((stdcall));
+ *     union {
+ *         handle_t *pAutoHandle;
+ *         handle_t *pPrimitiveHandle;
+ *         PGENERIC_BINDING_INFO pGenericBindingInfo;
+ *     } IMPLICIT_HANDLE_INFO;
+ *     const NDR_RUNDOWN *apfnNdrRundownRoutines;
+ *     const GENERIC_BINDING_ROUTINE_PAIR *aGenericBindingRoutinePairs;
+ *     const EXPR_EVAL *apfnExprEval;
+ *     const XMIT_ROUTINE_QUINTUPLE *aXmitQuintuple;
+ *     const unsigned char *pFormatTypes;
+ *     int fCheckBounds;
+ *     unsigned long Version;
+ *     MALLOC_FREE_STRUCT *pMallocFreeStruct;
+ *     long MIDLVersion;
+ *     const COMM_FAULT_OFFSETS *CommFaultOffsets;
+ *     const USER_MARSHAL_ROUTINE_QUADRUPLE *aUserMarshalQuadruple;
+ *     const NDR_NOTIFY_ROUTINE *NotifyRoutineTable;
+ *     ULONG_PTR mFlags;
+ *     const NDR_CS_ROUTINES *CsRoutineTables;
+ *     void *ProxyServerInfo;
+ *     const NDR_EXPR_DESC *pExprInfo;
+ * }
+ * }
+ */
 public class _MIDL_STUB_DESC {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("RpcInterfaceInformation"),
-        Constants$root.C_POINTER$LAYOUT.withName("pfnAllocate"),
-        Constants$root.C_POINTER$LAYOUT.withName("pfnFree"),
-        MemoryLayout.unionLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("pAutoHandle"),
-            Constants$root.C_POINTER$LAYOUT.withName("pPrimitiveHandle"),
-            Constants$root.C_POINTER$LAYOUT.withName("pGenericBindingInfo")
-        ).withName("IMPLICIT_HANDLE_INFO"),
-        Constants$root.C_POINTER$LAYOUT.withName("apfnNdrRundownRoutines"),
-        Constants$root.C_POINTER$LAYOUT.withName("aGenericBindingRoutinePairs"),
-        Constants$root.C_POINTER$LAYOUT.withName("apfnExprEval"),
-        Constants$root.C_POINTER$LAYOUT.withName("aXmitQuintuple"),
-        Constants$root.C_POINTER$LAYOUT.withName("pFormatTypes"),
-        Constants$root.C_LONG$LAYOUT.withName("fCheckBounds"),
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_POINTER$LAYOUT.withName("pMallocFreeStruct"),
-        Constants$root.C_LONG$LAYOUT.withName("MIDLVersion"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("CommFaultOffsets"),
-        Constants$root.C_POINTER$LAYOUT.withName("aUserMarshalQuadruple"),
-        Constants$root.C_POINTER$LAYOUT.withName("NotifyRoutineTable"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("mFlags"),
-        Constants$root.C_POINTER$LAYOUT.withName("CsRoutineTables"),
-        Constants$root.C_POINTER$LAYOUT.withName("ProxyServerInfo"),
-        Constants$root.C_POINTER$LAYOUT.withName("pExprInfo")
+    _MIDL_STUB_DESC() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("RpcInterfaceInformation"),
+        wgl_h.C_POINTER.withName("pfnAllocate"),
+        wgl_h.C_POINTER.withName("pfnFree"),
+        _MIDL_STUB_DESC.IMPLICIT_HANDLE_INFO.layout().withName("IMPLICIT_HANDLE_INFO"),
+        wgl_h.C_POINTER.withName("apfnNdrRundownRoutines"),
+        wgl_h.C_POINTER.withName("aGenericBindingRoutinePairs"),
+        wgl_h.C_POINTER.withName("apfnExprEval"),
+        wgl_h.C_POINTER.withName("aXmitQuintuple"),
+        wgl_h.C_POINTER.withName("pFormatTypes"),
+        wgl_h.C_INT.withName("fCheckBounds"),
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_POINTER.withName("pMallocFreeStruct"),
+        wgl_h.C_LONG.withName("MIDLVersion"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("CommFaultOffsets"),
+        wgl_h.C_POINTER.withName("aUserMarshalQuadruple"),
+        wgl_h.C_POINTER.withName("NotifyRoutineTable"),
+        wgl_h.C_LONG_LONG.withName("mFlags"),
+        wgl_h.C_POINTER.withName("CsRoutineTables"),
+        wgl_h.C_POINTER.withName("ProxyServerInfo"),
+        wgl_h.C_POINTER.withName("pExprInfo")
     ).withName("_MIDL_STUB_DESC");
-    public static MemoryLayout $LAYOUT() {
-        return _MIDL_STUB_DESC.$struct$LAYOUT;
-    }
-    static final VarHandle RpcInterfaceInformation$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RpcInterfaceInformation"));
-    public static VarHandle RpcInterfaceInformation$VH() {
-        return _MIDL_STUB_DESC.RpcInterfaceInformation$VH;
-    }
-    public static MemoryAddress RpcInterfaceInformation$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.RpcInterfaceInformation$VH.get(seg);
-    }
-    public static void RpcInterfaceInformation$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_STUB_DESC.RpcInterfaceInformation$VH.set(seg, x);
-    }
-    public static MemoryAddress RpcInterfaceInformation$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.RpcInterfaceInformation$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RpcInterfaceInformation$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_STUB_DESC.RpcInterfaceInformation$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final FunctionDescriptor pfnAllocate$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle pfnAllocate$MH = RuntimeHelper.downcallHandle(
-        _MIDL_STUB_DESC.pfnAllocate$FUNC
-    );
-    public interface pfnAllocate {
 
-        java.lang.foreign.Addressable apply(long _x0);
-        static MemorySegment allocate(pfnAllocate fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(pfnAllocate.class, fi, _MIDL_STUB_DESC.pfnAllocate$FUNC, session);
-        }
-        static pfnAllocate ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (long __x0) -> {
-                try {
-                    return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.pfnAllocate$MH.invokeExact((Addressable)symbol, __x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
 
-    static final VarHandle pfnAllocate$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnAllocate"));
-    public static VarHandle pfnAllocate$VH() {
-        return _MIDL_STUB_DESC.pfnAllocate$VH;
-    }
-    public static MemoryAddress pfnAllocate$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.pfnAllocate$VH.get(seg);
-    }
-    public static void pfnAllocate$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_STUB_DESC.pfnAllocate$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnAllocate$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.pfnAllocate$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnAllocate$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_STUB_DESC.pfnAllocate$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pfnAllocate pfnAllocate (MemorySegment segment, MemorySession session) {
-        return pfnAllocate.ofAddress(pfnAllocate$get(segment), session);
-    }
-    static final FunctionDescriptor pfnFree$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle pfnFree$MH = RuntimeHelper.downcallHandle(
-        _MIDL_STUB_DESC.pfnFree$FUNC
-    );
-    public interface pfnFree {
+    private static final AddressLayout RpcInterfaceInformation$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("RpcInterfaceInformation"));
 
-        void apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(pfnFree fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(pfnFree.class, fi, _MIDL_STUB_DESC.pfnFree$FUNC, session);
-        }
-        static pfnFree ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    _MIDL_STUB_DESC.pfnFree$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *RpcInterfaceInformation
+     * }
+     */
+    public static final AddressLayout RpcInterfaceInformation$layout() {
+        return RpcInterfaceInformation$LAYOUT;
     }
 
-    static final VarHandle pfnFree$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnFree"));
-    public static VarHandle pfnFree$VH() {
-        return _MIDL_STUB_DESC.pfnFree$VH;
+    private static final long RpcInterfaceInformation$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *RpcInterfaceInformation
+     * }
+     */
+    public static final long RpcInterfaceInformation$offset() {
+        return RpcInterfaceInformation$OFFSET;
     }
-    public static MemoryAddress pfnFree$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.pfnFree$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *RpcInterfaceInformation
+     * }
+     */
+    public static MemorySegment RpcInterfaceInformation(MemorySegment struct) {
+        return struct.get(RpcInterfaceInformation$LAYOUT, RpcInterfaceInformation$OFFSET);
     }
-    public static void pfnFree$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_STUB_DESC.pfnFree$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *RpcInterfaceInformation
+     * }
+     */
+    public static void RpcInterfaceInformation(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(RpcInterfaceInformation$LAYOUT, RpcInterfaceInformation$OFFSET, fieldValue);
     }
-    public static MemoryAddress pfnFree$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.pfnFree$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * {@snippet lang=c :
+     * void *(*pfnAllocate)(size_t) __attribute__((stdcall))
+     * }
+     */
+    public static class pfnAllocate {
+
+        pfnAllocate() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            MemorySegment apply(long _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(pfnAllocate.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(pfnAllocate.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static MemorySegment invoke(MemorySegment funcPtr,long _x0) {
+            try {
+                return (MemorySegment) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
     }
-    public static void pfnFree$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_STUB_DESC.pfnFree$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final AddressLayout pfnAllocate$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnAllocate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *(*pfnAllocate)(size_t) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout pfnAllocate$layout() {
+        return pfnAllocate$LAYOUT;
     }
-    public static pfnFree pfnFree (MemorySegment segment, MemorySession session) {
-        return pfnFree.ofAddress(pfnFree$get(segment), session);
+
+    private static final long pfnAllocate$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *(*pfnAllocate)(size_t) __attribute__((stdcall))
+     * }
+     */
+    public static final long pfnAllocate$offset() {
+        return pfnAllocate$OFFSET;
     }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *(*pfnAllocate)(size_t) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment pfnAllocate(MemorySegment struct) {
+        return struct.get(pfnAllocate$LAYOUT, pfnAllocate$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *(*pfnAllocate)(size_t) __attribute__((stdcall))
+     * }
+     */
+    public static void pfnAllocate(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnAllocate$LAYOUT, pfnAllocate$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void (*pfnFree)(void *) __attribute__((stdcall))
+     * }
+     */
+    public static class pfnFree {
+
+        pfnFree() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(pfnFree.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(pfnFree.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout pfnFree$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnFree"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*pfnFree)(void *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout pfnFree$layout() {
+        return pfnFree$LAYOUT;
+    }
+
+    private static final long pfnFree$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*pfnFree)(void *) __attribute__((stdcall))
+     * }
+     */
+    public static final long pfnFree$offset() {
+        return pfnFree$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*pfnFree)(void *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment pfnFree(MemorySegment struct) {
+        return struct.get(pfnFree$LAYOUT, pfnFree$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*pfnFree)(void *) __attribute__((stdcall))
+     * }
+     */
+    public static void pfnFree(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnFree$LAYOUT, pfnFree$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     handle_t *pAutoHandle;
+     *     handle_t *pPrimitiveHandle;
+     *     PGENERIC_BINDING_INFO pGenericBindingInfo;
+     * }
+     * }
+     */
     public static class IMPLICIT_HANDLE_INFO {
 
-        static final  GroupLayout IMPLICIT_HANDLE_INFO$union$LAYOUT = MemoryLayout.unionLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("pAutoHandle"),
-            Constants$root.C_POINTER$LAYOUT.withName("pPrimitiveHandle"),
-            Constants$root.C_POINTER$LAYOUT.withName("pGenericBindingInfo")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return IMPLICIT_HANDLE_INFO.IMPLICIT_HANDLE_INFO$union$LAYOUT;
+        IMPLICIT_HANDLE_INFO() {
+            // Should not be called directly
         }
-        static final VarHandle pAutoHandle$VH = IMPLICIT_HANDLE_INFO$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pAutoHandle"));
-        public static VarHandle pAutoHandle$VH() {
-            return IMPLICIT_HANDLE_INFO.pAutoHandle$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            wgl_h.C_POINTER.withName("pAutoHandle"),
+            wgl_h.C_POINTER.withName("pPrimitiveHandle"),
+            wgl_h.C_POINTER.withName("pGenericBindingInfo")
+        ).withName("$anon$1025:5");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static MemoryAddress pAutoHandle$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)IMPLICIT_HANDLE_INFO.pAutoHandle$VH.get(seg);
+
+        private static final AddressLayout pAutoHandle$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pAutoHandle"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * handle_t *pAutoHandle
+         * }
+         */
+        public static final AddressLayout pAutoHandle$layout() {
+            return pAutoHandle$LAYOUT;
         }
-        public static void pAutoHandle$set( MemorySegment seg, MemoryAddress x) {
-            IMPLICIT_HANDLE_INFO.pAutoHandle$VH.set(seg, x);
+
+        private static final long pAutoHandle$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * handle_t *pAutoHandle
+         * }
+         */
+        public static final long pAutoHandle$offset() {
+            return pAutoHandle$OFFSET;
         }
-        public static MemoryAddress pAutoHandle$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)IMPLICIT_HANDLE_INFO.pAutoHandle$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * handle_t *pAutoHandle
+         * }
+         */
+        public static MemorySegment pAutoHandle(MemorySegment union) {
+            return union.get(pAutoHandle$LAYOUT, pAutoHandle$OFFSET);
         }
-        public static void pAutoHandle$set(MemorySegment seg, long index, MemoryAddress x) {
-            IMPLICIT_HANDLE_INFO.pAutoHandle$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * handle_t *pAutoHandle
+         * }
+         */
+        public static void pAutoHandle(MemorySegment union, MemorySegment fieldValue) {
+            union.set(pAutoHandle$LAYOUT, pAutoHandle$OFFSET, fieldValue);
         }
-        static final VarHandle pPrimitiveHandle$VH = IMPLICIT_HANDLE_INFO$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pPrimitiveHandle"));
-        public static VarHandle pPrimitiveHandle$VH() {
-            return IMPLICIT_HANDLE_INFO.pPrimitiveHandle$VH;
+
+        private static final AddressLayout pPrimitiveHandle$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pPrimitiveHandle"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * handle_t *pPrimitiveHandle
+         * }
+         */
+        public static final AddressLayout pPrimitiveHandle$layout() {
+            return pPrimitiveHandle$LAYOUT;
         }
-        public static MemoryAddress pPrimitiveHandle$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)IMPLICIT_HANDLE_INFO.pPrimitiveHandle$VH.get(seg);
+
+        private static final long pPrimitiveHandle$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * handle_t *pPrimitiveHandle
+         * }
+         */
+        public static final long pPrimitiveHandle$offset() {
+            return pPrimitiveHandle$OFFSET;
         }
-        public static void pPrimitiveHandle$set( MemorySegment seg, MemoryAddress x) {
-            IMPLICIT_HANDLE_INFO.pPrimitiveHandle$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * handle_t *pPrimitiveHandle
+         * }
+         */
+        public static MemorySegment pPrimitiveHandle(MemorySegment union) {
+            return union.get(pPrimitiveHandle$LAYOUT, pPrimitiveHandle$OFFSET);
         }
-        public static MemoryAddress pPrimitiveHandle$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)IMPLICIT_HANDLE_INFO.pPrimitiveHandle$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * handle_t *pPrimitiveHandle
+         * }
+         */
+        public static void pPrimitiveHandle(MemorySegment union, MemorySegment fieldValue) {
+            union.set(pPrimitiveHandle$LAYOUT, pPrimitiveHandle$OFFSET, fieldValue);
         }
-        public static void pPrimitiveHandle$set(MemorySegment seg, long index, MemoryAddress x) {
-            IMPLICIT_HANDLE_INFO.pPrimitiveHandle$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final AddressLayout pGenericBindingInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pGenericBindingInfo"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * PGENERIC_BINDING_INFO pGenericBindingInfo
+         * }
+         */
+        public static final AddressLayout pGenericBindingInfo$layout() {
+            return pGenericBindingInfo$LAYOUT;
         }
-        static final VarHandle pGenericBindingInfo$VH = IMPLICIT_HANDLE_INFO$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pGenericBindingInfo"));
-        public static VarHandle pGenericBindingInfo$VH() {
-            return IMPLICIT_HANDLE_INFO.pGenericBindingInfo$VH;
+
+        private static final long pGenericBindingInfo$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * PGENERIC_BINDING_INFO pGenericBindingInfo
+         * }
+         */
+        public static final long pGenericBindingInfo$offset() {
+            return pGenericBindingInfo$OFFSET;
         }
-        public static MemoryAddress pGenericBindingInfo$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)IMPLICIT_HANDLE_INFO.pGenericBindingInfo$VH.get(seg);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * PGENERIC_BINDING_INFO pGenericBindingInfo
+         * }
+         */
+        public static MemorySegment pGenericBindingInfo(MemorySegment union) {
+            return union.get(pGenericBindingInfo$LAYOUT, pGenericBindingInfo$OFFSET);
         }
-        public static void pGenericBindingInfo$set( MemorySegment seg, MemoryAddress x) {
-            IMPLICIT_HANDLE_INFO.pGenericBindingInfo$VH.set(seg, x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * PGENERIC_BINDING_INFO pGenericBindingInfo
+         * }
+         */
+        public static void pGenericBindingInfo(MemorySegment union, MemorySegment fieldValue) {
+            union.set(pGenericBindingInfo$LAYOUT, pGenericBindingInfo$OFFSET, fieldValue);
         }
-        public static MemoryAddress pGenericBindingInfo$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)IMPLICIT_HANDLE_INFO.pGenericBindingInfo$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static void pGenericBindingInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-            IMPLICIT_HANDLE_INFO.pGenericBindingInfo$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment IMPLICIT_HANDLE_INFO$slice(MemorySegment seg) {
-        return seg.asSlice(24, 8);
+    private static final GroupLayout IMPLICIT_HANDLE_INFO$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("IMPLICIT_HANDLE_INFO"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     handle_t *pAutoHandle;
+     *     handle_t *pPrimitiveHandle;
+     *     PGENERIC_BINDING_INFO pGenericBindingInfo;
+     * } IMPLICIT_HANDLE_INFO
+     * }
+     */
+    public static final GroupLayout IMPLICIT_HANDLE_INFO$layout() {
+        return IMPLICIT_HANDLE_INFO$LAYOUT;
+    }
+
+    private static final long IMPLICIT_HANDLE_INFO$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     handle_t *pAutoHandle;
+     *     handle_t *pPrimitiveHandle;
+     *     PGENERIC_BINDING_INFO pGenericBindingInfo;
+     * } IMPLICIT_HANDLE_INFO
+     * }
+     */
+    public static final long IMPLICIT_HANDLE_INFO$offset() {
+        return IMPLICIT_HANDLE_INFO$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     handle_t *pAutoHandle;
+     *     handle_t *pPrimitiveHandle;
+     *     PGENERIC_BINDING_INFO pGenericBindingInfo;
+     * } IMPLICIT_HANDLE_INFO
+     * }
+     */
+    public static MemorySegment IMPLICIT_HANDLE_INFO(MemorySegment struct) {
+        return struct.asSlice(IMPLICIT_HANDLE_INFO$OFFSET, IMPLICIT_HANDLE_INFO$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     handle_t *pAutoHandle;
+     *     handle_t *pPrimitiveHandle;
+     *     PGENERIC_BINDING_INFO pGenericBindingInfo;
+     * } IMPLICIT_HANDLE_INFO
+     * }
+     */
+    public static void IMPLICIT_HANDLE_INFO(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, IMPLICIT_HANDLE_INFO$OFFSET, IMPLICIT_HANDLE_INFO$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout apfnNdrRundownRoutines$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("apfnNdrRundownRoutines"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * const NDR_RUNDOWN *apfnNdrRundownRoutines
+     * }
+     */
+    public static final AddressLayout apfnNdrRundownRoutines$layout() {
+        return apfnNdrRundownRoutines$LAYOUT;
+    }
+
+    private static final long apfnNdrRundownRoutines$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * const NDR_RUNDOWN *apfnNdrRundownRoutines
+     * }
+     */
+    public static final long apfnNdrRundownRoutines$offset() {
+        return apfnNdrRundownRoutines$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * const NDR_RUNDOWN *apfnNdrRundownRoutines
+     * }
+     */
+    public static MemorySegment apfnNdrRundownRoutines(MemorySegment struct) {
+        return struct.get(apfnNdrRundownRoutines$LAYOUT, apfnNdrRundownRoutines$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * const NDR_RUNDOWN *apfnNdrRundownRoutines
+     * }
+     */
+    public static void apfnNdrRundownRoutines(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(apfnNdrRundownRoutines$LAYOUT, apfnNdrRundownRoutines$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout aGenericBindingRoutinePairs$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("aGenericBindingRoutinePairs"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * const GENERIC_BINDING_ROUTINE_PAIR *aGenericBindingRoutinePairs
+     * }
+     */
+    public static final AddressLayout aGenericBindingRoutinePairs$layout() {
+        return aGenericBindingRoutinePairs$LAYOUT;
+    }
+
+    private static final long aGenericBindingRoutinePairs$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * const GENERIC_BINDING_ROUTINE_PAIR *aGenericBindingRoutinePairs
+     * }
+     */
+    public static final long aGenericBindingRoutinePairs$offset() {
+        return aGenericBindingRoutinePairs$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * const GENERIC_BINDING_ROUTINE_PAIR *aGenericBindingRoutinePairs
+     * }
+     */
+    public static MemorySegment aGenericBindingRoutinePairs(MemorySegment struct) {
+        return struct.get(aGenericBindingRoutinePairs$LAYOUT, aGenericBindingRoutinePairs$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * const GENERIC_BINDING_ROUTINE_PAIR *aGenericBindingRoutinePairs
+     * }
+     */
+    public static void aGenericBindingRoutinePairs(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(aGenericBindingRoutinePairs$LAYOUT, aGenericBindingRoutinePairs$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout apfnExprEval$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("apfnExprEval"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * const EXPR_EVAL *apfnExprEval
+     * }
+     */
+    public static final AddressLayout apfnExprEval$layout() {
+        return apfnExprEval$LAYOUT;
+    }
+
+    private static final long apfnExprEval$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * const EXPR_EVAL *apfnExprEval
+     * }
+     */
+    public static final long apfnExprEval$offset() {
+        return apfnExprEval$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * const EXPR_EVAL *apfnExprEval
+     * }
+     */
+    public static MemorySegment apfnExprEval(MemorySegment struct) {
+        return struct.get(apfnExprEval$LAYOUT, apfnExprEval$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * const EXPR_EVAL *apfnExprEval
+     * }
+     */
+    public static void apfnExprEval(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(apfnExprEval$LAYOUT, apfnExprEval$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout aXmitQuintuple$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("aXmitQuintuple"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * const XMIT_ROUTINE_QUINTUPLE *aXmitQuintuple
+     * }
+     */
+    public static final AddressLayout aXmitQuintuple$layout() {
+        return aXmitQuintuple$LAYOUT;
+    }
+
+    private static final long aXmitQuintuple$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * const XMIT_ROUTINE_QUINTUPLE *aXmitQuintuple
+     * }
+     */
+    public static final long aXmitQuintuple$offset() {
+        return aXmitQuintuple$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * const XMIT_ROUTINE_QUINTUPLE *aXmitQuintuple
+     * }
+     */
+    public static MemorySegment aXmitQuintuple(MemorySegment struct) {
+        return struct.get(aXmitQuintuple$LAYOUT, aXmitQuintuple$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * const XMIT_ROUTINE_QUINTUPLE *aXmitQuintuple
+     * }
+     */
+    public static void aXmitQuintuple(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(aXmitQuintuple$LAYOUT, aXmitQuintuple$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pFormatTypes$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pFormatTypes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * const unsigned char *pFormatTypes
+     * }
+     */
+    public static final AddressLayout pFormatTypes$layout() {
+        return pFormatTypes$LAYOUT;
+    }
+
+    private static final long pFormatTypes$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * const unsigned char *pFormatTypes
+     * }
+     */
+    public static final long pFormatTypes$offset() {
+        return pFormatTypes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * const unsigned char *pFormatTypes
+     * }
+     */
+    public static MemorySegment pFormatTypes(MemorySegment struct) {
+        return struct.get(pFormatTypes$LAYOUT, pFormatTypes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * const unsigned char *pFormatTypes
+     * }
+     */
+    public static void pFormatTypes(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pFormatTypes$LAYOUT, pFormatTypes$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fCheckBounds$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fCheckBounds"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int fCheckBounds
+     * }
+     */
+    public static final OfInt fCheckBounds$layout() {
+        return fCheckBounds$LAYOUT;
+    }
+
+    private static final long fCheckBounds$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int fCheckBounds
+     * }
+     */
+    public static final long fCheckBounds$offset() {
+        return fCheckBounds$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int fCheckBounds
+     * }
+     */
+    public static int fCheckBounds(MemorySegment struct) {
+        return struct.get(fCheckBounds$LAYOUT, fCheckBounds$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int fCheckBounds
+     * }
+     */
+    public static void fCheckBounds(MemorySegment struct, int fieldValue) {
+        struct.set(fCheckBounds$LAYOUT, fCheckBounds$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 76;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pMallocFreeStruct$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pMallocFreeStruct"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * MALLOC_FREE_STRUCT *pMallocFreeStruct
+     * }
+     */
+    public static final AddressLayout pMallocFreeStruct$layout() {
+        return pMallocFreeStruct$LAYOUT;
+    }
+
+    private static final long pMallocFreeStruct$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * MALLOC_FREE_STRUCT *pMallocFreeStruct
+     * }
+     */
+    public static final long pMallocFreeStruct$offset() {
+        return pMallocFreeStruct$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * MALLOC_FREE_STRUCT *pMallocFreeStruct
+     * }
+     */
+    public static MemorySegment pMallocFreeStruct(MemorySegment struct) {
+        return struct.get(pMallocFreeStruct$LAYOUT, pMallocFreeStruct$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * MALLOC_FREE_STRUCT *pMallocFreeStruct
+     * }
+     */
+    public static void pMallocFreeStruct(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pMallocFreeStruct$LAYOUT, pMallocFreeStruct$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MIDLVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MIDLVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * long MIDLVersion
+     * }
+     */
+    public static final OfInt MIDLVersion$layout() {
+        return MIDLVersion$LAYOUT;
+    }
+
+    private static final long MIDLVersion$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * long MIDLVersion
+     * }
+     */
+    public static final long MIDLVersion$offset() {
+        return MIDLVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * long MIDLVersion
+     * }
+     */
+    public static int MIDLVersion(MemorySegment struct) {
+        return struct.get(MIDLVersion$LAYOUT, MIDLVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * long MIDLVersion
+     * }
+     */
+    public static void MIDLVersion(MemorySegment struct, int fieldValue) {
+        struct.set(MIDLVersion$LAYOUT, MIDLVersion$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout CommFaultOffsets$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("CommFaultOffsets"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * const COMM_FAULT_OFFSETS *CommFaultOffsets
+     * }
+     */
+    public static final AddressLayout CommFaultOffsets$layout() {
+        return CommFaultOffsets$LAYOUT;
+    }
+
+    private static final long CommFaultOffsets$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * const COMM_FAULT_OFFSETS *CommFaultOffsets
+     * }
+     */
+    public static final long CommFaultOffsets$offset() {
+        return CommFaultOffsets$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * const COMM_FAULT_OFFSETS *CommFaultOffsets
+     * }
+     */
+    public static MemorySegment CommFaultOffsets(MemorySegment struct) {
+        return struct.get(CommFaultOffsets$LAYOUT, CommFaultOffsets$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * const COMM_FAULT_OFFSETS *CommFaultOffsets
+     * }
+     */
+    public static void CommFaultOffsets(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(CommFaultOffsets$LAYOUT, CommFaultOffsets$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout aUserMarshalQuadruple$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("aUserMarshalQuadruple"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * const USER_MARSHAL_ROUTINE_QUADRUPLE *aUserMarshalQuadruple
+     * }
+     */
+    public static final AddressLayout aUserMarshalQuadruple$layout() {
+        return aUserMarshalQuadruple$LAYOUT;
+    }
+
+    private static final long aUserMarshalQuadruple$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * const USER_MARSHAL_ROUTINE_QUADRUPLE *aUserMarshalQuadruple
+     * }
+     */
+    public static final long aUserMarshalQuadruple$offset() {
+        return aUserMarshalQuadruple$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * const USER_MARSHAL_ROUTINE_QUADRUPLE *aUserMarshalQuadruple
+     * }
+     */
+    public static MemorySegment aUserMarshalQuadruple(MemorySegment struct) {
+        return struct.get(aUserMarshalQuadruple$LAYOUT, aUserMarshalQuadruple$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * const USER_MARSHAL_ROUTINE_QUADRUPLE *aUserMarshalQuadruple
+     * }
+     */
+    public static void aUserMarshalQuadruple(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(aUserMarshalQuadruple$LAYOUT, aUserMarshalQuadruple$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout NotifyRoutineTable$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("NotifyRoutineTable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * const NDR_NOTIFY_ROUTINE *NotifyRoutineTable
+     * }
+     */
+    public static final AddressLayout NotifyRoutineTable$layout() {
+        return NotifyRoutineTable$LAYOUT;
+    }
+
+    private static final long NotifyRoutineTable$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * const NDR_NOTIFY_ROUTINE *NotifyRoutineTable
+     * }
+     */
+    public static final long NotifyRoutineTable$offset() {
+        return NotifyRoutineTable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * const NDR_NOTIFY_ROUTINE *NotifyRoutineTable
+     * }
+     */
+    public static MemorySegment NotifyRoutineTable(MemorySegment struct) {
+        return struct.get(NotifyRoutineTable$LAYOUT, NotifyRoutineTable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * const NDR_NOTIFY_ROUTINE *NotifyRoutineTable
+     * }
+     */
+    public static void NotifyRoutineTable(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(NotifyRoutineTable$LAYOUT, NotifyRoutineTable$OFFSET, fieldValue);
+    }
+
+    private static final OfLong mFlags$LAYOUT = (OfLong)$LAYOUT.select(groupElement("mFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG_PTR mFlags
+     * }
+     */
+    public static final OfLong mFlags$layout() {
+        return mFlags$LAYOUT;
+    }
+
+    private static final long mFlags$OFFSET = 120;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG_PTR mFlags
+     * }
+     */
+    public static final long mFlags$offset() {
+        return mFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR mFlags
+     * }
+     */
+    public static long mFlags(MemorySegment struct) {
+        return struct.get(mFlags$LAYOUT, mFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR mFlags
+     * }
+     */
+    public static void mFlags(MemorySegment struct, long fieldValue) {
+        struct.set(mFlags$LAYOUT, mFlags$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout CsRoutineTables$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("CsRoutineTables"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * const NDR_CS_ROUTINES *CsRoutineTables
+     * }
+     */
+    public static final AddressLayout CsRoutineTables$layout() {
+        return CsRoutineTables$LAYOUT;
+    }
+
+    private static final long CsRoutineTables$OFFSET = 128;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * const NDR_CS_ROUTINES *CsRoutineTables
+     * }
+     */
+    public static final long CsRoutineTables$offset() {
+        return CsRoutineTables$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * const NDR_CS_ROUTINES *CsRoutineTables
+     * }
+     */
+    public static MemorySegment CsRoutineTables(MemorySegment struct) {
+        return struct.get(CsRoutineTables$LAYOUT, CsRoutineTables$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * const NDR_CS_ROUTINES *CsRoutineTables
+     * }
+     */
+    public static void CsRoutineTables(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(CsRoutineTables$LAYOUT, CsRoutineTables$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ProxyServerInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ProxyServerInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *ProxyServerInfo
+     * }
+     */
+    public static final AddressLayout ProxyServerInfo$layout() {
+        return ProxyServerInfo$LAYOUT;
+    }
+
+    private static final long ProxyServerInfo$OFFSET = 136;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *ProxyServerInfo
+     * }
+     */
+    public static final long ProxyServerInfo$offset() {
+        return ProxyServerInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *ProxyServerInfo
+     * }
+     */
+    public static MemorySegment ProxyServerInfo(MemorySegment struct) {
+        return struct.get(ProxyServerInfo$LAYOUT, ProxyServerInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *ProxyServerInfo
+     * }
+     */
+    public static void ProxyServerInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ProxyServerInfo$LAYOUT, ProxyServerInfo$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pExprInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pExprInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * const NDR_EXPR_DESC *pExprInfo
+     * }
+     */
+    public static final AddressLayout pExprInfo$layout() {
+        return pExprInfo$LAYOUT;
+    }
+
+    private static final long pExprInfo$OFFSET = 144;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * const NDR_EXPR_DESC *pExprInfo
+     * }
+     */
+    public static final long pExprInfo$offset() {
+        return pExprInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * const NDR_EXPR_DESC *pExprInfo
+     * }
+     */
+    public static MemorySegment pExprInfo(MemorySegment struct) {
+        return struct.get(pExprInfo$LAYOUT, pExprInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * const NDR_EXPR_DESC *pExprInfo
+     * }
+     */
+    public static void pExprInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pExprInfo$LAYOUT, pExprInfo$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
     }
-    static final VarHandle apfnNdrRundownRoutines$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("apfnNdrRundownRoutines"));
-    public static VarHandle apfnNdrRundownRoutines$VH() {
-        return _MIDL_STUB_DESC.apfnNdrRundownRoutines$VH;
-    }
-    public static MemoryAddress apfnNdrRundownRoutines$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.apfnNdrRundownRoutines$VH.get(seg);
-    }
-    public static void apfnNdrRundownRoutines$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_STUB_DESC.apfnNdrRundownRoutines$VH.set(seg, x);
-    }
-    public static MemoryAddress apfnNdrRundownRoutines$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.apfnNdrRundownRoutines$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void apfnNdrRundownRoutines$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_STUB_DESC.apfnNdrRundownRoutines$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle aGenericBindingRoutinePairs$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("aGenericBindingRoutinePairs"));
-    public static VarHandle aGenericBindingRoutinePairs$VH() {
-        return _MIDL_STUB_DESC.aGenericBindingRoutinePairs$VH;
-    }
-    public static MemoryAddress aGenericBindingRoutinePairs$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.aGenericBindingRoutinePairs$VH.get(seg);
-    }
-    public static void aGenericBindingRoutinePairs$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_STUB_DESC.aGenericBindingRoutinePairs$VH.set(seg, x);
-    }
-    public static MemoryAddress aGenericBindingRoutinePairs$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.aGenericBindingRoutinePairs$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void aGenericBindingRoutinePairs$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_STUB_DESC.aGenericBindingRoutinePairs$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle apfnExprEval$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("apfnExprEval"));
-    public static VarHandle apfnExprEval$VH() {
-        return _MIDL_STUB_DESC.apfnExprEval$VH;
-    }
-    public static MemoryAddress apfnExprEval$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.apfnExprEval$VH.get(seg);
-    }
-    public static void apfnExprEval$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_STUB_DESC.apfnExprEval$VH.set(seg, x);
-    }
-    public static MemoryAddress apfnExprEval$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.apfnExprEval$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void apfnExprEval$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_STUB_DESC.apfnExprEval$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle aXmitQuintuple$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("aXmitQuintuple"));
-    public static VarHandle aXmitQuintuple$VH() {
-        return _MIDL_STUB_DESC.aXmitQuintuple$VH;
-    }
-    public static MemoryAddress aXmitQuintuple$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.aXmitQuintuple$VH.get(seg);
-    }
-    public static void aXmitQuintuple$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_STUB_DESC.aXmitQuintuple$VH.set(seg, x);
-    }
-    public static MemoryAddress aXmitQuintuple$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.aXmitQuintuple$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void aXmitQuintuple$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_STUB_DESC.aXmitQuintuple$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pFormatTypes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pFormatTypes"));
-    public static VarHandle pFormatTypes$VH() {
-        return _MIDL_STUB_DESC.pFormatTypes$VH;
-    }
-    public static MemoryAddress pFormatTypes$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.pFormatTypes$VH.get(seg);
-    }
-    public static void pFormatTypes$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_STUB_DESC.pFormatTypes$VH.set(seg, x);
-    }
-    public static MemoryAddress pFormatTypes$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.pFormatTypes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pFormatTypes$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_STUB_DESC.pFormatTypes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fCheckBounds$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fCheckBounds"));
-    public static VarHandle fCheckBounds$VH() {
-        return _MIDL_STUB_DESC.fCheckBounds$VH;
-    }
-    public static int fCheckBounds$get(MemorySegment seg) {
-        return (int)_MIDL_STUB_DESC.fCheckBounds$VH.get(seg);
-    }
-    public static void fCheckBounds$set( MemorySegment seg, int x) {
-        _MIDL_STUB_DESC.fCheckBounds$VH.set(seg, x);
-    }
-    public static int fCheckBounds$get(MemorySegment seg, long index) {
-        return (int)_MIDL_STUB_DESC.fCheckBounds$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fCheckBounds$set(MemorySegment seg, long index, int x) {
-        _MIDL_STUB_DESC.fCheckBounds$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _MIDL_STUB_DESC.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_MIDL_STUB_DESC.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _MIDL_STUB_DESC.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_MIDL_STUB_DESC.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _MIDL_STUB_DESC.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pMallocFreeStruct$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pMallocFreeStruct"));
-    public static VarHandle pMallocFreeStruct$VH() {
-        return _MIDL_STUB_DESC.pMallocFreeStruct$VH;
-    }
-    public static MemoryAddress pMallocFreeStruct$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.pMallocFreeStruct$VH.get(seg);
-    }
-    public static void pMallocFreeStruct$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_STUB_DESC.pMallocFreeStruct$VH.set(seg, x);
-    }
-    public static MemoryAddress pMallocFreeStruct$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.pMallocFreeStruct$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pMallocFreeStruct$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_STUB_DESC.pMallocFreeStruct$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MIDLVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MIDLVersion"));
-    public static VarHandle MIDLVersion$VH() {
-        return _MIDL_STUB_DESC.MIDLVersion$VH;
-    }
-    public static int MIDLVersion$get(MemorySegment seg) {
-        return (int)_MIDL_STUB_DESC.MIDLVersion$VH.get(seg);
-    }
-    public static void MIDLVersion$set( MemorySegment seg, int x) {
-        _MIDL_STUB_DESC.MIDLVersion$VH.set(seg, x);
-    }
-    public static int MIDLVersion$get(MemorySegment seg, long index) {
-        return (int)_MIDL_STUB_DESC.MIDLVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MIDLVersion$set(MemorySegment seg, long index, int x) {
-        _MIDL_STUB_DESC.MIDLVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CommFaultOffsets$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CommFaultOffsets"));
-    public static VarHandle CommFaultOffsets$VH() {
-        return _MIDL_STUB_DESC.CommFaultOffsets$VH;
-    }
-    public static MemoryAddress CommFaultOffsets$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.CommFaultOffsets$VH.get(seg);
-    }
-    public static void CommFaultOffsets$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_STUB_DESC.CommFaultOffsets$VH.set(seg, x);
-    }
-    public static MemoryAddress CommFaultOffsets$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.CommFaultOffsets$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CommFaultOffsets$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_STUB_DESC.CommFaultOffsets$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle aUserMarshalQuadruple$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("aUserMarshalQuadruple"));
-    public static VarHandle aUserMarshalQuadruple$VH() {
-        return _MIDL_STUB_DESC.aUserMarshalQuadruple$VH;
-    }
-    public static MemoryAddress aUserMarshalQuadruple$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.aUserMarshalQuadruple$VH.get(seg);
-    }
-    public static void aUserMarshalQuadruple$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_STUB_DESC.aUserMarshalQuadruple$VH.set(seg, x);
-    }
-    public static MemoryAddress aUserMarshalQuadruple$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.aUserMarshalQuadruple$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void aUserMarshalQuadruple$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_STUB_DESC.aUserMarshalQuadruple$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NotifyRoutineTable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NotifyRoutineTable"));
-    public static VarHandle NotifyRoutineTable$VH() {
-        return _MIDL_STUB_DESC.NotifyRoutineTable$VH;
-    }
-    public static MemoryAddress NotifyRoutineTable$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.NotifyRoutineTable$VH.get(seg);
-    }
-    public static void NotifyRoutineTable$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_STUB_DESC.NotifyRoutineTable$VH.set(seg, x);
-    }
-    public static MemoryAddress NotifyRoutineTable$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.NotifyRoutineTable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NotifyRoutineTable$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_STUB_DESC.NotifyRoutineTable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle mFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("mFlags"));
-    public static VarHandle mFlags$VH() {
-        return _MIDL_STUB_DESC.mFlags$VH;
-    }
-    public static long mFlags$get(MemorySegment seg) {
-        return (long)_MIDL_STUB_DESC.mFlags$VH.get(seg);
-    }
-    public static void mFlags$set( MemorySegment seg, long x) {
-        _MIDL_STUB_DESC.mFlags$VH.set(seg, x);
-    }
-    public static long mFlags$get(MemorySegment seg, long index) {
-        return (long)_MIDL_STUB_DESC.mFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void mFlags$set(MemorySegment seg, long index, long x) {
-        _MIDL_STUB_DESC.mFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CsRoutineTables$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CsRoutineTables"));
-    public static VarHandle CsRoutineTables$VH() {
-        return _MIDL_STUB_DESC.CsRoutineTables$VH;
-    }
-    public static MemoryAddress CsRoutineTables$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.CsRoutineTables$VH.get(seg);
-    }
-    public static void CsRoutineTables$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_STUB_DESC.CsRoutineTables$VH.set(seg, x);
-    }
-    public static MemoryAddress CsRoutineTables$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.CsRoutineTables$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CsRoutineTables$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_STUB_DESC.CsRoutineTables$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ProxyServerInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProxyServerInfo"));
-    public static VarHandle ProxyServerInfo$VH() {
-        return _MIDL_STUB_DESC.ProxyServerInfo$VH;
-    }
-    public static MemoryAddress ProxyServerInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.ProxyServerInfo$VH.get(seg);
-    }
-    public static void ProxyServerInfo$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_STUB_DESC.ProxyServerInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress ProxyServerInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.ProxyServerInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProxyServerInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_STUB_DESC.ProxyServerInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pExprInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pExprInfo"));
-    public static VarHandle pExprInfo$VH() {
-        return _MIDL_STUB_DESC.pExprInfo$VH;
-    }
-    public static MemoryAddress pExprInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.pExprInfo$VH.get(seg);
-    }
-    public static void pExprInfo$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_STUB_DESC.pExprInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress pExprInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_STUB_DESC.pExprInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pExprInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_STUB_DESC.pExprInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
-
 

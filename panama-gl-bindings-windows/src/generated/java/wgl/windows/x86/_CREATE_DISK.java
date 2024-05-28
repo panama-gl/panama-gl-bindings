@@ -2,61 +2,222 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CREATE_DISK {
+ *     PARTITION_STYLE PartitionStyle;
+ *     union {
+ *         CREATE_DISK_MBR Mbr;
+ *         CREATE_DISK_GPT Gpt;
+ *     };
+ * }
+ * }
+ */
 public class _CREATE_DISK {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("PartitionStyle"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("Signature")
-            ).withName("Mbr"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                    MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-                ).withName("DiskId"),
-                Constants$root.C_LONG$LAYOUT.withName("MaxPartitionCount")
-            ).withName("Gpt")
-        ).withName("$anon$0")
-    ).withName("_CREATE_DISK");
-    public static MemoryLayout $LAYOUT() {
-        return _CREATE_DISK.$struct$LAYOUT;
+    _CREATE_DISK() {
+        // Should not be called directly
     }
-    static final VarHandle PartitionStyle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PartitionStyle"));
-    public static VarHandle PartitionStyle$VH() {
-        return _CREATE_DISK.PartitionStyle$VH;
-    }
-    public static int PartitionStyle$get(MemorySegment seg) {
-        return (int)_CREATE_DISK.PartitionStyle$VH.get(seg);
-    }
-    public static void PartitionStyle$set( MemorySegment seg, int x) {
-        _CREATE_DISK.PartitionStyle$VH.set(seg, x);
-    }
-    public static int PartitionStyle$get(MemorySegment seg, long index) {
-        return (int)_CREATE_DISK.PartitionStyle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PartitionStyle$set(MemorySegment seg, long index, int x) {
-        _CREATE_DISK.PartitionStyle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Mbr$slice(MemorySegment seg) {
-        return seg.asSlice(4, 4);
-    }
-    public static MemorySegment Gpt$slice(MemorySegment seg) {
-        return seg.asSlice(4, 20);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("PartitionStyle"),
+        MemoryLayout.unionLayout(
+            _CREATE_DISK_MBR.layout().withName("Mbr"),
+            _CREATE_DISK_GPT.layout().withName("Gpt")
+        ).withName("$anon$8461:5")
+    ).withName("_CREATE_DISK");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt PartitionStyle$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PartitionStyle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PARTITION_STYLE PartitionStyle
+     * }
+     */
+    public static final OfInt PartitionStyle$layout() {
+        return PartitionStyle$LAYOUT;
+    }
+
+    private static final long PartitionStyle$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PARTITION_STYLE PartitionStyle
+     * }
+     */
+    public static final long PartitionStyle$offset() {
+        return PartitionStyle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PARTITION_STYLE PartitionStyle
+     * }
+     */
+    public static int PartitionStyle(MemorySegment struct) {
+        return struct.get(PartitionStyle$LAYOUT, PartitionStyle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PARTITION_STYLE PartitionStyle
+     * }
+     */
+    public static void PartitionStyle(MemorySegment struct, int fieldValue) {
+        struct.set(PartitionStyle$LAYOUT, PartitionStyle$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout Mbr$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$8461:5"), groupElement("Mbr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CREATE_DISK_MBR Mbr
+     * }
+     */
+    public static final GroupLayout Mbr$layout() {
+        return Mbr$LAYOUT;
+    }
+
+    private static final long Mbr$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CREATE_DISK_MBR Mbr
+     * }
+     */
+    public static final long Mbr$offset() {
+        return Mbr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CREATE_DISK_MBR Mbr
+     * }
+     */
+    public static MemorySegment Mbr(MemorySegment struct) {
+        return struct.asSlice(Mbr$OFFSET, Mbr$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CREATE_DISK_MBR Mbr
+     * }
+     */
+    public static void Mbr(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Mbr$OFFSET, Mbr$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Gpt$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$8461:5"), groupElement("Gpt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CREATE_DISK_GPT Gpt
+     * }
+     */
+    public static final GroupLayout Gpt$layout() {
+        return Gpt$LAYOUT;
+    }
+
+    private static final long Gpt$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CREATE_DISK_GPT Gpt
+     * }
+     */
+    public static final long Gpt$offset() {
+        return Gpt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CREATE_DISK_GPT Gpt
+     * }
+     */
+    public static MemorySegment Gpt(MemorySegment struct) {
+        return struct.asSlice(Gpt$OFFSET, Gpt$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CREATE_DISK_GPT Gpt
+     * }
+     */
+    public static void Gpt(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Gpt$OFFSET, Gpt$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,134 +2,514 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     DWORD ElementIdentifier;
+ *     BYTE PhysicalElementType;
+ *     BYTE PhysicalElementHealth;
+ *     BYTE Reserved1[2];
+ *     DWORDLONG AssociatedCapacity;
+ *     DWORD Reserved2[4];
+ * }
+ * }
+ */
 public class _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("ElementIdentifier"),
-        Constants$root.C_CHAR$LAYOUT.withName("PhysicalElementType"),
-        Constants$root.C_CHAR$LAYOUT.withName("PhysicalElementHealth"),
-        MemoryLayout.sequenceLayout(2, Constants$root.C_CHAR$LAYOUT).withName("Reserved1"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("AssociatedCapacity"),
-        MemoryLayout.sequenceLayout(4, Constants$root.C_LONG$LAYOUT).withName("Reserved2")
-    ).withName("_PHYSICAL_ELEMENT_STATUS_DESCRIPTOR");
-    public static MemoryLayout $LAYOUT() {
-        return _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.$struct$LAYOUT;
+    _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ElementIdentifier$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ElementIdentifier"));
-    public static VarHandle ElementIdentifier$VH() {
-        return _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.ElementIdentifier$VH;
-    }
-    public static int ElementIdentifier$get(MemorySegment seg) {
-        return (int)_PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.ElementIdentifier$VH.get(seg);
-    }
-    public static void ElementIdentifier$set( MemorySegment seg, int x) {
-        _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.ElementIdentifier$VH.set(seg, x);
-    }
-    public static int ElementIdentifier$get(MemorySegment seg, long index) {
-        return (int)_PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.ElementIdentifier$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ElementIdentifier$set(MemorySegment seg, long index, int x) {
-        _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.ElementIdentifier$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PhysicalElementType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PhysicalElementType"));
-    public static VarHandle PhysicalElementType$VH() {
-        return _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.PhysicalElementType$VH;
-    }
-    public static byte PhysicalElementType$get(MemorySegment seg) {
-        return (byte)_PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.PhysicalElementType$VH.get(seg);
-    }
-    public static void PhysicalElementType$set( MemorySegment seg, byte x) {
-        _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.PhysicalElementType$VH.set(seg, x);
-    }
-    public static byte PhysicalElementType$get(MemorySegment seg, long index) {
-        return (byte)_PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.PhysicalElementType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PhysicalElementType$set(MemorySegment seg, long index, byte x) {
-        _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.PhysicalElementType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PhysicalElementHealth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PhysicalElementHealth"));
-    public static VarHandle PhysicalElementHealth$VH() {
-        return _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.PhysicalElementHealth$VH;
-    }
-    public static byte PhysicalElementHealth$get(MemorySegment seg) {
-        return (byte)_PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.PhysicalElementHealth$VH.get(seg);
-    }
-    public static void PhysicalElementHealth$set( MemorySegment seg, byte x) {
-        _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.PhysicalElementHealth$VH.set(seg, x);
-    }
-    public static byte PhysicalElementHealth$get(MemorySegment seg, long index) {
-        return (byte)_PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.PhysicalElementHealth$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PhysicalElementHealth$set(MemorySegment seg, long index, byte x) {
-        _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.PhysicalElementHealth$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Reserved1$slice(MemorySegment seg) {
-        return seg.asSlice(14, 2);
-    }
-    static final VarHandle AssociatedCapacity$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AssociatedCapacity"));
-    public static VarHandle AssociatedCapacity$VH() {
-        return _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.AssociatedCapacity$VH;
-    }
-    public static long AssociatedCapacity$get(MemorySegment seg) {
-        return (long)_PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.AssociatedCapacity$VH.get(seg);
-    }
-    public static void AssociatedCapacity$set( MemorySegment seg, long x) {
-        _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.AssociatedCapacity$VH.set(seg, x);
-    }
-    public static long AssociatedCapacity$get(MemorySegment seg, long index) {
-        return (long)_PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.AssociatedCapacity$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AssociatedCapacity$set(MemorySegment seg, long index, long x) {
-        _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.AssociatedCapacity$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Reserved2$slice(MemorySegment seg) {
-        return seg.asSlice(24, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_LONG.withName("ElementIdentifier"),
+        wgl_h.C_CHAR.withName("PhysicalElementType"),
+        wgl_h.C_CHAR.withName("PhysicalElementHealth"),
+        MemoryLayout.sequenceLayout(2, wgl_h.C_CHAR).withName("Reserved1"),
+        wgl_h.C_LONG_LONG.withName("AssociatedCapacity"),
+        MemoryLayout.sequenceLayout(4, wgl_h.C_LONG).withName("Reserved2")
+    ).withName("_PHYSICAL_ELEMENT_STATUS_DESCRIPTOR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ElementIdentifier$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ElementIdentifier"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ElementIdentifier
+     * }
+     */
+    public static final OfInt ElementIdentifier$layout() {
+        return ElementIdentifier$LAYOUT;
+    }
+
+    private static final long ElementIdentifier$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ElementIdentifier
+     * }
+     */
+    public static final long ElementIdentifier$offset() {
+        return ElementIdentifier$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ElementIdentifier
+     * }
+     */
+    public static int ElementIdentifier(MemorySegment struct) {
+        return struct.get(ElementIdentifier$LAYOUT, ElementIdentifier$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ElementIdentifier
+     * }
+     */
+    public static void ElementIdentifier(MemorySegment struct, int fieldValue) {
+        struct.set(ElementIdentifier$LAYOUT, ElementIdentifier$OFFSET, fieldValue);
+    }
+
+    private static final OfByte PhysicalElementType$LAYOUT = (OfByte)$LAYOUT.select(groupElement("PhysicalElementType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE PhysicalElementType
+     * }
+     */
+    public static final OfByte PhysicalElementType$layout() {
+        return PhysicalElementType$LAYOUT;
+    }
+
+    private static final long PhysicalElementType$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE PhysicalElementType
+     * }
+     */
+    public static final long PhysicalElementType$offset() {
+        return PhysicalElementType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE PhysicalElementType
+     * }
+     */
+    public static byte PhysicalElementType(MemorySegment struct) {
+        return struct.get(PhysicalElementType$LAYOUT, PhysicalElementType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE PhysicalElementType
+     * }
+     */
+    public static void PhysicalElementType(MemorySegment struct, byte fieldValue) {
+        struct.set(PhysicalElementType$LAYOUT, PhysicalElementType$OFFSET, fieldValue);
+    }
+
+    private static final OfByte PhysicalElementHealth$LAYOUT = (OfByte)$LAYOUT.select(groupElement("PhysicalElementHealth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE PhysicalElementHealth
+     * }
+     */
+    public static final OfByte PhysicalElementHealth$layout() {
+        return PhysicalElementHealth$LAYOUT;
+    }
+
+    private static final long PhysicalElementHealth$OFFSET = 13;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE PhysicalElementHealth
+     * }
+     */
+    public static final long PhysicalElementHealth$offset() {
+        return PhysicalElementHealth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE PhysicalElementHealth
+     * }
+     */
+    public static byte PhysicalElementHealth(MemorySegment struct) {
+        return struct.get(PhysicalElementHealth$LAYOUT, PhysicalElementHealth$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE PhysicalElementHealth
+     * }
+     */
+    public static void PhysicalElementHealth(MemorySegment struct, byte fieldValue) {
+        struct.set(PhysicalElementHealth$LAYOUT, PhysicalElementHealth$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved1$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[2]
+     * }
+     */
+    public static final SequenceLayout Reserved1$layout() {
+        return Reserved1$LAYOUT;
+    }
+
+    private static final long Reserved1$OFFSET = 14;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[2]
+     * }
+     */
+    public static final long Reserved1$offset() {
+        return Reserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[2]
+     * }
+     */
+    public static MemorySegment Reserved1(MemorySegment struct) {
+        return struct.asSlice(Reserved1$OFFSET, Reserved1$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[2]
+     * }
+     */
+    public static void Reserved1(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved1$OFFSET, Reserved1$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved1$DIMS = { 2 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[2]
+     * }
+     */
+    public static long[] Reserved1$dimensions() {
+        return Reserved1$DIMS;
+    }
+    private static final VarHandle Reserved1$ELEM_HANDLE = Reserved1$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[2]
+     * }
+     */
+    public static byte Reserved1(MemorySegment struct, long index0) {
+        return (byte)Reserved1$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[2]
+     * }
+     */
+    public static void Reserved1(MemorySegment struct, long index0, byte fieldValue) {
+        Reserved1$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfLong AssociatedCapacity$LAYOUT = (OfLong)$LAYOUT.select(groupElement("AssociatedCapacity"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG AssociatedCapacity
+     * }
+     */
+    public static final OfLong AssociatedCapacity$layout() {
+        return AssociatedCapacity$LAYOUT;
+    }
+
+    private static final long AssociatedCapacity$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG AssociatedCapacity
+     * }
+     */
+    public static final long AssociatedCapacity$offset() {
+        return AssociatedCapacity$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG AssociatedCapacity
+     * }
+     */
+    public static long AssociatedCapacity(MemorySegment struct) {
+        return struct.get(AssociatedCapacity$LAYOUT, AssociatedCapacity$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG AssociatedCapacity
+     * }
+     */
+    public static void AssociatedCapacity(MemorySegment struct, long fieldValue) {
+        struct.set(AssociatedCapacity$LAYOUT, AssociatedCapacity$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved2$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2[4]
+     * }
+     */
+    public static final SequenceLayout Reserved2$layout() {
+        return Reserved2$LAYOUT;
+    }
+
+    private static final long Reserved2$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2[4]
+     * }
+     */
+    public static final long Reserved2$offset() {
+        return Reserved2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2[4]
+     * }
+     */
+    public static MemorySegment Reserved2(MemorySegment struct) {
+        return struct.asSlice(Reserved2$OFFSET, Reserved2$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2[4]
+     * }
+     */
+    public static void Reserved2(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved2$OFFSET, Reserved2$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved2$DIMS = { 4 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DWORD Reserved2[4]
+     * }
+     */
+    public static long[] Reserved2$dimensions() {
+        return Reserved2$DIMS;
+    }
+    private static final VarHandle Reserved2$ELEM_HANDLE = Reserved2$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2[4]
+     * }
+     */
+    public static int Reserved2(MemorySegment struct, long index0) {
+        return (int)Reserved2$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2[4]
+     * }
+     */
+    public static void Reserved2(MemorySegment struct, long index0, int fieldValue) {
+        Reserved2$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

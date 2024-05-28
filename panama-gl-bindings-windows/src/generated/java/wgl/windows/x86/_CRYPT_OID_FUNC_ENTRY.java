@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_OID_FUNC_ENTRY {
+ *     LPCSTR pszOID;
+ *     void *pvFuncAddr;
+ * }
+ * }
+ */
 public class _CRYPT_OID_FUNC_ENTRY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("pszOID"),
-        Constants$root.C_POINTER$LAYOUT.withName("pvFuncAddr")
-    ).withName("_CRYPT_OID_FUNC_ENTRY");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_OID_FUNC_ENTRY.$struct$LAYOUT;
+    _CRYPT_OID_FUNC_ENTRY() {
+        // Should not be called directly
     }
-    static final VarHandle pszOID$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pszOID"));
-    public static VarHandle pszOID$VH() {
-        return _CRYPT_OID_FUNC_ENTRY.pszOID$VH;
-    }
-    public static MemoryAddress pszOID$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_OID_FUNC_ENTRY.pszOID$VH.get(seg);
-    }
-    public static void pszOID$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_OID_FUNC_ENTRY.pszOID$VH.set(seg, x);
-    }
-    public static MemoryAddress pszOID$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_OID_FUNC_ENTRY.pszOID$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pszOID$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_OID_FUNC_ENTRY.pszOID$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pvFuncAddr$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pvFuncAddr"));
-    public static VarHandle pvFuncAddr$VH() {
-        return _CRYPT_OID_FUNC_ENTRY.pvFuncAddr$VH;
-    }
-    public static MemoryAddress pvFuncAddr$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_OID_FUNC_ENTRY.pvFuncAddr$VH.get(seg);
-    }
-    public static void pvFuncAddr$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_OID_FUNC_ENTRY.pvFuncAddr$VH.set(seg, x);
-    }
-    public static MemoryAddress pvFuncAddr$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_OID_FUNC_ENTRY.pvFuncAddr$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pvFuncAddr$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_OID_FUNC_ENTRY.pvFuncAddr$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("pszOID"),
+        wgl_h.C_POINTER.withName("pvFuncAddr")
+    ).withName("_CRYPT_OID_FUNC_ENTRY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout pszOID$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pszOID"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPCSTR pszOID
+     * }
+     */
+    public static final AddressLayout pszOID$layout() {
+        return pszOID$LAYOUT;
+    }
+
+    private static final long pszOID$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPCSTR pszOID
+     * }
+     */
+    public static final long pszOID$offset() {
+        return pszOID$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPCSTR pszOID
+     * }
+     */
+    public static MemorySegment pszOID(MemorySegment struct) {
+        return struct.get(pszOID$LAYOUT, pszOID$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPCSTR pszOID
+     * }
+     */
+    public static void pszOID(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pszOID$LAYOUT, pszOID$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pvFuncAddr$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pvFuncAddr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *pvFuncAddr
+     * }
+     */
+    public static final AddressLayout pvFuncAddr$layout() {
+        return pvFuncAddr$LAYOUT;
+    }
+
+    private static final long pvFuncAddr$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *pvFuncAddr
+     * }
+     */
+    public static final long pvFuncAddr$offset() {
+        return pvFuncAddr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *pvFuncAddr
+     * }
+     */
+    public static MemorySegment pvFuncAddr(MemorySegment struct) {
+        return struct.get(pvFuncAddr$LAYOUT, pvFuncAddr$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *pvFuncAddr
+     * }
+     */
+    public static void pvFuncAddr(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pvFuncAddr$LAYOUT, pvFuncAddr$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

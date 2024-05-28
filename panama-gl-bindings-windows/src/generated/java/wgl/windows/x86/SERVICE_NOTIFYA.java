@@ -2,13 +2,25 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef SERVICE_NOTIFY_2A SERVICE_NOTIFYA
+ * }
+ */
 public class SERVICE_NOTIFYA extends _SERVICE_NOTIFY_2A {
 
+    SERVICE_NOTIFYA() {
+        // Should not be called directly
+    }
 }
-
 

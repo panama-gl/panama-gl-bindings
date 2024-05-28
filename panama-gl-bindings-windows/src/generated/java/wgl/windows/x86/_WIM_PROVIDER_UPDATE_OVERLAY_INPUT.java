@@ -2,72 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _WIM_PROVIDER_UPDATE_OVERLAY_INPUT {
+ *     LARGE_INTEGER DataSourceId;
+ *     DWORD WimFileNameOffset;
+ *     DWORD WimFileNameLength;
+ * }
+ * }
+ */
 public class _WIM_PROVIDER_UPDATE_OVERLAY_INPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("DataSourceId"),
-        Constants$root.C_LONG$LAYOUT.withName("WimFileNameOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("WimFileNameLength")
-    ).withName("_WIM_PROVIDER_UPDATE_OVERLAY_INPUT");
-    public static MemoryLayout $LAYOUT() {
-        return _WIM_PROVIDER_UPDATE_OVERLAY_INPUT.$struct$LAYOUT;
+    _WIM_PROVIDER_UPDATE_OVERLAY_INPUT() {
+        // Should not be called directly
     }
-    public static MemorySegment DataSourceId$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    static final VarHandle WimFileNameOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("WimFileNameOffset"));
-    public static VarHandle WimFileNameOffset$VH() {
-        return _WIM_PROVIDER_UPDATE_OVERLAY_INPUT.WimFileNameOffset$VH;
-    }
-    public static int WimFileNameOffset$get(MemorySegment seg) {
-        return (int)_WIM_PROVIDER_UPDATE_OVERLAY_INPUT.WimFileNameOffset$VH.get(seg);
-    }
-    public static void WimFileNameOffset$set( MemorySegment seg, int x) {
-        _WIM_PROVIDER_UPDATE_OVERLAY_INPUT.WimFileNameOffset$VH.set(seg, x);
-    }
-    public static int WimFileNameOffset$get(MemorySegment seg, long index) {
-        return (int)_WIM_PROVIDER_UPDATE_OVERLAY_INPUT.WimFileNameOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void WimFileNameOffset$set(MemorySegment seg, long index, int x) {
-        _WIM_PROVIDER_UPDATE_OVERLAY_INPUT.WimFileNameOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle WimFileNameLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("WimFileNameLength"));
-    public static VarHandle WimFileNameLength$VH() {
-        return _WIM_PROVIDER_UPDATE_OVERLAY_INPUT.WimFileNameLength$VH;
-    }
-    public static int WimFileNameLength$get(MemorySegment seg) {
-        return (int)_WIM_PROVIDER_UPDATE_OVERLAY_INPUT.WimFileNameLength$VH.get(seg);
-    }
-    public static void WimFileNameLength$set( MemorySegment seg, int x) {
-        _WIM_PROVIDER_UPDATE_OVERLAY_INPUT.WimFileNameLength$VH.set(seg, x);
-    }
-    public static int WimFileNameLength$get(MemorySegment seg, long index) {
-        return (int)_WIM_PROVIDER_UPDATE_OVERLAY_INPUT.WimFileNameLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void WimFileNameLength$set(MemorySegment seg, long index, int x) {
-        _WIM_PROVIDER_UPDATE_OVERLAY_INPUT.WimFileNameLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _LARGE_INTEGER.layout().withName("DataSourceId"),
+        wgl_h.C_LONG.withName("WimFileNameOffset"),
+        wgl_h.C_LONG.withName("WimFileNameLength")
+    ).withName("_WIM_PROVIDER_UPDATE_OVERLAY_INPUT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout DataSourceId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("DataSourceId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER DataSourceId
+     * }
+     */
+    public static final GroupLayout DataSourceId$layout() {
+        return DataSourceId$LAYOUT;
+    }
+
+    private static final long DataSourceId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER DataSourceId
+     * }
+     */
+    public static final long DataSourceId$offset() {
+        return DataSourceId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER DataSourceId
+     * }
+     */
+    public static MemorySegment DataSourceId(MemorySegment struct) {
+        return struct.asSlice(DataSourceId$OFFSET, DataSourceId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER DataSourceId
+     * }
+     */
+    public static void DataSourceId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, DataSourceId$OFFSET, DataSourceId$LAYOUT.byteSize());
+    }
+
+    private static final OfInt WimFileNameOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("WimFileNameOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD WimFileNameOffset
+     * }
+     */
+    public static final OfInt WimFileNameOffset$layout() {
+        return WimFileNameOffset$LAYOUT;
+    }
+
+    private static final long WimFileNameOffset$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD WimFileNameOffset
+     * }
+     */
+    public static final long WimFileNameOffset$offset() {
+        return WimFileNameOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD WimFileNameOffset
+     * }
+     */
+    public static int WimFileNameOffset(MemorySegment struct) {
+        return struct.get(WimFileNameOffset$LAYOUT, WimFileNameOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD WimFileNameOffset
+     * }
+     */
+    public static void WimFileNameOffset(MemorySegment struct, int fieldValue) {
+        struct.set(WimFileNameOffset$LAYOUT, WimFileNameOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt WimFileNameLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("WimFileNameLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD WimFileNameLength
+     * }
+     */
+    public static final OfInt WimFileNameLength$layout() {
+        return WimFileNameLength$LAYOUT;
+    }
+
+    private static final long WimFileNameLength$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD WimFileNameLength
+     * }
+     */
+    public static final long WimFileNameLength$offset() {
+        return WimFileNameLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD WimFileNameLength
+     * }
+     */
+    public static int WimFileNameLength(MemorySegment struct) {
+        return struct.get(WimFileNameLength$LAYOUT, WimFileNameLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD WimFileNameLength
+     * }
+     */
+    public static void WimFileNameLength(MemorySegment struct, int fieldValue) {
+        struct.set(WimFileNameLength$LAYOUT, WimFileNameLength$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

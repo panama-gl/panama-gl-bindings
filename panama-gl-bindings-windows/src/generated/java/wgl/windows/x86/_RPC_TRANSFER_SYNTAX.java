@@ -2,67 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _RPC_TRANSFER_SYNTAX {
+ *     UUID Uuid;
+ *     unsigned short VersMajor;
+ *     unsigned short VersMinor;
+ * }
+ * }
+ */
 public class _RPC_TRANSFER_SYNTAX {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("Uuid"),
-        Constants$root.C_SHORT$LAYOUT.withName("VersMajor"),
-        Constants$root.C_SHORT$LAYOUT.withName("VersMinor")
-    ).withName("_RPC_TRANSFER_SYNTAX");
-    public static MemoryLayout $LAYOUT() {
-        return _RPC_TRANSFER_SYNTAX.$struct$LAYOUT;
+    _RPC_TRANSFER_SYNTAX() {
+        // Should not be called directly
     }
-    public static MemorySegment Uuid$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
-    }
-    static final VarHandle VersMajor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VersMajor"));
-    public static VarHandle VersMajor$VH() {
-        return _RPC_TRANSFER_SYNTAX.VersMajor$VH;
-    }
-    public static short VersMajor$get(MemorySegment seg) {
-        return (short)_RPC_TRANSFER_SYNTAX.VersMajor$VH.get(seg);
-    }
-    public static void VersMajor$set( MemorySegment seg, short x) {
-        _RPC_TRANSFER_SYNTAX.VersMajor$VH.set(seg, x);
-    }
-    public static short VersMajor$get(MemorySegment seg, long index) {
-        return (short)_RPC_TRANSFER_SYNTAX.VersMajor$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void VersMajor$set(MemorySegment seg, long index, short x) {
-        _RPC_TRANSFER_SYNTAX.VersMajor$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle VersMinor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VersMinor"));
-    public static VarHandle VersMinor$VH() {
-        return _RPC_TRANSFER_SYNTAX.VersMinor$VH;
-    }
-    public static short VersMinor$get(MemorySegment seg) {
-        return (short)_RPC_TRANSFER_SYNTAX.VersMinor$VH.get(seg);
-    }
-    public static void VersMinor$set( MemorySegment seg, short x) {
-        _RPC_TRANSFER_SYNTAX.VersMinor$VH.set(seg, x);
-    }
-    public static short VersMinor$get(MemorySegment seg, long index) {
-        return (short)_RPC_TRANSFER_SYNTAX.VersMinor$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void VersMinor$set(MemorySegment seg, long index, short x) {
-        _RPC_TRANSFER_SYNTAX.VersMinor$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _GUID.layout().withName("Uuid"),
+        wgl_h.C_SHORT.withName("VersMajor"),
+        wgl_h.C_SHORT.withName("VersMinor")
+    ).withName("_RPC_TRANSFER_SYNTAX");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout Uuid$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Uuid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UUID Uuid
+     * }
+     */
+    public static final GroupLayout Uuid$layout() {
+        return Uuid$LAYOUT;
+    }
+
+    private static final long Uuid$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UUID Uuid
+     * }
+     */
+    public static final long Uuid$offset() {
+        return Uuid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UUID Uuid
+     * }
+     */
+    public static MemorySegment Uuid(MemorySegment struct) {
+        return struct.asSlice(Uuid$OFFSET, Uuid$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UUID Uuid
+     * }
+     */
+    public static void Uuid(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Uuid$OFFSET, Uuid$LAYOUT.byteSize());
+    }
+
+    private static final OfShort VersMajor$LAYOUT = (OfShort)$LAYOUT.select(groupElement("VersMajor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned short VersMajor
+     * }
+     */
+    public static final OfShort VersMajor$layout() {
+        return VersMajor$LAYOUT;
+    }
+
+    private static final long VersMajor$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned short VersMajor
+     * }
+     */
+    public static final long VersMajor$offset() {
+        return VersMajor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned short VersMajor
+     * }
+     */
+    public static short VersMajor(MemorySegment struct) {
+        return struct.get(VersMajor$LAYOUT, VersMajor$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned short VersMajor
+     * }
+     */
+    public static void VersMajor(MemorySegment struct, short fieldValue) {
+        struct.set(VersMajor$LAYOUT, VersMajor$OFFSET, fieldValue);
+    }
+
+    private static final OfShort VersMinor$LAYOUT = (OfShort)$LAYOUT.select(groupElement("VersMinor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned short VersMinor
+     * }
+     */
+    public static final OfShort VersMinor$layout() {
+        return VersMinor$LAYOUT;
+    }
+
+    private static final long VersMinor$OFFSET = 18;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned short VersMinor
+     * }
+     */
+    public static final long VersMinor$offset() {
+        return VersMinor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned short VersMinor
+     * }
+     */
+    public static short VersMinor(MemorySegment struct) {
+        return struct.get(VersMinor$LAYOUT, VersMinor$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned short VersMinor
+     * }
+     */
+    public static void VersMinor(MemorySegment struct, short fieldValue) {
+        struct.set(VersMinor$LAYOUT, VersMinor$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

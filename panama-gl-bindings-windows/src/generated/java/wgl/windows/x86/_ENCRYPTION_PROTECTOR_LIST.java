@@ -2,59 +2,173 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _ENCRYPTION_PROTECTOR_LIST {
+ *     DWORD nProtectors;
+ *     PENCRYPTION_PROTECTOR *pProtectors;
+ * }
+ * }
+ */
 public class _ENCRYPTION_PROTECTOR_LIST {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("nProtectors"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pProtectors")
-    ).withName("_ENCRYPTION_PROTECTOR_LIST");
-    public static MemoryLayout $LAYOUT() {
-        return _ENCRYPTION_PROTECTOR_LIST.$struct$LAYOUT;
+    _ENCRYPTION_PROTECTOR_LIST() {
+        // Should not be called directly
     }
-    static final VarHandle nProtectors$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nProtectors"));
-    public static VarHandle nProtectors$VH() {
-        return _ENCRYPTION_PROTECTOR_LIST.nProtectors$VH;
-    }
-    public static int nProtectors$get(MemorySegment seg) {
-        return (int)_ENCRYPTION_PROTECTOR_LIST.nProtectors$VH.get(seg);
-    }
-    public static void nProtectors$set( MemorySegment seg, int x) {
-        _ENCRYPTION_PROTECTOR_LIST.nProtectors$VH.set(seg, x);
-    }
-    public static int nProtectors$get(MemorySegment seg, long index) {
-        return (int)_ENCRYPTION_PROTECTOR_LIST.nProtectors$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nProtectors$set(MemorySegment seg, long index, int x) {
-        _ENCRYPTION_PROTECTOR_LIST.nProtectors$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pProtectors$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pProtectors"));
-    public static VarHandle pProtectors$VH() {
-        return _ENCRYPTION_PROTECTOR_LIST.pProtectors$VH;
-    }
-    public static MemoryAddress pProtectors$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_ENCRYPTION_PROTECTOR_LIST.pProtectors$VH.get(seg);
-    }
-    public static void pProtectors$set( MemorySegment seg, MemoryAddress x) {
-        _ENCRYPTION_PROTECTOR_LIST.pProtectors$VH.set(seg, x);
-    }
-    public static MemoryAddress pProtectors$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_ENCRYPTION_PROTECTOR_LIST.pProtectors$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pProtectors$set(MemorySegment seg, long index, MemoryAddress x) {
-        _ENCRYPTION_PROTECTOR_LIST.pProtectors$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("nProtectors"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pProtectors")
+    ).withName("_ENCRYPTION_PROTECTOR_LIST");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt nProtectors$LAYOUT = (OfInt)$LAYOUT.select(groupElement("nProtectors"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD nProtectors
+     * }
+     */
+    public static final OfInt nProtectors$layout() {
+        return nProtectors$LAYOUT;
+    }
+
+    private static final long nProtectors$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD nProtectors
+     * }
+     */
+    public static final long nProtectors$offset() {
+        return nProtectors$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD nProtectors
+     * }
+     */
+    public static int nProtectors(MemorySegment struct) {
+        return struct.get(nProtectors$LAYOUT, nProtectors$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD nProtectors
+     * }
+     */
+    public static void nProtectors(MemorySegment struct, int fieldValue) {
+        struct.set(nProtectors$LAYOUT, nProtectors$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pProtectors$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pProtectors"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PENCRYPTION_PROTECTOR *pProtectors
+     * }
+     */
+    public static final AddressLayout pProtectors$layout() {
+        return pProtectors$LAYOUT;
+    }
+
+    private static final long pProtectors$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PENCRYPTION_PROTECTOR *pProtectors
+     * }
+     */
+    public static final long pProtectors$offset() {
+        return pProtectors$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PENCRYPTION_PROTECTOR *pProtectors
+     * }
+     */
+    public static MemorySegment pProtectors(MemorySegment struct) {
+        return struct.get(pProtectors$LAYOUT, pProtectors$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PENCRYPTION_PROTECTOR *pProtectors
+     * }
+     */
+    public static void pProtectors(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pProtectors$LAYOUT, pProtectors$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

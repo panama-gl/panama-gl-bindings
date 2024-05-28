@@ -2,48 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CONSOLE_FONT_INFO {
+ *     DWORD nFont;
+ *     COORD dwFontSize;
+ * }
+ * }
+ */
 public class _CONSOLE_FONT_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("nFont"),
-        MemoryLayout.structLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("X"),
-            Constants$root.C_SHORT$LAYOUT.withName("Y")
-        ).withName("dwFontSize")
-    ).withName("_CONSOLE_FONT_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CONSOLE_FONT_INFO.$struct$LAYOUT;
+    _CONSOLE_FONT_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle nFont$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nFont"));
-    public static VarHandle nFont$VH() {
-        return _CONSOLE_FONT_INFO.nFont$VH;
-    }
-    public static int nFont$get(MemorySegment seg) {
-        return (int)_CONSOLE_FONT_INFO.nFont$VH.get(seg);
-    }
-    public static void nFont$set( MemorySegment seg, int x) {
-        _CONSOLE_FONT_INFO.nFont$VH.set(seg, x);
-    }
-    public static int nFont$get(MemorySegment seg, long index) {
-        return (int)_CONSOLE_FONT_INFO.nFont$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nFont$set(MemorySegment seg, long index, int x) {
-        _CONSOLE_FONT_INFO.nFont$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment dwFontSize$slice(MemorySegment seg) {
-        return seg.asSlice(4, 4);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("nFont"),
+        _COORD.layout().withName("dwFontSize")
+    ).withName("_CONSOLE_FONT_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt nFont$LAYOUT = (OfInt)$LAYOUT.select(groupElement("nFont"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD nFont
+     * }
+     */
+    public static final OfInt nFont$layout() {
+        return nFont$LAYOUT;
+    }
+
+    private static final long nFont$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD nFont
+     * }
+     */
+    public static final long nFont$offset() {
+        return nFont$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD nFont
+     * }
+     */
+    public static int nFont(MemorySegment struct) {
+        return struct.get(nFont$LAYOUT, nFont$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD nFont
+     * }
+     */
+    public static void nFont(MemorySegment struct, int fieldValue) {
+        struct.set(nFont$LAYOUT, nFont$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout dwFontSize$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("dwFontSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * COORD dwFontSize
+     * }
+     */
+    public static final GroupLayout dwFontSize$layout() {
+        return dwFontSize$LAYOUT;
+    }
+
+    private static final long dwFontSize$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * COORD dwFontSize
+     * }
+     */
+    public static final long dwFontSize$offset() {
+        return dwFontSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * COORD dwFontSize
+     * }
+     */
+    public static MemorySegment dwFontSize(MemorySegment struct) {
+        return struct.asSlice(dwFontSize$OFFSET, dwFontSize$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * COORD dwFontSize
+     * }
+     */
+    public static void dwFontSize(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, dwFontSize$OFFSET, dwFontSize$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

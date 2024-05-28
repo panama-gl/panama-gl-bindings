@@ -2,220 +2,684 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CLAIM_SECURITY_ATTRIBUTE_V1 {
+ *     PWSTR Name;
+ *     WORD ValueType;
+ *     WORD Reserved;
+ *     DWORD Flags;
+ *     DWORD ValueCount;
+ *     union {
+ *         PLONG64 pInt64;
+ *         PDWORD64 pUint64;
+ *         PWSTR *ppString;
+ *         PCLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE pFqbn;
+ *         PCLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE pOctetString;
+ *     } Values;
+ * }
+ * }
+ */
 public class _CLAIM_SECURITY_ATTRIBUTE_V1 {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("Name"),
-        Constants$root.C_SHORT$LAYOUT.withName("ValueType"),
-        Constants$root.C_SHORT$LAYOUT.withName("Reserved"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("ValueCount"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.unionLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("pInt64"),
-            Constants$root.C_POINTER$LAYOUT.withName("pUint64"),
-            Constants$root.C_POINTER$LAYOUT.withName("ppString"),
-            Constants$root.C_POINTER$LAYOUT.withName("pFqbn"),
-            Constants$root.C_POINTER$LAYOUT.withName("pOctetString")
-        ).withName("Values")
+    _CLAIM_SECURITY_ATTRIBUTE_V1() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_POINTER.withName("Name"),
+        freeglut_h.C_SHORT.withName("ValueType"),
+        freeglut_h.C_SHORT.withName("Reserved"),
+        freeglut_h.C_LONG.withName("Flags"),
+        freeglut_h.C_LONG.withName("ValueCount"),
+        MemoryLayout.paddingLayout(4),
+        _CLAIM_SECURITY_ATTRIBUTE_V1.Values.layout().withName("Values")
     ).withName("_CLAIM_SECURITY_ATTRIBUTE_V1");
-    public static MemoryLayout $LAYOUT() {
-        return _CLAIM_SECURITY_ATTRIBUTE_V1.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle Name$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Name"));
-    public static VarHandle Name$VH() {
-        return _CLAIM_SECURITY_ATTRIBUTE_V1.Name$VH;
+
+    private static final AddressLayout Name$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Name"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PWSTR Name
+     * }
+     */
+    public static final AddressLayout Name$layout() {
+        return Name$LAYOUT;
     }
-    public static MemoryAddress Name$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CLAIM_SECURITY_ATTRIBUTE_V1.Name$VH.get(seg);
+
+    private static final long Name$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PWSTR Name
+     * }
+     */
+    public static final long Name$offset() {
+        return Name$OFFSET;
     }
-    public static void Name$set( MemorySegment seg, MemoryAddress x) {
-        _CLAIM_SECURITY_ATTRIBUTE_V1.Name$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PWSTR Name
+     * }
+     */
+    public static MemorySegment Name(MemorySegment struct) {
+        return struct.get(Name$LAYOUT, Name$OFFSET);
     }
-    public static MemoryAddress Name$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CLAIM_SECURITY_ATTRIBUTE_V1.Name$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PWSTR Name
+     * }
+     */
+    public static void Name(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Name$LAYOUT, Name$OFFSET, fieldValue);
     }
-    public static void Name$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CLAIM_SECURITY_ATTRIBUTE_V1.Name$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfShort ValueType$LAYOUT = (OfShort)$LAYOUT.select(groupElement("ValueType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD ValueType
+     * }
+     */
+    public static final OfShort ValueType$layout() {
+        return ValueType$LAYOUT;
     }
-    static final VarHandle ValueType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ValueType"));
-    public static VarHandle ValueType$VH() {
-        return _CLAIM_SECURITY_ATTRIBUTE_V1.ValueType$VH;
+
+    private static final long ValueType$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD ValueType
+     * }
+     */
+    public static final long ValueType$offset() {
+        return ValueType$OFFSET;
     }
-    public static short ValueType$get(MemorySegment seg) {
-        return (short)_CLAIM_SECURITY_ATTRIBUTE_V1.ValueType$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD ValueType
+     * }
+     */
+    public static short ValueType(MemorySegment struct) {
+        return struct.get(ValueType$LAYOUT, ValueType$OFFSET);
     }
-    public static void ValueType$set( MemorySegment seg, short x) {
-        _CLAIM_SECURITY_ATTRIBUTE_V1.ValueType$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD ValueType
+     * }
+     */
+    public static void ValueType(MemorySegment struct, short fieldValue) {
+        struct.set(ValueType$LAYOUT, ValueType$OFFSET, fieldValue);
     }
-    public static short ValueType$get(MemorySegment seg, long index) {
-        return (short)_CLAIM_SECURITY_ATTRIBUTE_V1.ValueType$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfShort Reserved$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Reserved
+     * }
+     */
+    public static final OfShort Reserved$layout() {
+        return Reserved$LAYOUT;
     }
-    public static void ValueType$set(MemorySegment seg, long index, short x) {
-        _CLAIM_SECURITY_ATTRIBUTE_V1.ValueType$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long Reserved$OFFSET = 10;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Reserved
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
     }
-    static final VarHandle Reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved"));
-    public static VarHandle Reserved$VH() {
-        return _CLAIM_SECURITY_ATTRIBUTE_V1.Reserved$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Reserved
+     * }
+     */
+    public static short Reserved(MemorySegment struct) {
+        return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
     }
-    public static short Reserved$get(MemorySegment seg) {
-        return (short)_CLAIM_SECURITY_ATTRIBUTE_V1.Reserved$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Reserved
+     * }
+     */
+    public static void Reserved(MemorySegment struct, short fieldValue) {
+        struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
     }
-    public static void Reserved$set( MemorySegment seg, short x) {
-        _CLAIM_SECURITY_ATTRIBUTE_V1.Reserved$VH.set(seg, x);
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
     }
-    public static short Reserved$get(MemorySegment seg, long index) {
-        return (short)_CLAIM_SECURITY_ATTRIBUTE_V1.Reserved$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long Flags$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
     }
-    public static void Reserved$set(MemorySegment seg, long index, short x) {
-        _CLAIM_SECURITY_ATTRIBUTE_V1.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
     }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _CLAIM_SECURITY_ATTRIBUTE_V1.Flags$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
     }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_CLAIM_SECURITY_ATTRIBUTE_V1.Flags$VH.get(seg);
+
+    private static final OfInt ValueCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ValueCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ValueCount
+     * }
+     */
+    public static final OfInt ValueCount$layout() {
+        return ValueCount$LAYOUT;
     }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _CLAIM_SECURITY_ATTRIBUTE_V1.Flags$VH.set(seg, x);
+
+    private static final long ValueCount$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ValueCount
+     * }
+     */
+    public static final long ValueCount$offset() {
+        return ValueCount$OFFSET;
     }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_CLAIM_SECURITY_ATTRIBUTE_V1.Flags$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ValueCount
+     * }
+     */
+    public static int ValueCount(MemorySegment struct) {
+        return struct.get(ValueCount$LAYOUT, ValueCount$OFFSET);
     }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _CLAIM_SECURITY_ATTRIBUTE_V1.Flags$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ValueCount
+     * }
+     */
+    public static void ValueCount(MemorySegment struct, int fieldValue) {
+        struct.set(ValueCount$LAYOUT, ValueCount$OFFSET, fieldValue);
     }
-    static final VarHandle ValueCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ValueCount"));
-    public static VarHandle ValueCount$VH() {
-        return _CLAIM_SECURITY_ATTRIBUTE_V1.ValueCount$VH;
-    }
-    public static int ValueCount$get(MemorySegment seg) {
-        return (int)_CLAIM_SECURITY_ATTRIBUTE_V1.ValueCount$VH.get(seg);
-    }
-    public static void ValueCount$set( MemorySegment seg, int x) {
-        _CLAIM_SECURITY_ATTRIBUTE_V1.ValueCount$VH.set(seg, x);
-    }
-    public static int ValueCount$get(MemorySegment seg, long index) {
-        return (int)_CLAIM_SECURITY_ATTRIBUTE_V1.ValueCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ValueCount$set(MemorySegment seg, long index, int x) {
-        _CLAIM_SECURITY_ATTRIBUTE_V1.ValueCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     PLONG64 pInt64;
+     *     PDWORD64 pUint64;
+     *     PWSTR *ppString;
+     *     PCLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE pFqbn;
+     *     PCLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE pOctetString;
+     * }
+     * }
+     */
     public static class Values {
 
-        static final  GroupLayout Values$union$LAYOUT = MemoryLayout.unionLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("pInt64"),
-            Constants$root.C_POINTER$LAYOUT.withName("pUint64"),
-            Constants$root.C_POINTER$LAYOUT.withName("ppString"),
-            Constants$root.C_POINTER$LAYOUT.withName("pFqbn"),
-            Constants$root.C_POINTER$LAYOUT.withName("pOctetString")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return Values.Values$union$LAYOUT;
+        Values() {
+            // Should not be called directly
         }
-        static final VarHandle pInt64$VH = Values$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pInt64"));
-        public static VarHandle pInt64$VH() {
-            return Values.pInt64$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            freeglut_h.C_POINTER.withName("pInt64"),
+            freeglut_h.C_POINTER.withName("pUint64"),
+            freeglut_h.C_POINTER.withName("ppString"),
+            freeglut_h.C_POINTER.withName("pFqbn"),
+            freeglut_h.C_POINTER.withName("pOctetString")
+        ).withName("$anon$11189:5");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static MemoryAddress pInt64$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)Values.pInt64$VH.get(seg);
+
+        private static final AddressLayout pInt64$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pInt64"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * PLONG64 pInt64
+         * }
+         */
+        public static final AddressLayout pInt64$layout() {
+            return pInt64$LAYOUT;
         }
-        public static void pInt64$set( MemorySegment seg, MemoryAddress x) {
-            Values.pInt64$VH.set(seg, x);
+
+        private static final long pInt64$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * PLONG64 pInt64
+         * }
+         */
+        public static final long pInt64$offset() {
+            return pInt64$OFFSET;
         }
-        public static MemoryAddress pInt64$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)Values.pInt64$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * PLONG64 pInt64
+         * }
+         */
+        public static MemorySegment pInt64(MemorySegment union) {
+            return union.get(pInt64$LAYOUT, pInt64$OFFSET);
         }
-        public static void pInt64$set(MemorySegment seg, long index, MemoryAddress x) {
-            Values.pInt64$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * PLONG64 pInt64
+         * }
+         */
+        public static void pInt64(MemorySegment union, MemorySegment fieldValue) {
+            union.set(pInt64$LAYOUT, pInt64$OFFSET, fieldValue);
         }
-        static final VarHandle pUint64$VH = Values$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pUint64"));
-        public static VarHandle pUint64$VH() {
-            return Values.pUint64$VH;
+
+        private static final AddressLayout pUint64$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pUint64"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * PDWORD64 pUint64
+         * }
+         */
+        public static final AddressLayout pUint64$layout() {
+            return pUint64$LAYOUT;
         }
-        public static MemoryAddress pUint64$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)Values.pUint64$VH.get(seg);
+
+        private static final long pUint64$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * PDWORD64 pUint64
+         * }
+         */
+        public static final long pUint64$offset() {
+            return pUint64$OFFSET;
         }
-        public static void pUint64$set( MemorySegment seg, MemoryAddress x) {
-            Values.pUint64$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * PDWORD64 pUint64
+         * }
+         */
+        public static MemorySegment pUint64(MemorySegment union) {
+            return union.get(pUint64$LAYOUT, pUint64$OFFSET);
         }
-        public static MemoryAddress pUint64$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)Values.pUint64$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * PDWORD64 pUint64
+         * }
+         */
+        public static void pUint64(MemorySegment union, MemorySegment fieldValue) {
+            union.set(pUint64$LAYOUT, pUint64$OFFSET, fieldValue);
         }
-        public static void pUint64$set(MemorySegment seg, long index, MemoryAddress x) {
-            Values.pUint64$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final AddressLayout ppString$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ppString"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * PWSTR *ppString
+         * }
+         */
+        public static final AddressLayout ppString$layout() {
+            return ppString$LAYOUT;
         }
-        static final VarHandle ppString$VH = Values$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ppString"));
-        public static VarHandle ppString$VH() {
-            return Values.ppString$VH;
+
+        private static final long ppString$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * PWSTR *ppString
+         * }
+         */
+        public static final long ppString$offset() {
+            return ppString$OFFSET;
         }
-        public static MemoryAddress ppString$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)Values.ppString$VH.get(seg);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * PWSTR *ppString
+         * }
+         */
+        public static MemorySegment ppString(MemorySegment union) {
+            return union.get(ppString$LAYOUT, ppString$OFFSET);
         }
-        public static void ppString$set( MemorySegment seg, MemoryAddress x) {
-            Values.ppString$VH.set(seg, x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * PWSTR *ppString
+         * }
+         */
+        public static void ppString(MemorySegment union, MemorySegment fieldValue) {
+            union.set(ppString$LAYOUT, ppString$OFFSET, fieldValue);
         }
-        public static MemoryAddress ppString$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)Values.ppString$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final AddressLayout pFqbn$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pFqbn"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * PCLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE pFqbn
+         * }
+         */
+        public static final AddressLayout pFqbn$layout() {
+            return pFqbn$LAYOUT;
         }
-        public static void ppString$set(MemorySegment seg, long index, MemoryAddress x) {
-            Values.ppString$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final long pFqbn$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * PCLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE pFqbn
+         * }
+         */
+        public static final long pFqbn$offset() {
+            return pFqbn$OFFSET;
         }
-        static final VarHandle pFqbn$VH = Values$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pFqbn"));
-        public static VarHandle pFqbn$VH() {
-            return Values.pFqbn$VH;
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * PCLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE pFqbn
+         * }
+         */
+        public static MemorySegment pFqbn(MemorySegment union) {
+            return union.get(pFqbn$LAYOUT, pFqbn$OFFSET);
         }
-        public static MemoryAddress pFqbn$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)Values.pFqbn$VH.get(seg);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * PCLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE pFqbn
+         * }
+         */
+        public static void pFqbn(MemorySegment union, MemorySegment fieldValue) {
+            union.set(pFqbn$LAYOUT, pFqbn$OFFSET, fieldValue);
         }
-        public static void pFqbn$set( MemorySegment seg, MemoryAddress x) {
-            Values.pFqbn$VH.set(seg, x);
+
+        private static final AddressLayout pOctetString$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pOctetString"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * PCLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE pOctetString
+         * }
+         */
+        public static final AddressLayout pOctetString$layout() {
+            return pOctetString$LAYOUT;
         }
-        public static MemoryAddress pFqbn$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)Values.pFqbn$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final long pOctetString$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * PCLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE pOctetString
+         * }
+         */
+        public static final long pOctetString$offset() {
+            return pOctetString$OFFSET;
         }
-        public static void pFqbn$set(MemorySegment seg, long index, MemoryAddress x) {
-            Values.pFqbn$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * PCLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE pOctetString
+         * }
+         */
+        public static MemorySegment pOctetString(MemorySegment union) {
+            return union.get(pOctetString$LAYOUT, pOctetString$OFFSET);
         }
-        static final VarHandle pOctetString$VH = Values$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pOctetString"));
-        public static VarHandle pOctetString$VH() {
-            return Values.pOctetString$VH;
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * PCLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE pOctetString
+         * }
+         */
+        public static void pOctetString(MemorySegment union, MemorySegment fieldValue) {
+            union.set(pOctetString$LAYOUT, pOctetString$OFFSET, fieldValue);
         }
-        public static MemoryAddress pOctetString$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)Values.pOctetString$VH.get(seg);
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static void pOctetString$set( MemorySegment seg, MemoryAddress x) {
-            Values.pOctetString$VH.set(seg, x);
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static MemoryAddress pOctetString$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)Values.pOctetString$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
         }
-        public static void pOctetString$set(MemorySegment seg, long index, MemoryAddress x) {
-            Values.pOctetString$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
     }
 
-    public static MemorySegment Values$slice(MemorySegment seg) {
-        return seg.asSlice(24, 8);
+    private static final GroupLayout Values$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Values"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     PLONG64 pInt64;
+     *     PDWORD64 pUint64;
+     *     PWSTR *ppString;
+     *     PCLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE pFqbn;
+     *     PCLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE pOctetString;
+     * } Values
+     * }
+     */
+    public static final GroupLayout Values$layout() {
+        return Values$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long Values$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     PLONG64 pInt64;
+     *     PDWORD64 pUint64;
+     *     PWSTR *ppString;
+     *     PCLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE pFqbn;
+     *     PCLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE pOctetString;
+     * } Values
+     * }
+     */
+    public static final long Values$offset() {
+        return Values$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     PLONG64 pInt64;
+     *     PDWORD64 pUint64;
+     *     PWSTR *ppString;
+     *     PCLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE pFqbn;
+     *     PCLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE pOctetString;
+     * } Values
+     * }
+     */
+    public static MemorySegment Values(MemorySegment struct) {
+        return struct.asSlice(Values$OFFSET, Values$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     PLONG64 pInt64;
+     *     PDWORD64 pUint64;
+     *     PWSTR *ppString;
+     *     PCLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE pFqbn;
+     *     PCLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE pOctetString;
+     * } Values
+     * }
+     */
+    public static void Values(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Values$OFFSET, Values$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

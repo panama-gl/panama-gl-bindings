@@ -2,127 +2,357 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SERVERSILO_BASIC_INFORMATION {
+ *     DWORD ServiceSessionId;
+ *     SERVERSILO_STATE State;
+ *     DWORD ExitStatus;
+ *     BOOLEAN IsDownlevelContainer;
+ *     PVOID ApiSetSchema;
+ *     PVOID HostApiSetSchema;
+ * }
+ * }
+ */
 public class _SERVERSILO_BASIC_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ServiceSessionId"),
-        Constants$root.C_LONG$LAYOUT.withName("State"),
-        Constants$root.C_LONG$LAYOUT.withName("ExitStatus"),
-        Constants$root.C_CHAR$LAYOUT.withName("IsDownlevelContainer"),
-        MemoryLayout.paddingLayout(24),
-        Constants$root.C_POINTER$LAYOUT.withName("ApiSetSchema"),
-        Constants$root.C_POINTER$LAYOUT.withName("HostApiSetSchema")
-    ).withName("_SERVERSILO_BASIC_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return _SERVERSILO_BASIC_INFORMATION.$struct$LAYOUT;
+    _SERVERSILO_BASIC_INFORMATION() {
+        // Should not be called directly
     }
-    static final VarHandle ServiceSessionId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ServiceSessionId"));
-    public static VarHandle ServiceSessionId$VH() {
-        return _SERVERSILO_BASIC_INFORMATION.ServiceSessionId$VH;
-    }
-    public static int ServiceSessionId$get(MemorySegment seg) {
-        return (int)_SERVERSILO_BASIC_INFORMATION.ServiceSessionId$VH.get(seg);
-    }
-    public static void ServiceSessionId$set( MemorySegment seg, int x) {
-        _SERVERSILO_BASIC_INFORMATION.ServiceSessionId$VH.set(seg, x);
-    }
-    public static int ServiceSessionId$get(MemorySegment seg, long index) {
-        return (int)_SERVERSILO_BASIC_INFORMATION.ServiceSessionId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ServiceSessionId$set(MemorySegment seg, long index, int x) {
-        _SERVERSILO_BASIC_INFORMATION.ServiceSessionId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle State$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("State"));
-    public static VarHandle State$VH() {
-        return _SERVERSILO_BASIC_INFORMATION.State$VH;
-    }
-    public static int State$get(MemorySegment seg) {
-        return (int)_SERVERSILO_BASIC_INFORMATION.State$VH.get(seg);
-    }
-    public static void State$set( MemorySegment seg, int x) {
-        _SERVERSILO_BASIC_INFORMATION.State$VH.set(seg, x);
-    }
-    public static int State$get(MemorySegment seg, long index) {
-        return (int)_SERVERSILO_BASIC_INFORMATION.State$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void State$set(MemorySegment seg, long index, int x) {
-        _SERVERSILO_BASIC_INFORMATION.State$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ExitStatus$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ExitStatus"));
-    public static VarHandle ExitStatus$VH() {
-        return _SERVERSILO_BASIC_INFORMATION.ExitStatus$VH;
-    }
-    public static int ExitStatus$get(MemorySegment seg) {
-        return (int)_SERVERSILO_BASIC_INFORMATION.ExitStatus$VH.get(seg);
-    }
-    public static void ExitStatus$set( MemorySegment seg, int x) {
-        _SERVERSILO_BASIC_INFORMATION.ExitStatus$VH.set(seg, x);
-    }
-    public static int ExitStatus$get(MemorySegment seg, long index) {
-        return (int)_SERVERSILO_BASIC_INFORMATION.ExitStatus$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ExitStatus$set(MemorySegment seg, long index, int x) {
-        _SERVERSILO_BASIC_INFORMATION.ExitStatus$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle IsDownlevelContainer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("IsDownlevelContainer"));
-    public static VarHandle IsDownlevelContainer$VH() {
-        return _SERVERSILO_BASIC_INFORMATION.IsDownlevelContainer$VH;
-    }
-    public static byte IsDownlevelContainer$get(MemorySegment seg) {
-        return (byte)_SERVERSILO_BASIC_INFORMATION.IsDownlevelContainer$VH.get(seg);
-    }
-    public static void IsDownlevelContainer$set( MemorySegment seg, byte x) {
-        _SERVERSILO_BASIC_INFORMATION.IsDownlevelContainer$VH.set(seg, x);
-    }
-    public static byte IsDownlevelContainer$get(MemorySegment seg, long index) {
-        return (byte)_SERVERSILO_BASIC_INFORMATION.IsDownlevelContainer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void IsDownlevelContainer$set(MemorySegment seg, long index, byte x) {
-        _SERVERSILO_BASIC_INFORMATION.IsDownlevelContainer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ApiSetSchema$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ApiSetSchema"));
-    public static VarHandle ApiSetSchema$VH() {
-        return _SERVERSILO_BASIC_INFORMATION.ApiSetSchema$VH;
-    }
-    public static MemoryAddress ApiSetSchema$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SERVERSILO_BASIC_INFORMATION.ApiSetSchema$VH.get(seg);
-    }
-    public static void ApiSetSchema$set( MemorySegment seg, MemoryAddress x) {
-        _SERVERSILO_BASIC_INFORMATION.ApiSetSchema$VH.set(seg, x);
-    }
-    public static MemoryAddress ApiSetSchema$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SERVERSILO_BASIC_INFORMATION.ApiSetSchema$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ApiSetSchema$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SERVERSILO_BASIC_INFORMATION.ApiSetSchema$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle HostApiSetSchema$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HostApiSetSchema"));
-    public static VarHandle HostApiSetSchema$VH() {
-        return _SERVERSILO_BASIC_INFORMATION.HostApiSetSchema$VH;
-    }
-    public static MemoryAddress HostApiSetSchema$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SERVERSILO_BASIC_INFORMATION.HostApiSetSchema$VH.get(seg);
-    }
-    public static void HostApiSetSchema$set( MemorySegment seg, MemoryAddress x) {
-        _SERVERSILO_BASIC_INFORMATION.HostApiSetSchema$VH.set(seg, x);
-    }
-    public static MemoryAddress HostApiSetSchema$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SERVERSILO_BASIC_INFORMATION.HostApiSetSchema$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HostApiSetSchema$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SERVERSILO_BASIC_INFORMATION.HostApiSetSchema$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("ServiceSessionId"),
+        freeglut_h.C_INT.withName("State"),
+        freeglut_h.C_LONG.withName("ExitStatus"),
+        freeglut_h.C_CHAR.withName("IsDownlevelContainer"),
+        MemoryLayout.paddingLayout(3),
+        freeglut_h.C_POINTER.withName("ApiSetSchema"),
+        freeglut_h.C_POINTER.withName("HostApiSetSchema")
+    ).withName("_SERVERSILO_BASIC_INFORMATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt ServiceSessionId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ServiceSessionId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ServiceSessionId
+     * }
+     */
+    public static final OfInt ServiceSessionId$layout() {
+        return ServiceSessionId$LAYOUT;
+    }
+
+    private static final long ServiceSessionId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ServiceSessionId
+     * }
+     */
+    public static final long ServiceSessionId$offset() {
+        return ServiceSessionId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ServiceSessionId
+     * }
+     */
+    public static int ServiceSessionId(MemorySegment struct) {
+        return struct.get(ServiceSessionId$LAYOUT, ServiceSessionId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ServiceSessionId
+     * }
+     */
+    public static void ServiceSessionId(MemorySegment struct, int fieldValue) {
+        struct.set(ServiceSessionId$LAYOUT, ServiceSessionId$OFFSET, fieldValue);
+    }
+
+    private static final OfInt State$LAYOUT = (OfInt)$LAYOUT.select(groupElement("State"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SERVERSILO_STATE State
+     * }
+     */
+    public static final OfInt State$layout() {
+        return State$LAYOUT;
+    }
+
+    private static final long State$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SERVERSILO_STATE State
+     * }
+     */
+    public static final long State$offset() {
+        return State$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SERVERSILO_STATE State
+     * }
+     */
+    public static int State(MemorySegment struct) {
+        return struct.get(State$LAYOUT, State$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SERVERSILO_STATE State
+     * }
+     */
+    public static void State(MemorySegment struct, int fieldValue) {
+        struct.set(State$LAYOUT, State$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ExitStatus$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ExitStatus"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ExitStatus
+     * }
+     */
+    public static final OfInt ExitStatus$layout() {
+        return ExitStatus$LAYOUT;
+    }
+
+    private static final long ExitStatus$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ExitStatus
+     * }
+     */
+    public static final long ExitStatus$offset() {
+        return ExitStatus$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ExitStatus
+     * }
+     */
+    public static int ExitStatus(MemorySegment struct) {
+        return struct.get(ExitStatus$LAYOUT, ExitStatus$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ExitStatus
+     * }
+     */
+    public static void ExitStatus(MemorySegment struct, int fieldValue) {
+        struct.set(ExitStatus$LAYOUT, ExitStatus$OFFSET, fieldValue);
+    }
+
+    private static final OfByte IsDownlevelContainer$LAYOUT = (OfByte)$LAYOUT.select(groupElement("IsDownlevelContainer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN IsDownlevelContainer
+     * }
+     */
+    public static final OfByte IsDownlevelContainer$layout() {
+        return IsDownlevelContainer$LAYOUT;
+    }
+
+    private static final long IsDownlevelContainer$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN IsDownlevelContainer
+     * }
+     */
+    public static final long IsDownlevelContainer$offset() {
+        return IsDownlevelContainer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN IsDownlevelContainer
+     * }
+     */
+    public static byte IsDownlevelContainer(MemorySegment struct) {
+        return struct.get(IsDownlevelContainer$LAYOUT, IsDownlevelContainer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN IsDownlevelContainer
+     * }
+     */
+    public static void IsDownlevelContainer(MemorySegment struct, byte fieldValue) {
+        struct.set(IsDownlevelContainer$LAYOUT, IsDownlevelContainer$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ApiSetSchema$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ApiSetSchema"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PVOID ApiSetSchema
+     * }
+     */
+    public static final AddressLayout ApiSetSchema$layout() {
+        return ApiSetSchema$LAYOUT;
+    }
+
+    private static final long ApiSetSchema$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PVOID ApiSetSchema
+     * }
+     */
+    public static final long ApiSetSchema$offset() {
+        return ApiSetSchema$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PVOID ApiSetSchema
+     * }
+     */
+    public static MemorySegment ApiSetSchema(MemorySegment struct) {
+        return struct.get(ApiSetSchema$LAYOUT, ApiSetSchema$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PVOID ApiSetSchema
+     * }
+     */
+    public static void ApiSetSchema(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ApiSetSchema$LAYOUT, ApiSetSchema$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout HostApiSetSchema$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("HostApiSetSchema"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PVOID HostApiSetSchema
+     * }
+     */
+    public static final AddressLayout HostApiSetSchema$layout() {
+        return HostApiSetSchema$LAYOUT;
+    }
+
+    private static final long HostApiSetSchema$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PVOID HostApiSetSchema
+     * }
+     */
+    public static final long HostApiSetSchema$offset() {
+        return HostApiSetSchema$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PVOID HostApiSetSchema
+     * }
+     */
+    public static MemorySegment HostApiSetSchema(MemorySegment struct) {
+        return struct.get(HostApiSetSchema$LAYOUT, HostApiSetSchema$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PVOID HostApiSetSchema
+     * }
+     */
+    public static void HostApiSetSchema(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(HostApiSetSchema$LAYOUT, HostApiSetSchema$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

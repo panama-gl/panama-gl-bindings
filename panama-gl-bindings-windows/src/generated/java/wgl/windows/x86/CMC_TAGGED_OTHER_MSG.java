@@ -2,13 +2,29 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CMC_TAGGED_OTHER_MSG {
+ *     DWORD dwBodyPartID;
+ *     LPSTR pszObjId;
+ *     CRYPT_OBJID_BLOB Value;
+ * } CMC_TAGGED_OTHER_MSG
+ * }
+ */
 public class CMC_TAGGED_OTHER_MSG extends _CMC_TAGGED_OTHER_MSG {
 
+    CMC_TAGGED_OTHER_MSG() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,1481 +2,4393 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _NTFS_STATISTICS_EX {
+ *     DWORD LogFileFullExceptions;
+ *     DWORD OtherExceptions;
+ *     DWORDLONG MftReads;
+ *     DWORDLONG MftReadBytes;
+ *     DWORDLONG MftWrites;
+ *     DWORDLONG MftWriteBytes;
+ *     struct {
+ *         DWORD Write;
+ *         DWORD Create;
+ *         DWORD SetInfo;
+ *         DWORD Flush;
+ *     } MftWritesUserLevel;
+ *     DWORD MftWritesFlushForLogFileFull;
+ *     DWORD MftWritesLazyWriter;
+ *     DWORD MftWritesUserRequest;
+ *     DWORDLONG Mft2Writes;
+ *     DWORDLONG Mft2WriteBytes;
+ *     struct {
+ *         DWORD Write;
+ *         DWORD Create;
+ *         DWORD SetInfo;
+ *         DWORD Flush;
+ *     } Mft2WritesUserLevel;
+ *     DWORD Mft2WritesFlushForLogFileFull;
+ *     DWORD Mft2WritesLazyWriter;
+ *     DWORD Mft2WritesUserRequest;
+ *     DWORDLONG RootIndexReads;
+ *     DWORDLONG RootIndexReadBytes;
+ *     DWORDLONG RootIndexWrites;
+ *     DWORDLONG RootIndexWriteBytes;
+ *     DWORDLONG BitmapReads;
+ *     DWORDLONG BitmapReadBytes;
+ *     DWORDLONG BitmapWrites;
+ *     DWORDLONG BitmapWriteBytes;
+ *     DWORD BitmapWritesFlushForLogFileFull;
+ *     DWORD BitmapWritesLazyWriter;
+ *     DWORD BitmapWritesUserRequest;
+ *     struct {
+ *         DWORD Write;
+ *         DWORD Create;
+ *         DWORD SetInfo;
+ *         DWORD Flush;
+ *     } BitmapWritesUserLevel;
+ *     DWORDLONG MftBitmapReads;
+ *     DWORDLONG MftBitmapReadBytes;
+ *     DWORDLONG MftBitmapWrites;
+ *     DWORDLONG MftBitmapWriteBytes;
+ *     DWORD MftBitmapWritesFlushForLogFileFull;
+ *     DWORD MftBitmapWritesLazyWriter;
+ *     DWORD MftBitmapWritesUserRequest;
+ *     struct {
+ *         DWORD Write;
+ *         DWORD Create;
+ *         DWORD SetInfo;
+ *         DWORD Flush;
+ *     } MftBitmapWritesUserLevel;
+ *     DWORDLONG UserIndexReads;
+ *     DWORDLONG UserIndexReadBytes;
+ *     DWORDLONG UserIndexWrites;
+ *     DWORDLONG UserIndexWriteBytes;
+ *     DWORDLONG LogFileReads;
+ *     DWORDLONG LogFileReadBytes;
+ *     DWORDLONG LogFileWrites;
+ *     DWORDLONG LogFileWriteBytes;
+ *     struct {
+ *         DWORD Calls;
+ *         DWORD RunsReturned;
+ *         DWORD Hints;
+ *         DWORD HintsHonored;
+ *         DWORD Cache;
+ *         DWORD CacheMiss;
+ *         DWORDLONG Clusters;
+ *         DWORDLONG HintsClusters;
+ *         DWORDLONG CacheClusters;
+ *         DWORDLONG CacheMissClusters;
+ *     } Allocate;
+ *     DWORD DiskResourcesExhausted;
+ *     DWORDLONG VolumeTrimCount;
+ *     DWORDLONG VolumeTrimTime;
+ *     DWORDLONG VolumeTrimByteCount;
+ *     DWORDLONG FileLevelTrimCount;
+ *     DWORDLONG FileLevelTrimTime;
+ *     DWORDLONG FileLevelTrimByteCount;
+ *     DWORDLONG VolumeTrimSkippedCount;
+ *     DWORDLONG VolumeTrimSkippedByteCount;
+ *     DWORDLONG NtfsFillStatInfoFromMftRecordCalledCount;
+ *     DWORDLONG NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount;
+ *     DWORDLONG NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount;
+ * }
+ * }
+ */
 public class _NTFS_STATISTICS_EX {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("LogFileFullExceptions"),
-        Constants$root.C_LONG$LAYOUT.withName("OtherExceptions"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("MftReads"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("MftReadBytes"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("MftWrites"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("MftWriteBytes"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Write"),
-            Constants$root.C_LONG$LAYOUT.withName("Create"),
-            Constants$root.C_LONG$LAYOUT.withName("SetInfo"),
-            Constants$root.C_LONG$LAYOUT.withName("Flush")
-        ).withName("MftWritesUserLevel"),
-        Constants$root.C_LONG$LAYOUT.withName("MftWritesFlushForLogFileFull"),
-        Constants$root.C_LONG$LAYOUT.withName("MftWritesLazyWriter"),
-        Constants$root.C_LONG$LAYOUT.withName("MftWritesUserRequest"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Mft2Writes"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Mft2WriteBytes"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Write"),
-            Constants$root.C_LONG$LAYOUT.withName("Create"),
-            Constants$root.C_LONG$LAYOUT.withName("SetInfo"),
-            Constants$root.C_LONG$LAYOUT.withName("Flush")
-        ).withName("Mft2WritesUserLevel"),
-        Constants$root.C_LONG$LAYOUT.withName("Mft2WritesFlushForLogFileFull"),
-        Constants$root.C_LONG$LAYOUT.withName("Mft2WritesLazyWriter"),
-        Constants$root.C_LONG$LAYOUT.withName("Mft2WritesUserRequest"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("RootIndexReads"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("RootIndexReadBytes"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("RootIndexWrites"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("RootIndexWriteBytes"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("BitmapReads"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("BitmapReadBytes"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("BitmapWrites"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("BitmapWriteBytes"),
-        Constants$root.C_LONG$LAYOUT.withName("BitmapWritesFlushForLogFileFull"),
-        Constants$root.C_LONG$LAYOUT.withName("BitmapWritesLazyWriter"),
-        Constants$root.C_LONG$LAYOUT.withName("BitmapWritesUserRequest"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Write"),
-            Constants$root.C_LONG$LAYOUT.withName("Create"),
-            Constants$root.C_LONG$LAYOUT.withName("SetInfo"),
-            Constants$root.C_LONG$LAYOUT.withName("Flush")
-        ).withName("BitmapWritesUserLevel"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("MftBitmapReads"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("MftBitmapReadBytes"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("MftBitmapWrites"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("MftBitmapWriteBytes"),
-        Constants$root.C_LONG$LAYOUT.withName("MftBitmapWritesFlushForLogFileFull"),
-        Constants$root.C_LONG$LAYOUT.withName("MftBitmapWritesLazyWriter"),
-        Constants$root.C_LONG$LAYOUT.withName("MftBitmapWritesUserRequest"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Write"),
-            Constants$root.C_LONG$LAYOUT.withName("Create"),
-            Constants$root.C_LONG$LAYOUT.withName("SetInfo"),
-            Constants$root.C_LONG$LAYOUT.withName("Flush")
-        ).withName("MftBitmapWritesUserLevel"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("UserIndexReads"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("UserIndexReadBytes"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("UserIndexWrites"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("UserIndexWriteBytes"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("LogFileReads"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("LogFileReadBytes"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("LogFileWrites"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("LogFileWriteBytes"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Calls"),
-            Constants$root.C_LONG$LAYOUT.withName("RunsReturned"),
-            Constants$root.C_LONG$LAYOUT.withName("Hints"),
-            Constants$root.C_LONG$LAYOUT.withName("HintsHonored"),
-            Constants$root.C_LONG$LAYOUT.withName("Cache"),
-            Constants$root.C_LONG$LAYOUT.withName("CacheMiss"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Clusters"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("HintsClusters"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("CacheClusters"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("CacheMissClusters")
-        ).withName("Allocate"),
-        Constants$root.C_LONG$LAYOUT.withName("DiskResourcesExhausted"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("VolumeTrimCount"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("VolumeTrimTime"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("VolumeTrimByteCount"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("FileLevelTrimCount"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("FileLevelTrimTime"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("FileLevelTrimByteCount"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("VolumeTrimSkippedCount"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("VolumeTrimSkippedByteCount"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("NtfsFillStatInfoFromMftRecordCalledCount"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount")
+    _NTFS_STATISTICS_EX() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("LogFileFullExceptions"),
+        wgl_h.C_LONG.withName("OtherExceptions"),
+        wgl_h.C_LONG_LONG.withName("MftReads"),
+        wgl_h.C_LONG_LONG.withName("MftReadBytes"),
+        wgl_h.C_LONG_LONG.withName("MftWrites"),
+        wgl_h.C_LONG_LONG.withName("MftWriteBytes"),
+        _NTFS_STATISTICS_EX.MftWritesUserLevel.layout().withName("MftWritesUserLevel"),
+        wgl_h.C_LONG.withName("MftWritesFlushForLogFileFull"),
+        wgl_h.C_LONG.withName("MftWritesLazyWriter"),
+        wgl_h.C_LONG.withName("MftWritesUserRequest"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_LONG_LONG.withName("Mft2Writes"),
+        wgl_h.C_LONG_LONG.withName("Mft2WriteBytes"),
+        _NTFS_STATISTICS_EX.Mft2WritesUserLevel.layout().withName("Mft2WritesUserLevel"),
+        wgl_h.C_LONG.withName("Mft2WritesFlushForLogFileFull"),
+        wgl_h.C_LONG.withName("Mft2WritesLazyWriter"),
+        wgl_h.C_LONG.withName("Mft2WritesUserRequest"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_LONG_LONG.withName("RootIndexReads"),
+        wgl_h.C_LONG_LONG.withName("RootIndexReadBytes"),
+        wgl_h.C_LONG_LONG.withName("RootIndexWrites"),
+        wgl_h.C_LONG_LONG.withName("RootIndexWriteBytes"),
+        wgl_h.C_LONG_LONG.withName("BitmapReads"),
+        wgl_h.C_LONG_LONG.withName("BitmapReadBytes"),
+        wgl_h.C_LONG_LONG.withName("BitmapWrites"),
+        wgl_h.C_LONG_LONG.withName("BitmapWriteBytes"),
+        wgl_h.C_LONG.withName("BitmapWritesFlushForLogFileFull"),
+        wgl_h.C_LONG.withName("BitmapWritesLazyWriter"),
+        wgl_h.C_LONG.withName("BitmapWritesUserRequest"),
+        _NTFS_STATISTICS_EX.BitmapWritesUserLevel.layout().withName("BitmapWritesUserLevel"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_LONG_LONG.withName("MftBitmapReads"),
+        wgl_h.C_LONG_LONG.withName("MftBitmapReadBytes"),
+        wgl_h.C_LONG_LONG.withName("MftBitmapWrites"),
+        wgl_h.C_LONG_LONG.withName("MftBitmapWriteBytes"),
+        wgl_h.C_LONG.withName("MftBitmapWritesFlushForLogFileFull"),
+        wgl_h.C_LONG.withName("MftBitmapWritesLazyWriter"),
+        wgl_h.C_LONG.withName("MftBitmapWritesUserRequest"),
+        _NTFS_STATISTICS_EX.MftBitmapWritesUserLevel.layout().withName("MftBitmapWritesUserLevel"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_LONG_LONG.withName("UserIndexReads"),
+        wgl_h.C_LONG_LONG.withName("UserIndexReadBytes"),
+        wgl_h.C_LONG_LONG.withName("UserIndexWrites"),
+        wgl_h.C_LONG_LONG.withName("UserIndexWriteBytes"),
+        wgl_h.C_LONG_LONG.withName("LogFileReads"),
+        wgl_h.C_LONG_LONG.withName("LogFileReadBytes"),
+        wgl_h.C_LONG_LONG.withName("LogFileWrites"),
+        wgl_h.C_LONG_LONG.withName("LogFileWriteBytes"),
+        _NTFS_STATISTICS_EX.Allocate.layout().withName("Allocate"),
+        wgl_h.C_LONG.withName("DiskResourcesExhausted"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_LONG_LONG.withName("VolumeTrimCount"),
+        wgl_h.C_LONG_LONG.withName("VolumeTrimTime"),
+        wgl_h.C_LONG_LONG.withName("VolumeTrimByteCount"),
+        wgl_h.C_LONG_LONG.withName("FileLevelTrimCount"),
+        wgl_h.C_LONG_LONG.withName("FileLevelTrimTime"),
+        wgl_h.C_LONG_LONG.withName("FileLevelTrimByteCount"),
+        wgl_h.C_LONG_LONG.withName("VolumeTrimSkippedCount"),
+        wgl_h.C_LONG_LONG.withName("VolumeTrimSkippedByteCount"),
+        wgl_h.C_LONG_LONG.withName("NtfsFillStatInfoFromMftRecordCalledCount"),
+        wgl_h.C_LONG_LONG.withName("NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount"),
+        wgl_h.C_LONG_LONG.withName("NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount")
     ).withName("_NTFS_STATISTICS_EX");
-    public static MemoryLayout $LAYOUT() {
-        return _NTFS_STATISTICS_EX.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle LogFileFullExceptions$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LogFileFullExceptions"));
-    public static VarHandle LogFileFullExceptions$VH() {
-        return _NTFS_STATISTICS_EX.LogFileFullExceptions$VH;
+
+    private static final OfInt LogFileFullExceptions$LAYOUT = (OfInt)$LAYOUT.select(groupElement("LogFileFullExceptions"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD LogFileFullExceptions
+     * }
+     */
+    public static final OfInt LogFileFullExceptions$layout() {
+        return LogFileFullExceptions$LAYOUT;
     }
-    public static int LogFileFullExceptions$get(MemorySegment seg) {
-        return (int)_NTFS_STATISTICS_EX.LogFileFullExceptions$VH.get(seg);
+
+    private static final long LogFileFullExceptions$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD LogFileFullExceptions
+     * }
+     */
+    public static final long LogFileFullExceptions$offset() {
+        return LogFileFullExceptions$OFFSET;
     }
-    public static void LogFileFullExceptions$set( MemorySegment seg, int x) {
-        _NTFS_STATISTICS_EX.LogFileFullExceptions$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD LogFileFullExceptions
+     * }
+     */
+    public static int LogFileFullExceptions(MemorySegment struct) {
+        return struct.get(LogFileFullExceptions$LAYOUT, LogFileFullExceptions$OFFSET);
     }
-    public static int LogFileFullExceptions$get(MemorySegment seg, long index) {
-        return (int)_NTFS_STATISTICS_EX.LogFileFullExceptions$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD LogFileFullExceptions
+     * }
+     */
+    public static void LogFileFullExceptions(MemorySegment struct, int fieldValue) {
+        struct.set(LogFileFullExceptions$LAYOUT, LogFileFullExceptions$OFFSET, fieldValue);
     }
-    public static void LogFileFullExceptions$set(MemorySegment seg, long index, int x) {
-        _NTFS_STATISTICS_EX.LogFileFullExceptions$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfInt OtherExceptions$LAYOUT = (OfInt)$LAYOUT.select(groupElement("OtherExceptions"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD OtherExceptions
+     * }
+     */
+    public static final OfInt OtherExceptions$layout() {
+        return OtherExceptions$LAYOUT;
     }
-    static final VarHandle OtherExceptions$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OtherExceptions"));
-    public static VarHandle OtherExceptions$VH() {
-        return _NTFS_STATISTICS_EX.OtherExceptions$VH;
+
+    private static final long OtherExceptions$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD OtherExceptions
+     * }
+     */
+    public static final long OtherExceptions$offset() {
+        return OtherExceptions$OFFSET;
     }
-    public static int OtherExceptions$get(MemorySegment seg) {
-        return (int)_NTFS_STATISTICS_EX.OtherExceptions$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD OtherExceptions
+     * }
+     */
+    public static int OtherExceptions(MemorySegment struct) {
+        return struct.get(OtherExceptions$LAYOUT, OtherExceptions$OFFSET);
     }
-    public static void OtherExceptions$set( MemorySegment seg, int x) {
-        _NTFS_STATISTICS_EX.OtherExceptions$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD OtherExceptions
+     * }
+     */
+    public static void OtherExceptions(MemorySegment struct, int fieldValue) {
+        struct.set(OtherExceptions$LAYOUT, OtherExceptions$OFFSET, fieldValue);
     }
-    public static int OtherExceptions$get(MemorySegment seg, long index) {
-        return (int)_NTFS_STATISTICS_EX.OtherExceptions$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfLong MftReads$LAYOUT = (OfLong)$LAYOUT.select(groupElement("MftReads"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftReads
+     * }
+     */
+    public static final OfLong MftReads$layout() {
+        return MftReads$LAYOUT;
     }
-    public static void OtherExceptions$set(MemorySegment seg, long index, int x) {
-        _NTFS_STATISTICS_EX.OtherExceptions$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long MftReads$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftReads
+     * }
+     */
+    public static final long MftReads$offset() {
+        return MftReads$OFFSET;
     }
-    static final VarHandle MftReads$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MftReads"));
-    public static VarHandle MftReads$VH() {
-        return _NTFS_STATISTICS_EX.MftReads$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftReads
+     * }
+     */
+    public static long MftReads(MemorySegment struct) {
+        return struct.get(MftReads$LAYOUT, MftReads$OFFSET);
     }
-    public static long MftReads$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.MftReads$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftReads
+     * }
+     */
+    public static void MftReads(MemorySegment struct, long fieldValue) {
+        struct.set(MftReads$LAYOUT, MftReads$OFFSET, fieldValue);
     }
-    public static void MftReads$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.MftReads$VH.set(seg, x);
+
+    private static final OfLong MftReadBytes$LAYOUT = (OfLong)$LAYOUT.select(groupElement("MftReadBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftReadBytes
+     * }
+     */
+    public static final OfLong MftReadBytes$layout() {
+        return MftReadBytes$LAYOUT;
     }
-    public static long MftReads$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.MftReads$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long MftReadBytes$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftReadBytes
+     * }
+     */
+    public static final long MftReadBytes$offset() {
+        return MftReadBytes$OFFSET;
     }
-    public static void MftReads$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.MftReads$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftReadBytes
+     * }
+     */
+    public static long MftReadBytes(MemorySegment struct) {
+        return struct.get(MftReadBytes$LAYOUT, MftReadBytes$OFFSET);
     }
-    static final VarHandle MftReadBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MftReadBytes"));
-    public static VarHandle MftReadBytes$VH() {
-        return _NTFS_STATISTICS_EX.MftReadBytes$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftReadBytes
+     * }
+     */
+    public static void MftReadBytes(MemorySegment struct, long fieldValue) {
+        struct.set(MftReadBytes$LAYOUT, MftReadBytes$OFFSET, fieldValue);
     }
-    public static long MftReadBytes$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.MftReadBytes$VH.get(seg);
+
+    private static final OfLong MftWrites$LAYOUT = (OfLong)$LAYOUT.select(groupElement("MftWrites"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftWrites
+     * }
+     */
+    public static final OfLong MftWrites$layout() {
+        return MftWrites$LAYOUT;
     }
-    public static void MftReadBytes$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.MftReadBytes$VH.set(seg, x);
+
+    private static final long MftWrites$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftWrites
+     * }
+     */
+    public static final long MftWrites$offset() {
+        return MftWrites$OFFSET;
     }
-    public static long MftReadBytes$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.MftReadBytes$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftWrites
+     * }
+     */
+    public static long MftWrites(MemorySegment struct) {
+        return struct.get(MftWrites$LAYOUT, MftWrites$OFFSET);
     }
-    public static void MftReadBytes$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.MftReadBytes$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftWrites
+     * }
+     */
+    public static void MftWrites(MemorySegment struct, long fieldValue) {
+        struct.set(MftWrites$LAYOUT, MftWrites$OFFSET, fieldValue);
     }
-    static final VarHandle MftWrites$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MftWrites"));
-    public static VarHandle MftWrites$VH() {
-        return _NTFS_STATISTICS_EX.MftWrites$VH;
+
+    private static final OfLong MftWriteBytes$LAYOUT = (OfLong)$LAYOUT.select(groupElement("MftWriteBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftWriteBytes
+     * }
+     */
+    public static final OfLong MftWriteBytes$layout() {
+        return MftWriteBytes$LAYOUT;
     }
-    public static long MftWrites$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.MftWrites$VH.get(seg);
+
+    private static final long MftWriteBytes$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftWriteBytes
+     * }
+     */
+    public static final long MftWriteBytes$offset() {
+        return MftWriteBytes$OFFSET;
     }
-    public static void MftWrites$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.MftWrites$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftWriteBytes
+     * }
+     */
+    public static long MftWriteBytes(MemorySegment struct) {
+        return struct.get(MftWriteBytes$LAYOUT, MftWriteBytes$OFFSET);
     }
-    public static long MftWrites$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.MftWrites$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftWriteBytes
+     * }
+     */
+    public static void MftWriteBytes(MemorySegment struct, long fieldValue) {
+        struct.set(MftWriteBytes$LAYOUT, MftWriteBytes$OFFSET, fieldValue);
     }
-    public static void MftWrites$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.MftWrites$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MftWriteBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MftWriteBytes"));
-    public static VarHandle MftWriteBytes$VH() {
-        return _NTFS_STATISTICS_EX.MftWriteBytes$VH;
-    }
-    public static long MftWriteBytes$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.MftWriteBytes$VH.get(seg);
-    }
-    public static void MftWriteBytes$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.MftWriteBytes$VH.set(seg, x);
-    }
-    public static long MftWriteBytes$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.MftWriteBytes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MftWriteBytes$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.MftWriteBytes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * }
+     * }
+     */
     public static class MftWritesUserLevel {
 
-        static final  GroupLayout MftWritesUserLevel$struct$LAYOUT = MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Write"),
-            Constants$root.C_LONG$LAYOUT.withName("Create"),
-            Constants$root.C_LONG$LAYOUT.withName("SetInfo"),
-            Constants$root.C_LONG$LAYOUT.withName("Flush")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return MftWritesUserLevel.MftWritesUserLevel$struct$LAYOUT;
+        MftWritesUserLevel() {
+            // Should not be called directly
         }
-        static final VarHandle Write$VH = MftWritesUserLevel$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Write"));
-        public static VarHandle Write$VH() {
-            return MftWritesUserLevel.Write$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+            wgl_h.C_LONG.withName("Write"),
+            wgl_h.C_LONG.withName("Create"),
+            wgl_h.C_LONG.withName("SetInfo"),
+            wgl_h.C_LONG.withName("Flush")
+        ).withName("$anon$11500:5");
+
+        /**
+         * The layout of this struct
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static int Write$get(MemorySegment seg) {
-            return (int)MftWritesUserLevel.Write$VH.get(seg);
+
+        private static final OfInt Write$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Write"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD Write
+         * }
+         */
+        public static final OfInt Write$layout() {
+            return Write$LAYOUT;
         }
-        public static void Write$set( MemorySegment seg, int x) {
-            MftWritesUserLevel.Write$VH.set(seg, x);
+
+        private static final long Write$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD Write
+         * }
+         */
+        public static final long Write$offset() {
+            return Write$OFFSET;
         }
-        public static int Write$get(MemorySegment seg, long index) {
-            return (int)MftWritesUserLevel.Write$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD Write
+         * }
+         */
+        public static int Write(MemorySegment struct) {
+            return struct.get(Write$LAYOUT, Write$OFFSET);
         }
-        public static void Write$set(MemorySegment seg, long index, int x) {
-            MftWritesUserLevel.Write$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD Write
+         * }
+         */
+        public static void Write(MemorySegment struct, int fieldValue) {
+            struct.set(Write$LAYOUT, Write$OFFSET, fieldValue);
         }
-        static final VarHandle Create$VH = MftWritesUserLevel$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Create"));
-        public static VarHandle Create$VH() {
-            return MftWritesUserLevel.Create$VH;
+
+        private static final OfInt Create$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Create"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD Create
+         * }
+         */
+        public static final OfInt Create$layout() {
+            return Create$LAYOUT;
         }
-        public static int Create$get(MemorySegment seg) {
-            return (int)MftWritesUserLevel.Create$VH.get(seg);
+
+        private static final long Create$OFFSET = 4;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD Create
+         * }
+         */
+        public static final long Create$offset() {
+            return Create$OFFSET;
         }
-        public static void Create$set( MemorySegment seg, int x) {
-            MftWritesUserLevel.Create$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD Create
+         * }
+         */
+        public static int Create(MemorySegment struct) {
+            return struct.get(Create$LAYOUT, Create$OFFSET);
         }
-        public static int Create$get(MemorySegment seg, long index) {
-            return (int)MftWritesUserLevel.Create$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD Create
+         * }
+         */
+        public static void Create(MemorySegment struct, int fieldValue) {
+            struct.set(Create$LAYOUT, Create$OFFSET, fieldValue);
         }
-        public static void Create$set(MemorySegment seg, long index, int x) {
-            MftWritesUserLevel.Create$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final OfInt SetInfo$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SetInfo"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD SetInfo
+         * }
+         */
+        public static final OfInt SetInfo$layout() {
+            return SetInfo$LAYOUT;
         }
-        static final VarHandle SetInfo$VH = MftWritesUserLevel$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SetInfo"));
-        public static VarHandle SetInfo$VH() {
-            return MftWritesUserLevel.SetInfo$VH;
+
+        private static final long SetInfo$OFFSET = 8;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD SetInfo
+         * }
+         */
+        public static final long SetInfo$offset() {
+            return SetInfo$OFFSET;
         }
-        public static int SetInfo$get(MemorySegment seg) {
-            return (int)MftWritesUserLevel.SetInfo$VH.get(seg);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD SetInfo
+         * }
+         */
+        public static int SetInfo(MemorySegment struct) {
+            return struct.get(SetInfo$LAYOUT, SetInfo$OFFSET);
         }
-        public static void SetInfo$set( MemorySegment seg, int x) {
-            MftWritesUserLevel.SetInfo$VH.set(seg, x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD SetInfo
+         * }
+         */
+        public static void SetInfo(MemorySegment struct, int fieldValue) {
+            struct.set(SetInfo$LAYOUT, SetInfo$OFFSET, fieldValue);
         }
-        public static int SetInfo$get(MemorySegment seg, long index) {
-            return (int)MftWritesUserLevel.SetInfo$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final OfInt Flush$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flush"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD Flush
+         * }
+         */
+        public static final OfInt Flush$layout() {
+            return Flush$LAYOUT;
         }
-        public static void SetInfo$set(MemorySegment seg, long index, int x) {
-            MftWritesUserLevel.SetInfo$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final long Flush$OFFSET = 12;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD Flush
+         * }
+         */
+        public static final long Flush$offset() {
+            return Flush$OFFSET;
         }
-        static final VarHandle Flush$VH = MftWritesUserLevel$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flush"));
-        public static VarHandle Flush$VH() {
-            return MftWritesUserLevel.Flush$VH;
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD Flush
+         * }
+         */
+        public static int Flush(MemorySegment struct) {
+            return struct.get(Flush$LAYOUT, Flush$OFFSET);
         }
-        public static int Flush$get(MemorySegment seg) {
-            return (int)MftWritesUserLevel.Flush$VH.get(seg);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD Flush
+         * }
+         */
+        public static void Flush(MemorySegment struct, int fieldValue) {
+            struct.set(Flush$LAYOUT, Flush$OFFSET, fieldValue);
         }
-        public static void Flush$set( MemorySegment seg, int x) {
-            MftWritesUserLevel.Flush$VH.set(seg, x);
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static int Flush$get(MemorySegment seg, long index) {
-            return (int)MftWritesUserLevel.Flush$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * The size (in bytes) of this struct
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static void Flush$set(MemorySegment seg, long index, int x) {
-            MftWritesUserLevel.Flush$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment MftWritesUserLevel$slice(MemorySegment seg) {
-        return seg.asSlice(40, 16);
+    private static final GroupLayout MftWritesUserLevel$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("MftWritesUserLevel"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * } MftWritesUserLevel
+     * }
+     */
+    public static final GroupLayout MftWritesUserLevel$layout() {
+        return MftWritesUserLevel$LAYOUT;
     }
-    static final VarHandle MftWritesFlushForLogFileFull$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MftWritesFlushForLogFileFull"));
-    public static VarHandle MftWritesFlushForLogFileFull$VH() {
-        return _NTFS_STATISTICS_EX.MftWritesFlushForLogFileFull$VH;
+
+    private static final long MftWritesUserLevel$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * } MftWritesUserLevel
+     * }
+     */
+    public static final long MftWritesUserLevel$offset() {
+        return MftWritesUserLevel$OFFSET;
     }
-    public static int MftWritesFlushForLogFileFull$get(MemorySegment seg) {
-        return (int)_NTFS_STATISTICS_EX.MftWritesFlushForLogFileFull$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * } MftWritesUserLevel
+     * }
+     */
+    public static MemorySegment MftWritesUserLevel(MemorySegment struct) {
+        return struct.asSlice(MftWritesUserLevel$OFFSET, MftWritesUserLevel$LAYOUT.byteSize());
     }
-    public static void MftWritesFlushForLogFileFull$set( MemorySegment seg, int x) {
-        _NTFS_STATISTICS_EX.MftWritesFlushForLogFileFull$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * } MftWritesUserLevel
+     * }
+     */
+    public static void MftWritesUserLevel(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, MftWritesUserLevel$OFFSET, MftWritesUserLevel$LAYOUT.byteSize());
     }
-    public static int MftWritesFlushForLogFileFull$get(MemorySegment seg, long index) {
-        return (int)_NTFS_STATISTICS_EX.MftWritesFlushForLogFileFull$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfInt MftWritesFlushForLogFileFull$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MftWritesFlushForLogFileFull"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MftWritesFlushForLogFileFull
+     * }
+     */
+    public static final OfInt MftWritesFlushForLogFileFull$layout() {
+        return MftWritesFlushForLogFileFull$LAYOUT;
     }
-    public static void MftWritesFlushForLogFileFull$set(MemorySegment seg, long index, int x) {
-        _NTFS_STATISTICS_EX.MftWritesFlushForLogFileFull$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long MftWritesFlushForLogFileFull$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MftWritesFlushForLogFileFull
+     * }
+     */
+    public static final long MftWritesFlushForLogFileFull$offset() {
+        return MftWritesFlushForLogFileFull$OFFSET;
     }
-    static final VarHandle MftWritesLazyWriter$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MftWritesLazyWriter"));
-    public static VarHandle MftWritesLazyWriter$VH() {
-        return _NTFS_STATISTICS_EX.MftWritesLazyWriter$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MftWritesFlushForLogFileFull
+     * }
+     */
+    public static int MftWritesFlushForLogFileFull(MemorySegment struct) {
+        return struct.get(MftWritesFlushForLogFileFull$LAYOUT, MftWritesFlushForLogFileFull$OFFSET);
     }
-    public static int MftWritesLazyWriter$get(MemorySegment seg) {
-        return (int)_NTFS_STATISTICS_EX.MftWritesLazyWriter$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MftWritesFlushForLogFileFull
+     * }
+     */
+    public static void MftWritesFlushForLogFileFull(MemorySegment struct, int fieldValue) {
+        struct.set(MftWritesFlushForLogFileFull$LAYOUT, MftWritesFlushForLogFileFull$OFFSET, fieldValue);
     }
-    public static void MftWritesLazyWriter$set( MemorySegment seg, int x) {
-        _NTFS_STATISTICS_EX.MftWritesLazyWriter$VH.set(seg, x);
+
+    private static final OfInt MftWritesLazyWriter$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MftWritesLazyWriter"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MftWritesLazyWriter
+     * }
+     */
+    public static final OfInt MftWritesLazyWriter$layout() {
+        return MftWritesLazyWriter$LAYOUT;
     }
-    public static int MftWritesLazyWriter$get(MemorySegment seg, long index) {
-        return (int)_NTFS_STATISTICS_EX.MftWritesLazyWriter$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long MftWritesLazyWriter$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MftWritesLazyWriter
+     * }
+     */
+    public static final long MftWritesLazyWriter$offset() {
+        return MftWritesLazyWriter$OFFSET;
     }
-    public static void MftWritesLazyWriter$set(MemorySegment seg, long index, int x) {
-        _NTFS_STATISTICS_EX.MftWritesLazyWriter$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MftWritesLazyWriter
+     * }
+     */
+    public static int MftWritesLazyWriter(MemorySegment struct) {
+        return struct.get(MftWritesLazyWriter$LAYOUT, MftWritesLazyWriter$OFFSET);
     }
-    static final VarHandle MftWritesUserRequest$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MftWritesUserRequest"));
-    public static VarHandle MftWritesUserRequest$VH() {
-        return _NTFS_STATISTICS_EX.MftWritesUserRequest$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MftWritesLazyWriter
+     * }
+     */
+    public static void MftWritesLazyWriter(MemorySegment struct, int fieldValue) {
+        struct.set(MftWritesLazyWriter$LAYOUT, MftWritesLazyWriter$OFFSET, fieldValue);
     }
-    public static int MftWritesUserRequest$get(MemorySegment seg) {
-        return (int)_NTFS_STATISTICS_EX.MftWritesUserRequest$VH.get(seg);
+
+    private static final OfInt MftWritesUserRequest$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MftWritesUserRequest"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MftWritesUserRequest
+     * }
+     */
+    public static final OfInt MftWritesUserRequest$layout() {
+        return MftWritesUserRequest$LAYOUT;
     }
-    public static void MftWritesUserRequest$set( MemorySegment seg, int x) {
-        _NTFS_STATISTICS_EX.MftWritesUserRequest$VH.set(seg, x);
+
+    private static final long MftWritesUserRequest$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MftWritesUserRequest
+     * }
+     */
+    public static final long MftWritesUserRequest$offset() {
+        return MftWritesUserRequest$OFFSET;
     }
-    public static int MftWritesUserRequest$get(MemorySegment seg, long index) {
-        return (int)_NTFS_STATISTICS_EX.MftWritesUserRequest$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MftWritesUserRequest
+     * }
+     */
+    public static int MftWritesUserRequest(MemorySegment struct) {
+        return struct.get(MftWritesUserRequest$LAYOUT, MftWritesUserRequest$OFFSET);
     }
-    public static void MftWritesUserRequest$set(MemorySegment seg, long index, int x) {
-        _NTFS_STATISTICS_EX.MftWritesUserRequest$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MftWritesUserRequest
+     * }
+     */
+    public static void MftWritesUserRequest(MemorySegment struct, int fieldValue) {
+        struct.set(MftWritesUserRequest$LAYOUT, MftWritesUserRequest$OFFSET, fieldValue);
     }
-    static final VarHandle Mft2Writes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Mft2Writes"));
-    public static VarHandle Mft2Writes$VH() {
-        return _NTFS_STATISTICS_EX.Mft2Writes$VH;
+
+    private static final OfLong Mft2Writes$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Mft2Writes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG Mft2Writes
+     * }
+     */
+    public static final OfLong Mft2Writes$layout() {
+        return Mft2Writes$LAYOUT;
     }
-    public static long Mft2Writes$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.Mft2Writes$VH.get(seg);
+
+    private static final long Mft2Writes$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG Mft2Writes
+     * }
+     */
+    public static final long Mft2Writes$offset() {
+        return Mft2Writes$OFFSET;
     }
-    public static void Mft2Writes$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.Mft2Writes$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Mft2Writes
+     * }
+     */
+    public static long Mft2Writes(MemorySegment struct) {
+        return struct.get(Mft2Writes$LAYOUT, Mft2Writes$OFFSET);
     }
-    public static long Mft2Writes$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.Mft2Writes$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Mft2Writes
+     * }
+     */
+    public static void Mft2Writes(MemorySegment struct, long fieldValue) {
+        struct.set(Mft2Writes$LAYOUT, Mft2Writes$OFFSET, fieldValue);
     }
-    public static void Mft2Writes$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.Mft2Writes$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfLong Mft2WriteBytes$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Mft2WriteBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG Mft2WriteBytes
+     * }
+     */
+    public static final OfLong Mft2WriteBytes$layout() {
+        return Mft2WriteBytes$LAYOUT;
     }
-    static final VarHandle Mft2WriteBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Mft2WriteBytes"));
-    public static VarHandle Mft2WriteBytes$VH() {
-        return _NTFS_STATISTICS_EX.Mft2WriteBytes$VH;
+
+    private static final long Mft2WriteBytes$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG Mft2WriteBytes
+     * }
+     */
+    public static final long Mft2WriteBytes$offset() {
+        return Mft2WriteBytes$OFFSET;
     }
-    public static long Mft2WriteBytes$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.Mft2WriteBytes$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Mft2WriteBytes
+     * }
+     */
+    public static long Mft2WriteBytes(MemorySegment struct) {
+        return struct.get(Mft2WriteBytes$LAYOUT, Mft2WriteBytes$OFFSET);
     }
-    public static void Mft2WriteBytes$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.Mft2WriteBytes$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Mft2WriteBytes
+     * }
+     */
+    public static void Mft2WriteBytes(MemorySegment struct, long fieldValue) {
+        struct.set(Mft2WriteBytes$LAYOUT, Mft2WriteBytes$OFFSET, fieldValue);
     }
-    public static long Mft2WriteBytes$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.Mft2WriteBytes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Mft2WriteBytes$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.Mft2WriteBytes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * }
+     * }
+     */
     public static class Mft2WritesUserLevel {
 
-        static final  GroupLayout Mft2WritesUserLevel$struct$LAYOUT = MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Write"),
-            Constants$root.C_LONG$LAYOUT.withName("Create"),
-            Constants$root.C_LONG$LAYOUT.withName("SetInfo"),
-            Constants$root.C_LONG$LAYOUT.withName("Flush")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return Mft2WritesUserLevel.Mft2WritesUserLevel$struct$LAYOUT;
+        Mft2WritesUserLevel() {
+            // Should not be called directly
         }
-        static final VarHandle Write$VH = Mft2WritesUserLevel$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Write"));
-        public static VarHandle Write$VH() {
-            return Mft2WritesUserLevel.Write$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+            wgl_h.C_LONG.withName("Write"),
+            wgl_h.C_LONG.withName("Create"),
+            wgl_h.C_LONG.withName("SetInfo"),
+            wgl_h.C_LONG.withName("Flush")
+        ).withName("$anon$11513:5");
+
+        /**
+         * The layout of this struct
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static int Write$get(MemorySegment seg) {
-            return (int)Mft2WritesUserLevel.Write$VH.get(seg);
+
+        private static final OfInt Write$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Write"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD Write
+         * }
+         */
+        public static final OfInt Write$layout() {
+            return Write$LAYOUT;
         }
-        public static void Write$set( MemorySegment seg, int x) {
-            Mft2WritesUserLevel.Write$VH.set(seg, x);
+
+        private static final long Write$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD Write
+         * }
+         */
+        public static final long Write$offset() {
+            return Write$OFFSET;
         }
-        public static int Write$get(MemorySegment seg, long index) {
-            return (int)Mft2WritesUserLevel.Write$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD Write
+         * }
+         */
+        public static int Write(MemorySegment struct) {
+            return struct.get(Write$LAYOUT, Write$OFFSET);
         }
-        public static void Write$set(MemorySegment seg, long index, int x) {
-            Mft2WritesUserLevel.Write$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD Write
+         * }
+         */
+        public static void Write(MemorySegment struct, int fieldValue) {
+            struct.set(Write$LAYOUT, Write$OFFSET, fieldValue);
         }
-        static final VarHandle Create$VH = Mft2WritesUserLevel$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Create"));
-        public static VarHandle Create$VH() {
-            return Mft2WritesUserLevel.Create$VH;
+
+        private static final OfInt Create$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Create"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD Create
+         * }
+         */
+        public static final OfInt Create$layout() {
+            return Create$LAYOUT;
         }
-        public static int Create$get(MemorySegment seg) {
-            return (int)Mft2WritesUserLevel.Create$VH.get(seg);
+
+        private static final long Create$OFFSET = 4;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD Create
+         * }
+         */
+        public static final long Create$offset() {
+            return Create$OFFSET;
         }
-        public static void Create$set( MemorySegment seg, int x) {
-            Mft2WritesUserLevel.Create$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD Create
+         * }
+         */
+        public static int Create(MemorySegment struct) {
+            return struct.get(Create$LAYOUT, Create$OFFSET);
         }
-        public static int Create$get(MemorySegment seg, long index) {
-            return (int)Mft2WritesUserLevel.Create$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD Create
+         * }
+         */
+        public static void Create(MemorySegment struct, int fieldValue) {
+            struct.set(Create$LAYOUT, Create$OFFSET, fieldValue);
         }
-        public static void Create$set(MemorySegment seg, long index, int x) {
-            Mft2WritesUserLevel.Create$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final OfInt SetInfo$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SetInfo"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD SetInfo
+         * }
+         */
+        public static final OfInt SetInfo$layout() {
+            return SetInfo$LAYOUT;
         }
-        static final VarHandle SetInfo$VH = Mft2WritesUserLevel$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SetInfo"));
-        public static VarHandle SetInfo$VH() {
-            return Mft2WritesUserLevel.SetInfo$VH;
+
+        private static final long SetInfo$OFFSET = 8;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD SetInfo
+         * }
+         */
+        public static final long SetInfo$offset() {
+            return SetInfo$OFFSET;
         }
-        public static int SetInfo$get(MemorySegment seg) {
-            return (int)Mft2WritesUserLevel.SetInfo$VH.get(seg);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD SetInfo
+         * }
+         */
+        public static int SetInfo(MemorySegment struct) {
+            return struct.get(SetInfo$LAYOUT, SetInfo$OFFSET);
         }
-        public static void SetInfo$set( MemorySegment seg, int x) {
-            Mft2WritesUserLevel.SetInfo$VH.set(seg, x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD SetInfo
+         * }
+         */
+        public static void SetInfo(MemorySegment struct, int fieldValue) {
+            struct.set(SetInfo$LAYOUT, SetInfo$OFFSET, fieldValue);
         }
-        public static int SetInfo$get(MemorySegment seg, long index) {
-            return (int)Mft2WritesUserLevel.SetInfo$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final OfInt Flush$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flush"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD Flush
+         * }
+         */
+        public static final OfInt Flush$layout() {
+            return Flush$LAYOUT;
         }
-        public static void SetInfo$set(MemorySegment seg, long index, int x) {
-            Mft2WritesUserLevel.SetInfo$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final long Flush$OFFSET = 12;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD Flush
+         * }
+         */
+        public static final long Flush$offset() {
+            return Flush$OFFSET;
         }
-        static final VarHandle Flush$VH = Mft2WritesUserLevel$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flush"));
-        public static VarHandle Flush$VH() {
-            return Mft2WritesUserLevel.Flush$VH;
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD Flush
+         * }
+         */
+        public static int Flush(MemorySegment struct) {
+            return struct.get(Flush$LAYOUT, Flush$OFFSET);
         }
-        public static int Flush$get(MemorySegment seg) {
-            return (int)Mft2WritesUserLevel.Flush$VH.get(seg);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD Flush
+         * }
+         */
+        public static void Flush(MemorySegment struct, int fieldValue) {
+            struct.set(Flush$LAYOUT, Flush$OFFSET, fieldValue);
         }
-        public static void Flush$set( MemorySegment seg, int x) {
-            Mft2WritesUserLevel.Flush$VH.set(seg, x);
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static int Flush$get(MemorySegment seg, long index) {
-            return (int)Mft2WritesUserLevel.Flush$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * The size (in bytes) of this struct
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static void Flush$set(MemorySegment seg, long index, int x) {
-            Mft2WritesUserLevel.Flush$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment Mft2WritesUserLevel$slice(MemorySegment seg) {
-        return seg.asSlice(88, 16);
-    }
-    static final VarHandle Mft2WritesFlushForLogFileFull$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Mft2WritesFlushForLogFileFull"));
-    public static VarHandle Mft2WritesFlushForLogFileFull$VH() {
-        return _NTFS_STATISTICS_EX.Mft2WritesFlushForLogFileFull$VH;
-    }
-    public static int Mft2WritesFlushForLogFileFull$get(MemorySegment seg) {
-        return (int)_NTFS_STATISTICS_EX.Mft2WritesFlushForLogFileFull$VH.get(seg);
-    }
-    public static void Mft2WritesFlushForLogFileFull$set( MemorySegment seg, int x) {
-        _NTFS_STATISTICS_EX.Mft2WritesFlushForLogFileFull$VH.set(seg, x);
-    }
-    public static int Mft2WritesFlushForLogFileFull$get(MemorySegment seg, long index) {
-        return (int)_NTFS_STATISTICS_EX.Mft2WritesFlushForLogFileFull$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Mft2WritesFlushForLogFileFull$set(MemorySegment seg, long index, int x) {
-        _NTFS_STATISTICS_EX.Mft2WritesFlushForLogFileFull$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Mft2WritesLazyWriter$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Mft2WritesLazyWriter"));
-    public static VarHandle Mft2WritesLazyWriter$VH() {
-        return _NTFS_STATISTICS_EX.Mft2WritesLazyWriter$VH;
-    }
-    public static int Mft2WritesLazyWriter$get(MemorySegment seg) {
-        return (int)_NTFS_STATISTICS_EX.Mft2WritesLazyWriter$VH.get(seg);
-    }
-    public static void Mft2WritesLazyWriter$set( MemorySegment seg, int x) {
-        _NTFS_STATISTICS_EX.Mft2WritesLazyWriter$VH.set(seg, x);
-    }
-    public static int Mft2WritesLazyWriter$get(MemorySegment seg, long index) {
-        return (int)_NTFS_STATISTICS_EX.Mft2WritesLazyWriter$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Mft2WritesLazyWriter$set(MemorySegment seg, long index, int x) {
-        _NTFS_STATISTICS_EX.Mft2WritesLazyWriter$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Mft2WritesUserRequest$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Mft2WritesUserRequest"));
-    public static VarHandle Mft2WritesUserRequest$VH() {
-        return _NTFS_STATISTICS_EX.Mft2WritesUserRequest$VH;
-    }
-    public static int Mft2WritesUserRequest$get(MemorySegment seg) {
-        return (int)_NTFS_STATISTICS_EX.Mft2WritesUserRequest$VH.get(seg);
-    }
-    public static void Mft2WritesUserRequest$set( MemorySegment seg, int x) {
-        _NTFS_STATISTICS_EX.Mft2WritesUserRequest$VH.set(seg, x);
-    }
-    public static int Mft2WritesUserRequest$get(MemorySegment seg, long index) {
-        return (int)_NTFS_STATISTICS_EX.Mft2WritesUserRequest$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Mft2WritesUserRequest$set(MemorySegment seg, long index, int x) {
-        _NTFS_STATISTICS_EX.Mft2WritesUserRequest$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RootIndexReads$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RootIndexReads"));
-    public static VarHandle RootIndexReads$VH() {
-        return _NTFS_STATISTICS_EX.RootIndexReads$VH;
-    }
-    public static long RootIndexReads$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.RootIndexReads$VH.get(seg);
-    }
-    public static void RootIndexReads$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.RootIndexReads$VH.set(seg, x);
-    }
-    public static long RootIndexReads$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.RootIndexReads$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RootIndexReads$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.RootIndexReads$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RootIndexReadBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RootIndexReadBytes"));
-    public static VarHandle RootIndexReadBytes$VH() {
-        return _NTFS_STATISTICS_EX.RootIndexReadBytes$VH;
-    }
-    public static long RootIndexReadBytes$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.RootIndexReadBytes$VH.get(seg);
-    }
-    public static void RootIndexReadBytes$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.RootIndexReadBytes$VH.set(seg, x);
-    }
-    public static long RootIndexReadBytes$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.RootIndexReadBytes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RootIndexReadBytes$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.RootIndexReadBytes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RootIndexWrites$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RootIndexWrites"));
-    public static VarHandle RootIndexWrites$VH() {
-        return _NTFS_STATISTICS_EX.RootIndexWrites$VH;
-    }
-    public static long RootIndexWrites$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.RootIndexWrites$VH.get(seg);
-    }
-    public static void RootIndexWrites$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.RootIndexWrites$VH.set(seg, x);
-    }
-    public static long RootIndexWrites$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.RootIndexWrites$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RootIndexWrites$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.RootIndexWrites$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RootIndexWriteBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RootIndexWriteBytes"));
-    public static VarHandle RootIndexWriteBytes$VH() {
-        return _NTFS_STATISTICS_EX.RootIndexWriteBytes$VH;
-    }
-    public static long RootIndexWriteBytes$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.RootIndexWriteBytes$VH.get(seg);
-    }
-    public static void RootIndexWriteBytes$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.RootIndexWriteBytes$VH.set(seg, x);
-    }
-    public static long RootIndexWriteBytes$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.RootIndexWriteBytes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RootIndexWriteBytes$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.RootIndexWriteBytes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BitmapReads$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BitmapReads"));
-    public static VarHandle BitmapReads$VH() {
-        return _NTFS_STATISTICS_EX.BitmapReads$VH;
-    }
-    public static long BitmapReads$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.BitmapReads$VH.get(seg);
-    }
-    public static void BitmapReads$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.BitmapReads$VH.set(seg, x);
-    }
-    public static long BitmapReads$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.BitmapReads$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BitmapReads$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.BitmapReads$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BitmapReadBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BitmapReadBytes"));
-    public static VarHandle BitmapReadBytes$VH() {
-        return _NTFS_STATISTICS_EX.BitmapReadBytes$VH;
-    }
-    public static long BitmapReadBytes$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.BitmapReadBytes$VH.get(seg);
-    }
-    public static void BitmapReadBytes$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.BitmapReadBytes$VH.set(seg, x);
-    }
-    public static long BitmapReadBytes$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.BitmapReadBytes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BitmapReadBytes$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.BitmapReadBytes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BitmapWrites$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BitmapWrites"));
-    public static VarHandle BitmapWrites$VH() {
-        return _NTFS_STATISTICS_EX.BitmapWrites$VH;
-    }
-    public static long BitmapWrites$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.BitmapWrites$VH.get(seg);
-    }
-    public static void BitmapWrites$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.BitmapWrites$VH.set(seg, x);
-    }
-    public static long BitmapWrites$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.BitmapWrites$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BitmapWrites$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.BitmapWrites$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BitmapWriteBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BitmapWriteBytes"));
-    public static VarHandle BitmapWriteBytes$VH() {
-        return _NTFS_STATISTICS_EX.BitmapWriteBytes$VH;
-    }
-    public static long BitmapWriteBytes$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.BitmapWriteBytes$VH.get(seg);
-    }
-    public static void BitmapWriteBytes$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.BitmapWriteBytes$VH.set(seg, x);
-    }
-    public static long BitmapWriteBytes$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.BitmapWriteBytes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BitmapWriteBytes$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.BitmapWriteBytes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BitmapWritesFlushForLogFileFull$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BitmapWritesFlushForLogFileFull"));
-    public static VarHandle BitmapWritesFlushForLogFileFull$VH() {
-        return _NTFS_STATISTICS_EX.BitmapWritesFlushForLogFileFull$VH;
-    }
-    public static int BitmapWritesFlushForLogFileFull$get(MemorySegment seg) {
-        return (int)_NTFS_STATISTICS_EX.BitmapWritesFlushForLogFileFull$VH.get(seg);
-    }
-    public static void BitmapWritesFlushForLogFileFull$set( MemorySegment seg, int x) {
-        _NTFS_STATISTICS_EX.BitmapWritesFlushForLogFileFull$VH.set(seg, x);
-    }
-    public static int BitmapWritesFlushForLogFileFull$get(MemorySegment seg, long index) {
-        return (int)_NTFS_STATISTICS_EX.BitmapWritesFlushForLogFileFull$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BitmapWritesFlushForLogFileFull$set(MemorySegment seg, long index, int x) {
-        _NTFS_STATISTICS_EX.BitmapWritesFlushForLogFileFull$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BitmapWritesLazyWriter$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BitmapWritesLazyWriter"));
-    public static VarHandle BitmapWritesLazyWriter$VH() {
-        return _NTFS_STATISTICS_EX.BitmapWritesLazyWriter$VH;
-    }
-    public static int BitmapWritesLazyWriter$get(MemorySegment seg) {
-        return (int)_NTFS_STATISTICS_EX.BitmapWritesLazyWriter$VH.get(seg);
-    }
-    public static void BitmapWritesLazyWriter$set( MemorySegment seg, int x) {
-        _NTFS_STATISTICS_EX.BitmapWritesLazyWriter$VH.set(seg, x);
-    }
-    public static int BitmapWritesLazyWriter$get(MemorySegment seg, long index) {
-        return (int)_NTFS_STATISTICS_EX.BitmapWritesLazyWriter$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BitmapWritesLazyWriter$set(MemorySegment seg, long index, int x) {
-        _NTFS_STATISTICS_EX.BitmapWritesLazyWriter$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BitmapWritesUserRequest$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BitmapWritesUserRequest"));
-    public static VarHandle BitmapWritesUserRequest$VH() {
-        return _NTFS_STATISTICS_EX.BitmapWritesUserRequest$VH;
-    }
-    public static int BitmapWritesUserRequest$get(MemorySegment seg) {
-        return (int)_NTFS_STATISTICS_EX.BitmapWritesUserRequest$VH.get(seg);
-    }
-    public static void BitmapWritesUserRequest$set( MemorySegment seg, int x) {
-        _NTFS_STATISTICS_EX.BitmapWritesUserRequest$VH.set(seg, x);
-    }
-    public static int BitmapWritesUserRequest$get(MemorySegment seg, long index) {
-        return (int)_NTFS_STATISTICS_EX.BitmapWritesUserRequest$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BitmapWritesUserRequest$set(MemorySegment seg, long index, int x) {
-        _NTFS_STATISTICS_EX.BitmapWritesUserRequest$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+    private static final GroupLayout Mft2WritesUserLevel$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Mft2WritesUserLevel"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * } Mft2WritesUserLevel
+     * }
+     */
+    public static final GroupLayout Mft2WritesUserLevel$layout() {
+        return Mft2WritesUserLevel$LAYOUT;
+    }
+
+    private static final long Mft2WritesUserLevel$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * } Mft2WritesUserLevel
+     * }
+     */
+    public static final long Mft2WritesUserLevel$offset() {
+        return Mft2WritesUserLevel$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * } Mft2WritesUserLevel
+     * }
+     */
+    public static MemorySegment Mft2WritesUserLevel(MemorySegment struct) {
+        return struct.asSlice(Mft2WritesUserLevel$OFFSET, Mft2WritesUserLevel$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * } Mft2WritesUserLevel
+     * }
+     */
+    public static void Mft2WritesUserLevel(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Mft2WritesUserLevel$OFFSET, Mft2WritesUserLevel$LAYOUT.byteSize());
+    }
+
+    private static final OfInt Mft2WritesFlushForLogFileFull$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Mft2WritesFlushForLogFileFull"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Mft2WritesFlushForLogFileFull
+     * }
+     */
+    public static final OfInt Mft2WritesFlushForLogFileFull$layout() {
+        return Mft2WritesFlushForLogFileFull$LAYOUT;
+    }
+
+    private static final long Mft2WritesFlushForLogFileFull$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Mft2WritesFlushForLogFileFull
+     * }
+     */
+    public static final long Mft2WritesFlushForLogFileFull$offset() {
+        return Mft2WritesFlushForLogFileFull$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Mft2WritesFlushForLogFileFull
+     * }
+     */
+    public static int Mft2WritesFlushForLogFileFull(MemorySegment struct) {
+        return struct.get(Mft2WritesFlushForLogFileFull$LAYOUT, Mft2WritesFlushForLogFileFull$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Mft2WritesFlushForLogFileFull
+     * }
+     */
+    public static void Mft2WritesFlushForLogFileFull(MemorySegment struct, int fieldValue) {
+        struct.set(Mft2WritesFlushForLogFileFull$LAYOUT, Mft2WritesFlushForLogFileFull$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Mft2WritesLazyWriter$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Mft2WritesLazyWriter"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Mft2WritesLazyWriter
+     * }
+     */
+    public static final OfInt Mft2WritesLazyWriter$layout() {
+        return Mft2WritesLazyWriter$LAYOUT;
+    }
+
+    private static final long Mft2WritesLazyWriter$OFFSET = 108;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Mft2WritesLazyWriter
+     * }
+     */
+    public static final long Mft2WritesLazyWriter$offset() {
+        return Mft2WritesLazyWriter$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Mft2WritesLazyWriter
+     * }
+     */
+    public static int Mft2WritesLazyWriter(MemorySegment struct) {
+        return struct.get(Mft2WritesLazyWriter$LAYOUT, Mft2WritesLazyWriter$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Mft2WritesLazyWriter
+     * }
+     */
+    public static void Mft2WritesLazyWriter(MemorySegment struct, int fieldValue) {
+        struct.set(Mft2WritesLazyWriter$LAYOUT, Mft2WritesLazyWriter$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Mft2WritesUserRequest$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Mft2WritesUserRequest"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Mft2WritesUserRequest
+     * }
+     */
+    public static final OfInt Mft2WritesUserRequest$layout() {
+        return Mft2WritesUserRequest$LAYOUT;
+    }
+
+    private static final long Mft2WritesUserRequest$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Mft2WritesUserRequest
+     * }
+     */
+    public static final long Mft2WritesUserRequest$offset() {
+        return Mft2WritesUserRequest$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Mft2WritesUserRequest
+     * }
+     */
+    public static int Mft2WritesUserRequest(MemorySegment struct) {
+        return struct.get(Mft2WritesUserRequest$LAYOUT, Mft2WritesUserRequest$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Mft2WritesUserRequest
+     * }
+     */
+    public static void Mft2WritesUserRequest(MemorySegment struct, int fieldValue) {
+        struct.set(Mft2WritesUserRequest$LAYOUT, Mft2WritesUserRequest$OFFSET, fieldValue);
+    }
+
+    private static final OfLong RootIndexReads$LAYOUT = (OfLong)$LAYOUT.select(groupElement("RootIndexReads"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG RootIndexReads
+     * }
+     */
+    public static final OfLong RootIndexReads$layout() {
+        return RootIndexReads$LAYOUT;
+    }
+
+    private static final long RootIndexReads$OFFSET = 120;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG RootIndexReads
+     * }
+     */
+    public static final long RootIndexReads$offset() {
+        return RootIndexReads$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG RootIndexReads
+     * }
+     */
+    public static long RootIndexReads(MemorySegment struct) {
+        return struct.get(RootIndexReads$LAYOUT, RootIndexReads$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG RootIndexReads
+     * }
+     */
+    public static void RootIndexReads(MemorySegment struct, long fieldValue) {
+        struct.set(RootIndexReads$LAYOUT, RootIndexReads$OFFSET, fieldValue);
+    }
+
+    private static final OfLong RootIndexReadBytes$LAYOUT = (OfLong)$LAYOUT.select(groupElement("RootIndexReadBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG RootIndexReadBytes
+     * }
+     */
+    public static final OfLong RootIndexReadBytes$layout() {
+        return RootIndexReadBytes$LAYOUT;
+    }
+
+    private static final long RootIndexReadBytes$OFFSET = 128;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG RootIndexReadBytes
+     * }
+     */
+    public static final long RootIndexReadBytes$offset() {
+        return RootIndexReadBytes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG RootIndexReadBytes
+     * }
+     */
+    public static long RootIndexReadBytes(MemorySegment struct) {
+        return struct.get(RootIndexReadBytes$LAYOUT, RootIndexReadBytes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG RootIndexReadBytes
+     * }
+     */
+    public static void RootIndexReadBytes(MemorySegment struct, long fieldValue) {
+        struct.set(RootIndexReadBytes$LAYOUT, RootIndexReadBytes$OFFSET, fieldValue);
+    }
+
+    private static final OfLong RootIndexWrites$LAYOUT = (OfLong)$LAYOUT.select(groupElement("RootIndexWrites"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG RootIndexWrites
+     * }
+     */
+    public static final OfLong RootIndexWrites$layout() {
+        return RootIndexWrites$LAYOUT;
+    }
+
+    private static final long RootIndexWrites$OFFSET = 136;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG RootIndexWrites
+     * }
+     */
+    public static final long RootIndexWrites$offset() {
+        return RootIndexWrites$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG RootIndexWrites
+     * }
+     */
+    public static long RootIndexWrites(MemorySegment struct) {
+        return struct.get(RootIndexWrites$LAYOUT, RootIndexWrites$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG RootIndexWrites
+     * }
+     */
+    public static void RootIndexWrites(MemorySegment struct, long fieldValue) {
+        struct.set(RootIndexWrites$LAYOUT, RootIndexWrites$OFFSET, fieldValue);
+    }
+
+    private static final OfLong RootIndexWriteBytes$LAYOUT = (OfLong)$LAYOUT.select(groupElement("RootIndexWriteBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG RootIndexWriteBytes
+     * }
+     */
+    public static final OfLong RootIndexWriteBytes$layout() {
+        return RootIndexWriteBytes$LAYOUT;
+    }
+
+    private static final long RootIndexWriteBytes$OFFSET = 144;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG RootIndexWriteBytes
+     * }
+     */
+    public static final long RootIndexWriteBytes$offset() {
+        return RootIndexWriteBytes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG RootIndexWriteBytes
+     * }
+     */
+    public static long RootIndexWriteBytes(MemorySegment struct) {
+        return struct.get(RootIndexWriteBytes$LAYOUT, RootIndexWriteBytes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG RootIndexWriteBytes
+     * }
+     */
+    public static void RootIndexWriteBytes(MemorySegment struct, long fieldValue) {
+        struct.set(RootIndexWriteBytes$LAYOUT, RootIndexWriteBytes$OFFSET, fieldValue);
+    }
+
+    private static final OfLong BitmapReads$LAYOUT = (OfLong)$LAYOUT.select(groupElement("BitmapReads"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG BitmapReads
+     * }
+     */
+    public static final OfLong BitmapReads$layout() {
+        return BitmapReads$LAYOUT;
+    }
+
+    private static final long BitmapReads$OFFSET = 152;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG BitmapReads
+     * }
+     */
+    public static final long BitmapReads$offset() {
+        return BitmapReads$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG BitmapReads
+     * }
+     */
+    public static long BitmapReads(MemorySegment struct) {
+        return struct.get(BitmapReads$LAYOUT, BitmapReads$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG BitmapReads
+     * }
+     */
+    public static void BitmapReads(MemorySegment struct, long fieldValue) {
+        struct.set(BitmapReads$LAYOUT, BitmapReads$OFFSET, fieldValue);
+    }
+
+    private static final OfLong BitmapReadBytes$LAYOUT = (OfLong)$LAYOUT.select(groupElement("BitmapReadBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG BitmapReadBytes
+     * }
+     */
+    public static final OfLong BitmapReadBytes$layout() {
+        return BitmapReadBytes$LAYOUT;
+    }
+
+    private static final long BitmapReadBytes$OFFSET = 160;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG BitmapReadBytes
+     * }
+     */
+    public static final long BitmapReadBytes$offset() {
+        return BitmapReadBytes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG BitmapReadBytes
+     * }
+     */
+    public static long BitmapReadBytes(MemorySegment struct) {
+        return struct.get(BitmapReadBytes$LAYOUT, BitmapReadBytes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG BitmapReadBytes
+     * }
+     */
+    public static void BitmapReadBytes(MemorySegment struct, long fieldValue) {
+        struct.set(BitmapReadBytes$LAYOUT, BitmapReadBytes$OFFSET, fieldValue);
+    }
+
+    private static final OfLong BitmapWrites$LAYOUT = (OfLong)$LAYOUT.select(groupElement("BitmapWrites"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG BitmapWrites
+     * }
+     */
+    public static final OfLong BitmapWrites$layout() {
+        return BitmapWrites$LAYOUT;
+    }
+
+    private static final long BitmapWrites$OFFSET = 168;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG BitmapWrites
+     * }
+     */
+    public static final long BitmapWrites$offset() {
+        return BitmapWrites$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG BitmapWrites
+     * }
+     */
+    public static long BitmapWrites(MemorySegment struct) {
+        return struct.get(BitmapWrites$LAYOUT, BitmapWrites$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG BitmapWrites
+     * }
+     */
+    public static void BitmapWrites(MemorySegment struct, long fieldValue) {
+        struct.set(BitmapWrites$LAYOUT, BitmapWrites$OFFSET, fieldValue);
+    }
+
+    private static final OfLong BitmapWriteBytes$LAYOUT = (OfLong)$LAYOUT.select(groupElement("BitmapWriteBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG BitmapWriteBytes
+     * }
+     */
+    public static final OfLong BitmapWriteBytes$layout() {
+        return BitmapWriteBytes$LAYOUT;
+    }
+
+    private static final long BitmapWriteBytes$OFFSET = 176;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG BitmapWriteBytes
+     * }
+     */
+    public static final long BitmapWriteBytes$offset() {
+        return BitmapWriteBytes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG BitmapWriteBytes
+     * }
+     */
+    public static long BitmapWriteBytes(MemorySegment struct) {
+        return struct.get(BitmapWriteBytes$LAYOUT, BitmapWriteBytes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG BitmapWriteBytes
+     * }
+     */
+    public static void BitmapWriteBytes(MemorySegment struct, long fieldValue) {
+        struct.set(BitmapWriteBytes$LAYOUT, BitmapWriteBytes$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BitmapWritesFlushForLogFileFull$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BitmapWritesFlushForLogFileFull"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BitmapWritesFlushForLogFileFull
+     * }
+     */
+    public static final OfInt BitmapWritesFlushForLogFileFull$layout() {
+        return BitmapWritesFlushForLogFileFull$LAYOUT;
+    }
+
+    private static final long BitmapWritesFlushForLogFileFull$OFFSET = 184;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BitmapWritesFlushForLogFileFull
+     * }
+     */
+    public static final long BitmapWritesFlushForLogFileFull$offset() {
+        return BitmapWritesFlushForLogFileFull$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BitmapWritesFlushForLogFileFull
+     * }
+     */
+    public static int BitmapWritesFlushForLogFileFull(MemorySegment struct) {
+        return struct.get(BitmapWritesFlushForLogFileFull$LAYOUT, BitmapWritesFlushForLogFileFull$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BitmapWritesFlushForLogFileFull
+     * }
+     */
+    public static void BitmapWritesFlushForLogFileFull(MemorySegment struct, int fieldValue) {
+        struct.set(BitmapWritesFlushForLogFileFull$LAYOUT, BitmapWritesFlushForLogFileFull$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BitmapWritesLazyWriter$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BitmapWritesLazyWriter"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BitmapWritesLazyWriter
+     * }
+     */
+    public static final OfInt BitmapWritesLazyWriter$layout() {
+        return BitmapWritesLazyWriter$LAYOUT;
+    }
+
+    private static final long BitmapWritesLazyWriter$OFFSET = 188;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BitmapWritesLazyWriter
+     * }
+     */
+    public static final long BitmapWritesLazyWriter$offset() {
+        return BitmapWritesLazyWriter$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BitmapWritesLazyWriter
+     * }
+     */
+    public static int BitmapWritesLazyWriter(MemorySegment struct) {
+        return struct.get(BitmapWritesLazyWriter$LAYOUT, BitmapWritesLazyWriter$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BitmapWritesLazyWriter
+     * }
+     */
+    public static void BitmapWritesLazyWriter(MemorySegment struct, int fieldValue) {
+        struct.set(BitmapWritesLazyWriter$LAYOUT, BitmapWritesLazyWriter$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BitmapWritesUserRequest$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BitmapWritesUserRequest"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BitmapWritesUserRequest
+     * }
+     */
+    public static final OfInt BitmapWritesUserRequest$layout() {
+        return BitmapWritesUserRequest$LAYOUT;
+    }
+
+    private static final long BitmapWritesUserRequest$OFFSET = 192;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BitmapWritesUserRequest
+     * }
+     */
+    public static final long BitmapWritesUserRequest$offset() {
+        return BitmapWritesUserRequest$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BitmapWritesUserRequest
+     * }
+     */
+    public static int BitmapWritesUserRequest(MemorySegment struct) {
+        return struct.get(BitmapWritesUserRequest$LAYOUT, BitmapWritesUserRequest$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BitmapWritesUserRequest
+     * }
+     */
+    public static void BitmapWritesUserRequest(MemorySegment struct, int fieldValue) {
+        struct.set(BitmapWritesUserRequest$LAYOUT, BitmapWritesUserRequest$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * }
+     * }
+     */
     public static class BitmapWritesUserLevel {
 
-        static final  GroupLayout BitmapWritesUserLevel$struct$LAYOUT = MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Write"),
-            Constants$root.C_LONG$LAYOUT.withName("Create"),
-            Constants$root.C_LONG$LAYOUT.withName("SetInfo"),
-            Constants$root.C_LONG$LAYOUT.withName("Flush")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return BitmapWritesUserLevel.BitmapWritesUserLevel$struct$LAYOUT;
+        BitmapWritesUserLevel() {
+            // Should not be called directly
         }
-        static final VarHandle Write$VH = BitmapWritesUserLevel$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Write"));
-        public static VarHandle Write$VH() {
-            return BitmapWritesUserLevel.Write$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+            wgl_h.C_LONG.withName("Write"),
+            wgl_h.C_LONG.withName("Create"),
+            wgl_h.C_LONG.withName("SetInfo"),
+            wgl_h.C_LONG.withName("Flush")
+        ).withName("$anon$11538:5");
+
+        /**
+         * The layout of this struct
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static int Write$get(MemorySegment seg) {
-            return (int)BitmapWritesUserLevel.Write$VH.get(seg);
+
+        private static final OfInt Write$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Write"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD Write
+         * }
+         */
+        public static final OfInt Write$layout() {
+            return Write$LAYOUT;
         }
-        public static void Write$set( MemorySegment seg, int x) {
-            BitmapWritesUserLevel.Write$VH.set(seg, x);
+
+        private static final long Write$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD Write
+         * }
+         */
+        public static final long Write$offset() {
+            return Write$OFFSET;
         }
-        public static int Write$get(MemorySegment seg, long index) {
-            return (int)BitmapWritesUserLevel.Write$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD Write
+         * }
+         */
+        public static int Write(MemorySegment struct) {
+            return struct.get(Write$LAYOUT, Write$OFFSET);
         }
-        public static void Write$set(MemorySegment seg, long index, int x) {
-            BitmapWritesUserLevel.Write$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD Write
+         * }
+         */
+        public static void Write(MemorySegment struct, int fieldValue) {
+            struct.set(Write$LAYOUT, Write$OFFSET, fieldValue);
         }
-        static final VarHandle Create$VH = BitmapWritesUserLevel$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Create"));
-        public static VarHandle Create$VH() {
-            return BitmapWritesUserLevel.Create$VH;
+
+        private static final OfInt Create$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Create"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD Create
+         * }
+         */
+        public static final OfInt Create$layout() {
+            return Create$LAYOUT;
         }
-        public static int Create$get(MemorySegment seg) {
-            return (int)BitmapWritesUserLevel.Create$VH.get(seg);
+
+        private static final long Create$OFFSET = 4;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD Create
+         * }
+         */
+        public static final long Create$offset() {
+            return Create$OFFSET;
         }
-        public static void Create$set( MemorySegment seg, int x) {
-            BitmapWritesUserLevel.Create$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD Create
+         * }
+         */
+        public static int Create(MemorySegment struct) {
+            return struct.get(Create$LAYOUT, Create$OFFSET);
         }
-        public static int Create$get(MemorySegment seg, long index) {
-            return (int)BitmapWritesUserLevel.Create$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD Create
+         * }
+         */
+        public static void Create(MemorySegment struct, int fieldValue) {
+            struct.set(Create$LAYOUT, Create$OFFSET, fieldValue);
         }
-        public static void Create$set(MemorySegment seg, long index, int x) {
-            BitmapWritesUserLevel.Create$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final OfInt SetInfo$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SetInfo"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD SetInfo
+         * }
+         */
+        public static final OfInt SetInfo$layout() {
+            return SetInfo$LAYOUT;
         }
-        static final VarHandle SetInfo$VH = BitmapWritesUserLevel$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SetInfo"));
-        public static VarHandle SetInfo$VH() {
-            return BitmapWritesUserLevel.SetInfo$VH;
+
+        private static final long SetInfo$OFFSET = 8;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD SetInfo
+         * }
+         */
+        public static final long SetInfo$offset() {
+            return SetInfo$OFFSET;
         }
-        public static int SetInfo$get(MemorySegment seg) {
-            return (int)BitmapWritesUserLevel.SetInfo$VH.get(seg);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD SetInfo
+         * }
+         */
+        public static int SetInfo(MemorySegment struct) {
+            return struct.get(SetInfo$LAYOUT, SetInfo$OFFSET);
         }
-        public static void SetInfo$set( MemorySegment seg, int x) {
-            BitmapWritesUserLevel.SetInfo$VH.set(seg, x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD SetInfo
+         * }
+         */
+        public static void SetInfo(MemorySegment struct, int fieldValue) {
+            struct.set(SetInfo$LAYOUT, SetInfo$OFFSET, fieldValue);
         }
-        public static int SetInfo$get(MemorySegment seg, long index) {
-            return (int)BitmapWritesUserLevel.SetInfo$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final OfInt Flush$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flush"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD Flush
+         * }
+         */
+        public static final OfInt Flush$layout() {
+            return Flush$LAYOUT;
         }
-        public static void SetInfo$set(MemorySegment seg, long index, int x) {
-            BitmapWritesUserLevel.SetInfo$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final long Flush$OFFSET = 12;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD Flush
+         * }
+         */
+        public static final long Flush$offset() {
+            return Flush$OFFSET;
         }
-        static final VarHandle Flush$VH = BitmapWritesUserLevel$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flush"));
-        public static VarHandle Flush$VH() {
-            return BitmapWritesUserLevel.Flush$VH;
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD Flush
+         * }
+         */
+        public static int Flush(MemorySegment struct) {
+            return struct.get(Flush$LAYOUT, Flush$OFFSET);
         }
-        public static int Flush$get(MemorySegment seg) {
-            return (int)BitmapWritesUserLevel.Flush$VH.get(seg);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD Flush
+         * }
+         */
+        public static void Flush(MemorySegment struct, int fieldValue) {
+            struct.set(Flush$LAYOUT, Flush$OFFSET, fieldValue);
         }
-        public static void Flush$set( MemorySegment seg, int x) {
-            BitmapWritesUserLevel.Flush$VH.set(seg, x);
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static int Flush$get(MemorySegment seg, long index) {
-            return (int)BitmapWritesUserLevel.Flush$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * The size (in bytes) of this struct
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static void Flush$set(MemorySegment seg, long index, int x) {
-            BitmapWritesUserLevel.Flush$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment BitmapWritesUserLevel$slice(MemorySegment seg) {
-        return seg.asSlice(196, 16);
+    private static final GroupLayout BitmapWritesUserLevel$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("BitmapWritesUserLevel"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * } BitmapWritesUserLevel
+     * }
+     */
+    public static final GroupLayout BitmapWritesUserLevel$layout() {
+        return BitmapWritesUserLevel$LAYOUT;
     }
-    static final VarHandle MftBitmapReads$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MftBitmapReads"));
-    public static VarHandle MftBitmapReads$VH() {
-        return _NTFS_STATISTICS_EX.MftBitmapReads$VH;
+
+    private static final long BitmapWritesUserLevel$OFFSET = 196;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * } BitmapWritesUserLevel
+     * }
+     */
+    public static final long BitmapWritesUserLevel$offset() {
+        return BitmapWritesUserLevel$OFFSET;
     }
-    public static long MftBitmapReads$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.MftBitmapReads$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * } BitmapWritesUserLevel
+     * }
+     */
+    public static MemorySegment BitmapWritesUserLevel(MemorySegment struct) {
+        return struct.asSlice(BitmapWritesUserLevel$OFFSET, BitmapWritesUserLevel$LAYOUT.byteSize());
     }
-    public static void MftBitmapReads$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.MftBitmapReads$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * } BitmapWritesUserLevel
+     * }
+     */
+    public static void BitmapWritesUserLevel(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, BitmapWritesUserLevel$OFFSET, BitmapWritesUserLevel$LAYOUT.byteSize());
     }
-    public static long MftBitmapReads$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.MftBitmapReads$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfLong MftBitmapReads$LAYOUT = (OfLong)$LAYOUT.select(groupElement("MftBitmapReads"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftBitmapReads
+     * }
+     */
+    public static final OfLong MftBitmapReads$layout() {
+        return MftBitmapReads$LAYOUT;
     }
-    public static void MftBitmapReads$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.MftBitmapReads$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long MftBitmapReads$OFFSET = 216;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftBitmapReads
+     * }
+     */
+    public static final long MftBitmapReads$offset() {
+        return MftBitmapReads$OFFSET;
     }
-    static final VarHandle MftBitmapReadBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MftBitmapReadBytes"));
-    public static VarHandle MftBitmapReadBytes$VH() {
-        return _NTFS_STATISTICS_EX.MftBitmapReadBytes$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftBitmapReads
+     * }
+     */
+    public static long MftBitmapReads(MemorySegment struct) {
+        return struct.get(MftBitmapReads$LAYOUT, MftBitmapReads$OFFSET);
     }
-    public static long MftBitmapReadBytes$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.MftBitmapReadBytes$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftBitmapReads
+     * }
+     */
+    public static void MftBitmapReads(MemorySegment struct, long fieldValue) {
+        struct.set(MftBitmapReads$LAYOUT, MftBitmapReads$OFFSET, fieldValue);
     }
-    public static void MftBitmapReadBytes$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.MftBitmapReadBytes$VH.set(seg, x);
+
+    private static final OfLong MftBitmapReadBytes$LAYOUT = (OfLong)$LAYOUT.select(groupElement("MftBitmapReadBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftBitmapReadBytes
+     * }
+     */
+    public static final OfLong MftBitmapReadBytes$layout() {
+        return MftBitmapReadBytes$LAYOUT;
     }
-    public static long MftBitmapReadBytes$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.MftBitmapReadBytes$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long MftBitmapReadBytes$OFFSET = 224;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftBitmapReadBytes
+     * }
+     */
+    public static final long MftBitmapReadBytes$offset() {
+        return MftBitmapReadBytes$OFFSET;
     }
-    public static void MftBitmapReadBytes$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.MftBitmapReadBytes$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftBitmapReadBytes
+     * }
+     */
+    public static long MftBitmapReadBytes(MemorySegment struct) {
+        return struct.get(MftBitmapReadBytes$LAYOUT, MftBitmapReadBytes$OFFSET);
     }
-    static final VarHandle MftBitmapWrites$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MftBitmapWrites"));
-    public static VarHandle MftBitmapWrites$VH() {
-        return _NTFS_STATISTICS_EX.MftBitmapWrites$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftBitmapReadBytes
+     * }
+     */
+    public static void MftBitmapReadBytes(MemorySegment struct, long fieldValue) {
+        struct.set(MftBitmapReadBytes$LAYOUT, MftBitmapReadBytes$OFFSET, fieldValue);
     }
-    public static long MftBitmapWrites$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.MftBitmapWrites$VH.get(seg);
+
+    private static final OfLong MftBitmapWrites$LAYOUT = (OfLong)$LAYOUT.select(groupElement("MftBitmapWrites"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftBitmapWrites
+     * }
+     */
+    public static final OfLong MftBitmapWrites$layout() {
+        return MftBitmapWrites$LAYOUT;
     }
-    public static void MftBitmapWrites$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.MftBitmapWrites$VH.set(seg, x);
+
+    private static final long MftBitmapWrites$OFFSET = 232;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftBitmapWrites
+     * }
+     */
+    public static final long MftBitmapWrites$offset() {
+        return MftBitmapWrites$OFFSET;
     }
-    public static long MftBitmapWrites$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.MftBitmapWrites$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftBitmapWrites
+     * }
+     */
+    public static long MftBitmapWrites(MemorySegment struct) {
+        return struct.get(MftBitmapWrites$LAYOUT, MftBitmapWrites$OFFSET);
     }
-    public static void MftBitmapWrites$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.MftBitmapWrites$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftBitmapWrites
+     * }
+     */
+    public static void MftBitmapWrites(MemorySegment struct, long fieldValue) {
+        struct.set(MftBitmapWrites$LAYOUT, MftBitmapWrites$OFFSET, fieldValue);
     }
-    static final VarHandle MftBitmapWriteBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MftBitmapWriteBytes"));
-    public static VarHandle MftBitmapWriteBytes$VH() {
-        return _NTFS_STATISTICS_EX.MftBitmapWriteBytes$VH;
+
+    private static final OfLong MftBitmapWriteBytes$LAYOUT = (OfLong)$LAYOUT.select(groupElement("MftBitmapWriteBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftBitmapWriteBytes
+     * }
+     */
+    public static final OfLong MftBitmapWriteBytes$layout() {
+        return MftBitmapWriteBytes$LAYOUT;
     }
-    public static long MftBitmapWriteBytes$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.MftBitmapWriteBytes$VH.get(seg);
+
+    private static final long MftBitmapWriteBytes$OFFSET = 240;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftBitmapWriteBytes
+     * }
+     */
+    public static final long MftBitmapWriteBytes$offset() {
+        return MftBitmapWriteBytes$OFFSET;
     }
-    public static void MftBitmapWriteBytes$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.MftBitmapWriteBytes$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftBitmapWriteBytes
+     * }
+     */
+    public static long MftBitmapWriteBytes(MemorySegment struct) {
+        return struct.get(MftBitmapWriteBytes$LAYOUT, MftBitmapWriteBytes$OFFSET);
     }
-    public static long MftBitmapWriteBytes$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.MftBitmapWriteBytes$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG MftBitmapWriteBytes
+     * }
+     */
+    public static void MftBitmapWriteBytes(MemorySegment struct, long fieldValue) {
+        struct.set(MftBitmapWriteBytes$LAYOUT, MftBitmapWriteBytes$OFFSET, fieldValue);
     }
-    public static void MftBitmapWriteBytes$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.MftBitmapWriteBytes$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfInt MftBitmapWritesFlushForLogFileFull$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MftBitmapWritesFlushForLogFileFull"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MftBitmapWritesFlushForLogFileFull
+     * }
+     */
+    public static final OfInt MftBitmapWritesFlushForLogFileFull$layout() {
+        return MftBitmapWritesFlushForLogFileFull$LAYOUT;
     }
-    static final VarHandle MftBitmapWritesFlushForLogFileFull$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MftBitmapWritesFlushForLogFileFull"));
-    public static VarHandle MftBitmapWritesFlushForLogFileFull$VH() {
-        return _NTFS_STATISTICS_EX.MftBitmapWritesFlushForLogFileFull$VH;
+
+    private static final long MftBitmapWritesFlushForLogFileFull$OFFSET = 248;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MftBitmapWritesFlushForLogFileFull
+     * }
+     */
+    public static final long MftBitmapWritesFlushForLogFileFull$offset() {
+        return MftBitmapWritesFlushForLogFileFull$OFFSET;
     }
-    public static int MftBitmapWritesFlushForLogFileFull$get(MemorySegment seg) {
-        return (int)_NTFS_STATISTICS_EX.MftBitmapWritesFlushForLogFileFull$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MftBitmapWritesFlushForLogFileFull
+     * }
+     */
+    public static int MftBitmapWritesFlushForLogFileFull(MemorySegment struct) {
+        return struct.get(MftBitmapWritesFlushForLogFileFull$LAYOUT, MftBitmapWritesFlushForLogFileFull$OFFSET);
     }
-    public static void MftBitmapWritesFlushForLogFileFull$set( MemorySegment seg, int x) {
-        _NTFS_STATISTICS_EX.MftBitmapWritesFlushForLogFileFull$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MftBitmapWritesFlushForLogFileFull
+     * }
+     */
+    public static void MftBitmapWritesFlushForLogFileFull(MemorySegment struct, int fieldValue) {
+        struct.set(MftBitmapWritesFlushForLogFileFull$LAYOUT, MftBitmapWritesFlushForLogFileFull$OFFSET, fieldValue);
     }
-    public static int MftBitmapWritesFlushForLogFileFull$get(MemorySegment seg, long index) {
-        return (int)_NTFS_STATISTICS_EX.MftBitmapWritesFlushForLogFileFull$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfInt MftBitmapWritesLazyWriter$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MftBitmapWritesLazyWriter"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MftBitmapWritesLazyWriter
+     * }
+     */
+    public static final OfInt MftBitmapWritesLazyWriter$layout() {
+        return MftBitmapWritesLazyWriter$LAYOUT;
     }
-    public static void MftBitmapWritesFlushForLogFileFull$set(MemorySegment seg, long index, int x) {
-        _NTFS_STATISTICS_EX.MftBitmapWritesFlushForLogFileFull$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long MftBitmapWritesLazyWriter$OFFSET = 252;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MftBitmapWritesLazyWriter
+     * }
+     */
+    public static final long MftBitmapWritesLazyWriter$offset() {
+        return MftBitmapWritesLazyWriter$OFFSET;
     }
-    static final VarHandle MftBitmapWritesLazyWriter$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MftBitmapWritesLazyWriter"));
-    public static VarHandle MftBitmapWritesLazyWriter$VH() {
-        return _NTFS_STATISTICS_EX.MftBitmapWritesLazyWriter$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MftBitmapWritesLazyWriter
+     * }
+     */
+    public static int MftBitmapWritesLazyWriter(MemorySegment struct) {
+        return struct.get(MftBitmapWritesLazyWriter$LAYOUT, MftBitmapWritesLazyWriter$OFFSET);
     }
-    public static int MftBitmapWritesLazyWriter$get(MemorySegment seg) {
-        return (int)_NTFS_STATISTICS_EX.MftBitmapWritesLazyWriter$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MftBitmapWritesLazyWriter
+     * }
+     */
+    public static void MftBitmapWritesLazyWriter(MemorySegment struct, int fieldValue) {
+        struct.set(MftBitmapWritesLazyWriter$LAYOUT, MftBitmapWritesLazyWriter$OFFSET, fieldValue);
     }
-    public static void MftBitmapWritesLazyWriter$set( MemorySegment seg, int x) {
-        _NTFS_STATISTICS_EX.MftBitmapWritesLazyWriter$VH.set(seg, x);
+
+    private static final OfInt MftBitmapWritesUserRequest$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MftBitmapWritesUserRequest"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MftBitmapWritesUserRequest
+     * }
+     */
+    public static final OfInt MftBitmapWritesUserRequest$layout() {
+        return MftBitmapWritesUserRequest$LAYOUT;
     }
-    public static int MftBitmapWritesLazyWriter$get(MemorySegment seg, long index) {
-        return (int)_NTFS_STATISTICS_EX.MftBitmapWritesLazyWriter$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long MftBitmapWritesUserRequest$OFFSET = 256;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MftBitmapWritesUserRequest
+     * }
+     */
+    public static final long MftBitmapWritesUserRequest$offset() {
+        return MftBitmapWritesUserRequest$OFFSET;
     }
-    public static void MftBitmapWritesLazyWriter$set(MemorySegment seg, long index, int x) {
-        _NTFS_STATISTICS_EX.MftBitmapWritesLazyWriter$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MftBitmapWritesUserRequest
+     * }
+     */
+    public static int MftBitmapWritesUserRequest(MemorySegment struct) {
+        return struct.get(MftBitmapWritesUserRequest$LAYOUT, MftBitmapWritesUserRequest$OFFSET);
     }
-    static final VarHandle MftBitmapWritesUserRequest$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MftBitmapWritesUserRequest"));
-    public static VarHandle MftBitmapWritesUserRequest$VH() {
-        return _NTFS_STATISTICS_EX.MftBitmapWritesUserRequest$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MftBitmapWritesUserRequest
+     * }
+     */
+    public static void MftBitmapWritesUserRequest(MemorySegment struct, int fieldValue) {
+        struct.set(MftBitmapWritesUserRequest$LAYOUT, MftBitmapWritesUserRequest$OFFSET, fieldValue);
     }
-    public static int MftBitmapWritesUserRequest$get(MemorySegment seg) {
-        return (int)_NTFS_STATISTICS_EX.MftBitmapWritesUserRequest$VH.get(seg);
-    }
-    public static void MftBitmapWritesUserRequest$set( MemorySegment seg, int x) {
-        _NTFS_STATISTICS_EX.MftBitmapWritesUserRequest$VH.set(seg, x);
-    }
-    public static int MftBitmapWritesUserRequest$get(MemorySegment seg, long index) {
-        return (int)_NTFS_STATISTICS_EX.MftBitmapWritesUserRequest$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MftBitmapWritesUserRequest$set(MemorySegment seg, long index, int x) {
-        _NTFS_STATISTICS_EX.MftBitmapWritesUserRequest$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * }
+     * }
+     */
     public static class MftBitmapWritesUserLevel {
 
-        static final  GroupLayout MftBitmapWritesUserLevel$struct$LAYOUT = MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Write"),
-            Constants$root.C_LONG$LAYOUT.withName("Create"),
-            Constants$root.C_LONG$LAYOUT.withName("SetInfo"),
-            Constants$root.C_LONG$LAYOUT.withName("Flush")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return MftBitmapWritesUserLevel.MftBitmapWritesUserLevel$struct$LAYOUT;
+        MftBitmapWritesUserLevel() {
+            // Should not be called directly
         }
-        static final VarHandle Write$VH = MftBitmapWritesUserLevel$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Write"));
-        public static VarHandle Write$VH() {
-            return MftBitmapWritesUserLevel.Write$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+            wgl_h.C_LONG.withName("Write"),
+            wgl_h.C_LONG.withName("Create"),
+            wgl_h.C_LONG.withName("SetInfo"),
+            wgl_h.C_LONG.withName("Flush")
+        ).withName("$anon$11554:5");
+
+        /**
+         * The layout of this struct
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static int Write$get(MemorySegment seg) {
-            return (int)MftBitmapWritesUserLevel.Write$VH.get(seg);
+
+        private static final OfInt Write$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Write"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD Write
+         * }
+         */
+        public static final OfInt Write$layout() {
+            return Write$LAYOUT;
         }
-        public static void Write$set( MemorySegment seg, int x) {
-            MftBitmapWritesUserLevel.Write$VH.set(seg, x);
+
+        private static final long Write$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD Write
+         * }
+         */
+        public static final long Write$offset() {
+            return Write$OFFSET;
         }
-        public static int Write$get(MemorySegment seg, long index) {
-            return (int)MftBitmapWritesUserLevel.Write$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD Write
+         * }
+         */
+        public static int Write(MemorySegment struct) {
+            return struct.get(Write$LAYOUT, Write$OFFSET);
         }
-        public static void Write$set(MemorySegment seg, long index, int x) {
-            MftBitmapWritesUserLevel.Write$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD Write
+         * }
+         */
+        public static void Write(MemorySegment struct, int fieldValue) {
+            struct.set(Write$LAYOUT, Write$OFFSET, fieldValue);
         }
-        static final VarHandle Create$VH = MftBitmapWritesUserLevel$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Create"));
-        public static VarHandle Create$VH() {
-            return MftBitmapWritesUserLevel.Create$VH;
+
+        private static final OfInt Create$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Create"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD Create
+         * }
+         */
+        public static final OfInt Create$layout() {
+            return Create$LAYOUT;
         }
-        public static int Create$get(MemorySegment seg) {
-            return (int)MftBitmapWritesUserLevel.Create$VH.get(seg);
+
+        private static final long Create$OFFSET = 4;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD Create
+         * }
+         */
+        public static final long Create$offset() {
+            return Create$OFFSET;
         }
-        public static void Create$set( MemorySegment seg, int x) {
-            MftBitmapWritesUserLevel.Create$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD Create
+         * }
+         */
+        public static int Create(MemorySegment struct) {
+            return struct.get(Create$LAYOUT, Create$OFFSET);
         }
-        public static int Create$get(MemorySegment seg, long index) {
-            return (int)MftBitmapWritesUserLevel.Create$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD Create
+         * }
+         */
+        public static void Create(MemorySegment struct, int fieldValue) {
+            struct.set(Create$LAYOUT, Create$OFFSET, fieldValue);
         }
-        public static void Create$set(MemorySegment seg, long index, int x) {
-            MftBitmapWritesUserLevel.Create$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final OfInt SetInfo$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SetInfo"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD SetInfo
+         * }
+         */
+        public static final OfInt SetInfo$layout() {
+            return SetInfo$LAYOUT;
         }
-        static final VarHandle SetInfo$VH = MftBitmapWritesUserLevel$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SetInfo"));
-        public static VarHandle SetInfo$VH() {
-            return MftBitmapWritesUserLevel.SetInfo$VH;
+
+        private static final long SetInfo$OFFSET = 8;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD SetInfo
+         * }
+         */
+        public static final long SetInfo$offset() {
+            return SetInfo$OFFSET;
         }
-        public static int SetInfo$get(MemorySegment seg) {
-            return (int)MftBitmapWritesUserLevel.SetInfo$VH.get(seg);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD SetInfo
+         * }
+         */
+        public static int SetInfo(MemorySegment struct) {
+            return struct.get(SetInfo$LAYOUT, SetInfo$OFFSET);
         }
-        public static void SetInfo$set( MemorySegment seg, int x) {
-            MftBitmapWritesUserLevel.SetInfo$VH.set(seg, x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD SetInfo
+         * }
+         */
+        public static void SetInfo(MemorySegment struct, int fieldValue) {
+            struct.set(SetInfo$LAYOUT, SetInfo$OFFSET, fieldValue);
         }
-        public static int SetInfo$get(MemorySegment seg, long index) {
-            return (int)MftBitmapWritesUserLevel.SetInfo$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final OfInt Flush$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flush"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD Flush
+         * }
+         */
+        public static final OfInt Flush$layout() {
+            return Flush$LAYOUT;
         }
-        public static void SetInfo$set(MemorySegment seg, long index, int x) {
-            MftBitmapWritesUserLevel.SetInfo$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final long Flush$OFFSET = 12;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD Flush
+         * }
+         */
+        public static final long Flush$offset() {
+            return Flush$OFFSET;
         }
-        static final VarHandle Flush$VH = MftBitmapWritesUserLevel$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flush"));
-        public static VarHandle Flush$VH() {
-            return MftBitmapWritesUserLevel.Flush$VH;
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD Flush
+         * }
+         */
+        public static int Flush(MemorySegment struct) {
+            return struct.get(Flush$LAYOUT, Flush$OFFSET);
         }
-        public static int Flush$get(MemorySegment seg) {
-            return (int)MftBitmapWritesUserLevel.Flush$VH.get(seg);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD Flush
+         * }
+         */
+        public static void Flush(MemorySegment struct, int fieldValue) {
+            struct.set(Flush$LAYOUT, Flush$OFFSET, fieldValue);
         }
-        public static void Flush$set( MemorySegment seg, int x) {
-            MftBitmapWritesUserLevel.Flush$VH.set(seg, x);
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static int Flush$get(MemorySegment seg, long index) {
-            return (int)MftBitmapWritesUserLevel.Flush$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * The size (in bytes) of this struct
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static void Flush$set(MemorySegment seg, long index, int x) {
-            MftBitmapWritesUserLevel.Flush$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment MftBitmapWritesUserLevel$slice(MemorySegment seg) {
-        return seg.asSlice(260, 16);
+    private static final GroupLayout MftBitmapWritesUserLevel$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("MftBitmapWritesUserLevel"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * } MftBitmapWritesUserLevel
+     * }
+     */
+    public static final GroupLayout MftBitmapWritesUserLevel$layout() {
+        return MftBitmapWritesUserLevel$LAYOUT;
     }
-    static final VarHandle UserIndexReads$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UserIndexReads"));
-    public static VarHandle UserIndexReads$VH() {
-        return _NTFS_STATISTICS_EX.UserIndexReads$VH;
+
+    private static final long MftBitmapWritesUserLevel$OFFSET = 260;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * } MftBitmapWritesUserLevel
+     * }
+     */
+    public static final long MftBitmapWritesUserLevel$offset() {
+        return MftBitmapWritesUserLevel$OFFSET;
     }
-    public static long UserIndexReads$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.UserIndexReads$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * } MftBitmapWritesUserLevel
+     * }
+     */
+    public static MemorySegment MftBitmapWritesUserLevel(MemorySegment struct) {
+        return struct.asSlice(MftBitmapWritesUserLevel$OFFSET, MftBitmapWritesUserLevel$LAYOUT.byteSize());
     }
-    public static void UserIndexReads$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.UserIndexReads$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Write;
+     *     DWORD Create;
+     *     DWORD SetInfo;
+     *     DWORD Flush;
+     * } MftBitmapWritesUserLevel
+     * }
+     */
+    public static void MftBitmapWritesUserLevel(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, MftBitmapWritesUserLevel$OFFSET, MftBitmapWritesUserLevel$LAYOUT.byteSize());
     }
-    public static long UserIndexReads$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.UserIndexReads$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfLong UserIndexReads$LAYOUT = (OfLong)$LAYOUT.select(groupElement("UserIndexReads"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG UserIndexReads
+     * }
+     */
+    public static final OfLong UserIndexReads$layout() {
+        return UserIndexReads$LAYOUT;
     }
-    public static void UserIndexReads$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.UserIndexReads$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long UserIndexReads$OFFSET = 280;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG UserIndexReads
+     * }
+     */
+    public static final long UserIndexReads$offset() {
+        return UserIndexReads$OFFSET;
     }
-    static final VarHandle UserIndexReadBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UserIndexReadBytes"));
-    public static VarHandle UserIndexReadBytes$VH() {
-        return _NTFS_STATISTICS_EX.UserIndexReadBytes$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG UserIndexReads
+     * }
+     */
+    public static long UserIndexReads(MemorySegment struct) {
+        return struct.get(UserIndexReads$LAYOUT, UserIndexReads$OFFSET);
     }
-    public static long UserIndexReadBytes$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.UserIndexReadBytes$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG UserIndexReads
+     * }
+     */
+    public static void UserIndexReads(MemorySegment struct, long fieldValue) {
+        struct.set(UserIndexReads$LAYOUT, UserIndexReads$OFFSET, fieldValue);
     }
-    public static void UserIndexReadBytes$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.UserIndexReadBytes$VH.set(seg, x);
+
+    private static final OfLong UserIndexReadBytes$LAYOUT = (OfLong)$LAYOUT.select(groupElement("UserIndexReadBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG UserIndexReadBytes
+     * }
+     */
+    public static final OfLong UserIndexReadBytes$layout() {
+        return UserIndexReadBytes$LAYOUT;
     }
-    public static long UserIndexReadBytes$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.UserIndexReadBytes$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long UserIndexReadBytes$OFFSET = 288;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG UserIndexReadBytes
+     * }
+     */
+    public static final long UserIndexReadBytes$offset() {
+        return UserIndexReadBytes$OFFSET;
     }
-    public static void UserIndexReadBytes$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.UserIndexReadBytes$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG UserIndexReadBytes
+     * }
+     */
+    public static long UserIndexReadBytes(MemorySegment struct) {
+        return struct.get(UserIndexReadBytes$LAYOUT, UserIndexReadBytes$OFFSET);
     }
-    static final VarHandle UserIndexWrites$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UserIndexWrites"));
-    public static VarHandle UserIndexWrites$VH() {
-        return _NTFS_STATISTICS_EX.UserIndexWrites$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG UserIndexReadBytes
+     * }
+     */
+    public static void UserIndexReadBytes(MemorySegment struct, long fieldValue) {
+        struct.set(UserIndexReadBytes$LAYOUT, UserIndexReadBytes$OFFSET, fieldValue);
     }
-    public static long UserIndexWrites$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.UserIndexWrites$VH.get(seg);
+
+    private static final OfLong UserIndexWrites$LAYOUT = (OfLong)$LAYOUT.select(groupElement("UserIndexWrites"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG UserIndexWrites
+     * }
+     */
+    public static final OfLong UserIndexWrites$layout() {
+        return UserIndexWrites$LAYOUT;
     }
-    public static void UserIndexWrites$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.UserIndexWrites$VH.set(seg, x);
+
+    private static final long UserIndexWrites$OFFSET = 296;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG UserIndexWrites
+     * }
+     */
+    public static final long UserIndexWrites$offset() {
+        return UserIndexWrites$OFFSET;
     }
-    public static long UserIndexWrites$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.UserIndexWrites$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG UserIndexWrites
+     * }
+     */
+    public static long UserIndexWrites(MemorySegment struct) {
+        return struct.get(UserIndexWrites$LAYOUT, UserIndexWrites$OFFSET);
     }
-    public static void UserIndexWrites$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.UserIndexWrites$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG UserIndexWrites
+     * }
+     */
+    public static void UserIndexWrites(MemorySegment struct, long fieldValue) {
+        struct.set(UserIndexWrites$LAYOUT, UserIndexWrites$OFFSET, fieldValue);
     }
-    static final VarHandle UserIndexWriteBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UserIndexWriteBytes"));
-    public static VarHandle UserIndexWriteBytes$VH() {
-        return _NTFS_STATISTICS_EX.UserIndexWriteBytes$VH;
+
+    private static final OfLong UserIndexWriteBytes$LAYOUT = (OfLong)$LAYOUT.select(groupElement("UserIndexWriteBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG UserIndexWriteBytes
+     * }
+     */
+    public static final OfLong UserIndexWriteBytes$layout() {
+        return UserIndexWriteBytes$LAYOUT;
     }
-    public static long UserIndexWriteBytes$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.UserIndexWriteBytes$VH.get(seg);
+
+    private static final long UserIndexWriteBytes$OFFSET = 304;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG UserIndexWriteBytes
+     * }
+     */
+    public static final long UserIndexWriteBytes$offset() {
+        return UserIndexWriteBytes$OFFSET;
     }
-    public static void UserIndexWriteBytes$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.UserIndexWriteBytes$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG UserIndexWriteBytes
+     * }
+     */
+    public static long UserIndexWriteBytes(MemorySegment struct) {
+        return struct.get(UserIndexWriteBytes$LAYOUT, UserIndexWriteBytes$OFFSET);
     }
-    public static long UserIndexWriteBytes$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.UserIndexWriteBytes$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG UserIndexWriteBytes
+     * }
+     */
+    public static void UserIndexWriteBytes(MemorySegment struct, long fieldValue) {
+        struct.set(UserIndexWriteBytes$LAYOUT, UserIndexWriteBytes$OFFSET, fieldValue);
     }
-    public static void UserIndexWriteBytes$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.UserIndexWriteBytes$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfLong LogFileReads$LAYOUT = (OfLong)$LAYOUT.select(groupElement("LogFileReads"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG LogFileReads
+     * }
+     */
+    public static final OfLong LogFileReads$layout() {
+        return LogFileReads$LAYOUT;
     }
-    static final VarHandle LogFileReads$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LogFileReads"));
-    public static VarHandle LogFileReads$VH() {
-        return _NTFS_STATISTICS_EX.LogFileReads$VH;
+
+    private static final long LogFileReads$OFFSET = 312;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG LogFileReads
+     * }
+     */
+    public static final long LogFileReads$offset() {
+        return LogFileReads$OFFSET;
     }
-    public static long LogFileReads$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.LogFileReads$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG LogFileReads
+     * }
+     */
+    public static long LogFileReads(MemorySegment struct) {
+        return struct.get(LogFileReads$LAYOUT, LogFileReads$OFFSET);
     }
-    public static void LogFileReads$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.LogFileReads$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG LogFileReads
+     * }
+     */
+    public static void LogFileReads(MemorySegment struct, long fieldValue) {
+        struct.set(LogFileReads$LAYOUT, LogFileReads$OFFSET, fieldValue);
     }
-    public static long LogFileReads$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.LogFileReads$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfLong LogFileReadBytes$LAYOUT = (OfLong)$LAYOUT.select(groupElement("LogFileReadBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG LogFileReadBytes
+     * }
+     */
+    public static final OfLong LogFileReadBytes$layout() {
+        return LogFileReadBytes$LAYOUT;
     }
-    public static void LogFileReads$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.LogFileReads$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long LogFileReadBytes$OFFSET = 320;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG LogFileReadBytes
+     * }
+     */
+    public static final long LogFileReadBytes$offset() {
+        return LogFileReadBytes$OFFSET;
     }
-    static final VarHandle LogFileReadBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LogFileReadBytes"));
-    public static VarHandle LogFileReadBytes$VH() {
-        return _NTFS_STATISTICS_EX.LogFileReadBytes$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG LogFileReadBytes
+     * }
+     */
+    public static long LogFileReadBytes(MemorySegment struct) {
+        return struct.get(LogFileReadBytes$LAYOUT, LogFileReadBytes$OFFSET);
     }
-    public static long LogFileReadBytes$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.LogFileReadBytes$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG LogFileReadBytes
+     * }
+     */
+    public static void LogFileReadBytes(MemorySegment struct, long fieldValue) {
+        struct.set(LogFileReadBytes$LAYOUT, LogFileReadBytes$OFFSET, fieldValue);
     }
-    public static void LogFileReadBytes$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.LogFileReadBytes$VH.set(seg, x);
+
+    private static final OfLong LogFileWrites$LAYOUT = (OfLong)$LAYOUT.select(groupElement("LogFileWrites"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG LogFileWrites
+     * }
+     */
+    public static final OfLong LogFileWrites$layout() {
+        return LogFileWrites$LAYOUT;
     }
-    public static long LogFileReadBytes$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.LogFileReadBytes$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long LogFileWrites$OFFSET = 328;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG LogFileWrites
+     * }
+     */
+    public static final long LogFileWrites$offset() {
+        return LogFileWrites$OFFSET;
     }
-    public static void LogFileReadBytes$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.LogFileReadBytes$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG LogFileWrites
+     * }
+     */
+    public static long LogFileWrites(MemorySegment struct) {
+        return struct.get(LogFileWrites$LAYOUT, LogFileWrites$OFFSET);
     }
-    static final VarHandle LogFileWrites$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LogFileWrites"));
-    public static VarHandle LogFileWrites$VH() {
-        return _NTFS_STATISTICS_EX.LogFileWrites$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG LogFileWrites
+     * }
+     */
+    public static void LogFileWrites(MemorySegment struct, long fieldValue) {
+        struct.set(LogFileWrites$LAYOUT, LogFileWrites$OFFSET, fieldValue);
     }
-    public static long LogFileWrites$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.LogFileWrites$VH.get(seg);
+
+    private static final OfLong LogFileWriteBytes$LAYOUT = (OfLong)$LAYOUT.select(groupElement("LogFileWriteBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG LogFileWriteBytes
+     * }
+     */
+    public static final OfLong LogFileWriteBytes$layout() {
+        return LogFileWriteBytes$LAYOUT;
     }
-    public static void LogFileWrites$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.LogFileWrites$VH.set(seg, x);
+
+    private static final long LogFileWriteBytes$OFFSET = 336;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG LogFileWriteBytes
+     * }
+     */
+    public static final long LogFileWriteBytes$offset() {
+        return LogFileWriteBytes$OFFSET;
     }
-    public static long LogFileWrites$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.LogFileWrites$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG LogFileWriteBytes
+     * }
+     */
+    public static long LogFileWriteBytes(MemorySegment struct) {
+        return struct.get(LogFileWriteBytes$LAYOUT, LogFileWriteBytes$OFFSET);
     }
-    public static void LogFileWrites$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.LogFileWrites$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG LogFileWriteBytes
+     * }
+     */
+    public static void LogFileWriteBytes(MemorySegment struct, long fieldValue) {
+        struct.set(LogFileWriteBytes$LAYOUT, LogFileWriteBytes$OFFSET, fieldValue);
     }
-    static final VarHandle LogFileWriteBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LogFileWriteBytes"));
-    public static VarHandle LogFileWriteBytes$VH() {
-        return _NTFS_STATISTICS_EX.LogFileWriteBytes$VH;
-    }
-    public static long LogFileWriteBytes$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.LogFileWriteBytes$VH.get(seg);
-    }
-    public static void LogFileWriteBytes$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.LogFileWriteBytes$VH.set(seg, x);
-    }
-    public static long LogFileWriteBytes$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.LogFileWriteBytes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LogFileWriteBytes$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.LogFileWriteBytes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Calls;
+     *     DWORD RunsReturned;
+     *     DWORD Hints;
+     *     DWORD HintsHonored;
+     *     DWORD Cache;
+     *     DWORD CacheMiss;
+     *     DWORDLONG Clusters;
+     *     DWORDLONG HintsClusters;
+     *     DWORDLONG CacheClusters;
+     *     DWORDLONG CacheMissClusters;
+     * }
+     * }
+     */
     public static class Allocate {
 
-        static final  GroupLayout Allocate$struct$LAYOUT = MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Calls"),
-            Constants$root.C_LONG$LAYOUT.withName("RunsReturned"),
-            Constants$root.C_LONG$LAYOUT.withName("Hints"),
-            Constants$root.C_LONG$LAYOUT.withName("HintsHonored"),
-            Constants$root.C_LONG$LAYOUT.withName("Cache"),
-            Constants$root.C_LONG$LAYOUT.withName("CacheMiss"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Clusters"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("HintsClusters"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("CacheClusters"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("CacheMissClusters")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return Allocate.Allocate$struct$LAYOUT;
+        Allocate() {
+            // Should not be called directly
         }
-        static final VarHandle Calls$VH = Allocate$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Calls"));
-        public static VarHandle Calls$VH() {
-            return Allocate.Calls$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+            wgl_h.C_LONG.withName("Calls"),
+            wgl_h.C_LONG.withName("RunsReturned"),
+            wgl_h.C_LONG.withName("Hints"),
+            wgl_h.C_LONG.withName("HintsHonored"),
+            wgl_h.C_LONG.withName("Cache"),
+            wgl_h.C_LONG.withName("CacheMiss"),
+            wgl_h.C_LONG_LONG.withName("Clusters"),
+            wgl_h.C_LONG_LONG.withName("HintsClusters"),
+            wgl_h.C_LONG_LONG.withName("CacheClusters"),
+            wgl_h.C_LONG_LONG.withName("CacheMissClusters")
+        ).withName("$anon$11575:5");
+
+        /**
+         * The layout of this struct
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static int Calls$get(MemorySegment seg) {
-            return (int)Allocate.Calls$VH.get(seg);
+
+        private static final OfInt Calls$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Calls"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD Calls
+         * }
+         */
+        public static final OfInt Calls$layout() {
+            return Calls$LAYOUT;
         }
-        public static void Calls$set( MemorySegment seg, int x) {
-            Allocate.Calls$VH.set(seg, x);
+
+        private static final long Calls$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD Calls
+         * }
+         */
+        public static final long Calls$offset() {
+            return Calls$OFFSET;
         }
-        public static int Calls$get(MemorySegment seg, long index) {
-            return (int)Allocate.Calls$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD Calls
+         * }
+         */
+        public static int Calls(MemorySegment struct) {
+            return struct.get(Calls$LAYOUT, Calls$OFFSET);
         }
-        public static void Calls$set(MemorySegment seg, long index, int x) {
-            Allocate.Calls$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD Calls
+         * }
+         */
+        public static void Calls(MemorySegment struct, int fieldValue) {
+            struct.set(Calls$LAYOUT, Calls$OFFSET, fieldValue);
         }
-        static final VarHandle RunsReturned$VH = Allocate$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RunsReturned"));
-        public static VarHandle RunsReturned$VH() {
-            return Allocate.RunsReturned$VH;
+
+        private static final OfInt RunsReturned$LAYOUT = (OfInt)$LAYOUT.select(groupElement("RunsReturned"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD RunsReturned
+         * }
+         */
+        public static final OfInt RunsReturned$layout() {
+            return RunsReturned$LAYOUT;
         }
-        public static int RunsReturned$get(MemorySegment seg) {
-            return (int)Allocate.RunsReturned$VH.get(seg);
+
+        private static final long RunsReturned$OFFSET = 4;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD RunsReturned
+         * }
+         */
+        public static final long RunsReturned$offset() {
+            return RunsReturned$OFFSET;
         }
-        public static void RunsReturned$set( MemorySegment seg, int x) {
-            Allocate.RunsReturned$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD RunsReturned
+         * }
+         */
+        public static int RunsReturned(MemorySegment struct) {
+            return struct.get(RunsReturned$LAYOUT, RunsReturned$OFFSET);
         }
-        public static int RunsReturned$get(MemorySegment seg, long index) {
-            return (int)Allocate.RunsReturned$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD RunsReturned
+         * }
+         */
+        public static void RunsReturned(MemorySegment struct, int fieldValue) {
+            struct.set(RunsReturned$LAYOUT, RunsReturned$OFFSET, fieldValue);
         }
-        public static void RunsReturned$set(MemorySegment seg, long index, int x) {
-            Allocate.RunsReturned$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final OfInt Hints$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Hints"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD Hints
+         * }
+         */
+        public static final OfInt Hints$layout() {
+            return Hints$LAYOUT;
         }
-        static final VarHandle Hints$VH = Allocate$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Hints"));
-        public static VarHandle Hints$VH() {
-            return Allocate.Hints$VH;
+
+        private static final long Hints$OFFSET = 8;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD Hints
+         * }
+         */
+        public static final long Hints$offset() {
+            return Hints$OFFSET;
         }
-        public static int Hints$get(MemorySegment seg) {
-            return (int)Allocate.Hints$VH.get(seg);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD Hints
+         * }
+         */
+        public static int Hints(MemorySegment struct) {
+            return struct.get(Hints$LAYOUT, Hints$OFFSET);
         }
-        public static void Hints$set( MemorySegment seg, int x) {
-            Allocate.Hints$VH.set(seg, x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD Hints
+         * }
+         */
+        public static void Hints(MemorySegment struct, int fieldValue) {
+            struct.set(Hints$LAYOUT, Hints$OFFSET, fieldValue);
         }
-        public static int Hints$get(MemorySegment seg, long index) {
-            return (int)Allocate.Hints$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final OfInt HintsHonored$LAYOUT = (OfInt)$LAYOUT.select(groupElement("HintsHonored"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD HintsHonored
+         * }
+         */
+        public static final OfInt HintsHonored$layout() {
+            return HintsHonored$LAYOUT;
         }
-        public static void Hints$set(MemorySegment seg, long index, int x) {
-            Allocate.Hints$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final long HintsHonored$OFFSET = 12;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD HintsHonored
+         * }
+         */
+        public static final long HintsHonored$offset() {
+            return HintsHonored$OFFSET;
         }
-        static final VarHandle HintsHonored$VH = Allocate$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HintsHonored"));
-        public static VarHandle HintsHonored$VH() {
-            return Allocate.HintsHonored$VH;
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD HintsHonored
+         * }
+         */
+        public static int HintsHonored(MemorySegment struct) {
+            return struct.get(HintsHonored$LAYOUT, HintsHonored$OFFSET);
         }
-        public static int HintsHonored$get(MemorySegment seg) {
-            return (int)Allocate.HintsHonored$VH.get(seg);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD HintsHonored
+         * }
+         */
+        public static void HintsHonored(MemorySegment struct, int fieldValue) {
+            struct.set(HintsHonored$LAYOUT, HintsHonored$OFFSET, fieldValue);
         }
-        public static void HintsHonored$set( MemorySegment seg, int x) {
-            Allocate.HintsHonored$VH.set(seg, x);
+
+        private static final OfInt Cache$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Cache"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD Cache
+         * }
+         */
+        public static final OfInt Cache$layout() {
+            return Cache$LAYOUT;
         }
-        public static int HintsHonored$get(MemorySegment seg, long index) {
-            return (int)Allocate.HintsHonored$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final long Cache$OFFSET = 16;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD Cache
+         * }
+         */
+        public static final long Cache$offset() {
+            return Cache$OFFSET;
         }
-        public static void HintsHonored$set(MemorySegment seg, long index, int x) {
-            Allocate.HintsHonored$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD Cache
+         * }
+         */
+        public static int Cache(MemorySegment struct) {
+            return struct.get(Cache$LAYOUT, Cache$OFFSET);
         }
-        static final VarHandle Cache$VH = Allocate$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Cache"));
-        public static VarHandle Cache$VH() {
-            return Allocate.Cache$VH;
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD Cache
+         * }
+         */
+        public static void Cache(MemorySegment struct, int fieldValue) {
+            struct.set(Cache$LAYOUT, Cache$OFFSET, fieldValue);
         }
-        public static int Cache$get(MemorySegment seg) {
-            return (int)Allocate.Cache$VH.get(seg);
+
+        private static final OfInt CacheMiss$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CacheMiss"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD CacheMiss
+         * }
+         */
+        public static final OfInt CacheMiss$layout() {
+            return CacheMiss$LAYOUT;
         }
-        public static void Cache$set( MemorySegment seg, int x) {
-            Allocate.Cache$VH.set(seg, x);
+
+        private static final long CacheMiss$OFFSET = 20;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD CacheMiss
+         * }
+         */
+        public static final long CacheMiss$offset() {
+            return CacheMiss$OFFSET;
         }
-        public static int Cache$get(MemorySegment seg, long index) {
-            return (int)Allocate.Cache$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD CacheMiss
+         * }
+         */
+        public static int CacheMiss(MemorySegment struct) {
+            return struct.get(CacheMiss$LAYOUT, CacheMiss$OFFSET);
         }
-        public static void Cache$set(MemorySegment seg, long index, int x) {
-            Allocate.Cache$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD CacheMiss
+         * }
+         */
+        public static void CacheMiss(MemorySegment struct, int fieldValue) {
+            struct.set(CacheMiss$LAYOUT, CacheMiss$OFFSET, fieldValue);
         }
-        static final VarHandle CacheMiss$VH = Allocate$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CacheMiss"));
-        public static VarHandle CacheMiss$VH() {
-            return Allocate.CacheMiss$VH;
+
+        private static final OfLong Clusters$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Clusters"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORDLONG Clusters
+         * }
+         */
+        public static final OfLong Clusters$layout() {
+            return Clusters$LAYOUT;
         }
-        public static int CacheMiss$get(MemorySegment seg) {
-            return (int)Allocate.CacheMiss$VH.get(seg);
+
+        private static final long Clusters$OFFSET = 24;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORDLONG Clusters
+         * }
+         */
+        public static final long Clusters$offset() {
+            return Clusters$OFFSET;
         }
-        public static void CacheMiss$set( MemorySegment seg, int x) {
-            Allocate.CacheMiss$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORDLONG Clusters
+         * }
+         */
+        public static long Clusters(MemorySegment struct) {
+            return struct.get(Clusters$LAYOUT, Clusters$OFFSET);
         }
-        public static int CacheMiss$get(MemorySegment seg, long index) {
-            return (int)Allocate.CacheMiss$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORDLONG Clusters
+         * }
+         */
+        public static void Clusters(MemorySegment struct, long fieldValue) {
+            struct.set(Clusters$LAYOUT, Clusters$OFFSET, fieldValue);
         }
-        public static void CacheMiss$set(MemorySegment seg, long index, int x) {
-            Allocate.CacheMiss$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final OfLong HintsClusters$LAYOUT = (OfLong)$LAYOUT.select(groupElement("HintsClusters"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORDLONG HintsClusters
+         * }
+         */
+        public static final OfLong HintsClusters$layout() {
+            return HintsClusters$LAYOUT;
         }
-        static final VarHandle Clusters$VH = Allocate$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Clusters"));
-        public static VarHandle Clusters$VH() {
-            return Allocate.Clusters$VH;
+
+        private static final long HintsClusters$OFFSET = 32;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORDLONG HintsClusters
+         * }
+         */
+        public static final long HintsClusters$offset() {
+            return HintsClusters$OFFSET;
         }
-        public static long Clusters$get(MemorySegment seg) {
-            return (long)Allocate.Clusters$VH.get(seg);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORDLONG HintsClusters
+         * }
+         */
+        public static long HintsClusters(MemorySegment struct) {
+            return struct.get(HintsClusters$LAYOUT, HintsClusters$OFFSET);
         }
-        public static void Clusters$set( MemorySegment seg, long x) {
-            Allocate.Clusters$VH.set(seg, x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORDLONG HintsClusters
+         * }
+         */
+        public static void HintsClusters(MemorySegment struct, long fieldValue) {
+            struct.set(HintsClusters$LAYOUT, HintsClusters$OFFSET, fieldValue);
         }
-        public static long Clusters$get(MemorySegment seg, long index) {
-            return (long)Allocate.Clusters$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final OfLong CacheClusters$LAYOUT = (OfLong)$LAYOUT.select(groupElement("CacheClusters"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORDLONG CacheClusters
+         * }
+         */
+        public static final OfLong CacheClusters$layout() {
+            return CacheClusters$LAYOUT;
         }
-        public static void Clusters$set(MemorySegment seg, long index, long x) {
-            Allocate.Clusters$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final long CacheClusters$OFFSET = 40;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORDLONG CacheClusters
+         * }
+         */
+        public static final long CacheClusters$offset() {
+            return CacheClusters$OFFSET;
         }
-        static final VarHandle HintsClusters$VH = Allocate$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HintsClusters"));
-        public static VarHandle HintsClusters$VH() {
-            return Allocate.HintsClusters$VH;
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORDLONG CacheClusters
+         * }
+         */
+        public static long CacheClusters(MemorySegment struct) {
+            return struct.get(CacheClusters$LAYOUT, CacheClusters$OFFSET);
         }
-        public static long HintsClusters$get(MemorySegment seg) {
-            return (long)Allocate.HintsClusters$VH.get(seg);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORDLONG CacheClusters
+         * }
+         */
+        public static void CacheClusters(MemorySegment struct, long fieldValue) {
+            struct.set(CacheClusters$LAYOUT, CacheClusters$OFFSET, fieldValue);
         }
-        public static void HintsClusters$set( MemorySegment seg, long x) {
-            Allocate.HintsClusters$VH.set(seg, x);
+
+        private static final OfLong CacheMissClusters$LAYOUT = (OfLong)$LAYOUT.select(groupElement("CacheMissClusters"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORDLONG CacheMissClusters
+         * }
+         */
+        public static final OfLong CacheMissClusters$layout() {
+            return CacheMissClusters$LAYOUT;
         }
-        public static long HintsClusters$get(MemorySegment seg, long index) {
-            return (long)Allocate.HintsClusters$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final long CacheMissClusters$OFFSET = 48;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORDLONG CacheMissClusters
+         * }
+         */
+        public static final long CacheMissClusters$offset() {
+            return CacheMissClusters$OFFSET;
         }
-        public static void HintsClusters$set(MemorySegment seg, long index, long x) {
-            Allocate.HintsClusters$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORDLONG CacheMissClusters
+         * }
+         */
+        public static long CacheMissClusters(MemorySegment struct) {
+            return struct.get(CacheMissClusters$LAYOUT, CacheMissClusters$OFFSET);
         }
-        static final VarHandle CacheClusters$VH = Allocate$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CacheClusters"));
-        public static VarHandle CacheClusters$VH() {
-            return Allocate.CacheClusters$VH;
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORDLONG CacheMissClusters
+         * }
+         */
+        public static void CacheMissClusters(MemorySegment struct, long fieldValue) {
+            struct.set(CacheMissClusters$LAYOUT, CacheMissClusters$OFFSET, fieldValue);
         }
-        public static long CacheClusters$get(MemorySegment seg) {
-            return (long)Allocate.CacheClusters$VH.get(seg);
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static void CacheClusters$set( MemorySegment seg, long x) {
-            Allocate.CacheClusters$VH.set(seg, x);
+
+        /**
+         * The size (in bytes) of this struct
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static long CacheClusters$get(MemorySegment seg, long index) {
-            return (long)Allocate.CacheClusters$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
         }
-        public static void CacheClusters$set(MemorySegment seg, long index, long x) {
-            Allocate.CacheClusters$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
         }
-        static final VarHandle CacheMissClusters$VH = Allocate$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CacheMissClusters"));
-        public static VarHandle CacheMissClusters$VH() {
-            return Allocate.CacheMissClusters$VH;
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
         }
-        public static long CacheMissClusters$get(MemorySegment seg) {
-            return (long)Allocate.CacheMissClusters$VH.get(seg);
-        }
-        public static void CacheMissClusters$set( MemorySegment seg, long x) {
-            Allocate.CacheMissClusters$VH.set(seg, x);
-        }
-        public static long CacheMissClusters$get(MemorySegment seg, long index) {
-            return (long)Allocate.CacheMissClusters$VH.get(seg.asSlice(index*sizeof()));
-        }
-        public static void CacheMissClusters$set(MemorySegment seg, long index, long x) {
-            Allocate.CacheMissClusters$VH.set(seg.asSlice(index*sizeof()), x);
-        }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-        }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
     }
 
-    public static MemorySegment Allocate$slice(MemorySegment seg) {
-        return seg.asSlice(344, 56);
+    private static final GroupLayout Allocate$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Allocate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Calls;
+     *     DWORD RunsReturned;
+     *     DWORD Hints;
+     *     DWORD HintsHonored;
+     *     DWORD Cache;
+     *     DWORD CacheMiss;
+     *     DWORDLONG Clusters;
+     *     DWORDLONG HintsClusters;
+     *     DWORDLONG CacheClusters;
+     *     DWORDLONG CacheMissClusters;
+     * } Allocate
+     * }
+     */
+    public static final GroupLayout Allocate$layout() {
+        return Allocate$LAYOUT;
     }
-    static final VarHandle DiskResourcesExhausted$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DiskResourcesExhausted"));
-    public static VarHandle DiskResourcesExhausted$VH() {
-        return _NTFS_STATISTICS_EX.DiskResourcesExhausted$VH;
+
+    private static final long Allocate$OFFSET = 344;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Calls;
+     *     DWORD RunsReturned;
+     *     DWORD Hints;
+     *     DWORD HintsHonored;
+     *     DWORD Cache;
+     *     DWORD CacheMiss;
+     *     DWORDLONG Clusters;
+     *     DWORDLONG HintsClusters;
+     *     DWORDLONG CacheClusters;
+     *     DWORDLONG CacheMissClusters;
+     * } Allocate
+     * }
+     */
+    public static final long Allocate$offset() {
+        return Allocate$OFFSET;
     }
-    public static int DiskResourcesExhausted$get(MemorySegment seg) {
-        return (int)_NTFS_STATISTICS_EX.DiskResourcesExhausted$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Calls;
+     *     DWORD RunsReturned;
+     *     DWORD Hints;
+     *     DWORD HintsHonored;
+     *     DWORD Cache;
+     *     DWORD CacheMiss;
+     *     DWORDLONG Clusters;
+     *     DWORDLONG HintsClusters;
+     *     DWORDLONG CacheClusters;
+     *     DWORDLONG CacheMissClusters;
+     * } Allocate
+     * }
+     */
+    public static MemorySegment Allocate(MemorySegment struct) {
+        return struct.asSlice(Allocate$OFFSET, Allocate$LAYOUT.byteSize());
     }
-    public static void DiskResourcesExhausted$set( MemorySegment seg, int x) {
-        _NTFS_STATISTICS_EX.DiskResourcesExhausted$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Calls;
+     *     DWORD RunsReturned;
+     *     DWORD Hints;
+     *     DWORD HintsHonored;
+     *     DWORD Cache;
+     *     DWORD CacheMiss;
+     *     DWORDLONG Clusters;
+     *     DWORDLONG HintsClusters;
+     *     DWORDLONG CacheClusters;
+     *     DWORDLONG CacheMissClusters;
+     * } Allocate
+     * }
+     */
+    public static void Allocate(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Allocate$OFFSET, Allocate$LAYOUT.byteSize());
     }
-    public static int DiskResourcesExhausted$get(MemorySegment seg, long index) {
-        return (int)_NTFS_STATISTICS_EX.DiskResourcesExhausted$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfInt DiskResourcesExhausted$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DiskResourcesExhausted"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DiskResourcesExhausted
+     * }
+     */
+    public static final OfInt DiskResourcesExhausted$layout() {
+        return DiskResourcesExhausted$LAYOUT;
     }
-    public static void DiskResourcesExhausted$set(MemorySegment seg, long index, int x) {
-        _NTFS_STATISTICS_EX.DiskResourcesExhausted$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long DiskResourcesExhausted$OFFSET = 400;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DiskResourcesExhausted
+     * }
+     */
+    public static final long DiskResourcesExhausted$offset() {
+        return DiskResourcesExhausted$OFFSET;
     }
-    static final VarHandle VolumeTrimCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VolumeTrimCount"));
-    public static VarHandle VolumeTrimCount$VH() {
-        return _NTFS_STATISTICS_EX.VolumeTrimCount$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DiskResourcesExhausted
+     * }
+     */
+    public static int DiskResourcesExhausted(MemorySegment struct) {
+        return struct.get(DiskResourcesExhausted$LAYOUT, DiskResourcesExhausted$OFFSET);
     }
-    public static long VolumeTrimCount$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.VolumeTrimCount$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DiskResourcesExhausted
+     * }
+     */
+    public static void DiskResourcesExhausted(MemorySegment struct, int fieldValue) {
+        struct.set(DiskResourcesExhausted$LAYOUT, DiskResourcesExhausted$OFFSET, fieldValue);
     }
-    public static void VolumeTrimCount$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.VolumeTrimCount$VH.set(seg, x);
+
+    private static final OfLong VolumeTrimCount$LAYOUT = (OfLong)$LAYOUT.select(groupElement("VolumeTrimCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimCount
+     * }
+     */
+    public static final OfLong VolumeTrimCount$layout() {
+        return VolumeTrimCount$LAYOUT;
     }
-    public static long VolumeTrimCount$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.VolumeTrimCount$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long VolumeTrimCount$OFFSET = 408;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimCount
+     * }
+     */
+    public static final long VolumeTrimCount$offset() {
+        return VolumeTrimCount$OFFSET;
     }
-    public static void VolumeTrimCount$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.VolumeTrimCount$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimCount
+     * }
+     */
+    public static long VolumeTrimCount(MemorySegment struct) {
+        return struct.get(VolumeTrimCount$LAYOUT, VolumeTrimCount$OFFSET);
     }
-    static final VarHandle VolumeTrimTime$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VolumeTrimTime"));
-    public static VarHandle VolumeTrimTime$VH() {
-        return _NTFS_STATISTICS_EX.VolumeTrimTime$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimCount
+     * }
+     */
+    public static void VolumeTrimCount(MemorySegment struct, long fieldValue) {
+        struct.set(VolumeTrimCount$LAYOUT, VolumeTrimCount$OFFSET, fieldValue);
     }
-    public static long VolumeTrimTime$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.VolumeTrimTime$VH.get(seg);
+
+    private static final OfLong VolumeTrimTime$LAYOUT = (OfLong)$LAYOUT.select(groupElement("VolumeTrimTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimTime
+     * }
+     */
+    public static final OfLong VolumeTrimTime$layout() {
+        return VolumeTrimTime$LAYOUT;
     }
-    public static void VolumeTrimTime$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.VolumeTrimTime$VH.set(seg, x);
+
+    private static final long VolumeTrimTime$OFFSET = 416;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimTime
+     * }
+     */
+    public static final long VolumeTrimTime$offset() {
+        return VolumeTrimTime$OFFSET;
     }
-    public static long VolumeTrimTime$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.VolumeTrimTime$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimTime
+     * }
+     */
+    public static long VolumeTrimTime(MemorySegment struct) {
+        return struct.get(VolumeTrimTime$LAYOUT, VolumeTrimTime$OFFSET);
     }
-    public static void VolumeTrimTime$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.VolumeTrimTime$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimTime
+     * }
+     */
+    public static void VolumeTrimTime(MemorySegment struct, long fieldValue) {
+        struct.set(VolumeTrimTime$LAYOUT, VolumeTrimTime$OFFSET, fieldValue);
     }
-    static final VarHandle VolumeTrimByteCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VolumeTrimByteCount"));
-    public static VarHandle VolumeTrimByteCount$VH() {
-        return _NTFS_STATISTICS_EX.VolumeTrimByteCount$VH;
+
+    private static final OfLong VolumeTrimByteCount$LAYOUT = (OfLong)$LAYOUT.select(groupElement("VolumeTrimByteCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimByteCount
+     * }
+     */
+    public static final OfLong VolumeTrimByteCount$layout() {
+        return VolumeTrimByteCount$LAYOUT;
     }
-    public static long VolumeTrimByteCount$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.VolumeTrimByteCount$VH.get(seg);
+
+    private static final long VolumeTrimByteCount$OFFSET = 424;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimByteCount
+     * }
+     */
+    public static final long VolumeTrimByteCount$offset() {
+        return VolumeTrimByteCount$OFFSET;
     }
-    public static void VolumeTrimByteCount$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.VolumeTrimByteCount$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimByteCount
+     * }
+     */
+    public static long VolumeTrimByteCount(MemorySegment struct) {
+        return struct.get(VolumeTrimByteCount$LAYOUT, VolumeTrimByteCount$OFFSET);
     }
-    public static long VolumeTrimByteCount$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.VolumeTrimByteCount$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimByteCount
+     * }
+     */
+    public static void VolumeTrimByteCount(MemorySegment struct, long fieldValue) {
+        struct.set(VolumeTrimByteCount$LAYOUT, VolumeTrimByteCount$OFFSET, fieldValue);
     }
-    public static void VolumeTrimByteCount$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.VolumeTrimByteCount$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfLong FileLevelTrimCount$LAYOUT = (OfLong)$LAYOUT.select(groupElement("FileLevelTrimCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG FileLevelTrimCount
+     * }
+     */
+    public static final OfLong FileLevelTrimCount$layout() {
+        return FileLevelTrimCount$LAYOUT;
     }
-    static final VarHandle FileLevelTrimCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FileLevelTrimCount"));
-    public static VarHandle FileLevelTrimCount$VH() {
-        return _NTFS_STATISTICS_EX.FileLevelTrimCount$VH;
+
+    private static final long FileLevelTrimCount$OFFSET = 432;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG FileLevelTrimCount
+     * }
+     */
+    public static final long FileLevelTrimCount$offset() {
+        return FileLevelTrimCount$OFFSET;
     }
-    public static long FileLevelTrimCount$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.FileLevelTrimCount$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG FileLevelTrimCount
+     * }
+     */
+    public static long FileLevelTrimCount(MemorySegment struct) {
+        return struct.get(FileLevelTrimCount$LAYOUT, FileLevelTrimCount$OFFSET);
     }
-    public static void FileLevelTrimCount$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.FileLevelTrimCount$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG FileLevelTrimCount
+     * }
+     */
+    public static void FileLevelTrimCount(MemorySegment struct, long fieldValue) {
+        struct.set(FileLevelTrimCount$LAYOUT, FileLevelTrimCount$OFFSET, fieldValue);
     }
-    public static long FileLevelTrimCount$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.FileLevelTrimCount$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfLong FileLevelTrimTime$LAYOUT = (OfLong)$LAYOUT.select(groupElement("FileLevelTrimTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG FileLevelTrimTime
+     * }
+     */
+    public static final OfLong FileLevelTrimTime$layout() {
+        return FileLevelTrimTime$LAYOUT;
     }
-    public static void FileLevelTrimCount$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.FileLevelTrimCount$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long FileLevelTrimTime$OFFSET = 440;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG FileLevelTrimTime
+     * }
+     */
+    public static final long FileLevelTrimTime$offset() {
+        return FileLevelTrimTime$OFFSET;
     }
-    static final VarHandle FileLevelTrimTime$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FileLevelTrimTime"));
-    public static VarHandle FileLevelTrimTime$VH() {
-        return _NTFS_STATISTICS_EX.FileLevelTrimTime$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG FileLevelTrimTime
+     * }
+     */
+    public static long FileLevelTrimTime(MemorySegment struct) {
+        return struct.get(FileLevelTrimTime$LAYOUT, FileLevelTrimTime$OFFSET);
     }
-    public static long FileLevelTrimTime$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.FileLevelTrimTime$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG FileLevelTrimTime
+     * }
+     */
+    public static void FileLevelTrimTime(MemorySegment struct, long fieldValue) {
+        struct.set(FileLevelTrimTime$LAYOUT, FileLevelTrimTime$OFFSET, fieldValue);
     }
-    public static void FileLevelTrimTime$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.FileLevelTrimTime$VH.set(seg, x);
+
+    private static final OfLong FileLevelTrimByteCount$LAYOUT = (OfLong)$LAYOUT.select(groupElement("FileLevelTrimByteCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG FileLevelTrimByteCount
+     * }
+     */
+    public static final OfLong FileLevelTrimByteCount$layout() {
+        return FileLevelTrimByteCount$LAYOUT;
     }
-    public static long FileLevelTrimTime$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.FileLevelTrimTime$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long FileLevelTrimByteCount$OFFSET = 448;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG FileLevelTrimByteCount
+     * }
+     */
+    public static final long FileLevelTrimByteCount$offset() {
+        return FileLevelTrimByteCount$OFFSET;
     }
-    public static void FileLevelTrimTime$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.FileLevelTrimTime$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG FileLevelTrimByteCount
+     * }
+     */
+    public static long FileLevelTrimByteCount(MemorySegment struct) {
+        return struct.get(FileLevelTrimByteCount$LAYOUT, FileLevelTrimByteCount$OFFSET);
     }
-    static final VarHandle FileLevelTrimByteCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FileLevelTrimByteCount"));
-    public static VarHandle FileLevelTrimByteCount$VH() {
-        return _NTFS_STATISTICS_EX.FileLevelTrimByteCount$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG FileLevelTrimByteCount
+     * }
+     */
+    public static void FileLevelTrimByteCount(MemorySegment struct, long fieldValue) {
+        struct.set(FileLevelTrimByteCount$LAYOUT, FileLevelTrimByteCount$OFFSET, fieldValue);
     }
-    public static long FileLevelTrimByteCount$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.FileLevelTrimByteCount$VH.get(seg);
+
+    private static final OfLong VolumeTrimSkippedCount$LAYOUT = (OfLong)$LAYOUT.select(groupElement("VolumeTrimSkippedCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimSkippedCount
+     * }
+     */
+    public static final OfLong VolumeTrimSkippedCount$layout() {
+        return VolumeTrimSkippedCount$LAYOUT;
     }
-    public static void FileLevelTrimByteCount$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.FileLevelTrimByteCount$VH.set(seg, x);
+
+    private static final long VolumeTrimSkippedCount$OFFSET = 456;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimSkippedCount
+     * }
+     */
+    public static final long VolumeTrimSkippedCount$offset() {
+        return VolumeTrimSkippedCount$OFFSET;
     }
-    public static long FileLevelTrimByteCount$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.FileLevelTrimByteCount$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimSkippedCount
+     * }
+     */
+    public static long VolumeTrimSkippedCount(MemorySegment struct) {
+        return struct.get(VolumeTrimSkippedCount$LAYOUT, VolumeTrimSkippedCount$OFFSET);
     }
-    public static void FileLevelTrimByteCount$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.FileLevelTrimByteCount$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimSkippedCount
+     * }
+     */
+    public static void VolumeTrimSkippedCount(MemorySegment struct, long fieldValue) {
+        struct.set(VolumeTrimSkippedCount$LAYOUT, VolumeTrimSkippedCount$OFFSET, fieldValue);
     }
-    static final VarHandle VolumeTrimSkippedCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VolumeTrimSkippedCount"));
-    public static VarHandle VolumeTrimSkippedCount$VH() {
-        return _NTFS_STATISTICS_EX.VolumeTrimSkippedCount$VH;
+
+    private static final OfLong VolumeTrimSkippedByteCount$LAYOUT = (OfLong)$LAYOUT.select(groupElement("VolumeTrimSkippedByteCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimSkippedByteCount
+     * }
+     */
+    public static final OfLong VolumeTrimSkippedByteCount$layout() {
+        return VolumeTrimSkippedByteCount$LAYOUT;
     }
-    public static long VolumeTrimSkippedCount$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.VolumeTrimSkippedCount$VH.get(seg);
+
+    private static final long VolumeTrimSkippedByteCount$OFFSET = 464;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimSkippedByteCount
+     * }
+     */
+    public static final long VolumeTrimSkippedByteCount$offset() {
+        return VolumeTrimSkippedByteCount$OFFSET;
     }
-    public static void VolumeTrimSkippedCount$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.VolumeTrimSkippedCount$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimSkippedByteCount
+     * }
+     */
+    public static long VolumeTrimSkippedByteCount(MemorySegment struct) {
+        return struct.get(VolumeTrimSkippedByteCount$LAYOUT, VolumeTrimSkippedByteCount$OFFSET);
     }
-    public static long VolumeTrimSkippedCount$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.VolumeTrimSkippedCount$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG VolumeTrimSkippedByteCount
+     * }
+     */
+    public static void VolumeTrimSkippedByteCount(MemorySegment struct, long fieldValue) {
+        struct.set(VolumeTrimSkippedByteCount$LAYOUT, VolumeTrimSkippedByteCount$OFFSET, fieldValue);
     }
-    public static void VolumeTrimSkippedCount$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.VolumeTrimSkippedCount$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfLong NtfsFillStatInfoFromMftRecordCalledCount$LAYOUT = (OfLong)$LAYOUT.select(groupElement("NtfsFillStatInfoFromMftRecordCalledCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG NtfsFillStatInfoFromMftRecordCalledCount
+     * }
+     */
+    public static final OfLong NtfsFillStatInfoFromMftRecordCalledCount$layout() {
+        return NtfsFillStatInfoFromMftRecordCalledCount$LAYOUT;
     }
-    static final VarHandle VolumeTrimSkippedByteCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VolumeTrimSkippedByteCount"));
-    public static VarHandle VolumeTrimSkippedByteCount$VH() {
-        return _NTFS_STATISTICS_EX.VolumeTrimSkippedByteCount$VH;
+
+    private static final long NtfsFillStatInfoFromMftRecordCalledCount$OFFSET = 472;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG NtfsFillStatInfoFromMftRecordCalledCount
+     * }
+     */
+    public static final long NtfsFillStatInfoFromMftRecordCalledCount$offset() {
+        return NtfsFillStatInfoFromMftRecordCalledCount$OFFSET;
     }
-    public static long VolumeTrimSkippedByteCount$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.VolumeTrimSkippedByteCount$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG NtfsFillStatInfoFromMftRecordCalledCount
+     * }
+     */
+    public static long NtfsFillStatInfoFromMftRecordCalledCount(MemorySegment struct) {
+        return struct.get(NtfsFillStatInfoFromMftRecordCalledCount$LAYOUT, NtfsFillStatInfoFromMftRecordCalledCount$OFFSET);
     }
-    public static void VolumeTrimSkippedByteCount$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.VolumeTrimSkippedByteCount$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG NtfsFillStatInfoFromMftRecordCalledCount
+     * }
+     */
+    public static void NtfsFillStatInfoFromMftRecordCalledCount(MemorySegment struct, long fieldValue) {
+        struct.set(NtfsFillStatInfoFromMftRecordCalledCount$LAYOUT, NtfsFillStatInfoFromMftRecordCalledCount$OFFSET, fieldValue);
     }
-    public static long VolumeTrimSkippedByteCount$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.VolumeTrimSkippedByteCount$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfLong NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$LAYOUT = (OfLong)$LAYOUT.select(groupElement("NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount
+     * }
+     */
+    public static final OfLong NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$layout() {
+        return NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$LAYOUT;
     }
-    public static void VolumeTrimSkippedByteCount$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.VolumeTrimSkippedByteCount$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$OFFSET = 480;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount
+     * }
+     */
+    public static final long NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$offset() {
+        return NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$OFFSET;
     }
-    static final VarHandle NtfsFillStatInfoFromMftRecordCalledCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NtfsFillStatInfoFromMftRecordCalledCount"));
-    public static VarHandle NtfsFillStatInfoFromMftRecordCalledCount$VH() {
-        return _NTFS_STATISTICS_EX.NtfsFillStatInfoFromMftRecordCalledCount$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount
+     * }
+     */
+    public static long NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount(MemorySegment struct) {
+        return struct.get(NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$LAYOUT, NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$OFFSET);
     }
-    public static long NtfsFillStatInfoFromMftRecordCalledCount$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.NtfsFillStatInfoFromMftRecordCalledCount$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount
+     * }
+     */
+    public static void NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount(MemorySegment struct, long fieldValue) {
+        struct.set(NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$LAYOUT, NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$OFFSET, fieldValue);
     }
-    public static void NtfsFillStatInfoFromMftRecordCalledCount$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.NtfsFillStatInfoFromMftRecordCalledCount$VH.set(seg, x);
+
+    private static final OfLong NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$LAYOUT = (OfLong)$LAYOUT.select(groupElement("NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount
+     * }
+     */
+    public static final OfLong NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$layout() {
+        return NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$LAYOUT;
     }
-    public static long NtfsFillStatInfoFromMftRecordCalledCount$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.NtfsFillStatInfoFromMftRecordCalledCount$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$OFFSET = 488;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount
+     * }
+     */
+    public static final long NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$offset() {
+        return NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$OFFSET;
     }
-    public static void NtfsFillStatInfoFromMftRecordCalledCount$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.NtfsFillStatInfoFromMftRecordCalledCount$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount
+     * }
+     */
+    public static long NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount(MemorySegment struct) {
+        return struct.get(NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$LAYOUT, NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$OFFSET);
     }
-    static final VarHandle NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount"));
-    public static VarHandle NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$VH() {
-        return _NTFS_STATISTICS_EX.NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount
+     * }
+     */
+    public static void NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount(MemorySegment struct, long fieldValue) {
+        struct.set(NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$LAYOUT, NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$OFFSET, fieldValue);
     }
-    public static long NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$VH.get(seg);
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
     }
-    public static void NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$VH.set(seg, x);
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
     }
-    public static long NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
     }
-    public static void NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
     }
-    static final VarHandle NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount"));
-    public static VarHandle NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$VH() {
-        return _NTFS_STATISTICS_EX.NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$VH;
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
     }
-    public static long NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$get(MemorySegment seg) {
-        return (long)_NTFS_STATISTICS_EX.NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$VH.get(seg);
-    }
-    public static void NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$set( MemorySegment seg, long x) {
-        _NTFS_STATISTICS_EX.NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$VH.set(seg, x);
-    }
-    public static long NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$get(MemorySegment seg, long index) {
-        return (long)_NTFS_STATISTICS_EX.NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$set(MemorySegment seg, long index, long x) {
-        _NTFS_STATISTICS_EX.NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
-
 

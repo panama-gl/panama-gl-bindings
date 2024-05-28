@@ -2,153 +2,577 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     USN_RECORD_COMMON_HEADER Header;
+ *     FILE_ID_128 FileReferenceNumber;
+ *     FILE_ID_128 ParentFileReferenceNumber;
+ *     USN Usn;
+ *     DWORD Reason;
+ *     DWORD SourceInfo;
+ *     DWORD RemainingExtents;
+ *     WORD NumberOfExtents;
+ *     WORD ExtentSize;
+ *     USN_RECORD_EXTENT Extents[1];
+ * }
+ * }
+ */
 public class USN_RECORD_V4 {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("RecordLength"),
-            Constants$root.C_SHORT$LAYOUT.withName("MajorVersion"),
-            Constants$root.C_SHORT$LAYOUT.withName("MinorVersion")
-        ).withName("Header"),
-        MemoryLayout.structLayout(
-            MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("Identifier")
-        ).withName("FileReferenceNumber"),
-        MemoryLayout.structLayout(
-            MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("Identifier")
-        ).withName("ParentFileReferenceNumber"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Usn"),
-        Constants$root.C_LONG$LAYOUT.withName("Reason"),
-        Constants$root.C_LONG$LAYOUT.withName("SourceInfo"),
-        Constants$root.C_LONG$LAYOUT.withName("RemainingExtents"),
-        Constants$root.C_SHORT$LAYOUT.withName("NumberOfExtents"),
-        Constants$root.C_SHORT$LAYOUT.withName("ExtentSize"),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Offset"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Length")
-        )).withName("Extents")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return USN_RECORD_V4.$struct$LAYOUT;
+    USN_RECORD_V4() {
+        // Should not be called directly
     }
-    public static MemorySegment Header$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    public static MemorySegment FileReferenceNumber$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment ParentFileReferenceNumber$slice(MemorySegment seg) {
-        return seg.asSlice(24, 16);
-    }
-    static final VarHandle Usn$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Usn"));
-    public static VarHandle Usn$VH() {
-        return USN_RECORD_V4.Usn$VH;
-    }
-    public static long Usn$get(MemorySegment seg) {
-        return (long)USN_RECORD_V4.Usn$VH.get(seg);
-    }
-    public static void Usn$set( MemorySegment seg, long x) {
-        USN_RECORD_V4.Usn$VH.set(seg, x);
-    }
-    public static long Usn$get(MemorySegment seg, long index) {
-        return (long)USN_RECORD_V4.Usn$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Usn$set(MemorySegment seg, long index, long x) {
-        USN_RECORD_V4.Usn$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reason$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reason"));
-    public static VarHandle Reason$VH() {
-        return USN_RECORD_V4.Reason$VH;
-    }
-    public static int Reason$get(MemorySegment seg) {
-        return (int)USN_RECORD_V4.Reason$VH.get(seg);
-    }
-    public static void Reason$set( MemorySegment seg, int x) {
-        USN_RECORD_V4.Reason$VH.set(seg, x);
-    }
-    public static int Reason$get(MemorySegment seg, long index) {
-        return (int)USN_RECORD_V4.Reason$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reason$set(MemorySegment seg, long index, int x) {
-        USN_RECORD_V4.Reason$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SourceInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SourceInfo"));
-    public static VarHandle SourceInfo$VH() {
-        return USN_RECORD_V4.SourceInfo$VH;
-    }
-    public static int SourceInfo$get(MemorySegment seg) {
-        return (int)USN_RECORD_V4.SourceInfo$VH.get(seg);
-    }
-    public static void SourceInfo$set( MemorySegment seg, int x) {
-        USN_RECORD_V4.SourceInfo$VH.set(seg, x);
-    }
-    public static int SourceInfo$get(MemorySegment seg, long index) {
-        return (int)USN_RECORD_V4.SourceInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SourceInfo$set(MemorySegment seg, long index, int x) {
-        USN_RECORD_V4.SourceInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RemainingExtents$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RemainingExtents"));
-    public static VarHandle RemainingExtents$VH() {
-        return USN_RECORD_V4.RemainingExtents$VH;
-    }
-    public static int RemainingExtents$get(MemorySegment seg) {
-        return (int)USN_RECORD_V4.RemainingExtents$VH.get(seg);
-    }
-    public static void RemainingExtents$set( MemorySegment seg, int x) {
-        USN_RECORD_V4.RemainingExtents$VH.set(seg, x);
-    }
-    public static int RemainingExtents$get(MemorySegment seg, long index) {
-        return (int)USN_RECORD_V4.RemainingExtents$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RemainingExtents$set(MemorySegment seg, long index, int x) {
-        USN_RECORD_V4.RemainingExtents$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberOfExtents$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfExtents"));
-    public static VarHandle NumberOfExtents$VH() {
-        return USN_RECORD_V4.NumberOfExtents$VH;
-    }
-    public static short NumberOfExtents$get(MemorySegment seg) {
-        return (short)USN_RECORD_V4.NumberOfExtents$VH.get(seg);
-    }
-    public static void NumberOfExtents$set( MemorySegment seg, short x) {
-        USN_RECORD_V4.NumberOfExtents$VH.set(seg, x);
-    }
-    public static short NumberOfExtents$get(MemorySegment seg, long index) {
-        return (short)USN_RECORD_V4.NumberOfExtents$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfExtents$set(MemorySegment seg, long index, short x) {
-        USN_RECORD_V4.NumberOfExtents$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ExtentSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ExtentSize"));
-    public static VarHandle ExtentSize$VH() {
-        return USN_RECORD_V4.ExtentSize$VH;
-    }
-    public static short ExtentSize$get(MemorySegment seg) {
-        return (short)USN_RECORD_V4.ExtentSize$VH.get(seg);
-    }
-    public static void ExtentSize$set( MemorySegment seg, short x) {
-        USN_RECORD_V4.ExtentSize$VH.set(seg, x);
-    }
-    public static short ExtentSize$get(MemorySegment seg, long index) {
-        return (short)USN_RECORD_V4.ExtentSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ExtentSize$set(MemorySegment seg, long index, short x) {
-        USN_RECORD_V4.ExtentSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Extents$slice(MemorySegment seg) {
-        return seg.asSlice(64, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        USN_RECORD_COMMON_HEADER.layout().withName("Header"),
+        _FILE_ID_128.layout().withName("FileReferenceNumber"),
+        _FILE_ID_128.layout().withName("ParentFileReferenceNumber"),
+        wgl_h.C_LONG_LONG.withName("Usn"),
+        wgl_h.C_LONG.withName("Reason"),
+        wgl_h.C_LONG.withName("SourceInfo"),
+        wgl_h.C_LONG.withName("RemainingExtents"),
+        wgl_h.C_SHORT.withName("NumberOfExtents"),
+        wgl_h.C_SHORT.withName("ExtentSize"),
+        MemoryLayout.sequenceLayout(1, USN_RECORD_EXTENT.layout()).withName("Extents")
+    ).withName("$anon$10908:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout Header$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Header"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USN_RECORD_COMMON_HEADER Header
+     * }
+     */
+    public static final GroupLayout Header$layout() {
+        return Header$LAYOUT;
+    }
+
+    private static final long Header$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USN_RECORD_COMMON_HEADER Header
+     * }
+     */
+    public static final long Header$offset() {
+        return Header$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USN_RECORD_COMMON_HEADER Header
+     * }
+     */
+    public static MemorySegment Header(MemorySegment struct) {
+        return struct.asSlice(Header$OFFSET, Header$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USN_RECORD_COMMON_HEADER Header
+     * }
+     */
+    public static void Header(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Header$OFFSET, Header$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout FileReferenceNumber$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("FileReferenceNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FILE_ID_128 FileReferenceNumber
+     * }
+     */
+    public static final GroupLayout FileReferenceNumber$layout() {
+        return FileReferenceNumber$LAYOUT;
+    }
+
+    private static final long FileReferenceNumber$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FILE_ID_128 FileReferenceNumber
+     * }
+     */
+    public static final long FileReferenceNumber$offset() {
+        return FileReferenceNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FILE_ID_128 FileReferenceNumber
+     * }
+     */
+    public static MemorySegment FileReferenceNumber(MemorySegment struct) {
+        return struct.asSlice(FileReferenceNumber$OFFSET, FileReferenceNumber$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FILE_ID_128 FileReferenceNumber
+     * }
+     */
+    public static void FileReferenceNumber(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, FileReferenceNumber$OFFSET, FileReferenceNumber$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout ParentFileReferenceNumber$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ParentFileReferenceNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FILE_ID_128 ParentFileReferenceNumber
+     * }
+     */
+    public static final GroupLayout ParentFileReferenceNumber$layout() {
+        return ParentFileReferenceNumber$LAYOUT;
+    }
+
+    private static final long ParentFileReferenceNumber$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FILE_ID_128 ParentFileReferenceNumber
+     * }
+     */
+    public static final long ParentFileReferenceNumber$offset() {
+        return ParentFileReferenceNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FILE_ID_128 ParentFileReferenceNumber
+     * }
+     */
+    public static MemorySegment ParentFileReferenceNumber(MemorySegment struct) {
+        return struct.asSlice(ParentFileReferenceNumber$OFFSET, ParentFileReferenceNumber$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FILE_ID_128 ParentFileReferenceNumber
+     * }
+     */
+    public static void ParentFileReferenceNumber(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ParentFileReferenceNumber$OFFSET, ParentFileReferenceNumber$LAYOUT.byteSize());
+    }
+
+    private static final OfLong Usn$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Usn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USN Usn
+     * }
+     */
+    public static final OfLong Usn$layout() {
+        return Usn$LAYOUT;
+    }
+
+    private static final long Usn$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USN Usn
+     * }
+     */
+    public static final long Usn$offset() {
+        return Usn$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USN Usn
+     * }
+     */
+    public static long Usn(MemorySegment struct) {
+        return struct.get(Usn$LAYOUT, Usn$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USN Usn
+     * }
+     */
+    public static void Usn(MemorySegment struct, long fieldValue) {
+        struct.set(Usn$LAYOUT, Usn$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Reason$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reason"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reason
+     * }
+     */
+    public static final OfInt Reason$layout() {
+        return Reason$LAYOUT;
+    }
+
+    private static final long Reason$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reason
+     * }
+     */
+    public static final long Reason$offset() {
+        return Reason$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reason
+     * }
+     */
+    public static int Reason(MemorySegment struct) {
+        return struct.get(Reason$LAYOUT, Reason$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reason
+     * }
+     */
+    public static void Reason(MemorySegment struct, int fieldValue) {
+        struct.set(Reason$LAYOUT, Reason$OFFSET, fieldValue);
+    }
+
+    private static final OfInt SourceInfo$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SourceInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SourceInfo
+     * }
+     */
+    public static final OfInt SourceInfo$layout() {
+        return SourceInfo$LAYOUT;
+    }
+
+    private static final long SourceInfo$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SourceInfo
+     * }
+     */
+    public static final long SourceInfo$offset() {
+        return SourceInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SourceInfo
+     * }
+     */
+    public static int SourceInfo(MemorySegment struct) {
+        return struct.get(SourceInfo$LAYOUT, SourceInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SourceInfo
+     * }
+     */
+    public static void SourceInfo(MemorySegment struct, int fieldValue) {
+        struct.set(SourceInfo$LAYOUT, SourceInfo$OFFSET, fieldValue);
+    }
+
+    private static final OfInt RemainingExtents$LAYOUT = (OfInt)$LAYOUT.select(groupElement("RemainingExtents"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD RemainingExtents
+     * }
+     */
+    public static final OfInt RemainingExtents$layout() {
+        return RemainingExtents$LAYOUT;
+    }
+
+    private static final long RemainingExtents$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD RemainingExtents
+     * }
+     */
+    public static final long RemainingExtents$offset() {
+        return RemainingExtents$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD RemainingExtents
+     * }
+     */
+    public static int RemainingExtents(MemorySegment struct) {
+        return struct.get(RemainingExtents$LAYOUT, RemainingExtents$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD RemainingExtents
+     * }
+     */
+    public static void RemainingExtents(MemorySegment struct, int fieldValue) {
+        struct.set(RemainingExtents$LAYOUT, RemainingExtents$OFFSET, fieldValue);
+    }
+
+    private static final OfShort NumberOfExtents$LAYOUT = (OfShort)$LAYOUT.select(groupElement("NumberOfExtents"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD NumberOfExtents
+     * }
+     */
+    public static final OfShort NumberOfExtents$layout() {
+        return NumberOfExtents$LAYOUT;
+    }
+
+    private static final long NumberOfExtents$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD NumberOfExtents
+     * }
+     */
+    public static final long NumberOfExtents$offset() {
+        return NumberOfExtents$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD NumberOfExtents
+     * }
+     */
+    public static short NumberOfExtents(MemorySegment struct) {
+        return struct.get(NumberOfExtents$LAYOUT, NumberOfExtents$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD NumberOfExtents
+     * }
+     */
+    public static void NumberOfExtents(MemorySegment struct, short fieldValue) {
+        struct.set(NumberOfExtents$LAYOUT, NumberOfExtents$OFFSET, fieldValue);
+    }
+
+    private static final OfShort ExtentSize$LAYOUT = (OfShort)$LAYOUT.select(groupElement("ExtentSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD ExtentSize
+     * }
+     */
+    public static final OfShort ExtentSize$layout() {
+        return ExtentSize$LAYOUT;
+    }
+
+    private static final long ExtentSize$OFFSET = 62;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD ExtentSize
+     * }
+     */
+    public static final long ExtentSize$offset() {
+        return ExtentSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD ExtentSize
+     * }
+     */
+    public static short ExtentSize(MemorySegment struct) {
+        return struct.get(ExtentSize$LAYOUT, ExtentSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD ExtentSize
+     * }
+     */
+    public static void ExtentSize(MemorySegment struct, short fieldValue) {
+        struct.set(ExtentSize$LAYOUT, ExtentSize$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Extents$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Extents"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USN_RECORD_EXTENT Extents[1]
+     * }
+     */
+    public static final SequenceLayout Extents$layout() {
+        return Extents$LAYOUT;
+    }
+
+    private static final long Extents$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USN_RECORD_EXTENT Extents[1]
+     * }
+     */
+    public static final long Extents$offset() {
+        return Extents$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USN_RECORD_EXTENT Extents[1]
+     * }
+     */
+    public static MemorySegment Extents(MemorySegment struct) {
+        return struct.asSlice(Extents$OFFSET, Extents$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USN_RECORD_EXTENT Extents[1]
+     * }
+     */
+    public static void Extents(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Extents$OFFSET, Extents$LAYOUT.byteSize());
+    }
+
+    private static long[] Extents$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * USN_RECORD_EXTENT Extents[1]
+     * }
+     */
+    public static long[] Extents$dimensions() {
+        return Extents$DIMS;
+    }
+    private static final MethodHandle Extents$ELEM_HANDLE = Extents$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * USN_RECORD_EXTENT Extents[1]
+     * }
+     */
+    public static MemorySegment Extents(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)Extents$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * USN_RECORD_EXTENT Extents[1]
+     * }
+     */
+    public static void Extents(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, Extents(struct, index0), 0L, USN_RECORD_EXTENT.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

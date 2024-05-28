@@ -2,13 +2,32 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _TRANSACTION_PROPERTIES_INFORMATION {
+ *     DWORD IsolationLevel;
+ *     DWORD IsolationFlags;
+ *     LARGE_INTEGER Timeout;
+ *     DWORD Outcome;
+ *     DWORD DescriptionLength;
+ *     WCHAR Description[1];
+ * } TRANSACTION_PROPERTIES_INFORMATION
+ * }
+ */
 public class TRANSACTION_PROPERTIES_INFORMATION extends _TRANSACTION_PROPERTIES_INFORMATION {
 
+    TRANSACTION_PROPERTIES_INFORMATION() {
+        // Should not be called directly
+    }
 }
-
 

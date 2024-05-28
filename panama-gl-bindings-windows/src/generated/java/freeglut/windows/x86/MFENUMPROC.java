@@ -2,27 +2,71 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface MFENUMPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemoryAddress hdc, java.lang.foreign.MemoryAddress lpht, java.lang.foreign.MemoryAddress lpMR, int nObj, long param);
-    static MemorySegment allocate(MFENUMPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(MFENUMPROC.class, fi, constants$385.MFENUMPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef int (*MFENUMPROC)(HDC, HANDLETABLE *, METARECORD *, int, LPARAM) __attribute__((stdcall))
+ * }
+ */
+public class MFENUMPROC {
+
+    MFENUMPROC() {
+        // Should not be called directly
     }
-    static MFENUMPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _hdc, java.lang.foreign.MemoryAddress _lpht, java.lang.foreign.MemoryAddress _lpMR, int _nObj, long _param) -> {
-            try {
-                return (int)constants$385.MFENUMPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_hdc, (java.lang.foreign.Addressable)_lpht, (java.lang.foreign.Addressable)_lpMR, _nObj, _param);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment hdc, MemorySegment lpht, MemorySegment lpMR, int nObj, long param);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        freeglut_h.C_INT,
+        freeglut_h.C_POINTER,
+        freeglut_h.C_POINTER,
+        freeglut_h.C_POINTER,
+        freeglut_h.C_INT,
+        freeglut_h.C_LONG_LONG
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = freeglut_h.upcallHandle(MFENUMPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(MFENUMPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment hdc, MemorySegment lpht, MemorySegment lpMR, int nObj, long param) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, hdc, lpht, lpMR, nObj, param);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

@@ -2,13 +2,35 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CMC_STATUS_INFO {
+ *     DWORD dwStatus;
+ *     DWORD cBodyList;
+ *     DWORD *rgdwBodyList;
+ *     LPWSTR pwszStatusString;
+ *     DWORD dwOtherInfoChoice;
+ *     union {
+ *         DWORD dwFailInfo;
+ *         PCMC_PEND_INFO pPendInfo;
+ *     };
+ * } CMC_STATUS_INFO
+ * }
+ */
 public class CMC_STATUS_INFO extends _CMC_STATUS_INFO {
 
+    CMC_STATUS_INFO() {
+        // Should not be called directly
+    }
 }
-
 

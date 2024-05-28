@@ -2,286 +2,849 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _MMIOINFO {
+ *     DWORD dwFlags;
+ *     FOURCC fccIOProc;
+ *     LPMMIOPROC pIOProc;
+ *     UINT wErrorRet;
+ *     HTASK htask;
+ *     LONG cchBuffer;
+ *     HPSTR pchBuffer;
+ *     HPSTR pchNext;
+ *     HPSTR pchEndRead;
+ *     HPSTR pchEndWrite;
+ *     LONG lBufOffset;
+ *     LONG lDiskOffset;
+ *     DWORD adwInfo[3];
+ *     DWORD dwReserved1;
+ *     DWORD dwReserved2;
+ *     HMMIO hmmio;
+ * }
+ * }
+ */
 public class _MMIOINFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("fccIOProc"),
-        Constants$root.C_POINTER$LAYOUT.withName("pIOProc"),
-        Constants$root.C_LONG$LAYOUT.withName("wErrorRet"),
-        Constants$root.C_POINTER$LAYOUT.withName("htask"),
-        Constants$root.C_LONG$LAYOUT.withName("cchBuffer"),
-        Constants$root.C_POINTER$LAYOUT.withName("pchBuffer"),
-        Constants$root.C_POINTER$LAYOUT.withName("pchNext"),
-        Constants$root.C_POINTER$LAYOUT.withName("pchEndRead"),
-        Constants$root.C_POINTER$LAYOUT.withName("pchEndWrite"),
-        Constants$root.C_LONG$LAYOUT.withName("lBufOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("lDiskOffset"),
-        MemoryLayout.sequenceLayout(3, Constants$root.C_LONG$LAYOUT).withName("adwInfo"),
-        Constants$root.C_LONG$LAYOUT.withName("dwReserved1"),
-        Constants$root.C_LONG$LAYOUT.withName("dwReserved2"),
-        Constants$root.C_POINTER$LAYOUT.withName("hmmio")
-    ).withName("_MMIOINFO");
-    public static MemoryLayout $LAYOUT() {
-        return _MMIOINFO.$struct$LAYOUT;
+    _MMIOINFO() {
+        // Should not be called directly
     }
-    static final VarHandle dwFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFlags"));
-    public static VarHandle dwFlags$VH() {
-        return _MMIOINFO.dwFlags$VH;
-    }
-    public static int dwFlags$get(MemorySegment seg) {
-        return (int)_MMIOINFO.dwFlags$VH.get(seg);
-    }
-    public static void dwFlags$set( MemorySegment seg, int x) {
-        _MMIOINFO.dwFlags$VH.set(seg, x);
-    }
-    public static int dwFlags$get(MemorySegment seg, long index) {
-        return (int)_MMIOINFO.dwFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFlags$set(MemorySegment seg, long index, int x) {
-        _MMIOINFO.dwFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fccIOProc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fccIOProc"));
-    public static VarHandle fccIOProc$VH() {
-        return _MMIOINFO.fccIOProc$VH;
-    }
-    public static int fccIOProc$get(MemorySegment seg) {
-        return (int)_MMIOINFO.fccIOProc$VH.get(seg);
-    }
-    public static void fccIOProc$set( MemorySegment seg, int x) {
-        _MMIOINFO.fccIOProc$VH.set(seg, x);
-    }
-    public static int fccIOProc$get(MemorySegment seg, long index) {
-        return (int)_MMIOINFO.fccIOProc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fccIOProc$set(MemorySegment seg, long index, int x) {
-        _MMIOINFO.fccIOProc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pIOProc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pIOProc"));
-    public static VarHandle pIOProc$VH() {
-        return _MMIOINFO.pIOProc$VH;
-    }
-    public static MemoryAddress pIOProc$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MMIOINFO.pIOProc$VH.get(seg);
-    }
-    public static void pIOProc$set( MemorySegment seg, MemoryAddress x) {
-        _MMIOINFO.pIOProc$VH.set(seg, x);
-    }
-    public static MemoryAddress pIOProc$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MMIOINFO.pIOProc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pIOProc$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MMIOINFO.pIOProc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static LPMMIOPROC pIOProc (MemorySegment segment, MemorySession session) {
-        return LPMMIOPROC.ofAddress(pIOProc$get(segment), session);
-    }
-    static final VarHandle wErrorRet$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wErrorRet"));
-    public static VarHandle wErrorRet$VH() {
-        return _MMIOINFO.wErrorRet$VH;
-    }
-    public static int wErrorRet$get(MemorySegment seg) {
-        return (int)_MMIOINFO.wErrorRet$VH.get(seg);
-    }
-    public static void wErrorRet$set( MemorySegment seg, int x) {
-        _MMIOINFO.wErrorRet$VH.set(seg, x);
-    }
-    public static int wErrorRet$get(MemorySegment seg, long index) {
-        return (int)_MMIOINFO.wErrorRet$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wErrorRet$set(MemorySegment seg, long index, int x) {
-        _MMIOINFO.wErrorRet$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle htask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("htask"));
-    public static VarHandle htask$VH() {
-        return _MMIOINFO.htask$VH;
-    }
-    public static MemoryAddress htask$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MMIOINFO.htask$VH.get(seg);
-    }
-    public static void htask$set( MemorySegment seg, MemoryAddress x) {
-        _MMIOINFO.htask$VH.set(seg, x);
-    }
-    public static MemoryAddress htask$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MMIOINFO.htask$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void htask$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MMIOINFO.htask$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cchBuffer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cchBuffer"));
-    public static VarHandle cchBuffer$VH() {
-        return _MMIOINFO.cchBuffer$VH;
-    }
-    public static int cchBuffer$get(MemorySegment seg) {
-        return (int)_MMIOINFO.cchBuffer$VH.get(seg);
-    }
-    public static void cchBuffer$set( MemorySegment seg, int x) {
-        _MMIOINFO.cchBuffer$VH.set(seg, x);
-    }
-    public static int cchBuffer$get(MemorySegment seg, long index) {
-        return (int)_MMIOINFO.cchBuffer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cchBuffer$set(MemorySegment seg, long index, int x) {
-        _MMIOINFO.cchBuffer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pchBuffer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pchBuffer"));
-    public static VarHandle pchBuffer$VH() {
-        return _MMIOINFO.pchBuffer$VH;
-    }
-    public static MemoryAddress pchBuffer$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MMIOINFO.pchBuffer$VH.get(seg);
-    }
-    public static void pchBuffer$set( MemorySegment seg, MemoryAddress x) {
-        _MMIOINFO.pchBuffer$VH.set(seg, x);
-    }
-    public static MemoryAddress pchBuffer$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MMIOINFO.pchBuffer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pchBuffer$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MMIOINFO.pchBuffer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pchNext$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pchNext"));
-    public static VarHandle pchNext$VH() {
-        return _MMIOINFO.pchNext$VH;
-    }
-    public static MemoryAddress pchNext$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MMIOINFO.pchNext$VH.get(seg);
-    }
-    public static void pchNext$set( MemorySegment seg, MemoryAddress x) {
-        _MMIOINFO.pchNext$VH.set(seg, x);
-    }
-    public static MemoryAddress pchNext$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MMIOINFO.pchNext$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pchNext$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MMIOINFO.pchNext$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pchEndRead$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pchEndRead"));
-    public static VarHandle pchEndRead$VH() {
-        return _MMIOINFO.pchEndRead$VH;
-    }
-    public static MemoryAddress pchEndRead$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MMIOINFO.pchEndRead$VH.get(seg);
-    }
-    public static void pchEndRead$set( MemorySegment seg, MemoryAddress x) {
-        _MMIOINFO.pchEndRead$VH.set(seg, x);
-    }
-    public static MemoryAddress pchEndRead$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MMIOINFO.pchEndRead$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pchEndRead$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MMIOINFO.pchEndRead$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pchEndWrite$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pchEndWrite"));
-    public static VarHandle pchEndWrite$VH() {
-        return _MMIOINFO.pchEndWrite$VH;
-    }
-    public static MemoryAddress pchEndWrite$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MMIOINFO.pchEndWrite$VH.get(seg);
-    }
-    public static void pchEndWrite$set( MemorySegment seg, MemoryAddress x) {
-        _MMIOINFO.pchEndWrite$VH.set(seg, x);
-    }
-    public static MemoryAddress pchEndWrite$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MMIOINFO.pchEndWrite$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pchEndWrite$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MMIOINFO.pchEndWrite$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lBufOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lBufOffset"));
-    public static VarHandle lBufOffset$VH() {
-        return _MMIOINFO.lBufOffset$VH;
-    }
-    public static int lBufOffset$get(MemorySegment seg) {
-        return (int)_MMIOINFO.lBufOffset$VH.get(seg);
-    }
-    public static void lBufOffset$set( MemorySegment seg, int x) {
-        _MMIOINFO.lBufOffset$VH.set(seg, x);
-    }
-    public static int lBufOffset$get(MemorySegment seg, long index) {
-        return (int)_MMIOINFO.lBufOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lBufOffset$set(MemorySegment seg, long index, int x) {
-        _MMIOINFO.lBufOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lDiskOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lDiskOffset"));
-    public static VarHandle lDiskOffset$VH() {
-        return _MMIOINFO.lDiskOffset$VH;
-    }
-    public static int lDiskOffset$get(MemorySegment seg) {
-        return (int)_MMIOINFO.lDiskOffset$VH.get(seg);
-    }
-    public static void lDiskOffset$set( MemorySegment seg, int x) {
-        _MMIOINFO.lDiskOffset$VH.set(seg, x);
-    }
-    public static int lDiskOffset$get(MemorySegment seg, long index) {
-        return (int)_MMIOINFO.lDiskOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lDiskOffset$set(MemorySegment seg, long index, int x) {
-        _MMIOINFO.lDiskOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment adwInfo$slice(MemorySegment seg) {
-        return seg.asSlice(72, 12);
-    }
-    static final VarHandle dwReserved1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwReserved1"));
-    public static VarHandle dwReserved1$VH() {
-        return _MMIOINFO.dwReserved1$VH;
-    }
-    public static int dwReserved1$get(MemorySegment seg) {
-        return (int)_MMIOINFO.dwReserved1$VH.get(seg);
-    }
-    public static void dwReserved1$set( MemorySegment seg, int x) {
-        _MMIOINFO.dwReserved1$VH.set(seg, x);
-    }
-    public static int dwReserved1$get(MemorySegment seg, long index) {
-        return (int)_MMIOINFO.dwReserved1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwReserved1$set(MemorySegment seg, long index, int x) {
-        _MMIOINFO.dwReserved1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwReserved2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwReserved2"));
-    public static VarHandle dwReserved2$VH() {
-        return _MMIOINFO.dwReserved2$VH;
-    }
-    public static int dwReserved2$get(MemorySegment seg) {
-        return (int)_MMIOINFO.dwReserved2$VH.get(seg);
-    }
-    public static void dwReserved2$set( MemorySegment seg, int x) {
-        _MMIOINFO.dwReserved2$VH.set(seg, x);
-    }
-    public static int dwReserved2$get(MemorySegment seg, long index) {
-        return (int)_MMIOINFO.dwReserved2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwReserved2$set(MemorySegment seg, long index, int x) {
-        _MMIOINFO.dwReserved2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hmmio$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hmmio"));
-    public static VarHandle hmmio$VH() {
-        return _MMIOINFO.hmmio$VH;
-    }
-    public static MemoryAddress hmmio$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MMIOINFO.hmmio$VH.get(seg);
-    }
-    public static void hmmio$set( MemorySegment seg, MemoryAddress x) {
-        _MMIOINFO.hmmio$VH.set(seg, x);
-    }
-    public static MemoryAddress hmmio$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MMIOINFO.hmmio$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hmmio$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MMIOINFO.hmmio$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwFlags"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("fccIOProc"),
+        wgl_h.align(wgl_h.C_POINTER, 1).withName("pIOProc"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wErrorRet"),
+        wgl_h.align(wgl_h.C_POINTER, 1).withName("htask"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("cchBuffer"),
+        wgl_h.align(wgl_h.C_POINTER, 1).withName("pchBuffer"),
+        wgl_h.align(wgl_h.C_POINTER, 1).withName("pchNext"),
+        wgl_h.align(wgl_h.C_POINTER, 1).withName("pchEndRead"),
+        wgl_h.align(wgl_h.C_POINTER, 1).withName("pchEndWrite"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("lBufOffset"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("lDiskOffset"),
+        MemoryLayout.sequenceLayout(3, wgl_h.align(wgl_h.C_LONG, 1)).withName("adwInfo"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwReserved1"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwReserved2"),
+        wgl_h.align(wgl_h.C_POINTER, 1).withName("hmmio")
+    ).withName("_MMIOINFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final OfInt dwFlags$layout() {
+        return dwFlags$LAYOUT;
+    }
+
+    private static final long dwFlags$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final long dwFlags$offset() {
+        return dwFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static int dwFlags(MemorySegment struct) {
+        return struct.get(dwFlags$LAYOUT, dwFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static void dwFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwFlags$LAYOUT, dwFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fccIOProc$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fccIOProc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FOURCC fccIOProc
+     * }
+     */
+    public static final OfInt fccIOProc$layout() {
+        return fccIOProc$LAYOUT;
+    }
+
+    private static final long fccIOProc$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FOURCC fccIOProc
+     * }
+     */
+    public static final long fccIOProc$offset() {
+        return fccIOProc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FOURCC fccIOProc
+     * }
+     */
+    public static int fccIOProc(MemorySegment struct) {
+        return struct.get(fccIOProc$LAYOUT, fccIOProc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FOURCC fccIOProc
+     * }
+     */
+    public static void fccIOProc(MemorySegment struct, int fieldValue) {
+        struct.set(fccIOProc$LAYOUT, fccIOProc$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pIOProc$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pIOProc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPMMIOPROC pIOProc
+     * }
+     */
+    public static final AddressLayout pIOProc$layout() {
+        return pIOProc$LAYOUT;
+    }
+
+    private static final long pIOProc$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPMMIOPROC pIOProc
+     * }
+     */
+    public static final long pIOProc$offset() {
+        return pIOProc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPMMIOPROC pIOProc
+     * }
+     */
+    public static MemorySegment pIOProc(MemorySegment struct) {
+        return struct.get(pIOProc$LAYOUT, pIOProc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPMMIOPROC pIOProc
+     * }
+     */
+    public static void pIOProc(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pIOProc$LAYOUT, pIOProc$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wErrorRet$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wErrorRet"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wErrorRet
+     * }
+     */
+    public static final OfInt wErrorRet$layout() {
+        return wErrorRet$LAYOUT;
+    }
+
+    private static final long wErrorRet$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wErrorRet
+     * }
+     */
+    public static final long wErrorRet$offset() {
+        return wErrorRet$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wErrorRet
+     * }
+     */
+    public static int wErrorRet(MemorySegment struct) {
+        return struct.get(wErrorRet$LAYOUT, wErrorRet$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wErrorRet
+     * }
+     */
+    public static void wErrorRet(MemorySegment struct, int fieldValue) {
+        struct.set(wErrorRet$LAYOUT, wErrorRet$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout htask$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("htask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HTASK htask
+     * }
+     */
+    public static final AddressLayout htask$layout() {
+        return htask$LAYOUT;
+    }
+
+    private static final long htask$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HTASK htask
+     * }
+     */
+    public static final long htask$offset() {
+        return htask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HTASK htask
+     * }
+     */
+    public static MemorySegment htask(MemorySegment struct) {
+        return struct.get(htask$LAYOUT, htask$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HTASK htask
+     * }
+     */
+    public static void htask(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(htask$LAYOUT, htask$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cchBuffer$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cchBuffer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG cchBuffer
+     * }
+     */
+    public static final OfInt cchBuffer$layout() {
+        return cchBuffer$LAYOUT;
+    }
+
+    private static final long cchBuffer$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG cchBuffer
+     * }
+     */
+    public static final long cchBuffer$offset() {
+        return cchBuffer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG cchBuffer
+     * }
+     */
+    public static int cchBuffer(MemorySegment struct) {
+        return struct.get(cchBuffer$LAYOUT, cchBuffer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG cchBuffer
+     * }
+     */
+    public static void cchBuffer(MemorySegment struct, int fieldValue) {
+        struct.set(cchBuffer$LAYOUT, cchBuffer$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pchBuffer$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pchBuffer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HPSTR pchBuffer
+     * }
+     */
+    public static final AddressLayout pchBuffer$layout() {
+        return pchBuffer$LAYOUT;
+    }
+
+    private static final long pchBuffer$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HPSTR pchBuffer
+     * }
+     */
+    public static final long pchBuffer$offset() {
+        return pchBuffer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HPSTR pchBuffer
+     * }
+     */
+    public static MemorySegment pchBuffer(MemorySegment struct) {
+        return struct.get(pchBuffer$LAYOUT, pchBuffer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HPSTR pchBuffer
+     * }
+     */
+    public static void pchBuffer(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pchBuffer$LAYOUT, pchBuffer$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pchNext$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pchNext"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HPSTR pchNext
+     * }
+     */
+    public static final AddressLayout pchNext$layout() {
+        return pchNext$LAYOUT;
+    }
+
+    private static final long pchNext$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HPSTR pchNext
+     * }
+     */
+    public static final long pchNext$offset() {
+        return pchNext$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HPSTR pchNext
+     * }
+     */
+    public static MemorySegment pchNext(MemorySegment struct) {
+        return struct.get(pchNext$LAYOUT, pchNext$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HPSTR pchNext
+     * }
+     */
+    public static void pchNext(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pchNext$LAYOUT, pchNext$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pchEndRead$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pchEndRead"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HPSTR pchEndRead
+     * }
+     */
+    public static final AddressLayout pchEndRead$layout() {
+        return pchEndRead$LAYOUT;
+    }
+
+    private static final long pchEndRead$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HPSTR pchEndRead
+     * }
+     */
+    public static final long pchEndRead$offset() {
+        return pchEndRead$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HPSTR pchEndRead
+     * }
+     */
+    public static MemorySegment pchEndRead(MemorySegment struct) {
+        return struct.get(pchEndRead$LAYOUT, pchEndRead$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HPSTR pchEndRead
+     * }
+     */
+    public static void pchEndRead(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pchEndRead$LAYOUT, pchEndRead$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pchEndWrite$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pchEndWrite"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HPSTR pchEndWrite
+     * }
+     */
+    public static final AddressLayout pchEndWrite$layout() {
+        return pchEndWrite$LAYOUT;
+    }
+
+    private static final long pchEndWrite$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HPSTR pchEndWrite
+     * }
+     */
+    public static final long pchEndWrite$offset() {
+        return pchEndWrite$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HPSTR pchEndWrite
+     * }
+     */
+    public static MemorySegment pchEndWrite(MemorySegment struct) {
+        return struct.get(pchEndWrite$LAYOUT, pchEndWrite$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HPSTR pchEndWrite
+     * }
+     */
+    public static void pchEndWrite(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pchEndWrite$LAYOUT, pchEndWrite$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lBufOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lBufOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG lBufOffset
+     * }
+     */
+    public static final OfInt lBufOffset$layout() {
+        return lBufOffset$LAYOUT;
+    }
+
+    private static final long lBufOffset$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG lBufOffset
+     * }
+     */
+    public static final long lBufOffset$offset() {
+        return lBufOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG lBufOffset
+     * }
+     */
+    public static int lBufOffset(MemorySegment struct) {
+        return struct.get(lBufOffset$LAYOUT, lBufOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG lBufOffset
+     * }
+     */
+    public static void lBufOffset(MemorySegment struct, int fieldValue) {
+        struct.set(lBufOffset$LAYOUT, lBufOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lDiskOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lDiskOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG lDiskOffset
+     * }
+     */
+    public static final OfInt lDiskOffset$layout() {
+        return lDiskOffset$LAYOUT;
+    }
+
+    private static final long lDiskOffset$OFFSET = 68;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG lDiskOffset
+     * }
+     */
+    public static final long lDiskOffset$offset() {
+        return lDiskOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG lDiskOffset
+     * }
+     */
+    public static int lDiskOffset(MemorySegment struct) {
+        return struct.get(lDiskOffset$LAYOUT, lDiskOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG lDiskOffset
+     * }
+     */
+    public static void lDiskOffset(MemorySegment struct, int fieldValue) {
+        struct.set(lDiskOffset$LAYOUT, lDiskOffset$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout adwInfo$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("adwInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD adwInfo[3]
+     * }
+     */
+    public static final SequenceLayout adwInfo$layout() {
+        return adwInfo$LAYOUT;
+    }
+
+    private static final long adwInfo$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD adwInfo[3]
+     * }
+     */
+    public static final long adwInfo$offset() {
+        return adwInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD adwInfo[3]
+     * }
+     */
+    public static MemorySegment adwInfo(MemorySegment struct) {
+        return struct.asSlice(adwInfo$OFFSET, adwInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD adwInfo[3]
+     * }
+     */
+    public static void adwInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, adwInfo$OFFSET, adwInfo$LAYOUT.byteSize());
+    }
+
+    private static long[] adwInfo$DIMS = { 3 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DWORD adwInfo[3]
+     * }
+     */
+    public static long[] adwInfo$dimensions() {
+        return adwInfo$DIMS;
+    }
+    private static final VarHandle adwInfo$ELEM_HANDLE = adwInfo$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DWORD adwInfo[3]
+     * }
+     */
+    public static int adwInfo(MemorySegment struct, long index0) {
+        return (int)adwInfo$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DWORD adwInfo[3]
+     * }
+     */
+    public static void adwInfo(MemorySegment struct, long index0, int fieldValue) {
+        adwInfo$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt dwReserved1$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwReserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved1
+     * }
+     */
+    public static final OfInt dwReserved1$layout() {
+        return dwReserved1$LAYOUT;
+    }
+
+    private static final long dwReserved1$OFFSET = 84;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved1
+     * }
+     */
+    public static final long dwReserved1$offset() {
+        return dwReserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved1
+     * }
+     */
+    public static int dwReserved1(MemorySegment struct) {
+        return struct.get(dwReserved1$LAYOUT, dwReserved1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved1
+     * }
+     */
+    public static void dwReserved1(MemorySegment struct, int fieldValue) {
+        struct.set(dwReserved1$LAYOUT, dwReserved1$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwReserved2$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwReserved2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved2
+     * }
+     */
+    public static final OfInt dwReserved2$layout() {
+        return dwReserved2$LAYOUT;
+    }
+
+    private static final long dwReserved2$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved2
+     * }
+     */
+    public static final long dwReserved2$offset() {
+        return dwReserved2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved2
+     * }
+     */
+    public static int dwReserved2(MemorySegment struct) {
+        return struct.get(dwReserved2$LAYOUT, dwReserved2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved2
+     * }
+     */
+    public static void dwReserved2(MemorySegment struct, int fieldValue) {
+        struct.set(dwReserved2$LAYOUT, dwReserved2$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hmmio$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hmmio"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HMMIO hmmio
+     * }
+     */
+    public static final AddressLayout hmmio$layout() {
+        return hmmio$LAYOUT;
+    }
+
+    private static final long hmmio$OFFSET = 92;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HMMIO hmmio
+     * }
+     */
+    public static final long hmmio$offset() {
+        return hmmio$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HMMIO hmmio
+     * }
+     */
+    public static MemorySegment hmmio(MemorySegment struct) {
+        return struct.get(hmmio$LAYOUT, hmmio$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HMMIO hmmio
+     * }
+     */
+    public static void hmmio(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hmmio$LAYOUT, hmmio$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

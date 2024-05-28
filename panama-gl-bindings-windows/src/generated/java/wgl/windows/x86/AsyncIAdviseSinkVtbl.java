@@ -2,603 +2,1377 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct AsyncIAdviseSinkVtbl {
+ *     HRESULT (*QueryInterface)(AsyncIAdviseSink *, const IID *const, void **) __attribute__((stdcall));
+ *     ULONG (*AddRef)(AsyncIAdviseSink *) __attribute__((stdcall));
+ *     ULONG (*Release)(AsyncIAdviseSink *) __attribute__((stdcall));
+ *     void (*Begin_OnDataChange)(AsyncIAdviseSink *, FORMATETC *, STGMEDIUM *) __attribute__((stdcall));
+ *     void (*Finish_OnDataChange)(AsyncIAdviseSink *) __attribute__((stdcall));
+ *     void (*Begin_OnViewChange)(AsyncIAdviseSink *, DWORD, LONG) __attribute__((stdcall));
+ *     void (*Finish_OnViewChange)(AsyncIAdviseSink *) __attribute__((stdcall));
+ *     void (*Begin_OnRename)(AsyncIAdviseSink *, IMoniker *) __attribute__((stdcall));
+ *     void (*Finish_OnRename)(AsyncIAdviseSink *) __attribute__((stdcall));
+ *     void (*Begin_OnSave)(AsyncIAdviseSink *) __attribute__((stdcall));
+ *     void (*Finish_OnSave)(AsyncIAdviseSink *) __attribute__((stdcall));
+ *     void (*Begin_OnClose)(AsyncIAdviseSink *) __attribute__((stdcall));
+ *     void (*Finish_OnClose)(AsyncIAdviseSink *) __attribute__((stdcall));
+ * }
+ * }
+ */
 public class AsyncIAdviseSinkVtbl {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("QueryInterface"),
-        Constants$root.C_POINTER$LAYOUT.withName("AddRef"),
-        Constants$root.C_POINTER$LAYOUT.withName("Release"),
-        Constants$root.C_POINTER$LAYOUT.withName("Begin_OnDataChange"),
-        Constants$root.C_POINTER$LAYOUT.withName("Finish_OnDataChange"),
-        Constants$root.C_POINTER$LAYOUT.withName("Begin_OnViewChange"),
-        Constants$root.C_POINTER$LAYOUT.withName("Finish_OnViewChange"),
-        Constants$root.C_POINTER$LAYOUT.withName("Begin_OnRename"),
-        Constants$root.C_POINTER$LAYOUT.withName("Finish_OnRename"),
-        Constants$root.C_POINTER$LAYOUT.withName("Begin_OnSave"),
-        Constants$root.C_POINTER$LAYOUT.withName("Finish_OnSave"),
-        Constants$root.C_POINTER$LAYOUT.withName("Begin_OnClose"),
-        Constants$root.C_POINTER$LAYOUT.withName("Finish_OnClose")
+    AsyncIAdviseSinkVtbl() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("QueryInterface"),
+        wgl_h.C_POINTER.withName("AddRef"),
+        wgl_h.C_POINTER.withName("Release"),
+        wgl_h.C_POINTER.withName("Begin_OnDataChange"),
+        wgl_h.C_POINTER.withName("Finish_OnDataChange"),
+        wgl_h.C_POINTER.withName("Begin_OnViewChange"),
+        wgl_h.C_POINTER.withName("Finish_OnViewChange"),
+        wgl_h.C_POINTER.withName("Begin_OnRename"),
+        wgl_h.C_POINTER.withName("Finish_OnRename"),
+        wgl_h.C_POINTER.withName("Begin_OnSave"),
+        wgl_h.C_POINTER.withName("Finish_OnSave"),
+        wgl_h.C_POINTER.withName("Begin_OnClose"),
+        wgl_h.C_POINTER.withName("Finish_OnClose")
     ).withName("AsyncIAdviseSinkVtbl");
-    public static MemoryLayout $LAYOUT() {
-        return AsyncIAdviseSinkVtbl.$struct$LAYOUT;
-    }
-    static final FunctionDescriptor QueryInterface$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle QueryInterface$MH = RuntimeHelper.downcallHandle(
-        AsyncIAdviseSinkVtbl.QueryInterface$FUNC
-    );
-    public interface QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(QueryInterface fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(QueryInterface.class, fi, AsyncIAdviseSinkVtbl.QueryInterface$FUNC, session);
-        }
-        static QueryInterface ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)AsyncIAdviseSinkVtbl.QueryInterface$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
 
-    static final VarHandle QueryInterface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueryInterface"));
-    public static VarHandle QueryInterface$VH() {
-        return AsyncIAdviseSinkVtbl.QueryInterface$VH;
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.QueryInterface$VH.get(seg);
-    }
-    public static void QueryInterface$set( MemorySegment seg, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.QueryInterface$VH.set(seg, x);
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.QueryInterface$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void QueryInterface$set(MemorySegment seg, long index, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.QueryInterface$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static QueryInterface QueryInterface (MemorySegment segment, MemorySession session) {
-        return QueryInterface.ofAddress(QueryInterface$get(segment), session);
-    }
-    static final FunctionDescriptor AddRef$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle AddRef$MH = RuntimeHelper.downcallHandle(
-        AsyncIAdviseSinkVtbl.AddRef$FUNC
-    );
-    public interface AddRef {
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(AsyncIAdviseSink *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(AddRef fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(AddRef.class, fi, AsyncIAdviseSinkVtbl.AddRef$FUNC, session);
+        QueryInterface() {
+            // Should not be called directly
         }
-        static AddRef ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)AsyncIAdviseSinkVtbl.AddRef$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(QueryInterface.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(QueryInterface.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle AddRef$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddRef"));
-    public static VarHandle AddRef$VH() {
-        return AsyncIAdviseSinkVtbl.AddRef$VH;
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.AddRef$VH.get(seg);
-    }
-    public static void AddRef$set( MemorySegment seg, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.AddRef$VH.set(seg, x);
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.AddRef$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddRef$set(MemorySegment seg, long index, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.AddRef$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static AddRef AddRef (MemorySegment segment, MemorySession session) {
-        return AddRef.ofAddress(AddRef$get(segment), session);
-    }
-    static final FunctionDescriptor Release$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Release$MH = RuntimeHelper.downcallHandle(
-        AsyncIAdviseSinkVtbl.Release$FUNC
-    );
-    public interface Release {
+    private static final AddressLayout QueryInterface$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("QueryInterface"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Release fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Release.class, fi, AsyncIAdviseSinkVtbl.Release$FUNC, session);
-        }
-        static Release ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)AsyncIAdviseSinkVtbl.Release$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(AsyncIAdviseSink *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout QueryInterface$layout() {
+        return QueryInterface$LAYOUT;
     }
 
-    static final VarHandle Release$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Release"));
-    public static VarHandle Release$VH() {
-        return AsyncIAdviseSinkVtbl.Release$VH;
-    }
-    public static MemoryAddress Release$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Release$VH.get(seg);
-    }
-    public static void Release$set( MemorySegment seg, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Release$VH.set(seg, x);
-    }
-    public static MemoryAddress Release$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Release$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Release$set(MemorySegment seg, long index, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Release$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Release Release (MemorySegment segment, MemorySession session) {
-        return Release.ofAddress(Release$get(segment), session);
-    }
-    static final FunctionDescriptor Begin_OnDataChange$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Begin_OnDataChange$MH = RuntimeHelper.downcallHandle(
-        AsyncIAdviseSinkVtbl.Begin_OnDataChange$FUNC
-    );
-    public interface Begin_OnDataChange {
+    private static final long QueryInterface$OFFSET = 0;
 
-        void apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(Begin_OnDataChange fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Begin_OnDataChange.class, fi, AsyncIAdviseSinkVtbl.Begin_OnDataChange$FUNC, session);
-        }
-        static Begin_OnDataChange ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    AsyncIAdviseSinkVtbl.Begin_OnDataChange$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(AsyncIAdviseSink *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long QueryInterface$offset() {
+        return QueryInterface$OFFSET;
     }
 
-    static final VarHandle Begin_OnDataChange$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Begin_OnDataChange"));
-    public static VarHandle Begin_OnDataChange$VH() {
-        return AsyncIAdviseSinkVtbl.Begin_OnDataChange$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(AsyncIAdviseSink *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment QueryInterface(MemorySegment struct) {
+        return struct.get(QueryInterface$LAYOUT, QueryInterface$OFFSET);
     }
-    public static MemoryAddress Begin_OnDataChange$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Begin_OnDataChange$VH.get(seg);
-    }
-    public static void Begin_OnDataChange$set( MemorySegment seg, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Begin_OnDataChange$VH.set(seg, x);
-    }
-    public static MemoryAddress Begin_OnDataChange$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Begin_OnDataChange$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Begin_OnDataChange$set(MemorySegment seg, long index, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Begin_OnDataChange$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Begin_OnDataChange Begin_OnDataChange (MemorySegment segment, MemorySession session) {
-        return Begin_OnDataChange.ofAddress(Begin_OnDataChange$get(segment), session);
-    }
-    static final FunctionDescriptor Finish_OnDataChange$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Finish_OnDataChange$MH = RuntimeHelper.downcallHandle(
-        AsyncIAdviseSinkVtbl.Finish_OnDataChange$FUNC
-    );
-    public interface Finish_OnDataChange {
 
-        void apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Finish_OnDataChange fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Finish_OnDataChange.class, fi, AsyncIAdviseSinkVtbl.Finish_OnDataChange$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(AsyncIAdviseSink *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void QueryInterface(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(QueryInterface$LAYOUT, QueryInterface$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static class AddRef {
+
+        AddRef() {
+            // Should not be called directly
         }
-        static Finish_OnDataChange ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    AsyncIAdviseSinkVtbl.Finish_OnDataChange$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(AddRef.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(AddRef.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle Finish_OnDataChange$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Finish_OnDataChange"));
-    public static VarHandle Finish_OnDataChange$VH() {
-        return AsyncIAdviseSinkVtbl.Finish_OnDataChange$VH;
-    }
-    public static MemoryAddress Finish_OnDataChange$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Finish_OnDataChange$VH.get(seg);
-    }
-    public static void Finish_OnDataChange$set( MemorySegment seg, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Finish_OnDataChange$VH.set(seg, x);
-    }
-    public static MemoryAddress Finish_OnDataChange$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Finish_OnDataChange$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Finish_OnDataChange$set(MemorySegment seg, long index, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Finish_OnDataChange$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Finish_OnDataChange Finish_OnDataChange (MemorySegment segment, MemorySession session) {
-        return Finish_OnDataChange.ofAddress(Finish_OnDataChange$get(segment), session);
-    }
-    static final FunctionDescriptor Begin_OnViewChange$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle Begin_OnViewChange$MH = RuntimeHelper.downcallHandle(
-        AsyncIAdviseSinkVtbl.Begin_OnViewChange$FUNC
-    );
-    public interface Begin_OnViewChange {
+    private static final AddressLayout AddRef$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AddRef"));
 
-        void apply(java.lang.foreign.MemoryAddress _x0, int _x1, int _x2);
-        static MemorySegment allocate(Begin_OnViewChange fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Begin_OnViewChange.class, fi, AsyncIAdviseSinkVtbl.Begin_OnViewChange$FUNC, session);
-        }
-        static Begin_OnViewChange ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, int __x2) -> {
-                try {
-                    AsyncIAdviseSinkVtbl.Begin_OnViewChange$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, __x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout AddRef$layout() {
+        return AddRef$LAYOUT;
     }
 
-    static final VarHandle Begin_OnViewChange$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Begin_OnViewChange"));
-    public static VarHandle Begin_OnViewChange$VH() {
-        return AsyncIAdviseSinkVtbl.Begin_OnViewChange$VH;
-    }
-    public static MemoryAddress Begin_OnViewChange$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Begin_OnViewChange$VH.get(seg);
-    }
-    public static void Begin_OnViewChange$set( MemorySegment seg, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Begin_OnViewChange$VH.set(seg, x);
-    }
-    public static MemoryAddress Begin_OnViewChange$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Begin_OnViewChange$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Begin_OnViewChange$set(MemorySegment seg, long index, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Begin_OnViewChange$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Begin_OnViewChange Begin_OnViewChange (MemorySegment segment, MemorySession session) {
-        return Begin_OnViewChange.ofAddress(Begin_OnViewChange$get(segment), session);
-    }
-    static final FunctionDescriptor Finish_OnViewChange$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Finish_OnViewChange$MH = RuntimeHelper.downcallHandle(
-        AsyncIAdviseSinkVtbl.Finish_OnViewChange$FUNC
-    );
-    public interface Finish_OnViewChange {
+    private static final long AddRef$OFFSET = 8;
 
-        void apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Finish_OnViewChange fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Finish_OnViewChange.class, fi, AsyncIAdviseSinkVtbl.Finish_OnViewChange$FUNC, session);
-        }
-        static Finish_OnViewChange ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    AsyncIAdviseSinkVtbl.Finish_OnViewChange$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static final long AddRef$offset() {
+        return AddRef$OFFSET;
     }
 
-    static final VarHandle Finish_OnViewChange$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Finish_OnViewChange"));
-    public static VarHandle Finish_OnViewChange$VH() {
-        return AsyncIAdviseSinkVtbl.Finish_OnViewChange$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment AddRef(MemorySegment struct) {
+        return struct.get(AddRef$LAYOUT, AddRef$OFFSET);
     }
-    public static MemoryAddress Finish_OnViewChange$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Finish_OnViewChange$VH.get(seg);
-    }
-    public static void Finish_OnViewChange$set( MemorySegment seg, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Finish_OnViewChange$VH.set(seg, x);
-    }
-    public static MemoryAddress Finish_OnViewChange$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Finish_OnViewChange$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Finish_OnViewChange$set(MemorySegment seg, long index, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Finish_OnViewChange$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Finish_OnViewChange Finish_OnViewChange (MemorySegment segment, MemorySession session) {
-        return Finish_OnViewChange.ofAddress(Finish_OnViewChange$get(segment), session);
-    }
-    static final FunctionDescriptor Begin_OnRename$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Begin_OnRename$MH = RuntimeHelper.downcallHandle(
-        AsyncIAdviseSinkVtbl.Begin_OnRename$FUNC
-    );
-    public interface Begin_OnRename {
 
-        void apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(Begin_OnRename fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Begin_OnRename.class, fi, AsyncIAdviseSinkVtbl.Begin_OnRename$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static void AddRef(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AddRef$LAYOUT, AddRef$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*Release)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static class Release {
+
+        Release() {
+            // Should not be called directly
         }
-        static Begin_OnRename ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    AsyncIAdviseSinkVtbl.Begin_OnRename$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Release.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Release.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle Begin_OnRename$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Begin_OnRename"));
-    public static VarHandle Begin_OnRename$VH() {
-        return AsyncIAdviseSinkVtbl.Begin_OnRename$VH;
-    }
-    public static MemoryAddress Begin_OnRename$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Begin_OnRename$VH.get(seg);
-    }
-    public static void Begin_OnRename$set( MemorySegment seg, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Begin_OnRename$VH.set(seg, x);
-    }
-    public static MemoryAddress Begin_OnRename$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Begin_OnRename$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Begin_OnRename$set(MemorySegment seg, long index, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Begin_OnRename$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Begin_OnRename Begin_OnRename (MemorySegment segment, MemorySession session) {
-        return Begin_OnRename.ofAddress(Begin_OnRename$get(segment), session);
-    }
-    static final FunctionDescriptor Finish_OnRename$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Finish_OnRename$MH = RuntimeHelper.downcallHandle(
-        AsyncIAdviseSinkVtbl.Finish_OnRename$FUNC
-    );
-    public interface Finish_OnRename {
+    private static final AddressLayout Release$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Release"));
 
-        void apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Finish_OnRename fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Finish_OnRename.class, fi, AsyncIAdviseSinkVtbl.Finish_OnRename$FUNC, session);
-        }
-        static Finish_OnRename ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    AsyncIAdviseSinkVtbl.Finish_OnRename$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Release$layout() {
+        return Release$LAYOUT;
     }
 
-    static final VarHandle Finish_OnRename$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Finish_OnRename"));
-    public static VarHandle Finish_OnRename$VH() {
-        return AsyncIAdviseSinkVtbl.Finish_OnRename$VH;
-    }
-    public static MemoryAddress Finish_OnRename$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Finish_OnRename$VH.get(seg);
-    }
-    public static void Finish_OnRename$set( MemorySegment seg, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Finish_OnRename$VH.set(seg, x);
-    }
-    public static MemoryAddress Finish_OnRename$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Finish_OnRename$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Finish_OnRename$set(MemorySegment seg, long index, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Finish_OnRename$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Finish_OnRename Finish_OnRename (MemorySegment segment, MemorySession session) {
-        return Finish_OnRename.ofAddress(Finish_OnRename$get(segment), session);
-    }
-    static final FunctionDescriptor Begin_OnSave$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Begin_OnSave$MH = RuntimeHelper.downcallHandle(
-        AsyncIAdviseSinkVtbl.Begin_OnSave$FUNC
-    );
-    public interface Begin_OnSave {
+    private static final long Release$OFFSET = 16;
 
-        void apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Begin_OnSave fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Begin_OnSave.class, fi, AsyncIAdviseSinkVtbl.Begin_OnSave$FUNC, session);
-        }
-        static Begin_OnSave ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    AsyncIAdviseSinkVtbl.Begin_OnSave$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Release$offset() {
+        return Release$OFFSET;
     }
 
-    static final VarHandle Begin_OnSave$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Begin_OnSave"));
-    public static VarHandle Begin_OnSave$VH() {
-        return AsyncIAdviseSinkVtbl.Begin_OnSave$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Release(MemorySegment struct) {
+        return struct.get(Release$LAYOUT, Release$OFFSET);
     }
-    public static MemoryAddress Begin_OnSave$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Begin_OnSave$VH.get(seg);
-    }
-    public static void Begin_OnSave$set( MemorySegment seg, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Begin_OnSave$VH.set(seg, x);
-    }
-    public static MemoryAddress Begin_OnSave$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Begin_OnSave$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Begin_OnSave$set(MemorySegment seg, long index, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Begin_OnSave$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Begin_OnSave Begin_OnSave (MemorySegment segment, MemorySession session) {
-        return Begin_OnSave.ofAddress(Begin_OnSave$get(segment), session);
-    }
-    static final FunctionDescriptor Finish_OnSave$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Finish_OnSave$MH = RuntimeHelper.downcallHandle(
-        AsyncIAdviseSinkVtbl.Finish_OnSave$FUNC
-    );
-    public interface Finish_OnSave {
 
-        void apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Finish_OnSave fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Finish_OnSave.class, fi, AsyncIAdviseSinkVtbl.Finish_OnSave$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static void Release(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Release$LAYOUT, Release$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void (*Begin_OnDataChange)(AsyncIAdviseSink *, FORMATETC *, STGMEDIUM *) __attribute__((stdcall))
+     * }
+     */
+    public static class Begin_OnDataChange {
+
+        Begin_OnDataChange() {
+            // Should not be called directly
         }
-        static Finish_OnSave ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    AsyncIAdviseSinkVtbl.Finish_OnSave$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Begin_OnDataChange.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Begin_OnDataChange.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle Finish_OnSave$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Finish_OnSave"));
-    public static VarHandle Finish_OnSave$VH() {
-        return AsyncIAdviseSinkVtbl.Finish_OnSave$VH;
-    }
-    public static MemoryAddress Finish_OnSave$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Finish_OnSave$VH.get(seg);
-    }
-    public static void Finish_OnSave$set( MemorySegment seg, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Finish_OnSave$VH.set(seg, x);
-    }
-    public static MemoryAddress Finish_OnSave$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Finish_OnSave$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Finish_OnSave$set(MemorySegment seg, long index, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Finish_OnSave$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Finish_OnSave Finish_OnSave (MemorySegment segment, MemorySession session) {
-        return Finish_OnSave.ofAddress(Finish_OnSave$get(segment), session);
-    }
-    static final FunctionDescriptor Begin_OnClose$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Begin_OnClose$MH = RuntimeHelper.downcallHandle(
-        AsyncIAdviseSinkVtbl.Begin_OnClose$FUNC
-    );
-    public interface Begin_OnClose {
+    private static final AddressLayout Begin_OnDataChange$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Begin_OnDataChange"));
 
-        void apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Begin_OnClose fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Begin_OnClose.class, fi, AsyncIAdviseSinkVtbl.Begin_OnClose$FUNC, session);
-        }
-        static Begin_OnClose ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    AsyncIAdviseSinkVtbl.Begin_OnClose$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnDataChange)(AsyncIAdviseSink *, FORMATETC *, STGMEDIUM *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Begin_OnDataChange$layout() {
+        return Begin_OnDataChange$LAYOUT;
     }
 
-    static final VarHandle Begin_OnClose$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Begin_OnClose"));
-    public static VarHandle Begin_OnClose$VH() {
-        return AsyncIAdviseSinkVtbl.Begin_OnClose$VH;
-    }
-    public static MemoryAddress Begin_OnClose$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Begin_OnClose$VH.get(seg);
-    }
-    public static void Begin_OnClose$set( MemorySegment seg, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Begin_OnClose$VH.set(seg, x);
-    }
-    public static MemoryAddress Begin_OnClose$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Begin_OnClose$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Begin_OnClose$set(MemorySegment seg, long index, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Begin_OnClose$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Begin_OnClose Begin_OnClose (MemorySegment segment, MemorySession session) {
-        return Begin_OnClose.ofAddress(Begin_OnClose$get(segment), session);
-    }
-    static final FunctionDescriptor Finish_OnClose$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Finish_OnClose$MH = RuntimeHelper.downcallHandle(
-        AsyncIAdviseSinkVtbl.Finish_OnClose$FUNC
-    );
-    public interface Finish_OnClose {
+    private static final long Begin_OnDataChange$OFFSET = 24;
 
-        void apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Finish_OnClose fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Finish_OnClose.class, fi, AsyncIAdviseSinkVtbl.Finish_OnClose$FUNC, session);
-        }
-        static Finish_OnClose ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    AsyncIAdviseSinkVtbl.Finish_OnClose$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnDataChange)(AsyncIAdviseSink *, FORMATETC *, STGMEDIUM *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Begin_OnDataChange$offset() {
+        return Begin_OnDataChange$OFFSET;
     }
 
-    static final VarHandle Finish_OnClose$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Finish_OnClose"));
-    public static VarHandle Finish_OnClose$VH() {
-        return AsyncIAdviseSinkVtbl.Finish_OnClose$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnDataChange)(AsyncIAdviseSink *, FORMATETC *, STGMEDIUM *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Begin_OnDataChange(MemorySegment struct) {
+        return struct.get(Begin_OnDataChange$LAYOUT, Begin_OnDataChange$OFFSET);
     }
-    public static MemoryAddress Finish_OnClose$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Finish_OnClose$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnDataChange)(AsyncIAdviseSink *, FORMATETC *, STGMEDIUM *) __attribute__((stdcall))
+     * }
+     */
+    public static void Begin_OnDataChange(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Begin_OnDataChange$LAYOUT, Begin_OnDataChange$OFFSET, fieldValue);
     }
-    public static void Finish_OnClose$set( MemorySegment seg, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Finish_OnClose$VH.set(seg, x);
+
+    /**
+     * {@snippet lang=c :
+     * void (*Finish_OnDataChange)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static class Finish_OnDataChange {
+
+        Finish_OnDataChange() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Finish_OnDataChange.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Finish_OnDataChange.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
     }
-    public static MemoryAddress Finish_OnClose$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)AsyncIAdviseSinkVtbl.Finish_OnClose$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final AddressLayout Finish_OnDataChange$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Finish_OnDataChange"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnDataChange)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Finish_OnDataChange$layout() {
+        return Finish_OnDataChange$LAYOUT;
     }
-    public static void Finish_OnClose$set(MemorySegment seg, long index, MemoryAddress x) {
-        AsyncIAdviseSinkVtbl.Finish_OnClose$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long Finish_OnDataChange$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnDataChange)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Finish_OnDataChange$offset() {
+        return Finish_OnDataChange$OFFSET;
     }
-    public static Finish_OnClose Finish_OnClose (MemorySegment segment, MemorySession session) {
-        return Finish_OnClose.ofAddress(Finish_OnClose$get(segment), session);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnDataChange)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Finish_OnDataChange(MemorySegment struct) {
+        return struct.get(Finish_OnDataChange$LAYOUT, Finish_OnDataChange$OFFSET);
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnDataChange)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static void Finish_OnDataChange(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Finish_OnDataChange$LAYOUT, Finish_OnDataChange$OFFSET, fieldValue);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * {@snippet lang=c :
+     * void (*Begin_OnViewChange)(AsyncIAdviseSink *, DWORD, LONG) __attribute__((stdcall))
+     * }
+     */
+    public static class Begin_OnViewChange {
+
+        Begin_OnViewChange() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0, int _x1, int _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Begin_OnViewChange.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Begin_OnViewChange.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, int _x2) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout Begin_OnViewChange$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Begin_OnViewChange"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnViewChange)(AsyncIAdviseSink *, DWORD, LONG) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Begin_OnViewChange$layout() {
+        return Begin_OnViewChange$LAYOUT;
+    }
+
+    private static final long Begin_OnViewChange$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnViewChange)(AsyncIAdviseSink *, DWORD, LONG) __attribute__((stdcall))
+     * }
+     */
+    public static final long Begin_OnViewChange$offset() {
+        return Begin_OnViewChange$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnViewChange)(AsyncIAdviseSink *, DWORD, LONG) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Begin_OnViewChange(MemorySegment struct) {
+        return struct.get(Begin_OnViewChange$LAYOUT, Begin_OnViewChange$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnViewChange)(AsyncIAdviseSink *, DWORD, LONG) __attribute__((stdcall))
+     * }
+     */
+    public static void Begin_OnViewChange(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Begin_OnViewChange$LAYOUT, Begin_OnViewChange$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void (*Finish_OnViewChange)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static class Finish_OnViewChange {
+
+        Finish_OnViewChange() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Finish_OnViewChange.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Finish_OnViewChange.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout Finish_OnViewChange$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Finish_OnViewChange"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnViewChange)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Finish_OnViewChange$layout() {
+        return Finish_OnViewChange$LAYOUT;
+    }
+
+    private static final long Finish_OnViewChange$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnViewChange)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Finish_OnViewChange$offset() {
+        return Finish_OnViewChange$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnViewChange)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Finish_OnViewChange(MemorySegment struct) {
+        return struct.get(Finish_OnViewChange$LAYOUT, Finish_OnViewChange$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnViewChange)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static void Finish_OnViewChange(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Finish_OnViewChange$LAYOUT, Finish_OnViewChange$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void (*Begin_OnRename)(AsyncIAdviseSink *, IMoniker *) __attribute__((stdcall))
+     * }
+     */
+    public static class Begin_OnRename {
+
+        Begin_OnRename() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Begin_OnRename.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Begin_OnRename.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout Begin_OnRename$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Begin_OnRename"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnRename)(AsyncIAdviseSink *, IMoniker *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Begin_OnRename$layout() {
+        return Begin_OnRename$LAYOUT;
+    }
+
+    private static final long Begin_OnRename$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnRename)(AsyncIAdviseSink *, IMoniker *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Begin_OnRename$offset() {
+        return Begin_OnRename$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnRename)(AsyncIAdviseSink *, IMoniker *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Begin_OnRename(MemorySegment struct) {
+        return struct.get(Begin_OnRename$LAYOUT, Begin_OnRename$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnRename)(AsyncIAdviseSink *, IMoniker *) __attribute__((stdcall))
+     * }
+     */
+    public static void Begin_OnRename(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Begin_OnRename$LAYOUT, Begin_OnRename$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void (*Finish_OnRename)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static class Finish_OnRename {
+
+        Finish_OnRename() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Finish_OnRename.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Finish_OnRename.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout Finish_OnRename$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Finish_OnRename"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnRename)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Finish_OnRename$layout() {
+        return Finish_OnRename$LAYOUT;
+    }
+
+    private static final long Finish_OnRename$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnRename)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Finish_OnRename$offset() {
+        return Finish_OnRename$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnRename)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Finish_OnRename(MemorySegment struct) {
+        return struct.get(Finish_OnRename$LAYOUT, Finish_OnRename$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnRename)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static void Finish_OnRename(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Finish_OnRename$LAYOUT, Finish_OnRename$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void (*Begin_OnSave)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static class Begin_OnSave {
+
+        Begin_OnSave() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Begin_OnSave.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Begin_OnSave.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout Begin_OnSave$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Begin_OnSave"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnSave)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Begin_OnSave$layout() {
+        return Begin_OnSave$LAYOUT;
+    }
+
+    private static final long Begin_OnSave$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnSave)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Begin_OnSave$offset() {
+        return Begin_OnSave$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnSave)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Begin_OnSave(MemorySegment struct) {
+        return struct.get(Begin_OnSave$LAYOUT, Begin_OnSave$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnSave)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static void Begin_OnSave(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Begin_OnSave$LAYOUT, Begin_OnSave$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void (*Finish_OnSave)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static class Finish_OnSave {
+
+        Finish_OnSave() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Finish_OnSave.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Finish_OnSave.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout Finish_OnSave$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Finish_OnSave"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnSave)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Finish_OnSave$layout() {
+        return Finish_OnSave$LAYOUT;
+    }
+
+    private static final long Finish_OnSave$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnSave)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Finish_OnSave$offset() {
+        return Finish_OnSave$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnSave)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Finish_OnSave(MemorySegment struct) {
+        return struct.get(Finish_OnSave$LAYOUT, Finish_OnSave$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnSave)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static void Finish_OnSave(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Finish_OnSave$LAYOUT, Finish_OnSave$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void (*Begin_OnClose)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static class Begin_OnClose {
+
+        Begin_OnClose() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Begin_OnClose.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Begin_OnClose.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout Begin_OnClose$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Begin_OnClose"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnClose)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Begin_OnClose$layout() {
+        return Begin_OnClose$LAYOUT;
+    }
+
+    private static final long Begin_OnClose$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnClose)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Begin_OnClose$offset() {
+        return Begin_OnClose$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnClose)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Begin_OnClose(MemorySegment struct) {
+        return struct.get(Begin_OnClose$LAYOUT, Begin_OnClose$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*Begin_OnClose)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static void Begin_OnClose(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Begin_OnClose$LAYOUT, Begin_OnClose$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void (*Finish_OnClose)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static class Finish_OnClose {
+
+        Finish_OnClose() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Finish_OnClose.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Finish_OnClose.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout Finish_OnClose$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Finish_OnClose"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnClose)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Finish_OnClose$layout() {
+        return Finish_OnClose$LAYOUT;
+    }
+
+    private static final long Finish_OnClose$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnClose)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Finish_OnClose$offset() {
+        return Finish_OnClose$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnClose)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Finish_OnClose(MemorySegment struct) {
+        return struct.get(Finish_OnClose$LAYOUT, Finish_OnClose$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*Finish_OnClose)(AsyncIAdviseSink *) __attribute__((stdcall))
+     * }
+     */
+    public static void Finish_OnClose(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Finish_OnClose$LAYOUT, Finish_OnClose$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

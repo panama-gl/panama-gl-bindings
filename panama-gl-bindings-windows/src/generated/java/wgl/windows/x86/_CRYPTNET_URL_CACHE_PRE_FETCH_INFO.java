@@ -2,113 +2,402 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPTNET_URL_CACHE_PRE_FETCH_INFO {
+ *     DWORD cbSize;
+ *     DWORD dwObjectType;
+ *     DWORD dwError;
+ *     DWORD dwReserved;
+ *     FILETIME ThisUpdateTime;
+ *     FILETIME NextUpdateTime;
+ *     FILETIME PublishTime;
+ * }
+ * }
+ */
 public class _CRYPTNET_URL_CACHE_PRE_FETCH_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        Constants$root.C_LONG$LAYOUT.withName("dwObjectType"),
-        Constants$root.C_LONG$LAYOUT.withName("dwError"),
-        Constants$root.C_LONG$LAYOUT.withName("dwReserved"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwLowDateTime"),
-            Constants$root.C_LONG$LAYOUT.withName("dwHighDateTime")
-        ).withName("ThisUpdateTime"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwLowDateTime"),
-            Constants$root.C_LONG$LAYOUT.withName("dwHighDateTime")
-        ).withName("NextUpdateTime"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwLowDateTime"),
-            Constants$root.C_LONG$LAYOUT.withName("dwHighDateTime")
-        ).withName("PublishTime")
-    ).withName("_CRYPTNET_URL_CACHE_PRE_FETCH_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPTNET_URL_CACHE_PRE_FETCH_INFO.$struct$LAYOUT;
+    _CRYPTNET_URL_CACHE_PRE_FETCH_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _CRYPTNET_URL_CACHE_PRE_FETCH_INFO.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_CRYPTNET_URL_CACHE_PRE_FETCH_INFO.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _CRYPTNET_URL_CACHE_PRE_FETCH_INFO.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_CRYPTNET_URL_CACHE_PRE_FETCH_INFO.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _CRYPTNET_URL_CACHE_PRE_FETCH_INFO.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwObjectType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwObjectType"));
-    public static VarHandle dwObjectType$VH() {
-        return _CRYPTNET_URL_CACHE_PRE_FETCH_INFO.dwObjectType$VH;
-    }
-    public static int dwObjectType$get(MemorySegment seg) {
-        return (int)_CRYPTNET_URL_CACHE_PRE_FETCH_INFO.dwObjectType$VH.get(seg);
-    }
-    public static void dwObjectType$set( MemorySegment seg, int x) {
-        _CRYPTNET_URL_CACHE_PRE_FETCH_INFO.dwObjectType$VH.set(seg, x);
-    }
-    public static int dwObjectType$get(MemorySegment seg, long index) {
-        return (int)_CRYPTNET_URL_CACHE_PRE_FETCH_INFO.dwObjectType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwObjectType$set(MemorySegment seg, long index, int x) {
-        _CRYPTNET_URL_CACHE_PRE_FETCH_INFO.dwObjectType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwError$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwError"));
-    public static VarHandle dwError$VH() {
-        return _CRYPTNET_URL_CACHE_PRE_FETCH_INFO.dwError$VH;
-    }
-    public static int dwError$get(MemorySegment seg) {
-        return (int)_CRYPTNET_URL_CACHE_PRE_FETCH_INFO.dwError$VH.get(seg);
-    }
-    public static void dwError$set( MemorySegment seg, int x) {
-        _CRYPTNET_URL_CACHE_PRE_FETCH_INFO.dwError$VH.set(seg, x);
-    }
-    public static int dwError$get(MemorySegment seg, long index) {
-        return (int)_CRYPTNET_URL_CACHE_PRE_FETCH_INFO.dwError$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwError$set(MemorySegment seg, long index, int x) {
-        _CRYPTNET_URL_CACHE_PRE_FETCH_INFO.dwError$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwReserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwReserved"));
-    public static VarHandle dwReserved$VH() {
-        return _CRYPTNET_URL_CACHE_PRE_FETCH_INFO.dwReserved$VH;
-    }
-    public static int dwReserved$get(MemorySegment seg) {
-        return (int)_CRYPTNET_URL_CACHE_PRE_FETCH_INFO.dwReserved$VH.get(seg);
-    }
-    public static void dwReserved$set( MemorySegment seg, int x) {
-        _CRYPTNET_URL_CACHE_PRE_FETCH_INFO.dwReserved$VH.set(seg, x);
-    }
-    public static int dwReserved$get(MemorySegment seg, long index) {
-        return (int)_CRYPTNET_URL_CACHE_PRE_FETCH_INFO.dwReserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwReserved$set(MemorySegment seg, long index, int x) {
-        _CRYPTNET_URL_CACHE_PRE_FETCH_INFO.dwReserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment ThisUpdateTime$slice(MemorySegment seg) {
-        return seg.asSlice(16, 8);
-    }
-    public static MemorySegment NextUpdateTime$slice(MemorySegment seg) {
-        return seg.asSlice(24, 8);
-    }
-    public static MemorySegment PublishTime$slice(MemorySegment seg) {
-        return seg.asSlice(32, 8);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        wgl_h.C_LONG.withName("dwObjectType"),
+        wgl_h.C_LONG.withName("dwError"),
+        wgl_h.C_LONG.withName("dwReserved"),
+        _FILETIME.layout().withName("ThisUpdateTime"),
+        _FILETIME.layout().withName("NextUpdateTime"),
+        _FILETIME.layout().withName("PublishTime")
+    ).withName("_CRYPTNET_URL_CACHE_PRE_FETCH_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwObjectType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwObjectType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwObjectType
+     * }
+     */
+    public static final OfInt dwObjectType$layout() {
+        return dwObjectType$LAYOUT;
+    }
+
+    private static final long dwObjectType$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwObjectType
+     * }
+     */
+    public static final long dwObjectType$offset() {
+        return dwObjectType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwObjectType
+     * }
+     */
+    public static int dwObjectType(MemorySegment struct) {
+        return struct.get(dwObjectType$LAYOUT, dwObjectType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwObjectType
+     * }
+     */
+    public static void dwObjectType(MemorySegment struct, int fieldValue) {
+        struct.set(dwObjectType$LAYOUT, dwObjectType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwError$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwError"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwError
+     * }
+     */
+    public static final OfInt dwError$layout() {
+        return dwError$LAYOUT;
+    }
+
+    private static final long dwError$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwError
+     * }
+     */
+    public static final long dwError$offset() {
+        return dwError$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwError
+     * }
+     */
+    public static int dwError(MemorySegment struct) {
+        return struct.get(dwError$LAYOUT, dwError$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwError
+     * }
+     */
+    public static void dwError(MemorySegment struct, int fieldValue) {
+        struct.set(dwError$LAYOUT, dwError$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwReserved$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved
+     * }
+     */
+    public static final OfInt dwReserved$layout() {
+        return dwReserved$LAYOUT;
+    }
+
+    private static final long dwReserved$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved
+     * }
+     */
+    public static final long dwReserved$offset() {
+        return dwReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved
+     * }
+     */
+    public static int dwReserved(MemorySegment struct) {
+        return struct.get(dwReserved$LAYOUT, dwReserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved
+     * }
+     */
+    public static void dwReserved(MemorySegment struct, int fieldValue) {
+        struct.set(dwReserved$LAYOUT, dwReserved$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout ThisUpdateTime$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ThisUpdateTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FILETIME ThisUpdateTime
+     * }
+     */
+    public static final GroupLayout ThisUpdateTime$layout() {
+        return ThisUpdateTime$LAYOUT;
+    }
+
+    private static final long ThisUpdateTime$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FILETIME ThisUpdateTime
+     * }
+     */
+    public static final long ThisUpdateTime$offset() {
+        return ThisUpdateTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FILETIME ThisUpdateTime
+     * }
+     */
+    public static MemorySegment ThisUpdateTime(MemorySegment struct) {
+        return struct.asSlice(ThisUpdateTime$OFFSET, ThisUpdateTime$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FILETIME ThisUpdateTime
+     * }
+     */
+    public static void ThisUpdateTime(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ThisUpdateTime$OFFSET, ThisUpdateTime$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout NextUpdateTime$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("NextUpdateTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FILETIME NextUpdateTime
+     * }
+     */
+    public static final GroupLayout NextUpdateTime$layout() {
+        return NextUpdateTime$LAYOUT;
+    }
+
+    private static final long NextUpdateTime$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FILETIME NextUpdateTime
+     * }
+     */
+    public static final long NextUpdateTime$offset() {
+        return NextUpdateTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FILETIME NextUpdateTime
+     * }
+     */
+    public static MemorySegment NextUpdateTime(MemorySegment struct) {
+        return struct.asSlice(NextUpdateTime$OFFSET, NextUpdateTime$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FILETIME NextUpdateTime
+     * }
+     */
+    public static void NextUpdateTime(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, NextUpdateTime$OFFSET, NextUpdateTime$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout PublishTime$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("PublishTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FILETIME PublishTime
+     * }
+     */
+    public static final GroupLayout PublishTime$layout() {
+        return PublishTime$LAYOUT;
+    }
+
+    private static final long PublishTime$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FILETIME PublishTime
+     * }
+     */
+    public static final long PublishTime$offset() {
+        return PublishTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FILETIME PublishTime
+     * }
+     */
+    public static MemorySegment PublishTime(MemorySegment struct) {
+        return struct.asSlice(PublishTime$OFFSET, PublishTime$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FILETIME PublishTime
+     * }
+     */
+    public static void PublishTime(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, PublishTime$OFFSET, PublishTime$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

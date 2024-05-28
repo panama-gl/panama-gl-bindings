@@ -2,164 +2,452 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CMC_DATA_INFO {
+ *     DWORD cTaggedAttribute;
+ *     PCMC_TAGGED_ATTRIBUTE rgTaggedAttribute;
+ *     DWORD cTaggedRequest;
+ *     PCMC_TAGGED_REQUEST rgTaggedRequest;
+ *     DWORD cTaggedContentInfo;
+ *     PCMC_TAGGED_CONTENT_INFO rgTaggedContentInfo;
+ *     DWORD cTaggedOtherMsg;
+ *     PCMC_TAGGED_OTHER_MSG rgTaggedOtherMsg;
+ * }
+ * }
+ */
 public class _CMC_DATA_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cTaggedAttribute"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgTaggedAttribute"),
-        Constants$root.C_LONG$LAYOUT.withName("cTaggedRequest"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgTaggedRequest"),
-        Constants$root.C_LONG$LAYOUT.withName("cTaggedContentInfo"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgTaggedContentInfo"),
-        Constants$root.C_LONG$LAYOUT.withName("cTaggedOtherMsg"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgTaggedOtherMsg")
-    ).withName("_CMC_DATA_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CMC_DATA_INFO.$struct$LAYOUT;
+    _CMC_DATA_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle cTaggedAttribute$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cTaggedAttribute"));
-    public static VarHandle cTaggedAttribute$VH() {
-        return _CMC_DATA_INFO.cTaggedAttribute$VH;
-    }
-    public static int cTaggedAttribute$get(MemorySegment seg) {
-        return (int)_CMC_DATA_INFO.cTaggedAttribute$VH.get(seg);
-    }
-    public static void cTaggedAttribute$set( MemorySegment seg, int x) {
-        _CMC_DATA_INFO.cTaggedAttribute$VH.set(seg, x);
-    }
-    public static int cTaggedAttribute$get(MemorySegment seg, long index) {
-        return (int)_CMC_DATA_INFO.cTaggedAttribute$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cTaggedAttribute$set(MemorySegment seg, long index, int x) {
-        _CMC_DATA_INFO.cTaggedAttribute$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgTaggedAttribute$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgTaggedAttribute"));
-    public static VarHandle rgTaggedAttribute$VH() {
-        return _CMC_DATA_INFO.rgTaggedAttribute$VH;
-    }
-    public static MemoryAddress rgTaggedAttribute$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMC_DATA_INFO.rgTaggedAttribute$VH.get(seg);
-    }
-    public static void rgTaggedAttribute$set( MemorySegment seg, MemoryAddress x) {
-        _CMC_DATA_INFO.rgTaggedAttribute$VH.set(seg, x);
-    }
-    public static MemoryAddress rgTaggedAttribute$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMC_DATA_INFO.rgTaggedAttribute$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgTaggedAttribute$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMC_DATA_INFO.rgTaggedAttribute$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cTaggedRequest$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cTaggedRequest"));
-    public static VarHandle cTaggedRequest$VH() {
-        return _CMC_DATA_INFO.cTaggedRequest$VH;
-    }
-    public static int cTaggedRequest$get(MemorySegment seg) {
-        return (int)_CMC_DATA_INFO.cTaggedRequest$VH.get(seg);
-    }
-    public static void cTaggedRequest$set( MemorySegment seg, int x) {
-        _CMC_DATA_INFO.cTaggedRequest$VH.set(seg, x);
-    }
-    public static int cTaggedRequest$get(MemorySegment seg, long index) {
-        return (int)_CMC_DATA_INFO.cTaggedRequest$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cTaggedRequest$set(MemorySegment seg, long index, int x) {
-        _CMC_DATA_INFO.cTaggedRequest$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgTaggedRequest$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgTaggedRequest"));
-    public static VarHandle rgTaggedRequest$VH() {
-        return _CMC_DATA_INFO.rgTaggedRequest$VH;
-    }
-    public static MemoryAddress rgTaggedRequest$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMC_DATA_INFO.rgTaggedRequest$VH.get(seg);
-    }
-    public static void rgTaggedRequest$set( MemorySegment seg, MemoryAddress x) {
-        _CMC_DATA_INFO.rgTaggedRequest$VH.set(seg, x);
-    }
-    public static MemoryAddress rgTaggedRequest$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMC_DATA_INFO.rgTaggedRequest$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgTaggedRequest$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMC_DATA_INFO.rgTaggedRequest$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cTaggedContentInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cTaggedContentInfo"));
-    public static VarHandle cTaggedContentInfo$VH() {
-        return _CMC_DATA_INFO.cTaggedContentInfo$VH;
-    }
-    public static int cTaggedContentInfo$get(MemorySegment seg) {
-        return (int)_CMC_DATA_INFO.cTaggedContentInfo$VH.get(seg);
-    }
-    public static void cTaggedContentInfo$set( MemorySegment seg, int x) {
-        _CMC_DATA_INFO.cTaggedContentInfo$VH.set(seg, x);
-    }
-    public static int cTaggedContentInfo$get(MemorySegment seg, long index) {
-        return (int)_CMC_DATA_INFO.cTaggedContentInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cTaggedContentInfo$set(MemorySegment seg, long index, int x) {
-        _CMC_DATA_INFO.cTaggedContentInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgTaggedContentInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgTaggedContentInfo"));
-    public static VarHandle rgTaggedContentInfo$VH() {
-        return _CMC_DATA_INFO.rgTaggedContentInfo$VH;
-    }
-    public static MemoryAddress rgTaggedContentInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMC_DATA_INFO.rgTaggedContentInfo$VH.get(seg);
-    }
-    public static void rgTaggedContentInfo$set( MemorySegment seg, MemoryAddress x) {
-        _CMC_DATA_INFO.rgTaggedContentInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress rgTaggedContentInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMC_DATA_INFO.rgTaggedContentInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgTaggedContentInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMC_DATA_INFO.rgTaggedContentInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cTaggedOtherMsg$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cTaggedOtherMsg"));
-    public static VarHandle cTaggedOtherMsg$VH() {
-        return _CMC_DATA_INFO.cTaggedOtherMsg$VH;
-    }
-    public static int cTaggedOtherMsg$get(MemorySegment seg) {
-        return (int)_CMC_DATA_INFO.cTaggedOtherMsg$VH.get(seg);
-    }
-    public static void cTaggedOtherMsg$set( MemorySegment seg, int x) {
-        _CMC_DATA_INFO.cTaggedOtherMsg$VH.set(seg, x);
-    }
-    public static int cTaggedOtherMsg$get(MemorySegment seg, long index) {
-        return (int)_CMC_DATA_INFO.cTaggedOtherMsg$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cTaggedOtherMsg$set(MemorySegment seg, long index, int x) {
-        _CMC_DATA_INFO.cTaggedOtherMsg$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgTaggedOtherMsg$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgTaggedOtherMsg"));
-    public static VarHandle rgTaggedOtherMsg$VH() {
-        return _CMC_DATA_INFO.rgTaggedOtherMsg$VH;
-    }
-    public static MemoryAddress rgTaggedOtherMsg$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMC_DATA_INFO.rgTaggedOtherMsg$VH.get(seg);
-    }
-    public static void rgTaggedOtherMsg$set( MemorySegment seg, MemoryAddress x) {
-        _CMC_DATA_INFO.rgTaggedOtherMsg$VH.set(seg, x);
-    }
-    public static MemoryAddress rgTaggedOtherMsg$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMC_DATA_INFO.rgTaggedOtherMsg$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgTaggedOtherMsg$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMC_DATA_INFO.rgTaggedOtherMsg$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cTaggedAttribute"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgTaggedAttribute"),
+        wgl_h.C_LONG.withName("cTaggedRequest"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgTaggedRequest"),
+        wgl_h.C_LONG.withName("cTaggedContentInfo"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgTaggedContentInfo"),
+        wgl_h.C_LONG.withName("cTaggedOtherMsg"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgTaggedOtherMsg")
+    ).withName("_CMC_DATA_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cTaggedAttribute$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cTaggedAttribute"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cTaggedAttribute
+     * }
+     */
+    public static final OfInt cTaggedAttribute$layout() {
+        return cTaggedAttribute$LAYOUT;
+    }
+
+    private static final long cTaggedAttribute$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cTaggedAttribute
+     * }
+     */
+    public static final long cTaggedAttribute$offset() {
+        return cTaggedAttribute$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cTaggedAttribute
+     * }
+     */
+    public static int cTaggedAttribute(MemorySegment struct) {
+        return struct.get(cTaggedAttribute$LAYOUT, cTaggedAttribute$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cTaggedAttribute
+     * }
+     */
+    public static void cTaggedAttribute(MemorySegment struct, int fieldValue) {
+        struct.set(cTaggedAttribute$LAYOUT, cTaggedAttribute$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgTaggedAttribute$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgTaggedAttribute"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_ATTRIBUTE rgTaggedAttribute
+     * }
+     */
+    public static final AddressLayout rgTaggedAttribute$layout() {
+        return rgTaggedAttribute$LAYOUT;
+    }
+
+    private static final long rgTaggedAttribute$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_ATTRIBUTE rgTaggedAttribute
+     * }
+     */
+    public static final long rgTaggedAttribute$offset() {
+        return rgTaggedAttribute$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_ATTRIBUTE rgTaggedAttribute
+     * }
+     */
+    public static MemorySegment rgTaggedAttribute(MemorySegment struct) {
+        return struct.get(rgTaggedAttribute$LAYOUT, rgTaggedAttribute$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_ATTRIBUTE rgTaggedAttribute
+     * }
+     */
+    public static void rgTaggedAttribute(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgTaggedAttribute$LAYOUT, rgTaggedAttribute$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cTaggedRequest$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cTaggedRequest"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cTaggedRequest
+     * }
+     */
+    public static final OfInt cTaggedRequest$layout() {
+        return cTaggedRequest$LAYOUT;
+    }
+
+    private static final long cTaggedRequest$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cTaggedRequest
+     * }
+     */
+    public static final long cTaggedRequest$offset() {
+        return cTaggedRequest$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cTaggedRequest
+     * }
+     */
+    public static int cTaggedRequest(MemorySegment struct) {
+        return struct.get(cTaggedRequest$LAYOUT, cTaggedRequest$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cTaggedRequest
+     * }
+     */
+    public static void cTaggedRequest(MemorySegment struct, int fieldValue) {
+        struct.set(cTaggedRequest$LAYOUT, cTaggedRequest$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgTaggedRequest$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgTaggedRequest"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_REQUEST rgTaggedRequest
+     * }
+     */
+    public static final AddressLayout rgTaggedRequest$layout() {
+        return rgTaggedRequest$LAYOUT;
+    }
+
+    private static final long rgTaggedRequest$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_REQUEST rgTaggedRequest
+     * }
+     */
+    public static final long rgTaggedRequest$offset() {
+        return rgTaggedRequest$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_REQUEST rgTaggedRequest
+     * }
+     */
+    public static MemorySegment rgTaggedRequest(MemorySegment struct) {
+        return struct.get(rgTaggedRequest$LAYOUT, rgTaggedRequest$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_REQUEST rgTaggedRequest
+     * }
+     */
+    public static void rgTaggedRequest(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgTaggedRequest$LAYOUT, rgTaggedRequest$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cTaggedContentInfo$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cTaggedContentInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cTaggedContentInfo
+     * }
+     */
+    public static final OfInt cTaggedContentInfo$layout() {
+        return cTaggedContentInfo$LAYOUT;
+    }
+
+    private static final long cTaggedContentInfo$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cTaggedContentInfo
+     * }
+     */
+    public static final long cTaggedContentInfo$offset() {
+        return cTaggedContentInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cTaggedContentInfo
+     * }
+     */
+    public static int cTaggedContentInfo(MemorySegment struct) {
+        return struct.get(cTaggedContentInfo$LAYOUT, cTaggedContentInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cTaggedContentInfo
+     * }
+     */
+    public static void cTaggedContentInfo(MemorySegment struct, int fieldValue) {
+        struct.set(cTaggedContentInfo$LAYOUT, cTaggedContentInfo$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgTaggedContentInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgTaggedContentInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_CONTENT_INFO rgTaggedContentInfo
+     * }
+     */
+    public static final AddressLayout rgTaggedContentInfo$layout() {
+        return rgTaggedContentInfo$LAYOUT;
+    }
+
+    private static final long rgTaggedContentInfo$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_CONTENT_INFO rgTaggedContentInfo
+     * }
+     */
+    public static final long rgTaggedContentInfo$offset() {
+        return rgTaggedContentInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_CONTENT_INFO rgTaggedContentInfo
+     * }
+     */
+    public static MemorySegment rgTaggedContentInfo(MemorySegment struct) {
+        return struct.get(rgTaggedContentInfo$LAYOUT, rgTaggedContentInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_CONTENT_INFO rgTaggedContentInfo
+     * }
+     */
+    public static void rgTaggedContentInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgTaggedContentInfo$LAYOUT, rgTaggedContentInfo$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cTaggedOtherMsg$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cTaggedOtherMsg"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cTaggedOtherMsg
+     * }
+     */
+    public static final OfInt cTaggedOtherMsg$layout() {
+        return cTaggedOtherMsg$LAYOUT;
+    }
+
+    private static final long cTaggedOtherMsg$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cTaggedOtherMsg
+     * }
+     */
+    public static final long cTaggedOtherMsg$offset() {
+        return cTaggedOtherMsg$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cTaggedOtherMsg
+     * }
+     */
+    public static int cTaggedOtherMsg(MemorySegment struct) {
+        return struct.get(cTaggedOtherMsg$LAYOUT, cTaggedOtherMsg$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cTaggedOtherMsg
+     * }
+     */
+    public static void cTaggedOtherMsg(MemorySegment struct, int fieldValue) {
+        struct.set(cTaggedOtherMsg$LAYOUT, cTaggedOtherMsg$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgTaggedOtherMsg$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgTaggedOtherMsg"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_OTHER_MSG rgTaggedOtherMsg
+     * }
+     */
+    public static final AddressLayout rgTaggedOtherMsg$layout() {
+        return rgTaggedOtherMsg$LAYOUT;
+    }
+
+    private static final long rgTaggedOtherMsg$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_OTHER_MSG rgTaggedOtherMsg
+     * }
+     */
+    public static final long rgTaggedOtherMsg$offset() {
+        return rgTaggedOtherMsg$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_OTHER_MSG rgTaggedOtherMsg
+     * }
+     */
+    public static MemorySegment rgTaggedOtherMsg(MemorySegment struct) {
+        return struct.get(rgTaggedOtherMsg$LAYOUT, rgTaggedOtherMsg$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_OTHER_MSG rgTaggedOtherMsg
+     * }
+     */
+    public static void rgTaggedOtherMsg(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgTaggedOtherMsg$LAYOUT, rgTaggedOtherMsg$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

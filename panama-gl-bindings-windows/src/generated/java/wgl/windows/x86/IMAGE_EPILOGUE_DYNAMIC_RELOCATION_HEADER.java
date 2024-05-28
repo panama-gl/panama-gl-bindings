@@ -2,13 +2,30 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER {
+ *     DWORD EpilogueCount;
+ *     BYTE EpilogueByteCount;
+ *     BYTE BranchDescriptorElementSize;
+ *     WORD BranchDescriptorCount;
+ * } IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER
+ * }
+ */
 public class IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER extends _IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER {
 
+    IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER() {
+        // Should not be called directly
+    }
 }
-
 

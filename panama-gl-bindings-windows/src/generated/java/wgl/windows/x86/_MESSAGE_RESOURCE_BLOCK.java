@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _MESSAGE_RESOURCE_BLOCK {
+ *     DWORD LowId;
+ *     DWORD HighId;
+ *     DWORD OffsetToEntries;
+ * }
+ * }
+ */
 public class _MESSAGE_RESOURCE_BLOCK {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("LowId"),
-        Constants$root.C_LONG$LAYOUT.withName("HighId"),
-        Constants$root.C_LONG$LAYOUT.withName("OffsetToEntries")
-    ).withName("_MESSAGE_RESOURCE_BLOCK");
-    public static MemoryLayout $LAYOUT() {
-        return _MESSAGE_RESOURCE_BLOCK.$struct$LAYOUT;
+    _MESSAGE_RESOURCE_BLOCK() {
+        // Should not be called directly
     }
-    static final VarHandle LowId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LowId"));
-    public static VarHandle LowId$VH() {
-        return _MESSAGE_RESOURCE_BLOCK.LowId$VH;
-    }
-    public static int LowId$get(MemorySegment seg) {
-        return (int)_MESSAGE_RESOURCE_BLOCK.LowId$VH.get(seg);
-    }
-    public static void LowId$set( MemorySegment seg, int x) {
-        _MESSAGE_RESOURCE_BLOCK.LowId$VH.set(seg, x);
-    }
-    public static int LowId$get(MemorySegment seg, long index) {
-        return (int)_MESSAGE_RESOURCE_BLOCK.LowId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LowId$set(MemorySegment seg, long index, int x) {
-        _MESSAGE_RESOURCE_BLOCK.LowId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle HighId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HighId"));
-    public static VarHandle HighId$VH() {
-        return _MESSAGE_RESOURCE_BLOCK.HighId$VH;
-    }
-    public static int HighId$get(MemorySegment seg) {
-        return (int)_MESSAGE_RESOURCE_BLOCK.HighId$VH.get(seg);
-    }
-    public static void HighId$set( MemorySegment seg, int x) {
-        _MESSAGE_RESOURCE_BLOCK.HighId$VH.set(seg, x);
-    }
-    public static int HighId$get(MemorySegment seg, long index) {
-        return (int)_MESSAGE_RESOURCE_BLOCK.HighId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HighId$set(MemorySegment seg, long index, int x) {
-        _MESSAGE_RESOURCE_BLOCK.HighId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle OffsetToEntries$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OffsetToEntries"));
-    public static VarHandle OffsetToEntries$VH() {
-        return _MESSAGE_RESOURCE_BLOCK.OffsetToEntries$VH;
-    }
-    public static int OffsetToEntries$get(MemorySegment seg) {
-        return (int)_MESSAGE_RESOURCE_BLOCK.OffsetToEntries$VH.get(seg);
-    }
-    public static void OffsetToEntries$set( MemorySegment seg, int x) {
-        _MESSAGE_RESOURCE_BLOCK.OffsetToEntries$VH.set(seg, x);
-    }
-    public static int OffsetToEntries$get(MemorySegment seg, long index) {
-        return (int)_MESSAGE_RESOURCE_BLOCK.OffsetToEntries$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void OffsetToEntries$set(MemorySegment seg, long index, int x) {
-        _MESSAGE_RESOURCE_BLOCK.OffsetToEntries$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("LowId"),
+        wgl_h.C_LONG.withName("HighId"),
+        wgl_h.C_LONG.withName("OffsetToEntries")
+    ).withName("_MESSAGE_RESOURCE_BLOCK");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt LowId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("LowId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD LowId
+     * }
+     */
+    public static final OfInt LowId$layout() {
+        return LowId$LAYOUT;
+    }
+
+    private static final long LowId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD LowId
+     * }
+     */
+    public static final long LowId$offset() {
+        return LowId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD LowId
+     * }
+     */
+    public static int LowId(MemorySegment struct) {
+        return struct.get(LowId$LAYOUT, LowId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD LowId
+     * }
+     */
+    public static void LowId(MemorySegment struct, int fieldValue) {
+        struct.set(LowId$LAYOUT, LowId$OFFSET, fieldValue);
+    }
+
+    private static final OfInt HighId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("HighId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD HighId
+     * }
+     */
+    public static final OfInt HighId$layout() {
+        return HighId$LAYOUT;
+    }
+
+    private static final long HighId$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD HighId
+     * }
+     */
+    public static final long HighId$offset() {
+        return HighId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD HighId
+     * }
+     */
+    public static int HighId(MemorySegment struct) {
+        return struct.get(HighId$LAYOUT, HighId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD HighId
+     * }
+     */
+    public static void HighId(MemorySegment struct, int fieldValue) {
+        struct.set(HighId$LAYOUT, HighId$OFFSET, fieldValue);
+    }
+
+    private static final OfInt OffsetToEntries$LAYOUT = (OfInt)$LAYOUT.select(groupElement("OffsetToEntries"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD OffsetToEntries
+     * }
+     */
+    public static final OfInt OffsetToEntries$layout() {
+        return OffsetToEntries$LAYOUT;
+    }
+
+    private static final long OffsetToEntries$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD OffsetToEntries
+     * }
+     */
+    public static final long OffsetToEntries$offset() {
+        return OffsetToEntries$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD OffsetToEntries
+     * }
+     */
+    public static int OffsetToEntries(MemorySegment struct) {
+        return struct.get(OffsetToEntries$LAYOUT, OffsetToEntries$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD OffsetToEntries
+     * }
+     */
+    public static void OffsetToEntries(MemorySegment struct, int fieldValue) {
+        struct.set(OffsetToEntries$LAYOUT, OffsetToEntries$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

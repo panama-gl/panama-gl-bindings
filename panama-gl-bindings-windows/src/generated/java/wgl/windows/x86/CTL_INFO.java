@@ -2,13 +2,37 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CTL_INFO {
+ *     DWORD dwVersion;
+ *     CTL_USAGE SubjectUsage;
+ *     CRYPT_DATA_BLOB ListIdentifier;
+ *     CRYPT_INTEGER_BLOB SequenceNumber;
+ *     FILETIME ThisUpdate;
+ *     FILETIME NextUpdate;
+ *     CRYPT_ALGORITHM_IDENTIFIER SubjectAlgorithm;
+ *     DWORD cCTLEntry;
+ *     PCTL_ENTRY rgCTLEntry;
+ *     DWORD cExtension;
+ *     PCERT_EXTENSION rgExtension;
+ * } CTL_INFO
+ * }
+ */
 public class CTL_INFO extends _CTL_INFO {
 
+    CTL_INFO() {
+        // Should not be called directly
+    }
 }
-
 

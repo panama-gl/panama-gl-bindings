@@ -2,132 +2,437 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagRPCOLEMESSAGE {
+ *     void *reserved1;
+ *     RPCOLEDATAREP dataRepresentation;
+ *     void *Buffer;
+ *     ULONG cbBuffer;
+ *     ULONG iMethod;
+ *     void *reserved2[5];
+ *     ULONG rpcFlags;
+ * }
+ * }
+ */
 public class tagRPCOLEMESSAGE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("reserved1"),
-        Constants$root.C_LONG$LAYOUT.withName("dataRepresentation"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("Buffer"),
-        Constants$root.C_LONG$LAYOUT.withName("cbBuffer"),
-        Constants$root.C_LONG$LAYOUT.withName("iMethod"),
-        MemoryLayout.sequenceLayout(5, Constants$root.C_POINTER$LAYOUT).withName("reserved2"),
-        Constants$root.C_LONG$LAYOUT.withName("rpcFlags"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("tagRPCOLEMESSAGE");
-    public static MemoryLayout $LAYOUT() {
-        return tagRPCOLEMESSAGE.$struct$LAYOUT;
+    tagRPCOLEMESSAGE() {
+        // Should not be called directly
     }
-    static final VarHandle reserved1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("reserved1"));
-    public static VarHandle reserved1$VH() {
-        return tagRPCOLEMESSAGE.reserved1$VH;
-    }
-    public static MemoryAddress reserved1$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagRPCOLEMESSAGE.reserved1$VH.get(seg);
-    }
-    public static void reserved1$set( MemorySegment seg, MemoryAddress x) {
-        tagRPCOLEMESSAGE.reserved1$VH.set(seg, x);
-    }
-    public static MemoryAddress reserved1$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagRPCOLEMESSAGE.reserved1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void reserved1$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagRPCOLEMESSAGE.reserved1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dataRepresentation$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dataRepresentation"));
-    public static VarHandle dataRepresentation$VH() {
-        return tagRPCOLEMESSAGE.dataRepresentation$VH;
-    }
-    public static int dataRepresentation$get(MemorySegment seg) {
-        return (int)tagRPCOLEMESSAGE.dataRepresentation$VH.get(seg);
-    }
-    public static void dataRepresentation$set( MemorySegment seg, int x) {
-        tagRPCOLEMESSAGE.dataRepresentation$VH.set(seg, x);
-    }
-    public static int dataRepresentation$get(MemorySegment seg, long index) {
-        return (int)tagRPCOLEMESSAGE.dataRepresentation$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dataRepresentation$set(MemorySegment seg, long index, int x) {
-        tagRPCOLEMESSAGE.dataRepresentation$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Buffer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Buffer"));
-    public static VarHandle Buffer$VH() {
-        return tagRPCOLEMESSAGE.Buffer$VH;
-    }
-    public static MemoryAddress Buffer$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagRPCOLEMESSAGE.Buffer$VH.get(seg);
-    }
-    public static void Buffer$set( MemorySegment seg, MemoryAddress x) {
-        tagRPCOLEMESSAGE.Buffer$VH.set(seg, x);
-    }
-    public static MemoryAddress Buffer$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagRPCOLEMESSAGE.Buffer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Buffer$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagRPCOLEMESSAGE.Buffer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbBuffer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbBuffer"));
-    public static VarHandle cbBuffer$VH() {
-        return tagRPCOLEMESSAGE.cbBuffer$VH;
-    }
-    public static int cbBuffer$get(MemorySegment seg) {
-        return (int)tagRPCOLEMESSAGE.cbBuffer$VH.get(seg);
-    }
-    public static void cbBuffer$set( MemorySegment seg, int x) {
-        tagRPCOLEMESSAGE.cbBuffer$VH.set(seg, x);
-    }
-    public static int cbBuffer$get(MemorySegment seg, long index) {
-        return (int)tagRPCOLEMESSAGE.cbBuffer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbBuffer$set(MemorySegment seg, long index, int x) {
-        tagRPCOLEMESSAGE.cbBuffer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iMethod$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iMethod"));
-    public static VarHandle iMethod$VH() {
-        return tagRPCOLEMESSAGE.iMethod$VH;
-    }
-    public static int iMethod$get(MemorySegment seg) {
-        return (int)tagRPCOLEMESSAGE.iMethod$VH.get(seg);
-    }
-    public static void iMethod$set( MemorySegment seg, int x) {
-        tagRPCOLEMESSAGE.iMethod$VH.set(seg, x);
-    }
-    public static int iMethod$get(MemorySegment seg, long index) {
-        return (int)tagRPCOLEMESSAGE.iMethod$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iMethod$set(MemorySegment seg, long index, int x) {
-        tagRPCOLEMESSAGE.iMethod$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment reserved2$slice(MemorySegment seg) {
-        return seg.asSlice(32, 40);
-    }
-    static final VarHandle rpcFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rpcFlags"));
-    public static VarHandle rpcFlags$VH() {
-        return tagRPCOLEMESSAGE.rpcFlags$VH;
-    }
-    public static int rpcFlags$get(MemorySegment seg) {
-        return (int)tagRPCOLEMESSAGE.rpcFlags$VH.get(seg);
-    }
-    public static void rpcFlags$set( MemorySegment seg, int x) {
-        tagRPCOLEMESSAGE.rpcFlags$VH.set(seg, x);
-    }
-    public static int rpcFlags$get(MemorySegment seg, long index) {
-        return (int)tagRPCOLEMESSAGE.rpcFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rpcFlags$set(MemorySegment seg, long index, int x) {
-        tagRPCOLEMESSAGE.rpcFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("reserved1"),
+        wgl_h.C_LONG.withName("dataRepresentation"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("Buffer"),
+        wgl_h.C_LONG.withName("cbBuffer"),
+        wgl_h.C_LONG.withName("iMethod"),
+        MemoryLayout.sequenceLayout(5, wgl_h.C_POINTER).withName("reserved2"),
+        wgl_h.C_LONG.withName("rpcFlags"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("tagRPCOLEMESSAGE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout reserved1$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("reserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *reserved1
+     * }
+     */
+    public static final AddressLayout reserved1$layout() {
+        return reserved1$LAYOUT;
+    }
+
+    private static final long reserved1$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *reserved1
+     * }
+     */
+    public static final long reserved1$offset() {
+        return reserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *reserved1
+     * }
+     */
+    public static MemorySegment reserved1(MemorySegment struct) {
+        return struct.get(reserved1$LAYOUT, reserved1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *reserved1
+     * }
+     */
+    public static void reserved1(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(reserved1$LAYOUT, reserved1$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dataRepresentation$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dataRepresentation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RPCOLEDATAREP dataRepresentation
+     * }
+     */
+    public static final OfInt dataRepresentation$layout() {
+        return dataRepresentation$LAYOUT;
+    }
+
+    private static final long dataRepresentation$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RPCOLEDATAREP dataRepresentation
+     * }
+     */
+    public static final long dataRepresentation$offset() {
+        return dataRepresentation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RPCOLEDATAREP dataRepresentation
+     * }
+     */
+    public static int dataRepresentation(MemorySegment struct) {
+        return struct.get(dataRepresentation$LAYOUT, dataRepresentation$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RPCOLEDATAREP dataRepresentation
+     * }
+     */
+    public static void dataRepresentation(MemorySegment struct, int fieldValue) {
+        struct.set(dataRepresentation$LAYOUT, dataRepresentation$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout Buffer$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Buffer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *Buffer
+     * }
+     */
+    public static final AddressLayout Buffer$layout() {
+        return Buffer$LAYOUT;
+    }
+
+    private static final long Buffer$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *Buffer
+     * }
+     */
+    public static final long Buffer$offset() {
+        return Buffer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *Buffer
+     * }
+     */
+    public static MemorySegment Buffer(MemorySegment struct) {
+        return struct.get(Buffer$LAYOUT, Buffer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *Buffer
+     * }
+     */
+    public static void Buffer(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Buffer$LAYOUT, Buffer$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbBuffer$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbBuffer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cbBuffer
+     * }
+     */
+    public static final OfInt cbBuffer$layout() {
+        return cbBuffer$LAYOUT;
+    }
+
+    private static final long cbBuffer$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cbBuffer
+     * }
+     */
+    public static final long cbBuffer$offset() {
+        return cbBuffer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cbBuffer
+     * }
+     */
+    public static int cbBuffer(MemorySegment struct) {
+        return struct.get(cbBuffer$LAYOUT, cbBuffer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cbBuffer
+     * }
+     */
+    public static void cbBuffer(MemorySegment struct, int fieldValue) {
+        struct.set(cbBuffer$LAYOUT, cbBuffer$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iMethod$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iMethod"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG iMethod
+     * }
+     */
+    public static final OfInt iMethod$layout() {
+        return iMethod$LAYOUT;
+    }
+
+    private static final long iMethod$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG iMethod
+     * }
+     */
+    public static final long iMethod$offset() {
+        return iMethod$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG iMethod
+     * }
+     */
+    public static int iMethod(MemorySegment struct) {
+        return struct.get(iMethod$LAYOUT, iMethod$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG iMethod
+     * }
+     */
+    public static void iMethod(MemorySegment struct, int fieldValue) {
+        struct.set(iMethod$LAYOUT, iMethod$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout reserved2$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("reserved2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *reserved2[5]
+     * }
+     */
+    public static final SequenceLayout reserved2$layout() {
+        return reserved2$LAYOUT;
+    }
+
+    private static final long reserved2$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *reserved2[5]
+     * }
+     */
+    public static final long reserved2$offset() {
+        return reserved2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *reserved2[5]
+     * }
+     */
+    public static MemorySegment reserved2(MemorySegment struct) {
+        return struct.asSlice(reserved2$OFFSET, reserved2$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *reserved2[5]
+     * }
+     */
+    public static void reserved2(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, reserved2$OFFSET, reserved2$LAYOUT.byteSize());
+    }
+
+    private static long[] reserved2$DIMS = { 5 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * void *reserved2[5]
+     * }
+     */
+    public static long[] reserved2$dimensions() {
+        return reserved2$DIMS;
+    }
+    private static final VarHandle reserved2$ELEM_HANDLE = reserved2$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * void *reserved2[5]
+     * }
+     */
+    public static MemorySegment reserved2(MemorySegment struct, long index0) {
+        return (MemorySegment)reserved2$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * void *reserved2[5]
+     * }
+     */
+    public static void reserved2(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        reserved2$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt rpcFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("rpcFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG rpcFlags
+     * }
+     */
+    public static final OfInt rpcFlags$layout() {
+        return rpcFlags$LAYOUT;
+    }
+
+    private static final long rpcFlags$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG rpcFlags
+     * }
+     */
+    public static final long rpcFlags$offset() {
+        return rpcFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG rpcFlags
+     * }
+     */
+    public static int rpcFlags(MemorySegment struct) {
+        return struct.get(rpcFlags$LAYOUT, rpcFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG rpcFlags
+     * }
+     */
+    public static void rpcFlags(MemorySegment struct, int fieldValue) {
+        struct.set(rpcFlags$LAYOUT, rpcFlags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

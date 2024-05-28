@@ -2,53 +2,173 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION {
+ *     DWORD ElementCount;
+ *     COMPATIBILITY_CONTEXT_ELEMENT Elements[];
+ * }
+ * }
+ */
 public class _ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ElementCount"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.sequenceLayout(0, MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-            ).withName("Id"),
-            Constants$root.C_LONG$LAYOUT.withName("Type"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("MaxVersionTested")
-        ).withName("_COMPATIBILITY_CONTEXT_ELEMENT")).withName("Elements")
-    ).withName("_ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return _ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION.$struct$LAYOUT;
+    _ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION() {
+        // Should not be called directly
     }
-    static final VarHandle ElementCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ElementCount"));
-    public static VarHandle ElementCount$VH() {
-        return _ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION.ElementCount$VH;
-    }
-    public static int ElementCount$get(MemorySegment seg) {
-        return (int)_ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION.ElementCount$VH.get(seg);
-    }
-    public static void ElementCount$set( MemorySegment seg, int x) {
-        _ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION.ElementCount$VH.set(seg, x);
-    }
-    public static int ElementCount$get(MemorySegment seg, long index) {
-        return (int)_ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION.ElementCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ElementCount$set(MemorySegment seg, long index, int x) {
-        _ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION.ElementCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("ElementCount"),
+        MemoryLayout.paddingLayout(4),
+        MemoryLayout.sequenceLayout(0, _COMPATIBILITY_CONTEXT_ELEMENT.layout()).withName("Elements")
+    ).withName("_ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt ElementCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ElementCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ElementCount
+     * }
+     */
+    public static final OfInt ElementCount$layout() {
+        return ElementCount$LAYOUT;
+    }
+
+    private static final long ElementCount$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ElementCount
+     * }
+     */
+    public static final long ElementCount$offset() {
+        return ElementCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ElementCount
+     * }
+     */
+    public static int ElementCount(MemorySegment struct) {
+        return struct.get(ElementCount$LAYOUT, ElementCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ElementCount
+     * }
+     */
+    public static void ElementCount(MemorySegment struct, int fieldValue) {
+        struct.set(ElementCount$LAYOUT, ElementCount$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Elements$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Elements"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * COMPATIBILITY_CONTEXT_ELEMENT Elements[]
+     * }
+     */
+    public static final SequenceLayout Elements$layout() {
+        return Elements$LAYOUT;
+    }
+
+    private static final long Elements$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * COMPATIBILITY_CONTEXT_ELEMENT Elements[]
+     * }
+     */
+    public static final long Elements$offset() {
+        return Elements$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * COMPATIBILITY_CONTEXT_ELEMENT Elements[]
+     * }
+     */
+    public static MemorySegment Elements(MemorySegment struct) {
+        return struct.asSlice(Elements$OFFSET, Elements$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * COMPATIBILITY_CONTEXT_ELEMENT Elements[]
+     * }
+     */
+    public static void Elements(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Elements$OFFSET, Elements$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

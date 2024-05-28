@@ -2,13 +2,29 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CERT_SUPPORTED_ALGORITHM_INFO {
+ *     CRYPT_ALGORITHM_IDENTIFIER Algorithm;
+ *     CRYPT_BIT_BLOB IntendedKeyUsage;
+ *     CERT_POLICIES_INFO IntendedCertPolicies;
+ * } CERT_SUPPORTED_ALGORITHM_INFO
+ * }
+ */
 public class CERT_SUPPORTED_ALGORITHM_INFO extends _CERT_SUPPORTED_ALGORITHM_INFO {
 
+    CERT_SUPPORTED_ALGORITHM_INFO() {
+        // Should not be called directly
+    }
 }
-
 

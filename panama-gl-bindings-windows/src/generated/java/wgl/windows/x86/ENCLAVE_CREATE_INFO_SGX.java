@@ -2,13 +2,27 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _ENCLAVE_CREATE_INFO_SGX {
+ *     BYTE Secs[4096];
+ * } ENCLAVE_CREATE_INFO_SGX
+ * }
+ */
 public class ENCLAVE_CREATE_INFO_SGX extends _ENCLAVE_CREATE_INFO_SGX {
 
+    ENCLAVE_CREATE_INFO_SGX() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,127 +2,357 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _RPC_HTTP_TRANSPORT_CREDENTIALS_A {
+ *     SEC_WINNT_AUTH_IDENTITY_A *TransportCredentials;
+ *     unsigned long Flags;
+ *     unsigned long AuthenticationTarget;
+ *     unsigned long NumberOfAuthnSchemes;
+ *     unsigned long *AuthnSchemes;
+ *     unsigned char *ServerCertificateSubject;
+ * }
+ * }
+ */
 public class _RPC_HTTP_TRANSPORT_CREDENTIALS_A {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("TransportCredentials"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("AuthenticationTarget"),
-        Constants$root.C_LONG$LAYOUT.withName("NumberOfAuthnSchemes"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("AuthnSchemes"),
-        Constants$root.C_POINTER$LAYOUT.withName("ServerCertificateSubject")
-    ).withName("_RPC_HTTP_TRANSPORT_CREDENTIALS_A");
-    public static MemoryLayout $LAYOUT() {
-        return _RPC_HTTP_TRANSPORT_CREDENTIALS_A.$struct$LAYOUT;
+    _RPC_HTTP_TRANSPORT_CREDENTIALS_A() {
+        // Should not be called directly
     }
-    static final VarHandle TransportCredentials$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TransportCredentials"));
-    public static VarHandle TransportCredentials$VH() {
-        return _RPC_HTTP_TRANSPORT_CREDENTIALS_A.TransportCredentials$VH;
-    }
-    public static MemoryAddress TransportCredentials$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RPC_HTTP_TRANSPORT_CREDENTIALS_A.TransportCredentials$VH.get(seg);
-    }
-    public static void TransportCredentials$set( MemorySegment seg, MemoryAddress x) {
-        _RPC_HTTP_TRANSPORT_CREDENTIALS_A.TransportCredentials$VH.set(seg, x);
-    }
-    public static MemoryAddress TransportCredentials$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RPC_HTTP_TRANSPORT_CREDENTIALS_A.TransportCredentials$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TransportCredentials$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RPC_HTTP_TRANSPORT_CREDENTIALS_A.TransportCredentials$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _RPC_HTTP_TRANSPORT_CREDENTIALS_A.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_RPC_HTTP_TRANSPORT_CREDENTIALS_A.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _RPC_HTTP_TRANSPORT_CREDENTIALS_A.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_RPC_HTTP_TRANSPORT_CREDENTIALS_A.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _RPC_HTTP_TRANSPORT_CREDENTIALS_A.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AuthenticationTarget$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AuthenticationTarget"));
-    public static VarHandle AuthenticationTarget$VH() {
-        return _RPC_HTTP_TRANSPORT_CREDENTIALS_A.AuthenticationTarget$VH;
-    }
-    public static int AuthenticationTarget$get(MemorySegment seg) {
-        return (int)_RPC_HTTP_TRANSPORT_CREDENTIALS_A.AuthenticationTarget$VH.get(seg);
-    }
-    public static void AuthenticationTarget$set( MemorySegment seg, int x) {
-        _RPC_HTTP_TRANSPORT_CREDENTIALS_A.AuthenticationTarget$VH.set(seg, x);
-    }
-    public static int AuthenticationTarget$get(MemorySegment seg, long index) {
-        return (int)_RPC_HTTP_TRANSPORT_CREDENTIALS_A.AuthenticationTarget$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AuthenticationTarget$set(MemorySegment seg, long index, int x) {
-        _RPC_HTTP_TRANSPORT_CREDENTIALS_A.AuthenticationTarget$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberOfAuthnSchemes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfAuthnSchemes"));
-    public static VarHandle NumberOfAuthnSchemes$VH() {
-        return _RPC_HTTP_TRANSPORT_CREDENTIALS_A.NumberOfAuthnSchemes$VH;
-    }
-    public static int NumberOfAuthnSchemes$get(MemorySegment seg) {
-        return (int)_RPC_HTTP_TRANSPORT_CREDENTIALS_A.NumberOfAuthnSchemes$VH.get(seg);
-    }
-    public static void NumberOfAuthnSchemes$set( MemorySegment seg, int x) {
-        _RPC_HTTP_TRANSPORT_CREDENTIALS_A.NumberOfAuthnSchemes$VH.set(seg, x);
-    }
-    public static int NumberOfAuthnSchemes$get(MemorySegment seg, long index) {
-        return (int)_RPC_HTTP_TRANSPORT_CREDENTIALS_A.NumberOfAuthnSchemes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfAuthnSchemes$set(MemorySegment seg, long index, int x) {
-        _RPC_HTTP_TRANSPORT_CREDENTIALS_A.NumberOfAuthnSchemes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AuthnSchemes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AuthnSchemes"));
-    public static VarHandle AuthnSchemes$VH() {
-        return _RPC_HTTP_TRANSPORT_CREDENTIALS_A.AuthnSchemes$VH;
-    }
-    public static MemoryAddress AuthnSchemes$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RPC_HTTP_TRANSPORT_CREDENTIALS_A.AuthnSchemes$VH.get(seg);
-    }
-    public static void AuthnSchemes$set( MemorySegment seg, MemoryAddress x) {
-        _RPC_HTTP_TRANSPORT_CREDENTIALS_A.AuthnSchemes$VH.set(seg, x);
-    }
-    public static MemoryAddress AuthnSchemes$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RPC_HTTP_TRANSPORT_CREDENTIALS_A.AuthnSchemes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AuthnSchemes$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RPC_HTTP_TRANSPORT_CREDENTIALS_A.AuthnSchemes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ServerCertificateSubject$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ServerCertificateSubject"));
-    public static VarHandle ServerCertificateSubject$VH() {
-        return _RPC_HTTP_TRANSPORT_CREDENTIALS_A.ServerCertificateSubject$VH;
-    }
-    public static MemoryAddress ServerCertificateSubject$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RPC_HTTP_TRANSPORT_CREDENTIALS_A.ServerCertificateSubject$VH.get(seg);
-    }
-    public static void ServerCertificateSubject$set( MemorySegment seg, MemoryAddress x) {
-        _RPC_HTTP_TRANSPORT_CREDENTIALS_A.ServerCertificateSubject$VH.set(seg, x);
-    }
-    public static MemoryAddress ServerCertificateSubject$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RPC_HTTP_TRANSPORT_CREDENTIALS_A.ServerCertificateSubject$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ServerCertificateSubject$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RPC_HTTP_TRANSPORT_CREDENTIALS_A.ServerCertificateSubject$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("TransportCredentials"),
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_LONG.withName("AuthenticationTarget"),
+        wgl_h.C_LONG.withName("NumberOfAuthnSchemes"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("AuthnSchemes"),
+        wgl_h.C_POINTER.withName("ServerCertificateSubject")
+    ).withName("_RPC_HTTP_TRANSPORT_CREDENTIALS_A");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout TransportCredentials$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("TransportCredentials"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SEC_WINNT_AUTH_IDENTITY_A *TransportCredentials
+     * }
+     */
+    public static final AddressLayout TransportCredentials$layout() {
+        return TransportCredentials$LAYOUT;
+    }
+
+    private static final long TransportCredentials$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SEC_WINNT_AUTH_IDENTITY_A *TransportCredentials
+     * }
+     */
+    public static final long TransportCredentials$offset() {
+        return TransportCredentials$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SEC_WINNT_AUTH_IDENTITY_A *TransportCredentials
+     * }
+     */
+    public static MemorySegment TransportCredentials(MemorySegment struct) {
+        return struct.get(TransportCredentials$LAYOUT, TransportCredentials$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SEC_WINNT_AUTH_IDENTITY_A *TransportCredentials
+     * }
+     */
+    public static void TransportCredentials(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(TransportCredentials$LAYOUT, TransportCredentials$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt AuthenticationTarget$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AuthenticationTarget"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long AuthenticationTarget
+     * }
+     */
+    public static final OfInt AuthenticationTarget$layout() {
+        return AuthenticationTarget$LAYOUT;
+    }
+
+    private static final long AuthenticationTarget$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long AuthenticationTarget
+     * }
+     */
+    public static final long AuthenticationTarget$offset() {
+        return AuthenticationTarget$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long AuthenticationTarget
+     * }
+     */
+    public static int AuthenticationTarget(MemorySegment struct) {
+        return struct.get(AuthenticationTarget$LAYOUT, AuthenticationTarget$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long AuthenticationTarget
+     * }
+     */
+    public static void AuthenticationTarget(MemorySegment struct, int fieldValue) {
+        struct.set(AuthenticationTarget$LAYOUT, AuthenticationTarget$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NumberOfAuthnSchemes$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberOfAuthnSchemes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long NumberOfAuthnSchemes
+     * }
+     */
+    public static final OfInt NumberOfAuthnSchemes$layout() {
+        return NumberOfAuthnSchemes$LAYOUT;
+    }
+
+    private static final long NumberOfAuthnSchemes$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long NumberOfAuthnSchemes
+     * }
+     */
+    public static final long NumberOfAuthnSchemes$offset() {
+        return NumberOfAuthnSchemes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long NumberOfAuthnSchemes
+     * }
+     */
+    public static int NumberOfAuthnSchemes(MemorySegment struct) {
+        return struct.get(NumberOfAuthnSchemes$LAYOUT, NumberOfAuthnSchemes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long NumberOfAuthnSchemes
+     * }
+     */
+    public static void NumberOfAuthnSchemes(MemorySegment struct, int fieldValue) {
+        struct.set(NumberOfAuthnSchemes$LAYOUT, NumberOfAuthnSchemes$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout AuthnSchemes$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AuthnSchemes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long *AuthnSchemes
+     * }
+     */
+    public static final AddressLayout AuthnSchemes$layout() {
+        return AuthnSchemes$LAYOUT;
+    }
+
+    private static final long AuthnSchemes$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long *AuthnSchemes
+     * }
+     */
+    public static final long AuthnSchemes$offset() {
+        return AuthnSchemes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long *AuthnSchemes
+     * }
+     */
+    public static MemorySegment AuthnSchemes(MemorySegment struct) {
+        return struct.get(AuthnSchemes$LAYOUT, AuthnSchemes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long *AuthnSchemes
+     * }
+     */
+    public static void AuthnSchemes(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AuthnSchemes$LAYOUT, AuthnSchemes$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ServerCertificateSubject$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ServerCertificateSubject"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned char *ServerCertificateSubject
+     * }
+     */
+    public static final AddressLayout ServerCertificateSubject$layout() {
+        return ServerCertificateSubject$LAYOUT;
+    }
+
+    private static final long ServerCertificateSubject$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned char *ServerCertificateSubject
+     * }
+     */
+    public static final long ServerCertificateSubject$offset() {
+        return ServerCertificateSubject$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned char *ServerCertificateSubject
+     * }
+     */
+    public static MemorySegment ServerCertificateSubject(MemorySegment struct) {
+        return struct.get(ServerCertificateSubject$LAYOUT, ServerCertificateSubject$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned char *ServerCertificateSubject
+     * }
+     */
+    public static void ServerCertificateSubject(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ServerCertificateSubject$LAYOUT, ServerCertificateSubject$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

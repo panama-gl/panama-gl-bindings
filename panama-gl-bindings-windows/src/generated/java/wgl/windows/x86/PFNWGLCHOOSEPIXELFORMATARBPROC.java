@@ -2,27 +2,72 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNWGLCHOOSEPIXELFORMATARBPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemoryAddress hdc, java.lang.foreign.MemoryAddress piAttribIList, java.lang.foreign.MemoryAddress pfAttribFList, int nMaxFormats, java.lang.foreign.MemoryAddress piFormats, java.lang.foreign.MemoryAddress nNumFormats);
-    static MemorySegment allocate(PFNWGLCHOOSEPIXELFORMATARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNWGLCHOOSEPIXELFORMATARBPROC.class, fi, constants$1382.PFNWGLCHOOSEPIXELFORMATARBPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PFNWGLCHOOSEPIXELFORMATARBPROC)(HDC, const int *, const FLOAT *, UINT, int *, UINT *) __attribute__((stdcall))
+ * }
+ */
+public class PFNWGLCHOOSEPIXELFORMATARBPROC {
+
+    PFNWGLCHOOSEPIXELFORMATARBPROC() {
+        // Should not be called directly
     }
-    static PFNWGLCHOOSEPIXELFORMATARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _hdc, java.lang.foreign.MemoryAddress _piAttribIList, java.lang.foreign.MemoryAddress _pfAttribFList, int _nMaxFormats, java.lang.foreign.MemoryAddress _piFormats, java.lang.foreign.MemoryAddress _nNumFormats) -> {
-            try {
-                return (int)constants$1382.PFNWGLCHOOSEPIXELFORMATARBPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_hdc, (java.lang.foreign.Addressable)_piAttribIList, (java.lang.foreign.Addressable)_pfAttribFList, _nMaxFormats, (java.lang.foreign.Addressable)_piFormats, (java.lang.foreign.Addressable)_nNumFormats);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment hdc, MemorySegment piAttribIList, MemorySegment pfAttribFList, int nMaxFormats, MemorySegment piFormats, MemorySegment nNumFormats);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_INT,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNWGLCHOOSEPIXELFORMATARBPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNWGLCHOOSEPIXELFORMATARBPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment hdc, MemorySegment piAttribIList, MemorySegment pfAttribFList, int nMaxFormats, MemorySegment piFormats, MemorySegment nNumFormats) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, hdc, piAttribIList, pfAttribFList, nMaxFormats, piFormats, nNumFormats);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

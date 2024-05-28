@@ -2,13 +2,37 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _DEVICE_COPY_OFFLOAD_DESCRIPTOR {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     DWORD MaximumTokenLifetime;
+ *     DWORD DefaultTokenLifetime;
+ *     DWORDLONG MaximumTransferSize;
+ *     DWORDLONG OptimalTransferCount;
+ *     DWORD MaximumDataDescriptors;
+ *     DWORD MaximumTransferLengthPerDescriptor;
+ *     DWORD OptimalTransferLengthPerDescriptor;
+ *     WORD OptimalTransferLengthGranularity;
+ *     BYTE Reserved[2];
+ * } DEVICE_COPY_OFFLOAD_DESCRIPTOR
+ * }
+ */
 public class DEVICE_COPY_OFFLOAD_DESCRIPTOR extends _DEVICE_COPY_OFFLOAD_DESCRIPTOR {
 
+    DEVICE_COPY_OFFLOAD_DESCRIPTOR() {
+        // Should not be called directly
+    }
 }
-
 

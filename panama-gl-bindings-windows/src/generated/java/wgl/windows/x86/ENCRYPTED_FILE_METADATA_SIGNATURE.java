@@ -2,13 +2,30 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _ENCRYPTED_FILE_METADATA_SIGNATURE {
+ *     DWORD dwEfsAccessType;
+ *     PENCRYPTION_CERTIFICATE_HASH_LIST pCertificatesAdded;
+ *     PENCRYPTION_CERTIFICATE pEncryptionCertificate;
+ *     PEFS_RPC_BLOB pEfsStreamSignature;
+ * } ENCRYPTED_FILE_METADATA_SIGNATURE
+ * }
+ */
 public class ENCRYPTED_FILE_METADATA_SIGNATURE extends _ENCRYPTED_FILE_METADATA_SIGNATURE {
 
+    ENCRYPTED_FILE_METADATA_SIGNATURE() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,13 +2,34 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CMSG_SIGNER_INFO {
+ *     DWORD dwVersion;
+ *     CERT_NAME_BLOB Issuer;
+ *     CRYPT_INTEGER_BLOB SerialNumber;
+ *     CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm;
+ *     CRYPT_ALGORITHM_IDENTIFIER HashEncryptionAlgorithm;
+ *     CRYPT_DATA_BLOB EncryptedHash;
+ *     CRYPT_ATTRIBUTES AuthAttrs;
+ *     CRYPT_ATTRIBUTES UnauthAttrs;
+ * } CMSG_SIGNER_INFO
+ * }
+ */
 public class CMSG_SIGNER_INFO extends _CMSG_SIGNER_INFO {
 
+    CMSG_SIGNER_INFO() {
+        // Should not be called directly
+    }
 }
-
 

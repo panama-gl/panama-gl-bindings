@@ -2,13 +2,39 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CERT_CHAIN_ENGINE_CONFIG {
+ *     DWORD cbSize;
+ *     HCERTSTORE hRestrictedRoot;
+ *     HCERTSTORE hRestrictedTrust;
+ *     HCERTSTORE hRestrictedOther;
+ *     DWORD cAdditionalStore;
+ *     HCERTSTORE *rghAdditionalStore;
+ *     DWORD dwFlags;
+ *     DWORD dwUrlRetrievalTimeout;
+ *     DWORD MaximumCachedCertificates;
+ *     DWORD CycleDetectionModulus;
+ *     HCERTSTORE hExclusiveRoot;
+ *     HCERTSTORE hExclusiveTrustedPeople;
+ *     DWORD dwExclusiveFlags;
+ * } CERT_CHAIN_ENGINE_CONFIG
+ * }
+ */
 public class CERT_CHAIN_ENGINE_CONFIG extends _CERT_CHAIN_ENGINE_CONFIG {
 
+    CERT_CHAIN_ENGINE_CONFIG() {
+        // Should not be called directly
+    }
 }
-
 

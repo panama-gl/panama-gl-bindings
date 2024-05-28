@@ -2,13 +2,42 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _PROCESS_MITIGATION_USER_SHADOW_STACK_POLICY {
+ *     union {
+ *         DWORD Flags;
+ *         struct {
+ *             DWORD EnableUserShadowStack : 1;
+ *             DWORD AuditUserShadowStack : 1;
+ *             DWORD SetContextIpValidation : 1;
+ *             DWORD AuditSetContextIpValidation : 1;
+ *             DWORD EnableUserShadowStackStrictMode : 1;
+ *             DWORD BlockNonCetBinaries : 1;
+ *             DWORD BlockNonCetBinariesNonEhcont : 1;
+ *             DWORD AuditBlockNonCetBinaries : 1;
+ *             DWORD CetDynamicApisOutOfProcOnly : 1;
+ *             DWORD SetContextIpValidationRelaxedMode : 1;
+ *             DWORD ReservedFlags : 22;
+ *         };
+ *     };
+ * } PROCESS_MITIGATION_USER_SHADOW_STACK_POLICY
+ * }
+ */
 public class PROCESS_MITIGATION_USER_SHADOW_STACK_POLICY extends _PROCESS_MITIGATION_USER_SHADOW_STACK_POLICY {
 
+    PROCESS_MITIGATION_USER_SHADOW_STACK_POLICY() {
+        // Should not be called directly
+    }
 }
-
 

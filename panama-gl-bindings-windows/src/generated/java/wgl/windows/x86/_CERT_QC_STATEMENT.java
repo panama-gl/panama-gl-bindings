@@ -2,49 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_QC_STATEMENT {
+ *     LPSTR pszStatementId;
+ *     CRYPT_OBJID_BLOB StatementInfo;
+ * }
+ * }
+ */
 public class _CERT_QC_STATEMENT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("pszStatementId"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData")
-        ).withName("StatementInfo")
-    ).withName("_CERT_QC_STATEMENT");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_QC_STATEMENT.$struct$LAYOUT;
+    _CERT_QC_STATEMENT() {
+        // Should not be called directly
     }
-    static final VarHandle pszStatementId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pszStatementId"));
-    public static VarHandle pszStatementId$VH() {
-        return _CERT_QC_STATEMENT.pszStatementId$VH;
-    }
-    public static MemoryAddress pszStatementId$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_QC_STATEMENT.pszStatementId$VH.get(seg);
-    }
-    public static void pszStatementId$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_QC_STATEMENT.pszStatementId$VH.set(seg, x);
-    }
-    public static MemoryAddress pszStatementId$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_QC_STATEMENT.pszStatementId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pszStatementId$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_QC_STATEMENT.pszStatementId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment StatementInfo$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("pszStatementId"),
+        _CRYPTOAPI_BLOB.layout().withName("StatementInfo")
+    ).withName("_CERT_QC_STATEMENT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout pszStatementId$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pszStatementId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pszStatementId
+     * }
+     */
+    public static final AddressLayout pszStatementId$layout() {
+        return pszStatementId$LAYOUT;
+    }
+
+    private static final long pszStatementId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pszStatementId
+     * }
+     */
+    public static final long pszStatementId$offset() {
+        return pszStatementId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pszStatementId
+     * }
+     */
+    public static MemorySegment pszStatementId(MemorySegment struct) {
+        return struct.get(pszStatementId$LAYOUT, pszStatementId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pszStatementId
+     * }
+     */
+    public static void pszStatementId(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pszStatementId$LAYOUT, pszStatementId$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout StatementInfo$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("StatementInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_OBJID_BLOB StatementInfo
+     * }
+     */
+    public static final GroupLayout StatementInfo$layout() {
+        return StatementInfo$LAYOUT;
+    }
+
+    private static final long StatementInfo$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_OBJID_BLOB StatementInfo
+     * }
+     */
+    public static final long StatementInfo$offset() {
+        return StatementInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_OBJID_BLOB StatementInfo
+     * }
+     */
+    public static MemorySegment StatementInfo(MemorySegment struct) {
+        return struct.asSlice(StatementInfo$OFFSET, StatementInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_OBJID_BLOB StatementInfo
+     * }
+     */
+    public static void StatementInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, StatementInfo$OFFSET, StatementInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

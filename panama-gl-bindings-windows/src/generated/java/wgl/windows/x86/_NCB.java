@@ -2,270 +2,925 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _NCB {
+ *     UCHAR ncb_command;
+ *     UCHAR ncb_retcode;
+ *     UCHAR ncb_lsn;
+ *     UCHAR ncb_num;
+ *     PUCHAR ncb_buffer;
+ *     WORD ncb_length;
+ *     UCHAR ncb_callname[16];
+ *     UCHAR ncb_name[16];
+ *     UCHAR ncb_rto;
+ *     UCHAR ncb_sto;
+ *     void (*ncb_post)(struct _NCB *) __attribute__((stdcall));
+ *     UCHAR ncb_lana_num;
+ *     UCHAR ncb_cmd_cplt;
+ *     UCHAR ncb_reserve[18];
+ *     HANDLE ncb_event;
+ * }
+ * }
+ */
 public class _NCB {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("ncb_command"),
-        Constants$root.C_CHAR$LAYOUT.withName("ncb_retcode"),
-        Constants$root.C_CHAR$LAYOUT.withName("ncb_lsn"),
-        Constants$root.C_CHAR$LAYOUT.withName("ncb_num"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("ncb_buffer"),
-        Constants$root.C_SHORT$LAYOUT.withName("ncb_length"),
-        MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("ncb_callname"),
-        MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("ncb_name"),
-        Constants$root.C_CHAR$LAYOUT.withName("ncb_rto"),
-        Constants$root.C_CHAR$LAYOUT.withName("ncb_sto"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("ncb_post"),
-        Constants$root.C_CHAR$LAYOUT.withName("ncb_lana_num"),
-        Constants$root.C_CHAR$LAYOUT.withName("ncb_cmd_cplt"),
-        MemoryLayout.sequenceLayout(18, Constants$root.C_CHAR$LAYOUT).withName("ncb_reserve"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("ncb_event")
+    _NCB() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_CHAR.withName("ncb_command"),
+        wgl_h.C_CHAR.withName("ncb_retcode"),
+        wgl_h.C_CHAR.withName("ncb_lsn"),
+        wgl_h.C_CHAR.withName("ncb_num"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("ncb_buffer"),
+        wgl_h.C_SHORT.withName("ncb_length"),
+        MemoryLayout.sequenceLayout(16, wgl_h.C_CHAR).withName("ncb_callname"),
+        MemoryLayout.sequenceLayout(16, wgl_h.C_CHAR).withName("ncb_name"),
+        wgl_h.C_CHAR.withName("ncb_rto"),
+        wgl_h.C_CHAR.withName("ncb_sto"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("ncb_post"),
+        wgl_h.C_CHAR.withName("ncb_lana_num"),
+        wgl_h.C_CHAR.withName("ncb_cmd_cplt"),
+        MemoryLayout.sequenceLayout(18, wgl_h.C_CHAR).withName("ncb_reserve"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("ncb_event")
     ).withName("_NCB");
-    public static MemoryLayout $LAYOUT() {
-        return _NCB.$struct$LAYOUT;
-    }
-    static final VarHandle ncb_command$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ncb_command"));
-    public static VarHandle ncb_command$VH() {
-        return _NCB.ncb_command$VH;
-    }
-    public static byte ncb_command$get(MemorySegment seg) {
-        return (byte)_NCB.ncb_command$VH.get(seg);
-    }
-    public static void ncb_command$set( MemorySegment seg, byte x) {
-        _NCB.ncb_command$VH.set(seg, x);
-    }
-    public static byte ncb_command$get(MemorySegment seg, long index) {
-        return (byte)_NCB.ncb_command$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ncb_command$set(MemorySegment seg, long index, byte x) {
-        _NCB.ncb_command$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ncb_retcode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ncb_retcode"));
-    public static VarHandle ncb_retcode$VH() {
-        return _NCB.ncb_retcode$VH;
-    }
-    public static byte ncb_retcode$get(MemorySegment seg) {
-        return (byte)_NCB.ncb_retcode$VH.get(seg);
-    }
-    public static void ncb_retcode$set( MemorySegment seg, byte x) {
-        _NCB.ncb_retcode$VH.set(seg, x);
-    }
-    public static byte ncb_retcode$get(MemorySegment seg, long index) {
-        return (byte)_NCB.ncb_retcode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ncb_retcode$set(MemorySegment seg, long index, byte x) {
-        _NCB.ncb_retcode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ncb_lsn$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ncb_lsn"));
-    public static VarHandle ncb_lsn$VH() {
-        return _NCB.ncb_lsn$VH;
-    }
-    public static byte ncb_lsn$get(MemorySegment seg) {
-        return (byte)_NCB.ncb_lsn$VH.get(seg);
-    }
-    public static void ncb_lsn$set( MemorySegment seg, byte x) {
-        _NCB.ncb_lsn$VH.set(seg, x);
-    }
-    public static byte ncb_lsn$get(MemorySegment seg, long index) {
-        return (byte)_NCB.ncb_lsn$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ncb_lsn$set(MemorySegment seg, long index, byte x) {
-        _NCB.ncb_lsn$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ncb_num$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ncb_num"));
-    public static VarHandle ncb_num$VH() {
-        return _NCB.ncb_num$VH;
-    }
-    public static byte ncb_num$get(MemorySegment seg) {
-        return (byte)_NCB.ncb_num$VH.get(seg);
-    }
-    public static void ncb_num$set( MemorySegment seg, byte x) {
-        _NCB.ncb_num$VH.set(seg, x);
-    }
-    public static byte ncb_num$get(MemorySegment seg, long index) {
-        return (byte)_NCB.ncb_num$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ncb_num$set(MemorySegment seg, long index, byte x) {
-        _NCB.ncb_num$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ncb_buffer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ncb_buffer"));
-    public static VarHandle ncb_buffer$VH() {
-        return _NCB.ncb_buffer$VH;
-    }
-    public static MemoryAddress ncb_buffer$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_NCB.ncb_buffer$VH.get(seg);
-    }
-    public static void ncb_buffer$set( MemorySegment seg, MemoryAddress x) {
-        _NCB.ncb_buffer$VH.set(seg, x);
-    }
-    public static MemoryAddress ncb_buffer$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_NCB.ncb_buffer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ncb_buffer$set(MemorySegment seg, long index, MemoryAddress x) {
-        _NCB.ncb_buffer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ncb_length$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ncb_length"));
-    public static VarHandle ncb_length$VH() {
-        return _NCB.ncb_length$VH;
-    }
-    public static short ncb_length$get(MemorySegment seg) {
-        return (short)_NCB.ncb_length$VH.get(seg);
-    }
-    public static void ncb_length$set( MemorySegment seg, short x) {
-        _NCB.ncb_length$VH.set(seg, x);
-    }
-    public static short ncb_length$get(MemorySegment seg, long index) {
-        return (short)_NCB.ncb_length$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ncb_length$set(MemorySegment seg, long index, short x) {
-        _NCB.ncb_length$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment ncb_callname$slice(MemorySegment seg) {
-        return seg.asSlice(18, 16);
-    }
-    public static MemorySegment ncb_name$slice(MemorySegment seg) {
-        return seg.asSlice(34, 16);
-    }
-    static final VarHandle ncb_rto$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ncb_rto"));
-    public static VarHandle ncb_rto$VH() {
-        return _NCB.ncb_rto$VH;
-    }
-    public static byte ncb_rto$get(MemorySegment seg) {
-        return (byte)_NCB.ncb_rto$VH.get(seg);
-    }
-    public static void ncb_rto$set( MemorySegment seg, byte x) {
-        _NCB.ncb_rto$VH.set(seg, x);
-    }
-    public static byte ncb_rto$get(MemorySegment seg, long index) {
-        return (byte)_NCB.ncb_rto$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ncb_rto$set(MemorySegment seg, long index, byte x) {
-        _NCB.ncb_rto$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ncb_sto$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ncb_sto"));
-    public static VarHandle ncb_sto$VH() {
-        return _NCB.ncb_sto$VH;
-    }
-    public static byte ncb_sto$get(MemorySegment seg) {
-        return (byte)_NCB.ncb_sto$VH.get(seg);
-    }
-    public static void ncb_sto$set( MemorySegment seg, byte x) {
-        _NCB.ncb_sto$VH.set(seg, x);
-    }
-    public static byte ncb_sto$get(MemorySegment seg, long index) {
-        return (byte)_NCB.ncb_sto$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ncb_sto$set(MemorySegment seg, long index, byte x) {
-        _NCB.ncb_sto$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final FunctionDescriptor ncb_post$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle ncb_post$MH = RuntimeHelper.downcallHandle(
-        _NCB.ncb_post$FUNC
-    );
-    public interface ncb_post {
 
-        void apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(ncb_post fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(ncb_post.class, fi, _NCB.ncb_post$FUNC, session);
-        }
-        static ncb_post ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    _NCB.ncb_post$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
 
-    static final VarHandle ncb_post$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ncb_post"));
-    public static VarHandle ncb_post$VH() {
-        return _NCB.ncb_post$VH;
+    private static final OfByte ncb_command$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ncb_command"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_command
+     * }
+     */
+    public static final OfByte ncb_command$layout() {
+        return ncb_command$LAYOUT;
     }
-    public static MemoryAddress ncb_post$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_NCB.ncb_post$VH.get(seg);
+
+    private static final long ncb_command$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_command
+     * }
+     */
+    public static final long ncb_command$offset() {
+        return ncb_command$OFFSET;
     }
-    public static void ncb_post$set( MemorySegment seg, MemoryAddress x) {
-        _NCB.ncb_post$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_command
+     * }
+     */
+    public static byte ncb_command(MemorySegment struct) {
+        return struct.get(ncb_command$LAYOUT, ncb_command$OFFSET);
     }
-    public static MemoryAddress ncb_post$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_NCB.ncb_post$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_command
+     * }
+     */
+    public static void ncb_command(MemorySegment struct, byte fieldValue) {
+        struct.set(ncb_command$LAYOUT, ncb_command$OFFSET, fieldValue);
     }
-    public static void ncb_post$set(MemorySegment seg, long index, MemoryAddress x) {
-        _NCB.ncb_post$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfByte ncb_retcode$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ncb_retcode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_retcode
+     * }
+     */
+    public static final OfByte ncb_retcode$layout() {
+        return ncb_retcode$LAYOUT;
     }
-    public static ncb_post ncb_post (MemorySegment segment, MemorySession session) {
-        return ncb_post.ofAddress(ncb_post$get(segment), session);
+
+    private static final long ncb_retcode$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_retcode
+     * }
+     */
+    public static final long ncb_retcode$offset() {
+        return ncb_retcode$OFFSET;
     }
-    static final VarHandle ncb_lana_num$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ncb_lana_num"));
-    public static VarHandle ncb_lana_num$VH() {
-        return _NCB.ncb_lana_num$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_retcode
+     * }
+     */
+    public static byte ncb_retcode(MemorySegment struct) {
+        return struct.get(ncb_retcode$LAYOUT, ncb_retcode$OFFSET);
     }
-    public static byte ncb_lana_num$get(MemorySegment seg) {
-        return (byte)_NCB.ncb_lana_num$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_retcode
+     * }
+     */
+    public static void ncb_retcode(MemorySegment struct, byte fieldValue) {
+        struct.set(ncb_retcode$LAYOUT, ncb_retcode$OFFSET, fieldValue);
     }
-    public static void ncb_lana_num$set( MemorySegment seg, byte x) {
-        _NCB.ncb_lana_num$VH.set(seg, x);
+
+    private static final OfByte ncb_lsn$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ncb_lsn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_lsn
+     * }
+     */
+    public static final OfByte ncb_lsn$layout() {
+        return ncb_lsn$LAYOUT;
     }
-    public static byte ncb_lana_num$get(MemorySegment seg, long index) {
-        return (byte)_NCB.ncb_lana_num$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long ncb_lsn$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_lsn
+     * }
+     */
+    public static final long ncb_lsn$offset() {
+        return ncb_lsn$OFFSET;
     }
-    public static void ncb_lana_num$set(MemorySegment seg, long index, byte x) {
-        _NCB.ncb_lana_num$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_lsn
+     * }
+     */
+    public static byte ncb_lsn(MemorySegment struct) {
+        return struct.get(ncb_lsn$LAYOUT, ncb_lsn$OFFSET);
     }
-    static final VarHandle ncb_cmd_cplt$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ncb_cmd_cplt"));
-    public static VarHandle ncb_cmd_cplt$VH() {
-        return _NCB.ncb_cmd_cplt$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_lsn
+     * }
+     */
+    public static void ncb_lsn(MemorySegment struct, byte fieldValue) {
+        struct.set(ncb_lsn$LAYOUT, ncb_lsn$OFFSET, fieldValue);
     }
-    public static byte ncb_cmd_cplt$get(MemorySegment seg) {
-        return (byte)_NCB.ncb_cmd_cplt$VH.get(seg);
+
+    private static final OfByte ncb_num$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ncb_num"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_num
+     * }
+     */
+    public static final OfByte ncb_num$layout() {
+        return ncb_num$LAYOUT;
     }
-    public static void ncb_cmd_cplt$set( MemorySegment seg, byte x) {
-        _NCB.ncb_cmd_cplt$VH.set(seg, x);
+
+    private static final long ncb_num$OFFSET = 3;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_num
+     * }
+     */
+    public static final long ncb_num$offset() {
+        return ncb_num$OFFSET;
     }
-    public static byte ncb_cmd_cplt$get(MemorySegment seg, long index) {
-        return (byte)_NCB.ncb_cmd_cplt$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_num
+     * }
+     */
+    public static byte ncb_num(MemorySegment struct) {
+        return struct.get(ncb_num$LAYOUT, ncb_num$OFFSET);
     }
-    public static void ncb_cmd_cplt$set(MemorySegment seg, long index, byte x) {
-        _NCB.ncb_cmd_cplt$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_num
+     * }
+     */
+    public static void ncb_num(MemorySegment struct, byte fieldValue) {
+        struct.set(ncb_num$LAYOUT, ncb_num$OFFSET, fieldValue);
     }
-    public static MemorySegment ncb_reserve$slice(MemorySegment seg) {
-        return seg.asSlice(66, 18);
+
+    private static final AddressLayout ncb_buffer$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ncb_buffer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PUCHAR ncb_buffer
+     * }
+     */
+    public static final AddressLayout ncb_buffer$layout() {
+        return ncb_buffer$LAYOUT;
     }
-    static final VarHandle ncb_event$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ncb_event"));
-    public static VarHandle ncb_event$VH() {
-        return _NCB.ncb_event$VH;
+
+    private static final long ncb_buffer$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PUCHAR ncb_buffer
+     * }
+     */
+    public static final long ncb_buffer$offset() {
+        return ncb_buffer$OFFSET;
     }
-    public static MemoryAddress ncb_event$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_NCB.ncb_event$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PUCHAR ncb_buffer
+     * }
+     */
+    public static MemorySegment ncb_buffer(MemorySegment struct) {
+        return struct.get(ncb_buffer$LAYOUT, ncb_buffer$OFFSET);
     }
-    public static void ncb_event$set( MemorySegment seg, MemoryAddress x) {
-        _NCB.ncb_event$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PUCHAR ncb_buffer
+     * }
+     */
+    public static void ncb_buffer(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ncb_buffer$LAYOUT, ncb_buffer$OFFSET, fieldValue);
     }
-    public static MemoryAddress ncb_event$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_NCB.ncb_event$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfShort ncb_length$LAYOUT = (OfShort)$LAYOUT.select(groupElement("ncb_length"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD ncb_length
+     * }
+     */
+    public static final OfShort ncb_length$layout() {
+        return ncb_length$LAYOUT;
     }
-    public static void ncb_event$set(MemorySegment seg, long index, MemoryAddress x) {
-        _NCB.ncb_event$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long ncb_length$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD ncb_length
+     * }
+     */
+    public static final long ncb_length$offset() {
+        return ncb_length$OFFSET;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD ncb_length
+     * }
+     */
+    public static short ncb_length(MemorySegment struct) {
+        return struct.get(ncb_length$LAYOUT, ncb_length$OFFSET);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD ncb_length
+     * }
+     */
+    public static void ncb_length(MemorySegment struct, short fieldValue) {
+        struct.set(ncb_length$LAYOUT, ncb_length$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout ncb_callname$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("ncb_callname"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_callname[16]
+     * }
+     */
+    public static final SequenceLayout ncb_callname$layout() {
+        return ncb_callname$LAYOUT;
+    }
+
+    private static final long ncb_callname$OFFSET = 18;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_callname[16]
+     * }
+     */
+    public static final long ncb_callname$offset() {
+        return ncb_callname$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_callname[16]
+     * }
+     */
+    public static MemorySegment ncb_callname(MemorySegment struct) {
+        return struct.asSlice(ncb_callname$OFFSET, ncb_callname$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_callname[16]
+     * }
+     */
+    public static void ncb_callname(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ncb_callname$OFFSET, ncb_callname$LAYOUT.byteSize());
+    }
+
+    private static long[] ncb_callname$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * UCHAR ncb_callname[16]
+     * }
+     */
+    public static long[] ncb_callname$dimensions() {
+        return ncb_callname$DIMS;
+    }
+    private static final VarHandle ncb_callname$ELEM_HANDLE = ncb_callname$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_callname[16]
+     * }
+     */
+    public static byte ncb_callname(MemorySegment struct, long index0) {
+        return (byte)ncb_callname$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_callname[16]
+     * }
+     */
+    public static void ncb_callname(MemorySegment struct, long index0, byte fieldValue) {
+        ncb_callname$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout ncb_name$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("ncb_name"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_name[16]
+     * }
+     */
+    public static final SequenceLayout ncb_name$layout() {
+        return ncb_name$LAYOUT;
+    }
+
+    private static final long ncb_name$OFFSET = 34;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_name[16]
+     * }
+     */
+    public static final long ncb_name$offset() {
+        return ncb_name$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_name[16]
+     * }
+     */
+    public static MemorySegment ncb_name(MemorySegment struct) {
+        return struct.asSlice(ncb_name$OFFSET, ncb_name$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_name[16]
+     * }
+     */
+    public static void ncb_name(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ncb_name$OFFSET, ncb_name$LAYOUT.byteSize());
+    }
+
+    private static long[] ncb_name$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * UCHAR ncb_name[16]
+     * }
+     */
+    public static long[] ncb_name$dimensions() {
+        return ncb_name$DIMS;
+    }
+    private static final VarHandle ncb_name$ELEM_HANDLE = ncb_name$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_name[16]
+     * }
+     */
+    public static byte ncb_name(MemorySegment struct, long index0) {
+        return (byte)ncb_name$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_name[16]
+     * }
+     */
+    public static void ncb_name(MemorySegment struct, long index0, byte fieldValue) {
+        ncb_name$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfByte ncb_rto$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ncb_rto"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_rto
+     * }
+     */
+    public static final OfByte ncb_rto$layout() {
+        return ncb_rto$LAYOUT;
+    }
+
+    private static final long ncb_rto$OFFSET = 50;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_rto
+     * }
+     */
+    public static final long ncb_rto$offset() {
+        return ncb_rto$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_rto
+     * }
+     */
+    public static byte ncb_rto(MemorySegment struct) {
+        return struct.get(ncb_rto$LAYOUT, ncb_rto$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_rto
+     * }
+     */
+    public static void ncb_rto(MemorySegment struct, byte fieldValue) {
+        struct.set(ncb_rto$LAYOUT, ncb_rto$OFFSET, fieldValue);
+    }
+
+    private static final OfByte ncb_sto$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ncb_sto"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_sto
+     * }
+     */
+    public static final OfByte ncb_sto$layout() {
+        return ncb_sto$LAYOUT;
+    }
+
+    private static final long ncb_sto$OFFSET = 51;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_sto
+     * }
+     */
+    public static final long ncb_sto$offset() {
+        return ncb_sto$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_sto
+     * }
+     */
+    public static byte ncb_sto(MemorySegment struct) {
+        return struct.get(ncb_sto$LAYOUT, ncb_sto$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_sto
+     * }
+     */
+    public static void ncb_sto(MemorySegment struct, byte fieldValue) {
+        struct.set(ncb_sto$LAYOUT, ncb_sto$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void (*ncb_post)(struct _NCB *) __attribute__((stdcall))
+     * }
+     */
+    public static class ncb_post {
+
+        ncb_post() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(ncb_post.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(ncb_post.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout ncb_post$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ncb_post"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*ncb_post)(struct _NCB *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout ncb_post$layout() {
+        return ncb_post$LAYOUT;
+    }
+
+    private static final long ncb_post$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*ncb_post)(struct _NCB *) __attribute__((stdcall))
+     * }
+     */
+    public static final long ncb_post$offset() {
+        return ncb_post$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*ncb_post)(struct _NCB *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment ncb_post(MemorySegment struct) {
+        return struct.get(ncb_post$LAYOUT, ncb_post$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*ncb_post)(struct _NCB *) __attribute__((stdcall))
+     * }
+     */
+    public static void ncb_post(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ncb_post$LAYOUT, ncb_post$OFFSET, fieldValue);
+    }
+
+    private static final OfByte ncb_lana_num$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ncb_lana_num"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_lana_num
+     * }
+     */
+    public static final OfByte ncb_lana_num$layout() {
+        return ncb_lana_num$LAYOUT;
+    }
+
+    private static final long ncb_lana_num$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_lana_num
+     * }
+     */
+    public static final long ncb_lana_num$offset() {
+        return ncb_lana_num$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_lana_num
+     * }
+     */
+    public static byte ncb_lana_num(MemorySegment struct) {
+        return struct.get(ncb_lana_num$LAYOUT, ncb_lana_num$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_lana_num
+     * }
+     */
+    public static void ncb_lana_num(MemorySegment struct, byte fieldValue) {
+        struct.set(ncb_lana_num$LAYOUT, ncb_lana_num$OFFSET, fieldValue);
+    }
+
+    private static final OfByte ncb_cmd_cplt$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ncb_cmd_cplt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_cmd_cplt
+     * }
+     */
+    public static final OfByte ncb_cmd_cplt$layout() {
+        return ncb_cmd_cplt$LAYOUT;
+    }
+
+    private static final long ncb_cmd_cplt$OFFSET = 65;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_cmd_cplt
+     * }
+     */
+    public static final long ncb_cmd_cplt$offset() {
+        return ncb_cmd_cplt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_cmd_cplt
+     * }
+     */
+    public static byte ncb_cmd_cplt(MemorySegment struct) {
+        return struct.get(ncb_cmd_cplt$LAYOUT, ncb_cmd_cplt$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_cmd_cplt
+     * }
+     */
+    public static void ncb_cmd_cplt(MemorySegment struct, byte fieldValue) {
+        struct.set(ncb_cmd_cplt$LAYOUT, ncb_cmd_cplt$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout ncb_reserve$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("ncb_reserve"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_reserve[18]
+     * }
+     */
+    public static final SequenceLayout ncb_reserve$layout() {
+        return ncb_reserve$LAYOUT;
+    }
+
+    private static final long ncb_reserve$OFFSET = 66;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_reserve[18]
+     * }
+     */
+    public static final long ncb_reserve$offset() {
+        return ncb_reserve$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_reserve[18]
+     * }
+     */
+    public static MemorySegment ncb_reserve(MemorySegment struct) {
+        return struct.asSlice(ncb_reserve$OFFSET, ncb_reserve$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_reserve[18]
+     * }
+     */
+    public static void ncb_reserve(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ncb_reserve$OFFSET, ncb_reserve$LAYOUT.byteSize());
+    }
+
+    private static long[] ncb_reserve$DIMS = { 18 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * UCHAR ncb_reserve[18]
+     * }
+     */
+    public static long[] ncb_reserve$dimensions() {
+        return ncb_reserve$DIMS;
+    }
+    private static final VarHandle ncb_reserve$ELEM_HANDLE = ncb_reserve$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_reserve[18]
+     * }
+     */
+    public static byte ncb_reserve(MemorySegment struct, long index0) {
+        return (byte)ncb_reserve$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * UCHAR ncb_reserve[18]
+     * }
+     */
+    public static void ncb_reserve(MemorySegment struct, long index0, byte fieldValue) {
+        ncb_reserve$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final AddressLayout ncb_event$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ncb_event"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HANDLE ncb_event
+     * }
+     */
+    public static final AddressLayout ncb_event$layout() {
+        return ncb_event$LAYOUT;
+    }
+
+    private static final long ncb_event$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HANDLE ncb_event
+     * }
+     */
+    public static final long ncb_event$offset() {
+        return ncb_event$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HANDLE ncb_event
+     * }
+     */
+    public static MemorySegment ncb_event(MemorySegment struct) {
+        return struct.get(ncb_event$LAYOUT, ncb_event$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HANDLE ncb_event
+     * }
+     */
+    public static void ncb_event(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ncb_event$LAYOUT, ncb_event$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

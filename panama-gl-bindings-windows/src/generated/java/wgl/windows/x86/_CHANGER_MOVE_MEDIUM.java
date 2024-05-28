@@ -2,63 +2,265 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CHANGER_MOVE_MEDIUM {
+ *     CHANGER_ELEMENT Transport;
+ *     CHANGER_ELEMENT Source;
+ *     CHANGER_ELEMENT Destination;
+ *     BOOLEAN Flip;
+ * }
+ * }
+ */
 public class _CHANGER_MOVE_MEDIUM {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("ElementType"),
-            Constants$root.C_LONG$LAYOUT.withName("ElementAddress")
-        ).withName("Transport"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("ElementType"),
-            Constants$root.C_LONG$LAYOUT.withName("ElementAddress")
-        ).withName("Source"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("ElementType"),
-            Constants$root.C_LONG$LAYOUT.withName("ElementAddress")
-        ).withName("Destination"),
-        Constants$root.C_CHAR$LAYOUT.withName("Flip"),
-        MemoryLayout.paddingLayout(24)
-    ).withName("_CHANGER_MOVE_MEDIUM");
-    public static MemoryLayout $LAYOUT() {
-        return _CHANGER_MOVE_MEDIUM.$struct$LAYOUT;
+    _CHANGER_MOVE_MEDIUM() {
+        // Should not be called directly
     }
-    public static MemorySegment Transport$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    public static MemorySegment Source$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    public static MemorySegment Destination$slice(MemorySegment seg) {
-        return seg.asSlice(16, 8);
-    }
-    static final VarHandle Flip$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flip"));
-    public static VarHandle Flip$VH() {
-        return _CHANGER_MOVE_MEDIUM.Flip$VH;
-    }
-    public static byte Flip$get(MemorySegment seg) {
-        return (byte)_CHANGER_MOVE_MEDIUM.Flip$VH.get(seg);
-    }
-    public static void Flip$set( MemorySegment seg, byte x) {
-        _CHANGER_MOVE_MEDIUM.Flip$VH.set(seg, x);
-    }
-    public static byte Flip$get(MemorySegment seg, long index) {
-        return (byte)_CHANGER_MOVE_MEDIUM.Flip$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flip$set(MemorySegment seg, long index, byte x) {
-        _CHANGER_MOVE_MEDIUM.Flip$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _CHANGER_ELEMENT.layout().withName("Transport"),
+        _CHANGER_ELEMENT.layout().withName("Source"),
+        _CHANGER_ELEMENT.layout().withName("Destination"),
+        wgl_h.C_CHAR.withName("Flip"),
+        MemoryLayout.paddingLayout(3)
+    ).withName("_CHANGER_MOVE_MEDIUM");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout Transport$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Transport"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT Transport
+     * }
+     */
+    public static final GroupLayout Transport$layout() {
+        return Transport$LAYOUT;
+    }
+
+    private static final long Transport$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT Transport
+     * }
+     */
+    public static final long Transport$offset() {
+        return Transport$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT Transport
+     * }
+     */
+    public static MemorySegment Transport(MemorySegment struct) {
+        return struct.asSlice(Transport$OFFSET, Transport$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT Transport
+     * }
+     */
+    public static void Transport(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Transport$OFFSET, Transport$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Source$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Source"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT Source
+     * }
+     */
+    public static final GroupLayout Source$layout() {
+        return Source$LAYOUT;
+    }
+
+    private static final long Source$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT Source
+     * }
+     */
+    public static final long Source$offset() {
+        return Source$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT Source
+     * }
+     */
+    public static MemorySegment Source(MemorySegment struct) {
+        return struct.asSlice(Source$OFFSET, Source$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT Source
+     * }
+     */
+    public static void Source(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Source$OFFSET, Source$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Destination$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Destination"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT Destination
+     * }
+     */
+    public static final GroupLayout Destination$layout() {
+        return Destination$LAYOUT;
+    }
+
+    private static final long Destination$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT Destination
+     * }
+     */
+    public static final long Destination$offset() {
+        return Destination$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT Destination
+     * }
+     */
+    public static MemorySegment Destination(MemorySegment struct) {
+        return struct.asSlice(Destination$OFFSET, Destination$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT Destination
+     * }
+     */
+    public static void Destination(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Destination$OFFSET, Destination$LAYOUT.byteSize());
+    }
+
+    private static final OfByte Flip$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Flip"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN Flip
+     * }
+     */
+    public static final OfByte Flip$layout() {
+        return Flip$LAYOUT;
+    }
+
+    private static final long Flip$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN Flip
+     * }
+     */
+    public static final long Flip$offset() {
+        return Flip$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN Flip
+     * }
+     */
+    public static byte Flip(MemorySegment struct) {
+        return struct.get(Flip$LAYOUT, Flip$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN Flip
+     * }
+     */
+    public static void Flip(MemorySegment struct, byte fieldValue) {
+        struct.set(Flip$LAYOUT, Flip$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

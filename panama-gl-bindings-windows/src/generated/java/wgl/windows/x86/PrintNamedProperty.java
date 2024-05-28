@@ -2,59 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     WCHAR *propertyName;
+ *     PrintPropertyValue propertyValue;
+ * }
+ * }
+ */
 public class PrintNamedProperty {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("propertyName"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("ePropertyType"),
-            MemoryLayout.paddingLayout(32),
-            MemoryLayout.unionLayout(
-                Constants$root.C_CHAR$LAYOUT.withName("propertyByte"),
-                Constants$root.C_POINTER$LAYOUT.withName("propertyString"),
-                Constants$root.C_LONG$LAYOUT.withName("propertyInt32"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("propertyInt64"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("cbBuf"),
-                    MemoryLayout.paddingLayout(32),
-                    Constants$root.C_POINTER$LAYOUT.withName("pBuf")
-                ).withName("propertyBlob")
-            ).withName("value")
-        ).withName("propertyValue")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return PrintNamedProperty.$struct$LAYOUT;
+    PrintNamedProperty() {
+        // Should not be called directly
     }
-    static final VarHandle propertyName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("propertyName"));
-    public static VarHandle propertyName$VH() {
-        return PrintNamedProperty.propertyName$VH;
-    }
-    public static MemoryAddress propertyName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)PrintNamedProperty.propertyName$VH.get(seg);
-    }
-    public static void propertyName$set( MemorySegment seg, MemoryAddress x) {
-        PrintNamedProperty.propertyName$VH.set(seg, x);
-    }
-    public static MemoryAddress propertyName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)PrintNamedProperty.propertyName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void propertyName$set(MemorySegment seg, long index, MemoryAddress x) {
-        PrintNamedProperty.propertyName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment propertyValue$slice(MemorySegment seg) {
-        return seg.asSlice(8, 24);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("propertyName"),
+        PrintPropertyValue.layout().withName("propertyValue")
+    ).withName("$anon$3729:13");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout propertyName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("propertyName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR *propertyName
+     * }
+     */
+    public static final AddressLayout propertyName$layout() {
+        return propertyName$LAYOUT;
+    }
+
+    private static final long propertyName$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR *propertyName
+     * }
+     */
+    public static final long propertyName$offset() {
+        return propertyName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR *propertyName
+     * }
+     */
+    public static MemorySegment propertyName(MemorySegment struct) {
+        return struct.get(propertyName$LAYOUT, propertyName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR *propertyName
+     * }
+     */
+    public static void propertyName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(propertyName$LAYOUT, propertyName$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout propertyValue$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("propertyValue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PrintPropertyValue propertyValue
+     * }
+     */
+    public static final GroupLayout propertyValue$layout() {
+        return propertyValue$LAYOUT;
+    }
+
+    private static final long propertyValue$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PrintPropertyValue propertyValue
+     * }
+     */
+    public static final long propertyValue$offset() {
+        return propertyValue$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PrintPropertyValue propertyValue
+     * }
+     */
+    public static MemorySegment propertyValue(MemorySegment struct) {
+        return struct.asSlice(propertyValue$OFFSET, propertyValue$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PrintPropertyValue propertyValue
+     * }
+     */
+    public static void propertyValue(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, propertyValue$OFFSET, propertyValue$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

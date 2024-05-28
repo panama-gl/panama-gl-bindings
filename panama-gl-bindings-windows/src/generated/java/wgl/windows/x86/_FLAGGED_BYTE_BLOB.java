@@ -2,63 +2,252 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _FLAGGED_BYTE_BLOB {
+ *     ULONG fFlags;
+ *     ULONG clSize;
+ *     byte abData[1];
+ * }
+ * }
+ */
 public class _FLAGGED_BYTE_BLOB {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("fFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("clSize"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_CHAR$LAYOUT).withName("abData"),
-        MemoryLayout.paddingLayout(24)
-    ).withName("_FLAGGED_BYTE_BLOB");
-    public static MemoryLayout $LAYOUT() {
-        return _FLAGGED_BYTE_BLOB.$struct$LAYOUT;
+    _FLAGGED_BYTE_BLOB() {
+        // Should not be called directly
     }
-    static final VarHandle fFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fFlags"));
-    public static VarHandle fFlags$VH() {
-        return _FLAGGED_BYTE_BLOB.fFlags$VH;
-    }
-    public static int fFlags$get(MemorySegment seg) {
-        return (int)_FLAGGED_BYTE_BLOB.fFlags$VH.get(seg);
-    }
-    public static void fFlags$set( MemorySegment seg, int x) {
-        _FLAGGED_BYTE_BLOB.fFlags$VH.set(seg, x);
-    }
-    public static int fFlags$get(MemorySegment seg, long index) {
-        return (int)_FLAGGED_BYTE_BLOB.fFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fFlags$set(MemorySegment seg, long index, int x) {
-        _FLAGGED_BYTE_BLOB.fFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle clSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("clSize"));
-    public static VarHandle clSize$VH() {
-        return _FLAGGED_BYTE_BLOB.clSize$VH;
-    }
-    public static int clSize$get(MemorySegment seg) {
-        return (int)_FLAGGED_BYTE_BLOB.clSize$VH.get(seg);
-    }
-    public static void clSize$set( MemorySegment seg, int x) {
-        _FLAGGED_BYTE_BLOB.clSize$VH.set(seg, x);
-    }
-    public static int clSize$get(MemorySegment seg, long index) {
-        return (int)_FLAGGED_BYTE_BLOB.clSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void clSize$set(MemorySegment seg, long index, int x) {
-        _FLAGGED_BYTE_BLOB.clSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment abData$slice(MemorySegment seg) {
-        return seg.asSlice(8, 1);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("fFlags"),
+        wgl_h.C_LONG.withName("clSize"),
+        MemoryLayout.sequenceLayout(1, wgl_h.C_CHAR).withName("abData"),
+        MemoryLayout.paddingLayout(3)
+    ).withName("_FLAGGED_BYTE_BLOB");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt fFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG fFlags
+     * }
+     */
+    public static final OfInt fFlags$layout() {
+        return fFlags$LAYOUT;
+    }
+
+    private static final long fFlags$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG fFlags
+     * }
+     */
+    public static final long fFlags$offset() {
+        return fFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG fFlags
+     * }
+     */
+    public static int fFlags(MemorySegment struct) {
+        return struct.get(fFlags$LAYOUT, fFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG fFlags
+     * }
+     */
+    public static void fFlags(MemorySegment struct, int fieldValue) {
+        struct.set(fFlags$LAYOUT, fFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt clSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("clSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG clSize
+     * }
+     */
+    public static final OfInt clSize$layout() {
+        return clSize$LAYOUT;
+    }
+
+    private static final long clSize$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG clSize
+     * }
+     */
+    public static final long clSize$offset() {
+        return clSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG clSize
+     * }
+     */
+    public static int clSize(MemorySegment struct) {
+        return struct.get(clSize$LAYOUT, clSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG clSize
+     * }
+     */
+    public static void clSize(MemorySegment struct, int fieldValue) {
+        struct.set(clSize$LAYOUT, clSize$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout abData$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("abData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * byte abData[1]
+     * }
+     */
+    public static final SequenceLayout abData$layout() {
+        return abData$LAYOUT;
+    }
+
+    private static final long abData$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * byte abData[1]
+     * }
+     */
+    public static final long abData$offset() {
+        return abData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * byte abData[1]
+     * }
+     */
+    public static MemorySegment abData(MemorySegment struct) {
+        return struct.asSlice(abData$OFFSET, abData$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * byte abData[1]
+     * }
+     */
+    public static void abData(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, abData$OFFSET, abData$LAYOUT.byteSize());
+    }
+
+    private static long[] abData$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * byte abData[1]
+     * }
+     */
+    public static long[] abData$dimensions() {
+        return abData$DIMS;
+    }
+    private static final VarHandle abData$ELEM_HANDLE = abData$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * byte abData[1]
+     * }
+     */
+    public static byte abData(MemorySegment struct, long index0) {
+        return (byte)abData$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * byte abData[1]
+     * }
+     */
+    public static void abData(MemorySegment struct, long index0, byte fieldValue) {
+        abData$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

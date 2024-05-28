@@ -2,133 +2,442 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * union _LARGE_INTEGER {
+ *     struct {
+ *         DWORD LowPart;
+ *         LONG HighPart;
+ *     };
+ *     struct {
+ *         DWORD LowPart;
+ *         LONG HighPart;
+ *     } u;
+ *     LONGLONG QuadPart;
+ * }
+ * }
+ */
 public class _LARGE_INTEGER {
 
-    static final  GroupLayout $union$LAYOUT = MemoryLayout.unionLayout(
+    _LARGE_INTEGER() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
         MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-            Constants$root.C_LONG$LAYOUT.withName("HighPart")
-        ).withName("$anon$0"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-            Constants$root.C_LONG$LAYOUT.withName("HighPart")
-        ).withName("u"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
+            freeglut_h.C_LONG.withName("LowPart"),
+            freeglut_h.C_LONG.withName("HighPart")
+        ).withName("$anon$851:5"),
+        _LARGE_INTEGER.u.layout().withName("u"),
+        freeglut_h.C_LONG_LONG.withName("QuadPart")
     ).withName("_LARGE_INTEGER");
-    public static MemoryLayout $LAYOUT() {
-        return _LARGE_INTEGER.$union$LAYOUT;
+
+    /**
+     * The layout of this union
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle LowPart$VH = $union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("LowPart"));
-    public static VarHandle LowPart$VH() {
-        return _LARGE_INTEGER.LowPart$VH;
+
+    private static final OfInt LowPart$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$851:5"), groupElement("LowPart"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD LowPart
+     * }
+     */
+    public static final OfInt LowPart$layout() {
+        return LowPart$LAYOUT;
     }
-    public static int LowPart$get(MemorySegment seg) {
-        return (int)_LARGE_INTEGER.LowPart$VH.get(seg);
+
+    private static final long LowPart$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD LowPart
+     * }
+     */
+    public static final long LowPart$offset() {
+        return LowPart$OFFSET;
     }
-    public static void LowPart$set( MemorySegment seg, int x) {
-        _LARGE_INTEGER.LowPart$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD LowPart
+     * }
+     */
+    public static int LowPart(MemorySegment union) {
+        return union.get(LowPart$LAYOUT, LowPart$OFFSET);
     }
-    public static int LowPart$get(MemorySegment seg, long index) {
-        return (int)_LARGE_INTEGER.LowPart$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD LowPart
+     * }
+     */
+    public static void LowPart(MemorySegment union, int fieldValue) {
+        union.set(LowPart$LAYOUT, LowPart$OFFSET, fieldValue);
     }
-    public static void LowPart$set(MemorySegment seg, long index, int x) {
-        _LARGE_INTEGER.LowPart$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfInt HighPart$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$851:5"), groupElement("HighPart"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG HighPart
+     * }
+     */
+    public static final OfInt HighPart$layout() {
+        return HighPart$LAYOUT;
     }
-    static final VarHandle HighPart$VH = $union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("HighPart"));
-    public static VarHandle HighPart$VH() {
-        return _LARGE_INTEGER.HighPart$VH;
+
+    private static final long HighPart$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG HighPart
+     * }
+     */
+    public static final long HighPart$offset() {
+        return HighPart$OFFSET;
     }
-    public static int HighPart$get(MemorySegment seg) {
-        return (int)_LARGE_INTEGER.HighPart$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG HighPart
+     * }
+     */
+    public static int HighPart(MemorySegment union) {
+        return union.get(HighPart$LAYOUT, HighPart$OFFSET);
     }
-    public static void HighPart$set( MemorySegment seg, int x) {
-        _LARGE_INTEGER.HighPart$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG HighPart
+     * }
+     */
+    public static void HighPart(MemorySegment union, int fieldValue) {
+        union.set(HighPart$LAYOUT, HighPart$OFFSET, fieldValue);
     }
-    public static int HighPart$get(MemorySegment seg, long index) {
-        return (int)_LARGE_INTEGER.HighPart$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HighPart$set(MemorySegment seg, long index, int x) {
-        _LARGE_INTEGER.HighPart$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD LowPart;
+     *     LONG HighPart;
+     * }
+     * }
+     */
     public static class u {
 
-        static final  GroupLayout u$struct$LAYOUT = MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-            Constants$root.C_LONG$LAYOUT.withName("HighPart")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return u.u$struct$LAYOUT;
+        u() {
+            // Should not be called directly
         }
-        static final VarHandle LowPart$VH = u$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LowPart"));
-        public static VarHandle LowPart$VH() {
-            return u.LowPart$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+            freeglut_h.C_LONG.withName("LowPart"),
+            freeglut_h.C_LONG.withName("HighPart")
+        ).withName("$anon$855:5");
+
+        /**
+         * The layout of this struct
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static int LowPart$get(MemorySegment seg) {
-            return (int)u.LowPart$VH.get(seg);
+
+        private static final OfInt LowPart$LAYOUT = (OfInt)$LAYOUT.select(groupElement("LowPart"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD LowPart
+         * }
+         */
+        public static final OfInt LowPart$layout() {
+            return LowPart$LAYOUT;
         }
-        public static void LowPart$set( MemorySegment seg, int x) {
-            u.LowPart$VH.set(seg, x);
+
+        private static final long LowPart$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD LowPart
+         * }
+         */
+        public static final long LowPart$offset() {
+            return LowPart$OFFSET;
         }
-        public static int LowPart$get(MemorySegment seg, long index) {
-            return (int)u.LowPart$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD LowPart
+         * }
+         */
+        public static int LowPart(MemorySegment struct) {
+            return struct.get(LowPart$LAYOUT, LowPart$OFFSET);
         }
-        public static void LowPart$set(MemorySegment seg, long index, int x) {
-            u.LowPart$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD LowPart
+         * }
+         */
+        public static void LowPart(MemorySegment struct, int fieldValue) {
+            struct.set(LowPart$LAYOUT, LowPart$OFFSET, fieldValue);
         }
-        static final VarHandle HighPart$VH = u$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HighPart"));
-        public static VarHandle HighPart$VH() {
-            return u.HighPart$VH;
+
+        private static final OfInt HighPart$LAYOUT = (OfInt)$LAYOUT.select(groupElement("HighPart"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * LONG HighPart
+         * }
+         */
+        public static final OfInt HighPart$layout() {
+            return HighPart$LAYOUT;
         }
-        public static int HighPart$get(MemorySegment seg) {
-            return (int)u.HighPart$VH.get(seg);
+
+        private static final long HighPart$OFFSET = 4;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * LONG HighPart
+         * }
+         */
+        public static final long HighPart$offset() {
+            return HighPart$OFFSET;
         }
-        public static void HighPart$set( MemorySegment seg, int x) {
-            u.HighPart$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * LONG HighPart
+         * }
+         */
+        public static int HighPart(MemorySegment struct) {
+            return struct.get(HighPart$LAYOUT, HighPart$OFFSET);
         }
-        public static int HighPart$get(MemorySegment seg, long index) {
-            return (int)u.HighPart$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * LONG HighPart
+         * }
+         */
+        public static void HighPart(MemorySegment struct, int fieldValue) {
+            struct.set(HighPart$LAYOUT, HighPart$OFFSET, fieldValue);
         }
-        public static void HighPart$set(MemorySegment seg, long index, int x) {
-            u.HighPart$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * The size (in bytes) of this struct
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment u$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
+    private static final GroupLayout u$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("u"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD LowPart;
+     *     LONG HighPart;
+     * } u
+     * }
+     */
+    public static final GroupLayout u$layout() {
+        return u$LAYOUT;
     }
-    static final VarHandle QuadPart$VH = $union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QuadPart"));
-    public static VarHandle QuadPart$VH() {
-        return _LARGE_INTEGER.QuadPart$VH;
+
+    private static final long u$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD LowPart;
+     *     LONG HighPart;
+     * } u
+     * }
+     */
+    public static final long u$offset() {
+        return u$OFFSET;
     }
-    public static long QuadPart$get(MemorySegment seg) {
-        return (long)_LARGE_INTEGER.QuadPart$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD LowPart;
+     *     LONG HighPart;
+     * } u
+     * }
+     */
+    public static MemorySegment u(MemorySegment union) {
+        return union.asSlice(u$OFFSET, u$LAYOUT.byteSize());
     }
-    public static void QuadPart$set( MemorySegment seg, long x) {
-        _LARGE_INTEGER.QuadPart$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD LowPart;
+     *     LONG HighPart;
+     * } u
+     * }
+     */
+    public static void u(MemorySegment union, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, union, u$OFFSET, u$LAYOUT.byteSize());
     }
-    public static long QuadPart$get(MemorySegment seg, long index) {
-        return (long)_LARGE_INTEGER.QuadPart$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfLong QuadPart$LAYOUT = (OfLong)$LAYOUT.select(groupElement("QuadPart"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONGLONG QuadPart
+     * }
+     */
+    public static final OfLong QuadPart$layout() {
+        return QuadPart$LAYOUT;
     }
-    public static void QuadPart$set(MemorySegment seg, long index, long x) {
-        _LARGE_INTEGER.QuadPart$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long QuadPart$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONGLONG QuadPart
+     * }
+     */
+    public static final long QuadPart$offset() {
+        return QuadPart$OFFSET;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONGLONG QuadPart
+     * }
+     */
+    public static long QuadPart(MemorySegment union) {
+        return union.get(QuadPart$LAYOUT, QuadPart$OFFSET);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONGLONG QuadPart
+     * }
+     */
+    public static void QuadPart(MemorySegment union, long fieldValue) {
+        union.set(QuadPart$LAYOUT, QuadPart$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this union
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

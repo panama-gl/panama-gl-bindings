@@ -2,27 +2,68 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNWGLGETGPUIDSAMDPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(int maxCount, java.lang.foreign.MemoryAddress ids);
-    static MemorySegment allocate(PFNWGLGETGPUIDSAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNWGLGETGPUIDSAMDPROC.class, fi, constants$1383.PFNWGLGETGPUIDSAMDPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef UINT (*PFNWGLGETGPUIDSAMDPROC)(UINT, UINT *) __attribute__((stdcall))
+ * }
+ */
+public class PFNWGLGETGPUIDSAMDPROC {
+
+    PFNWGLGETGPUIDSAMDPROC() {
+        // Should not be called directly
     }
-    static PFNWGLGETGPUIDSAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _maxCount, java.lang.foreign.MemoryAddress _ids) -> {
-            try {
-                return (int)constants$1383.PFNWGLGETGPUIDSAMDPROC$MH.invokeExact((Addressable)symbol, _maxCount, (java.lang.foreign.Addressable)_ids);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(int maxCount, MemorySegment ids);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNWGLGETGPUIDSAMDPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNWGLGETGPUIDSAMDPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,int maxCount, MemorySegment ids) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, maxCount, ids);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

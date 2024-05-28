@@ -2,194 +2,540 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     DWORD ByteCount;
+ *     WORD MajorVersion;
+ *     WORD MinorVersion;
+ *     DWORD BytesPerPhysicalSector;
+ *     WORD LfsMajorVersion;
+ *     WORD LfsMinorVersion;
+ *     DWORD MaxDeviceTrimExtentCount;
+ *     DWORD MaxDeviceTrimByteCount;
+ *     DWORD MaxVolumeTrimExtentCount;
+ *     DWORD MaxVolumeTrimByteCount;
+ * }
+ * }
+ */
 public class NTFS_EXTENDED_VOLUME_DATA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ByteCount"),
-        Constants$root.C_SHORT$LAYOUT.withName("MajorVersion"),
-        Constants$root.C_SHORT$LAYOUT.withName("MinorVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("BytesPerPhysicalSector"),
-        Constants$root.C_SHORT$LAYOUT.withName("LfsMajorVersion"),
-        Constants$root.C_SHORT$LAYOUT.withName("LfsMinorVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("MaxDeviceTrimExtentCount"),
-        Constants$root.C_LONG$LAYOUT.withName("MaxDeviceTrimByteCount"),
-        Constants$root.C_LONG$LAYOUT.withName("MaxVolumeTrimExtentCount"),
-        Constants$root.C_LONG$LAYOUT.withName("MaxVolumeTrimByteCount")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return NTFS_EXTENDED_VOLUME_DATA.$struct$LAYOUT;
+    NTFS_EXTENDED_VOLUME_DATA() {
+        // Should not be called directly
     }
-    static final VarHandle ByteCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ByteCount"));
-    public static VarHandle ByteCount$VH() {
-        return NTFS_EXTENDED_VOLUME_DATA.ByteCount$VH;
-    }
-    public static int ByteCount$get(MemorySegment seg) {
-        return (int)NTFS_EXTENDED_VOLUME_DATA.ByteCount$VH.get(seg);
-    }
-    public static void ByteCount$set( MemorySegment seg, int x) {
-        NTFS_EXTENDED_VOLUME_DATA.ByteCount$VH.set(seg, x);
-    }
-    public static int ByteCount$get(MemorySegment seg, long index) {
-        return (int)NTFS_EXTENDED_VOLUME_DATA.ByteCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ByteCount$set(MemorySegment seg, long index, int x) {
-        NTFS_EXTENDED_VOLUME_DATA.ByteCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MajorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MajorVersion"));
-    public static VarHandle MajorVersion$VH() {
-        return NTFS_EXTENDED_VOLUME_DATA.MajorVersion$VH;
-    }
-    public static short MajorVersion$get(MemorySegment seg) {
-        return (short)NTFS_EXTENDED_VOLUME_DATA.MajorVersion$VH.get(seg);
-    }
-    public static void MajorVersion$set( MemorySegment seg, short x) {
-        NTFS_EXTENDED_VOLUME_DATA.MajorVersion$VH.set(seg, x);
-    }
-    public static short MajorVersion$get(MemorySegment seg, long index) {
-        return (short)NTFS_EXTENDED_VOLUME_DATA.MajorVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MajorVersion$set(MemorySegment seg, long index, short x) {
-        NTFS_EXTENDED_VOLUME_DATA.MajorVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MinorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MinorVersion"));
-    public static VarHandle MinorVersion$VH() {
-        return NTFS_EXTENDED_VOLUME_DATA.MinorVersion$VH;
-    }
-    public static short MinorVersion$get(MemorySegment seg) {
-        return (short)NTFS_EXTENDED_VOLUME_DATA.MinorVersion$VH.get(seg);
-    }
-    public static void MinorVersion$set( MemorySegment seg, short x) {
-        NTFS_EXTENDED_VOLUME_DATA.MinorVersion$VH.set(seg, x);
-    }
-    public static short MinorVersion$get(MemorySegment seg, long index) {
-        return (short)NTFS_EXTENDED_VOLUME_DATA.MinorVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MinorVersion$set(MemorySegment seg, long index, short x) {
-        NTFS_EXTENDED_VOLUME_DATA.MinorVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BytesPerPhysicalSector$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BytesPerPhysicalSector"));
-    public static VarHandle BytesPerPhysicalSector$VH() {
-        return NTFS_EXTENDED_VOLUME_DATA.BytesPerPhysicalSector$VH;
-    }
-    public static int BytesPerPhysicalSector$get(MemorySegment seg) {
-        return (int)NTFS_EXTENDED_VOLUME_DATA.BytesPerPhysicalSector$VH.get(seg);
-    }
-    public static void BytesPerPhysicalSector$set( MemorySegment seg, int x) {
-        NTFS_EXTENDED_VOLUME_DATA.BytesPerPhysicalSector$VH.set(seg, x);
-    }
-    public static int BytesPerPhysicalSector$get(MemorySegment seg, long index) {
-        return (int)NTFS_EXTENDED_VOLUME_DATA.BytesPerPhysicalSector$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BytesPerPhysicalSector$set(MemorySegment seg, long index, int x) {
-        NTFS_EXTENDED_VOLUME_DATA.BytesPerPhysicalSector$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LfsMajorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LfsMajorVersion"));
-    public static VarHandle LfsMajorVersion$VH() {
-        return NTFS_EXTENDED_VOLUME_DATA.LfsMajorVersion$VH;
-    }
-    public static short LfsMajorVersion$get(MemorySegment seg) {
-        return (short)NTFS_EXTENDED_VOLUME_DATA.LfsMajorVersion$VH.get(seg);
-    }
-    public static void LfsMajorVersion$set( MemorySegment seg, short x) {
-        NTFS_EXTENDED_VOLUME_DATA.LfsMajorVersion$VH.set(seg, x);
-    }
-    public static short LfsMajorVersion$get(MemorySegment seg, long index) {
-        return (short)NTFS_EXTENDED_VOLUME_DATA.LfsMajorVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LfsMajorVersion$set(MemorySegment seg, long index, short x) {
-        NTFS_EXTENDED_VOLUME_DATA.LfsMajorVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LfsMinorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LfsMinorVersion"));
-    public static VarHandle LfsMinorVersion$VH() {
-        return NTFS_EXTENDED_VOLUME_DATA.LfsMinorVersion$VH;
-    }
-    public static short LfsMinorVersion$get(MemorySegment seg) {
-        return (short)NTFS_EXTENDED_VOLUME_DATA.LfsMinorVersion$VH.get(seg);
-    }
-    public static void LfsMinorVersion$set( MemorySegment seg, short x) {
-        NTFS_EXTENDED_VOLUME_DATA.LfsMinorVersion$VH.set(seg, x);
-    }
-    public static short LfsMinorVersion$get(MemorySegment seg, long index) {
-        return (short)NTFS_EXTENDED_VOLUME_DATA.LfsMinorVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LfsMinorVersion$set(MemorySegment seg, long index, short x) {
-        NTFS_EXTENDED_VOLUME_DATA.LfsMinorVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaxDeviceTrimExtentCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaxDeviceTrimExtentCount"));
-    public static VarHandle MaxDeviceTrimExtentCount$VH() {
-        return NTFS_EXTENDED_VOLUME_DATA.MaxDeviceTrimExtentCount$VH;
-    }
-    public static int MaxDeviceTrimExtentCount$get(MemorySegment seg) {
-        return (int)NTFS_EXTENDED_VOLUME_DATA.MaxDeviceTrimExtentCount$VH.get(seg);
-    }
-    public static void MaxDeviceTrimExtentCount$set( MemorySegment seg, int x) {
-        NTFS_EXTENDED_VOLUME_DATA.MaxDeviceTrimExtentCount$VH.set(seg, x);
-    }
-    public static int MaxDeviceTrimExtentCount$get(MemorySegment seg, long index) {
-        return (int)NTFS_EXTENDED_VOLUME_DATA.MaxDeviceTrimExtentCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaxDeviceTrimExtentCount$set(MemorySegment seg, long index, int x) {
-        NTFS_EXTENDED_VOLUME_DATA.MaxDeviceTrimExtentCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaxDeviceTrimByteCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaxDeviceTrimByteCount"));
-    public static VarHandle MaxDeviceTrimByteCount$VH() {
-        return NTFS_EXTENDED_VOLUME_DATA.MaxDeviceTrimByteCount$VH;
-    }
-    public static int MaxDeviceTrimByteCount$get(MemorySegment seg) {
-        return (int)NTFS_EXTENDED_VOLUME_DATA.MaxDeviceTrimByteCount$VH.get(seg);
-    }
-    public static void MaxDeviceTrimByteCount$set( MemorySegment seg, int x) {
-        NTFS_EXTENDED_VOLUME_DATA.MaxDeviceTrimByteCount$VH.set(seg, x);
-    }
-    public static int MaxDeviceTrimByteCount$get(MemorySegment seg, long index) {
-        return (int)NTFS_EXTENDED_VOLUME_DATA.MaxDeviceTrimByteCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaxDeviceTrimByteCount$set(MemorySegment seg, long index, int x) {
-        NTFS_EXTENDED_VOLUME_DATA.MaxDeviceTrimByteCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaxVolumeTrimExtentCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaxVolumeTrimExtentCount"));
-    public static VarHandle MaxVolumeTrimExtentCount$VH() {
-        return NTFS_EXTENDED_VOLUME_DATA.MaxVolumeTrimExtentCount$VH;
-    }
-    public static int MaxVolumeTrimExtentCount$get(MemorySegment seg) {
-        return (int)NTFS_EXTENDED_VOLUME_DATA.MaxVolumeTrimExtentCount$VH.get(seg);
-    }
-    public static void MaxVolumeTrimExtentCount$set( MemorySegment seg, int x) {
-        NTFS_EXTENDED_VOLUME_DATA.MaxVolumeTrimExtentCount$VH.set(seg, x);
-    }
-    public static int MaxVolumeTrimExtentCount$get(MemorySegment seg, long index) {
-        return (int)NTFS_EXTENDED_VOLUME_DATA.MaxVolumeTrimExtentCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaxVolumeTrimExtentCount$set(MemorySegment seg, long index, int x) {
-        NTFS_EXTENDED_VOLUME_DATA.MaxVolumeTrimExtentCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaxVolumeTrimByteCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaxVolumeTrimByteCount"));
-    public static VarHandle MaxVolumeTrimByteCount$VH() {
-        return NTFS_EXTENDED_VOLUME_DATA.MaxVolumeTrimByteCount$VH;
-    }
-    public static int MaxVolumeTrimByteCount$get(MemorySegment seg) {
-        return (int)NTFS_EXTENDED_VOLUME_DATA.MaxVolumeTrimByteCount$VH.get(seg);
-    }
-    public static void MaxVolumeTrimByteCount$set( MemorySegment seg, int x) {
-        NTFS_EXTENDED_VOLUME_DATA.MaxVolumeTrimByteCount$VH.set(seg, x);
-    }
-    public static int MaxVolumeTrimByteCount$get(MemorySegment seg, long index) {
-        return (int)NTFS_EXTENDED_VOLUME_DATA.MaxVolumeTrimByteCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaxVolumeTrimByteCount$set(MemorySegment seg, long index, int x) {
-        NTFS_EXTENDED_VOLUME_DATA.MaxVolumeTrimByteCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("ByteCount"),
+        wgl_h.C_SHORT.withName("MajorVersion"),
+        wgl_h.C_SHORT.withName("MinorVersion"),
+        wgl_h.C_LONG.withName("BytesPerPhysicalSector"),
+        wgl_h.C_SHORT.withName("LfsMajorVersion"),
+        wgl_h.C_SHORT.withName("LfsMinorVersion"),
+        wgl_h.C_LONG.withName("MaxDeviceTrimExtentCount"),
+        wgl_h.C_LONG.withName("MaxDeviceTrimByteCount"),
+        wgl_h.C_LONG.withName("MaxVolumeTrimExtentCount"),
+        wgl_h.C_LONG.withName("MaxVolumeTrimByteCount")
+    ).withName("$anon$10467:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt ByteCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ByteCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ByteCount
+     * }
+     */
+    public static final OfInt ByteCount$layout() {
+        return ByteCount$LAYOUT;
+    }
+
+    private static final long ByteCount$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ByteCount
+     * }
+     */
+    public static final long ByteCount$offset() {
+        return ByteCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ByteCount
+     * }
+     */
+    public static int ByteCount(MemorySegment struct) {
+        return struct.get(ByteCount$LAYOUT, ByteCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ByteCount
+     * }
+     */
+    public static void ByteCount(MemorySegment struct, int fieldValue) {
+        struct.set(ByteCount$LAYOUT, ByteCount$OFFSET, fieldValue);
+    }
+
+    private static final OfShort MajorVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("MajorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD MajorVersion
+     * }
+     */
+    public static final OfShort MajorVersion$layout() {
+        return MajorVersion$LAYOUT;
+    }
+
+    private static final long MajorVersion$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD MajorVersion
+     * }
+     */
+    public static final long MajorVersion$offset() {
+        return MajorVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD MajorVersion
+     * }
+     */
+    public static short MajorVersion(MemorySegment struct) {
+        return struct.get(MajorVersion$LAYOUT, MajorVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD MajorVersion
+     * }
+     */
+    public static void MajorVersion(MemorySegment struct, short fieldValue) {
+        struct.set(MajorVersion$LAYOUT, MajorVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfShort MinorVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("MinorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD MinorVersion
+     * }
+     */
+    public static final OfShort MinorVersion$layout() {
+        return MinorVersion$LAYOUT;
+    }
+
+    private static final long MinorVersion$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD MinorVersion
+     * }
+     */
+    public static final long MinorVersion$offset() {
+        return MinorVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD MinorVersion
+     * }
+     */
+    public static short MinorVersion(MemorySegment struct) {
+        return struct.get(MinorVersion$LAYOUT, MinorVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD MinorVersion
+     * }
+     */
+    public static void MinorVersion(MemorySegment struct, short fieldValue) {
+        struct.set(MinorVersion$LAYOUT, MinorVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BytesPerPhysicalSector$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BytesPerPhysicalSector"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerPhysicalSector
+     * }
+     */
+    public static final OfInt BytesPerPhysicalSector$layout() {
+        return BytesPerPhysicalSector$LAYOUT;
+    }
+
+    private static final long BytesPerPhysicalSector$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerPhysicalSector
+     * }
+     */
+    public static final long BytesPerPhysicalSector$offset() {
+        return BytesPerPhysicalSector$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerPhysicalSector
+     * }
+     */
+    public static int BytesPerPhysicalSector(MemorySegment struct) {
+        return struct.get(BytesPerPhysicalSector$LAYOUT, BytesPerPhysicalSector$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerPhysicalSector
+     * }
+     */
+    public static void BytesPerPhysicalSector(MemorySegment struct, int fieldValue) {
+        struct.set(BytesPerPhysicalSector$LAYOUT, BytesPerPhysicalSector$OFFSET, fieldValue);
+    }
+
+    private static final OfShort LfsMajorVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("LfsMajorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD LfsMajorVersion
+     * }
+     */
+    public static final OfShort LfsMajorVersion$layout() {
+        return LfsMajorVersion$LAYOUT;
+    }
+
+    private static final long LfsMajorVersion$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD LfsMajorVersion
+     * }
+     */
+    public static final long LfsMajorVersion$offset() {
+        return LfsMajorVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD LfsMajorVersion
+     * }
+     */
+    public static short LfsMajorVersion(MemorySegment struct) {
+        return struct.get(LfsMajorVersion$LAYOUT, LfsMajorVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD LfsMajorVersion
+     * }
+     */
+    public static void LfsMajorVersion(MemorySegment struct, short fieldValue) {
+        struct.set(LfsMajorVersion$LAYOUT, LfsMajorVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfShort LfsMinorVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("LfsMinorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD LfsMinorVersion
+     * }
+     */
+    public static final OfShort LfsMinorVersion$layout() {
+        return LfsMinorVersion$LAYOUT;
+    }
+
+    private static final long LfsMinorVersion$OFFSET = 14;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD LfsMinorVersion
+     * }
+     */
+    public static final long LfsMinorVersion$offset() {
+        return LfsMinorVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD LfsMinorVersion
+     * }
+     */
+    public static short LfsMinorVersion(MemorySegment struct) {
+        return struct.get(LfsMinorVersion$LAYOUT, LfsMinorVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD LfsMinorVersion
+     * }
+     */
+    public static void LfsMinorVersion(MemorySegment struct, short fieldValue) {
+        struct.set(LfsMinorVersion$LAYOUT, LfsMinorVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MaxDeviceTrimExtentCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MaxDeviceTrimExtentCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MaxDeviceTrimExtentCount
+     * }
+     */
+    public static final OfInt MaxDeviceTrimExtentCount$layout() {
+        return MaxDeviceTrimExtentCount$LAYOUT;
+    }
+
+    private static final long MaxDeviceTrimExtentCount$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MaxDeviceTrimExtentCount
+     * }
+     */
+    public static final long MaxDeviceTrimExtentCount$offset() {
+        return MaxDeviceTrimExtentCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MaxDeviceTrimExtentCount
+     * }
+     */
+    public static int MaxDeviceTrimExtentCount(MemorySegment struct) {
+        return struct.get(MaxDeviceTrimExtentCount$LAYOUT, MaxDeviceTrimExtentCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MaxDeviceTrimExtentCount
+     * }
+     */
+    public static void MaxDeviceTrimExtentCount(MemorySegment struct, int fieldValue) {
+        struct.set(MaxDeviceTrimExtentCount$LAYOUT, MaxDeviceTrimExtentCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MaxDeviceTrimByteCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MaxDeviceTrimByteCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MaxDeviceTrimByteCount
+     * }
+     */
+    public static final OfInt MaxDeviceTrimByteCount$layout() {
+        return MaxDeviceTrimByteCount$LAYOUT;
+    }
+
+    private static final long MaxDeviceTrimByteCount$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MaxDeviceTrimByteCount
+     * }
+     */
+    public static final long MaxDeviceTrimByteCount$offset() {
+        return MaxDeviceTrimByteCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MaxDeviceTrimByteCount
+     * }
+     */
+    public static int MaxDeviceTrimByteCount(MemorySegment struct) {
+        return struct.get(MaxDeviceTrimByteCount$LAYOUT, MaxDeviceTrimByteCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MaxDeviceTrimByteCount
+     * }
+     */
+    public static void MaxDeviceTrimByteCount(MemorySegment struct, int fieldValue) {
+        struct.set(MaxDeviceTrimByteCount$LAYOUT, MaxDeviceTrimByteCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MaxVolumeTrimExtentCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MaxVolumeTrimExtentCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MaxVolumeTrimExtentCount
+     * }
+     */
+    public static final OfInt MaxVolumeTrimExtentCount$layout() {
+        return MaxVolumeTrimExtentCount$LAYOUT;
+    }
+
+    private static final long MaxVolumeTrimExtentCount$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MaxVolumeTrimExtentCount
+     * }
+     */
+    public static final long MaxVolumeTrimExtentCount$offset() {
+        return MaxVolumeTrimExtentCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MaxVolumeTrimExtentCount
+     * }
+     */
+    public static int MaxVolumeTrimExtentCount(MemorySegment struct) {
+        return struct.get(MaxVolumeTrimExtentCount$LAYOUT, MaxVolumeTrimExtentCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MaxVolumeTrimExtentCount
+     * }
+     */
+    public static void MaxVolumeTrimExtentCount(MemorySegment struct, int fieldValue) {
+        struct.set(MaxVolumeTrimExtentCount$LAYOUT, MaxVolumeTrimExtentCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MaxVolumeTrimByteCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MaxVolumeTrimByteCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MaxVolumeTrimByteCount
+     * }
+     */
+    public static final OfInt MaxVolumeTrimByteCount$layout() {
+        return MaxVolumeTrimByteCount$LAYOUT;
+    }
+
+    private static final long MaxVolumeTrimByteCount$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MaxVolumeTrimByteCount
+     * }
+     */
+    public static final long MaxVolumeTrimByteCount$offset() {
+        return MaxVolumeTrimByteCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MaxVolumeTrimByteCount
+     * }
+     */
+    public static int MaxVolumeTrimByteCount(MemorySegment struct) {
+        return struct.get(MaxVolumeTrimByteCount$LAYOUT, MaxVolumeTrimByteCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MaxVolumeTrimByteCount
+     * }
+     */
+    public static void MaxVolumeTrimByteCount(MemorySegment struct, int fieldValue) {
+        struct.set(MaxVolumeTrimByteCount$LAYOUT, MaxVolumeTrimByteCount$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

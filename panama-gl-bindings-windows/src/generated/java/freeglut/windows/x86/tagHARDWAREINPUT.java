@@ -2,75 +2,218 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagHARDWAREINPUT {
+ *     DWORD uMsg;
+ *     WORD wParamL;
+ *     WORD wParamH;
+ * }
+ * }
+ */
 public class tagHARDWAREINPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("uMsg"),
-        Constants$root.C_SHORT$LAYOUT.withName("wParamL"),
-        Constants$root.C_SHORT$LAYOUT.withName("wParamH")
-    ).withName("tagHARDWAREINPUT");
-    public static MemoryLayout $LAYOUT() {
-        return tagHARDWAREINPUT.$struct$LAYOUT;
+    tagHARDWAREINPUT() {
+        // Should not be called directly
     }
-    static final VarHandle uMsg$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("uMsg"));
-    public static VarHandle uMsg$VH() {
-        return tagHARDWAREINPUT.uMsg$VH;
-    }
-    public static int uMsg$get(MemorySegment seg) {
-        return (int)tagHARDWAREINPUT.uMsg$VH.get(seg);
-    }
-    public static void uMsg$set( MemorySegment seg, int x) {
-        tagHARDWAREINPUT.uMsg$VH.set(seg, x);
-    }
-    public static int uMsg$get(MemorySegment seg, long index) {
-        return (int)tagHARDWAREINPUT.uMsg$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void uMsg$set(MemorySegment seg, long index, int x) {
-        tagHARDWAREINPUT.uMsg$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wParamL$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wParamL"));
-    public static VarHandle wParamL$VH() {
-        return tagHARDWAREINPUT.wParamL$VH;
-    }
-    public static short wParamL$get(MemorySegment seg) {
-        return (short)tagHARDWAREINPUT.wParamL$VH.get(seg);
-    }
-    public static void wParamL$set( MemorySegment seg, short x) {
-        tagHARDWAREINPUT.wParamL$VH.set(seg, x);
-    }
-    public static short wParamL$get(MemorySegment seg, long index) {
-        return (short)tagHARDWAREINPUT.wParamL$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wParamL$set(MemorySegment seg, long index, short x) {
-        tagHARDWAREINPUT.wParamL$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wParamH$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wParamH"));
-    public static VarHandle wParamH$VH() {
-        return tagHARDWAREINPUT.wParamH$VH;
-    }
-    public static short wParamH$get(MemorySegment seg) {
-        return (short)tagHARDWAREINPUT.wParamH$VH.get(seg);
-    }
-    public static void wParamH$set( MemorySegment seg, short x) {
-        tagHARDWAREINPUT.wParamH$VH.set(seg, x);
-    }
-    public static short wParamH$get(MemorySegment seg, long index) {
-        return (short)tagHARDWAREINPUT.wParamH$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wParamH$set(MemorySegment seg, long index, short x) {
-        tagHARDWAREINPUT.wParamH$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("uMsg"),
+        freeglut_h.C_SHORT.withName("wParamL"),
+        freeglut_h.C_SHORT.withName("wParamH")
+    ).withName("tagHARDWAREINPUT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt uMsg$LAYOUT = (OfInt)$LAYOUT.select(groupElement("uMsg"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD uMsg
+     * }
+     */
+    public static final OfInt uMsg$layout() {
+        return uMsg$LAYOUT;
+    }
+
+    private static final long uMsg$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD uMsg
+     * }
+     */
+    public static final long uMsg$offset() {
+        return uMsg$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD uMsg
+     * }
+     */
+    public static int uMsg(MemorySegment struct) {
+        return struct.get(uMsg$LAYOUT, uMsg$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD uMsg
+     * }
+     */
+    public static void uMsg(MemorySegment struct, int fieldValue) {
+        struct.set(uMsg$LAYOUT, uMsg$OFFSET, fieldValue);
+    }
+
+    private static final OfShort wParamL$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wParamL"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wParamL
+     * }
+     */
+    public static final OfShort wParamL$layout() {
+        return wParamL$LAYOUT;
+    }
+
+    private static final long wParamL$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wParamL
+     * }
+     */
+    public static final long wParamL$offset() {
+        return wParamL$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wParamL
+     * }
+     */
+    public static short wParamL(MemorySegment struct) {
+        return struct.get(wParamL$LAYOUT, wParamL$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wParamL
+     * }
+     */
+    public static void wParamL(MemorySegment struct, short fieldValue) {
+        struct.set(wParamL$LAYOUT, wParamL$OFFSET, fieldValue);
+    }
+
+    private static final OfShort wParamH$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wParamH"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wParamH
+     * }
+     */
+    public static final OfShort wParamH$layout() {
+        return wParamH$LAYOUT;
+    }
+
+    private static final long wParamH$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wParamH
+     * }
+     */
+    public static final long wParamH$offset() {
+        return wParamH$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wParamH
+     * }
+     */
+    public static short wParamH(MemorySegment struct) {
+        return struct.get(wParamH$LAYOUT, wParamH$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wParamH
+     * }
+     */
+    public static void wParamH(MemorySegment struct, short fieldValue) {
+        struct.set(wParamH$LAYOUT, wParamH$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

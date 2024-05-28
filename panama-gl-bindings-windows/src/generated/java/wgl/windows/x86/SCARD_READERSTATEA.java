@@ -2,113 +2,389 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     LPCSTR szReader;
+ *     LPVOID pvUserData;
+ *     DWORD dwCurrentState;
+ *     DWORD dwEventState;
+ *     DWORD cbAtr;
+ *     BYTE rgbAtr[36];
+ * }
+ * }
+ */
 public class SCARD_READERSTATEA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("szReader"),
-        Constants$root.C_POINTER$LAYOUT.withName("pvUserData"),
-        Constants$root.C_LONG$LAYOUT.withName("dwCurrentState"),
-        Constants$root.C_LONG$LAYOUT.withName("dwEventState"),
-        Constants$root.C_LONG$LAYOUT.withName("cbAtr"),
-        MemoryLayout.sequenceLayout(36, Constants$root.C_CHAR$LAYOUT).withName("rgbAtr")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return SCARD_READERSTATEA.$struct$LAYOUT;
+    SCARD_READERSTATEA() {
+        // Should not be called directly
     }
-    static final VarHandle szReader$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("szReader"));
-    public static VarHandle szReader$VH() {
-        return SCARD_READERSTATEA.szReader$VH;
-    }
-    public static MemoryAddress szReader$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)SCARD_READERSTATEA.szReader$VH.get(seg);
-    }
-    public static void szReader$set( MemorySegment seg, MemoryAddress x) {
-        SCARD_READERSTATEA.szReader$VH.set(seg, x);
-    }
-    public static MemoryAddress szReader$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)SCARD_READERSTATEA.szReader$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void szReader$set(MemorySegment seg, long index, MemoryAddress x) {
-        SCARD_READERSTATEA.szReader$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pvUserData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pvUserData"));
-    public static VarHandle pvUserData$VH() {
-        return SCARD_READERSTATEA.pvUserData$VH;
-    }
-    public static MemoryAddress pvUserData$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)SCARD_READERSTATEA.pvUserData$VH.get(seg);
-    }
-    public static void pvUserData$set( MemorySegment seg, MemoryAddress x) {
-        SCARD_READERSTATEA.pvUserData$VH.set(seg, x);
-    }
-    public static MemoryAddress pvUserData$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)SCARD_READERSTATEA.pvUserData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pvUserData$set(MemorySegment seg, long index, MemoryAddress x) {
-        SCARD_READERSTATEA.pvUserData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwCurrentState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwCurrentState"));
-    public static VarHandle dwCurrentState$VH() {
-        return SCARD_READERSTATEA.dwCurrentState$VH;
-    }
-    public static int dwCurrentState$get(MemorySegment seg) {
-        return (int)SCARD_READERSTATEA.dwCurrentState$VH.get(seg);
-    }
-    public static void dwCurrentState$set( MemorySegment seg, int x) {
-        SCARD_READERSTATEA.dwCurrentState$VH.set(seg, x);
-    }
-    public static int dwCurrentState$get(MemorySegment seg, long index) {
-        return (int)SCARD_READERSTATEA.dwCurrentState$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwCurrentState$set(MemorySegment seg, long index, int x) {
-        SCARD_READERSTATEA.dwCurrentState$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwEventState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwEventState"));
-    public static VarHandle dwEventState$VH() {
-        return SCARD_READERSTATEA.dwEventState$VH;
-    }
-    public static int dwEventState$get(MemorySegment seg) {
-        return (int)SCARD_READERSTATEA.dwEventState$VH.get(seg);
-    }
-    public static void dwEventState$set( MemorySegment seg, int x) {
-        SCARD_READERSTATEA.dwEventState$VH.set(seg, x);
-    }
-    public static int dwEventState$get(MemorySegment seg, long index) {
-        return (int)SCARD_READERSTATEA.dwEventState$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwEventState$set(MemorySegment seg, long index, int x) {
-        SCARD_READERSTATEA.dwEventState$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbAtr$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbAtr"));
-    public static VarHandle cbAtr$VH() {
-        return SCARD_READERSTATEA.cbAtr$VH;
-    }
-    public static int cbAtr$get(MemorySegment seg) {
-        return (int)SCARD_READERSTATEA.cbAtr$VH.get(seg);
-    }
-    public static void cbAtr$set( MemorySegment seg, int x) {
-        SCARD_READERSTATEA.cbAtr$VH.set(seg, x);
-    }
-    public static int cbAtr$get(MemorySegment seg, long index) {
-        return (int)SCARD_READERSTATEA.cbAtr$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbAtr$set(MemorySegment seg, long index, int x) {
-        SCARD_READERSTATEA.cbAtr$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment rgbAtr$slice(MemorySegment seg) {
-        return seg.asSlice(28, 36);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("szReader"),
+        wgl_h.C_POINTER.withName("pvUserData"),
+        wgl_h.C_LONG.withName("dwCurrentState"),
+        wgl_h.C_LONG.withName("dwEventState"),
+        wgl_h.C_LONG.withName("cbAtr"),
+        MemoryLayout.sequenceLayout(36, wgl_h.C_CHAR).withName("rgbAtr")
+    ).withName("$anon$504:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout szReader$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("szReader"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPCSTR szReader
+     * }
+     */
+    public static final AddressLayout szReader$layout() {
+        return szReader$LAYOUT;
+    }
+
+    private static final long szReader$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPCSTR szReader
+     * }
+     */
+    public static final long szReader$offset() {
+        return szReader$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPCSTR szReader
+     * }
+     */
+    public static MemorySegment szReader(MemorySegment struct) {
+        return struct.get(szReader$LAYOUT, szReader$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPCSTR szReader
+     * }
+     */
+    public static void szReader(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(szReader$LAYOUT, szReader$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pvUserData$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pvUserData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPVOID pvUserData
+     * }
+     */
+    public static final AddressLayout pvUserData$layout() {
+        return pvUserData$LAYOUT;
+    }
+
+    private static final long pvUserData$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPVOID pvUserData
+     * }
+     */
+    public static final long pvUserData$offset() {
+        return pvUserData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPVOID pvUserData
+     * }
+     */
+    public static MemorySegment pvUserData(MemorySegment struct) {
+        return struct.get(pvUserData$LAYOUT, pvUserData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPVOID pvUserData
+     * }
+     */
+    public static void pvUserData(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pvUserData$LAYOUT, pvUserData$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwCurrentState$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwCurrentState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwCurrentState
+     * }
+     */
+    public static final OfInt dwCurrentState$layout() {
+        return dwCurrentState$LAYOUT;
+    }
+
+    private static final long dwCurrentState$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwCurrentState
+     * }
+     */
+    public static final long dwCurrentState$offset() {
+        return dwCurrentState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwCurrentState
+     * }
+     */
+    public static int dwCurrentState(MemorySegment struct) {
+        return struct.get(dwCurrentState$LAYOUT, dwCurrentState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwCurrentState
+     * }
+     */
+    public static void dwCurrentState(MemorySegment struct, int fieldValue) {
+        struct.set(dwCurrentState$LAYOUT, dwCurrentState$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwEventState$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwEventState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwEventState
+     * }
+     */
+    public static final OfInt dwEventState$layout() {
+        return dwEventState$LAYOUT;
+    }
+
+    private static final long dwEventState$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwEventState
+     * }
+     */
+    public static final long dwEventState$offset() {
+        return dwEventState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwEventState
+     * }
+     */
+    public static int dwEventState(MemorySegment struct) {
+        return struct.get(dwEventState$LAYOUT, dwEventState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwEventState
+     * }
+     */
+    public static void dwEventState(MemorySegment struct, int fieldValue) {
+        struct.set(dwEventState$LAYOUT, dwEventState$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbAtr$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbAtr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbAtr
+     * }
+     */
+    public static final OfInt cbAtr$layout() {
+        return cbAtr$LAYOUT;
+    }
+
+    private static final long cbAtr$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbAtr
+     * }
+     */
+    public static final long cbAtr$offset() {
+        return cbAtr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbAtr
+     * }
+     */
+    public static int cbAtr(MemorySegment struct) {
+        return struct.get(cbAtr$LAYOUT, cbAtr$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbAtr
+     * }
+     */
+    public static void cbAtr(MemorySegment struct, int fieldValue) {
+        struct.set(cbAtr$LAYOUT, cbAtr$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout rgbAtr$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("rgbAtr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE rgbAtr[36]
+     * }
+     */
+    public static final SequenceLayout rgbAtr$layout() {
+        return rgbAtr$LAYOUT;
+    }
+
+    private static final long rgbAtr$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE rgbAtr[36]
+     * }
+     */
+    public static final long rgbAtr$offset() {
+        return rgbAtr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbAtr[36]
+     * }
+     */
+    public static MemorySegment rgbAtr(MemorySegment struct) {
+        return struct.asSlice(rgbAtr$OFFSET, rgbAtr$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbAtr[36]
+     * }
+     */
+    public static void rgbAtr(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rgbAtr$OFFSET, rgbAtr$LAYOUT.byteSize());
+    }
+
+    private static long[] rgbAtr$DIMS = { 36 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE rgbAtr[36]
+     * }
+     */
+    public static long[] rgbAtr$dimensions() {
+        return rgbAtr$DIMS;
+    }
+    private static final VarHandle rgbAtr$ELEM_HANDLE = rgbAtr$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbAtr[36]
+     * }
+     */
+    public static byte rgbAtr(MemorySegment struct, long index0) {
+        return (byte)rgbAtr$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbAtr[36]
+     * }
+     */
+    public static void rgbAtr(MemorySegment struct, long index0, byte fieldValue) {
+        rgbAtr$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

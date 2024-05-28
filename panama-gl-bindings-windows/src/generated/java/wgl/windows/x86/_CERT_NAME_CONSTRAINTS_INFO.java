@@ -2,94 +2,266 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_NAME_CONSTRAINTS_INFO {
+ *     DWORD cPermittedSubtree;
+ *     PCERT_GENERAL_SUBTREE rgPermittedSubtree;
+ *     DWORD cExcludedSubtree;
+ *     PCERT_GENERAL_SUBTREE rgExcludedSubtree;
+ * }
+ * }
+ */
 public class _CERT_NAME_CONSTRAINTS_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cPermittedSubtree"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgPermittedSubtree"),
-        Constants$root.C_LONG$LAYOUT.withName("cExcludedSubtree"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgExcludedSubtree")
-    ).withName("_CERT_NAME_CONSTRAINTS_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_NAME_CONSTRAINTS_INFO.$struct$LAYOUT;
+    _CERT_NAME_CONSTRAINTS_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle cPermittedSubtree$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cPermittedSubtree"));
-    public static VarHandle cPermittedSubtree$VH() {
-        return _CERT_NAME_CONSTRAINTS_INFO.cPermittedSubtree$VH;
-    }
-    public static int cPermittedSubtree$get(MemorySegment seg) {
-        return (int)_CERT_NAME_CONSTRAINTS_INFO.cPermittedSubtree$VH.get(seg);
-    }
-    public static void cPermittedSubtree$set( MemorySegment seg, int x) {
-        _CERT_NAME_CONSTRAINTS_INFO.cPermittedSubtree$VH.set(seg, x);
-    }
-    public static int cPermittedSubtree$get(MemorySegment seg, long index) {
-        return (int)_CERT_NAME_CONSTRAINTS_INFO.cPermittedSubtree$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cPermittedSubtree$set(MemorySegment seg, long index, int x) {
-        _CERT_NAME_CONSTRAINTS_INFO.cPermittedSubtree$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgPermittedSubtree$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgPermittedSubtree"));
-    public static VarHandle rgPermittedSubtree$VH() {
-        return _CERT_NAME_CONSTRAINTS_INFO.rgPermittedSubtree$VH;
-    }
-    public static MemoryAddress rgPermittedSubtree$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_NAME_CONSTRAINTS_INFO.rgPermittedSubtree$VH.get(seg);
-    }
-    public static void rgPermittedSubtree$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_NAME_CONSTRAINTS_INFO.rgPermittedSubtree$VH.set(seg, x);
-    }
-    public static MemoryAddress rgPermittedSubtree$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_NAME_CONSTRAINTS_INFO.rgPermittedSubtree$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgPermittedSubtree$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_NAME_CONSTRAINTS_INFO.rgPermittedSubtree$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cExcludedSubtree$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cExcludedSubtree"));
-    public static VarHandle cExcludedSubtree$VH() {
-        return _CERT_NAME_CONSTRAINTS_INFO.cExcludedSubtree$VH;
-    }
-    public static int cExcludedSubtree$get(MemorySegment seg) {
-        return (int)_CERT_NAME_CONSTRAINTS_INFO.cExcludedSubtree$VH.get(seg);
-    }
-    public static void cExcludedSubtree$set( MemorySegment seg, int x) {
-        _CERT_NAME_CONSTRAINTS_INFO.cExcludedSubtree$VH.set(seg, x);
-    }
-    public static int cExcludedSubtree$get(MemorySegment seg, long index) {
-        return (int)_CERT_NAME_CONSTRAINTS_INFO.cExcludedSubtree$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cExcludedSubtree$set(MemorySegment seg, long index, int x) {
-        _CERT_NAME_CONSTRAINTS_INFO.cExcludedSubtree$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgExcludedSubtree$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgExcludedSubtree"));
-    public static VarHandle rgExcludedSubtree$VH() {
-        return _CERT_NAME_CONSTRAINTS_INFO.rgExcludedSubtree$VH;
-    }
-    public static MemoryAddress rgExcludedSubtree$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_NAME_CONSTRAINTS_INFO.rgExcludedSubtree$VH.get(seg);
-    }
-    public static void rgExcludedSubtree$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_NAME_CONSTRAINTS_INFO.rgExcludedSubtree$VH.set(seg, x);
-    }
-    public static MemoryAddress rgExcludedSubtree$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_NAME_CONSTRAINTS_INFO.rgExcludedSubtree$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgExcludedSubtree$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_NAME_CONSTRAINTS_INFO.rgExcludedSubtree$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cPermittedSubtree"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgPermittedSubtree"),
+        wgl_h.C_LONG.withName("cExcludedSubtree"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgExcludedSubtree")
+    ).withName("_CERT_NAME_CONSTRAINTS_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cPermittedSubtree$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cPermittedSubtree"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cPermittedSubtree
+     * }
+     */
+    public static final OfInt cPermittedSubtree$layout() {
+        return cPermittedSubtree$LAYOUT;
+    }
+
+    private static final long cPermittedSubtree$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cPermittedSubtree
+     * }
+     */
+    public static final long cPermittedSubtree$offset() {
+        return cPermittedSubtree$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cPermittedSubtree
+     * }
+     */
+    public static int cPermittedSubtree(MemorySegment struct) {
+        return struct.get(cPermittedSubtree$LAYOUT, cPermittedSubtree$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cPermittedSubtree
+     * }
+     */
+    public static void cPermittedSubtree(MemorySegment struct, int fieldValue) {
+        struct.set(cPermittedSubtree$LAYOUT, cPermittedSubtree$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgPermittedSubtree$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgPermittedSubtree"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCERT_GENERAL_SUBTREE rgPermittedSubtree
+     * }
+     */
+    public static final AddressLayout rgPermittedSubtree$layout() {
+        return rgPermittedSubtree$LAYOUT;
+    }
+
+    private static final long rgPermittedSubtree$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCERT_GENERAL_SUBTREE rgPermittedSubtree
+     * }
+     */
+    public static final long rgPermittedSubtree$offset() {
+        return rgPermittedSubtree$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCERT_GENERAL_SUBTREE rgPermittedSubtree
+     * }
+     */
+    public static MemorySegment rgPermittedSubtree(MemorySegment struct) {
+        return struct.get(rgPermittedSubtree$LAYOUT, rgPermittedSubtree$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCERT_GENERAL_SUBTREE rgPermittedSubtree
+     * }
+     */
+    public static void rgPermittedSubtree(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgPermittedSubtree$LAYOUT, rgPermittedSubtree$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cExcludedSubtree$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cExcludedSubtree"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cExcludedSubtree
+     * }
+     */
+    public static final OfInt cExcludedSubtree$layout() {
+        return cExcludedSubtree$LAYOUT;
+    }
+
+    private static final long cExcludedSubtree$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cExcludedSubtree
+     * }
+     */
+    public static final long cExcludedSubtree$offset() {
+        return cExcludedSubtree$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cExcludedSubtree
+     * }
+     */
+    public static int cExcludedSubtree(MemorySegment struct) {
+        return struct.get(cExcludedSubtree$LAYOUT, cExcludedSubtree$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cExcludedSubtree
+     * }
+     */
+    public static void cExcludedSubtree(MemorySegment struct, int fieldValue) {
+        struct.set(cExcludedSubtree$LAYOUT, cExcludedSubtree$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgExcludedSubtree$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgExcludedSubtree"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCERT_GENERAL_SUBTREE rgExcludedSubtree
+     * }
+     */
+    public static final AddressLayout rgExcludedSubtree$layout() {
+        return rgExcludedSubtree$LAYOUT;
+    }
+
+    private static final long rgExcludedSubtree$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCERT_GENERAL_SUBTREE rgExcludedSubtree
+     * }
+     */
+    public static final long rgExcludedSubtree$offset() {
+        return rgExcludedSubtree$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCERT_GENERAL_SUBTREE rgExcludedSubtree
+     * }
+     */
+    public static MemorySegment rgExcludedSubtree(MemorySegment struct) {
+        return struct.get(rgExcludedSubtree$LAYOUT, rgExcludedSubtree$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCERT_GENERAL_SUBTREE rgExcludedSubtree
+     * }
+     */
+    public static void rgExcludedSubtree(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgExcludedSubtree$LAYOUT, rgExcludedSubtree$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,13 +2,42 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _XSTATE_CONFIGURATION {
+ *     DWORD64 EnabledFeatures;
+ *     DWORD64 EnabledVolatileFeatures;
+ *     DWORD Size;
+ *     union {
+ *         DWORD ControlFlags;
+ *         struct {
+ *             DWORD OptimizedSave : 1;
+ *             DWORD CompactionEnabled : 1;
+ *         };
+ *     };
+ *     XSTATE_FEATURE Features[64];
+ *     DWORD64 EnabledSupervisorFeatures;
+ *     DWORD64 AlignedFeatures;
+ *     DWORD AllFeatureSize;
+ *     DWORD AllFeatures[64];
+ *     DWORD64 EnabledUserVisibleSupervisorFeatures;
+ * } XSTATE_CONFIGURATION
+ * }
+ */
 public class XSTATE_CONFIGURATION extends _XSTATE_CONFIGURATION {
 
+    XSTATE_CONFIGURATION() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,103 +2,311 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_BASIC_CONSTRAINTS_INFO {
+ *     CRYPT_BIT_BLOB SubjectType;
+ *     BOOL fPathLenConstraint;
+ *     DWORD dwPathLenConstraint;
+ *     DWORD cSubtreesConstraint;
+ *     CERT_NAME_BLOB *rgSubtreesConstraint;
+ * }
+ * }
+ */
 public class _CERT_BASIC_CONSTRAINTS_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData"),
-            Constants$root.C_LONG$LAYOUT.withName("cUnusedBits"),
-            MemoryLayout.paddingLayout(32)
-        ).withName("SubjectType"),
-        Constants$root.C_LONG$LAYOUT.withName("fPathLenConstraint"),
-        Constants$root.C_LONG$LAYOUT.withName("dwPathLenConstraint"),
-        Constants$root.C_LONG$LAYOUT.withName("cSubtreesConstraint"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgSubtreesConstraint")
-    ).withName("_CERT_BASIC_CONSTRAINTS_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_BASIC_CONSTRAINTS_INFO.$struct$LAYOUT;
+    _CERT_BASIC_CONSTRAINTS_INFO() {
+        // Should not be called directly
     }
-    public static MemorySegment SubjectType$slice(MemorySegment seg) {
-        return seg.asSlice(0, 24);
-    }
-    static final VarHandle fPathLenConstraint$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fPathLenConstraint"));
-    public static VarHandle fPathLenConstraint$VH() {
-        return _CERT_BASIC_CONSTRAINTS_INFO.fPathLenConstraint$VH;
-    }
-    public static int fPathLenConstraint$get(MemorySegment seg) {
-        return (int)_CERT_BASIC_CONSTRAINTS_INFO.fPathLenConstraint$VH.get(seg);
-    }
-    public static void fPathLenConstraint$set( MemorySegment seg, int x) {
-        _CERT_BASIC_CONSTRAINTS_INFO.fPathLenConstraint$VH.set(seg, x);
-    }
-    public static int fPathLenConstraint$get(MemorySegment seg, long index) {
-        return (int)_CERT_BASIC_CONSTRAINTS_INFO.fPathLenConstraint$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fPathLenConstraint$set(MemorySegment seg, long index, int x) {
-        _CERT_BASIC_CONSTRAINTS_INFO.fPathLenConstraint$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwPathLenConstraint$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwPathLenConstraint"));
-    public static VarHandle dwPathLenConstraint$VH() {
-        return _CERT_BASIC_CONSTRAINTS_INFO.dwPathLenConstraint$VH;
-    }
-    public static int dwPathLenConstraint$get(MemorySegment seg) {
-        return (int)_CERT_BASIC_CONSTRAINTS_INFO.dwPathLenConstraint$VH.get(seg);
-    }
-    public static void dwPathLenConstraint$set( MemorySegment seg, int x) {
-        _CERT_BASIC_CONSTRAINTS_INFO.dwPathLenConstraint$VH.set(seg, x);
-    }
-    public static int dwPathLenConstraint$get(MemorySegment seg, long index) {
-        return (int)_CERT_BASIC_CONSTRAINTS_INFO.dwPathLenConstraint$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwPathLenConstraint$set(MemorySegment seg, long index, int x) {
-        _CERT_BASIC_CONSTRAINTS_INFO.dwPathLenConstraint$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cSubtreesConstraint$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cSubtreesConstraint"));
-    public static VarHandle cSubtreesConstraint$VH() {
-        return _CERT_BASIC_CONSTRAINTS_INFO.cSubtreesConstraint$VH;
-    }
-    public static int cSubtreesConstraint$get(MemorySegment seg) {
-        return (int)_CERT_BASIC_CONSTRAINTS_INFO.cSubtreesConstraint$VH.get(seg);
-    }
-    public static void cSubtreesConstraint$set( MemorySegment seg, int x) {
-        _CERT_BASIC_CONSTRAINTS_INFO.cSubtreesConstraint$VH.set(seg, x);
-    }
-    public static int cSubtreesConstraint$get(MemorySegment seg, long index) {
-        return (int)_CERT_BASIC_CONSTRAINTS_INFO.cSubtreesConstraint$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cSubtreesConstraint$set(MemorySegment seg, long index, int x) {
-        _CERT_BASIC_CONSTRAINTS_INFO.cSubtreesConstraint$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgSubtreesConstraint$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgSubtreesConstraint"));
-    public static VarHandle rgSubtreesConstraint$VH() {
-        return _CERT_BASIC_CONSTRAINTS_INFO.rgSubtreesConstraint$VH;
-    }
-    public static MemoryAddress rgSubtreesConstraint$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_BASIC_CONSTRAINTS_INFO.rgSubtreesConstraint$VH.get(seg);
-    }
-    public static void rgSubtreesConstraint$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_BASIC_CONSTRAINTS_INFO.rgSubtreesConstraint$VH.set(seg, x);
-    }
-    public static MemoryAddress rgSubtreesConstraint$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_BASIC_CONSTRAINTS_INFO.rgSubtreesConstraint$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgSubtreesConstraint$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_BASIC_CONSTRAINTS_INFO.rgSubtreesConstraint$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _CRYPT_BIT_BLOB.layout().withName("SubjectType"),
+        wgl_h.C_INT.withName("fPathLenConstraint"),
+        wgl_h.C_LONG.withName("dwPathLenConstraint"),
+        wgl_h.C_LONG.withName("cSubtreesConstraint"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgSubtreesConstraint")
+    ).withName("_CERT_BASIC_CONSTRAINTS_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout SubjectType$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("SubjectType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB SubjectType
+     * }
+     */
+    public static final GroupLayout SubjectType$layout() {
+        return SubjectType$LAYOUT;
+    }
+
+    private static final long SubjectType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB SubjectType
+     * }
+     */
+    public static final long SubjectType$offset() {
+        return SubjectType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB SubjectType
+     * }
+     */
+    public static MemorySegment SubjectType(MemorySegment struct) {
+        return struct.asSlice(SubjectType$OFFSET, SubjectType$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB SubjectType
+     * }
+     */
+    public static void SubjectType(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, SubjectType$OFFSET, SubjectType$LAYOUT.byteSize());
+    }
+
+    private static final OfInt fPathLenConstraint$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fPathLenConstraint"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL fPathLenConstraint
+     * }
+     */
+    public static final OfInt fPathLenConstraint$layout() {
+        return fPathLenConstraint$LAYOUT;
+    }
+
+    private static final long fPathLenConstraint$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL fPathLenConstraint
+     * }
+     */
+    public static final long fPathLenConstraint$offset() {
+        return fPathLenConstraint$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL fPathLenConstraint
+     * }
+     */
+    public static int fPathLenConstraint(MemorySegment struct) {
+        return struct.get(fPathLenConstraint$LAYOUT, fPathLenConstraint$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL fPathLenConstraint
+     * }
+     */
+    public static void fPathLenConstraint(MemorySegment struct, int fieldValue) {
+        struct.set(fPathLenConstraint$LAYOUT, fPathLenConstraint$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwPathLenConstraint$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwPathLenConstraint"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwPathLenConstraint
+     * }
+     */
+    public static final OfInt dwPathLenConstraint$layout() {
+        return dwPathLenConstraint$LAYOUT;
+    }
+
+    private static final long dwPathLenConstraint$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwPathLenConstraint
+     * }
+     */
+    public static final long dwPathLenConstraint$offset() {
+        return dwPathLenConstraint$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwPathLenConstraint
+     * }
+     */
+    public static int dwPathLenConstraint(MemorySegment struct) {
+        return struct.get(dwPathLenConstraint$LAYOUT, dwPathLenConstraint$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwPathLenConstraint
+     * }
+     */
+    public static void dwPathLenConstraint(MemorySegment struct, int fieldValue) {
+        struct.set(dwPathLenConstraint$LAYOUT, dwPathLenConstraint$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cSubtreesConstraint$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cSubtreesConstraint"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cSubtreesConstraint
+     * }
+     */
+    public static final OfInt cSubtreesConstraint$layout() {
+        return cSubtreesConstraint$LAYOUT;
+    }
+
+    private static final long cSubtreesConstraint$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cSubtreesConstraint
+     * }
+     */
+    public static final long cSubtreesConstraint$offset() {
+        return cSubtreesConstraint$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cSubtreesConstraint
+     * }
+     */
+    public static int cSubtreesConstraint(MemorySegment struct) {
+        return struct.get(cSubtreesConstraint$LAYOUT, cSubtreesConstraint$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cSubtreesConstraint
+     * }
+     */
+    public static void cSubtreesConstraint(MemorySegment struct, int fieldValue) {
+        struct.set(cSubtreesConstraint$LAYOUT, cSubtreesConstraint$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgSubtreesConstraint$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgSubtreesConstraint"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB *rgSubtreesConstraint
+     * }
+     */
+    public static final AddressLayout rgSubtreesConstraint$layout() {
+        return rgSubtreesConstraint$LAYOUT;
+    }
+
+    private static final long rgSubtreesConstraint$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB *rgSubtreesConstraint
+     * }
+     */
+    public static final long rgSubtreesConstraint$offset() {
+        return rgSubtreesConstraint$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB *rgSubtreesConstraint
+     * }
+     */
+    public static MemorySegment rgSubtreesConstraint(MemorySegment struct) {
+        return struct.get(rgSubtreesConstraint$LAYOUT, rgSubtreesConstraint$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB *rgSubtreesConstraint
+     * }
+     */
+    public static void rgSubtreesConstraint(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgSubtreesConstraint$LAYOUT, rgSubtreesConstraint$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

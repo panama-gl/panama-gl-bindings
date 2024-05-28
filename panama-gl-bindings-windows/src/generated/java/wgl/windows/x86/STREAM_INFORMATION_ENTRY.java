@@ -2,13 +2,52 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _STREAM_INFORMATION_ENTRY {
+ *     DWORD Version;
+ *     DWORD Flags;
+ *     union _StreamInformation {
+ *         struct _DesiredStorageClass {
+ *             FILE_STORAGE_TIER_CLASS Class;
+ *             DWORD Flags;
+ *         } DesiredStorageClass;
+ *         struct _DataStream {
+ *             WORD Length;
+ *             WORD Flags;
+ *             DWORD Reserved;
+ *             DWORDLONG Vdl;
+ *         } DataStream;
+ *         struct _Reparse {
+ *             WORD Length;
+ *             WORD Flags;
+ *             DWORD ReparseDataSize;
+ *             DWORD ReparseDataOffset;
+ *         } Reparse;
+ *         struct _Ea {
+ *             WORD Length;
+ *             WORD Flags;
+ *             DWORD EaSize;
+ *             DWORD EaInformationOffset;
+ *         } Ea;
+ *     } StreamInformation;
+ * } STREAM_INFORMATION_ENTRY
+ * }
+ */
 public class STREAM_INFORMATION_ENTRY extends _STREAM_INFORMATION_ENTRY {
 
+    STREAM_INFORMATION_ENTRY() {
+        // Should not be called directly
+    }
 }
-
 

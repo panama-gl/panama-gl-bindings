@@ -2,73 +2,310 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_X942_DH_PARAMETERS {
+ *     CRYPT_UINT_BLOB p;
+ *     CRYPT_UINT_BLOB g;
+ *     CRYPT_UINT_BLOB q;
+ *     CRYPT_UINT_BLOB j;
+ *     PCERT_X942_DH_VALIDATION_PARAMS pValidationParams;
+ * }
+ * }
+ */
 public class _CERT_X942_DH_PARAMETERS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData")
-        ).withName("p"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData")
-        ).withName("g"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData")
-        ).withName("q"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData")
-        ).withName("j"),
-        Constants$root.C_POINTER$LAYOUT.withName("pValidationParams")
-    ).withName("_CERT_X942_DH_PARAMETERS");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_X942_DH_PARAMETERS.$struct$LAYOUT;
+    _CERT_X942_DH_PARAMETERS() {
+        // Should not be called directly
     }
-    public static MemorySegment p$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
-    }
-    public static MemorySegment g$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
-    }
-    public static MemorySegment q$slice(MemorySegment seg) {
-        return seg.asSlice(32, 16);
-    }
-    public static MemorySegment j$slice(MemorySegment seg) {
-        return seg.asSlice(48, 16);
-    }
-    static final VarHandle pValidationParams$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pValidationParams"));
-    public static VarHandle pValidationParams$VH() {
-        return _CERT_X942_DH_PARAMETERS.pValidationParams$VH;
-    }
-    public static MemoryAddress pValidationParams$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_X942_DH_PARAMETERS.pValidationParams$VH.get(seg);
-    }
-    public static void pValidationParams$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_X942_DH_PARAMETERS.pValidationParams$VH.set(seg, x);
-    }
-    public static MemoryAddress pValidationParams$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_X942_DH_PARAMETERS.pValidationParams$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pValidationParams$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_X942_DH_PARAMETERS.pValidationParams$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _CRYPTOAPI_BLOB.layout().withName("p"),
+        _CRYPTOAPI_BLOB.layout().withName("g"),
+        _CRYPTOAPI_BLOB.layout().withName("q"),
+        _CRYPTOAPI_BLOB.layout().withName("j"),
+        wgl_h.C_POINTER.withName("pValidationParams")
+    ).withName("_CERT_X942_DH_PARAMETERS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout p$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("p"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_UINT_BLOB p
+     * }
+     */
+    public static final GroupLayout p$layout() {
+        return p$LAYOUT;
+    }
+
+    private static final long p$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_UINT_BLOB p
+     * }
+     */
+    public static final long p$offset() {
+        return p$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_UINT_BLOB p
+     * }
+     */
+    public static MemorySegment p(MemorySegment struct) {
+        return struct.asSlice(p$OFFSET, p$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_UINT_BLOB p
+     * }
+     */
+    public static void p(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, p$OFFSET, p$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout g$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("g"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_UINT_BLOB g
+     * }
+     */
+    public static final GroupLayout g$layout() {
+        return g$LAYOUT;
+    }
+
+    private static final long g$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_UINT_BLOB g
+     * }
+     */
+    public static final long g$offset() {
+        return g$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_UINT_BLOB g
+     * }
+     */
+    public static MemorySegment g(MemorySegment struct) {
+        return struct.asSlice(g$OFFSET, g$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_UINT_BLOB g
+     * }
+     */
+    public static void g(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, g$OFFSET, g$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout q$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("q"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_UINT_BLOB q
+     * }
+     */
+    public static final GroupLayout q$layout() {
+        return q$LAYOUT;
+    }
+
+    private static final long q$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_UINT_BLOB q
+     * }
+     */
+    public static final long q$offset() {
+        return q$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_UINT_BLOB q
+     * }
+     */
+    public static MemorySegment q(MemorySegment struct) {
+        return struct.asSlice(q$OFFSET, q$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_UINT_BLOB q
+     * }
+     */
+    public static void q(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, q$OFFSET, q$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout j$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("j"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_UINT_BLOB j
+     * }
+     */
+    public static final GroupLayout j$layout() {
+        return j$LAYOUT;
+    }
+
+    private static final long j$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_UINT_BLOB j
+     * }
+     */
+    public static final long j$offset() {
+        return j$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_UINT_BLOB j
+     * }
+     */
+    public static MemorySegment j(MemorySegment struct) {
+        return struct.asSlice(j$OFFSET, j$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_UINT_BLOB j
+     * }
+     */
+    public static void j(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, j$OFFSET, j$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout pValidationParams$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pValidationParams"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCERT_X942_DH_VALIDATION_PARAMS pValidationParams
+     * }
+     */
+    public static final AddressLayout pValidationParams$layout() {
+        return pValidationParams$LAYOUT;
+    }
+
+    private static final long pValidationParams$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCERT_X942_DH_VALIDATION_PARAMS pValidationParams
+     * }
+     */
+    public static final long pValidationParams$offset() {
+        return pValidationParams$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCERT_X942_DH_VALIDATION_PARAMS pValidationParams
+     * }
+     */
+    public static MemorySegment pValidationParams(MemorySegment struct) {
+        return struct.get(pValidationParams$LAYOUT, pValidationParams$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCERT_X942_DH_VALIDATION_PARAMS pValidationParams
+     * }
+     */
+    public static void pValidationParams(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pValidationParams$LAYOUT, pValidationParams$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

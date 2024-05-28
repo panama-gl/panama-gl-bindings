@@ -2,127 +2,435 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _REPAIR_COPIES_INPUT {
+ *     DWORD Size;
+ *     DWORD Flags;
+ *     LARGE_INTEGER FileOffset;
+ *     DWORD Length;
+ *     DWORD SourceCopy;
+ *     DWORD NumberOfRepairCopies;
+ *     DWORD RepairCopies[1];
+ * }
+ * }
+ */
 public class _REPAIR_COPIES_INPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("FileOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("Length"),
-        Constants$root.C_LONG$LAYOUT.withName("SourceCopy"),
-        Constants$root.C_LONG$LAYOUT.withName("NumberOfRepairCopies"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_LONG$LAYOUT).withName("RepairCopies")
-    ).withName("_REPAIR_COPIES_INPUT");
-    public static MemoryLayout $LAYOUT() {
-        return _REPAIR_COPIES_INPUT.$struct$LAYOUT;
+    _REPAIR_COPIES_INPUT() {
+        // Should not be called directly
     }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _REPAIR_COPIES_INPUT.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_REPAIR_COPIES_INPUT.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _REPAIR_COPIES_INPUT.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_REPAIR_COPIES_INPUT.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _REPAIR_COPIES_INPUT.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _REPAIR_COPIES_INPUT.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_REPAIR_COPIES_INPUT.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _REPAIR_COPIES_INPUT.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_REPAIR_COPIES_INPUT.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _REPAIR_COPIES_INPUT.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment FileOffset$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    static final VarHandle Length$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Length"));
-    public static VarHandle Length$VH() {
-        return _REPAIR_COPIES_INPUT.Length$VH;
-    }
-    public static int Length$get(MemorySegment seg) {
-        return (int)_REPAIR_COPIES_INPUT.Length$VH.get(seg);
-    }
-    public static void Length$set( MemorySegment seg, int x) {
-        _REPAIR_COPIES_INPUT.Length$VH.set(seg, x);
-    }
-    public static int Length$get(MemorySegment seg, long index) {
-        return (int)_REPAIR_COPIES_INPUT.Length$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Length$set(MemorySegment seg, long index, int x) {
-        _REPAIR_COPIES_INPUT.Length$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SourceCopy$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SourceCopy"));
-    public static VarHandle SourceCopy$VH() {
-        return _REPAIR_COPIES_INPUT.SourceCopy$VH;
-    }
-    public static int SourceCopy$get(MemorySegment seg) {
-        return (int)_REPAIR_COPIES_INPUT.SourceCopy$VH.get(seg);
-    }
-    public static void SourceCopy$set( MemorySegment seg, int x) {
-        _REPAIR_COPIES_INPUT.SourceCopy$VH.set(seg, x);
-    }
-    public static int SourceCopy$get(MemorySegment seg, long index) {
-        return (int)_REPAIR_COPIES_INPUT.SourceCopy$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SourceCopy$set(MemorySegment seg, long index, int x) {
-        _REPAIR_COPIES_INPUT.SourceCopy$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberOfRepairCopies$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfRepairCopies"));
-    public static VarHandle NumberOfRepairCopies$VH() {
-        return _REPAIR_COPIES_INPUT.NumberOfRepairCopies$VH;
-    }
-    public static int NumberOfRepairCopies$get(MemorySegment seg) {
-        return (int)_REPAIR_COPIES_INPUT.NumberOfRepairCopies$VH.get(seg);
-    }
-    public static void NumberOfRepairCopies$set( MemorySegment seg, int x) {
-        _REPAIR_COPIES_INPUT.NumberOfRepairCopies$VH.set(seg, x);
-    }
-    public static int NumberOfRepairCopies$get(MemorySegment seg, long index) {
-        return (int)_REPAIR_COPIES_INPUT.NumberOfRepairCopies$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfRepairCopies$set(MemorySegment seg, long index, int x) {
-        _REPAIR_COPIES_INPUT.NumberOfRepairCopies$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment RepairCopies$slice(MemorySegment seg) {
-        return seg.asSlice(28, 4);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_LONG.withName("Flags"),
+        _LARGE_INTEGER.layout().withName("FileOffset"),
+        wgl_h.C_LONG.withName("Length"),
+        wgl_h.C_LONG.withName("SourceCopy"),
+        wgl_h.C_LONG.withName("NumberOfRepairCopies"),
+        MemoryLayout.sequenceLayout(1, wgl_h.C_LONG).withName("RepairCopies")
+    ).withName("_REPAIR_COPIES_INPUT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout FileOffset$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("FileOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FileOffset
+     * }
+     */
+    public static final GroupLayout FileOffset$layout() {
+        return FileOffset$LAYOUT;
+    }
+
+    private static final long FileOffset$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FileOffset
+     * }
+     */
+    public static final long FileOffset$offset() {
+        return FileOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FileOffset
+     * }
+     */
+    public static MemorySegment FileOffset(MemorySegment struct) {
+        return struct.asSlice(FileOffset$OFFSET, FileOffset$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FileOffset
+     * }
+     */
+    public static void FileOffset(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, FileOffset$OFFSET, FileOffset$LAYOUT.byteSize());
+    }
+
+    private static final OfInt Length$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Length"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Length
+     * }
+     */
+    public static final OfInt Length$layout() {
+        return Length$LAYOUT;
+    }
+
+    private static final long Length$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Length
+     * }
+     */
+    public static final long Length$offset() {
+        return Length$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Length
+     * }
+     */
+    public static int Length(MemorySegment struct) {
+        return struct.get(Length$LAYOUT, Length$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Length
+     * }
+     */
+    public static void Length(MemorySegment struct, int fieldValue) {
+        struct.set(Length$LAYOUT, Length$OFFSET, fieldValue);
+    }
+
+    private static final OfInt SourceCopy$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SourceCopy"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SourceCopy
+     * }
+     */
+    public static final OfInt SourceCopy$layout() {
+        return SourceCopy$LAYOUT;
+    }
+
+    private static final long SourceCopy$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SourceCopy
+     * }
+     */
+    public static final long SourceCopy$offset() {
+        return SourceCopy$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SourceCopy
+     * }
+     */
+    public static int SourceCopy(MemorySegment struct) {
+        return struct.get(SourceCopy$LAYOUT, SourceCopy$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SourceCopy
+     * }
+     */
+    public static void SourceCopy(MemorySegment struct, int fieldValue) {
+        struct.set(SourceCopy$LAYOUT, SourceCopy$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NumberOfRepairCopies$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberOfRepairCopies"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfRepairCopies
+     * }
+     */
+    public static final OfInt NumberOfRepairCopies$layout() {
+        return NumberOfRepairCopies$LAYOUT;
+    }
+
+    private static final long NumberOfRepairCopies$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfRepairCopies
+     * }
+     */
+    public static final long NumberOfRepairCopies$offset() {
+        return NumberOfRepairCopies$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfRepairCopies
+     * }
+     */
+    public static int NumberOfRepairCopies(MemorySegment struct) {
+        return struct.get(NumberOfRepairCopies$LAYOUT, NumberOfRepairCopies$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfRepairCopies
+     * }
+     */
+    public static void NumberOfRepairCopies(MemorySegment struct, int fieldValue) {
+        struct.set(NumberOfRepairCopies$LAYOUT, NumberOfRepairCopies$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout RepairCopies$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("RepairCopies"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD RepairCopies[1]
+     * }
+     */
+    public static final SequenceLayout RepairCopies$layout() {
+        return RepairCopies$LAYOUT;
+    }
+
+    private static final long RepairCopies$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD RepairCopies[1]
+     * }
+     */
+    public static final long RepairCopies$offset() {
+        return RepairCopies$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD RepairCopies[1]
+     * }
+     */
+    public static MemorySegment RepairCopies(MemorySegment struct) {
+        return struct.asSlice(RepairCopies$OFFSET, RepairCopies$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD RepairCopies[1]
+     * }
+     */
+    public static void RepairCopies(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, RepairCopies$OFFSET, RepairCopies$LAYOUT.byteSize());
+    }
+
+    private static long[] RepairCopies$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DWORD RepairCopies[1]
+     * }
+     */
+    public static long[] RepairCopies$dimensions() {
+        return RepairCopies$DIMS;
+    }
+    private static final VarHandle RepairCopies$ELEM_HANDLE = RepairCopies$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DWORD RepairCopies[1]
+     * }
+     */
+    public static int RepairCopies(MemorySegment struct, long index0) {
+        return (int)RepairCopies$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DWORD RepairCopies[1]
+     * }
+     */
+    public static void RepairCopies(MemorySegment struct, long index0, int fieldValue) {
+        RepairCopies$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

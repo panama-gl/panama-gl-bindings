@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_BASIC_CONSTRAINTS2_INFO {
+ *     BOOL fCA;
+ *     BOOL fPathLenConstraint;
+ *     DWORD dwPathLenConstraint;
+ * }
+ * }
+ */
 public class _CERT_BASIC_CONSTRAINTS2_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("fCA"),
-        Constants$root.C_LONG$LAYOUT.withName("fPathLenConstraint"),
-        Constants$root.C_LONG$LAYOUT.withName("dwPathLenConstraint")
-    ).withName("_CERT_BASIC_CONSTRAINTS2_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_BASIC_CONSTRAINTS2_INFO.$struct$LAYOUT;
+    _CERT_BASIC_CONSTRAINTS2_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle fCA$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fCA"));
-    public static VarHandle fCA$VH() {
-        return _CERT_BASIC_CONSTRAINTS2_INFO.fCA$VH;
-    }
-    public static int fCA$get(MemorySegment seg) {
-        return (int)_CERT_BASIC_CONSTRAINTS2_INFO.fCA$VH.get(seg);
-    }
-    public static void fCA$set( MemorySegment seg, int x) {
-        _CERT_BASIC_CONSTRAINTS2_INFO.fCA$VH.set(seg, x);
-    }
-    public static int fCA$get(MemorySegment seg, long index) {
-        return (int)_CERT_BASIC_CONSTRAINTS2_INFO.fCA$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fCA$set(MemorySegment seg, long index, int x) {
-        _CERT_BASIC_CONSTRAINTS2_INFO.fCA$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fPathLenConstraint$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fPathLenConstraint"));
-    public static VarHandle fPathLenConstraint$VH() {
-        return _CERT_BASIC_CONSTRAINTS2_INFO.fPathLenConstraint$VH;
-    }
-    public static int fPathLenConstraint$get(MemorySegment seg) {
-        return (int)_CERT_BASIC_CONSTRAINTS2_INFO.fPathLenConstraint$VH.get(seg);
-    }
-    public static void fPathLenConstraint$set( MemorySegment seg, int x) {
-        _CERT_BASIC_CONSTRAINTS2_INFO.fPathLenConstraint$VH.set(seg, x);
-    }
-    public static int fPathLenConstraint$get(MemorySegment seg, long index) {
-        return (int)_CERT_BASIC_CONSTRAINTS2_INFO.fPathLenConstraint$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fPathLenConstraint$set(MemorySegment seg, long index, int x) {
-        _CERT_BASIC_CONSTRAINTS2_INFO.fPathLenConstraint$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwPathLenConstraint$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwPathLenConstraint"));
-    public static VarHandle dwPathLenConstraint$VH() {
-        return _CERT_BASIC_CONSTRAINTS2_INFO.dwPathLenConstraint$VH;
-    }
-    public static int dwPathLenConstraint$get(MemorySegment seg) {
-        return (int)_CERT_BASIC_CONSTRAINTS2_INFO.dwPathLenConstraint$VH.get(seg);
-    }
-    public static void dwPathLenConstraint$set( MemorySegment seg, int x) {
-        _CERT_BASIC_CONSTRAINTS2_INFO.dwPathLenConstraint$VH.set(seg, x);
-    }
-    public static int dwPathLenConstraint$get(MemorySegment seg, long index) {
-        return (int)_CERT_BASIC_CONSTRAINTS2_INFO.dwPathLenConstraint$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwPathLenConstraint$set(MemorySegment seg, long index, int x) {
-        _CERT_BASIC_CONSTRAINTS2_INFO.dwPathLenConstraint$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("fCA"),
+        wgl_h.C_INT.withName("fPathLenConstraint"),
+        wgl_h.C_LONG.withName("dwPathLenConstraint")
+    ).withName("_CERT_BASIC_CONSTRAINTS2_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt fCA$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fCA"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL fCA
+     * }
+     */
+    public static final OfInt fCA$layout() {
+        return fCA$LAYOUT;
+    }
+
+    private static final long fCA$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL fCA
+     * }
+     */
+    public static final long fCA$offset() {
+        return fCA$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL fCA
+     * }
+     */
+    public static int fCA(MemorySegment struct) {
+        return struct.get(fCA$LAYOUT, fCA$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL fCA
+     * }
+     */
+    public static void fCA(MemorySegment struct, int fieldValue) {
+        struct.set(fCA$LAYOUT, fCA$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fPathLenConstraint$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fPathLenConstraint"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL fPathLenConstraint
+     * }
+     */
+    public static final OfInt fPathLenConstraint$layout() {
+        return fPathLenConstraint$LAYOUT;
+    }
+
+    private static final long fPathLenConstraint$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL fPathLenConstraint
+     * }
+     */
+    public static final long fPathLenConstraint$offset() {
+        return fPathLenConstraint$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL fPathLenConstraint
+     * }
+     */
+    public static int fPathLenConstraint(MemorySegment struct) {
+        return struct.get(fPathLenConstraint$LAYOUT, fPathLenConstraint$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL fPathLenConstraint
+     * }
+     */
+    public static void fPathLenConstraint(MemorySegment struct, int fieldValue) {
+        struct.set(fPathLenConstraint$LAYOUT, fPathLenConstraint$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwPathLenConstraint$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwPathLenConstraint"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwPathLenConstraint
+     * }
+     */
+    public static final OfInt dwPathLenConstraint$layout() {
+        return dwPathLenConstraint$LAYOUT;
+    }
+
+    private static final long dwPathLenConstraint$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwPathLenConstraint
+     * }
+     */
+    public static final long dwPathLenConstraint$offset() {
+        return dwPathLenConstraint$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwPathLenConstraint
+     * }
+     */
+    public static int dwPathLenConstraint(MemorySegment struct) {
+        return struct.get(dwPathLenConstraint$LAYOUT, dwPathLenConstraint$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwPathLenConstraint
+     * }
+     */
+    public static void dwPathLenConstraint(MemorySegment struct, int fieldValue) {
+        struct.set(dwPathLenConstraint$LAYOUT, dwPathLenConstraint$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

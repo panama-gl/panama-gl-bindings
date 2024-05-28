@@ -2,13 +2,42 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _SYSTEM_INFO {
+ *     union {
+ *         DWORD dwOemId;
+ *         struct {
+ *             WORD wProcessorArchitecture;
+ *             WORD wReserved;
+ *         };
+ *     };
+ *     DWORD dwPageSize;
+ *     LPVOID lpMinimumApplicationAddress;
+ *     LPVOID lpMaximumApplicationAddress;
+ *     DWORD_PTR dwActiveProcessorMask;
+ *     DWORD dwNumberOfProcessors;
+ *     DWORD dwProcessorType;
+ *     DWORD dwAllocationGranularity;
+ *     WORD wProcessorLevel;
+ *     WORD wProcessorRevision;
+ * } SYSTEM_INFO
+ * }
+ */
 public class SYSTEM_INFO extends _SYSTEM_INFO {
 
+    SYSTEM_INFO() {
+        // Should not be called directly
+    }
 }
-
 

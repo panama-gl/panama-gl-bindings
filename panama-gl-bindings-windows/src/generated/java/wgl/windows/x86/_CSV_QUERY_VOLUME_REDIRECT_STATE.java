@@ -2,110 +2,311 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CSV_QUERY_VOLUME_REDIRECT_STATE {
+ *     DWORD MdsNodeId;
+ *     DWORD DsNodeId;
+ *     BOOLEAN IsDiskConnected;
+ *     BOOLEAN ClusterEnableDirectIo;
+ *     CSVFS_DISK_CONNECTIVITY DiskConnectivity;
+ * }
+ * }
+ */
 public class _CSV_QUERY_VOLUME_REDIRECT_STATE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("MdsNodeId"),
-        Constants$root.C_LONG$LAYOUT.withName("DsNodeId"),
-        Constants$root.C_CHAR$LAYOUT.withName("IsDiskConnected"),
-        Constants$root.C_CHAR$LAYOUT.withName("ClusterEnableDirectIo"),
-        MemoryLayout.paddingLayout(16),
-        Constants$root.C_LONG$LAYOUT.withName("DiskConnectivity")
-    ).withName("_CSV_QUERY_VOLUME_REDIRECT_STATE");
-    public static MemoryLayout $LAYOUT() {
-        return _CSV_QUERY_VOLUME_REDIRECT_STATE.$struct$LAYOUT;
+    _CSV_QUERY_VOLUME_REDIRECT_STATE() {
+        // Should not be called directly
     }
-    static final VarHandle MdsNodeId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MdsNodeId"));
-    public static VarHandle MdsNodeId$VH() {
-        return _CSV_QUERY_VOLUME_REDIRECT_STATE.MdsNodeId$VH;
-    }
-    public static int MdsNodeId$get(MemorySegment seg) {
-        return (int)_CSV_QUERY_VOLUME_REDIRECT_STATE.MdsNodeId$VH.get(seg);
-    }
-    public static void MdsNodeId$set( MemorySegment seg, int x) {
-        _CSV_QUERY_VOLUME_REDIRECT_STATE.MdsNodeId$VH.set(seg, x);
-    }
-    public static int MdsNodeId$get(MemorySegment seg, long index) {
-        return (int)_CSV_QUERY_VOLUME_REDIRECT_STATE.MdsNodeId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MdsNodeId$set(MemorySegment seg, long index, int x) {
-        _CSV_QUERY_VOLUME_REDIRECT_STATE.MdsNodeId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DsNodeId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DsNodeId"));
-    public static VarHandle DsNodeId$VH() {
-        return _CSV_QUERY_VOLUME_REDIRECT_STATE.DsNodeId$VH;
-    }
-    public static int DsNodeId$get(MemorySegment seg) {
-        return (int)_CSV_QUERY_VOLUME_REDIRECT_STATE.DsNodeId$VH.get(seg);
-    }
-    public static void DsNodeId$set( MemorySegment seg, int x) {
-        _CSV_QUERY_VOLUME_REDIRECT_STATE.DsNodeId$VH.set(seg, x);
-    }
-    public static int DsNodeId$get(MemorySegment seg, long index) {
-        return (int)_CSV_QUERY_VOLUME_REDIRECT_STATE.DsNodeId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DsNodeId$set(MemorySegment seg, long index, int x) {
-        _CSV_QUERY_VOLUME_REDIRECT_STATE.DsNodeId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle IsDiskConnected$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("IsDiskConnected"));
-    public static VarHandle IsDiskConnected$VH() {
-        return _CSV_QUERY_VOLUME_REDIRECT_STATE.IsDiskConnected$VH;
-    }
-    public static byte IsDiskConnected$get(MemorySegment seg) {
-        return (byte)_CSV_QUERY_VOLUME_REDIRECT_STATE.IsDiskConnected$VH.get(seg);
-    }
-    public static void IsDiskConnected$set( MemorySegment seg, byte x) {
-        _CSV_QUERY_VOLUME_REDIRECT_STATE.IsDiskConnected$VH.set(seg, x);
-    }
-    public static byte IsDiskConnected$get(MemorySegment seg, long index) {
-        return (byte)_CSV_QUERY_VOLUME_REDIRECT_STATE.IsDiskConnected$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void IsDiskConnected$set(MemorySegment seg, long index, byte x) {
-        _CSV_QUERY_VOLUME_REDIRECT_STATE.IsDiskConnected$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ClusterEnableDirectIo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ClusterEnableDirectIo"));
-    public static VarHandle ClusterEnableDirectIo$VH() {
-        return _CSV_QUERY_VOLUME_REDIRECT_STATE.ClusterEnableDirectIo$VH;
-    }
-    public static byte ClusterEnableDirectIo$get(MemorySegment seg) {
-        return (byte)_CSV_QUERY_VOLUME_REDIRECT_STATE.ClusterEnableDirectIo$VH.get(seg);
-    }
-    public static void ClusterEnableDirectIo$set( MemorySegment seg, byte x) {
-        _CSV_QUERY_VOLUME_REDIRECT_STATE.ClusterEnableDirectIo$VH.set(seg, x);
-    }
-    public static byte ClusterEnableDirectIo$get(MemorySegment seg, long index) {
-        return (byte)_CSV_QUERY_VOLUME_REDIRECT_STATE.ClusterEnableDirectIo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ClusterEnableDirectIo$set(MemorySegment seg, long index, byte x) {
-        _CSV_QUERY_VOLUME_REDIRECT_STATE.ClusterEnableDirectIo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DiskConnectivity$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DiskConnectivity"));
-    public static VarHandle DiskConnectivity$VH() {
-        return _CSV_QUERY_VOLUME_REDIRECT_STATE.DiskConnectivity$VH;
-    }
-    public static int DiskConnectivity$get(MemorySegment seg) {
-        return (int)_CSV_QUERY_VOLUME_REDIRECT_STATE.DiskConnectivity$VH.get(seg);
-    }
-    public static void DiskConnectivity$set( MemorySegment seg, int x) {
-        _CSV_QUERY_VOLUME_REDIRECT_STATE.DiskConnectivity$VH.set(seg, x);
-    }
-    public static int DiskConnectivity$get(MemorySegment seg, long index) {
-        return (int)_CSV_QUERY_VOLUME_REDIRECT_STATE.DiskConnectivity$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DiskConnectivity$set(MemorySegment seg, long index, int x) {
-        _CSV_QUERY_VOLUME_REDIRECT_STATE.DiskConnectivity$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("MdsNodeId"),
+        wgl_h.C_LONG.withName("DsNodeId"),
+        wgl_h.C_CHAR.withName("IsDiskConnected"),
+        wgl_h.C_CHAR.withName("ClusterEnableDirectIo"),
+        MemoryLayout.paddingLayout(2),
+        wgl_h.C_INT.withName("DiskConnectivity")
+    ).withName("_CSV_QUERY_VOLUME_REDIRECT_STATE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt MdsNodeId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MdsNodeId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MdsNodeId
+     * }
+     */
+    public static final OfInt MdsNodeId$layout() {
+        return MdsNodeId$LAYOUT;
+    }
+
+    private static final long MdsNodeId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MdsNodeId
+     * }
+     */
+    public static final long MdsNodeId$offset() {
+        return MdsNodeId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MdsNodeId
+     * }
+     */
+    public static int MdsNodeId(MemorySegment struct) {
+        return struct.get(MdsNodeId$LAYOUT, MdsNodeId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MdsNodeId
+     * }
+     */
+    public static void MdsNodeId(MemorySegment struct, int fieldValue) {
+        struct.set(MdsNodeId$LAYOUT, MdsNodeId$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DsNodeId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DsNodeId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DsNodeId
+     * }
+     */
+    public static final OfInt DsNodeId$layout() {
+        return DsNodeId$LAYOUT;
+    }
+
+    private static final long DsNodeId$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DsNodeId
+     * }
+     */
+    public static final long DsNodeId$offset() {
+        return DsNodeId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DsNodeId
+     * }
+     */
+    public static int DsNodeId(MemorySegment struct) {
+        return struct.get(DsNodeId$LAYOUT, DsNodeId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DsNodeId
+     * }
+     */
+    public static void DsNodeId(MemorySegment struct, int fieldValue) {
+        struct.set(DsNodeId$LAYOUT, DsNodeId$OFFSET, fieldValue);
+    }
+
+    private static final OfByte IsDiskConnected$LAYOUT = (OfByte)$LAYOUT.select(groupElement("IsDiskConnected"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN IsDiskConnected
+     * }
+     */
+    public static final OfByte IsDiskConnected$layout() {
+        return IsDiskConnected$LAYOUT;
+    }
+
+    private static final long IsDiskConnected$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN IsDiskConnected
+     * }
+     */
+    public static final long IsDiskConnected$offset() {
+        return IsDiskConnected$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN IsDiskConnected
+     * }
+     */
+    public static byte IsDiskConnected(MemorySegment struct) {
+        return struct.get(IsDiskConnected$LAYOUT, IsDiskConnected$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN IsDiskConnected
+     * }
+     */
+    public static void IsDiskConnected(MemorySegment struct, byte fieldValue) {
+        struct.set(IsDiskConnected$LAYOUT, IsDiskConnected$OFFSET, fieldValue);
+    }
+
+    private static final OfByte ClusterEnableDirectIo$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ClusterEnableDirectIo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN ClusterEnableDirectIo
+     * }
+     */
+    public static final OfByte ClusterEnableDirectIo$layout() {
+        return ClusterEnableDirectIo$LAYOUT;
+    }
+
+    private static final long ClusterEnableDirectIo$OFFSET = 9;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN ClusterEnableDirectIo
+     * }
+     */
+    public static final long ClusterEnableDirectIo$offset() {
+        return ClusterEnableDirectIo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN ClusterEnableDirectIo
+     * }
+     */
+    public static byte ClusterEnableDirectIo(MemorySegment struct) {
+        return struct.get(ClusterEnableDirectIo$LAYOUT, ClusterEnableDirectIo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN ClusterEnableDirectIo
+     * }
+     */
+    public static void ClusterEnableDirectIo(MemorySegment struct, byte fieldValue) {
+        struct.set(ClusterEnableDirectIo$LAYOUT, ClusterEnableDirectIo$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DiskConnectivity$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DiskConnectivity"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CSVFS_DISK_CONNECTIVITY DiskConnectivity
+     * }
+     */
+    public static final OfInt DiskConnectivity$layout() {
+        return DiskConnectivity$LAYOUT;
+    }
+
+    private static final long DiskConnectivity$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CSVFS_DISK_CONNECTIVITY DiskConnectivity
+     * }
+     */
+    public static final long DiskConnectivity$offset() {
+        return DiskConnectivity$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CSVFS_DISK_CONNECTIVITY DiskConnectivity
+     * }
+     */
+    public static int DiskConnectivity(MemorySegment struct) {
+        return struct.get(DiskConnectivity$LAYOUT, DiskConnectivity$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CSVFS_DISK_CONNECTIVITY DiskConnectivity
+     * }
+     */
+    public static void DiskConnectivity(MemorySegment struct, int fieldValue) {
+        struct.set(DiskConnectivity$LAYOUT, DiskConnectivity$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

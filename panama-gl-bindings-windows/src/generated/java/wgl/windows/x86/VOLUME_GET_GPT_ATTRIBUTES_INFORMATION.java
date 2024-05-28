@@ -2,13 +2,27 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _VOLUME_GET_GPT_ATTRIBUTES_INFORMATION {
+ *     DWORDLONG GptAttributes;
+ * } VOLUME_GET_GPT_ATTRIBUTES_INFORMATION
+ * }
+ */
 public class VOLUME_GET_GPT_ATTRIBUTES_INFORMATION extends _VOLUME_GET_GPT_ATTRIBUTES_INFORMATION {
 
+    VOLUME_GET_GPT_ATTRIBUTES_INFORMATION() {
+        // Should not be called directly
+    }
 }
-
 

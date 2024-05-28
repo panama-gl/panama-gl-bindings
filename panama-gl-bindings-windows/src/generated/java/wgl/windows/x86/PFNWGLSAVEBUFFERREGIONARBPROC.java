@@ -2,27 +2,71 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNWGLSAVEBUFFERREGIONARBPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemoryAddress hRegion, int x, int y, int width, int height);
-    static MemorySegment allocate(PFNWGLSAVEBUFFERREGIONARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNWGLSAVEBUFFERREGIONARBPROC.class, fi, constants$1377.PFNWGLSAVEBUFFERREGIONARBPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PFNWGLSAVEBUFFERREGIONARBPROC)(HANDLE, int, int, int, int) __attribute__((stdcall))
+ * }
+ */
+public class PFNWGLSAVEBUFFERREGIONARBPROC {
+
+    PFNWGLSAVEBUFFERREGIONARBPROC() {
+        // Should not be called directly
     }
-    static PFNWGLSAVEBUFFERREGIONARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _hRegion, int _x, int _y, int _width, int _height) -> {
-            try {
-                return (int)constants$1377.PFNWGLSAVEBUFFERREGIONARBPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_hRegion, _x, _y, _width, _height);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment hRegion, int x, int y, int width, int height);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_POINTER,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNWGLSAVEBUFFERREGIONARBPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNWGLSAVEBUFFERREGIONARBPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment hRegion, int x, int y, int width, int height) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, hRegion, x, y, width, height);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

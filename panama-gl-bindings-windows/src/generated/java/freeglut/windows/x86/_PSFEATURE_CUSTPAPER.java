@@ -2,109 +2,310 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PSFEATURE_CUSTPAPER {
+ *     LONG lOrientation;
+ *     LONG lWidth;
+ *     LONG lHeight;
+ *     LONG lWidthOffset;
+ *     LONG lHeightOffset;
+ * }
+ * }
+ */
 public class _PSFEATURE_CUSTPAPER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("lOrientation"),
-        Constants$root.C_LONG$LAYOUT.withName("lWidth"),
-        Constants$root.C_LONG$LAYOUT.withName("lHeight"),
-        Constants$root.C_LONG$LAYOUT.withName("lWidthOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("lHeightOffset")
-    ).withName("_PSFEATURE_CUSTPAPER");
-    public static MemoryLayout $LAYOUT() {
-        return _PSFEATURE_CUSTPAPER.$struct$LAYOUT;
+    _PSFEATURE_CUSTPAPER() {
+        // Should not be called directly
     }
-    static final VarHandle lOrientation$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lOrientation"));
-    public static VarHandle lOrientation$VH() {
-        return _PSFEATURE_CUSTPAPER.lOrientation$VH;
-    }
-    public static int lOrientation$get(MemorySegment seg) {
-        return (int)_PSFEATURE_CUSTPAPER.lOrientation$VH.get(seg);
-    }
-    public static void lOrientation$set( MemorySegment seg, int x) {
-        _PSFEATURE_CUSTPAPER.lOrientation$VH.set(seg, x);
-    }
-    public static int lOrientation$get(MemorySegment seg, long index) {
-        return (int)_PSFEATURE_CUSTPAPER.lOrientation$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lOrientation$set(MemorySegment seg, long index, int x) {
-        _PSFEATURE_CUSTPAPER.lOrientation$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lWidth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lWidth"));
-    public static VarHandle lWidth$VH() {
-        return _PSFEATURE_CUSTPAPER.lWidth$VH;
-    }
-    public static int lWidth$get(MemorySegment seg) {
-        return (int)_PSFEATURE_CUSTPAPER.lWidth$VH.get(seg);
-    }
-    public static void lWidth$set( MemorySegment seg, int x) {
-        _PSFEATURE_CUSTPAPER.lWidth$VH.set(seg, x);
-    }
-    public static int lWidth$get(MemorySegment seg, long index) {
-        return (int)_PSFEATURE_CUSTPAPER.lWidth$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lWidth$set(MemorySegment seg, long index, int x) {
-        _PSFEATURE_CUSTPAPER.lWidth$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lHeight$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lHeight"));
-    public static VarHandle lHeight$VH() {
-        return _PSFEATURE_CUSTPAPER.lHeight$VH;
-    }
-    public static int lHeight$get(MemorySegment seg) {
-        return (int)_PSFEATURE_CUSTPAPER.lHeight$VH.get(seg);
-    }
-    public static void lHeight$set( MemorySegment seg, int x) {
-        _PSFEATURE_CUSTPAPER.lHeight$VH.set(seg, x);
-    }
-    public static int lHeight$get(MemorySegment seg, long index) {
-        return (int)_PSFEATURE_CUSTPAPER.lHeight$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lHeight$set(MemorySegment seg, long index, int x) {
-        _PSFEATURE_CUSTPAPER.lHeight$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lWidthOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lWidthOffset"));
-    public static VarHandle lWidthOffset$VH() {
-        return _PSFEATURE_CUSTPAPER.lWidthOffset$VH;
-    }
-    public static int lWidthOffset$get(MemorySegment seg) {
-        return (int)_PSFEATURE_CUSTPAPER.lWidthOffset$VH.get(seg);
-    }
-    public static void lWidthOffset$set( MemorySegment seg, int x) {
-        _PSFEATURE_CUSTPAPER.lWidthOffset$VH.set(seg, x);
-    }
-    public static int lWidthOffset$get(MemorySegment seg, long index) {
-        return (int)_PSFEATURE_CUSTPAPER.lWidthOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lWidthOffset$set(MemorySegment seg, long index, int x) {
-        _PSFEATURE_CUSTPAPER.lWidthOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lHeightOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lHeightOffset"));
-    public static VarHandle lHeightOffset$VH() {
-        return _PSFEATURE_CUSTPAPER.lHeightOffset$VH;
-    }
-    public static int lHeightOffset$get(MemorySegment seg) {
-        return (int)_PSFEATURE_CUSTPAPER.lHeightOffset$VH.get(seg);
-    }
-    public static void lHeightOffset$set( MemorySegment seg, int x) {
-        _PSFEATURE_CUSTPAPER.lHeightOffset$VH.set(seg, x);
-    }
-    public static int lHeightOffset$get(MemorySegment seg, long index) {
-        return (int)_PSFEATURE_CUSTPAPER.lHeightOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lHeightOffset$set(MemorySegment seg, long index, int x) {
-        _PSFEATURE_CUSTPAPER.lHeightOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("lOrientation"),
+        freeglut_h.C_LONG.withName("lWidth"),
+        freeglut_h.C_LONG.withName("lHeight"),
+        freeglut_h.C_LONG.withName("lWidthOffset"),
+        freeglut_h.C_LONG.withName("lHeightOffset")
+    ).withName("_PSFEATURE_CUSTPAPER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt lOrientation$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lOrientation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG lOrientation
+     * }
+     */
+    public static final OfInt lOrientation$layout() {
+        return lOrientation$LAYOUT;
+    }
+
+    private static final long lOrientation$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG lOrientation
+     * }
+     */
+    public static final long lOrientation$offset() {
+        return lOrientation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG lOrientation
+     * }
+     */
+    public static int lOrientation(MemorySegment struct) {
+        return struct.get(lOrientation$LAYOUT, lOrientation$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG lOrientation
+     * }
+     */
+    public static void lOrientation(MemorySegment struct, int fieldValue) {
+        struct.set(lOrientation$LAYOUT, lOrientation$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lWidth$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lWidth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG lWidth
+     * }
+     */
+    public static final OfInt lWidth$layout() {
+        return lWidth$LAYOUT;
+    }
+
+    private static final long lWidth$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG lWidth
+     * }
+     */
+    public static final long lWidth$offset() {
+        return lWidth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG lWidth
+     * }
+     */
+    public static int lWidth(MemorySegment struct) {
+        return struct.get(lWidth$LAYOUT, lWidth$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG lWidth
+     * }
+     */
+    public static void lWidth(MemorySegment struct, int fieldValue) {
+        struct.set(lWidth$LAYOUT, lWidth$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lHeight$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lHeight"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG lHeight
+     * }
+     */
+    public static final OfInt lHeight$layout() {
+        return lHeight$LAYOUT;
+    }
+
+    private static final long lHeight$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG lHeight
+     * }
+     */
+    public static final long lHeight$offset() {
+        return lHeight$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG lHeight
+     * }
+     */
+    public static int lHeight(MemorySegment struct) {
+        return struct.get(lHeight$LAYOUT, lHeight$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG lHeight
+     * }
+     */
+    public static void lHeight(MemorySegment struct, int fieldValue) {
+        struct.set(lHeight$LAYOUT, lHeight$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lWidthOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lWidthOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG lWidthOffset
+     * }
+     */
+    public static final OfInt lWidthOffset$layout() {
+        return lWidthOffset$LAYOUT;
+    }
+
+    private static final long lWidthOffset$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG lWidthOffset
+     * }
+     */
+    public static final long lWidthOffset$offset() {
+        return lWidthOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG lWidthOffset
+     * }
+     */
+    public static int lWidthOffset(MemorySegment struct) {
+        return struct.get(lWidthOffset$LAYOUT, lWidthOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG lWidthOffset
+     * }
+     */
+    public static void lWidthOffset(MemorySegment struct, int fieldValue) {
+        struct.set(lWidthOffset$LAYOUT, lWidthOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lHeightOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lHeightOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG lHeightOffset
+     * }
+     */
+    public static final OfInt lHeightOffset$layout() {
+        return lHeightOffset$LAYOUT;
+    }
+
+    private static final long lHeightOffset$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG lHeightOffset
+     * }
+     */
+    public static final long lHeightOffset$offset() {
+        return lHeightOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG lHeightOffset
+     * }
+     */
+    public static int lHeightOffset(MemorySegment struct) {
+        return struct.get(lHeightOffset$LAYOUT, lHeightOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG lHeightOffset
+     * }
+     */
+    public static void lHeightOffset(MemorySegment struct, int fieldValue) {
+        struct.set(lHeightOffset$LAYOUT, lHeightOffset$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

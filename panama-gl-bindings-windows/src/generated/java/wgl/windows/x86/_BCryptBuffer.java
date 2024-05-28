@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _BCryptBuffer {
+ *     ULONG cbBuffer;
+ *     ULONG BufferType;
+ *     PVOID pvBuffer;
+ * }
+ * }
+ */
 public class _BCryptBuffer {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbBuffer"),
-        Constants$root.C_LONG$LAYOUT.withName("BufferType"),
-        Constants$root.C_POINTER$LAYOUT.withName("pvBuffer")
-    ).withName("_BCryptBuffer");
-    public static MemoryLayout $LAYOUT() {
-        return _BCryptBuffer.$struct$LAYOUT;
+    _BCryptBuffer() {
+        // Should not be called directly
     }
-    static final VarHandle cbBuffer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbBuffer"));
-    public static VarHandle cbBuffer$VH() {
-        return _BCryptBuffer.cbBuffer$VH;
-    }
-    public static int cbBuffer$get(MemorySegment seg) {
-        return (int)_BCryptBuffer.cbBuffer$VH.get(seg);
-    }
-    public static void cbBuffer$set( MemorySegment seg, int x) {
-        _BCryptBuffer.cbBuffer$VH.set(seg, x);
-    }
-    public static int cbBuffer$get(MemorySegment seg, long index) {
-        return (int)_BCryptBuffer.cbBuffer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbBuffer$set(MemorySegment seg, long index, int x) {
-        _BCryptBuffer.cbBuffer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BufferType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BufferType"));
-    public static VarHandle BufferType$VH() {
-        return _BCryptBuffer.BufferType$VH;
-    }
-    public static int BufferType$get(MemorySegment seg) {
-        return (int)_BCryptBuffer.BufferType$VH.get(seg);
-    }
-    public static void BufferType$set( MemorySegment seg, int x) {
-        _BCryptBuffer.BufferType$VH.set(seg, x);
-    }
-    public static int BufferType$get(MemorySegment seg, long index) {
-        return (int)_BCryptBuffer.BufferType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BufferType$set(MemorySegment seg, long index, int x) {
-        _BCryptBuffer.BufferType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pvBuffer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pvBuffer"));
-    public static VarHandle pvBuffer$VH() {
-        return _BCryptBuffer.pvBuffer$VH;
-    }
-    public static MemoryAddress pvBuffer$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_BCryptBuffer.pvBuffer$VH.get(seg);
-    }
-    public static void pvBuffer$set( MemorySegment seg, MemoryAddress x) {
-        _BCryptBuffer.pvBuffer$VH.set(seg, x);
-    }
-    public static MemoryAddress pvBuffer$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_BCryptBuffer.pvBuffer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pvBuffer$set(MemorySegment seg, long index, MemoryAddress x) {
-        _BCryptBuffer.pvBuffer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbBuffer"),
+        wgl_h.C_LONG.withName("BufferType"),
+        wgl_h.C_POINTER.withName("pvBuffer")
+    ).withName("_BCryptBuffer");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbBuffer$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbBuffer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cbBuffer
+     * }
+     */
+    public static final OfInt cbBuffer$layout() {
+        return cbBuffer$LAYOUT;
+    }
+
+    private static final long cbBuffer$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cbBuffer
+     * }
+     */
+    public static final long cbBuffer$offset() {
+        return cbBuffer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cbBuffer
+     * }
+     */
+    public static int cbBuffer(MemorySegment struct) {
+        return struct.get(cbBuffer$LAYOUT, cbBuffer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cbBuffer
+     * }
+     */
+    public static void cbBuffer(MemorySegment struct, int fieldValue) {
+        struct.set(cbBuffer$LAYOUT, cbBuffer$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BufferType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BufferType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG BufferType
+     * }
+     */
+    public static final OfInt BufferType$layout() {
+        return BufferType$LAYOUT;
+    }
+
+    private static final long BufferType$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG BufferType
+     * }
+     */
+    public static final long BufferType$offset() {
+        return BufferType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG BufferType
+     * }
+     */
+    public static int BufferType(MemorySegment struct) {
+        return struct.get(BufferType$LAYOUT, BufferType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG BufferType
+     * }
+     */
+    public static void BufferType(MemorySegment struct, int fieldValue) {
+        struct.set(BufferType$LAYOUT, BufferType$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pvBuffer$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pvBuffer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PVOID pvBuffer
+     * }
+     */
+    public static final AddressLayout pvBuffer$layout() {
+        return pvBuffer$LAYOUT;
+    }
+
+    private static final long pvBuffer$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PVOID pvBuffer
+     * }
+     */
+    public static final long pvBuffer$offset() {
+        return pvBuffer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PVOID pvBuffer
+     * }
+     */
+    public static MemorySegment pvBuffer(MemorySegment struct) {
+        return struct.get(pvBuffer$LAYOUT, pvBuffer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PVOID pvBuffer
+     * }
+     */
+    public static void pvBuffer(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pvBuffer$LAYOUT, pvBuffer$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

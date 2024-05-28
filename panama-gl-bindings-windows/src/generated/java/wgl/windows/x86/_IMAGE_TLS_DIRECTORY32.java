@@ -2,135 +2,368 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _IMAGE_TLS_DIRECTORY32 {
+ *     DWORD StartAddressOfRawData;
+ *     DWORD EndAddressOfRawData;
+ *     DWORD AddressOfIndex;
+ *     DWORD AddressOfCallBacks;
+ *     DWORD SizeOfZeroFill;
+ *     union {
+ *         DWORD Characteristics;
+ *         struct {
+ *             DWORD Reserved0 : 20;
+ *             DWORD Alignment : 4;
+ *             DWORD Reserved1 : 8;
+ *         };
+ *     };
+ * }
+ * }
+ */
 public class _IMAGE_TLS_DIRECTORY32 {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("StartAddressOfRawData"),
-        Constants$root.C_LONG$LAYOUT.withName("EndAddressOfRawData"),
-        Constants$root.C_LONG$LAYOUT.withName("AddressOfIndex"),
-        Constants$root.C_LONG$LAYOUT.withName("AddressOfCallBacks"),
-        Constants$root.C_LONG$LAYOUT.withName("SizeOfZeroFill"),
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Characteristics"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    MemoryLayout.paddingLayout(20).withName("Reserved0"),
-                    MemoryLayout.paddingLayout(4).withName("Alignment"),
-                    MemoryLayout.paddingLayout(8).withName("Reserved1")
-                )
-            ).withName("$anon$0")
-        ).withName("$anon$0")
-    ).withName("_IMAGE_TLS_DIRECTORY32");
-    public static MemoryLayout $LAYOUT() {
-        return _IMAGE_TLS_DIRECTORY32.$struct$LAYOUT;
+    _IMAGE_TLS_DIRECTORY32() {
+        // Should not be called directly
     }
-    static final VarHandle StartAddressOfRawData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StartAddressOfRawData"));
-    public static VarHandle StartAddressOfRawData$VH() {
-        return _IMAGE_TLS_DIRECTORY32.StartAddressOfRawData$VH;
-    }
-    public static int StartAddressOfRawData$get(MemorySegment seg) {
-        return (int)_IMAGE_TLS_DIRECTORY32.StartAddressOfRawData$VH.get(seg);
-    }
-    public static void StartAddressOfRawData$set( MemorySegment seg, int x) {
-        _IMAGE_TLS_DIRECTORY32.StartAddressOfRawData$VH.set(seg, x);
-    }
-    public static int StartAddressOfRawData$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_TLS_DIRECTORY32.StartAddressOfRawData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StartAddressOfRawData$set(MemorySegment seg, long index, int x) {
-        _IMAGE_TLS_DIRECTORY32.StartAddressOfRawData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EndAddressOfRawData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EndAddressOfRawData"));
-    public static VarHandle EndAddressOfRawData$VH() {
-        return _IMAGE_TLS_DIRECTORY32.EndAddressOfRawData$VH;
-    }
-    public static int EndAddressOfRawData$get(MemorySegment seg) {
-        return (int)_IMAGE_TLS_DIRECTORY32.EndAddressOfRawData$VH.get(seg);
-    }
-    public static void EndAddressOfRawData$set( MemorySegment seg, int x) {
-        _IMAGE_TLS_DIRECTORY32.EndAddressOfRawData$VH.set(seg, x);
-    }
-    public static int EndAddressOfRawData$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_TLS_DIRECTORY32.EndAddressOfRawData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EndAddressOfRawData$set(MemorySegment seg, long index, int x) {
-        _IMAGE_TLS_DIRECTORY32.EndAddressOfRawData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AddressOfIndex$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddressOfIndex"));
-    public static VarHandle AddressOfIndex$VH() {
-        return _IMAGE_TLS_DIRECTORY32.AddressOfIndex$VH;
-    }
-    public static int AddressOfIndex$get(MemorySegment seg) {
-        return (int)_IMAGE_TLS_DIRECTORY32.AddressOfIndex$VH.get(seg);
-    }
-    public static void AddressOfIndex$set( MemorySegment seg, int x) {
-        _IMAGE_TLS_DIRECTORY32.AddressOfIndex$VH.set(seg, x);
-    }
-    public static int AddressOfIndex$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_TLS_DIRECTORY32.AddressOfIndex$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddressOfIndex$set(MemorySegment seg, long index, int x) {
-        _IMAGE_TLS_DIRECTORY32.AddressOfIndex$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AddressOfCallBacks$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddressOfCallBacks"));
-    public static VarHandle AddressOfCallBacks$VH() {
-        return _IMAGE_TLS_DIRECTORY32.AddressOfCallBacks$VH;
-    }
-    public static int AddressOfCallBacks$get(MemorySegment seg) {
-        return (int)_IMAGE_TLS_DIRECTORY32.AddressOfCallBacks$VH.get(seg);
-    }
-    public static void AddressOfCallBacks$set( MemorySegment seg, int x) {
-        _IMAGE_TLS_DIRECTORY32.AddressOfCallBacks$VH.set(seg, x);
-    }
-    public static int AddressOfCallBacks$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_TLS_DIRECTORY32.AddressOfCallBacks$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddressOfCallBacks$set(MemorySegment seg, long index, int x) {
-        _IMAGE_TLS_DIRECTORY32.AddressOfCallBacks$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SizeOfZeroFill$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SizeOfZeroFill"));
-    public static VarHandle SizeOfZeroFill$VH() {
-        return _IMAGE_TLS_DIRECTORY32.SizeOfZeroFill$VH;
-    }
-    public static int SizeOfZeroFill$get(MemorySegment seg) {
-        return (int)_IMAGE_TLS_DIRECTORY32.SizeOfZeroFill$VH.get(seg);
-    }
-    public static void SizeOfZeroFill$set( MemorySegment seg, int x) {
-        _IMAGE_TLS_DIRECTORY32.SizeOfZeroFill$VH.set(seg, x);
-    }
-    public static int SizeOfZeroFill$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_TLS_DIRECTORY32.SizeOfZeroFill$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SizeOfZeroFill$set(MemorySegment seg, long index, int x) {
-        _IMAGE_TLS_DIRECTORY32.SizeOfZeroFill$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Characteristics$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("Characteristics"));
-    public static VarHandle Characteristics$VH() {
-        return _IMAGE_TLS_DIRECTORY32.Characteristics$VH;
-    }
-    public static int Characteristics$get(MemorySegment seg) {
-        return (int)_IMAGE_TLS_DIRECTORY32.Characteristics$VH.get(seg);
-    }
-    public static void Characteristics$set( MemorySegment seg, int x) {
-        _IMAGE_TLS_DIRECTORY32.Characteristics$VH.set(seg, x);
-    }
-    public static int Characteristics$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_TLS_DIRECTORY32.Characteristics$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Characteristics$set(MemorySegment seg, long index, int x) {
-        _IMAGE_TLS_DIRECTORY32.Characteristics$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("StartAddressOfRawData"),
+        wgl_h.C_LONG.withName("EndAddressOfRawData"),
+        wgl_h.C_LONG.withName("AddressOfIndex"),
+        wgl_h.C_LONG.withName("AddressOfCallBacks"),
+        wgl_h.C_LONG.withName("SizeOfZeroFill"),
+        MemoryLayout.unionLayout(
+            wgl_h.C_LONG.withName("Characteristics"),
+            MemoryLayout.structLayout(
+                MemoryLayout.paddingLayout(4)
+            ).withName("$anon$18268:9")
+        ).withName("$anon$18266:5")
+    ).withName("_IMAGE_TLS_DIRECTORY32");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt StartAddressOfRawData$LAYOUT = (OfInt)$LAYOUT.select(groupElement("StartAddressOfRawData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD StartAddressOfRawData
+     * }
+     */
+    public static final OfInt StartAddressOfRawData$layout() {
+        return StartAddressOfRawData$LAYOUT;
+    }
+
+    private static final long StartAddressOfRawData$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD StartAddressOfRawData
+     * }
+     */
+    public static final long StartAddressOfRawData$offset() {
+        return StartAddressOfRawData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD StartAddressOfRawData
+     * }
+     */
+    public static int StartAddressOfRawData(MemorySegment struct) {
+        return struct.get(StartAddressOfRawData$LAYOUT, StartAddressOfRawData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD StartAddressOfRawData
+     * }
+     */
+    public static void StartAddressOfRawData(MemorySegment struct, int fieldValue) {
+        struct.set(StartAddressOfRawData$LAYOUT, StartAddressOfRawData$OFFSET, fieldValue);
+    }
+
+    private static final OfInt EndAddressOfRawData$LAYOUT = (OfInt)$LAYOUT.select(groupElement("EndAddressOfRawData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD EndAddressOfRawData
+     * }
+     */
+    public static final OfInt EndAddressOfRawData$layout() {
+        return EndAddressOfRawData$LAYOUT;
+    }
+
+    private static final long EndAddressOfRawData$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD EndAddressOfRawData
+     * }
+     */
+    public static final long EndAddressOfRawData$offset() {
+        return EndAddressOfRawData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD EndAddressOfRawData
+     * }
+     */
+    public static int EndAddressOfRawData(MemorySegment struct) {
+        return struct.get(EndAddressOfRawData$LAYOUT, EndAddressOfRawData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD EndAddressOfRawData
+     * }
+     */
+    public static void EndAddressOfRawData(MemorySegment struct, int fieldValue) {
+        struct.set(EndAddressOfRawData$LAYOUT, EndAddressOfRawData$OFFSET, fieldValue);
+    }
+
+    private static final OfInt AddressOfIndex$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AddressOfIndex"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD AddressOfIndex
+     * }
+     */
+    public static final OfInt AddressOfIndex$layout() {
+        return AddressOfIndex$LAYOUT;
+    }
+
+    private static final long AddressOfIndex$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD AddressOfIndex
+     * }
+     */
+    public static final long AddressOfIndex$offset() {
+        return AddressOfIndex$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD AddressOfIndex
+     * }
+     */
+    public static int AddressOfIndex(MemorySegment struct) {
+        return struct.get(AddressOfIndex$LAYOUT, AddressOfIndex$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD AddressOfIndex
+     * }
+     */
+    public static void AddressOfIndex(MemorySegment struct, int fieldValue) {
+        struct.set(AddressOfIndex$LAYOUT, AddressOfIndex$OFFSET, fieldValue);
+    }
+
+    private static final OfInt AddressOfCallBacks$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AddressOfCallBacks"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD AddressOfCallBacks
+     * }
+     */
+    public static final OfInt AddressOfCallBacks$layout() {
+        return AddressOfCallBacks$LAYOUT;
+    }
+
+    private static final long AddressOfCallBacks$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD AddressOfCallBacks
+     * }
+     */
+    public static final long AddressOfCallBacks$offset() {
+        return AddressOfCallBacks$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD AddressOfCallBacks
+     * }
+     */
+    public static int AddressOfCallBacks(MemorySegment struct) {
+        return struct.get(AddressOfCallBacks$LAYOUT, AddressOfCallBacks$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD AddressOfCallBacks
+     * }
+     */
+    public static void AddressOfCallBacks(MemorySegment struct, int fieldValue) {
+        struct.set(AddressOfCallBacks$LAYOUT, AddressOfCallBacks$OFFSET, fieldValue);
+    }
+
+    private static final OfInt SizeOfZeroFill$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SizeOfZeroFill"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SizeOfZeroFill
+     * }
+     */
+    public static final OfInt SizeOfZeroFill$layout() {
+        return SizeOfZeroFill$LAYOUT;
+    }
+
+    private static final long SizeOfZeroFill$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SizeOfZeroFill
+     * }
+     */
+    public static final long SizeOfZeroFill$offset() {
+        return SizeOfZeroFill$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SizeOfZeroFill
+     * }
+     */
+    public static int SizeOfZeroFill(MemorySegment struct) {
+        return struct.get(SizeOfZeroFill$LAYOUT, SizeOfZeroFill$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SizeOfZeroFill
+     * }
+     */
+    public static void SizeOfZeroFill(MemorySegment struct, int fieldValue) {
+        struct.set(SizeOfZeroFill$LAYOUT, SizeOfZeroFill$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Characteristics$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$18266:5"), groupElement("Characteristics"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Characteristics
+     * }
+     */
+    public static final OfInt Characteristics$layout() {
+        return Characteristics$LAYOUT;
+    }
+
+    private static final long Characteristics$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Characteristics
+     * }
+     */
+    public static final long Characteristics$offset() {
+        return Characteristics$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Characteristics
+     * }
+     */
+    public static int Characteristics(MemorySegment struct) {
+        return struct.get(Characteristics$LAYOUT, Characteristics$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Characteristics
+     * }
+     */
+    public static void Characteristics(MemorySegment struct, int fieldValue) {
+        struct.set(Characteristics$LAYOUT, Characteristics$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

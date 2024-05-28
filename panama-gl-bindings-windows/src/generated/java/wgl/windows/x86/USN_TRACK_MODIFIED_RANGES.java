@@ -2,92 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     DWORD Flags;
+ *     DWORD Unused;
+ *     DWORDLONG ChunkSize;
+ *     LONGLONG FileSizeThreshold;
+ * }
+ * }
+ */
 public class USN_TRACK_MODIFIED_RANGES {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("Unused"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ChunkSize"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("FileSizeThreshold")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return USN_TRACK_MODIFIED_RANGES.$struct$LAYOUT;
+    USN_TRACK_MODIFIED_RANGES() {
+        // Should not be called directly
     }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return USN_TRACK_MODIFIED_RANGES.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)USN_TRACK_MODIFIED_RANGES.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        USN_TRACK_MODIFIED_RANGES.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)USN_TRACK_MODIFIED_RANGES.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        USN_TRACK_MODIFIED_RANGES.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Unused$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Unused"));
-    public static VarHandle Unused$VH() {
-        return USN_TRACK_MODIFIED_RANGES.Unused$VH;
-    }
-    public static int Unused$get(MemorySegment seg) {
-        return (int)USN_TRACK_MODIFIED_RANGES.Unused$VH.get(seg);
-    }
-    public static void Unused$set( MemorySegment seg, int x) {
-        USN_TRACK_MODIFIED_RANGES.Unused$VH.set(seg, x);
-    }
-    public static int Unused$get(MemorySegment seg, long index) {
-        return (int)USN_TRACK_MODIFIED_RANGES.Unused$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Unused$set(MemorySegment seg, long index, int x) {
-        USN_TRACK_MODIFIED_RANGES.Unused$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ChunkSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ChunkSize"));
-    public static VarHandle ChunkSize$VH() {
-        return USN_TRACK_MODIFIED_RANGES.ChunkSize$VH;
-    }
-    public static long ChunkSize$get(MemorySegment seg) {
-        return (long)USN_TRACK_MODIFIED_RANGES.ChunkSize$VH.get(seg);
-    }
-    public static void ChunkSize$set( MemorySegment seg, long x) {
-        USN_TRACK_MODIFIED_RANGES.ChunkSize$VH.set(seg, x);
-    }
-    public static long ChunkSize$get(MemorySegment seg, long index) {
-        return (long)USN_TRACK_MODIFIED_RANGES.ChunkSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ChunkSize$set(MemorySegment seg, long index, long x) {
-        USN_TRACK_MODIFIED_RANGES.ChunkSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FileSizeThreshold$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FileSizeThreshold"));
-    public static VarHandle FileSizeThreshold$VH() {
-        return USN_TRACK_MODIFIED_RANGES.FileSizeThreshold$VH;
-    }
-    public static long FileSizeThreshold$get(MemorySegment seg) {
-        return (long)USN_TRACK_MODIFIED_RANGES.FileSizeThreshold$VH.get(seg);
-    }
-    public static void FileSizeThreshold$set( MemorySegment seg, long x) {
-        USN_TRACK_MODIFIED_RANGES.FileSizeThreshold$VH.set(seg, x);
-    }
-    public static long FileSizeThreshold$get(MemorySegment seg, long index) {
-        return (long)USN_TRACK_MODIFIED_RANGES.FileSizeThreshold$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FileSizeThreshold$set(MemorySegment seg, long index, long x) {
-        USN_TRACK_MODIFIED_RANGES.FileSizeThreshold$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_LONG.withName("Unused"),
+        wgl_h.C_LONG_LONG.withName("ChunkSize"),
+        wgl_h.C_LONG_LONG.withName("FileSizeThreshold")
+    ).withName("$anon$10824:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Unused$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Unused"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Unused
+     * }
+     */
+    public static final OfInt Unused$layout() {
+        return Unused$LAYOUT;
+    }
+
+    private static final long Unused$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Unused
+     * }
+     */
+    public static final long Unused$offset() {
+        return Unused$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Unused
+     * }
+     */
+    public static int Unused(MemorySegment struct) {
+        return struct.get(Unused$LAYOUT, Unused$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Unused
+     * }
+     */
+    public static void Unused(MemorySegment struct, int fieldValue) {
+        struct.set(Unused$LAYOUT, Unused$OFFSET, fieldValue);
+    }
+
+    private static final OfLong ChunkSize$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ChunkSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG ChunkSize
+     * }
+     */
+    public static final OfLong ChunkSize$layout() {
+        return ChunkSize$LAYOUT;
+    }
+
+    private static final long ChunkSize$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG ChunkSize
+     * }
+     */
+    public static final long ChunkSize$offset() {
+        return ChunkSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG ChunkSize
+     * }
+     */
+    public static long ChunkSize(MemorySegment struct) {
+        return struct.get(ChunkSize$LAYOUT, ChunkSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG ChunkSize
+     * }
+     */
+    public static void ChunkSize(MemorySegment struct, long fieldValue) {
+        struct.set(ChunkSize$LAYOUT, ChunkSize$OFFSET, fieldValue);
+    }
+
+    private static final OfLong FileSizeThreshold$LAYOUT = (OfLong)$LAYOUT.select(groupElement("FileSizeThreshold"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONGLONG FileSizeThreshold
+     * }
+     */
+    public static final OfLong FileSizeThreshold$layout() {
+        return FileSizeThreshold$LAYOUT;
+    }
+
+    private static final long FileSizeThreshold$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONGLONG FileSizeThreshold
+     * }
+     */
+    public static final long FileSizeThreshold$offset() {
+        return FileSizeThreshold$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONGLONG FileSizeThreshold
+     * }
+     */
+    public static long FileSizeThreshold(MemorySegment struct) {
+        return struct.get(FileSizeThreshold$LAYOUT, FileSizeThreshold$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONGLONG FileSizeThreshold
+     * }
+     */
+    public static void FileSizeThreshold(MemorySegment struct, long fieldValue) {
+        struct.set(FileSizeThreshold$LAYOUT, FileSizeThreshold$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

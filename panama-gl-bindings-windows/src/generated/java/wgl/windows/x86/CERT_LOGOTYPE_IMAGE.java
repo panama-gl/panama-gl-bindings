@@ -2,13 +2,28 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CERT_LOGOTYPE_IMAGE {
+ *     CERT_LOGOTYPE_DETAILS LogotypeDetails;
+ *     PCERT_LOGOTYPE_IMAGE_INFO pLogotypeImageInfo;
+ * } CERT_LOGOTYPE_IMAGE
+ * }
+ */
 public class CERT_LOGOTYPE_IMAGE extends _CERT_LOGOTYPE_IMAGE {
 
+    CERT_LOGOTYPE_IMAGE() {
+        // Should not be called directly
+    }
 }
-
 

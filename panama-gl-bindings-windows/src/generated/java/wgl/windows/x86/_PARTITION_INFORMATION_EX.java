@@ -2,159 +2,454 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PARTITION_INFORMATION_EX {
+ *     PARTITION_STYLE PartitionStyle;
+ *     LARGE_INTEGER StartingOffset;
+ *     LARGE_INTEGER PartitionLength;
+ *     DWORD PartitionNumber;
+ *     BOOLEAN RewritePartition;
+ *     BOOLEAN IsServicePartition;
+ *     union {
+ *         PARTITION_INFORMATION_MBR Mbr;
+ *         PARTITION_INFORMATION_GPT Gpt;
+ *     };
+ * }
+ * }
+ */
 public class _PARTITION_INFORMATION_EX {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("PartitionStyle"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("StartingOffset"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("PartitionLength"),
-        Constants$root.C_LONG$LAYOUT.withName("PartitionNumber"),
-        Constants$root.C_CHAR$LAYOUT.withName("RewritePartition"),
-        Constants$root.C_CHAR$LAYOUT.withName("IsServicePartition"),
-        MemoryLayout.paddingLayout(16),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_CHAR$LAYOUT.withName("PartitionType"),
-                Constants$root.C_CHAR$LAYOUT.withName("BootIndicator"),
-                Constants$root.C_CHAR$LAYOUT.withName("RecognizedPartition"),
-                MemoryLayout.paddingLayout(8),
-                Constants$root.C_LONG$LAYOUT.withName("HiddenSectors"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                    MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-                ).withName("PartitionId")
-            ).withName("Mbr"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                    MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-                ).withName("PartitionType"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                    MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-                ).withName("PartitionId"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("Attributes"),
-                MemoryLayout.sequenceLayout(36, Constants$root.C_SHORT$LAYOUT).withName("Name")
-            ).withName("Gpt")
-        ).withName("$anon$0")
-    ).withName("_PARTITION_INFORMATION_EX");
-    public static MemoryLayout $LAYOUT() {
-        return _PARTITION_INFORMATION_EX.$struct$LAYOUT;
+    _PARTITION_INFORMATION_EX() {
+        // Should not be called directly
     }
-    static final VarHandle PartitionStyle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PartitionStyle"));
-    public static VarHandle PartitionStyle$VH() {
-        return _PARTITION_INFORMATION_EX.PartitionStyle$VH;
-    }
-    public static int PartitionStyle$get(MemorySegment seg) {
-        return (int)_PARTITION_INFORMATION_EX.PartitionStyle$VH.get(seg);
-    }
-    public static void PartitionStyle$set( MemorySegment seg, int x) {
-        _PARTITION_INFORMATION_EX.PartitionStyle$VH.set(seg, x);
-    }
-    public static int PartitionStyle$get(MemorySegment seg, long index) {
-        return (int)_PARTITION_INFORMATION_EX.PartitionStyle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PartitionStyle$set(MemorySegment seg, long index, int x) {
-        _PARTITION_INFORMATION_EX.PartitionStyle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment StartingOffset$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    public static MemorySegment PartitionLength$slice(MemorySegment seg) {
-        return seg.asSlice(16, 8);
-    }
-    static final VarHandle PartitionNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PartitionNumber"));
-    public static VarHandle PartitionNumber$VH() {
-        return _PARTITION_INFORMATION_EX.PartitionNumber$VH;
-    }
-    public static int PartitionNumber$get(MemorySegment seg) {
-        return (int)_PARTITION_INFORMATION_EX.PartitionNumber$VH.get(seg);
-    }
-    public static void PartitionNumber$set( MemorySegment seg, int x) {
-        _PARTITION_INFORMATION_EX.PartitionNumber$VH.set(seg, x);
-    }
-    public static int PartitionNumber$get(MemorySegment seg, long index) {
-        return (int)_PARTITION_INFORMATION_EX.PartitionNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PartitionNumber$set(MemorySegment seg, long index, int x) {
-        _PARTITION_INFORMATION_EX.PartitionNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RewritePartition$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RewritePartition"));
-    public static VarHandle RewritePartition$VH() {
-        return _PARTITION_INFORMATION_EX.RewritePartition$VH;
-    }
-    public static byte RewritePartition$get(MemorySegment seg) {
-        return (byte)_PARTITION_INFORMATION_EX.RewritePartition$VH.get(seg);
-    }
-    public static void RewritePartition$set( MemorySegment seg, byte x) {
-        _PARTITION_INFORMATION_EX.RewritePartition$VH.set(seg, x);
-    }
-    public static byte RewritePartition$get(MemorySegment seg, long index) {
-        return (byte)_PARTITION_INFORMATION_EX.RewritePartition$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RewritePartition$set(MemorySegment seg, long index, byte x) {
-        _PARTITION_INFORMATION_EX.RewritePartition$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle IsServicePartition$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("IsServicePartition"));
-    public static VarHandle IsServicePartition$VH() {
-        return _PARTITION_INFORMATION_EX.IsServicePartition$VH;
-    }
-    public static byte IsServicePartition$get(MemorySegment seg) {
-        return (byte)_PARTITION_INFORMATION_EX.IsServicePartition$VH.get(seg);
-    }
-    public static void IsServicePartition$set( MemorySegment seg, byte x) {
-        _PARTITION_INFORMATION_EX.IsServicePartition$VH.set(seg, x);
-    }
-    public static byte IsServicePartition$get(MemorySegment seg, long index) {
-        return (byte)_PARTITION_INFORMATION_EX.IsServicePartition$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void IsServicePartition$set(MemorySegment seg, long index, byte x) {
-        _PARTITION_INFORMATION_EX.IsServicePartition$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Mbr$slice(MemorySegment seg) {
-        return seg.asSlice(32, 24);
-    }
-    public static MemorySegment Gpt$slice(MemorySegment seg) {
-        return seg.asSlice(32, 112);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("PartitionStyle"),
+        MemoryLayout.paddingLayout(4),
+        _LARGE_INTEGER.layout().withName("StartingOffset"),
+        _LARGE_INTEGER.layout().withName("PartitionLength"),
+        wgl_h.C_LONG.withName("PartitionNumber"),
+        wgl_h.C_CHAR.withName("RewritePartition"),
+        wgl_h.C_CHAR.withName("IsServicePartition"),
+        MemoryLayout.paddingLayout(2),
+        MemoryLayout.unionLayout(
+            _PARTITION_INFORMATION_MBR.layout().withName("Mbr"),
+            _PARTITION_INFORMATION_GPT.layout().withName("Gpt")
+        ).withName("$anon$8506:5")
+    ).withName("_PARTITION_INFORMATION_EX");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt PartitionStyle$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PartitionStyle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PARTITION_STYLE PartitionStyle
+     * }
+     */
+    public static final OfInt PartitionStyle$layout() {
+        return PartitionStyle$LAYOUT;
+    }
+
+    private static final long PartitionStyle$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PARTITION_STYLE PartitionStyle
+     * }
+     */
+    public static final long PartitionStyle$offset() {
+        return PartitionStyle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PARTITION_STYLE PartitionStyle
+     * }
+     */
+    public static int PartitionStyle(MemorySegment struct) {
+        return struct.get(PartitionStyle$LAYOUT, PartitionStyle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PARTITION_STYLE PartitionStyle
+     * }
+     */
+    public static void PartitionStyle(MemorySegment struct, int fieldValue) {
+        struct.set(PartitionStyle$LAYOUT, PartitionStyle$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout StartingOffset$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("StartingOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingOffset
+     * }
+     */
+    public static final GroupLayout StartingOffset$layout() {
+        return StartingOffset$LAYOUT;
+    }
+
+    private static final long StartingOffset$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingOffset
+     * }
+     */
+    public static final long StartingOffset$offset() {
+        return StartingOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingOffset
+     * }
+     */
+    public static MemorySegment StartingOffset(MemorySegment struct) {
+        return struct.asSlice(StartingOffset$OFFSET, StartingOffset$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingOffset
+     * }
+     */
+    public static void StartingOffset(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, StartingOffset$OFFSET, StartingOffset$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout PartitionLength$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("PartitionLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER PartitionLength
+     * }
+     */
+    public static final GroupLayout PartitionLength$layout() {
+        return PartitionLength$LAYOUT;
+    }
+
+    private static final long PartitionLength$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER PartitionLength
+     * }
+     */
+    public static final long PartitionLength$offset() {
+        return PartitionLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER PartitionLength
+     * }
+     */
+    public static MemorySegment PartitionLength(MemorySegment struct) {
+        return struct.asSlice(PartitionLength$OFFSET, PartitionLength$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER PartitionLength
+     * }
+     */
+    public static void PartitionLength(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, PartitionLength$OFFSET, PartitionLength$LAYOUT.byteSize());
+    }
+
+    private static final OfInt PartitionNumber$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PartitionNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PartitionNumber
+     * }
+     */
+    public static final OfInt PartitionNumber$layout() {
+        return PartitionNumber$LAYOUT;
+    }
+
+    private static final long PartitionNumber$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PartitionNumber
+     * }
+     */
+    public static final long PartitionNumber$offset() {
+        return PartitionNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PartitionNumber
+     * }
+     */
+    public static int PartitionNumber(MemorySegment struct) {
+        return struct.get(PartitionNumber$LAYOUT, PartitionNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PartitionNumber
+     * }
+     */
+    public static void PartitionNumber(MemorySegment struct, int fieldValue) {
+        struct.set(PartitionNumber$LAYOUT, PartitionNumber$OFFSET, fieldValue);
+    }
+
+    private static final OfByte RewritePartition$LAYOUT = (OfByte)$LAYOUT.select(groupElement("RewritePartition"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN RewritePartition
+     * }
+     */
+    public static final OfByte RewritePartition$layout() {
+        return RewritePartition$LAYOUT;
+    }
+
+    private static final long RewritePartition$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN RewritePartition
+     * }
+     */
+    public static final long RewritePartition$offset() {
+        return RewritePartition$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN RewritePartition
+     * }
+     */
+    public static byte RewritePartition(MemorySegment struct) {
+        return struct.get(RewritePartition$LAYOUT, RewritePartition$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN RewritePartition
+     * }
+     */
+    public static void RewritePartition(MemorySegment struct, byte fieldValue) {
+        struct.set(RewritePartition$LAYOUT, RewritePartition$OFFSET, fieldValue);
+    }
+
+    private static final OfByte IsServicePartition$LAYOUT = (OfByte)$LAYOUT.select(groupElement("IsServicePartition"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN IsServicePartition
+     * }
+     */
+    public static final OfByte IsServicePartition$layout() {
+        return IsServicePartition$LAYOUT;
+    }
+
+    private static final long IsServicePartition$OFFSET = 29;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN IsServicePartition
+     * }
+     */
+    public static final long IsServicePartition$offset() {
+        return IsServicePartition$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN IsServicePartition
+     * }
+     */
+    public static byte IsServicePartition(MemorySegment struct) {
+        return struct.get(IsServicePartition$LAYOUT, IsServicePartition$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN IsServicePartition
+     * }
+     */
+    public static void IsServicePartition(MemorySegment struct, byte fieldValue) {
+        struct.set(IsServicePartition$LAYOUT, IsServicePartition$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout Mbr$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$8506:5"), groupElement("Mbr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PARTITION_INFORMATION_MBR Mbr
+     * }
+     */
+    public static final GroupLayout Mbr$layout() {
+        return Mbr$LAYOUT;
+    }
+
+    private static final long Mbr$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PARTITION_INFORMATION_MBR Mbr
+     * }
+     */
+    public static final long Mbr$offset() {
+        return Mbr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PARTITION_INFORMATION_MBR Mbr
+     * }
+     */
+    public static MemorySegment Mbr(MemorySegment struct) {
+        return struct.asSlice(Mbr$OFFSET, Mbr$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PARTITION_INFORMATION_MBR Mbr
+     * }
+     */
+    public static void Mbr(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Mbr$OFFSET, Mbr$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Gpt$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$8506:5"), groupElement("Gpt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PARTITION_INFORMATION_GPT Gpt
+     * }
+     */
+    public static final GroupLayout Gpt$layout() {
+        return Gpt$LAYOUT;
+    }
+
+    private static final long Gpt$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PARTITION_INFORMATION_GPT Gpt
+     * }
+     */
+    public static final long Gpt$offset() {
+        return Gpt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PARTITION_INFORMATION_GPT Gpt
+     * }
+     */
+    public static MemorySegment Gpt(MemorySegment struct) {
+        return struct.asSlice(Gpt$OFFSET, Gpt$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PARTITION_INFORMATION_GPT Gpt
+     * }
+     */
+    public static void Gpt(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Gpt$OFFSET, Gpt$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

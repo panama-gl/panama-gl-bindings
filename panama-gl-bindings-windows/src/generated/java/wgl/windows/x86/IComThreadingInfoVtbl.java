@@ -2,338 +2,786 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct IComThreadingInfoVtbl {
+ *     HRESULT (*QueryInterface)(IComThreadingInfo *, const IID *const, void **) __attribute__((stdcall));
+ *     ULONG (*AddRef)(IComThreadingInfo *) __attribute__((stdcall));
+ *     ULONG (*Release)(IComThreadingInfo *) __attribute__((stdcall));
+ *     HRESULT (*GetCurrentApartmentType)(IComThreadingInfo *, APTTYPE *) __attribute__((stdcall));
+ *     HRESULT (*GetCurrentThreadType)(IComThreadingInfo *, THDTYPE *) __attribute__((stdcall));
+ *     HRESULT (*GetCurrentLogicalThreadId)(IComThreadingInfo *, GUID *) __attribute__((stdcall));
+ *     HRESULT (*SetCurrentLogicalThreadId)(IComThreadingInfo *, const GUID *const) __attribute__((stdcall));
+ * }
+ * }
+ */
 public class IComThreadingInfoVtbl {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("QueryInterface"),
-        Constants$root.C_POINTER$LAYOUT.withName("AddRef"),
-        Constants$root.C_POINTER$LAYOUT.withName("Release"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetCurrentApartmentType"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetCurrentThreadType"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetCurrentLogicalThreadId"),
-        Constants$root.C_POINTER$LAYOUT.withName("SetCurrentLogicalThreadId")
+    IComThreadingInfoVtbl() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("QueryInterface"),
+        wgl_h.C_POINTER.withName("AddRef"),
+        wgl_h.C_POINTER.withName("Release"),
+        wgl_h.C_POINTER.withName("GetCurrentApartmentType"),
+        wgl_h.C_POINTER.withName("GetCurrentThreadType"),
+        wgl_h.C_POINTER.withName("GetCurrentLogicalThreadId"),
+        wgl_h.C_POINTER.withName("SetCurrentLogicalThreadId")
     ).withName("IComThreadingInfoVtbl");
-    public static MemoryLayout $LAYOUT() {
-        return IComThreadingInfoVtbl.$struct$LAYOUT;
-    }
-    static final FunctionDescriptor QueryInterface$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle QueryInterface$MH = RuntimeHelper.downcallHandle(
-        IComThreadingInfoVtbl.QueryInterface$FUNC
-    );
-    public interface QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(QueryInterface fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(QueryInterface.class, fi, IComThreadingInfoVtbl.QueryInterface$FUNC, session);
-        }
-        static QueryInterface ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IComThreadingInfoVtbl.QueryInterface$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
 
-    static final VarHandle QueryInterface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueryInterface"));
-    public static VarHandle QueryInterface$VH() {
-        return IComThreadingInfoVtbl.QueryInterface$VH;
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IComThreadingInfoVtbl.QueryInterface$VH.get(seg);
-    }
-    public static void QueryInterface$set( MemorySegment seg, MemoryAddress x) {
-        IComThreadingInfoVtbl.QueryInterface$VH.set(seg, x);
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IComThreadingInfoVtbl.QueryInterface$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void QueryInterface$set(MemorySegment seg, long index, MemoryAddress x) {
-        IComThreadingInfoVtbl.QueryInterface$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static QueryInterface QueryInterface (MemorySegment segment, MemorySession session) {
-        return QueryInterface.ofAddress(QueryInterface$get(segment), session);
-    }
-    static final FunctionDescriptor AddRef$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle AddRef$MH = RuntimeHelper.downcallHandle(
-        IComThreadingInfoVtbl.AddRef$FUNC
-    );
-    public interface AddRef {
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IComThreadingInfo *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(AddRef fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(AddRef.class, fi, IComThreadingInfoVtbl.AddRef$FUNC, session);
+        QueryInterface() {
+            // Should not be called directly
         }
-        static AddRef ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IComThreadingInfoVtbl.AddRef$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(QueryInterface.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(QueryInterface.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle AddRef$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddRef"));
-    public static VarHandle AddRef$VH() {
-        return IComThreadingInfoVtbl.AddRef$VH;
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IComThreadingInfoVtbl.AddRef$VH.get(seg);
-    }
-    public static void AddRef$set( MemorySegment seg, MemoryAddress x) {
-        IComThreadingInfoVtbl.AddRef$VH.set(seg, x);
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IComThreadingInfoVtbl.AddRef$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddRef$set(MemorySegment seg, long index, MemoryAddress x) {
-        IComThreadingInfoVtbl.AddRef$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static AddRef AddRef (MemorySegment segment, MemorySession session) {
-        return AddRef.ofAddress(AddRef$get(segment), session);
-    }
-    static final FunctionDescriptor Release$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Release$MH = RuntimeHelper.downcallHandle(
-        IComThreadingInfoVtbl.Release$FUNC
-    );
-    public interface Release {
+    private static final AddressLayout QueryInterface$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("QueryInterface"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Release fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Release.class, fi, IComThreadingInfoVtbl.Release$FUNC, session);
-        }
-        static Release ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IComThreadingInfoVtbl.Release$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IComThreadingInfo *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout QueryInterface$layout() {
+        return QueryInterface$LAYOUT;
     }
 
-    static final VarHandle Release$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Release"));
-    public static VarHandle Release$VH() {
-        return IComThreadingInfoVtbl.Release$VH;
-    }
-    public static MemoryAddress Release$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IComThreadingInfoVtbl.Release$VH.get(seg);
-    }
-    public static void Release$set( MemorySegment seg, MemoryAddress x) {
-        IComThreadingInfoVtbl.Release$VH.set(seg, x);
-    }
-    public static MemoryAddress Release$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IComThreadingInfoVtbl.Release$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Release$set(MemorySegment seg, long index, MemoryAddress x) {
-        IComThreadingInfoVtbl.Release$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Release Release (MemorySegment segment, MemorySession session) {
-        return Release.ofAddress(Release$get(segment), session);
-    }
-    static final FunctionDescriptor GetCurrentApartmentType$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetCurrentApartmentType$MH = RuntimeHelper.downcallHandle(
-        IComThreadingInfoVtbl.GetCurrentApartmentType$FUNC
-    );
-    public interface GetCurrentApartmentType {
+    private static final long QueryInterface$OFFSET = 0;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(GetCurrentApartmentType fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetCurrentApartmentType.class, fi, IComThreadingInfoVtbl.GetCurrentApartmentType$FUNC, session);
-        }
-        static GetCurrentApartmentType ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IComThreadingInfoVtbl.GetCurrentApartmentType$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IComThreadingInfo *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long QueryInterface$offset() {
+        return QueryInterface$OFFSET;
     }
 
-    static final VarHandle GetCurrentApartmentType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetCurrentApartmentType"));
-    public static VarHandle GetCurrentApartmentType$VH() {
-        return IComThreadingInfoVtbl.GetCurrentApartmentType$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IComThreadingInfo *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment QueryInterface(MemorySegment struct) {
+        return struct.get(QueryInterface$LAYOUT, QueryInterface$OFFSET);
     }
-    public static MemoryAddress GetCurrentApartmentType$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IComThreadingInfoVtbl.GetCurrentApartmentType$VH.get(seg);
-    }
-    public static void GetCurrentApartmentType$set( MemorySegment seg, MemoryAddress x) {
-        IComThreadingInfoVtbl.GetCurrentApartmentType$VH.set(seg, x);
-    }
-    public static MemoryAddress GetCurrentApartmentType$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IComThreadingInfoVtbl.GetCurrentApartmentType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetCurrentApartmentType$set(MemorySegment seg, long index, MemoryAddress x) {
-        IComThreadingInfoVtbl.GetCurrentApartmentType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetCurrentApartmentType GetCurrentApartmentType (MemorySegment segment, MemorySession session) {
-        return GetCurrentApartmentType.ofAddress(GetCurrentApartmentType$get(segment), session);
-    }
-    static final FunctionDescriptor GetCurrentThreadType$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetCurrentThreadType$MH = RuntimeHelper.downcallHandle(
-        IComThreadingInfoVtbl.GetCurrentThreadType$FUNC
-    );
-    public interface GetCurrentThreadType {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(GetCurrentThreadType fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetCurrentThreadType.class, fi, IComThreadingInfoVtbl.GetCurrentThreadType$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IComThreadingInfo *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void QueryInterface(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(QueryInterface$LAYOUT, QueryInterface$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IComThreadingInfo *) __attribute__((stdcall))
+     * }
+     */
+    public static class AddRef {
+
+        AddRef() {
+            // Should not be called directly
         }
-        static GetCurrentThreadType ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IComThreadingInfoVtbl.GetCurrentThreadType$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(AddRef.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(AddRef.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle GetCurrentThreadType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetCurrentThreadType"));
-    public static VarHandle GetCurrentThreadType$VH() {
-        return IComThreadingInfoVtbl.GetCurrentThreadType$VH;
-    }
-    public static MemoryAddress GetCurrentThreadType$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IComThreadingInfoVtbl.GetCurrentThreadType$VH.get(seg);
-    }
-    public static void GetCurrentThreadType$set( MemorySegment seg, MemoryAddress x) {
-        IComThreadingInfoVtbl.GetCurrentThreadType$VH.set(seg, x);
-    }
-    public static MemoryAddress GetCurrentThreadType$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IComThreadingInfoVtbl.GetCurrentThreadType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetCurrentThreadType$set(MemorySegment seg, long index, MemoryAddress x) {
-        IComThreadingInfoVtbl.GetCurrentThreadType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetCurrentThreadType GetCurrentThreadType (MemorySegment segment, MemorySession session) {
-        return GetCurrentThreadType.ofAddress(GetCurrentThreadType$get(segment), session);
-    }
-    static final FunctionDescriptor GetCurrentLogicalThreadId$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetCurrentLogicalThreadId$MH = RuntimeHelper.downcallHandle(
-        IComThreadingInfoVtbl.GetCurrentLogicalThreadId$FUNC
-    );
-    public interface GetCurrentLogicalThreadId {
+    private static final AddressLayout AddRef$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AddRef"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(GetCurrentLogicalThreadId fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetCurrentLogicalThreadId.class, fi, IComThreadingInfoVtbl.GetCurrentLogicalThreadId$FUNC, session);
-        }
-        static GetCurrentLogicalThreadId ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IComThreadingInfoVtbl.GetCurrentLogicalThreadId$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IComThreadingInfo *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout AddRef$layout() {
+        return AddRef$LAYOUT;
     }
 
-    static final VarHandle GetCurrentLogicalThreadId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetCurrentLogicalThreadId"));
-    public static VarHandle GetCurrentLogicalThreadId$VH() {
-        return IComThreadingInfoVtbl.GetCurrentLogicalThreadId$VH;
-    }
-    public static MemoryAddress GetCurrentLogicalThreadId$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IComThreadingInfoVtbl.GetCurrentLogicalThreadId$VH.get(seg);
-    }
-    public static void GetCurrentLogicalThreadId$set( MemorySegment seg, MemoryAddress x) {
-        IComThreadingInfoVtbl.GetCurrentLogicalThreadId$VH.set(seg, x);
-    }
-    public static MemoryAddress GetCurrentLogicalThreadId$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IComThreadingInfoVtbl.GetCurrentLogicalThreadId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetCurrentLogicalThreadId$set(MemorySegment seg, long index, MemoryAddress x) {
-        IComThreadingInfoVtbl.GetCurrentLogicalThreadId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetCurrentLogicalThreadId GetCurrentLogicalThreadId (MemorySegment segment, MemorySession session) {
-        return GetCurrentLogicalThreadId.ofAddress(GetCurrentLogicalThreadId$get(segment), session);
-    }
-    static final FunctionDescriptor SetCurrentLogicalThreadId$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle SetCurrentLogicalThreadId$MH = RuntimeHelper.downcallHandle(
-        IComThreadingInfoVtbl.SetCurrentLogicalThreadId$FUNC
-    );
-    public interface SetCurrentLogicalThreadId {
+    private static final long AddRef$OFFSET = 8;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(SetCurrentLogicalThreadId fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(SetCurrentLogicalThreadId.class, fi, IComThreadingInfoVtbl.SetCurrentLogicalThreadId$FUNC, session);
-        }
-        static SetCurrentLogicalThreadId ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IComThreadingInfoVtbl.SetCurrentLogicalThreadId$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IComThreadingInfo *) __attribute__((stdcall))
+     * }
+     */
+    public static final long AddRef$offset() {
+        return AddRef$OFFSET;
     }
 
-    static final VarHandle SetCurrentLogicalThreadId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SetCurrentLogicalThreadId"));
-    public static VarHandle SetCurrentLogicalThreadId$VH() {
-        return IComThreadingInfoVtbl.SetCurrentLogicalThreadId$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IComThreadingInfo *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment AddRef(MemorySegment struct) {
+        return struct.get(AddRef$LAYOUT, AddRef$OFFSET);
     }
-    public static MemoryAddress SetCurrentLogicalThreadId$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IComThreadingInfoVtbl.SetCurrentLogicalThreadId$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IComThreadingInfo *) __attribute__((stdcall))
+     * }
+     */
+    public static void AddRef(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AddRef$LAYOUT, AddRef$OFFSET, fieldValue);
     }
-    public static void SetCurrentLogicalThreadId$set( MemorySegment seg, MemoryAddress x) {
-        IComThreadingInfoVtbl.SetCurrentLogicalThreadId$VH.set(seg, x);
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*Release)(IComThreadingInfo *) __attribute__((stdcall))
+     * }
+     */
+    public static class Release {
+
+        Release() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Release.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Release.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
     }
-    public static MemoryAddress SetCurrentLogicalThreadId$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IComThreadingInfoVtbl.SetCurrentLogicalThreadId$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final AddressLayout Release$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Release"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IComThreadingInfo *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Release$layout() {
+        return Release$LAYOUT;
     }
-    public static void SetCurrentLogicalThreadId$set(MemorySegment seg, long index, MemoryAddress x) {
-        IComThreadingInfoVtbl.SetCurrentLogicalThreadId$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long Release$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IComThreadingInfo *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Release$offset() {
+        return Release$OFFSET;
     }
-    public static SetCurrentLogicalThreadId SetCurrentLogicalThreadId (MemorySegment segment, MemorySession session) {
-        return SetCurrentLogicalThreadId.ofAddress(SetCurrentLogicalThreadId$get(segment), session);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IComThreadingInfo *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Release(MemorySegment struct) {
+        return struct.get(Release$LAYOUT, Release$OFFSET);
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IComThreadingInfo *) __attribute__((stdcall))
+     * }
+     */
+    public static void Release(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Release$LAYOUT, Release$OFFSET, fieldValue);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetCurrentApartmentType)(IComThreadingInfo *, APTTYPE *) __attribute__((stdcall))
+     * }
+     */
+    public static class GetCurrentApartmentType {
+
+        GetCurrentApartmentType() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetCurrentApartmentType.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetCurrentApartmentType.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout GetCurrentApartmentType$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetCurrentApartmentType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetCurrentApartmentType)(IComThreadingInfo *, APTTYPE *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetCurrentApartmentType$layout() {
+        return GetCurrentApartmentType$LAYOUT;
+    }
+
+    private static final long GetCurrentApartmentType$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetCurrentApartmentType)(IComThreadingInfo *, APTTYPE *) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetCurrentApartmentType$offset() {
+        return GetCurrentApartmentType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetCurrentApartmentType)(IComThreadingInfo *, APTTYPE *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetCurrentApartmentType(MemorySegment struct) {
+        return struct.get(GetCurrentApartmentType$LAYOUT, GetCurrentApartmentType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetCurrentApartmentType)(IComThreadingInfo *, APTTYPE *) __attribute__((stdcall))
+     * }
+     */
+    public static void GetCurrentApartmentType(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetCurrentApartmentType$LAYOUT, GetCurrentApartmentType$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetCurrentThreadType)(IComThreadingInfo *, THDTYPE *) __attribute__((stdcall))
+     * }
+     */
+    public static class GetCurrentThreadType {
+
+        GetCurrentThreadType() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetCurrentThreadType.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetCurrentThreadType.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout GetCurrentThreadType$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetCurrentThreadType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetCurrentThreadType)(IComThreadingInfo *, THDTYPE *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetCurrentThreadType$layout() {
+        return GetCurrentThreadType$LAYOUT;
+    }
+
+    private static final long GetCurrentThreadType$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetCurrentThreadType)(IComThreadingInfo *, THDTYPE *) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetCurrentThreadType$offset() {
+        return GetCurrentThreadType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetCurrentThreadType)(IComThreadingInfo *, THDTYPE *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetCurrentThreadType(MemorySegment struct) {
+        return struct.get(GetCurrentThreadType$LAYOUT, GetCurrentThreadType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetCurrentThreadType)(IComThreadingInfo *, THDTYPE *) __attribute__((stdcall))
+     * }
+     */
+    public static void GetCurrentThreadType(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetCurrentThreadType$LAYOUT, GetCurrentThreadType$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetCurrentLogicalThreadId)(IComThreadingInfo *, GUID *) __attribute__((stdcall))
+     * }
+     */
+    public static class GetCurrentLogicalThreadId {
+
+        GetCurrentLogicalThreadId() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetCurrentLogicalThreadId.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetCurrentLogicalThreadId.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout GetCurrentLogicalThreadId$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetCurrentLogicalThreadId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetCurrentLogicalThreadId)(IComThreadingInfo *, GUID *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetCurrentLogicalThreadId$layout() {
+        return GetCurrentLogicalThreadId$LAYOUT;
+    }
+
+    private static final long GetCurrentLogicalThreadId$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetCurrentLogicalThreadId)(IComThreadingInfo *, GUID *) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetCurrentLogicalThreadId$offset() {
+        return GetCurrentLogicalThreadId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetCurrentLogicalThreadId)(IComThreadingInfo *, GUID *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetCurrentLogicalThreadId(MemorySegment struct) {
+        return struct.get(GetCurrentLogicalThreadId$LAYOUT, GetCurrentLogicalThreadId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetCurrentLogicalThreadId)(IComThreadingInfo *, GUID *) __attribute__((stdcall))
+     * }
+     */
+    public static void GetCurrentLogicalThreadId(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetCurrentLogicalThreadId$LAYOUT, GetCurrentLogicalThreadId$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*SetCurrentLogicalThreadId)(IComThreadingInfo *, const GUID *const) __attribute__((stdcall))
+     * }
+     */
+    public static class SetCurrentLogicalThreadId {
+
+        SetCurrentLogicalThreadId() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(SetCurrentLogicalThreadId.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(SetCurrentLogicalThreadId.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout SetCurrentLogicalThreadId$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SetCurrentLogicalThreadId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetCurrentLogicalThreadId)(IComThreadingInfo *, const GUID *const) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout SetCurrentLogicalThreadId$layout() {
+        return SetCurrentLogicalThreadId$LAYOUT;
+    }
+
+    private static final long SetCurrentLogicalThreadId$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetCurrentLogicalThreadId)(IComThreadingInfo *, const GUID *const) __attribute__((stdcall))
+     * }
+     */
+    public static final long SetCurrentLogicalThreadId$offset() {
+        return SetCurrentLogicalThreadId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetCurrentLogicalThreadId)(IComThreadingInfo *, const GUID *const) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment SetCurrentLogicalThreadId(MemorySegment struct) {
+        return struct.get(SetCurrentLogicalThreadId$LAYOUT, SetCurrentLogicalThreadId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetCurrentLogicalThreadId)(IComThreadingInfo *, const GUID *const) __attribute__((stdcall))
+     * }
+     */
+    public static void SetCurrentLogicalThreadId(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SetCurrentLogicalThreadId$LAYOUT, SetCurrentLogicalThreadId$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

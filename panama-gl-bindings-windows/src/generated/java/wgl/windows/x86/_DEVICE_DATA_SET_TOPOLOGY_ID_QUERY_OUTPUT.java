@@ -2,45 +2,205 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DEVICE_DATA_SET_TOPOLOGY_ID_QUERY_OUTPUT {
+ *     DWORDLONG TopologyRangeBytes;
+ *     BYTE TopologyId[16];
+ * }
+ * }
+ */
 public class _DEVICE_DATA_SET_TOPOLOGY_ID_QUERY_OUTPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("TopologyRangeBytes"),
-        MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("TopologyId")
-    ).withName("_DEVICE_DATA_SET_TOPOLOGY_ID_QUERY_OUTPUT");
-    public static MemoryLayout $LAYOUT() {
-        return _DEVICE_DATA_SET_TOPOLOGY_ID_QUERY_OUTPUT.$struct$LAYOUT;
+    _DEVICE_DATA_SET_TOPOLOGY_ID_QUERY_OUTPUT() {
+        // Should not be called directly
     }
-    static final VarHandle TopologyRangeBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TopologyRangeBytes"));
-    public static VarHandle TopologyRangeBytes$VH() {
-        return _DEVICE_DATA_SET_TOPOLOGY_ID_QUERY_OUTPUT.TopologyRangeBytes$VH;
-    }
-    public static long TopologyRangeBytes$get(MemorySegment seg) {
-        return (long)_DEVICE_DATA_SET_TOPOLOGY_ID_QUERY_OUTPUT.TopologyRangeBytes$VH.get(seg);
-    }
-    public static void TopologyRangeBytes$set( MemorySegment seg, long x) {
-        _DEVICE_DATA_SET_TOPOLOGY_ID_QUERY_OUTPUT.TopologyRangeBytes$VH.set(seg, x);
-    }
-    public static long TopologyRangeBytes$get(MemorySegment seg, long index) {
-        return (long)_DEVICE_DATA_SET_TOPOLOGY_ID_QUERY_OUTPUT.TopologyRangeBytes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TopologyRangeBytes$set(MemorySegment seg, long index, long x) {
-        _DEVICE_DATA_SET_TOPOLOGY_ID_QUERY_OUTPUT.TopologyRangeBytes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment TopologyId$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG_LONG.withName("TopologyRangeBytes"),
+        MemoryLayout.sequenceLayout(16, wgl_h.C_CHAR).withName("TopologyId")
+    ).withName("_DEVICE_DATA_SET_TOPOLOGY_ID_QUERY_OUTPUT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong TopologyRangeBytes$LAYOUT = (OfLong)$LAYOUT.select(groupElement("TopologyRangeBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG TopologyRangeBytes
+     * }
+     */
+    public static final OfLong TopologyRangeBytes$layout() {
+        return TopologyRangeBytes$LAYOUT;
+    }
+
+    private static final long TopologyRangeBytes$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG TopologyRangeBytes
+     * }
+     */
+    public static final long TopologyRangeBytes$offset() {
+        return TopologyRangeBytes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG TopologyRangeBytes
+     * }
+     */
+    public static long TopologyRangeBytes(MemorySegment struct) {
+        return struct.get(TopologyRangeBytes$LAYOUT, TopologyRangeBytes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG TopologyRangeBytes
+     * }
+     */
+    public static void TopologyRangeBytes(MemorySegment struct, long fieldValue) {
+        struct.set(TopologyRangeBytes$LAYOUT, TopologyRangeBytes$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout TopologyId$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("TopologyId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE TopologyId[16]
+     * }
+     */
+    public static final SequenceLayout TopologyId$layout() {
+        return TopologyId$LAYOUT;
+    }
+
+    private static final long TopologyId$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE TopologyId[16]
+     * }
+     */
+    public static final long TopologyId$offset() {
+        return TopologyId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE TopologyId[16]
+     * }
+     */
+    public static MemorySegment TopologyId(MemorySegment struct) {
+        return struct.asSlice(TopologyId$OFFSET, TopologyId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE TopologyId[16]
+     * }
+     */
+    public static void TopologyId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, TopologyId$OFFSET, TopologyId$LAYOUT.byteSize());
+    }
+
+    private static long[] TopologyId$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE TopologyId[16]
+     * }
+     */
+    public static long[] TopologyId$dimensions() {
+        return TopologyId$DIMS;
+    }
+    private static final VarHandle TopologyId$ELEM_HANDLE = TopologyId$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE TopologyId[16]
+     * }
+     */
+    public static byte TopologyId(MemorySegment struct, long index0) {
+        return (byte)TopologyId$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE TopologyId[16]
+     * }
+     */
+    public static void TopologyId(MemorySegment struct, long index0, byte fieldValue) {
+        TopologyId$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

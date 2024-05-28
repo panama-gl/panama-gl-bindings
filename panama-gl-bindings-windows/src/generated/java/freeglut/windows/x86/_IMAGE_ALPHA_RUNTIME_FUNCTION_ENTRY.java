@@ -2,109 +2,310 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY {
+ *     DWORD BeginAddress;
+ *     DWORD EndAddress;
+ *     DWORD ExceptionHandler;
+ *     DWORD HandlerData;
+ *     DWORD PrologEndAddress;
+ * }
+ * }
+ */
 public class _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("BeginAddress"),
-        Constants$root.C_LONG$LAYOUT.withName("EndAddress"),
-        Constants$root.C_LONG$LAYOUT.withName("ExceptionHandler"),
-        Constants$root.C_LONG$LAYOUT.withName("HandlerData"),
-        Constants$root.C_LONG$LAYOUT.withName("PrologEndAddress")
-    ).withName("_IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY");
-    public static MemoryLayout $LAYOUT() {
-        return _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.$struct$LAYOUT;
+    _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY() {
+        // Should not be called directly
     }
-    static final VarHandle BeginAddress$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BeginAddress"));
-    public static VarHandle BeginAddress$VH() {
-        return _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.BeginAddress$VH;
-    }
-    public static int BeginAddress$get(MemorySegment seg) {
-        return (int)_IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.BeginAddress$VH.get(seg);
-    }
-    public static void BeginAddress$set( MemorySegment seg, int x) {
-        _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.BeginAddress$VH.set(seg, x);
-    }
-    public static int BeginAddress$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.BeginAddress$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BeginAddress$set(MemorySegment seg, long index, int x) {
-        _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.BeginAddress$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EndAddress$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EndAddress"));
-    public static VarHandle EndAddress$VH() {
-        return _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.EndAddress$VH;
-    }
-    public static int EndAddress$get(MemorySegment seg) {
-        return (int)_IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.EndAddress$VH.get(seg);
-    }
-    public static void EndAddress$set( MemorySegment seg, int x) {
-        _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.EndAddress$VH.set(seg, x);
-    }
-    public static int EndAddress$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.EndAddress$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EndAddress$set(MemorySegment seg, long index, int x) {
-        _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.EndAddress$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ExceptionHandler$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ExceptionHandler"));
-    public static VarHandle ExceptionHandler$VH() {
-        return _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.ExceptionHandler$VH;
-    }
-    public static int ExceptionHandler$get(MemorySegment seg) {
-        return (int)_IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.ExceptionHandler$VH.get(seg);
-    }
-    public static void ExceptionHandler$set( MemorySegment seg, int x) {
-        _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.ExceptionHandler$VH.set(seg, x);
-    }
-    public static int ExceptionHandler$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.ExceptionHandler$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ExceptionHandler$set(MemorySegment seg, long index, int x) {
-        _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.ExceptionHandler$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle HandlerData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HandlerData"));
-    public static VarHandle HandlerData$VH() {
-        return _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.HandlerData$VH;
-    }
-    public static int HandlerData$get(MemorySegment seg) {
-        return (int)_IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.HandlerData$VH.get(seg);
-    }
-    public static void HandlerData$set( MemorySegment seg, int x) {
-        _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.HandlerData$VH.set(seg, x);
-    }
-    public static int HandlerData$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.HandlerData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HandlerData$set(MemorySegment seg, long index, int x) {
-        _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.HandlerData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PrologEndAddress$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PrologEndAddress"));
-    public static VarHandle PrologEndAddress$VH() {
-        return _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.PrologEndAddress$VH;
-    }
-    public static int PrologEndAddress$get(MemorySegment seg) {
-        return (int)_IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.PrologEndAddress$VH.get(seg);
-    }
-    public static void PrologEndAddress$set( MemorySegment seg, int x) {
-        _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.PrologEndAddress$VH.set(seg, x);
-    }
-    public static int PrologEndAddress$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.PrologEndAddress$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PrologEndAddress$set(MemorySegment seg, long index, int x) {
-        _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY.PrologEndAddress$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("BeginAddress"),
+        freeglut_h.C_LONG.withName("EndAddress"),
+        freeglut_h.C_LONG.withName("ExceptionHandler"),
+        freeglut_h.C_LONG.withName("HandlerData"),
+        freeglut_h.C_LONG.withName("PrologEndAddress")
+    ).withName("_IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt BeginAddress$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BeginAddress"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BeginAddress
+     * }
+     */
+    public static final OfInt BeginAddress$layout() {
+        return BeginAddress$LAYOUT;
+    }
+
+    private static final long BeginAddress$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BeginAddress
+     * }
+     */
+    public static final long BeginAddress$offset() {
+        return BeginAddress$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BeginAddress
+     * }
+     */
+    public static int BeginAddress(MemorySegment struct) {
+        return struct.get(BeginAddress$LAYOUT, BeginAddress$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BeginAddress
+     * }
+     */
+    public static void BeginAddress(MemorySegment struct, int fieldValue) {
+        struct.set(BeginAddress$LAYOUT, BeginAddress$OFFSET, fieldValue);
+    }
+
+    private static final OfInt EndAddress$LAYOUT = (OfInt)$LAYOUT.select(groupElement("EndAddress"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD EndAddress
+     * }
+     */
+    public static final OfInt EndAddress$layout() {
+        return EndAddress$LAYOUT;
+    }
+
+    private static final long EndAddress$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD EndAddress
+     * }
+     */
+    public static final long EndAddress$offset() {
+        return EndAddress$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD EndAddress
+     * }
+     */
+    public static int EndAddress(MemorySegment struct) {
+        return struct.get(EndAddress$LAYOUT, EndAddress$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD EndAddress
+     * }
+     */
+    public static void EndAddress(MemorySegment struct, int fieldValue) {
+        struct.set(EndAddress$LAYOUT, EndAddress$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ExceptionHandler$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ExceptionHandler"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ExceptionHandler
+     * }
+     */
+    public static final OfInt ExceptionHandler$layout() {
+        return ExceptionHandler$LAYOUT;
+    }
+
+    private static final long ExceptionHandler$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ExceptionHandler
+     * }
+     */
+    public static final long ExceptionHandler$offset() {
+        return ExceptionHandler$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ExceptionHandler
+     * }
+     */
+    public static int ExceptionHandler(MemorySegment struct) {
+        return struct.get(ExceptionHandler$LAYOUT, ExceptionHandler$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ExceptionHandler
+     * }
+     */
+    public static void ExceptionHandler(MemorySegment struct, int fieldValue) {
+        struct.set(ExceptionHandler$LAYOUT, ExceptionHandler$OFFSET, fieldValue);
+    }
+
+    private static final OfInt HandlerData$LAYOUT = (OfInt)$LAYOUT.select(groupElement("HandlerData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD HandlerData
+     * }
+     */
+    public static final OfInt HandlerData$layout() {
+        return HandlerData$LAYOUT;
+    }
+
+    private static final long HandlerData$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD HandlerData
+     * }
+     */
+    public static final long HandlerData$offset() {
+        return HandlerData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD HandlerData
+     * }
+     */
+    public static int HandlerData(MemorySegment struct) {
+        return struct.get(HandlerData$LAYOUT, HandlerData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD HandlerData
+     * }
+     */
+    public static void HandlerData(MemorySegment struct, int fieldValue) {
+        struct.set(HandlerData$LAYOUT, HandlerData$OFFSET, fieldValue);
+    }
+
+    private static final OfInt PrologEndAddress$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PrologEndAddress"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PrologEndAddress
+     * }
+     */
+    public static final OfInt PrologEndAddress$layout() {
+        return PrologEndAddress$LAYOUT;
+    }
+
+    private static final long PrologEndAddress$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PrologEndAddress
+     * }
+     */
+    public static final long PrologEndAddress$offset() {
+        return PrologEndAddress$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PrologEndAddress
+     * }
+     */
+    public static int PrologEndAddress(MemorySegment struct) {
+        return struct.get(PrologEndAddress$LAYOUT, PrologEndAddress$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PrologEndAddress
+     * }
+     */
+    public static void PrologEndAddress(MemorySegment struct, int fieldValue) {
+        struct.set(PrologEndAddress$LAYOUT, PrologEndAddress$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,13 +2,29 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _STORAGE_ZONE_GROUP {
+ *     DWORD ZoneCount;
+ *     STORAGE_ZONE_TYPES ZoneType;
+ *     DWORDLONG ZoneSize;
+ * } STORAGE_ZONE_GROUP
+ * }
+ */
 public class STORAGE_ZONE_GROUP extends _STORAGE_ZONE_GROUP {
 
+    STORAGE_ZONE_GROUP() {
+        // Should not be called directly
+    }
 }
-
 

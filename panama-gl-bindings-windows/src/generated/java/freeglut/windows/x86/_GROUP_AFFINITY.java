@@ -2,62 +2,251 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _GROUP_AFFINITY {
+ *     KAFFINITY Mask;
+ *     WORD Group;
+ *     WORD Reserved[3];
+ * }
+ * }
+ */
 public class _GROUP_AFFINITY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Mask"),
-        Constants$root.C_SHORT$LAYOUT.withName("Group"),
-        MemoryLayout.sequenceLayout(3, Constants$root.C_SHORT$LAYOUT).withName("Reserved")
-    ).withName("_GROUP_AFFINITY");
-    public static MemoryLayout $LAYOUT() {
-        return _GROUP_AFFINITY.$struct$LAYOUT;
+    _GROUP_AFFINITY() {
+        // Should not be called directly
     }
-    static final VarHandle Mask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Mask"));
-    public static VarHandle Mask$VH() {
-        return _GROUP_AFFINITY.Mask$VH;
-    }
-    public static long Mask$get(MemorySegment seg) {
-        return (long)_GROUP_AFFINITY.Mask$VH.get(seg);
-    }
-    public static void Mask$set( MemorySegment seg, long x) {
-        _GROUP_AFFINITY.Mask$VH.set(seg, x);
-    }
-    public static long Mask$get(MemorySegment seg, long index) {
-        return (long)_GROUP_AFFINITY.Mask$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Mask$set(MemorySegment seg, long index, long x) {
-        _GROUP_AFFINITY.Mask$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Group$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Group"));
-    public static VarHandle Group$VH() {
-        return _GROUP_AFFINITY.Group$VH;
-    }
-    public static short Group$get(MemorySegment seg) {
-        return (short)_GROUP_AFFINITY.Group$VH.get(seg);
-    }
-    public static void Group$set( MemorySegment seg, short x) {
-        _GROUP_AFFINITY.Group$VH.set(seg, x);
-    }
-    public static short Group$get(MemorySegment seg, long index) {
-        return (short)_GROUP_AFFINITY.Group$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Group$set(MemorySegment seg, long index, short x) {
-        _GROUP_AFFINITY.Group$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Reserved$slice(MemorySegment seg) {
-        return seg.asSlice(10, 6);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG_LONG.withName("Mask"),
+        freeglut_h.C_SHORT.withName("Group"),
+        MemoryLayout.sequenceLayout(3, freeglut_h.C_SHORT).withName("Reserved")
+    ).withName("_GROUP_AFFINITY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong Mask$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Mask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * KAFFINITY Mask
+     * }
+     */
+    public static final OfLong Mask$layout() {
+        return Mask$LAYOUT;
+    }
+
+    private static final long Mask$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * KAFFINITY Mask
+     * }
+     */
+    public static final long Mask$offset() {
+        return Mask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * KAFFINITY Mask
+     * }
+     */
+    public static long Mask(MemorySegment struct) {
+        return struct.get(Mask$LAYOUT, Mask$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * KAFFINITY Mask
+     * }
+     */
+    public static void Mask(MemorySegment struct, long fieldValue) {
+        struct.set(Mask$LAYOUT, Mask$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Group$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Group"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Group
+     * }
+     */
+    public static final OfShort Group$layout() {
+        return Group$LAYOUT;
+    }
+
+    private static final long Group$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Group
+     * }
+     */
+    public static final long Group$offset() {
+        return Group$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Group
+     * }
+     */
+    public static short Group(MemorySegment struct) {
+        return struct.get(Group$LAYOUT, Group$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Group
+     * }
+     */
+    public static void Group(MemorySegment struct, short fieldValue) {
+        struct.set(Group$LAYOUT, Group$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Reserved[3]
+     * }
+     */
+    public static final SequenceLayout Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 10;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Reserved[3]
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Reserved[3]
+     * }
+     */
+    public static MemorySegment Reserved(MemorySegment struct) {
+        return struct.asSlice(Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Reserved[3]
+     * }
+     */
+    public static void Reserved(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved$DIMS = { 3 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WORD Reserved[3]
+     * }
+     */
+    public static long[] Reserved$dimensions() {
+        return Reserved$DIMS;
+    }
+    private static final VarHandle Reserved$ELEM_HANDLE = Reserved$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WORD Reserved[3]
+     * }
+     */
+    public static short Reserved(MemorySegment struct, long index0) {
+        return (short)Reserved$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WORD Reserved[3]
+     * }
+     */
+    public static void Reserved(MemorySegment struct, long index0, short fieldValue) {
+        Reserved$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,13 +2,28 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _RPC_PROTSEQ_ENDPOINT {
+ *     unsigned char *RpcProtocolSequence;
+ *     unsigned char *Endpoint;
+ * } RPC_PROTSEQ_ENDPOINT
+ * }
+ */
 public class RPC_PROTSEQ_ENDPOINT extends _RPC_PROTSEQ_ENDPOINT {
 
+    RPC_PROTSEQ_ENDPOINT() {
+        // Should not be called directly
+    }
 }
-
 

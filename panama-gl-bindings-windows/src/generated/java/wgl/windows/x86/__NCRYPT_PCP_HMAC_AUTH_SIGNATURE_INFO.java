@@ -2,70 +2,409 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct __NCRYPT_PCP_HMAC_AUTH_SIGNATURE_INFO {
+ *     DWORD dwVersion;
+ *     INT32 iExpiration;
+ *     BYTE pabNonce[32];
+ *     BYTE pabPolicyRef[32];
+ *     BYTE pabHMAC[32];
+ * }
+ * }
+ */
 public class __NCRYPT_PCP_HMAC_AUTH_SIGNATURE_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("iExpiration"),
-        MemoryLayout.sequenceLayout(32, Constants$root.C_CHAR$LAYOUT).withName("pabNonce"),
-        MemoryLayout.sequenceLayout(32, Constants$root.C_CHAR$LAYOUT).withName("pabPolicyRef"),
-        MemoryLayout.sequenceLayout(32, Constants$root.C_CHAR$LAYOUT).withName("pabHMAC")
-    ).withName("__NCRYPT_PCP_HMAC_AUTH_SIGNATURE_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return __NCRYPT_PCP_HMAC_AUTH_SIGNATURE_INFO.$struct$LAYOUT;
+    __NCRYPT_PCP_HMAC_AUTH_SIGNATURE_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle dwVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwVersion"));
-    public static VarHandle dwVersion$VH() {
-        return __NCRYPT_PCP_HMAC_AUTH_SIGNATURE_INFO.dwVersion$VH;
-    }
-    public static int dwVersion$get(MemorySegment seg) {
-        return (int)__NCRYPT_PCP_HMAC_AUTH_SIGNATURE_INFO.dwVersion$VH.get(seg);
-    }
-    public static void dwVersion$set( MemorySegment seg, int x) {
-        __NCRYPT_PCP_HMAC_AUTH_SIGNATURE_INFO.dwVersion$VH.set(seg, x);
-    }
-    public static int dwVersion$get(MemorySegment seg, long index) {
-        return (int)__NCRYPT_PCP_HMAC_AUTH_SIGNATURE_INFO.dwVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwVersion$set(MemorySegment seg, long index, int x) {
-        __NCRYPT_PCP_HMAC_AUTH_SIGNATURE_INFO.dwVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iExpiration$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iExpiration"));
-    public static VarHandle iExpiration$VH() {
-        return __NCRYPT_PCP_HMAC_AUTH_SIGNATURE_INFO.iExpiration$VH;
-    }
-    public static int iExpiration$get(MemorySegment seg) {
-        return (int)__NCRYPT_PCP_HMAC_AUTH_SIGNATURE_INFO.iExpiration$VH.get(seg);
-    }
-    public static void iExpiration$set( MemorySegment seg, int x) {
-        __NCRYPT_PCP_HMAC_AUTH_SIGNATURE_INFO.iExpiration$VH.set(seg, x);
-    }
-    public static int iExpiration$get(MemorySegment seg, long index) {
-        return (int)__NCRYPT_PCP_HMAC_AUTH_SIGNATURE_INFO.iExpiration$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iExpiration$set(MemorySegment seg, long index, int x) {
-        __NCRYPT_PCP_HMAC_AUTH_SIGNATURE_INFO.iExpiration$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment pabNonce$slice(MemorySegment seg) {
-        return seg.asSlice(8, 32);
-    }
-    public static MemorySegment pabPolicyRef$slice(MemorySegment seg) {
-        return seg.asSlice(40, 32);
-    }
-    public static MemorySegment pabHMAC$slice(MemorySegment seg) {
-        return seg.asSlice(72, 32);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwVersion"),
+        wgl_h.C_INT.withName("iExpiration"),
+        MemoryLayout.sequenceLayout(32, wgl_h.C_CHAR).withName("pabNonce"),
+        MemoryLayout.sequenceLayout(32, wgl_h.C_CHAR).withName("pabPolicyRef"),
+        MemoryLayout.sequenceLayout(32, wgl_h.C_CHAR).withName("pabHMAC")
+    ).withName("__NCRYPT_PCP_HMAC_AUTH_SIGNATURE_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final OfInt dwVersion$layout() {
+        return dwVersion$LAYOUT;
+    }
+
+    private static final long dwVersion$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final long dwVersion$offset() {
+        return dwVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static int dwVersion(MemorySegment struct) {
+        return struct.get(dwVersion$LAYOUT, dwVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static void dwVersion(MemorySegment struct, int fieldValue) {
+        struct.set(dwVersion$LAYOUT, dwVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iExpiration$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iExpiration"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * INT32 iExpiration
+     * }
+     */
+    public static final OfInt iExpiration$layout() {
+        return iExpiration$LAYOUT;
+    }
+
+    private static final long iExpiration$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * INT32 iExpiration
+     * }
+     */
+    public static final long iExpiration$offset() {
+        return iExpiration$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * INT32 iExpiration
+     * }
+     */
+    public static int iExpiration(MemorySegment struct) {
+        return struct.get(iExpiration$LAYOUT, iExpiration$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * INT32 iExpiration
+     * }
+     */
+    public static void iExpiration(MemorySegment struct, int fieldValue) {
+        struct.set(iExpiration$LAYOUT, iExpiration$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout pabNonce$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("pabNonce"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE pabNonce[32]
+     * }
+     */
+    public static final SequenceLayout pabNonce$layout() {
+        return pabNonce$LAYOUT;
+    }
+
+    private static final long pabNonce$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE pabNonce[32]
+     * }
+     */
+    public static final long pabNonce$offset() {
+        return pabNonce$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE pabNonce[32]
+     * }
+     */
+    public static MemorySegment pabNonce(MemorySegment struct) {
+        return struct.asSlice(pabNonce$OFFSET, pabNonce$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE pabNonce[32]
+     * }
+     */
+    public static void pabNonce(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, pabNonce$OFFSET, pabNonce$LAYOUT.byteSize());
+    }
+
+    private static long[] pabNonce$DIMS = { 32 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE pabNonce[32]
+     * }
+     */
+    public static long[] pabNonce$dimensions() {
+        return pabNonce$DIMS;
+    }
+    private static final VarHandle pabNonce$ELEM_HANDLE = pabNonce$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE pabNonce[32]
+     * }
+     */
+    public static byte pabNonce(MemorySegment struct, long index0) {
+        return (byte)pabNonce$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE pabNonce[32]
+     * }
+     */
+    public static void pabNonce(MemorySegment struct, long index0, byte fieldValue) {
+        pabNonce$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout pabPolicyRef$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("pabPolicyRef"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE pabPolicyRef[32]
+     * }
+     */
+    public static final SequenceLayout pabPolicyRef$layout() {
+        return pabPolicyRef$LAYOUT;
+    }
+
+    private static final long pabPolicyRef$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE pabPolicyRef[32]
+     * }
+     */
+    public static final long pabPolicyRef$offset() {
+        return pabPolicyRef$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE pabPolicyRef[32]
+     * }
+     */
+    public static MemorySegment pabPolicyRef(MemorySegment struct) {
+        return struct.asSlice(pabPolicyRef$OFFSET, pabPolicyRef$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE pabPolicyRef[32]
+     * }
+     */
+    public static void pabPolicyRef(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, pabPolicyRef$OFFSET, pabPolicyRef$LAYOUT.byteSize());
+    }
+
+    private static long[] pabPolicyRef$DIMS = { 32 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE pabPolicyRef[32]
+     * }
+     */
+    public static long[] pabPolicyRef$dimensions() {
+        return pabPolicyRef$DIMS;
+    }
+    private static final VarHandle pabPolicyRef$ELEM_HANDLE = pabPolicyRef$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE pabPolicyRef[32]
+     * }
+     */
+    public static byte pabPolicyRef(MemorySegment struct, long index0) {
+        return (byte)pabPolicyRef$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE pabPolicyRef[32]
+     * }
+     */
+    public static void pabPolicyRef(MemorySegment struct, long index0, byte fieldValue) {
+        pabPolicyRef$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout pabHMAC$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("pabHMAC"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE pabHMAC[32]
+     * }
+     */
+    public static final SequenceLayout pabHMAC$layout() {
+        return pabHMAC$LAYOUT;
+    }
+
+    private static final long pabHMAC$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE pabHMAC[32]
+     * }
+     */
+    public static final long pabHMAC$offset() {
+        return pabHMAC$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE pabHMAC[32]
+     * }
+     */
+    public static MemorySegment pabHMAC(MemorySegment struct) {
+        return struct.asSlice(pabHMAC$OFFSET, pabHMAC$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE pabHMAC[32]
+     * }
+     */
+    public static void pabHMAC(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, pabHMAC$OFFSET, pabHMAC$LAYOUT.byteSize());
+    }
+
+    private static long[] pabHMAC$DIMS = { 32 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE pabHMAC[32]
+     * }
+     */
+    public static long[] pabHMAC$dimensions() {
+        return pabHMAC$DIMS;
+    }
+    private static final VarHandle pabHMAC$ELEM_HANDLE = pabHMAC$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE pabHMAC[32]
+     * }
+     */
+    public static byte pabHMAC(MemorySegment struct, long index0) {
+        return (byte)pabHMAC$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE pabHMAC[32]
+     * }
+     */
+    public static void pabHMAC(MemorySegment struct, long index0, byte fieldValue) {
+        pabHMAC$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

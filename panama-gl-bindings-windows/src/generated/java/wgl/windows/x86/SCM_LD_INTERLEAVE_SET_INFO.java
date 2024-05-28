@@ -2,13 +2,30 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _SCM_LD_INTERLEAVE_SET_INFO {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     DWORD InterleaveSetSize;
+ *     SCM_INTERLEAVED_PD_INFO InterleaveSet[1];
+ * } SCM_LD_INTERLEAVE_SET_INFO
+ * }
+ */
 public class SCM_LD_INTERLEAVE_SET_INFO extends _SCM_LD_INTERLEAVE_SET_INFO {
 
+    SCM_LD_INTERLEAVE_SET_INFO() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DISK_CONTROLLER_NUMBER {
+ *     DWORD ControllerNumber;
+ *     DWORD DiskNumber;
+ * }
+ * }
+ */
 public class _DISK_CONTROLLER_NUMBER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ControllerNumber"),
-        Constants$root.C_LONG$LAYOUT.withName("DiskNumber")
-    ).withName("_DISK_CONTROLLER_NUMBER");
-    public static MemoryLayout $LAYOUT() {
-        return _DISK_CONTROLLER_NUMBER.$struct$LAYOUT;
+    _DISK_CONTROLLER_NUMBER() {
+        // Should not be called directly
     }
-    static final VarHandle ControllerNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ControllerNumber"));
-    public static VarHandle ControllerNumber$VH() {
-        return _DISK_CONTROLLER_NUMBER.ControllerNumber$VH;
-    }
-    public static int ControllerNumber$get(MemorySegment seg) {
-        return (int)_DISK_CONTROLLER_NUMBER.ControllerNumber$VH.get(seg);
-    }
-    public static void ControllerNumber$set( MemorySegment seg, int x) {
-        _DISK_CONTROLLER_NUMBER.ControllerNumber$VH.set(seg, x);
-    }
-    public static int ControllerNumber$get(MemorySegment seg, long index) {
-        return (int)_DISK_CONTROLLER_NUMBER.ControllerNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ControllerNumber$set(MemorySegment seg, long index, int x) {
-        _DISK_CONTROLLER_NUMBER.ControllerNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DiskNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DiskNumber"));
-    public static VarHandle DiskNumber$VH() {
-        return _DISK_CONTROLLER_NUMBER.DiskNumber$VH;
-    }
-    public static int DiskNumber$get(MemorySegment seg) {
-        return (int)_DISK_CONTROLLER_NUMBER.DiskNumber$VH.get(seg);
-    }
-    public static void DiskNumber$set( MemorySegment seg, int x) {
-        _DISK_CONTROLLER_NUMBER.DiskNumber$VH.set(seg, x);
-    }
-    public static int DiskNumber$get(MemorySegment seg, long index) {
-        return (int)_DISK_CONTROLLER_NUMBER.DiskNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DiskNumber$set(MemorySegment seg, long index, int x) {
-        _DISK_CONTROLLER_NUMBER.DiskNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("ControllerNumber"),
+        wgl_h.C_LONG.withName("DiskNumber")
+    ).withName("_DISK_CONTROLLER_NUMBER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt ControllerNumber$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ControllerNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ControllerNumber
+     * }
+     */
+    public static final OfInt ControllerNumber$layout() {
+        return ControllerNumber$LAYOUT;
+    }
+
+    private static final long ControllerNumber$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ControllerNumber
+     * }
+     */
+    public static final long ControllerNumber$offset() {
+        return ControllerNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ControllerNumber
+     * }
+     */
+    public static int ControllerNumber(MemorySegment struct) {
+        return struct.get(ControllerNumber$LAYOUT, ControllerNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ControllerNumber
+     * }
+     */
+    public static void ControllerNumber(MemorySegment struct, int fieldValue) {
+        struct.set(ControllerNumber$LAYOUT, ControllerNumber$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DiskNumber$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DiskNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DiskNumber
+     * }
+     */
+    public static final OfInt DiskNumber$layout() {
+        return DiskNumber$LAYOUT;
+    }
+
+    private static final long DiskNumber$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DiskNumber
+     * }
+     */
+    public static final long DiskNumber$offset() {
+        return DiskNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DiskNumber
+     * }
+     */
+    public static int DiskNumber(MemorySegment struct) {
+        return struct.get(DiskNumber$LAYOUT, DiskNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DiskNumber
+     * }
+     */
+    public static void DiskNumber(MemorySegment struct, int fieldValue) {
+        struct.set(DiskNumber$LAYOUT, DiskNumber$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

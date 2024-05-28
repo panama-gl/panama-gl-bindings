@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct linger {
+ *     u_short l_onoff;
+ *     u_short l_linger;
+ * }
+ * }
+ */
 public class linger {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("l_onoff"),
-        Constants$root.C_SHORT$LAYOUT.withName("l_linger")
-    ).withName("linger");
-    public static MemoryLayout $LAYOUT() {
-        return linger.$struct$LAYOUT;
+    linger() {
+        // Should not be called directly
     }
-    static final VarHandle l_onoff$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("l_onoff"));
-    public static VarHandle l_onoff$VH() {
-        return linger.l_onoff$VH;
-    }
-    public static short l_onoff$get(MemorySegment seg) {
-        return (short)linger.l_onoff$VH.get(seg);
-    }
-    public static void l_onoff$set( MemorySegment seg, short x) {
-        linger.l_onoff$VH.set(seg, x);
-    }
-    public static short l_onoff$get(MemorySegment seg, long index) {
-        return (short)linger.l_onoff$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void l_onoff$set(MemorySegment seg, long index, short x) {
-        linger.l_onoff$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle l_linger$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("l_linger"));
-    public static VarHandle l_linger$VH() {
-        return linger.l_linger$VH;
-    }
-    public static short l_linger$get(MemorySegment seg) {
-        return (short)linger.l_linger$VH.get(seg);
-    }
-    public static void l_linger$set( MemorySegment seg, short x) {
-        linger.l_linger$VH.set(seg, x);
-    }
-    public static short l_linger$get(MemorySegment seg, long index) {
-        return (short)linger.l_linger$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void l_linger$set(MemorySegment seg, long index, short x) {
-        linger.l_linger$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("l_onoff"),
+        wgl_h.C_SHORT.withName("l_linger")
+    ).withName("linger");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort l_onoff$LAYOUT = (OfShort)$LAYOUT.select(groupElement("l_onoff"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * u_short l_onoff
+     * }
+     */
+    public static final OfShort l_onoff$layout() {
+        return l_onoff$LAYOUT;
+    }
+
+    private static final long l_onoff$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * u_short l_onoff
+     * }
+     */
+    public static final long l_onoff$offset() {
+        return l_onoff$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * u_short l_onoff
+     * }
+     */
+    public static short l_onoff(MemorySegment struct) {
+        return struct.get(l_onoff$LAYOUT, l_onoff$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * u_short l_onoff
+     * }
+     */
+    public static void l_onoff(MemorySegment struct, short fieldValue) {
+        struct.set(l_onoff$LAYOUT, l_onoff$OFFSET, fieldValue);
+    }
+
+    private static final OfShort l_linger$LAYOUT = (OfShort)$LAYOUT.select(groupElement("l_linger"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * u_short l_linger
+     * }
+     */
+    public static final OfShort l_linger$layout() {
+        return l_linger$LAYOUT;
+    }
+
+    private static final long l_linger$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * u_short l_linger
+     * }
+     */
+    public static final long l_linger$offset() {
+        return l_linger$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * u_short l_linger
+     * }
+     */
+    public static short l_linger(MemorySegment struct) {
+        return struct.get(l_linger$LAYOUT, l_linger$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * u_short l_linger
+     * }
+     */
+    public static void l_linger(MemorySegment struct, short fieldValue) {
+        struct.set(l_linger$LAYOUT, l_linger$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

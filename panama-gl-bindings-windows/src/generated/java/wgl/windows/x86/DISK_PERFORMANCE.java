@@ -2,13 +2,38 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _DISK_PERFORMANCE {
+ *     LARGE_INTEGER BytesRead;
+ *     LARGE_INTEGER BytesWritten;
+ *     LARGE_INTEGER ReadTime;
+ *     LARGE_INTEGER WriteTime;
+ *     LARGE_INTEGER IdleTime;
+ *     DWORD ReadCount;
+ *     DWORD WriteCount;
+ *     DWORD QueueDepth;
+ *     DWORD SplitCount;
+ *     LARGE_INTEGER QueryTime;
+ *     DWORD StorageDeviceNumber;
+ *     WCHAR StorageManagerName[8];
+ * } DISK_PERFORMANCE
+ * }
+ */
 public class DISK_PERFORMANCE extends _DISK_PERFORMANCE {
 
+    DISK_PERFORMANCE() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,13 +2,34 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _MIDL_SERVER_INFO_ {
+ *     PMIDL_STUB_DESC pStubDesc;
+ *     const SERVER_ROUTINE *DispatchTable;
+ *     PFORMAT_STRING ProcString;
+ *     const unsigned short *FmtStringOffset;
+ *     const STUB_THUNK *ThunkTable;
+ *     PRPC_SYNTAX_IDENTIFIER pTransferSyntax;
+ *     ULONG_PTR nCount;
+ *     PMIDL_SYNTAX_INFO pSyntaxInfo;
+ * } MIDL_SERVER_INFO
+ * }
+ */
 public class MIDL_SERVER_INFO extends _MIDL_SERVER_INFO_ {
 
+    MIDL_SERVER_INFO() {
+        // Should not be called directly
+    }
 }
-
 

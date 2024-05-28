@@ -2,65 +2,218 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagLOGPEN {
+ *     UINT lopnStyle;
+ *     POINT lopnWidth;
+ *     COLORREF lopnColor;
+ * }
+ * }
+ */
 public class tagLOGPEN {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("lopnStyle"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("x"),
-            Constants$root.C_LONG$LAYOUT.withName("y")
-        ).withName("lopnWidth"),
-        Constants$root.C_LONG$LAYOUT.withName("lopnColor")
-    ).withName("tagLOGPEN");
-    public static MemoryLayout $LAYOUT() {
-        return tagLOGPEN.$struct$LAYOUT;
+    tagLOGPEN() {
+        // Should not be called directly
     }
-    static final VarHandle lopnStyle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lopnStyle"));
-    public static VarHandle lopnStyle$VH() {
-        return tagLOGPEN.lopnStyle$VH;
-    }
-    public static int lopnStyle$get(MemorySegment seg) {
-        return (int)tagLOGPEN.lopnStyle$VH.get(seg);
-    }
-    public static void lopnStyle$set( MemorySegment seg, int x) {
-        tagLOGPEN.lopnStyle$VH.set(seg, x);
-    }
-    public static int lopnStyle$get(MemorySegment seg, long index) {
-        return (int)tagLOGPEN.lopnStyle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lopnStyle$set(MemorySegment seg, long index, int x) {
-        tagLOGPEN.lopnStyle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment lopnWidth$slice(MemorySegment seg) {
-        return seg.asSlice(4, 8);
-    }
-    static final VarHandle lopnColor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lopnColor"));
-    public static VarHandle lopnColor$VH() {
-        return tagLOGPEN.lopnColor$VH;
-    }
-    public static int lopnColor$get(MemorySegment seg) {
-        return (int)tagLOGPEN.lopnColor$VH.get(seg);
-    }
-    public static void lopnColor$set( MemorySegment seg, int x) {
-        tagLOGPEN.lopnColor$VH.set(seg, x);
-    }
-    public static int lopnColor$get(MemorySegment seg, long index) {
-        return (int)tagLOGPEN.lopnColor$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lopnColor$set(MemorySegment seg, long index, int x) {
-        tagLOGPEN.lopnColor$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_INT.withName("lopnStyle"),
+        tagPOINT.layout().withName("lopnWidth"),
+        freeglut_h.C_LONG.withName("lopnColor")
+    ).withName("tagLOGPEN");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt lopnStyle$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lopnStyle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT lopnStyle
+     * }
+     */
+    public static final OfInt lopnStyle$layout() {
+        return lopnStyle$LAYOUT;
+    }
+
+    private static final long lopnStyle$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT lopnStyle
+     * }
+     */
+    public static final long lopnStyle$offset() {
+        return lopnStyle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT lopnStyle
+     * }
+     */
+    public static int lopnStyle(MemorySegment struct) {
+        return struct.get(lopnStyle$LAYOUT, lopnStyle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT lopnStyle
+     * }
+     */
+    public static void lopnStyle(MemorySegment struct, int fieldValue) {
+        struct.set(lopnStyle$LAYOUT, lopnStyle$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout lopnWidth$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("lopnWidth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POINT lopnWidth
+     * }
+     */
+    public static final GroupLayout lopnWidth$layout() {
+        return lopnWidth$LAYOUT;
+    }
+
+    private static final long lopnWidth$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POINT lopnWidth
+     * }
+     */
+    public static final long lopnWidth$offset() {
+        return lopnWidth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POINT lopnWidth
+     * }
+     */
+    public static MemorySegment lopnWidth(MemorySegment struct) {
+        return struct.asSlice(lopnWidth$OFFSET, lopnWidth$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POINT lopnWidth
+     * }
+     */
+    public static void lopnWidth(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, lopnWidth$OFFSET, lopnWidth$LAYOUT.byteSize());
+    }
+
+    private static final OfInt lopnColor$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lopnColor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * COLORREF lopnColor
+     * }
+     */
+    public static final OfInt lopnColor$layout() {
+        return lopnColor$LAYOUT;
+    }
+
+    private static final long lopnColor$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * COLORREF lopnColor
+     * }
+     */
+    public static final long lopnColor$offset() {
+        return lopnColor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * COLORREF lopnColor
+     * }
+     */
+    public static int lopnColor(MemorySegment struct) {
+        return struct.get(lopnColor$LAYOUT, lopnColor$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * COLORREF lopnColor
+     * }
+     */
+    public static void lopnColor(MemorySegment struct, int fieldValue) {
+        struct.set(lopnColor$LAYOUT, lopnColor$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

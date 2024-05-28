@@ -2,150 +2,485 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _UNWIND_HISTORY_TABLE {
+ *     DWORD Count;
+ *     BYTE LocalHint;
+ *     BYTE GlobalHint;
+ *     BYTE Search;
+ *     BYTE Once;
+ *     DWORD64 LowAddress;
+ *     DWORD64 HighAddress;
+ *     UNWIND_HISTORY_TABLE_ENTRY Entry[12];
+ * }
+ * }
+ */
 public class _UNWIND_HISTORY_TABLE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Count"),
-        Constants$root.C_CHAR$LAYOUT.withName("LocalHint"),
-        Constants$root.C_CHAR$LAYOUT.withName("GlobalHint"),
-        Constants$root.C_CHAR$LAYOUT.withName("Search"),
-        Constants$root.C_CHAR$LAYOUT.withName("Once"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("LowAddress"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("HighAddress"),
-        MemoryLayout.sequenceLayout(12, MemoryLayout.structLayout(
-            Constants$root.C_LONG_LONG$LAYOUT.withName("ImageBase"),
-            Constants$root.C_POINTER$LAYOUT.withName("FunctionEntry")
-        ).withName("_UNWIND_HISTORY_TABLE_ENTRY")).withName("Entry")
-    ).withName("_UNWIND_HISTORY_TABLE");
-    public static MemoryLayout $LAYOUT() {
-        return _UNWIND_HISTORY_TABLE.$struct$LAYOUT;
+    _UNWIND_HISTORY_TABLE() {
+        // Should not be called directly
     }
-    static final VarHandle Count$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Count"));
-    public static VarHandle Count$VH() {
-        return _UNWIND_HISTORY_TABLE.Count$VH;
-    }
-    public static int Count$get(MemorySegment seg) {
-        return (int)_UNWIND_HISTORY_TABLE.Count$VH.get(seg);
-    }
-    public static void Count$set( MemorySegment seg, int x) {
-        _UNWIND_HISTORY_TABLE.Count$VH.set(seg, x);
-    }
-    public static int Count$get(MemorySegment seg, long index) {
-        return (int)_UNWIND_HISTORY_TABLE.Count$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Count$set(MemorySegment seg, long index, int x) {
-        _UNWIND_HISTORY_TABLE.Count$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LocalHint$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LocalHint"));
-    public static VarHandle LocalHint$VH() {
-        return _UNWIND_HISTORY_TABLE.LocalHint$VH;
-    }
-    public static byte LocalHint$get(MemorySegment seg) {
-        return (byte)_UNWIND_HISTORY_TABLE.LocalHint$VH.get(seg);
-    }
-    public static void LocalHint$set( MemorySegment seg, byte x) {
-        _UNWIND_HISTORY_TABLE.LocalHint$VH.set(seg, x);
-    }
-    public static byte LocalHint$get(MemorySegment seg, long index) {
-        return (byte)_UNWIND_HISTORY_TABLE.LocalHint$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LocalHint$set(MemorySegment seg, long index, byte x) {
-        _UNWIND_HISTORY_TABLE.LocalHint$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GlobalHint$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GlobalHint"));
-    public static VarHandle GlobalHint$VH() {
-        return _UNWIND_HISTORY_TABLE.GlobalHint$VH;
-    }
-    public static byte GlobalHint$get(MemorySegment seg) {
-        return (byte)_UNWIND_HISTORY_TABLE.GlobalHint$VH.get(seg);
-    }
-    public static void GlobalHint$set( MemorySegment seg, byte x) {
-        _UNWIND_HISTORY_TABLE.GlobalHint$VH.set(seg, x);
-    }
-    public static byte GlobalHint$get(MemorySegment seg, long index) {
-        return (byte)_UNWIND_HISTORY_TABLE.GlobalHint$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GlobalHint$set(MemorySegment seg, long index, byte x) {
-        _UNWIND_HISTORY_TABLE.GlobalHint$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Search$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Search"));
-    public static VarHandle Search$VH() {
-        return _UNWIND_HISTORY_TABLE.Search$VH;
-    }
-    public static byte Search$get(MemorySegment seg) {
-        return (byte)_UNWIND_HISTORY_TABLE.Search$VH.get(seg);
-    }
-    public static void Search$set( MemorySegment seg, byte x) {
-        _UNWIND_HISTORY_TABLE.Search$VH.set(seg, x);
-    }
-    public static byte Search$get(MemorySegment seg, long index) {
-        return (byte)_UNWIND_HISTORY_TABLE.Search$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Search$set(MemorySegment seg, long index, byte x) {
-        _UNWIND_HISTORY_TABLE.Search$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Once$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Once"));
-    public static VarHandle Once$VH() {
-        return _UNWIND_HISTORY_TABLE.Once$VH;
-    }
-    public static byte Once$get(MemorySegment seg) {
-        return (byte)_UNWIND_HISTORY_TABLE.Once$VH.get(seg);
-    }
-    public static void Once$set( MemorySegment seg, byte x) {
-        _UNWIND_HISTORY_TABLE.Once$VH.set(seg, x);
-    }
-    public static byte Once$get(MemorySegment seg, long index) {
-        return (byte)_UNWIND_HISTORY_TABLE.Once$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Once$set(MemorySegment seg, long index, byte x) {
-        _UNWIND_HISTORY_TABLE.Once$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LowAddress$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LowAddress"));
-    public static VarHandle LowAddress$VH() {
-        return _UNWIND_HISTORY_TABLE.LowAddress$VH;
-    }
-    public static long LowAddress$get(MemorySegment seg) {
-        return (long)_UNWIND_HISTORY_TABLE.LowAddress$VH.get(seg);
-    }
-    public static void LowAddress$set( MemorySegment seg, long x) {
-        _UNWIND_HISTORY_TABLE.LowAddress$VH.set(seg, x);
-    }
-    public static long LowAddress$get(MemorySegment seg, long index) {
-        return (long)_UNWIND_HISTORY_TABLE.LowAddress$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LowAddress$set(MemorySegment seg, long index, long x) {
-        _UNWIND_HISTORY_TABLE.LowAddress$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle HighAddress$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HighAddress"));
-    public static VarHandle HighAddress$VH() {
-        return _UNWIND_HISTORY_TABLE.HighAddress$VH;
-    }
-    public static long HighAddress$get(MemorySegment seg) {
-        return (long)_UNWIND_HISTORY_TABLE.HighAddress$VH.get(seg);
-    }
-    public static void HighAddress$set( MemorySegment seg, long x) {
-        _UNWIND_HISTORY_TABLE.HighAddress$VH.set(seg, x);
-    }
-    public static long HighAddress$get(MemorySegment seg, long index) {
-        return (long)_UNWIND_HISTORY_TABLE.HighAddress$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HighAddress$set(MemorySegment seg, long index, long x) {
-        _UNWIND_HISTORY_TABLE.HighAddress$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Entry$slice(MemorySegment seg) {
-        return seg.asSlice(24, 192);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Count"),
+        wgl_h.C_CHAR.withName("LocalHint"),
+        wgl_h.C_CHAR.withName("GlobalHint"),
+        wgl_h.C_CHAR.withName("Search"),
+        wgl_h.C_CHAR.withName("Once"),
+        wgl_h.C_LONG_LONG.withName("LowAddress"),
+        wgl_h.C_LONG_LONG.withName("HighAddress"),
+        MemoryLayout.sequenceLayout(12, _UNWIND_HISTORY_TABLE_ENTRY.layout()).withName("Entry")
+    ).withName("_UNWIND_HISTORY_TABLE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Count$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Count"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Count
+     * }
+     */
+    public static final OfInt Count$layout() {
+        return Count$LAYOUT;
+    }
+
+    private static final long Count$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Count
+     * }
+     */
+    public static final long Count$offset() {
+        return Count$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Count
+     * }
+     */
+    public static int Count(MemorySegment struct) {
+        return struct.get(Count$LAYOUT, Count$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Count
+     * }
+     */
+    public static void Count(MemorySegment struct, int fieldValue) {
+        struct.set(Count$LAYOUT, Count$OFFSET, fieldValue);
+    }
+
+    private static final OfByte LocalHint$LAYOUT = (OfByte)$LAYOUT.select(groupElement("LocalHint"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE LocalHint
+     * }
+     */
+    public static final OfByte LocalHint$layout() {
+        return LocalHint$LAYOUT;
+    }
+
+    private static final long LocalHint$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE LocalHint
+     * }
+     */
+    public static final long LocalHint$offset() {
+        return LocalHint$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE LocalHint
+     * }
+     */
+    public static byte LocalHint(MemorySegment struct) {
+        return struct.get(LocalHint$LAYOUT, LocalHint$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE LocalHint
+     * }
+     */
+    public static void LocalHint(MemorySegment struct, byte fieldValue) {
+        struct.set(LocalHint$LAYOUT, LocalHint$OFFSET, fieldValue);
+    }
+
+    private static final OfByte GlobalHint$LAYOUT = (OfByte)$LAYOUT.select(groupElement("GlobalHint"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE GlobalHint
+     * }
+     */
+    public static final OfByte GlobalHint$layout() {
+        return GlobalHint$LAYOUT;
+    }
+
+    private static final long GlobalHint$OFFSET = 5;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE GlobalHint
+     * }
+     */
+    public static final long GlobalHint$offset() {
+        return GlobalHint$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE GlobalHint
+     * }
+     */
+    public static byte GlobalHint(MemorySegment struct) {
+        return struct.get(GlobalHint$LAYOUT, GlobalHint$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE GlobalHint
+     * }
+     */
+    public static void GlobalHint(MemorySegment struct, byte fieldValue) {
+        struct.set(GlobalHint$LAYOUT, GlobalHint$OFFSET, fieldValue);
+    }
+
+    private static final OfByte Search$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Search"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Search
+     * }
+     */
+    public static final OfByte Search$layout() {
+        return Search$LAYOUT;
+    }
+
+    private static final long Search$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Search
+     * }
+     */
+    public static final long Search$offset() {
+        return Search$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Search
+     * }
+     */
+    public static byte Search(MemorySegment struct) {
+        return struct.get(Search$LAYOUT, Search$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Search
+     * }
+     */
+    public static void Search(MemorySegment struct, byte fieldValue) {
+        struct.set(Search$LAYOUT, Search$OFFSET, fieldValue);
+    }
+
+    private static final OfByte Once$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Once"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Once
+     * }
+     */
+    public static final OfByte Once$layout() {
+        return Once$LAYOUT;
+    }
+
+    private static final long Once$OFFSET = 7;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Once
+     * }
+     */
+    public static final long Once$offset() {
+        return Once$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Once
+     * }
+     */
+    public static byte Once(MemorySegment struct) {
+        return struct.get(Once$LAYOUT, Once$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Once
+     * }
+     */
+    public static void Once(MemorySegment struct, byte fieldValue) {
+        struct.set(Once$LAYOUT, Once$OFFSET, fieldValue);
+    }
+
+    private static final OfLong LowAddress$LAYOUT = (OfLong)$LAYOUT.select(groupElement("LowAddress"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 LowAddress
+     * }
+     */
+    public static final OfLong LowAddress$layout() {
+        return LowAddress$LAYOUT;
+    }
+
+    private static final long LowAddress$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 LowAddress
+     * }
+     */
+    public static final long LowAddress$offset() {
+        return LowAddress$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 LowAddress
+     * }
+     */
+    public static long LowAddress(MemorySegment struct) {
+        return struct.get(LowAddress$LAYOUT, LowAddress$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 LowAddress
+     * }
+     */
+    public static void LowAddress(MemorySegment struct, long fieldValue) {
+        struct.set(LowAddress$LAYOUT, LowAddress$OFFSET, fieldValue);
+    }
+
+    private static final OfLong HighAddress$LAYOUT = (OfLong)$LAYOUT.select(groupElement("HighAddress"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 HighAddress
+     * }
+     */
+    public static final OfLong HighAddress$layout() {
+        return HighAddress$LAYOUT;
+    }
+
+    private static final long HighAddress$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 HighAddress
+     * }
+     */
+    public static final long HighAddress$offset() {
+        return HighAddress$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 HighAddress
+     * }
+     */
+    public static long HighAddress(MemorySegment struct) {
+        return struct.get(HighAddress$LAYOUT, HighAddress$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 HighAddress
+     * }
+     */
+    public static void HighAddress(MemorySegment struct, long fieldValue) {
+        struct.set(HighAddress$LAYOUT, HighAddress$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Entry$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Entry"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UNWIND_HISTORY_TABLE_ENTRY Entry[12]
+     * }
+     */
+    public static final SequenceLayout Entry$layout() {
+        return Entry$LAYOUT;
+    }
+
+    private static final long Entry$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UNWIND_HISTORY_TABLE_ENTRY Entry[12]
+     * }
+     */
+    public static final long Entry$offset() {
+        return Entry$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UNWIND_HISTORY_TABLE_ENTRY Entry[12]
+     * }
+     */
+    public static MemorySegment Entry(MemorySegment struct) {
+        return struct.asSlice(Entry$OFFSET, Entry$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UNWIND_HISTORY_TABLE_ENTRY Entry[12]
+     * }
+     */
+    public static void Entry(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Entry$OFFSET, Entry$LAYOUT.byteSize());
+    }
+
+    private static long[] Entry$DIMS = { 12 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * UNWIND_HISTORY_TABLE_ENTRY Entry[12]
+     * }
+     */
+    public static long[] Entry$dimensions() {
+        return Entry$DIMS;
+    }
+    private static final MethodHandle Entry$ELEM_HANDLE = Entry$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * UNWIND_HISTORY_TABLE_ENTRY Entry[12]
+     * }
+     */
+    public static MemorySegment Entry(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)Entry$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * UNWIND_HISTORY_TABLE_ENTRY Entry[12]
+     * }
+     */
+    public static void Entry(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, Entry(struct, index0), 0L, _UNWIND_HISTORY_TABLE_ENTRY.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

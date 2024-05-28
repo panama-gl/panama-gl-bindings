@@ -2,13 +2,39 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct joyinfoex_tag {
+ *     DWORD dwSize;
+ *     DWORD dwFlags;
+ *     DWORD dwXpos;
+ *     DWORD dwYpos;
+ *     DWORD dwZpos;
+ *     DWORD dwRpos;
+ *     DWORD dwUpos;
+ *     DWORD dwVpos;
+ *     DWORD dwButtons;
+ *     DWORD dwButtonNumber;
+ *     DWORD dwPOV;
+ *     DWORD dwReserved1;
+ *     DWORD dwReserved2;
+ * } JOYINFOEX
+ * }
+ */
 public class JOYINFOEX extends joyinfoex_tag {
 
+    JOYINFOEX() {
+        // Should not be called directly
+    }
 }
-
 

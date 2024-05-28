@@ -2,105 +2,312 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_REQUEST_INFO {
+ *     DWORD dwVersion;
+ *     CERT_NAME_BLOB Subject;
+ *     CERT_PUBLIC_KEY_INFO SubjectPublicKeyInfo;
+ *     DWORD cAttribute;
+ *     PCRYPT_ATTRIBUTE rgAttribute;
+ * }
+ * }
+ */
 public class _CERT_REQUEST_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwVersion"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData")
-        ).withName("Subject"),
-        MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_POINTER$LAYOUT.withName("pszObjId"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                    MemoryLayout.paddingLayout(32),
-                    Constants$root.C_POINTER$LAYOUT.withName("pbData")
-                ).withName("Parameters")
-            ).withName("Algorithm"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                MemoryLayout.paddingLayout(32),
-                Constants$root.C_POINTER$LAYOUT.withName("pbData"),
-                Constants$root.C_LONG$LAYOUT.withName("cUnusedBits"),
-                MemoryLayout.paddingLayout(32)
-            ).withName("PublicKey")
-        ).withName("SubjectPublicKeyInfo"),
-        Constants$root.C_LONG$LAYOUT.withName("cAttribute"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgAttribute")
-    ).withName("_CERT_REQUEST_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_REQUEST_INFO.$struct$LAYOUT;
+    _CERT_REQUEST_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle dwVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwVersion"));
-    public static VarHandle dwVersion$VH() {
-        return _CERT_REQUEST_INFO.dwVersion$VH;
-    }
-    public static int dwVersion$get(MemorySegment seg) {
-        return (int)_CERT_REQUEST_INFO.dwVersion$VH.get(seg);
-    }
-    public static void dwVersion$set( MemorySegment seg, int x) {
-        _CERT_REQUEST_INFO.dwVersion$VH.set(seg, x);
-    }
-    public static int dwVersion$get(MemorySegment seg, long index) {
-        return (int)_CERT_REQUEST_INFO.dwVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwVersion$set(MemorySegment seg, long index, int x) {
-        _CERT_REQUEST_INFO.dwVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Subject$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment SubjectPublicKeyInfo$slice(MemorySegment seg) {
-        return seg.asSlice(24, 48);
-    }
-    static final VarHandle cAttribute$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cAttribute"));
-    public static VarHandle cAttribute$VH() {
-        return _CERT_REQUEST_INFO.cAttribute$VH;
-    }
-    public static int cAttribute$get(MemorySegment seg) {
-        return (int)_CERT_REQUEST_INFO.cAttribute$VH.get(seg);
-    }
-    public static void cAttribute$set( MemorySegment seg, int x) {
-        _CERT_REQUEST_INFO.cAttribute$VH.set(seg, x);
-    }
-    public static int cAttribute$get(MemorySegment seg, long index) {
-        return (int)_CERT_REQUEST_INFO.cAttribute$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cAttribute$set(MemorySegment seg, long index, int x) {
-        _CERT_REQUEST_INFO.cAttribute$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgAttribute$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgAttribute"));
-    public static VarHandle rgAttribute$VH() {
-        return _CERT_REQUEST_INFO.rgAttribute$VH;
-    }
-    public static MemoryAddress rgAttribute$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_REQUEST_INFO.rgAttribute$VH.get(seg);
-    }
-    public static void rgAttribute$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_REQUEST_INFO.rgAttribute$VH.set(seg, x);
-    }
-    public static MemoryAddress rgAttribute$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_REQUEST_INFO.rgAttribute$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgAttribute$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_REQUEST_INFO.rgAttribute$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwVersion"),
+        MemoryLayout.paddingLayout(4),
+        _CRYPTOAPI_BLOB.layout().withName("Subject"),
+        _CERT_PUBLIC_KEY_INFO.layout().withName("SubjectPublicKeyInfo"),
+        wgl_h.C_LONG.withName("cAttribute"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgAttribute")
+    ).withName("_CERT_REQUEST_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final OfInt dwVersion$layout() {
+        return dwVersion$LAYOUT;
+    }
+
+    private static final long dwVersion$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final long dwVersion$offset() {
+        return dwVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static int dwVersion(MemorySegment struct) {
+        return struct.get(dwVersion$LAYOUT, dwVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static void dwVersion(MemorySegment struct, int fieldValue) {
+        struct.set(dwVersion$LAYOUT, dwVersion$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout Subject$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Subject"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB Subject
+     * }
+     */
+    public static final GroupLayout Subject$layout() {
+        return Subject$LAYOUT;
+    }
+
+    private static final long Subject$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB Subject
+     * }
+     */
+    public static final long Subject$offset() {
+        return Subject$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB Subject
+     * }
+     */
+    public static MemorySegment Subject(MemorySegment struct) {
+        return struct.asSlice(Subject$OFFSET, Subject$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB Subject
+     * }
+     */
+    public static void Subject(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Subject$OFFSET, Subject$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout SubjectPublicKeyInfo$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("SubjectPublicKeyInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CERT_PUBLIC_KEY_INFO SubjectPublicKeyInfo
+     * }
+     */
+    public static final GroupLayout SubjectPublicKeyInfo$layout() {
+        return SubjectPublicKeyInfo$LAYOUT;
+    }
+
+    private static final long SubjectPublicKeyInfo$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CERT_PUBLIC_KEY_INFO SubjectPublicKeyInfo
+     * }
+     */
+    public static final long SubjectPublicKeyInfo$offset() {
+        return SubjectPublicKeyInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CERT_PUBLIC_KEY_INFO SubjectPublicKeyInfo
+     * }
+     */
+    public static MemorySegment SubjectPublicKeyInfo(MemorySegment struct) {
+        return struct.asSlice(SubjectPublicKeyInfo$OFFSET, SubjectPublicKeyInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CERT_PUBLIC_KEY_INFO SubjectPublicKeyInfo
+     * }
+     */
+    public static void SubjectPublicKeyInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, SubjectPublicKeyInfo$OFFSET, SubjectPublicKeyInfo$LAYOUT.byteSize());
+    }
+
+    private static final OfInt cAttribute$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cAttribute"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cAttribute
+     * }
+     */
+    public static final OfInt cAttribute$layout() {
+        return cAttribute$LAYOUT;
+    }
+
+    private static final long cAttribute$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cAttribute
+     * }
+     */
+    public static final long cAttribute$offset() {
+        return cAttribute$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cAttribute
+     * }
+     */
+    public static int cAttribute(MemorySegment struct) {
+        return struct.get(cAttribute$LAYOUT, cAttribute$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cAttribute
+     * }
+     */
+    public static void cAttribute(MemorySegment struct, int fieldValue) {
+        struct.set(cAttribute$LAYOUT, cAttribute$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgAttribute$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgAttribute"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCRYPT_ATTRIBUTE rgAttribute
+     * }
+     */
+    public static final AddressLayout rgAttribute$layout() {
+        return rgAttribute$LAYOUT;
+    }
+
+    private static final long rgAttribute$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCRYPT_ATTRIBUTE rgAttribute
+     * }
+     */
+    public static final long rgAttribute$offset() {
+        return rgAttribute$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCRYPT_ATTRIBUTE rgAttribute
+     * }
+     */
+    public static MemorySegment rgAttribute(MemorySegment struct) {
+        return struct.get(rgAttribute$LAYOUT, rgAttribute$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCRYPT_ATTRIBUTE rgAttribute
+     * }
+     */
+    public static void rgAttribute(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgAttribute$LAYOUT, rgAttribute$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,27 +2,67 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface SERVICE_MAIN_FUNCTIONA {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    void apply(int dwNumServicesArgs, java.lang.foreign.MemoryAddress lpServiceArgVectors);
-    static MemorySegment allocate(SERVICE_MAIN_FUNCTIONA fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(SERVICE_MAIN_FUNCTIONA.class, fi, constants$615.SERVICE_MAIN_FUNCTIONA$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef void (SERVICE_MAIN_FUNCTIONA)(DWORD, LPTSTR *) __attribute__((stdcall))
+ * }
+ */
+public class SERVICE_MAIN_FUNCTIONA {
+
+    SERVICE_MAIN_FUNCTIONA() {
+        // Should not be called directly
     }
-    static SERVICE_MAIN_FUNCTIONA ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _dwNumServicesArgs, java.lang.foreign.MemoryAddress _lpServiceArgVectors) -> {
-            try {
-                constants$615.SERVICE_MAIN_FUNCTIONA$MH.invokeExact((Addressable)symbol, _dwNumServicesArgs, (java.lang.foreign.Addressable)_lpServiceArgVectors);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply(int dwNumServicesArgs, MemorySegment lpServiceArgVectors);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+        freeglut_h.C_LONG,
+        freeglut_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = freeglut_h.upcallHandle(SERVICE_MAIN_FUNCTIONA.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(SERVICE_MAIN_FUNCTIONA.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr,int dwNumServicesArgs, MemorySegment lpServiceArgVectors) {
+        try {
+             DOWN$MH.invokeExact(funcPtr, dwNumServicesArgs, lpServiceArgVectors);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

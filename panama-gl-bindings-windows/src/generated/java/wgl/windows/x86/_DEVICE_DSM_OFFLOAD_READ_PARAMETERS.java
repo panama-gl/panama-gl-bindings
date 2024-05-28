@@ -2,62 +2,251 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DEVICE_DSM_OFFLOAD_READ_PARAMETERS {
+ *     DWORD Flags;
+ *     DWORD TimeToLive;
+ *     DWORD Reserved[2];
+ * }
+ * }
+ */
 public class _DEVICE_DSM_OFFLOAD_READ_PARAMETERS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("TimeToLive"),
-        MemoryLayout.sequenceLayout(2, Constants$root.C_LONG$LAYOUT).withName("Reserved")
-    ).withName("_DEVICE_DSM_OFFLOAD_READ_PARAMETERS");
-    public static MemoryLayout $LAYOUT() {
-        return _DEVICE_DSM_OFFLOAD_READ_PARAMETERS.$struct$LAYOUT;
+    _DEVICE_DSM_OFFLOAD_READ_PARAMETERS() {
+        // Should not be called directly
     }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _DEVICE_DSM_OFFLOAD_READ_PARAMETERS.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_DEVICE_DSM_OFFLOAD_READ_PARAMETERS.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _DEVICE_DSM_OFFLOAD_READ_PARAMETERS.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_DEVICE_DSM_OFFLOAD_READ_PARAMETERS.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _DEVICE_DSM_OFFLOAD_READ_PARAMETERS.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TimeToLive$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TimeToLive"));
-    public static VarHandle TimeToLive$VH() {
-        return _DEVICE_DSM_OFFLOAD_READ_PARAMETERS.TimeToLive$VH;
-    }
-    public static int TimeToLive$get(MemorySegment seg) {
-        return (int)_DEVICE_DSM_OFFLOAD_READ_PARAMETERS.TimeToLive$VH.get(seg);
-    }
-    public static void TimeToLive$set( MemorySegment seg, int x) {
-        _DEVICE_DSM_OFFLOAD_READ_PARAMETERS.TimeToLive$VH.set(seg, x);
-    }
-    public static int TimeToLive$get(MemorySegment seg, long index) {
-        return (int)_DEVICE_DSM_OFFLOAD_READ_PARAMETERS.TimeToLive$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TimeToLive$set(MemorySegment seg, long index, int x) {
-        _DEVICE_DSM_OFFLOAD_READ_PARAMETERS.TimeToLive$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Reserved$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_LONG.withName("TimeToLive"),
+        MemoryLayout.sequenceLayout(2, wgl_h.C_LONG).withName("Reserved")
+    ).withName("_DEVICE_DSM_OFFLOAD_READ_PARAMETERS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt TimeToLive$LAYOUT = (OfInt)$LAYOUT.select(groupElement("TimeToLive"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD TimeToLive
+     * }
+     */
+    public static final OfInt TimeToLive$layout() {
+        return TimeToLive$LAYOUT;
+    }
+
+    private static final long TimeToLive$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD TimeToLive
+     * }
+     */
+    public static final long TimeToLive$offset() {
+        return TimeToLive$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD TimeToLive
+     * }
+     */
+    public static int TimeToLive(MemorySegment struct) {
+        return struct.get(TimeToLive$LAYOUT, TimeToLive$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD TimeToLive
+     * }
+     */
+    public static void TimeToLive(MemorySegment struct, int fieldValue) {
+        struct.set(TimeToLive$LAYOUT, TimeToLive$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved[2]
+     * }
+     */
+    public static final SequenceLayout Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved[2]
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved[2]
+     * }
+     */
+    public static MemorySegment Reserved(MemorySegment struct) {
+        return struct.asSlice(Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved[2]
+     * }
+     */
+    public static void Reserved(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved$DIMS = { 2 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DWORD Reserved[2]
+     * }
+     */
+    public static long[] Reserved$dimensions() {
+        return Reserved$DIMS;
+    }
+    private static final VarHandle Reserved$ELEM_HANDLE = Reserved$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved[2]
+     * }
+     */
+    public static int Reserved(MemorySegment struct, long index0) {
+        return (int)Reserved$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved[2]
+     * }
+     */
+    public static void Reserved(MemorySegment struct, long index0, int fieldValue) {
+        Reserved$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

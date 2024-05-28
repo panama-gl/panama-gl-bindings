@@ -2,70 +2,172 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _WOW64_DESCRIPTOR_TABLE_ENTRY {
+ *     DWORD Selector;
+ *     WOW64_LDT_ENTRY Descriptor;
+ * }
+ * }
+ */
 public class _WOW64_DESCRIPTOR_TABLE_ENTRY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Selector"),
-        MemoryLayout.structLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("LimitLow"),
-            Constants$root.C_SHORT$LAYOUT.withName("BaseLow"),
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_CHAR$LAYOUT.withName("BaseMid"),
-                    Constants$root.C_CHAR$LAYOUT.withName("Flags1"),
-                    Constants$root.C_CHAR$LAYOUT.withName("Flags2"),
-                    Constants$root.C_CHAR$LAYOUT.withName("BaseHi")
-                ).withName("Bytes"),
-                MemoryLayout.structLayout(
-                    MemoryLayout.structLayout(
-                        MemoryLayout.paddingLayout(8).withName("BaseMid"),
-                        MemoryLayout.paddingLayout(5).withName("Type"),
-                        MemoryLayout.paddingLayout(2).withName("Dpl"),
-                        MemoryLayout.paddingLayout(1).withName("Pres"),
-                        MemoryLayout.paddingLayout(4).withName("LimitHi"),
-                        MemoryLayout.paddingLayout(1).withName("Sys"),
-                        MemoryLayout.paddingLayout(1).withName("Reserved_0"),
-                        MemoryLayout.paddingLayout(1).withName("Default_Big"),
-                        MemoryLayout.paddingLayout(1).withName("Granularity"),
-                        MemoryLayout.paddingLayout(8).withName("BaseHi")
-                    )
-                ).withName("Bits")
-            ).withName("HighWord")
-        ).withName("Descriptor")
-    ).withName("_WOW64_DESCRIPTOR_TABLE_ENTRY");
-    public static MemoryLayout $LAYOUT() {
-        return _WOW64_DESCRIPTOR_TABLE_ENTRY.$struct$LAYOUT;
+    _WOW64_DESCRIPTOR_TABLE_ENTRY() {
+        // Should not be called directly
     }
-    static final VarHandle Selector$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Selector"));
-    public static VarHandle Selector$VH() {
-        return _WOW64_DESCRIPTOR_TABLE_ENTRY.Selector$VH;
-    }
-    public static int Selector$get(MemorySegment seg) {
-        return (int)_WOW64_DESCRIPTOR_TABLE_ENTRY.Selector$VH.get(seg);
-    }
-    public static void Selector$set( MemorySegment seg, int x) {
-        _WOW64_DESCRIPTOR_TABLE_ENTRY.Selector$VH.set(seg, x);
-    }
-    public static int Selector$get(MemorySegment seg, long index) {
-        return (int)_WOW64_DESCRIPTOR_TABLE_ENTRY.Selector$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Selector$set(MemorySegment seg, long index, int x) {
-        _WOW64_DESCRIPTOR_TABLE_ENTRY.Selector$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Descriptor$slice(MemorySegment seg) {
-        return seg.asSlice(4, 8);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("Selector"),
+        _WOW64_LDT_ENTRY.layout().withName("Descriptor")
+    ).withName("_WOW64_DESCRIPTOR_TABLE_ENTRY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Selector$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Selector"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Selector
+     * }
+     */
+    public static final OfInt Selector$layout() {
+        return Selector$LAYOUT;
+    }
+
+    private static final long Selector$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Selector
+     * }
+     */
+    public static final long Selector$offset() {
+        return Selector$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Selector
+     * }
+     */
+    public static int Selector(MemorySegment struct) {
+        return struct.get(Selector$LAYOUT, Selector$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Selector
+     * }
+     */
+    public static void Selector(MemorySegment struct, int fieldValue) {
+        struct.set(Selector$LAYOUT, Selector$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout Descriptor$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Descriptor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WOW64_LDT_ENTRY Descriptor
+     * }
+     */
+    public static final GroupLayout Descriptor$layout() {
+        return Descriptor$LAYOUT;
+    }
+
+    private static final long Descriptor$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WOW64_LDT_ENTRY Descriptor
+     * }
+     */
+    public static final long Descriptor$offset() {
+        return Descriptor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WOW64_LDT_ENTRY Descriptor
+     * }
+     */
+    public static MemorySegment Descriptor(MemorySegment struct) {
+        return struct.asSlice(Descriptor$OFFSET, Descriptor$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WOW64_LDT_ENTRY Descriptor
+     * }
+     */
+    public static void Descriptor(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Descriptor$OFFSET, Descriptor$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

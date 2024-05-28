@@ -2,386 +2,890 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct ISurrogateServiceVtbl {
+ *     HRESULT (*QueryInterface)(ISurrogateService *, const IID *const, void **) __attribute__((stdcall));
+ *     ULONG (*AddRef)(ISurrogateService *) __attribute__((stdcall));
+ *     ULONG (*Release)(ISurrogateService *) __attribute__((stdcall));
+ *     HRESULT (*Init)(ISurrogateService *, const GUID *const, IProcessLock *, BOOL *) __attribute__((stdcall));
+ *     HRESULT (*ApplicationLaunch)(ISurrogateService *, const GUID *const, ApplicationType) __attribute__((stdcall));
+ *     HRESULT (*ApplicationFree)(ISurrogateService *, const GUID *const) __attribute__((stdcall));
+ *     HRESULT (*CatalogRefresh)(ISurrogateService *, ULONG) __attribute__((stdcall));
+ *     HRESULT (*ProcessShutdown)(ISurrogateService *, ShutdownType) __attribute__((stdcall));
+ * }
+ * }
+ */
 public class ISurrogateServiceVtbl {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("QueryInterface"),
-        Constants$root.C_POINTER$LAYOUT.withName("AddRef"),
-        Constants$root.C_POINTER$LAYOUT.withName("Release"),
-        Constants$root.C_POINTER$LAYOUT.withName("Init"),
-        Constants$root.C_POINTER$LAYOUT.withName("ApplicationLaunch"),
-        Constants$root.C_POINTER$LAYOUT.withName("ApplicationFree"),
-        Constants$root.C_POINTER$LAYOUT.withName("CatalogRefresh"),
-        Constants$root.C_POINTER$LAYOUT.withName("ProcessShutdown")
+    ISurrogateServiceVtbl() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("QueryInterface"),
+        wgl_h.C_POINTER.withName("AddRef"),
+        wgl_h.C_POINTER.withName("Release"),
+        wgl_h.C_POINTER.withName("Init"),
+        wgl_h.C_POINTER.withName("ApplicationLaunch"),
+        wgl_h.C_POINTER.withName("ApplicationFree"),
+        wgl_h.C_POINTER.withName("CatalogRefresh"),
+        wgl_h.C_POINTER.withName("ProcessShutdown")
     ).withName("ISurrogateServiceVtbl");
-    public static MemoryLayout $LAYOUT() {
-        return ISurrogateServiceVtbl.$struct$LAYOUT;
-    }
-    static final FunctionDescriptor QueryInterface$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle QueryInterface$MH = RuntimeHelper.downcallHandle(
-        ISurrogateServiceVtbl.QueryInterface$FUNC
-    );
-    public interface QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(QueryInterface fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(QueryInterface.class, fi, ISurrogateServiceVtbl.QueryInterface$FUNC, session);
-        }
-        static QueryInterface ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)ISurrogateServiceVtbl.QueryInterface$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
 
-    static final VarHandle QueryInterface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueryInterface"));
-    public static VarHandle QueryInterface$VH() {
-        return ISurrogateServiceVtbl.QueryInterface$VH;
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)ISurrogateServiceVtbl.QueryInterface$VH.get(seg);
-    }
-    public static void QueryInterface$set( MemorySegment seg, MemoryAddress x) {
-        ISurrogateServiceVtbl.QueryInterface$VH.set(seg, x);
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)ISurrogateServiceVtbl.QueryInterface$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void QueryInterface$set(MemorySegment seg, long index, MemoryAddress x) {
-        ISurrogateServiceVtbl.QueryInterface$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static QueryInterface QueryInterface (MemorySegment segment, MemorySession session) {
-        return QueryInterface.ofAddress(QueryInterface$get(segment), session);
-    }
-    static final FunctionDescriptor AddRef$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle AddRef$MH = RuntimeHelper.downcallHandle(
-        ISurrogateServiceVtbl.AddRef$FUNC
-    );
-    public interface AddRef {
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(ISurrogateService *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(AddRef fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(AddRef.class, fi, ISurrogateServiceVtbl.AddRef$FUNC, session);
+        QueryInterface() {
+            // Should not be called directly
         }
-        static AddRef ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)ISurrogateServiceVtbl.AddRef$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(QueryInterface.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(QueryInterface.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle AddRef$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddRef"));
-    public static VarHandle AddRef$VH() {
-        return ISurrogateServiceVtbl.AddRef$VH;
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)ISurrogateServiceVtbl.AddRef$VH.get(seg);
-    }
-    public static void AddRef$set( MemorySegment seg, MemoryAddress x) {
-        ISurrogateServiceVtbl.AddRef$VH.set(seg, x);
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)ISurrogateServiceVtbl.AddRef$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddRef$set(MemorySegment seg, long index, MemoryAddress x) {
-        ISurrogateServiceVtbl.AddRef$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static AddRef AddRef (MemorySegment segment, MemorySession session) {
-        return AddRef.ofAddress(AddRef$get(segment), session);
-    }
-    static final FunctionDescriptor Release$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Release$MH = RuntimeHelper.downcallHandle(
-        ISurrogateServiceVtbl.Release$FUNC
-    );
-    public interface Release {
+    private static final AddressLayout QueryInterface$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("QueryInterface"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Release fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Release.class, fi, ISurrogateServiceVtbl.Release$FUNC, session);
-        }
-        static Release ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)ISurrogateServiceVtbl.Release$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(ISurrogateService *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout QueryInterface$layout() {
+        return QueryInterface$LAYOUT;
     }
 
-    static final VarHandle Release$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Release"));
-    public static VarHandle Release$VH() {
-        return ISurrogateServiceVtbl.Release$VH;
-    }
-    public static MemoryAddress Release$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)ISurrogateServiceVtbl.Release$VH.get(seg);
-    }
-    public static void Release$set( MemorySegment seg, MemoryAddress x) {
-        ISurrogateServiceVtbl.Release$VH.set(seg, x);
-    }
-    public static MemoryAddress Release$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)ISurrogateServiceVtbl.Release$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Release$set(MemorySegment seg, long index, MemoryAddress x) {
-        ISurrogateServiceVtbl.Release$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Release Release (MemorySegment segment, MemorySession session) {
-        return Release.ofAddress(Release$get(segment), session);
-    }
-    static final FunctionDescriptor Init$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Init$MH = RuntimeHelper.downcallHandle(
-        ISurrogateServiceVtbl.Init$FUNC
-    );
-    public interface Init {
+    private static final long QueryInterface$OFFSET = 0;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3);
-        static MemorySegment allocate(Init fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Init.class, fi, ISurrogateServiceVtbl.Init$FUNC, session);
-        }
-        static Init ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3) -> {
-                try {
-                    return (int)ISurrogateServiceVtbl.Init$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(ISurrogateService *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long QueryInterface$offset() {
+        return QueryInterface$OFFSET;
     }
 
-    static final VarHandle Init$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Init"));
-    public static VarHandle Init$VH() {
-        return ISurrogateServiceVtbl.Init$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(ISurrogateService *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment QueryInterface(MemorySegment struct) {
+        return struct.get(QueryInterface$LAYOUT, QueryInterface$OFFSET);
     }
-    public static MemoryAddress Init$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)ISurrogateServiceVtbl.Init$VH.get(seg);
-    }
-    public static void Init$set( MemorySegment seg, MemoryAddress x) {
-        ISurrogateServiceVtbl.Init$VH.set(seg, x);
-    }
-    public static MemoryAddress Init$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)ISurrogateServiceVtbl.Init$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Init$set(MemorySegment seg, long index, MemoryAddress x) {
-        ISurrogateServiceVtbl.Init$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Init Init (MemorySegment segment, MemorySession session) {
-        return Init.ofAddress(Init$get(segment), session);
-    }
-    static final FunctionDescriptor ApplicationLaunch$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle ApplicationLaunch$MH = RuntimeHelper.downcallHandle(
-        ISurrogateServiceVtbl.ApplicationLaunch$FUNC
-    );
-    public interface ApplicationLaunch {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, int _x2);
-        static MemorySegment allocate(ApplicationLaunch fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(ApplicationLaunch.class, fi, ISurrogateServiceVtbl.ApplicationLaunch$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(ISurrogateService *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void QueryInterface(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(QueryInterface$LAYOUT, QueryInterface$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(ISurrogateService *) __attribute__((stdcall))
+     * }
+     */
+    public static class AddRef {
+
+        AddRef() {
+            // Should not be called directly
         }
-        static ApplicationLaunch ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, int __x2) -> {
-                try {
-                    return (int)ISurrogateServiceVtbl.ApplicationLaunch$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, __x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(AddRef.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(AddRef.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle ApplicationLaunch$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ApplicationLaunch"));
-    public static VarHandle ApplicationLaunch$VH() {
-        return ISurrogateServiceVtbl.ApplicationLaunch$VH;
-    }
-    public static MemoryAddress ApplicationLaunch$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)ISurrogateServiceVtbl.ApplicationLaunch$VH.get(seg);
-    }
-    public static void ApplicationLaunch$set( MemorySegment seg, MemoryAddress x) {
-        ISurrogateServiceVtbl.ApplicationLaunch$VH.set(seg, x);
-    }
-    public static MemoryAddress ApplicationLaunch$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)ISurrogateServiceVtbl.ApplicationLaunch$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ApplicationLaunch$set(MemorySegment seg, long index, MemoryAddress x) {
-        ISurrogateServiceVtbl.ApplicationLaunch$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static ApplicationLaunch ApplicationLaunch (MemorySegment segment, MemorySession session) {
-        return ApplicationLaunch.ofAddress(ApplicationLaunch$get(segment), session);
-    }
-    static final FunctionDescriptor ApplicationFree$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle ApplicationFree$MH = RuntimeHelper.downcallHandle(
-        ISurrogateServiceVtbl.ApplicationFree$FUNC
-    );
-    public interface ApplicationFree {
+    private static final AddressLayout AddRef$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AddRef"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(ApplicationFree fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(ApplicationFree.class, fi, ISurrogateServiceVtbl.ApplicationFree$FUNC, session);
-        }
-        static ApplicationFree ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)ISurrogateServiceVtbl.ApplicationFree$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(ISurrogateService *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout AddRef$layout() {
+        return AddRef$LAYOUT;
     }
 
-    static final VarHandle ApplicationFree$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ApplicationFree"));
-    public static VarHandle ApplicationFree$VH() {
-        return ISurrogateServiceVtbl.ApplicationFree$VH;
-    }
-    public static MemoryAddress ApplicationFree$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)ISurrogateServiceVtbl.ApplicationFree$VH.get(seg);
-    }
-    public static void ApplicationFree$set( MemorySegment seg, MemoryAddress x) {
-        ISurrogateServiceVtbl.ApplicationFree$VH.set(seg, x);
-    }
-    public static MemoryAddress ApplicationFree$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)ISurrogateServiceVtbl.ApplicationFree$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ApplicationFree$set(MemorySegment seg, long index, MemoryAddress x) {
-        ISurrogateServiceVtbl.ApplicationFree$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static ApplicationFree ApplicationFree (MemorySegment segment, MemorySession session) {
-        return ApplicationFree.ofAddress(ApplicationFree$get(segment), session);
-    }
-    static final FunctionDescriptor CatalogRefresh$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle CatalogRefresh$MH = RuntimeHelper.downcallHandle(
-        ISurrogateServiceVtbl.CatalogRefresh$FUNC
-    );
-    public interface CatalogRefresh {
+    private static final long AddRef$OFFSET = 8;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1);
-        static MemorySegment allocate(CatalogRefresh fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(CatalogRefresh.class, fi, ISurrogateServiceVtbl.CatalogRefresh$FUNC, session);
-        }
-        static CatalogRefresh ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1) -> {
-                try {
-                    return (int)ISurrogateServiceVtbl.CatalogRefresh$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(ISurrogateService *) __attribute__((stdcall))
+     * }
+     */
+    public static final long AddRef$offset() {
+        return AddRef$OFFSET;
     }
 
-    static final VarHandle CatalogRefresh$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CatalogRefresh"));
-    public static VarHandle CatalogRefresh$VH() {
-        return ISurrogateServiceVtbl.CatalogRefresh$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(ISurrogateService *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment AddRef(MemorySegment struct) {
+        return struct.get(AddRef$LAYOUT, AddRef$OFFSET);
     }
-    public static MemoryAddress CatalogRefresh$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)ISurrogateServiceVtbl.CatalogRefresh$VH.get(seg);
-    }
-    public static void CatalogRefresh$set( MemorySegment seg, MemoryAddress x) {
-        ISurrogateServiceVtbl.CatalogRefresh$VH.set(seg, x);
-    }
-    public static MemoryAddress CatalogRefresh$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)ISurrogateServiceVtbl.CatalogRefresh$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CatalogRefresh$set(MemorySegment seg, long index, MemoryAddress x) {
-        ISurrogateServiceVtbl.CatalogRefresh$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static CatalogRefresh CatalogRefresh (MemorySegment segment, MemorySession session) {
-        return CatalogRefresh.ofAddress(CatalogRefresh$get(segment), session);
-    }
-    static final FunctionDescriptor ProcessShutdown$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle ProcessShutdown$MH = RuntimeHelper.downcallHandle(
-        ISurrogateServiceVtbl.ProcessShutdown$FUNC
-    );
-    public interface ProcessShutdown {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1);
-        static MemorySegment allocate(ProcessShutdown fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(ProcessShutdown.class, fi, ISurrogateServiceVtbl.ProcessShutdown$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(ISurrogateService *) __attribute__((stdcall))
+     * }
+     */
+    public static void AddRef(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AddRef$LAYOUT, AddRef$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*Release)(ISurrogateService *) __attribute__((stdcall))
+     * }
+     */
+    public static class Release {
+
+        Release() {
+            // Should not be called directly
         }
-        static ProcessShutdown ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1) -> {
-                try {
-                    return (int)ISurrogateServiceVtbl.ProcessShutdown$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Release.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Release.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle ProcessShutdown$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProcessShutdown"));
-    public static VarHandle ProcessShutdown$VH() {
-        return ISurrogateServiceVtbl.ProcessShutdown$VH;
+    private static final AddressLayout Release$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Release"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(ISurrogateService *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Release$layout() {
+        return Release$LAYOUT;
     }
-    public static MemoryAddress ProcessShutdown$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)ISurrogateServiceVtbl.ProcessShutdown$VH.get(seg);
+
+    private static final long Release$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(ISurrogateService *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Release$offset() {
+        return Release$OFFSET;
     }
-    public static void ProcessShutdown$set( MemorySegment seg, MemoryAddress x) {
-        ISurrogateServiceVtbl.ProcessShutdown$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(ISurrogateService *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Release(MemorySegment struct) {
+        return struct.get(Release$LAYOUT, Release$OFFSET);
     }
-    public static MemoryAddress ProcessShutdown$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)ISurrogateServiceVtbl.ProcessShutdown$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(ISurrogateService *) __attribute__((stdcall))
+     * }
+     */
+    public static void Release(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Release$LAYOUT, Release$OFFSET, fieldValue);
     }
-    public static void ProcessShutdown$set(MemorySegment seg, long index, MemoryAddress x) {
-        ISurrogateServiceVtbl.ProcessShutdown$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*Init)(ISurrogateService *, const GUID *const, IProcessLock *, BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static class Init {
+
+        Init() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Init.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Init.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
     }
-    public static ProcessShutdown ProcessShutdown (MemorySegment segment, MemorySession session) {
-        return ProcessShutdown.ofAddress(ProcessShutdown$get(segment), session);
+
+    private static final AddressLayout Init$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Init"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*Init)(ISurrogateService *, const GUID *const, IProcessLock *, BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Init$layout() {
+        return Init$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long Init$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*Init)(ISurrogateService *, const GUID *const, IProcessLock *, BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Init$offset() {
+        return Init$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Init)(ISurrogateService *, const GUID *const, IProcessLock *, BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Init(MemorySegment struct) {
+        return struct.get(Init$LAYOUT, Init$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Init)(ISurrogateService *, const GUID *const, IProcessLock *, BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static void Init(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Init$LAYOUT, Init$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*ApplicationLaunch)(ISurrogateService *, const GUID *const, ApplicationType) __attribute__((stdcall))
+     * }
+     */
+    public static class ApplicationLaunch {
+
+        ApplicationLaunch() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, int _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_INT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(ApplicationLaunch.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(ApplicationLaunch.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, int _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout ApplicationLaunch$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ApplicationLaunch"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*ApplicationLaunch)(ISurrogateService *, const GUID *const, ApplicationType) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout ApplicationLaunch$layout() {
+        return ApplicationLaunch$LAYOUT;
+    }
+
+    private static final long ApplicationLaunch$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*ApplicationLaunch)(ISurrogateService *, const GUID *const, ApplicationType) __attribute__((stdcall))
+     * }
+     */
+    public static final long ApplicationLaunch$offset() {
+        return ApplicationLaunch$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*ApplicationLaunch)(ISurrogateService *, const GUID *const, ApplicationType) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment ApplicationLaunch(MemorySegment struct) {
+        return struct.get(ApplicationLaunch$LAYOUT, ApplicationLaunch$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*ApplicationLaunch)(ISurrogateService *, const GUID *const, ApplicationType) __attribute__((stdcall))
+     * }
+     */
+    public static void ApplicationLaunch(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ApplicationLaunch$LAYOUT, ApplicationLaunch$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*ApplicationFree)(ISurrogateService *, const GUID *const) __attribute__((stdcall))
+     * }
+     */
+    public static class ApplicationFree {
+
+        ApplicationFree() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(ApplicationFree.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(ApplicationFree.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout ApplicationFree$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ApplicationFree"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*ApplicationFree)(ISurrogateService *, const GUID *const) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout ApplicationFree$layout() {
+        return ApplicationFree$LAYOUT;
+    }
+
+    private static final long ApplicationFree$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*ApplicationFree)(ISurrogateService *, const GUID *const) __attribute__((stdcall))
+     * }
+     */
+    public static final long ApplicationFree$offset() {
+        return ApplicationFree$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*ApplicationFree)(ISurrogateService *, const GUID *const) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment ApplicationFree(MemorySegment struct) {
+        return struct.get(ApplicationFree$LAYOUT, ApplicationFree$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*ApplicationFree)(ISurrogateService *, const GUID *const) __attribute__((stdcall))
+     * }
+     */
+    public static void ApplicationFree(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ApplicationFree$LAYOUT, ApplicationFree$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*CatalogRefresh)(ISurrogateService *, ULONG) __attribute__((stdcall))
+     * }
+     */
+    public static class CatalogRefresh {
+
+        CatalogRefresh() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(CatalogRefresh.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(CatalogRefresh.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout CatalogRefresh$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("CatalogRefresh"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*CatalogRefresh)(ISurrogateService *, ULONG) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout CatalogRefresh$layout() {
+        return CatalogRefresh$LAYOUT;
+    }
+
+    private static final long CatalogRefresh$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*CatalogRefresh)(ISurrogateService *, ULONG) __attribute__((stdcall))
+     * }
+     */
+    public static final long CatalogRefresh$offset() {
+        return CatalogRefresh$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*CatalogRefresh)(ISurrogateService *, ULONG) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment CatalogRefresh(MemorySegment struct) {
+        return struct.get(CatalogRefresh$LAYOUT, CatalogRefresh$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*CatalogRefresh)(ISurrogateService *, ULONG) __attribute__((stdcall))
+     * }
+     */
+    public static void CatalogRefresh(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(CatalogRefresh$LAYOUT, CatalogRefresh$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*ProcessShutdown)(ISurrogateService *, ShutdownType) __attribute__((stdcall))
+     * }
+     */
+    public static class ProcessShutdown {
+
+        ProcessShutdown() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_INT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(ProcessShutdown.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(ProcessShutdown.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout ProcessShutdown$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ProcessShutdown"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*ProcessShutdown)(ISurrogateService *, ShutdownType) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout ProcessShutdown$layout() {
+        return ProcessShutdown$LAYOUT;
+    }
+
+    private static final long ProcessShutdown$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*ProcessShutdown)(ISurrogateService *, ShutdownType) __attribute__((stdcall))
+     * }
+     */
+    public static final long ProcessShutdown$offset() {
+        return ProcessShutdown$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*ProcessShutdown)(ISurrogateService *, ShutdownType) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment ProcessShutdown(MemorySegment struct) {
+        return struct.get(ProcessShutdown$LAYOUT, ProcessShutdown$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*ProcessShutdown)(ISurrogateService *, ShutdownType) __attribute__((stdcall))
+     * }
+     */
+    public static void ProcessShutdown(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ProcessShutdown$LAYOUT, ProcessShutdown$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

@@ -2,46 +2,206 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CONTAINER_ROOT_INFO_OUTPUT {
+ *     WORD ContainerRootIdLength;
+ *     BYTE ContainerRootId[1];
+ * }
+ * }
+ */
 public class _CONTAINER_ROOT_INFO_OUTPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("ContainerRootIdLength"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_CHAR$LAYOUT).withName("ContainerRootId"),
-        MemoryLayout.paddingLayout(8)
-    ).withName("_CONTAINER_ROOT_INFO_OUTPUT");
-    public static MemoryLayout $LAYOUT() {
-        return _CONTAINER_ROOT_INFO_OUTPUT.$struct$LAYOUT;
+    _CONTAINER_ROOT_INFO_OUTPUT() {
+        // Should not be called directly
     }
-    static final VarHandle ContainerRootIdLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ContainerRootIdLength"));
-    public static VarHandle ContainerRootIdLength$VH() {
-        return _CONTAINER_ROOT_INFO_OUTPUT.ContainerRootIdLength$VH;
-    }
-    public static short ContainerRootIdLength$get(MemorySegment seg) {
-        return (short)_CONTAINER_ROOT_INFO_OUTPUT.ContainerRootIdLength$VH.get(seg);
-    }
-    public static void ContainerRootIdLength$set( MemorySegment seg, short x) {
-        _CONTAINER_ROOT_INFO_OUTPUT.ContainerRootIdLength$VH.set(seg, x);
-    }
-    public static short ContainerRootIdLength$get(MemorySegment seg, long index) {
-        return (short)_CONTAINER_ROOT_INFO_OUTPUT.ContainerRootIdLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ContainerRootIdLength$set(MemorySegment seg, long index, short x) {
-        _CONTAINER_ROOT_INFO_OUTPUT.ContainerRootIdLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment ContainerRootId$slice(MemorySegment seg) {
-        return seg.asSlice(2, 1);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("ContainerRootIdLength"),
+        MemoryLayout.sequenceLayout(1, wgl_h.C_CHAR).withName("ContainerRootId"),
+        MemoryLayout.paddingLayout(1)
+    ).withName("_CONTAINER_ROOT_INFO_OUTPUT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort ContainerRootIdLength$LAYOUT = (OfShort)$LAYOUT.select(groupElement("ContainerRootIdLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD ContainerRootIdLength
+     * }
+     */
+    public static final OfShort ContainerRootIdLength$layout() {
+        return ContainerRootIdLength$LAYOUT;
+    }
+
+    private static final long ContainerRootIdLength$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD ContainerRootIdLength
+     * }
+     */
+    public static final long ContainerRootIdLength$offset() {
+        return ContainerRootIdLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD ContainerRootIdLength
+     * }
+     */
+    public static short ContainerRootIdLength(MemorySegment struct) {
+        return struct.get(ContainerRootIdLength$LAYOUT, ContainerRootIdLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD ContainerRootIdLength
+     * }
+     */
+    public static void ContainerRootIdLength(MemorySegment struct, short fieldValue) {
+        struct.set(ContainerRootIdLength$LAYOUT, ContainerRootIdLength$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout ContainerRootId$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("ContainerRootId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE ContainerRootId[1]
+     * }
+     */
+    public static final SequenceLayout ContainerRootId$layout() {
+        return ContainerRootId$LAYOUT;
+    }
+
+    private static final long ContainerRootId$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE ContainerRootId[1]
+     * }
+     */
+    public static final long ContainerRootId$offset() {
+        return ContainerRootId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE ContainerRootId[1]
+     * }
+     */
+    public static MemorySegment ContainerRootId(MemorySegment struct) {
+        return struct.asSlice(ContainerRootId$OFFSET, ContainerRootId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE ContainerRootId[1]
+     * }
+     */
+    public static void ContainerRootId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ContainerRootId$OFFSET, ContainerRootId$LAYOUT.byteSize());
+    }
+
+    private static long[] ContainerRootId$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE ContainerRootId[1]
+     * }
+     */
+    public static long[] ContainerRootId$dimensions() {
+        return ContainerRootId$DIMS;
+    }
+    private static final VarHandle ContainerRootId$ELEM_HANDLE = ContainerRootId$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE ContainerRootId[1]
+     * }
+     */
+    public static byte ContainerRootId(MemorySegment struct, long index0) {
+        return (byte)ContainerRootId$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE ContainerRootId[1]
+     * }
+     */
+    public static void ContainerRootId(MemorySegment struct, long index0, byte fieldValue) {
+        ContainerRootId$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

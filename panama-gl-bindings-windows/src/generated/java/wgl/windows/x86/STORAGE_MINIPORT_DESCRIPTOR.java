@@ -2,13 +2,35 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _STORAGE_MINIPORT_DESCRIPTOR {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     STORAGE_PORT_CODE_SET Portdriver;
+ *     BOOLEAN LUNResetSupported;
+ *     BOOLEAN TargetResetSupported;
+ *     WORD IoTimeoutValue;
+ *     BOOLEAN ExtraIoInfoSupported;
+ *     BYTE Reserved0[3];
+ *     DWORD Reserved1;
+ * } STORAGE_MINIPORT_DESCRIPTOR
+ * }
+ */
 public class STORAGE_MINIPORT_DESCRIPTOR extends _STORAGE_MINIPORT_DESCRIPTOR {
 
+    STORAGE_MINIPORT_DESCRIPTOR() {
+        // Should not be called directly
+    }
 }
-
 

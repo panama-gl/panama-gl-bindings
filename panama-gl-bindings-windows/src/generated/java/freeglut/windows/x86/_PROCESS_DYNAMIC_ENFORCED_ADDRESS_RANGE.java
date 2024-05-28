@@ -2,76 +2,219 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE {
+ *     ULONG_PTR BaseAddress;
+ *     SIZE_T Size;
+ *     DWORD Flags;
+ * }
+ * }
+ */
 public class _PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("BaseAddress"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE");
-    public static MemoryLayout $LAYOUT() {
-        return _PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE.$struct$LAYOUT;
+    _PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE() {
+        // Should not be called directly
     }
-    static final VarHandle BaseAddress$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BaseAddress"));
-    public static VarHandle BaseAddress$VH() {
-        return _PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE.BaseAddress$VH;
-    }
-    public static long BaseAddress$get(MemorySegment seg) {
-        return (long)_PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE.BaseAddress$VH.get(seg);
-    }
-    public static void BaseAddress$set( MemorySegment seg, long x) {
-        _PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE.BaseAddress$VH.set(seg, x);
-    }
-    public static long BaseAddress$get(MemorySegment seg, long index) {
-        return (long)_PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE.BaseAddress$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BaseAddress$set(MemorySegment seg, long index, long x) {
-        _PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE.BaseAddress$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE.Size$VH;
-    }
-    public static long Size$get(MemorySegment seg) {
-        return (long)_PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, long x) {
-        _PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE.Size$VH.set(seg, x);
-    }
-    public static long Size$get(MemorySegment seg, long index) {
-        return (long)_PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, long x) {
-        _PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG_LONG.withName("BaseAddress"),
+        freeglut_h.C_LONG_LONG.withName("Size"),
+        freeglut_h.C_LONG.withName("Flags"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong BaseAddress$LAYOUT = (OfLong)$LAYOUT.select(groupElement("BaseAddress"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG_PTR BaseAddress
+     * }
+     */
+    public static final OfLong BaseAddress$layout() {
+        return BaseAddress$LAYOUT;
+    }
+
+    private static final long BaseAddress$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG_PTR BaseAddress
+     * }
+     */
+    public static final long BaseAddress$offset() {
+        return BaseAddress$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR BaseAddress
+     * }
+     */
+    public static long BaseAddress(MemorySegment struct) {
+        return struct.get(BaseAddress$LAYOUT, BaseAddress$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR BaseAddress
+     * }
+     */
+    public static void BaseAddress(MemorySegment struct, long fieldValue) {
+        struct.set(BaseAddress$LAYOUT, BaseAddress$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Size$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SIZE_T Size
+     * }
+     */
+    public static final OfLong Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SIZE_T Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SIZE_T Size
+     * }
+     */
+    public static long Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SIZE_T Size
+     * }
+     */
+    public static void Size(MemorySegment struct, long fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,3013 +2,9020 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
- class wgl_h_10 extends wgl_h_9 {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    public static int CERT_CHAIN_POLICY_SSL_F12_ROOT_PROGRAM_CATEGORY() {
-        return (int)2L;
-    }
-    public static int SSL_HPKP_PKP_HEADER_INDEX() {
-        return (int)0L;
-    }
-    public static int SSL_HPKP_PKP_RO_HEADER_INDEX() {
-        return (int)1L;
-    }
-    public static int SSL_HPKP_HEADER_COUNT() {
-        return (int)2L;
-    }
-    public static int SSL_KEY_PIN_ERROR_TEXT_LENGTH() {
-        return (int)512L;
-    }
-    public static int CERT_CHAIN_POLICY_SSL_KEY_PIN_SUCCESS() {
-        return (int)0L;
-    }
-    public static int CERT_CHAIN_POLICY_SSL_KEY_PIN_MITM_WARNING() {
-        return (int)1L;
-    }
-    public static int CERT_CHAIN_POLICY_SSL_KEY_PIN_MISMATCH_WARNING() {
-        return (int)2L;
-    }
-    public static int CRYPT_STRING_BASE64HEADER() {
-        return (int)0L;
-    }
-    public static int CRYPT_STRING_BASE64() {
-        return (int)1L;
-    }
-    public static int CRYPT_STRING_BINARY() {
-        return (int)2L;
-    }
-    public static int CRYPT_STRING_BASE64REQUESTHEADER() {
-        return (int)3L;
-    }
-    public static int CRYPT_STRING_HEX() {
-        return (int)4L;
-    }
-    public static int CRYPT_STRING_HEXASCII() {
-        return (int)5L;
-    }
-    public static int CRYPT_STRING_BASE64_ANY() {
-        return (int)6L;
-    }
-    public static int CRYPT_STRING_ANY() {
-        return (int)7L;
-    }
-    public static int CRYPT_STRING_HEX_ANY() {
-        return (int)8L;
-    }
-    public static int CRYPT_STRING_BASE64X509CRLHEADER() {
-        return (int)9L;
-    }
-    public static int CRYPT_STRING_HEXADDR() {
-        return (int)10L;
-    }
-    public static int CRYPT_STRING_HEXASCIIADDR() {
-        return (int)11L;
-    }
-    public static int CRYPT_STRING_HEXRAW() {
-        return (int)12L;
-    }
-    public static int CRYPT_STRING_BASE64URI() {
-        return (int)13L;
-    }
-    public static int CRYPT_STRING_ENCODEMASK() {
-        return (int)255L;
-    }
-    public static int CRYPT_STRING_RESERVED100() {
-        return (int)256L;
-    }
-    public static int CRYPT_STRING_RESERVED200() {
-        return (int)512L;
-    }
-    public static int CRYPT_STRING_PERCENTESCAPE() {
-        return (int)134217728L;
-    }
-    public static int CRYPT_STRING_HASHDATA() {
-        return (int)268435456L;
-    }
-    public static int CRYPT_STRING_STRICT() {
-        return (int)536870912L;
-    }
-    public static int CRYPT_STRING_NOCRLF() {
-        return (int)1073741824L;
-    }
-    public static int PKCS12_IMPORT_SILENT() {
-        return (int)64L;
-    }
-    public static int CRYPT_USER_KEYSET() {
-        return (int)4096L;
-    }
-    public static int PKCS12_PREFER_CNG_KSP() {
-        return (int)256L;
-    }
-    public static int PKCS12_ALWAYS_CNG_KSP() {
-        return (int)512L;
-    }
-    public static int PKCS12_ONLY_CERTIFICATES() {
-        return (int)1024L;
-    }
-    public static int PKCS12_ONLY_NOT_ENCRYPTED_CERTIFICATES() {
-        return (int)2048L;
-    }
-    public static int PKCS12_ALLOW_OVERWRITE_KEY() {
-        return (int)16384L;
-    }
-    public static int PKCS12_NO_PERSIST_KEY() {
-        return (int)32768L;
-    }
-    public static int PKCS12_VIRTUAL_ISOLATION_KEY() {
-        return (int)65536L;
-    }
-    public static int PKCS12_ONLY_CERTIFICATES_PROVIDER_TYPE() {
-        return (int)0L;
-    }
-    public static int REPORT_NO_PRIVATE_KEY() {
-        return (int)1L;
-    }
-    public static int REPORT_NOT_ABLE_TO_EXPORT_PRIVATE_KEY() {
-        return (int)2L;
-    }
-    public static int EXPORT_PRIVATE_KEYS() {
-        return (int)4L;
-    }
-    public static int PKCS12_INCLUDE_EXTENDED_PROPERTIES() {
-        return (int)16L;
-    }
-    public static int PKCS12_PROTECT_TO_DOMAIN_SIDS() {
-        return (int)32L;
-    }
-    public static int PKCS12_EXPORT_SILENT() {
-        return (int)64L;
-    }
-    public static int PKCS12_EXPORT_PBES2_PARAMS() {
-        return (int)128L;
-    }
-    public static int PKCS12_DISABLE_ENCRYPT_CERTIFICATES() {
-        return (int)256L;
-    }
-    public static int PKCS12_ENCRYPT_CERTIFICATES() {
-        return (int)512L;
-    }
-    public static int PKCS12_EXPORT_ECC_CURVE_PARAMETERS() {
-        return (int)4096L;
-    }
-    public static int PKCS12_EXPORT_ECC_CURVE_OID() {
-        return (int)8192L;
-    }
-    public static int CERT_SERVER_OCSP_RESPONSE_OPEN_PARA_READ_FLAG() {
-        return (int)1L;
-    }
-    public static int CERT_SERVER_OCSP_RESPONSE_OPEN_PARA_WRITE_FLAG() {
-        return (int)2L;
-    }
-    public static int CERT_SERVER_OCSP_RESPONSE_ASYNC_FLAG() {
-        return (int)1L;
-    }
-    public static int CERT_SELECT_MAX_PARA() {
-        return (int)500L;
-    }
-    public static int CERT_SELECT_BY_ENHKEY_USAGE() {
-        return (int)1L;
-    }
-    public static int CERT_SELECT_BY_KEY_USAGE() {
-        return (int)2L;
-    }
-    public static int CERT_SELECT_BY_POLICY_OID() {
-        return (int)3L;
-    }
-    public static int CERT_SELECT_BY_PROV_NAME() {
-        return (int)4L;
-    }
-    public static int CERT_SELECT_BY_EXTENSION() {
-        return (int)5L;
-    }
-    public static int CERT_SELECT_BY_SUBJECT_HOST_NAME() {
-        return (int)6L;
-    }
-    public static int CERT_SELECT_BY_ISSUER_ATTR() {
-        return (int)7L;
-    }
-    public static int CERT_SELECT_BY_SUBJECT_ATTR() {
-        return (int)8L;
-    }
-    public static int CERT_SELECT_BY_ISSUER_NAME() {
-        return (int)9L;
-    }
-    public static int CERT_SELECT_BY_PUBLIC_KEY() {
-        return (int)10L;
-    }
-    public static int CERT_SELECT_BY_TLS_SIGNATURES() {
-        return (int)11L;
-    }
-    public static int CERT_SELECT_BY_ISSUER_DISPLAYNAME() {
-        return (int)12L;
-    }
-    public static int CERT_SELECT_BY_FRIENDLYNAME() {
-        return (int)13L;
-    }
-    public static int CERT_SELECT_BY_THUMBPRINT() {
-        return (int)14L;
-    }
-    public static int CERT_SELECT_ALLOW_EXPIRED() {
-        return (int)1L;
-    }
-    public static int CERT_SELECT_TRUSTED_ROOT() {
-        return (int)2L;
-    }
-    public static int CERT_SELECT_DISALLOW_SELFSIGNED() {
-        return (int)4L;
-    }
-    public static int CERT_SELECT_HAS_PRIVATE_KEY() {
-        return (int)8L;
-    }
-    public static int CERT_SELECT_HAS_KEY_FOR_SIGNATURE() {
-        return (int)16L;
-    }
-    public static int CERT_SELECT_HAS_KEY_FOR_KEY_EXCHANGE() {
-        return (int)32L;
-    }
-    public static int CERT_SELECT_HARDWARE_ONLY() {
-        return (int)64L;
-    }
-    public static int CERT_SELECT_ALLOW_DUPLICATES() {
-        return (int)128L;
-    }
-    public static int CERT_SELECT_IGNORE_AUTOSELECT() {
-        return (int)256L;
-    }
-    public static int TIMESTAMP_VERSION() {
-        return (int)1L;
-    }
-    public static int TIMESTAMP_STATUS_GRANTED() {
-        return (int)0L;
-    }
-    public static int TIMESTAMP_STATUS_GRANTED_WITH_MODS() {
-        return (int)1L;
-    }
-    public static int TIMESTAMP_STATUS_REJECTED() {
-        return (int)2L;
-    }
-    public static int TIMESTAMP_STATUS_WAITING() {
-        return (int)3L;
-    }
-    public static int TIMESTAMP_STATUS_REVOCATION_WARNING() {
-        return (int)4L;
-    }
-    public static int TIMESTAMP_STATUS_REVOKED() {
-        return (int)5L;
-    }
-    public static int TIMESTAMP_FAILURE_BAD_ALG() {
-        return (int)0L;
-    }
-    public static int TIMESTAMP_FAILURE_BAD_REQUEST() {
-        return (int)2L;
-    }
-    public static int TIMESTAMP_FAILURE_BAD_FORMAT() {
-        return (int)5L;
-    }
-    public static int TIMESTAMP_FAILURE_TIME_NOT_AVAILABLE() {
-        return (int)14L;
-    }
-    public static int TIMESTAMP_FAILURE_POLICY_NOT_SUPPORTED() {
-        return (int)15L;
-    }
-    public static int TIMESTAMP_FAILURE_EXTENSION_NOT_SUPPORTED() {
-        return (int)16L;
-    }
-    public static int TIMESTAMP_FAILURE_INFO_NOT_AVAILABLE() {
-        return (int)17L;
-    }
-    public static int TIMESTAMP_FAILURE_SYSTEM_FAILURE() {
-        return (int)25L;
-    }
-    public static int TIMESTAMP_DONT_HASH_DATA() {
-        return (int)1L;
-    }
-    public static int TIMESTAMP_VERIFY_CONTEXT_SIGNATURE() {
-        return (int)32L;
-    }
-    public static int TIMESTAMP_NO_AUTH_RETRIEVAL() {
-        return (int)131072L;
-    }
-    public static int CRYPT_OBJECT_LOCATOR_SPN_NAME_TYPE() {
-        return (int)1L;
-    }
-    public static int CRYPT_OBJECT_LOCATOR_LAST_RESERVED_NAME_TYPE() {
-        return (int)32L;
-    }
-    public static int CRYPT_OBJECT_LOCATOR_FIRST_RESERVED_USER_NAME_TYPE() {
-        return (int)33L;
-    }
-    public static int CRYPT_OBJECT_LOCATOR_LAST_RESERVED_USER_NAME_TYPE() {
-        return (int)65535L;
-    }
-    public static int CRYPT_OBJECT_LOCATOR_RELEASE_SYSTEM_SHUTDOWN() {
-        return (int)1L;
-    }
-    public static int CRYPT_OBJECT_LOCATOR_RELEASE_SERVICE_STOP() {
-        return (int)2L;
-    }
-    public static int CRYPT_OBJECT_LOCATOR_RELEASE_PROCESS_EXIT() {
-        return (int)3L;
-    }
-    public static int CRYPT_OBJECT_LOCATOR_RELEASE_DLL_UNLOAD() {
-        return (int)4L;
-    }
-    public static int CERT_FILE_HASH_USE_TYPE() {
-        return (int)1L;
-    }
-    public static int CERT_TIMESTAMP_HASH_USE_TYPE() {
-        return (int)2L;
-    }
-    public static int dwFORCE_KEY_PROTECTION_DISABLED() {
-        return (int)0L;
-    }
-    public static int dwFORCE_KEY_PROTECTION_USER_SELECT() {
-        return (int)1L;
-    }
-    public static int dwFORCE_KEY_PROTECTION_HIGH() {
-        return (int)2L;
-    }
-    public static int CRYPTPROTECT_PROMPT_ON_UNPROTECT() {
-        return (int)1L;
-    }
-    public static int CRYPTPROTECT_PROMPT_ON_PROTECT() {
-        return (int)2L;
-    }
-    public static int CRYPTPROTECT_PROMPT_RESERVED() {
-        return (int)4L;
-    }
-    public static int CRYPTPROTECT_PROMPT_STRONG() {
-        return (int)8L;
-    }
-    public static int CRYPTPROTECT_PROMPT_REQUIRE_STRONG() {
-        return (int)16L;
-    }
-    public static int CRYPTPROTECT_UI_FORBIDDEN() {
-        return (int)1L;
-    }
-    public static int CRYPTPROTECT_LOCAL_MACHINE() {
-        return (int)4L;
-    }
-    public static int CRYPTPROTECT_CRED_SYNC() {
-        return (int)8L;
-    }
-    public static int CRYPTPROTECT_AUDIT() {
-        return (int)16L;
-    }
-    public static int CRYPTPROTECT_NO_RECOVERY() {
-        return (int)32L;
-    }
-    public static int CRYPTPROTECT_VERIFY_PROTECTION() {
-        return (int)64L;
-    }
-    public static int CRYPTPROTECT_CRED_REGENERATE() {
-        return (int)128L;
-    }
-    public static int CRYPTPROTECT_FIRST_RESERVED_FLAGVAL() {
-        return (int)268435455L;
-    }
-    public static int CRYPTPROTECTMEMORY_BLOCK_SIZE() {
-        return (int)16L;
-    }
-    public static int CRYPTPROTECTMEMORY_SAME_PROCESS() {
-        return (int)0L;
-    }
-    public static int CRYPTPROTECTMEMORY_CROSS_PROCESS() {
-        return (int)1L;
-    }
-    public static int CRYPTPROTECTMEMORY_SAME_LOGON() {
-        return (int)2L;
-    }
-    public static int WINEFS_SETUSERKEY_SET_CAPABILITIES() {
-        return (int)1L;
-    }
-    public static int EFS_COMPATIBILITY_VERSION_NCRYPT_PROTECTOR() {
-        return (int)5L;
-    }
-    public static int EFS_COMPATIBILITY_VERSION_PFILE_PROTECTOR() {
-        return (int)6L;
-    }
-    public static int EFS_SUBVER_UNKNOWN() {
-        return (int)0L;
-    }
-    public static int EFS_EFS_SUBVER_EFS_CERT() {
-        return (int)1L;
-    }
-    public static int EFS_PFILE_SUBVER_RMS() {
-        return (int)2L;
-    }
-    public static int EFS_PFILE_SUBVER_APPX() {
-        return (int)3L;
-    }
-    public static int MAX_SID_SIZE() {
-        return (int)256L;
-    }
-    public static int EFS_METADATA_ADD_USER() {
-        return (int)1L;
-    }
-    public static int EFS_METADATA_REMOVE_USER() {
-        return (int)2L;
-    }
-    public static int EFS_METADATA_REPLACE_USER() {
-        return (int)4L;
-    }
-    public static int EFS_METADATA_GENERAL_OP() {
-        return (int)8L;
-    }
-    public static int __REQUIRED_RPCNDR_H_VERSION__() {
-        return (int)500L;
-    }
-    public static int __REQUIRED_RPCSAL_H_VERSION__() {
-        return (int)100L;
-    }
-    public static int TARGET_IS_NT100_OR_LATER() {
-        return (int)1L;
-    }
-    public static int TARGET_IS_NT63_OR_LATER() {
-        return (int)1L;
-    }
-    public static int TARGET_IS_NT62_OR_LATER() {
-        return (int)1L;
-    }
-    public static int TARGET_IS_NT61_OR_LATER() {
-        return (int)1L;
-    }
-    public static int TARGET_IS_NT60_OR_LATER() {
-        return (int)1L;
-    }
-    public static int TARGET_IS_NT51_OR_LATER() {
-        return (int)1L;
-    }
-    public static int TARGET_IS_NT50_OR_LATER() {
-        return (int)1L;
-    }
-    public static int TARGET_IS_NT40_OR_LATER() {
-        return (int)1L;
-    }
-    public static int TARGET_IS_NT351_OR_WIN95_OR_LATER() {
-        return (int)1L;
-    }
-    public static int cbNDRContext() {
-        return (int)20L;
-    }
-    public static int USER_CALL_IS_ASYNC() {
-        return (int)256L;
-    }
-    public static int USER_CALL_NEW_CORRELATION_DESC() {
-        return (int)512L;
-    }
-    public static int USER_MARSHAL_FC_BYTE() {
-        return (int)1L;
-    }
-    public static int USER_MARSHAL_FC_CHAR() {
-        return (int)2L;
-    }
-    public static int USER_MARSHAL_FC_SMALL() {
-        return (int)3L;
-    }
-    public static int USER_MARSHAL_FC_USMALL() {
-        return (int)4L;
-    }
-    public static int USER_MARSHAL_FC_WCHAR() {
-        return (int)5L;
-    }
-    public static int USER_MARSHAL_FC_SHORT() {
-        return (int)6L;
-    }
-    public static int USER_MARSHAL_FC_USHORT() {
-        return (int)7L;
-    }
-    public static int USER_MARSHAL_FC_LONG() {
-        return (int)8L;
-    }
-    public static int USER_MARSHAL_FC_ULONG() {
-        return (int)9L;
-    }
-    public static int USER_MARSHAL_FC_FLOAT() {
-        return (int)10L;
-    }
-    public static int USER_MARSHAL_FC_HYPER() {
-        return (int)11L;
-    }
-    public static int USER_MARSHAL_FC_DOUBLE() {
-        return (int)12L;
-    }
-    public static int ROTREGFLAGS_ALLOWANYCLIENT() {
-        return (int)1L;
-    }
-    public static int APPIDREGFLAGS_ACTIVATE_IUSERVER_INDESKTOP() {
-        return (int)1L;
-    }
-    public static int APPIDREGFLAGS_SECURE_SERVER_PROCESS_SD_AND_BIND() {
-        return (int)2L;
-    }
-    public static int APPIDREGFLAGS_ISSUE_ACTIVATION_RPC_AT_IDENTIFY() {
-        return (int)4L;
-    }
-    public static int APPIDREGFLAGS_IUSERVER_UNMODIFIED_LOGON_TOKEN() {
-        return (int)8L;
-    }
-    public static int APPIDREGFLAGS_IUSERVER_SELF_SID_IN_LAUNCH_PERMISSION() {
-        return (int)16L;
-    }
-    public static int APPIDREGFLAGS_IUSERVER_ACTIVATE_IN_CLIENT_SESSION_ONLY() {
-        return (int)32L;
-    }
-    public static int APPIDREGFLAGS_RESERVED1() {
-        return (int)64L;
-    }
-    public static int APPIDREGFLAGS_RESERVED2() {
-        return (int)128L;
-    }
-    public static int APPIDREGFLAGS_RESERVED3() {
-        return (int)256L;
-    }
-    public static int APPIDREGFLAGS_RESERVED4() {
-        return (int)512L;
-    }
-    public static int APPIDREGFLAGS_RESERVED5() {
-        return (int)1024L;
-    }
-    public static int APPIDREGFLAGS_AAA_NO_IMPLICIT_ACTIVATE_AS_IU() {
-        return (int)2048L;
-    }
-    public static int APPIDREGFLAGS_RESERVED7() {
-        return (int)4096L;
-    }
-    public static int APPIDREGFLAGS_RESERVED8() {
-        return (int)8192L;
-    }
-    public static int APPIDREGFLAGS_RESERVED9() {
-        return (int)16384L;
-    }
-    public static int DCOMSCM_ACTIVATION_USE_ALL_AUTHNSERVICES() {
-        return (int)1L;
-    }
-    public static int DCOMSCM_ACTIVATION_DISALLOW_UNSECURE_CALL() {
-        return (int)2L;
-    }
-    public static int DCOMSCM_RESOLVE_USE_ALL_AUTHNSERVICES() {
-        return (int)4L;
-    }
-    public static int DCOMSCM_RESOLVE_DISALLOW_UNSECURE_CALL() {
-        return (int)8L;
-    }
-    public static int DCOMSCM_PING_USE_MID_AUTHNSERVICE() {
-        return (int)16L;
-    }
-    public static int DCOMSCM_PING_DISALLOW_UNSECURE_CALL() {
-        return (int)32L;
-    }
-    public static int ROTFLAGS_REGISTRATIONKEEPSALIVE() {
-        return (int)1L;
-    }
-    public static int ROTFLAGS_ALLOWANYCLIENT() {
-        return (int)2L;
-    }
-    public static int ROT_COMPARE_MAX() {
-        return (int)2048L;
-    }
-    public static int FILE_DEVICE_BEEP() {
-        return (int)1L;
-    }
-    public static int FILE_DEVICE_CD_ROM() {
-        return (int)2L;
-    }
-    public static int FILE_DEVICE_CD_ROM_FILE_SYSTEM() {
-        return (int)3L;
-    }
-    public static int FILE_DEVICE_CONTROLLER() {
-        return (int)4L;
-    }
-    public static int FILE_DEVICE_DATALINK() {
-        return (int)5L;
-    }
-    public static int FILE_DEVICE_DFS() {
-        return (int)6L;
-    }
-    public static int FILE_DEVICE_DISK() {
-        return (int)7L;
-    }
-    public static int FILE_DEVICE_DISK_FILE_SYSTEM() {
-        return (int)8L;
-    }
-    public static int FILE_DEVICE_FILE_SYSTEM() {
-        return (int)9L;
-    }
-    public static int FILE_DEVICE_INPORT_PORT() {
-        return (int)10L;
-    }
-    public static int FILE_DEVICE_KEYBOARD() {
-        return (int)11L;
-    }
-    public static int FILE_DEVICE_MAILSLOT() {
-        return (int)12L;
-    }
-    public static int FILE_DEVICE_MIDI_IN() {
-        return (int)13L;
-    }
-    public static int FILE_DEVICE_MIDI_OUT() {
-        return (int)14L;
-    }
-    public static int FILE_DEVICE_MOUSE() {
-        return (int)15L;
-    }
-    public static int FILE_DEVICE_MULTI_UNC_PROVIDER() {
-        return (int)16L;
-    }
-    public static int FILE_DEVICE_NAMED_PIPE() {
-        return (int)17L;
-    }
-    public static int FILE_DEVICE_NETWORK() {
-        return (int)18L;
-    }
-    public static int FILE_DEVICE_NETWORK_BROWSER() {
-        return (int)19L;
-    }
-    public static int FILE_DEVICE_NETWORK_FILE_SYSTEM() {
-        return (int)20L;
-    }
-    public static int FILE_DEVICE_NULL() {
-        return (int)21L;
-    }
-    public static int FILE_DEVICE_PARALLEL_PORT() {
-        return (int)22L;
-    }
-    public static int FILE_DEVICE_PHYSICAL_NETCARD() {
-        return (int)23L;
-    }
-    public static int FILE_DEVICE_PRINTER() {
-        return (int)24L;
-    }
-    public static int FILE_DEVICE_SCANNER() {
-        return (int)25L;
-    }
-    public static int FILE_DEVICE_SERIAL_MOUSE_PORT() {
-        return (int)26L;
-    }
-    public static int FILE_DEVICE_SERIAL_PORT() {
-        return (int)27L;
-    }
-    public static int FILE_DEVICE_SCREEN() {
-        return (int)28L;
-    }
-    public static int FILE_DEVICE_SOUND() {
-        return (int)29L;
-    }
-    public static int FILE_DEVICE_STREAMS() {
-        return (int)30L;
-    }
-    public static int FILE_DEVICE_TAPE() {
-        return (int)31L;
-    }
-    public static int FILE_DEVICE_TAPE_FILE_SYSTEM() {
-        return (int)32L;
-    }
-    public static int FILE_DEVICE_TRANSPORT() {
-        return (int)33L;
-    }
-    public static int FILE_DEVICE_UNKNOWN() {
-        return (int)34L;
-    }
-    public static int FILE_DEVICE_VIDEO() {
-        return (int)35L;
-    }
-    public static int FILE_DEVICE_VIRTUAL_DISK() {
-        return (int)36L;
-    }
-    public static int FILE_DEVICE_WAVE_IN() {
-        return (int)37L;
-    }
-    public static int FILE_DEVICE_WAVE_OUT() {
-        return (int)38L;
-    }
-    public static int FILE_DEVICE_8042_PORT() {
-        return (int)39L;
-    }
-    public static int FILE_DEVICE_NETWORK_REDIRECTOR() {
-        return (int)40L;
-    }
-    public static int FILE_DEVICE_BATTERY() {
-        return (int)41L;
-    }
-    public static int FILE_DEVICE_BUS_EXTENDER() {
-        return (int)42L;
-    }
-    public static int FILE_DEVICE_MODEM() {
-        return (int)43L;
-    }
-    public static int FILE_DEVICE_VDM() {
-        return (int)44L;
-    }
-    public static int FILE_DEVICE_MASS_STORAGE() {
-        return (int)45L;
-    }
-    public static int FILE_DEVICE_SMB() {
-        return (int)46L;
-    }
-    public static int FILE_DEVICE_KS() {
-        return (int)47L;
-    }
-    public static int FILE_DEVICE_CHANGER() {
-        return (int)48L;
-    }
-    public static int FILE_DEVICE_SMARTCARD() {
-        return (int)49L;
-    }
-    public static int FILE_DEVICE_ACPI() {
-        return (int)50L;
-    }
-    public static int FILE_DEVICE_DVD() {
-        return (int)51L;
-    }
-    public static int FILE_DEVICE_FULLSCREEN_VIDEO() {
-        return (int)52L;
-    }
-    public static int FILE_DEVICE_DFS_FILE_SYSTEM() {
-        return (int)53L;
-    }
-    public static int FILE_DEVICE_DFS_VOLUME() {
-        return (int)54L;
-    }
-    public static int FILE_DEVICE_SERENUM() {
-        return (int)55L;
-    }
-    public static int FILE_DEVICE_TERMSRV() {
-        return (int)56L;
-    }
-    public static int FILE_DEVICE_KSEC() {
-        return (int)57L;
-    }
-    public static int FILE_DEVICE_FIPS() {
-        return (int)58L;
-    }
-    public static int FILE_DEVICE_INFINIBAND() {
-        return (int)59L;
-    }
-    public static int FILE_DEVICE_VMBUS() {
-        return (int)62L;
-    }
-    public static int FILE_DEVICE_CRYPT_PROVIDER() {
-        return (int)63L;
-    }
-    public static int FILE_DEVICE_WPD() {
-        return (int)64L;
-    }
-    public static int FILE_DEVICE_BLUETOOTH() {
-        return (int)65L;
-    }
-    public static int FILE_DEVICE_MT_COMPOSITE() {
-        return (int)66L;
-    }
-    public static int FILE_DEVICE_MT_TRANSPORT() {
-        return (int)67L;
-    }
-    public static int FILE_DEVICE_BIOMETRIC() {
-        return (int)68L;
-    }
-    public static int FILE_DEVICE_PMI() {
-        return (int)69L;
-    }
-    public static int FILE_DEVICE_EHSTOR() {
-        return (int)70L;
-    }
-    public static int FILE_DEVICE_DEVAPI() {
-        return (int)71L;
-    }
-    public static int FILE_DEVICE_GPIO() {
-        return (int)72L;
-    }
-    public static int FILE_DEVICE_USBEX() {
-        return (int)73L;
-    }
-    public static int FILE_DEVICE_CONSOLE() {
-        return (int)80L;
-    }
-    public static int FILE_DEVICE_NFP() {
-        return (int)81L;
-    }
-    public static int FILE_DEVICE_SYSENV() {
-        return (int)82L;
-    }
-    public static int FILE_DEVICE_VIRTUAL_BLOCK() {
-        return (int)83L;
-    }
-    public static int FILE_DEVICE_POINT_OF_SERVICE() {
-        return (int)84L;
-    }
-    public static int FILE_DEVICE_STORAGE_REPLICATION() {
-        return (int)85L;
-    }
-    public static int FILE_DEVICE_TRUST_ENV() {
-        return (int)86L;
-    }
-    public static int FILE_DEVICE_UCM() {
-        return (int)87L;
-    }
-    public static int FILE_DEVICE_UCMTCPCI() {
-        return (int)88L;
-    }
-    public static int FILE_DEVICE_PERSISTENT_MEMORY() {
-        return (int)89L;
-    }
-    public static int FILE_DEVICE_NVDIMM() {
-        return (int)90L;
-    }
-    public static int FILE_DEVICE_HOLOGRAPHIC() {
-        return (int)91L;
-    }
-    public static int FILE_DEVICE_SDFXHCI() {
-        return (int)92L;
-    }
-    public static int FILE_DEVICE_UCMUCSI() {
-        return (int)93L;
-    }
-    public static int METHOD_BUFFERED() {
-        return (int)0L;
-    }
-    public static int METHOD_IN_DIRECT() {
-        return (int)1L;
-    }
-    public static int METHOD_OUT_DIRECT() {
-        return (int)2L;
-    }
-    public static int METHOD_NEITHER() {
-        return (int)3L;
-    }
-    public static int FILE_ANY_ACCESS() {
-        return (int)0L;
-    }
-    public static int STORAGE_DEVICE_FLAGS_RANDOM_DEVICEGUID_REASON_CONFLICT() {
-        return (int)1L;
-    }
-    public static int STORAGE_DEVICE_FLAGS_RANDOM_DEVICEGUID_REASON_NOHWID() {
-        return (int)2L;
-    }
-    public static int STORAGE_DEVICE_FLAGS_PAGE_83_DEVICEGUID() {
-        return (int)4L;
-    }
-    public static int RECOVERED_WRITES_VALID() {
-        return (int)1L;
-    }
-    public static int UNRECOVERED_WRITES_VALID() {
-        return (int)2L;
-    }
-    public static int RECOVERED_READS_VALID() {
-        return (int)4L;
-    }
-    public static int UNRECOVERED_READS_VALID() {
-        return (int)8L;
-    }
-    public static int WRITE_COMPRESSION_INFO_VALID() {
-        return (int)16L;
-    }
-    public static int READ_COMPRESSION_INFO_VALID() {
-        return (int)32L;
-    }
-    public static int MEDIA_ERASEABLE() {
-        return (int)1L;
-    }
-    public static int MEDIA_WRITE_ONCE() {
-        return (int)2L;
-    }
-    public static int MEDIA_READ_ONLY() {
-        return (int)4L;
-    }
-    public static int MEDIA_READ_WRITE() {
-        return (int)8L;
-    }
-    public static int MEDIA_WRITE_PROTECTED() {
-        return (int)256L;
-    }
-    public static int STORAGE_FAILURE_PREDICTION_CONFIG_V1() {
-        return (int)1L;
-    }
-    public static int SRB_TYPE_SCSI_REQUEST_BLOCK() {
-        return (int)0L;
-    }
-    public static int SRB_TYPE_STORAGE_REQUEST_BLOCK() {
-        return (int)1L;
-    }
-    public static int STORAGE_ADDRESS_TYPE_BTL8() {
-        return (int)0L;
-    }
-    public static int STORAGE_RPMB_DESCRIPTOR_VERSION_1() {
-        return (int)1L;
-    }
-    public static int STORAGE_RPMB_MINIMUM_RELIABLE_WRITE_SIZE() {
-        return (int)512L;
-    }
-    public static int STORAGE_CRYPTO_CAPABILITY_VERSION_1() {
-        return (int)1L;
-    }
-    public static int STORAGE_CRYPTO_DESCRIPTOR_VERSION_1() {
-        return (int)1L;
-    }
-    public static int STORAGE_TEMPERATURE_VALUE_NOT_REPORTED() {
-        return (int)32768L;
-    }
-    public static int STORAGE_TEMPERATURE_THRESHOLD_FLAG_ADAPTER_REQUEST() {
-        return (int)1L;
-    }
-    public static int STORAGE_COMPONENT_ROLE_CACHE() {
-        return (int)1L;
-    }
-    public static int STORAGE_COMPONENT_ROLE_TIERING() {
-        return (int)2L;
-    }
-    public static int STORAGE_COMPONENT_ROLE_DATA() {
-        return (int)4L;
-    }
-    public static int STORAGE_ATTRIBUTE_BYTE_ADDRESSABLE_IO() {
-        return (int)1L;
-    }
-    public static int STORAGE_ATTRIBUTE_BLOCK_IO() {
-        return (int)2L;
-    }
-    public static int STORAGE_ATTRIBUTE_DYNAMIC_PERSISTENCE() {
-        return (int)4L;
-    }
-    public static int STORAGE_ATTRIBUTE_VOLATILE() {
-        return (int)8L;
-    }
-    public static int STORAGE_ATTRIBUTE_ASYNC_EVENT_NOTIFICATION() {
-        return (int)16L;
-    }
-    public static int STORAGE_ATTRIBUTE_PERF_SIZE_INDEPENDENT() {
-        return (int)32L;
-    }
-    public static int STORAGE_DEVICE_MAX_OPERATIONAL_STATUS() {
-        return (int)16L;
-    }
-    public static int DEVICE_DSM_FLAG_ENTIRE_DATA_SET_RANGE() {
-        return (int)1L;
-    }
-    public static int DEVICE_DSM_FLAG_TRIM_BYPASS_RZAT() {
-        return (int)1073741824L;
-    }
-    public static int DEVICE_DSM_NOTIFY_FLAG_BEGIN() {
-        return (int)1L;
-    }
-    public static int DEVICE_DSM_NOTIFY_FLAG_END() {
-        return (int)2L;
-    }
-    public static int STORAGE_OFFLOAD_MAX_TOKEN_LENGTH() {
-        return (int)512L;
-    }
-    public static int STORAGE_OFFLOAD_TOKEN_ID_LENGTH() {
-        return (int)504L;
-    }
-    public static int STORAGE_OFFLOAD_READ_RANGE_TRUNCATED() {
-        return (int)1L;
-    }
-    public static int STORAGE_OFFLOAD_WRITE_RANGE_TRUNCATED() {
-        return (int)1L;
-    }
-    public static int STORAGE_OFFLOAD_TOKEN_INVALID() {
-        return (int)2L;
-    }
-    public static int DEVICE_DSM_FLAG_ALLOCATION_CONSOLIDATEABLE_ONLY() {
-        return (int)1073741824L;
-    }
-    public static int DEVICE_DSM_PARAMETERS_V1() {
-        return (int)1L;
-    }
-    public static int DEVICE_DSM_FLAG_REPAIR_INPUT_TOPOLOGY_ID_PRESENT() {
-        return (int)1073741824L;
-    }
-    public static int DEVICE_DSM_FLAG_REPAIR_OUTPUT_PARITY_EXTENT() {
-        return (int)536870912L;
-    }
-    public static int DEVICE_DSM_FLAG_SCRUB_SKIP_IN_SYNC() {
-        return (int)268435456L;
-    }
-    public static int DEVICE_DSM_FLAG_SCRUB_OUTPUT_PARITY_EXTENT() {
-        return (int)536870912L;
-    }
-    public static int DEVICE_DSM_FLAG_PHYSICAL_ADDRESSES_OMIT_TOTAL_RANGES() {
-        return (int)268435456L;
-    }
-    public static int DEVICE_DSM_PHYSICAL_ADDRESSES_OUTPUT_V1() {
-        return (int)1L;
-    }
-    public static int DEVICE_STORAGE_NO_ERRORS() {
-        return (int)1L;
-    }
-    public static int DEVICE_DSM_RANGE_ERROR_OUTPUT_V1() {
-        return (int)1L;
-    }
-    public static int IOCTL_STORAGE_BC_VERSION() {
-        return (int)1L;
-    }
-    public static int STORAGE_PRIORITY_HINT_SUPPORTED() {
-        return (int)1L;
-    }
-    public static int ERROR_HISTORY_DIRECTORY_ENTRY_DEFAULT_COUNT() {
-        return (int)8L;
-    }
-    public static int DEVICEDUMP_STRUCTURE_VERSION_V1() {
-        return (int)1L;
-    }
-    public static int DEVICEDUMP_MAX_IDSTRING() {
-        return (int)32L;
-    }
-    public static int MAX_FW_BUCKET_ID_LENGTH() {
-        return (int)132L;
-    }
-    public static int DDUMP_FLAG_DATA_READ_FROM_DEVICE() {
-        return (int)1L;
-    }
-    public static int FW_ISSUEID_NO_ISSUE() {
-        return (int)0L;
-    }
-    public static int TC_PUBLIC_DEVICEDUMP_CONTENT_SMART() {
-        return (int)1L;
-    }
-    public static int TC_PUBLIC_DEVICEDUMP_CONTENT_GPLOG() {
-        return (int)2L;
-    }
-    public static int TC_PUBLIC_DEVICEDUMP_CONTENT_GPLOG_MAX() {
-        return (int)16L;
-    }
-    public static int TC_DEVICEDUMP_SUBSECTION_DESC_LENGTH() {
-        return (int)16L;
-    }
-    public static int CDB_SIZE() {
-        return (int)16L;
-    }
-    public static int TELEMETRY_COMMAND_SIZE() {
-        return (int)16L;
-    }
-    public static int DEVICEDUMP_CAP_PRIVATE_SECTION() {
-        return (int)1L;
-    }
-    public static int DEVICEDUMP_CAP_RESTRICTED_SECTION() {
-        return (int)2L;
-    }
-    public static int STORAGE_IDLE_POWERUP_REASON_VERSION_V1() {
-        return (int)1L;
-    }
-    public static int STORAGE_DEVICE_POWER_CAP_VERSION_V1() {
-        return (int)1L;
-    }
-    public static int STORAGE_EVENT_NOTIFICATION_VERSION_V1() {
-        return (int)1L;
-    }
-    public static int STORAGE_EVENT_MEDIA_STATUS() {
-        return (int)1L;
-    }
-    public static int STORAGE_EVENT_DEVICE_STATUS() {
-        return (int)2L;
-    }
-    public static int STORAGE_EVENT_DEVICE_OPERATION() {
-        return (int)4L;
-    }
-    public static int READ_COPY_NUMBER_KEY() {
-        return (int)1380142592L;
-    }
-    public static int READ_COPY_NUMBER_BYPASS_CACHE_FLAG() {
-        return (int)256L;
-    }
-    public static int STORAGE_HW_FIRMWARE_REQUEST_FLAG_CONTROLLER() {
-        return (int)1L;
-    }
-    public static int STORAGE_HW_FIRMWARE_REQUEST_FLAG_LAST_SEGMENT() {
-        return (int)2L;
-    }
-    public static int STORAGE_HW_FIRMWARE_REQUEST_FLAG_FIRST_SEGMENT() {
-        return (int)4L;
-    }
-    public static int STORAGE_HW_FIRMWARE_INVALID_SLOT() {
-        return (int)255L;
-    }
-    public static int STORAGE_HW_FIRMWARE_REVISION_LENGTH() {
-        return (int)16L;
-    }
-    public static int STORAGE_PROTOCOL_STRUCTURE_VERSION() {
-        return (int)1L;
-    }
-    public static int STORAGE_PROTOCOL_STATUS_PENDING() {
-        return (int)0L;
-    }
-    public static int STORAGE_PROTOCOL_STATUS_SUCCESS() {
-        return (int)1L;
-    }
-    public static int STORAGE_PROTOCOL_STATUS_ERROR() {
-        return (int)2L;
-    }
-    public static int STORAGE_PROTOCOL_STATUS_INVALID_REQUEST() {
-        return (int)3L;
-    }
-    public static int STORAGE_PROTOCOL_STATUS_NO_DEVICE() {
-        return (int)4L;
-    }
-    public static int STORAGE_PROTOCOL_STATUS_BUSY() {
-        return (int)5L;
-    }
-    public static int STORAGE_PROTOCOL_STATUS_DATA_OVERRUN() {
-        return (int)6L;
-    }
-    public static int STORAGE_PROTOCOL_STATUS_INSUFFICIENT_RESOURCES() {
-        return (int)7L;
-    }
-    public static int STORAGE_PROTOCOL_STATUS_THROTTLED_REQUEST() {
-        return (int)8L;
-    }
-    public static int STORAGE_PROTOCOL_STATUS_NOT_SUPPORTED() {
-        return (int)255L;
-    }
-    public static int STORAGE_PROTOCOL_COMMAND_LENGTH_NVME() {
-        return (int)64L;
-    }
-    public static int STORAGE_PROTOCOL_SPECIFIC_NVME_ADMIN_COMMAND() {
-        return (int)1L;
-    }
-    public static int STORAGE_PROTOCOL_SPECIFIC_NVME_NVM_COMMAND() {
-        return (int)2L;
-    }
-    public static int STORATTRIBUTE_NONE() {
-        return (int)0L;
-    }
-    public static int STORATTRIBUTE_MANAGEMENT_STATE() {
-        return (int)1L;
-    }
-    public static int IOCTL_SCMBUS_DEVICE_FUNCTION_BASE() {
-        return (int)0L;
-    }
-    public static int IOCTL_SCM_LOGICAL_DEVICE_FUNCTION_BASE() {
-        return (int)768L;
-    }
-    public static int IOCTL_SCM_PHYSICAL_DEVICE_FUNCTION_BASE() {
-        return (int)1536L;
-    }
-    public static int SCM_MAX_SYMLINK_LEN_IN_CHARS() {
-        return (int)256L;
-    }
-    public static int MAX_INTERFACE_CODES() {
-        return (int)8L;
-    }
-    public static int SCM_PD_FIRMWARE_REVISION_LENGTH_BYTES() {
-        return (int)32L;
-    }
-    public static int SCM_PD_PROPERTY_NAME_LENGTH_IN_CHARS() {
-        return (int)128L;
-    }
-    public static int SCM_PD_MAX_OPERATIONAL_STATUS() {
-        return (int)16L;
-    }
-    public static int SCM_PD_FIRMWARE_LAST_DOWNLOAD() {
-        return (int)1L;
-    }
-    public static int PARTITION_ENTRY_UNUSED() {
-        return (int)0L;
-    }
-    public static int PARTITION_FAT_12() {
-        return (int)1L;
-    }
-    public static int PARTITION_XENIX_1() {
-        return (int)2L;
-    }
-    public static int PARTITION_XENIX_2() {
-        return (int)3L;
-    }
-    public static int PARTITION_FAT_16() {
-        return (int)4L;
-    }
-    public static int PARTITION_EXTENDED() {
-        return (int)5L;
-    }
-    public static int PARTITION_HUGE() {
-        return (int)6L;
-    }
-    public static int PARTITION_IFS() {
-        return (int)7L;
-    }
-    public static int PARTITION_OS2BOOTMGR() {
-        return (int)10L;
-    }
-    public static int PARTITION_FAT32() {
-        return (int)11L;
-    }
-    public static int PARTITION_FAT32_XINT13() {
-        return (int)12L;
-    }
-    public static int PARTITION_XINT13() {
-        return (int)14L;
-    }
-    public static int PARTITION_XINT13_EXTENDED() {
-        return (int)15L;
-    }
-    public static int PARTITION_MSFT_RECOVERY() {
-        return (int)39L;
-    }
-    public static int PARTITION_MAIN_OS() {
-        return (int)40L;
-    }
-    public static int PARTIITON_OS_DATA() {
-        return (int)41L;
-    }
-    public static int PARTITION_PRE_INSTALLED() {
-        return (int)42L;
-    }
-    public static int PARTITION_BSP() {
-        return (int)43L;
-    }
-    public static int PARTITION_DPP() {
-        return (int)44L;
-    }
-    public static int PARTITION_WINDOWS_SYSTEM() {
-        return (int)45L;
-    }
-    public static int PARTITION_PREP() {
-        return (int)65L;
-    }
-    public static int PARTITION_LDM() {
-        return (int)66L;
-    }
-    public static int PARTITION_DM() {
-        return (int)84L;
-    }
-    public static int PARTITION_EZDRIVE() {
-        return (int)85L;
-    }
-    public static int PARTITION_UNIX() {
-        return (int)99L;
-    }
-    public static int PARTITION_SPACES_DATA() {
-        return (int)215L;
-    }
-    public static int PARTITION_SPACES() {
-        return (int)231L;
-    }
-    public static int PARTITION_GPT() {
-        return (int)238L;
-    }
-    public static int PARTITION_SYSTEM() {
-        return (int)239L;
-    }
-    public static int VALID_NTFT() {
-        return (int)192L;
-    }
-    public static int PARTITION_NTFT() {
-        return (int)128L;
-    }
-    public static int HIST_NO_OF_BUCKETS() {
-        return (int)24L;
-    }
-    public static int DISK_LOGGING_START() {
-        return (int)0L;
-    }
-    public static int DISK_LOGGING_STOP() {
-        return (int)1L;
-    }
-    public static int DISK_LOGGING_DUMP() {
-        return (int)2L;
-    }
-    public static int DISK_BINNING() {
-        return (int)3L;
-    }
-    public static int CAP_ATA_ID_CMD() {
-        return (int)1L;
-    }
-    public static int CAP_ATAPI_ID_CMD() {
-        return (int)2L;
-    }
-    public static int CAP_SMART_CMD() {
-        return (int)4L;
-    }
-    public static int ATAPI_ID_CMD() {
-        return (int)161L;
-    }
-    public static int ID_CMD() {
-        return (int)236L;
-    }
-    public static int SMART_CMD() {
-        return (int)176L;
-    }
-    public static int SMART_CYL_LOW() {
-        return (int)79L;
-    }
-    public static int SMART_CYL_HI() {
-        return (int)194L;
-    }
-    public static int SMART_NO_ERROR() {
-        return (int)0L;
-    }
-    public static int SMART_IDE_ERROR() {
-        return (int)1L;
-    }
-    public static int SMART_INVALID_FLAG() {
-        return (int)2L;
-    }
-    public static int SMART_INVALID_COMMAND() {
-        return (int)3L;
-    }
-    public static int SMART_INVALID_BUFFER() {
-        return (int)4L;
-    }
-    public static int SMART_INVALID_DRIVE() {
-        return (int)5L;
-    }
-    public static int SMART_INVALID_IOCTL() {
-        return (int)6L;
-    }
-    public static int SMART_ERROR_NO_MEM() {
-        return (int)7L;
-    }
-    public static int SMART_INVALID_REGISTER() {
-        return (int)8L;
-    }
-    public static int SMART_NOT_SUPPORTED() {
-        return (int)9L;
-    }
-    public static int SMART_NO_IDE_DEVICE() {
-        return (int)10L;
-    }
-    public static int SMART_OFFLINE_ROUTINE_OFFLINE() {
-        return (int)0L;
-    }
-    public static int SMART_SHORT_SELFTEST_OFFLINE() {
-        return (int)1L;
-    }
-    public static int SMART_EXTENDED_SELFTEST_OFFLINE() {
-        return (int)2L;
-    }
-    public static int SMART_ABORT_OFFLINE_SELFTEST() {
-        return (int)127L;
-    }
-    public static int SMART_SHORT_SELFTEST_CAPTIVE() {
-        return (int)129L;
-    }
-    public static int SMART_EXTENDED_SELFTEST_CAPTIVE() {
-        return (int)130L;
-    }
-    public static int READ_ATTRIBUTE_BUFFER_SIZE() {
-        return (int)512L;
-    }
-    public static int IDENTIFY_BUFFER_SIZE() {
-        return (int)512L;
-    }
-    public static int READ_THRESHOLD_BUFFER_SIZE() {
-        return (int)512L;
-    }
-    public static int SMART_LOG_SECTOR_SIZE() {
-        return (int)512L;
-    }
-    public static int READ_ATTRIBUTES() {
-        return (int)208L;
-    }
-    public static int READ_THRESHOLDS() {
-        return (int)209L;
-    }
-    public static int ENABLE_DISABLE_AUTOSAVE() {
-        return (int)210L;
-    }
-    public static int SAVE_ATTRIBUTE_VALUES() {
-        return (int)211L;
-    }
-    public static int EXECUTE_OFFLINE_DIAGS() {
-        return (int)212L;
-    }
-    public static int SMART_READ_LOG() {
-        return (int)213L;
-    }
-    public static int SMART_WRITE_LOG() {
-        return (int)214L;
-    }
-    public static int ENABLE_SMART() {
-        return (int)216L;
-    }
-    public static int DISABLE_SMART() {
-        return (int)217L;
-    }
-    public static int RETURN_SMART_STATUS() {
-        return (int)218L;
-    }
-    public static int ENABLE_DISABLE_AUTO_OFFLINE() {
-        return (int)219L;
-    }
-    public static int DISK_ATTRIBUTE_OFFLINE() {
-        return (int)1L;
-    }
-    public static int DISK_ATTRIBUTE_READ_ONLY() {
-        return (int)2L;
-    }
-    public static int MAX_VOLUME_ID_SIZE() {
-        return (int)36L;
-    }
-    public static int MAX_VOLUME_TEMPLATE_SIZE() {
-        return (int)40L;
-    }
-    public static int VENDOR_ID_LENGTH() {
-        return (int)8L;
-    }
-    public static int PRODUCT_ID_LENGTH() {
-        return (int)16L;
-    }
-    public static int REVISION_LENGTH() {
-        return (int)4L;
-    }
-    public static int SERIAL_NUMBER_LENGTH() {
-        return (int)32L;
-    }
-    public static int CHANGER_BAR_CODE_SCANNER_INSTALLED() {
-        return (int)1L;
-    }
-    public static int CHANGER_INIT_ELEM_STAT_WITH_RANGE() {
-        return (int)2L;
-    }
-    public static int CHANGER_CLOSE_IEPORT() {
-        return (int)4L;
-    }
-    public static int CHANGER_OPEN_IEPORT() {
-        return (int)8L;
-    }
-    public static int CHANGER_STATUS_NON_VOLATILE() {
-        return (int)16L;
-    }
-    public static int CHANGER_EXCHANGE_MEDIA() {
-        return (int)32L;
-    }
-    public static int CHANGER_CLEANER_SLOT() {
-        return (int)64L;
-    }
-    public static int CHANGER_LOCK_UNLOCK() {
-        return (int)128L;
-    }
-    public static int CHANGER_CARTRIDGE_MAGAZINE() {
-        return (int)256L;
-    }
-    public static int CHANGER_MEDIUM_FLIP() {
-        return (int)512L;
-    }
-    public static int CHANGER_POSITION_TO_ELEMENT() {
-        return (int)1024L;
-    }
-    public static int CHANGER_REPORT_IEPORT_STATE() {
-        return (int)2048L;
-    }
-    public static int CHANGER_STORAGE_DRIVE() {
-        return (int)4096L;
-    }
-    public static int CHANGER_STORAGE_IEPORT() {
-        return (int)8192L;
-    }
-    public static int CHANGER_STORAGE_SLOT() {
-        return (int)16384L;
-    }
-    public static int CHANGER_STORAGE_TRANSPORT() {
-        return (int)32768L;
-    }
-    public static int CHANGER_DRIVE_CLEANING_REQUIRED() {
-        return (int)65536L;
-    }
-    public static int CHANGER_PREDISMOUNT_EJECT_REQUIRED() {
-        return (int)131072L;
-    }
-    public static int CHANGER_CLEANER_ACCESS_NOT_VALID() {
-        return (int)262144L;
-    }
-    public static int CHANGER_PREMOUNT_EJECT_REQUIRED() {
-        return (int)524288L;
-    }
-    public static int CHANGER_VOLUME_IDENTIFICATION() {
-        return (int)1048576L;
-    }
-    public static int CHANGER_VOLUME_SEARCH() {
-        return (int)2097152L;
-    }
-    public static int CHANGER_VOLUME_ASSERT() {
-        return (int)4194304L;
-    }
-    public static int CHANGER_VOLUME_REPLACE() {
-        return (int)8388608L;
-    }
-    public static int CHANGER_VOLUME_UNDEFINE() {
-        return (int)16777216L;
-    }
-    public static int CHANGER_SERIAL_NUMBER_VALID() {
-        return (int)67108864L;
-    }
-    public static int CHANGER_DEVICE_REINITIALIZE_CAPABLE() {
-        return (int)134217728L;
-    }
-    public static int CHANGER_KEYPAD_ENABLE_DISABLE() {
-        return (int)268435456L;
-    }
-    public static int CHANGER_DRIVE_EMPTY_ON_DOOR_ACCESS() {
-        return (int)536870912L;
-    }
-    public static int CHANGER_TO_TRANSPORT() {
-        return (int)1L;
-    }
-    public static int CHANGER_TO_SLOT() {
-        return (int)2L;
-    }
-    public static int CHANGER_TO_IEPORT() {
-        return (int)4L;
-    }
-    public static int CHANGER_TO_DRIVE() {
-        return (int)8L;
-    }
-    public static int LOCK_UNLOCK_IEPORT() {
-        return (int)1L;
-    }
-    public static int LOCK_UNLOCK_DOOR() {
-        return (int)2L;
-    }
-    public static int LOCK_UNLOCK_KEYPAD() {
-        return (int)4L;
-    }
-    public static int LOCK_ELEMENT() {
-        return (int)0L;
-    }
-    public static int UNLOCK_ELEMENT() {
-        return (int)1L;
-    }
-    public static int EXTEND_IEPORT() {
-        return (int)2L;
-    }
-    public static int RETRACT_IEPORT() {
-        return (int)3L;
-    }
-    public static int ELEMENT_STATUS_FULL() {
-        return (int)1L;
-    }
-    public static int ELEMENT_STATUS_IMPEXP() {
-        return (int)2L;
-    }
-    public static int ELEMENT_STATUS_EXCEPT() {
-        return (int)4L;
-    }
-    public static int ELEMENT_STATUS_ACCESS() {
-        return (int)8L;
-    }
-    public static int ELEMENT_STATUS_EXENAB() {
-        return (int)16L;
-    }
-    public static int ELEMENT_STATUS_INENAB() {
-        return (int)32L;
-    }
-    public static int ELEMENT_STATUS_PRODUCT_DATA() {
-        return (int)64L;
-    }
-    public static int ELEMENT_STATUS_LUN_VALID() {
-        return (int)4096L;
-    }
-    public static int ELEMENT_STATUS_ID_VALID() {
-        return (int)8192L;
-    }
-    public static int ELEMENT_STATUS_NOT_BUS() {
-        return (int)32768L;
-    }
-    public static int ELEMENT_STATUS_INVERT() {
-        return (int)4194304L;
-    }
-    public static int ELEMENT_STATUS_SVALID() {
-        return (int)8388608L;
-    }
-    public static int ELEMENT_STATUS_PVOLTAG() {
-        return (int)268435456L;
-    }
-    public static int ELEMENT_STATUS_AVOLTAG() {
-        return (int)536870912L;
-    }
-    public static int ERROR_LABEL_UNREADABLE() {
-        return (int)1L;
-    }
-    public static int ERROR_LABEL_QUESTIONABLE() {
-        return (int)2L;
-    }
-    public static int ERROR_SLOT_NOT_PRESENT() {
-        return (int)4L;
-    }
-    public static int ERROR_DRIVE_NOT_INSTALLED() {
-        return (int)8L;
-    }
-    public static int ERROR_TRAY_MALFUNCTION() {
-        return (int)16L;
-    }
-    public static int ERROR_INIT_STATUS_NEEDED() {
-        return (int)17L;
-    }
-    public static int SEARCH_ALL() {
-        return (int)0L;
-    }
-    public static int SEARCH_PRIMARY() {
-        return (int)1L;
-    }
-    public static int SEARCH_ALTERNATE() {
-        return (int)2L;
-    }
-    public static int SEARCH_ALL_NO_SEQ() {
-        return (int)4L;
-    }
-    public static int SEARCH_PRI_NO_SEQ() {
-        return (int)5L;
-    }
-    public static int SEARCH_ALT_NO_SEQ() {
-        return (int)6L;
-    }
-    public static int ASSERT_PRIMARY() {
-        return (int)8L;
-    }
-    public static int ASSERT_ALTERNATE() {
-        return (int)9L;
-    }
-    public static int REPLACE_PRIMARY() {
-        return (int)10L;
-    }
-    public static int REPLACE_ALTERNATE() {
-        return (int)11L;
-    }
-    public static int UNDEFINE_PRIMARY() {
-        return (int)12L;
-    }
-    public static int UNDEFINE_ALTERNATE() {
-        return (int)13L;
-    }
-    public static int GET_VOLUME_BITMAP_FLAG_MASK_METADATA() {
-        return (int)1L;
-    }
-    public static int FLAG_USN_TRACK_MODIFIED_RANGES_ENABLE() {
-        return (int)1L;
-    }
-    public static int FILE_PREFETCH_TYPE_FOR_CREATE() {
-        return (int)1L;
-    }
-    public static int FILE_PREFETCH_TYPE_FOR_DIRENUM() {
-        return (int)2L;
-    }
-    public static int FILE_PREFETCH_TYPE_FOR_CREATE_EX() {
-        return (int)3L;
-    }
-    public static int FILE_PREFETCH_TYPE_FOR_DIRENUM_EX() {
-        return (int)4L;
-    }
-    public static int FILE_PREFETCH_TYPE_MAX() {
-        return (int)4L;
-    }
-    public static int FILESYSTEM_STATISTICS_TYPE_NTFS() {
-        return (int)1L;
-    }
-    public static int FILESYSTEM_STATISTICS_TYPE_FAT() {
-        return (int)2L;
-    }
-    public static int FILESYSTEM_STATISTICS_TYPE_EXFAT() {
-        return (int)3L;
-    }
-    public static int FILESYSTEM_STATISTICS_TYPE_REFS() {
-        return (int)4L;
-    }
-    public static int FILE_SET_ENCRYPTION() {
-        return (int)1L;
-    }
-    public static int FILE_CLEAR_ENCRYPTION() {
-        return (int)2L;
-    }
-    public static int STREAM_SET_ENCRYPTION() {
-        return (int)3L;
-    }
-    public static int STREAM_CLEAR_ENCRYPTION() {
-        return (int)4L;
-    }
-    public static int MAXIMUM_ENCRYPTION_VALUE() {
-        return (int)4L;
-    }
-    public static int ENCRYPTED_DATA_INFO_SPARSE_FILE() {
-        return (int)1L;
-    }
-    public static int COPYFILE_SIS_LINK() {
-        return (int)1L;
-    }
-    public static int COPYFILE_SIS_REPLACE() {
-        return (int)2L;
-    }
-    public static int COPYFILE_SIS_FLAGS() {
-        return (int)3L;
-    }
-    public static int TXFS_RM_FLAG_LOGGING_MODE() {
-        return (int)1L;
-    }
-    public static int TXFS_RM_FLAG_RENAME_RM() {
-        return (int)2L;
-    }
-    public static int TXFS_RM_FLAG_LOG_CONTAINER_COUNT_MAX() {
-        return (int)4L;
-    }
-    public static int TXFS_RM_FLAG_LOG_CONTAINER_COUNT_MIN() {
-        return (int)8L;
-    }
-    public static int TXFS_RM_FLAG_LOG_GROWTH_INCREMENT_NUM_CONTAINERS() {
-        return (int)16L;
-    }
-    public static int TXFS_RM_FLAG_LOG_GROWTH_INCREMENT_PERCENT() {
-        return (int)32L;
-    }
-    public static int TXFS_RM_FLAG_LOG_AUTO_SHRINK_PERCENTAGE() {
-        return (int)64L;
-    }
-    public static int TXFS_RM_FLAG_LOG_NO_CONTAINER_COUNT_MAX() {
-        return (int)128L;
-    }
-    public static int TXFS_RM_FLAG_LOG_NO_CONTAINER_COUNT_MIN() {
-        return (int)256L;
-    }
-    public static int TXFS_RM_FLAG_GROW_LOG() {
-        return (int)1024L;
-    }
-    public static int TXFS_RM_FLAG_SHRINK_LOG() {
-        return (int)2048L;
-    }
-    public static int TXFS_RM_FLAG_ENFORCE_MINIMUM_SIZE() {
-        return (int)4096L;
-    }
-    public static int TXFS_RM_FLAG_PRESERVE_CHANGES() {
-        return (int)8192L;
-    }
-    public static int TXFS_RM_FLAG_RESET_RM_AT_NEXT_START() {
-        return (int)16384L;
-    }
-    public static int TXFS_RM_FLAG_DO_NOT_RESET_RM_AT_NEXT_START() {
-        return (int)32768L;
-    }
-    public static int TXFS_RM_FLAG_PREFER_CONSISTENCY() {
-        return (int)65536L;
-    }
-    public static int TXFS_RM_FLAG_PREFER_AVAILABILITY() {
-        return (int)131072L;
-    }
-    public static int TXFS_TRANSACTION_STATE_NONE() {
-        return (int)0L;
-    }
-    public static int TXFS_TRANSACTION_STATE_ACTIVE() {
-        return (int)1L;
-    }
-    public static int TXFS_TRANSACTION_STATE_PREPARED() {
-        return (int)2L;
-    }
-    public static int TXFS_TRANSACTION_STATE_NOTACTIVE() {
-        return (int)3L;
-    }
-    public static int TXFS_RM_STATE_NOT_STARTED() {
-        return (int)0L;
-    }
-    public static int TXFS_RM_STATE_STARTING() {
-        return (int)1L;
-    }
-    public static int TXFS_RM_STATE_ACTIVE() {
-        return (int)2L;
-    }
-    public static int TXFS_RM_STATE_SHUTTING_DOWN() {
-        return (int)3L;
-    }
-    public static int TXFS_ROLLFORWARD_REDO_FLAG_USE_LAST_REDO_LSN() {
-        return (int)1L;
-    }
-    public static int TXFS_ROLLFORWARD_REDO_FLAG_USE_LAST_VIRTUAL_CLOCK() {
-        return (int)2L;
-    }
-    public static int TXFS_START_RM_FLAG_LOG_CONTAINER_COUNT_MAX() {
-        return (int)1L;
-    }
-    public static int TXFS_START_RM_FLAG_LOG_CONTAINER_COUNT_MIN() {
-        return (int)2L;
-    }
-    public static int TXFS_START_RM_FLAG_LOG_CONTAINER_SIZE() {
-        return (int)4L;
-    }
-    public static int TXFS_START_RM_FLAG_LOG_GROWTH_INCREMENT_NUM_CONTAINERS() {
-        return (int)8L;
-    }
-    public static int TXFS_START_RM_FLAG_LOG_GROWTH_INCREMENT_PERCENT() {
-        return (int)16L;
-    }
-    public static int TXFS_START_RM_FLAG_LOG_AUTO_SHRINK_PERCENTAGE() {
-        return (int)32L;
-    }
-    public static int TXFS_START_RM_FLAG_LOG_NO_CONTAINER_COUNT_MAX() {
-        return (int)64L;
-    }
-    public static int TXFS_START_RM_FLAG_LOG_NO_CONTAINER_COUNT_MIN() {
-        return (int)128L;
-    }
-    public static int TXFS_START_RM_FLAG_RECOVER_BEST_EFFORT() {
-        return (int)512L;
-    }
-    public static int TXFS_START_RM_FLAG_LOGGING_MODE() {
-        return (int)1024L;
-    }
-    public static int TXFS_START_RM_FLAG_PRESERVE_CHANGES() {
-        return (int)2048L;
-    }
-    public static int TXFS_START_RM_FLAG_PREFER_CONSISTENCY() {
-        return (int)4096L;
-    }
-    public static int TXFS_START_RM_FLAG_PREFER_AVAILABILITY() {
-        return (int)8192L;
-    }
-    public static int TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY_FLAG_CREATED() {
-        return (int)1L;
-    }
-    public static int TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY_FLAG_DELETED() {
-        return (int)2L;
-    }
-    public static int TXFS_SAVEPOINT_SET() {
-        return (int)1L;
-    }
-    public static int TXFS_SAVEPOINT_ROLLBACK() {
-        return (int)2L;
-    }
-    public static int TXFS_SAVEPOINT_CLEAR() {
-        return (int)4L;
-    }
-    public static int TXFS_SAVEPOINT_CLEAR_ALL() {
-        return (int)16L;
-    }
-    public static int REQUEST_OPLOCK_CURRENT_VERSION() {
-        return (int)1L;
-    }
-    public static int QUERY_DEPENDENT_VOLUME_REQUEST_FLAG_HOST_VOLUMES() {
-        return (int)1L;
-    }
-    public static int QUERY_DEPENDENT_VOLUME_REQUEST_FLAG_GUEST_VOLUMES() {
-        return (int)2L;
-    }
-    public static int SD_GLOBAL_CHANGE_TYPE_MACHINE_SID() {
-        return (int)1L;
-    }
-    public static int LOOKUP_STREAM_FROM_CLUSTER_ENTRY_FLAG_PAGE_FILE() {
-        return (int)1L;
-    }
-    public static int LOOKUP_STREAM_FROM_CLUSTER_ENTRY_FLAG_DENY_DEFRAG_SET() {
-        return (int)2L;
-    }
-    public static int LOOKUP_STREAM_FROM_CLUSTER_ENTRY_FLAG_FS_SYSTEM_FILE() {
-        return (int)4L;
-    }
-    public static int LOOKUP_STREAM_FROM_CLUSTER_ENTRY_FLAG_TXF_SYSTEM_FILE() {
-        return (int)8L;
-    }
-    public static int LOOKUP_STREAM_FROM_CLUSTER_ENTRY_ATTRIBUTE_DATA() {
-        return (int)16777216L;
-    }
-    public static int LOOKUP_STREAM_FROM_CLUSTER_ENTRY_ATTRIBUTE_INDEX() {
-        return (int)33554432L;
-    }
-    public static int LOOKUP_STREAM_FROM_CLUSTER_ENTRY_ATTRIBUTE_SYSTEM() {
-        return (int)50331648L;
-    }
-    public static int FILE_TYPE_NOTIFICATION_FLAG_USAGE_BEGIN() {
-        return (int)1L;
-    }
-    public static int FILE_TYPE_NOTIFICATION_FLAG_USAGE_END() {
-        return (int)2L;
-    }
-    public static int CSV_MGMTLOCK_CHECK_VOLUME_REDIRECTED() {
-        return (int)1L;
-    }
-    public static int CSV_QUERY_MDS_PATH_V2_VERSION_1() {
-        return (int)1L;
-    }
-    public static int CSV_QUERY_MDS_PATH_FLAG_STORAGE_ON_THIS_NODE_IS_CONNECTED() {
-        return (int)1L;
-    }
-    public static int CSV_QUERY_MDS_PATH_FLAG_CSV_DIRECT_IO_ENABLED() {
-        return (int)2L;
-    }
-    public static int CSV_QUERY_MDS_PATH_FLAG_SMB_BYPASS_CSV_ENABLED() {
-        return (int)4L;
-    }
-    public static int SET_PURGE_FAILURE_MODE_ENABLED() {
-        return (int)1L;
-    }
-    public static int SET_PURGE_FAILURE_MODE_DISABLED() {
-        return (int)2L;
-    }
-    public static int FILE_REGION_USAGE_VALID_CACHED_DATA() {
-        return (int)1L;
-    }
-    public static int FILE_REGION_USAGE_VALID_NONCACHED_DATA() {
-        return (int)2L;
-    }
-    public static int FILE_REGION_USAGE_OTHER_PAGE_ALIGNMENT() {
-        return (int)4L;
-    }
-    public static int FILE_REGION_USAGE_LARGE_PAGE_ALIGNMENT() {
-        return (int)8L;
-    }
-    public static int FILE_REGION_USAGE_HUGE_PAGE_ALIGNMENT() {
-        return (int)16L;
-    }
-    public static int QUERY_STORAGE_CLASSES_FLAGS_MEASURE_READ() {
-        return (int)1073741824L;
-    }
-    public static int QUERY_STORAGE_CLASSES_FLAGS_NO_DEFRAG_VOLUME() {
-        return (int)536870912L;
-    }
-    public static int DUPLICATE_EXTENTS_DATA_EX_SOURCE_ATOMIC() {
-        return (int)1L;
-    }
-    public static int DUPLICATE_EXTENTS_DATA_EX_ASYNC() {
-        return (int)2L;
-    }
-    public static int REFS_SMR_VOLUME_INFO_OUTPUT_VERSION_V1() {
-        return (int)1L;
-    }
-    public static int REFS_SMR_VOLUME_GC_PARAMETERS_VERSION_V1() {
-        return (int)1L;
-    }
-    public static int WIM_PROVIDER_HASH_SIZE() {
-        return (int)20L;
-    }
-    public static int PROJFS_PROTOCOL_VERSION() {
-        return (int)3L;
-    }
-    public static int IOCTL_VOLUME_BASE() {
-        return (int)86L;
-    }
-    public static int EFS_TRACKED_OFFSET_HEADER_FLAG() {
-        return (int)1L;
-    }
-    public static int SPACES_TRACKED_OFFSET_HEADER_FLAG() {
-        return (int)2L;
-    }
-    public static int SCARD_ATR_LENGTH() {
-        return (int)33L;
-    }
-    public static int SCARD_PROTOCOL_UNDEFINED() {
-        return (int)0L;
-    }
-    public static int SCARD_PROTOCOL_T0() {
-        return (int)1L;
-    }
-    public static int SCARD_PROTOCOL_T1() {
-        return (int)2L;
-    }
-    public static int SCARD_PROTOCOL_RAW() {
-        return (int)65536L;
-    }
-    public static int SCARD_PROTOCOL_OPTIMAL() {
-        return (int)0L;
-    }
-    public static int SCARD_POWER_DOWN() {
-        return (int)0L;
-    }
-    public static int SCARD_COLD_RESET() {
-        return (int)1L;
-    }
-    public static int SCARD_WARM_RESET() {
-        return (int)2L;
-    }
-    public static int MAXIMUM_ATTR_STRING_LENGTH() {
-        return (int)32L;
-    }
-    public static int MAXIMUM_SMARTCARD_READERS() {
-        return (int)10L;
-    }
-    public static int SCARD_CLASS_VENDOR_INFO() {
-        return (int)1L;
-    }
-    public static int SCARD_CLASS_COMMUNICATIONS() {
-        return (int)2L;
-    }
-    public static int SCARD_CLASS_PROTOCOL() {
-        return (int)3L;
-    }
-    public static int SCARD_CLASS_POWER_MGMT() {
-        return (int)4L;
-    }
-    public static int SCARD_CLASS_SECURITY() {
-        return (int)5L;
-    }
-    public static int SCARD_CLASS_MECHANICAL() {
-        return (int)6L;
-    }
-    public static int SCARD_CLASS_VENDOR_DEFINED() {
-        return (int)7L;
-    }
-    public static int SCARD_CLASS_IFD_PROTOCOL() {
-        return (int)8L;
-    }
-    public static int SCARD_CLASS_ICC_STATE() {
-        return (int)9L;
-    }
-    public static int SCARD_CLASS_PERF() {
-        return (int)32766L;
-    }
-    public static int SCARD_CLASS_SYSTEM() {
-        return (int)32767L;
-    }
-    public static int SCARD_T0_HEADER_LENGTH() {
-        return (int)7L;
-    }
-    public static int SCARD_T0_CMD_LENGTH() {
-        return (int)5L;
-    }
-    public static int SCARD_T1_PROLOGUE_LENGTH() {
-        return (int)3L;
-    }
-    public static int SCARD_T1_EPILOGUE_LENGTH() {
-        return (int)2L;
-    }
-    public static int SCARD_T1_EPILOGUE_LENGTH_LRC() {
-        return (int)1L;
-    }
-    public static int SCARD_T1_MAX_IFS() {
-        return (int)254L;
-    }
-    public static int SCARD_UNKNOWN() {
-        return (int)0L;
-    }
-    public static int SCARD_ABSENT() {
-        return (int)1L;
-    }
-    public static int SCARD_PRESENT() {
-        return (int)2L;
-    }
-    public static int SCARD_SWALLOWED() {
-        return (int)3L;
-    }
-    public static int SCARD_POWERED() {
-        return (int)4L;
-    }
-    public static int SCARD_NEGOTIABLE() {
-        return (int)5L;
-    }
-    public static int SCARD_SPECIFIC() {
-        return (int)6L;
-    }
-    public static int SCARD_READER_SWALLOWS() {
-        return (int)1L;
-    }
-    public static int SCARD_READER_EJECTS() {
-        return (int)2L;
-    }
-    public static int SCARD_READER_CONFISCATES() {
-        return (int)4L;
-    }
-    public static int SCARD_READER_CONTACTLESS() {
-        return (int)8L;
-    }
-    public static int SCARD_READER_TYPE_SERIAL() {
-        return (int)1L;
-    }
-    public static int SCARD_READER_TYPE_PARALELL() {
-        return (int)2L;
-    }
-    public static int SCARD_READER_TYPE_KEYBOARD() {
-        return (int)4L;
-    }
-    public static int SCARD_READER_TYPE_SCSI() {
-        return (int)8L;
-    }
-    public static int SCARD_READER_TYPE_IDE() {
-        return (int)16L;
-    }
-    public static int SCARD_READER_TYPE_USB() {
-        return (int)32L;
-    }
-    public static int SCARD_READER_TYPE_PCMCIA() {
-        return (int)64L;
-    }
-    public static int SCARD_READER_TYPE_TPM() {
-        return (int)128L;
-    }
-    public static int SCARD_READER_TYPE_NFC() {
-        return (int)256L;
-    }
-    public static int SCARD_READER_TYPE_UICC() {
-        return (int)512L;
-    }
-    public static int SCARD_READER_TYPE_NGC() {
-        return (int)1024L;
-    }
-    public static int SCARD_READER_TYPE_EMBEDDEDSE() {
-        return (int)2048L;
-    }
-    public static int SCARD_READER_TYPE_VENDOR() {
-        return (int)240L;
-    }
-    public static int SCARD_SCOPE_USER() {
-        return (int)0L;
-    }
-    public static int SCARD_SCOPE_TERMINAL() {
-        return (int)1L;
-    }
-    public static int SCARD_SCOPE_SYSTEM() {
-        return (int)2L;
-    }
-    public static int SCARD_PROVIDER_PRIMARY() {
-        return (int)1L;
-    }
-    public static int SCARD_PROVIDER_CSP() {
-        return (int)2L;
-    }
-    public static int SCARD_PROVIDER_KSP() {
-        return (int)3L;
-    }
-    public static int SCARD_STATE_UNAWARE() {
-        return (int)0L;
-    }
-    public static int SCARD_STATE_IGNORE() {
-        return (int)1L;
-    }
-    public static int SCARD_STATE_CHANGED() {
-        return (int)2L;
-    }
-    public static int SCARD_STATE_UNKNOWN() {
-        return (int)4L;
-    }
-    public static int SCARD_STATE_UNAVAILABLE() {
-        return (int)8L;
-    }
-    public static int SCARD_STATE_EMPTY() {
-        return (int)16L;
-    }
-    public static int SCARD_STATE_PRESENT() {
-        return (int)32L;
-    }
-    public static int SCARD_STATE_ATRMATCH() {
-        return (int)64L;
-    }
-    public static int SCARD_STATE_EXCLUSIVE() {
-        return (int)128L;
-    }
-    public static int SCARD_STATE_INUSE() {
-        return (int)256L;
-    }
-    public static int SCARD_STATE_MUTE() {
-        return (int)512L;
-    }
-    public static int SCARD_STATE_UNPOWERED() {
-        return (int)1024L;
-    }
-    public static int SCARD_SHARE_EXCLUSIVE() {
-        return (int)1L;
-    }
-    public static int SCARD_SHARE_SHARED() {
-        return (int)2L;
-    }
-    public static int SCARD_SHARE_DIRECT() {
-        return (int)3L;
-    }
-    public static int SCARD_LEAVE_CARD() {
-        return (int)0L;
-    }
-    public static int SCARD_RESET_CARD() {
-        return (int)1L;
-    }
-    public static int SCARD_UNPOWER_CARD() {
-        return (int)2L;
-    }
-    public static int SCARD_EJECT_CARD() {
-        return (int)3L;
-    }
-    public static int SC_DLG_MINIMAL_UI() {
-        return (int)1L;
-    }
-    public static int SC_DLG_NO_UI() {
-        return (int)2L;
-    }
-    public static int SC_DLG_FORCE_UI() {
-        return (int)4L;
-    }
-    public static int SCERR_NOCARDNAME() {
-        return (int)16384L;
-    }
-    public static int SCERR_NOGUIDS() {
-        return (int)32768L;
-    }
-    public static int SCARD_AUDIT_CHV_FAILURE() {
-        return (int)0L;
-    }
-    public static int SCARD_AUDIT_CHV_SUCCESS() {
-        return (int)1L;
-    }
-    public static int MAXPROPPAGES() {
-        return (int)100L;
-    }
-    public static int PSP_DEFAULT() {
-        return (int)0L;
-    }
-    public static int PSP_DLGINDIRECT() {
-        return (int)1L;
-    }
-    public static int PSP_USEHICON() {
-        return (int)2L;
-    }
-    public static int PSP_USEICONID() {
-        return (int)4L;
-    }
-    public static int PSP_USETITLE() {
-        return (int)8L;
-    }
-    public static int PSP_RTLREADING() {
-        return (int)16L;
-    }
-    public static int PSP_HASHELP() {
-        return (int)32L;
-    }
-    public static int PSP_USEREFPARENT() {
-        return (int)64L;
-    }
-    public static int PSP_USECALLBACK() {
-        return (int)128L;
-    }
-    public static int PSP_PREMATURE() {
-        return (int)1024L;
-    }
-    public static int PSP_HIDEHEADER() {
-        return (int)2048L;
-    }
-    public static int PSP_USEHEADERTITLE() {
-        return (int)4096L;
-    }
-    public static int PSP_USEHEADERSUBTITLE() {
-        return (int)8192L;
-    }
-    public static int PSP_USEFUSIONCONTEXT() {
-        return (int)16384L;
-    }
-    public static int PSPCB_ADDREF() {
-        return (int)0L;
-    }
-    public static int PSPCB_RELEASE() {
-        return (int)1L;
-    }
-    public static int PSPCB_CREATE() {
-        return (int)2L;
-    }
-    public static int PSH_DEFAULT() {
-        return (int)0L;
-    }
-    public static int PSH_PROPTITLE() {
-        return (int)1L;
-    }
-    public static int PSH_USEHICON() {
-        return (int)2L;
-    }
-    public static int PSH_USEICONID() {
-        return (int)4L;
-    }
-    public static int PSH_PROPSHEETPAGE() {
-        return (int)8L;
-    }
-    public static int PSH_WIZARDHASFINISH() {
-        return (int)16L;
-    }
-    public static int PSH_WIZARD() {
-        return (int)32L;
-    }
-    public static int PSH_USEPSTARTPAGE() {
-        return (int)64L;
-    }
-    public static int PSH_NOAPPLYNOW() {
-        return (int)128L;
-    }
-    public static int PSH_USECALLBACK() {
-        return (int)256L;
-    }
-    public static int PSH_HASHELP() {
-        return (int)512L;
-    }
-    public static int PSH_MODELESS() {
-        return (int)1024L;
-    }
-    public static int PSH_RTLREADING() {
-        return (int)2048L;
-    }
-    public static int PSH_WIZARDCONTEXTHELP() {
-        return (int)4096L;
-    }
-    public static int PSH_WIZARD97() {
-        return (int)16777216L;
-    }
-    public static int PSH_WATERMARK() {
-        return (int)32768L;
-    }
-    public static int PSH_USEHBMWATERMARK() {
-        return (int)65536L;
-    }
-    public static int PSH_USEHPLWATERMARK() {
-        return (int)131072L;
-    }
-    public static int PSH_STRETCHWATERMARK() {
-        return (int)262144L;
-    }
-    public static int PSH_HEADER() {
-        return (int)524288L;
-    }
-    public static int PSH_USEHBMHEADER() {
-        return (int)1048576L;
-    }
-    public static int PSH_USEPAGELANG() {
-        return (int)2097152L;
-    }
-    public static int PSH_WIZARD_LITE() {
-        return (int)4194304L;
-    }
-    public static int PSH_NOCONTEXTHELP() {
-        return (int)33554432L;
-    }
-    public static int PSH_AEROWIZARD() {
-        return (int)16384L;
-    }
-    public static int PSH_RESIZABLE() {
-        return (int)67108864L;
-    }
-    public static int PSH_HEADERBITMAP() {
-        return (int)134217728L;
-    }
-    public static int PSH_NOMARGIN() {
-        return (int)268435456L;
-    }
-    public static int PSCB_INITIALIZED() {
-        return (int)1L;
-    }
-    public static int PSCB_PRECREATE() {
-        return (int)2L;
-    }
-    public static int PSCB_BUTTONPRESSED() {
-        return (int)3L;
-    }
-    public static int PSNRET_NOERROR() {
-        return (int)0L;
-    }
-    public static int PSNRET_INVALID() {
-        return (int)1L;
-    }
-    public static int PSNRET_INVALID_NOCHANGEPAGE() {
-        return (int)2L;
-    }
-    public static int PSNRET_MESSAGEHANDLED() {
-        return (int)3L;
-    }
-    public static int PSWIZB_BACK() {
-        return (int)1L;
-    }
-    public static int PSWIZB_NEXT() {
-        return (int)2L;
-    }
-    public static int PSWIZB_FINISH() {
-        return (int)4L;
-    }
-    public static int PSWIZB_DISABLEDFINISH() {
-        return (int)8L;
-    }
-    public static int PSWIZBF_ELEVATIONREQUIRED() {
-        return (int)1L;
-    }
-    public static int PSWIZB_CANCEL() {
-        return (int)16L;
-    }
-    public static int PSBTN_BACK() {
-        return (int)0L;
-    }
-    public static int PSBTN_NEXT() {
-        return (int)1L;
-    }
-    public static int PSBTN_FINISH() {
-        return (int)2L;
-    }
-    public static int PSBTN_OK() {
-        return (int)3L;
-    }
-    public static int PSBTN_APPLYNOW() {
-        return (int)4L;
-    }
-    public static int PSBTN_CANCEL() {
-        return (int)5L;
-    }
-    public static int PSBTN_HELP() {
-        return (int)6L;
-    }
-    public static int PSBTN_MAX() {
-        return (int)6L;
-    }
-    public static int PSWIZB_SHOW() {
-        return (int)0L;
-    }
-    public static int PSWIZB_RESTORE() {
-        return (int)1L;
-    }
-    public static int ID_PSRESTARTWINDOWS() {
-        return (int)2L;
-    }
-    public static int WIZ_CXDLG() {
-        return (int)276L;
-    }
-    public static int WIZ_CYDLG() {
-        return (int)140L;
-    }
-    public static int WIZ_CXBMP() {
-        return (int)80L;
-    }
-    public static int WIZ_BODYX() {
-        return (int)92L;
-    }
-    public static int WIZ_BODYCX() {
-        return (int)184L;
-    }
-    public static int PROP_SM_CXDLG() {
-        return (int)212L;
-    }
-    public static int PROP_SM_CYDLG() {
-        return (int)188L;
-    }
-    public static int PROP_MED_CXDLG() {
-        return (int)227L;
-    }
-    public static int PROP_MED_CYDLG() {
-        return (int)215L;
-    }
-    public static int PROP_LG_CXDLG() {
-        return (int)252L;
-    }
-    public static int PROP_LG_CYDLG() {
-        return (int)218L;
-    }
-    public static int DSPRINT_PUBLISH() {
-        return (int)1L;
-    }
-    public static int DSPRINT_UPDATE() {
-        return (int)2L;
-    }
-    public static int DSPRINT_UNPUBLISH() {
-        return (int)4L;
-    }
-    public static int DSPRINT_REPUBLISH() {
-        return (int)8L;
-    }
-    public static int PRINTER_CONTROL_PAUSE() {
-        return (int)1L;
-    }
-    public static int PRINTER_CONTROL_RESUME() {
-        return (int)2L;
-    }
-    public static int PRINTER_CONTROL_PURGE() {
-        return (int)3L;
-    }
-    public static int PRINTER_CONTROL_SET_STATUS() {
-        return (int)4L;
-    }
-    public static int PRINTER_STATUS_PAUSED() {
-        return (int)1L;
-    }
-    public static int PRINTER_STATUS_ERROR() {
-        return (int)2L;
-    }
-    public static int PRINTER_STATUS_PENDING_DELETION() {
-        return (int)4L;
-    }
-    public static int PRINTER_STATUS_PAPER_JAM() {
-        return (int)8L;
-    }
-    public static int PRINTER_STATUS_PAPER_OUT() {
-        return (int)16L;
-    }
-    public static int PRINTER_STATUS_MANUAL_FEED() {
-        return (int)32L;
-    }
-    public static int PRINTER_STATUS_PAPER_PROBLEM() {
-        return (int)64L;
-    }
-    public static int PRINTER_STATUS_OFFLINE() {
-        return (int)128L;
-    }
-    public static int PRINTER_STATUS_IO_ACTIVE() {
-        return (int)256L;
-    }
-    public static int PRINTER_STATUS_BUSY() {
-        return (int)512L;
-    }
-    public static int PRINTER_STATUS_PRINTING() {
-        return (int)1024L;
-    }
-    public static int PRINTER_STATUS_OUTPUT_BIN_FULL() {
-        return (int)2048L;
-    }
-    public static int PRINTER_STATUS_NOT_AVAILABLE() {
-        return (int)4096L;
-    }
-    public static int PRINTER_STATUS_WAITING() {
-        return (int)8192L;
-    }
-    public static int PRINTER_STATUS_PROCESSING() {
-        return (int)16384L;
-    }
-    public static int PRINTER_STATUS_INITIALIZING() {
-        return (int)32768L;
-    }
-    public static int PRINTER_STATUS_WARMING_UP() {
-        return (int)65536L;
-    }
-    public static int PRINTER_STATUS_TONER_LOW() {
-        return (int)131072L;
-    }
-    public static int PRINTER_STATUS_NO_TONER() {
-        return (int)262144L;
-    }
-    public static int PRINTER_STATUS_PAGE_PUNT() {
-        return (int)524288L;
-    }
-    public static int PRINTER_STATUS_USER_INTERVENTION() {
-        return (int)1048576L;
-    }
-    public static int PRINTER_STATUS_OUT_OF_MEMORY() {
-        return (int)2097152L;
-    }
-    public static int PRINTER_STATUS_DOOR_OPEN() {
-        return (int)4194304L;
-    }
-    public static int PRINTER_STATUS_SERVER_UNKNOWN() {
-        return (int)8388608L;
-    }
-    public static int PRINTER_STATUS_POWER_SAVE() {
-        return (int)16777216L;
-    }
-    public static int PRINTER_STATUS_SERVER_OFFLINE() {
-        return (int)33554432L;
-    }
-    public static int PRINTER_STATUS_DRIVER_UPDATE_NEEDED() {
-        return (int)67108864L;
-    }
-    public static int PRINTER_ATTRIBUTE_QUEUED() {
-        return (int)1L;
-    }
-    public static int PRINTER_ATTRIBUTE_DIRECT() {
-        return (int)2L;
-    }
-    public static int PRINTER_ATTRIBUTE_DEFAULT() {
-        return (int)4L;
-    }
-    public static int PRINTER_ATTRIBUTE_SHARED() {
-        return (int)8L;
-    }
-    public static int PRINTER_ATTRIBUTE_NETWORK() {
-        return (int)16L;
-    }
-    public static int PRINTER_ATTRIBUTE_HIDDEN() {
-        return (int)32L;
-    }
-    public static int PRINTER_ATTRIBUTE_LOCAL() {
-        return (int)64L;
-    }
-    public static int PRINTER_ATTRIBUTE_ENABLE_DEVQ() {
-        return (int)128L;
-    }
-    public static int PRINTER_ATTRIBUTE_KEEPPRINTEDJOBS() {
-        return (int)256L;
-    }
-    public static int PRINTER_ATTRIBUTE_DO_COMPLETE_FIRST() {
-        return (int)512L;
-    }
-    public static int PRINTER_ATTRIBUTE_WORK_OFFLINE() {
-        return (int)1024L;
-    }
-    public static int PRINTER_ATTRIBUTE_ENABLE_BIDI() {
-        return (int)2048L;
-    }
-    public static int PRINTER_ATTRIBUTE_RAW_ONLY() {
-        return (int)4096L;
-    }
-    public static int PRINTER_ATTRIBUTE_PUBLISHED() {
-        return (int)8192L;
-    }
-    public static int PRINTER_ATTRIBUTE_FAX() {
-        return (int)16384L;
-    }
-    public static int PRINTER_ATTRIBUTE_TS() {
-        return (int)32768L;
-    }
-    public static int PRINTER_ATTRIBUTE_PUSHED_USER() {
-        return (int)131072L;
-    }
-    public static int PRINTER_ATTRIBUTE_PUSHED_MACHINE() {
-        return (int)262144L;
-    }
-    public static int PRINTER_ATTRIBUTE_MACHINE() {
-        return (int)524288L;
-    }
-    public static int PRINTER_ATTRIBUTE_FRIENDLY_NAME() {
-        return (int)1048576L;
-    }
-    public static int PRINTER_ATTRIBUTE_TS_GENERIC_DRIVER() {
-        return (int)2097152L;
-    }
-    public static int PRINTER_ATTRIBUTE_PER_USER() {
-        return (int)4194304L;
-    }
-    public static int PRINTER_ATTRIBUTE_ENTERPRISE_CLOUD() {
-        return (int)8388608L;
-    }
-    public static int NO_PRIORITY() {
-        return (int)0L;
-    }
-    public static int MAX_PRIORITY() {
-        return (int)99L;
-    }
-    public static int MIN_PRIORITY() {
-        return (int)1L;
-    }
-    public static int DEF_PRIORITY() {
-        return (int)1L;
-    }
-    public static int JOB_CONTROL_PAUSE() {
-        return (int)1L;
-    }
-    public static int JOB_CONTROL_RESUME() {
-        return (int)2L;
-    }
-    public static int JOB_CONTROL_CANCEL() {
-        return (int)3L;
-    }
-    public static int JOB_CONTROL_RESTART() {
-        return (int)4L;
-    }
-    public static int JOB_CONTROL_DELETE() {
-        return (int)5L;
-    }
-    public static int JOB_CONTROL_SENT_TO_PRINTER() {
-        return (int)6L;
-    }
-    public static int JOB_CONTROL_LAST_PAGE_EJECTED() {
-        return (int)7L;
-    }
-    public static int JOB_CONTROL_RETAIN() {
-        return (int)8L;
-    }
-    public static int JOB_CONTROL_RELEASE() {
-        return (int)9L;
-    }
-    public static int JOB_STATUS_PAUSED() {
-        return (int)1L;
-    }
-    public static int JOB_STATUS_ERROR() {
-        return (int)2L;
-    }
-    public static int JOB_STATUS_DELETING() {
-        return (int)4L;
-    }
-    public static int JOB_STATUS_SPOOLING() {
-        return (int)8L;
-    }
-    public static int JOB_STATUS_PRINTING() {
-        return (int)16L;
-    }
-    public static int JOB_STATUS_OFFLINE() {
-        return (int)32L;
-    }
-    public static int JOB_STATUS_PAPEROUT() {
-        return (int)64L;
-    }
-    public static int JOB_STATUS_PRINTED() {
-        return (int)128L;
-    }
-    public static int JOB_STATUS_DELETED() {
-        return (int)256L;
-    }
-    public static int JOB_STATUS_BLOCKED_DEVQ() {
-        return (int)512L;
-    }
-    public static int JOB_STATUS_USER_INTERVENTION() {
-        return (int)1024L;
-    }
-    public static int JOB_STATUS_RESTART() {
-        return (int)2048L;
-    }
-    public static int JOB_STATUS_COMPLETE() {
-        return (int)4096L;
-    }
-    public static int JOB_STATUS_RETAINED() {
-        return (int)8192L;
-    }
-    public static int JOB_STATUS_RENDERING_LOCALLY() {
-        return (int)16384L;
-    }
-    public static int JOB_POSITION_UNSPECIFIED() {
-        return (int)0L;
-    }
-    public static int PRINTER_DRIVER_PACKAGE_AWARE() {
-        return (int)1L;
-    }
-    public static int PRINTER_DRIVER_XPS() {
-        return (int)2L;
-    }
-    public static int PRINTER_DRIVER_SANDBOX_ENABLED() {
-        return (int)4L;
-    }
-    public static int PRINTER_DRIVER_CLASS() {
-        return (int)8L;
-    }
-    public static int PRINTER_DRIVER_DERIVED() {
-        return (int)16L;
-    }
-    public static int PRINTER_DRIVER_NOT_SHAREABLE() {
-        return (int)32L;
-    }
-    public static int PRINTER_DRIVER_CATEGORY_FAX() {
-        return (int)64L;
-    }
-    public static int PRINTER_DRIVER_CATEGORY_FILE() {
-        return (int)128L;
-    }
-    public static int PRINTER_DRIVER_CATEGORY_VIRTUAL() {
-        return (int)256L;
-    }
-    public static int PRINTER_DRIVER_CATEGORY_SERVICE() {
-        return (int)512L;
-    }
-    public static int PRINTER_DRIVER_SOFT_RESET_REQUIRED() {
-        return (int)1024L;
-    }
-    public static int PRINTER_DRIVER_SANDBOX_DISABLED() {
-        return (int)2048L;
-    }
-    public static int PRINTER_DRIVER_CATEGORY_3D() {
-        return (int)4096L;
-    }
-    public static int PRINTER_DRIVER_CATEGORY_CLOUD() {
-        return (int)8192L;
-    }
-    public static int DRIVER_KERNELMODE() {
-        return (int)1L;
-    }
-    public static int DRIVER_USERMODE() {
-        return (int)2L;
-    }
-    public static int DPD_DELETE_UNUSED_FILES() {
-        return (int)1L;
-    }
-    public static int DPD_DELETE_SPECIFIC_VERSION() {
-        return (int)2L;
-    }
-    public static int DPD_DELETE_ALL_FILES() {
-        return (int)4L;
-    }
-    public static int APD_STRICT_UPGRADE() {
-        return (int)1L;
-    }
-    public static int APD_STRICT_DOWNGRADE() {
-        return (int)2L;
-    }
-    public static int APD_COPY_ALL_FILES() {
-        return (int)4L;
-    }
-    public static int APD_COPY_NEW_FILES() {
-        return (int)8L;
-    }
-    public static int APD_COPY_FROM_DIRECTORY() {
-        return (int)16L;
-    }
-    public static int STRING_NONE() {
-        return (int)1L;
-    }
-    public static int STRING_MUIDLL() {
-        return (int)2L;
-    }
-    public static int STRING_LANGPAIR() {
-        return (int)4L;
-    }
-    public static int DI_CHANNEL() {
-        return (int)1L;
-    }
-    public static int DI_READ_SPOOL_JOB() {
-        return (int)3L;
-    }
-    public static int DI_MEMORYMAP_WRITE() {
-        return (int)1L;
-    }
-    public static int FORM_USER() {
-        return (int)0L;
-    }
-    public static int FORM_BUILTIN() {
-        return (int)1L;
-    }
-    public static int FORM_PRINTER() {
-        return (int)2L;
-    }
-    public static int PORT_TYPE_WRITE() {
-        return (int)1L;
-    }
-    public static int PORT_TYPE_READ() {
-        return (int)2L;
-    }
-    public static int PORT_TYPE_REDIRECTED() {
-        return (int)4L;
-    }
-    public static int PORT_TYPE_NET_ATTACHED() {
-        return (int)8L;
-    }
-    public static int PORT_STATUS_TYPE_ERROR() {
-        return (int)1L;
-    }
-    public static int PORT_STATUS_TYPE_WARNING() {
-        return (int)2L;
-    }
-    public static int PORT_STATUS_TYPE_INFO() {
-        return (int)3L;
-    }
-    public static int PORT_STATUS_OFFLINE() {
-        return (int)1L;
-    }
-    public static int PORT_STATUS_PAPER_JAM() {
-        return (int)2L;
-    }
-    public static int PORT_STATUS_PAPER_OUT() {
-        return (int)3L;
-    }
-    public static int PORT_STATUS_OUTPUT_BIN_FULL() {
-        return (int)4L;
-    }
-    public static int PORT_STATUS_PAPER_PROBLEM() {
-        return (int)5L;
-    }
-    public static int PORT_STATUS_NO_TONER() {
-        return (int)6L;
-    }
-    public static int PORT_STATUS_DOOR_OPEN() {
-        return (int)7L;
-    }
-    public static int PORT_STATUS_USER_INTERVENTION() {
-        return (int)8L;
-    }
-    public static int PORT_STATUS_OUT_OF_MEMORY() {
-        return (int)9L;
-    }
-    public static int PORT_STATUS_TONER_LOW() {
-        return (int)10L;
-    }
-    public static int PORT_STATUS_WARMING_UP() {
-        return (int)11L;
-    }
-    public static int PORT_STATUS_POWER_SAVE() {
-        return (int)12L;
-    }
-    public static int PRINTER_ENUM_DEFAULT() {
-        return (int)1L;
-    }
-    public static int PRINTER_ENUM_LOCAL() {
-        return (int)2L;
-    }
-    public static int PRINTER_ENUM_CONNECTIONS() {
-        return (int)4L;
-    }
-    public static int PRINTER_ENUM_FAVORITE() {
-        return (int)4L;
-    }
-    public static int PRINTER_ENUM_NAME() {
-        return (int)8L;
-    }
-    public static int PRINTER_ENUM_REMOTE() {
-        return (int)16L;
-    }
-    public static int PRINTER_ENUM_SHARED() {
-        return (int)32L;
-    }
-    public static int PRINTER_ENUM_NETWORK() {
-        return (int)64L;
-    }
-    public static int PRINTER_ENUM_EXPAND() {
-        return (int)16384L;
-    }
-    public static int PRINTER_ENUM_CONTAINER() {
-        return (int)32768L;
-    }
-    public static int PRINTER_ENUM_ICONMASK() {
-        return (int)16711680L;
-    }
-    public static int PRINTER_ENUM_ICON1() {
-        return (int)65536L;
-    }
-    public static int PRINTER_ENUM_ICON2() {
-        return (int)131072L;
-    }
-    public static int PRINTER_ENUM_ICON3() {
-        return (int)262144L;
-    }
-    public static int PRINTER_ENUM_ICON4() {
-        return (int)524288L;
-    }
-    public static int PRINTER_ENUM_ICON5() {
-        return (int)1048576L;
-    }
-    public static int PRINTER_ENUM_ICON6() {
-        return (int)2097152L;
-    }
-    public static int PRINTER_ENUM_ICON7() {
-        return (int)4194304L;
-    }
-    public static int PRINTER_ENUM_ICON8() {
-        return (int)8388608L;
-    }
-    public static int PRINTER_ENUM_HIDE() {
-        return (int)16777216L;
-    }
-    public static int PRINTER_ENUM_CATEGORY_ALL() {
-        return (int)33554432L;
-    }
-    public static int PRINTER_ENUM_CATEGORY_3D() {
-        return (int)67108864L;
-    }
-    public static int SPOOL_FILE_PERSISTENT() {
-        return (int)1L;
-    }
-    public static int SPOOL_FILE_TEMPORARY() {
-        return (int)2L;
-    }
-    public static int PRINTER_NOTIFY_TYPE() {
-        return (int)0L;
-    }
-    public static int JOB_NOTIFY_TYPE() {
-        return (int)1L;
-    }
-    public static int SERVER_NOTIFY_TYPE() {
-        return (int)2L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_SERVER_NAME() {
-        return (int)0L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_PRINTER_NAME() {
-        return (int)1L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_SHARE_NAME() {
-        return (int)2L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_PORT_NAME() {
-        return (int)3L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_DRIVER_NAME() {
-        return (int)4L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_COMMENT() {
-        return (int)5L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_LOCATION() {
-        return (int)6L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_DEVMODE() {
-        return (int)7L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_SEPFILE() {
-        return (int)8L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_PRINT_PROCESSOR() {
-        return (int)9L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_PARAMETERS() {
-        return (int)10L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_DATATYPE() {
-        return (int)11L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_SECURITY_DESCRIPTOR() {
-        return (int)12L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_ATTRIBUTES() {
-        return (int)13L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_PRIORITY() {
-        return (int)14L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_DEFAULT_PRIORITY() {
-        return (int)15L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_START_TIME() {
-        return (int)16L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_UNTIL_TIME() {
-        return (int)17L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_STATUS() {
-        return (int)18L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_STATUS_STRING() {
-        return (int)19L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_CJOBS() {
-        return (int)20L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_AVERAGE_PPM() {
-        return (int)21L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_TOTAL_PAGES() {
-        return (int)22L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_PAGES_PRINTED() {
-        return (int)23L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_TOTAL_BYTES() {
-        return (int)24L;
-    }
-    public static int PRINTER_NOTIFY_FIELD_BYTES_PRINTED() {
-        return (int)25L;
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+public class wgl_h_10 extends wgl_h_11 {
+
+    wgl_h_10() {
+        // Should not be called directly
+    }
+    private static final int ERROR_LOG_FULL_HANDLER_IN_PROGRESS = (int)6638L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_LOG_FULL_HANDLER_IN_PROGRESS 6638
+     * }
+     */
+    public static int ERROR_LOG_FULL_HANDLER_IN_PROGRESS() {
+        return ERROR_LOG_FULL_HANDLER_IN_PROGRESS;
+    }
+    private static final int ERROR_LOG_CONTAINER_READ_FAILED = (int)6639L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_LOG_CONTAINER_READ_FAILED 6639
+     * }
+     */
+    public static int ERROR_LOG_CONTAINER_READ_FAILED() {
+        return ERROR_LOG_CONTAINER_READ_FAILED;
+    }
+    private static final int ERROR_LOG_CONTAINER_WRITE_FAILED = (int)6640L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_LOG_CONTAINER_WRITE_FAILED 6640
+     * }
+     */
+    public static int ERROR_LOG_CONTAINER_WRITE_FAILED() {
+        return ERROR_LOG_CONTAINER_WRITE_FAILED;
+    }
+    private static final int ERROR_LOG_CONTAINER_OPEN_FAILED = (int)6641L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_LOG_CONTAINER_OPEN_FAILED 6641
+     * }
+     */
+    public static int ERROR_LOG_CONTAINER_OPEN_FAILED() {
+        return ERROR_LOG_CONTAINER_OPEN_FAILED;
+    }
+    private static final int ERROR_LOG_CONTAINER_STATE_INVALID = (int)6642L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_LOG_CONTAINER_STATE_INVALID 6642
+     * }
+     */
+    public static int ERROR_LOG_CONTAINER_STATE_INVALID() {
+        return ERROR_LOG_CONTAINER_STATE_INVALID;
+    }
+    private static final int ERROR_LOG_STATE_INVALID = (int)6643L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_LOG_STATE_INVALID 6643
+     * }
+     */
+    public static int ERROR_LOG_STATE_INVALID() {
+        return ERROR_LOG_STATE_INVALID;
+    }
+    private static final int ERROR_LOG_PINNED = (int)6644L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_LOG_PINNED 6644
+     * }
+     */
+    public static int ERROR_LOG_PINNED() {
+        return ERROR_LOG_PINNED;
+    }
+    private static final int ERROR_LOG_METADATA_FLUSH_FAILED = (int)6645L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_LOG_METADATA_FLUSH_FAILED 6645
+     * }
+     */
+    public static int ERROR_LOG_METADATA_FLUSH_FAILED() {
+        return ERROR_LOG_METADATA_FLUSH_FAILED;
+    }
+    private static final int ERROR_LOG_INCONSISTENT_SECURITY = (int)6646L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_LOG_INCONSISTENT_SECURITY 6646
+     * }
+     */
+    public static int ERROR_LOG_INCONSISTENT_SECURITY() {
+        return ERROR_LOG_INCONSISTENT_SECURITY;
+    }
+    private static final int ERROR_LOG_APPENDED_FLUSH_FAILED = (int)6647L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_LOG_APPENDED_FLUSH_FAILED 6647
+     * }
+     */
+    public static int ERROR_LOG_APPENDED_FLUSH_FAILED() {
+        return ERROR_LOG_APPENDED_FLUSH_FAILED;
+    }
+    private static final int ERROR_LOG_PINNED_RESERVATION = (int)6648L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_LOG_PINNED_RESERVATION 6648
+     * }
+     */
+    public static int ERROR_LOG_PINNED_RESERVATION() {
+        return ERROR_LOG_PINNED_RESERVATION;
+    }
+    private static final int ERROR_INVALID_TRANSACTION = (int)6700L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_INVALID_TRANSACTION 6700
+     * }
+     */
+    public static int ERROR_INVALID_TRANSACTION() {
+        return ERROR_INVALID_TRANSACTION;
+    }
+    private static final int ERROR_TRANSACTION_NOT_ACTIVE = (int)6701L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_NOT_ACTIVE 6701
+     * }
+     */
+    public static int ERROR_TRANSACTION_NOT_ACTIVE() {
+        return ERROR_TRANSACTION_NOT_ACTIVE;
+    }
+    private static final int ERROR_TRANSACTION_REQUEST_NOT_VALID = (int)6702L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_REQUEST_NOT_VALID 6702
+     * }
+     */
+    public static int ERROR_TRANSACTION_REQUEST_NOT_VALID() {
+        return ERROR_TRANSACTION_REQUEST_NOT_VALID;
+    }
+    private static final int ERROR_TRANSACTION_NOT_REQUESTED = (int)6703L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_NOT_REQUESTED 6703
+     * }
+     */
+    public static int ERROR_TRANSACTION_NOT_REQUESTED() {
+        return ERROR_TRANSACTION_NOT_REQUESTED;
+    }
+    private static final int ERROR_TRANSACTION_ALREADY_ABORTED = (int)6704L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_ALREADY_ABORTED 6704
+     * }
+     */
+    public static int ERROR_TRANSACTION_ALREADY_ABORTED() {
+        return ERROR_TRANSACTION_ALREADY_ABORTED;
+    }
+    private static final int ERROR_TRANSACTION_ALREADY_COMMITTED = (int)6705L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_ALREADY_COMMITTED 6705
+     * }
+     */
+    public static int ERROR_TRANSACTION_ALREADY_COMMITTED() {
+        return ERROR_TRANSACTION_ALREADY_COMMITTED;
+    }
+    private static final int ERROR_TM_INITIALIZATION_FAILED = (int)6706L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TM_INITIALIZATION_FAILED 6706
+     * }
+     */
+    public static int ERROR_TM_INITIALIZATION_FAILED() {
+        return ERROR_TM_INITIALIZATION_FAILED;
+    }
+    private static final int ERROR_RESOURCEMANAGER_READ_ONLY = (int)6707L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_RESOURCEMANAGER_READ_ONLY 6707
+     * }
+     */
+    public static int ERROR_RESOURCEMANAGER_READ_ONLY() {
+        return ERROR_RESOURCEMANAGER_READ_ONLY;
+    }
+    private static final int ERROR_TRANSACTION_NOT_JOINED = (int)6708L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_NOT_JOINED 6708
+     * }
+     */
+    public static int ERROR_TRANSACTION_NOT_JOINED() {
+        return ERROR_TRANSACTION_NOT_JOINED;
+    }
+    private static final int ERROR_TRANSACTION_SUPERIOR_EXISTS = (int)6709L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_SUPERIOR_EXISTS 6709
+     * }
+     */
+    public static int ERROR_TRANSACTION_SUPERIOR_EXISTS() {
+        return ERROR_TRANSACTION_SUPERIOR_EXISTS;
+    }
+    private static final int ERROR_CRM_PROTOCOL_ALREADY_EXISTS = (int)6710L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CRM_PROTOCOL_ALREADY_EXISTS 6710
+     * }
+     */
+    public static int ERROR_CRM_PROTOCOL_ALREADY_EXISTS() {
+        return ERROR_CRM_PROTOCOL_ALREADY_EXISTS;
+    }
+    private static final int ERROR_TRANSACTION_PROPAGATION_FAILED = (int)6711L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_PROPAGATION_FAILED 6711
+     * }
+     */
+    public static int ERROR_TRANSACTION_PROPAGATION_FAILED() {
+        return ERROR_TRANSACTION_PROPAGATION_FAILED;
+    }
+    private static final int ERROR_CRM_PROTOCOL_NOT_FOUND = (int)6712L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CRM_PROTOCOL_NOT_FOUND 6712
+     * }
+     */
+    public static int ERROR_CRM_PROTOCOL_NOT_FOUND() {
+        return ERROR_CRM_PROTOCOL_NOT_FOUND;
+    }
+    private static final int ERROR_TRANSACTION_INVALID_MARSHALL_BUFFER = (int)6713L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_INVALID_MARSHALL_BUFFER 6713
+     * }
+     */
+    public static int ERROR_TRANSACTION_INVALID_MARSHALL_BUFFER() {
+        return ERROR_TRANSACTION_INVALID_MARSHALL_BUFFER;
+    }
+    private static final int ERROR_CURRENT_TRANSACTION_NOT_VALID = (int)6714L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CURRENT_TRANSACTION_NOT_VALID 6714
+     * }
+     */
+    public static int ERROR_CURRENT_TRANSACTION_NOT_VALID() {
+        return ERROR_CURRENT_TRANSACTION_NOT_VALID;
+    }
+    private static final int ERROR_TRANSACTION_NOT_FOUND = (int)6715L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_NOT_FOUND 6715
+     * }
+     */
+    public static int ERROR_TRANSACTION_NOT_FOUND() {
+        return ERROR_TRANSACTION_NOT_FOUND;
+    }
+    private static final int ERROR_RESOURCEMANAGER_NOT_FOUND = (int)6716L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_RESOURCEMANAGER_NOT_FOUND 6716
+     * }
+     */
+    public static int ERROR_RESOURCEMANAGER_NOT_FOUND() {
+        return ERROR_RESOURCEMANAGER_NOT_FOUND;
+    }
+    private static final int ERROR_ENLISTMENT_NOT_FOUND = (int)6717L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_ENLISTMENT_NOT_FOUND 6717
+     * }
+     */
+    public static int ERROR_ENLISTMENT_NOT_FOUND() {
+        return ERROR_ENLISTMENT_NOT_FOUND;
+    }
+    private static final int ERROR_TRANSACTIONMANAGER_NOT_FOUND = (int)6718L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTIONMANAGER_NOT_FOUND 6718
+     * }
+     */
+    public static int ERROR_TRANSACTIONMANAGER_NOT_FOUND() {
+        return ERROR_TRANSACTIONMANAGER_NOT_FOUND;
+    }
+    private static final int ERROR_TRANSACTIONMANAGER_NOT_ONLINE = (int)6719L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTIONMANAGER_NOT_ONLINE 6719
+     * }
+     */
+    public static int ERROR_TRANSACTIONMANAGER_NOT_ONLINE() {
+        return ERROR_TRANSACTIONMANAGER_NOT_ONLINE;
+    }
+    private static final int ERROR_TRANSACTIONMANAGER_RECOVERY_NAME_COLLISION = (int)6720L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTIONMANAGER_RECOVERY_NAME_COLLISION 6720
+     * }
+     */
+    public static int ERROR_TRANSACTIONMANAGER_RECOVERY_NAME_COLLISION() {
+        return ERROR_TRANSACTIONMANAGER_RECOVERY_NAME_COLLISION;
+    }
+    private static final int ERROR_TRANSACTION_NOT_ROOT = (int)6721L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_NOT_ROOT 6721
+     * }
+     */
+    public static int ERROR_TRANSACTION_NOT_ROOT() {
+        return ERROR_TRANSACTION_NOT_ROOT;
+    }
+    private static final int ERROR_TRANSACTION_OBJECT_EXPIRED = (int)6722L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_OBJECT_EXPIRED 6722
+     * }
+     */
+    public static int ERROR_TRANSACTION_OBJECT_EXPIRED() {
+        return ERROR_TRANSACTION_OBJECT_EXPIRED;
+    }
+    private static final int ERROR_TRANSACTION_RESPONSE_NOT_ENLISTED = (int)6723L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_RESPONSE_NOT_ENLISTED 6723
+     * }
+     */
+    public static int ERROR_TRANSACTION_RESPONSE_NOT_ENLISTED() {
+        return ERROR_TRANSACTION_RESPONSE_NOT_ENLISTED;
+    }
+    private static final int ERROR_TRANSACTION_RECORD_TOO_LONG = (int)6724L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_RECORD_TOO_LONG 6724
+     * }
+     */
+    public static int ERROR_TRANSACTION_RECORD_TOO_LONG() {
+        return ERROR_TRANSACTION_RECORD_TOO_LONG;
+    }
+    private static final int ERROR_IMPLICIT_TRANSACTION_NOT_SUPPORTED = (int)6725L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IMPLICIT_TRANSACTION_NOT_SUPPORTED 6725
+     * }
+     */
+    public static int ERROR_IMPLICIT_TRANSACTION_NOT_SUPPORTED() {
+        return ERROR_IMPLICIT_TRANSACTION_NOT_SUPPORTED;
+    }
+    private static final int ERROR_TRANSACTION_INTEGRITY_VIOLATED = (int)6726L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_INTEGRITY_VIOLATED 6726
+     * }
+     */
+    public static int ERROR_TRANSACTION_INTEGRITY_VIOLATED() {
+        return ERROR_TRANSACTION_INTEGRITY_VIOLATED;
+    }
+    private static final int ERROR_TRANSACTIONMANAGER_IDENTITY_MISMATCH = (int)6727L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTIONMANAGER_IDENTITY_MISMATCH 6727
+     * }
+     */
+    public static int ERROR_TRANSACTIONMANAGER_IDENTITY_MISMATCH() {
+        return ERROR_TRANSACTIONMANAGER_IDENTITY_MISMATCH;
+    }
+    private static final int ERROR_RM_CANNOT_BE_FROZEN_FOR_SNAPSHOT = (int)6728L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_RM_CANNOT_BE_FROZEN_FOR_SNAPSHOT 6728
+     * }
+     */
+    public static int ERROR_RM_CANNOT_BE_FROZEN_FOR_SNAPSHOT() {
+        return ERROR_RM_CANNOT_BE_FROZEN_FOR_SNAPSHOT;
+    }
+    private static final int ERROR_TRANSACTION_MUST_WRITETHROUGH = (int)6729L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_MUST_WRITETHROUGH 6729
+     * }
+     */
+    public static int ERROR_TRANSACTION_MUST_WRITETHROUGH() {
+        return ERROR_TRANSACTION_MUST_WRITETHROUGH;
+    }
+    private static final int ERROR_TRANSACTION_NO_SUPERIOR = (int)6730L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_NO_SUPERIOR 6730
+     * }
+     */
+    public static int ERROR_TRANSACTION_NO_SUPERIOR() {
+        return ERROR_TRANSACTION_NO_SUPERIOR;
+    }
+    private static final int ERROR_HEURISTIC_DAMAGE_POSSIBLE = (int)6731L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_HEURISTIC_DAMAGE_POSSIBLE 6731
+     * }
+     */
+    public static int ERROR_HEURISTIC_DAMAGE_POSSIBLE() {
+        return ERROR_HEURISTIC_DAMAGE_POSSIBLE;
+    }
+    private static final int ERROR_TRANSACTIONAL_CONFLICT = (int)6800L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTIONAL_CONFLICT 6800
+     * }
+     */
+    public static int ERROR_TRANSACTIONAL_CONFLICT() {
+        return ERROR_TRANSACTIONAL_CONFLICT;
+    }
+    private static final int ERROR_RM_NOT_ACTIVE = (int)6801L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_RM_NOT_ACTIVE 6801
+     * }
+     */
+    public static int ERROR_RM_NOT_ACTIVE() {
+        return ERROR_RM_NOT_ACTIVE;
+    }
+    private static final int ERROR_RM_METADATA_CORRUPT = (int)6802L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_RM_METADATA_CORRUPT 6802
+     * }
+     */
+    public static int ERROR_RM_METADATA_CORRUPT() {
+        return ERROR_RM_METADATA_CORRUPT;
+    }
+    private static final int ERROR_DIRECTORY_NOT_RM = (int)6803L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DIRECTORY_NOT_RM 6803
+     * }
+     */
+    public static int ERROR_DIRECTORY_NOT_RM() {
+        return ERROR_DIRECTORY_NOT_RM;
+    }
+    private static final int ERROR_TRANSACTIONS_UNSUPPORTED_REMOTE = (int)6805L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTIONS_UNSUPPORTED_REMOTE 6805
+     * }
+     */
+    public static int ERROR_TRANSACTIONS_UNSUPPORTED_REMOTE() {
+        return ERROR_TRANSACTIONS_UNSUPPORTED_REMOTE;
+    }
+    private static final int ERROR_LOG_RESIZE_INVALID_SIZE = (int)6806L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_LOG_RESIZE_INVALID_SIZE 6806
+     * }
+     */
+    public static int ERROR_LOG_RESIZE_INVALID_SIZE() {
+        return ERROR_LOG_RESIZE_INVALID_SIZE;
+    }
+    private static final int ERROR_OBJECT_NO_LONGER_EXISTS = (int)6807L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_OBJECT_NO_LONGER_EXISTS 6807
+     * }
+     */
+    public static int ERROR_OBJECT_NO_LONGER_EXISTS() {
+        return ERROR_OBJECT_NO_LONGER_EXISTS;
+    }
+    private static final int ERROR_STREAM_MINIVERSION_NOT_FOUND = (int)6808L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_STREAM_MINIVERSION_NOT_FOUND 6808
+     * }
+     */
+    public static int ERROR_STREAM_MINIVERSION_NOT_FOUND() {
+        return ERROR_STREAM_MINIVERSION_NOT_FOUND;
+    }
+    private static final int ERROR_STREAM_MINIVERSION_NOT_VALID = (int)6809L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_STREAM_MINIVERSION_NOT_VALID 6809
+     * }
+     */
+    public static int ERROR_STREAM_MINIVERSION_NOT_VALID() {
+        return ERROR_STREAM_MINIVERSION_NOT_VALID;
+    }
+    private static final int ERROR_MINIVERSION_INACCESSIBLE_FROM_SPECIFIED_TRANSACTION = (int)6810L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_MINIVERSION_INACCESSIBLE_FROM_SPECIFIED_TRANSACTION 6810
+     * }
+     */
+    public static int ERROR_MINIVERSION_INACCESSIBLE_FROM_SPECIFIED_TRANSACTION() {
+        return ERROR_MINIVERSION_INACCESSIBLE_FROM_SPECIFIED_TRANSACTION;
+    }
+    private static final int ERROR_CANT_OPEN_MINIVERSION_WITH_MODIFY_INTENT = (int)6811L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CANT_OPEN_MINIVERSION_WITH_MODIFY_INTENT 6811
+     * }
+     */
+    public static int ERROR_CANT_OPEN_MINIVERSION_WITH_MODIFY_INTENT() {
+        return ERROR_CANT_OPEN_MINIVERSION_WITH_MODIFY_INTENT;
+    }
+    private static final int ERROR_CANT_CREATE_MORE_STREAM_MINIVERSIONS = (int)6812L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CANT_CREATE_MORE_STREAM_MINIVERSIONS 6812
+     * }
+     */
+    public static int ERROR_CANT_CREATE_MORE_STREAM_MINIVERSIONS() {
+        return ERROR_CANT_CREATE_MORE_STREAM_MINIVERSIONS;
+    }
+    private static final int ERROR_REMOTE_FILE_VERSION_MISMATCH = (int)6814L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_REMOTE_FILE_VERSION_MISMATCH 6814
+     * }
+     */
+    public static int ERROR_REMOTE_FILE_VERSION_MISMATCH() {
+        return ERROR_REMOTE_FILE_VERSION_MISMATCH;
+    }
+    private static final int ERROR_HANDLE_NO_LONGER_VALID = (int)6815L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_HANDLE_NO_LONGER_VALID 6815
+     * }
+     */
+    public static int ERROR_HANDLE_NO_LONGER_VALID() {
+        return ERROR_HANDLE_NO_LONGER_VALID;
+    }
+    private static final int ERROR_NO_TXF_METADATA = (int)6816L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_NO_TXF_METADATA 6816
+     * }
+     */
+    public static int ERROR_NO_TXF_METADATA() {
+        return ERROR_NO_TXF_METADATA;
+    }
+    private static final int ERROR_LOG_CORRUPTION_DETECTED = (int)6817L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_LOG_CORRUPTION_DETECTED 6817
+     * }
+     */
+    public static int ERROR_LOG_CORRUPTION_DETECTED() {
+        return ERROR_LOG_CORRUPTION_DETECTED;
+    }
+    private static final int ERROR_CANT_RECOVER_WITH_HANDLE_OPEN = (int)6818L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CANT_RECOVER_WITH_HANDLE_OPEN 6818
+     * }
+     */
+    public static int ERROR_CANT_RECOVER_WITH_HANDLE_OPEN() {
+        return ERROR_CANT_RECOVER_WITH_HANDLE_OPEN;
+    }
+    private static final int ERROR_RM_DISCONNECTED = (int)6819L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_RM_DISCONNECTED 6819
+     * }
+     */
+    public static int ERROR_RM_DISCONNECTED() {
+        return ERROR_RM_DISCONNECTED;
+    }
+    private static final int ERROR_ENLISTMENT_NOT_SUPERIOR = (int)6820L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_ENLISTMENT_NOT_SUPERIOR 6820
+     * }
+     */
+    public static int ERROR_ENLISTMENT_NOT_SUPERIOR() {
+        return ERROR_ENLISTMENT_NOT_SUPERIOR;
+    }
+    private static final int ERROR_RECOVERY_NOT_NEEDED = (int)6821L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_RECOVERY_NOT_NEEDED 6821
+     * }
+     */
+    public static int ERROR_RECOVERY_NOT_NEEDED() {
+        return ERROR_RECOVERY_NOT_NEEDED;
+    }
+    private static final int ERROR_RM_ALREADY_STARTED = (int)6822L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_RM_ALREADY_STARTED 6822
+     * }
+     */
+    public static int ERROR_RM_ALREADY_STARTED() {
+        return ERROR_RM_ALREADY_STARTED;
+    }
+    private static final int ERROR_FILE_IDENTITY_NOT_PERSISTENT = (int)6823L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_FILE_IDENTITY_NOT_PERSISTENT 6823
+     * }
+     */
+    public static int ERROR_FILE_IDENTITY_NOT_PERSISTENT() {
+        return ERROR_FILE_IDENTITY_NOT_PERSISTENT;
+    }
+    private static final int ERROR_CANT_BREAK_TRANSACTIONAL_DEPENDENCY = (int)6824L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CANT_BREAK_TRANSACTIONAL_DEPENDENCY 6824
+     * }
+     */
+    public static int ERROR_CANT_BREAK_TRANSACTIONAL_DEPENDENCY() {
+        return ERROR_CANT_BREAK_TRANSACTIONAL_DEPENDENCY;
+    }
+    private static final int ERROR_CANT_CROSS_RM_BOUNDARY = (int)6825L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CANT_CROSS_RM_BOUNDARY 6825
+     * }
+     */
+    public static int ERROR_CANT_CROSS_RM_BOUNDARY() {
+        return ERROR_CANT_CROSS_RM_BOUNDARY;
+    }
+    private static final int ERROR_TXF_DIR_NOT_EMPTY = (int)6826L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TXF_DIR_NOT_EMPTY 6826
+     * }
+     */
+    public static int ERROR_TXF_DIR_NOT_EMPTY() {
+        return ERROR_TXF_DIR_NOT_EMPTY;
+    }
+    private static final int ERROR_INDOUBT_TRANSACTIONS_EXIST = (int)6827L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_INDOUBT_TRANSACTIONS_EXIST 6827
+     * }
+     */
+    public static int ERROR_INDOUBT_TRANSACTIONS_EXIST() {
+        return ERROR_INDOUBT_TRANSACTIONS_EXIST;
+    }
+    private static final int ERROR_TM_VOLATILE = (int)6828L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TM_VOLATILE 6828
+     * }
+     */
+    public static int ERROR_TM_VOLATILE() {
+        return ERROR_TM_VOLATILE;
+    }
+    private static final int ERROR_ROLLBACK_TIMER_EXPIRED = (int)6829L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_ROLLBACK_TIMER_EXPIRED 6829
+     * }
+     */
+    public static int ERROR_ROLLBACK_TIMER_EXPIRED() {
+        return ERROR_ROLLBACK_TIMER_EXPIRED;
+    }
+    private static final int ERROR_TXF_ATTRIBUTE_CORRUPT = (int)6830L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TXF_ATTRIBUTE_CORRUPT 6830
+     * }
+     */
+    public static int ERROR_TXF_ATTRIBUTE_CORRUPT() {
+        return ERROR_TXF_ATTRIBUTE_CORRUPT;
+    }
+    private static final int ERROR_EFS_NOT_ALLOWED_IN_TRANSACTION = (int)6831L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_EFS_NOT_ALLOWED_IN_TRANSACTION 6831
+     * }
+     */
+    public static int ERROR_EFS_NOT_ALLOWED_IN_TRANSACTION() {
+        return ERROR_EFS_NOT_ALLOWED_IN_TRANSACTION;
+    }
+    private static final int ERROR_TRANSACTIONAL_OPEN_NOT_ALLOWED = (int)6832L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTIONAL_OPEN_NOT_ALLOWED 6832
+     * }
+     */
+    public static int ERROR_TRANSACTIONAL_OPEN_NOT_ALLOWED() {
+        return ERROR_TRANSACTIONAL_OPEN_NOT_ALLOWED;
+    }
+    private static final int ERROR_LOG_GROWTH_FAILED = (int)6833L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_LOG_GROWTH_FAILED 6833
+     * }
+     */
+    public static int ERROR_LOG_GROWTH_FAILED() {
+        return ERROR_LOG_GROWTH_FAILED;
+    }
+    private static final int ERROR_TRANSACTED_MAPPING_UNSUPPORTED_REMOTE = (int)6834L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTED_MAPPING_UNSUPPORTED_REMOTE 6834
+     * }
+     */
+    public static int ERROR_TRANSACTED_MAPPING_UNSUPPORTED_REMOTE() {
+        return ERROR_TRANSACTED_MAPPING_UNSUPPORTED_REMOTE;
+    }
+    private static final int ERROR_TXF_METADATA_ALREADY_PRESENT = (int)6835L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TXF_METADATA_ALREADY_PRESENT 6835
+     * }
+     */
+    public static int ERROR_TXF_METADATA_ALREADY_PRESENT() {
+        return ERROR_TXF_METADATA_ALREADY_PRESENT;
+    }
+    private static final int ERROR_TRANSACTION_SCOPE_CALLBACKS_NOT_SET = (int)6836L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_SCOPE_CALLBACKS_NOT_SET 6836
+     * }
+     */
+    public static int ERROR_TRANSACTION_SCOPE_CALLBACKS_NOT_SET() {
+        return ERROR_TRANSACTION_SCOPE_CALLBACKS_NOT_SET;
+    }
+    private static final int ERROR_TRANSACTION_REQUIRED_PROMOTION = (int)6837L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_REQUIRED_PROMOTION 6837
+     * }
+     */
+    public static int ERROR_TRANSACTION_REQUIRED_PROMOTION() {
+        return ERROR_TRANSACTION_REQUIRED_PROMOTION;
+    }
+    private static final int ERROR_CANNOT_EXECUTE_FILE_IN_TRANSACTION = (int)6838L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CANNOT_EXECUTE_FILE_IN_TRANSACTION 6838
+     * }
+     */
+    public static int ERROR_CANNOT_EXECUTE_FILE_IN_TRANSACTION() {
+        return ERROR_CANNOT_EXECUTE_FILE_IN_TRANSACTION;
+    }
+    private static final int ERROR_TRANSACTIONS_NOT_FROZEN = (int)6839L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTIONS_NOT_FROZEN 6839
+     * }
+     */
+    public static int ERROR_TRANSACTIONS_NOT_FROZEN() {
+        return ERROR_TRANSACTIONS_NOT_FROZEN;
+    }
+    private static final int ERROR_TRANSACTION_FREEZE_IN_PROGRESS = (int)6840L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_FREEZE_IN_PROGRESS 6840
+     * }
+     */
+    public static int ERROR_TRANSACTION_FREEZE_IN_PROGRESS() {
+        return ERROR_TRANSACTION_FREEZE_IN_PROGRESS;
+    }
+    private static final int ERROR_NOT_SNAPSHOT_VOLUME = (int)6841L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_NOT_SNAPSHOT_VOLUME 6841
+     * }
+     */
+    public static int ERROR_NOT_SNAPSHOT_VOLUME() {
+        return ERROR_NOT_SNAPSHOT_VOLUME;
+    }
+    private static final int ERROR_NO_SAVEPOINT_WITH_OPEN_FILES = (int)6842L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_NO_SAVEPOINT_WITH_OPEN_FILES 6842
+     * }
+     */
+    public static int ERROR_NO_SAVEPOINT_WITH_OPEN_FILES() {
+        return ERROR_NO_SAVEPOINT_WITH_OPEN_FILES;
+    }
+    private static final int ERROR_DATA_LOST_REPAIR = (int)6843L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DATA_LOST_REPAIR 6843
+     * }
+     */
+    public static int ERROR_DATA_LOST_REPAIR() {
+        return ERROR_DATA_LOST_REPAIR;
+    }
+    private static final int ERROR_SPARSE_NOT_ALLOWED_IN_TRANSACTION = (int)6844L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_SPARSE_NOT_ALLOWED_IN_TRANSACTION 6844
+     * }
+     */
+    public static int ERROR_SPARSE_NOT_ALLOWED_IN_TRANSACTION() {
+        return ERROR_SPARSE_NOT_ALLOWED_IN_TRANSACTION;
+    }
+    private static final int ERROR_TM_IDENTITY_MISMATCH = (int)6845L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TM_IDENTITY_MISMATCH 6845
+     * }
+     */
+    public static int ERROR_TM_IDENTITY_MISMATCH() {
+        return ERROR_TM_IDENTITY_MISMATCH;
+    }
+    private static final int ERROR_FLOATED_SECTION = (int)6846L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_FLOATED_SECTION 6846
+     * }
+     */
+    public static int ERROR_FLOATED_SECTION() {
+        return ERROR_FLOATED_SECTION;
+    }
+    private static final int ERROR_CANNOT_ACCEPT_TRANSACTED_WORK = (int)6847L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CANNOT_ACCEPT_TRANSACTED_WORK 6847
+     * }
+     */
+    public static int ERROR_CANNOT_ACCEPT_TRANSACTED_WORK() {
+        return ERROR_CANNOT_ACCEPT_TRANSACTED_WORK;
+    }
+    private static final int ERROR_CANNOT_ABORT_TRANSACTIONS = (int)6848L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CANNOT_ABORT_TRANSACTIONS 6848
+     * }
+     */
+    public static int ERROR_CANNOT_ABORT_TRANSACTIONS() {
+        return ERROR_CANNOT_ABORT_TRANSACTIONS;
+    }
+    private static final int ERROR_BAD_CLUSTERS = (int)6849L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_BAD_CLUSTERS 6849
+     * }
+     */
+    public static int ERROR_BAD_CLUSTERS() {
+        return ERROR_BAD_CLUSTERS;
+    }
+    private static final int ERROR_COMPRESSION_NOT_ALLOWED_IN_TRANSACTION = (int)6850L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_COMPRESSION_NOT_ALLOWED_IN_TRANSACTION 6850
+     * }
+     */
+    public static int ERROR_COMPRESSION_NOT_ALLOWED_IN_TRANSACTION() {
+        return ERROR_COMPRESSION_NOT_ALLOWED_IN_TRANSACTION;
+    }
+    private static final int ERROR_VOLUME_DIRTY = (int)6851L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_VOLUME_DIRTY 6851
+     * }
+     */
+    public static int ERROR_VOLUME_DIRTY() {
+        return ERROR_VOLUME_DIRTY;
+    }
+    private static final int ERROR_NO_LINK_TRACKING_IN_TRANSACTION = (int)6852L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_NO_LINK_TRACKING_IN_TRANSACTION 6852
+     * }
+     */
+    public static int ERROR_NO_LINK_TRACKING_IN_TRANSACTION() {
+        return ERROR_NO_LINK_TRACKING_IN_TRANSACTION;
+    }
+    private static final int ERROR_OPERATION_NOT_SUPPORTED_IN_TRANSACTION = (int)6853L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_OPERATION_NOT_SUPPORTED_IN_TRANSACTION 6853
+     * }
+     */
+    public static int ERROR_OPERATION_NOT_SUPPORTED_IN_TRANSACTION() {
+        return ERROR_OPERATION_NOT_SUPPORTED_IN_TRANSACTION;
+    }
+    private static final int ERROR_EXPIRED_HANDLE = (int)6854L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_EXPIRED_HANDLE 6854
+     * }
+     */
+    public static int ERROR_EXPIRED_HANDLE() {
+        return ERROR_EXPIRED_HANDLE;
+    }
+    private static final int ERROR_TRANSACTION_NOT_ENLISTED = (int)6855L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TRANSACTION_NOT_ENLISTED 6855
+     * }
+     */
+    public static int ERROR_TRANSACTION_NOT_ENLISTED() {
+        return ERROR_TRANSACTION_NOT_ENLISTED;
+    }
+    private static final int ERROR_CTX_WINSTATION_NAME_INVALID = (int)7001L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_WINSTATION_NAME_INVALID 7001
+     * }
+     */
+    public static int ERROR_CTX_WINSTATION_NAME_INVALID() {
+        return ERROR_CTX_WINSTATION_NAME_INVALID;
+    }
+    private static final int ERROR_CTX_INVALID_PD = (int)7002L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_INVALID_PD 7002
+     * }
+     */
+    public static int ERROR_CTX_INVALID_PD() {
+        return ERROR_CTX_INVALID_PD;
+    }
+    private static final int ERROR_CTX_PD_NOT_FOUND = (int)7003L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_PD_NOT_FOUND 7003
+     * }
+     */
+    public static int ERROR_CTX_PD_NOT_FOUND() {
+        return ERROR_CTX_PD_NOT_FOUND;
+    }
+    private static final int ERROR_CTX_WD_NOT_FOUND = (int)7004L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_WD_NOT_FOUND 7004
+     * }
+     */
+    public static int ERROR_CTX_WD_NOT_FOUND() {
+        return ERROR_CTX_WD_NOT_FOUND;
+    }
+    private static final int ERROR_CTX_CANNOT_MAKE_EVENTLOG_ENTRY = (int)7005L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_CANNOT_MAKE_EVENTLOG_ENTRY 7005
+     * }
+     */
+    public static int ERROR_CTX_CANNOT_MAKE_EVENTLOG_ENTRY() {
+        return ERROR_CTX_CANNOT_MAKE_EVENTLOG_ENTRY;
+    }
+    private static final int ERROR_CTX_SERVICE_NAME_COLLISION = (int)7006L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_SERVICE_NAME_COLLISION 7006
+     * }
+     */
+    public static int ERROR_CTX_SERVICE_NAME_COLLISION() {
+        return ERROR_CTX_SERVICE_NAME_COLLISION;
+    }
+    private static final int ERROR_CTX_CLOSE_PENDING = (int)7007L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_CLOSE_PENDING 7007
+     * }
+     */
+    public static int ERROR_CTX_CLOSE_PENDING() {
+        return ERROR_CTX_CLOSE_PENDING;
+    }
+    private static final int ERROR_CTX_NO_OUTBUF = (int)7008L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_NO_OUTBUF 7008
+     * }
+     */
+    public static int ERROR_CTX_NO_OUTBUF() {
+        return ERROR_CTX_NO_OUTBUF;
+    }
+    private static final int ERROR_CTX_MODEM_INF_NOT_FOUND = (int)7009L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_MODEM_INF_NOT_FOUND 7009
+     * }
+     */
+    public static int ERROR_CTX_MODEM_INF_NOT_FOUND() {
+        return ERROR_CTX_MODEM_INF_NOT_FOUND;
+    }
+    private static final int ERROR_CTX_INVALID_MODEMNAME = (int)7010L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_INVALID_MODEMNAME 7010
+     * }
+     */
+    public static int ERROR_CTX_INVALID_MODEMNAME() {
+        return ERROR_CTX_INVALID_MODEMNAME;
+    }
+    private static final int ERROR_CTX_MODEM_RESPONSE_ERROR = (int)7011L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_MODEM_RESPONSE_ERROR 7011
+     * }
+     */
+    public static int ERROR_CTX_MODEM_RESPONSE_ERROR() {
+        return ERROR_CTX_MODEM_RESPONSE_ERROR;
+    }
+    private static final int ERROR_CTX_MODEM_RESPONSE_TIMEOUT = (int)7012L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_MODEM_RESPONSE_TIMEOUT 7012
+     * }
+     */
+    public static int ERROR_CTX_MODEM_RESPONSE_TIMEOUT() {
+        return ERROR_CTX_MODEM_RESPONSE_TIMEOUT;
+    }
+    private static final int ERROR_CTX_MODEM_RESPONSE_NO_CARRIER = (int)7013L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_MODEM_RESPONSE_NO_CARRIER 7013
+     * }
+     */
+    public static int ERROR_CTX_MODEM_RESPONSE_NO_CARRIER() {
+        return ERROR_CTX_MODEM_RESPONSE_NO_CARRIER;
+    }
+    private static final int ERROR_CTX_MODEM_RESPONSE_NO_DIALTONE = (int)7014L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_MODEM_RESPONSE_NO_DIALTONE 7014
+     * }
+     */
+    public static int ERROR_CTX_MODEM_RESPONSE_NO_DIALTONE() {
+        return ERROR_CTX_MODEM_RESPONSE_NO_DIALTONE;
+    }
+    private static final int ERROR_CTX_MODEM_RESPONSE_BUSY = (int)7015L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_MODEM_RESPONSE_BUSY 7015
+     * }
+     */
+    public static int ERROR_CTX_MODEM_RESPONSE_BUSY() {
+        return ERROR_CTX_MODEM_RESPONSE_BUSY;
+    }
+    private static final int ERROR_CTX_MODEM_RESPONSE_VOICE = (int)7016L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_MODEM_RESPONSE_VOICE 7016
+     * }
+     */
+    public static int ERROR_CTX_MODEM_RESPONSE_VOICE() {
+        return ERROR_CTX_MODEM_RESPONSE_VOICE;
+    }
+    private static final int ERROR_CTX_TD_ERROR = (int)7017L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_TD_ERROR 7017
+     * }
+     */
+    public static int ERROR_CTX_TD_ERROR() {
+        return ERROR_CTX_TD_ERROR;
+    }
+    private static final int ERROR_CTX_WINSTATION_NOT_FOUND = (int)7022L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_WINSTATION_NOT_FOUND 7022
+     * }
+     */
+    public static int ERROR_CTX_WINSTATION_NOT_FOUND() {
+        return ERROR_CTX_WINSTATION_NOT_FOUND;
+    }
+    private static final int ERROR_CTX_WINSTATION_ALREADY_EXISTS = (int)7023L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_WINSTATION_ALREADY_EXISTS 7023
+     * }
+     */
+    public static int ERROR_CTX_WINSTATION_ALREADY_EXISTS() {
+        return ERROR_CTX_WINSTATION_ALREADY_EXISTS;
+    }
+    private static final int ERROR_CTX_WINSTATION_BUSY = (int)7024L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_WINSTATION_BUSY 7024
+     * }
+     */
+    public static int ERROR_CTX_WINSTATION_BUSY() {
+        return ERROR_CTX_WINSTATION_BUSY;
+    }
+    private static final int ERROR_CTX_BAD_VIDEO_MODE = (int)7025L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_BAD_VIDEO_MODE 7025
+     * }
+     */
+    public static int ERROR_CTX_BAD_VIDEO_MODE() {
+        return ERROR_CTX_BAD_VIDEO_MODE;
+    }
+    private static final int ERROR_CTX_GRAPHICS_INVALID = (int)7035L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_GRAPHICS_INVALID 7035
+     * }
+     */
+    public static int ERROR_CTX_GRAPHICS_INVALID() {
+        return ERROR_CTX_GRAPHICS_INVALID;
+    }
+    private static final int ERROR_CTX_LOGON_DISABLED = (int)7037L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_LOGON_DISABLED 7037
+     * }
+     */
+    public static int ERROR_CTX_LOGON_DISABLED() {
+        return ERROR_CTX_LOGON_DISABLED;
+    }
+    private static final int ERROR_CTX_NOT_CONSOLE = (int)7038L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_NOT_CONSOLE 7038
+     * }
+     */
+    public static int ERROR_CTX_NOT_CONSOLE() {
+        return ERROR_CTX_NOT_CONSOLE;
+    }
+    private static final int ERROR_CTX_CLIENT_QUERY_TIMEOUT = (int)7040L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_CLIENT_QUERY_TIMEOUT 7040
+     * }
+     */
+    public static int ERROR_CTX_CLIENT_QUERY_TIMEOUT() {
+        return ERROR_CTX_CLIENT_QUERY_TIMEOUT;
+    }
+    private static final int ERROR_CTX_CONSOLE_DISCONNECT = (int)7041L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_CONSOLE_DISCONNECT 7041
+     * }
+     */
+    public static int ERROR_CTX_CONSOLE_DISCONNECT() {
+        return ERROR_CTX_CONSOLE_DISCONNECT;
+    }
+    private static final int ERROR_CTX_CONSOLE_CONNECT = (int)7042L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_CONSOLE_CONNECT 7042
+     * }
+     */
+    public static int ERROR_CTX_CONSOLE_CONNECT() {
+        return ERROR_CTX_CONSOLE_CONNECT;
+    }
+    private static final int ERROR_CTX_SHADOW_DENIED = (int)7044L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_SHADOW_DENIED 7044
+     * }
+     */
+    public static int ERROR_CTX_SHADOW_DENIED() {
+        return ERROR_CTX_SHADOW_DENIED;
+    }
+    private static final int ERROR_CTX_WINSTATION_ACCESS_DENIED = (int)7045L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_WINSTATION_ACCESS_DENIED 7045
+     * }
+     */
+    public static int ERROR_CTX_WINSTATION_ACCESS_DENIED() {
+        return ERROR_CTX_WINSTATION_ACCESS_DENIED;
+    }
+    private static final int ERROR_CTX_INVALID_WD = (int)7049L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_INVALID_WD 7049
+     * }
+     */
+    public static int ERROR_CTX_INVALID_WD() {
+        return ERROR_CTX_INVALID_WD;
+    }
+    private static final int ERROR_CTX_SHADOW_INVALID = (int)7050L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_SHADOW_INVALID 7050
+     * }
+     */
+    public static int ERROR_CTX_SHADOW_INVALID() {
+        return ERROR_CTX_SHADOW_INVALID;
+    }
+    private static final int ERROR_CTX_SHADOW_DISABLED = (int)7051L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_SHADOW_DISABLED 7051
+     * }
+     */
+    public static int ERROR_CTX_SHADOW_DISABLED() {
+        return ERROR_CTX_SHADOW_DISABLED;
+    }
+    private static final int ERROR_CTX_CLIENT_LICENSE_IN_USE = (int)7052L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_CLIENT_LICENSE_IN_USE 7052
+     * }
+     */
+    public static int ERROR_CTX_CLIENT_LICENSE_IN_USE() {
+        return ERROR_CTX_CLIENT_LICENSE_IN_USE;
+    }
+    private static final int ERROR_CTX_CLIENT_LICENSE_NOT_SET = (int)7053L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_CLIENT_LICENSE_NOT_SET 7053
+     * }
+     */
+    public static int ERROR_CTX_CLIENT_LICENSE_NOT_SET() {
+        return ERROR_CTX_CLIENT_LICENSE_NOT_SET;
+    }
+    private static final int ERROR_CTX_LICENSE_NOT_AVAILABLE = (int)7054L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_LICENSE_NOT_AVAILABLE 7054
+     * }
+     */
+    public static int ERROR_CTX_LICENSE_NOT_AVAILABLE() {
+        return ERROR_CTX_LICENSE_NOT_AVAILABLE;
+    }
+    private static final int ERROR_CTX_LICENSE_CLIENT_INVALID = (int)7055L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_LICENSE_CLIENT_INVALID 7055
+     * }
+     */
+    public static int ERROR_CTX_LICENSE_CLIENT_INVALID() {
+        return ERROR_CTX_LICENSE_CLIENT_INVALID;
+    }
+    private static final int ERROR_CTX_LICENSE_EXPIRED = (int)7056L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_LICENSE_EXPIRED 7056
+     * }
+     */
+    public static int ERROR_CTX_LICENSE_EXPIRED() {
+        return ERROR_CTX_LICENSE_EXPIRED;
+    }
+    private static final int ERROR_CTX_SHADOW_NOT_RUNNING = (int)7057L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_SHADOW_NOT_RUNNING 7057
+     * }
+     */
+    public static int ERROR_CTX_SHADOW_NOT_RUNNING() {
+        return ERROR_CTX_SHADOW_NOT_RUNNING;
+    }
+    private static final int ERROR_CTX_SHADOW_ENDED_BY_MODE_CHANGE = (int)7058L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_SHADOW_ENDED_BY_MODE_CHANGE 7058
+     * }
+     */
+    public static int ERROR_CTX_SHADOW_ENDED_BY_MODE_CHANGE() {
+        return ERROR_CTX_SHADOW_ENDED_BY_MODE_CHANGE;
+    }
+    private static final int ERROR_ACTIVATION_COUNT_EXCEEDED = (int)7059L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_ACTIVATION_COUNT_EXCEEDED 7059
+     * }
+     */
+    public static int ERROR_ACTIVATION_COUNT_EXCEEDED() {
+        return ERROR_ACTIVATION_COUNT_EXCEEDED;
+    }
+    private static final int ERROR_CTX_WINSTATIONS_DISABLED = (int)7060L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_WINSTATIONS_DISABLED 7060
+     * }
+     */
+    public static int ERROR_CTX_WINSTATIONS_DISABLED() {
+        return ERROR_CTX_WINSTATIONS_DISABLED;
+    }
+    private static final int ERROR_CTX_ENCRYPTION_LEVEL_REQUIRED = (int)7061L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_ENCRYPTION_LEVEL_REQUIRED 7061
+     * }
+     */
+    public static int ERROR_CTX_ENCRYPTION_LEVEL_REQUIRED() {
+        return ERROR_CTX_ENCRYPTION_LEVEL_REQUIRED;
+    }
+    private static final int ERROR_CTX_SESSION_IN_USE = (int)7062L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_SESSION_IN_USE 7062
+     * }
+     */
+    public static int ERROR_CTX_SESSION_IN_USE() {
+        return ERROR_CTX_SESSION_IN_USE;
+    }
+    private static final int ERROR_CTX_NO_FORCE_LOGOFF = (int)7063L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_NO_FORCE_LOGOFF 7063
+     * }
+     */
+    public static int ERROR_CTX_NO_FORCE_LOGOFF() {
+        return ERROR_CTX_NO_FORCE_LOGOFF;
+    }
+    private static final int ERROR_CTX_ACCOUNT_RESTRICTION = (int)7064L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_ACCOUNT_RESTRICTION 7064
+     * }
+     */
+    public static int ERROR_CTX_ACCOUNT_RESTRICTION() {
+        return ERROR_CTX_ACCOUNT_RESTRICTION;
+    }
+    private static final int ERROR_RDP_PROTOCOL_ERROR = (int)7065L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_RDP_PROTOCOL_ERROR 7065
+     * }
+     */
+    public static int ERROR_RDP_PROTOCOL_ERROR() {
+        return ERROR_RDP_PROTOCOL_ERROR;
+    }
+    private static final int ERROR_CTX_CDM_CONNECT = (int)7066L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_CDM_CONNECT 7066
+     * }
+     */
+    public static int ERROR_CTX_CDM_CONNECT() {
+        return ERROR_CTX_CDM_CONNECT;
+    }
+    private static final int ERROR_CTX_CDM_DISCONNECT = (int)7067L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_CDM_DISCONNECT 7067
+     * }
+     */
+    public static int ERROR_CTX_CDM_DISCONNECT() {
+        return ERROR_CTX_CDM_DISCONNECT;
+    }
+    private static final int ERROR_CTX_SECURITY_LAYER_ERROR = (int)7068L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_CTX_SECURITY_LAYER_ERROR 7068
+     * }
+     */
+    public static int ERROR_CTX_SECURITY_LAYER_ERROR() {
+        return ERROR_CTX_SECURITY_LAYER_ERROR;
+    }
+    private static final int ERROR_TS_INCOMPATIBLE_SESSIONS = (int)7069L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TS_INCOMPATIBLE_SESSIONS 7069
+     * }
+     */
+    public static int ERROR_TS_INCOMPATIBLE_SESSIONS() {
+        return ERROR_TS_INCOMPATIBLE_SESSIONS;
+    }
+    private static final int ERROR_TS_VIDEO_SUBSYSTEM_ERROR = (int)7070L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_TS_VIDEO_SUBSYSTEM_ERROR 7070
+     * }
+     */
+    public static int ERROR_TS_VIDEO_SUBSYSTEM_ERROR() {
+        return ERROR_TS_VIDEO_SUBSYSTEM_ERROR;
+    }
+    private static final int FRS_ERR_INVALID_API_SEQUENCE = (int)8001L;
+    /**
+     * {@snippet lang=c :
+     * #define FRS_ERR_INVALID_API_SEQUENCE 8001
+     * }
+     */
+    public static int FRS_ERR_INVALID_API_SEQUENCE() {
+        return FRS_ERR_INVALID_API_SEQUENCE;
+    }
+    private static final int FRS_ERR_STARTING_SERVICE = (int)8002L;
+    /**
+     * {@snippet lang=c :
+     * #define FRS_ERR_STARTING_SERVICE 8002
+     * }
+     */
+    public static int FRS_ERR_STARTING_SERVICE() {
+        return FRS_ERR_STARTING_SERVICE;
+    }
+    private static final int FRS_ERR_STOPPING_SERVICE = (int)8003L;
+    /**
+     * {@snippet lang=c :
+     * #define FRS_ERR_STOPPING_SERVICE 8003
+     * }
+     */
+    public static int FRS_ERR_STOPPING_SERVICE() {
+        return FRS_ERR_STOPPING_SERVICE;
+    }
+    private static final int FRS_ERR_INTERNAL_API = (int)8004L;
+    /**
+     * {@snippet lang=c :
+     * #define FRS_ERR_INTERNAL_API 8004
+     * }
+     */
+    public static int FRS_ERR_INTERNAL_API() {
+        return FRS_ERR_INTERNAL_API;
+    }
+    private static final int FRS_ERR_INTERNAL = (int)8005L;
+    /**
+     * {@snippet lang=c :
+     * #define FRS_ERR_INTERNAL 8005
+     * }
+     */
+    public static int FRS_ERR_INTERNAL() {
+        return FRS_ERR_INTERNAL;
+    }
+    private static final int FRS_ERR_SERVICE_COMM = (int)8006L;
+    /**
+     * {@snippet lang=c :
+     * #define FRS_ERR_SERVICE_COMM 8006
+     * }
+     */
+    public static int FRS_ERR_SERVICE_COMM() {
+        return FRS_ERR_SERVICE_COMM;
+    }
+    private static final int FRS_ERR_INSUFFICIENT_PRIV = (int)8007L;
+    /**
+     * {@snippet lang=c :
+     * #define FRS_ERR_INSUFFICIENT_PRIV 8007
+     * }
+     */
+    public static int FRS_ERR_INSUFFICIENT_PRIV() {
+        return FRS_ERR_INSUFFICIENT_PRIV;
+    }
+    private static final int FRS_ERR_AUTHENTICATION = (int)8008L;
+    /**
+     * {@snippet lang=c :
+     * #define FRS_ERR_AUTHENTICATION 8008
+     * }
+     */
+    public static int FRS_ERR_AUTHENTICATION() {
+        return FRS_ERR_AUTHENTICATION;
+    }
+    private static final int FRS_ERR_PARENT_INSUFFICIENT_PRIV = (int)8009L;
+    /**
+     * {@snippet lang=c :
+     * #define FRS_ERR_PARENT_INSUFFICIENT_PRIV 8009
+     * }
+     */
+    public static int FRS_ERR_PARENT_INSUFFICIENT_PRIV() {
+        return FRS_ERR_PARENT_INSUFFICIENT_PRIV;
+    }
+    private static final int FRS_ERR_PARENT_AUTHENTICATION = (int)8010L;
+    /**
+     * {@snippet lang=c :
+     * #define FRS_ERR_PARENT_AUTHENTICATION 8010
+     * }
+     */
+    public static int FRS_ERR_PARENT_AUTHENTICATION() {
+        return FRS_ERR_PARENT_AUTHENTICATION;
+    }
+    private static final int FRS_ERR_CHILD_TO_PARENT_COMM = (int)8011L;
+    /**
+     * {@snippet lang=c :
+     * #define FRS_ERR_CHILD_TO_PARENT_COMM 8011
+     * }
+     */
+    public static int FRS_ERR_CHILD_TO_PARENT_COMM() {
+        return FRS_ERR_CHILD_TO_PARENT_COMM;
+    }
+    private static final int FRS_ERR_PARENT_TO_CHILD_COMM = (int)8012L;
+    /**
+     * {@snippet lang=c :
+     * #define FRS_ERR_PARENT_TO_CHILD_COMM 8012
+     * }
+     */
+    public static int FRS_ERR_PARENT_TO_CHILD_COMM() {
+        return FRS_ERR_PARENT_TO_CHILD_COMM;
+    }
+    private static final int FRS_ERR_SYSVOL_POPULATE = (int)8013L;
+    /**
+     * {@snippet lang=c :
+     * #define FRS_ERR_SYSVOL_POPULATE 8013
+     * }
+     */
+    public static int FRS_ERR_SYSVOL_POPULATE() {
+        return FRS_ERR_SYSVOL_POPULATE;
+    }
+    private static final int FRS_ERR_SYSVOL_POPULATE_TIMEOUT = (int)8014L;
+    /**
+     * {@snippet lang=c :
+     * #define FRS_ERR_SYSVOL_POPULATE_TIMEOUT 8014
+     * }
+     */
+    public static int FRS_ERR_SYSVOL_POPULATE_TIMEOUT() {
+        return FRS_ERR_SYSVOL_POPULATE_TIMEOUT;
+    }
+    private static final int FRS_ERR_SYSVOL_IS_BUSY = (int)8015L;
+    /**
+     * {@snippet lang=c :
+     * #define FRS_ERR_SYSVOL_IS_BUSY 8015
+     * }
+     */
+    public static int FRS_ERR_SYSVOL_IS_BUSY() {
+        return FRS_ERR_SYSVOL_IS_BUSY;
+    }
+    private static final int FRS_ERR_SYSVOL_DEMOTE = (int)8016L;
+    /**
+     * {@snippet lang=c :
+     * #define FRS_ERR_SYSVOL_DEMOTE 8016
+     * }
+     */
+    public static int FRS_ERR_SYSVOL_DEMOTE() {
+        return FRS_ERR_SYSVOL_DEMOTE;
+    }
+    private static final int FRS_ERR_INVALID_SERVICE_PARAMETER = (int)8017L;
+    /**
+     * {@snippet lang=c :
+     * #define FRS_ERR_INVALID_SERVICE_PARAMETER 8017
+     * }
+     */
+    public static int FRS_ERR_INVALID_SERVICE_PARAMETER() {
+        return FRS_ERR_INVALID_SERVICE_PARAMETER;
+    }
+    private static final int DS_S_SUCCESS = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define DS_S_SUCCESS 0
+     * }
+     */
+    public static int DS_S_SUCCESS() {
+        return DS_S_SUCCESS;
+    }
+    private static final int ERROR_DS_NOT_INSTALLED = (int)8200L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NOT_INSTALLED 8200
+     * }
+     */
+    public static int ERROR_DS_NOT_INSTALLED() {
+        return ERROR_DS_NOT_INSTALLED;
+    }
+    private static final int ERROR_DS_MEMBERSHIP_EVALUATED_LOCALLY = (int)8201L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_MEMBERSHIP_EVALUATED_LOCALLY 8201
+     * }
+     */
+    public static int ERROR_DS_MEMBERSHIP_EVALUATED_LOCALLY() {
+        return ERROR_DS_MEMBERSHIP_EVALUATED_LOCALLY;
+    }
+    private static final int ERROR_DS_NO_ATTRIBUTE_OR_VALUE = (int)8202L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_ATTRIBUTE_OR_VALUE 8202
+     * }
+     */
+    public static int ERROR_DS_NO_ATTRIBUTE_OR_VALUE() {
+        return ERROR_DS_NO_ATTRIBUTE_OR_VALUE;
+    }
+    private static final int ERROR_DS_INVALID_ATTRIBUTE_SYNTAX = (int)8203L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INVALID_ATTRIBUTE_SYNTAX 8203
+     * }
+     */
+    public static int ERROR_DS_INVALID_ATTRIBUTE_SYNTAX() {
+        return ERROR_DS_INVALID_ATTRIBUTE_SYNTAX;
+    }
+    private static final int ERROR_DS_ATTRIBUTE_TYPE_UNDEFINED = (int)8204L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ATTRIBUTE_TYPE_UNDEFINED 8204
+     * }
+     */
+    public static int ERROR_DS_ATTRIBUTE_TYPE_UNDEFINED() {
+        return ERROR_DS_ATTRIBUTE_TYPE_UNDEFINED;
+    }
+    private static final int ERROR_DS_ATTRIBUTE_OR_VALUE_EXISTS = (int)8205L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ATTRIBUTE_OR_VALUE_EXISTS 8205
+     * }
+     */
+    public static int ERROR_DS_ATTRIBUTE_OR_VALUE_EXISTS() {
+        return ERROR_DS_ATTRIBUTE_OR_VALUE_EXISTS;
+    }
+    private static final int ERROR_DS_BUSY = (int)8206L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_BUSY 8206
+     * }
+     */
+    public static int ERROR_DS_BUSY() {
+        return ERROR_DS_BUSY;
+    }
+    private static final int ERROR_DS_UNAVAILABLE = (int)8207L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_UNAVAILABLE 8207
+     * }
+     */
+    public static int ERROR_DS_UNAVAILABLE() {
+        return ERROR_DS_UNAVAILABLE;
+    }
+    private static final int ERROR_DS_NO_RIDS_ALLOCATED = (int)8208L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_RIDS_ALLOCATED 8208
+     * }
+     */
+    public static int ERROR_DS_NO_RIDS_ALLOCATED() {
+        return ERROR_DS_NO_RIDS_ALLOCATED;
+    }
+    private static final int ERROR_DS_NO_MORE_RIDS = (int)8209L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_MORE_RIDS 8209
+     * }
+     */
+    public static int ERROR_DS_NO_MORE_RIDS() {
+        return ERROR_DS_NO_MORE_RIDS;
+    }
+    private static final int ERROR_DS_INCORRECT_ROLE_OWNER = (int)8210L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INCORRECT_ROLE_OWNER 8210
+     * }
+     */
+    public static int ERROR_DS_INCORRECT_ROLE_OWNER() {
+        return ERROR_DS_INCORRECT_ROLE_OWNER;
+    }
+    private static final int ERROR_DS_RIDMGR_INIT_ERROR = (int)8211L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_RIDMGR_INIT_ERROR 8211
+     * }
+     */
+    public static int ERROR_DS_RIDMGR_INIT_ERROR() {
+        return ERROR_DS_RIDMGR_INIT_ERROR;
+    }
+    private static final int ERROR_DS_OBJ_CLASS_VIOLATION = (int)8212L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_OBJ_CLASS_VIOLATION 8212
+     * }
+     */
+    public static int ERROR_DS_OBJ_CLASS_VIOLATION() {
+        return ERROR_DS_OBJ_CLASS_VIOLATION;
+    }
+    private static final int ERROR_DS_CANT_ON_NON_LEAF = (int)8213L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_ON_NON_LEAF 8213
+     * }
+     */
+    public static int ERROR_DS_CANT_ON_NON_LEAF() {
+        return ERROR_DS_CANT_ON_NON_LEAF;
+    }
+    private static final int ERROR_DS_CANT_ON_RDN = (int)8214L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_ON_RDN 8214
+     * }
+     */
+    public static int ERROR_DS_CANT_ON_RDN() {
+        return ERROR_DS_CANT_ON_RDN;
+    }
+    private static final int ERROR_DS_CANT_MOD_OBJ_CLASS = (int)8215L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_MOD_OBJ_CLASS 8215
+     * }
+     */
+    public static int ERROR_DS_CANT_MOD_OBJ_CLASS() {
+        return ERROR_DS_CANT_MOD_OBJ_CLASS;
+    }
+    private static final int ERROR_DS_CROSS_DOM_MOVE_ERROR = (int)8216L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CROSS_DOM_MOVE_ERROR 8216
+     * }
+     */
+    public static int ERROR_DS_CROSS_DOM_MOVE_ERROR() {
+        return ERROR_DS_CROSS_DOM_MOVE_ERROR;
+    }
+    private static final int ERROR_DS_GC_NOT_AVAILABLE = (int)8217L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_GC_NOT_AVAILABLE 8217
+     * }
+     */
+    public static int ERROR_DS_GC_NOT_AVAILABLE() {
+        return ERROR_DS_GC_NOT_AVAILABLE;
+    }
+    private static final int ERROR_SHARED_POLICY = (int)8218L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_SHARED_POLICY 8218
+     * }
+     */
+    public static int ERROR_SHARED_POLICY() {
+        return ERROR_SHARED_POLICY;
+    }
+    private static final int ERROR_POLICY_OBJECT_NOT_FOUND = (int)8219L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_POLICY_OBJECT_NOT_FOUND 8219
+     * }
+     */
+    public static int ERROR_POLICY_OBJECT_NOT_FOUND() {
+        return ERROR_POLICY_OBJECT_NOT_FOUND;
+    }
+    private static final int ERROR_POLICY_ONLY_IN_DS = (int)8220L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_POLICY_ONLY_IN_DS 8220
+     * }
+     */
+    public static int ERROR_POLICY_ONLY_IN_DS() {
+        return ERROR_POLICY_ONLY_IN_DS;
+    }
+    private static final int ERROR_PROMOTION_ACTIVE = (int)8221L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_PROMOTION_ACTIVE 8221
+     * }
+     */
+    public static int ERROR_PROMOTION_ACTIVE() {
+        return ERROR_PROMOTION_ACTIVE;
+    }
+    private static final int ERROR_NO_PROMOTION_ACTIVE = (int)8222L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_NO_PROMOTION_ACTIVE 8222
+     * }
+     */
+    public static int ERROR_NO_PROMOTION_ACTIVE() {
+        return ERROR_NO_PROMOTION_ACTIVE;
+    }
+    private static final int ERROR_DS_OPERATIONS_ERROR = (int)8224L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_OPERATIONS_ERROR 8224
+     * }
+     */
+    public static int ERROR_DS_OPERATIONS_ERROR() {
+        return ERROR_DS_OPERATIONS_ERROR;
+    }
+    private static final int ERROR_DS_PROTOCOL_ERROR = (int)8225L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_PROTOCOL_ERROR 8225
+     * }
+     */
+    public static int ERROR_DS_PROTOCOL_ERROR() {
+        return ERROR_DS_PROTOCOL_ERROR;
+    }
+    private static final int ERROR_DS_TIMELIMIT_EXCEEDED = (int)8226L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_TIMELIMIT_EXCEEDED 8226
+     * }
+     */
+    public static int ERROR_DS_TIMELIMIT_EXCEEDED() {
+        return ERROR_DS_TIMELIMIT_EXCEEDED;
+    }
+    private static final int ERROR_DS_SIZELIMIT_EXCEEDED = (int)8227L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SIZELIMIT_EXCEEDED 8227
+     * }
+     */
+    public static int ERROR_DS_SIZELIMIT_EXCEEDED() {
+        return ERROR_DS_SIZELIMIT_EXCEEDED;
+    }
+    private static final int ERROR_DS_ADMIN_LIMIT_EXCEEDED = (int)8228L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ADMIN_LIMIT_EXCEEDED 8228
+     * }
+     */
+    public static int ERROR_DS_ADMIN_LIMIT_EXCEEDED() {
+        return ERROR_DS_ADMIN_LIMIT_EXCEEDED;
+    }
+    private static final int ERROR_DS_COMPARE_FALSE = (int)8229L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_COMPARE_FALSE 8229
+     * }
+     */
+    public static int ERROR_DS_COMPARE_FALSE() {
+        return ERROR_DS_COMPARE_FALSE;
+    }
+    private static final int ERROR_DS_COMPARE_TRUE = (int)8230L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_COMPARE_TRUE 8230
+     * }
+     */
+    public static int ERROR_DS_COMPARE_TRUE() {
+        return ERROR_DS_COMPARE_TRUE;
+    }
+    private static final int ERROR_DS_AUTH_METHOD_NOT_SUPPORTED = (int)8231L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_AUTH_METHOD_NOT_SUPPORTED 8231
+     * }
+     */
+    public static int ERROR_DS_AUTH_METHOD_NOT_SUPPORTED() {
+        return ERROR_DS_AUTH_METHOD_NOT_SUPPORTED;
+    }
+    private static final int ERROR_DS_STRONG_AUTH_REQUIRED = (int)8232L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_STRONG_AUTH_REQUIRED 8232
+     * }
+     */
+    public static int ERROR_DS_STRONG_AUTH_REQUIRED() {
+        return ERROR_DS_STRONG_AUTH_REQUIRED;
+    }
+    private static final int ERROR_DS_INAPPROPRIATE_AUTH = (int)8233L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INAPPROPRIATE_AUTH 8233
+     * }
+     */
+    public static int ERROR_DS_INAPPROPRIATE_AUTH() {
+        return ERROR_DS_INAPPROPRIATE_AUTH;
+    }
+    private static final int ERROR_DS_AUTH_UNKNOWN = (int)8234L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_AUTH_UNKNOWN 8234
+     * }
+     */
+    public static int ERROR_DS_AUTH_UNKNOWN() {
+        return ERROR_DS_AUTH_UNKNOWN;
+    }
+    private static final int ERROR_DS_REFERRAL = (int)8235L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_REFERRAL 8235
+     * }
+     */
+    public static int ERROR_DS_REFERRAL() {
+        return ERROR_DS_REFERRAL;
+    }
+    private static final int ERROR_DS_UNAVAILABLE_CRIT_EXTENSION = (int)8236L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_UNAVAILABLE_CRIT_EXTENSION 8236
+     * }
+     */
+    public static int ERROR_DS_UNAVAILABLE_CRIT_EXTENSION() {
+        return ERROR_DS_UNAVAILABLE_CRIT_EXTENSION;
+    }
+    private static final int ERROR_DS_CONFIDENTIALITY_REQUIRED = (int)8237L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CONFIDENTIALITY_REQUIRED 8237
+     * }
+     */
+    public static int ERROR_DS_CONFIDENTIALITY_REQUIRED() {
+        return ERROR_DS_CONFIDENTIALITY_REQUIRED;
+    }
+    private static final int ERROR_DS_INAPPROPRIATE_MATCHING = (int)8238L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INAPPROPRIATE_MATCHING 8238
+     * }
+     */
+    public static int ERROR_DS_INAPPROPRIATE_MATCHING() {
+        return ERROR_DS_INAPPROPRIATE_MATCHING;
+    }
+    private static final int ERROR_DS_CONSTRAINT_VIOLATION = (int)8239L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CONSTRAINT_VIOLATION 8239
+     * }
+     */
+    public static int ERROR_DS_CONSTRAINT_VIOLATION() {
+        return ERROR_DS_CONSTRAINT_VIOLATION;
+    }
+    private static final int ERROR_DS_NO_SUCH_OBJECT = (int)8240L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_SUCH_OBJECT 8240
+     * }
+     */
+    public static int ERROR_DS_NO_SUCH_OBJECT() {
+        return ERROR_DS_NO_SUCH_OBJECT;
+    }
+    private static final int ERROR_DS_ALIAS_PROBLEM = (int)8241L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ALIAS_PROBLEM 8241
+     * }
+     */
+    public static int ERROR_DS_ALIAS_PROBLEM() {
+        return ERROR_DS_ALIAS_PROBLEM;
+    }
+    private static final int ERROR_DS_INVALID_DN_SYNTAX = (int)8242L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INVALID_DN_SYNTAX 8242
+     * }
+     */
+    public static int ERROR_DS_INVALID_DN_SYNTAX() {
+        return ERROR_DS_INVALID_DN_SYNTAX;
+    }
+    private static final int ERROR_DS_IS_LEAF = (int)8243L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_IS_LEAF 8243
+     * }
+     */
+    public static int ERROR_DS_IS_LEAF() {
+        return ERROR_DS_IS_LEAF;
+    }
+    private static final int ERROR_DS_ALIAS_DEREF_PROBLEM = (int)8244L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ALIAS_DEREF_PROBLEM 8244
+     * }
+     */
+    public static int ERROR_DS_ALIAS_DEREF_PROBLEM() {
+        return ERROR_DS_ALIAS_DEREF_PROBLEM;
+    }
+    private static final int ERROR_DS_UNWILLING_TO_PERFORM = (int)8245L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_UNWILLING_TO_PERFORM 8245
+     * }
+     */
+    public static int ERROR_DS_UNWILLING_TO_PERFORM() {
+        return ERROR_DS_UNWILLING_TO_PERFORM;
+    }
+    private static final int ERROR_DS_LOOP_DETECT = (int)8246L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_LOOP_DETECT 8246
+     * }
+     */
+    public static int ERROR_DS_LOOP_DETECT() {
+        return ERROR_DS_LOOP_DETECT;
+    }
+    private static final int ERROR_DS_NAMING_VIOLATION = (int)8247L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NAMING_VIOLATION 8247
+     * }
+     */
+    public static int ERROR_DS_NAMING_VIOLATION() {
+        return ERROR_DS_NAMING_VIOLATION;
+    }
+    private static final int ERROR_DS_OBJECT_RESULTS_TOO_LARGE = (int)8248L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_OBJECT_RESULTS_TOO_LARGE 8248
+     * }
+     */
+    public static int ERROR_DS_OBJECT_RESULTS_TOO_LARGE() {
+        return ERROR_DS_OBJECT_RESULTS_TOO_LARGE;
+    }
+    private static final int ERROR_DS_AFFECTS_MULTIPLE_DSAS = (int)8249L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_AFFECTS_MULTIPLE_DSAS 8249
+     * }
+     */
+    public static int ERROR_DS_AFFECTS_MULTIPLE_DSAS() {
+        return ERROR_DS_AFFECTS_MULTIPLE_DSAS;
+    }
+    private static final int ERROR_DS_SERVER_DOWN = (int)8250L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SERVER_DOWN 8250
+     * }
+     */
+    public static int ERROR_DS_SERVER_DOWN() {
+        return ERROR_DS_SERVER_DOWN;
+    }
+    private static final int ERROR_DS_LOCAL_ERROR = (int)8251L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_LOCAL_ERROR 8251
+     * }
+     */
+    public static int ERROR_DS_LOCAL_ERROR() {
+        return ERROR_DS_LOCAL_ERROR;
+    }
+    private static final int ERROR_DS_ENCODING_ERROR = (int)8252L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ENCODING_ERROR 8252
+     * }
+     */
+    public static int ERROR_DS_ENCODING_ERROR() {
+        return ERROR_DS_ENCODING_ERROR;
+    }
+    private static final int ERROR_DS_DECODING_ERROR = (int)8253L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DECODING_ERROR 8253
+     * }
+     */
+    public static int ERROR_DS_DECODING_ERROR() {
+        return ERROR_DS_DECODING_ERROR;
+    }
+    private static final int ERROR_DS_FILTER_UNKNOWN = (int)8254L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_FILTER_UNKNOWN 8254
+     * }
+     */
+    public static int ERROR_DS_FILTER_UNKNOWN() {
+        return ERROR_DS_FILTER_UNKNOWN;
+    }
+    private static final int ERROR_DS_PARAM_ERROR = (int)8255L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_PARAM_ERROR 8255
+     * }
+     */
+    public static int ERROR_DS_PARAM_ERROR() {
+        return ERROR_DS_PARAM_ERROR;
+    }
+    private static final int ERROR_DS_NOT_SUPPORTED = (int)8256L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NOT_SUPPORTED 8256
+     * }
+     */
+    public static int ERROR_DS_NOT_SUPPORTED() {
+        return ERROR_DS_NOT_SUPPORTED;
+    }
+    private static final int ERROR_DS_NO_RESULTS_RETURNED = (int)8257L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_RESULTS_RETURNED 8257
+     * }
+     */
+    public static int ERROR_DS_NO_RESULTS_RETURNED() {
+        return ERROR_DS_NO_RESULTS_RETURNED;
+    }
+    private static final int ERROR_DS_CONTROL_NOT_FOUND = (int)8258L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CONTROL_NOT_FOUND 8258
+     * }
+     */
+    public static int ERROR_DS_CONTROL_NOT_FOUND() {
+        return ERROR_DS_CONTROL_NOT_FOUND;
+    }
+    private static final int ERROR_DS_CLIENT_LOOP = (int)8259L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CLIENT_LOOP 8259
+     * }
+     */
+    public static int ERROR_DS_CLIENT_LOOP() {
+        return ERROR_DS_CLIENT_LOOP;
+    }
+    private static final int ERROR_DS_REFERRAL_LIMIT_EXCEEDED = (int)8260L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_REFERRAL_LIMIT_EXCEEDED 8260
+     * }
+     */
+    public static int ERROR_DS_REFERRAL_LIMIT_EXCEEDED() {
+        return ERROR_DS_REFERRAL_LIMIT_EXCEEDED;
+    }
+    private static final int ERROR_DS_SORT_CONTROL_MISSING = (int)8261L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SORT_CONTROL_MISSING 8261
+     * }
+     */
+    public static int ERROR_DS_SORT_CONTROL_MISSING() {
+        return ERROR_DS_SORT_CONTROL_MISSING;
+    }
+    private static final int ERROR_DS_OFFSET_RANGE_ERROR = (int)8262L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_OFFSET_RANGE_ERROR 8262
+     * }
+     */
+    public static int ERROR_DS_OFFSET_RANGE_ERROR() {
+        return ERROR_DS_OFFSET_RANGE_ERROR;
+    }
+    private static final int ERROR_DS_RIDMGR_DISABLED = (int)8263L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_RIDMGR_DISABLED 8263
+     * }
+     */
+    public static int ERROR_DS_RIDMGR_DISABLED() {
+        return ERROR_DS_RIDMGR_DISABLED;
+    }
+    private static final int ERROR_DS_ROOT_MUST_BE_NC = (int)8301L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ROOT_MUST_BE_NC 8301
+     * }
+     */
+    public static int ERROR_DS_ROOT_MUST_BE_NC() {
+        return ERROR_DS_ROOT_MUST_BE_NC;
+    }
+    private static final int ERROR_DS_ADD_REPLICA_INHIBITED = (int)8302L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ADD_REPLICA_INHIBITED 8302
+     * }
+     */
+    public static int ERROR_DS_ADD_REPLICA_INHIBITED() {
+        return ERROR_DS_ADD_REPLICA_INHIBITED;
+    }
+    private static final int ERROR_DS_ATT_NOT_DEF_IN_SCHEMA = (int)8303L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ATT_NOT_DEF_IN_SCHEMA 8303
+     * }
+     */
+    public static int ERROR_DS_ATT_NOT_DEF_IN_SCHEMA() {
+        return ERROR_DS_ATT_NOT_DEF_IN_SCHEMA;
+    }
+    private static final int ERROR_DS_MAX_OBJ_SIZE_EXCEEDED = (int)8304L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_MAX_OBJ_SIZE_EXCEEDED 8304
+     * }
+     */
+    public static int ERROR_DS_MAX_OBJ_SIZE_EXCEEDED() {
+        return ERROR_DS_MAX_OBJ_SIZE_EXCEEDED;
+    }
+    private static final int ERROR_DS_OBJ_STRING_NAME_EXISTS = (int)8305L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_OBJ_STRING_NAME_EXISTS 8305
+     * }
+     */
+    public static int ERROR_DS_OBJ_STRING_NAME_EXISTS() {
+        return ERROR_DS_OBJ_STRING_NAME_EXISTS;
+    }
+    private static final int ERROR_DS_NO_RDN_DEFINED_IN_SCHEMA = (int)8306L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_RDN_DEFINED_IN_SCHEMA 8306
+     * }
+     */
+    public static int ERROR_DS_NO_RDN_DEFINED_IN_SCHEMA() {
+        return ERROR_DS_NO_RDN_DEFINED_IN_SCHEMA;
+    }
+    private static final int ERROR_DS_RDN_DOESNT_MATCH_SCHEMA = (int)8307L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_RDN_DOESNT_MATCH_SCHEMA 8307
+     * }
+     */
+    public static int ERROR_DS_RDN_DOESNT_MATCH_SCHEMA() {
+        return ERROR_DS_RDN_DOESNT_MATCH_SCHEMA;
+    }
+    private static final int ERROR_DS_NO_REQUESTED_ATTS_FOUND = (int)8308L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_REQUESTED_ATTS_FOUND 8308
+     * }
+     */
+    public static int ERROR_DS_NO_REQUESTED_ATTS_FOUND() {
+        return ERROR_DS_NO_REQUESTED_ATTS_FOUND;
+    }
+    private static final int ERROR_DS_USER_BUFFER_TO_SMALL = (int)8309L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_USER_BUFFER_TO_SMALL 8309
+     * }
+     */
+    public static int ERROR_DS_USER_BUFFER_TO_SMALL() {
+        return ERROR_DS_USER_BUFFER_TO_SMALL;
+    }
+    private static final int ERROR_DS_ATT_IS_NOT_ON_OBJ = (int)8310L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ATT_IS_NOT_ON_OBJ 8310
+     * }
+     */
+    public static int ERROR_DS_ATT_IS_NOT_ON_OBJ() {
+        return ERROR_DS_ATT_IS_NOT_ON_OBJ;
+    }
+    private static final int ERROR_DS_ILLEGAL_MOD_OPERATION = (int)8311L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ILLEGAL_MOD_OPERATION 8311
+     * }
+     */
+    public static int ERROR_DS_ILLEGAL_MOD_OPERATION() {
+        return ERROR_DS_ILLEGAL_MOD_OPERATION;
+    }
+    private static final int ERROR_DS_OBJ_TOO_LARGE = (int)8312L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_OBJ_TOO_LARGE 8312
+     * }
+     */
+    public static int ERROR_DS_OBJ_TOO_LARGE() {
+        return ERROR_DS_OBJ_TOO_LARGE;
+    }
+    private static final int ERROR_DS_BAD_INSTANCE_TYPE = (int)8313L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_BAD_INSTANCE_TYPE 8313
+     * }
+     */
+    public static int ERROR_DS_BAD_INSTANCE_TYPE() {
+        return ERROR_DS_BAD_INSTANCE_TYPE;
+    }
+    private static final int ERROR_DS_MASTERDSA_REQUIRED = (int)8314L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_MASTERDSA_REQUIRED 8314
+     * }
+     */
+    public static int ERROR_DS_MASTERDSA_REQUIRED() {
+        return ERROR_DS_MASTERDSA_REQUIRED;
+    }
+    private static final int ERROR_DS_OBJECT_CLASS_REQUIRED = (int)8315L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_OBJECT_CLASS_REQUIRED 8315
+     * }
+     */
+    public static int ERROR_DS_OBJECT_CLASS_REQUIRED() {
+        return ERROR_DS_OBJECT_CLASS_REQUIRED;
+    }
+    private static final int ERROR_DS_MISSING_REQUIRED_ATT = (int)8316L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_MISSING_REQUIRED_ATT 8316
+     * }
+     */
+    public static int ERROR_DS_MISSING_REQUIRED_ATT() {
+        return ERROR_DS_MISSING_REQUIRED_ATT;
+    }
+    private static final int ERROR_DS_ATT_NOT_DEF_FOR_CLASS = (int)8317L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ATT_NOT_DEF_FOR_CLASS 8317
+     * }
+     */
+    public static int ERROR_DS_ATT_NOT_DEF_FOR_CLASS() {
+        return ERROR_DS_ATT_NOT_DEF_FOR_CLASS;
+    }
+    private static final int ERROR_DS_ATT_ALREADY_EXISTS = (int)8318L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ATT_ALREADY_EXISTS 8318
+     * }
+     */
+    public static int ERROR_DS_ATT_ALREADY_EXISTS() {
+        return ERROR_DS_ATT_ALREADY_EXISTS;
+    }
+    private static final int ERROR_DS_CANT_ADD_ATT_VALUES = (int)8320L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_ADD_ATT_VALUES 8320
+     * }
+     */
+    public static int ERROR_DS_CANT_ADD_ATT_VALUES() {
+        return ERROR_DS_CANT_ADD_ATT_VALUES;
+    }
+    private static final int ERROR_DS_SINGLE_VALUE_CONSTRAINT = (int)8321L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SINGLE_VALUE_CONSTRAINT 8321
+     * }
+     */
+    public static int ERROR_DS_SINGLE_VALUE_CONSTRAINT() {
+        return ERROR_DS_SINGLE_VALUE_CONSTRAINT;
+    }
+    private static final int ERROR_DS_RANGE_CONSTRAINT = (int)8322L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_RANGE_CONSTRAINT 8322
+     * }
+     */
+    public static int ERROR_DS_RANGE_CONSTRAINT() {
+        return ERROR_DS_RANGE_CONSTRAINT;
+    }
+    private static final int ERROR_DS_ATT_VAL_ALREADY_EXISTS = (int)8323L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ATT_VAL_ALREADY_EXISTS 8323
+     * }
+     */
+    public static int ERROR_DS_ATT_VAL_ALREADY_EXISTS() {
+        return ERROR_DS_ATT_VAL_ALREADY_EXISTS;
+    }
+    private static final int ERROR_DS_CANT_REM_MISSING_ATT = (int)8324L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_REM_MISSING_ATT 8324
+     * }
+     */
+    public static int ERROR_DS_CANT_REM_MISSING_ATT() {
+        return ERROR_DS_CANT_REM_MISSING_ATT;
+    }
+    private static final int ERROR_DS_CANT_REM_MISSING_ATT_VAL = (int)8325L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_REM_MISSING_ATT_VAL 8325
+     * }
+     */
+    public static int ERROR_DS_CANT_REM_MISSING_ATT_VAL() {
+        return ERROR_DS_CANT_REM_MISSING_ATT_VAL;
+    }
+    private static final int ERROR_DS_ROOT_CANT_BE_SUBREF = (int)8326L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ROOT_CANT_BE_SUBREF 8326
+     * }
+     */
+    public static int ERROR_DS_ROOT_CANT_BE_SUBREF() {
+        return ERROR_DS_ROOT_CANT_BE_SUBREF;
+    }
+    private static final int ERROR_DS_NO_CHAINING = (int)8327L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_CHAINING 8327
+     * }
+     */
+    public static int ERROR_DS_NO_CHAINING() {
+        return ERROR_DS_NO_CHAINING;
+    }
+    private static final int ERROR_DS_NO_CHAINED_EVAL = (int)8328L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_CHAINED_EVAL 8328
+     * }
+     */
+    public static int ERROR_DS_NO_CHAINED_EVAL() {
+        return ERROR_DS_NO_CHAINED_EVAL;
+    }
+    private static final int ERROR_DS_NO_PARENT_OBJECT = (int)8329L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_PARENT_OBJECT 8329
+     * }
+     */
+    public static int ERROR_DS_NO_PARENT_OBJECT() {
+        return ERROR_DS_NO_PARENT_OBJECT;
+    }
+    private static final int ERROR_DS_PARENT_IS_AN_ALIAS = (int)8330L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_PARENT_IS_AN_ALIAS 8330
+     * }
+     */
+    public static int ERROR_DS_PARENT_IS_AN_ALIAS() {
+        return ERROR_DS_PARENT_IS_AN_ALIAS;
+    }
+    private static final int ERROR_DS_CANT_MIX_MASTER_AND_REPS = (int)8331L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_MIX_MASTER_AND_REPS 8331
+     * }
+     */
+    public static int ERROR_DS_CANT_MIX_MASTER_AND_REPS() {
+        return ERROR_DS_CANT_MIX_MASTER_AND_REPS;
+    }
+    private static final int ERROR_DS_CHILDREN_EXIST = (int)8332L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CHILDREN_EXIST 8332
+     * }
+     */
+    public static int ERROR_DS_CHILDREN_EXIST() {
+        return ERROR_DS_CHILDREN_EXIST;
+    }
+    private static final int ERROR_DS_OBJ_NOT_FOUND = (int)8333L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_OBJ_NOT_FOUND 8333
+     * }
+     */
+    public static int ERROR_DS_OBJ_NOT_FOUND() {
+        return ERROR_DS_OBJ_NOT_FOUND;
+    }
+    private static final int ERROR_DS_ALIASED_OBJ_MISSING = (int)8334L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ALIASED_OBJ_MISSING 8334
+     * }
+     */
+    public static int ERROR_DS_ALIASED_OBJ_MISSING() {
+        return ERROR_DS_ALIASED_OBJ_MISSING;
+    }
+    private static final int ERROR_DS_BAD_NAME_SYNTAX = (int)8335L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_BAD_NAME_SYNTAX 8335
+     * }
+     */
+    public static int ERROR_DS_BAD_NAME_SYNTAX() {
+        return ERROR_DS_BAD_NAME_SYNTAX;
+    }
+    private static final int ERROR_DS_ALIAS_POINTS_TO_ALIAS = (int)8336L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ALIAS_POINTS_TO_ALIAS 8336
+     * }
+     */
+    public static int ERROR_DS_ALIAS_POINTS_TO_ALIAS() {
+        return ERROR_DS_ALIAS_POINTS_TO_ALIAS;
+    }
+    private static final int ERROR_DS_CANT_DEREF_ALIAS = (int)8337L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_DEREF_ALIAS 8337
+     * }
+     */
+    public static int ERROR_DS_CANT_DEREF_ALIAS() {
+        return ERROR_DS_CANT_DEREF_ALIAS;
+    }
+    private static final int ERROR_DS_OUT_OF_SCOPE = (int)8338L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_OUT_OF_SCOPE 8338
+     * }
+     */
+    public static int ERROR_DS_OUT_OF_SCOPE() {
+        return ERROR_DS_OUT_OF_SCOPE;
+    }
+    private static final int ERROR_DS_OBJECT_BEING_REMOVED = (int)8339L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_OBJECT_BEING_REMOVED 8339
+     * }
+     */
+    public static int ERROR_DS_OBJECT_BEING_REMOVED() {
+        return ERROR_DS_OBJECT_BEING_REMOVED;
+    }
+    private static final int ERROR_DS_CANT_DELETE_DSA_OBJ = (int)8340L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_DELETE_DSA_OBJ 8340
+     * }
+     */
+    public static int ERROR_DS_CANT_DELETE_DSA_OBJ() {
+        return ERROR_DS_CANT_DELETE_DSA_OBJ;
+    }
+    private static final int ERROR_DS_GENERIC_ERROR = (int)8341L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_GENERIC_ERROR 8341
+     * }
+     */
+    public static int ERROR_DS_GENERIC_ERROR() {
+        return ERROR_DS_GENERIC_ERROR;
+    }
+    private static final int ERROR_DS_DSA_MUST_BE_INT_MASTER = (int)8342L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DSA_MUST_BE_INT_MASTER 8342
+     * }
+     */
+    public static int ERROR_DS_DSA_MUST_BE_INT_MASTER() {
+        return ERROR_DS_DSA_MUST_BE_INT_MASTER;
+    }
+    private static final int ERROR_DS_CLASS_NOT_DSA = (int)8343L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CLASS_NOT_DSA 8343
+     * }
+     */
+    public static int ERROR_DS_CLASS_NOT_DSA() {
+        return ERROR_DS_CLASS_NOT_DSA;
+    }
+    private static final int ERROR_DS_INSUFF_ACCESS_RIGHTS = (int)8344L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INSUFF_ACCESS_RIGHTS 8344
+     * }
+     */
+    public static int ERROR_DS_INSUFF_ACCESS_RIGHTS() {
+        return ERROR_DS_INSUFF_ACCESS_RIGHTS;
+    }
+    private static final int ERROR_DS_ILLEGAL_SUPERIOR = (int)8345L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ILLEGAL_SUPERIOR 8345
+     * }
+     */
+    public static int ERROR_DS_ILLEGAL_SUPERIOR() {
+        return ERROR_DS_ILLEGAL_SUPERIOR;
+    }
+    private static final int ERROR_DS_ATTRIBUTE_OWNED_BY_SAM = (int)8346L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ATTRIBUTE_OWNED_BY_SAM 8346
+     * }
+     */
+    public static int ERROR_DS_ATTRIBUTE_OWNED_BY_SAM() {
+        return ERROR_DS_ATTRIBUTE_OWNED_BY_SAM;
+    }
+    private static final int ERROR_DS_NAME_TOO_MANY_PARTS = (int)8347L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NAME_TOO_MANY_PARTS 8347
+     * }
+     */
+    public static int ERROR_DS_NAME_TOO_MANY_PARTS() {
+        return ERROR_DS_NAME_TOO_MANY_PARTS;
+    }
+    private static final int ERROR_DS_NAME_TOO_LONG = (int)8348L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NAME_TOO_LONG 8348
+     * }
+     */
+    public static int ERROR_DS_NAME_TOO_LONG() {
+        return ERROR_DS_NAME_TOO_LONG;
+    }
+    private static final int ERROR_DS_NAME_VALUE_TOO_LONG = (int)8349L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NAME_VALUE_TOO_LONG 8349
+     * }
+     */
+    public static int ERROR_DS_NAME_VALUE_TOO_LONG() {
+        return ERROR_DS_NAME_VALUE_TOO_LONG;
+    }
+    private static final int ERROR_DS_NAME_UNPARSEABLE = (int)8350L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NAME_UNPARSEABLE 8350
+     * }
+     */
+    public static int ERROR_DS_NAME_UNPARSEABLE() {
+        return ERROR_DS_NAME_UNPARSEABLE;
+    }
+    private static final int ERROR_DS_NAME_TYPE_UNKNOWN = (int)8351L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NAME_TYPE_UNKNOWN 8351
+     * }
+     */
+    public static int ERROR_DS_NAME_TYPE_UNKNOWN() {
+        return ERROR_DS_NAME_TYPE_UNKNOWN;
+    }
+    private static final int ERROR_DS_NOT_AN_OBJECT = (int)8352L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NOT_AN_OBJECT 8352
+     * }
+     */
+    public static int ERROR_DS_NOT_AN_OBJECT() {
+        return ERROR_DS_NOT_AN_OBJECT;
+    }
+    private static final int ERROR_DS_SEC_DESC_TOO_SHORT = (int)8353L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SEC_DESC_TOO_SHORT 8353
+     * }
+     */
+    public static int ERROR_DS_SEC_DESC_TOO_SHORT() {
+        return ERROR_DS_SEC_DESC_TOO_SHORT;
+    }
+    private static final int ERROR_DS_SEC_DESC_INVALID = (int)8354L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SEC_DESC_INVALID 8354
+     * }
+     */
+    public static int ERROR_DS_SEC_DESC_INVALID() {
+        return ERROR_DS_SEC_DESC_INVALID;
+    }
+    private static final int ERROR_DS_NO_DELETED_NAME = (int)8355L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_DELETED_NAME 8355
+     * }
+     */
+    public static int ERROR_DS_NO_DELETED_NAME() {
+        return ERROR_DS_NO_DELETED_NAME;
+    }
+    private static final int ERROR_DS_SUBREF_MUST_HAVE_PARENT = (int)8356L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SUBREF_MUST_HAVE_PARENT 8356
+     * }
+     */
+    public static int ERROR_DS_SUBREF_MUST_HAVE_PARENT() {
+        return ERROR_DS_SUBREF_MUST_HAVE_PARENT;
+    }
+    private static final int ERROR_DS_NCNAME_MUST_BE_NC = (int)8357L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NCNAME_MUST_BE_NC 8357
+     * }
+     */
+    public static int ERROR_DS_NCNAME_MUST_BE_NC() {
+        return ERROR_DS_NCNAME_MUST_BE_NC;
+    }
+    private static final int ERROR_DS_CANT_ADD_SYSTEM_ONLY = (int)8358L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_ADD_SYSTEM_ONLY 8358
+     * }
+     */
+    public static int ERROR_DS_CANT_ADD_SYSTEM_ONLY() {
+        return ERROR_DS_CANT_ADD_SYSTEM_ONLY;
+    }
+    private static final int ERROR_DS_CLASS_MUST_BE_CONCRETE = (int)8359L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CLASS_MUST_BE_CONCRETE 8359
+     * }
+     */
+    public static int ERROR_DS_CLASS_MUST_BE_CONCRETE() {
+        return ERROR_DS_CLASS_MUST_BE_CONCRETE;
+    }
+    private static final int ERROR_DS_INVALID_DMD = (int)8360L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INVALID_DMD 8360
+     * }
+     */
+    public static int ERROR_DS_INVALID_DMD() {
+        return ERROR_DS_INVALID_DMD;
+    }
+    private static final int ERROR_DS_OBJ_GUID_EXISTS = (int)8361L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_OBJ_GUID_EXISTS 8361
+     * }
+     */
+    public static int ERROR_DS_OBJ_GUID_EXISTS() {
+        return ERROR_DS_OBJ_GUID_EXISTS;
+    }
+    private static final int ERROR_DS_NOT_ON_BACKLINK = (int)8362L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NOT_ON_BACKLINK 8362
+     * }
+     */
+    public static int ERROR_DS_NOT_ON_BACKLINK() {
+        return ERROR_DS_NOT_ON_BACKLINK;
+    }
+    private static final int ERROR_DS_NO_CROSSREF_FOR_NC = (int)8363L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_CROSSREF_FOR_NC 8363
+     * }
+     */
+    public static int ERROR_DS_NO_CROSSREF_FOR_NC() {
+        return ERROR_DS_NO_CROSSREF_FOR_NC;
+    }
+    private static final int ERROR_DS_SHUTTING_DOWN = (int)8364L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SHUTTING_DOWN 8364
+     * }
+     */
+    public static int ERROR_DS_SHUTTING_DOWN() {
+        return ERROR_DS_SHUTTING_DOWN;
+    }
+    private static final int ERROR_DS_UNKNOWN_OPERATION = (int)8365L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_UNKNOWN_OPERATION 8365
+     * }
+     */
+    public static int ERROR_DS_UNKNOWN_OPERATION() {
+        return ERROR_DS_UNKNOWN_OPERATION;
+    }
+    private static final int ERROR_DS_INVALID_ROLE_OWNER = (int)8366L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INVALID_ROLE_OWNER 8366
+     * }
+     */
+    public static int ERROR_DS_INVALID_ROLE_OWNER() {
+        return ERROR_DS_INVALID_ROLE_OWNER;
+    }
+    private static final int ERROR_DS_COULDNT_CONTACT_FSMO = (int)8367L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_COULDNT_CONTACT_FSMO 8367
+     * }
+     */
+    public static int ERROR_DS_COULDNT_CONTACT_FSMO() {
+        return ERROR_DS_COULDNT_CONTACT_FSMO;
+    }
+    private static final int ERROR_DS_CROSS_NC_DN_RENAME = (int)8368L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CROSS_NC_DN_RENAME 8368
+     * }
+     */
+    public static int ERROR_DS_CROSS_NC_DN_RENAME() {
+        return ERROR_DS_CROSS_NC_DN_RENAME;
+    }
+    private static final int ERROR_DS_CANT_MOD_SYSTEM_ONLY = (int)8369L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_MOD_SYSTEM_ONLY 8369
+     * }
+     */
+    public static int ERROR_DS_CANT_MOD_SYSTEM_ONLY() {
+        return ERROR_DS_CANT_MOD_SYSTEM_ONLY;
+    }
+    private static final int ERROR_DS_REPLICATOR_ONLY = (int)8370L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_REPLICATOR_ONLY 8370
+     * }
+     */
+    public static int ERROR_DS_REPLICATOR_ONLY() {
+        return ERROR_DS_REPLICATOR_ONLY;
+    }
+    private static final int ERROR_DS_OBJ_CLASS_NOT_DEFINED = (int)8371L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_OBJ_CLASS_NOT_DEFINED 8371
+     * }
+     */
+    public static int ERROR_DS_OBJ_CLASS_NOT_DEFINED() {
+        return ERROR_DS_OBJ_CLASS_NOT_DEFINED;
+    }
+    private static final int ERROR_DS_OBJ_CLASS_NOT_SUBCLASS = (int)8372L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_OBJ_CLASS_NOT_SUBCLASS 8372
+     * }
+     */
+    public static int ERROR_DS_OBJ_CLASS_NOT_SUBCLASS() {
+        return ERROR_DS_OBJ_CLASS_NOT_SUBCLASS;
+    }
+    private static final int ERROR_DS_NAME_REFERENCE_INVALID = (int)8373L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NAME_REFERENCE_INVALID 8373
+     * }
+     */
+    public static int ERROR_DS_NAME_REFERENCE_INVALID() {
+        return ERROR_DS_NAME_REFERENCE_INVALID;
+    }
+    private static final int ERROR_DS_CROSS_REF_EXISTS = (int)8374L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CROSS_REF_EXISTS 8374
+     * }
+     */
+    public static int ERROR_DS_CROSS_REF_EXISTS() {
+        return ERROR_DS_CROSS_REF_EXISTS;
+    }
+    private static final int ERROR_DS_CANT_DEL_MASTER_CROSSREF = (int)8375L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_DEL_MASTER_CROSSREF 8375
+     * }
+     */
+    public static int ERROR_DS_CANT_DEL_MASTER_CROSSREF() {
+        return ERROR_DS_CANT_DEL_MASTER_CROSSREF;
+    }
+    private static final int ERROR_DS_SUBTREE_NOTIFY_NOT_NC_HEAD = (int)8376L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SUBTREE_NOTIFY_NOT_NC_HEAD 8376
+     * }
+     */
+    public static int ERROR_DS_SUBTREE_NOTIFY_NOT_NC_HEAD() {
+        return ERROR_DS_SUBTREE_NOTIFY_NOT_NC_HEAD;
+    }
+    private static final int ERROR_DS_NOTIFY_FILTER_TOO_COMPLEX = (int)8377L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NOTIFY_FILTER_TOO_COMPLEX 8377
+     * }
+     */
+    public static int ERROR_DS_NOTIFY_FILTER_TOO_COMPLEX() {
+        return ERROR_DS_NOTIFY_FILTER_TOO_COMPLEX;
+    }
+    private static final int ERROR_DS_DUP_RDN = (int)8378L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DUP_RDN 8378
+     * }
+     */
+    public static int ERROR_DS_DUP_RDN() {
+        return ERROR_DS_DUP_RDN;
+    }
+    private static final int ERROR_DS_DUP_OID = (int)8379L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DUP_OID 8379
+     * }
+     */
+    public static int ERROR_DS_DUP_OID() {
+        return ERROR_DS_DUP_OID;
+    }
+    private static final int ERROR_DS_DUP_MAPI_ID = (int)8380L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DUP_MAPI_ID 8380
+     * }
+     */
+    public static int ERROR_DS_DUP_MAPI_ID() {
+        return ERROR_DS_DUP_MAPI_ID;
+    }
+    private static final int ERROR_DS_DUP_SCHEMA_ID_GUID = (int)8381L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DUP_SCHEMA_ID_GUID 8381
+     * }
+     */
+    public static int ERROR_DS_DUP_SCHEMA_ID_GUID() {
+        return ERROR_DS_DUP_SCHEMA_ID_GUID;
+    }
+    private static final int ERROR_DS_DUP_LDAP_DISPLAY_NAME = (int)8382L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DUP_LDAP_DISPLAY_NAME 8382
+     * }
+     */
+    public static int ERROR_DS_DUP_LDAP_DISPLAY_NAME() {
+        return ERROR_DS_DUP_LDAP_DISPLAY_NAME;
+    }
+    private static final int ERROR_DS_SEMANTIC_ATT_TEST = (int)8383L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SEMANTIC_ATT_TEST 8383
+     * }
+     */
+    public static int ERROR_DS_SEMANTIC_ATT_TEST() {
+        return ERROR_DS_SEMANTIC_ATT_TEST;
+    }
+    private static final int ERROR_DS_SYNTAX_MISMATCH = (int)8384L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SYNTAX_MISMATCH 8384
+     * }
+     */
+    public static int ERROR_DS_SYNTAX_MISMATCH() {
+        return ERROR_DS_SYNTAX_MISMATCH;
+    }
+    private static final int ERROR_DS_EXISTS_IN_MUST_HAVE = (int)8385L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_EXISTS_IN_MUST_HAVE 8385
+     * }
+     */
+    public static int ERROR_DS_EXISTS_IN_MUST_HAVE() {
+        return ERROR_DS_EXISTS_IN_MUST_HAVE;
+    }
+    private static final int ERROR_DS_EXISTS_IN_MAY_HAVE = (int)8386L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_EXISTS_IN_MAY_HAVE 8386
+     * }
+     */
+    public static int ERROR_DS_EXISTS_IN_MAY_HAVE() {
+        return ERROR_DS_EXISTS_IN_MAY_HAVE;
+    }
+    private static final int ERROR_DS_NONEXISTENT_MAY_HAVE = (int)8387L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NONEXISTENT_MAY_HAVE 8387
+     * }
+     */
+    public static int ERROR_DS_NONEXISTENT_MAY_HAVE() {
+        return ERROR_DS_NONEXISTENT_MAY_HAVE;
+    }
+    private static final int ERROR_DS_NONEXISTENT_MUST_HAVE = (int)8388L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NONEXISTENT_MUST_HAVE 8388
+     * }
+     */
+    public static int ERROR_DS_NONEXISTENT_MUST_HAVE() {
+        return ERROR_DS_NONEXISTENT_MUST_HAVE;
+    }
+    private static final int ERROR_DS_AUX_CLS_TEST_FAIL = (int)8389L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_AUX_CLS_TEST_FAIL 8389
+     * }
+     */
+    public static int ERROR_DS_AUX_CLS_TEST_FAIL() {
+        return ERROR_DS_AUX_CLS_TEST_FAIL;
+    }
+    private static final int ERROR_DS_NONEXISTENT_POSS_SUP = (int)8390L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NONEXISTENT_POSS_SUP 8390
+     * }
+     */
+    public static int ERROR_DS_NONEXISTENT_POSS_SUP() {
+        return ERROR_DS_NONEXISTENT_POSS_SUP;
+    }
+    private static final int ERROR_DS_SUB_CLS_TEST_FAIL = (int)8391L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SUB_CLS_TEST_FAIL 8391
+     * }
+     */
+    public static int ERROR_DS_SUB_CLS_TEST_FAIL() {
+        return ERROR_DS_SUB_CLS_TEST_FAIL;
+    }
+    private static final int ERROR_DS_BAD_RDN_ATT_ID_SYNTAX = (int)8392L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_BAD_RDN_ATT_ID_SYNTAX 8392
+     * }
+     */
+    public static int ERROR_DS_BAD_RDN_ATT_ID_SYNTAX() {
+        return ERROR_DS_BAD_RDN_ATT_ID_SYNTAX;
+    }
+    private static final int ERROR_DS_EXISTS_IN_AUX_CLS = (int)8393L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_EXISTS_IN_AUX_CLS 8393
+     * }
+     */
+    public static int ERROR_DS_EXISTS_IN_AUX_CLS() {
+        return ERROR_DS_EXISTS_IN_AUX_CLS;
+    }
+    private static final int ERROR_DS_EXISTS_IN_SUB_CLS = (int)8394L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_EXISTS_IN_SUB_CLS 8394
+     * }
+     */
+    public static int ERROR_DS_EXISTS_IN_SUB_CLS() {
+        return ERROR_DS_EXISTS_IN_SUB_CLS;
+    }
+    private static final int ERROR_DS_EXISTS_IN_POSS_SUP = (int)8395L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_EXISTS_IN_POSS_SUP 8395
+     * }
+     */
+    public static int ERROR_DS_EXISTS_IN_POSS_SUP() {
+        return ERROR_DS_EXISTS_IN_POSS_SUP;
+    }
+    private static final int ERROR_DS_RECALCSCHEMA_FAILED = (int)8396L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_RECALCSCHEMA_FAILED 8396
+     * }
+     */
+    public static int ERROR_DS_RECALCSCHEMA_FAILED() {
+        return ERROR_DS_RECALCSCHEMA_FAILED;
+    }
+    private static final int ERROR_DS_TREE_DELETE_NOT_FINISHED = (int)8397L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_TREE_DELETE_NOT_FINISHED 8397
+     * }
+     */
+    public static int ERROR_DS_TREE_DELETE_NOT_FINISHED() {
+        return ERROR_DS_TREE_DELETE_NOT_FINISHED;
+    }
+    private static final int ERROR_DS_CANT_DELETE = (int)8398L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_DELETE 8398
+     * }
+     */
+    public static int ERROR_DS_CANT_DELETE() {
+        return ERROR_DS_CANT_DELETE;
+    }
+    private static final int ERROR_DS_ATT_SCHEMA_REQ_ID = (int)8399L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ATT_SCHEMA_REQ_ID 8399
+     * }
+     */
+    public static int ERROR_DS_ATT_SCHEMA_REQ_ID() {
+        return ERROR_DS_ATT_SCHEMA_REQ_ID;
+    }
+    private static final int ERROR_DS_BAD_ATT_SCHEMA_SYNTAX = (int)8400L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_BAD_ATT_SCHEMA_SYNTAX 8400
+     * }
+     */
+    public static int ERROR_DS_BAD_ATT_SCHEMA_SYNTAX() {
+        return ERROR_DS_BAD_ATT_SCHEMA_SYNTAX;
+    }
+    private static final int ERROR_DS_CANT_CACHE_ATT = (int)8401L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_CACHE_ATT 8401
+     * }
+     */
+    public static int ERROR_DS_CANT_CACHE_ATT() {
+        return ERROR_DS_CANT_CACHE_ATT;
+    }
+    private static final int ERROR_DS_CANT_CACHE_CLASS = (int)8402L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_CACHE_CLASS 8402
+     * }
+     */
+    public static int ERROR_DS_CANT_CACHE_CLASS() {
+        return ERROR_DS_CANT_CACHE_CLASS;
+    }
+    private static final int ERROR_DS_CANT_REMOVE_ATT_CACHE = (int)8403L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_REMOVE_ATT_CACHE 8403
+     * }
+     */
+    public static int ERROR_DS_CANT_REMOVE_ATT_CACHE() {
+        return ERROR_DS_CANT_REMOVE_ATT_CACHE;
+    }
+    private static final int ERROR_DS_CANT_REMOVE_CLASS_CACHE = (int)8404L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_REMOVE_CLASS_CACHE 8404
+     * }
+     */
+    public static int ERROR_DS_CANT_REMOVE_CLASS_CACHE() {
+        return ERROR_DS_CANT_REMOVE_CLASS_CACHE;
+    }
+    private static final int ERROR_DS_CANT_RETRIEVE_DN = (int)8405L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_RETRIEVE_DN 8405
+     * }
+     */
+    public static int ERROR_DS_CANT_RETRIEVE_DN() {
+        return ERROR_DS_CANT_RETRIEVE_DN;
+    }
+    private static final int ERROR_DS_MISSING_SUPREF = (int)8406L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_MISSING_SUPREF 8406
+     * }
+     */
+    public static int ERROR_DS_MISSING_SUPREF() {
+        return ERROR_DS_MISSING_SUPREF;
+    }
+    private static final int ERROR_DS_CANT_RETRIEVE_INSTANCE = (int)8407L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_RETRIEVE_INSTANCE 8407
+     * }
+     */
+    public static int ERROR_DS_CANT_RETRIEVE_INSTANCE() {
+        return ERROR_DS_CANT_RETRIEVE_INSTANCE;
+    }
+    private static final int ERROR_DS_CODE_INCONSISTENCY = (int)8408L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CODE_INCONSISTENCY 8408
+     * }
+     */
+    public static int ERROR_DS_CODE_INCONSISTENCY() {
+        return ERROR_DS_CODE_INCONSISTENCY;
+    }
+    private static final int ERROR_DS_DATABASE_ERROR = (int)8409L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DATABASE_ERROR 8409
+     * }
+     */
+    public static int ERROR_DS_DATABASE_ERROR() {
+        return ERROR_DS_DATABASE_ERROR;
+    }
+    private static final int ERROR_DS_GOVERNSID_MISSING = (int)8410L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_GOVERNSID_MISSING 8410
+     * }
+     */
+    public static int ERROR_DS_GOVERNSID_MISSING() {
+        return ERROR_DS_GOVERNSID_MISSING;
+    }
+    private static final int ERROR_DS_MISSING_EXPECTED_ATT = (int)8411L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_MISSING_EXPECTED_ATT 8411
+     * }
+     */
+    public static int ERROR_DS_MISSING_EXPECTED_ATT() {
+        return ERROR_DS_MISSING_EXPECTED_ATT;
+    }
+    private static final int ERROR_DS_NCNAME_MISSING_CR_REF = (int)8412L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NCNAME_MISSING_CR_REF 8412
+     * }
+     */
+    public static int ERROR_DS_NCNAME_MISSING_CR_REF() {
+        return ERROR_DS_NCNAME_MISSING_CR_REF;
+    }
+    private static final int ERROR_DS_SECURITY_CHECKING_ERROR = (int)8413L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SECURITY_CHECKING_ERROR 8413
+     * }
+     */
+    public static int ERROR_DS_SECURITY_CHECKING_ERROR() {
+        return ERROR_DS_SECURITY_CHECKING_ERROR;
+    }
+    private static final int ERROR_DS_SCHEMA_NOT_LOADED = (int)8414L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SCHEMA_NOT_LOADED 8414
+     * }
+     */
+    public static int ERROR_DS_SCHEMA_NOT_LOADED() {
+        return ERROR_DS_SCHEMA_NOT_LOADED;
+    }
+    private static final int ERROR_DS_SCHEMA_ALLOC_FAILED = (int)8415L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SCHEMA_ALLOC_FAILED 8415
+     * }
+     */
+    public static int ERROR_DS_SCHEMA_ALLOC_FAILED() {
+        return ERROR_DS_SCHEMA_ALLOC_FAILED;
+    }
+    private static final int ERROR_DS_ATT_SCHEMA_REQ_SYNTAX = (int)8416L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ATT_SCHEMA_REQ_SYNTAX 8416
+     * }
+     */
+    public static int ERROR_DS_ATT_SCHEMA_REQ_SYNTAX() {
+        return ERROR_DS_ATT_SCHEMA_REQ_SYNTAX;
+    }
+    private static final int ERROR_DS_GCVERIFY_ERROR = (int)8417L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_GCVERIFY_ERROR 8417
+     * }
+     */
+    public static int ERROR_DS_GCVERIFY_ERROR() {
+        return ERROR_DS_GCVERIFY_ERROR;
+    }
+    private static final int ERROR_DS_DRA_SCHEMA_MISMATCH = (int)8418L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_SCHEMA_MISMATCH 8418
+     * }
+     */
+    public static int ERROR_DS_DRA_SCHEMA_MISMATCH() {
+        return ERROR_DS_DRA_SCHEMA_MISMATCH;
+    }
+    private static final int ERROR_DS_CANT_FIND_DSA_OBJ = (int)8419L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_FIND_DSA_OBJ 8419
+     * }
+     */
+    public static int ERROR_DS_CANT_FIND_DSA_OBJ() {
+        return ERROR_DS_CANT_FIND_DSA_OBJ;
+    }
+    private static final int ERROR_DS_CANT_FIND_EXPECTED_NC = (int)8420L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_FIND_EXPECTED_NC 8420
+     * }
+     */
+    public static int ERROR_DS_CANT_FIND_EXPECTED_NC() {
+        return ERROR_DS_CANT_FIND_EXPECTED_NC;
+    }
+    private static final int ERROR_DS_CANT_FIND_NC_IN_CACHE = (int)8421L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_FIND_NC_IN_CACHE 8421
+     * }
+     */
+    public static int ERROR_DS_CANT_FIND_NC_IN_CACHE() {
+        return ERROR_DS_CANT_FIND_NC_IN_CACHE;
+    }
+    private static final int ERROR_DS_CANT_RETRIEVE_CHILD = (int)8422L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_RETRIEVE_CHILD 8422
+     * }
+     */
+    public static int ERROR_DS_CANT_RETRIEVE_CHILD() {
+        return ERROR_DS_CANT_RETRIEVE_CHILD;
+    }
+    private static final int ERROR_DS_SECURITY_ILLEGAL_MODIFY = (int)8423L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SECURITY_ILLEGAL_MODIFY 8423
+     * }
+     */
+    public static int ERROR_DS_SECURITY_ILLEGAL_MODIFY() {
+        return ERROR_DS_SECURITY_ILLEGAL_MODIFY;
+    }
+    private static final int ERROR_DS_CANT_REPLACE_HIDDEN_REC = (int)8424L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_REPLACE_HIDDEN_REC 8424
+     * }
+     */
+    public static int ERROR_DS_CANT_REPLACE_HIDDEN_REC() {
+        return ERROR_DS_CANT_REPLACE_HIDDEN_REC;
+    }
+    private static final int ERROR_DS_BAD_HIERARCHY_FILE = (int)8425L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_BAD_HIERARCHY_FILE 8425
+     * }
+     */
+    public static int ERROR_DS_BAD_HIERARCHY_FILE() {
+        return ERROR_DS_BAD_HIERARCHY_FILE;
+    }
+    private static final int ERROR_DS_BUILD_HIERARCHY_TABLE_FAILED = (int)8426L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_BUILD_HIERARCHY_TABLE_FAILED 8426
+     * }
+     */
+    public static int ERROR_DS_BUILD_HIERARCHY_TABLE_FAILED() {
+        return ERROR_DS_BUILD_HIERARCHY_TABLE_FAILED;
+    }
+    private static final int ERROR_DS_CONFIG_PARAM_MISSING = (int)8427L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CONFIG_PARAM_MISSING 8427
+     * }
+     */
+    public static int ERROR_DS_CONFIG_PARAM_MISSING() {
+        return ERROR_DS_CONFIG_PARAM_MISSING;
+    }
+    private static final int ERROR_DS_COUNTING_AB_INDICES_FAILED = (int)8428L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_COUNTING_AB_INDICES_FAILED 8428
+     * }
+     */
+    public static int ERROR_DS_COUNTING_AB_INDICES_FAILED() {
+        return ERROR_DS_COUNTING_AB_INDICES_FAILED;
+    }
+    private static final int ERROR_DS_HIERARCHY_TABLE_MALLOC_FAILED = (int)8429L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_HIERARCHY_TABLE_MALLOC_FAILED 8429
+     * }
+     */
+    public static int ERROR_DS_HIERARCHY_TABLE_MALLOC_FAILED() {
+        return ERROR_DS_HIERARCHY_TABLE_MALLOC_FAILED;
+    }
+    private static final int ERROR_DS_INTERNAL_FAILURE = (int)8430L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INTERNAL_FAILURE 8430
+     * }
+     */
+    public static int ERROR_DS_INTERNAL_FAILURE() {
+        return ERROR_DS_INTERNAL_FAILURE;
+    }
+    private static final int ERROR_DS_UNKNOWN_ERROR = (int)8431L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_UNKNOWN_ERROR 8431
+     * }
+     */
+    public static int ERROR_DS_UNKNOWN_ERROR() {
+        return ERROR_DS_UNKNOWN_ERROR;
+    }
+    private static final int ERROR_DS_ROOT_REQUIRES_CLASS_TOP = (int)8432L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ROOT_REQUIRES_CLASS_TOP 8432
+     * }
+     */
+    public static int ERROR_DS_ROOT_REQUIRES_CLASS_TOP() {
+        return ERROR_DS_ROOT_REQUIRES_CLASS_TOP;
+    }
+    private static final int ERROR_DS_REFUSING_FSMO_ROLES = (int)8433L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_REFUSING_FSMO_ROLES 8433
+     * }
+     */
+    public static int ERROR_DS_REFUSING_FSMO_ROLES() {
+        return ERROR_DS_REFUSING_FSMO_ROLES;
+    }
+    private static final int ERROR_DS_MISSING_FSMO_SETTINGS = (int)8434L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_MISSING_FSMO_SETTINGS 8434
+     * }
+     */
+    public static int ERROR_DS_MISSING_FSMO_SETTINGS() {
+        return ERROR_DS_MISSING_FSMO_SETTINGS;
+    }
+    private static final int ERROR_DS_UNABLE_TO_SURRENDER_ROLES = (int)8435L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_UNABLE_TO_SURRENDER_ROLES 8435
+     * }
+     */
+    public static int ERROR_DS_UNABLE_TO_SURRENDER_ROLES() {
+        return ERROR_DS_UNABLE_TO_SURRENDER_ROLES;
+    }
+    private static final int ERROR_DS_DRA_GENERIC = (int)8436L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_GENERIC 8436
+     * }
+     */
+    public static int ERROR_DS_DRA_GENERIC() {
+        return ERROR_DS_DRA_GENERIC;
+    }
+    private static final int ERROR_DS_DRA_INVALID_PARAMETER = (int)8437L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_INVALID_PARAMETER 8437
+     * }
+     */
+    public static int ERROR_DS_DRA_INVALID_PARAMETER() {
+        return ERROR_DS_DRA_INVALID_PARAMETER;
+    }
+    private static final int ERROR_DS_DRA_BUSY = (int)8438L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_BUSY 8438
+     * }
+     */
+    public static int ERROR_DS_DRA_BUSY() {
+        return ERROR_DS_DRA_BUSY;
+    }
+    private static final int ERROR_DS_DRA_BAD_DN = (int)8439L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_BAD_DN 8439
+     * }
+     */
+    public static int ERROR_DS_DRA_BAD_DN() {
+        return ERROR_DS_DRA_BAD_DN;
+    }
+    private static final int ERROR_DS_DRA_BAD_NC = (int)8440L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_BAD_NC 8440
+     * }
+     */
+    public static int ERROR_DS_DRA_BAD_NC() {
+        return ERROR_DS_DRA_BAD_NC;
+    }
+    private static final int ERROR_DS_DRA_DN_EXISTS = (int)8441L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_DN_EXISTS 8441
+     * }
+     */
+    public static int ERROR_DS_DRA_DN_EXISTS() {
+        return ERROR_DS_DRA_DN_EXISTS;
+    }
+    private static final int ERROR_DS_DRA_INTERNAL_ERROR = (int)8442L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_INTERNAL_ERROR 8442
+     * }
+     */
+    public static int ERROR_DS_DRA_INTERNAL_ERROR() {
+        return ERROR_DS_DRA_INTERNAL_ERROR;
+    }
+    private static final int ERROR_DS_DRA_INCONSISTENT_DIT = (int)8443L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_INCONSISTENT_DIT 8443
+     * }
+     */
+    public static int ERROR_DS_DRA_INCONSISTENT_DIT() {
+        return ERROR_DS_DRA_INCONSISTENT_DIT;
+    }
+    private static final int ERROR_DS_DRA_CONNECTION_FAILED = (int)8444L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_CONNECTION_FAILED 8444
+     * }
+     */
+    public static int ERROR_DS_DRA_CONNECTION_FAILED() {
+        return ERROR_DS_DRA_CONNECTION_FAILED;
+    }
+    private static final int ERROR_DS_DRA_BAD_INSTANCE_TYPE = (int)8445L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_BAD_INSTANCE_TYPE 8445
+     * }
+     */
+    public static int ERROR_DS_DRA_BAD_INSTANCE_TYPE() {
+        return ERROR_DS_DRA_BAD_INSTANCE_TYPE;
+    }
+    private static final int ERROR_DS_DRA_OUT_OF_MEM = (int)8446L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_OUT_OF_MEM 8446
+     * }
+     */
+    public static int ERROR_DS_DRA_OUT_OF_MEM() {
+        return ERROR_DS_DRA_OUT_OF_MEM;
+    }
+    private static final int ERROR_DS_DRA_MAIL_PROBLEM = (int)8447L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_MAIL_PROBLEM 8447
+     * }
+     */
+    public static int ERROR_DS_DRA_MAIL_PROBLEM() {
+        return ERROR_DS_DRA_MAIL_PROBLEM;
+    }
+    private static final int ERROR_DS_DRA_REF_ALREADY_EXISTS = (int)8448L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_REF_ALREADY_EXISTS 8448
+     * }
+     */
+    public static int ERROR_DS_DRA_REF_ALREADY_EXISTS() {
+        return ERROR_DS_DRA_REF_ALREADY_EXISTS;
+    }
+    private static final int ERROR_DS_DRA_REF_NOT_FOUND = (int)8449L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_REF_NOT_FOUND 8449
+     * }
+     */
+    public static int ERROR_DS_DRA_REF_NOT_FOUND() {
+        return ERROR_DS_DRA_REF_NOT_FOUND;
+    }
+    private static final int ERROR_DS_DRA_OBJ_IS_REP_SOURCE = (int)8450L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_OBJ_IS_REP_SOURCE 8450
+     * }
+     */
+    public static int ERROR_DS_DRA_OBJ_IS_REP_SOURCE() {
+        return ERROR_DS_DRA_OBJ_IS_REP_SOURCE;
+    }
+    private static final int ERROR_DS_DRA_DB_ERROR = (int)8451L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_DB_ERROR 8451
+     * }
+     */
+    public static int ERROR_DS_DRA_DB_ERROR() {
+        return ERROR_DS_DRA_DB_ERROR;
+    }
+    private static final int ERROR_DS_DRA_NO_REPLICA = (int)8452L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_NO_REPLICA 8452
+     * }
+     */
+    public static int ERROR_DS_DRA_NO_REPLICA() {
+        return ERROR_DS_DRA_NO_REPLICA;
+    }
+    private static final int ERROR_DS_DRA_ACCESS_DENIED = (int)8453L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_ACCESS_DENIED 8453
+     * }
+     */
+    public static int ERROR_DS_DRA_ACCESS_DENIED() {
+        return ERROR_DS_DRA_ACCESS_DENIED;
+    }
+    private static final int ERROR_DS_DRA_NOT_SUPPORTED = (int)8454L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_NOT_SUPPORTED 8454
+     * }
+     */
+    public static int ERROR_DS_DRA_NOT_SUPPORTED() {
+        return ERROR_DS_DRA_NOT_SUPPORTED;
+    }
+    private static final int ERROR_DS_DRA_RPC_CANCELLED = (int)8455L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_RPC_CANCELLED 8455
+     * }
+     */
+    public static int ERROR_DS_DRA_RPC_CANCELLED() {
+        return ERROR_DS_DRA_RPC_CANCELLED;
+    }
+    private static final int ERROR_DS_DRA_SOURCE_DISABLED = (int)8456L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_SOURCE_DISABLED 8456
+     * }
+     */
+    public static int ERROR_DS_DRA_SOURCE_DISABLED() {
+        return ERROR_DS_DRA_SOURCE_DISABLED;
+    }
+    private static final int ERROR_DS_DRA_SINK_DISABLED = (int)8457L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_SINK_DISABLED 8457
+     * }
+     */
+    public static int ERROR_DS_DRA_SINK_DISABLED() {
+        return ERROR_DS_DRA_SINK_DISABLED;
+    }
+    private static final int ERROR_DS_DRA_NAME_COLLISION = (int)8458L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_NAME_COLLISION 8458
+     * }
+     */
+    public static int ERROR_DS_DRA_NAME_COLLISION() {
+        return ERROR_DS_DRA_NAME_COLLISION;
+    }
+    private static final int ERROR_DS_DRA_SOURCE_REINSTALLED = (int)8459L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_SOURCE_REINSTALLED 8459
+     * }
+     */
+    public static int ERROR_DS_DRA_SOURCE_REINSTALLED() {
+        return ERROR_DS_DRA_SOURCE_REINSTALLED;
+    }
+    private static final int ERROR_DS_DRA_MISSING_PARENT = (int)8460L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_MISSING_PARENT 8460
+     * }
+     */
+    public static int ERROR_DS_DRA_MISSING_PARENT() {
+        return ERROR_DS_DRA_MISSING_PARENT;
+    }
+    private static final int ERROR_DS_DRA_PREEMPTED = (int)8461L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_PREEMPTED 8461
+     * }
+     */
+    public static int ERROR_DS_DRA_PREEMPTED() {
+        return ERROR_DS_DRA_PREEMPTED;
+    }
+    private static final int ERROR_DS_DRA_ABANDON_SYNC = (int)8462L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_ABANDON_SYNC 8462
+     * }
+     */
+    public static int ERROR_DS_DRA_ABANDON_SYNC() {
+        return ERROR_DS_DRA_ABANDON_SYNC;
+    }
+    private static final int ERROR_DS_DRA_SHUTDOWN = (int)8463L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_SHUTDOWN 8463
+     * }
+     */
+    public static int ERROR_DS_DRA_SHUTDOWN() {
+        return ERROR_DS_DRA_SHUTDOWN;
+    }
+    private static final int ERROR_DS_DRA_INCOMPATIBLE_PARTIAL_SET = (int)8464L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_INCOMPATIBLE_PARTIAL_SET 8464
+     * }
+     */
+    public static int ERROR_DS_DRA_INCOMPATIBLE_PARTIAL_SET() {
+        return ERROR_DS_DRA_INCOMPATIBLE_PARTIAL_SET;
+    }
+    private static final int ERROR_DS_DRA_SOURCE_IS_PARTIAL_REPLICA = (int)8465L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_SOURCE_IS_PARTIAL_REPLICA 8465
+     * }
+     */
+    public static int ERROR_DS_DRA_SOURCE_IS_PARTIAL_REPLICA() {
+        return ERROR_DS_DRA_SOURCE_IS_PARTIAL_REPLICA;
+    }
+    private static final int ERROR_DS_DRA_EXTN_CONNECTION_FAILED = (int)8466L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_EXTN_CONNECTION_FAILED 8466
+     * }
+     */
+    public static int ERROR_DS_DRA_EXTN_CONNECTION_FAILED() {
+        return ERROR_DS_DRA_EXTN_CONNECTION_FAILED;
+    }
+    private static final int ERROR_DS_INSTALL_SCHEMA_MISMATCH = (int)8467L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INSTALL_SCHEMA_MISMATCH 8467
+     * }
+     */
+    public static int ERROR_DS_INSTALL_SCHEMA_MISMATCH() {
+        return ERROR_DS_INSTALL_SCHEMA_MISMATCH;
+    }
+    private static final int ERROR_DS_DUP_LINK_ID = (int)8468L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DUP_LINK_ID 8468
+     * }
+     */
+    public static int ERROR_DS_DUP_LINK_ID() {
+        return ERROR_DS_DUP_LINK_ID;
+    }
+    private static final int ERROR_DS_NAME_ERROR_RESOLVING = (int)8469L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NAME_ERROR_RESOLVING 8469
+     * }
+     */
+    public static int ERROR_DS_NAME_ERROR_RESOLVING() {
+        return ERROR_DS_NAME_ERROR_RESOLVING;
+    }
+    private static final int ERROR_DS_NAME_ERROR_NOT_FOUND = (int)8470L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NAME_ERROR_NOT_FOUND 8470
+     * }
+     */
+    public static int ERROR_DS_NAME_ERROR_NOT_FOUND() {
+        return ERROR_DS_NAME_ERROR_NOT_FOUND;
+    }
+    private static final int ERROR_DS_NAME_ERROR_NOT_UNIQUE = (int)8471L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NAME_ERROR_NOT_UNIQUE 8471
+     * }
+     */
+    public static int ERROR_DS_NAME_ERROR_NOT_UNIQUE() {
+        return ERROR_DS_NAME_ERROR_NOT_UNIQUE;
+    }
+    private static final int ERROR_DS_NAME_ERROR_NO_MAPPING = (int)8472L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NAME_ERROR_NO_MAPPING 8472
+     * }
+     */
+    public static int ERROR_DS_NAME_ERROR_NO_MAPPING() {
+        return ERROR_DS_NAME_ERROR_NO_MAPPING;
+    }
+    private static final int ERROR_DS_NAME_ERROR_DOMAIN_ONLY = (int)8473L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NAME_ERROR_DOMAIN_ONLY 8473
+     * }
+     */
+    public static int ERROR_DS_NAME_ERROR_DOMAIN_ONLY() {
+        return ERROR_DS_NAME_ERROR_DOMAIN_ONLY;
+    }
+    private static final int ERROR_DS_NAME_ERROR_NO_SYNTACTICAL_MAPPING = (int)8474L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NAME_ERROR_NO_SYNTACTICAL_MAPPING 8474
+     * }
+     */
+    public static int ERROR_DS_NAME_ERROR_NO_SYNTACTICAL_MAPPING() {
+        return ERROR_DS_NAME_ERROR_NO_SYNTACTICAL_MAPPING;
+    }
+    private static final int ERROR_DS_CONSTRUCTED_ATT_MOD = (int)8475L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CONSTRUCTED_ATT_MOD 8475
+     * }
+     */
+    public static int ERROR_DS_CONSTRUCTED_ATT_MOD() {
+        return ERROR_DS_CONSTRUCTED_ATT_MOD;
+    }
+    private static final int ERROR_DS_WRONG_OM_OBJ_CLASS = (int)8476L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_WRONG_OM_OBJ_CLASS 8476
+     * }
+     */
+    public static int ERROR_DS_WRONG_OM_OBJ_CLASS() {
+        return ERROR_DS_WRONG_OM_OBJ_CLASS;
+    }
+    private static final int ERROR_DS_DRA_REPL_PENDING = (int)8477L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_REPL_PENDING 8477
+     * }
+     */
+    public static int ERROR_DS_DRA_REPL_PENDING() {
+        return ERROR_DS_DRA_REPL_PENDING;
+    }
+    private static final int ERROR_DS_DS_REQUIRED = (int)8478L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DS_REQUIRED 8478
+     * }
+     */
+    public static int ERROR_DS_DS_REQUIRED() {
+        return ERROR_DS_DS_REQUIRED;
+    }
+    private static final int ERROR_DS_INVALID_LDAP_DISPLAY_NAME = (int)8479L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INVALID_LDAP_DISPLAY_NAME 8479
+     * }
+     */
+    public static int ERROR_DS_INVALID_LDAP_DISPLAY_NAME() {
+        return ERROR_DS_INVALID_LDAP_DISPLAY_NAME;
+    }
+    private static final int ERROR_DS_NON_BASE_SEARCH = (int)8480L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NON_BASE_SEARCH 8480
+     * }
+     */
+    public static int ERROR_DS_NON_BASE_SEARCH() {
+        return ERROR_DS_NON_BASE_SEARCH;
+    }
+    private static final int ERROR_DS_CANT_RETRIEVE_ATTS = (int)8481L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_RETRIEVE_ATTS 8481
+     * }
+     */
+    public static int ERROR_DS_CANT_RETRIEVE_ATTS() {
+        return ERROR_DS_CANT_RETRIEVE_ATTS;
+    }
+    private static final int ERROR_DS_BACKLINK_WITHOUT_LINK = (int)8482L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_BACKLINK_WITHOUT_LINK 8482
+     * }
+     */
+    public static int ERROR_DS_BACKLINK_WITHOUT_LINK() {
+        return ERROR_DS_BACKLINK_WITHOUT_LINK;
+    }
+    private static final int ERROR_DS_EPOCH_MISMATCH = (int)8483L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_EPOCH_MISMATCH 8483
+     * }
+     */
+    public static int ERROR_DS_EPOCH_MISMATCH() {
+        return ERROR_DS_EPOCH_MISMATCH;
+    }
+    private static final int ERROR_DS_SRC_NAME_MISMATCH = (int)8484L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SRC_NAME_MISMATCH 8484
+     * }
+     */
+    public static int ERROR_DS_SRC_NAME_MISMATCH() {
+        return ERROR_DS_SRC_NAME_MISMATCH;
+    }
+    private static final int ERROR_DS_SRC_AND_DST_NC_IDENTICAL = (int)8485L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SRC_AND_DST_NC_IDENTICAL 8485
+     * }
+     */
+    public static int ERROR_DS_SRC_AND_DST_NC_IDENTICAL() {
+        return ERROR_DS_SRC_AND_DST_NC_IDENTICAL;
+    }
+    private static final int ERROR_DS_DST_NC_MISMATCH = (int)8486L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DST_NC_MISMATCH 8486
+     * }
+     */
+    public static int ERROR_DS_DST_NC_MISMATCH() {
+        return ERROR_DS_DST_NC_MISMATCH;
+    }
+    private static final int ERROR_DS_NOT_AUTHORITIVE_FOR_DST_NC = (int)8487L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NOT_AUTHORITIVE_FOR_DST_NC 8487
+     * }
+     */
+    public static int ERROR_DS_NOT_AUTHORITIVE_FOR_DST_NC() {
+        return ERROR_DS_NOT_AUTHORITIVE_FOR_DST_NC;
+    }
+    private static final int ERROR_DS_SRC_GUID_MISMATCH = (int)8488L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SRC_GUID_MISMATCH 8488
+     * }
+     */
+    public static int ERROR_DS_SRC_GUID_MISMATCH() {
+        return ERROR_DS_SRC_GUID_MISMATCH;
+    }
+    private static final int ERROR_DS_CANT_MOVE_DELETED_OBJECT = (int)8489L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_MOVE_DELETED_OBJECT 8489
+     * }
+     */
+    public static int ERROR_DS_CANT_MOVE_DELETED_OBJECT() {
+        return ERROR_DS_CANT_MOVE_DELETED_OBJECT;
+    }
+    private static final int ERROR_DS_PDC_OPERATION_IN_PROGRESS = (int)8490L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_PDC_OPERATION_IN_PROGRESS 8490
+     * }
+     */
+    public static int ERROR_DS_PDC_OPERATION_IN_PROGRESS() {
+        return ERROR_DS_PDC_OPERATION_IN_PROGRESS;
+    }
+    private static final int ERROR_DS_CROSS_DOMAIN_CLEANUP_REQD = (int)8491L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CROSS_DOMAIN_CLEANUP_REQD 8491
+     * }
+     */
+    public static int ERROR_DS_CROSS_DOMAIN_CLEANUP_REQD() {
+        return ERROR_DS_CROSS_DOMAIN_CLEANUP_REQD;
+    }
+    private static final int ERROR_DS_ILLEGAL_XDOM_MOVE_OPERATION = (int)8492L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ILLEGAL_XDOM_MOVE_OPERATION 8492
+     * }
+     */
+    public static int ERROR_DS_ILLEGAL_XDOM_MOVE_OPERATION() {
+        return ERROR_DS_ILLEGAL_XDOM_MOVE_OPERATION;
+    }
+    private static final int ERROR_DS_CANT_WITH_ACCT_GROUP_MEMBERSHPS = (int)8493L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_WITH_ACCT_GROUP_MEMBERSHPS 8493
+     * }
+     */
+    public static int ERROR_DS_CANT_WITH_ACCT_GROUP_MEMBERSHPS() {
+        return ERROR_DS_CANT_WITH_ACCT_GROUP_MEMBERSHPS;
+    }
+    private static final int ERROR_DS_NC_MUST_HAVE_NC_PARENT = (int)8494L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NC_MUST_HAVE_NC_PARENT 8494
+     * }
+     */
+    public static int ERROR_DS_NC_MUST_HAVE_NC_PARENT() {
+        return ERROR_DS_NC_MUST_HAVE_NC_PARENT;
+    }
+    private static final int ERROR_DS_CR_IMPOSSIBLE_TO_VALIDATE = (int)8495L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CR_IMPOSSIBLE_TO_VALIDATE 8495
+     * }
+     */
+    public static int ERROR_DS_CR_IMPOSSIBLE_TO_VALIDATE() {
+        return ERROR_DS_CR_IMPOSSIBLE_TO_VALIDATE;
+    }
+    private static final int ERROR_DS_DST_DOMAIN_NOT_NATIVE = (int)8496L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DST_DOMAIN_NOT_NATIVE 8496
+     * }
+     */
+    public static int ERROR_DS_DST_DOMAIN_NOT_NATIVE() {
+        return ERROR_DS_DST_DOMAIN_NOT_NATIVE;
+    }
+    private static final int ERROR_DS_MISSING_INFRASTRUCTURE_CONTAINER = (int)8497L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_MISSING_INFRASTRUCTURE_CONTAINER 8497
+     * }
+     */
+    public static int ERROR_DS_MISSING_INFRASTRUCTURE_CONTAINER() {
+        return ERROR_DS_MISSING_INFRASTRUCTURE_CONTAINER;
+    }
+    private static final int ERROR_DS_CANT_MOVE_ACCOUNT_GROUP = (int)8498L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_MOVE_ACCOUNT_GROUP 8498
+     * }
+     */
+    public static int ERROR_DS_CANT_MOVE_ACCOUNT_GROUP() {
+        return ERROR_DS_CANT_MOVE_ACCOUNT_GROUP;
+    }
+    private static final int ERROR_DS_CANT_MOVE_RESOURCE_GROUP = (int)8499L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_MOVE_RESOURCE_GROUP 8499
+     * }
+     */
+    public static int ERROR_DS_CANT_MOVE_RESOURCE_GROUP() {
+        return ERROR_DS_CANT_MOVE_RESOURCE_GROUP;
+    }
+    private static final int ERROR_DS_INVALID_SEARCH_FLAG = (int)8500L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INVALID_SEARCH_FLAG 8500
+     * }
+     */
+    public static int ERROR_DS_INVALID_SEARCH_FLAG() {
+        return ERROR_DS_INVALID_SEARCH_FLAG;
+    }
+    private static final int ERROR_DS_NO_TREE_DELETE_ABOVE_NC = (int)8501L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_TREE_DELETE_ABOVE_NC 8501
+     * }
+     */
+    public static int ERROR_DS_NO_TREE_DELETE_ABOVE_NC() {
+        return ERROR_DS_NO_TREE_DELETE_ABOVE_NC;
+    }
+    private static final int ERROR_DS_COULDNT_LOCK_TREE_FOR_DELETE = (int)8502L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_COULDNT_LOCK_TREE_FOR_DELETE 8502
+     * }
+     */
+    public static int ERROR_DS_COULDNT_LOCK_TREE_FOR_DELETE() {
+        return ERROR_DS_COULDNT_LOCK_TREE_FOR_DELETE;
+    }
+    private static final int ERROR_DS_COULDNT_IDENTIFY_OBJECTS_FOR_TREE_DELETE = (int)8503L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_COULDNT_IDENTIFY_OBJECTS_FOR_TREE_DELETE 8503
+     * }
+     */
+    public static int ERROR_DS_COULDNT_IDENTIFY_OBJECTS_FOR_TREE_DELETE() {
+        return ERROR_DS_COULDNT_IDENTIFY_OBJECTS_FOR_TREE_DELETE;
+    }
+    private static final int ERROR_DS_SAM_INIT_FAILURE = (int)8504L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SAM_INIT_FAILURE 8504
+     * }
+     */
+    public static int ERROR_DS_SAM_INIT_FAILURE() {
+        return ERROR_DS_SAM_INIT_FAILURE;
+    }
+    private static final int ERROR_DS_SENSITIVE_GROUP_VIOLATION = (int)8505L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SENSITIVE_GROUP_VIOLATION 8505
+     * }
+     */
+    public static int ERROR_DS_SENSITIVE_GROUP_VIOLATION() {
+        return ERROR_DS_SENSITIVE_GROUP_VIOLATION;
+    }
+    private static final int ERROR_DS_CANT_MOD_PRIMARYGROUPID = (int)8506L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_MOD_PRIMARYGROUPID 8506
+     * }
+     */
+    public static int ERROR_DS_CANT_MOD_PRIMARYGROUPID() {
+        return ERROR_DS_CANT_MOD_PRIMARYGROUPID;
+    }
+    private static final int ERROR_DS_ILLEGAL_BASE_SCHEMA_MOD = (int)8507L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ILLEGAL_BASE_SCHEMA_MOD 8507
+     * }
+     */
+    public static int ERROR_DS_ILLEGAL_BASE_SCHEMA_MOD() {
+        return ERROR_DS_ILLEGAL_BASE_SCHEMA_MOD;
+    }
+    private static final int ERROR_DS_NONSAFE_SCHEMA_CHANGE = (int)8508L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NONSAFE_SCHEMA_CHANGE 8508
+     * }
+     */
+    public static int ERROR_DS_NONSAFE_SCHEMA_CHANGE() {
+        return ERROR_DS_NONSAFE_SCHEMA_CHANGE;
+    }
+    private static final int ERROR_DS_SCHEMA_UPDATE_DISALLOWED = (int)8509L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SCHEMA_UPDATE_DISALLOWED 8509
+     * }
+     */
+    public static int ERROR_DS_SCHEMA_UPDATE_DISALLOWED() {
+        return ERROR_DS_SCHEMA_UPDATE_DISALLOWED;
+    }
+    private static final int ERROR_DS_CANT_CREATE_UNDER_SCHEMA = (int)8510L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_CREATE_UNDER_SCHEMA 8510
+     * }
+     */
+    public static int ERROR_DS_CANT_CREATE_UNDER_SCHEMA() {
+        return ERROR_DS_CANT_CREATE_UNDER_SCHEMA;
+    }
+    private static final int ERROR_DS_INSTALL_NO_SRC_SCH_VERSION = (int)8511L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INSTALL_NO_SRC_SCH_VERSION 8511
+     * }
+     */
+    public static int ERROR_DS_INSTALL_NO_SRC_SCH_VERSION() {
+        return ERROR_DS_INSTALL_NO_SRC_SCH_VERSION;
+    }
+    private static final int ERROR_DS_INSTALL_NO_SCH_VERSION_IN_INIFILE = (int)8512L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INSTALL_NO_SCH_VERSION_IN_INIFILE 8512
+     * }
+     */
+    public static int ERROR_DS_INSTALL_NO_SCH_VERSION_IN_INIFILE() {
+        return ERROR_DS_INSTALL_NO_SCH_VERSION_IN_INIFILE;
+    }
+    private static final int ERROR_DS_INVALID_GROUP_TYPE = (int)8513L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INVALID_GROUP_TYPE 8513
+     * }
+     */
+    public static int ERROR_DS_INVALID_GROUP_TYPE() {
+        return ERROR_DS_INVALID_GROUP_TYPE;
+    }
+    private static final int ERROR_DS_NO_NEST_GLOBALGROUP_IN_MIXEDDOMAIN = (int)8514L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_NEST_GLOBALGROUP_IN_MIXEDDOMAIN 8514
+     * }
+     */
+    public static int ERROR_DS_NO_NEST_GLOBALGROUP_IN_MIXEDDOMAIN() {
+        return ERROR_DS_NO_NEST_GLOBALGROUP_IN_MIXEDDOMAIN;
+    }
+    private static final int ERROR_DS_NO_NEST_LOCALGROUP_IN_MIXEDDOMAIN = (int)8515L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_NEST_LOCALGROUP_IN_MIXEDDOMAIN 8515
+     * }
+     */
+    public static int ERROR_DS_NO_NEST_LOCALGROUP_IN_MIXEDDOMAIN() {
+        return ERROR_DS_NO_NEST_LOCALGROUP_IN_MIXEDDOMAIN;
+    }
+    private static final int ERROR_DS_GLOBAL_CANT_HAVE_LOCAL_MEMBER = (int)8516L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_GLOBAL_CANT_HAVE_LOCAL_MEMBER 8516
+     * }
+     */
+    public static int ERROR_DS_GLOBAL_CANT_HAVE_LOCAL_MEMBER() {
+        return ERROR_DS_GLOBAL_CANT_HAVE_LOCAL_MEMBER;
+    }
+    private static final int ERROR_DS_GLOBAL_CANT_HAVE_UNIVERSAL_MEMBER = (int)8517L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_GLOBAL_CANT_HAVE_UNIVERSAL_MEMBER 8517
+     * }
+     */
+    public static int ERROR_DS_GLOBAL_CANT_HAVE_UNIVERSAL_MEMBER() {
+        return ERROR_DS_GLOBAL_CANT_HAVE_UNIVERSAL_MEMBER;
+    }
+    private static final int ERROR_DS_UNIVERSAL_CANT_HAVE_LOCAL_MEMBER = (int)8518L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_UNIVERSAL_CANT_HAVE_LOCAL_MEMBER 8518
+     * }
+     */
+    public static int ERROR_DS_UNIVERSAL_CANT_HAVE_LOCAL_MEMBER() {
+        return ERROR_DS_UNIVERSAL_CANT_HAVE_LOCAL_MEMBER;
+    }
+    private static final int ERROR_DS_GLOBAL_CANT_HAVE_CROSSDOMAIN_MEMBER = (int)8519L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_GLOBAL_CANT_HAVE_CROSSDOMAIN_MEMBER 8519
+     * }
+     */
+    public static int ERROR_DS_GLOBAL_CANT_HAVE_CROSSDOMAIN_MEMBER() {
+        return ERROR_DS_GLOBAL_CANT_HAVE_CROSSDOMAIN_MEMBER;
+    }
+    private static final int ERROR_DS_LOCAL_CANT_HAVE_CROSSDOMAIN_LOCAL_MEMBER = (int)8520L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_LOCAL_CANT_HAVE_CROSSDOMAIN_LOCAL_MEMBER 8520
+     * }
+     */
+    public static int ERROR_DS_LOCAL_CANT_HAVE_CROSSDOMAIN_LOCAL_MEMBER() {
+        return ERROR_DS_LOCAL_CANT_HAVE_CROSSDOMAIN_LOCAL_MEMBER;
+    }
+    private static final int ERROR_DS_HAVE_PRIMARY_MEMBERS = (int)8521L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_HAVE_PRIMARY_MEMBERS 8521
+     * }
+     */
+    public static int ERROR_DS_HAVE_PRIMARY_MEMBERS() {
+        return ERROR_DS_HAVE_PRIMARY_MEMBERS;
+    }
+    private static final int ERROR_DS_STRING_SD_CONVERSION_FAILED = (int)8522L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_STRING_SD_CONVERSION_FAILED 8522
+     * }
+     */
+    public static int ERROR_DS_STRING_SD_CONVERSION_FAILED() {
+        return ERROR_DS_STRING_SD_CONVERSION_FAILED;
+    }
+    private static final int ERROR_DS_NAMING_MASTER_GC = (int)8523L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NAMING_MASTER_GC 8523
+     * }
+     */
+    public static int ERROR_DS_NAMING_MASTER_GC() {
+        return ERROR_DS_NAMING_MASTER_GC;
+    }
+    private static final int ERROR_DS_DNS_LOOKUP_FAILURE = (int)8524L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DNS_LOOKUP_FAILURE 8524
+     * }
+     */
+    public static int ERROR_DS_DNS_LOOKUP_FAILURE() {
+        return ERROR_DS_DNS_LOOKUP_FAILURE;
+    }
+    private static final int ERROR_DS_COULDNT_UPDATE_SPNS = (int)8525L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_COULDNT_UPDATE_SPNS 8525
+     * }
+     */
+    public static int ERROR_DS_COULDNT_UPDATE_SPNS() {
+        return ERROR_DS_COULDNT_UPDATE_SPNS;
+    }
+    private static final int ERROR_DS_CANT_RETRIEVE_SD = (int)8526L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_RETRIEVE_SD 8526
+     * }
+     */
+    public static int ERROR_DS_CANT_RETRIEVE_SD() {
+        return ERROR_DS_CANT_RETRIEVE_SD;
+    }
+    private static final int ERROR_DS_KEY_NOT_UNIQUE = (int)8527L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_KEY_NOT_UNIQUE 8527
+     * }
+     */
+    public static int ERROR_DS_KEY_NOT_UNIQUE() {
+        return ERROR_DS_KEY_NOT_UNIQUE;
+    }
+    private static final int ERROR_DS_WRONG_LINKED_ATT_SYNTAX = (int)8528L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_WRONG_LINKED_ATT_SYNTAX 8528
+     * }
+     */
+    public static int ERROR_DS_WRONG_LINKED_ATT_SYNTAX() {
+        return ERROR_DS_WRONG_LINKED_ATT_SYNTAX;
+    }
+    private static final int ERROR_DS_SAM_NEED_BOOTKEY_PASSWORD = (int)8529L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SAM_NEED_BOOTKEY_PASSWORD 8529
+     * }
+     */
+    public static int ERROR_DS_SAM_NEED_BOOTKEY_PASSWORD() {
+        return ERROR_DS_SAM_NEED_BOOTKEY_PASSWORD;
+    }
+    private static final int ERROR_DS_SAM_NEED_BOOTKEY_FLOPPY = (int)8530L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SAM_NEED_BOOTKEY_FLOPPY 8530
+     * }
+     */
+    public static int ERROR_DS_SAM_NEED_BOOTKEY_FLOPPY() {
+        return ERROR_DS_SAM_NEED_BOOTKEY_FLOPPY;
+    }
+    private static final int ERROR_DS_CANT_START = (int)8531L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_START 8531
+     * }
+     */
+    public static int ERROR_DS_CANT_START() {
+        return ERROR_DS_CANT_START;
+    }
+    private static final int ERROR_DS_INIT_FAILURE = (int)8532L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INIT_FAILURE 8532
+     * }
+     */
+    public static int ERROR_DS_INIT_FAILURE() {
+        return ERROR_DS_INIT_FAILURE;
+    }
+    private static final int ERROR_DS_NO_PKT_PRIVACY_ON_CONNECTION = (int)8533L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_PKT_PRIVACY_ON_CONNECTION 8533
+     * }
+     */
+    public static int ERROR_DS_NO_PKT_PRIVACY_ON_CONNECTION() {
+        return ERROR_DS_NO_PKT_PRIVACY_ON_CONNECTION;
+    }
+    private static final int ERROR_DS_SOURCE_DOMAIN_IN_FOREST = (int)8534L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SOURCE_DOMAIN_IN_FOREST 8534
+     * }
+     */
+    public static int ERROR_DS_SOURCE_DOMAIN_IN_FOREST() {
+        return ERROR_DS_SOURCE_DOMAIN_IN_FOREST;
+    }
+    private static final int ERROR_DS_DESTINATION_DOMAIN_NOT_IN_FOREST = (int)8535L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DESTINATION_DOMAIN_NOT_IN_FOREST 8535
+     * }
+     */
+    public static int ERROR_DS_DESTINATION_DOMAIN_NOT_IN_FOREST() {
+        return ERROR_DS_DESTINATION_DOMAIN_NOT_IN_FOREST;
+    }
+    private static final int ERROR_DS_DESTINATION_AUDITING_NOT_ENABLED = (int)8536L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DESTINATION_AUDITING_NOT_ENABLED 8536
+     * }
+     */
+    public static int ERROR_DS_DESTINATION_AUDITING_NOT_ENABLED() {
+        return ERROR_DS_DESTINATION_AUDITING_NOT_ENABLED;
+    }
+    private static final int ERROR_DS_CANT_FIND_DC_FOR_SRC_DOMAIN = (int)8537L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_FIND_DC_FOR_SRC_DOMAIN 8537
+     * }
+     */
+    public static int ERROR_DS_CANT_FIND_DC_FOR_SRC_DOMAIN() {
+        return ERROR_DS_CANT_FIND_DC_FOR_SRC_DOMAIN;
+    }
+    private static final int ERROR_DS_SRC_OBJ_NOT_GROUP_OR_USER = (int)8538L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SRC_OBJ_NOT_GROUP_OR_USER 8538
+     * }
+     */
+    public static int ERROR_DS_SRC_OBJ_NOT_GROUP_OR_USER() {
+        return ERROR_DS_SRC_OBJ_NOT_GROUP_OR_USER;
+    }
+    private static final int ERROR_DS_SRC_SID_EXISTS_IN_FOREST = (int)8539L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SRC_SID_EXISTS_IN_FOREST 8539
+     * }
+     */
+    public static int ERROR_DS_SRC_SID_EXISTS_IN_FOREST() {
+        return ERROR_DS_SRC_SID_EXISTS_IN_FOREST;
+    }
+    private static final int ERROR_DS_SRC_AND_DST_OBJECT_CLASS_MISMATCH = (int)8540L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SRC_AND_DST_OBJECT_CLASS_MISMATCH 8540
+     * }
+     */
+    public static int ERROR_DS_SRC_AND_DST_OBJECT_CLASS_MISMATCH() {
+        return ERROR_DS_SRC_AND_DST_OBJECT_CLASS_MISMATCH;
+    }
+    private static final int ERROR_SAM_INIT_FAILURE = (int)8541L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_SAM_INIT_FAILURE 8541
+     * }
+     */
+    public static int ERROR_SAM_INIT_FAILURE() {
+        return ERROR_SAM_INIT_FAILURE;
+    }
+    private static final int ERROR_DS_DRA_SCHEMA_INFO_SHIP = (int)8542L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_SCHEMA_INFO_SHIP 8542
+     * }
+     */
+    public static int ERROR_DS_DRA_SCHEMA_INFO_SHIP() {
+        return ERROR_DS_DRA_SCHEMA_INFO_SHIP;
+    }
+    private static final int ERROR_DS_DRA_SCHEMA_CONFLICT = (int)8543L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_SCHEMA_CONFLICT 8543
+     * }
+     */
+    public static int ERROR_DS_DRA_SCHEMA_CONFLICT() {
+        return ERROR_DS_DRA_SCHEMA_CONFLICT;
+    }
+    private static final int ERROR_DS_DRA_EARLIER_SCHEMA_CONFLICT = (int)8544L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_EARLIER_SCHEMA_CONFLICT 8544
+     * }
+     */
+    public static int ERROR_DS_DRA_EARLIER_SCHEMA_CONFLICT() {
+        return ERROR_DS_DRA_EARLIER_SCHEMA_CONFLICT;
+    }
+    private static final int ERROR_DS_DRA_OBJ_NC_MISMATCH = (int)8545L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_OBJ_NC_MISMATCH 8545
+     * }
+     */
+    public static int ERROR_DS_DRA_OBJ_NC_MISMATCH() {
+        return ERROR_DS_DRA_OBJ_NC_MISMATCH;
+    }
+    private static final int ERROR_DS_NC_STILL_HAS_DSAS = (int)8546L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NC_STILL_HAS_DSAS 8546
+     * }
+     */
+    public static int ERROR_DS_NC_STILL_HAS_DSAS() {
+        return ERROR_DS_NC_STILL_HAS_DSAS;
+    }
+    private static final int ERROR_DS_GC_REQUIRED = (int)8547L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_GC_REQUIRED 8547
+     * }
+     */
+    public static int ERROR_DS_GC_REQUIRED() {
+        return ERROR_DS_GC_REQUIRED;
+    }
+    private static final int ERROR_DS_LOCAL_MEMBER_OF_LOCAL_ONLY = (int)8548L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_LOCAL_MEMBER_OF_LOCAL_ONLY 8548
+     * }
+     */
+    public static int ERROR_DS_LOCAL_MEMBER_OF_LOCAL_ONLY() {
+        return ERROR_DS_LOCAL_MEMBER_OF_LOCAL_ONLY;
+    }
+    private static final int ERROR_DS_NO_FPO_IN_UNIVERSAL_GROUPS = (int)8549L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_FPO_IN_UNIVERSAL_GROUPS 8549
+     * }
+     */
+    public static int ERROR_DS_NO_FPO_IN_UNIVERSAL_GROUPS() {
+        return ERROR_DS_NO_FPO_IN_UNIVERSAL_GROUPS;
+    }
+    private static final int ERROR_DS_CANT_ADD_TO_GC = (int)8550L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_ADD_TO_GC 8550
+     * }
+     */
+    public static int ERROR_DS_CANT_ADD_TO_GC() {
+        return ERROR_DS_CANT_ADD_TO_GC;
+    }
+    private static final int ERROR_DS_NO_CHECKPOINT_WITH_PDC = (int)8551L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_CHECKPOINT_WITH_PDC 8551
+     * }
+     */
+    public static int ERROR_DS_NO_CHECKPOINT_WITH_PDC() {
+        return ERROR_DS_NO_CHECKPOINT_WITH_PDC;
+    }
+    private static final int ERROR_DS_SOURCE_AUDITING_NOT_ENABLED = (int)8552L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SOURCE_AUDITING_NOT_ENABLED 8552
+     * }
+     */
+    public static int ERROR_DS_SOURCE_AUDITING_NOT_ENABLED() {
+        return ERROR_DS_SOURCE_AUDITING_NOT_ENABLED;
+    }
+    private static final int ERROR_DS_CANT_CREATE_IN_NONDOMAIN_NC = (int)8553L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_CREATE_IN_NONDOMAIN_NC 8553
+     * }
+     */
+    public static int ERROR_DS_CANT_CREATE_IN_NONDOMAIN_NC() {
+        return ERROR_DS_CANT_CREATE_IN_NONDOMAIN_NC;
+    }
+    private static final int ERROR_DS_INVALID_NAME_FOR_SPN = (int)8554L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INVALID_NAME_FOR_SPN 8554
+     * }
+     */
+    public static int ERROR_DS_INVALID_NAME_FOR_SPN() {
+        return ERROR_DS_INVALID_NAME_FOR_SPN;
+    }
+    private static final int ERROR_DS_FILTER_USES_CONTRUCTED_ATTRS = (int)8555L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_FILTER_USES_CONTRUCTED_ATTRS 8555
+     * }
+     */
+    public static int ERROR_DS_FILTER_USES_CONTRUCTED_ATTRS() {
+        return ERROR_DS_FILTER_USES_CONTRUCTED_ATTRS;
+    }
+    private static final int ERROR_DS_UNICODEPWD_NOT_IN_QUOTES = (int)8556L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_UNICODEPWD_NOT_IN_QUOTES 8556
+     * }
+     */
+    public static int ERROR_DS_UNICODEPWD_NOT_IN_QUOTES() {
+        return ERROR_DS_UNICODEPWD_NOT_IN_QUOTES;
+    }
+    private static final int ERROR_DS_MACHINE_ACCOUNT_QUOTA_EXCEEDED = (int)8557L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_MACHINE_ACCOUNT_QUOTA_EXCEEDED 8557
+     * }
+     */
+    public static int ERROR_DS_MACHINE_ACCOUNT_QUOTA_EXCEEDED() {
+        return ERROR_DS_MACHINE_ACCOUNT_QUOTA_EXCEEDED;
+    }
+    private static final int ERROR_DS_MUST_BE_RUN_ON_DST_DC = (int)8558L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_MUST_BE_RUN_ON_DST_DC 8558
+     * }
+     */
+    public static int ERROR_DS_MUST_BE_RUN_ON_DST_DC() {
+        return ERROR_DS_MUST_BE_RUN_ON_DST_DC;
+    }
+    private static final int ERROR_DS_SRC_DC_MUST_BE_SP4_OR_GREATER = (int)8559L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SRC_DC_MUST_BE_SP4_OR_GREATER 8559
+     * }
+     */
+    public static int ERROR_DS_SRC_DC_MUST_BE_SP4_OR_GREATER() {
+        return ERROR_DS_SRC_DC_MUST_BE_SP4_OR_GREATER;
+    }
+    private static final int ERROR_DS_CANT_TREE_DELETE_CRITICAL_OBJ = (int)8560L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_TREE_DELETE_CRITICAL_OBJ 8560
+     * }
+     */
+    public static int ERROR_DS_CANT_TREE_DELETE_CRITICAL_OBJ() {
+        return ERROR_DS_CANT_TREE_DELETE_CRITICAL_OBJ;
+    }
+    private static final int ERROR_DS_INIT_FAILURE_CONSOLE = (int)8561L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INIT_FAILURE_CONSOLE 8561
+     * }
+     */
+    public static int ERROR_DS_INIT_FAILURE_CONSOLE() {
+        return ERROR_DS_INIT_FAILURE_CONSOLE;
+    }
+    private static final int ERROR_DS_SAM_INIT_FAILURE_CONSOLE = (int)8562L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SAM_INIT_FAILURE_CONSOLE 8562
+     * }
+     */
+    public static int ERROR_DS_SAM_INIT_FAILURE_CONSOLE() {
+        return ERROR_DS_SAM_INIT_FAILURE_CONSOLE;
+    }
+    private static final int ERROR_DS_FOREST_VERSION_TOO_HIGH = (int)8563L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_FOREST_VERSION_TOO_HIGH 8563
+     * }
+     */
+    public static int ERROR_DS_FOREST_VERSION_TOO_HIGH() {
+        return ERROR_DS_FOREST_VERSION_TOO_HIGH;
+    }
+    private static final int ERROR_DS_DOMAIN_VERSION_TOO_HIGH = (int)8564L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DOMAIN_VERSION_TOO_HIGH 8564
+     * }
+     */
+    public static int ERROR_DS_DOMAIN_VERSION_TOO_HIGH() {
+        return ERROR_DS_DOMAIN_VERSION_TOO_HIGH;
+    }
+    private static final int ERROR_DS_FOREST_VERSION_TOO_LOW = (int)8565L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_FOREST_VERSION_TOO_LOW 8565
+     * }
+     */
+    public static int ERROR_DS_FOREST_VERSION_TOO_LOW() {
+        return ERROR_DS_FOREST_VERSION_TOO_LOW;
+    }
+    private static final int ERROR_DS_DOMAIN_VERSION_TOO_LOW = (int)8566L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DOMAIN_VERSION_TOO_LOW 8566
+     * }
+     */
+    public static int ERROR_DS_DOMAIN_VERSION_TOO_LOW() {
+        return ERROR_DS_DOMAIN_VERSION_TOO_LOW;
+    }
+    private static final int ERROR_DS_INCOMPATIBLE_VERSION = (int)8567L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INCOMPATIBLE_VERSION 8567
+     * }
+     */
+    public static int ERROR_DS_INCOMPATIBLE_VERSION() {
+        return ERROR_DS_INCOMPATIBLE_VERSION;
+    }
+    private static final int ERROR_DS_LOW_DSA_VERSION = (int)8568L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_LOW_DSA_VERSION 8568
+     * }
+     */
+    public static int ERROR_DS_LOW_DSA_VERSION() {
+        return ERROR_DS_LOW_DSA_VERSION;
+    }
+    private static final int ERROR_DS_NO_BEHAVIOR_VERSION_IN_MIXEDDOMAIN = (int)8569L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_BEHAVIOR_VERSION_IN_MIXEDDOMAIN 8569
+     * }
+     */
+    public static int ERROR_DS_NO_BEHAVIOR_VERSION_IN_MIXEDDOMAIN() {
+        return ERROR_DS_NO_BEHAVIOR_VERSION_IN_MIXEDDOMAIN;
+    }
+    private static final int ERROR_DS_NOT_SUPPORTED_SORT_ORDER = (int)8570L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NOT_SUPPORTED_SORT_ORDER 8570
+     * }
+     */
+    public static int ERROR_DS_NOT_SUPPORTED_SORT_ORDER() {
+        return ERROR_DS_NOT_SUPPORTED_SORT_ORDER;
+    }
+    private static final int ERROR_DS_NAME_NOT_UNIQUE = (int)8571L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NAME_NOT_UNIQUE 8571
+     * }
+     */
+    public static int ERROR_DS_NAME_NOT_UNIQUE() {
+        return ERROR_DS_NAME_NOT_UNIQUE;
+    }
+    private static final int ERROR_DS_MACHINE_ACCOUNT_CREATED_PRENT4 = (int)8572L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_MACHINE_ACCOUNT_CREATED_PRENT4 8572
+     * }
+     */
+    public static int ERROR_DS_MACHINE_ACCOUNT_CREATED_PRENT4() {
+        return ERROR_DS_MACHINE_ACCOUNT_CREATED_PRENT4;
+    }
+    private static final int ERROR_DS_OUT_OF_VERSION_STORE = (int)8573L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_OUT_OF_VERSION_STORE 8573
+     * }
+     */
+    public static int ERROR_DS_OUT_OF_VERSION_STORE() {
+        return ERROR_DS_OUT_OF_VERSION_STORE;
+    }
+    private static final int ERROR_DS_INCOMPATIBLE_CONTROLS_USED = (int)8574L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INCOMPATIBLE_CONTROLS_USED 8574
+     * }
+     */
+    public static int ERROR_DS_INCOMPATIBLE_CONTROLS_USED() {
+        return ERROR_DS_INCOMPATIBLE_CONTROLS_USED;
+    }
+    private static final int ERROR_DS_NO_REF_DOMAIN = (int)8575L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_REF_DOMAIN 8575
+     * }
+     */
+    public static int ERROR_DS_NO_REF_DOMAIN() {
+        return ERROR_DS_NO_REF_DOMAIN;
+    }
+    private static final int ERROR_DS_RESERVED_LINK_ID = (int)8576L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_RESERVED_LINK_ID 8576
+     * }
+     */
+    public static int ERROR_DS_RESERVED_LINK_ID() {
+        return ERROR_DS_RESERVED_LINK_ID;
+    }
+    private static final int ERROR_DS_LINK_ID_NOT_AVAILABLE = (int)8577L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_LINK_ID_NOT_AVAILABLE 8577
+     * }
+     */
+    public static int ERROR_DS_LINK_ID_NOT_AVAILABLE() {
+        return ERROR_DS_LINK_ID_NOT_AVAILABLE;
+    }
+    private static final int ERROR_DS_AG_CANT_HAVE_UNIVERSAL_MEMBER = (int)8578L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_AG_CANT_HAVE_UNIVERSAL_MEMBER 8578
+     * }
+     */
+    public static int ERROR_DS_AG_CANT_HAVE_UNIVERSAL_MEMBER() {
+        return ERROR_DS_AG_CANT_HAVE_UNIVERSAL_MEMBER;
+    }
+    private static final int ERROR_DS_MODIFYDN_DISALLOWED_BY_INSTANCE_TYPE = (int)8579L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_MODIFYDN_DISALLOWED_BY_INSTANCE_TYPE 8579
+     * }
+     */
+    public static int ERROR_DS_MODIFYDN_DISALLOWED_BY_INSTANCE_TYPE() {
+        return ERROR_DS_MODIFYDN_DISALLOWED_BY_INSTANCE_TYPE;
+    }
+    private static final int ERROR_DS_NO_OBJECT_MOVE_IN_SCHEMA_NC = (int)8580L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_OBJECT_MOVE_IN_SCHEMA_NC 8580
+     * }
+     */
+    public static int ERROR_DS_NO_OBJECT_MOVE_IN_SCHEMA_NC() {
+        return ERROR_DS_NO_OBJECT_MOVE_IN_SCHEMA_NC;
+    }
+    private static final int ERROR_DS_MODIFYDN_DISALLOWED_BY_FLAG = (int)8581L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_MODIFYDN_DISALLOWED_BY_FLAG 8581
+     * }
+     */
+    public static int ERROR_DS_MODIFYDN_DISALLOWED_BY_FLAG() {
+        return ERROR_DS_MODIFYDN_DISALLOWED_BY_FLAG;
+    }
+    private static final int ERROR_DS_MODIFYDN_WRONG_GRANDPARENT = (int)8582L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_MODIFYDN_WRONG_GRANDPARENT 8582
+     * }
+     */
+    public static int ERROR_DS_MODIFYDN_WRONG_GRANDPARENT() {
+        return ERROR_DS_MODIFYDN_WRONG_GRANDPARENT;
+    }
+    private static final int ERROR_DS_NAME_ERROR_TRUST_REFERRAL = (int)8583L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NAME_ERROR_TRUST_REFERRAL 8583
+     * }
+     */
+    public static int ERROR_DS_NAME_ERROR_TRUST_REFERRAL() {
+        return ERROR_DS_NAME_ERROR_TRUST_REFERRAL;
+    }
+    private static final int ERROR_NOT_SUPPORTED_ON_STANDARD_SERVER = (int)8584L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_NOT_SUPPORTED_ON_STANDARD_SERVER 8584
+     * }
+     */
+    public static int ERROR_NOT_SUPPORTED_ON_STANDARD_SERVER() {
+        return ERROR_NOT_SUPPORTED_ON_STANDARD_SERVER;
+    }
+    private static final int ERROR_DS_CANT_ACCESS_REMOTE_PART_OF_AD = (int)8585L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_ACCESS_REMOTE_PART_OF_AD 8585
+     * }
+     */
+    public static int ERROR_DS_CANT_ACCESS_REMOTE_PART_OF_AD() {
+        return ERROR_DS_CANT_ACCESS_REMOTE_PART_OF_AD;
+    }
+    private static final int ERROR_DS_CR_IMPOSSIBLE_TO_VALIDATE_V2 = (int)8586L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CR_IMPOSSIBLE_TO_VALIDATE_V2 8586
+     * }
+     */
+    public static int ERROR_DS_CR_IMPOSSIBLE_TO_VALIDATE_V2() {
+        return ERROR_DS_CR_IMPOSSIBLE_TO_VALIDATE_V2;
+    }
+    private static final int ERROR_DS_THREAD_LIMIT_EXCEEDED = (int)8587L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_THREAD_LIMIT_EXCEEDED 8587
+     * }
+     */
+    public static int ERROR_DS_THREAD_LIMIT_EXCEEDED() {
+        return ERROR_DS_THREAD_LIMIT_EXCEEDED;
+    }
+    private static final int ERROR_DS_NOT_CLOSEST = (int)8588L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NOT_CLOSEST 8588
+     * }
+     */
+    public static int ERROR_DS_NOT_CLOSEST() {
+        return ERROR_DS_NOT_CLOSEST;
+    }
+    private static final int ERROR_DS_CANT_DERIVE_SPN_WITHOUT_SERVER_REF = (int)8589L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_DERIVE_SPN_WITHOUT_SERVER_REF 8589
+     * }
+     */
+    public static int ERROR_DS_CANT_DERIVE_SPN_WITHOUT_SERVER_REF() {
+        return ERROR_DS_CANT_DERIVE_SPN_WITHOUT_SERVER_REF;
+    }
+    private static final int ERROR_DS_SINGLE_USER_MODE_FAILED = (int)8590L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SINGLE_USER_MODE_FAILED 8590
+     * }
+     */
+    public static int ERROR_DS_SINGLE_USER_MODE_FAILED() {
+        return ERROR_DS_SINGLE_USER_MODE_FAILED;
+    }
+    private static final int ERROR_DS_NTDSCRIPT_SYNTAX_ERROR = (int)8591L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NTDSCRIPT_SYNTAX_ERROR 8591
+     * }
+     */
+    public static int ERROR_DS_NTDSCRIPT_SYNTAX_ERROR() {
+        return ERROR_DS_NTDSCRIPT_SYNTAX_ERROR;
+    }
+    private static final int ERROR_DS_NTDSCRIPT_PROCESS_ERROR = (int)8592L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NTDSCRIPT_PROCESS_ERROR 8592
+     * }
+     */
+    public static int ERROR_DS_NTDSCRIPT_PROCESS_ERROR() {
+        return ERROR_DS_NTDSCRIPT_PROCESS_ERROR;
+    }
+    private static final int ERROR_DS_DIFFERENT_REPL_EPOCHS = (int)8593L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DIFFERENT_REPL_EPOCHS 8593
+     * }
+     */
+    public static int ERROR_DS_DIFFERENT_REPL_EPOCHS() {
+        return ERROR_DS_DIFFERENT_REPL_EPOCHS;
+    }
+    private static final int ERROR_DS_DRS_EXTENSIONS_CHANGED = (int)8594L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRS_EXTENSIONS_CHANGED 8594
+     * }
+     */
+    public static int ERROR_DS_DRS_EXTENSIONS_CHANGED() {
+        return ERROR_DS_DRS_EXTENSIONS_CHANGED;
+    }
+    private static final int ERROR_DS_REPLICA_SET_CHANGE_NOT_ALLOWED_ON_DISABLED_CR = (int)8595L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_REPLICA_SET_CHANGE_NOT_ALLOWED_ON_DISABLED_CR 8595
+     * }
+     */
+    public static int ERROR_DS_REPLICA_SET_CHANGE_NOT_ALLOWED_ON_DISABLED_CR() {
+        return ERROR_DS_REPLICA_SET_CHANGE_NOT_ALLOWED_ON_DISABLED_CR;
+    }
+    private static final int ERROR_DS_NO_MSDS_INTID = (int)8596L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_MSDS_INTID 8596
+     * }
+     */
+    public static int ERROR_DS_NO_MSDS_INTID() {
+        return ERROR_DS_NO_MSDS_INTID;
+    }
+    private static final int ERROR_DS_DUP_MSDS_INTID = (int)8597L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DUP_MSDS_INTID 8597
+     * }
+     */
+    public static int ERROR_DS_DUP_MSDS_INTID() {
+        return ERROR_DS_DUP_MSDS_INTID;
+    }
+    private static final int ERROR_DS_EXISTS_IN_RDNATTID = (int)8598L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_EXISTS_IN_RDNATTID 8598
+     * }
+     */
+    public static int ERROR_DS_EXISTS_IN_RDNATTID() {
+        return ERROR_DS_EXISTS_IN_RDNATTID;
+    }
+    private static final int ERROR_DS_AUTHORIZATION_FAILED = (int)8599L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_AUTHORIZATION_FAILED 8599
+     * }
+     */
+    public static int ERROR_DS_AUTHORIZATION_FAILED() {
+        return ERROR_DS_AUTHORIZATION_FAILED;
+    }
+    private static final int ERROR_DS_INVALID_SCRIPT = (int)8600L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INVALID_SCRIPT 8600
+     * }
+     */
+    public static int ERROR_DS_INVALID_SCRIPT() {
+        return ERROR_DS_INVALID_SCRIPT;
+    }
+    private static final int ERROR_DS_REMOTE_CROSSREF_OP_FAILED = (int)8601L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_REMOTE_CROSSREF_OP_FAILED 8601
+     * }
+     */
+    public static int ERROR_DS_REMOTE_CROSSREF_OP_FAILED() {
+        return ERROR_DS_REMOTE_CROSSREF_OP_FAILED;
+    }
+    private static final int ERROR_DS_CROSS_REF_BUSY = (int)8602L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CROSS_REF_BUSY 8602
+     * }
+     */
+    public static int ERROR_DS_CROSS_REF_BUSY() {
+        return ERROR_DS_CROSS_REF_BUSY;
+    }
+    private static final int ERROR_DS_CANT_DERIVE_SPN_FOR_DELETED_DOMAIN = (int)8603L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_DERIVE_SPN_FOR_DELETED_DOMAIN 8603
+     * }
+     */
+    public static int ERROR_DS_CANT_DERIVE_SPN_FOR_DELETED_DOMAIN() {
+        return ERROR_DS_CANT_DERIVE_SPN_FOR_DELETED_DOMAIN;
+    }
+    private static final int ERROR_DS_CANT_DEMOTE_WITH_WRITEABLE_NC = (int)8604L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_DEMOTE_WITH_WRITEABLE_NC 8604
+     * }
+     */
+    public static int ERROR_DS_CANT_DEMOTE_WITH_WRITEABLE_NC() {
+        return ERROR_DS_CANT_DEMOTE_WITH_WRITEABLE_NC;
+    }
+    private static final int ERROR_DS_DUPLICATE_ID_FOUND = (int)8605L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DUPLICATE_ID_FOUND 8605
+     * }
+     */
+    public static int ERROR_DS_DUPLICATE_ID_FOUND() {
+        return ERROR_DS_DUPLICATE_ID_FOUND;
+    }
+    private static final int ERROR_DS_INSUFFICIENT_ATTR_TO_CREATE_OBJECT = (int)8606L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INSUFFICIENT_ATTR_TO_CREATE_OBJECT 8606
+     * }
+     */
+    public static int ERROR_DS_INSUFFICIENT_ATTR_TO_CREATE_OBJECT() {
+        return ERROR_DS_INSUFFICIENT_ATTR_TO_CREATE_OBJECT;
+    }
+    private static final int ERROR_DS_GROUP_CONVERSION_ERROR = (int)8607L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_GROUP_CONVERSION_ERROR 8607
+     * }
+     */
+    public static int ERROR_DS_GROUP_CONVERSION_ERROR() {
+        return ERROR_DS_GROUP_CONVERSION_ERROR;
+    }
+    private static final int ERROR_DS_CANT_MOVE_APP_BASIC_GROUP = (int)8608L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_MOVE_APP_BASIC_GROUP 8608
+     * }
+     */
+    public static int ERROR_DS_CANT_MOVE_APP_BASIC_GROUP() {
+        return ERROR_DS_CANT_MOVE_APP_BASIC_GROUP;
+    }
+    private static final int ERROR_DS_CANT_MOVE_APP_QUERY_GROUP = (int)8609L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_CANT_MOVE_APP_QUERY_GROUP 8609
+     * }
+     */
+    public static int ERROR_DS_CANT_MOVE_APP_QUERY_GROUP() {
+        return ERROR_DS_CANT_MOVE_APP_QUERY_GROUP;
+    }
+    private static final int ERROR_DS_ROLE_NOT_VERIFIED = (int)8610L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_ROLE_NOT_VERIFIED 8610
+     * }
+     */
+    public static int ERROR_DS_ROLE_NOT_VERIFIED() {
+        return ERROR_DS_ROLE_NOT_VERIFIED;
+    }
+    private static final int ERROR_DS_WKO_CONTAINER_CANNOT_BE_SPECIAL = (int)8611L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_WKO_CONTAINER_CANNOT_BE_SPECIAL 8611
+     * }
+     */
+    public static int ERROR_DS_WKO_CONTAINER_CANNOT_BE_SPECIAL() {
+        return ERROR_DS_WKO_CONTAINER_CANNOT_BE_SPECIAL;
+    }
+    private static final int ERROR_DS_DOMAIN_RENAME_IN_PROGRESS = (int)8612L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DOMAIN_RENAME_IN_PROGRESS 8612
+     * }
+     */
+    public static int ERROR_DS_DOMAIN_RENAME_IN_PROGRESS() {
+        return ERROR_DS_DOMAIN_RENAME_IN_PROGRESS;
+    }
+    private static final int ERROR_DS_EXISTING_AD_CHILD_NC = (int)8613L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_EXISTING_AD_CHILD_NC 8613
+     * }
+     */
+    public static int ERROR_DS_EXISTING_AD_CHILD_NC() {
+        return ERROR_DS_EXISTING_AD_CHILD_NC;
+    }
+    private static final int ERROR_DS_REPL_LIFETIME_EXCEEDED = (int)8614L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_REPL_LIFETIME_EXCEEDED 8614
+     * }
+     */
+    public static int ERROR_DS_REPL_LIFETIME_EXCEEDED() {
+        return ERROR_DS_REPL_LIFETIME_EXCEEDED;
+    }
+    private static final int ERROR_DS_DISALLOWED_IN_SYSTEM_CONTAINER = (int)8615L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DISALLOWED_IN_SYSTEM_CONTAINER 8615
+     * }
+     */
+    public static int ERROR_DS_DISALLOWED_IN_SYSTEM_CONTAINER() {
+        return ERROR_DS_DISALLOWED_IN_SYSTEM_CONTAINER;
+    }
+    private static final int ERROR_DS_LDAP_SEND_QUEUE_FULL = (int)8616L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_LDAP_SEND_QUEUE_FULL 8616
+     * }
+     */
+    public static int ERROR_DS_LDAP_SEND_QUEUE_FULL() {
+        return ERROR_DS_LDAP_SEND_QUEUE_FULL;
+    }
+    private static final int ERROR_DS_DRA_OUT_SCHEDULE_WINDOW = (int)8617L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_OUT_SCHEDULE_WINDOW 8617
+     * }
+     */
+    public static int ERROR_DS_DRA_OUT_SCHEDULE_WINDOW() {
+        return ERROR_DS_DRA_OUT_SCHEDULE_WINDOW;
+    }
+    private static final int ERROR_DS_POLICY_NOT_KNOWN = (int)8618L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_POLICY_NOT_KNOWN 8618
+     * }
+     */
+    public static int ERROR_DS_POLICY_NOT_KNOWN() {
+        return ERROR_DS_POLICY_NOT_KNOWN;
+    }
+    private static final int ERROR_NO_SITE_SETTINGS_OBJECT = (int)8619L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_NO_SITE_SETTINGS_OBJECT 8619
+     * }
+     */
+    public static int ERROR_NO_SITE_SETTINGS_OBJECT() {
+        return ERROR_NO_SITE_SETTINGS_OBJECT;
+    }
+    private static final int ERROR_NO_SECRETS = (int)8620L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_NO_SECRETS 8620
+     * }
+     */
+    public static int ERROR_NO_SECRETS() {
+        return ERROR_NO_SECRETS;
+    }
+    private static final int ERROR_NO_WRITABLE_DC_FOUND = (int)8621L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_NO_WRITABLE_DC_FOUND 8621
+     * }
+     */
+    public static int ERROR_NO_WRITABLE_DC_FOUND() {
+        return ERROR_NO_WRITABLE_DC_FOUND;
+    }
+    private static final int ERROR_DS_NO_SERVER_OBJECT = (int)8622L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_SERVER_OBJECT 8622
+     * }
+     */
+    public static int ERROR_DS_NO_SERVER_OBJECT() {
+        return ERROR_DS_NO_SERVER_OBJECT;
+    }
+    private static final int ERROR_DS_NO_NTDSA_OBJECT = (int)8623L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NO_NTDSA_OBJECT 8623
+     * }
+     */
+    public static int ERROR_DS_NO_NTDSA_OBJECT() {
+        return ERROR_DS_NO_NTDSA_OBJECT;
+    }
+    private static final int ERROR_DS_NON_ASQ_SEARCH = (int)8624L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_NON_ASQ_SEARCH 8624
+     * }
+     */
+    public static int ERROR_DS_NON_ASQ_SEARCH() {
+        return ERROR_DS_NON_ASQ_SEARCH;
+    }
+    private static final int ERROR_DS_AUDIT_FAILURE = (int)8625L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_AUDIT_FAILURE 8625
+     * }
+     */
+    public static int ERROR_DS_AUDIT_FAILURE() {
+        return ERROR_DS_AUDIT_FAILURE;
+    }
+    private static final int ERROR_DS_INVALID_SEARCH_FLAG_SUBTREE = (int)8626L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INVALID_SEARCH_FLAG_SUBTREE 8626
+     * }
+     */
+    public static int ERROR_DS_INVALID_SEARCH_FLAG_SUBTREE() {
+        return ERROR_DS_INVALID_SEARCH_FLAG_SUBTREE;
+    }
+    private static final int ERROR_DS_INVALID_SEARCH_FLAG_TUPLE = (int)8627L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_INVALID_SEARCH_FLAG_TUPLE 8627
+     * }
+     */
+    public static int ERROR_DS_INVALID_SEARCH_FLAG_TUPLE() {
+        return ERROR_DS_INVALID_SEARCH_FLAG_TUPLE;
+    }
+    private static final int ERROR_DS_HIERARCHY_TABLE_TOO_DEEP = (int)8628L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_HIERARCHY_TABLE_TOO_DEEP 8628
+     * }
+     */
+    public static int ERROR_DS_HIERARCHY_TABLE_TOO_DEEP() {
+        return ERROR_DS_HIERARCHY_TABLE_TOO_DEEP;
+    }
+    private static final int ERROR_DS_DRA_CORRUPT_UTD_VECTOR = (int)8629L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_CORRUPT_UTD_VECTOR 8629
+     * }
+     */
+    public static int ERROR_DS_DRA_CORRUPT_UTD_VECTOR() {
+        return ERROR_DS_DRA_CORRUPT_UTD_VECTOR;
+    }
+    private static final int ERROR_DS_DRA_SECRETS_DENIED = (int)8630L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_SECRETS_DENIED 8630
+     * }
+     */
+    public static int ERROR_DS_DRA_SECRETS_DENIED() {
+        return ERROR_DS_DRA_SECRETS_DENIED;
+    }
+    private static final int ERROR_DS_RESERVED_MAPI_ID = (int)8631L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_RESERVED_MAPI_ID 8631
+     * }
+     */
+    public static int ERROR_DS_RESERVED_MAPI_ID() {
+        return ERROR_DS_RESERVED_MAPI_ID;
+    }
+    private static final int ERROR_DS_MAPI_ID_NOT_AVAILABLE = (int)8632L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_MAPI_ID_NOT_AVAILABLE 8632
+     * }
+     */
+    public static int ERROR_DS_MAPI_ID_NOT_AVAILABLE() {
+        return ERROR_DS_MAPI_ID_NOT_AVAILABLE;
+    }
+    private static final int ERROR_DS_DRA_MISSING_KRBTGT_SECRET = (int)8633L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_MISSING_KRBTGT_SECRET 8633
+     * }
+     */
+    public static int ERROR_DS_DRA_MISSING_KRBTGT_SECRET() {
+        return ERROR_DS_DRA_MISSING_KRBTGT_SECRET;
+    }
+    private static final int ERROR_DS_DOMAIN_NAME_EXISTS_IN_FOREST = (int)8634L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DOMAIN_NAME_EXISTS_IN_FOREST 8634
+     * }
+     */
+    public static int ERROR_DS_DOMAIN_NAME_EXISTS_IN_FOREST() {
+        return ERROR_DS_DOMAIN_NAME_EXISTS_IN_FOREST;
+    }
+    private static final int ERROR_DS_FLAT_NAME_EXISTS_IN_FOREST = (int)8635L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_FLAT_NAME_EXISTS_IN_FOREST 8635
+     * }
+     */
+    public static int ERROR_DS_FLAT_NAME_EXISTS_IN_FOREST() {
+        return ERROR_DS_FLAT_NAME_EXISTS_IN_FOREST;
+    }
+    private static final int ERROR_INVALID_USER_PRINCIPAL_NAME = (int)8636L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_INVALID_USER_PRINCIPAL_NAME 8636
+     * }
+     */
+    public static int ERROR_INVALID_USER_PRINCIPAL_NAME() {
+        return ERROR_INVALID_USER_PRINCIPAL_NAME;
+    }
+    private static final int ERROR_DS_OID_MAPPED_GROUP_CANT_HAVE_MEMBERS = (int)8637L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_OID_MAPPED_GROUP_CANT_HAVE_MEMBERS 8637
+     * }
+     */
+    public static int ERROR_DS_OID_MAPPED_GROUP_CANT_HAVE_MEMBERS() {
+        return ERROR_DS_OID_MAPPED_GROUP_CANT_HAVE_MEMBERS;
+    }
+    private static final int ERROR_DS_OID_NOT_FOUND = (int)8638L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_OID_NOT_FOUND 8638
+     * }
+     */
+    public static int ERROR_DS_OID_NOT_FOUND() {
+        return ERROR_DS_OID_NOT_FOUND;
+    }
+    private static final int ERROR_DS_DRA_RECYCLED_TARGET = (int)8639L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DRA_RECYCLED_TARGET 8639
+     * }
+     */
+    public static int ERROR_DS_DRA_RECYCLED_TARGET() {
+        return ERROR_DS_DRA_RECYCLED_TARGET;
+    }
+    private static final int ERROR_DS_DISALLOWED_NC_REDIRECT = (int)8640L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_DISALLOWED_NC_REDIRECT 8640
+     * }
+     */
+    public static int ERROR_DS_DISALLOWED_NC_REDIRECT() {
+        return ERROR_DS_DISALLOWED_NC_REDIRECT;
+    }
+    private static final int ERROR_DS_HIGH_ADLDS_FFL = (int)8641L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_HIGH_ADLDS_FFL 8641
+     * }
+     */
+    public static int ERROR_DS_HIGH_ADLDS_FFL() {
+        return ERROR_DS_HIGH_ADLDS_FFL;
+    }
+    private static final int ERROR_DS_HIGH_DSA_VERSION = (int)8642L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_HIGH_DSA_VERSION 8642
+     * }
+     */
+    public static int ERROR_DS_HIGH_DSA_VERSION() {
+        return ERROR_DS_HIGH_DSA_VERSION;
+    }
+    private static final int ERROR_DS_LOW_ADLDS_FFL = (int)8643L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_LOW_ADLDS_FFL 8643
+     * }
+     */
+    public static int ERROR_DS_LOW_ADLDS_FFL() {
+        return ERROR_DS_LOW_ADLDS_FFL;
+    }
+    private static final int ERROR_DOMAIN_SID_SAME_AS_LOCAL_WORKSTATION = (int)8644L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DOMAIN_SID_SAME_AS_LOCAL_WORKSTATION 8644
+     * }
+     */
+    public static int ERROR_DOMAIN_SID_SAME_AS_LOCAL_WORKSTATION() {
+        return ERROR_DOMAIN_SID_SAME_AS_LOCAL_WORKSTATION;
+    }
+    private static final int ERROR_DS_UNDELETE_SAM_VALIDATION_FAILED = (int)8645L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_UNDELETE_SAM_VALIDATION_FAILED 8645
+     * }
+     */
+    public static int ERROR_DS_UNDELETE_SAM_VALIDATION_FAILED() {
+        return ERROR_DS_UNDELETE_SAM_VALIDATION_FAILED;
+    }
+    private static final int ERROR_INCORRECT_ACCOUNT_TYPE = (int)8646L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_INCORRECT_ACCOUNT_TYPE 8646
+     * }
+     */
+    public static int ERROR_INCORRECT_ACCOUNT_TYPE() {
+        return ERROR_INCORRECT_ACCOUNT_TYPE;
+    }
+    private static final int ERROR_DS_SPN_VALUE_NOT_UNIQUE_IN_FOREST = (int)8647L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_SPN_VALUE_NOT_UNIQUE_IN_FOREST 8647
+     * }
+     */
+    public static int ERROR_DS_SPN_VALUE_NOT_UNIQUE_IN_FOREST() {
+        return ERROR_DS_SPN_VALUE_NOT_UNIQUE_IN_FOREST;
+    }
+    private static final int ERROR_DS_UPN_VALUE_NOT_UNIQUE_IN_FOREST = (int)8648L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_UPN_VALUE_NOT_UNIQUE_IN_FOREST 8648
+     * }
+     */
+    public static int ERROR_DS_UPN_VALUE_NOT_UNIQUE_IN_FOREST() {
+        return ERROR_DS_UPN_VALUE_NOT_UNIQUE_IN_FOREST;
+    }
+    private static final int ERROR_DS_MISSING_FOREST_TRUST = (int)8649L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_MISSING_FOREST_TRUST 8649
+     * }
+     */
+    public static int ERROR_DS_MISSING_FOREST_TRUST() {
+        return ERROR_DS_MISSING_FOREST_TRUST;
+    }
+    private static final int ERROR_DS_VALUE_KEY_NOT_UNIQUE = (int)8650L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_DS_VALUE_KEY_NOT_UNIQUE 8650
+     * }
+     */
+    public static int ERROR_DS_VALUE_KEY_NOT_UNIQUE() {
+        return ERROR_DS_VALUE_KEY_NOT_UNIQUE;
+    }
+    private static final int DNS_ERROR_RCODE_NO_ERROR = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RCODE_NO_ERROR 0
+     * }
+     */
+    public static int DNS_ERROR_RCODE_NO_ERROR() {
+        return DNS_ERROR_RCODE_NO_ERROR;
+    }
+    private static final int DNS_ERROR_RCODE_FORMAT_ERROR = (int)9001L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RCODE_FORMAT_ERROR 9001
+     * }
+     */
+    public static int DNS_ERROR_RCODE_FORMAT_ERROR() {
+        return DNS_ERROR_RCODE_FORMAT_ERROR;
+    }
+    private static final int DNS_ERROR_RCODE_SERVER_FAILURE = (int)9002L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RCODE_SERVER_FAILURE 9002
+     * }
+     */
+    public static int DNS_ERROR_RCODE_SERVER_FAILURE() {
+        return DNS_ERROR_RCODE_SERVER_FAILURE;
+    }
+    private static final int DNS_ERROR_RCODE_NAME_ERROR = (int)9003L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RCODE_NAME_ERROR 9003
+     * }
+     */
+    public static int DNS_ERROR_RCODE_NAME_ERROR() {
+        return DNS_ERROR_RCODE_NAME_ERROR;
+    }
+    private static final int DNS_ERROR_RCODE_NOT_IMPLEMENTED = (int)9004L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RCODE_NOT_IMPLEMENTED 9004
+     * }
+     */
+    public static int DNS_ERROR_RCODE_NOT_IMPLEMENTED() {
+        return DNS_ERROR_RCODE_NOT_IMPLEMENTED;
+    }
+    private static final int DNS_ERROR_RCODE_REFUSED = (int)9005L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RCODE_REFUSED 9005
+     * }
+     */
+    public static int DNS_ERROR_RCODE_REFUSED() {
+        return DNS_ERROR_RCODE_REFUSED;
+    }
+    private static final int DNS_ERROR_RCODE_YXDOMAIN = (int)9006L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RCODE_YXDOMAIN 9006
+     * }
+     */
+    public static int DNS_ERROR_RCODE_YXDOMAIN() {
+        return DNS_ERROR_RCODE_YXDOMAIN;
+    }
+    private static final int DNS_ERROR_RCODE_YXRRSET = (int)9007L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RCODE_YXRRSET 9007
+     * }
+     */
+    public static int DNS_ERROR_RCODE_YXRRSET() {
+        return DNS_ERROR_RCODE_YXRRSET;
+    }
+    private static final int DNS_ERROR_RCODE_NXRRSET = (int)9008L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RCODE_NXRRSET 9008
+     * }
+     */
+    public static int DNS_ERROR_RCODE_NXRRSET() {
+        return DNS_ERROR_RCODE_NXRRSET;
+    }
+    private static final int DNS_ERROR_RCODE_NOTAUTH = (int)9009L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RCODE_NOTAUTH 9009
+     * }
+     */
+    public static int DNS_ERROR_RCODE_NOTAUTH() {
+        return DNS_ERROR_RCODE_NOTAUTH;
+    }
+    private static final int DNS_ERROR_RCODE_NOTZONE = (int)9010L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RCODE_NOTZONE 9010
+     * }
+     */
+    public static int DNS_ERROR_RCODE_NOTZONE() {
+        return DNS_ERROR_RCODE_NOTZONE;
+    }
+    private static final int DNS_ERROR_RCODE_BADSIG = (int)9016L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RCODE_BADSIG 9016
+     * }
+     */
+    public static int DNS_ERROR_RCODE_BADSIG() {
+        return DNS_ERROR_RCODE_BADSIG;
+    }
+    private static final int DNS_ERROR_RCODE_BADKEY = (int)9017L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RCODE_BADKEY 9017
+     * }
+     */
+    public static int DNS_ERROR_RCODE_BADKEY() {
+        return DNS_ERROR_RCODE_BADKEY;
+    }
+    private static final int DNS_ERROR_RCODE_BADTIME = (int)9018L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RCODE_BADTIME 9018
+     * }
+     */
+    public static int DNS_ERROR_RCODE_BADTIME() {
+        return DNS_ERROR_RCODE_BADTIME;
+    }
+    private static final int DNS_ERROR_RCODE_LAST = (int)9018L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RCODE_LAST 9018
+     * }
+     */
+    public static int DNS_ERROR_RCODE_LAST() {
+        return DNS_ERROR_RCODE_LAST;
+    }
+    private static final int DNS_ERROR_KEYMASTER_REQUIRED = (int)9101L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_KEYMASTER_REQUIRED 9101
+     * }
+     */
+    public static int DNS_ERROR_KEYMASTER_REQUIRED() {
+        return DNS_ERROR_KEYMASTER_REQUIRED;
+    }
+    private static final int DNS_ERROR_NOT_ALLOWED_ON_SIGNED_ZONE = (int)9102L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NOT_ALLOWED_ON_SIGNED_ZONE 9102
+     * }
+     */
+    public static int DNS_ERROR_NOT_ALLOWED_ON_SIGNED_ZONE() {
+        return DNS_ERROR_NOT_ALLOWED_ON_SIGNED_ZONE;
+    }
+    private static final int DNS_ERROR_NSEC3_INCOMPATIBLE_WITH_RSA_SHA1 = (int)9103L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NSEC3_INCOMPATIBLE_WITH_RSA_SHA1 9103
+     * }
+     */
+    public static int DNS_ERROR_NSEC3_INCOMPATIBLE_WITH_RSA_SHA1() {
+        return DNS_ERROR_NSEC3_INCOMPATIBLE_WITH_RSA_SHA1;
+    }
+    private static final int DNS_ERROR_NOT_ENOUGH_SIGNING_KEY_DESCRIPTORS = (int)9104L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NOT_ENOUGH_SIGNING_KEY_DESCRIPTORS 9104
+     * }
+     */
+    public static int DNS_ERROR_NOT_ENOUGH_SIGNING_KEY_DESCRIPTORS() {
+        return DNS_ERROR_NOT_ENOUGH_SIGNING_KEY_DESCRIPTORS;
+    }
+    private static final int DNS_ERROR_UNSUPPORTED_ALGORITHM = (int)9105L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_UNSUPPORTED_ALGORITHM 9105
+     * }
+     */
+    public static int DNS_ERROR_UNSUPPORTED_ALGORITHM() {
+        return DNS_ERROR_UNSUPPORTED_ALGORITHM;
+    }
+    private static final int DNS_ERROR_INVALID_KEY_SIZE = (int)9106L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_KEY_SIZE 9106
+     * }
+     */
+    public static int DNS_ERROR_INVALID_KEY_SIZE() {
+        return DNS_ERROR_INVALID_KEY_SIZE;
+    }
+    private static final int DNS_ERROR_SIGNING_KEY_NOT_ACCESSIBLE = (int)9107L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_SIGNING_KEY_NOT_ACCESSIBLE 9107
+     * }
+     */
+    public static int DNS_ERROR_SIGNING_KEY_NOT_ACCESSIBLE() {
+        return DNS_ERROR_SIGNING_KEY_NOT_ACCESSIBLE;
+    }
+    private static final int DNS_ERROR_KSP_DOES_NOT_SUPPORT_PROTECTION = (int)9108L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_KSP_DOES_NOT_SUPPORT_PROTECTION 9108
+     * }
+     */
+    public static int DNS_ERROR_KSP_DOES_NOT_SUPPORT_PROTECTION() {
+        return DNS_ERROR_KSP_DOES_NOT_SUPPORT_PROTECTION;
+    }
+    private static final int DNS_ERROR_UNEXPECTED_DATA_PROTECTION_ERROR = (int)9109L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_UNEXPECTED_DATA_PROTECTION_ERROR 9109
+     * }
+     */
+    public static int DNS_ERROR_UNEXPECTED_DATA_PROTECTION_ERROR() {
+        return DNS_ERROR_UNEXPECTED_DATA_PROTECTION_ERROR;
+    }
+    private static final int DNS_ERROR_UNEXPECTED_CNG_ERROR = (int)9110L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_UNEXPECTED_CNG_ERROR 9110
+     * }
+     */
+    public static int DNS_ERROR_UNEXPECTED_CNG_ERROR() {
+        return DNS_ERROR_UNEXPECTED_CNG_ERROR;
+    }
+    private static final int DNS_ERROR_UNKNOWN_SIGNING_PARAMETER_VERSION = (int)9111L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_UNKNOWN_SIGNING_PARAMETER_VERSION 9111
+     * }
+     */
+    public static int DNS_ERROR_UNKNOWN_SIGNING_PARAMETER_VERSION() {
+        return DNS_ERROR_UNKNOWN_SIGNING_PARAMETER_VERSION;
+    }
+    private static final int DNS_ERROR_KSP_NOT_ACCESSIBLE = (int)9112L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_KSP_NOT_ACCESSIBLE 9112
+     * }
+     */
+    public static int DNS_ERROR_KSP_NOT_ACCESSIBLE() {
+        return DNS_ERROR_KSP_NOT_ACCESSIBLE;
+    }
+    private static final int DNS_ERROR_TOO_MANY_SKDS = (int)9113L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_TOO_MANY_SKDS 9113
+     * }
+     */
+    public static int DNS_ERROR_TOO_MANY_SKDS() {
+        return DNS_ERROR_TOO_MANY_SKDS;
+    }
+    private static final int DNS_ERROR_INVALID_ROLLOVER_PERIOD = (int)9114L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_ROLLOVER_PERIOD 9114
+     * }
+     */
+    public static int DNS_ERROR_INVALID_ROLLOVER_PERIOD() {
+        return DNS_ERROR_INVALID_ROLLOVER_PERIOD;
+    }
+    private static final int DNS_ERROR_INVALID_INITIAL_ROLLOVER_OFFSET = (int)9115L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_INITIAL_ROLLOVER_OFFSET 9115
+     * }
+     */
+    public static int DNS_ERROR_INVALID_INITIAL_ROLLOVER_OFFSET() {
+        return DNS_ERROR_INVALID_INITIAL_ROLLOVER_OFFSET;
+    }
+    private static final int DNS_ERROR_ROLLOVER_IN_PROGRESS = (int)9116L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ROLLOVER_IN_PROGRESS 9116
+     * }
+     */
+    public static int DNS_ERROR_ROLLOVER_IN_PROGRESS() {
+        return DNS_ERROR_ROLLOVER_IN_PROGRESS;
+    }
+    private static final int DNS_ERROR_STANDBY_KEY_NOT_PRESENT = (int)9117L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_STANDBY_KEY_NOT_PRESENT 9117
+     * }
+     */
+    public static int DNS_ERROR_STANDBY_KEY_NOT_PRESENT() {
+        return DNS_ERROR_STANDBY_KEY_NOT_PRESENT;
+    }
+    private static final int DNS_ERROR_NOT_ALLOWED_ON_ZSK = (int)9118L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NOT_ALLOWED_ON_ZSK 9118
+     * }
+     */
+    public static int DNS_ERROR_NOT_ALLOWED_ON_ZSK() {
+        return DNS_ERROR_NOT_ALLOWED_ON_ZSK;
+    }
+    private static final int DNS_ERROR_NOT_ALLOWED_ON_ACTIVE_SKD = (int)9119L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NOT_ALLOWED_ON_ACTIVE_SKD 9119
+     * }
+     */
+    public static int DNS_ERROR_NOT_ALLOWED_ON_ACTIVE_SKD() {
+        return DNS_ERROR_NOT_ALLOWED_ON_ACTIVE_SKD;
+    }
+    private static final int DNS_ERROR_ROLLOVER_ALREADY_QUEUED = (int)9120L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ROLLOVER_ALREADY_QUEUED 9120
+     * }
+     */
+    public static int DNS_ERROR_ROLLOVER_ALREADY_QUEUED() {
+        return DNS_ERROR_ROLLOVER_ALREADY_QUEUED;
+    }
+    private static final int DNS_ERROR_NOT_ALLOWED_ON_UNSIGNED_ZONE = (int)9121L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NOT_ALLOWED_ON_UNSIGNED_ZONE 9121
+     * }
+     */
+    public static int DNS_ERROR_NOT_ALLOWED_ON_UNSIGNED_ZONE() {
+        return DNS_ERROR_NOT_ALLOWED_ON_UNSIGNED_ZONE;
+    }
+    private static final int DNS_ERROR_BAD_KEYMASTER = (int)9122L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_BAD_KEYMASTER 9122
+     * }
+     */
+    public static int DNS_ERROR_BAD_KEYMASTER() {
+        return DNS_ERROR_BAD_KEYMASTER;
+    }
+    private static final int DNS_ERROR_INVALID_SIGNATURE_VALIDITY_PERIOD = (int)9123L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_SIGNATURE_VALIDITY_PERIOD 9123
+     * }
+     */
+    public static int DNS_ERROR_INVALID_SIGNATURE_VALIDITY_PERIOD() {
+        return DNS_ERROR_INVALID_SIGNATURE_VALIDITY_PERIOD;
+    }
+    private static final int DNS_ERROR_INVALID_NSEC3_ITERATION_COUNT = (int)9124L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_NSEC3_ITERATION_COUNT 9124
+     * }
+     */
+    public static int DNS_ERROR_INVALID_NSEC3_ITERATION_COUNT() {
+        return DNS_ERROR_INVALID_NSEC3_ITERATION_COUNT;
+    }
+    private static final int DNS_ERROR_DNSSEC_IS_DISABLED = (int)9125L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_DNSSEC_IS_DISABLED 9125
+     * }
+     */
+    public static int DNS_ERROR_DNSSEC_IS_DISABLED() {
+        return DNS_ERROR_DNSSEC_IS_DISABLED;
+    }
+    private static final int DNS_ERROR_INVALID_XML = (int)9126L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_XML 9126
+     * }
+     */
+    public static int DNS_ERROR_INVALID_XML() {
+        return DNS_ERROR_INVALID_XML;
+    }
+    private static final int DNS_ERROR_NO_VALID_TRUST_ANCHORS = (int)9127L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NO_VALID_TRUST_ANCHORS 9127
+     * }
+     */
+    public static int DNS_ERROR_NO_VALID_TRUST_ANCHORS() {
+        return DNS_ERROR_NO_VALID_TRUST_ANCHORS;
+    }
+    private static final int DNS_ERROR_ROLLOVER_NOT_POKEABLE = (int)9128L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ROLLOVER_NOT_POKEABLE 9128
+     * }
+     */
+    public static int DNS_ERROR_ROLLOVER_NOT_POKEABLE() {
+        return DNS_ERROR_ROLLOVER_NOT_POKEABLE;
+    }
+    private static final int DNS_ERROR_NSEC3_NAME_COLLISION = (int)9129L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NSEC3_NAME_COLLISION 9129
+     * }
+     */
+    public static int DNS_ERROR_NSEC3_NAME_COLLISION() {
+        return DNS_ERROR_NSEC3_NAME_COLLISION;
+    }
+    private static final int DNS_ERROR_NSEC_INCOMPATIBLE_WITH_NSEC3_RSA_SHA1 = (int)9130L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NSEC_INCOMPATIBLE_WITH_NSEC3_RSA_SHA1 9130
+     * }
+     */
+    public static int DNS_ERROR_NSEC_INCOMPATIBLE_WITH_NSEC3_RSA_SHA1() {
+        return DNS_ERROR_NSEC_INCOMPATIBLE_WITH_NSEC3_RSA_SHA1;
+    }
+    private static final int DNS_INFO_NO_RECORDS = (int)9501L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_INFO_NO_RECORDS 9501
+     * }
+     */
+    public static int DNS_INFO_NO_RECORDS() {
+        return DNS_INFO_NO_RECORDS;
+    }
+    private static final int DNS_ERROR_BAD_PACKET = (int)9502L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_BAD_PACKET 9502
+     * }
+     */
+    public static int DNS_ERROR_BAD_PACKET() {
+        return DNS_ERROR_BAD_PACKET;
+    }
+    private static final int DNS_ERROR_NO_PACKET = (int)9503L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NO_PACKET 9503
+     * }
+     */
+    public static int DNS_ERROR_NO_PACKET() {
+        return DNS_ERROR_NO_PACKET;
+    }
+    private static final int DNS_ERROR_RCODE = (int)9504L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RCODE 9504
+     * }
+     */
+    public static int DNS_ERROR_RCODE() {
+        return DNS_ERROR_RCODE;
+    }
+    private static final int DNS_ERROR_UNSECURE_PACKET = (int)9505L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_UNSECURE_PACKET 9505
+     * }
+     */
+    public static int DNS_ERROR_UNSECURE_PACKET() {
+        return DNS_ERROR_UNSECURE_PACKET;
+    }
+    private static final int DNS_STATUS_PACKET_UNSECURE = (int)9505L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_STATUS_PACKET_UNSECURE 9505
+     * }
+     */
+    public static int DNS_STATUS_PACKET_UNSECURE() {
+        return DNS_STATUS_PACKET_UNSECURE;
+    }
+    private static final int DNS_REQUEST_PENDING = (int)9506L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_REQUEST_PENDING 9506
+     * }
+     */
+    public static int DNS_REQUEST_PENDING() {
+        return DNS_REQUEST_PENDING;
+    }
+    private static final int DNS_ERROR_NO_MEMORY = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NO_MEMORY 14
+     * }
+     */
+    public static int DNS_ERROR_NO_MEMORY() {
+        return DNS_ERROR_NO_MEMORY;
+    }
+    private static final int DNS_ERROR_INVALID_NAME = (int)123L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_NAME 123
+     * }
+     */
+    public static int DNS_ERROR_INVALID_NAME() {
+        return DNS_ERROR_INVALID_NAME;
+    }
+    private static final int DNS_ERROR_INVALID_DATA = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_DATA 13
+     * }
+     */
+    public static int DNS_ERROR_INVALID_DATA() {
+        return DNS_ERROR_INVALID_DATA;
+    }
+    private static final int DNS_ERROR_INVALID_TYPE = (int)9551L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_TYPE 9551
+     * }
+     */
+    public static int DNS_ERROR_INVALID_TYPE() {
+        return DNS_ERROR_INVALID_TYPE;
+    }
+    private static final int DNS_ERROR_INVALID_IP_ADDRESS = (int)9552L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_IP_ADDRESS 9552
+     * }
+     */
+    public static int DNS_ERROR_INVALID_IP_ADDRESS() {
+        return DNS_ERROR_INVALID_IP_ADDRESS;
+    }
+    private static final int DNS_ERROR_INVALID_PROPERTY = (int)9553L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_PROPERTY 9553
+     * }
+     */
+    public static int DNS_ERROR_INVALID_PROPERTY() {
+        return DNS_ERROR_INVALID_PROPERTY;
+    }
+    private static final int DNS_ERROR_TRY_AGAIN_LATER = (int)9554L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_TRY_AGAIN_LATER 9554
+     * }
+     */
+    public static int DNS_ERROR_TRY_AGAIN_LATER() {
+        return DNS_ERROR_TRY_AGAIN_LATER;
+    }
+    private static final int DNS_ERROR_NOT_UNIQUE = (int)9555L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NOT_UNIQUE 9555
+     * }
+     */
+    public static int DNS_ERROR_NOT_UNIQUE() {
+        return DNS_ERROR_NOT_UNIQUE;
+    }
+    private static final int DNS_ERROR_NON_RFC_NAME = (int)9556L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NON_RFC_NAME 9556
+     * }
+     */
+    public static int DNS_ERROR_NON_RFC_NAME() {
+        return DNS_ERROR_NON_RFC_NAME;
+    }
+    private static final int DNS_STATUS_FQDN = (int)9557L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_STATUS_FQDN 9557
+     * }
+     */
+    public static int DNS_STATUS_FQDN() {
+        return DNS_STATUS_FQDN;
+    }
+    private static final int DNS_STATUS_DOTTED_NAME = (int)9558L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_STATUS_DOTTED_NAME 9558
+     * }
+     */
+    public static int DNS_STATUS_DOTTED_NAME() {
+        return DNS_STATUS_DOTTED_NAME;
+    }
+    private static final int DNS_STATUS_SINGLE_PART_NAME = (int)9559L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_STATUS_SINGLE_PART_NAME 9559
+     * }
+     */
+    public static int DNS_STATUS_SINGLE_PART_NAME() {
+        return DNS_STATUS_SINGLE_PART_NAME;
+    }
+    private static final int DNS_ERROR_INVALID_NAME_CHAR = (int)9560L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_NAME_CHAR 9560
+     * }
+     */
+    public static int DNS_ERROR_INVALID_NAME_CHAR() {
+        return DNS_ERROR_INVALID_NAME_CHAR;
+    }
+    private static final int DNS_ERROR_NUMERIC_NAME = (int)9561L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NUMERIC_NAME 9561
+     * }
+     */
+    public static int DNS_ERROR_NUMERIC_NAME() {
+        return DNS_ERROR_NUMERIC_NAME;
+    }
+    private static final int DNS_ERROR_NOT_ALLOWED_ON_ROOT_SERVER = (int)9562L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NOT_ALLOWED_ON_ROOT_SERVER 9562
+     * }
+     */
+    public static int DNS_ERROR_NOT_ALLOWED_ON_ROOT_SERVER() {
+        return DNS_ERROR_NOT_ALLOWED_ON_ROOT_SERVER;
+    }
+    private static final int DNS_ERROR_NOT_ALLOWED_UNDER_DELEGATION = (int)9563L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NOT_ALLOWED_UNDER_DELEGATION 9563
+     * }
+     */
+    public static int DNS_ERROR_NOT_ALLOWED_UNDER_DELEGATION() {
+        return DNS_ERROR_NOT_ALLOWED_UNDER_DELEGATION;
+    }
+    private static final int DNS_ERROR_CANNOT_FIND_ROOT_HINTS = (int)9564L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_CANNOT_FIND_ROOT_HINTS 9564
+     * }
+     */
+    public static int DNS_ERROR_CANNOT_FIND_ROOT_HINTS() {
+        return DNS_ERROR_CANNOT_FIND_ROOT_HINTS;
+    }
+    private static final int DNS_ERROR_INCONSISTENT_ROOT_HINTS = (int)9565L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INCONSISTENT_ROOT_HINTS 9565
+     * }
+     */
+    public static int DNS_ERROR_INCONSISTENT_ROOT_HINTS() {
+        return DNS_ERROR_INCONSISTENT_ROOT_HINTS;
+    }
+    private static final int DNS_ERROR_DWORD_VALUE_TOO_SMALL = (int)9566L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_DWORD_VALUE_TOO_SMALL 9566
+     * }
+     */
+    public static int DNS_ERROR_DWORD_VALUE_TOO_SMALL() {
+        return DNS_ERROR_DWORD_VALUE_TOO_SMALL;
+    }
+    private static final int DNS_ERROR_DWORD_VALUE_TOO_LARGE = (int)9567L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_DWORD_VALUE_TOO_LARGE 9567
+     * }
+     */
+    public static int DNS_ERROR_DWORD_VALUE_TOO_LARGE() {
+        return DNS_ERROR_DWORD_VALUE_TOO_LARGE;
+    }
+    private static final int DNS_ERROR_BACKGROUND_LOADING = (int)9568L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_BACKGROUND_LOADING 9568
+     * }
+     */
+    public static int DNS_ERROR_BACKGROUND_LOADING() {
+        return DNS_ERROR_BACKGROUND_LOADING;
+    }
+    private static final int DNS_ERROR_NOT_ALLOWED_ON_RODC = (int)9569L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NOT_ALLOWED_ON_RODC 9569
+     * }
+     */
+    public static int DNS_ERROR_NOT_ALLOWED_ON_RODC() {
+        return DNS_ERROR_NOT_ALLOWED_ON_RODC;
+    }
+    private static final int DNS_ERROR_NOT_ALLOWED_UNDER_DNAME = (int)9570L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NOT_ALLOWED_UNDER_DNAME 9570
+     * }
+     */
+    public static int DNS_ERROR_NOT_ALLOWED_UNDER_DNAME() {
+        return DNS_ERROR_NOT_ALLOWED_UNDER_DNAME;
+    }
+    private static final int DNS_ERROR_DELEGATION_REQUIRED = (int)9571L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_DELEGATION_REQUIRED 9571
+     * }
+     */
+    public static int DNS_ERROR_DELEGATION_REQUIRED() {
+        return DNS_ERROR_DELEGATION_REQUIRED;
+    }
+    private static final int DNS_ERROR_INVALID_POLICY_TABLE = (int)9572L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_POLICY_TABLE 9572
+     * }
+     */
+    public static int DNS_ERROR_INVALID_POLICY_TABLE() {
+        return DNS_ERROR_INVALID_POLICY_TABLE;
+    }
+    private static final int DNS_ERROR_ADDRESS_REQUIRED = (int)9573L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ADDRESS_REQUIRED 9573
+     * }
+     */
+    public static int DNS_ERROR_ADDRESS_REQUIRED() {
+        return DNS_ERROR_ADDRESS_REQUIRED;
+    }
+    private static final int DNS_ERROR_ZONE_DOES_NOT_EXIST = (int)9601L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ZONE_DOES_NOT_EXIST 9601
+     * }
+     */
+    public static int DNS_ERROR_ZONE_DOES_NOT_EXIST() {
+        return DNS_ERROR_ZONE_DOES_NOT_EXIST;
+    }
+    private static final int DNS_ERROR_NO_ZONE_INFO = (int)9602L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NO_ZONE_INFO 9602
+     * }
+     */
+    public static int DNS_ERROR_NO_ZONE_INFO() {
+        return DNS_ERROR_NO_ZONE_INFO;
+    }
+    private static final int DNS_ERROR_INVALID_ZONE_OPERATION = (int)9603L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_ZONE_OPERATION 9603
+     * }
+     */
+    public static int DNS_ERROR_INVALID_ZONE_OPERATION() {
+        return DNS_ERROR_INVALID_ZONE_OPERATION;
+    }
+    private static final int DNS_ERROR_ZONE_CONFIGURATION_ERROR = (int)9604L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ZONE_CONFIGURATION_ERROR 9604
+     * }
+     */
+    public static int DNS_ERROR_ZONE_CONFIGURATION_ERROR() {
+        return DNS_ERROR_ZONE_CONFIGURATION_ERROR;
+    }
+    private static final int DNS_ERROR_ZONE_HAS_NO_SOA_RECORD = (int)9605L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ZONE_HAS_NO_SOA_RECORD 9605
+     * }
+     */
+    public static int DNS_ERROR_ZONE_HAS_NO_SOA_RECORD() {
+        return DNS_ERROR_ZONE_HAS_NO_SOA_RECORD;
+    }
+    private static final int DNS_ERROR_ZONE_HAS_NO_NS_RECORDS = (int)9606L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ZONE_HAS_NO_NS_RECORDS 9606
+     * }
+     */
+    public static int DNS_ERROR_ZONE_HAS_NO_NS_RECORDS() {
+        return DNS_ERROR_ZONE_HAS_NO_NS_RECORDS;
+    }
+    private static final int DNS_ERROR_ZONE_LOCKED = (int)9607L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ZONE_LOCKED 9607
+     * }
+     */
+    public static int DNS_ERROR_ZONE_LOCKED() {
+        return DNS_ERROR_ZONE_LOCKED;
+    }
+    private static final int DNS_ERROR_ZONE_CREATION_FAILED = (int)9608L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ZONE_CREATION_FAILED 9608
+     * }
+     */
+    public static int DNS_ERROR_ZONE_CREATION_FAILED() {
+        return DNS_ERROR_ZONE_CREATION_FAILED;
+    }
+    private static final int DNS_ERROR_ZONE_ALREADY_EXISTS = (int)9609L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ZONE_ALREADY_EXISTS 9609
+     * }
+     */
+    public static int DNS_ERROR_ZONE_ALREADY_EXISTS() {
+        return DNS_ERROR_ZONE_ALREADY_EXISTS;
+    }
+    private static final int DNS_ERROR_AUTOZONE_ALREADY_EXISTS = (int)9610L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_AUTOZONE_ALREADY_EXISTS 9610
+     * }
+     */
+    public static int DNS_ERROR_AUTOZONE_ALREADY_EXISTS() {
+        return DNS_ERROR_AUTOZONE_ALREADY_EXISTS;
+    }
+    private static final int DNS_ERROR_INVALID_ZONE_TYPE = (int)9611L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_ZONE_TYPE 9611
+     * }
+     */
+    public static int DNS_ERROR_INVALID_ZONE_TYPE() {
+        return DNS_ERROR_INVALID_ZONE_TYPE;
+    }
+    private static final int DNS_ERROR_SECONDARY_REQUIRES_MASTER_IP = (int)9612L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_SECONDARY_REQUIRES_MASTER_IP 9612
+     * }
+     */
+    public static int DNS_ERROR_SECONDARY_REQUIRES_MASTER_IP() {
+        return DNS_ERROR_SECONDARY_REQUIRES_MASTER_IP;
+    }
+    private static final int DNS_ERROR_ZONE_NOT_SECONDARY = (int)9613L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ZONE_NOT_SECONDARY 9613
+     * }
+     */
+    public static int DNS_ERROR_ZONE_NOT_SECONDARY() {
+        return DNS_ERROR_ZONE_NOT_SECONDARY;
+    }
+    private static final int DNS_ERROR_NEED_SECONDARY_ADDRESSES = (int)9614L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NEED_SECONDARY_ADDRESSES 9614
+     * }
+     */
+    public static int DNS_ERROR_NEED_SECONDARY_ADDRESSES() {
+        return DNS_ERROR_NEED_SECONDARY_ADDRESSES;
+    }
+    private static final int DNS_ERROR_WINS_INIT_FAILED = (int)9615L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_WINS_INIT_FAILED 9615
+     * }
+     */
+    public static int DNS_ERROR_WINS_INIT_FAILED() {
+        return DNS_ERROR_WINS_INIT_FAILED;
+    }
+    private static final int DNS_ERROR_NEED_WINS_SERVERS = (int)9616L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NEED_WINS_SERVERS 9616
+     * }
+     */
+    public static int DNS_ERROR_NEED_WINS_SERVERS() {
+        return DNS_ERROR_NEED_WINS_SERVERS;
+    }
+    private static final int DNS_ERROR_NBSTAT_INIT_FAILED = (int)9617L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NBSTAT_INIT_FAILED 9617
+     * }
+     */
+    public static int DNS_ERROR_NBSTAT_INIT_FAILED() {
+        return DNS_ERROR_NBSTAT_INIT_FAILED;
+    }
+    private static final int DNS_ERROR_SOA_DELETE_INVALID = (int)9618L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_SOA_DELETE_INVALID 9618
+     * }
+     */
+    public static int DNS_ERROR_SOA_DELETE_INVALID() {
+        return DNS_ERROR_SOA_DELETE_INVALID;
+    }
+    private static final int DNS_ERROR_FORWARDER_ALREADY_EXISTS = (int)9619L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_FORWARDER_ALREADY_EXISTS 9619
+     * }
+     */
+    public static int DNS_ERROR_FORWARDER_ALREADY_EXISTS() {
+        return DNS_ERROR_FORWARDER_ALREADY_EXISTS;
+    }
+    private static final int DNS_ERROR_ZONE_REQUIRES_MASTER_IP = (int)9620L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ZONE_REQUIRES_MASTER_IP 9620
+     * }
+     */
+    public static int DNS_ERROR_ZONE_REQUIRES_MASTER_IP() {
+        return DNS_ERROR_ZONE_REQUIRES_MASTER_IP;
+    }
+    private static final int DNS_ERROR_ZONE_IS_SHUTDOWN = (int)9621L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ZONE_IS_SHUTDOWN 9621
+     * }
+     */
+    public static int DNS_ERROR_ZONE_IS_SHUTDOWN() {
+        return DNS_ERROR_ZONE_IS_SHUTDOWN;
+    }
+    private static final int DNS_ERROR_ZONE_LOCKED_FOR_SIGNING = (int)9622L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ZONE_LOCKED_FOR_SIGNING 9622
+     * }
+     */
+    public static int DNS_ERROR_ZONE_LOCKED_FOR_SIGNING() {
+        return DNS_ERROR_ZONE_LOCKED_FOR_SIGNING;
+    }
+    private static final int DNS_ERROR_PRIMARY_REQUIRES_DATAFILE = (int)9651L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_PRIMARY_REQUIRES_DATAFILE 9651
+     * }
+     */
+    public static int DNS_ERROR_PRIMARY_REQUIRES_DATAFILE() {
+        return DNS_ERROR_PRIMARY_REQUIRES_DATAFILE;
+    }
+    private static final int DNS_ERROR_INVALID_DATAFILE_NAME = (int)9652L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_DATAFILE_NAME 9652
+     * }
+     */
+    public static int DNS_ERROR_INVALID_DATAFILE_NAME() {
+        return DNS_ERROR_INVALID_DATAFILE_NAME;
+    }
+    private static final int DNS_ERROR_DATAFILE_OPEN_FAILURE = (int)9653L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_DATAFILE_OPEN_FAILURE 9653
+     * }
+     */
+    public static int DNS_ERROR_DATAFILE_OPEN_FAILURE() {
+        return DNS_ERROR_DATAFILE_OPEN_FAILURE;
+    }
+    private static final int DNS_ERROR_FILE_WRITEBACK_FAILED = (int)9654L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_FILE_WRITEBACK_FAILED 9654
+     * }
+     */
+    public static int DNS_ERROR_FILE_WRITEBACK_FAILED() {
+        return DNS_ERROR_FILE_WRITEBACK_FAILED;
+    }
+    private static final int DNS_ERROR_DATAFILE_PARSING = (int)9655L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_DATAFILE_PARSING 9655
+     * }
+     */
+    public static int DNS_ERROR_DATAFILE_PARSING() {
+        return DNS_ERROR_DATAFILE_PARSING;
+    }
+    private static final int DNS_ERROR_RECORD_DOES_NOT_EXIST = (int)9701L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RECORD_DOES_NOT_EXIST 9701
+     * }
+     */
+    public static int DNS_ERROR_RECORD_DOES_NOT_EXIST() {
+        return DNS_ERROR_RECORD_DOES_NOT_EXIST;
+    }
+    private static final int DNS_ERROR_RECORD_FORMAT = (int)9702L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RECORD_FORMAT 9702
+     * }
+     */
+    public static int DNS_ERROR_RECORD_FORMAT() {
+        return DNS_ERROR_RECORD_FORMAT;
+    }
+    private static final int DNS_ERROR_NODE_CREATION_FAILED = (int)9703L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NODE_CREATION_FAILED 9703
+     * }
+     */
+    public static int DNS_ERROR_NODE_CREATION_FAILED() {
+        return DNS_ERROR_NODE_CREATION_FAILED;
+    }
+    private static final int DNS_ERROR_UNKNOWN_RECORD_TYPE = (int)9704L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_UNKNOWN_RECORD_TYPE 9704
+     * }
+     */
+    public static int DNS_ERROR_UNKNOWN_RECORD_TYPE() {
+        return DNS_ERROR_UNKNOWN_RECORD_TYPE;
+    }
+    private static final int DNS_ERROR_RECORD_TIMED_OUT = (int)9705L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RECORD_TIMED_OUT 9705
+     * }
+     */
+    public static int DNS_ERROR_RECORD_TIMED_OUT() {
+        return DNS_ERROR_RECORD_TIMED_OUT;
+    }
+    private static final int DNS_ERROR_NAME_NOT_IN_ZONE = (int)9706L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NAME_NOT_IN_ZONE 9706
+     * }
+     */
+    public static int DNS_ERROR_NAME_NOT_IN_ZONE() {
+        return DNS_ERROR_NAME_NOT_IN_ZONE;
+    }
+    private static final int DNS_ERROR_CNAME_LOOP = (int)9707L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_CNAME_LOOP 9707
+     * }
+     */
+    public static int DNS_ERROR_CNAME_LOOP() {
+        return DNS_ERROR_CNAME_LOOP;
+    }
+    private static final int DNS_ERROR_NODE_IS_CNAME = (int)9708L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NODE_IS_CNAME 9708
+     * }
+     */
+    public static int DNS_ERROR_NODE_IS_CNAME() {
+        return DNS_ERROR_NODE_IS_CNAME;
+    }
+    private static final int DNS_ERROR_CNAME_COLLISION = (int)9709L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_CNAME_COLLISION 9709
+     * }
+     */
+    public static int DNS_ERROR_CNAME_COLLISION() {
+        return DNS_ERROR_CNAME_COLLISION;
+    }
+    private static final int DNS_ERROR_RECORD_ONLY_AT_ZONE_ROOT = (int)9710L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RECORD_ONLY_AT_ZONE_ROOT 9710
+     * }
+     */
+    public static int DNS_ERROR_RECORD_ONLY_AT_ZONE_ROOT() {
+        return DNS_ERROR_RECORD_ONLY_AT_ZONE_ROOT;
+    }
+    private static final int DNS_ERROR_RECORD_ALREADY_EXISTS = (int)9711L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RECORD_ALREADY_EXISTS 9711
+     * }
+     */
+    public static int DNS_ERROR_RECORD_ALREADY_EXISTS() {
+        return DNS_ERROR_RECORD_ALREADY_EXISTS;
+    }
+    private static final int DNS_ERROR_SECONDARY_DATA = (int)9712L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_SECONDARY_DATA 9712
+     * }
+     */
+    public static int DNS_ERROR_SECONDARY_DATA() {
+        return DNS_ERROR_SECONDARY_DATA;
+    }
+    private static final int DNS_ERROR_NO_CREATE_CACHE_DATA = (int)9713L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NO_CREATE_CACHE_DATA 9713
+     * }
+     */
+    public static int DNS_ERROR_NO_CREATE_CACHE_DATA() {
+        return DNS_ERROR_NO_CREATE_CACHE_DATA;
+    }
+    private static final int DNS_ERROR_NAME_DOES_NOT_EXIST = (int)9714L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NAME_DOES_NOT_EXIST 9714
+     * }
+     */
+    public static int DNS_ERROR_NAME_DOES_NOT_EXIST() {
+        return DNS_ERROR_NAME_DOES_NOT_EXIST;
+    }
+    private static final int DNS_WARNING_PTR_CREATE_FAILED = (int)9715L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_WARNING_PTR_CREATE_FAILED 9715
+     * }
+     */
+    public static int DNS_WARNING_PTR_CREATE_FAILED() {
+        return DNS_WARNING_PTR_CREATE_FAILED;
+    }
+    private static final int DNS_WARNING_DOMAIN_UNDELETED = (int)9716L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_WARNING_DOMAIN_UNDELETED 9716
+     * }
+     */
+    public static int DNS_WARNING_DOMAIN_UNDELETED() {
+        return DNS_WARNING_DOMAIN_UNDELETED;
+    }
+    private static final int DNS_ERROR_DS_UNAVAILABLE = (int)9717L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_DS_UNAVAILABLE 9717
+     * }
+     */
+    public static int DNS_ERROR_DS_UNAVAILABLE() {
+        return DNS_ERROR_DS_UNAVAILABLE;
+    }
+    private static final int DNS_ERROR_DS_ZONE_ALREADY_EXISTS = (int)9718L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_DS_ZONE_ALREADY_EXISTS 9718
+     * }
+     */
+    public static int DNS_ERROR_DS_ZONE_ALREADY_EXISTS() {
+        return DNS_ERROR_DS_ZONE_ALREADY_EXISTS;
+    }
+    private static final int DNS_ERROR_NO_BOOTFILE_IF_DS_ZONE = (int)9719L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NO_BOOTFILE_IF_DS_ZONE 9719
+     * }
+     */
+    public static int DNS_ERROR_NO_BOOTFILE_IF_DS_ZONE() {
+        return DNS_ERROR_NO_BOOTFILE_IF_DS_ZONE;
+    }
+    private static final int DNS_ERROR_NODE_IS_DNAME = (int)9720L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NODE_IS_DNAME 9720
+     * }
+     */
+    public static int DNS_ERROR_NODE_IS_DNAME() {
+        return DNS_ERROR_NODE_IS_DNAME;
+    }
+    private static final int DNS_ERROR_DNAME_COLLISION = (int)9721L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_DNAME_COLLISION 9721
+     * }
+     */
+    public static int DNS_ERROR_DNAME_COLLISION() {
+        return DNS_ERROR_DNAME_COLLISION;
+    }
+    private static final int DNS_ERROR_ALIAS_LOOP = (int)9722L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ALIAS_LOOP 9722
+     * }
+     */
+    public static int DNS_ERROR_ALIAS_LOOP() {
+        return DNS_ERROR_ALIAS_LOOP;
+    }
+    private static final int DNS_INFO_AXFR_COMPLETE = (int)9751L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_INFO_AXFR_COMPLETE 9751
+     * }
+     */
+    public static int DNS_INFO_AXFR_COMPLETE() {
+        return DNS_INFO_AXFR_COMPLETE;
+    }
+    private static final int DNS_ERROR_AXFR = (int)9752L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_AXFR 9752
+     * }
+     */
+    public static int DNS_ERROR_AXFR() {
+        return DNS_ERROR_AXFR;
+    }
+    private static final int DNS_INFO_ADDED_LOCAL_WINS = (int)9753L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_INFO_ADDED_LOCAL_WINS 9753
+     * }
+     */
+    public static int DNS_INFO_ADDED_LOCAL_WINS() {
+        return DNS_INFO_ADDED_LOCAL_WINS;
+    }
+    private static final int DNS_STATUS_CONTINUE_NEEDED = (int)9801L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_STATUS_CONTINUE_NEEDED 9801
+     * }
+     */
+    public static int DNS_STATUS_CONTINUE_NEEDED() {
+        return DNS_STATUS_CONTINUE_NEEDED;
+    }
+    private static final int DNS_ERROR_NO_TCPIP = (int)9851L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NO_TCPIP 9851
+     * }
+     */
+    public static int DNS_ERROR_NO_TCPIP() {
+        return DNS_ERROR_NO_TCPIP;
+    }
+    private static final int DNS_ERROR_NO_DNS_SERVERS = (int)9852L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NO_DNS_SERVERS 9852
+     * }
+     */
+    public static int DNS_ERROR_NO_DNS_SERVERS() {
+        return DNS_ERROR_NO_DNS_SERVERS;
+    }
+    private static final int DNS_ERROR_DP_DOES_NOT_EXIST = (int)9901L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_DP_DOES_NOT_EXIST 9901
+     * }
+     */
+    public static int DNS_ERROR_DP_DOES_NOT_EXIST() {
+        return DNS_ERROR_DP_DOES_NOT_EXIST;
+    }
+    private static final int DNS_ERROR_DP_ALREADY_EXISTS = (int)9902L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_DP_ALREADY_EXISTS 9902
+     * }
+     */
+    public static int DNS_ERROR_DP_ALREADY_EXISTS() {
+        return DNS_ERROR_DP_ALREADY_EXISTS;
+    }
+    private static final int DNS_ERROR_DP_NOT_ENLISTED = (int)9903L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_DP_NOT_ENLISTED 9903
+     * }
+     */
+    public static int DNS_ERROR_DP_NOT_ENLISTED() {
+        return DNS_ERROR_DP_NOT_ENLISTED;
+    }
+    private static final int DNS_ERROR_DP_ALREADY_ENLISTED = (int)9904L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_DP_ALREADY_ENLISTED 9904
+     * }
+     */
+    public static int DNS_ERROR_DP_ALREADY_ENLISTED() {
+        return DNS_ERROR_DP_ALREADY_ENLISTED;
+    }
+    private static final int DNS_ERROR_DP_NOT_AVAILABLE = (int)9905L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_DP_NOT_AVAILABLE 9905
+     * }
+     */
+    public static int DNS_ERROR_DP_NOT_AVAILABLE() {
+        return DNS_ERROR_DP_NOT_AVAILABLE;
+    }
+    private static final int DNS_ERROR_DP_FSMO_ERROR = (int)9906L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_DP_FSMO_ERROR 9906
+     * }
+     */
+    public static int DNS_ERROR_DP_FSMO_ERROR() {
+        return DNS_ERROR_DP_FSMO_ERROR;
+    }
+    private static final int DNS_ERROR_RRL_NOT_ENABLED = (int)9911L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RRL_NOT_ENABLED 9911
+     * }
+     */
+    public static int DNS_ERROR_RRL_NOT_ENABLED() {
+        return DNS_ERROR_RRL_NOT_ENABLED;
+    }
+    private static final int DNS_ERROR_RRL_INVALID_WINDOW_SIZE = (int)9912L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RRL_INVALID_WINDOW_SIZE 9912
+     * }
+     */
+    public static int DNS_ERROR_RRL_INVALID_WINDOW_SIZE() {
+        return DNS_ERROR_RRL_INVALID_WINDOW_SIZE;
+    }
+    private static final int DNS_ERROR_RRL_INVALID_IPV4_PREFIX = (int)9913L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RRL_INVALID_IPV4_PREFIX 9913
+     * }
+     */
+    public static int DNS_ERROR_RRL_INVALID_IPV4_PREFIX() {
+        return DNS_ERROR_RRL_INVALID_IPV4_PREFIX;
+    }
+    private static final int DNS_ERROR_RRL_INVALID_IPV6_PREFIX = (int)9914L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RRL_INVALID_IPV6_PREFIX 9914
+     * }
+     */
+    public static int DNS_ERROR_RRL_INVALID_IPV6_PREFIX() {
+        return DNS_ERROR_RRL_INVALID_IPV6_PREFIX;
+    }
+    private static final int DNS_ERROR_RRL_INVALID_TC_RATE = (int)9915L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RRL_INVALID_TC_RATE 9915
+     * }
+     */
+    public static int DNS_ERROR_RRL_INVALID_TC_RATE() {
+        return DNS_ERROR_RRL_INVALID_TC_RATE;
+    }
+    private static final int DNS_ERROR_RRL_INVALID_LEAK_RATE = (int)9916L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RRL_INVALID_LEAK_RATE 9916
+     * }
+     */
+    public static int DNS_ERROR_RRL_INVALID_LEAK_RATE() {
+        return DNS_ERROR_RRL_INVALID_LEAK_RATE;
+    }
+    private static final int DNS_ERROR_RRL_LEAK_RATE_LESSTHAN_TC_RATE = (int)9917L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_RRL_LEAK_RATE_LESSTHAN_TC_RATE 9917
+     * }
+     */
+    public static int DNS_ERROR_RRL_LEAK_RATE_LESSTHAN_TC_RATE() {
+        return DNS_ERROR_RRL_LEAK_RATE_LESSTHAN_TC_RATE;
+    }
+    private static final int DNS_ERROR_VIRTUALIZATION_INSTANCE_ALREADY_EXISTS = (int)9921L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_VIRTUALIZATION_INSTANCE_ALREADY_EXISTS 9921
+     * }
+     */
+    public static int DNS_ERROR_VIRTUALIZATION_INSTANCE_ALREADY_EXISTS() {
+        return DNS_ERROR_VIRTUALIZATION_INSTANCE_ALREADY_EXISTS;
+    }
+    private static final int DNS_ERROR_VIRTUALIZATION_INSTANCE_DOES_NOT_EXIST = (int)9922L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_VIRTUALIZATION_INSTANCE_DOES_NOT_EXIST 9922
+     * }
+     */
+    public static int DNS_ERROR_VIRTUALIZATION_INSTANCE_DOES_NOT_EXIST() {
+        return DNS_ERROR_VIRTUALIZATION_INSTANCE_DOES_NOT_EXIST;
+    }
+    private static final int DNS_ERROR_VIRTUALIZATION_TREE_LOCKED = (int)9923L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_VIRTUALIZATION_TREE_LOCKED 9923
+     * }
+     */
+    public static int DNS_ERROR_VIRTUALIZATION_TREE_LOCKED() {
+        return DNS_ERROR_VIRTUALIZATION_TREE_LOCKED;
+    }
+    private static final int DNS_ERROR_INVAILD_VIRTUALIZATION_INSTANCE_NAME = (int)9924L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVAILD_VIRTUALIZATION_INSTANCE_NAME 9924
+     * }
+     */
+    public static int DNS_ERROR_INVAILD_VIRTUALIZATION_INSTANCE_NAME() {
+        return DNS_ERROR_INVAILD_VIRTUALIZATION_INSTANCE_NAME;
+    }
+    private static final int DNS_ERROR_DEFAULT_VIRTUALIZATION_INSTANCE = (int)9925L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_DEFAULT_VIRTUALIZATION_INSTANCE 9925
+     * }
+     */
+    public static int DNS_ERROR_DEFAULT_VIRTUALIZATION_INSTANCE() {
+        return DNS_ERROR_DEFAULT_VIRTUALIZATION_INSTANCE;
+    }
+    private static final int DNS_ERROR_ZONESCOPE_ALREADY_EXISTS = (int)9951L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ZONESCOPE_ALREADY_EXISTS 9951
+     * }
+     */
+    public static int DNS_ERROR_ZONESCOPE_ALREADY_EXISTS() {
+        return DNS_ERROR_ZONESCOPE_ALREADY_EXISTS;
+    }
+    private static final int DNS_ERROR_ZONESCOPE_DOES_NOT_EXIST = (int)9952L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ZONESCOPE_DOES_NOT_EXIST 9952
+     * }
+     */
+    public static int DNS_ERROR_ZONESCOPE_DOES_NOT_EXIST() {
+        return DNS_ERROR_ZONESCOPE_DOES_NOT_EXIST;
+    }
+    private static final int DNS_ERROR_DEFAULT_ZONESCOPE = (int)9953L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_DEFAULT_ZONESCOPE 9953
+     * }
+     */
+    public static int DNS_ERROR_DEFAULT_ZONESCOPE() {
+        return DNS_ERROR_DEFAULT_ZONESCOPE;
+    }
+    private static final int DNS_ERROR_INVALID_ZONESCOPE_NAME = (int)9954L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_ZONESCOPE_NAME 9954
+     * }
+     */
+    public static int DNS_ERROR_INVALID_ZONESCOPE_NAME() {
+        return DNS_ERROR_INVALID_ZONESCOPE_NAME;
+    }
+    private static final int DNS_ERROR_NOT_ALLOWED_WITH_ZONESCOPES = (int)9955L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_NOT_ALLOWED_WITH_ZONESCOPES 9955
+     * }
+     */
+    public static int DNS_ERROR_NOT_ALLOWED_WITH_ZONESCOPES() {
+        return DNS_ERROR_NOT_ALLOWED_WITH_ZONESCOPES;
+    }
+    private static final int DNS_ERROR_LOAD_ZONESCOPE_FAILED = (int)9956L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_LOAD_ZONESCOPE_FAILED 9956
+     * }
+     */
+    public static int DNS_ERROR_LOAD_ZONESCOPE_FAILED() {
+        return DNS_ERROR_LOAD_ZONESCOPE_FAILED;
+    }
+    private static final int DNS_ERROR_ZONESCOPE_FILE_WRITEBACK_FAILED = (int)9957L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ZONESCOPE_FILE_WRITEBACK_FAILED 9957
+     * }
+     */
+    public static int DNS_ERROR_ZONESCOPE_FILE_WRITEBACK_FAILED() {
+        return DNS_ERROR_ZONESCOPE_FILE_WRITEBACK_FAILED;
+    }
+    private static final int DNS_ERROR_INVALID_SCOPE_NAME = (int)9958L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_SCOPE_NAME 9958
+     * }
+     */
+    public static int DNS_ERROR_INVALID_SCOPE_NAME() {
+        return DNS_ERROR_INVALID_SCOPE_NAME;
+    }
+    private static final int DNS_ERROR_SCOPE_DOES_NOT_EXIST = (int)9959L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_SCOPE_DOES_NOT_EXIST 9959
+     * }
+     */
+    public static int DNS_ERROR_SCOPE_DOES_NOT_EXIST() {
+        return DNS_ERROR_SCOPE_DOES_NOT_EXIST;
+    }
+    private static final int DNS_ERROR_DEFAULT_SCOPE = (int)9960L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_DEFAULT_SCOPE 9960
+     * }
+     */
+    public static int DNS_ERROR_DEFAULT_SCOPE() {
+        return DNS_ERROR_DEFAULT_SCOPE;
+    }
+    private static final int DNS_ERROR_INVALID_SCOPE_OPERATION = (int)9961L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_SCOPE_OPERATION 9961
+     * }
+     */
+    public static int DNS_ERROR_INVALID_SCOPE_OPERATION() {
+        return DNS_ERROR_INVALID_SCOPE_OPERATION;
+    }
+    private static final int DNS_ERROR_SCOPE_LOCKED = (int)9962L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_SCOPE_LOCKED 9962
+     * }
+     */
+    public static int DNS_ERROR_SCOPE_LOCKED() {
+        return DNS_ERROR_SCOPE_LOCKED;
+    }
+    private static final int DNS_ERROR_SCOPE_ALREADY_EXISTS = (int)9963L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_SCOPE_ALREADY_EXISTS 9963
+     * }
+     */
+    public static int DNS_ERROR_SCOPE_ALREADY_EXISTS() {
+        return DNS_ERROR_SCOPE_ALREADY_EXISTS;
+    }
+    private static final int DNS_ERROR_POLICY_ALREADY_EXISTS = (int)9971L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_POLICY_ALREADY_EXISTS 9971
+     * }
+     */
+    public static int DNS_ERROR_POLICY_ALREADY_EXISTS() {
+        return DNS_ERROR_POLICY_ALREADY_EXISTS;
+    }
+    private static final int DNS_ERROR_POLICY_DOES_NOT_EXIST = (int)9972L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_POLICY_DOES_NOT_EXIST 9972
+     * }
+     */
+    public static int DNS_ERROR_POLICY_DOES_NOT_EXIST() {
+        return DNS_ERROR_POLICY_DOES_NOT_EXIST;
+    }
+    private static final int DNS_ERROR_POLICY_INVALID_CRITERIA = (int)9973L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_POLICY_INVALID_CRITERIA 9973
+     * }
+     */
+    public static int DNS_ERROR_POLICY_INVALID_CRITERIA() {
+        return DNS_ERROR_POLICY_INVALID_CRITERIA;
+    }
+    private static final int DNS_ERROR_POLICY_INVALID_SETTINGS = (int)9974L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_POLICY_INVALID_SETTINGS 9974
+     * }
+     */
+    public static int DNS_ERROR_POLICY_INVALID_SETTINGS() {
+        return DNS_ERROR_POLICY_INVALID_SETTINGS;
+    }
+    private static final int DNS_ERROR_CLIENT_SUBNET_IS_ACCESSED = (int)9975L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_CLIENT_SUBNET_IS_ACCESSED 9975
+     * }
+     */
+    public static int DNS_ERROR_CLIENT_SUBNET_IS_ACCESSED() {
+        return DNS_ERROR_CLIENT_SUBNET_IS_ACCESSED;
+    }
+    private static final int DNS_ERROR_CLIENT_SUBNET_DOES_NOT_EXIST = (int)9976L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_CLIENT_SUBNET_DOES_NOT_EXIST 9976
+     * }
+     */
+    public static int DNS_ERROR_CLIENT_SUBNET_DOES_NOT_EXIST() {
+        return DNS_ERROR_CLIENT_SUBNET_DOES_NOT_EXIST;
+    }
+    private static final int DNS_ERROR_CLIENT_SUBNET_ALREADY_EXISTS = (int)9977L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_CLIENT_SUBNET_ALREADY_EXISTS 9977
+     * }
+     */
+    public static int DNS_ERROR_CLIENT_SUBNET_ALREADY_EXISTS() {
+        return DNS_ERROR_CLIENT_SUBNET_ALREADY_EXISTS;
+    }
+    private static final int DNS_ERROR_SUBNET_DOES_NOT_EXIST = (int)9978L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_SUBNET_DOES_NOT_EXIST 9978
+     * }
+     */
+    public static int DNS_ERROR_SUBNET_DOES_NOT_EXIST() {
+        return DNS_ERROR_SUBNET_DOES_NOT_EXIST;
+    }
+    private static final int DNS_ERROR_SUBNET_ALREADY_EXISTS = (int)9979L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_SUBNET_ALREADY_EXISTS 9979
+     * }
+     */
+    public static int DNS_ERROR_SUBNET_ALREADY_EXISTS() {
+        return DNS_ERROR_SUBNET_ALREADY_EXISTS;
+    }
+    private static final int DNS_ERROR_POLICY_LOCKED = (int)9980L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_POLICY_LOCKED 9980
+     * }
+     */
+    public static int DNS_ERROR_POLICY_LOCKED() {
+        return DNS_ERROR_POLICY_LOCKED;
+    }
+    private static final int DNS_ERROR_POLICY_INVALID_WEIGHT = (int)9981L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_POLICY_INVALID_WEIGHT 9981
+     * }
+     */
+    public static int DNS_ERROR_POLICY_INVALID_WEIGHT() {
+        return DNS_ERROR_POLICY_INVALID_WEIGHT;
+    }
+    private static final int DNS_ERROR_POLICY_INVALID_NAME = (int)9982L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_POLICY_INVALID_NAME 9982
+     * }
+     */
+    public static int DNS_ERROR_POLICY_INVALID_NAME() {
+        return DNS_ERROR_POLICY_INVALID_NAME;
+    }
+    private static final int DNS_ERROR_POLICY_MISSING_CRITERIA = (int)9983L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_POLICY_MISSING_CRITERIA 9983
+     * }
+     */
+    public static int DNS_ERROR_POLICY_MISSING_CRITERIA() {
+        return DNS_ERROR_POLICY_MISSING_CRITERIA;
+    }
+    private static final int DNS_ERROR_INVALID_CLIENT_SUBNET_NAME = (int)9984L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_INVALID_CLIENT_SUBNET_NAME 9984
+     * }
+     */
+    public static int DNS_ERROR_INVALID_CLIENT_SUBNET_NAME() {
+        return DNS_ERROR_INVALID_CLIENT_SUBNET_NAME;
+    }
+    private static final int DNS_ERROR_POLICY_PROCESSING_ORDER_INVALID = (int)9985L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_POLICY_PROCESSING_ORDER_INVALID 9985
+     * }
+     */
+    public static int DNS_ERROR_POLICY_PROCESSING_ORDER_INVALID() {
+        return DNS_ERROR_POLICY_PROCESSING_ORDER_INVALID;
+    }
+    private static final int DNS_ERROR_POLICY_SCOPE_MISSING = (int)9986L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_POLICY_SCOPE_MISSING 9986
+     * }
+     */
+    public static int DNS_ERROR_POLICY_SCOPE_MISSING() {
+        return DNS_ERROR_POLICY_SCOPE_MISSING;
+    }
+    private static final int DNS_ERROR_POLICY_SCOPE_NOT_ALLOWED = (int)9987L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_POLICY_SCOPE_NOT_ALLOWED 9987
+     * }
+     */
+    public static int DNS_ERROR_POLICY_SCOPE_NOT_ALLOWED() {
+        return DNS_ERROR_POLICY_SCOPE_NOT_ALLOWED;
+    }
+    private static final int DNS_ERROR_SERVERSCOPE_IS_REFERENCED = (int)9988L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_SERVERSCOPE_IS_REFERENCED 9988
+     * }
+     */
+    public static int DNS_ERROR_SERVERSCOPE_IS_REFERENCED() {
+        return DNS_ERROR_SERVERSCOPE_IS_REFERENCED;
+    }
+    private static final int DNS_ERROR_ZONESCOPE_IS_REFERENCED = (int)9989L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_ZONESCOPE_IS_REFERENCED 9989
+     * }
+     */
+    public static int DNS_ERROR_ZONESCOPE_IS_REFERENCED() {
+        return DNS_ERROR_ZONESCOPE_IS_REFERENCED;
+    }
+    private static final int DNS_ERROR_POLICY_INVALID_CRITERIA_CLIENT_SUBNET = (int)9990L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_POLICY_INVALID_CRITERIA_CLIENT_SUBNET 9990
+     * }
+     */
+    public static int DNS_ERROR_POLICY_INVALID_CRITERIA_CLIENT_SUBNET() {
+        return DNS_ERROR_POLICY_INVALID_CRITERIA_CLIENT_SUBNET;
+    }
+    private static final int DNS_ERROR_POLICY_INVALID_CRITERIA_TRANSPORT_PROTOCOL = (int)9991L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_POLICY_INVALID_CRITERIA_TRANSPORT_PROTOCOL 9991
+     * }
+     */
+    public static int DNS_ERROR_POLICY_INVALID_CRITERIA_TRANSPORT_PROTOCOL() {
+        return DNS_ERROR_POLICY_INVALID_CRITERIA_TRANSPORT_PROTOCOL;
+    }
+    private static final int DNS_ERROR_POLICY_INVALID_CRITERIA_NETWORK_PROTOCOL = (int)9992L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_POLICY_INVALID_CRITERIA_NETWORK_PROTOCOL 9992
+     * }
+     */
+    public static int DNS_ERROR_POLICY_INVALID_CRITERIA_NETWORK_PROTOCOL() {
+        return DNS_ERROR_POLICY_INVALID_CRITERIA_NETWORK_PROTOCOL;
+    }
+    private static final int DNS_ERROR_POLICY_INVALID_CRITERIA_INTERFACE = (int)9993L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_POLICY_INVALID_CRITERIA_INTERFACE 9993
+     * }
+     */
+    public static int DNS_ERROR_POLICY_INVALID_CRITERIA_INTERFACE() {
+        return DNS_ERROR_POLICY_INVALID_CRITERIA_INTERFACE;
+    }
+    private static final int DNS_ERROR_POLICY_INVALID_CRITERIA_FQDN = (int)9994L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_POLICY_INVALID_CRITERIA_FQDN 9994
+     * }
+     */
+    public static int DNS_ERROR_POLICY_INVALID_CRITERIA_FQDN() {
+        return DNS_ERROR_POLICY_INVALID_CRITERIA_FQDN;
+    }
+    private static final int DNS_ERROR_POLICY_INVALID_CRITERIA_QUERY_TYPE = (int)9995L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_POLICY_INVALID_CRITERIA_QUERY_TYPE 9995
+     * }
+     */
+    public static int DNS_ERROR_POLICY_INVALID_CRITERIA_QUERY_TYPE() {
+        return DNS_ERROR_POLICY_INVALID_CRITERIA_QUERY_TYPE;
+    }
+    private static final int DNS_ERROR_POLICY_INVALID_CRITERIA_TIME_OF_DAY = (int)9996L;
+    /**
+     * {@snippet lang=c :
+     * #define DNS_ERROR_POLICY_INVALID_CRITERIA_TIME_OF_DAY 9996
+     * }
+     */
+    public static int DNS_ERROR_POLICY_INVALID_CRITERIA_TIME_OF_DAY() {
+        return DNS_ERROR_POLICY_INVALID_CRITERIA_TIME_OF_DAY;
+    }
+    private static final int WSAEINTR = (int)10004L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEINTR 10004
+     * }
+     */
+    public static int WSAEINTR() {
+        return WSAEINTR;
+    }
+    private static final int WSAEBADF = (int)10009L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEBADF 10009
+     * }
+     */
+    public static int WSAEBADF() {
+        return WSAEBADF;
+    }
+    private static final int WSAEACCES = (int)10013L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEACCES 10013
+     * }
+     */
+    public static int WSAEACCES() {
+        return WSAEACCES;
+    }
+    private static final int WSAEFAULT = (int)10014L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEFAULT 10014
+     * }
+     */
+    public static int WSAEFAULT() {
+        return WSAEFAULT;
+    }
+    private static final int WSAEINVAL = (int)10022L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEINVAL 10022
+     * }
+     */
+    public static int WSAEINVAL() {
+        return WSAEINVAL;
+    }
+    private static final int WSAEMFILE = (int)10024L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEMFILE 10024
+     * }
+     */
+    public static int WSAEMFILE() {
+        return WSAEMFILE;
+    }
+    private static final int WSAEWOULDBLOCK = (int)10035L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEWOULDBLOCK 10035
+     * }
+     */
+    public static int WSAEWOULDBLOCK() {
+        return WSAEWOULDBLOCK;
+    }
+    private static final int WSAEINPROGRESS = (int)10036L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEINPROGRESS 10036
+     * }
+     */
+    public static int WSAEINPROGRESS() {
+        return WSAEINPROGRESS;
+    }
+    private static final int WSAEALREADY = (int)10037L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEALREADY 10037
+     * }
+     */
+    public static int WSAEALREADY() {
+        return WSAEALREADY;
+    }
+    private static final int WSAENOTSOCK = (int)10038L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAENOTSOCK 10038
+     * }
+     */
+    public static int WSAENOTSOCK() {
+        return WSAENOTSOCK;
+    }
+    private static final int WSAEDESTADDRREQ = (int)10039L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEDESTADDRREQ 10039
+     * }
+     */
+    public static int WSAEDESTADDRREQ() {
+        return WSAEDESTADDRREQ;
+    }
+    private static final int WSAEMSGSIZE = (int)10040L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEMSGSIZE 10040
+     * }
+     */
+    public static int WSAEMSGSIZE() {
+        return WSAEMSGSIZE;
+    }
+    private static final int WSAEPROTOTYPE = (int)10041L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEPROTOTYPE 10041
+     * }
+     */
+    public static int WSAEPROTOTYPE() {
+        return WSAEPROTOTYPE;
+    }
+    private static final int WSAENOPROTOOPT = (int)10042L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAENOPROTOOPT 10042
+     * }
+     */
+    public static int WSAENOPROTOOPT() {
+        return WSAENOPROTOOPT;
+    }
+    private static final int WSAEPROTONOSUPPORT = (int)10043L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEPROTONOSUPPORT 10043
+     * }
+     */
+    public static int WSAEPROTONOSUPPORT() {
+        return WSAEPROTONOSUPPORT;
+    }
+    private static final int WSAESOCKTNOSUPPORT = (int)10044L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAESOCKTNOSUPPORT 10044
+     * }
+     */
+    public static int WSAESOCKTNOSUPPORT() {
+        return WSAESOCKTNOSUPPORT;
+    }
+    private static final int WSAEOPNOTSUPP = (int)10045L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEOPNOTSUPP 10045
+     * }
+     */
+    public static int WSAEOPNOTSUPP() {
+        return WSAEOPNOTSUPP;
+    }
+    private static final int WSAEPFNOSUPPORT = (int)10046L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEPFNOSUPPORT 10046
+     * }
+     */
+    public static int WSAEPFNOSUPPORT() {
+        return WSAEPFNOSUPPORT;
+    }
+    private static final int WSAEAFNOSUPPORT = (int)10047L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEAFNOSUPPORT 10047
+     * }
+     */
+    public static int WSAEAFNOSUPPORT() {
+        return WSAEAFNOSUPPORT;
+    }
+    private static final int WSAEADDRINUSE = (int)10048L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEADDRINUSE 10048
+     * }
+     */
+    public static int WSAEADDRINUSE() {
+        return WSAEADDRINUSE;
+    }
+    private static final int WSAEADDRNOTAVAIL = (int)10049L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEADDRNOTAVAIL 10049
+     * }
+     */
+    public static int WSAEADDRNOTAVAIL() {
+        return WSAEADDRNOTAVAIL;
+    }
+    private static final int WSAENETDOWN = (int)10050L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAENETDOWN 10050
+     * }
+     */
+    public static int WSAENETDOWN() {
+        return WSAENETDOWN;
+    }
+    private static final int WSAENETUNREACH = (int)10051L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAENETUNREACH 10051
+     * }
+     */
+    public static int WSAENETUNREACH() {
+        return WSAENETUNREACH;
+    }
+    private static final int WSAENETRESET = (int)10052L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAENETRESET 10052
+     * }
+     */
+    public static int WSAENETRESET() {
+        return WSAENETRESET;
+    }
+    private static final int WSAECONNABORTED = (int)10053L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAECONNABORTED 10053
+     * }
+     */
+    public static int WSAECONNABORTED() {
+        return WSAECONNABORTED;
+    }
+    private static final int WSAECONNRESET = (int)10054L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAECONNRESET 10054
+     * }
+     */
+    public static int WSAECONNRESET() {
+        return WSAECONNRESET;
+    }
+    private static final int WSAENOBUFS = (int)10055L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAENOBUFS 10055
+     * }
+     */
+    public static int WSAENOBUFS() {
+        return WSAENOBUFS;
+    }
+    private static final int WSAEISCONN = (int)10056L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEISCONN 10056
+     * }
+     */
+    public static int WSAEISCONN() {
+        return WSAEISCONN;
+    }
+    private static final int WSAENOTCONN = (int)10057L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAENOTCONN 10057
+     * }
+     */
+    public static int WSAENOTCONN() {
+        return WSAENOTCONN;
+    }
+    private static final int WSAESHUTDOWN = (int)10058L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAESHUTDOWN 10058
+     * }
+     */
+    public static int WSAESHUTDOWN() {
+        return WSAESHUTDOWN;
+    }
+    private static final int WSAETOOMANYREFS = (int)10059L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAETOOMANYREFS 10059
+     * }
+     */
+    public static int WSAETOOMANYREFS() {
+        return WSAETOOMANYREFS;
+    }
+    private static final int WSAETIMEDOUT = (int)10060L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAETIMEDOUT 10060
+     * }
+     */
+    public static int WSAETIMEDOUT() {
+        return WSAETIMEDOUT;
+    }
+    private static final int WSAECONNREFUSED = (int)10061L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAECONNREFUSED 10061
+     * }
+     */
+    public static int WSAECONNREFUSED() {
+        return WSAECONNREFUSED;
+    }
+    private static final int WSAELOOP = (int)10062L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAELOOP 10062
+     * }
+     */
+    public static int WSAELOOP() {
+        return WSAELOOP;
+    }
+    private static final int WSAENAMETOOLONG = (int)10063L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAENAMETOOLONG 10063
+     * }
+     */
+    public static int WSAENAMETOOLONG() {
+        return WSAENAMETOOLONG;
+    }
+    private static final int WSAEHOSTDOWN = (int)10064L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEHOSTDOWN 10064
+     * }
+     */
+    public static int WSAEHOSTDOWN() {
+        return WSAEHOSTDOWN;
+    }
+    private static final int WSAEHOSTUNREACH = (int)10065L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEHOSTUNREACH 10065
+     * }
+     */
+    public static int WSAEHOSTUNREACH() {
+        return WSAEHOSTUNREACH;
+    }
+    private static final int WSAENOTEMPTY = (int)10066L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAENOTEMPTY 10066
+     * }
+     */
+    public static int WSAENOTEMPTY() {
+        return WSAENOTEMPTY;
+    }
+    private static final int WSAEPROCLIM = (int)10067L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEPROCLIM 10067
+     * }
+     */
+    public static int WSAEPROCLIM() {
+        return WSAEPROCLIM;
+    }
+    private static final int WSAEUSERS = (int)10068L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEUSERS 10068
+     * }
+     */
+    public static int WSAEUSERS() {
+        return WSAEUSERS;
+    }
+    private static final int WSAEDQUOT = (int)10069L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEDQUOT 10069
+     * }
+     */
+    public static int WSAEDQUOT() {
+        return WSAEDQUOT;
+    }
+    private static final int WSAESTALE = (int)10070L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAESTALE 10070
+     * }
+     */
+    public static int WSAESTALE() {
+        return WSAESTALE;
+    }
+    private static final int WSAEREMOTE = (int)10071L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEREMOTE 10071
+     * }
+     */
+    public static int WSAEREMOTE() {
+        return WSAEREMOTE;
+    }
+    private static final int WSASYSNOTREADY = (int)10091L;
+    /**
+     * {@snippet lang=c :
+     * #define WSASYSNOTREADY 10091
+     * }
+     */
+    public static int WSASYSNOTREADY() {
+        return WSASYSNOTREADY;
+    }
+    private static final int WSAVERNOTSUPPORTED = (int)10092L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAVERNOTSUPPORTED 10092
+     * }
+     */
+    public static int WSAVERNOTSUPPORTED() {
+        return WSAVERNOTSUPPORTED;
+    }
+    private static final int WSANOTINITIALISED = (int)10093L;
+    /**
+     * {@snippet lang=c :
+     * #define WSANOTINITIALISED 10093
+     * }
+     */
+    public static int WSANOTINITIALISED() {
+        return WSANOTINITIALISED;
+    }
+    private static final int WSAEDISCON = (int)10101L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEDISCON 10101
+     * }
+     */
+    public static int WSAEDISCON() {
+        return WSAEDISCON;
+    }
+    private static final int WSAENOMORE = (int)10102L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAENOMORE 10102
+     * }
+     */
+    public static int WSAENOMORE() {
+        return WSAENOMORE;
+    }
+    private static final int WSAECANCELLED = (int)10103L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAECANCELLED 10103
+     * }
+     */
+    public static int WSAECANCELLED() {
+        return WSAECANCELLED;
+    }
+    private static final int WSAEINVALIDPROCTABLE = (int)10104L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEINVALIDPROCTABLE 10104
+     * }
+     */
+    public static int WSAEINVALIDPROCTABLE() {
+        return WSAEINVALIDPROCTABLE;
+    }
+    private static final int WSAEINVALIDPROVIDER = (int)10105L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEINVALIDPROVIDER 10105
+     * }
+     */
+    public static int WSAEINVALIDPROVIDER() {
+        return WSAEINVALIDPROVIDER;
+    }
+    private static final int WSAEPROVIDERFAILEDINIT = (int)10106L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEPROVIDERFAILEDINIT 10106
+     * }
+     */
+    public static int WSAEPROVIDERFAILEDINIT() {
+        return WSAEPROVIDERFAILEDINIT;
+    }
+    private static final int WSASYSCALLFAILURE = (int)10107L;
+    /**
+     * {@snippet lang=c :
+     * #define WSASYSCALLFAILURE 10107
+     * }
+     */
+    public static int WSASYSCALLFAILURE() {
+        return WSASYSCALLFAILURE;
+    }
+    private static final int WSASERVICE_NOT_FOUND = (int)10108L;
+    /**
+     * {@snippet lang=c :
+     * #define WSASERVICE_NOT_FOUND 10108
+     * }
+     */
+    public static int WSASERVICE_NOT_FOUND() {
+        return WSASERVICE_NOT_FOUND;
+    }
+    private static final int WSATYPE_NOT_FOUND = (int)10109L;
+    /**
+     * {@snippet lang=c :
+     * #define WSATYPE_NOT_FOUND 10109
+     * }
+     */
+    public static int WSATYPE_NOT_FOUND() {
+        return WSATYPE_NOT_FOUND;
+    }
+    private static final int WSA_E_NO_MORE = (int)10110L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_E_NO_MORE 10110
+     * }
+     */
+    public static int WSA_E_NO_MORE() {
+        return WSA_E_NO_MORE;
+    }
+    private static final int WSA_E_CANCELLED = (int)10111L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_E_CANCELLED 10111
+     * }
+     */
+    public static int WSA_E_CANCELLED() {
+        return WSA_E_CANCELLED;
+    }
+    private static final int WSAEREFUSED = (int)10112L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAEREFUSED 10112
+     * }
+     */
+    public static int WSAEREFUSED() {
+        return WSAEREFUSED;
+    }
+    private static final int WSAHOST_NOT_FOUND = (int)11001L;
+    /**
+     * {@snippet lang=c :
+     * #define WSAHOST_NOT_FOUND 11001
+     * }
+     */
+    public static int WSAHOST_NOT_FOUND() {
+        return WSAHOST_NOT_FOUND;
+    }
+    private static final int WSATRY_AGAIN = (int)11002L;
+    /**
+     * {@snippet lang=c :
+     * #define WSATRY_AGAIN 11002
+     * }
+     */
+    public static int WSATRY_AGAIN() {
+        return WSATRY_AGAIN;
+    }
+    private static final int WSANO_RECOVERY = (int)11003L;
+    /**
+     * {@snippet lang=c :
+     * #define WSANO_RECOVERY 11003
+     * }
+     */
+    public static int WSANO_RECOVERY() {
+        return WSANO_RECOVERY;
+    }
+    private static final int WSANO_DATA = (int)11004L;
+    /**
+     * {@snippet lang=c :
+     * #define WSANO_DATA 11004
+     * }
+     */
+    public static int WSANO_DATA() {
+        return WSANO_DATA;
+    }
+    private static final int WSA_QOS_RECEIVERS = (int)11005L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_RECEIVERS 11005
+     * }
+     */
+    public static int WSA_QOS_RECEIVERS() {
+        return WSA_QOS_RECEIVERS;
+    }
+    private static final int WSA_QOS_SENDERS = (int)11006L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_SENDERS 11006
+     * }
+     */
+    public static int WSA_QOS_SENDERS() {
+        return WSA_QOS_SENDERS;
+    }
+    private static final int WSA_QOS_NO_SENDERS = (int)11007L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_NO_SENDERS 11007
+     * }
+     */
+    public static int WSA_QOS_NO_SENDERS() {
+        return WSA_QOS_NO_SENDERS;
+    }
+    private static final int WSA_QOS_NO_RECEIVERS = (int)11008L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_NO_RECEIVERS 11008
+     * }
+     */
+    public static int WSA_QOS_NO_RECEIVERS() {
+        return WSA_QOS_NO_RECEIVERS;
+    }
+    private static final int WSA_QOS_REQUEST_CONFIRMED = (int)11009L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_REQUEST_CONFIRMED 11009
+     * }
+     */
+    public static int WSA_QOS_REQUEST_CONFIRMED() {
+        return WSA_QOS_REQUEST_CONFIRMED;
+    }
+    private static final int WSA_QOS_ADMISSION_FAILURE = (int)11010L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_ADMISSION_FAILURE 11010
+     * }
+     */
+    public static int WSA_QOS_ADMISSION_FAILURE() {
+        return WSA_QOS_ADMISSION_FAILURE;
+    }
+    private static final int WSA_QOS_POLICY_FAILURE = (int)11011L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_POLICY_FAILURE 11011
+     * }
+     */
+    public static int WSA_QOS_POLICY_FAILURE() {
+        return WSA_QOS_POLICY_FAILURE;
+    }
+    private static final int WSA_QOS_BAD_STYLE = (int)11012L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_BAD_STYLE 11012
+     * }
+     */
+    public static int WSA_QOS_BAD_STYLE() {
+        return WSA_QOS_BAD_STYLE;
+    }
+    private static final int WSA_QOS_BAD_OBJECT = (int)11013L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_BAD_OBJECT 11013
+     * }
+     */
+    public static int WSA_QOS_BAD_OBJECT() {
+        return WSA_QOS_BAD_OBJECT;
+    }
+    private static final int WSA_QOS_TRAFFIC_CTRL_ERROR = (int)11014L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_TRAFFIC_CTRL_ERROR 11014
+     * }
+     */
+    public static int WSA_QOS_TRAFFIC_CTRL_ERROR() {
+        return WSA_QOS_TRAFFIC_CTRL_ERROR;
+    }
+    private static final int WSA_QOS_GENERIC_ERROR = (int)11015L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_GENERIC_ERROR 11015
+     * }
+     */
+    public static int WSA_QOS_GENERIC_ERROR() {
+        return WSA_QOS_GENERIC_ERROR;
+    }
+    private static final int WSA_QOS_ESERVICETYPE = (int)11016L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_ESERVICETYPE 11016
+     * }
+     */
+    public static int WSA_QOS_ESERVICETYPE() {
+        return WSA_QOS_ESERVICETYPE;
+    }
+    private static final int WSA_QOS_EFLOWSPEC = (int)11017L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_EFLOWSPEC 11017
+     * }
+     */
+    public static int WSA_QOS_EFLOWSPEC() {
+        return WSA_QOS_EFLOWSPEC;
+    }
+    private static final int WSA_QOS_EPROVSPECBUF = (int)11018L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_EPROVSPECBUF 11018
+     * }
+     */
+    public static int WSA_QOS_EPROVSPECBUF() {
+        return WSA_QOS_EPROVSPECBUF;
+    }
+    private static final int WSA_QOS_EFILTERSTYLE = (int)11019L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_EFILTERSTYLE 11019
+     * }
+     */
+    public static int WSA_QOS_EFILTERSTYLE() {
+        return WSA_QOS_EFILTERSTYLE;
+    }
+    private static final int WSA_QOS_EFILTERTYPE = (int)11020L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_EFILTERTYPE 11020
+     * }
+     */
+    public static int WSA_QOS_EFILTERTYPE() {
+        return WSA_QOS_EFILTERTYPE;
+    }
+    private static final int WSA_QOS_EFILTERCOUNT = (int)11021L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_EFILTERCOUNT 11021
+     * }
+     */
+    public static int WSA_QOS_EFILTERCOUNT() {
+        return WSA_QOS_EFILTERCOUNT;
+    }
+    private static final int WSA_QOS_EOBJLENGTH = (int)11022L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_EOBJLENGTH 11022
+     * }
+     */
+    public static int WSA_QOS_EOBJLENGTH() {
+        return WSA_QOS_EOBJLENGTH;
+    }
+    private static final int WSA_QOS_EFLOWCOUNT = (int)11023L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_EFLOWCOUNT 11023
+     * }
+     */
+    public static int WSA_QOS_EFLOWCOUNT() {
+        return WSA_QOS_EFLOWCOUNT;
+    }
+    private static final int WSA_QOS_EUNKOWNPSOBJ = (int)11024L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_EUNKOWNPSOBJ 11024
+     * }
+     */
+    public static int WSA_QOS_EUNKOWNPSOBJ() {
+        return WSA_QOS_EUNKOWNPSOBJ;
+    }
+    private static final int WSA_QOS_EPOLICYOBJ = (int)11025L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_EPOLICYOBJ 11025
+     * }
+     */
+    public static int WSA_QOS_EPOLICYOBJ() {
+        return WSA_QOS_EPOLICYOBJ;
+    }
+    private static final int WSA_QOS_EFLOWDESC = (int)11026L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_EFLOWDESC 11026
+     * }
+     */
+    public static int WSA_QOS_EFLOWDESC() {
+        return WSA_QOS_EFLOWDESC;
+    }
+    private static final int WSA_QOS_EPSFLOWSPEC = (int)11027L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_EPSFLOWSPEC 11027
+     * }
+     */
+    public static int WSA_QOS_EPSFLOWSPEC() {
+        return WSA_QOS_EPSFLOWSPEC;
+    }
+    private static final int WSA_QOS_EPSFILTERSPEC = (int)11028L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_EPSFILTERSPEC 11028
+     * }
+     */
+    public static int WSA_QOS_EPSFILTERSPEC() {
+        return WSA_QOS_EPSFILTERSPEC;
+    }
+    private static final int WSA_QOS_ESDMODEOBJ = (int)11029L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_ESDMODEOBJ 11029
+     * }
+     */
+    public static int WSA_QOS_ESDMODEOBJ() {
+        return WSA_QOS_ESDMODEOBJ;
+    }
+    private static final int WSA_QOS_ESHAPERATEOBJ = (int)11030L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_ESHAPERATEOBJ 11030
+     * }
+     */
+    public static int WSA_QOS_ESHAPERATEOBJ() {
+        return WSA_QOS_ESHAPERATEOBJ;
+    }
+    private static final int WSA_QOS_RESERVED_PETYPE = (int)11031L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_QOS_RESERVED_PETYPE 11031
+     * }
+     */
+    public static int WSA_QOS_RESERVED_PETYPE() {
+        return WSA_QOS_RESERVED_PETYPE;
+    }
+    private static final int WSA_SECURE_HOST_NOT_FOUND = (int)11032L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_SECURE_HOST_NOT_FOUND 11032
+     * }
+     */
+    public static int WSA_SECURE_HOST_NOT_FOUND() {
+        return WSA_SECURE_HOST_NOT_FOUND;
+    }
+    private static final int WSA_IPSEC_NAME_POLICY_ERROR = (int)11033L;
+    /**
+     * {@snippet lang=c :
+     * #define WSA_IPSEC_NAME_POLICY_ERROR 11033
+     * }
+     */
+    public static int WSA_IPSEC_NAME_POLICY_ERROR() {
+        return WSA_IPSEC_NAME_POLICY_ERROR;
+    }
+    private static final int ERROR_IPSEC_QM_POLICY_EXISTS = (int)13000L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_QM_POLICY_EXISTS 13000
+     * }
+     */
+    public static int ERROR_IPSEC_QM_POLICY_EXISTS() {
+        return ERROR_IPSEC_QM_POLICY_EXISTS;
+    }
+    private static final int ERROR_IPSEC_QM_POLICY_NOT_FOUND = (int)13001L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_QM_POLICY_NOT_FOUND 13001
+     * }
+     */
+    public static int ERROR_IPSEC_QM_POLICY_NOT_FOUND() {
+        return ERROR_IPSEC_QM_POLICY_NOT_FOUND;
+    }
+    private static final int ERROR_IPSEC_QM_POLICY_IN_USE = (int)13002L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_QM_POLICY_IN_USE 13002
+     * }
+     */
+    public static int ERROR_IPSEC_QM_POLICY_IN_USE() {
+        return ERROR_IPSEC_QM_POLICY_IN_USE;
+    }
+    private static final int ERROR_IPSEC_MM_POLICY_EXISTS = (int)13003L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_MM_POLICY_EXISTS 13003
+     * }
+     */
+    public static int ERROR_IPSEC_MM_POLICY_EXISTS() {
+        return ERROR_IPSEC_MM_POLICY_EXISTS;
+    }
+    private static final int ERROR_IPSEC_MM_POLICY_NOT_FOUND = (int)13004L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_MM_POLICY_NOT_FOUND 13004
+     * }
+     */
+    public static int ERROR_IPSEC_MM_POLICY_NOT_FOUND() {
+        return ERROR_IPSEC_MM_POLICY_NOT_FOUND;
+    }
+    private static final int ERROR_IPSEC_MM_POLICY_IN_USE = (int)13005L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_MM_POLICY_IN_USE 13005
+     * }
+     */
+    public static int ERROR_IPSEC_MM_POLICY_IN_USE() {
+        return ERROR_IPSEC_MM_POLICY_IN_USE;
+    }
+    private static final int ERROR_IPSEC_MM_FILTER_EXISTS = (int)13006L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_MM_FILTER_EXISTS 13006
+     * }
+     */
+    public static int ERROR_IPSEC_MM_FILTER_EXISTS() {
+        return ERROR_IPSEC_MM_FILTER_EXISTS;
+    }
+    private static final int ERROR_IPSEC_MM_FILTER_NOT_FOUND = (int)13007L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_MM_FILTER_NOT_FOUND 13007
+     * }
+     */
+    public static int ERROR_IPSEC_MM_FILTER_NOT_FOUND() {
+        return ERROR_IPSEC_MM_FILTER_NOT_FOUND;
+    }
+    private static final int ERROR_IPSEC_TRANSPORT_FILTER_EXISTS = (int)13008L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_TRANSPORT_FILTER_EXISTS 13008
+     * }
+     */
+    public static int ERROR_IPSEC_TRANSPORT_FILTER_EXISTS() {
+        return ERROR_IPSEC_TRANSPORT_FILTER_EXISTS;
+    }
+    private static final int ERROR_IPSEC_TRANSPORT_FILTER_NOT_FOUND = (int)13009L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_TRANSPORT_FILTER_NOT_FOUND 13009
+     * }
+     */
+    public static int ERROR_IPSEC_TRANSPORT_FILTER_NOT_FOUND() {
+        return ERROR_IPSEC_TRANSPORT_FILTER_NOT_FOUND;
+    }
+    private static final int ERROR_IPSEC_MM_AUTH_EXISTS = (int)13010L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_MM_AUTH_EXISTS 13010
+     * }
+     */
+    public static int ERROR_IPSEC_MM_AUTH_EXISTS() {
+        return ERROR_IPSEC_MM_AUTH_EXISTS;
+    }
+    private static final int ERROR_IPSEC_MM_AUTH_NOT_FOUND = (int)13011L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_MM_AUTH_NOT_FOUND 13011
+     * }
+     */
+    public static int ERROR_IPSEC_MM_AUTH_NOT_FOUND() {
+        return ERROR_IPSEC_MM_AUTH_NOT_FOUND;
+    }
+    private static final int ERROR_IPSEC_MM_AUTH_IN_USE = (int)13012L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_MM_AUTH_IN_USE 13012
+     * }
+     */
+    public static int ERROR_IPSEC_MM_AUTH_IN_USE() {
+        return ERROR_IPSEC_MM_AUTH_IN_USE;
+    }
+    private static final int ERROR_IPSEC_DEFAULT_MM_POLICY_NOT_FOUND = (int)13013L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_DEFAULT_MM_POLICY_NOT_FOUND 13013
+     * }
+     */
+    public static int ERROR_IPSEC_DEFAULT_MM_POLICY_NOT_FOUND() {
+        return ERROR_IPSEC_DEFAULT_MM_POLICY_NOT_FOUND;
+    }
+    private static final int ERROR_IPSEC_DEFAULT_MM_AUTH_NOT_FOUND = (int)13014L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_DEFAULT_MM_AUTH_NOT_FOUND 13014
+     * }
+     */
+    public static int ERROR_IPSEC_DEFAULT_MM_AUTH_NOT_FOUND() {
+        return ERROR_IPSEC_DEFAULT_MM_AUTH_NOT_FOUND;
+    }
+    private static final int ERROR_IPSEC_DEFAULT_QM_POLICY_NOT_FOUND = (int)13015L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_DEFAULT_QM_POLICY_NOT_FOUND 13015
+     * }
+     */
+    public static int ERROR_IPSEC_DEFAULT_QM_POLICY_NOT_FOUND() {
+        return ERROR_IPSEC_DEFAULT_QM_POLICY_NOT_FOUND;
+    }
+    private static final int ERROR_IPSEC_TUNNEL_FILTER_EXISTS = (int)13016L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_TUNNEL_FILTER_EXISTS 13016
+     * }
+     */
+    public static int ERROR_IPSEC_TUNNEL_FILTER_EXISTS() {
+        return ERROR_IPSEC_TUNNEL_FILTER_EXISTS;
+    }
+    private static final int ERROR_IPSEC_TUNNEL_FILTER_NOT_FOUND = (int)13017L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_TUNNEL_FILTER_NOT_FOUND 13017
+     * }
+     */
+    public static int ERROR_IPSEC_TUNNEL_FILTER_NOT_FOUND() {
+        return ERROR_IPSEC_TUNNEL_FILTER_NOT_FOUND;
+    }
+    private static final int ERROR_IPSEC_MM_FILTER_PENDING_DELETION = (int)13018L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_MM_FILTER_PENDING_DELETION 13018
+     * }
+     */
+    public static int ERROR_IPSEC_MM_FILTER_PENDING_DELETION() {
+        return ERROR_IPSEC_MM_FILTER_PENDING_DELETION;
+    }
+    private static final int ERROR_IPSEC_TRANSPORT_FILTER_PENDING_DELETION = (int)13019L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_TRANSPORT_FILTER_PENDING_DELETION 13019
+     * }
+     */
+    public static int ERROR_IPSEC_TRANSPORT_FILTER_PENDING_DELETION() {
+        return ERROR_IPSEC_TRANSPORT_FILTER_PENDING_DELETION;
+    }
+    private static final int ERROR_IPSEC_TUNNEL_FILTER_PENDING_DELETION = (int)13020L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_TUNNEL_FILTER_PENDING_DELETION 13020
+     * }
+     */
+    public static int ERROR_IPSEC_TUNNEL_FILTER_PENDING_DELETION() {
+        return ERROR_IPSEC_TUNNEL_FILTER_PENDING_DELETION;
+    }
+    private static final int ERROR_IPSEC_MM_POLICY_PENDING_DELETION = (int)13021L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_MM_POLICY_PENDING_DELETION 13021
+     * }
+     */
+    public static int ERROR_IPSEC_MM_POLICY_PENDING_DELETION() {
+        return ERROR_IPSEC_MM_POLICY_PENDING_DELETION;
+    }
+    private static final int ERROR_IPSEC_MM_AUTH_PENDING_DELETION = (int)13022L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_MM_AUTH_PENDING_DELETION 13022
+     * }
+     */
+    public static int ERROR_IPSEC_MM_AUTH_PENDING_DELETION() {
+        return ERROR_IPSEC_MM_AUTH_PENDING_DELETION;
+    }
+    private static final int ERROR_IPSEC_QM_POLICY_PENDING_DELETION = (int)13023L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_QM_POLICY_PENDING_DELETION 13023
+     * }
+     */
+    public static int ERROR_IPSEC_QM_POLICY_PENDING_DELETION() {
+        return ERROR_IPSEC_QM_POLICY_PENDING_DELETION;
+    }
+    private static final int WARNING_IPSEC_MM_POLICY_PRUNED = (int)13024L;
+    /**
+     * {@snippet lang=c :
+     * #define WARNING_IPSEC_MM_POLICY_PRUNED 13024
+     * }
+     */
+    public static int WARNING_IPSEC_MM_POLICY_PRUNED() {
+        return WARNING_IPSEC_MM_POLICY_PRUNED;
+    }
+    private static final int WARNING_IPSEC_QM_POLICY_PRUNED = (int)13025L;
+    /**
+     * {@snippet lang=c :
+     * #define WARNING_IPSEC_QM_POLICY_PRUNED 13025
+     * }
+     */
+    public static int WARNING_IPSEC_QM_POLICY_PRUNED() {
+        return WARNING_IPSEC_QM_POLICY_PRUNED;
+    }
+    private static final int ERROR_IPSEC_IKE_NEG_STATUS_BEGIN = (int)13800L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_NEG_STATUS_BEGIN 13800
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_NEG_STATUS_BEGIN() {
+        return ERROR_IPSEC_IKE_NEG_STATUS_BEGIN;
+    }
+    private static final int ERROR_IPSEC_IKE_AUTH_FAIL = (int)13801L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_AUTH_FAIL 13801
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_AUTH_FAIL() {
+        return ERROR_IPSEC_IKE_AUTH_FAIL;
+    }
+    private static final int ERROR_IPSEC_IKE_ATTRIB_FAIL = (int)13802L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_ATTRIB_FAIL 13802
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_ATTRIB_FAIL() {
+        return ERROR_IPSEC_IKE_ATTRIB_FAIL;
+    }
+    private static final int ERROR_IPSEC_IKE_NEGOTIATION_PENDING = (int)13803L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_NEGOTIATION_PENDING 13803
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_NEGOTIATION_PENDING() {
+        return ERROR_IPSEC_IKE_NEGOTIATION_PENDING;
+    }
+    private static final int ERROR_IPSEC_IKE_GENERAL_PROCESSING_ERROR = (int)13804L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_GENERAL_PROCESSING_ERROR 13804
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_GENERAL_PROCESSING_ERROR() {
+        return ERROR_IPSEC_IKE_GENERAL_PROCESSING_ERROR;
+    }
+    private static final int ERROR_IPSEC_IKE_TIMED_OUT = (int)13805L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_TIMED_OUT 13805
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_TIMED_OUT() {
+        return ERROR_IPSEC_IKE_TIMED_OUT;
+    }
+    private static final int ERROR_IPSEC_IKE_NO_CERT = (int)13806L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_NO_CERT 13806
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_NO_CERT() {
+        return ERROR_IPSEC_IKE_NO_CERT;
+    }
+    private static final int ERROR_IPSEC_IKE_SA_DELETED = (int)13807L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_SA_DELETED 13807
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_SA_DELETED() {
+        return ERROR_IPSEC_IKE_SA_DELETED;
+    }
+    private static final int ERROR_IPSEC_IKE_SA_REAPED = (int)13808L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_SA_REAPED 13808
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_SA_REAPED() {
+        return ERROR_IPSEC_IKE_SA_REAPED;
+    }
+    private static final int ERROR_IPSEC_IKE_MM_ACQUIRE_DROP = (int)13809L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_MM_ACQUIRE_DROP 13809
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_MM_ACQUIRE_DROP() {
+        return ERROR_IPSEC_IKE_MM_ACQUIRE_DROP;
+    }
+    private static final int ERROR_IPSEC_IKE_QM_ACQUIRE_DROP = (int)13810L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_QM_ACQUIRE_DROP 13810
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_QM_ACQUIRE_DROP() {
+        return ERROR_IPSEC_IKE_QM_ACQUIRE_DROP;
+    }
+    private static final int ERROR_IPSEC_IKE_QUEUE_DROP_MM = (int)13811L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_QUEUE_DROP_MM 13811
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_QUEUE_DROP_MM() {
+        return ERROR_IPSEC_IKE_QUEUE_DROP_MM;
+    }
+    private static final int ERROR_IPSEC_IKE_QUEUE_DROP_NO_MM = (int)13812L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_QUEUE_DROP_NO_MM 13812
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_QUEUE_DROP_NO_MM() {
+        return ERROR_IPSEC_IKE_QUEUE_DROP_NO_MM;
+    }
+    private static final int ERROR_IPSEC_IKE_DROP_NO_RESPONSE = (int)13813L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_DROP_NO_RESPONSE 13813
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_DROP_NO_RESPONSE() {
+        return ERROR_IPSEC_IKE_DROP_NO_RESPONSE;
+    }
+    private static final int ERROR_IPSEC_IKE_MM_DELAY_DROP = (int)13814L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_MM_DELAY_DROP 13814
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_MM_DELAY_DROP() {
+        return ERROR_IPSEC_IKE_MM_DELAY_DROP;
+    }
+    private static final int ERROR_IPSEC_IKE_QM_DELAY_DROP = (int)13815L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_QM_DELAY_DROP 13815
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_QM_DELAY_DROP() {
+        return ERROR_IPSEC_IKE_QM_DELAY_DROP;
+    }
+    private static final int ERROR_IPSEC_IKE_ERROR = (int)13816L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_ERROR 13816
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_ERROR() {
+        return ERROR_IPSEC_IKE_ERROR;
+    }
+    private static final int ERROR_IPSEC_IKE_CRL_FAILED = (int)13817L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_CRL_FAILED 13817
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_CRL_FAILED() {
+        return ERROR_IPSEC_IKE_CRL_FAILED;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_KEY_USAGE = (int)13818L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_KEY_USAGE 13818
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_KEY_USAGE() {
+        return ERROR_IPSEC_IKE_INVALID_KEY_USAGE;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_CERT_TYPE = (int)13819L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_CERT_TYPE 13819
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_CERT_TYPE() {
+        return ERROR_IPSEC_IKE_INVALID_CERT_TYPE;
+    }
+    private static final int ERROR_IPSEC_IKE_NO_PRIVATE_KEY = (int)13820L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_NO_PRIVATE_KEY 13820
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_NO_PRIVATE_KEY() {
+        return ERROR_IPSEC_IKE_NO_PRIVATE_KEY;
+    }
+    private static final int ERROR_IPSEC_IKE_SIMULTANEOUS_REKEY = (int)13821L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_SIMULTANEOUS_REKEY 13821
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_SIMULTANEOUS_REKEY() {
+        return ERROR_IPSEC_IKE_SIMULTANEOUS_REKEY;
+    }
+    private static final int ERROR_IPSEC_IKE_DH_FAIL = (int)13822L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_DH_FAIL 13822
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_DH_FAIL() {
+        return ERROR_IPSEC_IKE_DH_FAIL;
+    }
+    private static final int ERROR_IPSEC_IKE_CRITICAL_PAYLOAD_NOT_RECOGNIZED = (int)13823L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_CRITICAL_PAYLOAD_NOT_RECOGNIZED 13823
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_CRITICAL_PAYLOAD_NOT_RECOGNIZED() {
+        return ERROR_IPSEC_IKE_CRITICAL_PAYLOAD_NOT_RECOGNIZED;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_HEADER = (int)13824L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_HEADER 13824
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_HEADER() {
+        return ERROR_IPSEC_IKE_INVALID_HEADER;
+    }
+    private static final int ERROR_IPSEC_IKE_NO_POLICY = (int)13825L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_NO_POLICY 13825
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_NO_POLICY() {
+        return ERROR_IPSEC_IKE_NO_POLICY;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_SIGNATURE = (int)13826L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_SIGNATURE 13826
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_SIGNATURE() {
+        return ERROR_IPSEC_IKE_INVALID_SIGNATURE;
+    }
+    private static final int ERROR_IPSEC_IKE_KERBEROS_ERROR = (int)13827L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_KERBEROS_ERROR 13827
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_KERBEROS_ERROR() {
+        return ERROR_IPSEC_IKE_KERBEROS_ERROR;
+    }
+    private static final int ERROR_IPSEC_IKE_NO_PUBLIC_KEY = (int)13828L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_NO_PUBLIC_KEY 13828
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_NO_PUBLIC_KEY() {
+        return ERROR_IPSEC_IKE_NO_PUBLIC_KEY;
+    }
+    private static final int ERROR_IPSEC_IKE_PROCESS_ERR = (int)13829L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_PROCESS_ERR 13829
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_PROCESS_ERR() {
+        return ERROR_IPSEC_IKE_PROCESS_ERR;
+    }
+    private static final int ERROR_IPSEC_IKE_PROCESS_ERR_SA = (int)13830L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_PROCESS_ERR_SA 13830
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_PROCESS_ERR_SA() {
+        return ERROR_IPSEC_IKE_PROCESS_ERR_SA;
+    }
+    private static final int ERROR_IPSEC_IKE_PROCESS_ERR_PROP = (int)13831L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_PROCESS_ERR_PROP 13831
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_PROCESS_ERR_PROP() {
+        return ERROR_IPSEC_IKE_PROCESS_ERR_PROP;
+    }
+    private static final int ERROR_IPSEC_IKE_PROCESS_ERR_TRANS = (int)13832L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_PROCESS_ERR_TRANS 13832
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_PROCESS_ERR_TRANS() {
+        return ERROR_IPSEC_IKE_PROCESS_ERR_TRANS;
+    }
+    private static final int ERROR_IPSEC_IKE_PROCESS_ERR_KE = (int)13833L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_PROCESS_ERR_KE 13833
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_PROCESS_ERR_KE() {
+        return ERROR_IPSEC_IKE_PROCESS_ERR_KE;
+    }
+    private static final int ERROR_IPSEC_IKE_PROCESS_ERR_ID = (int)13834L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_PROCESS_ERR_ID 13834
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_PROCESS_ERR_ID() {
+        return ERROR_IPSEC_IKE_PROCESS_ERR_ID;
+    }
+    private static final int ERROR_IPSEC_IKE_PROCESS_ERR_CERT = (int)13835L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_PROCESS_ERR_CERT 13835
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_PROCESS_ERR_CERT() {
+        return ERROR_IPSEC_IKE_PROCESS_ERR_CERT;
+    }
+    private static final int ERROR_IPSEC_IKE_PROCESS_ERR_CERT_REQ = (int)13836L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_PROCESS_ERR_CERT_REQ 13836
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_PROCESS_ERR_CERT_REQ() {
+        return ERROR_IPSEC_IKE_PROCESS_ERR_CERT_REQ;
+    }
+    private static final int ERROR_IPSEC_IKE_PROCESS_ERR_HASH = (int)13837L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_PROCESS_ERR_HASH 13837
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_PROCESS_ERR_HASH() {
+        return ERROR_IPSEC_IKE_PROCESS_ERR_HASH;
+    }
+    private static final int ERROR_IPSEC_IKE_PROCESS_ERR_SIG = (int)13838L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_PROCESS_ERR_SIG 13838
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_PROCESS_ERR_SIG() {
+        return ERROR_IPSEC_IKE_PROCESS_ERR_SIG;
+    }
+    private static final int ERROR_IPSEC_IKE_PROCESS_ERR_NONCE = (int)13839L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_PROCESS_ERR_NONCE 13839
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_PROCESS_ERR_NONCE() {
+        return ERROR_IPSEC_IKE_PROCESS_ERR_NONCE;
+    }
+    private static final int ERROR_IPSEC_IKE_PROCESS_ERR_NOTIFY = (int)13840L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_PROCESS_ERR_NOTIFY 13840
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_PROCESS_ERR_NOTIFY() {
+        return ERROR_IPSEC_IKE_PROCESS_ERR_NOTIFY;
+    }
+    private static final int ERROR_IPSEC_IKE_PROCESS_ERR_DELETE = (int)13841L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_PROCESS_ERR_DELETE 13841
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_PROCESS_ERR_DELETE() {
+        return ERROR_IPSEC_IKE_PROCESS_ERR_DELETE;
+    }
+    private static final int ERROR_IPSEC_IKE_PROCESS_ERR_VENDOR = (int)13842L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_PROCESS_ERR_VENDOR 13842
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_PROCESS_ERR_VENDOR() {
+        return ERROR_IPSEC_IKE_PROCESS_ERR_VENDOR;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_PAYLOAD = (int)13843L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_PAYLOAD 13843
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_PAYLOAD() {
+        return ERROR_IPSEC_IKE_INVALID_PAYLOAD;
+    }
+    private static final int ERROR_IPSEC_IKE_LOAD_SOFT_SA = (int)13844L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_LOAD_SOFT_SA 13844
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_LOAD_SOFT_SA() {
+        return ERROR_IPSEC_IKE_LOAD_SOFT_SA;
+    }
+    private static final int ERROR_IPSEC_IKE_SOFT_SA_TORN_DOWN = (int)13845L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_SOFT_SA_TORN_DOWN 13845
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_SOFT_SA_TORN_DOWN() {
+        return ERROR_IPSEC_IKE_SOFT_SA_TORN_DOWN;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_COOKIE = (int)13846L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_COOKIE 13846
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_COOKIE() {
+        return ERROR_IPSEC_IKE_INVALID_COOKIE;
+    }
+    private static final int ERROR_IPSEC_IKE_NO_PEER_CERT = (int)13847L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_NO_PEER_CERT 13847
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_NO_PEER_CERT() {
+        return ERROR_IPSEC_IKE_NO_PEER_CERT;
+    }
+    private static final int ERROR_IPSEC_IKE_PEER_CRL_FAILED = (int)13848L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_PEER_CRL_FAILED 13848
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_PEER_CRL_FAILED() {
+        return ERROR_IPSEC_IKE_PEER_CRL_FAILED;
+    }
+    private static final int ERROR_IPSEC_IKE_POLICY_CHANGE = (int)13849L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_POLICY_CHANGE 13849
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_POLICY_CHANGE() {
+        return ERROR_IPSEC_IKE_POLICY_CHANGE;
+    }
+    private static final int ERROR_IPSEC_IKE_NO_MM_POLICY = (int)13850L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_NO_MM_POLICY 13850
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_NO_MM_POLICY() {
+        return ERROR_IPSEC_IKE_NO_MM_POLICY;
+    }
+    private static final int ERROR_IPSEC_IKE_NOTCBPRIV = (int)13851L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_NOTCBPRIV 13851
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_NOTCBPRIV() {
+        return ERROR_IPSEC_IKE_NOTCBPRIV;
+    }
+    private static final int ERROR_IPSEC_IKE_SECLOADFAIL = (int)13852L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_SECLOADFAIL 13852
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_SECLOADFAIL() {
+        return ERROR_IPSEC_IKE_SECLOADFAIL;
+    }
+    private static final int ERROR_IPSEC_IKE_FAILSSPINIT = (int)13853L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_FAILSSPINIT 13853
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_FAILSSPINIT() {
+        return ERROR_IPSEC_IKE_FAILSSPINIT;
+    }
+    private static final int ERROR_IPSEC_IKE_FAILQUERYSSP = (int)13854L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_FAILQUERYSSP 13854
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_FAILQUERYSSP() {
+        return ERROR_IPSEC_IKE_FAILQUERYSSP;
+    }
+    private static final int ERROR_IPSEC_IKE_SRVACQFAIL = (int)13855L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_SRVACQFAIL 13855
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_SRVACQFAIL() {
+        return ERROR_IPSEC_IKE_SRVACQFAIL;
+    }
+    private static final int ERROR_IPSEC_IKE_SRVQUERYCRED = (int)13856L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_SRVQUERYCRED 13856
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_SRVQUERYCRED() {
+        return ERROR_IPSEC_IKE_SRVQUERYCRED;
+    }
+    private static final int ERROR_IPSEC_IKE_GETSPIFAIL = (int)13857L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_GETSPIFAIL 13857
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_GETSPIFAIL() {
+        return ERROR_IPSEC_IKE_GETSPIFAIL;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_FILTER = (int)13858L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_FILTER 13858
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_FILTER() {
+        return ERROR_IPSEC_IKE_INVALID_FILTER;
+    }
+    private static final int ERROR_IPSEC_IKE_OUT_OF_MEMORY = (int)13859L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_OUT_OF_MEMORY 13859
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_OUT_OF_MEMORY() {
+        return ERROR_IPSEC_IKE_OUT_OF_MEMORY;
+    }
+    private static final int ERROR_IPSEC_IKE_ADD_UPDATE_KEY_FAILED = (int)13860L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_ADD_UPDATE_KEY_FAILED 13860
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_ADD_UPDATE_KEY_FAILED() {
+        return ERROR_IPSEC_IKE_ADD_UPDATE_KEY_FAILED;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_POLICY = (int)13861L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_POLICY 13861
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_POLICY() {
+        return ERROR_IPSEC_IKE_INVALID_POLICY;
+    }
+    private static final int ERROR_IPSEC_IKE_UNKNOWN_DOI = (int)13862L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_UNKNOWN_DOI 13862
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_UNKNOWN_DOI() {
+        return ERROR_IPSEC_IKE_UNKNOWN_DOI;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_SITUATION = (int)13863L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_SITUATION 13863
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_SITUATION() {
+        return ERROR_IPSEC_IKE_INVALID_SITUATION;
+    }
+    private static final int ERROR_IPSEC_IKE_DH_FAILURE = (int)13864L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_DH_FAILURE 13864
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_DH_FAILURE() {
+        return ERROR_IPSEC_IKE_DH_FAILURE;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_GROUP = (int)13865L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_GROUP 13865
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_GROUP() {
+        return ERROR_IPSEC_IKE_INVALID_GROUP;
+    }
+    private static final int ERROR_IPSEC_IKE_ENCRYPT = (int)13866L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_ENCRYPT 13866
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_ENCRYPT() {
+        return ERROR_IPSEC_IKE_ENCRYPT;
+    }
+    private static final int ERROR_IPSEC_IKE_DECRYPT = (int)13867L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_DECRYPT 13867
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_DECRYPT() {
+        return ERROR_IPSEC_IKE_DECRYPT;
+    }
+    private static final int ERROR_IPSEC_IKE_POLICY_MATCH = (int)13868L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_POLICY_MATCH 13868
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_POLICY_MATCH() {
+        return ERROR_IPSEC_IKE_POLICY_MATCH;
+    }
+    private static final int ERROR_IPSEC_IKE_UNSUPPORTED_ID = (int)13869L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_UNSUPPORTED_ID 13869
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_UNSUPPORTED_ID() {
+        return ERROR_IPSEC_IKE_UNSUPPORTED_ID;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_HASH = (int)13870L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_HASH 13870
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_HASH() {
+        return ERROR_IPSEC_IKE_INVALID_HASH;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_HASH_ALG = (int)13871L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_HASH_ALG 13871
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_HASH_ALG() {
+        return ERROR_IPSEC_IKE_INVALID_HASH_ALG;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_HASH_SIZE = (int)13872L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_HASH_SIZE 13872
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_HASH_SIZE() {
+        return ERROR_IPSEC_IKE_INVALID_HASH_SIZE;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_ENCRYPT_ALG = (int)13873L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_ENCRYPT_ALG 13873
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_ENCRYPT_ALG() {
+        return ERROR_IPSEC_IKE_INVALID_ENCRYPT_ALG;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_AUTH_ALG = (int)13874L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_AUTH_ALG 13874
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_AUTH_ALG() {
+        return ERROR_IPSEC_IKE_INVALID_AUTH_ALG;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_SIG = (int)13875L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_SIG 13875
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_SIG() {
+        return ERROR_IPSEC_IKE_INVALID_SIG;
+    }
+    private static final int ERROR_IPSEC_IKE_LOAD_FAILED = (int)13876L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_LOAD_FAILED 13876
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_LOAD_FAILED() {
+        return ERROR_IPSEC_IKE_LOAD_FAILED;
+    }
+    private static final int ERROR_IPSEC_IKE_RPC_DELETE = (int)13877L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_RPC_DELETE 13877
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_RPC_DELETE() {
+        return ERROR_IPSEC_IKE_RPC_DELETE;
+    }
+    private static final int ERROR_IPSEC_IKE_BENIGN_REINIT = (int)13878L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_BENIGN_REINIT 13878
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_BENIGN_REINIT() {
+        return ERROR_IPSEC_IKE_BENIGN_REINIT;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_RESPONDER_LIFETIME_NOTIFY = (int)13879L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_RESPONDER_LIFETIME_NOTIFY 13879
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_RESPONDER_LIFETIME_NOTIFY() {
+        return ERROR_IPSEC_IKE_INVALID_RESPONDER_LIFETIME_NOTIFY;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_MAJOR_VERSION = (int)13880L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_MAJOR_VERSION 13880
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_MAJOR_VERSION() {
+        return ERROR_IPSEC_IKE_INVALID_MAJOR_VERSION;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_CERT_KEYLEN = (int)13881L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_CERT_KEYLEN 13881
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_CERT_KEYLEN() {
+        return ERROR_IPSEC_IKE_INVALID_CERT_KEYLEN;
+    }
+    private static final int ERROR_IPSEC_IKE_MM_LIMIT = (int)13882L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_MM_LIMIT 13882
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_MM_LIMIT() {
+        return ERROR_IPSEC_IKE_MM_LIMIT;
+    }
+    private static final int ERROR_IPSEC_IKE_NEGOTIATION_DISABLED = (int)13883L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_NEGOTIATION_DISABLED 13883
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_NEGOTIATION_DISABLED() {
+        return ERROR_IPSEC_IKE_NEGOTIATION_DISABLED;
+    }
+    private static final int ERROR_IPSEC_IKE_QM_LIMIT = (int)13884L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_QM_LIMIT 13884
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_QM_LIMIT() {
+        return ERROR_IPSEC_IKE_QM_LIMIT;
+    }
+    private static final int ERROR_IPSEC_IKE_MM_EXPIRED = (int)13885L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_MM_EXPIRED 13885
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_MM_EXPIRED() {
+        return ERROR_IPSEC_IKE_MM_EXPIRED;
+    }
+    private static final int ERROR_IPSEC_IKE_PEER_MM_ASSUMED_INVALID = (int)13886L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_PEER_MM_ASSUMED_INVALID 13886
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_PEER_MM_ASSUMED_INVALID() {
+        return ERROR_IPSEC_IKE_PEER_MM_ASSUMED_INVALID;
+    }
+    private static final int ERROR_IPSEC_IKE_CERT_CHAIN_POLICY_MISMATCH = (int)13887L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_CERT_CHAIN_POLICY_MISMATCH 13887
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_CERT_CHAIN_POLICY_MISMATCH() {
+        return ERROR_IPSEC_IKE_CERT_CHAIN_POLICY_MISMATCH;
+    }
+    private static final int ERROR_IPSEC_IKE_UNEXPECTED_MESSAGE_ID = (int)13888L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_UNEXPECTED_MESSAGE_ID 13888
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_UNEXPECTED_MESSAGE_ID() {
+        return ERROR_IPSEC_IKE_UNEXPECTED_MESSAGE_ID;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_AUTH_PAYLOAD = (int)13889L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_AUTH_PAYLOAD 13889
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_AUTH_PAYLOAD() {
+        return ERROR_IPSEC_IKE_INVALID_AUTH_PAYLOAD;
+    }
+    private static final int ERROR_IPSEC_IKE_DOS_COOKIE_SENT = (int)13890L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_DOS_COOKIE_SENT 13890
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_DOS_COOKIE_SENT() {
+        return ERROR_IPSEC_IKE_DOS_COOKIE_SENT;
+    }
+    private static final int ERROR_IPSEC_IKE_SHUTTING_DOWN = (int)13891L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_SHUTTING_DOWN 13891
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_SHUTTING_DOWN() {
+        return ERROR_IPSEC_IKE_SHUTTING_DOWN;
+    }
+    private static final int ERROR_IPSEC_IKE_CGA_AUTH_FAILED = (int)13892L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_CGA_AUTH_FAILED 13892
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_CGA_AUTH_FAILED() {
+        return ERROR_IPSEC_IKE_CGA_AUTH_FAILED;
+    }
+    private static final int ERROR_IPSEC_IKE_PROCESS_ERR_NATOA = (int)13893L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_PROCESS_ERR_NATOA 13893
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_PROCESS_ERR_NATOA() {
+        return ERROR_IPSEC_IKE_PROCESS_ERR_NATOA;
+    }
+    private static final int ERROR_IPSEC_IKE_INVALID_MM_FOR_QM = (int)13894L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INVALID_MM_FOR_QM 13894
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INVALID_MM_FOR_QM() {
+        return ERROR_IPSEC_IKE_INVALID_MM_FOR_QM;
+    }
+    private static final int ERROR_IPSEC_IKE_QM_EXPIRED = (int)13895L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_QM_EXPIRED 13895
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_QM_EXPIRED() {
+        return ERROR_IPSEC_IKE_QM_EXPIRED;
+    }
+    private static final int ERROR_IPSEC_IKE_TOO_MANY_FILTERS = (int)13896L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_TOO_MANY_FILTERS 13896
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_TOO_MANY_FILTERS() {
+        return ERROR_IPSEC_IKE_TOO_MANY_FILTERS;
+    }
+    private static final int ERROR_IPSEC_IKE_NEG_STATUS_END = (int)13897L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_NEG_STATUS_END 13897
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_NEG_STATUS_END() {
+        return ERROR_IPSEC_IKE_NEG_STATUS_END;
+    }
+    private static final int ERROR_IPSEC_IKE_KILL_DUMMY_NAP_TUNNEL = (int)13898L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_KILL_DUMMY_NAP_TUNNEL 13898
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_KILL_DUMMY_NAP_TUNNEL() {
+        return ERROR_IPSEC_IKE_KILL_DUMMY_NAP_TUNNEL;
+    }
+    private static final int ERROR_IPSEC_IKE_INNER_IP_ASSIGNMENT_FAILURE = (int)13899L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_INNER_IP_ASSIGNMENT_FAILURE 13899
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_INNER_IP_ASSIGNMENT_FAILURE() {
+        return ERROR_IPSEC_IKE_INNER_IP_ASSIGNMENT_FAILURE;
+    }
+    private static final int ERROR_IPSEC_IKE_REQUIRE_CP_PAYLOAD_MISSING = (int)13900L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_REQUIRE_CP_PAYLOAD_MISSING 13900
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_REQUIRE_CP_PAYLOAD_MISSING() {
+        return ERROR_IPSEC_IKE_REQUIRE_CP_PAYLOAD_MISSING;
+    }
+    private static final int ERROR_IPSEC_KEY_MODULE_IMPERSONATION_NEGOTIATION_PENDING = (int)13901L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_KEY_MODULE_IMPERSONATION_NEGOTIATION_PENDING 13901
+     * }
+     */
+    public static int ERROR_IPSEC_KEY_MODULE_IMPERSONATION_NEGOTIATION_PENDING() {
+        return ERROR_IPSEC_KEY_MODULE_IMPERSONATION_NEGOTIATION_PENDING;
+    }
+    private static final int ERROR_IPSEC_IKE_COEXISTENCE_SUPPRESS = (int)13902L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_COEXISTENCE_SUPPRESS 13902
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_COEXISTENCE_SUPPRESS() {
+        return ERROR_IPSEC_IKE_COEXISTENCE_SUPPRESS;
+    }
+    private static final int ERROR_IPSEC_IKE_RATELIMIT_DROP = (int)13903L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_RATELIMIT_DROP 13903
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_RATELIMIT_DROP() {
+        return ERROR_IPSEC_IKE_RATELIMIT_DROP;
+    }
+    private static final int ERROR_IPSEC_IKE_PEER_DOESNT_SUPPORT_MOBIKE = (int)13904L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_PEER_DOESNT_SUPPORT_MOBIKE 13904
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_PEER_DOESNT_SUPPORT_MOBIKE() {
+        return ERROR_IPSEC_IKE_PEER_DOESNT_SUPPORT_MOBIKE;
+    }
+    private static final int ERROR_IPSEC_IKE_AUTHORIZATION_FAILURE = (int)13905L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_AUTHORIZATION_FAILURE 13905
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_AUTHORIZATION_FAILURE() {
+        return ERROR_IPSEC_IKE_AUTHORIZATION_FAILURE;
+    }
+    private static final int ERROR_IPSEC_IKE_STRONG_CRED_AUTHORIZATION_FAILURE = (int)13906L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_STRONG_CRED_AUTHORIZATION_FAILURE 13906
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_STRONG_CRED_AUTHORIZATION_FAILURE() {
+        return ERROR_IPSEC_IKE_STRONG_CRED_AUTHORIZATION_FAILURE;
+    }
+    private static final int ERROR_IPSEC_IKE_AUTHORIZATION_FAILURE_WITH_OPTIONAL_RETRY = (int)13907L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_AUTHORIZATION_FAILURE_WITH_OPTIONAL_RETRY 13907
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_AUTHORIZATION_FAILURE_WITH_OPTIONAL_RETRY() {
+        return ERROR_IPSEC_IKE_AUTHORIZATION_FAILURE_WITH_OPTIONAL_RETRY;
+    }
+    private static final int ERROR_IPSEC_IKE_STRONG_CRED_AUTHORIZATION_AND_CERTMAP_FAILURE = (int)13908L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_STRONG_CRED_AUTHORIZATION_AND_CERTMAP_FAILURE 13908
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_STRONG_CRED_AUTHORIZATION_AND_CERTMAP_FAILURE() {
+        return ERROR_IPSEC_IKE_STRONG_CRED_AUTHORIZATION_AND_CERTMAP_FAILURE;
+    }
+    private static final int ERROR_IPSEC_IKE_NEG_STATUS_EXTENDED_END = (int)13909L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_IKE_NEG_STATUS_EXTENDED_END 13909
+     * }
+     */
+    public static int ERROR_IPSEC_IKE_NEG_STATUS_EXTENDED_END() {
+        return ERROR_IPSEC_IKE_NEG_STATUS_EXTENDED_END;
+    }
+    private static final int ERROR_IPSEC_BAD_SPI = (int)13910L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_BAD_SPI 13910
+     * }
+     */
+    public static int ERROR_IPSEC_BAD_SPI() {
+        return ERROR_IPSEC_BAD_SPI;
+    }
+    private static final int ERROR_IPSEC_SA_LIFETIME_EXPIRED = (int)13911L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_SA_LIFETIME_EXPIRED 13911
+     * }
+     */
+    public static int ERROR_IPSEC_SA_LIFETIME_EXPIRED() {
+        return ERROR_IPSEC_SA_LIFETIME_EXPIRED;
+    }
+    private static final int ERROR_IPSEC_WRONG_SA = (int)13912L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_WRONG_SA 13912
+     * }
+     */
+    public static int ERROR_IPSEC_WRONG_SA() {
+        return ERROR_IPSEC_WRONG_SA;
+    }
+    private static final int ERROR_IPSEC_REPLAY_CHECK_FAILED = (int)13913L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_REPLAY_CHECK_FAILED 13913
+     * }
+     */
+    public static int ERROR_IPSEC_REPLAY_CHECK_FAILED() {
+        return ERROR_IPSEC_REPLAY_CHECK_FAILED;
+    }
+    private static final int ERROR_IPSEC_INVALID_PACKET = (int)13914L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_IPSEC_INVALID_PACKET 13914
+     * }
+     */
+    public static int ERROR_IPSEC_INVALID_PACKET() {
+        return ERROR_IPSEC_INVALID_PACKET;
     }
 }
-
 

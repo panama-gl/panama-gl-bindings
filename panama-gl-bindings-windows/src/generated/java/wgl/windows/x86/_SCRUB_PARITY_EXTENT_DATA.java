@@ -2,99 +2,347 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SCRUB_PARITY_EXTENT_DATA {
+ *     WORD Size;
+ *     WORD Flags;
+ *     WORD NumberOfParityExtents;
+ *     WORD MaximumNumberOfParityExtents;
+ *     SCRUB_PARITY_EXTENT ParityExtents[1];
+ * }
+ * }
+ */
 public class _SCRUB_PARITY_EXTENT_DATA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("Size"),
-        Constants$root.C_SHORT$LAYOUT.withName("Flags"),
-        Constants$root.C_SHORT$LAYOUT.withName("NumberOfParityExtents"),
-        Constants$root.C_SHORT$LAYOUT.withName("MaximumNumberOfParityExtents"),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Offset"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Length")
-        ).withName("_SCRUB_PARITY_EXTENT")).withName("ParityExtents")
-    ).withName("_SCRUB_PARITY_EXTENT_DATA");
-    public static MemoryLayout $LAYOUT() {
-        return _SCRUB_PARITY_EXTENT_DATA.$struct$LAYOUT;
+    _SCRUB_PARITY_EXTENT_DATA() {
+        // Should not be called directly
     }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _SCRUB_PARITY_EXTENT_DATA.Size$VH;
-    }
-    public static short Size$get(MemorySegment seg) {
-        return (short)_SCRUB_PARITY_EXTENT_DATA.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, short x) {
-        _SCRUB_PARITY_EXTENT_DATA.Size$VH.set(seg, x);
-    }
-    public static short Size$get(MemorySegment seg, long index) {
-        return (short)_SCRUB_PARITY_EXTENT_DATA.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, short x) {
-        _SCRUB_PARITY_EXTENT_DATA.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _SCRUB_PARITY_EXTENT_DATA.Flags$VH;
-    }
-    public static short Flags$get(MemorySegment seg) {
-        return (short)_SCRUB_PARITY_EXTENT_DATA.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, short x) {
-        _SCRUB_PARITY_EXTENT_DATA.Flags$VH.set(seg, x);
-    }
-    public static short Flags$get(MemorySegment seg, long index) {
-        return (short)_SCRUB_PARITY_EXTENT_DATA.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, short x) {
-        _SCRUB_PARITY_EXTENT_DATA.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberOfParityExtents$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfParityExtents"));
-    public static VarHandle NumberOfParityExtents$VH() {
-        return _SCRUB_PARITY_EXTENT_DATA.NumberOfParityExtents$VH;
-    }
-    public static short NumberOfParityExtents$get(MemorySegment seg) {
-        return (short)_SCRUB_PARITY_EXTENT_DATA.NumberOfParityExtents$VH.get(seg);
-    }
-    public static void NumberOfParityExtents$set( MemorySegment seg, short x) {
-        _SCRUB_PARITY_EXTENT_DATA.NumberOfParityExtents$VH.set(seg, x);
-    }
-    public static short NumberOfParityExtents$get(MemorySegment seg, long index) {
-        return (short)_SCRUB_PARITY_EXTENT_DATA.NumberOfParityExtents$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfParityExtents$set(MemorySegment seg, long index, short x) {
-        _SCRUB_PARITY_EXTENT_DATA.NumberOfParityExtents$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaximumNumberOfParityExtents$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaximumNumberOfParityExtents"));
-    public static VarHandle MaximumNumberOfParityExtents$VH() {
-        return _SCRUB_PARITY_EXTENT_DATA.MaximumNumberOfParityExtents$VH;
-    }
-    public static short MaximumNumberOfParityExtents$get(MemorySegment seg) {
-        return (short)_SCRUB_PARITY_EXTENT_DATA.MaximumNumberOfParityExtents$VH.get(seg);
-    }
-    public static void MaximumNumberOfParityExtents$set( MemorySegment seg, short x) {
-        _SCRUB_PARITY_EXTENT_DATA.MaximumNumberOfParityExtents$VH.set(seg, x);
-    }
-    public static short MaximumNumberOfParityExtents$get(MemorySegment seg, long index) {
-        return (short)_SCRUB_PARITY_EXTENT_DATA.MaximumNumberOfParityExtents$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaximumNumberOfParityExtents$set(MemorySegment seg, long index, short x) {
-        _SCRUB_PARITY_EXTENT_DATA.MaximumNumberOfParityExtents$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment ParityExtents$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("Size"),
+        wgl_h.C_SHORT.withName("Flags"),
+        wgl_h.C_SHORT.withName("NumberOfParityExtents"),
+        wgl_h.C_SHORT.withName("MaximumNumberOfParityExtents"),
+        MemoryLayout.sequenceLayout(1, _SCRUB_PARITY_EXTENT.layout()).withName("ParityExtents")
+    ).withName("_SCRUB_PARITY_EXTENT_DATA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort Size$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Size
+     * }
+     */
+    public static final OfShort Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Size
+     * }
+     */
+    public static short Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, short fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Flags$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static final OfShort Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static short Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, short fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfShort NumberOfParityExtents$LAYOUT = (OfShort)$LAYOUT.select(groupElement("NumberOfParityExtents"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD NumberOfParityExtents
+     * }
+     */
+    public static final OfShort NumberOfParityExtents$layout() {
+        return NumberOfParityExtents$LAYOUT;
+    }
+
+    private static final long NumberOfParityExtents$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD NumberOfParityExtents
+     * }
+     */
+    public static final long NumberOfParityExtents$offset() {
+        return NumberOfParityExtents$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD NumberOfParityExtents
+     * }
+     */
+    public static short NumberOfParityExtents(MemorySegment struct) {
+        return struct.get(NumberOfParityExtents$LAYOUT, NumberOfParityExtents$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD NumberOfParityExtents
+     * }
+     */
+    public static void NumberOfParityExtents(MemorySegment struct, short fieldValue) {
+        struct.set(NumberOfParityExtents$LAYOUT, NumberOfParityExtents$OFFSET, fieldValue);
+    }
+
+    private static final OfShort MaximumNumberOfParityExtents$LAYOUT = (OfShort)$LAYOUT.select(groupElement("MaximumNumberOfParityExtents"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD MaximumNumberOfParityExtents
+     * }
+     */
+    public static final OfShort MaximumNumberOfParityExtents$layout() {
+        return MaximumNumberOfParityExtents$LAYOUT;
+    }
+
+    private static final long MaximumNumberOfParityExtents$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD MaximumNumberOfParityExtents
+     * }
+     */
+    public static final long MaximumNumberOfParityExtents$offset() {
+        return MaximumNumberOfParityExtents$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD MaximumNumberOfParityExtents
+     * }
+     */
+    public static short MaximumNumberOfParityExtents(MemorySegment struct) {
+        return struct.get(MaximumNumberOfParityExtents$LAYOUT, MaximumNumberOfParityExtents$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD MaximumNumberOfParityExtents
+     * }
+     */
+    public static void MaximumNumberOfParityExtents(MemorySegment struct, short fieldValue) {
+        struct.set(MaximumNumberOfParityExtents$LAYOUT, MaximumNumberOfParityExtents$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout ParityExtents$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("ParityExtents"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SCRUB_PARITY_EXTENT ParityExtents[1]
+     * }
+     */
+    public static final SequenceLayout ParityExtents$layout() {
+        return ParityExtents$LAYOUT;
+    }
+
+    private static final long ParityExtents$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SCRUB_PARITY_EXTENT ParityExtents[1]
+     * }
+     */
+    public static final long ParityExtents$offset() {
+        return ParityExtents$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SCRUB_PARITY_EXTENT ParityExtents[1]
+     * }
+     */
+    public static MemorySegment ParityExtents(MemorySegment struct) {
+        return struct.asSlice(ParityExtents$OFFSET, ParityExtents$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SCRUB_PARITY_EXTENT ParityExtents[1]
+     * }
+     */
+    public static void ParityExtents(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ParityExtents$OFFSET, ParityExtents$LAYOUT.byteSize());
+    }
+
+    private static long[] ParityExtents$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * SCRUB_PARITY_EXTENT ParityExtents[1]
+     * }
+     */
+    public static long[] ParityExtents$dimensions() {
+        return ParityExtents$DIMS;
+    }
+    private static final MethodHandle ParityExtents$ELEM_HANDLE = ParityExtents$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * SCRUB_PARITY_EXTENT ParityExtents[1]
+     * }
+     */
+    public static MemorySegment ParityExtents(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)ParityExtents$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * SCRUB_PARITY_EXTENT ParityExtents[1]
+     * }
+     */
+    public static void ParityExtents(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, ParityExtents(struct, index0), 0L, _SCRUB_PARITY_EXTENT.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

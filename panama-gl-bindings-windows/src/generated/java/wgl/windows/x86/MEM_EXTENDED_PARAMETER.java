@@ -2,117 +2,321 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct MEM_EXTENDED_PARAMETER {
+ *     struct {
+ *         DWORD64 Type : 8;
+ *         DWORD64 Reserved : 64 - 8;
+ *     };
+ *     union {
+ *         DWORD64 ULong64;
+ *         PVOID Pointer;
+ *         SIZE_T Size;
+ *         HANDLE Handle;
+ *         DWORD ULong;
+ *     };
+ * }
+ * }
+ */
 public class MEM_EXTENDED_PARAMETER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                MemoryLayout.paddingLayout(8).withName("Type"),
-                MemoryLayout.paddingLayout(56).withName("Reserved")
-            )
-        ).withName("$anon$0"),
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG_LONG$LAYOUT.withName("ULong64"),
-            Constants$root.C_POINTER$LAYOUT.withName("Pointer"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Size"),
-            Constants$root.C_POINTER$LAYOUT.withName("Handle"),
-            Constants$root.C_LONG$LAYOUT.withName("ULong")
-        ).withName("$anon$1")
-    ).withName("MEM_EXTENDED_PARAMETER");
-    public static MemoryLayout $LAYOUT() {
-        return MEM_EXTENDED_PARAMETER.$struct$LAYOUT;
+    MEM_EXTENDED_PARAMETER() {
+        // Should not be called directly
     }
-    static final VarHandle ULong64$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$1"), MemoryLayout.PathElement.groupElement("ULong64"));
-    public static VarHandle ULong64$VH() {
-        return MEM_EXTENDED_PARAMETER.ULong64$VH;
-    }
-    public static long ULong64$get(MemorySegment seg) {
-        return (long)MEM_EXTENDED_PARAMETER.ULong64$VH.get(seg);
-    }
-    public static void ULong64$set( MemorySegment seg, long x) {
-        MEM_EXTENDED_PARAMETER.ULong64$VH.set(seg, x);
-    }
-    public static long ULong64$get(MemorySegment seg, long index) {
-        return (long)MEM_EXTENDED_PARAMETER.ULong64$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ULong64$set(MemorySegment seg, long index, long x) {
-        MEM_EXTENDED_PARAMETER.ULong64$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Pointer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$1"), MemoryLayout.PathElement.groupElement("Pointer"));
-    public static VarHandle Pointer$VH() {
-        return MEM_EXTENDED_PARAMETER.Pointer$VH;
-    }
-    public static MemoryAddress Pointer$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)MEM_EXTENDED_PARAMETER.Pointer$VH.get(seg);
-    }
-    public static void Pointer$set( MemorySegment seg, MemoryAddress x) {
-        MEM_EXTENDED_PARAMETER.Pointer$VH.set(seg, x);
-    }
-    public static MemoryAddress Pointer$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)MEM_EXTENDED_PARAMETER.Pointer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Pointer$set(MemorySegment seg, long index, MemoryAddress x) {
-        MEM_EXTENDED_PARAMETER.Pointer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$1"), MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return MEM_EXTENDED_PARAMETER.Size$VH;
-    }
-    public static long Size$get(MemorySegment seg) {
-        return (long)MEM_EXTENDED_PARAMETER.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, long x) {
-        MEM_EXTENDED_PARAMETER.Size$VH.set(seg, x);
-    }
-    public static long Size$get(MemorySegment seg, long index) {
-        return (long)MEM_EXTENDED_PARAMETER.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, long x) {
-        MEM_EXTENDED_PARAMETER.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Handle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$1"), MemoryLayout.PathElement.groupElement("Handle"));
-    public static VarHandle Handle$VH() {
-        return MEM_EXTENDED_PARAMETER.Handle$VH;
-    }
-    public static MemoryAddress Handle$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)MEM_EXTENDED_PARAMETER.Handle$VH.get(seg);
-    }
-    public static void Handle$set( MemorySegment seg, MemoryAddress x) {
-        MEM_EXTENDED_PARAMETER.Handle$VH.set(seg, x);
-    }
-    public static MemoryAddress Handle$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)MEM_EXTENDED_PARAMETER.Handle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Handle$set(MemorySegment seg, long index, MemoryAddress x) {
-        MEM_EXTENDED_PARAMETER.Handle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ULong$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$1"), MemoryLayout.PathElement.groupElement("ULong"));
-    public static VarHandle ULong$VH() {
-        return MEM_EXTENDED_PARAMETER.ULong$VH;
-    }
-    public static int ULong$get(MemorySegment seg) {
-        return (int)MEM_EXTENDED_PARAMETER.ULong$VH.get(seg);
-    }
-    public static void ULong$set( MemorySegment seg, int x) {
-        MEM_EXTENDED_PARAMETER.ULong$VH.set(seg, x);
-    }
-    public static int ULong$get(MemorySegment seg, long index) {
-        return (int)MEM_EXTENDED_PARAMETER.ULong$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ULong$set(MemorySegment seg, long index, int x) {
-        MEM_EXTENDED_PARAMETER.ULong$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        MemoryLayout.structLayout(
+            MemoryLayout.paddingLayout(8)
+        ).withName("$anon$13083:5"),
+        MemoryLayout.unionLayout(
+            wgl_h.C_LONG_LONG.withName("ULong64"),
+            wgl_h.C_POINTER.withName("Pointer"),
+            wgl_h.C_LONG_LONG.withName("Size"),
+            wgl_h.C_POINTER.withName("Handle"),
+            wgl_h.C_LONG.withName("ULong")
+        ).withName("$anon$13088:5")
+    ).withName("MEM_EXTENDED_PARAMETER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong ULong64$LAYOUT = (OfLong)$LAYOUT.select(groupElement("$anon$13088:5"), groupElement("ULong64"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 ULong64
+     * }
+     */
+    public static final OfLong ULong64$layout() {
+        return ULong64$LAYOUT;
+    }
+
+    private static final long ULong64$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 ULong64
+     * }
+     */
+    public static final long ULong64$offset() {
+        return ULong64$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 ULong64
+     * }
+     */
+    public static long ULong64(MemorySegment struct) {
+        return struct.get(ULong64$LAYOUT, ULong64$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 ULong64
+     * }
+     */
+    public static void ULong64(MemorySegment struct, long fieldValue) {
+        struct.set(ULong64$LAYOUT, ULong64$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout Pointer$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$13088:5"), groupElement("Pointer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PVOID Pointer
+     * }
+     */
+    public static final AddressLayout Pointer$layout() {
+        return Pointer$LAYOUT;
+    }
+
+    private static final long Pointer$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PVOID Pointer
+     * }
+     */
+    public static final long Pointer$offset() {
+        return Pointer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PVOID Pointer
+     * }
+     */
+    public static MemorySegment Pointer(MemorySegment struct) {
+        return struct.get(Pointer$LAYOUT, Pointer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PVOID Pointer
+     * }
+     */
+    public static void Pointer(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Pointer$LAYOUT, Pointer$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Size$LAYOUT = (OfLong)$LAYOUT.select(groupElement("$anon$13088:5"), groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SIZE_T Size
+     * }
+     */
+    public static final OfLong Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SIZE_T Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SIZE_T Size
+     * }
+     */
+    public static long Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SIZE_T Size
+     * }
+     */
+    public static void Size(MemorySegment struct, long fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout Handle$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$13088:5"), groupElement("Handle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HANDLE Handle
+     * }
+     */
+    public static final AddressLayout Handle$layout() {
+        return Handle$LAYOUT;
+    }
+
+    private static final long Handle$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HANDLE Handle
+     * }
+     */
+    public static final long Handle$offset() {
+        return Handle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HANDLE Handle
+     * }
+     */
+    public static MemorySegment Handle(MemorySegment struct) {
+        return struct.get(Handle$LAYOUT, Handle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HANDLE Handle
+     * }
+     */
+    public static void Handle(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Handle$LAYOUT, Handle$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ULong$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$13088:5"), groupElement("ULong"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ULong
+     * }
+     */
+    public static final OfInt ULong$layout() {
+        return ULong$LAYOUT;
+    }
+
+    private static final long ULong$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ULong
+     * }
+     */
+    public static final long ULong$offset() {
+        return ULong$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ULong
+     * }
+     */
+    public static int ULong(MemorySegment struct) {
+        return struct.get(ULong$LAYOUT, ULong$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ULong
+     * }
+     */
+    public static void ULong(MemorySegment struct, int fieldValue) {
+        struct.set(ULong$LAYOUT, ULong$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

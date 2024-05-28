@@ -2,92 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _GENERIC_MAPPING {
+ *     ACCESS_MASK GenericRead;
+ *     ACCESS_MASK GenericWrite;
+ *     ACCESS_MASK GenericExecute;
+ *     ACCESS_MASK GenericAll;
+ * }
+ * }
+ */
 public class _GENERIC_MAPPING {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("GenericRead"),
-        Constants$root.C_LONG$LAYOUT.withName("GenericWrite"),
-        Constants$root.C_LONG$LAYOUT.withName("GenericExecute"),
-        Constants$root.C_LONG$LAYOUT.withName("GenericAll")
-    ).withName("_GENERIC_MAPPING");
-    public static MemoryLayout $LAYOUT() {
-        return _GENERIC_MAPPING.$struct$LAYOUT;
+    _GENERIC_MAPPING() {
+        // Should not be called directly
     }
-    static final VarHandle GenericRead$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GenericRead"));
-    public static VarHandle GenericRead$VH() {
-        return _GENERIC_MAPPING.GenericRead$VH;
-    }
-    public static int GenericRead$get(MemorySegment seg) {
-        return (int)_GENERIC_MAPPING.GenericRead$VH.get(seg);
-    }
-    public static void GenericRead$set( MemorySegment seg, int x) {
-        _GENERIC_MAPPING.GenericRead$VH.set(seg, x);
-    }
-    public static int GenericRead$get(MemorySegment seg, long index) {
-        return (int)_GENERIC_MAPPING.GenericRead$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GenericRead$set(MemorySegment seg, long index, int x) {
-        _GENERIC_MAPPING.GenericRead$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GenericWrite$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GenericWrite"));
-    public static VarHandle GenericWrite$VH() {
-        return _GENERIC_MAPPING.GenericWrite$VH;
-    }
-    public static int GenericWrite$get(MemorySegment seg) {
-        return (int)_GENERIC_MAPPING.GenericWrite$VH.get(seg);
-    }
-    public static void GenericWrite$set( MemorySegment seg, int x) {
-        _GENERIC_MAPPING.GenericWrite$VH.set(seg, x);
-    }
-    public static int GenericWrite$get(MemorySegment seg, long index) {
-        return (int)_GENERIC_MAPPING.GenericWrite$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GenericWrite$set(MemorySegment seg, long index, int x) {
-        _GENERIC_MAPPING.GenericWrite$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GenericExecute$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GenericExecute"));
-    public static VarHandle GenericExecute$VH() {
-        return _GENERIC_MAPPING.GenericExecute$VH;
-    }
-    public static int GenericExecute$get(MemorySegment seg) {
-        return (int)_GENERIC_MAPPING.GenericExecute$VH.get(seg);
-    }
-    public static void GenericExecute$set( MemorySegment seg, int x) {
-        _GENERIC_MAPPING.GenericExecute$VH.set(seg, x);
-    }
-    public static int GenericExecute$get(MemorySegment seg, long index) {
-        return (int)_GENERIC_MAPPING.GenericExecute$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GenericExecute$set(MemorySegment seg, long index, int x) {
-        _GENERIC_MAPPING.GenericExecute$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GenericAll$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GenericAll"));
-    public static VarHandle GenericAll$VH() {
-        return _GENERIC_MAPPING.GenericAll$VH;
-    }
-    public static int GenericAll$get(MemorySegment seg) {
-        return (int)_GENERIC_MAPPING.GenericAll$VH.get(seg);
-    }
-    public static void GenericAll$set( MemorySegment seg, int x) {
-        _GENERIC_MAPPING.GenericAll$VH.set(seg, x);
-    }
-    public static int GenericAll$get(MemorySegment seg, long index) {
-        return (int)_GENERIC_MAPPING.GenericAll$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GenericAll$set(MemorySegment seg, long index, int x) {
-        _GENERIC_MAPPING.GenericAll$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("GenericRead"),
+        wgl_h.C_LONG.withName("GenericWrite"),
+        wgl_h.C_LONG.withName("GenericExecute"),
+        wgl_h.C_LONG.withName("GenericAll")
+    ).withName("_GENERIC_MAPPING");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt GenericRead$LAYOUT = (OfInt)$LAYOUT.select(groupElement("GenericRead"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK GenericRead
+     * }
+     */
+    public static final OfInt GenericRead$layout() {
+        return GenericRead$LAYOUT;
+    }
+
+    private static final long GenericRead$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK GenericRead
+     * }
+     */
+    public static final long GenericRead$offset() {
+        return GenericRead$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK GenericRead
+     * }
+     */
+    public static int GenericRead(MemorySegment struct) {
+        return struct.get(GenericRead$LAYOUT, GenericRead$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK GenericRead
+     * }
+     */
+    public static void GenericRead(MemorySegment struct, int fieldValue) {
+        struct.set(GenericRead$LAYOUT, GenericRead$OFFSET, fieldValue);
+    }
+
+    private static final OfInt GenericWrite$LAYOUT = (OfInt)$LAYOUT.select(groupElement("GenericWrite"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK GenericWrite
+     * }
+     */
+    public static final OfInt GenericWrite$layout() {
+        return GenericWrite$LAYOUT;
+    }
+
+    private static final long GenericWrite$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK GenericWrite
+     * }
+     */
+    public static final long GenericWrite$offset() {
+        return GenericWrite$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK GenericWrite
+     * }
+     */
+    public static int GenericWrite(MemorySegment struct) {
+        return struct.get(GenericWrite$LAYOUT, GenericWrite$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK GenericWrite
+     * }
+     */
+    public static void GenericWrite(MemorySegment struct, int fieldValue) {
+        struct.set(GenericWrite$LAYOUT, GenericWrite$OFFSET, fieldValue);
+    }
+
+    private static final OfInt GenericExecute$LAYOUT = (OfInt)$LAYOUT.select(groupElement("GenericExecute"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK GenericExecute
+     * }
+     */
+    public static final OfInt GenericExecute$layout() {
+        return GenericExecute$LAYOUT;
+    }
+
+    private static final long GenericExecute$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK GenericExecute
+     * }
+     */
+    public static final long GenericExecute$offset() {
+        return GenericExecute$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK GenericExecute
+     * }
+     */
+    public static int GenericExecute(MemorySegment struct) {
+        return struct.get(GenericExecute$LAYOUT, GenericExecute$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK GenericExecute
+     * }
+     */
+    public static void GenericExecute(MemorySegment struct, int fieldValue) {
+        struct.set(GenericExecute$LAYOUT, GenericExecute$OFFSET, fieldValue);
+    }
+
+    private static final OfInt GenericAll$LAYOUT = (OfInt)$LAYOUT.select(groupElement("GenericAll"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK GenericAll
+     * }
+     */
+    public static final OfInt GenericAll$layout() {
+        return GenericAll$LAYOUT;
+    }
+
+    private static final long GenericAll$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK GenericAll
+     * }
+     */
+    public static final long GenericAll$offset() {
+        return GenericAll$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK GenericAll
+     * }
+     */
+    public static int GenericAll(MemorySegment struct) {
+        return struct.get(GenericAll$LAYOUT, GenericAll$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK GenericAll
+     * }
+     */
+    public static void GenericAll(MemorySegment struct, int fieldValue) {
+        struct.set(GenericAll$LAYOUT, GenericAll$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

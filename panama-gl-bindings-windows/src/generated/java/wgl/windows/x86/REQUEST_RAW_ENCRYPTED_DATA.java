@@ -2,13 +2,28 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _REQUEST_RAW_ENCRYPTED_DATA {
+ *     LONGLONG FileOffset;
+ *     DWORD Length;
+ * } REQUEST_RAW_ENCRYPTED_DATA
+ * }
+ */
 public class REQUEST_RAW_ENCRYPTED_DATA extends _REQUEST_RAW_ENCRYPTED_DATA {
 
+    REQUEST_RAW_ENCRYPTED_DATA() {
+        // Should not be called directly
+    }
 }
-
 

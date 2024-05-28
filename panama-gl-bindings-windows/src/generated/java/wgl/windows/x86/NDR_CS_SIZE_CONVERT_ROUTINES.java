@@ -2,13 +2,30 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _NDR_CS_SIZE_CONVERT_ROUTINES {
+ *     CS_TYPE_NET_SIZE_ROUTINE pfnNetSize;
+ *     CS_TYPE_TO_NETCS_ROUTINE pfnToNetCs;
+ *     CS_TYPE_LOCAL_SIZE_ROUTINE pfnLocalSize;
+ *     CS_TYPE_FROM_NETCS_ROUTINE pfnFromNetCs;
+ * } NDR_CS_SIZE_CONVERT_ROUTINES
+ * }
+ */
 public class NDR_CS_SIZE_CONVERT_ROUTINES extends _NDR_CS_SIZE_CONVERT_ROUTINES {
 
+    NDR_CS_SIZE_CONVERT_ROUTINES() {
+        // Should not be called directly
+    }
 }
-
 

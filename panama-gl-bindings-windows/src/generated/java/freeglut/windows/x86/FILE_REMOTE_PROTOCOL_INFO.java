@@ -2,13 +2,49 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _FILE_REMOTE_PROTOCOL_INFO {
+ *     USHORT StructureVersion;
+ *     USHORT StructureSize;
+ *     ULONG Protocol;
+ *     USHORT ProtocolMajorVersion;
+ *     USHORT ProtocolMinorVersion;
+ *     USHORT ProtocolRevision;
+ *     USHORT Reserved;
+ *     ULONG Flags;
+ *     struct {
+ *         ULONG Reserved[8];
+ *     } GenericReserved;
+ *     union {
+ *         struct {
+ *             struct {
+ *                 ULONG Capabilities;
+ *             } Server;
+ *             struct {
+ *                 ULONG Capabilities;
+ *                 ULONG CachingFlags;
+ *             } Share;
+ *         } Smb2;
+ *         ULONG Reserved[16];
+ *     } ProtocolSpecific;
+ * } FILE_REMOTE_PROTOCOL_INFO
+ * }
+ */
 public class FILE_REMOTE_PROTOCOL_INFO extends _FILE_REMOTE_PROTOCOL_INFO {
 
+    FILE_REMOTE_PROTOCOL_INFO() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,13 +2,36 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _STORAGE_HW_FIRMWARE_DOWNLOAD_V2 {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     DWORD Flags;
+ *     BYTE Slot;
+ *     BYTE Reserved[3];
+ *     DWORDLONG Offset;
+ *     DWORDLONG BufferSize;
+ *     DWORD ImageSize;
+ *     DWORD Reserved2;
+ *     BYTE ImageBuffer[1];
+ * } STORAGE_HW_FIRMWARE_DOWNLOAD_V2
+ * }
+ */
 public class STORAGE_HW_FIRMWARE_DOWNLOAD_V2 extends _STORAGE_HW_FIRMWARE_DOWNLOAD_V2 {
 
+    STORAGE_HW_FIRMWARE_DOWNLOAD_V2() {
+        // Should not be called directly
+    }
 }
-
 

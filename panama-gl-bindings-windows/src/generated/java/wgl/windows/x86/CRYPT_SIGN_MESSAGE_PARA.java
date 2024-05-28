@@ -2,13 +2,41 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CRYPT_SIGN_MESSAGE_PARA {
+ *     DWORD cbSize;
+ *     DWORD dwMsgEncodingType;
+ *     PCCERT_CONTEXT pSigningCert;
+ *     CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm;
+ *     void *pvHashAuxInfo;
+ *     DWORD cMsgCert;
+ *     PCCERT_CONTEXT *rgpMsgCert;
+ *     DWORD cMsgCrl;
+ *     PCCRL_CONTEXT *rgpMsgCrl;
+ *     DWORD cAuthAttr;
+ *     PCRYPT_ATTRIBUTE rgAuthAttr;
+ *     DWORD cUnauthAttr;
+ *     PCRYPT_ATTRIBUTE rgUnauthAttr;
+ *     DWORD dwFlags;
+ *     DWORD dwInnerContentType;
+ * } CRYPT_SIGN_MESSAGE_PARA
+ * }
+ */
 public class CRYPT_SIGN_MESSAGE_PARA extends _CRYPT_SIGN_MESSAGE_PARA {
 
+    CRYPT_SIGN_MESSAGE_PARA() {
+        // Should not be called directly
+    }
 }
-
 

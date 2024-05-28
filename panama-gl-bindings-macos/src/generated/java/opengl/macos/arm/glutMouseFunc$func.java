@@ -2,27 +2,69 @@
 
 package opengl.macos.arm;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface glutMouseFunc$func {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    void apply(int _x0, int _x1, int _x2, int _x3);
-    static MemorySegment allocate(glutMouseFunc$func fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(glutMouseFunc$func.class, fi, constants$186.glutMouseFunc$func$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * void (*func)(int, int, int, int)
+ * }
+ */
+public class glutMouseFunc$func {
+
+    glutMouseFunc$func() {
+        // Should not be called directly
     }
-    static glutMouseFunc$func ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int __x0, int __x1, int __x2, int __x3) -> {
-            try {
-                constants$186.glutMouseFunc$func$MH.invokeExact((Addressable)symbol, __x0, __x1, __x2, __x3);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply(int _x0, int _x1, int _x2, int _x3);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+        glut_h.C_INT,
+        glut_h.C_INT,
+        glut_h.C_INT,
+        glut_h.C_INT
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = glut_h.upcallHandle(glutMouseFunc$func.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(glutMouseFunc$func.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr,int _x0, int _x1, int _x2, int _x3) {
+        try {
+             DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

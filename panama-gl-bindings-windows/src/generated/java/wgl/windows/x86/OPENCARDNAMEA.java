@@ -2,432 +2,1146 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     DWORD dwStructSize;
+ *     HWND hwndOwner;
+ *     SCARDCONTEXT hSCardContext;
+ *     LPSTR lpstrGroupNames;
+ *     DWORD nMaxGroupNames;
+ *     LPSTR lpstrCardNames;
+ *     DWORD nMaxCardNames;
+ *     LPCGUID rgguidInterfaces;
+ *     DWORD cguidInterfaces;
+ *     LPSTR lpstrRdr;
+ *     DWORD nMaxRdr;
+ *     LPSTR lpstrCard;
+ *     DWORD nMaxCard;
+ *     LPCSTR lpstrTitle;
+ *     DWORD dwFlags;
+ *     LPVOID pvUserData;
+ *     DWORD dwShareMode;
+ *     DWORD dwPreferredProtocols;
+ *     DWORD dwActiveProtocol;
+ *     LPOCNCONNPROCA lpfnConnect;
+ *     LPOCNCHKPROC lpfnCheck;
+ *     LPOCNDSCPROC lpfnDisconnect;
+ *     SCARDHANDLE hCardHandle;
+ * }
+ * }
+ */
 public class OPENCARDNAMEA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwStructSize"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("hwndOwner"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("hSCardContext"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpstrGroupNames"),
-        Constants$root.C_LONG$LAYOUT.withName("nMaxGroupNames"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("lpstrCardNames"),
-        Constants$root.C_LONG$LAYOUT.withName("nMaxCardNames"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgguidInterfaces"),
-        Constants$root.C_LONG$LAYOUT.withName("cguidInterfaces"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("lpstrRdr"),
-        Constants$root.C_LONG$LAYOUT.withName("nMaxRdr"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("lpstrCard"),
-        Constants$root.C_LONG$LAYOUT.withName("nMaxCard"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("lpstrTitle"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFlags"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pvUserData"),
-        Constants$root.C_LONG$LAYOUT.withName("dwShareMode"),
-        Constants$root.C_LONG$LAYOUT.withName("dwPreferredProtocols"),
-        Constants$root.C_LONG$LAYOUT.withName("dwActiveProtocol"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("lpfnConnect"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpfnCheck"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpfnDisconnect"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("hCardHandle")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return OPENCARDNAMEA.$struct$LAYOUT;
+    OPENCARDNAMEA() {
+        // Should not be called directly
     }
-    static final VarHandle dwStructSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwStructSize"));
-    public static VarHandle dwStructSize$VH() {
-        return OPENCARDNAMEA.dwStructSize$VH;
-    }
-    public static int dwStructSize$get(MemorySegment seg) {
-        return (int)OPENCARDNAMEA.dwStructSize$VH.get(seg);
-    }
-    public static void dwStructSize$set( MemorySegment seg, int x) {
-        OPENCARDNAMEA.dwStructSize$VH.set(seg, x);
-    }
-    public static int dwStructSize$get(MemorySegment seg, long index) {
-        return (int)OPENCARDNAMEA.dwStructSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwStructSize$set(MemorySegment seg, long index, int x) {
-        OPENCARDNAMEA.dwStructSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hwndOwner$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hwndOwner"));
-    public static VarHandle hwndOwner$VH() {
-        return OPENCARDNAMEA.hwndOwner$VH;
-    }
-    public static MemoryAddress hwndOwner$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.hwndOwner$VH.get(seg);
-    }
-    public static void hwndOwner$set( MemorySegment seg, MemoryAddress x) {
-        OPENCARDNAMEA.hwndOwner$VH.set(seg, x);
-    }
-    public static MemoryAddress hwndOwner$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.hwndOwner$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hwndOwner$set(MemorySegment seg, long index, MemoryAddress x) {
-        OPENCARDNAMEA.hwndOwner$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hSCardContext$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hSCardContext"));
-    public static VarHandle hSCardContext$VH() {
-        return OPENCARDNAMEA.hSCardContext$VH;
-    }
-    public static long hSCardContext$get(MemorySegment seg) {
-        return (long)OPENCARDNAMEA.hSCardContext$VH.get(seg);
-    }
-    public static void hSCardContext$set( MemorySegment seg, long x) {
-        OPENCARDNAMEA.hSCardContext$VH.set(seg, x);
-    }
-    public static long hSCardContext$get(MemorySegment seg, long index) {
-        return (long)OPENCARDNAMEA.hSCardContext$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hSCardContext$set(MemorySegment seg, long index, long x) {
-        OPENCARDNAMEA.hSCardContext$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpstrGroupNames$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpstrGroupNames"));
-    public static VarHandle lpstrGroupNames$VH() {
-        return OPENCARDNAMEA.lpstrGroupNames$VH;
-    }
-    public static MemoryAddress lpstrGroupNames$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.lpstrGroupNames$VH.get(seg);
-    }
-    public static void lpstrGroupNames$set( MemorySegment seg, MemoryAddress x) {
-        OPENCARDNAMEA.lpstrGroupNames$VH.set(seg, x);
-    }
-    public static MemoryAddress lpstrGroupNames$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.lpstrGroupNames$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpstrGroupNames$set(MemorySegment seg, long index, MemoryAddress x) {
-        OPENCARDNAMEA.lpstrGroupNames$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nMaxGroupNames$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nMaxGroupNames"));
-    public static VarHandle nMaxGroupNames$VH() {
-        return OPENCARDNAMEA.nMaxGroupNames$VH;
-    }
-    public static int nMaxGroupNames$get(MemorySegment seg) {
-        return (int)OPENCARDNAMEA.nMaxGroupNames$VH.get(seg);
-    }
-    public static void nMaxGroupNames$set( MemorySegment seg, int x) {
-        OPENCARDNAMEA.nMaxGroupNames$VH.set(seg, x);
-    }
-    public static int nMaxGroupNames$get(MemorySegment seg, long index) {
-        return (int)OPENCARDNAMEA.nMaxGroupNames$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nMaxGroupNames$set(MemorySegment seg, long index, int x) {
-        OPENCARDNAMEA.nMaxGroupNames$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpstrCardNames$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpstrCardNames"));
-    public static VarHandle lpstrCardNames$VH() {
-        return OPENCARDNAMEA.lpstrCardNames$VH;
-    }
-    public static MemoryAddress lpstrCardNames$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.lpstrCardNames$VH.get(seg);
-    }
-    public static void lpstrCardNames$set( MemorySegment seg, MemoryAddress x) {
-        OPENCARDNAMEA.lpstrCardNames$VH.set(seg, x);
-    }
-    public static MemoryAddress lpstrCardNames$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.lpstrCardNames$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpstrCardNames$set(MemorySegment seg, long index, MemoryAddress x) {
-        OPENCARDNAMEA.lpstrCardNames$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nMaxCardNames$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nMaxCardNames"));
-    public static VarHandle nMaxCardNames$VH() {
-        return OPENCARDNAMEA.nMaxCardNames$VH;
-    }
-    public static int nMaxCardNames$get(MemorySegment seg) {
-        return (int)OPENCARDNAMEA.nMaxCardNames$VH.get(seg);
-    }
-    public static void nMaxCardNames$set( MemorySegment seg, int x) {
-        OPENCARDNAMEA.nMaxCardNames$VH.set(seg, x);
-    }
-    public static int nMaxCardNames$get(MemorySegment seg, long index) {
-        return (int)OPENCARDNAMEA.nMaxCardNames$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nMaxCardNames$set(MemorySegment seg, long index, int x) {
-        OPENCARDNAMEA.nMaxCardNames$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgguidInterfaces$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgguidInterfaces"));
-    public static VarHandle rgguidInterfaces$VH() {
-        return OPENCARDNAMEA.rgguidInterfaces$VH;
-    }
-    public static MemoryAddress rgguidInterfaces$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.rgguidInterfaces$VH.get(seg);
-    }
-    public static void rgguidInterfaces$set( MemorySegment seg, MemoryAddress x) {
-        OPENCARDNAMEA.rgguidInterfaces$VH.set(seg, x);
-    }
-    public static MemoryAddress rgguidInterfaces$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.rgguidInterfaces$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgguidInterfaces$set(MemorySegment seg, long index, MemoryAddress x) {
-        OPENCARDNAMEA.rgguidInterfaces$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cguidInterfaces$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cguidInterfaces"));
-    public static VarHandle cguidInterfaces$VH() {
-        return OPENCARDNAMEA.cguidInterfaces$VH;
-    }
-    public static int cguidInterfaces$get(MemorySegment seg) {
-        return (int)OPENCARDNAMEA.cguidInterfaces$VH.get(seg);
-    }
-    public static void cguidInterfaces$set( MemorySegment seg, int x) {
-        OPENCARDNAMEA.cguidInterfaces$VH.set(seg, x);
-    }
-    public static int cguidInterfaces$get(MemorySegment seg, long index) {
-        return (int)OPENCARDNAMEA.cguidInterfaces$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cguidInterfaces$set(MemorySegment seg, long index, int x) {
-        OPENCARDNAMEA.cguidInterfaces$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpstrRdr$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpstrRdr"));
-    public static VarHandle lpstrRdr$VH() {
-        return OPENCARDNAMEA.lpstrRdr$VH;
-    }
-    public static MemoryAddress lpstrRdr$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.lpstrRdr$VH.get(seg);
-    }
-    public static void lpstrRdr$set( MemorySegment seg, MemoryAddress x) {
-        OPENCARDNAMEA.lpstrRdr$VH.set(seg, x);
-    }
-    public static MemoryAddress lpstrRdr$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.lpstrRdr$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpstrRdr$set(MemorySegment seg, long index, MemoryAddress x) {
-        OPENCARDNAMEA.lpstrRdr$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nMaxRdr$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nMaxRdr"));
-    public static VarHandle nMaxRdr$VH() {
-        return OPENCARDNAMEA.nMaxRdr$VH;
-    }
-    public static int nMaxRdr$get(MemorySegment seg) {
-        return (int)OPENCARDNAMEA.nMaxRdr$VH.get(seg);
-    }
-    public static void nMaxRdr$set( MemorySegment seg, int x) {
-        OPENCARDNAMEA.nMaxRdr$VH.set(seg, x);
-    }
-    public static int nMaxRdr$get(MemorySegment seg, long index) {
-        return (int)OPENCARDNAMEA.nMaxRdr$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nMaxRdr$set(MemorySegment seg, long index, int x) {
-        OPENCARDNAMEA.nMaxRdr$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpstrCard$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpstrCard"));
-    public static VarHandle lpstrCard$VH() {
-        return OPENCARDNAMEA.lpstrCard$VH;
-    }
-    public static MemoryAddress lpstrCard$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.lpstrCard$VH.get(seg);
-    }
-    public static void lpstrCard$set( MemorySegment seg, MemoryAddress x) {
-        OPENCARDNAMEA.lpstrCard$VH.set(seg, x);
-    }
-    public static MemoryAddress lpstrCard$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.lpstrCard$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpstrCard$set(MemorySegment seg, long index, MemoryAddress x) {
-        OPENCARDNAMEA.lpstrCard$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nMaxCard$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nMaxCard"));
-    public static VarHandle nMaxCard$VH() {
-        return OPENCARDNAMEA.nMaxCard$VH;
-    }
-    public static int nMaxCard$get(MemorySegment seg) {
-        return (int)OPENCARDNAMEA.nMaxCard$VH.get(seg);
-    }
-    public static void nMaxCard$set( MemorySegment seg, int x) {
-        OPENCARDNAMEA.nMaxCard$VH.set(seg, x);
-    }
-    public static int nMaxCard$get(MemorySegment seg, long index) {
-        return (int)OPENCARDNAMEA.nMaxCard$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nMaxCard$set(MemorySegment seg, long index, int x) {
-        OPENCARDNAMEA.nMaxCard$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpstrTitle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpstrTitle"));
-    public static VarHandle lpstrTitle$VH() {
-        return OPENCARDNAMEA.lpstrTitle$VH;
-    }
-    public static MemoryAddress lpstrTitle$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.lpstrTitle$VH.get(seg);
-    }
-    public static void lpstrTitle$set( MemorySegment seg, MemoryAddress x) {
-        OPENCARDNAMEA.lpstrTitle$VH.set(seg, x);
-    }
-    public static MemoryAddress lpstrTitle$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.lpstrTitle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpstrTitle$set(MemorySegment seg, long index, MemoryAddress x) {
-        OPENCARDNAMEA.lpstrTitle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFlags"));
-    public static VarHandle dwFlags$VH() {
-        return OPENCARDNAMEA.dwFlags$VH;
-    }
-    public static int dwFlags$get(MemorySegment seg) {
-        return (int)OPENCARDNAMEA.dwFlags$VH.get(seg);
-    }
-    public static void dwFlags$set( MemorySegment seg, int x) {
-        OPENCARDNAMEA.dwFlags$VH.set(seg, x);
-    }
-    public static int dwFlags$get(MemorySegment seg, long index) {
-        return (int)OPENCARDNAMEA.dwFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFlags$set(MemorySegment seg, long index, int x) {
-        OPENCARDNAMEA.dwFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pvUserData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pvUserData"));
-    public static VarHandle pvUserData$VH() {
-        return OPENCARDNAMEA.pvUserData$VH;
-    }
-    public static MemoryAddress pvUserData$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.pvUserData$VH.get(seg);
-    }
-    public static void pvUserData$set( MemorySegment seg, MemoryAddress x) {
-        OPENCARDNAMEA.pvUserData$VH.set(seg, x);
-    }
-    public static MemoryAddress pvUserData$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.pvUserData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pvUserData$set(MemorySegment seg, long index, MemoryAddress x) {
-        OPENCARDNAMEA.pvUserData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwShareMode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwShareMode"));
-    public static VarHandle dwShareMode$VH() {
-        return OPENCARDNAMEA.dwShareMode$VH;
-    }
-    public static int dwShareMode$get(MemorySegment seg) {
-        return (int)OPENCARDNAMEA.dwShareMode$VH.get(seg);
-    }
-    public static void dwShareMode$set( MemorySegment seg, int x) {
-        OPENCARDNAMEA.dwShareMode$VH.set(seg, x);
-    }
-    public static int dwShareMode$get(MemorySegment seg, long index) {
-        return (int)OPENCARDNAMEA.dwShareMode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwShareMode$set(MemorySegment seg, long index, int x) {
-        OPENCARDNAMEA.dwShareMode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwPreferredProtocols$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwPreferredProtocols"));
-    public static VarHandle dwPreferredProtocols$VH() {
-        return OPENCARDNAMEA.dwPreferredProtocols$VH;
-    }
-    public static int dwPreferredProtocols$get(MemorySegment seg) {
-        return (int)OPENCARDNAMEA.dwPreferredProtocols$VH.get(seg);
-    }
-    public static void dwPreferredProtocols$set( MemorySegment seg, int x) {
-        OPENCARDNAMEA.dwPreferredProtocols$VH.set(seg, x);
-    }
-    public static int dwPreferredProtocols$get(MemorySegment seg, long index) {
-        return (int)OPENCARDNAMEA.dwPreferredProtocols$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwPreferredProtocols$set(MemorySegment seg, long index, int x) {
-        OPENCARDNAMEA.dwPreferredProtocols$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwActiveProtocol$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwActiveProtocol"));
-    public static VarHandle dwActiveProtocol$VH() {
-        return OPENCARDNAMEA.dwActiveProtocol$VH;
-    }
-    public static int dwActiveProtocol$get(MemorySegment seg) {
-        return (int)OPENCARDNAMEA.dwActiveProtocol$VH.get(seg);
-    }
-    public static void dwActiveProtocol$set( MemorySegment seg, int x) {
-        OPENCARDNAMEA.dwActiveProtocol$VH.set(seg, x);
-    }
-    public static int dwActiveProtocol$get(MemorySegment seg, long index) {
-        return (int)OPENCARDNAMEA.dwActiveProtocol$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwActiveProtocol$set(MemorySegment seg, long index, int x) {
-        OPENCARDNAMEA.dwActiveProtocol$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpfnConnect$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpfnConnect"));
-    public static VarHandle lpfnConnect$VH() {
-        return OPENCARDNAMEA.lpfnConnect$VH;
-    }
-    public static MemoryAddress lpfnConnect$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.lpfnConnect$VH.get(seg);
-    }
-    public static void lpfnConnect$set( MemorySegment seg, MemoryAddress x) {
-        OPENCARDNAMEA.lpfnConnect$VH.set(seg, x);
-    }
-    public static MemoryAddress lpfnConnect$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.lpfnConnect$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpfnConnect$set(MemorySegment seg, long index, MemoryAddress x) {
-        OPENCARDNAMEA.lpfnConnect$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static LPOCNCONNPROCA lpfnConnect (MemorySegment segment, MemorySession session) {
-        return LPOCNCONNPROCA.ofAddress(lpfnConnect$get(segment), session);
-    }
-    static final VarHandle lpfnCheck$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpfnCheck"));
-    public static VarHandle lpfnCheck$VH() {
-        return OPENCARDNAMEA.lpfnCheck$VH;
-    }
-    public static MemoryAddress lpfnCheck$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.lpfnCheck$VH.get(seg);
-    }
-    public static void lpfnCheck$set( MemorySegment seg, MemoryAddress x) {
-        OPENCARDNAMEA.lpfnCheck$VH.set(seg, x);
-    }
-    public static MemoryAddress lpfnCheck$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.lpfnCheck$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpfnCheck$set(MemorySegment seg, long index, MemoryAddress x) {
-        OPENCARDNAMEA.lpfnCheck$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static LPOCNCHKPROC lpfnCheck (MemorySegment segment, MemorySession session) {
-        return LPOCNCHKPROC.ofAddress(lpfnCheck$get(segment), session);
-    }
-    static final VarHandle lpfnDisconnect$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpfnDisconnect"));
-    public static VarHandle lpfnDisconnect$VH() {
-        return OPENCARDNAMEA.lpfnDisconnect$VH;
-    }
-    public static MemoryAddress lpfnDisconnect$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.lpfnDisconnect$VH.get(seg);
-    }
-    public static void lpfnDisconnect$set( MemorySegment seg, MemoryAddress x) {
-        OPENCARDNAMEA.lpfnDisconnect$VH.set(seg, x);
-    }
-    public static MemoryAddress lpfnDisconnect$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)OPENCARDNAMEA.lpfnDisconnect$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpfnDisconnect$set(MemorySegment seg, long index, MemoryAddress x) {
-        OPENCARDNAMEA.lpfnDisconnect$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static LPOCNDSCPROC lpfnDisconnect (MemorySegment segment, MemorySession session) {
-        return LPOCNDSCPROC.ofAddress(lpfnDisconnect$get(segment), session);
-    }
-    static final VarHandle hCardHandle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hCardHandle"));
-    public static VarHandle hCardHandle$VH() {
-        return OPENCARDNAMEA.hCardHandle$VH;
-    }
-    public static long hCardHandle$get(MemorySegment seg) {
-        return (long)OPENCARDNAMEA.hCardHandle$VH.get(seg);
-    }
-    public static void hCardHandle$set( MemorySegment seg, long x) {
-        OPENCARDNAMEA.hCardHandle$VH.set(seg, x);
-    }
-    public static long hCardHandle$get(MemorySegment seg, long index) {
-        return (long)OPENCARDNAMEA.hCardHandle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hCardHandle$set(MemorySegment seg, long index, long x) {
-        OPENCARDNAMEA.hCardHandle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwStructSize"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("hwndOwner"),
+        wgl_h.C_LONG_LONG.withName("hSCardContext"),
+        wgl_h.C_POINTER.withName("lpstrGroupNames"),
+        wgl_h.C_LONG.withName("nMaxGroupNames"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("lpstrCardNames"),
+        wgl_h.C_LONG.withName("nMaxCardNames"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgguidInterfaces"),
+        wgl_h.C_LONG.withName("cguidInterfaces"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("lpstrRdr"),
+        wgl_h.C_LONG.withName("nMaxRdr"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("lpstrCard"),
+        wgl_h.C_LONG.withName("nMaxCard"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("lpstrTitle"),
+        wgl_h.C_LONG.withName("dwFlags"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pvUserData"),
+        wgl_h.C_LONG.withName("dwShareMode"),
+        wgl_h.C_LONG.withName("dwPreferredProtocols"),
+        wgl_h.C_LONG.withName("dwActiveProtocol"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("lpfnConnect"),
+        wgl_h.C_POINTER.withName("lpfnCheck"),
+        wgl_h.C_POINTER.withName("lpfnDisconnect"),
+        wgl_h.C_LONG_LONG.withName("hCardHandle")
+    ).withName("$anon$1163:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwStructSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwStructSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwStructSize
+     * }
+     */
+    public static final OfInt dwStructSize$layout() {
+        return dwStructSize$LAYOUT;
+    }
+
+    private static final long dwStructSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwStructSize
+     * }
+     */
+    public static final long dwStructSize$offset() {
+        return dwStructSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwStructSize
+     * }
+     */
+    public static int dwStructSize(MemorySegment struct) {
+        return struct.get(dwStructSize$LAYOUT, dwStructSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwStructSize
+     * }
+     */
+    public static void dwStructSize(MemorySegment struct, int fieldValue) {
+        struct.set(dwStructSize$LAYOUT, dwStructSize$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hwndOwner$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hwndOwner"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HWND hwndOwner
+     * }
+     */
+    public static final AddressLayout hwndOwner$layout() {
+        return hwndOwner$LAYOUT;
+    }
+
+    private static final long hwndOwner$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HWND hwndOwner
+     * }
+     */
+    public static final long hwndOwner$offset() {
+        return hwndOwner$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HWND hwndOwner
+     * }
+     */
+    public static MemorySegment hwndOwner(MemorySegment struct) {
+        return struct.get(hwndOwner$LAYOUT, hwndOwner$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HWND hwndOwner
+     * }
+     */
+    public static void hwndOwner(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hwndOwner$LAYOUT, hwndOwner$OFFSET, fieldValue);
+    }
+
+    private static final OfLong hSCardContext$LAYOUT = (OfLong)$LAYOUT.select(groupElement("hSCardContext"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SCARDCONTEXT hSCardContext
+     * }
+     */
+    public static final OfLong hSCardContext$layout() {
+        return hSCardContext$LAYOUT;
+    }
+
+    private static final long hSCardContext$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SCARDCONTEXT hSCardContext
+     * }
+     */
+    public static final long hSCardContext$offset() {
+        return hSCardContext$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SCARDCONTEXT hSCardContext
+     * }
+     */
+    public static long hSCardContext(MemorySegment struct) {
+        return struct.get(hSCardContext$LAYOUT, hSCardContext$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SCARDCONTEXT hSCardContext
+     * }
+     */
+    public static void hSCardContext(MemorySegment struct, long fieldValue) {
+        struct.set(hSCardContext$LAYOUT, hSCardContext$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpstrGroupNames$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpstrGroupNames"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR lpstrGroupNames
+     * }
+     */
+    public static final AddressLayout lpstrGroupNames$layout() {
+        return lpstrGroupNames$LAYOUT;
+    }
+
+    private static final long lpstrGroupNames$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR lpstrGroupNames
+     * }
+     */
+    public static final long lpstrGroupNames$offset() {
+        return lpstrGroupNames$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR lpstrGroupNames
+     * }
+     */
+    public static MemorySegment lpstrGroupNames(MemorySegment struct) {
+        return struct.get(lpstrGroupNames$LAYOUT, lpstrGroupNames$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR lpstrGroupNames
+     * }
+     */
+    public static void lpstrGroupNames(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpstrGroupNames$LAYOUT, lpstrGroupNames$OFFSET, fieldValue);
+    }
+
+    private static final OfInt nMaxGroupNames$LAYOUT = (OfInt)$LAYOUT.select(groupElement("nMaxGroupNames"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD nMaxGroupNames
+     * }
+     */
+    public static final OfInt nMaxGroupNames$layout() {
+        return nMaxGroupNames$LAYOUT;
+    }
+
+    private static final long nMaxGroupNames$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD nMaxGroupNames
+     * }
+     */
+    public static final long nMaxGroupNames$offset() {
+        return nMaxGroupNames$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD nMaxGroupNames
+     * }
+     */
+    public static int nMaxGroupNames(MemorySegment struct) {
+        return struct.get(nMaxGroupNames$LAYOUT, nMaxGroupNames$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD nMaxGroupNames
+     * }
+     */
+    public static void nMaxGroupNames(MemorySegment struct, int fieldValue) {
+        struct.set(nMaxGroupNames$LAYOUT, nMaxGroupNames$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpstrCardNames$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpstrCardNames"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR lpstrCardNames
+     * }
+     */
+    public static final AddressLayout lpstrCardNames$layout() {
+        return lpstrCardNames$LAYOUT;
+    }
+
+    private static final long lpstrCardNames$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR lpstrCardNames
+     * }
+     */
+    public static final long lpstrCardNames$offset() {
+        return lpstrCardNames$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR lpstrCardNames
+     * }
+     */
+    public static MemorySegment lpstrCardNames(MemorySegment struct) {
+        return struct.get(lpstrCardNames$LAYOUT, lpstrCardNames$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR lpstrCardNames
+     * }
+     */
+    public static void lpstrCardNames(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpstrCardNames$LAYOUT, lpstrCardNames$OFFSET, fieldValue);
+    }
+
+    private static final OfInt nMaxCardNames$LAYOUT = (OfInt)$LAYOUT.select(groupElement("nMaxCardNames"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD nMaxCardNames
+     * }
+     */
+    public static final OfInt nMaxCardNames$layout() {
+        return nMaxCardNames$LAYOUT;
+    }
+
+    private static final long nMaxCardNames$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD nMaxCardNames
+     * }
+     */
+    public static final long nMaxCardNames$offset() {
+        return nMaxCardNames$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD nMaxCardNames
+     * }
+     */
+    public static int nMaxCardNames(MemorySegment struct) {
+        return struct.get(nMaxCardNames$LAYOUT, nMaxCardNames$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD nMaxCardNames
+     * }
+     */
+    public static void nMaxCardNames(MemorySegment struct, int fieldValue) {
+        struct.set(nMaxCardNames$LAYOUT, nMaxCardNames$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgguidInterfaces$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgguidInterfaces"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPCGUID rgguidInterfaces
+     * }
+     */
+    public static final AddressLayout rgguidInterfaces$layout() {
+        return rgguidInterfaces$LAYOUT;
+    }
+
+    private static final long rgguidInterfaces$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPCGUID rgguidInterfaces
+     * }
+     */
+    public static final long rgguidInterfaces$offset() {
+        return rgguidInterfaces$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPCGUID rgguidInterfaces
+     * }
+     */
+    public static MemorySegment rgguidInterfaces(MemorySegment struct) {
+        return struct.get(rgguidInterfaces$LAYOUT, rgguidInterfaces$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPCGUID rgguidInterfaces
+     * }
+     */
+    public static void rgguidInterfaces(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgguidInterfaces$LAYOUT, rgguidInterfaces$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cguidInterfaces$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cguidInterfaces"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cguidInterfaces
+     * }
+     */
+    public static final OfInt cguidInterfaces$layout() {
+        return cguidInterfaces$LAYOUT;
+    }
+
+    private static final long cguidInterfaces$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cguidInterfaces
+     * }
+     */
+    public static final long cguidInterfaces$offset() {
+        return cguidInterfaces$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cguidInterfaces
+     * }
+     */
+    public static int cguidInterfaces(MemorySegment struct) {
+        return struct.get(cguidInterfaces$LAYOUT, cguidInterfaces$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cguidInterfaces
+     * }
+     */
+    public static void cguidInterfaces(MemorySegment struct, int fieldValue) {
+        struct.set(cguidInterfaces$LAYOUT, cguidInterfaces$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpstrRdr$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpstrRdr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR lpstrRdr
+     * }
+     */
+    public static final AddressLayout lpstrRdr$layout() {
+        return lpstrRdr$LAYOUT;
+    }
+
+    private static final long lpstrRdr$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR lpstrRdr
+     * }
+     */
+    public static final long lpstrRdr$offset() {
+        return lpstrRdr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR lpstrRdr
+     * }
+     */
+    public static MemorySegment lpstrRdr(MemorySegment struct) {
+        return struct.get(lpstrRdr$LAYOUT, lpstrRdr$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR lpstrRdr
+     * }
+     */
+    public static void lpstrRdr(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpstrRdr$LAYOUT, lpstrRdr$OFFSET, fieldValue);
+    }
+
+    private static final OfInt nMaxRdr$LAYOUT = (OfInt)$LAYOUT.select(groupElement("nMaxRdr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD nMaxRdr
+     * }
+     */
+    public static final OfInt nMaxRdr$layout() {
+        return nMaxRdr$LAYOUT;
+    }
+
+    private static final long nMaxRdr$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD nMaxRdr
+     * }
+     */
+    public static final long nMaxRdr$offset() {
+        return nMaxRdr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD nMaxRdr
+     * }
+     */
+    public static int nMaxRdr(MemorySegment struct) {
+        return struct.get(nMaxRdr$LAYOUT, nMaxRdr$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD nMaxRdr
+     * }
+     */
+    public static void nMaxRdr(MemorySegment struct, int fieldValue) {
+        struct.set(nMaxRdr$LAYOUT, nMaxRdr$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpstrCard$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpstrCard"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR lpstrCard
+     * }
+     */
+    public static final AddressLayout lpstrCard$layout() {
+        return lpstrCard$LAYOUT;
+    }
+
+    private static final long lpstrCard$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR lpstrCard
+     * }
+     */
+    public static final long lpstrCard$offset() {
+        return lpstrCard$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR lpstrCard
+     * }
+     */
+    public static MemorySegment lpstrCard(MemorySegment struct) {
+        return struct.get(lpstrCard$LAYOUT, lpstrCard$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR lpstrCard
+     * }
+     */
+    public static void lpstrCard(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpstrCard$LAYOUT, lpstrCard$OFFSET, fieldValue);
+    }
+
+    private static final OfInt nMaxCard$LAYOUT = (OfInt)$LAYOUT.select(groupElement("nMaxCard"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD nMaxCard
+     * }
+     */
+    public static final OfInt nMaxCard$layout() {
+        return nMaxCard$LAYOUT;
+    }
+
+    private static final long nMaxCard$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD nMaxCard
+     * }
+     */
+    public static final long nMaxCard$offset() {
+        return nMaxCard$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD nMaxCard
+     * }
+     */
+    public static int nMaxCard(MemorySegment struct) {
+        return struct.get(nMaxCard$LAYOUT, nMaxCard$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD nMaxCard
+     * }
+     */
+    public static void nMaxCard(MemorySegment struct, int fieldValue) {
+        struct.set(nMaxCard$LAYOUT, nMaxCard$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpstrTitle$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpstrTitle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPCSTR lpstrTitle
+     * }
+     */
+    public static final AddressLayout lpstrTitle$layout() {
+        return lpstrTitle$LAYOUT;
+    }
+
+    private static final long lpstrTitle$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPCSTR lpstrTitle
+     * }
+     */
+    public static final long lpstrTitle$offset() {
+        return lpstrTitle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPCSTR lpstrTitle
+     * }
+     */
+    public static MemorySegment lpstrTitle(MemorySegment struct) {
+        return struct.get(lpstrTitle$LAYOUT, lpstrTitle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPCSTR lpstrTitle
+     * }
+     */
+    public static void lpstrTitle(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpstrTitle$LAYOUT, lpstrTitle$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final OfInt dwFlags$layout() {
+        return dwFlags$LAYOUT;
+    }
+
+    private static final long dwFlags$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final long dwFlags$offset() {
+        return dwFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static int dwFlags(MemorySegment struct) {
+        return struct.get(dwFlags$LAYOUT, dwFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static void dwFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwFlags$LAYOUT, dwFlags$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pvUserData$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pvUserData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPVOID pvUserData
+     * }
+     */
+    public static final AddressLayout pvUserData$layout() {
+        return pvUserData$LAYOUT;
+    }
+
+    private static final long pvUserData$OFFSET = 120;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPVOID pvUserData
+     * }
+     */
+    public static final long pvUserData$offset() {
+        return pvUserData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPVOID pvUserData
+     * }
+     */
+    public static MemorySegment pvUserData(MemorySegment struct) {
+        return struct.get(pvUserData$LAYOUT, pvUserData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPVOID pvUserData
+     * }
+     */
+    public static void pvUserData(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pvUserData$LAYOUT, pvUserData$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwShareMode$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwShareMode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwShareMode
+     * }
+     */
+    public static final OfInt dwShareMode$layout() {
+        return dwShareMode$LAYOUT;
+    }
+
+    private static final long dwShareMode$OFFSET = 128;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwShareMode
+     * }
+     */
+    public static final long dwShareMode$offset() {
+        return dwShareMode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwShareMode
+     * }
+     */
+    public static int dwShareMode(MemorySegment struct) {
+        return struct.get(dwShareMode$LAYOUT, dwShareMode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwShareMode
+     * }
+     */
+    public static void dwShareMode(MemorySegment struct, int fieldValue) {
+        struct.set(dwShareMode$LAYOUT, dwShareMode$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwPreferredProtocols$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwPreferredProtocols"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwPreferredProtocols
+     * }
+     */
+    public static final OfInt dwPreferredProtocols$layout() {
+        return dwPreferredProtocols$LAYOUT;
+    }
+
+    private static final long dwPreferredProtocols$OFFSET = 132;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwPreferredProtocols
+     * }
+     */
+    public static final long dwPreferredProtocols$offset() {
+        return dwPreferredProtocols$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwPreferredProtocols
+     * }
+     */
+    public static int dwPreferredProtocols(MemorySegment struct) {
+        return struct.get(dwPreferredProtocols$LAYOUT, dwPreferredProtocols$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwPreferredProtocols
+     * }
+     */
+    public static void dwPreferredProtocols(MemorySegment struct, int fieldValue) {
+        struct.set(dwPreferredProtocols$LAYOUT, dwPreferredProtocols$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwActiveProtocol$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwActiveProtocol"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwActiveProtocol
+     * }
+     */
+    public static final OfInt dwActiveProtocol$layout() {
+        return dwActiveProtocol$LAYOUT;
+    }
+
+    private static final long dwActiveProtocol$OFFSET = 136;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwActiveProtocol
+     * }
+     */
+    public static final long dwActiveProtocol$offset() {
+        return dwActiveProtocol$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwActiveProtocol
+     * }
+     */
+    public static int dwActiveProtocol(MemorySegment struct) {
+        return struct.get(dwActiveProtocol$LAYOUT, dwActiveProtocol$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwActiveProtocol
+     * }
+     */
+    public static void dwActiveProtocol(MemorySegment struct, int fieldValue) {
+        struct.set(dwActiveProtocol$LAYOUT, dwActiveProtocol$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpfnConnect$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpfnConnect"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPOCNCONNPROCA lpfnConnect
+     * }
+     */
+    public static final AddressLayout lpfnConnect$layout() {
+        return lpfnConnect$LAYOUT;
+    }
+
+    private static final long lpfnConnect$OFFSET = 144;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPOCNCONNPROCA lpfnConnect
+     * }
+     */
+    public static final long lpfnConnect$offset() {
+        return lpfnConnect$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPOCNCONNPROCA lpfnConnect
+     * }
+     */
+    public static MemorySegment lpfnConnect(MemorySegment struct) {
+        return struct.get(lpfnConnect$LAYOUT, lpfnConnect$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPOCNCONNPROCA lpfnConnect
+     * }
+     */
+    public static void lpfnConnect(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpfnConnect$LAYOUT, lpfnConnect$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpfnCheck$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpfnCheck"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPOCNCHKPROC lpfnCheck
+     * }
+     */
+    public static final AddressLayout lpfnCheck$layout() {
+        return lpfnCheck$LAYOUT;
+    }
+
+    private static final long lpfnCheck$OFFSET = 152;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPOCNCHKPROC lpfnCheck
+     * }
+     */
+    public static final long lpfnCheck$offset() {
+        return lpfnCheck$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPOCNCHKPROC lpfnCheck
+     * }
+     */
+    public static MemorySegment lpfnCheck(MemorySegment struct) {
+        return struct.get(lpfnCheck$LAYOUT, lpfnCheck$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPOCNCHKPROC lpfnCheck
+     * }
+     */
+    public static void lpfnCheck(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpfnCheck$LAYOUT, lpfnCheck$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpfnDisconnect$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpfnDisconnect"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPOCNDSCPROC lpfnDisconnect
+     * }
+     */
+    public static final AddressLayout lpfnDisconnect$layout() {
+        return lpfnDisconnect$LAYOUT;
+    }
+
+    private static final long lpfnDisconnect$OFFSET = 160;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPOCNDSCPROC lpfnDisconnect
+     * }
+     */
+    public static final long lpfnDisconnect$offset() {
+        return lpfnDisconnect$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPOCNDSCPROC lpfnDisconnect
+     * }
+     */
+    public static MemorySegment lpfnDisconnect(MemorySegment struct) {
+        return struct.get(lpfnDisconnect$LAYOUT, lpfnDisconnect$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPOCNDSCPROC lpfnDisconnect
+     * }
+     */
+    public static void lpfnDisconnect(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpfnDisconnect$LAYOUT, lpfnDisconnect$OFFSET, fieldValue);
+    }
+
+    private static final OfLong hCardHandle$LAYOUT = (OfLong)$LAYOUT.select(groupElement("hCardHandle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SCARDHANDLE hCardHandle
+     * }
+     */
+    public static final OfLong hCardHandle$layout() {
+        return hCardHandle$LAYOUT;
+    }
+
+    private static final long hCardHandle$OFFSET = 168;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SCARDHANDLE hCardHandle
+     * }
+     */
+    public static final long hCardHandle$offset() {
+        return hCardHandle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SCARDHANDLE hCardHandle
+     * }
+     */
+    public static long hCardHandle(MemorySegment struct) {
+        return struct.get(hCardHandle$LAYOUT, hCardHandle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SCARDHANDLE hCardHandle
+     * }
+     */
+    public static void hCardHandle(MemorySegment struct, long fieldValue) {
+        struct.set(hCardHandle$LAYOUT, hCardHandle$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

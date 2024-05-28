@@ -2,59 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_KEY_ATTRIBUTES_INFO {
+ *     CRYPT_DATA_BLOB KeyId;
+ *     CRYPT_BIT_BLOB IntendedKeyUsage;
+ *     PCERT_PRIVATE_KEY_VALIDITY pPrivateKeyUsagePeriod;
+ * }
+ * }
+ */
 public class _CERT_KEY_ATTRIBUTES_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData")
-        ).withName("KeyId"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData"),
-            Constants$root.C_LONG$LAYOUT.withName("cUnusedBits"),
-            MemoryLayout.paddingLayout(32)
-        ).withName("IntendedKeyUsage"),
-        Constants$root.C_POINTER$LAYOUT.withName("pPrivateKeyUsagePeriod")
-    ).withName("_CERT_KEY_ATTRIBUTES_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_KEY_ATTRIBUTES_INFO.$struct$LAYOUT;
+    _CERT_KEY_ATTRIBUTES_INFO() {
+        // Should not be called directly
     }
-    public static MemorySegment KeyId$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
-    }
-    public static MemorySegment IntendedKeyUsage$slice(MemorySegment seg) {
-        return seg.asSlice(16, 24);
-    }
-    static final VarHandle pPrivateKeyUsagePeriod$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pPrivateKeyUsagePeriod"));
-    public static VarHandle pPrivateKeyUsagePeriod$VH() {
-        return _CERT_KEY_ATTRIBUTES_INFO.pPrivateKeyUsagePeriod$VH;
-    }
-    public static MemoryAddress pPrivateKeyUsagePeriod$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_KEY_ATTRIBUTES_INFO.pPrivateKeyUsagePeriod$VH.get(seg);
-    }
-    public static void pPrivateKeyUsagePeriod$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_KEY_ATTRIBUTES_INFO.pPrivateKeyUsagePeriod$VH.set(seg, x);
-    }
-    public static MemoryAddress pPrivateKeyUsagePeriod$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_KEY_ATTRIBUTES_INFO.pPrivateKeyUsagePeriod$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pPrivateKeyUsagePeriod$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_KEY_ATTRIBUTES_INFO.pPrivateKeyUsagePeriod$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _CRYPTOAPI_BLOB.layout().withName("KeyId"),
+        _CRYPT_BIT_BLOB.layout().withName("IntendedKeyUsage"),
+        wgl_h.C_POINTER.withName("pPrivateKeyUsagePeriod")
+    ).withName("_CERT_KEY_ATTRIBUTES_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout KeyId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("KeyId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB KeyId
+     * }
+     */
+    public static final GroupLayout KeyId$layout() {
+        return KeyId$LAYOUT;
+    }
+
+    private static final long KeyId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB KeyId
+     * }
+     */
+    public static final long KeyId$offset() {
+        return KeyId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB KeyId
+     * }
+     */
+    public static MemorySegment KeyId(MemorySegment struct) {
+        return struct.asSlice(KeyId$OFFSET, KeyId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB KeyId
+     * }
+     */
+    public static void KeyId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, KeyId$OFFSET, KeyId$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout IntendedKeyUsage$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("IntendedKeyUsage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB IntendedKeyUsage
+     * }
+     */
+    public static final GroupLayout IntendedKeyUsage$layout() {
+        return IntendedKeyUsage$LAYOUT;
+    }
+
+    private static final long IntendedKeyUsage$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB IntendedKeyUsage
+     * }
+     */
+    public static final long IntendedKeyUsage$offset() {
+        return IntendedKeyUsage$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB IntendedKeyUsage
+     * }
+     */
+    public static MemorySegment IntendedKeyUsage(MemorySegment struct) {
+        return struct.asSlice(IntendedKeyUsage$OFFSET, IntendedKeyUsage$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB IntendedKeyUsage
+     * }
+     */
+    public static void IntendedKeyUsage(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, IntendedKeyUsage$OFFSET, IntendedKeyUsage$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout pPrivateKeyUsagePeriod$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pPrivateKeyUsagePeriod"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCERT_PRIVATE_KEY_VALIDITY pPrivateKeyUsagePeriod
+     * }
+     */
+    public static final AddressLayout pPrivateKeyUsagePeriod$layout() {
+        return pPrivateKeyUsagePeriod$LAYOUT;
+    }
+
+    private static final long pPrivateKeyUsagePeriod$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCERT_PRIVATE_KEY_VALIDITY pPrivateKeyUsagePeriod
+     * }
+     */
+    public static final long pPrivateKeyUsagePeriod$offset() {
+        return pPrivateKeyUsagePeriod$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCERT_PRIVATE_KEY_VALIDITY pPrivateKeyUsagePeriod
+     * }
+     */
+    public static MemorySegment pPrivateKeyUsagePeriod(MemorySegment struct) {
+        return struct.get(pPrivateKeyUsagePeriod$LAYOUT, pPrivateKeyUsagePeriod$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCERT_PRIVATE_KEY_VALIDITY pPrivateKeyUsagePeriod
+     * }
+     */
+    public static void pPrivateKeyUsagePeriod(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pPrivateKeyUsagePeriod$LAYOUT, pPrivateKeyUsagePeriod$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

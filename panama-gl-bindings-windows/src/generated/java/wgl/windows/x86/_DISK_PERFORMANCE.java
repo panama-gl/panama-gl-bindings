@@ -2,198 +2,666 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DISK_PERFORMANCE {
+ *     LARGE_INTEGER BytesRead;
+ *     LARGE_INTEGER BytesWritten;
+ *     LARGE_INTEGER ReadTime;
+ *     LARGE_INTEGER WriteTime;
+ *     LARGE_INTEGER IdleTime;
+ *     DWORD ReadCount;
+ *     DWORD WriteCount;
+ *     DWORD QueueDepth;
+ *     DWORD SplitCount;
+ *     LARGE_INTEGER QueryTime;
+ *     DWORD StorageDeviceNumber;
+ *     WCHAR StorageManagerName[8];
+ * }
+ * }
+ */
 public class _DISK_PERFORMANCE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("BytesRead"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("BytesWritten"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("ReadTime"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("WriteTime"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("IdleTime"),
-        Constants$root.C_LONG$LAYOUT.withName("ReadCount"),
-        Constants$root.C_LONG$LAYOUT.withName("WriteCount"),
-        Constants$root.C_LONG$LAYOUT.withName("QueueDepth"),
-        Constants$root.C_LONG$LAYOUT.withName("SplitCount"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("QueryTime"),
-        Constants$root.C_LONG$LAYOUT.withName("StorageDeviceNumber"),
-        MemoryLayout.sequenceLayout(8, Constants$root.C_SHORT$LAYOUT).withName("StorageManagerName"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_DISK_PERFORMANCE");
-    public static MemoryLayout $LAYOUT() {
-        return _DISK_PERFORMANCE.$struct$LAYOUT;
+    _DISK_PERFORMANCE() {
+        // Should not be called directly
     }
-    public static MemorySegment BytesRead$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    public static MemorySegment BytesWritten$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    public static MemorySegment ReadTime$slice(MemorySegment seg) {
-        return seg.asSlice(16, 8);
-    }
-    public static MemorySegment WriteTime$slice(MemorySegment seg) {
-        return seg.asSlice(24, 8);
-    }
-    public static MemorySegment IdleTime$slice(MemorySegment seg) {
-        return seg.asSlice(32, 8);
-    }
-    static final VarHandle ReadCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ReadCount"));
-    public static VarHandle ReadCount$VH() {
-        return _DISK_PERFORMANCE.ReadCount$VH;
-    }
-    public static int ReadCount$get(MemorySegment seg) {
-        return (int)_DISK_PERFORMANCE.ReadCount$VH.get(seg);
-    }
-    public static void ReadCount$set( MemorySegment seg, int x) {
-        _DISK_PERFORMANCE.ReadCount$VH.set(seg, x);
-    }
-    public static int ReadCount$get(MemorySegment seg, long index) {
-        return (int)_DISK_PERFORMANCE.ReadCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ReadCount$set(MemorySegment seg, long index, int x) {
-        _DISK_PERFORMANCE.ReadCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle WriteCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("WriteCount"));
-    public static VarHandle WriteCount$VH() {
-        return _DISK_PERFORMANCE.WriteCount$VH;
-    }
-    public static int WriteCount$get(MemorySegment seg) {
-        return (int)_DISK_PERFORMANCE.WriteCount$VH.get(seg);
-    }
-    public static void WriteCount$set( MemorySegment seg, int x) {
-        _DISK_PERFORMANCE.WriteCount$VH.set(seg, x);
-    }
-    public static int WriteCount$get(MemorySegment seg, long index) {
-        return (int)_DISK_PERFORMANCE.WriteCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void WriteCount$set(MemorySegment seg, long index, int x) {
-        _DISK_PERFORMANCE.WriteCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle QueueDepth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueueDepth"));
-    public static VarHandle QueueDepth$VH() {
-        return _DISK_PERFORMANCE.QueueDepth$VH;
-    }
-    public static int QueueDepth$get(MemorySegment seg) {
-        return (int)_DISK_PERFORMANCE.QueueDepth$VH.get(seg);
-    }
-    public static void QueueDepth$set( MemorySegment seg, int x) {
-        _DISK_PERFORMANCE.QueueDepth$VH.set(seg, x);
-    }
-    public static int QueueDepth$get(MemorySegment seg, long index) {
-        return (int)_DISK_PERFORMANCE.QueueDepth$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void QueueDepth$set(MemorySegment seg, long index, int x) {
-        _DISK_PERFORMANCE.QueueDepth$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SplitCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SplitCount"));
-    public static VarHandle SplitCount$VH() {
-        return _DISK_PERFORMANCE.SplitCount$VH;
-    }
-    public static int SplitCount$get(MemorySegment seg) {
-        return (int)_DISK_PERFORMANCE.SplitCount$VH.get(seg);
-    }
-    public static void SplitCount$set( MemorySegment seg, int x) {
-        _DISK_PERFORMANCE.SplitCount$VH.set(seg, x);
-    }
-    public static int SplitCount$get(MemorySegment seg, long index) {
-        return (int)_DISK_PERFORMANCE.SplitCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SplitCount$set(MemorySegment seg, long index, int x) {
-        _DISK_PERFORMANCE.SplitCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment QueryTime$slice(MemorySegment seg) {
-        return seg.asSlice(56, 8);
-    }
-    static final VarHandle StorageDeviceNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StorageDeviceNumber"));
-    public static VarHandle StorageDeviceNumber$VH() {
-        return _DISK_PERFORMANCE.StorageDeviceNumber$VH;
-    }
-    public static int StorageDeviceNumber$get(MemorySegment seg) {
-        return (int)_DISK_PERFORMANCE.StorageDeviceNumber$VH.get(seg);
-    }
-    public static void StorageDeviceNumber$set( MemorySegment seg, int x) {
-        _DISK_PERFORMANCE.StorageDeviceNumber$VH.set(seg, x);
-    }
-    public static int StorageDeviceNumber$get(MemorySegment seg, long index) {
-        return (int)_DISK_PERFORMANCE.StorageDeviceNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StorageDeviceNumber$set(MemorySegment seg, long index, int x) {
-        _DISK_PERFORMANCE.StorageDeviceNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment StorageManagerName$slice(MemorySegment seg) {
-        return seg.asSlice(68, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _LARGE_INTEGER.layout().withName("BytesRead"),
+        _LARGE_INTEGER.layout().withName("BytesWritten"),
+        _LARGE_INTEGER.layout().withName("ReadTime"),
+        _LARGE_INTEGER.layout().withName("WriteTime"),
+        _LARGE_INTEGER.layout().withName("IdleTime"),
+        wgl_h.C_LONG.withName("ReadCount"),
+        wgl_h.C_LONG.withName("WriteCount"),
+        wgl_h.C_LONG.withName("QueueDepth"),
+        wgl_h.C_LONG.withName("SplitCount"),
+        _LARGE_INTEGER.layout().withName("QueryTime"),
+        wgl_h.C_LONG.withName("StorageDeviceNumber"),
+        MemoryLayout.sequenceLayout(8, wgl_h.C_SHORT).withName("StorageManagerName"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_DISK_PERFORMANCE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout BytesRead$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("BytesRead"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER BytesRead
+     * }
+     */
+    public static final GroupLayout BytesRead$layout() {
+        return BytesRead$LAYOUT;
+    }
+
+    private static final long BytesRead$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER BytesRead
+     * }
+     */
+    public static final long BytesRead$offset() {
+        return BytesRead$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER BytesRead
+     * }
+     */
+    public static MemorySegment BytesRead(MemorySegment struct) {
+        return struct.asSlice(BytesRead$OFFSET, BytesRead$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER BytesRead
+     * }
+     */
+    public static void BytesRead(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, BytesRead$OFFSET, BytesRead$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout BytesWritten$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("BytesWritten"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER BytesWritten
+     * }
+     */
+    public static final GroupLayout BytesWritten$layout() {
+        return BytesWritten$LAYOUT;
+    }
+
+    private static final long BytesWritten$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER BytesWritten
+     * }
+     */
+    public static final long BytesWritten$offset() {
+        return BytesWritten$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER BytesWritten
+     * }
+     */
+    public static MemorySegment BytesWritten(MemorySegment struct) {
+        return struct.asSlice(BytesWritten$OFFSET, BytesWritten$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER BytesWritten
+     * }
+     */
+    public static void BytesWritten(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, BytesWritten$OFFSET, BytesWritten$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout ReadTime$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ReadTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER ReadTime
+     * }
+     */
+    public static final GroupLayout ReadTime$layout() {
+        return ReadTime$LAYOUT;
+    }
+
+    private static final long ReadTime$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER ReadTime
+     * }
+     */
+    public static final long ReadTime$offset() {
+        return ReadTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER ReadTime
+     * }
+     */
+    public static MemorySegment ReadTime(MemorySegment struct) {
+        return struct.asSlice(ReadTime$OFFSET, ReadTime$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER ReadTime
+     * }
+     */
+    public static void ReadTime(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ReadTime$OFFSET, ReadTime$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout WriteTime$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("WriteTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER WriteTime
+     * }
+     */
+    public static final GroupLayout WriteTime$layout() {
+        return WriteTime$LAYOUT;
+    }
+
+    private static final long WriteTime$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER WriteTime
+     * }
+     */
+    public static final long WriteTime$offset() {
+        return WriteTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER WriteTime
+     * }
+     */
+    public static MemorySegment WriteTime(MemorySegment struct) {
+        return struct.asSlice(WriteTime$OFFSET, WriteTime$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER WriteTime
+     * }
+     */
+    public static void WriteTime(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, WriteTime$OFFSET, WriteTime$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout IdleTime$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("IdleTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER IdleTime
+     * }
+     */
+    public static final GroupLayout IdleTime$layout() {
+        return IdleTime$LAYOUT;
+    }
+
+    private static final long IdleTime$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER IdleTime
+     * }
+     */
+    public static final long IdleTime$offset() {
+        return IdleTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER IdleTime
+     * }
+     */
+    public static MemorySegment IdleTime(MemorySegment struct) {
+        return struct.asSlice(IdleTime$OFFSET, IdleTime$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER IdleTime
+     * }
+     */
+    public static void IdleTime(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, IdleTime$OFFSET, IdleTime$LAYOUT.byteSize());
+    }
+
+    private static final OfInt ReadCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ReadCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ReadCount
+     * }
+     */
+    public static final OfInt ReadCount$layout() {
+        return ReadCount$LAYOUT;
+    }
+
+    private static final long ReadCount$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ReadCount
+     * }
+     */
+    public static final long ReadCount$offset() {
+        return ReadCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ReadCount
+     * }
+     */
+    public static int ReadCount(MemorySegment struct) {
+        return struct.get(ReadCount$LAYOUT, ReadCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ReadCount
+     * }
+     */
+    public static void ReadCount(MemorySegment struct, int fieldValue) {
+        struct.set(ReadCount$LAYOUT, ReadCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt WriteCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("WriteCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD WriteCount
+     * }
+     */
+    public static final OfInt WriteCount$layout() {
+        return WriteCount$LAYOUT;
+    }
+
+    private static final long WriteCount$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD WriteCount
+     * }
+     */
+    public static final long WriteCount$offset() {
+        return WriteCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD WriteCount
+     * }
+     */
+    public static int WriteCount(MemorySegment struct) {
+        return struct.get(WriteCount$LAYOUT, WriteCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD WriteCount
+     * }
+     */
+    public static void WriteCount(MemorySegment struct, int fieldValue) {
+        struct.set(WriteCount$LAYOUT, WriteCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt QueueDepth$LAYOUT = (OfInt)$LAYOUT.select(groupElement("QueueDepth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD QueueDepth
+     * }
+     */
+    public static final OfInt QueueDepth$layout() {
+        return QueueDepth$LAYOUT;
+    }
+
+    private static final long QueueDepth$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD QueueDepth
+     * }
+     */
+    public static final long QueueDepth$offset() {
+        return QueueDepth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD QueueDepth
+     * }
+     */
+    public static int QueueDepth(MemorySegment struct) {
+        return struct.get(QueueDepth$LAYOUT, QueueDepth$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD QueueDepth
+     * }
+     */
+    public static void QueueDepth(MemorySegment struct, int fieldValue) {
+        struct.set(QueueDepth$LAYOUT, QueueDepth$OFFSET, fieldValue);
+    }
+
+    private static final OfInt SplitCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SplitCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SplitCount
+     * }
+     */
+    public static final OfInt SplitCount$layout() {
+        return SplitCount$LAYOUT;
+    }
+
+    private static final long SplitCount$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SplitCount
+     * }
+     */
+    public static final long SplitCount$offset() {
+        return SplitCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SplitCount
+     * }
+     */
+    public static int SplitCount(MemorySegment struct) {
+        return struct.get(SplitCount$LAYOUT, SplitCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SplitCount
+     * }
+     */
+    public static void SplitCount(MemorySegment struct, int fieldValue) {
+        struct.set(SplitCount$LAYOUT, SplitCount$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout QueryTime$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("QueryTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER QueryTime
+     * }
+     */
+    public static final GroupLayout QueryTime$layout() {
+        return QueryTime$LAYOUT;
+    }
+
+    private static final long QueryTime$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER QueryTime
+     * }
+     */
+    public static final long QueryTime$offset() {
+        return QueryTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER QueryTime
+     * }
+     */
+    public static MemorySegment QueryTime(MemorySegment struct) {
+        return struct.asSlice(QueryTime$OFFSET, QueryTime$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER QueryTime
+     * }
+     */
+    public static void QueryTime(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, QueryTime$OFFSET, QueryTime$LAYOUT.byteSize());
+    }
+
+    private static final OfInt StorageDeviceNumber$LAYOUT = (OfInt)$LAYOUT.select(groupElement("StorageDeviceNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD StorageDeviceNumber
+     * }
+     */
+    public static final OfInt StorageDeviceNumber$layout() {
+        return StorageDeviceNumber$LAYOUT;
+    }
+
+    private static final long StorageDeviceNumber$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD StorageDeviceNumber
+     * }
+     */
+    public static final long StorageDeviceNumber$offset() {
+        return StorageDeviceNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD StorageDeviceNumber
+     * }
+     */
+    public static int StorageDeviceNumber(MemorySegment struct) {
+        return struct.get(StorageDeviceNumber$LAYOUT, StorageDeviceNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD StorageDeviceNumber
+     * }
+     */
+    public static void StorageDeviceNumber(MemorySegment struct, int fieldValue) {
+        struct.set(StorageDeviceNumber$LAYOUT, StorageDeviceNumber$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout StorageManagerName$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("StorageManagerName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR StorageManagerName[8]
+     * }
+     */
+    public static final SequenceLayout StorageManagerName$layout() {
+        return StorageManagerName$LAYOUT;
+    }
+
+    private static final long StorageManagerName$OFFSET = 68;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR StorageManagerName[8]
+     * }
+     */
+    public static final long StorageManagerName$offset() {
+        return StorageManagerName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR StorageManagerName[8]
+     * }
+     */
+    public static MemorySegment StorageManagerName(MemorySegment struct) {
+        return struct.asSlice(StorageManagerName$OFFSET, StorageManagerName$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR StorageManagerName[8]
+     * }
+     */
+    public static void StorageManagerName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, StorageManagerName$OFFSET, StorageManagerName$LAYOUT.byteSize());
+    }
+
+    private static long[] StorageManagerName$DIMS = { 8 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR StorageManagerName[8]
+     * }
+     */
+    public static long[] StorageManagerName$dimensions() {
+        return StorageManagerName$DIMS;
+    }
+    private static final VarHandle StorageManagerName$ELEM_HANDLE = StorageManagerName$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR StorageManagerName[8]
+     * }
+     */
+    public static short StorageManagerName(MemorySegment struct, long index0) {
+        return (short)StorageManagerName$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR StorageManagerName[8]
+     * }
+     */
+    public static void StorageManagerName(MemorySegment struct, long index0, short fieldValue) {
+        StorageManagerName$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

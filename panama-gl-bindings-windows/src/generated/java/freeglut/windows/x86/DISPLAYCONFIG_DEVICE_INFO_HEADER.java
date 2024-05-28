@@ -2,82 +2,264 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct DISPLAYCONFIG_DEVICE_INFO_HEADER {
+ *     DISPLAYCONFIG_DEVICE_INFO_TYPE type;
+ *     UINT32 size;
+ *     LUID adapterId;
+ *     UINT32 id;
+ * }
+ * }
+ */
 public class DISPLAYCONFIG_DEVICE_INFO_HEADER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("type"),
-        Constants$root.C_LONG$LAYOUT.withName("size"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-            Constants$root.C_LONG$LAYOUT.withName("HighPart")
-        ).withName("adapterId"),
-        Constants$root.C_LONG$LAYOUT.withName("id")
-    ).withName("DISPLAYCONFIG_DEVICE_INFO_HEADER");
-    public static MemoryLayout $LAYOUT() {
-        return DISPLAYCONFIG_DEVICE_INFO_HEADER.$struct$LAYOUT;
+    DISPLAYCONFIG_DEVICE_INFO_HEADER() {
+        // Should not be called directly
     }
-    static final VarHandle type$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("type"));
-    public static VarHandle type$VH() {
-        return DISPLAYCONFIG_DEVICE_INFO_HEADER.type$VH;
-    }
-    public static int type$get(MemorySegment seg) {
-        return (int)DISPLAYCONFIG_DEVICE_INFO_HEADER.type$VH.get(seg);
-    }
-    public static void type$set( MemorySegment seg, int x) {
-        DISPLAYCONFIG_DEVICE_INFO_HEADER.type$VH.set(seg, x);
-    }
-    public static int type$get(MemorySegment seg, long index) {
-        return (int)DISPLAYCONFIG_DEVICE_INFO_HEADER.type$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void type$set(MemorySegment seg, long index, int x) {
-        DISPLAYCONFIG_DEVICE_INFO_HEADER.type$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("size"));
-    public static VarHandle size$VH() {
-        return DISPLAYCONFIG_DEVICE_INFO_HEADER.size$VH;
-    }
-    public static int size$get(MemorySegment seg) {
-        return (int)DISPLAYCONFIG_DEVICE_INFO_HEADER.size$VH.get(seg);
-    }
-    public static void size$set( MemorySegment seg, int x) {
-        DISPLAYCONFIG_DEVICE_INFO_HEADER.size$VH.set(seg, x);
-    }
-    public static int size$get(MemorySegment seg, long index) {
-        return (int)DISPLAYCONFIG_DEVICE_INFO_HEADER.size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void size$set(MemorySegment seg, long index, int x) {
-        DISPLAYCONFIG_DEVICE_INFO_HEADER.size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment adapterId$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    static final VarHandle id$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("id"));
-    public static VarHandle id$VH() {
-        return DISPLAYCONFIG_DEVICE_INFO_HEADER.id$VH;
-    }
-    public static int id$get(MemorySegment seg) {
-        return (int)DISPLAYCONFIG_DEVICE_INFO_HEADER.id$VH.get(seg);
-    }
-    public static void id$set( MemorySegment seg, int x) {
-        DISPLAYCONFIG_DEVICE_INFO_HEADER.id$VH.set(seg, x);
-    }
-    public static int id$get(MemorySegment seg, long index) {
-        return (int)DISPLAYCONFIG_DEVICE_INFO_HEADER.id$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void id$set(MemorySegment seg, long index, int x) {
-        DISPLAYCONFIG_DEVICE_INFO_HEADER.id$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_INT.withName("type"),
+        freeglut_h.C_INT.withName("size"),
+        _LUID.layout().withName("adapterId"),
+        freeglut_h.C_INT.withName("id")
+    ).withName("DISPLAYCONFIG_DEVICE_INFO_HEADER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt type$LAYOUT = (OfInt)$LAYOUT.select(groupElement("type"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_DEVICE_INFO_TYPE type
+     * }
+     */
+    public static final OfInt type$layout() {
+        return type$LAYOUT;
+    }
+
+    private static final long type$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_DEVICE_INFO_TYPE type
+     * }
+     */
+    public static final long type$offset() {
+        return type$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_DEVICE_INFO_TYPE type
+     * }
+     */
+    public static int type(MemorySegment struct) {
+        return struct.get(type$LAYOUT, type$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_DEVICE_INFO_TYPE type
+     * }
+     */
+    public static void type(MemorySegment struct, int fieldValue) {
+        struct.set(type$LAYOUT, type$OFFSET, fieldValue);
+    }
+
+    private static final OfInt size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 size
+     * }
+     */
+    public static final OfInt size$layout() {
+        return size$LAYOUT;
+    }
+
+    private static final long size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 size
+     * }
+     */
+    public static final long size$offset() {
+        return size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 size
+     * }
+     */
+    public static int size(MemorySegment struct) {
+        return struct.get(size$LAYOUT, size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 size
+     * }
+     */
+    public static void size(MemorySegment struct, int fieldValue) {
+        struct.set(size$LAYOUT, size$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout adapterId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("adapterId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LUID adapterId
+     * }
+     */
+    public static final GroupLayout adapterId$layout() {
+        return adapterId$LAYOUT;
+    }
+
+    private static final long adapterId$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LUID adapterId
+     * }
+     */
+    public static final long adapterId$offset() {
+        return adapterId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LUID adapterId
+     * }
+     */
+    public static MemorySegment adapterId(MemorySegment struct) {
+        return struct.asSlice(adapterId$OFFSET, adapterId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LUID adapterId
+     * }
+     */
+    public static void adapterId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, adapterId$OFFSET, adapterId$LAYOUT.byteSize());
+    }
+
+    private static final OfInt id$LAYOUT = (OfInt)$LAYOUT.select(groupElement("id"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 id
+     * }
+     */
+    public static final OfInt id$layout() {
+        return id$LAYOUT;
+    }
+
+    private static final long id$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 id
+     * }
+     */
+    public static final long id$offset() {
+        return id$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 id
+     * }
+     */
+    public static int id(MemorySegment struct) {
+        return struct.get(id$LAYOUT, id$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 id
+     * }
+     */
+    public static void id(MemorySegment struct, int fieldValue) {
+        struct.set(id$LAYOUT, id$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

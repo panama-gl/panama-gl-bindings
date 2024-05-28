@@ -2,13 +2,32 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _WOW64_ARCHITECTURE_INFORMATION {
+ *     DWORD Machine : 16;
+ *     DWORD KernelMode : 1;
+ *     DWORD UserMode : 1;
+ *     DWORD Native : 1;
+ *     DWORD Process : 1;
+ *     DWORD ReservedZero0 : 12;
+ * } WOW64_ARCHITECTURE_INFORMATION
+ * }
+ */
 public class WOW64_ARCHITECTURE_INFORMATION extends _WOW64_ARCHITECTURE_INFORMATION {
 
+    WOW64_ARCHITECTURE_INFORMATION() {
+        // Should not be called directly
+    }
 }
-
 

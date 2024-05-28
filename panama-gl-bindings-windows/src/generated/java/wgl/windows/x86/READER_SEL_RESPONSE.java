@@ -2,92 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     DWORD cbReaderNameOffset;
+ *     DWORD cchReaderNameLength;
+ *     DWORD cbCardNameOffset;
+ *     DWORD cchCardNameLength;
+ * }
+ * }
+ */
 public class READER_SEL_RESPONSE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbReaderNameOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("cchReaderNameLength"),
-        Constants$root.C_LONG$LAYOUT.withName("cbCardNameOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("cchCardNameLength")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return READER_SEL_RESPONSE.$struct$LAYOUT;
+    READER_SEL_RESPONSE() {
+        // Should not be called directly
     }
-    static final VarHandle cbReaderNameOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbReaderNameOffset"));
-    public static VarHandle cbReaderNameOffset$VH() {
-        return READER_SEL_RESPONSE.cbReaderNameOffset$VH;
-    }
-    public static int cbReaderNameOffset$get(MemorySegment seg) {
-        return (int)READER_SEL_RESPONSE.cbReaderNameOffset$VH.get(seg);
-    }
-    public static void cbReaderNameOffset$set( MemorySegment seg, int x) {
-        READER_SEL_RESPONSE.cbReaderNameOffset$VH.set(seg, x);
-    }
-    public static int cbReaderNameOffset$get(MemorySegment seg, long index) {
-        return (int)READER_SEL_RESPONSE.cbReaderNameOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbReaderNameOffset$set(MemorySegment seg, long index, int x) {
-        READER_SEL_RESPONSE.cbReaderNameOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cchReaderNameLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cchReaderNameLength"));
-    public static VarHandle cchReaderNameLength$VH() {
-        return READER_SEL_RESPONSE.cchReaderNameLength$VH;
-    }
-    public static int cchReaderNameLength$get(MemorySegment seg) {
-        return (int)READER_SEL_RESPONSE.cchReaderNameLength$VH.get(seg);
-    }
-    public static void cchReaderNameLength$set( MemorySegment seg, int x) {
-        READER_SEL_RESPONSE.cchReaderNameLength$VH.set(seg, x);
-    }
-    public static int cchReaderNameLength$get(MemorySegment seg, long index) {
-        return (int)READER_SEL_RESPONSE.cchReaderNameLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cchReaderNameLength$set(MemorySegment seg, long index, int x) {
-        READER_SEL_RESPONSE.cchReaderNameLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbCardNameOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbCardNameOffset"));
-    public static VarHandle cbCardNameOffset$VH() {
-        return READER_SEL_RESPONSE.cbCardNameOffset$VH;
-    }
-    public static int cbCardNameOffset$get(MemorySegment seg) {
-        return (int)READER_SEL_RESPONSE.cbCardNameOffset$VH.get(seg);
-    }
-    public static void cbCardNameOffset$set( MemorySegment seg, int x) {
-        READER_SEL_RESPONSE.cbCardNameOffset$VH.set(seg, x);
-    }
-    public static int cbCardNameOffset$get(MemorySegment seg, long index) {
-        return (int)READER_SEL_RESPONSE.cbCardNameOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbCardNameOffset$set(MemorySegment seg, long index, int x) {
-        READER_SEL_RESPONSE.cbCardNameOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cchCardNameLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cchCardNameLength"));
-    public static VarHandle cchCardNameLength$VH() {
-        return READER_SEL_RESPONSE.cchCardNameLength$VH;
-    }
-    public static int cchCardNameLength$get(MemorySegment seg) {
-        return (int)READER_SEL_RESPONSE.cchCardNameLength$VH.get(seg);
-    }
-    public static void cchCardNameLength$set( MemorySegment seg, int x) {
-        READER_SEL_RESPONSE.cchCardNameLength$VH.set(seg, x);
-    }
-    public static int cchCardNameLength$get(MemorySegment seg, long index) {
-        return (int)READER_SEL_RESPONSE.cchCardNameLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cchCardNameLength$set(MemorySegment seg, long index, int x) {
-        READER_SEL_RESPONSE.cchCardNameLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbReaderNameOffset"),
+        wgl_h.C_LONG.withName("cchReaderNameLength"),
+        wgl_h.C_LONG.withName("cbCardNameOffset"),
+        wgl_h.C_LONG.withName("cchCardNameLength")
+    ).withName("$anon$1133:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbReaderNameOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbReaderNameOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbReaderNameOffset
+     * }
+     */
+    public static final OfInt cbReaderNameOffset$layout() {
+        return cbReaderNameOffset$LAYOUT;
+    }
+
+    private static final long cbReaderNameOffset$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbReaderNameOffset
+     * }
+     */
+    public static final long cbReaderNameOffset$offset() {
+        return cbReaderNameOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbReaderNameOffset
+     * }
+     */
+    public static int cbReaderNameOffset(MemorySegment struct) {
+        return struct.get(cbReaderNameOffset$LAYOUT, cbReaderNameOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbReaderNameOffset
+     * }
+     */
+    public static void cbReaderNameOffset(MemorySegment struct, int fieldValue) {
+        struct.set(cbReaderNameOffset$LAYOUT, cbReaderNameOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cchReaderNameLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cchReaderNameLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cchReaderNameLength
+     * }
+     */
+    public static final OfInt cchReaderNameLength$layout() {
+        return cchReaderNameLength$LAYOUT;
+    }
+
+    private static final long cchReaderNameLength$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cchReaderNameLength
+     * }
+     */
+    public static final long cchReaderNameLength$offset() {
+        return cchReaderNameLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cchReaderNameLength
+     * }
+     */
+    public static int cchReaderNameLength(MemorySegment struct) {
+        return struct.get(cchReaderNameLength$LAYOUT, cchReaderNameLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cchReaderNameLength
+     * }
+     */
+    public static void cchReaderNameLength(MemorySegment struct, int fieldValue) {
+        struct.set(cchReaderNameLength$LAYOUT, cchReaderNameLength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbCardNameOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbCardNameOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbCardNameOffset
+     * }
+     */
+    public static final OfInt cbCardNameOffset$layout() {
+        return cbCardNameOffset$LAYOUT;
+    }
+
+    private static final long cbCardNameOffset$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbCardNameOffset
+     * }
+     */
+    public static final long cbCardNameOffset$offset() {
+        return cbCardNameOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbCardNameOffset
+     * }
+     */
+    public static int cbCardNameOffset(MemorySegment struct) {
+        return struct.get(cbCardNameOffset$LAYOUT, cbCardNameOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbCardNameOffset
+     * }
+     */
+    public static void cbCardNameOffset(MemorySegment struct, int fieldValue) {
+        struct.set(cbCardNameOffset$LAYOUT, cbCardNameOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cchCardNameLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cchCardNameLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cchCardNameLength
+     * }
+     */
+    public static final OfInt cchCardNameLength$layout() {
+        return cchCardNameLength$LAYOUT;
+    }
+
+    private static final long cchCardNameLength$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cchCardNameLength
+     * }
+     */
+    public static final long cchCardNameLength$offset() {
+        return cchCardNameLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cchCardNameLength
+     * }
+     */
+    public static int cchCardNameLength(MemorySegment struct) {
+        return struct.get(cchCardNameLength$LAYOUT, cchCardNameLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cchCardNameLength
+     * }
+     */
+    public static void cchCardNameLength(MemorySegment struct, int fieldValue) {
+        struct.set(cchCardNameLength$LAYOUT, cchCardNameLength$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

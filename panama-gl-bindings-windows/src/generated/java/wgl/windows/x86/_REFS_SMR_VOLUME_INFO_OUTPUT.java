@@ -2,166 +2,573 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _REFS_SMR_VOLUME_INFO_OUTPUT {
+ *     DWORD Version;
+ *     DWORD Flags;
+ *     LARGE_INTEGER SizeOfRandomlyWritableTier;
+ *     LARGE_INTEGER FreeSpaceInRandomlyWritableTier;
+ *     LARGE_INTEGER SizeofSMRTier;
+ *     LARGE_INTEGER FreeSpaceInSMRTier;
+ *     LARGE_INTEGER UsableFreeSpaceInSMRTier;
+ *     REFS_SMR_VOLUME_GC_STATE VolumeGcState;
+ *     DWORD VolumeGcLastStatus;
+ *     DWORDLONG Unused[7];
+ * }
+ * }
+ */
 public class _REFS_SMR_VOLUME_INFO_OUTPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("SizeOfRandomlyWritableTier"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("FreeSpaceInRandomlyWritableTier"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("SizeofSMRTier"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("FreeSpaceInSMRTier"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("UsableFreeSpaceInSMRTier"),
-        Constants$root.C_LONG$LAYOUT.withName("VolumeGcState"),
-        Constants$root.C_LONG$LAYOUT.withName("VolumeGcLastStatus"),
-        MemoryLayout.sequenceLayout(7, Constants$root.C_LONG_LONG$LAYOUT).withName("Unused")
-    ).withName("_REFS_SMR_VOLUME_INFO_OUTPUT");
-    public static MemoryLayout $LAYOUT() {
-        return _REFS_SMR_VOLUME_INFO_OUTPUT.$struct$LAYOUT;
+    _REFS_SMR_VOLUME_INFO_OUTPUT() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _REFS_SMR_VOLUME_INFO_OUTPUT.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_REFS_SMR_VOLUME_INFO_OUTPUT.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _REFS_SMR_VOLUME_INFO_OUTPUT.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_REFS_SMR_VOLUME_INFO_OUTPUT.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _REFS_SMR_VOLUME_INFO_OUTPUT.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _REFS_SMR_VOLUME_INFO_OUTPUT.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_REFS_SMR_VOLUME_INFO_OUTPUT.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _REFS_SMR_VOLUME_INFO_OUTPUT.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_REFS_SMR_VOLUME_INFO_OUTPUT.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _REFS_SMR_VOLUME_INFO_OUTPUT.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment SizeOfRandomlyWritableTier$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    public static MemorySegment FreeSpaceInRandomlyWritableTier$slice(MemorySegment seg) {
-        return seg.asSlice(16, 8);
-    }
-    public static MemorySegment SizeofSMRTier$slice(MemorySegment seg) {
-        return seg.asSlice(24, 8);
-    }
-    public static MemorySegment FreeSpaceInSMRTier$slice(MemorySegment seg) {
-        return seg.asSlice(32, 8);
-    }
-    public static MemorySegment UsableFreeSpaceInSMRTier$slice(MemorySegment seg) {
-        return seg.asSlice(40, 8);
-    }
-    static final VarHandle VolumeGcState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VolumeGcState"));
-    public static VarHandle VolumeGcState$VH() {
-        return _REFS_SMR_VOLUME_INFO_OUTPUT.VolumeGcState$VH;
-    }
-    public static int VolumeGcState$get(MemorySegment seg) {
-        return (int)_REFS_SMR_VOLUME_INFO_OUTPUT.VolumeGcState$VH.get(seg);
-    }
-    public static void VolumeGcState$set( MemorySegment seg, int x) {
-        _REFS_SMR_VOLUME_INFO_OUTPUT.VolumeGcState$VH.set(seg, x);
-    }
-    public static int VolumeGcState$get(MemorySegment seg, long index) {
-        return (int)_REFS_SMR_VOLUME_INFO_OUTPUT.VolumeGcState$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void VolumeGcState$set(MemorySegment seg, long index, int x) {
-        _REFS_SMR_VOLUME_INFO_OUTPUT.VolumeGcState$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle VolumeGcLastStatus$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VolumeGcLastStatus"));
-    public static VarHandle VolumeGcLastStatus$VH() {
-        return _REFS_SMR_VOLUME_INFO_OUTPUT.VolumeGcLastStatus$VH;
-    }
-    public static int VolumeGcLastStatus$get(MemorySegment seg) {
-        return (int)_REFS_SMR_VOLUME_INFO_OUTPUT.VolumeGcLastStatus$VH.get(seg);
-    }
-    public static void VolumeGcLastStatus$set( MemorySegment seg, int x) {
-        _REFS_SMR_VOLUME_INFO_OUTPUT.VolumeGcLastStatus$VH.set(seg, x);
-    }
-    public static int VolumeGcLastStatus$get(MemorySegment seg, long index) {
-        return (int)_REFS_SMR_VOLUME_INFO_OUTPUT.VolumeGcLastStatus$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void VolumeGcLastStatus$set(MemorySegment seg, long index, int x) {
-        _REFS_SMR_VOLUME_INFO_OUTPUT.VolumeGcLastStatus$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Unused$slice(MemorySegment seg) {
-        return seg.asSlice(56, 56);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Flags"),
+        _LARGE_INTEGER.layout().withName("SizeOfRandomlyWritableTier"),
+        _LARGE_INTEGER.layout().withName("FreeSpaceInRandomlyWritableTier"),
+        _LARGE_INTEGER.layout().withName("SizeofSMRTier"),
+        _LARGE_INTEGER.layout().withName("FreeSpaceInSMRTier"),
+        _LARGE_INTEGER.layout().withName("UsableFreeSpaceInSMRTier"),
+        wgl_h.C_INT.withName("VolumeGcState"),
+        wgl_h.C_LONG.withName("VolumeGcLastStatus"),
+        MemoryLayout.sequenceLayout(7, wgl_h.C_LONG_LONG).withName("Unused")
+    ).withName("_REFS_SMR_VOLUME_INFO_OUTPUT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout SizeOfRandomlyWritableTier$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("SizeOfRandomlyWritableTier"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER SizeOfRandomlyWritableTier
+     * }
+     */
+    public static final GroupLayout SizeOfRandomlyWritableTier$layout() {
+        return SizeOfRandomlyWritableTier$LAYOUT;
+    }
+
+    private static final long SizeOfRandomlyWritableTier$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER SizeOfRandomlyWritableTier
+     * }
+     */
+    public static final long SizeOfRandomlyWritableTier$offset() {
+        return SizeOfRandomlyWritableTier$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER SizeOfRandomlyWritableTier
+     * }
+     */
+    public static MemorySegment SizeOfRandomlyWritableTier(MemorySegment struct) {
+        return struct.asSlice(SizeOfRandomlyWritableTier$OFFSET, SizeOfRandomlyWritableTier$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER SizeOfRandomlyWritableTier
+     * }
+     */
+    public static void SizeOfRandomlyWritableTier(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, SizeOfRandomlyWritableTier$OFFSET, SizeOfRandomlyWritableTier$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout FreeSpaceInRandomlyWritableTier$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("FreeSpaceInRandomlyWritableTier"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FreeSpaceInRandomlyWritableTier
+     * }
+     */
+    public static final GroupLayout FreeSpaceInRandomlyWritableTier$layout() {
+        return FreeSpaceInRandomlyWritableTier$LAYOUT;
+    }
+
+    private static final long FreeSpaceInRandomlyWritableTier$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FreeSpaceInRandomlyWritableTier
+     * }
+     */
+    public static final long FreeSpaceInRandomlyWritableTier$offset() {
+        return FreeSpaceInRandomlyWritableTier$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FreeSpaceInRandomlyWritableTier
+     * }
+     */
+    public static MemorySegment FreeSpaceInRandomlyWritableTier(MemorySegment struct) {
+        return struct.asSlice(FreeSpaceInRandomlyWritableTier$OFFSET, FreeSpaceInRandomlyWritableTier$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FreeSpaceInRandomlyWritableTier
+     * }
+     */
+    public static void FreeSpaceInRandomlyWritableTier(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, FreeSpaceInRandomlyWritableTier$OFFSET, FreeSpaceInRandomlyWritableTier$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout SizeofSMRTier$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("SizeofSMRTier"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER SizeofSMRTier
+     * }
+     */
+    public static final GroupLayout SizeofSMRTier$layout() {
+        return SizeofSMRTier$LAYOUT;
+    }
+
+    private static final long SizeofSMRTier$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER SizeofSMRTier
+     * }
+     */
+    public static final long SizeofSMRTier$offset() {
+        return SizeofSMRTier$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER SizeofSMRTier
+     * }
+     */
+    public static MemorySegment SizeofSMRTier(MemorySegment struct) {
+        return struct.asSlice(SizeofSMRTier$OFFSET, SizeofSMRTier$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER SizeofSMRTier
+     * }
+     */
+    public static void SizeofSMRTier(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, SizeofSMRTier$OFFSET, SizeofSMRTier$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout FreeSpaceInSMRTier$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("FreeSpaceInSMRTier"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FreeSpaceInSMRTier
+     * }
+     */
+    public static final GroupLayout FreeSpaceInSMRTier$layout() {
+        return FreeSpaceInSMRTier$LAYOUT;
+    }
+
+    private static final long FreeSpaceInSMRTier$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FreeSpaceInSMRTier
+     * }
+     */
+    public static final long FreeSpaceInSMRTier$offset() {
+        return FreeSpaceInSMRTier$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FreeSpaceInSMRTier
+     * }
+     */
+    public static MemorySegment FreeSpaceInSMRTier(MemorySegment struct) {
+        return struct.asSlice(FreeSpaceInSMRTier$OFFSET, FreeSpaceInSMRTier$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FreeSpaceInSMRTier
+     * }
+     */
+    public static void FreeSpaceInSMRTier(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, FreeSpaceInSMRTier$OFFSET, FreeSpaceInSMRTier$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout UsableFreeSpaceInSMRTier$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("UsableFreeSpaceInSMRTier"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER UsableFreeSpaceInSMRTier
+     * }
+     */
+    public static final GroupLayout UsableFreeSpaceInSMRTier$layout() {
+        return UsableFreeSpaceInSMRTier$LAYOUT;
+    }
+
+    private static final long UsableFreeSpaceInSMRTier$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER UsableFreeSpaceInSMRTier
+     * }
+     */
+    public static final long UsableFreeSpaceInSMRTier$offset() {
+        return UsableFreeSpaceInSMRTier$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER UsableFreeSpaceInSMRTier
+     * }
+     */
+    public static MemorySegment UsableFreeSpaceInSMRTier(MemorySegment struct) {
+        return struct.asSlice(UsableFreeSpaceInSMRTier$OFFSET, UsableFreeSpaceInSMRTier$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER UsableFreeSpaceInSMRTier
+     * }
+     */
+    public static void UsableFreeSpaceInSMRTier(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, UsableFreeSpaceInSMRTier$OFFSET, UsableFreeSpaceInSMRTier$LAYOUT.byteSize());
+    }
+
+    private static final OfInt VolumeGcState$LAYOUT = (OfInt)$LAYOUT.select(groupElement("VolumeGcState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * REFS_SMR_VOLUME_GC_STATE VolumeGcState
+     * }
+     */
+    public static final OfInt VolumeGcState$layout() {
+        return VolumeGcState$LAYOUT;
+    }
+
+    private static final long VolumeGcState$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * REFS_SMR_VOLUME_GC_STATE VolumeGcState
+     * }
+     */
+    public static final long VolumeGcState$offset() {
+        return VolumeGcState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * REFS_SMR_VOLUME_GC_STATE VolumeGcState
+     * }
+     */
+    public static int VolumeGcState(MemorySegment struct) {
+        return struct.get(VolumeGcState$LAYOUT, VolumeGcState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * REFS_SMR_VOLUME_GC_STATE VolumeGcState
+     * }
+     */
+    public static void VolumeGcState(MemorySegment struct, int fieldValue) {
+        struct.set(VolumeGcState$LAYOUT, VolumeGcState$OFFSET, fieldValue);
+    }
+
+    private static final OfInt VolumeGcLastStatus$LAYOUT = (OfInt)$LAYOUT.select(groupElement("VolumeGcLastStatus"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD VolumeGcLastStatus
+     * }
+     */
+    public static final OfInt VolumeGcLastStatus$layout() {
+        return VolumeGcLastStatus$LAYOUT;
+    }
+
+    private static final long VolumeGcLastStatus$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD VolumeGcLastStatus
+     * }
+     */
+    public static final long VolumeGcLastStatus$offset() {
+        return VolumeGcLastStatus$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD VolumeGcLastStatus
+     * }
+     */
+    public static int VolumeGcLastStatus(MemorySegment struct) {
+        return struct.get(VolumeGcLastStatus$LAYOUT, VolumeGcLastStatus$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD VolumeGcLastStatus
+     * }
+     */
+    public static void VolumeGcLastStatus(MemorySegment struct, int fieldValue) {
+        struct.set(VolumeGcLastStatus$LAYOUT, VolumeGcLastStatus$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Unused$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Unused"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG Unused[7]
+     * }
+     */
+    public static final SequenceLayout Unused$layout() {
+        return Unused$LAYOUT;
+    }
+
+    private static final long Unused$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG Unused[7]
+     * }
+     */
+    public static final long Unused$offset() {
+        return Unused$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Unused[7]
+     * }
+     */
+    public static MemorySegment Unused(MemorySegment struct) {
+        return struct.asSlice(Unused$OFFSET, Unused$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Unused[7]
+     * }
+     */
+    public static void Unused(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Unused$OFFSET, Unused$LAYOUT.byteSize());
+    }
+
+    private static long[] Unused$DIMS = { 7 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DWORDLONG Unused[7]
+     * }
+     */
+    public static long[] Unused$dimensions() {
+        return Unused$DIMS;
+    }
+    private static final VarHandle Unused$ELEM_HANDLE = Unused$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Unused[7]
+     * }
+     */
+    public static long Unused(MemorySegment struct, long index0) {
+        return (long)Unused$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Unused[7]
+     * }
+     */
+    public static void Unused(MemorySegment struct, long index0, long fieldValue) {
+        Unused$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

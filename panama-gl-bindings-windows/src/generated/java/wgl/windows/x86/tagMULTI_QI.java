@@ -2,76 +2,219 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagMULTI_QI {
+ *     const IID *pIID;
+ *     IUnknown *pItf;
+ *     HRESULT hr;
+ * }
+ * }
+ */
 public class tagMULTI_QI {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("pIID"),
-        Constants$root.C_POINTER$LAYOUT.withName("pItf"),
-        Constants$root.C_LONG$LAYOUT.withName("hr"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("tagMULTI_QI");
-    public static MemoryLayout $LAYOUT() {
-        return tagMULTI_QI.$struct$LAYOUT;
+    tagMULTI_QI() {
+        // Should not be called directly
     }
-    static final VarHandle pIID$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pIID"));
-    public static VarHandle pIID$VH() {
-        return tagMULTI_QI.pIID$VH;
-    }
-    public static MemoryAddress pIID$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMULTI_QI.pIID$VH.get(seg);
-    }
-    public static void pIID$set( MemorySegment seg, MemoryAddress x) {
-        tagMULTI_QI.pIID$VH.set(seg, x);
-    }
-    public static MemoryAddress pIID$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMULTI_QI.pIID$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pIID$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMULTI_QI.pIID$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pItf$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pItf"));
-    public static VarHandle pItf$VH() {
-        return tagMULTI_QI.pItf$VH;
-    }
-    public static MemoryAddress pItf$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMULTI_QI.pItf$VH.get(seg);
-    }
-    public static void pItf$set( MemorySegment seg, MemoryAddress x) {
-        tagMULTI_QI.pItf$VH.set(seg, x);
-    }
-    public static MemoryAddress pItf$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMULTI_QI.pItf$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pItf$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMULTI_QI.pItf$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hr$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hr"));
-    public static VarHandle hr$VH() {
-        return tagMULTI_QI.hr$VH;
-    }
-    public static int hr$get(MemorySegment seg) {
-        return (int)tagMULTI_QI.hr$VH.get(seg);
-    }
-    public static void hr$set( MemorySegment seg, int x) {
-        tagMULTI_QI.hr$VH.set(seg, x);
-    }
-    public static int hr$get(MemorySegment seg, long index) {
-        return (int)tagMULTI_QI.hr$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hr$set(MemorySegment seg, long index, int x) {
-        tagMULTI_QI.hr$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("pIID"),
+        wgl_h.C_POINTER.withName("pItf"),
+        wgl_h.C_LONG.withName("hr"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("tagMULTI_QI");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout pIID$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pIID"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * const IID *pIID
+     * }
+     */
+    public static final AddressLayout pIID$layout() {
+        return pIID$LAYOUT;
+    }
+
+    private static final long pIID$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * const IID *pIID
+     * }
+     */
+    public static final long pIID$offset() {
+        return pIID$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * const IID *pIID
+     * }
+     */
+    public static MemorySegment pIID(MemorySegment struct) {
+        return struct.get(pIID$LAYOUT, pIID$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * const IID *pIID
+     * }
+     */
+    public static void pIID(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pIID$LAYOUT, pIID$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pItf$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pItf"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IUnknown *pItf
+     * }
+     */
+    public static final AddressLayout pItf$layout() {
+        return pItf$LAYOUT;
+    }
+
+    private static final long pItf$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IUnknown *pItf
+     * }
+     */
+    public static final long pItf$offset() {
+        return pItf$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IUnknown *pItf
+     * }
+     */
+    public static MemorySegment pItf(MemorySegment struct) {
+        return struct.get(pItf$LAYOUT, pItf$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IUnknown *pItf
+     * }
+     */
+    public static void pItf(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pItf$LAYOUT, pItf$OFFSET, fieldValue);
+    }
+
+    private static final OfInt hr$LAYOUT = (OfInt)$LAYOUT.select(groupElement("hr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT hr
+     * }
+     */
+    public static final OfInt hr$layout() {
+        return hr$LAYOUT;
+    }
+
+    private static final long hr$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT hr
+     * }
+     */
+    public static final long hr$offset() {
+        return hr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT hr
+     * }
+     */
+    public static int hr(MemorySegment struct) {
+        return struct.get(hr$LAYOUT, hr$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT hr
+     * }
+     */
+    public static void hr(MemorySegment struct, int fieldValue) {
+        struct.set(hr$LAYOUT, hr$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

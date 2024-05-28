@@ -2,13 +2,68 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _KNONVOLATILE_CONTEXT_POINTERS {
+ *     union {
+ *         PM128A FloatingContext[16];
+ *         struct {
+ *             PM128A Xmm0;
+ *             PM128A Xmm1;
+ *             PM128A Xmm2;
+ *             PM128A Xmm3;
+ *             PM128A Xmm4;
+ *             PM128A Xmm5;
+ *             PM128A Xmm6;
+ *             PM128A Xmm7;
+ *             PM128A Xmm8;
+ *             PM128A Xmm9;
+ *             PM128A Xmm10;
+ *             PM128A Xmm11;
+ *             PM128A Xmm12;
+ *             PM128A Xmm13;
+ *             PM128A Xmm14;
+ *             PM128A Xmm15;
+ *         };
+ *     };
+ *     union {
+ *         PDWORD64 IntegerContext[16];
+ *         struct {
+ *             PDWORD64 Rax;
+ *             PDWORD64 Rcx;
+ *             PDWORD64 Rdx;
+ *             PDWORD64 Rbx;
+ *             PDWORD64 Rsp;
+ *             PDWORD64 Rbp;
+ *             PDWORD64 Rsi;
+ *             PDWORD64 Rdi;
+ *             PDWORD64 R8;
+ *             PDWORD64 R9;
+ *             PDWORD64 R10;
+ *             PDWORD64 R11;
+ *             PDWORD64 R12;
+ *             PDWORD64 R13;
+ *             PDWORD64 R14;
+ *             PDWORD64 R15;
+ *         };
+ *     };
+ * } KNONVOLATILE_CONTEXT_POINTERS
+ * }
+ */
 public class KNONVOLATILE_CONTEXT_POINTERS extends _KNONVOLATILE_CONTEXT_POINTERS {
 
+    KNONVOLATILE_CONTEXT_POINTERS() {
+        // Should not be called directly
+    }
 }
-
 

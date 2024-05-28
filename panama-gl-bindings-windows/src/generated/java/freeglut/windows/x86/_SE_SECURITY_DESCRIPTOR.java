@@ -2,75 +2,218 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SE_SECURITY_DESCRIPTOR {
+ *     DWORD Size;
+ *     DWORD Flags;
+ *     PSECURITY_DESCRIPTOR SecurityDescriptor;
+ * }
+ * }
+ */
 public class _SE_SECURITY_DESCRIPTOR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_POINTER$LAYOUT.withName("SecurityDescriptor")
-    ).withName("_SE_SECURITY_DESCRIPTOR");
-    public static MemoryLayout $LAYOUT() {
-        return _SE_SECURITY_DESCRIPTOR.$struct$LAYOUT;
+    _SE_SECURITY_DESCRIPTOR() {
+        // Should not be called directly
     }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _SE_SECURITY_DESCRIPTOR.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_SE_SECURITY_DESCRIPTOR.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _SE_SECURITY_DESCRIPTOR.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_SE_SECURITY_DESCRIPTOR.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _SE_SECURITY_DESCRIPTOR.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _SE_SECURITY_DESCRIPTOR.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_SE_SECURITY_DESCRIPTOR.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _SE_SECURITY_DESCRIPTOR.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_SE_SECURITY_DESCRIPTOR.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _SE_SECURITY_DESCRIPTOR.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SecurityDescriptor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SecurityDescriptor"));
-    public static VarHandle SecurityDescriptor$VH() {
-        return _SE_SECURITY_DESCRIPTOR.SecurityDescriptor$VH;
-    }
-    public static MemoryAddress SecurityDescriptor$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SE_SECURITY_DESCRIPTOR.SecurityDescriptor$VH.get(seg);
-    }
-    public static void SecurityDescriptor$set( MemorySegment seg, MemoryAddress x) {
-        _SE_SECURITY_DESCRIPTOR.SecurityDescriptor$VH.set(seg, x);
-    }
-    public static MemoryAddress SecurityDescriptor$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SE_SECURITY_DESCRIPTOR.SecurityDescriptor$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SecurityDescriptor$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SE_SECURITY_DESCRIPTOR.SecurityDescriptor$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("Size"),
+        freeglut_h.C_LONG.withName("Flags"),
+        freeglut_h.C_POINTER.withName("SecurityDescriptor")
+    ).withName("_SE_SECURITY_DESCRIPTOR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout SecurityDescriptor$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SecurityDescriptor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PSECURITY_DESCRIPTOR SecurityDescriptor
+     * }
+     */
+    public static final AddressLayout SecurityDescriptor$layout() {
+        return SecurityDescriptor$LAYOUT;
+    }
+
+    private static final long SecurityDescriptor$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PSECURITY_DESCRIPTOR SecurityDescriptor
+     * }
+     */
+    public static final long SecurityDescriptor$offset() {
+        return SecurityDescriptor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PSECURITY_DESCRIPTOR SecurityDescriptor
+     * }
+     */
+    public static MemorySegment SecurityDescriptor(MemorySegment struct) {
+        return struct.get(SecurityDescriptor$LAYOUT, SecurityDescriptor$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PSECURITY_DESCRIPTOR SecurityDescriptor
+     * }
+     */
+    public static void SecurityDescriptor(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SecurityDescriptor$LAYOUT, SecurityDescriptor$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

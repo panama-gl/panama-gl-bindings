@@ -2,132 +2,437 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY {
+ *     DWORDLONG Offset;
+ *     DWORD NameFlags;
+ *     LONGLONG FileId;
+ *     DWORD Reserved1;
+ *     DWORD Reserved2;
+ *     LONGLONG Reserved3;
+ *     WCHAR FileName[1];
+ * }
+ * }
+ */
 public class _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Offset"),
-        Constants$root.C_LONG$LAYOUT.withName("NameFlags"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("FileId"),
-        Constants$root.C_LONG$LAYOUT.withName("Reserved1"),
-        Constants$root.C_LONG$LAYOUT.withName("Reserved2"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Reserved3"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_SHORT$LAYOUT).withName("FileName"),
-        MemoryLayout.paddingLayout(48)
-    ).withName("_TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY");
-    public static MemoryLayout $LAYOUT() {
-        return _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.$struct$LAYOUT;
+    _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY() {
+        // Should not be called directly
     }
-    static final VarHandle Offset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Offset"));
-    public static VarHandle Offset$VH() {
-        return _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Offset$VH;
-    }
-    public static long Offset$get(MemorySegment seg) {
-        return (long)_TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Offset$VH.get(seg);
-    }
-    public static void Offset$set( MemorySegment seg, long x) {
-        _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Offset$VH.set(seg, x);
-    }
-    public static long Offset$get(MemorySegment seg, long index) {
-        return (long)_TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Offset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Offset$set(MemorySegment seg, long index, long x) {
-        _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Offset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NameFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NameFlags"));
-    public static VarHandle NameFlags$VH() {
-        return _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.NameFlags$VH;
-    }
-    public static int NameFlags$get(MemorySegment seg) {
-        return (int)_TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.NameFlags$VH.get(seg);
-    }
-    public static void NameFlags$set( MemorySegment seg, int x) {
-        _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.NameFlags$VH.set(seg, x);
-    }
-    public static int NameFlags$get(MemorySegment seg, long index) {
-        return (int)_TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.NameFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NameFlags$set(MemorySegment seg, long index, int x) {
-        _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.NameFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FileId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FileId"));
-    public static VarHandle FileId$VH() {
-        return _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.FileId$VH;
-    }
-    public static long FileId$get(MemorySegment seg) {
-        return (long)_TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.FileId$VH.get(seg);
-    }
-    public static void FileId$set( MemorySegment seg, long x) {
-        _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.FileId$VH.set(seg, x);
-    }
-    public static long FileId$get(MemorySegment seg, long index) {
-        return (long)_TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.FileId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FileId$set(MemorySegment seg, long index, long x) {
-        _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.FileId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved1"));
-    public static VarHandle Reserved1$VH() {
-        return _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Reserved1$VH;
-    }
-    public static int Reserved1$get(MemorySegment seg) {
-        return (int)_TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Reserved1$VH.get(seg);
-    }
-    public static void Reserved1$set( MemorySegment seg, int x) {
-        _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Reserved1$VH.set(seg, x);
-    }
-    public static int Reserved1$get(MemorySegment seg, long index) {
-        return (int)_TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Reserved1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved1$set(MemorySegment seg, long index, int x) {
-        _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Reserved1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved2"));
-    public static VarHandle Reserved2$VH() {
-        return _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Reserved2$VH;
-    }
-    public static int Reserved2$get(MemorySegment seg) {
-        return (int)_TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Reserved2$VH.get(seg);
-    }
-    public static void Reserved2$set( MemorySegment seg, int x) {
-        _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Reserved2$VH.set(seg, x);
-    }
-    public static int Reserved2$get(MemorySegment seg, long index) {
-        return (int)_TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Reserved2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved2$set(MemorySegment seg, long index, int x) {
-        _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Reserved2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved3$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved3"));
-    public static VarHandle Reserved3$VH() {
-        return _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Reserved3$VH;
-    }
-    public static long Reserved3$get(MemorySegment seg) {
-        return (long)_TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Reserved3$VH.get(seg);
-    }
-    public static void Reserved3$set( MemorySegment seg, long x) {
-        _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Reserved3$VH.set(seg, x);
-    }
-    public static long Reserved3$get(MemorySegment seg, long index) {
-        return (long)_TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Reserved3$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved3$set(MemorySegment seg, long index, long x) {
-        _TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY.Reserved3$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment FileName$slice(MemorySegment seg) {
-        return seg.asSlice(40, 2);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG_LONG.withName("Offset"),
+        wgl_h.C_LONG.withName("NameFlags"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_LONG_LONG.withName("FileId"),
+        wgl_h.C_LONG.withName("Reserved1"),
+        wgl_h.C_LONG.withName("Reserved2"),
+        wgl_h.C_LONG_LONG.withName("Reserved3"),
+        MemoryLayout.sequenceLayout(1, wgl_h.C_SHORT).withName("FileName"),
+        MemoryLayout.paddingLayout(6)
+    ).withName("_TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong Offset$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Offset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG Offset
+     * }
+     */
+    public static final OfLong Offset$layout() {
+        return Offset$LAYOUT;
+    }
+
+    private static final long Offset$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG Offset
+     * }
+     */
+    public static final long Offset$offset() {
+        return Offset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Offset
+     * }
+     */
+    public static long Offset(MemorySegment struct) {
+        return struct.get(Offset$LAYOUT, Offset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Offset
+     * }
+     */
+    public static void Offset(MemorySegment struct, long fieldValue) {
+        struct.set(Offset$LAYOUT, Offset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NameFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NameFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NameFlags
+     * }
+     */
+    public static final OfInt NameFlags$layout() {
+        return NameFlags$LAYOUT;
+    }
+
+    private static final long NameFlags$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NameFlags
+     * }
+     */
+    public static final long NameFlags$offset() {
+        return NameFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NameFlags
+     * }
+     */
+    public static int NameFlags(MemorySegment struct) {
+        return struct.get(NameFlags$LAYOUT, NameFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NameFlags
+     * }
+     */
+    public static void NameFlags(MemorySegment struct, int fieldValue) {
+        struct.set(NameFlags$LAYOUT, NameFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfLong FileId$LAYOUT = (OfLong)$LAYOUT.select(groupElement("FileId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONGLONG FileId
+     * }
+     */
+    public static final OfLong FileId$layout() {
+        return FileId$LAYOUT;
+    }
+
+    private static final long FileId$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONGLONG FileId
+     * }
+     */
+    public static final long FileId$offset() {
+        return FileId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONGLONG FileId
+     * }
+     */
+    public static long FileId(MemorySegment struct) {
+        return struct.get(FileId$LAYOUT, FileId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONGLONG FileId
+     * }
+     */
+    public static void FileId(MemorySegment struct, long fieldValue) {
+        struct.set(FileId$LAYOUT, FileId$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Reserved1$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static final OfInt Reserved1$layout() {
+        return Reserved1$LAYOUT;
+    }
+
+    private static final long Reserved1$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static final long Reserved1$offset() {
+        return Reserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static int Reserved1(MemorySegment struct) {
+        return struct.get(Reserved1$LAYOUT, Reserved1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static void Reserved1(MemorySegment struct, int fieldValue) {
+        struct.set(Reserved1$LAYOUT, Reserved1$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Reserved2$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2
+     * }
+     */
+    public static final OfInt Reserved2$layout() {
+        return Reserved2$LAYOUT;
+    }
+
+    private static final long Reserved2$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2
+     * }
+     */
+    public static final long Reserved2$offset() {
+        return Reserved2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2
+     * }
+     */
+    public static int Reserved2(MemorySegment struct) {
+        return struct.get(Reserved2$LAYOUT, Reserved2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2
+     * }
+     */
+    public static void Reserved2(MemorySegment struct, int fieldValue) {
+        struct.set(Reserved2$LAYOUT, Reserved2$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Reserved3$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Reserved3"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONGLONG Reserved3
+     * }
+     */
+    public static final OfLong Reserved3$layout() {
+        return Reserved3$LAYOUT;
+    }
+
+    private static final long Reserved3$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONGLONG Reserved3
+     * }
+     */
+    public static final long Reserved3$offset() {
+        return Reserved3$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONGLONG Reserved3
+     * }
+     */
+    public static long Reserved3(MemorySegment struct) {
+        return struct.get(Reserved3$LAYOUT, Reserved3$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONGLONG Reserved3
+     * }
+     */
+    public static void Reserved3(MemorySegment struct, long fieldValue) {
+        struct.set(Reserved3$LAYOUT, Reserved3$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout FileName$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("FileName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR FileName[1]
+     * }
+     */
+    public static final SequenceLayout FileName$layout() {
+        return FileName$LAYOUT;
+    }
+
+    private static final long FileName$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR FileName[1]
+     * }
+     */
+    public static final long FileName$offset() {
+        return FileName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR FileName[1]
+     * }
+     */
+    public static MemorySegment FileName(MemorySegment struct) {
+        return struct.asSlice(FileName$OFFSET, FileName$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR FileName[1]
+     * }
+     */
+    public static void FileName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, FileName$OFFSET, FileName$LAYOUT.byteSize());
+    }
+
+    private static long[] FileName$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR FileName[1]
+     * }
+     */
+    public static long[] FileName$dimensions() {
+        return FileName$DIMS;
+    }
+    private static final VarHandle FileName$ELEM_HANDLE = FileName$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR FileName[1]
+     * }
+     */
+    public static short FileName(MemorySegment struct, long index0) {
+        return (short)FileName$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR FileName[1]
+     * }
+     */
+    public static void FileName(MemorySegment struct, long index0, short fieldValue) {
+        FileName$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

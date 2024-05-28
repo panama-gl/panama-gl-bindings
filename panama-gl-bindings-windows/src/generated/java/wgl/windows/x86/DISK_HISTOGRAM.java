@@ -2,13 +2,37 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _DISK_HISTOGRAM {
+ *     LARGE_INTEGER DiskSize;
+ *     LARGE_INTEGER Start;
+ *     LARGE_INTEGER End;
+ *     LARGE_INTEGER Average;
+ *     LARGE_INTEGER AverageRead;
+ *     LARGE_INTEGER AverageWrite;
+ *     DWORD Granularity;
+ *     DWORD Size;
+ *     DWORD ReadCount;
+ *     DWORD WriteCount;
+ *     PHISTOGRAM_BUCKET Histogram;
+ * } DISK_HISTOGRAM
+ * }
+ */
 public class DISK_HISTOGRAM extends _DISK_HISTOGRAM {
 
+    DISK_HISTOGRAM() {
+        // Should not be called directly
+    }
 }
-
 

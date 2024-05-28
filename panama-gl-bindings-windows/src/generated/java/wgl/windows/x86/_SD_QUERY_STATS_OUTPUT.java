@@ -2,160 +2,448 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SD_QUERY_STATS_OUTPUT {
+ *     DWORDLONG SdsStreamSize;
+ *     DWORDLONG SdsAllocationSize;
+ *     DWORDLONG SiiStreamSize;
+ *     DWORDLONG SiiAllocationSize;
+ *     DWORDLONG SdhStreamSize;
+ *     DWORDLONG SdhAllocationSize;
+ *     DWORDLONG NumSDTotal;
+ *     DWORDLONG NumSDUnused;
+ * }
+ * }
+ */
 public class _SD_QUERY_STATS_OUTPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("SdsStreamSize"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("SdsAllocationSize"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("SiiStreamSize"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("SiiAllocationSize"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("SdhStreamSize"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("SdhAllocationSize"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("NumSDTotal"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("NumSDUnused")
-    ).withName("_SD_QUERY_STATS_OUTPUT");
-    public static MemoryLayout $LAYOUT() {
-        return _SD_QUERY_STATS_OUTPUT.$struct$LAYOUT;
+    _SD_QUERY_STATS_OUTPUT() {
+        // Should not be called directly
     }
-    static final VarHandle SdsStreamSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SdsStreamSize"));
-    public static VarHandle SdsStreamSize$VH() {
-        return _SD_QUERY_STATS_OUTPUT.SdsStreamSize$VH;
-    }
-    public static long SdsStreamSize$get(MemorySegment seg) {
-        return (long)_SD_QUERY_STATS_OUTPUT.SdsStreamSize$VH.get(seg);
-    }
-    public static void SdsStreamSize$set( MemorySegment seg, long x) {
-        _SD_QUERY_STATS_OUTPUT.SdsStreamSize$VH.set(seg, x);
-    }
-    public static long SdsStreamSize$get(MemorySegment seg, long index) {
-        return (long)_SD_QUERY_STATS_OUTPUT.SdsStreamSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SdsStreamSize$set(MemorySegment seg, long index, long x) {
-        _SD_QUERY_STATS_OUTPUT.SdsStreamSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SdsAllocationSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SdsAllocationSize"));
-    public static VarHandle SdsAllocationSize$VH() {
-        return _SD_QUERY_STATS_OUTPUT.SdsAllocationSize$VH;
-    }
-    public static long SdsAllocationSize$get(MemorySegment seg) {
-        return (long)_SD_QUERY_STATS_OUTPUT.SdsAllocationSize$VH.get(seg);
-    }
-    public static void SdsAllocationSize$set( MemorySegment seg, long x) {
-        _SD_QUERY_STATS_OUTPUT.SdsAllocationSize$VH.set(seg, x);
-    }
-    public static long SdsAllocationSize$get(MemorySegment seg, long index) {
-        return (long)_SD_QUERY_STATS_OUTPUT.SdsAllocationSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SdsAllocationSize$set(MemorySegment seg, long index, long x) {
-        _SD_QUERY_STATS_OUTPUT.SdsAllocationSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SiiStreamSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SiiStreamSize"));
-    public static VarHandle SiiStreamSize$VH() {
-        return _SD_QUERY_STATS_OUTPUT.SiiStreamSize$VH;
-    }
-    public static long SiiStreamSize$get(MemorySegment seg) {
-        return (long)_SD_QUERY_STATS_OUTPUT.SiiStreamSize$VH.get(seg);
-    }
-    public static void SiiStreamSize$set( MemorySegment seg, long x) {
-        _SD_QUERY_STATS_OUTPUT.SiiStreamSize$VH.set(seg, x);
-    }
-    public static long SiiStreamSize$get(MemorySegment seg, long index) {
-        return (long)_SD_QUERY_STATS_OUTPUT.SiiStreamSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SiiStreamSize$set(MemorySegment seg, long index, long x) {
-        _SD_QUERY_STATS_OUTPUT.SiiStreamSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SiiAllocationSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SiiAllocationSize"));
-    public static VarHandle SiiAllocationSize$VH() {
-        return _SD_QUERY_STATS_OUTPUT.SiiAllocationSize$VH;
-    }
-    public static long SiiAllocationSize$get(MemorySegment seg) {
-        return (long)_SD_QUERY_STATS_OUTPUT.SiiAllocationSize$VH.get(seg);
-    }
-    public static void SiiAllocationSize$set( MemorySegment seg, long x) {
-        _SD_QUERY_STATS_OUTPUT.SiiAllocationSize$VH.set(seg, x);
-    }
-    public static long SiiAllocationSize$get(MemorySegment seg, long index) {
-        return (long)_SD_QUERY_STATS_OUTPUT.SiiAllocationSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SiiAllocationSize$set(MemorySegment seg, long index, long x) {
-        _SD_QUERY_STATS_OUTPUT.SiiAllocationSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SdhStreamSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SdhStreamSize"));
-    public static VarHandle SdhStreamSize$VH() {
-        return _SD_QUERY_STATS_OUTPUT.SdhStreamSize$VH;
-    }
-    public static long SdhStreamSize$get(MemorySegment seg) {
-        return (long)_SD_QUERY_STATS_OUTPUT.SdhStreamSize$VH.get(seg);
-    }
-    public static void SdhStreamSize$set( MemorySegment seg, long x) {
-        _SD_QUERY_STATS_OUTPUT.SdhStreamSize$VH.set(seg, x);
-    }
-    public static long SdhStreamSize$get(MemorySegment seg, long index) {
-        return (long)_SD_QUERY_STATS_OUTPUT.SdhStreamSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SdhStreamSize$set(MemorySegment seg, long index, long x) {
-        _SD_QUERY_STATS_OUTPUT.SdhStreamSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SdhAllocationSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SdhAllocationSize"));
-    public static VarHandle SdhAllocationSize$VH() {
-        return _SD_QUERY_STATS_OUTPUT.SdhAllocationSize$VH;
-    }
-    public static long SdhAllocationSize$get(MemorySegment seg) {
-        return (long)_SD_QUERY_STATS_OUTPUT.SdhAllocationSize$VH.get(seg);
-    }
-    public static void SdhAllocationSize$set( MemorySegment seg, long x) {
-        _SD_QUERY_STATS_OUTPUT.SdhAllocationSize$VH.set(seg, x);
-    }
-    public static long SdhAllocationSize$get(MemorySegment seg, long index) {
-        return (long)_SD_QUERY_STATS_OUTPUT.SdhAllocationSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SdhAllocationSize$set(MemorySegment seg, long index, long x) {
-        _SD_QUERY_STATS_OUTPUT.SdhAllocationSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumSDTotal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumSDTotal"));
-    public static VarHandle NumSDTotal$VH() {
-        return _SD_QUERY_STATS_OUTPUT.NumSDTotal$VH;
-    }
-    public static long NumSDTotal$get(MemorySegment seg) {
-        return (long)_SD_QUERY_STATS_OUTPUT.NumSDTotal$VH.get(seg);
-    }
-    public static void NumSDTotal$set( MemorySegment seg, long x) {
-        _SD_QUERY_STATS_OUTPUT.NumSDTotal$VH.set(seg, x);
-    }
-    public static long NumSDTotal$get(MemorySegment seg, long index) {
-        return (long)_SD_QUERY_STATS_OUTPUT.NumSDTotal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumSDTotal$set(MemorySegment seg, long index, long x) {
-        _SD_QUERY_STATS_OUTPUT.NumSDTotal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumSDUnused$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumSDUnused"));
-    public static VarHandle NumSDUnused$VH() {
-        return _SD_QUERY_STATS_OUTPUT.NumSDUnused$VH;
-    }
-    public static long NumSDUnused$get(MemorySegment seg) {
-        return (long)_SD_QUERY_STATS_OUTPUT.NumSDUnused$VH.get(seg);
-    }
-    public static void NumSDUnused$set( MemorySegment seg, long x) {
-        _SD_QUERY_STATS_OUTPUT.NumSDUnused$VH.set(seg, x);
-    }
-    public static long NumSDUnused$get(MemorySegment seg, long index) {
-        return (long)_SD_QUERY_STATS_OUTPUT.NumSDUnused$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumSDUnused$set(MemorySegment seg, long index, long x) {
-        _SD_QUERY_STATS_OUTPUT.NumSDUnused$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG_LONG.withName("SdsStreamSize"),
+        wgl_h.C_LONG_LONG.withName("SdsAllocationSize"),
+        wgl_h.C_LONG_LONG.withName("SiiStreamSize"),
+        wgl_h.C_LONG_LONG.withName("SiiAllocationSize"),
+        wgl_h.C_LONG_LONG.withName("SdhStreamSize"),
+        wgl_h.C_LONG_LONG.withName("SdhAllocationSize"),
+        wgl_h.C_LONG_LONG.withName("NumSDTotal"),
+        wgl_h.C_LONG_LONG.withName("NumSDUnused")
+    ).withName("_SD_QUERY_STATS_OUTPUT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong SdsStreamSize$LAYOUT = (OfLong)$LAYOUT.select(groupElement("SdsStreamSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG SdsStreamSize
+     * }
+     */
+    public static final OfLong SdsStreamSize$layout() {
+        return SdsStreamSize$LAYOUT;
+    }
+
+    private static final long SdsStreamSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG SdsStreamSize
+     * }
+     */
+    public static final long SdsStreamSize$offset() {
+        return SdsStreamSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG SdsStreamSize
+     * }
+     */
+    public static long SdsStreamSize(MemorySegment struct) {
+        return struct.get(SdsStreamSize$LAYOUT, SdsStreamSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG SdsStreamSize
+     * }
+     */
+    public static void SdsStreamSize(MemorySegment struct, long fieldValue) {
+        struct.set(SdsStreamSize$LAYOUT, SdsStreamSize$OFFSET, fieldValue);
+    }
+
+    private static final OfLong SdsAllocationSize$LAYOUT = (OfLong)$LAYOUT.select(groupElement("SdsAllocationSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG SdsAllocationSize
+     * }
+     */
+    public static final OfLong SdsAllocationSize$layout() {
+        return SdsAllocationSize$LAYOUT;
+    }
+
+    private static final long SdsAllocationSize$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG SdsAllocationSize
+     * }
+     */
+    public static final long SdsAllocationSize$offset() {
+        return SdsAllocationSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG SdsAllocationSize
+     * }
+     */
+    public static long SdsAllocationSize(MemorySegment struct) {
+        return struct.get(SdsAllocationSize$LAYOUT, SdsAllocationSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG SdsAllocationSize
+     * }
+     */
+    public static void SdsAllocationSize(MemorySegment struct, long fieldValue) {
+        struct.set(SdsAllocationSize$LAYOUT, SdsAllocationSize$OFFSET, fieldValue);
+    }
+
+    private static final OfLong SiiStreamSize$LAYOUT = (OfLong)$LAYOUT.select(groupElement("SiiStreamSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG SiiStreamSize
+     * }
+     */
+    public static final OfLong SiiStreamSize$layout() {
+        return SiiStreamSize$LAYOUT;
+    }
+
+    private static final long SiiStreamSize$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG SiiStreamSize
+     * }
+     */
+    public static final long SiiStreamSize$offset() {
+        return SiiStreamSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG SiiStreamSize
+     * }
+     */
+    public static long SiiStreamSize(MemorySegment struct) {
+        return struct.get(SiiStreamSize$LAYOUT, SiiStreamSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG SiiStreamSize
+     * }
+     */
+    public static void SiiStreamSize(MemorySegment struct, long fieldValue) {
+        struct.set(SiiStreamSize$LAYOUT, SiiStreamSize$OFFSET, fieldValue);
+    }
+
+    private static final OfLong SiiAllocationSize$LAYOUT = (OfLong)$LAYOUT.select(groupElement("SiiAllocationSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG SiiAllocationSize
+     * }
+     */
+    public static final OfLong SiiAllocationSize$layout() {
+        return SiiAllocationSize$LAYOUT;
+    }
+
+    private static final long SiiAllocationSize$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG SiiAllocationSize
+     * }
+     */
+    public static final long SiiAllocationSize$offset() {
+        return SiiAllocationSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG SiiAllocationSize
+     * }
+     */
+    public static long SiiAllocationSize(MemorySegment struct) {
+        return struct.get(SiiAllocationSize$LAYOUT, SiiAllocationSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG SiiAllocationSize
+     * }
+     */
+    public static void SiiAllocationSize(MemorySegment struct, long fieldValue) {
+        struct.set(SiiAllocationSize$LAYOUT, SiiAllocationSize$OFFSET, fieldValue);
+    }
+
+    private static final OfLong SdhStreamSize$LAYOUT = (OfLong)$LAYOUT.select(groupElement("SdhStreamSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG SdhStreamSize
+     * }
+     */
+    public static final OfLong SdhStreamSize$layout() {
+        return SdhStreamSize$LAYOUT;
+    }
+
+    private static final long SdhStreamSize$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG SdhStreamSize
+     * }
+     */
+    public static final long SdhStreamSize$offset() {
+        return SdhStreamSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG SdhStreamSize
+     * }
+     */
+    public static long SdhStreamSize(MemorySegment struct) {
+        return struct.get(SdhStreamSize$LAYOUT, SdhStreamSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG SdhStreamSize
+     * }
+     */
+    public static void SdhStreamSize(MemorySegment struct, long fieldValue) {
+        struct.set(SdhStreamSize$LAYOUT, SdhStreamSize$OFFSET, fieldValue);
+    }
+
+    private static final OfLong SdhAllocationSize$LAYOUT = (OfLong)$LAYOUT.select(groupElement("SdhAllocationSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG SdhAllocationSize
+     * }
+     */
+    public static final OfLong SdhAllocationSize$layout() {
+        return SdhAllocationSize$LAYOUT;
+    }
+
+    private static final long SdhAllocationSize$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG SdhAllocationSize
+     * }
+     */
+    public static final long SdhAllocationSize$offset() {
+        return SdhAllocationSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG SdhAllocationSize
+     * }
+     */
+    public static long SdhAllocationSize(MemorySegment struct) {
+        return struct.get(SdhAllocationSize$LAYOUT, SdhAllocationSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG SdhAllocationSize
+     * }
+     */
+    public static void SdhAllocationSize(MemorySegment struct, long fieldValue) {
+        struct.set(SdhAllocationSize$LAYOUT, SdhAllocationSize$OFFSET, fieldValue);
+    }
+
+    private static final OfLong NumSDTotal$LAYOUT = (OfLong)$LAYOUT.select(groupElement("NumSDTotal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG NumSDTotal
+     * }
+     */
+    public static final OfLong NumSDTotal$layout() {
+        return NumSDTotal$LAYOUT;
+    }
+
+    private static final long NumSDTotal$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG NumSDTotal
+     * }
+     */
+    public static final long NumSDTotal$offset() {
+        return NumSDTotal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG NumSDTotal
+     * }
+     */
+    public static long NumSDTotal(MemorySegment struct) {
+        return struct.get(NumSDTotal$LAYOUT, NumSDTotal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG NumSDTotal
+     * }
+     */
+    public static void NumSDTotal(MemorySegment struct, long fieldValue) {
+        struct.set(NumSDTotal$LAYOUT, NumSDTotal$OFFSET, fieldValue);
+    }
+
+    private static final OfLong NumSDUnused$LAYOUT = (OfLong)$LAYOUT.select(groupElement("NumSDUnused"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG NumSDUnused
+     * }
+     */
+    public static final OfLong NumSDUnused$layout() {
+        return NumSDUnused$LAYOUT;
+    }
+
+    private static final long NumSDUnused$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG NumSDUnused
+     * }
+     */
+    public static final long NumSDUnused$offset() {
+        return NumSDUnused$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG NumSDUnused
+     * }
+     */
+    public static long NumSDUnused(MemorySegment struct) {
+        return struct.get(NumSDUnused$LAYOUT, NumSDUnused$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG NumSDUnused
+     * }
+     */
+    public static void NumSDUnused(MemorySegment struct, long fieldValue) {
+        struct.set(NumSDUnused$LAYOUT, NumSDUnused$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

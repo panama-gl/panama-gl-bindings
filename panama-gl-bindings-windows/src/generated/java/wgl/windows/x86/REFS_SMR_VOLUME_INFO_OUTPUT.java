@@ -2,13 +2,36 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _REFS_SMR_VOLUME_INFO_OUTPUT {
+ *     DWORD Version;
+ *     DWORD Flags;
+ *     LARGE_INTEGER SizeOfRandomlyWritableTier;
+ *     LARGE_INTEGER FreeSpaceInRandomlyWritableTier;
+ *     LARGE_INTEGER SizeofSMRTier;
+ *     LARGE_INTEGER FreeSpaceInSMRTier;
+ *     LARGE_INTEGER UsableFreeSpaceInSMRTier;
+ *     REFS_SMR_VOLUME_GC_STATE VolumeGcState;
+ *     DWORD VolumeGcLastStatus;
+ *     DWORDLONG Unused[7];
+ * } REFS_SMR_VOLUME_INFO_OUTPUT
+ * }
+ */
 public class REFS_SMR_VOLUME_INFO_OUTPUT extends _REFS_SMR_VOLUME_INFO_OUTPUT {
 
+    REFS_SMR_VOLUME_INFO_OUTPUT() {
+        // Should not be called directly
+    }
 }
-
 

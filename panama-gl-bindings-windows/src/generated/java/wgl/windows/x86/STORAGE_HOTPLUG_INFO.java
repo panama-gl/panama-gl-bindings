@@ -2,13 +2,31 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _STORAGE_HOTPLUG_INFO {
+ *     DWORD Size;
+ *     BOOLEAN MediaRemovable;
+ *     BOOLEAN MediaHotplug;
+ *     BOOLEAN DeviceHotplug;
+ *     BOOLEAN WriteCacheEnableOverride;
+ * } STORAGE_HOTPLUG_INFO
+ * }
+ */
 public class STORAGE_HOTPLUG_INFO extends _STORAGE_HOTPLUG_INFO {
 
+    STORAGE_HOTPLUG_INFO() {
+        // Should not be called directly
+    }
 }
-
 

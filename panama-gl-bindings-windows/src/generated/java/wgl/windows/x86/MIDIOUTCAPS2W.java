@@ -2,13 +2,38 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagMIDIOUTCAPS2W {
+ *     WORD wMid;
+ *     WORD wPid;
+ *     MMVERSION vDriverVersion;
+ *     WCHAR szPname[32];
+ *     WORD wTechnology;
+ *     WORD wVoices;
+ *     WORD wNotes;
+ *     WORD wChannelMask;
+ *     DWORD dwSupport;
+ *     GUID ManufacturerGuid;
+ *     GUID ProductGuid;
+ *     GUID NameGuid;
+ * } MIDIOUTCAPS2W
+ * }
+ */
 public class MIDIOUTCAPS2W extends tagMIDIOUTCAPS2W {
 
+    MIDIOUTCAPS2W() {
+        // Should not be called directly
+    }
 }
-
 

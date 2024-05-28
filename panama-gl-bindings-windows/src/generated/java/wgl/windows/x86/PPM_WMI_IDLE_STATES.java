@@ -2,125 +2,393 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     DWORD Type;
+ *     DWORD Count;
+ *     DWORD TargetState;
+ *     DWORD OldState;
+ *     DWORD64 TargetProcessors;
+ *     PPM_WMI_IDLE_STATE State[1];
+ * }
+ * }
+ */
 public class PPM_WMI_IDLE_STATES {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Type"),
-        Constants$root.C_LONG$LAYOUT.withName("Count"),
-        Constants$root.C_LONG$LAYOUT.withName("TargetState"),
-        Constants$root.C_LONG$LAYOUT.withName("OldState"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("TargetProcessors"),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Latency"),
-            Constants$root.C_LONG$LAYOUT.withName("Power"),
-            Constants$root.C_LONG$LAYOUT.withName("TimeCheck"),
-            Constants$root.C_CHAR$LAYOUT.withName("PromotePercent"),
-            Constants$root.C_CHAR$LAYOUT.withName("DemotePercent"),
-            Constants$root.C_CHAR$LAYOUT.withName("StateType"),
-            Constants$root.C_CHAR$LAYOUT.withName("Reserved"),
-            Constants$root.C_LONG$LAYOUT.withName("StateFlags"),
-            Constants$root.C_LONG$LAYOUT.withName("Context"),
-            Constants$root.C_LONG$LAYOUT.withName("IdleHandler"),
-            Constants$root.C_LONG$LAYOUT.withName("Reserved1")
-        )).withName("State")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return PPM_WMI_IDLE_STATES.$struct$LAYOUT;
+    PPM_WMI_IDLE_STATES() {
+        // Should not be called directly
     }
-    static final VarHandle Type$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Type"));
-    public static VarHandle Type$VH() {
-        return PPM_WMI_IDLE_STATES.Type$VH;
-    }
-    public static int Type$get(MemorySegment seg) {
-        return (int)PPM_WMI_IDLE_STATES.Type$VH.get(seg);
-    }
-    public static void Type$set( MemorySegment seg, int x) {
-        PPM_WMI_IDLE_STATES.Type$VH.set(seg, x);
-    }
-    public static int Type$get(MemorySegment seg, long index) {
-        return (int)PPM_WMI_IDLE_STATES.Type$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Type$set(MemorySegment seg, long index, int x) {
-        PPM_WMI_IDLE_STATES.Type$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Count$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Count"));
-    public static VarHandle Count$VH() {
-        return PPM_WMI_IDLE_STATES.Count$VH;
-    }
-    public static int Count$get(MemorySegment seg) {
-        return (int)PPM_WMI_IDLE_STATES.Count$VH.get(seg);
-    }
-    public static void Count$set( MemorySegment seg, int x) {
-        PPM_WMI_IDLE_STATES.Count$VH.set(seg, x);
-    }
-    public static int Count$get(MemorySegment seg, long index) {
-        return (int)PPM_WMI_IDLE_STATES.Count$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Count$set(MemorySegment seg, long index, int x) {
-        PPM_WMI_IDLE_STATES.Count$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TargetState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TargetState"));
-    public static VarHandle TargetState$VH() {
-        return PPM_WMI_IDLE_STATES.TargetState$VH;
-    }
-    public static int TargetState$get(MemorySegment seg) {
-        return (int)PPM_WMI_IDLE_STATES.TargetState$VH.get(seg);
-    }
-    public static void TargetState$set( MemorySegment seg, int x) {
-        PPM_WMI_IDLE_STATES.TargetState$VH.set(seg, x);
-    }
-    public static int TargetState$get(MemorySegment seg, long index) {
-        return (int)PPM_WMI_IDLE_STATES.TargetState$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TargetState$set(MemorySegment seg, long index, int x) {
-        PPM_WMI_IDLE_STATES.TargetState$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle OldState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OldState"));
-    public static VarHandle OldState$VH() {
-        return PPM_WMI_IDLE_STATES.OldState$VH;
-    }
-    public static int OldState$get(MemorySegment seg) {
-        return (int)PPM_WMI_IDLE_STATES.OldState$VH.get(seg);
-    }
-    public static void OldState$set( MemorySegment seg, int x) {
-        PPM_WMI_IDLE_STATES.OldState$VH.set(seg, x);
-    }
-    public static int OldState$get(MemorySegment seg, long index) {
-        return (int)PPM_WMI_IDLE_STATES.OldState$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void OldState$set(MemorySegment seg, long index, int x) {
-        PPM_WMI_IDLE_STATES.OldState$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TargetProcessors$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TargetProcessors"));
-    public static VarHandle TargetProcessors$VH() {
-        return PPM_WMI_IDLE_STATES.TargetProcessors$VH;
-    }
-    public static long TargetProcessors$get(MemorySegment seg) {
-        return (long)PPM_WMI_IDLE_STATES.TargetProcessors$VH.get(seg);
-    }
-    public static void TargetProcessors$set( MemorySegment seg, long x) {
-        PPM_WMI_IDLE_STATES.TargetProcessors$VH.set(seg, x);
-    }
-    public static long TargetProcessors$get(MemorySegment seg, long index) {
-        return (long)PPM_WMI_IDLE_STATES.TargetProcessors$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TargetProcessors$set(MemorySegment seg, long index, long x) {
-        PPM_WMI_IDLE_STATES.TargetProcessors$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment State$slice(MemorySegment seg) {
-        return seg.asSlice(24, 32);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Type"),
+        wgl_h.C_LONG.withName("Count"),
+        wgl_h.C_LONG.withName("TargetState"),
+        wgl_h.C_LONG.withName("OldState"),
+        wgl_h.C_LONG_LONG.withName("TargetProcessors"),
+        MemoryLayout.sequenceLayout(1, PPM_WMI_IDLE_STATE.layout()).withName("State")
+    ).withName("$anon$16233:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Type$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Type"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Type
+     * }
+     */
+    public static final OfInt Type$layout() {
+        return Type$LAYOUT;
+    }
+
+    private static final long Type$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Type
+     * }
+     */
+    public static final long Type$offset() {
+        return Type$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Type
+     * }
+     */
+    public static int Type(MemorySegment struct) {
+        return struct.get(Type$LAYOUT, Type$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Type
+     * }
+     */
+    public static void Type(MemorySegment struct, int fieldValue) {
+        struct.set(Type$LAYOUT, Type$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Count$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Count"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Count
+     * }
+     */
+    public static final OfInt Count$layout() {
+        return Count$LAYOUT;
+    }
+
+    private static final long Count$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Count
+     * }
+     */
+    public static final long Count$offset() {
+        return Count$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Count
+     * }
+     */
+    public static int Count(MemorySegment struct) {
+        return struct.get(Count$LAYOUT, Count$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Count
+     * }
+     */
+    public static void Count(MemorySegment struct, int fieldValue) {
+        struct.set(Count$LAYOUT, Count$OFFSET, fieldValue);
+    }
+
+    private static final OfInt TargetState$LAYOUT = (OfInt)$LAYOUT.select(groupElement("TargetState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD TargetState
+     * }
+     */
+    public static final OfInt TargetState$layout() {
+        return TargetState$LAYOUT;
+    }
+
+    private static final long TargetState$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD TargetState
+     * }
+     */
+    public static final long TargetState$offset() {
+        return TargetState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD TargetState
+     * }
+     */
+    public static int TargetState(MemorySegment struct) {
+        return struct.get(TargetState$LAYOUT, TargetState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD TargetState
+     * }
+     */
+    public static void TargetState(MemorySegment struct, int fieldValue) {
+        struct.set(TargetState$LAYOUT, TargetState$OFFSET, fieldValue);
+    }
+
+    private static final OfInt OldState$LAYOUT = (OfInt)$LAYOUT.select(groupElement("OldState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD OldState
+     * }
+     */
+    public static final OfInt OldState$layout() {
+        return OldState$LAYOUT;
+    }
+
+    private static final long OldState$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD OldState
+     * }
+     */
+    public static final long OldState$offset() {
+        return OldState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD OldState
+     * }
+     */
+    public static int OldState(MemorySegment struct) {
+        return struct.get(OldState$LAYOUT, OldState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD OldState
+     * }
+     */
+    public static void OldState(MemorySegment struct, int fieldValue) {
+        struct.set(OldState$LAYOUT, OldState$OFFSET, fieldValue);
+    }
+
+    private static final OfLong TargetProcessors$LAYOUT = (OfLong)$LAYOUT.select(groupElement("TargetProcessors"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 TargetProcessors
+     * }
+     */
+    public static final OfLong TargetProcessors$layout() {
+        return TargetProcessors$LAYOUT;
+    }
+
+    private static final long TargetProcessors$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 TargetProcessors
+     * }
+     */
+    public static final long TargetProcessors$offset() {
+        return TargetProcessors$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 TargetProcessors
+     * }
+     */
+    public static long TargetProcessors(MemorySegment struct) {
+        return struct.get(TargetProcessors$LAYOUT, TargetProcessors$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 TargetProcessors
+     * }
+     */
+    public static void TargetProcessors(MemorySegment struct, long fieldValue) {
+        struct.set(TargetProcessors$LAYOUT, TargetProcessors$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout State$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("State"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PPM_WMI_IDLE_STATE State[1]
+     * }
+     */
+    public static final SequenceLayout State$layout() {
+        return State$LAYOUT;
+    }
+
+    private static final long State$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PPM_WMI_IDLE_STATE State[1]
+     * }
+     */
+    public static final long State$offset() {
+        return State$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PPM_WMI_IDLE_STATE State[1]
+     * }
+     */
+    public static MemorySegment State(MemorySegment struct) {
+        return struct.asSlice(State$OFFSET, State$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PPM_WMI_IDLE_STATE State[1]
+     * }
+     */
+    public static void State(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, State$OFFSET, State$LAYOUT.byteSize());
+    }
+
+    private static long[] State$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * PPM_WMI_IDLE_STATE State[1]
+     * }
+     */
+    public static long[] State$dimensions() {
+        return State$DIMS;
+    }
+    private static final MethodHandle State$ELEM_HANDLE = State$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * PPM_WMI_IDLE_STATE State[1]
+     * }
+     */
+    public static MemorySegment State(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)State$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * PPM_WMI_IDLE_STATE State[1]
+     * }
+     */
+    public static void State(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, State(struct, index0), 0L, PPM_WMI_IDLE_STATE.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

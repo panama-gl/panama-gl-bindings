@@ -2,13 +2,28 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _IMAGE_IMPORT_BY_NAME {
+ *     WORD Hint;
+ *     CHAR Name[1];
+ * } IMAGE_IMPORT_BY_NAME
+ * }
+ */
 public class IMAGE_IMPORT_BY_NAME extends _IMAGE_IMPORT_BY_NAME {
 
+    IMAGE_IMPORT_BY_NAME() {
+        // Should not be called directly
+    }
 }
-
 

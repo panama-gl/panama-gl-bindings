@@ -2,113 +2,387 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CLAIM_SECURITY_ATTRIBUTES_INFORMATION {
+ *     WORD Version;
+ *     WORD Reserved;
+ *     DWORD AttributeCount;
+ *     union {
+ *         PCLAIM_SECURITY_ATTRIBUTE_V1 pAttributeV1;
+ *     } Attribute;
+ * }
+ * }
+ */
 public class _CLAIM_SECURITY_ATTRIBUTES_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("Version"),
-        Constants$root.C_SHORT$LAYOUT.withName("Reserved"),
-        Constants$root.C_LONG$LAYOUT.withName("AttributeCount"),
-        MemoryLayout.unionLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("pAttributeV1")
-        ).withName("Attribute")
+    _CLAIM_SECURITY_ATTRIBUTES_INFORMATION() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("Version"),
+        wgl_h.C_SHORT.withName("Reserved"),
+        wgl_h.C_LONG.withName("AttributeCount"),
+        _CLAIM_SECURITY_ATTRIBUTES_INFORMATION.Attribute.layout().withName("Attribute")
     ).withName("_CLAIM_SECURITY_ATTRIBUTES_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return _CLAIM_SECURITY_ATTRIBUTES_INFORMATION.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _CLAIM_SECURITY_ATTRIBUTES_INFORMATION.Version$VH;
+
+    private static final OfShort Version$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Version
+     * }
+     */
+    public static final OfShort Version$layout() {
+        return Version$LAYOUT;
     }
-    public static short Version$get(MemorySegment seg) {
-        return (short)_CLAIM_SECURITY_ATTRIBUTES_INFORMATION.Version$VH.get(seg);
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
     }
-    public static void Version$set( MemorySegment seg, short x) {
-        _CLAIM_SECURITY_ATTRIBUTES_INFORMATION.Version$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Version
+     * }
+     */
+    public static short Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
     }
-    public static short Version$get(MemorySegment seg, long index) {
-        return (short)_CLAIM_SECURITY_ATTRIBUTES_INFORMATION.Version$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, short fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
     }
-    public static void Version$set(MemorySegment seg, long index, short x) {
-        _CLAIM_SECURITY_ATTRIBUTES_INFORMATION.Version$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfShort Reserved$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Reserved
+     * }
+     */
+    public static final OfShort Reserved$layout() {
+        return Reserved$LAYOUT;
     }
-    static final VarHandle Reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved"));
-    public static VarHandle Reserved$VH() {
-        return _CLAIM_SECURITY_ATTRIBUTES_INFORMATION.Reserved$VH;
+
+    private static final long Reserved$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Reserved
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
     }
-    public static short Reserved$get(MemorySegment seg) {
-        return (short)_CLAIM_SECURITY_ATTRIBUTES_INFORMATION.Reserved$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Reserved
+     * }
+     */
+    public static short Reserved(MemorySegment struct) {
+        return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
     }
-    public static void Reserved$set( MemorySegment seg, short x) {
-        _CLAIM_SECURITY_ATTRIBUTES_INFORMATION.Reserved$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Reserved
+     * }
+     */
+    public static void Reserved(MemorySegment struct, short fieldValue) {
+        struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
     }
-    public static short Reserved$get(MemorySegment seg, long index) {
-        return (short)_CLAIM_SECURITY_ATTRIBUTES_INFORMATION.Reserved$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfInt AttributeCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AttributeCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD AttributeCount
+     * }
+     */
+    public static final OfInt AttributeCount$layout() {
+        return AttributeCount$LAYOUT;
     }
-    public static void Reserved$set(MemorySegment seg, long index, short x) {
-        _CLAIM_SECURITY_ATTRIBUTES_INFORMATION.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long AttributeCount$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD AttributeCount
+     * }
+     */
+    public static final long AttributeCount$offset() {
+        return AttributeCount$OFFSET;
     }
-    static final VarHandle AttributeCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AttributeCount"));
-    public static VarHandle AttributeCount$VH() {
-        return _CLAIM_SECURITY_ATTRIBUTES_INFORMATION.AttributeCount$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD AttributeCount
+     * }
+     */
+    public static int AttributeCount(MemorySegment struct) {
+        return struct.get(AttributeCount$LAYOUT, AttributeCount$OFFSET);
     }
-    public static int AttributeCount$get(MemorySegment seg) {
-        return (int)_CLAIM_SECURITY_ATTRIBUTES_INFORMATION.AttributeCount$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD AttributeCount
+     * }
+     */
+    public static void AttributeCount(MemorySegment struct, int fieldValue) {
+        struct.set(AttributeCount$LAYOUT, AttributeCount$OFFSET, fieldValue);
     }
-    public static void AttributeCount$set( MemorySegment seg, int x) {
-        _CLAIM_SECURITY_ATTRIBUTES_INFORMATION.AttributeCount$VH.set(seg, x);
-    }
-    public static int AttributeCount$get(MemorySegment seg, long index) {
-        return (int)_CLAIM_SECURITY_ATTRIBUTES_INFORMATION.AttributeCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AttributeCount$set(MemorySegment seg, long index, int x) {
-        _CLAIM_SECURITY_ATTRIBUTES_INFORMATION.AttributeCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     PCLAIM_SECURITY_ATTRIBUTE_V1 pAttributeV1;
+     * }
+     * }
+     */
     public static class Attribute {
 
-        static final  GroupLayout Attribute$union$LAYOUT = MemoryLayout.unionLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("pAttributeV1")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return Attribute.Attribute$union$LAYOUT;
+        Attribute() {
+            // Should not be called directly
         }
-        static final VarHandle pAttributeV1$VH = Attribute$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pAttributeV1"));
-        public static VarHandle pAttributeV1$VH() {
-            return Attribute.pAttributeV1$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            wgl_h.C_POINTER.withName("pAttributeV1")
+        ).withName("$anon$11285:5");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static MemoryAddress pAttributeV1$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)Attribute.pAttributeV1$VH.get(seg);
+
+        private static final AddressLayout pAttributeV1$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pAttributeV1"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * PCLAIM_SECURITY_ATTRIBUTE_V1 pAttributeV1
+         * }
+         */
+        public static final AddressLayout pAttributeV1$layout() {
+            return pAttributeV1$LAYOUT;
         }
-        public static void pAttributeV1$set( MemorySegment seg, MemoryAddress x) {
-            Attribute.pAttributeV1$VH.set(seg, x);
+
+        private static final long pAttributeV1$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * PCLAIM_SECURITY_ATTRIBUTE_V1 pAttributeV1
+         * }
+         */
+        public static final long pAttributeV1$offset() {
+            return pAttributeV1$OFFSET;
         }
-        public static MemoryAddress pAttributeV1$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)Attribute.pAttributeV1$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * PCLAIM_SECURITY_ATTRIBUTE_V1 pAttributeV1
+         * }
+         */
+        public static MemorySegment pAttributeV1(MemorySegment union) {
+            return union.get(pAttributeV1$LAYOUT, pAttributeV1$OFFSET);
         }
-        public static void pAttributeV1$set(MemorySegment seg, long index, MemoryAddress x) {
-            Attribute.pAttributeV1$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * PCLAIM_SECURITY_ATTRIBUTE_V1 pAttributeV1
+         * }
+         */
+        public static void pAttributeV1(MemorySegment union, MemorySegment fieldValue) {
+            union.set(pAttributeV1$LAYOUT, pAttributeV1$OFFSET, fieldValue);
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment Attribute$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
+    private static final GroupLayout Attribute$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Attribute"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     PCLAIM_SECURITY_ATTRIBUTE_V1 pAttributeV1;
+     * } Attribute
+     * }
+     */
+    public static final GroupLayout Attribute$layout() {
+        return Attribute$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long Attribute$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     PCLAIM_SECURITY_ATTRIBUTE_V1 pAttributeV1;
+     * } Attribute
+     * }
+     */
+    public static final long Attribute$offset() {
+        return Attribute$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     PCLAIM_SECURITY_ATTRIBUTE_V1 pAttributeV1;
+     * } Attribute
+     * }
+     */
+    public static MemorySegment Attribute(MemorySegment struct) {
+        return struct.asSlice(Attribute$OFFSET, Attribute$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     PCLAIM_SECURITY_ATTRIBUTE_V1 pAttributeV1;
+     * } Attribute
+     * }
+     */
+    public static void Attribute(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Attribute$OFFSET, Attribute$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

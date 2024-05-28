@@ -2,3013 +2,13055 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
- class freeglut_h_17 extends freeglut_h_16 {
+import static java.lang.foreign.MemoryLayout.PathElement.*;
 
-    public static int TAPE_UNLOCK() {
-        return (int)4L;
-    }
-    public static int TAPE_FORMAT() {
-        return (int)5L;
-    }
-    public static int TAPE_SETMARKS() {
-        return (int)0L;
-    }
-    public static int TAPE_FILEMARKS() {
-        return (int)1L;
-    }
-    public static int TAPE_SHORT_FILEMARKS() {
-        return (int)2L;
-    }
-    public static int TAPE_LONG_FILEMARKS() {
-        return (int)3L;
-    }
-    public static int TAPE_ABSOLUTE_POSITION() {
-        return (int)0L;
-    }
-    public static int TAPE_LOGICAL_POSITION() {
-        return (int)1L;
-    }
-    public static int TAPE_PSEUDO_LOGICAL_POSITION() {
-        return (int)2L;
-    }
-    public static int TAPE_REWIND() {
-        return (int)0L;
-    }
-    public static int TAPE_ABSOLUTE_BLOCK() {
-        return (int)1L;
-    }
-    public static int TAPE_LOGICAL_BLOCK() {
-        return (int)2L;
-    }
-    public static int TAPE_PSEUDO_LOGICAL_BLOCK() {
-        return (int)3L;
-    }
-    public static int TAPE_SPACE_END_OF_DATA() {
-        return (int)4L;
-    }
-    public static int TAPE_SPACE_RELATIVE_BLOCKS() {
-        return (int)5L;
-    }
-    public static int TAPE_SPACE_FILEMARKS() {
-        return (int)6L;
-    }
-    public static int TAPE_SPACE_SEQUENTIAL_FMKS() {
-        return (int)7L;
-    }
-    public static int TAPE_SPACE_SETMARKS() {
-        return (int)8L;
-    }
-    public static int TAPE_SPACE_SEQUENTIAL_SMKS() {
-        return (int)9L;
-    }
-    public static int TAPE_DRIVE_RESERVED_BIT() {
-        return (int)2147483648L;
-    }
-    public static int TAPE_DRIVE_LOAD_UNLOAD() {
-        return (int)2147483649L;
-    }
-    public static int TAPE_DRIVE_TENSION() {
-        return (int)2147483650L;
-    }
-    public static int TAPE_DRIVE_LOCK_UNLOCK() {
-        return (int)2147483652L;
-    }
-    public static int TAPE_DRIVE_REWIND_IMMEDIATE() {
-        return (int)2147483656L;
-    }
-    public static int TAPE_DRIVE_SET_BLOCK_SIZE() {
-        return (int)2147483664L;
-    }
-    public static int TAPE_DRIVE_LOAD_UNLD_IMMED() {
-        return (int)2147483680L;
-    }
-    public static int TAPE_DRIVE_TENSION_IMMED() {
-        return (int)2147483712L;
-    }
-    public static int TAPE_DRIVE_LOCK_UNLK_IMMED() {
-        return (int)2147483776L;
-    }
-    public static int TAPE_DRIVE_SET_ECC() {
-        return (int)2147483904L;
-    }
-    public static int TAPE_DRIVE_SET_COMPRESSION() {
-        return (int)2147484160L;
-    }
-    public static int TAPE_DRIVE_SET_PADDING() {
-        return (int)2147484672L;
-    }
-    public static int TAPE_DRIVE_SET_REPORT_SMKS() {
-        return (int)2147485696L;
-    }
-    public static int TAPE_DRIVE_ABSOLUTE_BLK() {
-        return (int)2147487744L;
-    }
-    public static int TAPE_DRIVE_ABS_BLK_IMMED() {
-        return (int)2147491840L;
-    }
-    public static int TAPE_DRIVE_LOGICAL_BLK() {
-        return (int)2147500032L;
-    }
-    public static int TAPE_DRIVE_LOG_BLK_IMMED() {
-        return (int)2147516416L;
-    }
-    public static int TAPE_DRIVE_END_OF_DATA() {
-        return (int)2147549184L;
-    }
-    public static int TAPE_DRIVE_RELATIVE_BLKS() {
-        return (int)2147614720L;
-    }
-    public static int TAPE_DRIVE_FILEMARKS() {
-        return (int)2147745792L;
-    }
-    public static int TAPE_DRIVE_SEQUENTIAL_FMKS() {
-        return (int)2148007936L;
-    }
-    public static int TAPE_DRIVE_SETMARKS() {
-        return (int)2148532224L;
-    }
-    public static int TAPE_DRIVE_SEQUENTIAL_SMKS() {
-        return (int)2149580800L;
-    }
-    public static int TAPE_DRIVE_REVERSE_POSITION() {
-        return (int)2151677952L;
-    }
-    public static int TAPE_DRIVE_SPACE_IMMEDIATE() {
-        return (int)2155872256L;
-    }
-    public static int TAPE_DRIVE_WRITE_SETMARKS() {
-        return (int)2164260864L;
-    }
-    public static int TAPE_DRIVE_WRITE_FILEMARKS() {
-        return (int)2181038080L;
-    }
-    public static int TAPE_DRIVE_WRITE_SHORT_FMKS() {
-        return (int)2214592512L;
-    }
-    public static int TAPE_DRIVE_WRITE_LONG_FMKS() {
-        return (int)2281701376L;
-    }
-    public static int TAPE_DRIVE_WRITE_MARK_IMMED() {
-        return (int)2415919104L;
-    }
-    public static int TAPE_DRIVE_FORMAT() {
-        return (int)2684354560L;
-    }
-    public static int TAPE_DRIVE_FORMAT_IMMEDIATE() {
-        return (int)3221225472L;
-    }
-    public static int TAPE_DRIVE_HIGH_FEATURES() {
-        return (int)2147483648L;
-    }
-    public static int TAPE_FIXED_PARTITIONS() {
-        return (int)0L;
-    }
-    public static int TAPE_SELECT_PARTITIONS() {
-        return (int)1L;
-    }
-    public static int TAPE_INITIATOR_PARTITIONS() {
-        return (int)2L;
-    }
-    public static int TAPE_QUERY_DRIVE_PARAMETERS() {
-        return (int)0L;
-    }
-    public static int TAPE_QUERY_MEDIA_CAPACITY() {
-        return (int)1L;
-    }
-    public static int TAPE_CHECK_FOR_DRIVE_PROBLEM() {
-        return (int)2L;
-    }
-    public static int TAPE_QUERY_IO_ERROR_DATA() {
-        return (int)3L;
-    }
-    public static int TAPE_QUERY_DEVICE_ERROR_DATA() {
-        return (int)4L;
-    }
-    public static MemorySegment TRANSACTIONMANAGER_OBJECT_PATH() {
-        return constants$830.TRANSACTIONMANAGER_OBJECT_PATH$SEGMENT;
-    }
-    public static MemorySegment TRANSACTION_OBJECT_PATH() {
-        return constants$831.TRANSACTION_OBJECT_PATH$SEGMENT;
-    }
-    public static MemorySegment ENLISTMENT_OBJECT_PATH() {
-        return constants$831.ENLISTMENT_OBJECT_PATH$SEGMENT;
-    }
-    public static MemorySegment RESOURCE_MANAGER_OBJECT_PATH() {
-        return constants$831.RESOURCE_MANAGER_OBJECT_PATH$SEGMENT;
-    }
-    public static long TRANSACTIONMANAGER_OBJECT_NAME_LENGTH_IN_BYTES() {
-        return 118L;
-    }
-    public static long TRANSACTION_OBJECT_NAME_LENGTH_IN_BYTES() {
-        return 104L;
-    }
-    public static long ENLISTMENT_OBJECT_NAME_LENGTH_IN_BYTES() {
-        return 102L;
-    }
-    public static long RESOURCE_MANAGER_OBJECT_NAME_LENGTH_IN_BYTES() {
-        return 112L;
-    }
-    public static int TRANSACTIONMANAGER_QUERY_INFORMATION() {
-        return (int)1L;
-    }
-    public static int TRANSACTIONMANAGER_SET_INFORMATION() {
-        return (int)2L;
-    }
-    public static int TRANSACTIONMANAGER_RECOVER() {
-        return (int)4L;
-    }
-    public static int TRANSACTIONMANAGER_RENAME() {
-        return (int)8L;
-    }
-    public static int TRANSACTIONMANAGER_CREATE_RM() {
-        return (int)16L;
-    }
-    public static int TRANSACTIONMANAGER_BIND_TRANSACTION() {
-        return (int)32L;
-    }
-    public static int TRANSACTIONMANAGER_GENERIC_READ() {
-        return (int)131073L;
-    }
-    public static int TRANSACTIONMANAGER_GENERIC_WRITE() {
-        return (int)131102L;
-    }
-    public static int TRANSACTIONMANAGER_GENERIC_EXECUTE() {
-        return (int)131072L;
-    }
-    public static int TRANSACTIONMANAGER_ALL_ACCESS() {
-        return (int)983103L;
-    }
-    public static int TRANSACTION_QUERY_INFORMATION() {
-        return (int)1L;
-    }
-    public static int TRANSACTION_SET_INFORMATION() {
-        return (int)2L;
-    }
-    public static int TRANSACTION_ENLIST() {
-        return (int)4L;
-    }
-    public static int TRANSACTION_COMMIT() {
-        return (int)8L;
-    }
-    public static int TRANSACTION_ROLLBACK() {
-        return (int)16L;
-    }
-    public static int TRANSACTION_PROPAGATE() {
-        return (int)32L;
-    }
-    public static int TRANSACTION_RIGHT_RESERVED1() {
-        return (int)64L;
-    }
-    public static int TRANSACTION_GENERIC_READ() {
-        return (int)1179649L;
-    }
-    public static int TRANSACTION_GENERIC_WRITE() {
-        return (int)1179710L;
-    }
-    public static int TRANSACTION_GENERIC_EXECUTE() {
-        return (int)1179672L;
-    }
-    public static int TRANSACTION_ALL_ACCESS() {
-        return (int)2031679L;
-    }
-    public static int TRANSACTION_RESOURCE_MANAGER_RIGHTS() {
-        return (int)1179703L;
-    }
-    public static int RESOURCEMANAGER_QUERY_INFORMATION() {
-        return (int)1L;
-    }
-    public static int RESOURCEMANAGER_SET_INFORMATION() {
-        return (int)2L;
-    }
-    public static int RESOURCEMANAGER_RECOVER() {
-        return (int)4L;
-    }
-    public static int RESOURCEMANAGER_ENLIST() {
-        return (int)8L;
-    }
-    public static int RESOURCEMANAGER_GET_NOTIFICATION() {
-        return (int)16L;
-    }
-    public static int RESOURCEMANAGER_REGISTER_PROTOCOL() {
-        return (int)32L;
-    }
-    public static int RESOURCEMANAGER_COMPLETE_PROPAGATION() {
-        return (int)64L;
-    }
-    public static int RESOURCEMANAGER_GENERIC_READ() {
-        return (int)1179649L;
-    }
-    public static int RESOURCEMANAGER_GENERIC_WRITE() {
-        return (int)1179774L;
-    }
-    public static int RESOURCEMANAGER_GENERIC_EXECUTE() {
-        return (int)1179740L;
-    }
-    public static int RESOURCEMANAGER_ALL_ACCESS() {
-        return (int)2031743L;
-    }
-    public static int ENLISTMENT_QUERY_INFORMATION() {
-        return (int)1L;
-    }
-    public static int ENLISTMENT_SET_INFORMATION() {
-        return (int)2L;
-    }
-    public static int ENLISTMENT_RECOVER() {
-        return (int)4L;
-    }
-    public static int ENLISTMENT_SUBORDINATE_RIGHTS() {
-        return (int)8L;
-    }
-    public static int ENLISTMENT_SUPERIOR_RIGHTS() {
-        return (int)16L;
-    }
-    public static int ENLISTMENT_GENERIC_READ() {
-        return (int)131073L;
-    }
-    public static int ENLISTMENT_GENERIC_WRITE() {
-        return (int)131102L;
-    }
-    public static int ENLISTMENT_GENERIC_EXECUTE() {
-        return (int)131100L;
-    }
-    public static int ENLISTMENT_ALL_ACCESS() {
-        return (int)983071L;
-    }
-    public static int ACTIVATION_CONTEXT_SECTION_ASSEMBLY_INFORMATION() {
-        return (int)1L;
-    }
-    public static int ACTIVATION_CONTEXT_SECTION_DLL_REDIRECTION() {
-        return (int)2L;
-    }
-    public static int ACTIVATION_CONTEXT_SECTION_WINDOW_CLASS_REDIRECTION() {
-        return (int)3L;
-    }
-    public static int ACTIVATION_CONTEXT_SECTION_COM_SERVER_REDIRECTION() {
-        return (int)4L;
-    }
-    public static int ACTIVATION_CONTEXT_SECTION_COM_INTERFACE_REDIRECTION() {
-        return (int)5L;
-    }
-    public static int ACTIVATION_CONTEXT_SECTION_COM_TYPE_LIBRARY_REDIRECTION() {
-        return (int)6L;
-    }
-    public static int ACTIVATION_CONTEXT_SECTION_COM_PROGID_REDIRECTION() {
-        return (int)7L;
-    }
-    public static int ACTIVATION_CONTEXT_SECTION_GLOBAL_OBJECT_RENAME_TABLE() {
-        return (int)8L;
-    }
-    public static int ACTIVATION_CONTEXT_SECTION_CLR_SURROGATES() {
-        return (int)9L;
-    }
-    public static int ACTIVATION_CONTEXT_SECTION_APPLICATION_SETTINGS() {
-        return (int)10L;
-    }
-    public static int ACTIVATION_CONTEXT_SECTION_COMPATIBILITY_INFO() {
-        return (int)11L;
-    }
-    public static int ACTIVATION_CONTEXT_SECTION_WINRT_ACTIVATABLE_CLASSES() {
-        return (int)12L;
-    }
-    public static int HFILE_ERROR() {
-        return (int)-1L;
-    }
-    public static int DM_IN_BUFFER() {
-        return (int)8L;
-    }
-    public static int DM_IN_PROMPT() {
-        return (int)4L;
-    }
-    public static int DM_OUT_BUFFER() {
-        return (int)2L;
-    }
-    public static int DM_OUT_DEFAULT() {
-        return (int)1L;
-    }
-    public static MemoryAddress DPI_AWARENESS_CONTEXT_UNAWARE() {
-        return constants$831.DPI_AWARENESS_CONTEXT_UNAWARE$ADDR;
-    }
-    public static MemoryAddress DPI_AWARENESS_CONTEXT_SYSTEM_AWARE() {
-        return constants$831.DPI_AWARENESS_CONTEXT_SYSTEM_AWARE$ADDR;
-    }
-    public static MemoryAddress DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE() {
-        return constants$831.DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE$ADDR;
-    }
-    public static MemoryAddress DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2() {
-        return constants$832.DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2$ADDR;
-    }
-    public static MemoryAddress DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED() {
-        return constants$832.DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED$ADDR;
-    }
-    public static int STILL_ACTIVE() {
-        return (int)259L;
-    }
-    public static int EXCEPTION_ACCESS_VIOLATION() {
-        return (int)3221225477L;
-    }
-    public static int EXCEPTION_DATATYPE_MISALIGNMENT() {
-        return (int)2147483650L;
-    }
-    public static int EXCEPTION_BREAKPOINT() {
-        return (int)2147483651L;
-    }
-    public static int EXCEPTION_SINGLE_STEP() {
-        return (int)2147483652L;
-    }
-    public static int EXCEPTION_ARRAY_BOUNDS_EXCEEDED() {
-        return (int)3221225612L;
-    }
-    public static int EXCEPTION_FLT_DENORMAL_OPERAND() {
-        return (int)3221225613L;
-    }
-    public static int EXCEPTION_FLT_DIVIDE_BY_ZERO() {
-        return (int)3221225614L;
-    }
-    public static int EXCEPTION_FLT_INEXACT_RESULT() {
-        return (int)3221225615L;
-    }
-    public static int EXCEPTION_FLT_INVALID_OPERATION() {
-        return (int)3221225616L;
-    }
-    public static int EXCEPTION_FLT_OVERFLOW() {
-        return (int)3221225617L;
-    }
-    public static int EXCEPTION_FLT_STACK_CHECK() {
-        return (int)3221225618L;
-    }
-    public static int EXCEPTION_FLT_UNDERFLOW() {
-        return (int)3221225619L;
-    }
-    public static int EXCEPTION_INT_DIVIDE_BY_ZERO() {
-        return (int)3221225620L;
-    }
-    public static int EXCEPTION_INT_OVERFLOW() {
-        return (int)3221225621L;
-    }
-    public static int EXCEPTION_PRIV_INSTRUCTION() {
-        return (int)3221225622L;
-    }
-    public static int EXCEPTION_IN_PAGE_ERROR() {
-        return (int)3221225478L;
-    }
-    public static int EXCEPTION_ILLEGAL_INSTRUCTION() {
-        return (int)3221225501L;
-    }
-    public static int EXCEPTION_NONCONTINUABLE_EXCEPTION() {
-        return (int)3221225509L;
-    }
-    public static int EXCEPTION_STACK_OVERFLOW() {
-        return (int)3221225725L;
-    }
-    public static int EXCEPTION_INVALID_DISPOSITION() {
-        return (int)3221225510L;
-    }
-    public static int EXCEPTION_GUARD_PAGE() {
-        return (int)2147483649L;
-    }
-    public static int EXCEPTION_INVALID_HANDLE() {
-        return (int)3221225480L;
-    }
-    public static int CONTROL_C_EXIT() {
-        return (int)3221225786L;
-    }
-    public static int LHND() {
-        return (int)66L;
-    }
-    public static int LPTR() {
-        return (int)64L;
-    }
-    public static int NONZEROLHND() {
-        return (int)2L;
-    }
-    public static int NONZEROLPTR() {
-        return (int)0L;
-    }
-    public static int NUMA_NO_PREFERRED_NODE() {
-        return (int)4294967295L;
-    }
-    public static int INVALID_FILE_SIZE() {
-        return (int)4294967295L;
-    }
-    public static int INVALID_SET_FILE_POINTER() {
-        return (int)4294967295L;
-    }
-    public static int INVALID_FILE_ATTRIBUTES() {
-        return (int)4294967295L;
-    }
-    public static MemoryAddress INVALID_HANDLE_VALUE() {
-        return constants$832.INVALID_HANDLE_VALUE$ADDR;
-    }
-    public static int FLS_OUT_OF_INDEXES() {
-        return (int)4294967295L;
-    }
-    public static int INIT_ONCE_CHECK_ONLY() {
-        return (int)1L;
-    }
-    public static int INIT_ONCE_ASYNC() {
-        return (int)2L;
-    }
-    public static int INIT_ONCE_INIT_FAILED() {
-        return (int)4L;
-    }
-    public static int INIT_ONCE_CTX_RESERVED_BITS() {
-        return (int)2L;
-    }
-    public static int CONDITION_VARIABLE_LOCKMODE_SHARED() {
-        return (int)1L;
-    }
-    public static int MUTEX_MODIFY_STATE() {
-        return (int)1L;
-    }
-    public static int MUTEX_ALL_ACCESS() {
-        return (int)2031617L;
-    }
-    public static int TLS_OUT_OF_INDEXES() {
-        return (int)4294967295L;
-    }
-    public static int PROCESS_AFFINITY_ENABLE_AUTO_UPDATE() {
-        return (int)1L;
-    }
-    public static int THREAD_POWER_THROTTLING_VALID_FLAGS() {
-        return (int)1L;
-    }
-    public static int PROCESS_POWER_THROTTLING_VALID_FLAGS() {
-        return (int)5L;
-    }
-    public static int PROCESS_LEAP_SECOND_INFO_VALID_FLAGS() {
-        return (int)1L;
-    }
-    public static int FILE_MAP_WRITE() {
-        return (int)2L;
-    }
-    public static int FILE_MAP_READ() {
-        return (int)4L;
-    }
-    public static int FILE_MAP_ALL_ACCESS() {
-        return (int)983071L;
-    }
-    public static int FILE_MAP_EXECUTE() {
-        return (int)32L;
-    }
-    public static int FILE_MAP_RESERVE() {
-        return (int)2147483648L;
-    }
-    public static int FIND_RESOURCE_DIRECTORY_TYPES() {
-        return (int)256L;
-    }
-    public static int FIND_RESOURCE_DIRECTORY_NAMES() {
-        return (int)512L;
-    }
-    public static int FIND_RESOURCE_DIRECTORY_LANGUAGES() {
-        return (int)1024L;
-    }
-    public static int RESOURCE_ENUM_LN() {
-        return (int)1L;
-    }
-    public static int RESOURCE_ENUM_MUI() {
-        return (int)2L;
-    }
-    public static int RESOURCE_ENUM_MUI_SYSTEM() {
-        return (int)4L;
-    }
-    public static int RESOURCE_ENUM_VALIDATE() {
-        return (int)8L;
-    }
-    public static int RESOURCE_ENUM_MODULE_EXACT() {
-        return (int)16L;
-    }
-    public static int GET_MODULE_HANDLE_EX_FLAG_PIN() {
-        return (int)1L;
-    }
-    public static int GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT() {
-        return (int)2L;
-    }
-    public static int GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS() {
-        return (int)4L;
-    }
-    public static int WAIT_FAILED() {
-        return (int)4294967295L;
-    }
-    public static int WAIT_OBJECT_0() {
-        return (int)0L;
-    }
-    public static int WAIT_ABANDONED() {
-        return (int)128L;
-    }
-    public static int WAIT_ABANDONED_0() {
-        return (int)128L;
-    }
-    public static int WAIT_IO_COMPLETION() {
-        return (int)192L;
-    }
-    public static int FILE_FLAG_WRITE_THROUGH() {
-        return (int)2147483648L;
-    }
-    public static int SECURITY_ANONYMOUS() {
-        return (int)0L;
-    }
-    public static int SECURITY_IDENTIFICATION() {
-        return (int)65536L;
-    }
-    public static int SECURITY_IMPERSONATION() {
-        return (int)131072L;
-    }
-    public static int SECURITY_DELEGATION() {
-        return (int)196608L;
-    }
-    public static int SP_SERIALCOMM() {
-        return (int)1L;
-    }
-    public static int PST_UNSPECIFIED() {
-        return (int)0L;
-    }
-    public static int PST_RS232() {
-        return (int)1L;
-    }
-    public static int PST_PARALLELPORT() {
-        return (int)2L;
-    }
-    public static int PST_RS422() {
-        return (int)3L;
-    }
-    public static int PST_RS423() {
-        return (int)4L;
-    }
-    public static int PST_RS449() {
-        return (int)5L;
-    }
-    public static int PST_MODEM() {
-        return (int)6L;
-    }
-    public static int PST_FAX() {
-        return (int)33L;
-    }
-    public static int PST_SCANNER() {
-        return (int)34L;
-    }
-    public static int PST_NETWORK_BRIDGE() {
-        return (int)256L;
-    }
-    public static int PST_LAT() {
-        return (int)257L;
-    }
-    public static int PST_TCPIP_TELNET() {
-        return (int)258L;
-    }
-    public static int PST_X25() {
-        return (int)259L;
-    }
-    public static int PCF_DTRDSR() {
-        return (int)1L;
-    }
-    public static int PCF_RTSCTS() {
-        return (int)2L;
-    }
-    public static int PCF_RLSD() {
-        return (int)4L;
-    }
-    public static int PCF_PARITY_CHECK() {
-        return (int)8L;
-    }
-    public static int PCF_XONXOFF() {
-        return (int)16L;
-    }
-    public static int PCF_SETXCHAR() {
-        return (int)32L;
-    }
-    public static int PCF_TOTALTIMEOUTS() {
-        return (int)64L;
-    }
-    public static int PCF_INTTIMEOUTS() {
-        return (int)128L;
-    }
-    public static int PCF_SPECIALCHARS() {
-        return (int)256L;
-    }
-    public static int PCF_16BITMODE() {
-        return (int)512L;
-    }
-    public static int SP_PARITY() {
-        return (int)1L;
-    }
-    public static int SP_BAUD() {
-        return (int)2L;
-    }
-    public static int SP_DATABITS() {
-        return (int)4L;
-    }
-    public static int SP_STOPBITS() {
-        return (int)8L;
-    }
-    public static int SP_HANDSHAKING() {
-        return (int)16L;
-    }
-    public static int SP_PARITY_CHECK() {
-        return (int)32L;
-    }
-    public static int SP_RLSD() {
-        return (int)64L;
-    }
-    public static int BAUD_075() {
-        return (int)1L;
-    }
-    public static int BAUD_110() {
-        return (int)2L;
-    }
-    public static int BAUD_134_5() {
-        return (int)4L;
-    }
-    public static int BAUD_150() {
-        return (int)8L;
-    }
-    public static int BAUD_300() {
-        return (int)16L;
-    }
-    public static int BAUD_600() {
-        return (int)32L;
-    }
-    public static int BAUD_1200() {
-        return (int)64L;
-    }
-    public static int BAUD_1800() {
-        return (int)128L;
-    }
-    public static int BAUD_2400() {
-        return (int)256L;
-    }
-    public static int BAUD_4800() {
-        return (int)512L;
-    }
-    public static int BAUD_7200() {
-        return (int)1024L;
-    }
-    public static int BAUD_9600() {
-        return (int)2048L;
-    }
-    public static int BAUD_14400() {
-        return (int)4096L;
-    }
-    public static int BAUD_19200() {
-        return (int)8192L;
-    }
-    public static int BAUD_38400() {
-        return (int)16384L;
-    }
-    public static int BAUD_56K() {
-        return (int)32768L;
-    }
-    public static int BAUD_128K() {
-        return (int)65536L;
-    }
-    public static int BAUD_115200() {
-        return (int)131072L;
-    }
-    public static int BAUD_57600() {
-        return (int)262144L;
-    }
-    public static int BAUD_USER() {
-        return (int)268435456L;
-    }
-    public static short DATABITS_5() {
-        return (short)1L;
-    }
-    public static short DATABITS_6() {
-        return (short)2L;
-    }
-    public static short DATABITS_7() {
-        return (short)4L;
-    }
-    public static short DATABITS_8() {
-        return (short)8L;
-    }
-    public static short DATABITS_16() {
-        return (short)16L;
-    }
-    public static short DATABITS_16X() {
-        return (short)32L;
-    }
-    public static short STOPBITS_10() {
-        return (short)1L;
-    }
-    public static short STOPBITS_15() {
-        return (short)2L;
-    }
-    public static short STOPBITS_20() {
-        return (short)4L;
-    }
-    public static short PARITY_NONE() {
-        return (short)256L;
-    }
-    public static short PARITY_ODD() {
-        return (short)512L;
-    }
-    public static short PARITY_EVEN() {
-        return (short)1024L;
-    }
-    public static short PARITY_MARK() {
-        return (short)2048L;
-    }
-    public static short PARITY_SPACE() {
-        return (short)4096L;
-    }
-    public static int COMMPROP_INITIALIZED() {
-        return (int)3879531822L;
-    }
-    public static int GMEM_LOWER() {
-        return (int)4096L;
-    }
-    public static int GHND() {
-        return (int)66L;
-    }
-    public static int GPTR() {
-        return (int)64L;
-    }
-    public static int CREATE_IGNORE_SYSTEM_DEFAULT() {
-        return (int)2147483648L;
-    }
-    public static int THREAD_PRIORITY_LOWEST() {
-        return (int)-2L;
-    }
-    public static int THREAD_PRIORITY_BELOW_NORMAL() {
-        return (int)-1L;
-    }
-    public static int THREAD_PRIORITY_HIGHEST() {
-        return (int)2L;
-    }
-    public static int THREAD_PRIORITY_ABOVE_NORMAL() {
-        return (int)1L;
-    }
-    public static int THREAD_PRIORITY_ERROR_RETURN() {
-        return (int)2147483647L;
-    }
-    public static int THREAD_PRIORITY_TIME_CRITICAL() {
-        return (int)15L;
-    }
-    public static int THREAD_PRIORITY_IDLE() {
-        return (int)-15L;
-    }
-    public static int STD_INPUT_HANDLE() {
-        return (int)4294967286L;
-    }
-    public static int STD_OUTPUT_HANDLE() {
-        return (int)4294967285L;
-    }
-    public static int STD_ERROR_HANDLE() {
-        return (int)4294967284L;
-    }
-    public static int INFINITE() {
-        return (int)4294967295L;
-    }
-    public static int IE_BADID() {
-        return (int)-1L;
-    }
-    public static int IE_OPEN() {
-        return (int)-2L;
-    }
-    public static int IE_NOPEN() {
-        return (int)-3L;
-    }
-    public static int IE_MEMORY() {
-        return (int)-4L;
-    }
-    public static int IE_DEFAULT() {
-        return (int)-5L;
-    }
-    public static int IE_HARDWARE() {
-        return (int)-10L;
-    }
-    public static int IE_BYTESIZE() {
-        return (int)-11L;
-    }
-    public static int IE_BAUDRATE() {
-        return (int)-12L;
-    }
-    public static int MS_CTS_ON() {
-        return (int)16L;
-    }
-    public static int MS_DSR_ON() {
-        return (int)32L;
-    }
-    public static int MS_RING_ON() {
-        return (int)64L;
-    }
-    public static int MS_RLSD_ON() {
-        return (int)128L;
-    }
-    public static int S_SERDVNA() {
-        return (int)-1L;
-    }
-    public static int S_SEROFM() {
-        return (int)-2L;
-    }
-    public static int S_SERMACT() {
-        return (int)-3L;
-    }
-    public static int S_SERQFUL() {
-        return (int)-4L;
-    }
-    public static int S_SERBDNT() {
-        return (int)-5L;
-    }
-    public static int S_SERDLN() {
-        return (int)-6L;
-    }
-    public static int S_SERDCC() {
-        return (int)-7L;
-    }
-    public static int S_SERDTP() {
-        return (int)-8L;
-    }
-    public static int S_SERDVL() {
-        return (int)-9L;
-    }
-    public static int S_SERDMD() {
-        return (int)-10L;
-    }
-    public static int S_SERDSH() {
-        return (int)-11L;
-    }
-    public static int S_SERDPT() {
-        return (int)-12L;
-    }
-    public static int S_SERDFQ() {
-        return (int)-13L;
-    }
-    public static int S_SERDDR() {
-        return (int)-14L;
-    }
-    public static int S_SERDSR() {
-        return (int)-15L;
-    }
-    public static int S_SERDST() {
-        return (int)-16L;
-    }
-    public static int NMPWAIT_WAIT_FOREVER() {
-        return (int)4294967295L;
-    }
-    public static int FS_CASE_IS_PRESERVED() {
-        return (int)2L;
-    }
-    public static int FS_CASE_SENSITIVE() {
-        return (int)1L;
-    }
-    public static int FS_UNICODE_STORED_ON_DISK() {
-        return (int)4L;
-    }
-    public static int FS_PERSISTENT_ACLS() {
-        return (int)8L;
-    }
-    public static int FS_VOL_IS_COMPRESSED() {
-        return (int)32768L;
-    }
-    public static int FS_FILE_COMPRESSION() {
-        return (int)16L;
-    }
-    public static int FS_FILE_ENCRYPTION() {
-        return (int)131072L;
-    }
-    public static short INVALID_ATOM() {
-        return (short)0L;
-    }
-    public static int SCS_THIS_PLATFORM_BINARY() {
-        return (int)6L;
-    }
-    public static int UMS_VERSION() {
-        return (int)256L;
-    }
-    public static int CRITICAL_SECTION_NO_DEBUG_INFO() {
-        return (int)16777216L;
-    }
-    public static int EFS_USE_RECOVERY_KEYS() {
-        return (int)1L;
-    }
-    public static int CREATE_FOR_IMPORT() {
-        return (int)1L;
-    }
-    public static int CREATE_FOR_DIR() {
-        return (int)2L;
-    }
-    public static int OVERWRITE_HIDDEN() {
-        return (int)4L;
-    }
-    public static int EFSRPC_SECURE_ONLY() {
-        return (int)8L;
-    }
-    public static int EFS_DROP_ALTERNATE_STREAMS() {
-        return (int)16L;
-    }
-    public static int PROTECTION_LEVEL_SAME() {
-        return (int)4294967295L;
-    }
-    public static int PROTECTION_LEVEL_NONE() {
-        return (int)4294967294L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_PARENT_PROCESS() {
-        return (int)131072L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_HANDLE_LIST() {
-        return (int)131074L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_GROUP_AFFINITY() {
-        return (int)196611L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_PREFERRED_NODE() {
-        return (int)131076L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_IDEAL_PROCESSOR() {
-        return (int)196613L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_UMS_THREAD() {
-        return (int)196614L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_MITIGATION_POLICY() {
-        return (int)131079L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_SECURITY_CAPABILITIES() {
-        return (int)131081L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_PROTECTION_LEVEL() {
-        return (int)131083L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_PSEUDOCONSOLE() {
-        return (int)131094L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_MACHINE_TYPE() {
-        return (int)131097L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_ENABLE_OPTIONAL_XSTATE_FEATURES() {
-        return (int)196635L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_FORCE_RELOCATE_IMAGES_MASK() {
-        return (int)768L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_FORCE_RELOCATE_IMAGES_DEFER() {
-        return (int)0L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_FORCE_RELOCATE_IMAGES_ALWAYS_ON() {
-        return (int)256L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_FORCE_RELOCATE_IMAGES_ALWAYS_OFF() {
-        return (int)512L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_FORCE_RELOCATE_IMAGES_ALWAYS_ON_REQ_RELOCS() {
-        return (int)768L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HEAP_TERMINATE_MASK() {
-        return (int)12288L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HEAP_TERMINATE_DEFER() {
-        return (int)0L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HEAP_TERMINATE_ALWAYS_ON() {
-        return (int)4096L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HEAP_TERMINATE_ALWAYS_OFF() {
-        return (int)8192L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HEAP_TERMINATE_RESERVED() {
-        return (int)12288L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_BOTTOM_UP_ASLR_MASK() {
-        return (int)196608L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_BOTTOM_UP_ASLR_DEFER() {
-        return (int)0L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_BOTTOM_UP_ASLR_ALWAYS_ON() {
-        return (int)65536L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_BOTTOM_UP_ASLR_ALWAYS_OFF() {
-        return (int)131072L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_BOTTOM_UP_ASLR_RESERVED() {
-        return (int)196608L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HIGH_ENTROPY_ASLR_MASK() {
-        return (int)3145728L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HIGH_ENTROPY_ASLR_DEFER() {
-        return (int)0L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HIGH_ENTROPY_ASLR_ALWAYS_ON() {
-        return (int)1048576L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HIGH_ENTROPY_ASLR_ALWAYS_OFF() {
-        return (int)2097152L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HIGH_ENTROPY_ASLR_RESERVED() {
-        return (int)3145728L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_STRICT_HANDLE_CHECKS_MASK() {
-        return (int)50331648L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_STRICT_HANDLE_CHECKS_DEFER() {
-        return (int)0L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_STRICT_HANDLE_CHECKS_ALWAYS_ON() {
-        return (int)16777216L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_STRICT_HANDLE_CHECKS_ALWAYS_OFF() {
-        return (int)33554432L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_STRICT_HANDLE_CHECKS_RESERVED() {
-        return (int)50331648L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_WIN32K_SYSTEM_CALL_DISABLE_MASK() {
-        return (int)805306368L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_WIN32K_SYSTEM_CALL_DISABLE_DEFER() {
-        return (int)0L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_WIN32K_SYSTEM_CALL_DISABLE_ALWAYS_ON() {
-        return (int)268435456L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_WIN32K_SYSTEM_CALL_DISABLE_ALWAYS_OFF() {
-        return (int)536870912L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_WIN32K_SYSTEM_CALL_DISABLE_RESERVED() {
-        return (int)805306368L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_EXTENSION_POINT_DISABLE_MASK() {
-        return 12884901888L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_EXTENSION_POINT_DISABLE_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_EXTENSION_POINT_DISABLE_ALWAYS_ON() {
-        return 4294967296L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_EXTENSION_POINT_DISABLE_ALWAYS_OFF() {
-        return 8589934592L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_EXTENSION_POINT_DISABLE_RESERVED() {
-        return 12884901888L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_PROHIBIT_DYNAMIC_CODE_MASK() {
-        return 206158430208L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_PROHIBIT_DYNAMIC_CODE_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_PROHIBIT_DYNAMIC_CODE_ALWAYS_ON() {
-        return 68719476736L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_PROHIBIT_DYNAMIC_CODE_ALWAYS_OFF() {
-        return 137438953472L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_PROHIBIT_DYNAMIC_CODE_ALWAYS_ON_ALLOW_OPT_OUT() {
-        return 206158430208L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_CONTROL_FLOW_GUARD_MASK() {
-        return 3298534883328L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_CONTROL_FLOW_GUARD_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_CONTROL_FLOW_GUARD_ALWAYS_ON() {
-        return 1099511627776L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_CONTROL_FLOW_GUARD_ALWAYS_OFF() {
-        return 2199023255552L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_CONTROL_FLOW_GUARD_EXPORT_SUPPRESSION() {
-        return 3298534883328L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_BLOCK_NON_MICROSOFT_BINARIES_MASK() {
-        return 52776558133248L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_BLOCK_NON_MICROSOFT_BINARIES_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_BLOCK_NON_MICROSOFT_BINARIES_ALWAYS_ON() {
-        return 17592186044416L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_BLOCK_NON_MICROSOFT_BINARIES_ALWAYS_OFF() {
-        return 35184372088832L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_BLOCK_NON_MICROSOFT_BINARIES_ALLOW_STORE() {
-        return 52776558133248L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_FONT_DISABLE_MASK() {
-        return 844424930131968L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_FONT_DISABLE_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_FONT_DISABLE_ALWAYS_ON() {
-        return 281474976710656L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_FONT_DISABLE_ALWAYS_OFF() {
-        return 562949953421312L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_AUDIT_NONSYSTEM_FONTS() {
-        return 844424930131968L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_REMOTE_MASK() {
-        return 13510798882111488L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_REMOTE_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_REMOTE_ALWAYS_ON() {
-        return 4503599627370496L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_REMOTE_ALWAYS_OFF() {
-        return 9007199254740992L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_REMOTE_RESERVED() {
-        return 13510798882111488L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_LOW_LABEL_MASK() {
-        return 216172782113783808L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_LOW_LABEL_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_LOW_LABEL_ALWAYS_ON() {
-        return 72057594037927936L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_LOW_LABEL_ALWAYS_OFF() {
-        return 144115188075855872L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_LOW_LABEL_RESERVED() {
-        return 216172782113783808L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_PREFER_SYSTEM32_MASK() {
-        return 3458764513820540928L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_PREFER_SYSTEM32_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_PREFER_SYSTEM32_ALWAYS_ON() {
-        return 1152921504606846976L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_PREFER_SYSTEM32_ALWAYS_OFF() {
-        return 2305843009213693952L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_PREFER_SYSTEM32_RESERVED() {
-        return 3458764513820540928L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_LOADER_INTEGRITY_CONTINUITY_MASK() {
-        return 48L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_LOADER_INTEGRITY_CONTINUITY_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_LOADER_INTEGRITY_CONTINUITY_ALWAYS_ON() {
-        return 16L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_LOADER_INTEGRITY_CONTINUITY_ALWAYS_OFF() {
-        return 32L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_LOADER_INTEGRITY_CONTINUITY_AUDIT() {
-        return 48L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_STRICT_CONTROL_FLOW_GUARD_MASK() {
-        return 768L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_STRICT_CONTROL_FLOW_GUARD_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_STRICT_CONTROL_FLOW_GUARD_ALWAYS_ON() {
-        return 256L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_STRICT_CONTROL_FLOW_GUARD_ALWAYS_OFF() {
-        return 512L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_STRICT_CONTROL_FLOW_GUARD_RESERVED() {
-        return 768L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_MODULE_TAMPERING_PROTECTION_MASK() {
-        return 12288L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_MODULE_TAMPERING_PROTECTION_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_MODULE_TAMPERING_PROTECTION_ALWAYS_ON() {
-        return 4096L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_MODULE_TAMPERING_PROTECTION_ALWAYS_OFF() {
-        return 8192L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_MODULE_TAMPERING_PROTECTION_NOINHERIT() {
-        return 12288L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_RESTRICT_INDIRECT_BRANCH_PREDICTION_MASK() {
-        return 196608L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_RESTRICT_INDIRECT_BRANCH_PREDICTION_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_RESTRICT_INDIRECT_BRANCH_PREDICTION_ALWAYS_ON() {
-        return 65536L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_RESTRICT_INDIRECT_BRANCH_PREDICTION_ALWAYS_OFF() {
-        return 131072L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_RESTRICT_INDIRECT_BRANCH_PREDICTION_RESERVED() {
-        return 196608L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_ALLOW_DOWNGRADE_DYNAMIC_CODE_POLICY_MASK() {
-        return 3145728L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_ALLOW_DOWNGRADE_DYNAMIC_CODE_POLICY_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_ALLOW_DOWNGRADE_DYNAMIC_CODE_POLICY_ALWAYS_ON() {
-        return 1048576L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_ALLOW_DOWNGRADE_DYNAMIC_CODE_POLICY_ALWAYS_OFF() {
-        return 2097152L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_ALLOW_DOWNGRADE_DYNAMIC_CODE_POLICY_RESERVED() {
-        return 3145728L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_SPECULATIVE_STORE_BYPASS_DISABLE_MASK() {
-        return 50331648L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_SPECULATIVE_STORE_BYPASS_DISABLE_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_SPECULATIVE_STORE_BYPASS_DISABLE_ALWAYS_ON() {
-        return 16777216L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_SPECULATIVE_STORE_BYPASS_DISABLE_ALWAYS_OFF() {
-        return 33554432L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_SPECULATIVE_STORE_BYPASS_DISABLE_RESERVED() {
-        return 50331648L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_USER_SHADOW_STACKS_MASK() {
-        return 805306368L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_USER_SHADOW_STACKS_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_USER_SHADOW_STACKS_ALWAYS_ON() {
-        return 268435456L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_USER_SHADOW_STACKS_ALWAYS_OFF() {
-        return 536870912L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_USER_SHADOW_STACKS_STRICT_MODE() {
-        return 805306368L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_MASK() {
-        return 12884901888L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_ALWAYS_ON() {
-        return 4294967296L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_ALWAYS_OFF() {
-        return 8589934592L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_RELAXED_MODE() {
-        return 12884901888L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_BLOCK_NON_CET_BINARIES_MASK() {
-        return 206158430208L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_BLOCK_NON_CET_BINARIES_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_BLOCK_NON_CET_BINARIES_ALWAYS_ON() {
-        return 68719476736L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_BLOCK_NON_CET_BINARIES_ALWAYS_OFF() {
-        return 137438953472L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_BLOCK_NON_CET_BINARIES_NON_EHCONT() {
-        return 206158430208L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_XTENDED_CONTROL_FLOW_GUARD_MASK() {
-        return 3298534883328L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_XTENDED_CONTROL_FLOW_GUARD_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_XTENDED_CONTROL_FLOW_GUARD_ALWAYS_ON() {
-        return 1099511627776L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_XTENDED_CONTROL_FLOW_GUARD_ALWAYS_OFF() {
-        return 2199023255552L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_XTENDED_CONTROL_FLOW_GUARD_RESERVED() {
-        return 3298534883328L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_DYNAMIC_APIS_OUT_OF_PROC_ONLY_MASK() {
-        return 844424930131968L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_DYNAMIC_APIS_OUT_OF_PROC_ONLY_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_DYNAMIC_APIS_OUT_OF_PROC_ONLY_ALWAYS_ON() {
-        return 281474976710656L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_DYNAMIC_APIS_OUT_OF_PROC_ONLY_ALWAYS_OFF() {
-        return 562949953421312L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_DYNAMIC_APIS_OUT_OF_PROC_ONLY_RESERVED() {
-        return 844424930131968L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_JOB_LIST() {
-        return (int)131085L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_CHILD_PROCESS_POLICY() {
-        return (int)131086L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_ALL_APPLICATION_PACKAGES_POLICY() {
-        return (int)131087L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_WIN32K_FILTER() {
-        return (int)131088L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_DESKTOP_APP_POLICY() {
-        return (int)131090L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_MITIGATION_AUDIT_POLICY() {
-        return (int)131096L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_COMPONENT_FILTER() {
-        return (int)131098L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_CET_USER_SHADOW_STACKS_MASK() {
-        return 805306368L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_CET_USER_SHADOW_STACKS_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_CET_USER_SHADOW_STACKS_ALWAYS_ON() {
-        return 268435456L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_CET_USER_SHADOW_STACKS_ALWAYS_OFF() {
-        return 536870912L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_CET_USER_SHADOW_STACKS_RESERVED() {
-        return 805306368L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_MASK() {
-        return 12884901888L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_ALWAYS_ON() {
-        return 4294967296L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_ALWAYS_OFF() {
-        return 8589934592L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_RESERVED() {
-        return 12884901888L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_BLOCK_NON_CET_BINARIES_MASK() {
-        return 206158430208L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_BLOCK_NON_CET_BINARIES_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_BLOCK_NON_CET_BINARIES_ALWAYS_ON() {
-        return 68719476736L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_BLOCK_NON_CET_BINARIES_ALWAYS_OFF() {
-        return 137438953472L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_BLOCK_NON_CET_BINARIES_RESERVED() {
-        return 206158430208L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_XTENDED_CONTROL_FLOW_GUARD_MASK() {
-        return 3298534883328L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_XTENDED_CONTROL_FLOW_GUARD_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_XTENDED_CONTROL_FLOW_GUARD_ALWAYS_ON() {
-        return 1099511627776L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_XTENDED_CONTROL_FLOW_GUARD_ALWAYS_OFF() {
-        return 2199023255552L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_XTENDED_CONTROL_FLOW_GUARD_RESERVED() {
-        return 3298534883328L;
-    }
-    public static MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_A_A() {
-        return constants$832.GET_SYSTEM_WOW64_DIRECTORY_NAME_A_A$SEGMENT;
-    }
-    public static MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_A_W() {
-        return constants$832.GET_SYSTEM_WOW64_DIRECTORY_NAME_A_W$SEGMENT;
-    }
-    public static MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_A_T() {
-        return constants$832.GET_SYSTEM_WOW64_DIRECTORY_NAME_A_T$SEGMENT;
-    }
-    public static MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_W_A() {
-        return constants$833.GET_SYSTEM_WOW64_DIRECTORY_NAME_W_A$SEGMENT;
-    }
-    public static MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_W_W() {
-        return constants$833.GET_SYSTEM_WOW64_DIRECTORY_NAME_W_W$SEGMENT;
-    }
-    public static MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_W_T() {
-        return constants$833.GET_SYSTEM_WOW64_DIRECTORY_NAME_W_T$SEGMENT;
-    }
-    public static MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_T_A() {
-        return constants$833.GET_SYSTEM_WOW64_DIRECTORY_NAME_T_A$SEGMENT;
-    }
-    public static MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_T_W() {
-        return constants$833.GET_SYSTEM_WOW64_DIRECTORY_NAME_T_W$SEGMENT;
-    }
-    public static MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_T_T() {
-        return constants$833.GET_SYSTEM_WOW64_DIRECTORY_NAME_T_T$SEGMENT;
-    }
-    public static int BASE_SEARCH_PATH_INVALID_FLAGS() {
-        return (int)-98306L;
-    }
-    public static int COPYFILE2_MESSAGE_COPY_OFFLOAD() {
-        return (int)1L;
-    }
-    public static int LOGON_ZERO_PASSWORD_BUFFER() {
-        return (int)2147483648L;
-    }
-    public static int DOCKINFO_UNDOCKED() {
-        return (int)1L;
-    }
-    public static int DOCKINFO_DOCKED() {
-        return (int)2L;
-    }
-    public static int DOCKINFO_USER_SUPPLIED() {
-        return (int)4L;
-    }
-    public static int DOCKINFO_USER_UNDOCKED() {
-        return (int)5L;
-    }
-    public static int DOCKINFO_USER_DOCKED() {
-        return (int)6L;
-    }
-    public static int ERROR_SUCCESS() {
-        return (int)0L;
-    }
-    public static int NO_ERROR() {
-        return (int)0L;
-    }
-    public static int SEC_E_OK() {
-        return (int)0L;
-    }
-    public static int ERROR_INVALID_FUNCTION() {
-        return (int)1L;
-    }
-    public static int ERROR_FILE_NOT_FOUND() {
-        return (int)2L;
-    }
-    public static int ERROR_PATH_NOT_FOUND() {
-        return (int)3L;
-    }
-    public static int ERROR_TOO_MANY_OPEN_FILES() {
-        return (int)4L;
-    }
-    public static int ERROR_ACCESS_DENIED() {
-        return (int)5L;
-    }
-    public static int ERROR_INVALID_HANDLE() {
-        return (int)6L;
-    }
-    public static int ERROR_ARENA_TRASHED() {
-        return (int)7L;
-    }
-    public static int ERROR_NOT_ENOUGH_MEMORY() {
-        return (int)8L;
-    }
-    public static int ERROR_INVALID_BLOCK() {
-        return (int)9L;
-    }
-    public static int ERROR_BAD_ENVIRONMENT() {
-        return (int)10L;
-    }
-    public static int ERROR_BAD_FORMAT() {
-        return (int)11L;
-    }
-    public static int ERROR_INVALID_ACCESS() {
-        return (int)12L;
-    }
-    public static int ERROR_INVALID_DATA() {
-        return (int)13L;
-    }
-    public static int ERROR_OUTOFMEMORY() {
-        return (int)14L;
-    }
-    public static int ERROR_INVALID_DRIVE() {
-        return (int)15L;
-    }
-    public static int ERROR_CURRENT_DIRECTORY() {
-        return (int)16L;
-    }
-    public static int ERROR_NOT_SAME_DEVICE() {
-        return (int)17L;
-    }
-    public static int ERROR_NO_MORE_FILES() {
-        return (int)18L;
-    }
-    public static int ERROR_WRITE_PROTECT() {
-        return (int)19L;
-    }
-    public static int ERROR_BAD_UNIT() {
-        return (int)20L;
-    }
-    public static int ERROR_NOT_READY() {
-        return (int)21L;
-    }
-    public static int ERROR_BAD_COMMAND() {
-        return (int)22L;
-    }
-    public static int ERROR_CRC() {
-        return (int)23L;
-    }
-    public static int ERROR_BAD_LENGTH() {
-        return (int)24L;
-    }
-    public static int ERROR_SEEK() {
-        return (int)25L;
-    }
-    public static int ERROR_NOT_DOS_DISK() {
-        return (int)26L;
-    }
-    public static int ERROR_SECTOR_NOT_FOUND() {
-        return (int)27L;
-    }
-    public static int ERROR_OUT_OF_PAPER() {
-        return (int)28L;
-    }
-    public static int ERROR_WRITE_FAULT() {
-        return (int)29L;
-    }
-    public static int ERROR_READ_FAULT() {
-        return (int)30L;
-    }
-    public static int ERROR_GEN_FAILURE() {
-        return (int)31L;
-    }
-    public static int ERROR_SHARING_VIOLATION() {
-        return (int)32L;
-    }
-    public static int ERROR_LOCK_VIOLATION() {
-        return (int)33L;
-    }
-    public static int ERROR_WRONG_DISK() {
-        return (int)34L;
-    }
-    public static int ERROR_SHARING_BUFFER_EXCEEDED() {
-        return (int)36L;
-    }
-    public static int ERROR_HANDLE_EOF() {
-        return (int)38L;
-    }
-    public static int ERROR_HANDLE_DISK_FULL() {
-        return (int)39L;
-    }
-    public static int ERROR_NOT_SUPPORTED() {
-        return (int)50L;
-    }
-    public static int ERROR_REM_NOT_LIST() {
-        return (int)51L;
-    }
-    public static int ERROR_DUP_NAME() {
-        return (int)52L;
-    }
-    public static int ERROR_BAD_NETPATH() {
-        return (int)53L;
-    }
-    public static int ERROR_NETWORK_BUSY() {
-        return (int)54L;
-    }
-    public static int ERROR_DEV_NOT_EXIST() {
-        return (int)55L;
-    }
-    public static int ERROR_TOO_MANY_CMDS() {
-        return (int)56L;
-    }
-    public static int ERROR_ADAP_HDW_ERR() {
-        return (int)57L;
-    }
-    public static int ERROR_BAD_NET_RESP() {
-        return (int)58L;
-    }
-    public static int ERROR_UNEXP_NET_ERR() {
-        return (int)59L;
-    }
-    public static int ERROR_BAD_REM_ADAP() {
-        return (int)60L;
-    }
-    public static int ERROR_PRINTQ_FULL() {
-        return (int)61L;
-    }
-    public static int ERROR_NO_SPOOL_SPACE() {
-        return (int)62L;
-    }
-    public static int ERROR_PRINT_CANCELLED() {
-        return (int)63L;
-    }
-    public static int ERROR_NETNAME_DELETED() {
-        return (int)64L;
-    }
-    public static int ERROR_NETWORK_ACCESS_DENIED() {
-        return (int)65L;
-    }
-    public static int ERROR_BAD_DEV_TYPE() {
-        return (int)66L;
-    }
-    public static int ERROR_BAD_NET_NAME() {
-        return (int)67L;
-    }
-    public static int ERROR_TOO_MANY_NAMES() {
-        return (int)68L;
-    }
-    public static int ERROR_TOO_MANY_SESS() {
-        return (int)69L;
-    }
-    public static int ERROR_SHARING_PAUSED() {
-        return (int)70L;
-    }
-    public static int ERROR_REQ_NOT_ACCEP() {
-        return (int)71L;
-    }
-    public static int ERROR_REDIR_PAUSED() {
-        return (int)72L;
-    }
-    public static int ERROR_FILE_EXISTS() {
-        return (int)80L;
-    }
-    public static int ERROR_CANNOT_MAKE() {
-        return (int)82L;
-    }
-    public static int ERROR_FAIL_I24() {
-        return (int)83L;
-    }
-    public static int ERROR_OUT_OF_STRUCTURES() {
-        return (int)84L;
-    }
-    public static int ERROR_ALREADY_ASSIGNED() {
-        return (int)85L;
-    }
-    public static int ERROR_INVALID_PASSWORD() {
-        return (int)86L;
-    }
-    public static int ERROR_INVALID_PARAMETER() {
-        return (int)87L;
-    }
-    public static int ERROR_NET_WRITE_FAULT() {
-        return (int)88L;
-    }
-    public static int ERROR_NO_PROC_SLOTS() {
-        return (int)89L;
-    }
-    public static int ERROR_TOO_MANY_SEMAPHORES() {
-        return (int)100L;
-    }
-    public static int ERROR_EXCL_SEM_ALREADY_OWNED() {
-        return (int)101L;
-    }
-    public static int ERROR_SEM_IS_SET() {
-        return (int)102L;
-    }
-    public static int ERROR_TOO_MANY_SEM_REQUESTS() {
-        return (int)103L;
-    }
-    public static int ERROR_INVALID_AT_INTERRUPT_TIME() {
-        return (int)104L;
-    }
-    public static int ERROR_SEM_OWNER_DIED() {
-        return (int)105L;
-    }
-    public static int ERROR_SEM_USER_LIMIT() {
-        return (int)106L;
-    }
-    public static int ERROR_DISK_CHANGE() {
-        return (int)107L;
-    }
-    public static int ERROR_DRIVE_LOCKED() {
-        return (int)108L;
-    }
-    public static int ERROR_BROKEN_PIPE() {
-        return (int)109L;
-    }
-    public static int ERROR_OPEN_FAILED() {
-        return (int)110L;
-    }
-    public static int ERROR_BUFFER_OVERFLOW() {
-        return (int)111L;
-    }
-    public static int ERROR_DISK_FULL() {
-        return (int)112L;
-    }
-    public static int ERROR_NO_MORE_SEARCH_HANDLES() {
-        return (int)113L;
-    }
-    public static int ERROR_INVALID_TARGET_HANDLE() {
-        return (int)114L;
-    }
-    public static int ERROR_INVALID_CATEGORY() {
-        return (int)117L;
-    }
-    public static int ERROR_INVALID_VERIFY_SWITCH() {
-        return (int)118L;
-    }
-    public static int ERROR_BAD_DRIVER_LEVEL() {
-        return (int)119L;
-    }
-    public static int ERROR_CALL_NOT_IMPLEMENTED() {
-        return (int)120L;
-    }
-    public static int ERROR_SEM_TIMEOUT() {
-        return (int)121L;
-    }
-    public static int ERROR_INSUFFICIENT_BUFFER() {
-        return (int)122L;
-    }
-    public static int ERROR_INVALID_NAME() {
-        return (int)123L;
-    }
-    public static int ERROR_INVALID_LEVEL() {
-        return (int)124L;
-    }
-    public static int ERROR_NO_VOLUME_LABEL() {
-        return (int)125L;
-    }
-    public static int ERROR_MOD_NOT_FOUND() {
-        return (int)126L;
-    }
-    public static int ERROR_PROC_NOT_FOUND() {
-        return (int)127L;
-    }
-    public static int ERROR_WAIT_NO_CHILDREN() {
-        return (int)128L;
-    }
-    public static int ERROR_CHILD_NOT_COMPLETE() {
-        return (int)129L;
-    }
-    public static int ERROR_DIRECT_ACCESS_HANDLE() {
-        return (int)130L;
-    }
-    public static int ERROR_NEGATIVE_SEEK() {
-        return (int)131L;
-    }
-    public static int ERROR_SEEK_ON_DEVICE() {
-        return (int)132L;
-    }
-    public static int ERROR_IS_JOIN_TARGET() {
-        return (int)133L;
-    }
-    public static int ERROR_IS_JOINED() {
-        return (int)134L;
-    }
-    public static int ERROR_IS_SUBSTED() {
-        return (int)135L;
-    }
-    public static int ERROR_NOT_JOINED() {
-        return (int)136L;
-    }
-    public static int ERROR_NOT_SUBSTED() {
-        return (int)137L;
-    }
-    public static int ERROR_JOIN_TO_JOIN() {
-        return (int)138L;
-    }
-    public static int ERROR_SUBST_TO_SUBST() {
-        return (int)139L;
-    }
-    public static int ERROR_JOIN_TO_SUBST() {
-        return (int)140L;
-    }
-    public static int ERROR_SUBST_TO_JOIN() {
-        return (int)141L;
-    }
-    public static int ERROR_BUSY_DRIVE() {
-        return (int)142L;
-    }
-    public static int ERROR_SAME_DRIVE() {
-        return (int)143L;
-    }
-    public static int ERROR_DIR_NOT_ROOT() {
-        return (int)144L;
-    }
-    public static int ERROR_DIR_NOT_EMPTY() {
-        return (int)145L;
-    }
-    public static int ERROR_IS_SUBST_PATH() {
-        return (int)146L;
-    }
-    public static int ERROR_IS_JOIN_PATH() {
-        return (int)147L;
-    }
-    public static int ERROR_PATH_BUSY() {
-        return (int)148L;
-    }
-    public static int ERROR_IS_SUBST_TARGET() {
-        return (int)149L;
-    }
-    public static int ERROR_SYSTEM_TRACE() {
-        return (int)150L;
-    }
-    public static int ERROR_INVALID_EVENT_COUNT() {
-        return (int)151L;
-    }
-    public static int ERROR_TOO_MANY_MUXWAITERS() {
-        return (int)152L;
-    }
-    public static int ERROR_INVALID_LIST_FORMAT() {
-        return (int)153L;
-    }
-    public static int ERROR_LABEL_TOO_LONG() {
-        return (int)154L;
-    }
-    public static int ERROR_TOO_MANY_TCBS() {
-        return (int)155L;
-    }
-    public static int ERROR_SIGNAL_REFUSED() {
-        return (int)156L;
-    }
-    public static int ERROR_DISCARDED() {
-        return (int)157L;
-    }
-    public static int ERROR_NOT_LOCKED() {
-        return (int)158L;
-    }
-    public static int ERROR_BAD_THREADID_ADDR() {
-        return (int)159L;
-    }
-    public static int ERROR_BAD_ARGUMENTS() {
-        return (int)160L;
-    }
-    public static int ERROR_BAD_PATHNAME() {
-        return (int)161L;
-    }
-    public static int ERROR_SIGNAL_PENDING() {
-        return (int)162L;
-    }
-    public static int ERROR_MAX_THRDS_REACHED() {
-        return (int)164L;
-    }
-    public static int ERROR_LOCK_FAILED() {
-        return (int)167L;
-    }
-    public static int ERROR_BUSY() {
-        return (int)170L;
-    }
-    public static int ERROR_DEVICE_SUPPORT_IN_PROGRESS() {
-        return (int)171L;
-    }
-    public static int ERROR_CANCEL_VIOLATION() {
-        return (int)173L;
-    }
-    public static int ERROR_ATOMIC_LOCKS_NOT_SUPPORTED() {
-        return (int)174L;
-    }
-    public static int ERROR_INVALID_SEGMENT_NUMBER() {
-        return (int)180L;
-    }
-    public static int ERROR_INVALID_ORDINAL() {
-        return (int)182L;
-    }
-    public static int ERROR_ALREADY_EXISTS() {
-        return (int)183L;
-    }
-    public static int ERROR_INVALID_FLAG_NUMBER() {
-        return (int)186L;
-    }
-    public static int ERROR_SEM_NOT_FOUND() {
-        return (int)187L;
-    }
-    public static int ERROR_INVALID_STARTING_CODESEG() {
-        return (int)188L;
-    }
-    public static int ERROR_INVALID_STACKSEG() {
-        return (int)189L;
-    }
-    public static int ERROR_INVALID_MODULETYPE() {
-        return (int)190L;
-    }
-    public static int ERROR_INVALID_EXE_SIGNATURE() {
-        return (int)191L;
-    }
-    public static int ERROR_EXE_MARKED_INVALID() {
-        return (int)192L;
-    }
-    public static int ERROR_BAD_EXE_FORMAT() {
-        return (int)193L;
-    }
-    public static int ERROR_ITERATED_DATA_EXCEEDS_64k() {
-        return (int)194L;
-    }
-    public static int ERROR_INVALID_MINALLOCSIZE() {
-        return (int)195L;
-    }
-    public static int ERROR_DYNLINK_FROM_INVALID_RING() {
-        return (int)196L;
-    }
-    public static int ERROR_IOPL_NOT_ENABLED() {
-        return (int)197L;
-    }
-    public static int ERROR_INVALID_SEGDPL() {
-        return (int)198L;
-    }
-    public static int ERROR_AUTODATASEG_EXCEEDS_64k() {
-        return (int)199L;
-    }
-    public static int ERROR_RING2SEG_MUST_BE_MOVABLE() {
-        return (int)200L;
-    }
-    public static int ERROR_RELOC_CHAIN_XEEDS_SEGLIM() {
-        return (int)201L;
-    }
-    public static int ERROR_INFLOOP_IN_RELOC_CHAIN() {
-        return (int)202L;
-    }
-    public static int ERROR_ENVVAR_NOT_FOUND() {
-        return (int)203L;
-    }
-    public static int ERROR_NO_SIGNAL_SENT() {
-        return (int)205L;
-    }
-    public static int ERROR_FILENAME_EXCED_RANGE() {
-        return (int)206L;
-    }
-    public static int ERROR_RING2_STACK_IN_USE() {
-        return (int)207L;
-    }
-    public static int ERROR_META_EXPANSION_TOO_LONG() {
-        return (int)208L;
-    }
-    public static int ERROR_INVALID_SIGNAL_NUMBER() {
-        return (int)209L;
-    }
-    public static int ERROR_THREAD_1_INACTIVE() {
-        return (int)210L;
-    }
-    public static int ERROR_LOCKED() {
-        return (int)212L;
-    }
-    public static int ERROR_TOO_MANY_MODULES() {
-        return (int)214L;
-    }
-    public static int ERROR_NESTING_NOT_ALLOWED() {
-        return (int)215L;
-    }
-    public static int ERROR_EXE_MACHINE_TYPE_MISMATCH() {
-        return (int)216L;
-    }
-    public static int ERROR_EXE_CANNOT_MODIFY_SIGNED_BINARY() {
-        return (int)217L;
-    }
-    public static int ERROR_EXE_CANNOT_MODIFY_STRONG_SIGNED_BINARY() {
-        return (int)218L;
-    }
-    public static int ERROR_FILE_CHECKED_OUT() {
-        return (int)220L;
-    }
-    public static int ERROR_CHECKOUT_REQUIRED() {
-        return (int)221L;
-    }
-    public static int ERROR_BAD_FILE_TYPE() {
-        return (int)222L;
-    }
-    public static int ERROR_FILE_TOO_LARGE() {
-        return (int)223L;
-    }
-    public static int ERROR_FORMS_AUTH_REQUIRED() {
-        return (int)224L;
-    }
-    public static int ERROR_VIRUS_INFECTED() {
-        return (int)225L;
-    }
-    public static int ERROR_VIRUS_DELETED() {
-        return (int)226L;
-    }
-    public static int ERROR_PIPE_LOCAL() {
-        return (int)229L;
-    }
-    public static int ERROR_BAD_PIPE() {
-        return (int)230L;
-    }
-    public static int ERROR_PIPE_BUSY() {
-        return (int)231L;
-    }
-    public static int ERROR_NO_DATA() {
-        return (int)232L;
-    }
-    public static int ERROR_PIPE_NOT_CONNECTED() {
-        return (int)233L;
-    }
-    public static int ERROR_MORE_DATA() {
-        return (int)234L;
-    }
-    public static int ERROR_NO_WORK_DONE() {
-        return (int)235L;
-    }
-    public static int ERROR_VC_DISCONNECTED() {
-        return (int)240L;
-    }
-    public static int ERROR_INVALID_EA_NAME() {
-        return (int)254L;
-    }
-    public static int ERROR_EA_LIST_INCONSISTENT() {
-        return (int)255L;
-    }
-    public static int WAIT_TIMEOUT() {
-        return (int)258L;
-    }
-    public static int ERROR_NO_MORE_ITEMS() {
-        return (int)259L;
-    }
-    public static int ERROR_CANNOT_COPY() {
-        return (int)266L;
-    }
-    public static int ERROR_DIRECTORY() {
-        return (int)267L;
-    }
-    public static int ERROR_EAS_DIDNT_FIT() {
-        return (int)275L;
-    }
-    public static int ERROR_EA_FILE_CORRUPT() {
-        return (int)276L;
-    }
-    public static int ERROR_EA_TABLE_FULL() {
-        return (int)277L;
-    }
-    public static int ERROR_INVALID_EA_HANDLE() {
-        return (int)278L;
-    }
-    public static int ERROR_EAS_NOT_SUPPORTED() {
-        return (int)282L;
-    }
-    public static int ERROR_NOT_OWNER() {
-        return (int)288L;
-    }
-    public static int ERROR_TOO_MANY_POSTS() {
-        return (int)298L;
-    }
-    public static int ERROR_PARTIAL_COPY() {
-        return (int)299L;
-    }
-    public static int ERROR_OPLOCK_NOT_GRANTED() {
-        return (int)300L;
-    }
-    public static int ERROR_INVALID_OPLOCK_PROTOCOL() {
-        return (int)301L;
-    }
-    public static int ERROR_DISK_TOO_FRAGMENTED() {
-        return (int)302L;
-    }
-    public static int ERROR_DELETE_PENDING() {
-        return (int)303L;
-    }
-    public static int ERROR_INCOMPATIBLE_WITH_GLOBAL_SHORT_NAME_REGISTRY_SETTING() {
-        return (int)304L;
-    }
-    public static int ERROR_SHORT_NAMES_NOT_ENABLED_ON_VOLUME() {
-        return (int)305L;
-    }
-    public static int ERROR_SECURITY_STREAM_IS_INCONSISTENT() {
-        return (int)306L;
-    }
-    public static int ERROR_INVALID_LOCK_RANGE() {
-        return (int)307L;
-    }
-    public static int ERROR_IMAGE_SUBSYSTEM_NOT_PRESENT() {
-        return (int)308L;
-    }
-    public static int ERROR_NOTIFICATION_GUID_ALREADY_DEFINED() {
-        return (int)309L;
-    }
-    public static int ERROR_INVALID_EXCEPTION_HANDLER() {
-        return (int)310L;
-    }
-    public static int ERROR_DUPLICATE_PRIVILEGES() {
-        return (int)311L;
-    }
-    public static int ERROR_NO_RANGES_PROCESSED() {
-        return (int)312L;
-    }
-    public static int ERROR_NOT_ALLOWED_ON_SYSTEM_FILE() {
-        return (int)313L;
-    }
-    public static int ERROR_DISK_RESOURCES_EXHAUSTED() {
-        return (int)314L;
-    }
-    public static int ERROR_INVALID_TOKEN() {
-        return (int)315L;
-    }
-    public static int ERROR_DEVICE_FEATURE_NOT_SUPPORTED() {
-        return (int)316L;
-    }
-    public static int ERROR_MR_MID_NOT_FOUND() {
-        return (int)317L;
-    }
-    public static int ERROR_SCOPE_NOT_FOUND() {
-        return (int)318L;
-    }
-    public static int ERROR_UNDEFINED_SCOPE() {
-        return (int)319L;
-    }
-    public static int ERROR_INVALID_CAP() {
-        return (int)320L;
-    }
-    public static int ERROR_DEVICE_UNREACHABLE() {
-        return (int)321L;
-    }
-    public static int ERROR_DEVICE_NO_RESOURCES() {
-        return (int)322L;
-    }
-    public static int ERROR_DATA_CHECKSUM_ERROR() {
-        return (int)323L;
-    }
-    public static int ERROR_INTERMIXED_KERNEL_EA_OPERATION() {
-        return (int)324L;
-    }
-    public static int ERROR_FILE_LEVEL_TRIM_NOT_SUPPORTED() {
-        return (int)326L;
-    }
-    public static int ERROR_OFFSET_ALIGNMENT_VIOLATION() {
-        return (int)327L;
-    }
-    public static int ERROR_INVALID_FIELD_IN_PARAMETER_LIST() {
-        return (int)328L;
-    }
-    public static int ERROR_OPERATION_IN_PROGRESS() {
-        return (int)329L;
-    }
-    public static int ERROR_BAD_DEVICE_PATH() {
-        return (int)330L;
-    }
-    public static int ERROR_TOO_MANY_DESCRIPTORS() {
-        return (int)331L;
-    }
-    public static int ERROR_SCRUB_DATA_DISABLED() {
-        return (int)332L;
-    }
-    public static int ERROR_NOT_REDUNDANT_STORAGE() {
-        return (int)333L;
-    }
-    public static int ERROR_RESIDENT_FILE_NOT_SUPPORTED() {
-        return (int)334L;
-    }
-    public static int ERROR_COMPRESSED_FILE_NOT_SUPPORTED() {
-        return (int)335L;
-    }
-    public static int ERROR_DIRECTORY_NOT_SUPPORTED() {
-        return (int)336L;
-    }
-    public static int ERROR_NOT_READ_FROM_COPY() {
-        return (int)337L;
-    }
-    public static int ERROR_FT_WRITE_FAILURE() {
-        return (int)338L;
-    }
-    public static int ERROR_FT_DI_SCAN_REQUIRED() {
-        return (int)339L;
-    }
-    public static int ERROR_INVALID_KERNEL_INFO_VERSION() {
-        return (int)340L;
-    }
-    public static int ERROR_INVALID_PEP_INFO_VERSION() {
-        return (int)341L;
-    }
-    public static int ERROR_OBJECT_NOT_EXTERNALLY_BACKED() {
-        return (int)342L;
-    }
-    public static int ERROR_EXTERNAL_BACKING_PROVIDER_UNKNOWN() {
-        return (int)343L;
-    }
-    public static int ERROR_COMPRESSION_NOT_BENEFICIAL() {
-        return (int)344L;
-    }
-    public static int ERROR_STORAGE_TOPOLOGY_ID_MISMATCH() {
-        return (int)345L;
-    }
-    public static int ERROR_BLOCKED_BY_PARENTAL_CONTROLS() {
-        return (int)346L;
-    }
-    public static int ERROR_BLOCK_TOO_MANY_REFERENCES() {
-        return (int)347L;
-    }
-    public static int ERROR_MARKED_TO_DISALLOW_WRITES() {
-        return (int)348L;
-    }
-    public static int ERROR_ENCLAVE_FAILURE() {
-        return (int)349L;
-    }
-    public static int ERROR_FAIL_NOACTION_REBOOT() {
-        return (int)350L;
-    }
-    public static int ERROR_FAIL_SHUTDOWN() {
-        return (int)351L;
-    }
-    public static int ERROR_FAIL_RESTART() {
-        return (int)352L;
-    }
-    public static int ERROR_MAX_SESSIONS_REACHED() {
-        return (int)353L;
-    }
-    public static int ERROR_NETWORK_ACCESS_DENIED_EDP() {
-        return (int)354L;
-    }
-    public static int ERROR_DEVICE_HINT_NAME_BUFFER_TOO_SMALL() {
-        return (int)355L;
-    }
-    public static int ERROR_EDP_POLICY_DENIES_OPERATION() {
-        return (int)356L;
-    }
-    public static int ERROR_EDP_DPL_POLICY_CANT_BE_SATISFIED() {
-        return (int)357L;
-    }
-    public static int ERROR_CLOUD_FILE_SYNC_ROOT_METADATA_CORRUPT() {
-        return (int)358L;
-    }
-    public static int ERROR_DEVICE_IN_MAINTENANCE() {
-        return (int)359L;
-    }
-    public static int ERROR_NOT_SUPPORTED_ON_DAX() {
-        return (int)360L;
-    }
-    public static int ERROR_DAX_MAPPING_EXISTS() {
-        return (int)361L;
-    }
-    public static int ERROR_CLOUD_FILE_PROVIDER_NOT_RUNNING() {
-        return (int)362L;
-    }
-    public static int ERROR_CLOUD_FILE_METADATA_CORRUPT() {
-        return (int)363L;
-    }
-    public static int ERROR_CLOUD_FILE_METADATA_TOO_LARGE() {
-        return (int)364L;
-    }
-    public static int ERROR_CLOUD_FILE_PROPERTY_BLOB_TOO_LARGE() {
-        return (int)365L;
-    }
-    public static int ERROR_CLOUD_FILE_PROPERTY_BLOB_CHECKSUM_MISMATCH() {
-        return (int)366L;
-    }
-    public static int ERROR_CHILD_PROCESS_BLOCKED() {
-        return (int)367L;
-    }
-    public static int ERROR_STORAGE_LOST_DATA_PERSISTENCE() {
-        return (int)368L;
-    }
-    public static int ERROR_FILE_SYSTEM_VIRTUALIZATION_UNAVAILABLE() {
-        return (int)369L;
-    }
-    public static int ERROR_FILE_SYSTEM_VIRTUALIZATION_METADATA_CORRUPT() {
-        return (int)370L;
-    }
-    public static int ERROR_FILE_SYSTEM_VIRTUALIZATION_BUSY() {
-        return (int)371L;
-    }
-    public static int ERROR_FILE_SYSTEM_VIRTUALIZATION_PROVIDER_UNKNOWN() {
-        return (int)372L;
-    }
-    public static int ERROR_GDI_HANDLE_LEAK() {
-        return (int)373L;
-    }
-    public static int ERROR_CLOUD_FILE_TOO_MANY_PROPERTY_BLOBS() {
-        return (int)374L;
-    }
-    public static int ERROR_CLOUD_FILE_PROPERTY_VERSION_NOT_SUPPORTED() {
-        return (int)375L;
-    }
-    public static int ERROR_NOT_A_CLOUD_FILE() {
-        return (int)376L;
-    }
-    public static int ERROR_CLOUD_FILE_NOT_IN_SYNC() {
-        return (int)377L;
-    }
-    public static int ERROR_CLOUD_FILE_ALREADY_CONNECTED() {
-        return (int)378L;
-    }
-    public static int ERROR_CLOUD_FILE_NOT_SUPPORTED() {
-        return (int)379L;
-    }
-    public static int ERROR_CLOUD_FILE_INVALID_REQUEST() {
-        return (int)380L;
-    }
-    public static int ERROR_CLOUD_FILE_READ_ONLY_VOLUME() {
-        return (int)381L;
-    }
-    public static int ERROR_CLOUD_FILE_CONNECTED_PROVIDER_ONLY() {
-        return (int)382L;
-    }
-    public static int ERROR_CLOUD_FILE_VALIDATION_FAILED() {
-        return (int)383L;
-    }
-    public static int ERROR_SMB1_NOT_AVAILABLE() {
-        return (int)384L;
-    }
-    public static int ERROR_FILE_SYSTEM_VIRTUALIZATION_INVALID_OPERATION() {
-        return (int)385L;
-    }
-    public static int ERROR_CLOUD_FILE_AUTHENTICATION_FAILED() {
-        return (int)386L;
-    }
-    public static int ERROR_CLOUD_FILE_INSUFFICIENT_RESOURCES() {
-        return (int)387L;
-    }
-    public static int ERROR_CLOUD_FILE_NETWORK_UNAVAILABLE() {
-        return (int)388L;
-    }
-    public static int ERROR_CLOUD_FILE_UNSUCCESSFUL() {
-        return (int)389L;
-    }
-    public static int ERROR_CLOUD_FILE_NOT_UNDER_SYNC_ROOT() {
-        return (int)390L;
-    }
-    public static int ERROR_CLOUD_FILE_IN_USE() {
-        return (int)391L;
-    }
-    public static int ERROR_CLOUD_FILE_PINNED() {
-        return (int)392L;
-    }
-    public static int ERROR_CLOUD_FILE_REQUEST_ABORTED() {
-        return (int)393L;
-    }
-    public static int ERROR_CLOUD_FILE_PROPERTY_CORRUPT() {
-        return (int)394L;
-    }
-    public static int ERROR_CLOUD_FILE_ACCESS_DENIED() {
-        return (int)395L;
-    }
-    public static int ERROR_CLOUD_FILE_INCOMPATIBLE_HARDLINKS() {
-        return (int)396L;
-    }
-    public static int ERROR_CLOUD_FILE_PROPERTY_LOCK_CONFLICT() {
-        return (int)397L;
-    }
-    public static int ERROR_CLOUD_FILE_REQUEST_CANCELED() {
-        return (int)398L;
-    }
-    public static int ERROR_EXTERNAL_SYSKEY_NOT_SUPPORTED() {
-        return (int)399L;
-    }
-    public static int ERROR_THREAD_MODE_ALREADY_BACKGROUND() {
-        return (int)400L;
-    }
-    public static int ERROR_THREAD_MODE_NOT_BACKGROUND() {
-        return (int)401L;
-    }
-    public static int ERROR_PROCESS_MODE_ALREADY_BACKGROUND() {
-        return (int)402L;
-    }
-    public static int ERROR_PROCESS_MODE_NOT_BACKGROUND() {
-        return (int)403L;
-    }
-    public static int ERROR_CLOUD_FILE_PROVIDER_TERMINATED() {
-        return (int)404L;
-    }
-    public static int ERROR_NOT_A_CLOUD_SYNC_ROOT() {
-        return (int)405L;
-    }
-    public static int ERROR_FILE_PROTECTED_UNDER_DPL() {
-        return (int)406L;
-    }
-    public static int ERROR_VOLUME_NOT_CLUSTER_ALIGNED() {
-        return (int)407L;
-    }
-    public static int ERROR_NO_PHYSICALLY_ALIGNED_FREE_SPACE_FOUND() {
-        return (int)408L;
-    }
-    public static int ERROR_APPX_FILE_NOT_ENCRYPTED() {
-        return (int)409L;
-    }
-    public static int ERROR_RWRAW_ENCRYPTED_FILE_NOT_ENCRYPTED() {
-        return (int)410L;
-    }
-    public static int ERROR_RWRAW_ENCRYPTED_INVALID_EDATAINFO_FILEOFFSET() {
-        return (int)411L;
-    }
-    public static int ERROR_RWRAW_ENCRYPTED_INVALID_EDATAINFO_FILERANGE() {
-        return (int)412L;
-    }
-    public static int ERROR_RWRAW_ENCRYPTED_INVALID_EDATAINFO_PARAMETER() {
-        return (int)413L;
-    }
-    public static int ERROR_LINUX_SUBSYSTEM_NOT_PRESENT() {
-        return (int)414L;
-    }
-    public static int ERROR_FT_READ_FAILURE() {
-        return (int)415L;
-    }
-    public static int ERROR_STORAGE_RESERVE_ID_INVALID() {
-        return (int)416L;
-    }
-    public static int ERROR_STORAGE_RESERVE_DOES_NOT_EXIST() {
-        return (int)417L;
-    }
-    public static int ERROR_STORAGE_RESERVE_ALREADY_EXISTS() {
-        return (int)418L;
-    }
-    public static int ERROR_STORAGE_RESERVE_NOT_EMPTY() {
-        return (int)419L;
-    }
-    public static int ERROR_NOT_A_DAX_VOLUME() {
-        return (int)420L;
-    }
-    public static int ERROR_NOT_DAX_MAPPABLE() {
-        return (int)421L;
-    }
-    public static int ERROR_TIME_SENSITIVE_THREAD() {
-        return (int)422L;
-    }
-    public static int ERROR_DPL_NOT_SUPPORTED_FOR_USER() {
-        return (int)423L;
-    }
-    public static int ERROR_CASE_DIFFERING_NAMES_IN_DIR() {
-        return (int)424L;
-    }
-    public static int ERROR_FILE_NOT_SUPPORTED() {
-        return (int)425L;
-    }
-    public static int ERROR_CLOUD_FILE_REQUEST_TIMEOUT() {
-        return (int)426L;
-    }
-    public static int ERROR_NO_TASK_QUEUE() {
-        return (int)427L;
-    }
-    public static int ERROR_SRC_SRV_DLL_LOAD_FAILED() {
-        return (int)428L;
-    }
-    public static int ERROR_NOT_SUPPORTED_WITH_BTT() {
-        return (int)429L;
-    }
-    public static int ERROR_ENCRYPTION_DISABLED() {
-        return (int)430L;
-    }
-    public static int ERROR_ENCRYPTING_METADATA_DISALLOWED() {
-        return (int)431L;
-    }
-    public static int ERROR_CANT_CLEAR_ENCRYPTION_FLAG() {
-        return (int)432L;
-    }
-    public static int ERROR_NO_SUCH_DEVICE() {
-        return (int)433L;
-    }
-    public static int ERROR_CLOUD_FILE_DEHYDRATION_DISALLOWED() {
-        return (int)434L;
-    }
-    public static int ERROR_FILE_SNAP_IN_PROGRESS() {
-        return (int)435L;
-    }
-    public static int ERROR_FILE_SNAP_USER_SECTION_NOT_SUPPORTED() {
-        return (int)436L;
-    }
-    public static int ERROR_FILE_SNAP_MODIFY_NOT_SUPPORTED() {
-        return (int)437L;
-    }
-    public static int ERROR_FILE_SNAP_IO_NOT_COORDINATED() {
-        return (int)438L;
-    }
-    public static int ERROR_FILE_SNAP_UNEXPECTED_ERROR() {
-        return (int)439L;
-    }
-    public static int ERROR_FILE_SNAP_INVALID_PARAMETER() {
-        return (int)440L;
-    }
-    public static int ERROR_UNSATISFIED_DEPENDENCIES() {
-        return (int)441L;
-    }
-    public static int ERROR_CASE_SENSITIVE_PATH() {
-        return (int)442L;
-    }
-    public static int ERROR_UNEXPECTED_NTCACHEMANAGER_ERROR() {
-        return (int)443L;
-    }
-    public static int ERROR_LINUX_SUBSYSTEM_UPDATE_REQUIRED() {
-        return (int)444L;
-    }
-    public static int ERROR_DLP_POLICY_WARNS_AGAINST_OPERATION() {
-        return (int)445L;
-    }
-    public static int ERROR_DLP_POLICY_DENIES_OPERATION() {
-        return (int)446L;
-    }
-    public static int ERROR_SECURITY_DENIES_OPERATION() {
-        return (int)447L;
-    }
-    public static int ERROR_UNTRUSTED_MOUNT_POINT() {
-        return (int)448L;
-    }
-    public static int ERROR_DLP_POLICY_SILENTLY_FAIL() {
-        return (int)449L;
-    }
-    public static int ERROR_CAPAUTHZ_NOT_DEVUNLOCKED() {
-        return (int)450L;
-    }
-    public static int ERROR_CAPAUTHZ_CHANGE_TYPE() {
-        return (int)451L;
-    }
-    public static int ERROR_CAPAUTHZ_NOT_PROVISIONED() {
-        return (int)452L;
-    }
-    public static int ERROR_CAPAUTHZ_NOT_AUTHORIZED() {
-        return (int)453L;
-    }
-    public static int ERROR_CAPAUTHZ_NO_POLICY() {
-        return (int)454L;
-    }
-    public static int ERROR_CAPAUTHZ_DB_CORRUPTED() {
-        return (int)455L;
-    }
-    public static int ERROR_CAPAUTHZ_SCCD_INVALID_CATALOG() {
-        return (int)456L;
-    }
-    public static int ERROR_CAPAUTHZ_SCCD_NO_AUTH_ENTITY() {
-        return (int)457L;
-    }
-    public static int ERROR_CAPAUTHZ_SCCD_PARSE_ERROR() {
-        return (int)458L;
-    }
-    public static int ERROR_CAPAUTHZ_SCCD_DEV_MODE_REQUIRED() {
-        return (int)459L;
-    }
-    public static int ERROR_CAPAUTHZ_SCCD_NO_CAPABILITY_MATCH() {
-        return (int)460L;
-    }
-    public static int ERROR_CIMFS_IMAGE_CORRUPT() {
-        return (int)470L;
-    }
-    public static int ERROR_CIMFS_IMAGE_VERSION_NOT_SUPPORTED() {
-        return (int)471L;
-    }
-    public static int ERROR_STORAGE_STACK_ACCESS_DENIED() {
-        return (int)472L;
-    }
-    public static int ERROR_INSUFFICIENT_VIRTUAL_ADDR_RESOURCES() {
-        return (int)473L;
-    }
-    public static int ERROR_INDEX_OUT_OF_BOUNDS() {
-        return (int)474L;
-    }
-    public static int ERROR_CLOUD_FILE_US_MESSAGE_TIMEOUT() {
-        return (int)475L;
-    }
-    public static int ERROR_PNP_QUERY_REMOVE_DEVICE_TIMEOUT() {
-        return (int)480L;
-    }
-    public static int ERROR_PNP_QUERY_REMOVE_RELATED_DEVICE_TIMEOUT() {
-        return (int)481L;
-    }
-    public static int ERROR_PNP_QUERY_REMOVE_UNRELATED_DEVICE_TIMEOUT() {
-        return (int)482L;
-    }
-    public static int ERROR_DEVICE_HARDWARE_ERROR() {
-        return (int)483L;
-    }
-    public static int ERROR_INVALID_ADDRESS() {
-        return (int)487L;
-    }
-    public static int ERROR_HAS_SYSTEM_CRITICAL_FILES() {
-        return (int)488L;
-    }
-    public static int ERROR_ENCRYPTED_FILE_NOT_SUPPORTED() {
-        return (int)489L;
-    }
-    public static int ERROR_SPARSE_FILE_NOT_SUPPORTED() {
-        return (int)490L;
-    }
-    public static int ERROR_PAGEFILE_NOT_SUPPORTED() {
-        return (int)491L;
-    }
-    public static int ERROR_VOLUME_NOT_SUPPORTED() {
-        return (int)492L;
-    }
-    public static int ERROR_NOT_SUPPORTED_WITH_BYPASSIO() {
-        return (int)493L;
-    }
-    public static int ERROR_NO_BYPASSIO_DRIVER_SUPPORT() {
-        return (int)494L;
-    }
-    public static int ERROR_NOT_SUPPORTED_WITH_ENCRYPTION() {
-        return (int)495L;
-    }
-    public static int ERROR_NOT_SUPPORTED_WITH_COMPRESSION() {
-        return (int)496L;
-    }
-    public static int ERROR_NOT_SUPPORTED_WITH_REPLICATION() {
-        return (int)497L;
-    }
-    public static int ERROR_NOT_SUPPORTED_WITH_DEDUPLICATION() {
-        return (int)498L;
-    }
-    public static int ERROR_NOT_SUPPORTED_WITH_AUDITING() {
-        return (int)499L;
-    }
-    public static int ERROR_USER_PROFILE_LOAD() {
-        return (int)500L;
-    }
-    public static int ERROR_SESSION_KEY_TOO_SHORT() {
-        return (int)501L;
-    }
-    public static int ERROR_ACCESS_DENIED_APPDATA() {
-        return (int)502L;
-    }
-    public static int ERROR_NOT_SUPPORTED_WITH_MONITORING() {
-        return (int)503L;
-    }
-    public static int ERROR_NOT_SUPPORTED_WITH_SNAPSHOT() {
-        return (int)504L;
-    }
-    public static int ERROR_NOT_SUPPORTED_WITH_VIRTUALIZATION() {
-        return (int)505L;
-    }
-    public static int ERROR_BYPASSIO_FLT_NOT_SUPPORTED() {
-        return (int)506L;
-    }
-    public static int ERROR_DEVICE_RESET_REQUIRED() {
-        return (int)507L;
-    }
-    public static int ERROR_VOLUME_WRITE_ACCESS_DENIED() {
-        return (int)508L;
-    }
-    public static int ERROR_NOT_SUPPORTED_WITH_CACHED_HANDLE() {
-        return (int)509L;
-    }
-    public static int ERROR_FS_METADATA_INCONSISTENT() {
-        return (int)510L;
-    }
-    public static int ERROR_ARITHMETIC_OVERFLOW() {
-        return (int)534L;
-    }
-    public static int ERROR_PIPE_CONNECTED() {
-        return (int)535L;
-    }
-    public static int ERROR_PIPE_LISTENING() {
-        return (int)536L;
-    }
-    public static int ERROR_VERIFIER_STOP() {
-        return (int)537L;
-    }
-    public static int ERROR_ABIOS_ERROR() {
-        return (int)538L;
-    }
-    public static int ERROR_WX86_WARNING() {
-        return (int)539L;
-    }
-    public static int ERROR_WX86_ERROR() {
-        return (int)540L;
-    }
-    public static int ERROR_TIMER_NOT_CANCELED() {
-        return (int)541L;
-    }
-    public static int ERROR_UNWIND() {
-        return (int)542L;
-    }
-    public static int ERROR_BAD_STACK() {
-        return (int)543L;
-    }
-    public static int ERROR_INVALID_UNWIND_TARGET() {
-        return (int)544L;
-    }
-    public static int ERROR_INVALID_PORT_ATTRIBUTES() {
-        return (int)545L;
-    }
-    public static int ERROR_PORT_MESSAGE_TOO_LONG() {
-        return (int)546L;
-    }
-    public static int ERROR_INVALID_QUOTA_LOWER() {
-        return (int)547L;
-    }
-    public static int ERROR_DEVICE_ALREADY_ATTACHED() {
-        return (int)548L;
-    }
-    public static int ERROR_INSTRUCTION_MISALIGNMENT() {
-        return (int)549L;
-    }
-    public static int ERROR_PROFILING_NOT_STARTED() {
-        return (int)550L;
-    }
-    public static int ERROR_PROFILING_NOT_STOPPED() {
-        return (int)551L;
-    }
-    public static int ERROR_COULD_NOT_INTERPRET() {
-        return (int)552L;
-    }
-    public static int ERROR_PROFILING_AT_LIMIT() {
-        return (int)553L;
-    }
-    public static int ERROR_CANT_WAIT() {
-        return (int)554L;
-    }
-    public static int ERROR_CANT_TERMINATE_SELF() {
-        return (int)555L;
-    }
-    public static int ERROR_UNEXPECTED_MM_CREATE_ERR() {
-        return (int)556L;
-    }
-    public static int ERROR_UNEXPECTED_MM_MAP_ERROR() {
-        return (int)557L;
-    }
-    public static int ERROR_UNEXPECTED_MM_EXTEND_ERR() {
-        return (int)558L;
-    }
-    public static int ERROR_BAD_FUNCTION_TABLE() {
-        return (int)559L;
-    }
-    public static int ERROR_NO_GUID_TRANSLATION() {
-        return (int)560L;
-    }
-    public static int ERROR_INVALID_LDT_SIZE() {
-        return (int)561L;
-    }
-    public static int ERROR_INVALID_LDT_OFFSET() {
-        return (int)563L;
-    }
-    public static int ERROR_INVALID_LDT_DESCRIPTOR() {
-        return (int)564L;
-    }
-    public static int ERROR_TOO_MANY_THREADS() {
-        return (int)565L;
-    }
-    public static int ERROR_THREAD_NOT_IN_PROCESS() {
-        return (int)566L;
-    }
-    public static int ERROR_PAGEFILE_QUOTA_EXCEEDED() {
-        return (int)567L;
-    }
-    public static int ERROR_LOGON_SERVER_CONFLICT() {
-        return (int)568L;
-    }
-    public static int ERROR_SYNCHRONIZATION_REQUIRED() {
-        return (int)569L;
-    }
-    public static int ERROR_NET_OPEN_FAILED() {
-        return (int)570L;
-    }
-    public static int ERROR_IO_PRIVILEGE_FAILED() {
-        return (int)571L;
-    }
-    public static int ERROR_CONTROL_C_EXIT() {
-        return (int)572L;
-    }
-    public static int ERROR_MISSING_SYSTEMFILE() {
-        return (int)573L;
-    }
-    public static int ERROR_UNHANDLED_EXCEPTION() {
-        return (int)574L;
-    }
-    public static int ERROR_APP_INIT_FAILURE() {
-        return (int)575L;
-    }
-    public static int ERROR_PAGEFILE_CREATE_FAILED() {
-        return (int)576L;
-    }
-    public static int ERROR_INVALID_IMAGE_HASH() {
-        return (int)577L;
-    }
-    public static int ERROR_NO_PAGEFILE() {
-        return (int)578L;
-    }
-    public static int ERROR_ILLEGAL_FLOAT_CONTEXT() {
-        return (int)579L;
-    }
-    public static int ERROR_NO_EVENT_PAIR() {
-        return (int)580L;
-    }
-    public static int ERROR_DOMAIN_CTRLR_CONFIG_ERROR() {
-        return (int)581L;
-    }
-    public static int ERROR_ILLEGAL_CHARACTER() {
-        return (int)582L;
-    }
-    public static int ERROR_UNDEFINED_CHARACTER() {
-        return (int)583L;
-    }
-    public static int ERROR_FLOPPY_VOLUME() {
-        return (int)584L;
-    }
-    public static int ERROR_BIOS_FAILED_TO_CONNECT_INTERRUPT() {
-        return (int)585L;
-    }
-    public static int ERROR_BACKUP_CONTROLLER() {
-        return (int)586L;
-    }
-    public static int ERROR_MUTANT_LIMIT_EXCEEDED() {
-        return (int)587L;
-    }
-    public static int ERROR_FS_DRIVER_REQUIRED() {
-        return (int)588L;
-    }
-    public static int ERROR_CANNOT_LOAD_REGISTRY_FILE() {
-        return (int)589L;
-    }
-    public static int ERROR_DEBUG_ATTACH_FAILED() {
-        return (int)590L;
-    }
-    public static int ERROR_SYSTEM_PROCESS_TERMINATED() {
-        return (int)591L;
-    }
-    public static int ERROR_DATA_NOT_ACCEPTED() {
-        return (int)592L;
-    }
-    public static int ERROR_VDM_HARD_ERROR() {
-        return (int)593L;
-    }
-    public static int ERROR_DRIVER_CANCEL_TIMEOUT() {
-        return (int)594L;
-    }
-    public static int ERROR_REPLY_MESSAGE_MISMATCH() {
-        return (int)595L;
-    }
-    public static int ERROR_LOST_WRITEBEHIND_DATA() {
-        return (int)596L;
-    }
-    public static int ERROR_CLIENT_SERVER_PARAMETERS_INVALID() {
-        return (int)597L;
-    }
-    public static int ERROR_NOT_TINY_STREAM() {
-        return (int)598L;
-    }
-    public static int ERROR_STACK_OVERFLOW_READ() {
-        return (int)599L;
-    }
-    public static int ERROR_CONVERT_TO_LARGE() {
-        return (int)600L;
-    }
-    public static int ERROR_FOUND_OUT_OF_SCOPE() {
-        return (int)601L;
-    }
-    public static int ERROR_ALLOCATE_BUCKET() {
-        return (int)602L;
-    }
-    public static int ERROR_MARSHALL_OVERFLOW() {
-        return (int)603L;
-    }
-    public static int ERROR_INVALID_VARIANT() {
-        return (int)604L;
-    }
-    public static int ERROR_BAD_COMPRESSION_BUFFER() {
-        return (int)605L;
-    }
-    public static int ERROR_AUDIT_FAILED() {
-        return (int)606L;
-    }
-    public static int ERROR_TIMER_RESOLUTION_NOT_SET() {
-        return (int)607L;
-    }
-    public static int ERROR_INSUFFICIENT_LOGON_INFO() {
-        return (int)608L;
-    }
-    public static int ERROR_BAD_DLL_ENTRYPOINT() {
-        return (int)609L;
-    }
-    public static int ERROR_BAD_SERVICE_ENTRYPOINT() {
-        return (int)610L;
-    }
-    public static int ERROR_IP_ADDRESS_CONFLICT1() {
-        return (int)611L;
-    }
-    public static int ERROR_IP_ADDRESS_CONFLICT2() {
-        return (int)612L;
-    }
-    public static int ERROR_REGISTRY_QUOTA_LIMIT() {
-        return (int)613L;
-    }
-    public static int ERROR_NO_CALLBACK_ACTIVE() {
-        return (int)614L;
-    }
-    public static int ERROR_PWD_TOO_SHORT() {
-        return (int)615L;
-    }
-    public static int ERROR_PWD_TOO_RECENT() {
-        return (int)616L;
-    }
-    public static int ERROR_PWD_HISTORY_CONFLICT() {
-        return (int)617L;
-    }
-    public static int ERROR_UNSUPPORTED_COMPRESSION() {
-        return (int)618L;
-    }
-    public static int ERROR_INVALID_HW_PROFILE() {
-        return (int)619L;
-    }
-    public static int ERROR_INVALID_PLUGPLAY_DEVICE_PATH() {
-        return (int)620L;
-    }
-    public static int ERROR_QUOTA_LIST_INCONSISTENT() {
-        return (int)621L;
-    }
-    public static int ERROR_EVALUATION_EXPIRATION() {
-        return (int)622L;
-    }
-    public static int ERROR_ILLEGAL_DLL_RELOCATION() {
-        return (int)623L;
-    }
-    public static int ERROR_DLL_INIT_FAILED_LOGOFF() {
-        return (int)624L;
-    }
-    public static int ERROR_VALIDATE_CONTINUE() {
-        return (int)625L;
-    }
+public class freeglut_h_17 extends freeglut_h_18 {
+
+    freeglut_h_17() {
+        // Should not be called directly
+    }
+    private static final int GL_COLOR_MATERIAL = (int)2903L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_MATERIAL 2903
+     * }
+     */
+    public static int GL_COLOR_MATERIAL() {
+        return GL_COLOR_MATERIAL;
+    }
+    private static final int GL_FOG = (int)2912L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG 2912
+     * }
+     */
+    public static int GL_FOG() {
+        return GL_FOG;
+    }
+    private static final int GL_FOG_INDEX = (int)2913L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_INDEX 2913
+     * }
+     */
+    public static int GL_FOG_INDEX() {
+        return GL_FOG_INDEX;
+    }
+    private static final int GL_FOG_DENSITY = (int)2914L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_DENSITY 2914
+     * }
+     */
+    public static int GL_FOG_DENSITY() {
+        return GL_FOG_DENSITY;
+    }
+    private static final int GL_FOG_START = (int)2915L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_START 2915
+     * }
+     */
+    public static int GL_FOG_START() {
+        return GL_FOG_START;
+    }
+    private static final int GL_FOG_END = (int)2916L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_END 2916
+     * }
+     */
+    public static int GL_FOG_END() {
+        return GL_FOG_END;
+    }
+    private static final int GL_FOG_MODE = (int)2917L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_MODE 2917
+     * }
+     */
+    public static int GL_FOG_MODE() {
+        return GL_FOG_MODE;
+    }
+    private static final int GL_FOG_COLOR = (int)2918L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_COLOR 2918
+     * }
+     */
+    public static int GL_FOG_COLOR() {
+        return GL_FOG_COLOR;
+    }
+    private static final int GL_DEPTH_RANGE = (int)2928L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_RANGE 2928
+     * }
+     */
+    public static int GL_DEPTH_RANGE() {
+        return GL_DEPTH_RANGE;
+    }
+    private static final int GL_DEPTH_TEST = (int)2929L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_TEST 2929
+     * }
+     */
+    public static int GL_DEPTH_TEST() {
+        return GL_DEPTH_TEST;
+    }
+    private static final int GL_DEPTH_WRITEMASK = (int)2930L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_WRITEMASK 2930
+     * }
+     */
+    public static int GL_DEPTH_WRITEMASK() {
+        return GL_DEPTH_WRITEMASK;
+    }
+    private static final int GL_DEPTH_CLEAR_VALUE = (int)2931L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_CLEAR_VALUE 2931
+     * }
+     */
+    public static int GL_DEPTH_CLEAR_VALUE() {
+        return GL_DEPTH_CLEAR_VALUE;
+    }
+    private static final int GL_DEPTH_FUNC = (int)2932L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_FUNC 2932
+     * }
+     */
+    public static int GL_DEPTH_FUNC() {
+        return GL_DEPTH_FUNC;
+    }
+    private static final int GL_ACCUM_CLEAR_VALUE = (int)2944L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACCUM_CLEAR_VALUE 2944
+     * }
+     */
+    public static int GL_ACCUM_CLEAR_VALUE() {
+        return GL_ACCUM_CLEAR_VALUE;
+    }
+    private static final int GL_STENCIL_TEST = (int)2960L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_TEST 2960
+     * }
+     */
+    public static int GL_STENCIL_TEST() {
+        return GL_STENCIL_TEST;
+    }
+    private static final int GL_STENCIL_CLEAR_VALUE = (int)2961L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_CLEAR_VALUE 2961
+     * }
+     */
+    public static int GL_STENCIL_CLEAR_VALUE() {
+        return GL_STENCIL_CLEAR_VALUE;
+    }
+    private static final int GL_STENCIL_FUNC = (int)2962L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_FUNC 2962
+     * }
+     */
+    public static int GL_STENCIL_FUNC() {
+        return GL_STENCIL_FUNC;
+    }
+    private static final int GL_STENCIL_VALUE_MASK = (int)2963L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_VALUE_MASK 2963
+     * }
+     */
+    public static int GL_STENCIL_VALUE_MASK() {
+        return GL_STENCIL_VALUE_MASK;
+    }
+    private static final int GL_STENCIL_FAIL = (int)2964L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_FAIL 2964
+     * }
+     */
+    public static int GL_STENCIL_FAIL() {
+        return GL_STENCIL_FAIL;
+    }
+    private static final int GL_STENCIL_PASS_DEPTH_FAIL = (int)2965L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_PASS_DEPTH_FAIL 2965
+     * }
+     */
+    public static int GL_STENCIL_PASS_DEPTH_FAIL() {
+        return GL_STENCIL_PASS_DEPTH_FAIL;
+    }
+    private static final int GL_STENCIL_PASS_DEPTH_PASS = (int)2966L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_PASS_DEPTH_PASS 2966
+     * }
+     */
+    public static int GL_STENCIL_PASS_DEPTH_PASS() {
+        return GL_STENCIL_PASS_DEPTH_PASS;
+    }
+    private static final int GL_STENCIL_REF = (int)2967L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_REF 2967
+     * }
+     */
+    public static int GL_STENCIL_REF() {
+        return GL_STENCIL_REF;
+    }
+    private static final int GL_STENCIL_WRITEMASK = (int)2968L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_WRITEMASK 2968
+     * }
+     */
+    public static int GL_STENCIL_WRITEMASK() {
+        return GL_STENCIL_WRITEMASK;
+    }
+    private static final int GL_MATRIX_MODE = (int)2976L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MATRIX_MODE 2976
+     * }
+     */
+    public static int GL_MATRIX_MODE() {
+        return GL_MATRIX_MODE;
+    }
+    private static final int GL_NORMALIZE = (int)2977L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMALIZE 2977
+     * }
+     */
+    public static int GL_NORMALIZE() {
+        return GL_NORMALIZE;
+    }
+    private static final int GL_VIEWPORT = (int)2978L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VIEWPORT 2978
+     * }
+     */
+    public static int GL_VIEWPORT() {
+        return GL_VIEWPORT;
+    }
+    private static final int GL_MODELVIEW_STACK_DEPTH = (int)2979L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MODELVIEW_STACK_DEPTH 2979
+     * }
+     */
+    public static int GL_MODELVIEW_STACK_DEPTH() {
+        return GL_MODELVIEW_STACK_DEPTH;
+    }
+    private static final int GL_PROJECTION_STACK_DEPTH = (int)2980L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROJECTION_STACK_DEPTH 2980
+     * }
+     */
+    public static int GL_PROJECTION_STACK_DEPTH() {
+        return GL_PROJECTION_STACK_DEPTH;
+    }
+    private static final int GL_TEXTURE_STACK_DEPTH = (int)2981L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_STACK_DEPTH 2981
+     * }
+     */
+    public static int GL_TEXTURE_STACK_DEPTH() {
+        return GL_TEXTURE_STACK_DEPTH;
+    }
+    private static final int GL_MODELVIEW_MATRIX = (int)2982L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MODELVIEW_MATRIX 2982
+     * }
+     */
+    public static int GL_MODELVIEW_MATRIX() {
+        return GL_MODELVIEW_MATRIX;
+    }
+    private static final int GL_PROJECTION_MATRIX = (int)2983L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROJECTION_MATRIX 2983
+     * }
+     */
+    public static int GL_PROJECTION_MATRIX() {
+        return GL_PROJECTION_MATRIX;
+    }
+    private static final int GL_TEXTURE_MATRIX = (int)2984L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_MATRIX 2984
+     * }
+     */
+    public static int GL_TEXTURE_MATRIX() {
+        return GL_TEXTURE_MATRIX;
+    }
+    private static final int GL_ATTRIB_STACK_DEPTH = (int)2992L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ATTRIB_STACK_DEPTH 2992
+     * }
+     */
+    public static int GL_ATTRIB_STACK_DEPTH() {
+        return GL_ATTRIB_STACK_DEPTH;
+    }
+    private static final int GL_CLIENT_ATTRIB_STACK_DEPTH = (int)2993L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIENT_ATTRIB_STACK_DEPTH 2993
+     * }
+     */
+    public static int GL_CLIENT_ATTRIB_STACK_DEPTH() {
+        return GL_CLIENT_ATTRIB_STACK_DEPTH;
+    }
+    private static final int GL_ALPHA_TEST = (int)3008L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_TEST 3008
+     * }
+     */
+    public static int GL_ALPHA_TEST() {
+        return GL_ALPHA_TEST;
+    }
+    private static final int GL_ALPHA_TEST_FUNC = (int)3009L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_TEST_FUNC 3009
+     * }
+     */
+    public static int GL_ALPHA_TEST_FUNC() {
+        return GL_ALPHA_TEST_FUNC;
+    }
+    private static final int GL_ALPHA_TEST_REF = (int)3010L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_TEST_REF 3010
+     * }
+     */
+    public static int GL_ALPHA_TEST_REF() {
+        return GL_ALPHA_TEST_REF;
+    }
+    private static final int GL_DITHER = (int)3024L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DITHER 3024
+     * }
+     */
+    public static int GL_DITHER() {
+        return GL_DITHER;
+    }
+    private static final int GL_BLEND_DST = (int)3040L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLEND_DST 3040
+     * }
+     */
+    public static int GL_BLEND_DST() {
+        return GL_BLEND_DST;
+    }
+    private static final int GL_BLEND_SRC = (int)3041L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLEND_SRC 3041
+     * }
+     */
+    public static int GL_BLEND_SRC() {
+        return GL_BLEND_SRC;
+    }
+    private static final int GL_BLEND = (int)3042L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLEND 3042
+     * }
+     */
+    public static int GL_BLEND() {
+        return GL_BLEND;
+    }
+    private static final int GL_LOGIC_OP_MODE = (int)3056L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LOGIC_OP_MODE 3056
+     * }
+     */
+    public static int GL_LOGIC_OP_MODE() {
+        return GL_LOGIC_OP_MODE;
+    }
+    private static final int GL_INDEX_LOGIC_OP = (int)3057L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_LOGIC_OP 3057
+     * }
+     */
+    public static int GL_INDEX_LOGIC_OP() {
+        return GL_INDEX_LOGIC_OP;
+    }
+    private static final int GL_COLOR_LOGIC_OP = (int)3058L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_LOGIC_OP 3058
+     * }
+     */
+    public static int GL_COLOR_LOGIC_OP() {
+        return GL_COLOR_LOGIC_OP;
+    }
+    private static final int GL_AUX_BUFFERS = (int)3072L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AUX_BUFFERS 3072
+     * }
+     */
+    public static int GL_AUX_BUFFERS() {
+        return GL_AUX_BUFFERS;
+    }
+    private static final int GL_DRAW_BUFFER = (int)3073L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DRAW_BUFFER 3073
+     * }
+     */
+    public static int GL_DRAW_BUFFER() {
+        return GL_DRAW_BUFFER;
+    }
+    private static final int GL_READ_BUFFER = (int)3074L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_READ_BUFFER 3074
+     * }
+     */
+    public static int GL_READ_BUFFER() {
+        return GL_READ_BUFFER;
+    }
+    private static final int GL_SCISSOR_BOX = (int)3088L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SCISSOR_BOX 3088
+     * }
+     */
+    public static int GL_SCISSOR_BOX() {
+        return GL_SCISSOR_BOX;
+    }
+    private static final int GL_SCISSOR_TEST = (int)3089L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SCISSOR_TEST 3089
+     * }
+     */
+    public static int GL_SCISSOR_TEST() {
+        return GL_SCISSOR_TEST;
+    }
+    private static final int GL_INDEX_CLEAR_VALUE = (int)3104L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_CLEAR_VALUE 3104
+     * }
+     */
+    public static int GL_INDEX_CLEAR_VALUE() {
+        return GL_INDEX_CLEAR_VALUE;
+    }
+    private static final int GL_INDEX_WRITEMASK = (int)3105L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_WRITEMASK 3105
+     * }
+     */
+    public static int GL_INDEX_WRITEMASK() {
+        return GL_INDEX_WRITEMASK;
+    }
+    private static final int GL_COLOR_CLEAR_VALUE = (int)3106L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_CLEAR_VALUE 3106
+     * }
+     */
+    public static int GL_COLOR_CLEAR_VALUE() {
+        return GL_COLOR_CLEAR_VALUE;
+    }
+    private static final int GL_COLOR_WRITEMASK = (int)3107L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_WRITEMASK 3107
+     * }
+     */
+    public static int GL_COLOR_WRITEMASK() {
+        return GL_COLOR_WRITEMASK;
+    }
+    private static final int GL_INDEX_MODE = (int)3120L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_MODE 3120
+     * }
+     */
+    public static int GL_INDEX_MODE() {
+        return GL_INDEX_MODE;
+    }
+    private static final int GL_RGBA_MODE = (int)3121L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA_MODE 3121
+     * }
+     */
+    public static int GL_RGBA_MODE() {
+        return GL_RGBA_MODE;
+    }
+    private static final int GL_DOUBLEBUFFER = (int)3122L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DOUBLEBUFFER 3122
+     * }
+     */
+    public static int GL_DOUBLEBUFFER() {
+        return GL_DOUBLEBUFFER;
+    }
+    private static final int GL_STEREO = (int)3123L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STEREO 3123
+     * }
+     */
+    public static int GL_STEREO() {
+        return GL_STEREO;
+    }
+    private static final int GL_RENDER_MODE = (int)3136L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RENDER_MODE 3136
+     * }
+     */
+    public static int GL_RENDER_MODE() {
+        return GL_RENDER_MODE;
+    }
+    private static final int GL_PERSPECTIVE_CORRECTION_HINT = (int)3152L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PERSPECTIVE_CORRECTION_HINT 3152
+     * }
+     */
+    public static int GL_PERSPECTIVE_CORRECTION_HINT() {
+        return GL_PERSPECTIVE_CORRECTION_HINT;
+    }
+    private static final int GL_POINT_SMOOTH_HINT = (int)3153L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SMOOTH_HINT 3153
+     * }
+     */
+    public static int GL_POINT_SMOOTH_HINT() {
+        return GL_POINT_SMOOTH_HINT;
+    }
+    private static final int GL_LINE_SMOOTH_HINT = (int)3154L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_SMOOTH_HINT 3154
+     * }
+     */
+    public static int GL_LINE_SMOOTH_HINT() {
+        return GL_LINE_SMOOTH_HINT;
+    }
+    private static final int GL_POLYGON_SMOOTH_HINT = (int)3155L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_SMOOTH_HINT 3155
+     * }
+     */
+    public static int GL_POLYGON_SMOOTH_HINT() {
+        return GL_POLYGON_SMOOTH_HINT;
+    }
+    private static final int GL_FOG_HINT = (int)3156L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_HINT 3156
+     * }
+     */
+    public static int GL_FOG_HINT() {
+        return GL_FOG_HINT;
+    }
+    private static final int GL_TEXTURE_GEN_S = (int)3168L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_GEN_S 3168
+     * }
+     */
+    public static int GL_TEXTURE_GEN_S() {
+        return GL_TEXTURE_GEN_S;
+    }
+    private static final int GL_TEXTURE_GEN_T = (int)3169L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_GEN_T 3169
+     * }
+     */
+    public static int GL_TEXTURE_GEN_T() {
+        return GL_TEXTURE_GEN_T;
+    }
+    private static final int GL_TEXTURE_GEN_R = (int)3170L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_GEN_R 3170
+     * }
+     */
+    public static int GL_TEXTURE_GEN_R() {
+        return GL_TEXTURE_GEN_R;
+    }
+    private static final int GL_TEXTURE_GEN_Q = (int)3171L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_GEN_Q 3171
+     * }
+     */
+    public static int GL_TEXTURE_GEN_Q() {
+        return GL_TEXTURE_GEN_Q;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_I = (int)3184L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_I 3184
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_I() {
+        return GL_PIXEL_MAP_I_TO_I;
+    }
+    private static final int GL_PIXEL_MAP_S_TO_S = (int)3185L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_S_TO_S 3185
+     * }
+     */
+    public static int GL_PIXEL_MAP_S_TO_S() {
+        return GL_PIXEL_MAP_S_TO_S;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_R = (int)3186L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_R 3186
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_R() {
+        return GL_PIXEL_MAP_I_TO_R;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_G = (int)3187L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_G 3187
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_G() {
+        return GL_PIXEL_MAP_I_TO_G;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_B = (int)3188L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_B 3188
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_B() {
+        return GL_PIXEL_MAP_I_TO_B;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_A = (int)3189L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_A 3189
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_A() {
+        return GL_PIXEL_MAP_I_TO_A;
+    }
+    private static final int GL_PIXEL_MAP_R_TO_R = (int)3190L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_R_TO_R 3190
+     * }
+     */
+    public static int GL_PIXEL_MAP_R_TO_R() {
+        return GL_PIXEL_MAP_R_TO_R;
+    }
+    private static final int GL_PIXEL_MAP_G_TO_G = (int)3191L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_G_TO_G 3191
+     * }
+     */
+    public static int GL_PIXEL_MAP_G_TO_G() {
+        return GL_PIXEL_MAP_G_TO_G;
+    }
+    private static final int GL_PIXEL_MAP_B_TO_B = (int)3192L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_B_TO_B 3192
+     * }
+     */
+    public static int GL_PIXEL_MAP_B_TO_B() {
+        return GL_PIXEL_MAP_B_TO_B;
+    }
+    private static final int GL_PIXEL_MAP_A_TO_A = (int)3193L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_A_TO_A 3193
+     * }
+     */
+    public static int GL_PIXEL_MAP_A_TO_A() {
+        return GL_PIXEL_MAP_A_TO_A;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_I_SIZE = (int)3248L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_I_SIZE 3248
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_I_SIZE() {
+        return GL_PIXEL_MAP_I_TO_I_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_S_TO_S_SIZE = (int)3249L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_S_TO_S_SIZE 3249
+     * }
+     */
+    public static int GL_PIXEL_MAP_S_TO_S_SIZE() {
+        return GL_PIXEL_MAP_S_TO_S_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_R_SIZE = (int)3250L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_R_SIZE 3250
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_R_SIZE() {
+        return GL_PIXEL_MAP_I_TO_R_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_G_SIZE = (int)3251L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_G_SIZE 3251
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_G_SIZE() {
+        return GL_PIXEL_MAP_I_TO_G_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_B_SIZE = (int)3252L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_B_SIZE 3252
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_B_SIZE() {
+        return GL_PIXEL_MAP_I_TO_B_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_A_SIZE = (int)3253L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_A_SIZE 3253
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_A_SIZE() {
+        return GL_PIXEL_MAP_I_TO_A_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_R_TO_R_SIZE = (int)3254L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_R_TO_R_SIZE 3254
+     * }
+     */
+    public static int GL_PIXEL_MAP_R_TO_R_SIZE() {
+        return GL_PIXEL_MAP_R_TO_R_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_G_TO_G_SIZE = (int)3255L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_G_TO_G_SIZE 3255
+     * }
+     */
+    public static int GL_PIXEL_MAP_G_TO_G_SIZE() {
+        return GL_PIXEL_MAP_G_TO_G_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_B_TO_B_SIZE = (int)3256L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_B_TO_B_SIZE 3256
+     * }
+     */
+    public static int GL_PIXEL_MAP_B_TO_B_SIZE() {
+        return GL_PIXEL_MAP_B_TO_B_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_A_TO_A_SIZE = (int)3257L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_A_TO_A_SIZE 3257
+     * }
+     */
+    public static int GL_PIXEL_MAP_A_TO_A_SIZE() {
+        return GL_PIXEL_MAP_A_TO_A_SIZE;
+    }
+    private static final int GL_UNPACK_SWAP_BYTES = (int)3312L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_SWAP_BYTES 3312
+     * }
+     */
+    public static int GL_UNPACK_SWAP_BYTES() {
+        return GL_UNPACK_SWAP_BYTES;
+    }
+    private static final int GL_UNPACK_LSB_FIRST = (int)3313L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_LSB_FIRST 3313
+     * }
+     */
+    public static int GL_UNPACK_LSB_FIRST() {
+        return GL_UNPACK_LSB_FIRST;
+    }
+    private static final int GL_UNPACK_ROW_LENGTH = (int)3314L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_ROW_LENGTH 3314
+     * }
+     */
+    public static int GL_UNPACK_ROW_LENGTH() {
+        return GL_UNPACK_ROW_LENGTH;
+    }
+    private static final int GL_UNPACK_SKIP_ROWS = (int)3315L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_SKIP_ROWS 3315
+     * }
+     */
+    public static int GL_UNPACK_SKIP_ROWS() {
+        return GL_UNPACK_SKIP_ROWS;
+    }
+    private static final int GL_UNPACK_SKIP_PIXELS = (int)3316L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_SKIP_PIXELS 3316
+     * }
+     */
+    public static int GL_UNPACK_SKIP_PIXELS() {
+        return GL_UNPACK_SKIP_PIXELS;
+    }
+    private static final int GL_UNPACK_ALIGNMENT = (int)3317L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_ALIGNMENT 3317
+     * }
+     */
+    public static int GL_UNPACK_ALIGNMENT() {
+        return GL_UNPACK_ALIGNMENT;
+    }
+    private static final int GL_PACK_SWAP_BYTES = (int)3328L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_SWAP_BYTES 3328
+     * }
+     */
+    public static int GL_PACK_SWAP_BYTES() {
+        return GL_PACK_SWAP_BYTES;
+    }
+    private static final int GL_PACK_LSB_FIRST = (int)3329L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_LSB_FIRST 3329
+     * }
+     */
+    public static int GL_PACK_LSB_FIRST() {
+        return GL_PACK_LSB_FIRST;
+    }
+    private static final int GL_PACK_ROW_LENGTH = (int)3330L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_ROW_LENGTH 3330
+     * }
+     */
+    public static int GL_PACK_ROW_LENGTH() {
+        return GL_PACK_ROW_LENGTH;
+    }
+    private static final int GL_PACK_SKIP_ROWS = (int)3331L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_SKIP_ROWS 3331
+     * }
+     */
+    public static int GL_PACK_SKIP_ROWS() {
+        return GL_PACK_SKIP_ROWS;
+    }
+    private static final int GL_PACK_SKIP_PIXELS = (int)3332L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_SKIP_PIXELS 3332
+     * }
+     */
+    public static int GL_PACK_SKIP_PIXELS() {
+        return GL_PACK_SKIP_PIXELS;
+    }
+    private static final int GL_PACK_ALIGNMENT = (int)3333L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_ALIGNMENT 3333
+     * }
+     */
+    public static int GL_PACK_ALIGNMENT() {
+        return GL_PACK_ALIGNMENT;
+    }
+    private static final int GL_MAP_COLOR = (int)3344L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP_COLOR 3344
+     * }
+     */
+    public static int GL_MAP_COLOR() {
+        return GL_MAP_COLOR;
+    }
+    private static final int GL_MAP_STENCIL = (int)3345L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP_STENCIL 3345
+     * }
+     */
+    public static int GL_MAP_STENCIL() {
+        return GL_MAP_STENCIL;
+    }
+    private static final int GL_INDEX_SHIFT = (int)3346L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_SHIFT 3346
+     * }
+     */
+    public static int GL_INDEX_SHIFT() {
+        return GL_INDEX_SHIFT;
+    }
+    private static final int GL_INDEX_OFFSET = (int)3347L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_OFFSET 3347
+     * }
+     */
+    public static int GL_INDEX_OFFSET() {
+        return GL_INDEX_OFFSET;
+    }
+    private static final int GL_RED_SCALE = (int)3348L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RED_SCALE 3348
+     * }
+     */
+    public static int GL_RED_SCALE() {
+        return GL_RED_SCALE;
+    }
+    private static final int GL_RED_BIAS = (int)3349L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RED_BIAS 3349
+     * }
+     */
+    public static int GL_RED_BIAS() {
+        return GL_RED_BIAS;
+    }
+    private static final int GL_ZOOM_X = (int)3350L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ZOOM_X 3350
+     * }
+     */
+    public static int GL_ZOOM_X() {
+        return GL_ZOOM_X;
+    }
+    private static final int GL_ZOOM_Y = (int)3351L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ZOOM_Y 3351
+     * }
+     */
+    public static int GL_ZOOM_Y() {
+        return GL_ZOOM_Y;
+    }
+    private static final int GL_GREEN_SCALE = (int)3352L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GREEN_SCALE 3352
+     * }
+     */
+    public static int GL_GREEN_SCALE() {
+        return GL_GREEN_SCALE;
+    }
+    private static final int GL_GREEN_BIAS = (int)3353L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GREEN_BIAS 3353
+     * }
+     */
+    public static int GL_GREEN_BIAS() {
+        return GL_GREEN_BIAS;
+    }
+    private static final int GL_BLUE_SCALE = (int)3354L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLUE_SCALE 3354
+     * }
+     */
+    public static int GL_BLUE_SCALE() {
+        return GL_BLUE_SCALE;
+    }
+    private static final int GL_BLUE_BIAS = (int)3355L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLUE_BIAS 3355
+     * }
+     */
+    public static int GL_BLUE_BIAS() {
+        return GL_BLUE_BIAS;
+    }
+    private static final int GL_ALPHA_SCALE = (int)3356L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_SCALE 3356
+     * }
+     */
+    public static int GL_ALPHA_SCALE() {
+        return GL_ALPHA_SCALE;
+    }
+    private static final int GL_ALPHA_BIAS = (int)3357L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_BIAS 3357
+     * }
+     */
+    public static int GL_ALPHA_BIAS() {
+        return GL_ALPHA_BIAS;
+    }
+    private static final int GL_DEPTH_SCALE = (int)3358L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_SCALE 3358
+     * }
+     */
+    public static int GL_DEPTH_SCALE() {
+        return GL_DEPTH_SCALE;
+    }
+    private static final int GL_DEPTH_BIAS = (int)3359L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_BIAS 3359
+     * }
+     */
+    public static int GL_DEPTH_BIAS() {
+        return GL_DEPTH_BIAS;
+    }
+    private static final int GL_MAX_EVAL_ORDER = (int)3376L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_EVAL_ORDER 3376
+     * }
+     */
+    public static int GL_MAX_EVAL_ORDER() {
+        return GL_MAX_EVAL_ORDER;
+    }
+    private static final int GL_MAX_LIGHTS = (int)3377L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_LIGHTS 3377
+     * }
+     */
+    public static int GL_MAX_LIGHTS() {
+        return GL_MAX_LIGHTS;
+    }
+    private static final int GL_MAX_CLIP_PLANES = (int)3378L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_CLIP_PLANES 3378
+     * }
+     */
+    public static int GL_MAX_CLIP_PLANES() {
+        return GL_MAX_CLIP_PLANES;
+    }
+    private static final int GL_MAX_TEXTURE_SIZE = (int)3379L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_TEXTURE_SIZE 3379
+     * }
+     */
+    public static int GL_MAX_TEXTURE_SIZE() {
+        return GL_MAX_TEXTURE_SIZE;
+    }
+    private static final int GL_MAX_PIXEL_MAP_TABLE = (int)3380L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_PIXEL_MAP_TABLE 3380
+     * }
+     */
+    public static int GL_MAX_PIXEL_MAP_TABLE() {
+        return GL_MAX_PIXEL_MAP_TABLE;
+    }
+    private static final int GL_MAX_ATTRIB_STACK_DEPTH = (int)3381L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_ATTRIB_STACK_DEPTH 3381
+     * }
+     */
+    public static int GL_MAX_ATTRIB_STACK_DEPTH() {
+        return GL_MAX_ATTRIB_STACK_DEPTH;
+    }
+    private static final int GL_MAX_MODELVIEW_STACK_DEPTH = (int)3382L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_MODELVIEW_STACK_DEPTH 3382
+     * }
+     */
+    public static int GL_MAX_MODELVIEW_STACK_DEPTH() {
+        return GL_MAX_MODELVIEW_STACK_DEPTH;
+    }
+    private static final int GL_MAX_NAME_STACK_DEPTH = (int)3383L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_NAME_STACK_DEPTH 3383
+     * }
+     */
+    public static int GL_MAX_NAME_STACK_DEPTH() {
+        return GL_MAX_NAME_STACK_DEPTH;
+    }
+    private static final int GL_MAX_PROJECTION_STACK_DEPTH = (int)3384L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_PROJECTION_STACK_DEPTH 3384
+     * }
+     */
+    public static int GL_MAX_PROJECTION_STACK_DEPTH() {
+        return GL_MAX_PROJECTION_STACK_DEPTH;
+    }
+    private static final int GL_MAX_TEXTURE_STACK_DEPTH = (int)3385L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_TEXTURE_STACK_DEPTH 3385
+     * }
+     */
+    public static int GL_MAX_TEXTURE_STACK_DEPTH() {
+        return GL_MAX_TEXTURE_STACK_DEPTH;
+    }
+    private static final int GL_MAX_VIEWPORT_DIMS = (int)3386L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_VIEWPORT_DIMS 3386
+     * }
+     */
+    public static int GL_MAX_VIEWPORT_DIMS() {
+        return GL_MAX_VIEWPORT_DIMS;
+    }
+    private static final int GL_MAX_CLIENT_ATTRIB_STACK_DEPTH = (int)3387L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_CLIENT_ATTRIB_STACK_DEPTH 3387
+     * }
+     */
+    public static int GL_MAX_CLIENT_ATTRIB_STACK_DEPTH() {
+        return GL_MAX_CLIENT_ATTRIB_STACK_DEPTH;
+    }
+    private static final int GL_SUBPIXEL_BITS = (int)3408L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SUBPIXEL_BITS 3408
+     * }
+     */
+    public static int GL_SUBPIXEL_BITS() {
+        return GL_SUBPIXEL_BITS;
+    }
+    private static final int GL_INDEX_BITS = (int)3409L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_BITS 3409
+     * }
+     */
+    public static int GL_INDEX_BITS() {
+        return GL_INDEX_BITS;
+    }
+    private static final int GL_RED_BITS = (int)3410L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RED_BITS 3410
+     * }
+     */
+    public static int GL_RED_BITS() {
+        return GL_RED_BITS;
+    }
+    private static final int GL_GREEN_BITS = (int)3411L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GREEN_BITS 3411
+     * }
+     */
+    public static int GL_GREEN_BITS() {
+        return GL_GREEN_BITS;
+    }
+    private static final int GL_BLUE_BITS = (int)3412L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLUE_BITS 3412
+     * }
+     */
+    public static int GL_BLUE_BITS() {
+        return GL_BLUE_BITS;
+    }
+    private static final int GL_ALPHA_BITS = (int)3413L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_BITS 3413
+     * }
+     */
+    public static int GL_ALPHA_BITS() {
+        return GL_ALPHA_BITS;
+    }
+    private static final int GL_DEPTH_BITS = (int)3414L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_BITS 3414
+     * }
+     */
+    public static int GL_DEPTH_BITS() {
+        return GL_DEPTH_BITS;
+    }
+    private static final int GL_STENCIL_BITS = (int)3415L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_BITS 3415
+     * }
+     */
+    public static int GL_STENCIL_BITS() {
+        return GL_STENCIL_BITS;
+    }
+    private static final int GL_ACCUM_RED_BITS = (int)3416L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACCUM_RED_BITS 3416
+     * }
+     */
+    public static int GL_ACCUM_RED_BITS() {
+        return GL_ACCUM_RED_BITS;
+    }
+    private static final int GL_ACCUM_GREEN_BITS = (int)3417L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACCUM_GREEN_BITS 3417
+     * }
+     */
+    public static int GL_ACCUM_GREEN_BITS() {
+        return GL_ACCUM_GREEN_BITS;
+    }
+    private static final int GL_ACCUM_BLUE_BITS = (int)3418L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACCUM_BLUE_BITS 3418
+     * }
+     */
+    public static int GL_ACCUM_BLUE_BITS() {
+        return GL_ACCUM_BLUE_BITS;
+    }
+    private static final int GL_ACCUM_ALPHA_BITS = (int)3419L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACCUM_ALPHA_BITS 3419
+     * }
+     */
+    public static int GL_ACCUM_ALPHA_BITS() {
+        return GL_ACCUM_ALPHA_BITS;
+    }
+    private static final int GL_NAME_STACK_DEPTH = (int)3440L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NAME_STACK_DEPTH 3440
+     * }
+     */
+    public static int GL_NAME_STACK_DEPTH() {
+        return GL_NAME_STACK_DEPTH;
+    }
+    private static final int GL_AUTO_NORMAL = (int)3456L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AUTO_NORMAL 3456
+     * }
+     */
+    public static int GL_AUTO_NORMAL() {
+        return GL_AUTO_NORMAL;
+    }
+    private static final int GL_MAP1_COLOR_4 = (int)3472L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_COLOR_4 3472
+     * }
+     */
+    public static int GL_MAP1_COLOR_4() {
+        return GL_MAP1_COLOR_4;
+    }
+    private static final int GL_MAP1_INDEX = (int)3473L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_INDEX 3473
+     * }
+     */
+    public static int GL_MAP1_INDEX() {
+        return GL_MAP1_INDEX;
+    }
+    private static final int GL_MAP1_NORMAL = (int)3474L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_NORMAL 3474
+     * }
+     */
+    public static int GL_MAP1_NORMAL() {
+        return GL_MAP1_NORMAL;
+    }
+    private static final int GL_MAP1_TEXTURE_COORD_1 = (int)3475L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_TEXTURE_COORD_1 3475
+     * }
+     */
+    public static int GL_MAP1_TEXTURE_COORD_1() {
+        return GL_MAP1_TEXTURE_COORD_1;
+    }
+    private static final int GL_MAP1_TEXTURE_COORD_2 = (int)3476L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_TEXTURE_COORD_2 3476
+     * }
+     */
+    public static int GL_MAP1_TEXTURE_COORD_2() {
+        return GL_MAP1_TEXTURE_COORD_2;
+    }
+    private static final int GL_MAP1_TEXTURE_COORD_3 = (int)3477L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_TEXTURE_COORD_3 3477
+     * }
+     */
+    public static int GL_MAP1_TEXTURE_COORD_3() {
+        return GL_MAP1_TEXTURE_COORD_3;
+    }
+    private static final int GL_MAP1_TEXTURE_COORD_4 = (int)3478L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_TEXTURE_COORD_4 3478
+     * }
+     */
+    public static int GL_MAP1_TEXTURE_COORD_4() {
+        return GL_MAP1_TEXTURE_COORD_4;
+    }
+    private static final int GL_MAP1_VERTEX_3 = (int)3479L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_VERTEX_3 3479
+     * }
+     */
+    public static int GL_MAP1_VERTEX_3() {
+        return GL_MAP1_VERTEX_3;
+    }
+    private static final int GL_MAP1_VERTEX_4 = (int)3480L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_VERTEX_4 3480
+     * }
+     */
+    public static int GL_MAP1_VERTEX_4() {
+        return GL_MAP1_VERTEX_4;
+    }
+    private static final int GL_MAP2_COLOR_4 = (int)3504L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_COLOR_4 3504
+     * }
+     */
+    public static int GL_MAP2_COLOR_4() {
+        return GL_MAP2_COLOR_4;
+    }
+    private static final int GL_MAP2_INDEX = (int)3505L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_INDEX 3505
+     * }
+     */
+    public static int GL_MAP2_INDEX() {
+        return GL_MAP2_INDEX;
+    }
+    private static final int GL_MAP2_NORMAL = (int)3506L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_NORMAL 3506
+     * }
+     */
+    public static int GL_MAP2_NORMAL() {
+        return GL_MAP2_NORMAL;
+    }
+    private static final int GL_MAP2_TEXTURE_COORD_1 = (int)3507L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_TEXTURE_COORD_1 3507
+     * }
+     */
+    public static int GL_MAP2_TEXTURE_COORD_1() {
+        return GL_MAP2_TEXTURE_COORD_1;
+    }
+    private static final int GL_MAP2_TEXTURE_COORD_2 = (int)3508L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_TEXTURE_COORD_2 3508
+     * }
+     */
+    public static int GL_MAP2_TEXTURE_COORD_2() {
+        return GL_MAP2_TEXTURE_COORD_2;
+    }
+    private static final int GL_MAP2_TEXTURE_COORD_3 = (int)3509L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_TEXTURE_COORD_3 3509
+     * }
+     */
+    public static int GL_MAP2_TEXTURE_COORD_3() {
+        return GL_MAP2_TEXTURE_COORD_3;
+    }
+    private static final int GL_MAP2_TEXTURE_COORD_4 = (int)3510L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_TEXTURE_COORD_4 3510
+     * }
+     */
+    public static int GL_MAP2_TEXTURE_COORD_4() {
+        return GL_MAP2_TEXTURE_COORD_4;
+    }
+    private static final int GL_MAP2_VERTEX_3 = (int)3511L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_VERTEX_3 3511
+     * }
+     */
+    public static int GL_MAP2_VERTEX_3() {
+        return GL_MAP2_VERTEX_3;
+    }
+    private static final int GL_MAP2_VERTEX_4 = (int)3512L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_VERTEX_4 3512
+     * }
+     */
+    public static int GL_MAP2_VERTEX_4() {
+        return GL_MAP2_VERTEX_4;
+    }
+    private static final int GL_MAP1_GRID_DOMAIN = (int)3536L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_GRID_DOMAIN 3536
+     * }
+     */
+    public static int GL_MAP1_GRID_DOMAIN() {
+        return GL_MAP1_GRID_DOMAIN;
+    }
+    private static final int GL_MAP1_GRID_SEGMENTS = (int)3537L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_GRID_SEGMENTS 3537
+     * }
+     */
+    public static int GL_MAP1_GRID_SEGMENTS() {
+        return GL_MAP1_GRID_SEGMENTS;
+    }
+    private static final int GL_MAP2_GRID_DOMAIN = (int)3538L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_GRID_DOMAIN 3538
+     * }
+     */
+    public static int GL_MAP2_GRID_DOMAIN() {
+        return GL_MAP2_GRID_DOMAIN;
+    }
+    private static final int GL_MAP2_GRID_SEGMENTS = (int)3539L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_GRID_SEGMENTS 3539
+     * }
+     */
+    public static int GL_MAP2_GRID_SEGMENTS() {
+        return GL_MAP2_GRID_SEGMENTS;
+    }
+    private static final int GL_TEXTURE_1D = (int)3552L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_1D 3552
+     * }
+     */
+    public static int GL_TEXTURE_1D() {
+        return GL_TEXTURE_1D;
+    }
+    private static final int GL_TEXTURE_2D = (int)3553L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_2D 3553
+     * }
+     */
+    public static int GL_TEXTURE_2D() {
+        return GL_TEXTURE_2D;
+    }
+    private static final int GL_FEEDBACK_BUFFER_POINTER = (int)3568L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FEEDBACK_BUFFER_POINTER 3568
+     * }
+     */
+    public static int GL_FEEDBACK_BUFFER_POINTER() {
+        return GL_FEEDBACK_BUFFER_POINTER;
+    }
+    private static final int GL_FEEDBACK_BUFFER_SIZE = (int)3569L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FEEDBACK_BUFFER_SIZE 3569
+     * }
+     */
+    public static int GL_FEEDBACK_BUFFER_SIZE() {
+        return GL_FEEDBACK_BUFFER_SIZE;
+    }
+    private static final int GL_FEEDBACK_BUFFER_TYPE = (int)3570L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FEEDBACK_BUFFER_TYPE 3570
+     * }
+     */
+    public static int GL_FEEDBACK_BUFFER_TYPE() {
+        return GL_FEEDBACK_BUFFER_TYPE;
+    }
+    private static final int GL_SELECTION_BUFFER_POINTER = (int)3571L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SELECTION_BUFFER_POINTER 3571
+     * }
+     */
+    public static int GL_SELECTION_BUFFER_POINTER() {
+        return GL_SELECTION_BUFFER_POINTER;
+    }
+    private static final int GL_SELECTION_BUFFER_SIZE = (int)3572L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SELECTION_BUFFER_SIZE 3572
+     * }
+     */
+    public static int GL_SELECTION_BUFFER_SIZE() {
+        return GL_SELECTION_BUFFER_SIZE;
+    }
+    private static final int GL_TEXTURE_WIDTH = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_WIDTH 4096
+     * }
+     */
+    public static int GL_TEXTURE_WIDTH() {
+        return GL_TEXTURE_WIDTH;
+    }
+    private static final int GL_TEXTURE_HEIGHT = (int)4097L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_HEIGHT 4097
+     * }
+     */
+    public static int GL_TEXTURE_HEIGHT() {
+        return GL_TEXTURE_HEIGHT;
+    }
+    private static final int GL_TEXTURE_INTERNAL_FORMAT = (int)4099L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_INTERNAL_FORMAT 4099
+     * }
+     */
+    public static int GL_TEXTURE_INTERNAL_FORMAT() {
+        return GL_TEXTURE_INTERNAL_FORMAT;
+    }
+    private static final int GL_TEXTURE_BORDER_COLOR = (int)4100L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BORDER_COLOR 4100
+     * }
+     */
+    public static int GL_TEXTURE_BORDER_COLOR() {
+        return GL_TEXTURE_BORDER_COLOR;
+    }
+    private static final int GL_TEXTURE_BORDER = (int)4101L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BORDER 4101
+     * }
+     */
+    public static int GL_TEXTURE_BORDER() {
+        return GL_TEXTURE_BORDER;
+    }
+    private static final int GL_DONT_CARE = (int)4352L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DONT_CARE 4352
+     * }
+     */
+    public static int GL_DONT_CARE() {
+        return GL_DONT_CARE;
+    }
+    private static final int GL_FASTEST = (int)4353L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FASTEST 4353
+     * }
+     */
+    public static int GL_FASTEST() {
+        return GL_FASTEST;
+    }
+    private static final int GL_NICEST = (int)4354L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NICEST 4354
+     * }
+     */
+    public static int GL_NICEST() {
+        return GL_NICEST;
+    }
+    private static final int GL_LIGHT0 = (int)16384L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT0 16384
+     * }
+     */
+    public static int GL_LIGHT0() {
+        return GL_LIGHT0;
+    }
+    private static final int GL_LIGHT1 = (int)16385L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT1 16385
+     * }
+     */
+    public static int GL_LIGHT1() {
+        return GL_LIGHT1;
+    }
+    private static final int GL_LIGHT2 = (int)16386L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT2 16386
+     * }
+     */
+    public static int GL_LIGHT2() {
+        return GL_LIGHT2;
+    }
+    private static final int GL_LIGHT3 = (int)16387L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT3 16387
+     * }
+     */
+    public static int GL_LIGHT3() {
+        return GL_LIGHT3;
+    }
+    private static final int GL_LIGHT4 = (int)16388L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT4 16388
+     * }
+     */
+    public static int GL_LIGHT4() {
+        return GL_LIGHT4;
+    }
+    private static final int GL_LIGHT5 = (int)16389L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT5 16389
+     * }
+     */
+    public static int GL_LIGHT5() {
+        return GL_LIGHT5;
+    }
+    private static final int GL_LIGHT6 = (int)16390L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT6 16390
+     * }
+     */
+    public static int GL_LIGHT6() {
+        return GL_LIGHT6;
+    }
+    private static final int GL_LIGHT7 = (int)16391L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT7 16391
+     * }
+     */
+    public static int GL_LIGHT7() {
+        return GL_LIGHT7;
+    }
+    private static final int GL_AMBIENT = (int)4608L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AMBIENT 4608
+     * }
+     */
+    public static int GL_AMBIENT() {
+        return GL_AMBIENT;
+    }
+    private static final int GL_DIFFUSE = (int)4609L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DIFFUSE 4609
+     * }
+     */
+    public static int GL_DIFFUSE() {
+        return GL_DIFFUSE;
+    }
+    private static final int GL_SPECULAR = (int)4610L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SPECULAR 4610
+     * }
+     */
+    public static int GL_SPECULAR() {
+        return GL_SPECULAR;
+    }
+    private static final int GL_POSITION = (int)4611L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POSITION 4611
+     * }
+     */
+    public static int GL_POSITION() {
+        return GL_POSITION;
+    }
+    private static final int GL_SPOT_DIRECTION = (int)4612L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SPOT_DIRECTION 4612
+     * }
+     */
+    public static int GL_SPOT_DIRECTION() {
+        return GL_SPOT_DIRECTION;
+    }
+    private static final int GL_SPOT_EXPONENT = (int)4613L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SPOT_EXPONENT 4613
+     * }
+     */
+    public static int GL_SPOT_EXPONENT() {
+        return GL_SPOT_EXPONENT;
+    }
+    private static final int GL_SPOT_CUTOFF = (int)4614L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SPOT_CUTOFF 4614
+     * }
+     */
+    public static int GL_SPOT_CUTOFF() {
+        return GL_SPOT_CUTOFF;
+    }
+    private static final int GL_CONSTANT_ATTENUATION = (int)4615L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CONSTANT_ATTENUATION 4615
+     * }
+     */
+    public static int GL_CONSTANT_ATTENUATION() {
+        return GL_CONSTANT_ATTENUATION;
+    }
+    private static final int GL_LINEAR_ATTENUATION = (int)4616L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINEAR_ATTENUATION 4616
+     * }
+     */
+    public static int GL_LINEAR_ATTENUATION() {
+        return GL_LINEAR_ATTENUATION;
+    }
+    private static final int GL_QUADRATIC_ATTENUATION = (int)4617L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_QUADRATIC_ATTENUATION 4617
+     * }
+     */
+    public static int GL_QUADRATIC_ATTENUATION() {
+        return GL_QUADRATIC_ATTENUATION;
+    }
+    private static final int GL_COMPILE = (int)4864L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COMPILE 4864
+     * }
+     */
+    public static int GL_COMPILE() {
+        return GL_COMPILE;
+    }
+    private static final int GL_COMPILE_AND_EXECUTE = (int)4865L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COMPILE_AND_EXECUTE 4865
+     * }
+     */
+    public static int GL_COMPILE_AND_EXECUTE() {
+        return GL_COMPILE_AND_EXECUTE;
+    }
+    private static final int GL_CLEAR = (int)5376L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLEAR 5376
+     * }
+     */
+    public static int GL_CLEAR() {
+        return GL_CLEAR;
+    }
+    private static final int GL_AND = (int)5377L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AND 5377
+     * }
+     */
+    public static int GL_AND() {
+        return GL_AND;
+    }
+    private static final int GL_AND_REVERSE = (int)5378L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AND_REVERSE 5378
+     * }
+     */
+    public static int GL_AND_REVERSE() {
+        return GL_AND_REVERSE;
+    }
+    private static final int GL_COPY = (int)5379L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COPY 5379
+     * }
+     */
+    public static int GL_COPY() {
+        return GL_COPY;
+    }
+    private static final int GL_AND_INVERTED = (int)5380L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AND_INVERTED 5380
+     * }
+     */
+    public static int GL_AND_INVERTED() {
+        return GL_AND_INVERTED;
+    }
+    private static final int GL_NOOP = (int)5381L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NOOP 5381
+     * }
+     */
+    public static int GL_NOOP() {
+        return GL_NOOP;
+    }
+    private static final int GL_XOR = (int)5382L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_XOR 5382
+     * }
+     */
+    public static int GL_XOR() {
+        return GL_XOR;
+    }
+    private static final int GL_OR = (int)5383L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OR 5383
+     * }
+     */
+    public static int GL_OR() {
+        return GL_OR;
+    }
+    private static final int GL_NOR = (int)5384L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NOR 5384
+     * }
+     */
+    public static int GL_NOR() {
+        return GL_NOR;
+    }
+    private static final int GL_EQUIV = (int)5385L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EQUIV 5385
+     * }
+     */
+    public static int GL_EQUIV() {
+        return GL_EQUIV;
+    }
+    private static final int GL_INVERT = (int)5386L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INVERT 5386
+     * }
+     */
+    public static int GL_INVERT() {
+        return GL_INVERT;
+    }
+    private static final int GL_OR_REVERSE = (int)5387L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OR_REVERSE 5387
+     * }
+     */
+    public static int GL_OR_REVERSE() {
+        return GL_OR_REVERSE;
+    }
+    private static final int GL_COPY_INVERTED = (int)5388L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COPY_INVERTED 5388
+     * }
+     */
+    public static int GL_COPY_INVERTED() {
+        return GL_COPY_INVERTED;
+    }
+    private static final int GL_OR_INVERTED = (int)5389L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OR_INVERTED 5389
+     * }
+     */
+    public static int GL_OR_INVERTED() {
+        return GL_OR_INVERTED;
+    }
+    private static final int GL_NAND = (int)5390L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NAND 5390
+     * }
+     */
+    public static int GL_NAND() {
+        return GL_NAND;
+    }
+    private static final int GL_SET = (int)5391L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SET 5391
+     * }
+     */
+    public static int GL_SET() {
+        return GL_SET;
+    }
+    private static final int GL_EMISSION = (int)5632L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EMISSION 5632
+     * }
+     */
+    public static int GL_EMISSION() {
+        return GL_EMISSION;
+    }
+    private static final int GL_SHININESS = (int)5633L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SHININESS 5633
+     * }
+     */
+    public static int GL_SHININESS() {
+        return GL_SHININESS;
+    }
+    private static final int GL_AMBIENT_AND_DIFFUSE = (int)5634L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AMBIENT_AND_DIFFUSE 5634
+     * }
+     */
+    public static int GL_AMBIENT_AND_DIFFUSE() {
+        return GL_AMBIENT_AND_DIFFUSE;
+    }
+    private static final int GL_COLOR_INDEXES = (int)5635L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_INDEXES 5635
+     * }
+     */
+    public static int GL_COLOR_INDEXES() {
+        return GL_COLOR_INDEXES;
+    }
+    private static final int GL_MODELVIEW = (int)5888L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MODELVIEW 5888
+     * }
+     */
+    public static int GL_MODELVIEW() {
+        return GL_MODELVIEW;
+    }
+    private static final int GL_PROJECTION = (int)5889L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROJECTION 5889
+     * }
+     */
+    public static int GL_PROJECTION() {
+        return GL_PROJECTION;
+    }
+    private static final int GL_TEXTURE = (int)5890L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE 5890
+     * }
+     */
+    public static int GL_TEXTURE() {
+        return GL_TEXTURE;
+    }
+    private static final int GL_COLOR = (int)6144L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR 6144
+     * }
+     */
+    public static int GL_COLOR() {
+        return GL_COLOR;
+    }
+    private static final int GL_DEPTH = (int)6145L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH 6145
+     * }
+     */
+    public static int GL_DEPTH() {
+        return GL_DEPTH;
+    }
+    private static final int GL_STENCIL = (int)6146L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL 6146
+     * }
+     */
+    public static int GL_STENCIL() {
+        return GL_STENCIL;
+    }
+    private static final int GL_COLOR_INDEX = (int)6400L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_INDEX 6400
+     * }
+     */
+    public static int GL_COLOR_INDEX() {
+        return GL_COLOR_INDEX;
+    }
+    private static final int GL_STENCIL_INDEX = (int)6401L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_INDEX 6401
+     * }
+     */
+    public static int GL_STENCIL_INDEX() {
+        return GL_STENCIL_INDEX;
+    }
+    private static final int GL_DEPTH_COMPONENT = (int)6402L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_COMPONENT 6402
+     * }
+     */
+    public static int GL_DEPTH_COMPONENT() {
+        return GL_DEPTH_COMPONENT;
+    }
+    private static final int GL_RED = (int)6403L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RED 6403
+     * }
+     */
+    public static int GL_RED() {
+        return GL_RED;
+    }
+    private static final int GL_GREEN = (int)6404L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GREEN 6404
+     * }
+     */
+    public static int GL_GREEN() {
+        return GL_GREEN;
+    }
+    private static final int GL_BLUE = (int)6405L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLUE 6405
+     * }
+     */
+    public static int GL_BLUE() {
+        return GL_BLUE;
+    }
+    private static final int GL_ALPHA = (int)6406L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA 6406
+     * }
+     */
+    public static int GL_ALPHA() {
+        return GL_ALPHA;
+    }
+    private static final int GL_RGB = (int)6407L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB 6407
+     * }
+     */
+    public static int GL_RGB() {
+        return GL_RGB;
+    }
+    private static final int GL_RGBA = (int)6408L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA 6408
+     * }
+     */
+    public static int GL_RGBA() {
+        return GL_RGBA;
+    }
+    private static final int GL_LUMINANCE = (int)6409L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE 6409
+     * }
+     */
+    public static int GL_LUMINANCE() {
+        return GL_LUMINANCE;
+    }
+    private static final int GL_LUMINANCE_ALPHA = (int)6410L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE_ALPHA 6410
+     * }
+     */
+    public static int GL_LUMINANCE_ALPHA() {
+        return GL_LUMINANCE_ALPHA;
+    }
+    private static final int GL_BITMAP = (int)6656L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BITMAP 6656
+     * }
+     */
+    public static int GL_BITMAP() {
+        return GL_BITMAP;
+    }
+    private static final int GL_POINT = (int)6912L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT 6912
+     * }
+     */
+    public static int GL_POINT() {
+        return GL_POINT;
+    }
+    private static final int GL_LINE = (int)6913L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE 6913
+     * }
+     */
+    public static int GL_LINE() {
+        return GL_LINE;
+    }
+    private static final int GL_FILL = (int)6914L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FILL 6914
+     * }
+     */
+    public static int GL_FILL() {
+        return GL_FILL;
+    }
+    private static final int GL_RENDER = (int)7168L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RENDER 7168
+     * }
+     */
+    public static int GL_RENDER() {
+        return GL_RENDER;
+    }
+    private static final int GL_FEEDBACK = (int)7169L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FEEDBACK 7169
+     * }
+     */
+    public static int GL_FEEDBACK() {
+        return GL_FEEDBACK;
+    }
+    private static final int GL_SELECT = (int)7170L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SELECT 7170
+     * }
+     */
+    public static int GL_SELECT() {
+        return GL_SELECT;
+    }
+    private static final int GL_FLAT = (int)7424L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FLAT 7424
+     * }
+     */
+    public static int GL_FLAT() {
+        return GL_FLAT;
+    }
+    private static final int GL_SMOOTH = (int)7425L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SMOOTH 7425
+     * }
+     */
+    public static int GL_SMOOTH() {
+        return GL_SMOOTH;
+    }
+    private static final int GL_KEEP = (int)7680L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_KEEP 7680
+     * }
+     */
+    public static int GL_KEEP() {
+        return GL_KEEP;
+    }
+    private static final int GL_REPLACE = (int)7681L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_REPLACE 7681
+     * }
+     */
+    public static int GL_REPLACE() {
+        return GL_REPLACE;
+    }
+    private static final int GL_INCR = (int)7682L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INCR 7682
+     * }
+     */
+    public static int GL_INCR() {
+        return GL_INCR;
+    }
+    private static final int GL_DECR = (int)7683L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DECR 7683
+     * }
+     */
+    public static int GL_DECR() {
+        return GL_DECR;
+    }
+    private static final int GL_VENDOR = (int)7936L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VENDOR 7936
+     * }
+     */
+    public static int GL_VENDOR() {
+        return GL_VENDOR;
+    }
+    private static final int GL_RENDERER = (int)7937L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RENDERER 7937
+     * }
+     */
+    public static int GL_RENDERER() {
+        return GL_RENDERER;
+    }
+    private static final int GL_VERSION = (int)7938L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERSION 7938
+     * }
+     */
+    public static int GL_VERSION() {
+        return GL_VERSION;
+    }
+    private static final int GL_EXTENSIONS = (int)7939L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EXTENSIONS 7939
+     * }
+     */
+    public static int GL_EXTENSIONS() {
+        return GL_EXTENSIONS;
+    }
+    private static final int GL_S = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_S 8192
+     * }
+     */
+    public static int GL_S() {
+        return GL_S;
+    }
+    private static final int GL_T = (int)8193L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T 8193
+     * }
+     */
+    public static int GL_T() {
+        return GL_T;
+    }
+    private static final int GL_R = (int)8194L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_R 8194
+     * }
+     */
+    public static int GL_R() {
+        return GL_R;
+    }
+    private static final int GL_Q = (int)8195L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_Q 8195
+     * }
+     */
+    public static int GL_Q() {
+        return GL_Q;
+    }
+    private static final int GL_MODULATE = (int)8448L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MODULATE 8448
+     * }
+     */
+    public static int GL_MODULATE() {
+        return GL_MODULATE;
+    }
+    private static final int GL_DECAL = (int)8449L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DECAL 8449
+     * }
+     */
+    public static int GL_DECAL() {
+        return GL_DECAL;
+    }
+    private static final int GL_TEXTURE_ENV_MODE = (int)8704L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_ENV_MODE 8704
+     * }
+     */
+    public static int GL_TEXTURE_ENV_MODE() {
+        return GL_TEXTURE_ENV_MODE;
+    }
+    private static final int GL_TEXTURE_ENV_COLOR = (int)8705L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_ENV_COLOR 8705
+     * }
+     */
+    public static int GL_TEXTURE_ENV_COLOR() {
+        return GL_TEXTURE_ENV_COLOR;
+    }
+    private static final int GL_TEXTURE_ENV = (int)8960L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_ENV 8960
+     * }
+     */
+    public static int GL_TEXTURE_ENV() {
+        return GL_TEXTURE_ENV;
+    }
+    private static final int GL_EYE_LINEAR = (int)9216L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EYE_LINEAR 9216
+     * }
+     */
+    public static int GL_EYE_LINEAR() {
+        return GL_EYE_LINEAR;
+    }
+    private static final int GL_OBJECT_LINEAR = (int)9217L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OBJECT_LINEAR 9217
+     * }
+     */
+    public static int GL_OBJECT_LINEAR() {
+        return GL_OBJECT_LINEAR;
+    }
+    private static final int GL_SPHERE_MAP = (int)9218L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SPHERE_MAP 9218
+     * }
+     */
+    public static int GL_SPHERE_MAP() {
+        return GL_SPHERE_MAP;
+    }
+    private static final int GL_TEXTURE_GEN_MODE = (int)9472L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_GEN_MODE 9472
+     * }
+     */
+    public static int GL_TEXTURE_GEN_MODE() {
+        return GL_TEXTURE_GEN_MODE;
+    }
+    private static final int GL_OBJECT_PLANE = (int)9473L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OBJECT_PLANE 9473
+     * }
+     */
+    public static int GL_OBJECT_PLANE() {
+        return GL_OBJECT_PLANE;
+    }
+    private static final int GL_EYE_PLANE = (int)9474L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EYE_PLANE 9474
+     * }
+     */
+    public static int GL_EYE_PLANE() {
+        return GL_EYE_PLANE;
+    }
+    private static final int GL_NEAREST = (int)9728L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NEAREST 9728
+     * }
+     */
+    public static int GL_NEAREST() {
+        return GL_NEAREST;
+    }
+    private static final int GL_LINEAR = (int)9729L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINEAR 9729
+     * }
+     */
+    public static int GL_LINEAR() {
+        return GL_LINEAR;
+    }
+    private static final int GL_NEAREST_MIPMAP_NEAREST = (int)9984L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NEAREST_MIPMAP_NEAREST 9984
+     * }
+     */
+    public static int GL_NEAREST_MIPMAP_NEAREST() {
+        return GL_NEAREST_MIPMAP_NEAREST;
+    }
+    private static final int GL_LINEAR_MIPMAP_NEAREST = (int)9985L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINEAR_MIPMAP_NEAREST 9985
+     * }
+     */
+    public static int GL_LINEAR_MIPMAP_NEAREST() {
+        return GL_LINEAR_MIPMAP_NEAREST;
+    }
+    private static final int GL_NEAREST_MIPMAP_LINEAR = (int)9986L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NEAREST_MIPMAP_LINEAR 9986
+     * }
+     */
+    public static int GL_NEAREST_MIPMAP_LINEAR() {
+        return GL_NEAREST_MIPMAP_LINEAR;
+    }
+    private static final int GL_LINEAR_MIPMAP_LINEAR = (int)9987L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINEAR_MIPMAP_LINEAR 9987
+     * }
+     */
+    public static int GL_LINEAR_MIPMAP_LINEAR() {
+        return GL_LINEAR_MIPMAP_LINEAR;
+    }
+    private static final int GL_TEXTURE_MAG_FILTER = (int)10240L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_MAG_FILTER 10240
+     * }
+     */
+    public static int GL_TEXTURE_MAG_FILTER() {
+        return GL_TEXTURE_MAG_FILTER;
+    }
+    private static final int GL_TEXTURE_MIN_FILTER = (int)10241L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_MIN_FILTER 10241
+     * }
+     */
+    public static int GL_TEXTURE_MIN_FILTER() {
+        return GL_TEXTURE_MIN_FILTER;
+    }
+    private static final int GL_TEXTURE_WRAP_S = (int)10242L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_WRAP_S 10242
+     * }
+     */
+    public static int GL_TEXTURE_WRAP_S() {
+        return GL_TEXTURE_WRAP_S;
+    }
+    private static final int GL_TEXTURE_WRAP_T = (int)10243L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_WRAP_T 10243
+     * }
+     */
+    public static int GL_TEXTURE_WRAP_T() {
+        return GL_TEXTURE_WRAP_T;
+    }
+    private static final int GL_CLAMP = (int)10496L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLAMP 10496
+     * }
+     */
+    public static int GL_CLAMP() {
+        return GL_CLAMP;
+    }
+    private static final int GL_REPEAT = (int)10497L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_REPEAT 10497
+     * }
+     */
+    public static int GL_REPEAT() {
+        return GL_REPEAT;
+    }
+    private static final int GL_CLIENT_PIXEL_STORE_BIT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIENT_PIXEL_STORE_BIT 1
+     * }
+     */
+    public static int GL_CLIENT_PIXEL_STORE_BIT() {
+        return GL_CLIENT_PIXEL_STORE_BIT;
+    }
+    private static final int GL_CLIENT_VERTEX_ARRAY_BIT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIENT_VERTEX_ARRAY_BIT 2
+     * }
+     */
+    public static int GL_CLIENT_VERTEX_ARRAY_BIT() {
+        return GL_CLIENT_VERTEX_ARRAY_BIT;
+    }
+    private static final int GL_POLYGON_OFFSET_FACTOR = (int)32824L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_OFFSET_FACTOR 32824
+     * }
+     */
+    public static int GL_POLYGON_OFFSET_FACTOR() {
+        return GL_POLYGON_OFFSET_FACTOR;
+    }
+    private static final int GL_POLYGON_OFFSET_UNITS = (int)10752L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_OFFSET_UNITS 10752
+     * }
+     */
+    public static int GL_POLYGON_OFFSET_UNITS() {
+        return GL_POLYGON_OFFSET_UNITS;
+    }
+    private static final int GL_POLYGON_OFFSET_POINT = (int)10753L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_OFFSET_POINT 10753
+     * }
+     */
+    public static int GL_POLYGON_OFFSET_POINT() {
+        return GL_POLYGON_OFFSET_POINT;
+    }
+    private static final int GL_POLYGON_OFFSET_LINE = (int)10754L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_OFFSET_LINE 10754
+     * }
+     */
+    public static int GL_POLYGON_OFFSET_LINE() {
+        return GL_POLYGON_OFFSET_LINE;
+    }
+    private static final int GL_POLYGON_OFFSET_FILL = (int)32823L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_OFFSET_FILL 32823
+     * }
+     */
+    public static int GL_POLYGON_OFFSET_FILL() {
+        return GL_POLYGON_OFFSET_FILL;
+    }
+    private static final int GL_ALPHA4 = (int)32827L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA4 32827
+     * }
+     */
+    public static int GL_ALPHA4() {
+        return GL_ALPHA4;
+    }
+    private static final int GL_ALPHA8 = (int)32828L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA8 32828
+     * }
+     */
+    public static int GL_ALPHA8() {
+        return GL_ALPHA8;
+    }
+    private static final int GL_ALPHA12 = (int)32829L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA12 32829
+     * }
+     */
+    public static int GL_ALPHA12() {
+        return GL_ALPHA12;
+    }
+    private static final int GL_ALPHA16 = (int)32830L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA16 32830
+     * }
+     */
+    public static int GL_ALPHA16() {
+        return GL_ALPHA16;
+    }
+    private static final int GL_LUMINANCE4 = (int)32831L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE4 32831
+     * }
+     */
+    public static int GL_LUMINANCE4() {
+        return GL_LUMINANCE4;
+    }
+    private static final int GL_LUMINANCE8 = (int)32832L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE8 32832
+     * }
+     */
+    public static int GL_LUMINANCE8() {
+        return GL_LUMINANCE8;
+    }
+    private static final int GL_LUMINANCE12 = (int)32833L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE12 32833
+     * }
+     */
+    public static int GL_LUMINANCE12() {
+        return GL_LUMINANCE12;
+    }
+    private static final int GL_LUMINANCE16 = (int)32834L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE16 32834
+     * }
+     */
+    public static int GL_LUMINANCE16() {
+        return GL_LUMINANCE16;
+    }
+    private static final int GL_LUMINANCE4_ALPHA4 = (int)32835L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE4_ALPHA4 32835
+     * }
+     */
+    public static int GL_LUMINANCE4_ALPHA4() {
+        return GL_LUMINANCE4_ALPHA4;
+    }
+    private static final int GL_LUMINANCE6_ALPHA2 = (int)32836L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE6_ALPHA2 32836
+     * }
+     */
+    public static int GL_LUMINANCE6_ALPHA2() {
+        return GL_LUMINANCE6_ALPHA2;
+    }
+    private static final int GL_LUMINANCE8_ALPHA8 = (int)32837L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE8_ALPHA8 32837
+     * }
+     */
+    public static int GL_LUMINANCE8_ALPHA8() {
+        return GL_LUMINANCE8_ALPHA8;
+    }
+    private static final int GL_LUMINANCE12_ALPHA4 = (int)32838L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE12_ALPHA4 32838
+     * }
+     */
+    public static int GL_LUMINANCE12_ALPHA4() {
+        return GL_LUMINANCE12_ALPHA4;
+    }
+    private static final int GL_LUMINANCE12_ALPHA12 = (int)32839L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE12_ALPHA12 32839
+     * }
+     */
+    public static int GL_LUMINANCE12_ALPHA12() {
+        return GL_LUMINANCE12_ALPHA12;
+    }
+    private static final int GL_LUMINANCE16_ALPHA16 = (int)32840L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE16_ALPHA16 32840
+     * }
+     */
+    public static int GL_LUMINANCE16_ALPHA16() {
+        return GL_LUMINANCE16_ALPHA16;
+    }
+    private static final int GL_INTENSITY = (int)32841L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INTENSITY 32841
+     * }
+     */
+    public static int GL_INTENSITY() {
+        return GL_INTENSITY;
+    }
+    private static final int GL_INTENSITY4 = (int)32842L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INTENSITY4 32842
+     * }
+     */
+    public static int GL_INTENSITY4() {
+        return GL_INTENSITY4;
+    }
+    private static final int GL_INTENSITY8 = (int)32843L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INTENSITY8 32843
+     * }
+     */
+    public static int GL_INTENSITY8() {
+        return GL_INTENSITY8;
+    }
+    private static final int GL_INTENSITY12 = (int)32844L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INTENSITY12 32844
+     * }
+     */
+    public static int GL_INTENSITY12() {
+        return GL_INTENSITY12;
+    }
+    private static final int GL_INTENSITY16 = (int)32845L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INTENSITY16 32845
+     * }
+     */
+    public static int GL_INTENSITY16() {
+        return GL_INTENSITY16;
+    }
+    private static final int GL_R3_G3_B2 = (int)10768L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_R3_G3_B2 10768
+     * }
+     */
+    public static int GL_R3_G3_B2() {
+        return GL_R3_G3_B2;
+    }
+    private static final int GL_RGB4 = (int)32847L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB4 32847
+     * }
+     */
+    public static int GL_RGB4() {
+        return GL_RGB4;
+    }
+    private static final int GL_RGB5 = (int)32848L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB5 32848
+     * }
+     */
+    public static int GL_RGB5() {
+        return GL_RGB5;
+    }
+    private static final int GL_RGB8 = (int)32849L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB8 32849
+     * }
+     */
+    public static int GL_RGB8() {
+        return GL_RGB8;
+    }
+    private static final int GL_RGB10 = (int)32850L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB10 32850
+     * }
+     */
+    public static int GL_RGB10() {
+        return GL_RGB10;
+    }
+    private static final int GL_RGB12 = (int)32851L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB12 32851
+     * }
+     */
+    public static int GL_RGB12() {
+        return GL_RGB12;
+    }
+    private static final int GL_RGB16 = (int)32852L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB16 32852
+     * }
+     */
+    public static int GL_RGB16() {
+        return GL_RGB16;
+    }
+    private static final int GL_RGBA2 = (int)32853L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA2 32853
+     * }
+     */
+    public static int GL_RGBA2() {
+        return GL_RGBA2;
+    }
+    private static final int GL_RGBA4 = (int)32854L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA4 32854
+     * }
+     */
+    public static int GL_RGBA4() {
+        return GL_RGBA4;
+    }
+    private static final int GL_RGB5_A1 = (int)32855L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB5_A1 32855
+     * }
+     */
+    public static int GL_RGB5_A1() {
+        return GL_RGB5_A1;
+    }
+    private static final int GL_RGBA8 = (int)32856L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA8 32856
+     * }
+     */
+    public static int GL_RGBA8() {
+        return GL_RGBA8;
+    }
+    private static final int GL_RGB10_A2 = (int)32857L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB10_A2 32857
+     * }
+     */
+    public static int GL_RGB10_A2() {
+        return GL_RGB10_A2;
+    }
+    private static final int GL_RGBA12 = (int)32858L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA12 32858
+     * }
+     */
+    public static int GL_RGBA12() {
+        return GL_RGBA12;
+    }
+    private static final int GL_RGBA16 = (int)32859L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA16 32859
+     * }
+     */
+    public static int GL_RGBA16() {
+        return GL_RGBA16;
+    }
+    private static final int GL_TEXTURE_RED_SIZE = (int)32860L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_RED_SIZE 32860
+     * }
+     */
+    public static int GL_TEXTURE_RED_SIZE() {
+        return GL_TEXTURE_RED_SIZE;
+    }
+    private static final int GL_TEXTURE_GREEN_SIZE = (int)32861L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_GREEN_SIZE 32861
+     * }
+     */
+    public static int GL_TEXTURE_GREEN_SIZE() {
+        return GL_TEXTURE_GREEN_SIZE;
+    }
+    private static final int GL_TEXTURE_BLUE_SIZE = (int)32862L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BLUE_SIZE 32862
+     * }
+     */
+    public static int GL_TEXTURE_BLUE_SIZE() {
+        return GL_TEXTURE_BLUE_SIZE;
+    }
+    private static final int GL_TEXTURE_ALPHA_SIZE = (int)32863L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_ALPHA_SIZE 32863
+     * }
+     */
+    public static int GL_TEXTURE_ALPHA_SIZE() {
+        return GL_TEXTURE_ALPHA_SIZE;
+    }
+    private static final int GL_TEXTURE_LUMINANCE_SIZE = (int)32864L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_LUMINANCE_SIZE 32864
+     * }
+     */
+    public static int GL_TEXTURE_LUMINANCE_SIZE() {
+        return GL_TEXTURE_LUMINANCE_SIZE;
+    }
+    private static final int GL_TEXTURE_INTENSITY_SIZE = (int)32865L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_INTENSITY_SIZE 32865
+     * }
+     */
+    public static int GL_TEXTURE_INTENSITY_SIZE() {
+        return GL_TEXTURE_INTENSITY_SIZE;
+    }
+    private static final int GL_PROXY_TEXTURE_1D = (int)32867L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROXY_TEXTURE_1D 32867
+     * }
+     */
+    public static int GL_PROXY_TEXTURE_1D() {
+        return GL_PROXY_TEXTURE_1D;
+    }
+    private static final int GL_PROXY_TEXTURE_2D = (int)32868L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROXY_TEXTURE_2D 32868
+     * }
+     */
+    public static int GL_PROXY_TEXTURE_2D() {
+        return GL_PROXY_TEXTURE_2D;
+    }
+    private static final int GL_TEXTURE_PRIORITY = (int)32870L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_PRIORITY 32870
+     * }
+     */
+    public static int GL_TEXTURE_PRIORITY() {
+        return GL_TEXTURE_PRIORITY;
+    }
+    private static final int GL_TEXTURE_RESIDENT = (int)32871L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_RESIDENT 32871
+     * }
+     */
+    public static int GL_TEXTURE_RESIDENT() {
+        return GL_TEXTURE_RESIDENT;
+    }
+    private static final int GL_TEXTURE_BINDING_1D = (int)32872L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BINDING_1D 32872
+     * }
+     */
+    public static int GL_TEXTURE_BINDING_1D() {
+        return GL_TEXTURE_BINDING_1D;
+    }
+    private static final int GL_TEXTURE_BINDING_2D = (int)32873L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BINDING_2D 32873
+     * }
+     */
+    public static int GL_TEXTURE_BINDING_2D() {
+        return GL_TEXTURE_BINDING_2D;
+    }
+    private static final int GL_VERTEX_ARRAY = (int)32884L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY 32884
+     * }
+     */
+    public static int GL_VERTEX_ARRAY() {
+        return GL_VERTEX_ARRAY;
+    }
+    private static final int GL_NORMAL_ARRAY = (int)32885L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY 32885
+     * }
+     */
+    public static int GL_NORMAL_ARRAY() {
+        return GL_NORMAL_ARRAY;
+    }
+    private static final int GL_COLOR_ARRAY = (int)32886L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY 32886
+     * }
+     */
+    public static int GL_COLOR_ARRAY() {
+        return GL_COLOR_ARRAY;
+    }
+    private static final int GL_INDEX_ARRAY = (int)32887L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY 32887
+     * }
+     */
+    public static int GL_INDEX_ARRAY() {
+        return GL_INDEX_ARRAY;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY = (int)32888L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY 32888
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY() {
+        return GL_TEXTURE_COORD_ARRAY;
+    }
+    private static final int GL_EDGE_FLAG_ARRAY = (int)32889L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG_ARRAY 32889
+     * }
+     */
+    public static int GL_EDGE_FLAG_ARRAY() {
+        return GL_EDGE_FLAG_ARRAY;
+    }
+    private static final int GL_VERTEX_ARRAY_SIZE = (int)32890L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_SIZE 32890
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_SIZE() {
+        return GL_VERTEX_ARRAY_SIZE;
+    }
+    private static final int GL_VERTEX_ARRAY_TYPE = (int)32891L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_TYPE 32891
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_TYPE() {
+        return GL_VERTEX_ARRAY_TYPE;
+    }
+    private static final int GL_VERTEX_ARRAY_STRIDE = (int)32892L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_STRIDE 32892
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_STRIDE() {
+        return GL_VERTEX_ARRAY_STRIDE;
+    }
+    private static final int GL_NORMAL_ARRAY_TYPE = (int)32894L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_TYPE 32894
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_TYPE() {
+        return GL_NORMAL_ARRAY_TYPE;
+    }
+    private static final int GL_NORMAL_ARRAY_STRIDE = (int)32895L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_STRIDE 32895
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_STRIDE() {
+        return GL_NORMAL_ARRAY_STRIDE;
+    }
+    private static final int GL_COLOR_ARRAY_SIZE = (int)32897L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_SIZE 32897
+     * }
+     */
+    public static int GL_COLOR_ARRAY_SIZE() {
+        return GL_COLOR_ARRAY_SIZE;
+    }
+    private static final int GL_COLOR_ARRAY_TYPE = (int)32898L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_TYPE 32898
+     * }
+     */
+    public static int GL_COLOR_ARRAY_TYPE() {
+        return GL_COLOR_ARRAY_TYPE;
+    }
+    private static final int GL_COLOR_ARRAY_STRIDE = (int)32899L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_STRIDE 32899
+     * }
+     */
+    public static int GL_COLOR_ARRAY_STRIDE() {
+        return GL_COLOR_ARRAY_STRIDE;
+    }
+    private static final int GL_INDEX_ARRAY_TYPE = (int)32901L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_TYPE 32901
+     * }
+     */
+    public static int GL_INDEX_ARRAY_TYPE() {
+        return GL_INDEX_ARRAY_TYPE;
+    }
+    private static final int GL_INDEX_ARRAY_STRIDE = (int)32902L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_STRIDE 32902
+     * }
+     */
+    public static int GL_INDEX_ARRAY_STRIDE() {
+        return GL_INDEX_ARRAY_STRIDE;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_SIZE = (int)32904L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_SIZE 32904
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_SIZE() {
+        return GL_TEXTURE_COORD_ARRAY_SIZE;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_TYPE = (int)32905L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_TYPE 32905
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_TYPE() {
+        return GL_TEXTURE_COORD_ARRAY_TYPE;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_STRIDE = (int)32906L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_STRIDE 32906
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_STRIDE() {
+        return GL_TEXTURE_COORD_ARRAY_STRIDE;
+    }
+    private static final int GL_EDGE_FLAG_ARRAY_STRIDE = (int)32908L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG_ARRAY_STRIDE 32908
+     * }
+     */
+    public static int GL_EDGE_FLAG_ARRAY_STRIDE() {
+        return GL_EDGE_FLAG_ARRAY_STRIDE;
+    }
+    private static final int GL_VERTEX_ARRAY_POINTER = (int)32910L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_POINTER 32910
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_POINTER() {
+        return GL_VERTEX_ARRAY_POINTER;
+    }
+    private static final int GL_NORMAL_ARRAY_POINTER = (int)32911L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_POINTER 32911
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_POINTER() {
+        return GL_NORMAL_ARRAY_POINTER;
+    }
+    private static final int GL_COLOR_ARRAY_POINTER = (int)32912L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_POINTER 32912
+     * }
+     */
+    public static int GL_COLOR_ARRAY_POINTER() {
+        return GL_COLOR_ARRAY_POINTER;
+    }
+    private static final int GL_INDEX_ARRAY_POINTER = (int)32913L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_POINTER 32913
+     * }
+     */
+    public static int GL_INDEX_ARRAY_POINTER() {
+        return GL_INDEX_ARRAY_POINTER;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_POINTER = (int)32914L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_POINTER 32914
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_POINTER() {
+        return GL_TEXTURE_COORD_ARRAY_POINTER;
+    }
+    private static final int GL_EDGE_FLAG_ARRAY_POINTER = (int)32915L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG_ARRAY_POINTER 32915
+     * }
+     */
+    public static int GL_EDGE_FLAG_ARRAY_POINTER() {
+        return GL_EDGE_FLAG_ARRAY_POINTER;
+    }
+    private static final int GL_V2F = (int)10784L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_V2F 10784
+     * }
+     */
+    public static int GL_V2F() {
+        return GL_V2F;
+    }
+    private static final int GL_V3F = (int)10785L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_V3F 10785
+     * }
+     */
+    public static int GL_V3F() {
+        return GL_V3F;
+    }
+    private static final int GL_C4UB_V2F = (int)10786L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_C4UB_V2F 10786
+     * }
+     */
+    public static int GL_C4UB_V2F() {
+        return GL_C4UB_V2F;
+    }
+    private static final int GL_C4UB_V3F = (int)10787L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_C4UB_V3F 10787
+     * }
+     */
+    public static int GL_C4UB_V3F() {
+        return GL_C4UB_V3F;
+    }
+    private static final int GL_C3F_V3F = (int)10788L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_C3F_V3F 10788
+     * }
+     */
+    public static int GL_C3F_V3F() {
+        return GL_C3F_V3F;
+    }
+    private static final int GL_N3F_V3F = (int)10789L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_N3F_V3F 10789
+     * }
+     */
+    public static int GL_N3F_V3F() {
+        return GL_N3F_V3F;
+    }
+    private static final int GL_C4F_N3F_V3F = (int)10790L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_C4F_N3F_V3F 10790
+     * }
+     */
+    public static int GL_C4F_N3F_V3F() {
+        return GL_C4F_N3F_V3F;
+    }
+    private static final int GL_T2F_V3F = (int)10791L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T2F_V3F 10791
+     * }
+     */
+    public static int GL_T2F_V3F() {
+        return GL_T2F_V3F;
+    }
+    private static final int GL_T4F_V4F = (int)10792L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T4F_V4F 10792
+     * }
+     */
+    public static int GL_T4F_V4F() {
+        return GL_T4F_V4F;
+    }
+    private static final int GL_T2F_C4UB_V3F = (int)10793L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T2F_C4UB_V3F 10793
+     * }
+     */
+    public static int GL_T2F_C4UB_V3F() {
+        return GL_T2F_C4UB_V3F;
+    }
+    private static final int GL_T2F_C3F_V3F = (int)10794L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T2F_C3F_V3F 10794
+     * }
+     */
+    public static int GL_T2F_C3F_V3F() {
+        return GL_T2F_C3F_V3F;
+    }
+    private static final int GL_T2F_N3F_V3F = (int)10795L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T2F_N3F_V3F 10795
+     * }
+     */
+    public static int GL_T2F_N3F_V3F() {
+        return GL_T2F_N3F_V3F;
+    }
+    private static final int GL_T2F_C4F_N3F_V3F = (int)10796L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T2F_C4F_N3F_V3F 10796
+     * }
+     */
+    public static int GL_T2F_C4F_N3F_V3F() {
+        return GL_T2F_C4F_N3F_V3F;
+    }
+    private static final int GL_T4F_C4F_N3F_V4F = (int)10797L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T4F_C4F_N3F_V4F 10797
+     * }
+     */
+    public static int GL_T4F_C4F_N3F_V4F() {
+        return GL_T4F_C4F_N3F_V4F;
+    }
+    private static final int GL_EXT_vertex_array = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EXT_vertex_array 1
+     * }
+     */
+    public static int GL_EXT_vertex_array() {
+        return GL_EXT_vertex_array;
+    }
+    private static final int GL_EXT_bgra = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EXT_bgra 1
+     * }
+     */
+    public static int GL_EXT_bgra() {
+        return GL_EXT_bgra;
+    }
+    private static final int GL_EXT_paletted_texture = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EXT_paletted_texture 1
+     * }
+     */
+    public static int GL_EXT_paletted_texture() {
+        return GL_EXT_paletted_texture;
+    }
+    private static final int GL_WIN_swap_hint = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_WIN_swap_hint 1
+     * }
+     */
+    public static int GL_WIN_swap_hint() {
+        return GL_WIN_swap_hint;
+    }
+    private static final int GL_WIN_draw_range_elements = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_WIN_draw_range_elements 1
+     * }
+     */
+    public static int GL_WIN_draw_range_elements() {
+        return GL_WIN_draw_range_elements;
+    }
+    private static final int GL_VERTEX_ARRAY_EXT = (int)32884L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_EXT 32884
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_EXT() {
+        return GL_VERTEX_ARRAY_EXT;
+    }
+    private static final int GL_NORMAL_ARRAY_EXT = (int)32885L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_EXT 32885
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_EXT() {
+        return GL_NORMAL_ARRAY_EXT;
+    }
+    private static final int GL_COLOR_ARRAY_EXT = (int)32886L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_EXT 32886
+     * }
+     */
+    public static int GL_COLOR_ARRAY_EXT() {
+        return GL_COLOR_ARRAY_EXT;
+    }
+    private static final int GL_INDEX_ARRAY_EXT = (int)32887L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_EXT 32887
+     * }
+     */
+    public static int GL_INDEX_ARRAY_EXT() {
+        return GL_INDEX_ARRAY_EXT;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_EXT = (int)32888L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_EXT 32888
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_EXT() {
+        return GL_TEXTURE_COORD_ARRAY_EXT;
+    }
+    private static final int GL_EDGE_FLAG_ARRAY_EXT = (int)32889L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG_ARRAY_EXT 32889
+     * }
+     */
+    public static int GL_EDGE_FLAG_ARRAY_EXT() {
+        return GL_EDGE_FLAG_ARRAY_EXT;
+    }
+    private static final int GL_VERTEX_ARRAY_SIZE_EXT = (int)32890L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_SIZE_EXT 32890
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_SIZE_EXT() {
+        return GL_VERTEX_ARRAY_SIZE_EXT;
+    }
+    private static final int GL_VERTEX_ARRAY_TYPE_EXT = (int)32891L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_TYPE_EXT 32891
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_TYPE_EXT() {
+        return GL_VERTEX_ARRAY_TYPE_EXT;
+    }
+    private static final int GL_VERTEX_ARRAY_STRIDE_EXT = (int)32892L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_STRIDE_EXT 32892
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_STRIDE_EXT() {
+        return GL_VERTEX_ARRAY_STRIDE_EXT;
+    }
+    private static final int GL_VERTEX_ARRAY_COUNT_EXT = (int)32893L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_COUNT_EXT 32893
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_COUNT_EXT() {
+        return GL_VERTEX_ARRAY_COUNT_EXT;
+    }
+    private static final int GL_NORMAL_ARRAY_TYPE_EXT = (int)32894L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_TYPE_EXT 32894
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_TYPE_EXT() {
+        return GL_NORMAL_ARRAY_TYPE_EXT;
+    }
+    private static final int GL_NORMAL_ARRAY_STRIDE_EXT = (int)32895L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_STRIDE_EXT 32895
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_STRIDE_EXT() {
+        return GL_NORMAL_ARRAY_STRIDE_EXT;
+    }
+    private static final int GL_NORMAL_ARRAY_COUNT_EXT = (int)32896L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_COUNT_EXT 32896
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_COUNT_EXT() {
+        return GL_NORMAL_ARRAY_COUNT_EXT;
+    }
+    private static final int GL_COLOR_ARRAY_SIZE_EXT = (int)32897L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_SIZE_EXT 32897
+     * }
+     */
+    public static int GL_COLOR_ARRAY_SIZE_EXT() {
+        return GL_COLOR_ARRAY_SIZE_EXT;
+    }
+    private static final int GL_COLOR_ARRAY_TYPE_EXT = (int)32898L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_TYPE_EXT 32898
+     * }
+     */
+    public static int GL_COLOR_ARRAY_TYPE_EXT() {
+        return GL_COLOR_ARRAY_TYPE_EXT;
+    }
+    private static final int GL_COLOR_ARRAY_STRIDE_EXT = (int)32899L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_STRIDE_EXT 32899
+     * }
+     */
+    public static int GL_COLOR_ARRAY_STRIDE_EXT() {
+        return GL_COLOR_ARRAY_STRIDE_EXT;
+    }
+    private static final int GL_COLOR_ARRAY_COUNT_EXT = (int)32900L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_COUNT_EXT 32900
+     * }
+     */
+    public static int GL_COLOR_ARRAY_COUNT_EXT() {
+        return GL_COLOR_ARRAY_COUNT_EXT;
+    }
+    private static final int GL_INDEX_ARRAY_TYPE_EXT = (int)32901L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_TYPE_EXT 32901
+     * }
+     */
+    public static int GL_INDEX_ARRAY_TYPE_EXT() {
+        return GL_INDEX_ARRAY_TYPE_EXT;
+    }
+    private static final int GL_INDEX_ARRAY_STRIDE_EXT = (int)32902L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_STRIDE_EXT 32902
+     * }
+     */
+    public static int GL_INDEX_ARRAY_STRIDE_EXT() {
+        return GL_INDEX_ARRAY_STRIDE_EXT;
+    }
+    private static final int GL_INDEX_ARRAY_COUNT_EXT = (int)32903L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_COUNT_EXT 32903
+     * }
+     */
+    public static int GL_INDEX_ARRAY_COUNT_EXT() {
+        return GL_INDEX_ARRAY_COUNT_EXT;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_SIZE_EXT = (int)32904L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_SIZE_EXT 32904
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_SIZE_EXT() {
+        return GL_TEXTURE_COORD_ARRAY_SIZE_EXT;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_TYPE_EXT = (int)32905L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_TYPE_EXT 32905
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_TYPE_EXT() {
+        return GL_TEXTURE_COORD_ARRAY_TYPE_EXT;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_STRIDE_EXT = (int)32906L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_STRIDE_EXT 32906
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_STRIDE_EXT() {
+        return GL_TEXTURE_COORD_ARRAY_STRIDE_EXT;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_COUNT_EXT = (int)32907L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_COUNT_EXT 32907
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_COUNT_EXT() {
+        return GL_TEXTURE_COORD_ARRAY_COUNT_EXT;
+    }
+    private static final int GL_EDGE_FLAG_ARRAY_STRIDE_EXT = (int)32908L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG_ARRAY_STRIDE_EXT 32908
+     * }
+     */
+    public static int GL_EDGE_FLAG_ARRAY_STRIDE_EXT() {
+        return GL_EDGE_FLAG_ARRAY_STRIDE_EXT;
+    }
+    private static final int GL_EDGE_FLAG_ARRAY_COUNT_EXT = (int)32909L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG_ARRAY_COUNT_EXT 32909
+     * }
+     */
+    public static int GL_EDGE_FLAG_ARRAY_COUNT_EXT() {
+        return GL_EDGE_FLAG_ARRAY_COUNT_EXT;
+    }
+    private static final int GL_VERTEX_ARRAY_POINTER_EXT = (int)32910L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_POINTER_EXT 32910
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_POINTER_EXT() {
+        return GL_VERTEX_ARRAY_POINTER_EXT;
+    }
+    private static final int GL_NORMAL_ARRAY_POINTER_EXT = (int)32911L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_POINTER_EXT 32911
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_POINTER_EXT() {
+        return GL_NORMAL_ARRAY_POINTER_EXT;
+    }
+    private static final int GL_COLOR_ARRAY_POINTER_EXT = (int)32912L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_POINTER_EXT 32912
+     * }
+     */
+    public static int GL_COLOR_ARRAY_POINTER_EXT() {
+        return GL_COLOR_ARRAY_POINTER_EXT;
+    }
+    private static final int GL_INDEX_ARRAY_POINTER_EXT = (int)32913L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_POINTER_EXT 32913
+     * }
+     */
+    public static int GL_INDEX_ARRAY_POINTER_EXT() {
+        return GL_INDEX_ARRAY_POINTER_EXT;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_POINTER_EXT = (int)32914L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_POINTER_EXT 32914
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_POINTER_EXT() {
+        return GL_TEXTURE_COORD_ARRAY_POINTER_EXT;
+    }
+    private static final int GL_EDGE_FLAG_ARRAY_POINTER_EXT = (int)32915L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG_ARRAY_POINTER_EXT 32915
+     * }
+     */
+    public static int GL_EDGE_FLAG_ARRAY_POINTER_EXT() {
+        return GL_EDGE_FLAG_ARRAY_POINTER_EXT;
+    }
+    private static final int GL_BGR_EXT = (int)32992L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BGR_EXT 32992
+     * }
+     */
+    public static int GL_BGR_EXT() {
+        return GL_BGR_EXT;
+    }
+    private static final int GL_BGRA_EXT = (int)32993L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BGRA_EXT 32993
+     * }
+     */
+    public static int GL_BGRA_EXT() {
+        return GL_BGRA_EXT;
+    }
+    private static final int GL_COLOR_TABLE_FORMAT_EXT = (int)32984L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_FORMAT_EXT 32984
+     * }
+     */
+    public static int GL_COLOR_TABLE_FORMAT_EXT() {
+        return GL_COLOR_TABLE_FORMAT_EXT;
+    }
+    private static final int GL_COLOR_TABLE_WIDTH_EXT = (int)32985L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_WIDTH_EXT 32985
+     * }
+     */
+    public static int GL_COLOR_TABLE_WIDTH_EXT() {
+        return GL_COLOR_TABLE_WIDTH_EXT;
+    }
+    private static final int GL_COLOR_TABLE_RED_SIZE_EXT = (int)32986L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_RED_SIZE_EXT 32986
+     * }
+     */
+    public static int GL_COLOR_TABLE_RED_SIZE_EXT() {
+        return GL_COLOR_TABLE_RED_SIZE_EXT;
+    }
+    private static final int GL_COLOR_TABLE_GREEN_SIZE_EXT = (int)32987L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_GREEN_SIZE_EXT 32987
+     * }
+     */
+    public static int GL_COLOR_TABLE_GREEN_SIZE_EXT() {
+        return GL_COLOR_TABLE_GREEN_SIZE_EXT;
+    }
+    private static final int GL_COLOR_TABLE_BLUE_SIZE_EXT = (int)32988L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_BLUE_SIZE_EXT 32988
+     * }
+     */
+    public static int GL_COLOR_TABLE_BLUE_SIZE_EXT() {
+        return GL_COLOR_TABLE_BLUE_SIZE_EXT;
+    }
+    private static final int GL_COLOR_TABLE_ALPHA_SIZE_EXT = (int)32989L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_ALPHA_SIZE_EXT 32989
+     * }
+     */
+    public static int GL_COLOR_TABLE_ALPHA_SIZE_EXT() {
+        return GL_COLOR_TABLE_ALPHA_SIZE_EXT;
+    }
+    private static final int GL_COLOR_TABLE_LUMINANCE_SIZE_EXT = (int)32990L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_LUMINANCE_SIZE_EXT 32990
+     * }
+     */
+    public static int GL_COLOR_TABLE_LUMINANCE_SIZE_EXT() {
+        return GL_COLOR_TABLE_LUMINANCE_SIZE_EXT;
+    }
+    private static final int GL_COLOR_TABLE_INTENSITY_SIZE_EXT = (int)32991L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_INTENSITY_SIZE_EXT 32991
+     * }
+     */
+    public static int GL_COLOR_TABLE_INTENSITY_SIZE_EXT() {
+        return GL_COLOR_TABLE_INTENSITY_SIZE_EXT;
+    }
+    private static final int GL_COLOR_INDEX1_EXT = (int)32994L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_INDEX1_EXT 32994
+     * }
+     */
+    public static int GL_COLOR_INDEX1_EXT() {
+        return GL_COLOR_INDEX1_EXT;
+    }
+    private static final int GL_COLOR_INDEX2_EXT = (int)32995L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_INDEX2_EXT 32995
+     * }
+     */
+    public static int GL_COLOR_INDEX2_EXT() {
+        return GL_COLOR_INDEX2_EXT;
+    }
+    private static final int GL_COLOR_INDEX4_EXT = (int)32996L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_INDEX4_EXT 32996
+     * }
+     */
+    public static int GL_COLOR_INDEX4_EXT() {
+        return GL_COLOR_INDEX4_EXT;
+    }
+    private static final int GL_COLOR_INDEX8_EXT = (int)32997L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_INDEX8_EXT 32997
+     * }
+     */
+    public static int GL_COLOR_INDEX8_EXT() {
+        return GL_COLOR_INDEX8_EXT;
+    }
+    private static final int GL_COLOR_INDEX12_EXT = (int)32998L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_INDEX12_EXT 32998
+     * }
+     */
+    public static int GL_COLOR_INDEX12_EXT() {
+        return GL_COLOR_INDEX12_EXT;
+    }
+    private static final int GL_COLOR_INDEX16_EXT = (int)32999L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_INDEX16_EXT 32999
+     * }
+     */
+    public static int GL_COLOR_INDEX16_EXT() {
+        return GL_COLOR_INDEX16_EXT;
+    }
+    private static final int GL_MAX_ELEMENTS_VERTICES_WIN = (int)33000L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_ELEMENTS_VERTICES_WIN 33000
+     * }
+     */
+    public static int GL_MAX_ELEMENTS_VERTICES_WIN() {
+        return GL_MAX_ELEMENTS_VERTICES_WIN;
+    }
+    private static final int GL_MAX_ELEMENTS_INDICES_WIN = (int)33001L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_ELEMENTS_INDICES_WIN 33001
+     * }
+     */
+    public static int GL_MAX_ELEMENTS_INDICES_WIN() {
+        return GL_MAX_ELEMENTS_INDICES_WIN;
+    }
+    private static final int GL_PHONG_WIN = (int)33002L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PHONG_WIN 33002
+     * }
+     */
+    public static int GL_PHONG_WIN() {
+        return GL_PHONG_WIN;
+    }
+    private static final int GL_PHONG_HINT_WIN = (int)33003L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PHONG_HINT_WIN 33003
+     * }
+     */
+    public static int GL_PHONG_HINT_WIN() {
+        return GL_PHONG_HINT_WIN;
+    }
+    private static final int GL_FOG_SPECULAR_TEXTURE_WIN = (int)33004L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_SPECULAR_TEXTURE_WIN 33004
+     * }
+     */
+    public static int GL_FOG_SPECULAR_TEXTURE_WIN() {
+        return GL_FOG_SPECULAR_TEXTURE_WIN;
+    }
+    private static final int GLU_VERSION_1_1 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_VERSION_1_1 1
+     * }
+     */
+    public static int GLU_VERSION_1_1() {
+        return GLU_VERSION_1_1;
+    }
+    private static final int GLU_VERSION_1_2 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_VERSION_1_2 1
+     * }
+     */
+    public static int GLU_VERSION_1_2() {
+        return GLU_VERSION_1_2;
+    }
+    private static final int GLU_INVALID_ENUM = (int)100900L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_INVALID_ENUM 100900
+     * }
+     */
+    public static int GLU_INVALID_ENUM() {
+        return GLU_INVALID_ENUM;
+    }
+    private static final int GLU_INVALID_VALUE = (int)100901L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_INVALID_VALUE 100901
+     * }
+     */
+    public static int GLU_INVALID_VALUE() {
+        return GLU_INVALID_VALUE;
+    }
+    private static final int GLU_OUT_OF_MEMORY = (int)100902L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_OUT_OF_MEMORY 100902
+     * }
+     */
+    public static int GLU_OUT_OF_MEMORY() {
+        return GLU_OUT_OF_MEMORY;
+    }
+    private static final int GLU_INCOMPATIBLE_GL_VERSION = (int)100903L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_INCOMPATIBLE_GL_VERSION 100903
+     * }
+     */
+    public static int GLU_INCOMPATIBLE_GL_VERSION() {
+        return GLU_INCOMPATIBLE_GL_VERSION;
+    }
+    private static final int GLU_VERSION = (int)100800L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_VERSION 100800
+     * }
+     */
+    public static int GLU_VERSION() {
+        return GLU_VERSION;
+    }
+    private static final int GLU_EXTENSIONS = (int)100801L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_EXTENSIONS 100801
+     * }
+     */
+    public static int GLU_EXTENSIONS() {
+        return GLU_EXTENSIONS;
+    }
+    private static final int GLU_SMOOTH = (int)100000L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_SMOOTH 100000
+     * }
+     */
+    public static int GLU_SMOOTH() {
+        return GLU_SMOOTH;
+    }
+    private static final int GLU_FLAT = (int)100001L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_FLAT 100001
+     * }
+     */
+    public static int GLU_FLAT() {
+        return GLU_FLAT;
+    }
+    private static final int GLU_NONE = (int)100002L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NONE 100002
+     * }
+     */
+    public static int GLU_NONE() {
+        return GLU_NONE;
+    }
+    private static final int GLU_POINT = (int)100010L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_POINT 100010
+     * }
+     */
+    public static int GLU_POINT() {
+        return GLU_POINT;
+    }
+    private static final int GLU_LINE = (int)100011L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_LINE 100011
+     * }
+     */
+    public static int GLU_LINE() {
+        return GLU_LINE;
+    }
+    private static final int GLU_FILL = (int)100012L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_FILL 100012
+     * }
+     */
+    public static int GLU_FILL() {
+        return GLU_FILL;
+    }
+    private static final int GLU_SILHOUETTE = (int)100013L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_SILHOUETTE 100013
+     * }
+     */
+    public static int GLU_SILHOUETTE() {
+        return GLU_SILHOUETTE;
+    }
+    private static final int GLU_OUTSIDE = (int)100020L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_OUTSIDE 100020
+     * }
+     */
+    public static int GLU_OUTSIDE() {
+        return GLU_OUTSIDE;
+    }
+    private static final int GLU_INSIDE = (int)100021L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_INSIDE 100021
+     * }
+     */
+    public static int GLU_INSIDE() {
+        return GLU_INSIDE;
+    }
+    private static final int GLU_TESS_WINDING_RULE = (int)100140L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_WINDING_RULE 100140
+     * }
+     */
+    public static int GLU_TESS_WINDING_RULE() {
+        return GLU_TESS_WINDING_RULE;
+    }
+    private static final int GLU_TESS_BOUNDARY_ONLY = (int)100141L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_BOUNDARY_ONLY 100141
+     * }
+     */
+    public static int GLU_TESS_BOUNDARY_ONLY() {
+        return GLU_TESS_BOUNDARY_ONLY;
+    }
+    private static final int GLU_TESS_TOLERANCE = (int)100142L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_TOLERANCE 100142
+     * }
+     */
+    public static int GLU_TESS_TOLERANCE() {
+        return GLU_TESS_TOLERANCE;
+    }
+    private static final int GLU_TESS_WINDING_ODD = (int)100130L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_WINDING_ODD 100130
+     * }
+     */
+    public static int GLU_TESS_WINDING_ODD() {
+        return GLU_TESS_WINDING_ODD;
+    }
+    private static final int GLU_TESS_WINDING_NONZERO = (int)100131L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_WINDING_NONZERO 100131
+     * }
+     */
+    public static int GLU_TESS_WINDING_NONZERO() {
+        return GLU_TESS_WINDING_NONZERO;
+    }
+    private static final int GLU_TESS_WINDING_POSITIVE = (int)100132L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_WINDING_POSITIVE 100132
+     * }
+     */
+    public static int GLU_TESS_WINDING_POSITIVE() {
+        return GLU_TESS_WINDING_POSITIVE;
+    }
+    private static final int GLU_TESS_WINDING_NEGATIVE = (int)100133L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_WINDING_NEGATIVE 100133
+     * }
+     */
+    public static int GLU_TESS_WINDING_NEGATIVE() {
+        return GLU_TESS_WINDING_NEGATIVE;
+    }
+    private static final int GLU_TESS_WINDING_ABS_GEQ_TWO = (int)100134L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_WINDING_ABS_GEQ_TWO 100134
+     * }
+     */
+    public static int GLU_TESS_WINDING_ABS_GEQ_TWO() {
+        return GLU_TESS_WINDING_ABS_GEQ_TWO;
+    }
+    private static final int GLU_TESS_BEGIN = (int)100100L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_BEGIN 100100
+     * }
+     */
+    public static int GLU_TESS_BEGIN() {
+        return GLU_TESS_BEGIN;
+    }
+    private static final int GLU_TESS_VERTEX = (int)100101L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_VERTEX 100101
+     * }
+     */
+    public static int GLU_TESS_VERTEX() {
+        return GLU_TESS_VERTEX;
+    }
+    private static final int GLU_TESS_END = (int)100102L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_END 100102
+     * }
+     */
+    public static int GLU_TESS_END() {
+        return GLU_TESS_END;
+    }
+    private static final int GLU_TESS_ERROR = (int)100103L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR 100103
+     * }
+     */
+    public static int GLU_TESS_ERROR() {
+        return GLU_TESS_ERROR;
+    }
+    private static final int GLU_TESS_EDGE_FLAG = (int)100104L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_EDGE_FLAG 100104
+     * }
+     */
+    public static int GLU_TESS_EDGE_FLAG() {
+        return GLU_TESS_EDGE_FLAG;
+    }
+    private static final int GLU_TESS_COMBINE = (int)100105L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_COMBINE 100105
+     * }
+     */
+    public static int GLU_TESS_COMBINE() {
+        return GLU_TESS_COMBINE;
+    }
+    private static final int GLU_TESS_BEGIN_DATA = (int)100106L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_BEGIN_DATA 100106
+     * }
+     */
+    public static int GLU_TESS_BEGIN_DATA() {
+        return GLU_TESS_BEGIN_DATA;
+    }
+    private static final int GLU_TESS_VERTEX_DATA = (int)100107L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_VERTEX_DATA 100107
+     * }
+     */
+    public static int GLU_TESS_VERTEX_DATA() {
+        return GLU_TESS_VERTEX_DATA;
+    }
+    private static final int GLU_TESS_END_DATA = (int)100108L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_END_DATA 100108
+     * }
+     */
+    public static int GLU_TESS_END_DATA() {
+        return GLU_TESS_END_DATA;
+    }
+    private static final int GLU_TESS_ERROR_DATA = (int)100109L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR_DATA 100109
+     * }
+     */
+    public static int GLU_TESS_ERROR_DATA() {
+        return GLU_TESS_ERROR_DATA;
+    }
+    private static final int GLU_TESS_EDGE_FLAG_DATA = (int)100110L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_EDGE_FLAG_DATA 100110
+     * }
+     */
+    public static int GLU_TESS_EDGE_FLAG_DATA() {
+        return GLU_TESS_EDGE_FLAG_DATA;
+    }
+    private static final int GLU_TESS_COMBINE_DATA = (int)100111L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_COMBINE_DATA 100111
+     * }
+     */
+    public static int GLU_TESS_COMBINE_DATA() {
+        return GLU_TESS_COMBINE_DATA;
+    }
+    private static final int GLU_TESS_ERROR1 = (int)100151L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR1 100151
+     * }
+     */
+    public static int GLU_TESS_ERROR1() {
+        return GLU_TESS_ERROR1;
+    }
+    private static final int GLU_TESS_ERROR2 = (int)100152L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR2 100152
+     * }
+     */
+    public static int GLU_TESS_ERROR2() {
+        return GLU_TESS_ERROR2;
+    }
+    private static final int GLU_TESS_ERROR3 = (int)100153L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR3 100153
+     * }
+     */
+    public static int GLU_TESS_ERROR3() {
+        return GLU_TESS_ERROR3;
+    }
+    private static final int GLU_TESS_ERROR4 = (int)100154L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR4 100154
+     * }
+     */
+    public static int GLU_TESS_ERROR4() {
+        return GLU_TESS_ERROR4;
+    }
+    private static final int GLU_TESS_ERROR5 = (int)100155L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR5 100155
+     * }
+     */
+    public static int GLU_TESS_ERROR5() {
+        return GLU_TESS_ERROR5;
+    }
+    private static final int GLU_TESS_ERROR6 = (int)100156L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR6 100156
+     * }
+     */
+    public static int GLU_TESS_ERROR6() {
+        return GLU_TESS_ERROR6;
+    }
+    private static final int GLU_TESS_ERROR7 = (int)100157L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR7 100157
+     * }
+     */
+    public static int GLU_TESS_ERROR7() {
+        return GLU_TESS_ERROR7;
+    }
+    private static final int GLU_TESS_ERROR8 = (int)100158L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR8 100158
+     * }
+     */
+    public static int GLU_TESS_ERROR8() {
+        return GLU_TESS_ERROR8;
+    }
+    private static final int GLU_AUTO_LOAD_MATRIX = (int)100200L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_AUTO_LOAD_MATRIX 100200
+     * }
+     */
+    public static int GLU_AUTO_LOAD_MATRIX() {
+        return GLU_AUTO_LOAD_MATRIX;
+    }
+    private static final int GLU_CULLING = (int)100201L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_CULLING 100201
+     * }
+     */
+    public static int GLU_CULLING() {
+        return GLU_CULLING;
+    }
+    private static final int GLU_SAMPLING_TOLERANCE = (int)100203L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_SAMPLING_TOLERANCE 100203
+     * }
+     */
+    public static int GLU_SAMPLING_TOLERANCE() {
+        return GLU_SAMPLING_TOLERANCE;
+    }
+    private static final int GLU_DISPLAY_MODE = (int)100204L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_DISPLAY_MODE 100204
+     * }
+     */
+    public static int GLU_DISPLAY_MODE() {
+        return GLU_DISPLAY_MODE;
+    }
+    private static final int GLU_PARAMETRIC_TOLERANCE = (int)100202L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_PARAMETRIC_TOLERANCE 100202
+     * }
+     */
+    public static int GLU_PARAMETRIC_TOLERANCE() {
+        return GLU_PARAMETRIC_TOLERANCE;
+    }
+    private static final int GLU_SAMPLING_METHOD = (int)100205L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_SAMPLING_METHOD 100205
+     * }
+     */
+    public static int GLU_SAMPLING_METHOD() {
+        return GLU_SAMPLING_METHOD;
+    }
+    private static final int GLU_U_STEP = (int)100206L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_U_STEP 100206
+     * }
+     */
+    public static int GLU_U_STEP() {
+        return GLU_U_STEP;
+    }
+    private static final int GLU_V_STEP = (int)100207L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_V_STEP 100207
+     * }
+     */
+    public static int GLU_V_STEP() {
+        return GLU_V_STEP;
+    }
+    private static final int GLU_PATH_LENGTH = (int)100215L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_PATH_LENGTH 100215
+     * }
+     */
+    public static int GLU_PATH_LENGTH() {
+        return GLU_PATH_LENGTH;
+    }
+    private static final int GLU_PARAMETRIC_ERROR = (int)100216L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_PARAMETRIC_ERROR 100216
+     * }
+     */
+    public static int GLU_PARAMETRIC_ERROR() {
+        return GLU_PARAMETRIC_ERROR;
+    }
+    private static final int GLU_DOMAIN_DISTANCE = (int)100217L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_DOMAIN_DISTANCE 100217
+     * }
+     */
+    public static int GLU_DOMAIN_DISTANCE() {
+        return GLU_DOMAIN_DISTANCE;
+    }
+    private static final int GLU_MAP1_TRIM_2 = (int)100210L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_MAP1_TRIM_2 100210
+     * }
+     */
+    public static int GLU_MAP1_TRIM_2() {
+        return GLU_MAP1_TRIM_2;
+    }
+    private static final int GLU_MAP1_TRIM_3 = (int)100211L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_MAP1_TRIM_3 100211
+     * }
+     */
+    public static int GLU_MAP1_TRIM_3() {
+        return GLU_MAP1_TRIM_3;
+    }
+    private static final int GLU_OUTLINE_POLYGON = (int)100240L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_OUTLINE_POLYGON 100240
+     * }
+     */
+    public static int GLU_OUTLINE_POLYGON() {
+        return GLU_OUTLINE_POLYGON;
+    }
+    private static final int GLU_OUTLINE_PATCH = (int)100241L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_OUTLINE_PATCH 100241
+     * }
+     */
+    public static int GLU_OUTLINE_PATCH() {
+        return GLU_OUTLINE_PATCH;
+    }
+    private static final int GLU_NURBS_ERROR1 = (int)100251L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR1 100251
+     * }
+     */
+    public static int GLU_NURBS_ERROR1() {
+        return GLU_NURBS_ERROR1;
+    }
+    private static final int GLU_NURBS_ERROR2 = (int)100252L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR2 100252
+     * }
+     */
+    public static int GLU_NURBS_ERROR2() {
+        return GLU_NURBS_ERROR2;
+    }
+    private static final int GLU_NURBS_ERROR3 = (int)100253L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR3 100253
+     * }
+     */
+    public static int GLU_NURBS_ERROR3() {
+        return GLU_NURBS_ERROR3;
+    }
+    private static final int GLU_NURBS_ERROR4 = (int)100254L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR4 100254
+     * }
+     */
+    public static int GLU_NURBS_ERROR4() {
+        return GLU_NURBS_ERROR4;
+    }
+    private static final int GLU_NURBS_ERROR5 = (int)100255L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR5 100255
+     * }
+     */
+    public static int GLU_NURBS_ERROR5() {
+        return GLU_NURBS_ERROR5;
+    }
+    private static final int GLU_NURBS_ERROR6 = (int)100256L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR6 100256
+     * }
+     */
+    public static int GLU_NURBS_ERROR6() {
+        return GLU_NURBS_ERROR6;
+    }
+    private static final int GLU_NURBS_ERROR7 = (int)100257L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR7 100257
+     * }
+     */
+    public static int GLU_NURBS_ERROR7() {
+        return GLU_NURBS_ERROR7;
+    }
+    private static final int GLU_NURBS_ERROR8 = (int)100258L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR8 100258
+     * }
+     */
+    public static int GLU_NURBS_ERROR8() {
+        return GLU_NURBS_ERROR8;
+    }
+    private static final int GLU_NURBS_ERROR9 = (int)100259L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR9 100259
+     * }
+     */
+    public static int GLU_NURBS_ERROR9() {
+        return GLU_NURBS_ERROR9;
+    }
+    private static final int GLU_NURBS_ERROR10 = (int)100260L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR10 100260
+     * }
+     */
+    public static int GLU_NURBS_ERROR10() {
+        return GLU_NURBS_ERROR10;
+    }
+    private static final int GLU_NURBS_ERROR11 = (int)100261L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR11 100261
+     * }
+     */
+    public static int GLU_NURBS_ERROR11() {
+        return GLU_NURBS_ERROR11;
+    }
+    private static final int GLU_NURBS_ERROR12 = (int)100262L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR12 100262
+     * }
+     */
+    public static int GLU_NURBS_ERROR12() {
+        return GLU_NURBS_ERROR12;
+    }
+    private static final int GLU_NURBS_ERROR13 = (int)100263L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR13 100263
+     * }
+     */
+    public static int GLU_NURBS_ERROR13() {
+        return GLU_NURBS_ERROR13;
+    }
+    private static final int GLU_NURBS_ERROR14 = (int)100264L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR14 100264
+     * }
+     */
+    public static int GLU_NURBS_ERROR14() {
+        return GLU_NURBS_ERROR14;
+    }
+    private static final int GLU_NURBS_ERROR15 = (int)100265L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR15 100265
+     * }
+     */
+    public static int GLU_NURBS_ERROR15() {
+        return GLU_NURBS_ERROR15;
+    }
+    private static final int GLU_NURBS_ERROR16 = (int)100266L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR16 100266
+     * }
+     */
+    public static int GLU_NURBS_ERROR16() {
+        return GLU_NURBS_ERROR16;
+    }
+    private static final int GLU_NURBS_ERROR17 = (int)100267L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR17 100267
+     * }
+     */
+    public static int GLU_NURBS_ERROR17() {
+        return GLU_NURBS_ERROR17;
+    }
+    private static final int GLU_NURBS_ERROR18 = (int)100268L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR18 100268
+     * }
+     */
+    public static int GLU_NURBS_ERROR18() {
+        return GLU_NURBS_ERROR18;
+    }
+    private static final int GLU_NURBS_ERROR19 = (int)100269L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR19 100269
+     * }
+     */
+    public static int GLU_NURBS_ERROR19() {
+        return GLU_NURBS_ERROR19;
+    }
+    private static final int GLU_NURBS_ERROR20 = (int)100270L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR20 100270
+     * }
+     */
+    public static int GLU_NURBS_ERROR20() {
+        return GLU_NURBS_ERROR20;
+    }
+    private static final int GLU_NURBS_ERROR21 = (int)100271L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR21 100271
+     * }
+     */
+    public static int GLU_NURBS_ERROR21() {
+        return GLU_NURBS_ERROR21;
+    }
+    private static final int GLU_NURBS_ERROR22 = (int)100272L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR22 100272
+     * }
+     */
+    public static int GLU_NURBS_ERROR22() {
+        return GLU_NURBS_ERROR22;
+    }
+    private static final int GLU_NURBS_ERROR23 = (int)100273L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR23 100273
+     * }
+     */
+    public static int GLU_NURBS_ERROR23() {
+        return GLU_NURBS_ERROR23;
+    }
+    private static final int GLU_NURBS_ERROR24 = (int)100274L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR24 100274
+     * }
+     */
+    public static int GLU_NURBS_ERROR24() {
+        return GLU_NURBS_ERROR24;
+    }
+    private static final int GLU_NURBS_ERROR25 = (int)100275L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR25 100275
+     * }
+     */
+    public static int GLU_NURBS_ERROR25() {
+        return GLU_NURBS_ERROR25;
+    }
+    private static final int GLU_NURBS_ERROR26 = (int)100276L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR26 100276
+     * }
+     */
+    public static int GLU_NURBS_ERROR26() {
+        return GLU_NURBS_ERROR26;
+    }
+    private static final int GLU_NURBS_ERROR27 = (int)100277L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR27 100277
+     * }
+     */
+    public static int GLU_NURBS_ERROR27() {
+        return GLU_NURBS_ERROR27;
+    }
+    private static final int GLU_NURBS_ERROR28 = (int)100278L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR28 100278
+     * }
+     */
+    public static int GLU_NURBS_ERROR28() {
+        return GLU_NURBS_ERROR28;
+    }
+    private static final int GLU_NURBS_ERROR29 = (int)100279L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR29 100279
+     * }
+     */
+    public static int GLU_NURBS_ERROR29() {
+        return GLU_NURBS_ERROR29;
+    }
+    private static final int GLU_NURBS_ERROR30 = (int)100280L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR30 100280
+     * }
+     */
+    public static int GLU_NURBS_ERROR30() {
+        return GLU_NURBS_ERROR30;
+    }
+    private static final int GLU_NURBS_ERROR31 = (int)100281L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR31 100281
+     * }
+     */
+    public static int GLU_NURBS_ERROR31() {
+        return GLU_NURBS_ERROR31;
+    }
+    private static final int GLU_NURBS_ERROR32 = (int)100282L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR32 100282
+     * }
+     */
+    public static int GLU_NURBS_ERROR32() {
+        return GLU_NURBS_ERROR32;
+    }
+    private static final int GLU_NURBS_ERROR33 = (int)100283L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR33 100283
+     * }
+     */
+    public static int GLU_NURBS_ERROR33() {
+        return GLU_NURBS_ERROR33;
+    }
+    private static final int GLU_NURBS_ERROR34 = (int)100284L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR34 100284
+     * }
+     */
+    public static int GLU_NURBS_ERROR34() {
+        return GLU_NURBS_ERROR34;
+    }
+    private static final int GLU_NURBS_ERROR35 = (int)100285L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR35 100285
+     * }
+     */
+    public static int GLU_NURBS_ERROR35() {
+        return GLU_NURBS_ERROR35;
+    }
+    private static final int GLU_NURBS_ERROR36 = (int)100286L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR36 100286
+     * }
+     */
+    public static int GLU_NURBS_ERROR36() {
+        return GLU_NURBS_ERROR36;
+    }
+    private static final int GLU_NURBS_ERROR37 = (int)100287L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR37 100287
+     * }
+     */
+    public static int GLU_NURBS_ERROR37() {
+        return GLU_NURBS_ERROR37;
+    }
+    private static final int GLU_CW = (int)100120L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_CW 100120
+     * }
+     */
+    public static int GLU_CW() {
+        return GLU_CW;
+    }
+    private static final int GLU_CCW = (int)100121L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_CCW 100121
+     * }
+     */
+    public static int GLU_CCW() {
+        return GLU_CCW;
+    }
+    private static final int GLU_INTERIOR = (int)100122L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_INTERIOR 100122
+     * }
+     */
+    public static int GLU_INTERIOR() {
+        return GLU_INTERIOR;
+    }
+    private static final int GLU_EXTERIOR = (int)100123L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_EXTERIOR 100123
+     * }
+     */
+    public static int GLU_EXTERIOR() {
+        return GLU_EXTERIOR;
+    }
+    private static final int GLU_UNKNOWN = (int)100124L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_UNKNOWN 100124
+     * }
+     */
+    public static int GLU_UNKNOWN() {
+        return GLU_UNKNOWN;
+    }
+    private static final int GLUT_KEY_F1 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_F1 1
+     * }
+     */
+    public static int GLUT_KEY_F1() {
+        return GLUT_KEY_F1;
+    }
+    private static final int GLUT_KEY_F2 = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_F2 2
+     * }
+     */
+    public static int GLUT_KEY_F2() {
+        return GLUT_KEY_F2;
+    }
+    private static final int GLUT_KEY_F3 = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_F3 3
+     * }
+     */
+    public static int GLUT_KEY_F3() {
+        return GLUT_KEY_F3;
+    }
+    private static final int GLUT_KEY_F4 = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_F4 4
+     * }
+     */
+    public static int GLUT_KEY_F4() {
+        return GLUT_KEY_F4;
+    }
+    private static final int GLUT_KEY_F5 = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_F5 5
+     * }
+     */
+    public static int GLUT_KEY_F5() {
+        return GLUT_KEY_F5;
+    }
+    private static final int GLUT_KEY_F6 = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_F6 6
+     * }
+     */
+    public static int GLUT_KEY_F6() {
+        return GLUT_KEY_F6;
+    }
+    private static final int GLUT_KEY_F7 = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_F7 7
+     * }
+     */
+    public static int GLUT_KEY_F7() {
+        return GLUT_KEY_F7;
+    }
+    private static final int GLUT_KEY_F8 = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_F8 8
+     * }
+     */
+    public static int GLUT_KEY_F8() {
+        return GLUT_KEY_F8;
+    }
+    private static final int GLUT_KEY_F9 = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_F9 9
+     * }
+     */
+    public static int GLUT_KEY_F9() {
+        return GLUT_KEY_F9;
+    }
+    private static final int GLUT_KEY_F10 = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_F10 10
+     * }
+     */
+    public static int GLUT_KEY_F10() {
+        return GLUT_KEY_F10;
+    }
+    private static final int GLUT_KEY_F11 = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_F11 11
+     * }
+     */
+    public static int GLUT_KEY_F11() {
+        return GLUT_KEY_F11;
+    }
+    private static final int GLUT_KEY_F12 = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_F12 12
+     * }
+     */
+    public static int GLUT_KEY_F12() {
+        return GLUT_KEY_F12;
+    }
+    private static final int GLUT_KEY_LEFT = (int)100L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_LEFT 100
+     * }
+     */
+    public static int GLUT_KEY_LEFT() {
+        return GLUT_KEY_LEFT;
+    }
+    private static final int GLUT_KEY_UP = (int)101L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_UP 101
+     * }
+     */
+    public static int GLUT_KEY_UP() {
+        return GLUT_KEY_UP;
+    }
+    private static final int GLUT_KEY_RIGHT = (int)102L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_RIGHT 102
+     * }
+     */
+    public static int GLUT_KEY_RIGHT() {
+        return GLUT_KEY_RIGHT;
+    }
+    private static final int GLUT_KEY_DOWN = (int)103L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_DOWN 103
+     * }
+     */
+    public static int GLUT_KEY_DOWN() {
+        return GLUT_KEY_DOWN;
+    }
+    private static final int GLUT_KEY_PAGE_UP = (int)104L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_PAGE_UP 104
+     * }
+     */
+    public static int GLUT_KEY_PAGE_UP() {
+        return GLUT_KEY_PAGE_UP;
+    }
+    private static final int GLUT_KEY_PAGE_DOWN = (int)105L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_PAGE_DOWN 105
+     * }
+     */
+    public static int GLUT_KEY_PAGE_DOWN() {
+        return GLUT_KEY_PAGE_DOWN;
+    }
+    private static final int GLUT_KEY_HOME = (int)106L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_HOME 106
+     * }
+     */
+    public static int GLUT_KEY_HOME() {
+        return GLUT_KEY_HOME;
+    }
+    private static final int GLUT_KEY_END = (int)107L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_END 107
+     * }
+     */
+    public static int GLUT_KEY_END() {
+        return GLUT_KEY_END;
+    }
+    private static final int GLUT_KEY_INSERT = (int)108L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_INSERT 108
+     * }
+     */
+    public static int GLUT_KEY_INSERT() {
+        return GLUT_KEY_INSERT;
+    }
+    private static final int GLUT_LEFT_BUTTON = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_LEFT_BUTTON 0
+     * }
+     */
+    public static int GLUT_LEFT_BUTTON() {
+        return GLUT_LEFT_BUTTON;
+    }
+    private static final int GLUT_MIDDLE_BUTTON = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_MIDDLE_BUTTON 1
+     * }
+     */
+    public static int GLUT_MIDDLE_BUTTON() {
+        return GLUT_MIDDLE_BUTTON;
+    }
+    private static final int GLUT_RIGHT_BUTTON = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_RIGHT_BUTTON 2
+     * }
+     */
+    public static int GLUT_RIGHT_BUTTON() {
+        return GLUT_RIGHT_BUTTON;
+    }
+    private static final int GLUT_DOWN = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_DOWN 0
+     * }
+     */
+    public static int GLUT_DOWN() {
+        return GLUT_DOWN;
+    }
+    private static final int GLUT_UP = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_UP 1
+     * }
+     */
+    public static int GLUT_UP() {
+        return GLUT_UP;
+    }
+    private static final int GLUT_LEFT = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_LEFT 0
+     * }
+     */
+    public static int GLUT_LEFT() {
+        return GLUT_LEFT;
+    }
+    private static final int GLUT_ENTERED = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_ENTERED 1
+     * }
+     */
+    public static int GLUT_ENTERED() {
+        return GLUT_ENTERED;
+    }
+    private static final int GLUT_RGB = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_RGB 0
+     * }
+     */
+    public static int GLUT_RGB() {
+        return GLUT_RGB;
+    }
+    private static final int GLUT_RGBA = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_RGBA 0
+     * }
+     */
+    public static int GLUT_RGBA() {
+        return GLUT_RGBA;
+    }
+    private static final int GLUT_INDEX = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_INDEX 1
+     * }
+     */
+    public static int GLUT_INDEX() {
+        return GLUT_INDEX;
+    }
+    private static final int GLUT_SINGLE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_SINGLE 0
+     * }
+     */
+    public static int GLUT_SINGLE() {
+        return GLUT_SINGLE;
+    }
+    private static final int GLUT_DOUBLE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_DOUBLE 2
+     * }
+     */
+    public static int GLUT_DOUBLE() {
+        return GLUT_DOUBLE;
+    }
+    private static final int GLUT_ACCUM = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_ACCUM 4
+     * }
+     */
+    public static int GLUT_ACCUM() {
+        return GLUT_ACCUM;
+    }
+    private static final int GLUT_ALPHA = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_ALPHA 8
+     * }
+     */
+    public static int GLUT_ALPHA() {
+        return GLUT_ALPHA;
+    }
+    private static final int GLUT_DEPTH = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_DEPTH 16
+     * }
+     */
+    public static int GLUT_DEPTH() {
+        return GLUT_DEPTH;
+    }
+    private static final int GLUT_STENCIL = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_STENCIL 32
+     * }
+     */
+    public static int GLUT_STENCIL() {
+        return GLUT_STENCIL;
+    }
+    private static final int GLUT_MULTISAMPLE = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_MULTISAMPLE 128
+     * }
+     */
+    public static int GLUT_MULTISAMPLE() {
+        return GLUT_MULTISAMPLE;
+    }
+    private static final int GLUT_STEREO = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_STEREO 256
+     * }
+     */
+    public static int GLUT_STEREO() {
+        return GLUT_STEREO;
+    }
+    private static final int GLUT_LUMINANCE = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_LUMINANCE 512
+     * }
+     */
+    public static int GLUT_LUMINANCE() {
+        return GLUT_LUMINANCE;
+    }
+    private static final int GLUT_MENU_NOT_IN_USE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_MENU_NOT_IN_USE 0
+     * }
+     */
+    public static int GLUT_MENU_NOT_IN_USE() {
+        return GLUT_MENU_NOT_IN_USE;
+    }
+    private static final int GLUT_MENU_IN_USE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_MENU_IN_USE 1
+     * }
+     */
+    public static int GLUT_MENU_IN_USE() {
+        return GLUT_MENU_IN_USE;
+    }
+    private static final int GLUT_NOT_VISIBLE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_NOT_VISIBLE 0
+     * }
+     */
+    public static int GLUT_NOT_VISIBLE() {
+        return GLUT_NOT_VISIBLE;
+    }
+    private static final int GLUT_VISIBLE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_VISIBLE 1
+     * }
+     */
+    public static int GLUT_VISIBLE() {
+        return GLUT_VISIBLE;
+    }
+    private static final int GLUT_HIDDEN = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_HIDDEN 0
+     * }
+     */
+    public static int GLUT_HIDDEN() {
+        return GLUT_HIDDEN;
+    }
+    private static final int GLUT_FULLY_RETAINED = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_FULLY_RETAINED 1
+     * }
+     */
+    public static int GLUT_FULLY_RETAINED() {
+        return GLUT_FULLY_RETAINED;
+    }
+    private static final int GLUT_PARTIALLY_RETAINED = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_PARTIALLY_RETAINED 2
+     * }
+     */
+    public static int GLUT_PARTIALLY_RETAINED() {
+        return GLUT_PARTIALLY_RETAINED;
+    }
+    private static final int GLUT_FULLY_COVERED = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_FULLY_COVERED 3
+     * }
+     */
+    public static int GLUT_FULLY_COVERED() {
+        return GLUT_FULLY_COVERED;
+    }
+    private static final int GLUT_WINDOW_X = (int)100L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_X 100
+     * }
+     */
+    public static int GLUT_WINDOW_X() {
+        return GLUT_WINDOW_X;
+    }
+    private static final int GLUT_WINDOW_Y = (int)101L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_Y 101
+     * }
+     */
+    public static int GLUT_WINDOW_Y() {
+        return GLUT_WINDOW_Y;
+    }
+    private static final int GLUT_WINDOW_WIDTH = (int)102L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_WIDTH 102
+     * }
+     */
+    public static int GLUT_WINDOW_WIDTH() {
+        return GLUT_WINDOW_WIDTH;
+    }
+    private static final int GLUT_WINDOW_HEIGHT = (int)103L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_HEIGHT 103
+     * }
+     */
+    public static int GLUT_WINDOW_HEIGHT() {
+        return GLUT_WINDOW_HEIGHT;
+    }
+    private static final int GLUT_WINDOW_BUFFER_SIZE = (int)104L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_BUFFER_SIZE 104
+     * }
+     */
+    public static int GLUT_WINDOW_BUFFER_SIZE() {
+        return GLUT_WINDOW_BUFFER_SIZE;
+    }
+    private static final int GLUT_WINDOW_STENCIL_SIZE = (int)105L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_STENCIL_SIZE 105
+     * }
+     */
+    public static int GLUT_WINDOW_STENCIL_SIZE() {
+        return GLUT_WINDOW_STENCIL_SIZE;
+    }
+    private static final int GLUT_WINDOW_DEPTH_SIZE = (int)106L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_DEPTH_SIZE 106
+     * }
+     */
+    public static int GLUT_WINDOW_DEPTH_SIZE() {
+        return GLUT_WINDOW_DEPTH_SIZE;
+    }
+    private static final int GLUT_WINDOW_RED_SIZE = (int)107L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_RED_SIZE 107
+     * }
+     */
+    public static int GLUT_WINDOW_RED_SIZE() {
+        return GLUT_WINDOW_RED_SIZE;
+    }
+    private static final int GLUT_WINDOW_GREEN_SIZE = (int)108L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_GREEN_SIZE 108
+     * }
+     */
+    public static int GLUT_WINDOW_GREEN_SIZE() {
+        return GLUT_WINDOW_GREEN_SIZE;
+    }
+    private static final int GLUT_WINDOW_BLUE_SIZE = (int)109L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_BLUE_SIZE 109
+     * }
+     */
+    public static int GLUT_WINDOW_BLUE_SIZE() {
+        return GLUT_WINDOW_BLUE_SIZE;
+    }
+    private static final int GLUT_WINDOW_ALPHA_SIZE = (int)110L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_ALPHA_SIZE 110
+     * }
+     */
+    public static int GLUT_WINDOW_ALPHA_SIZE() {
+        return GLUT_WINDOW_ALPHA_SIZE;
+    }
+    private static final int GLUT_WINDOW_ACCUM_RED_SIZE = (int)111L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_ACCUM_RED_SIZE 111
+     * }
+     */
+    public static int GLUT_WINDOW_ACCUM_RED_SIZE() {
+        return GLUT_WINDOW_ACCUM_RED_SIZE;
+    }
+    private static final int GLUT_WINDOW_ACCUM_GREEN_SIZE = (int)112L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_ACCUM_GREEN_SIZE 112
+     * }
+     */
+    public static int GLUT_WINDOW_ACCUM_GREEN_SIZE() {
+        return GLUT_WINDOW_ACCUM_GREEN_SIZE;
+    }
+    private static final int GLUT_WINDOW_ACCUM_BLUE_SIZE = (int)113L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_ACCUM_BLUE_SIZE 113
+     * }
+     */
+    public static int GLUT_WINDOW_ACCUM_BLUE_SIZE() {
+        return GLUT_WINDOW_ACCUM_BLUE_SIZE;
+    }
+    private static final int GLUT_WINDOW_ACCUM_ALPHA_SIZE = (int)114L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_ACCUM_ALPHA_SIZE 114
+     * }
+     */
+    public static int GLUT_WINDOW_ACCUM_ALPHA_SIZE() {
+        return GLUT_WINDOW_ACCUM_ALPHA_SIZE;
+    }
+    private static final int GLUT_WINDOW_DOUBLEBUFFER = (int)115L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_DOUBLEBUFFER 115
+     * }
+     */
+    public static int GLUT_WINDOW_DOUBLEBUFFER() {
+        return GLUT_WINDOW_DOUBLEBUFFER;
+    }
+    private static final int GLUT_WINDOW_RGBA = (int)116L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_RGBA 116
+     * }
+     */
+    public static int GLUT_WINDOW_RGBA() {
+        return GLUT_WINDOW_RGBA;
+    }
+    private static final int GLUT_WINDOW_PARENT = (int)117L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_PARENT 117
+     * }
+     */
+    public static int GLUT_WINDOW_PARENT() {
+        return GLUT_WINDOW_PARENT;
+    }
+    private static final int GLUT_WINDOW_NUM_CHILDREN = (int)118L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_NUM_CHILDREN 118
+     * }
+     */
+    public static int GLUT_WINDOW_NUM_CHILDREN() {
+        return GLUT_WINDOW_NUM_CHILDREN;
+    }
+    private static final int GLUT_WINDOW_COLORMAP_SIZE = (int)119L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_COLORMAP_SIZE 119
+     * }
+     */
+    public static int GLUT_WINDOW_COLORMAP_SIZE() {
+        return GLUT_WINDOW_COLORMAP_SIZE;
+    }
+    private static final int GLUT_WINDOW_NUM_SAMPLES = (int)120L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_NUM_SAMPLES 120
+     * }
+     */
+    public static int GLUT_WINDOW_NUM_SAMPLES() {
+        return GLUT_WINDOW_NUM_SAMPLES;
+    }
+    private static final int GLUT_WINDOW_STEREO = (int)121L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_STEREO 121
+     * }
+     */
+    public static int GLUT_WINDOW_STEREO() {
+        return GLUT_WINDOW_STEREO;
+    }
+    private static final int GLUT_WINDOW_CURSOR = (int)122L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_CURSOR 122
+     * }
+     */
+    public static int GLUT_WINDOW_CURSOR() {
+        return GLUT_WINDOW_CURSOR;
+    }
+    private static final int GLUT_SCREEN_WIDTH = (int)200L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_SCREEN_WIDTH 200
+     * }
+     */
+    public static int GLUT_SCREEN_WIDTH() {
+        return GLUT_SCREEN_WIDTH;
+    }
+    private static final int GLUT_SCREEN_HEIGHT = (int)201L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_SCREEN_HEIGHT 201
+     * }
+     */
+    public static int GLUT_SCREEN_HEIGHT() {
+        return GLUT_SCREEN_HEIGHT;
+    }
+    private static final int GLUT_SCREEN_WIDTH_MM = (int)202L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_SCREEN_WIDTH_MM 202
+     * }
+     */
+    public static int GLUT_SCREEN_WIDTH_MM() {
+        return GLUT_SCREEN_WIDTH_MM;
+    }
+    private static final int GLUT_SCREEN_HEIGHT_MM = (int)203L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_SCREEN_HEIGHT_MM 203
+     * }
+     */
+    public static int GLUT_SCREEN_HEIGHT_MM() {
+        return GLUT_SCREEN_HEIGHT_MM;
+    }
+    private static final int GLUT_MENU_NUM_ITEMS = (int)300L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_MENU_NUM_ITEMS 300
+     * }
+     */
+    public static int GLUT_MENU_NUM_ITEMS() {
+        return GLUT_MENU_NUM_ITEMS;
+    }
+    private static final int GLUT_DISPLAY_MODE_POSSIBLE = (int)400L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_DISPLAY_MODE_POSSIBLE 400
+     * }
+     */
+    public static int GLUT_DISPLAY_MODE_POSSIBLE() {
+        return GLUT_DISPLAY_MODE_POSSIBLE;
+    }
+    private static final int GLUT_INIT_WINDOW_X = (int)500L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_INIT_WINDOW_X 500
+     * }
+     */
+    public static int GLUT_INIT_WINDOW_X() {
+        return GLUT_INIT_WINDOW_X;
+    }
+    private static final int GLUT_INIT_WINDOW_Y = (int)501L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_INIT_WINDOW_Y 501
+     * }
+     */
+    public static int GLUT_INIT_WINDOW_Y() {
+        return GLUT_INIT_WINDOW_Y;
+    }
+    private static final int GLUT_INIT_WINDOW_WIDTH = (int)502L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_INIT_WINDOW_WIDTH 502
+     * }
+     */
+    public static int GLUT_INIT_WINDOW_WIDTH() {
+        return GLUT_INIT_WINDOW_WIDTH;
+    }
+    private static final int GLUT_INIT_WINDOW_HEIGHT = (int)503L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_INIT_WINDOW_HEIGHT 503
+     * }
+     */
+    public static int GLUT_INIT_WINDOW_HEIGHT() {
+        return GLUT_INIT_WINDOW_HEIGHT;
+    }
+    private static final int GLUT_INIT_DISPLAY_MODE = (int)504L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_INIT_DISPLAY_MODE 504
+     * }
+     */
+    public static int GLUT_INIT_DISPLAY_MODE() {
+        return GLUT_INIT_DISPLAY_MODE;
+    }
+    private static final int GLUT_ELAPSED_TIME = (int)700L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_ELAPSED_TIME 700
+     * }
+     */
+    public static int GLUT_ELAPSED_TIME() {
+        return GLUT_ELAPSED_TIME;
+    }
+    private static final int GLUT_WINDOW_FORMAT_ID = (int)123L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_FORMAT_ID 123
+     * }
+     */
+    public static int GLUT_WINDOW_FORMAT_ID() {
+        return GLUT_WINDOW_FORMAT_ID;
+    }
+    private static final int GLUT_HAS_KEYBOARD = (int)600L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_HAS_KEYBOARD 600
+     * }
+     */
+    public static int GLUT_HAS_KEYBOARD() {
+        return GLUT_HAS_KEYBOARD;
+    }
+    private static final int GLUT_HAS_MOUSE = (int)601L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_HAS_MOUSE 601
+     * }
+     */
+    public static int GLUT_HAS_MOUSE() {
+        return GLUT_HAS_MOUSE;
+    }
+    private static final int GLUT_HAS_SPACEBALL = (int)602L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_HAS_SPACEBALL 602
+     * }
+     */
+    public static int GLUT_HAS_SPACEBALL() {
+        return GLUT_HAS_SPACEBALL;
+    }
+    private static final int GLUT_HAS_DIAL_AND_BUTTON_BOX = (int)603L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_HAS_DIAL_AND_BUTTON_BOX 603
+     * }
+     */
+    public static int GLUT_HAS_DIAL_AND_BUTTON_BOX() {
+        return GLUT_HAS_DIAL_AND_BUTTON_BOX;
+    }
+    private static final int GLUT_HAS_TABLET = (int)604L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_HAS_TABLET 604
+     * }
+     */
+    public static int GLUT_HAS_TABLET() {
+        return GLUT_HAS_TABLET;
+    }
+    private static final int GLUT_NUM_MOUSE_BUTTONS = (int)605L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_NUM_MOUSE_BUTTONS 605
+     * }
+     */
+    public static int GLUT_NUM_MOUSE_BUTTONS() {
+        return GLUT_NUM_MOUSE_BUTTONS;
+    }
+    private static final int GLUT_NUM_SPACEBALL_BUTTONS = (int)606L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_NUM_SPACEBALL_BUTTONS 606
+     * }
+     */
+    public static int GLUT_NUM_SPACEBALL_BUTTONS() {
+        return GLUT_NUM_SPACEBALL_BUTTONS;
+    }
+    private static final int GLUT_NUM_BUTTON_BOX_BUTTONS = (int)607L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_NUM_BUTTON_BOX_BUTTONS 607
+     * }
+     */
+    public static int GLUT_NUM_BUTTON_BOX_BUTTONS() {
+        return GLUT_NUM_BUTTON_BOX_BUTTONS;
+    }
+    private static final int GLUT_NUM_DIALS = (int)608L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_NUM_DIALS 608
+     * }
+     */
+    public static int GLUT_NUM_DIALS() {
+        return GLUT_NUM_DIALS;
+    }
+    private static final int GLUT_NUM_TABLET_BUTTONS = (int)609L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_NUM_TABLET_BUTTONS 609
+     * }
+     */
+    public static int GLUT_NUM_TABLET_BUTTONS() {
+        return GLUT_NUM_TABLET_BUTTONS;
+    }
+    private static final int GLUT_DEVICE_IGNORE_KEY_REPEAT = (int)610L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_DEVICE_IGNORE_KEY_REPEAT 610
+     * }
+     */
+    public static int GLUT_DEVICE_IGNORE_KEY_REPEAT() {
+        return GLUT_DEVICE_IGNORE_KEY_REPEAT;
+    }
+    private static final int GLUT_DEVICE_KEY_REPEAT = (int)611L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_DEVICE_KEY_REPEAT 611
+     * }
+     */
+    public static int GLUT_DEVICE_KEY_REPEAT() {
+        return GLUT_DEVICE_KEY_REPEAT;
+    }
+    private static final int GLUT_HAS_JOYSTICK = (int)612L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_HAS_JOYSTICK 612
+     * }
+     */
+    public static int GLUT_HAS_JOYSTICK() {
+        return GLUT_HAS_JOYSTICK;
+    }
+    private static final int GLUT_OWNS_JOYSTICK = (int)613L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_OWNS_JOYSTICK 613
+     * }
+     */
+    public static int GLUT_OWNS_JOYSTICK() {
+        return GLUT_OWNS_JOYSTICK;
+    }
+    private static final int GLUT_JOYSTICK_BUTTONS = (int)614L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_JOYSTICK_BUTTONS 614
+     * }
+     */
+    public static int GLUT_JOYSTICK_BUTTONS() {
+        return GLUT_JOYSTICK_BUTTONS;
+    }
+    private static final int GLUT_JOYSTICK_AXES = (int)615L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_JOYSTICK_AXES 615
+     * }
+     */
+    public static int GLUT_JOYSTICK_AXES() {
+        return GLUT_JOYSTICK_AXES;
+    }
+    private static final int GLUT_JOYSTICK_POLL_RATE = (int)616L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_JOYSTICK_POLL_RATE 616
+     * }
+     */
+    public static int GLUT_JOYSTICK_POLL_RATE() {
+        return GLUT_JOYSTICK_POLL_RATE;
+    }
+    private static final int GLUT_OVERLAY_POSSIBLE = (int)800L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_OVERLAY_POSSIBLE 800
+     * }
+     */
+    public static int GLUT_OVERLAY_POSSIBLE() {
+        return GLUT_OVERLAY_POSSIBLE;
+    }
+    private static final int GLUT_LAYER_IN_USE = (int)801L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_LAYER_IN_USE 801
+     * }
+     */
+    public static int GLUT_LAYER_IN_USE() {
+        return GLUT_LAYER_IN_USE;
+    }
+    private static final int GLUT_HAS_OVERLAY = (int)802L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_HAS_OVERLAY 802
+     * }
+     */
+    public static int GLUT_HAS_OVERLAY() {
+        return GLUT_HAS_OVERLAY;
+    }
+    private static final int GLUT_TRANSPARENT_INDEX = (int)803L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_TRANSPARENT_INDEX 803
+     * }
+     */
+    public static int GLUT_TRANSPARENT_INDEX() {
+        return GLUT_TRANSPARENT_INDEX;
+    }
+    private static final int GLUT_NORMAL_DAMAGED = (int)804L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_NORMAL_DAMAGED 804
+     * }
+     */
+    public static int GLUT_NORMAL_DAMAGED() {
+        return GLUT_NORMAL_DAMAGED;
+    }
+    private static final int GLUT_OVERLAY_DAMAGED = (int)805L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_OVERLAY_DAMAGED 805
+     * }
+     */
+    public static int GLUT_OVERLAY_DAMAGED() {
+        return GLUT_OVERLAY_DAMAGED;
+    }
+    private static final int GLUT_VIDEO_RESIZE_POSSIBLE = (int)900L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_VIDEO_RESIZE_POSSIBLE 900
+     * }
+     */
+    public static int GLUT_VIDEO_RESIZE_POSSIBLE() {
+        return GLUT_VIDEO_RESIZE_POSSIBLE;
+    }
+    private static final int GLUT_VIDEO_RESIZE_IN_USE = (int)901L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_VIDEO_RESIZE_IN_USE 901
+     * }
+     */
+    public static int GLUT_VIDEO_RESIZE_IN_USE() {
+        return GLUT_VIDEO_RESIZE_IN_USE;
+    }
+    private static final int GLUT_VIDEO_RESIZE_X_DELTA = (int)902L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_VIDEO_RESIZE_X_DELTA 902
+     * }
+     */
+    public static int GLUT_VIDEO_RESIZE_X_DELTA() {
+        return GLUT_VIDEO_RESIZE_X_DELTA;
+    }
+    private static final int GLUT_VIDEO_RESIZE_Y_DELTA = (int)903L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_VIDEO_RESIZE_Y_DELTA 903
+     * }
+     */
+    public static int GLUT_VIDEO_RESIZE_Y_DELTA() {
+        return GLUT_VIDEO_RESIZE_Y_DELTA;
+    }
+    private static final int GLUT_VIDEO_RESIZE_WIDTH_DELTA = (int)904L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_VIDEO_RESIZE_WIDTH_DELTA 904
+     * }
+     */
+    public static int GLUT_VIDEO_RESIZE_WIDTH_DELTA() {
+        return GLUT_VIDEO_RESIZE_WIDTH_DELTA;
+    }
+    private static final int GLUT_VIDEO_RESIZE_HEIGHT_DELTA = (int)905L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_VIDEO_RESIZE_HEIGHT_DELTA 905
+     * }
+     */
+    public static int GLUT_VIDEO_RESIZE_HEIGHT_DELTA() {
+        return GLUT_VIDEO_RESIZE_HEIGHT_DELTA;
+    }
+    private static final int GLUT_VIDEO_RESIZE_X = (int)906L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_VIDEO_RESIZE_X 906
+     * }
+     */
+    public static int GLUT_VIDEO_RESIZE_X() {
+        return GLUT_VIDEO_RESIZE_X;
+    }
+    private static final int GLUT_VIDEO_RESIZE_Y = (int)907L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_VIDEO_RESIZE_Y 907
+     * }
+     */
+    public static int GLUT_VIDEO_RESIZE_Y() {
+        return GLUT_VIDEO_RESIZE_Y;
+    }
+    private static final int GLUT_VIDEO_RESIZE_WIDTH = (int)908L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_VIDEO_RESIZE_WIDTH 908
+     * }
+     */
+    public static int GLUT_VIDEO_RESIZE_WIDTH() {
+        return GLUT_VIDEO_RESIZE_WIDTH;
+    }
+    private static final int GLUT_VIDEO_RESIZE_HEIGHT = (int)909L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_VIDEO_RESIZE_HEIGHT 909
+     * }
+     */
+    public static int GLUT_VIDEO_RESIZE_HEIGHT() {
+        return GLUT_VIDEO_RESIZE_HEIGHT;
+    }
+    private static final int GLUT_NORMAL = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_NORMAL 0
+     * }
+     */
+    public static int GLUT_NORMAL() {
+        return GLUT_NORMAL;
+    }
+    private static final int GLUT_OVERLAY = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_OVERLAY 1
+     * }
+     */
+    public static int GLUT_OVERLAY() {
+        return GLUT_OVERLAY;
+    }
+    private static final int GLUT_ACTIVE_SHIFT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_ACTIVE_SHIFT 1
+     * }
+     */
+    public static int GLUT_ACTIVE_SHIFT() {
+        return GLUT_ACTIVE_SHIFT;
+    }
+    private static final int GLUT_ACTIVE_CTRL = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_ACTIVE_CTRL 2
+     * }
+     */
+    public static int GLUT_ACTIVE_CTRL() {
+        return GLUT_ACTIVE_CTRL;
+    }
+    private static final int GLUT_ACTIVE_ALT = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_ACTIVE_ALT 4
+     * }
+     */
+    public static int GLUT_ACTIVE_ALT() {
+        return GLUT_ACTIVE_ALT;
+    }
+    private static final int GLUT_CURSOR_RIGHT_ARROW = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_RIGHT_ARROW 0
+     * }
+     */
+    public static int GLUT_CURSOR_RIGHT_ARROW() {
+        return GLUT_CURSOR_RIGHT_ARROW;
+    }
+    private static final int GLUT_CURSOR_LEFT_ARROW = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_LEFT_ARROW 1
+     * }
+     */
+    public static int GLUT_CURSOR_LEFT_ARROW() {
+        return GLUT_CURSOR_LEFT_ARROW;
+    }
+    private static final int GLUT_CURSOR_INFO = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_INFO 2
+     * }
+     */
+    public static int GLUT_CURSOR_INFO() {
+        return GLUT_CURSOR_INFO;
+    }
+    private static final int GLUT_CURSOR_DESTROY = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_DESTROY 3
+     * }
+     */
+    public static int GLUT_CURSOR_DESTROY() {
+        return GLUT_CURSOR_DESTROY;
+    }
+    private static final int GLUT_CURSOR_HELP = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_HELP 4
+     * }
+     */
+    public static int GLUT_CURSOR_HELP() {
+        return GLUT_CURSOR_HELP;
+    }
+    private static final int GLUT_CURSOR_CYCLE = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_CYCLE 5
+     * }
+     */
+    public static int GLUT_CURSOR_CYCLE() {
+        return GLUT_CURSOR_CYCLE;
+    }
+    private static final int GLUT_CURSOR_SPRAY = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_SPRAY 6
+     * }
+     */
+    public static int GLUT_CURSOR_SPRAY() {
+        return GLUT_CURSOR_SPRAY;
+    }
+    private static final int GLUT_CURSOR_WAIT = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_WAIT 7
+     * }
+     */
+    public static int GLUT_CURSOR_WAIT() {
+        return GLUT_CURSOR_WAIT;
+    }
+    private static final int GLUT_CURSOR_TEXT = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_TEXT 8
+     * }
+     */
+    public static int GLUT_CURSOR_TEXT() {
+        return GLUT_CURSOR_TEXT;
+    }
+    private static final int GLUT_CURSOR_CROSSHAIR = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_CROSSHAIR 9
+     * }
+     */
+    public static int GLUT_CURSOR_CROSSHAIR() {
+        return GLUT_CURSOR_CROSSHAIR;
+    }
+    private static final int GLUT_CURSOR_UP_DOWN = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_UP_DOWN 10
+     * }
+     */
+    public static int GLUT_CURSOR_UP_DOWN() {
+        return GLUT_CURSOR_UP_DOWN;
+    }
+    private static final int GLUT_CURSOR_LEFT_RIGHT = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_LEFT_RIGHT 11
+     * }
+     */
+    public static int GLUT_CURSOR_LEFT_RIGHT() {
+        return GLUT_CURSOR_LEFT_RIGHT;
+    }
+    private static final int GLUT_CURSOR_TOP_SIDE = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_TOP_SIDE 12
+     * }
+     */
+    public static int GLUT_CURSOR_TOP_SIDE() {
+        return GLUT_CURSOR_TOP_SIDE;
+    }
+    private static final int GLUT_CURSOR_BOTTOM_SIDE = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_BOTTOM_SIDE 13
+     * }
+     */
+    public static int GLUT_CURSOR_BOTTOM_SIDE() {
+        return GLUT_CURSOR_BOTTOM_SIDE;
+    }
+    private static final int GLUT_CURSOR_LEFT_SIDE = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_LEFT_SIDE 14
+     * }
+     */
+    public static int GLUT_CURSOR_LEFT_SIDE() {
+        return GLUT_CURSOR_LEFT_SIDE;
+    }
+    private static final int GLUT_CURSOR_RIGHT_SIDE = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_RIGHT_SIDE 15
+     * }
+     */
+    public static int GLUT_CURSOR_RIGHT_SIDE() {
+        return GLUT_CURSOR_RIGHT_SIDE;
+    }
+    private static final int GLUT_CURSOR_TOP_LEFT_CORNER = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_TOP_LEFT_CORNER 16
+     * }
+     */
+    public static int GLUT_CURSOR_TOP_LEFT_CORNER() {
+        return GLUT_CURSOR_TOP_LEFT_CORNER;
+    }
+    private static final int GLUT_CURSOR_TOP_RIGHT_CORNER = (int)17L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_TOP_RIGHT_CORNER 17
+     * }
+     */
+    public static int GLUT_CURSOR_TOP_RIGHT_CORNER() {
+        return GLUT_CURSOR_TOP_RIGHT_CORNER;
+    }
+    private static final int GLUT_CURSOR_BOTTOM_RIGHT_CORNER = (int)18L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_BOTTOM_RIGHT_CORNER 18
+     * }
+     */
+    public static int GLUT_CURSOR_BOTTOM_RIGHT_CORNER() {
+        return GLUT_CURSOR_BOTTOM_RIGHT_CORNER;
+    }
+    private static final int GLUT_CURSOR_BOTTOM_LEFT_CORNER = (int)19L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_BOTTOM_LEFT_CORNER 19
+     * }
+     */
+    public static int GLUT_CURSOR_BOTTOM_LEFT_CORNER() {
+        return GLUT_CURSOR_BOTTOM_LEFT_CORNER;
+    }
+    private static final int GLUT_CURSOR_INHERIT = (int)100L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_INHERIT 100
+     * }
+     */
+    public static int GLUT_CURSOR_INHERIT() {
+        return GLUT_CURSOR_INHERIT;
+    }
+    private static final int GLUT_CURSOR_NONE = (int)101L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_NONE 101
+     * }
+     */
+    public static int GLUT_CURSOR_NONE() {
+        return GLUT_CURSOR_NONE;
+    }
+    private static final int GLUT_CURSOR_FULL_CROSSHAIR = (int)102L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CURSOR_FULL_CROSSHAIR 102
+     * }
+     */
+    public static int GLUT_CURSOR_FULL_CROSSHAIR() {
+        return GLUT_CURSOR_FULL_CROSSHAIR;
+    }
+    private static final int GLUT_RED = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_RED 0
+     * }
+     */
+    public static int GLUT_RED() {
+        return GLUT_RED;
+    }
+    private static final int GLUT_GREEN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_GREEN 1
+     * }
+     */
+    public static int GLUT_GREEN() {
+        return GLUT_GREEN;
+    }
+    private static final int GLUT_BLUE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_BLUE 2
+     * }
+     */
+    public static int GLUT_BLUE() {
+        return GLUT_BLUE;
+    }
+    private static final int GLUT_KEY_REPEAT_OFF = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_REPEAT_OFF 0
+     * }
+     */
+    public static int GLUT_KEY_REPEAT_OFF() {
+        return GLUT_KEY_REPEAT_OFF;
+    }
+    private static final int GLUT_KEY_REPEAT_ON = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_REPEAT_ON 1
+     * }
+     */
+    public static int GLUT_KEY_REPEAT_ON() {
+        return GLUT_KEY_REPEAT_ON;
+    }
+    private static final int GLUT_KEY_REPEAT_DEFAULT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_REPEAT_DEFAULT 2
+     * }
+     */
+    public static int GLUT_KEY_REPEAT_DEFAULT() {
+        return GLUT_KEY_REPEAT_DEFAULT;
+    }
+    private static final int GLUT_JOYSTICK_BUTTON_A = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_JOYSTICK_BUTTON_A 1
+     * }
+     */
+    public static int GLUT_JOYSTICK_BUTTON_A() {
+        return GLUT_JOYSTICK_BUTTON_A;
+    }
+    private static final int GLUT_JOYSTICK_BUTTON_B = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_JOYSTICK_BUTTON_B 2
+     * }
+     */
+    public static int GLUT_JOYSTICK_BUTTON_B() {
+        return GLUT_JOYSTICK_BUTTON_B;
+    }
+    private static final int GLUT_JOYSTICK_BUTTON_C = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_JOYSTICK_BUTTON_C 4
+     * }
+     */
+    public static int GLUT_JOYSTICK_BUTTON_C() {
+        return GLUT_JOYSTICK_BUTTON_C;
+    }
+    private static final int GLUT_JOYSTICK_BUTTON_D = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_JOYSTICK_BUTTON_D 8
+     * }
+     */
+    public static int GLUT_JOYSTICK_BUTTON_D() {
+        return GLUT_JOYSTICK_BUTTON_D;
+    }
+    private static final int GLUT_GAME_MODE_ACTIVE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_GAME_MODE_ACTIVE 0
+     * }
+     */
+    public static int GLUT_GAME_MODE_ACTIVE() {
+        return GLUT_GAME_MODE_ACTIVE;
+    }
+    private static final int GLUT_GAME_MODE_POSSIBLE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_GAME_MODE_POSSIBLE 1
+     * }
+     */
+    public static int GLUT_GAME_MODE_POSSIBLE() {
+        return GLUT_GAME_MODE_POSSIBLE;
+    }
+    private static final int GLUT_GAME_MODE_WIDTH = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_GAME_MODE_WIDTH 2
+     * }
+     */
+    public static int GLUT_GAME_MODE_WIDTH() {
+        return GLUT_GAME_MODE_WIDTH;
+    }
+    private static final int GLUT_GAME_MODE_HEIGHT = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_GAME_MODE_HEIGHT 3
+     * }
+     */
+    public static int GLUT_GAME_MODE_HEIGHT() {
+        return GLUT_GAME_MODE_HEIGHT;
+    }
+    private static final int GLUT_GAME_MODE_PIXEL_DEPTH = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_GAME_MODE_PIXEL_DEPTH 4
+     * }
+     */
+    public static int GLUT_GAME_MODE_PIXEL_DEPTH() {
+        return GLUT_GAME_MODE_PIXEL_DEPTH;
+    }
+    private static final int GLUT_GAME_MODE_REFRESH_RATE = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_GAME_MODE_REFRESH_RATE 5
+     * }
+     */
+    public static int GLUT_GAME_MODE_REFRESH_RATE() {
+        return GLUT_GAME_MODE_REFRESH_RATE;
+    }
+    private static final int GLUT_GAME_MODE_DISPLAY_CHANGED = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_GAME_MODE_DISPLAY_CHANGED 6
+     * }
+     */
+    public static int GLUT_GAME_MODE_DISPLAY_CHANGED() {
+        return GLUT_GAME_MODE_DISPLAY_CHANGED;
+    }
+    private static final int CHAR_BIT = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define CHAR_BIT 8
+     * }
+     */
+    public static int CHAR_BIT() {
+        return CHAR_BIT;
+    }
+    private static final int SCHAR_MAX = (int)127L;
+    /**
+     * {@snippet lang=c :
+     * #define SCHAR_MAX 127
+     * }
+     */
+    public static int SCHAR_MAX() {
+        return SCHAR_MAX;
+    }
+    private static final int UCHAR_MAX = (int)255L;
+    /**
+     * {@snippet lang=c :
+     * #define UCHAR_MAX 255
+     * }
+     */
+    public static int UCHAR_MAX() {
+        return UCHAR_MAX;
+    }
+    private static final int MB_LEN_MAX = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define MB_LEN_MAX 5
+     * }
+     */
+    public static int MB_LEN_MAX() {
+        return MB_LEN_MAX;
+    }
+    private static final int SHRT_MAX = (int)32767L;
+    /**
+     * {@snippet lang=c :
+     * #define SHRT_MAX 32767
+     * }
+     */
+    public static int SHRT_MAX() {
+        return SHRT_MAX;
+    }
+    private static final int USHRT_MAX = (int)65535L;
+    /**
+     * {@snippet lang=c :
+     * #define USHRT_MAX 65535
+     * }
+     */
+    public static int USHRT_MAX() {
+        return USHRT_MAX;
+    }
+    private static final int INT_MAX = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * #define INT_MAX 2147483647
+     * }
+     */
+    public static int INT_MAX() {
+        return INT_MAX;
+    }
+    private static final int EXIT_SUCCESS = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define EXIT_SUCCESS 0
+     * }
+     */
+    public static int EXIT_SUCCESS() {
+        return EXIT_SUCCESS;
+    }
+    private static final int EXIT_FAILURE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define EXIT_FAILURE 1
+     * }
+     */
+    public static int EXIT_FAILURE() {
+        return EXIT_FAILURE;
+    }
+    private static final int _WRITE_ABORT_MSG = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define _WRITE_ABORT_MSG 1
+     * }
+     */
+    public static int _WRITE_ABORT_MSG() {
+        return _WRITE_ABORT_MSG;
+    }
+    private static final int _CALL_REPORTFAULT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define _CALL_REPORTFAULT 2
+     * }
+     */
+    public static int _CALL_REPORTFAULT() {
+        return _CALL_REPORTFAULT;
+    }
+    private static final int _OUT_TO_DEFAULT = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define _OUT_TO_DEFAULT 0
+     * }
+     */
+    public static int _OUT_TO_DEFAULT() {
+        return _OUT_TO_DEFAULT;
+    }
+    private static final int _OUT_TO_STDERR = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define _OUT_TO_STDERR 1
+     * }
+     */
+    public static int _OUT_TO_STDERR() {
+        return _OUT_TO_STDERR;
+    }
+    private static final int _OUT_TO_MSGBOX = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define _OUT_TO_MSGBOX 2
+     * }
+     */
+    public static int _OUT_TO_MSGBOX() {
+        return _OUT_TO_MSGBOX;
+    }
+    private static final int _REPORT_ERRMODE = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define _REPORT_ERRMODE 3
+     * }
+     */
+    public static int _REPORT_ERRMODE() {
+        return _REPORT_ERRMODE;
+    }
+    private static final int RAND_MAX = (int)32767L;
+    /**
+     * {@snippet lang=c :
+     * #define RAND_MAX 32767
+     * }
+     */
+    public static int RAND_MAX() {
+        return RAND_MAX;
+    }
+    private static final int _MAX_PATH = (int)260L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_PATH 260
+     * }
+     */
+    public static int _MAX_PATH() {
+        return _MAX_PATH;
+    }
+    private static final int _MAX_DRIVE = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_DRIVE 3
+     * }
+     */
+    public static int _MAX_DRIVE() {
+        return _MAX_DRIVE;
+    }
+    private static final int _MAX_DIR = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_DIR 256
+     * }
+     */
+    public static int _MAX_DIR() {
+        return _MAX_DIR;
+    }
+    private static final int _MAX_FNAME = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_FNAME 256
+     * }
+     */
+    public static int _MAX_FNAME() {
+        return _MAX_FNAME;
+    }
+    private static final int _MAX_EXT = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_EXT 256
+     * }
+     */
+    public static int _MAX_EXT() {
+        return _MAX_EXT;
+    }
+    private static final int _MAX_ENV = (int)32767L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_ENV 32767
+     * }
+     */
+    public static int _MAX_ENV() {
+        return _MAX_ENV;
+    }
+    private static final int GLUT_KEY_NUM_LOCK = (int)109L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_NUM_LOCK 109
+     * }
+     */
+    public static int GLUT_KEY_NUM_LOCK() {
+        return GLUT_KEY_NUM_LOCK;
+    }
+    private static final int GLUT_KEY_BEGIN = (int)110L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_BEGIN 110
+     * }
+     */
+    public static int GLUT_KEY_BEGIN() {
+        return GLUT_KEY_BEGIN;
+    }
+    private static final int GLUT_KEY_DELETE = (int)111L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_DELETE 111
+     * }
+     */
+    public static int GLUT_KEY_DELETE() {
+        return GLUT_KEY_DELETE;
+    }
+    private static final int GLUT_KEY_SHIFT_L = (int)112L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_SHIFT_L 112
+     * }
+     */
+    public static int GLUT_KEY_SHIFT_L() {
+        return GLUT_KEY_SHIFT_L;
+    }
+    private static final int GLUT_KEY_SHIFT_R = (int)113L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_SHIFT_R 113
+     * }
+     */
+    public static int GLUT_KEY_SHIFT_R() {
+        return GLUT_KEY_SHIFT_R;
+    }
+    private static final int GLUT_KEY_CTRL_L = (int)114L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_CTRL_L 114
+     * }
+     */
+    public static int GLUT_KEY_CTRL_L() {
+        return GLUT_KEY_CTRL_L;
+    }
+    private static final int GLUT_KEY_CTRL_R = (int)115L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_CTRL_R 115
+     * }
+     */
+    public static int GLUT_KEY_CTRL_R() {
+        return GLUT_KEY_CTRL_R;
+    }
+    private static final int GLUT_KEY_ALT_L = (int)116L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_ALT_L 116
+     * }
+     */
+    public static int GLUT_KEY_ALT_L() {
+        return GLUT_KEY_ALT_L;
+    }
+    private static final int GLUT_KEY_ALT_R = (int)117L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_ALT_R 117
+     * }
+     */
+    public static int GLUT_KEY_ALT_R() {
+        return GLUT_KEY_ALT_R;
+    }
+    private static final int GLUT_KEY_SUPER_L = (int)118L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_SUPER_L 118
+     * }
+     */
+    public static int GLUT_KEY_SUPER_L() {
+        return GLUT_KEY_SUPER_L;
+    }
+    private static final int GLUT_KEY_SUPER_R = (int)119L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_KEY_SUPER_R 119
+     * }
+     */
+    public static int GLUT_KEY_SUPER_R() {
+        return GLUT_KEY_SUPER_R;
+    }
+    private static final int GLUT_ACTIVE_SUPER = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_ACTIVE_SUPER 8
+     * }
+     */
+    public static int GLUT_ACTIVE_SUPER() {
+        return GLUT_ACTIVE_SUPER;
+    }
+    private static final int GLUT_ACTION_EXIT = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_ACTION_EXIT 0
+     * }
+     */
+    public static int GLUT_ACTION_EXIT() {
+        return GLUT_ACTION_EXIT;
+    }
+    private static final int GLUT_ACTION_GLUTMAINLOOP_RETURNS = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_ACTION_GLUTMAINLOOP_RETURNS 1
+     * }
+     */
+    public static int GLUT_ACTION_GLUTMAINLOOP_RETURNS() {
+        return GLUT_ACTION_GLUTMAINLOOP_RETURNS;
+    }
+    private static final int GLUT_ACTION_CONTINUE_EXECUTION = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_ACTION_CONTINUE_EXECUTION 2
+     * }
+     */
+    public static int GLUT_ACTION_CONTINUE_EXECUTION() {
+        return GLUT_ACTION_CONTINUE_EXECUTION;
+    }
+    private static final int GLUT_CREATE_NEW_CONTEXT = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CREATE_NEW_CONTEXT 0
+     * }
+     */
+    public static int GLUT_CREATE_NEW_CONTEXT() {
+        return GLUT_CREATE_NEW_CONTEXT;
+    }
+    private static final int GLUT_USE_CURRENT_CONTEXT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_USE_CURRENT_CONTEXT 1
+     * }
+     */
+    public static int GLUT_USE_CURRENT_CONTEXT() {
+        return GLUT_USE_CURRENT_CONTEXT;
+    }
+    private static final int GLUT_FORCE_INDIRECT_CONTEXT = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_FORCE_INDIRECT_CONTEXT 0
+     * }
+     */
+    public static int GLUT_FORCE_INDIRECT_CONTEXT() {
+        return GLUT_FORCE_INDIRECT_CONTEXT;
+    }
+    private static final int GLUT_ALLOW_DIRECT_CONTEXT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_ALLOW_DIRECT_CONTEXT 1
+     * }
+     */
+    public static int GLUT_ALLOW_DIRECT_CONTEXT() {
+        return GLUT_ALLOW_DIRECT_CONTEXT;
+    }
+    private static final int GLUT_TRY_DIRECT_CONTEXT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_TRY_DIRECT_CONTEXT 2
+     * }
+     */
+    public static int GLUT_TRY_DIRECT_CONTEXT() {
+        return GLUT_TRY_DIRECT_CONTEXT;
+    }
+    private static final int GLUT_FORCE_DIRECT_CONTEXT = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_FORCE_DIRECT_CONTEXT 3
+     * }
+     */
+    public static int GLUT_FORCE_DIRECT_CONTEXT() {
+        return GLUT_FORCE_DIRECT_CONTEXT;
+    }
+    private static final int GLUT_INIT_STATE = (int)124L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_INIT_STATE 124
+     * }
+     */
+    public static int GLUT_INIT_STATE() {
+        return GLUT_INIT_STATE;
+    }
+    private static final int GLUT_ACTION_ON_WINDOW_CLOSE = (int)505L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_ACTION_ON_WINDOW_CLOSE 505
+     * }
+     */
+    public static int GLUT_ACTION_ON_WINDOW_CLOSE() {
+        return GLUT_ACTION_ON_WINDOW_CLOSE;
+    }
+    private static final int GLUT_WINDOW_BORDER_WIDTH = (int)506L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_BORDER_WIDTH 506
+     * }
+     */
+    public static int GLUT_WINDOW_BORDER_WIDTH() {
+        return GLUT_WINDOW_BORDER_WIDTH;
+    }
+    private static final int GLUT_WINDOW_BORDER_HEIGHT = (int)507L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_BORDER_HEIGHT 507
+     * }
+     */
+    public static int GLUT_WINDOW_BORDER_HEIGHT() {
+        return GLUT_WINDOW_BORDER_HEIGHT;
+    }
+    private static final int GLUT_WINDOW_HEADER_HEIGHT = (int)507L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_HEADER_HEIGHT 507
+     * }
+     */
+    public static int GLUT_WINDOW_HEADER_HEIGHT() {
+        return GLUT_WINDOW_HEADER_HEIGHT;
+    }
+    private static final int GLUT_VERSION = (int)508L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_VERSION 508
+     * }
+     */
+    public static int GLUT_VERSION() {
+        return GLUT_VERSION;
+    }
+    private static final int GLUT_RENDERING_CONTEXT = (int)509L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_RENDERING_CONTEXT 509
+     * }
+     */
+    public static int GLUT_RENDERING_CONTEXT() {
+        return GLUT_RENDERING_CONTEXT;
+    }
+    private static final int GLUT_DIRECT_RENDERING = (int)510L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_DIRECT_RENDERING 510
+     * }
+     */
+    public static int GLUT_DIRECT_RENDERING() {
+        return GLUT_DIRECT_RENDERING;
+    }
+    private static final int GLUT_FULL_SCREEN = (int)511L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_FULL_SCREEN 511
+     * }
+     */
+    public static int GLUT_FULL_SCREEN() {
+        return GLUT_FULL_SCREEN;
+    }
+    private static final int GLUT_SKIP_STALE_MOTION_EVENTS = (int)516L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_SKIP_STALE_MOTION_EVENTS 516
+     * }
+     */
+    public static int GLUT_SKIP_STALE_MOTION_EVENTS() {
+        return GLUT_SKIP_STALE_MOTION_EVENTS;
+    }
+    private static final int GLUT_GEOMETRY_VISUALIZE_NORMALS = (int)517L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_GEOMETRY_VISUALIZE_NORMALS 517
+     * }
+     */
+    public static int GLUT_GEOMETRY_VISUALIZE_NORMALS() {
+        return GLUT_GEOMETRY_VISUALIZE_NORMALS;
+    }
+    private static final int GLUT_STROKE_FONT_DRAW_JOIN_DOTS = (int)518L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_STROKE_FONT_DRAW_JOIN_DOTS 518
+     * }
+     */
+    public static int GLUT_STROKE_FONT_DRAW_JOIN_DOTS() {
+        return GLUT_STROKE_FONT_DRAW_JOIN_DOTS;
+    }
+    private static final int GLUT_ALLOW_NEGATIVE_WINDOW_POSITION = (int)519L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_ALLOW_NEGATIVE_WINDOW_POSITION 519
+     * }
+     */
+    public static int GLUT_ALLOW_NEGATIVE_WINDOW_POSITION() {
+        return GLUT_ALLOW_NEGATIVE_WINDOW_POSITION;
+    }
+    private static final int GLUT_WINDOW_SRGB = (int)125L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_WINDOW_SRGB 125
+     * }
+     */
+    public static int GLUT_WINDOW_SRGB() {
+        return GLUT_WINDOW_SRGB;
+    }
+    private static final int GLUT_AUX = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_AUX 4096
+     * }
+     */
+    public static int GLUT_AUX() {
+        return GLUT_AUX;
+    }
+    private static final int GLUT_AUX1 = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_AUX1 4096
+     * }
+     */
+    public static int GLUT_AUX1() {
+        return GLUT_AUX1;
+    }
+    private static final int GLUT_AUX2 = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_AUX2 8192
+     * }
+     */
+    public static int GLUT_AUX2() {
+        return GLUT_AUX2;
+    }
+    private static final int GLUT_AUX3 = (int)16384L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_AUX3 16384
+     * }
+     */
+    public static int GLUT_AUX3() {
+        return GLUT_AUX3;
+    }
+    private static final int GLUT_AUX4 = (int)32768L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_AUX4 32768
+     * }
+     */
+    public static int GLUT_AUX4() {
+        return GLUT_AUX4;
+    }
+    private static final int GLUT_INIT_MAJOR_VERSION = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_INIT_MAJOR_VERSION 512
+     * }
+     */
+    public static int GLUT_INIT_MAJOR_VERSION() {
+        return GLUT_INIT_MAJOR_VERSION;
+    }
+    private static final int GLUT_INIT_MINOR_VERSION = (int)513L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_INIT_MINOR_VERSION 513
+     * }
+     */
+    public static int GLUT_INIT_MINOR_VERSION() {
+        return GLUT_INIT_MINOR_VERSION;
+    }
+    private static final int GLUT_INIT_FLAGS = (int)514L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_INIT_FLAGS 514
+     * }
+     */
+    public static int GLUT_INIT_FLAGS() {
+        return GLUT_INIT_FLAGS;
+    }
+    private static final int GLUT_INIT_PROFILE = (int)515L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_INIT_PROFILE 515
+     * }
+     */
+    public static int GLUT_INIT_PROFILE() {
+        return GLUT_INIT_PROFILE;
+    }
+    private static final int GLUT_DEBUG = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_DEBUG 1
+     * }
+     */
+    public static int GLUT_DEBUG() {
+        return GLUT_DEBUG;
+    }
+    private static final int GLUT_FORWARD_COMPATIBLE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_FORWARD_COMPATIBLE 2
+     * }
+     */
+    public static int GLUT_FORWARD_COMPATIBLE() {
+        return GLUT_FORWARD_COMPATIBLE;
+    }
+    private static final int GLUT_CORE_PROFILE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CORE_PROFILE 1
+     * }
+     */
+    public static int GLUT_CORE_PROFILE() {
+        return GLUT_CORE_PROFILE;
+    }
+    private static final int GLUT_COMPATIBILITY_PROFILE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_COMPATIBILITY_PROFILE 2
+     * }
+     */
+    public static int GLUT_COMPATIBILITY_PROFILE() {
+        return GLUT_COMPATIBILITY_PROFILE;
+    }
+    private static final int GLUT_SPACEBALL_BUTTON_A = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_SPACEBALL_BUTTON_A 1
+     * }
+     */
+    public static int GLUT_SPACEBALL_BUTTON_A() {
+        return GLUT_SPACEBALL_BUTTON_A;
+    }
+    private static final int GLUT_SPACEBALL_BUTTON_B = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_SPACEBALL_BUTTON_B 2
+     * }
+     */
+    public static int GLUT_SPACEBALL_BUTTON_B() {
+        return GLUT_SPACEBALL_BUTTON_B;
+    }
+    private static final int GLUT_SPACEBALL_BUTTON_C = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_SPACEBALL_BUTTON_C 4
+     * }
+     */
+    public static int GLUT_SPACEBALL_BUTTON_C() {
+        return GLUT_SPACEBALL_BUTTON_C;
+    }
+    private static final int GLUT_SPACEBALL_BUTTON_D = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_SPACEBALL_BUTTON_D 8
+     * }
+     */
+    public static int GLUT_SPACEBALL_BUTTON_D() {
+        return GLUT_SPACEBALL_BUTTON_D;
+    }
+    private static final int GLUT_SPACEBALL_BUTTON_E = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_SPACEBALL_BUTTON_E 16
+     * }
+     */
+    public static int GLUT_SPACEBALL_BUTTON_E() {
+        return GLUT_SPACEBALL_BUTTON_E;
+    }
+    private static final int GLUT_HAS_MULTI = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_HAS_MULTI 1
+     * }
+     */
+    public static int GLUT_HAS_MULTI() {
+        return GLUT_HAS_MULTI;
+    }
+    private static final int GLUT_APPSTATUS_PAUSE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_APPSTATUS_PAUSE 1
+     * }
+     */
+    public static int GLUT_APPSTATUS_PAUSE() {
+        return GLUT_APPSTATUS_PAUSE;
+    }
+    private static final int GLUT_APPSTATUS_RESUME = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_APPSTATUS_RESUME 2
+     * }
+     */
+    public static int GLUT_APPSTATUS_RESUME() {
+        return GLUT_APPSTATUS_RESUME;
+    }
+    private static final int GLUT_CAPTIONLESS = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_CAPTIONLESS 1024
+     * }
+     */
+    public static int GLUT_CAPTIONLESS() {
+        return GLUT_CAPTIONLESS;
+    }
+    private static final int GLUT_BORDERLESS = (int)2048L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_BORDERLESS 2048
+     * }
+     */
+    public static int GLUT_BORDERLESS() {
+        return GLUT_BORDERLESS;
+    }
+    private static final int GLUT_SRGB = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_SRGB 4096
+     * }
+     */
+    public static int GLUT_SRGB() {
+        return GLUT_SRGB;
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned long long uintptr_t
+     * }
+     */
+    public static final OfLong uintptr_t = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef char *va_list
+     * }
+     */
+    public static final AddressLayout va_list = freeglut_h.C_POINTER;
+
+    /**
+     * Variadic invoker class for:
+     * {@snippet lang=c :
+     * void __va_start(va_list *, ...)
+     * }
+     */
+    public static class __va_start {
+        private static final FunctionDescriptor BASE_DESC = FunctionDescriptor.ofVoid(
+                freeglut_h.C_POINTER
+            );
+        private static final MemorySegment ADDR = freeglut_h.findOrThrow("__va_start");
+
+        private final MethodHandle handle;
+        private final FunctionDescriptor descriptor;
+        private final MethodHandle spreader;
+
+        private __va_start(MethodHandle handle, FunctionDescriptor descriptor, MethodHandle spreader) {
+            this.handle = handle;
+            this.descriptor = descriptor;
+            this.spreader = spreader;
+        }
+
+        /**
+         * Variadic invoker factory for:
+         * {@snippet lang=c :
+         * void __va_start(va_list *, ...)
+         * }
+         */
+        public static __va_start makeInvoker(MemoryLayout... layouts) {
+            FunctionDescriptor desc$ = BASE_DESC.appendArgumentLayouts(layouts);
+            Linker.Option fva$ = Linker.Option.firstVariadicArg(BASE_DESC.argumentLayouts().size());
+            var mh$ = Linker.nativeLinker().downcallHandle(ADDR, desc$, fva$);
+            var spreader$ = mh$.asSpreader(Object[].class, layouts.length);
+            return new __va_start(mh$, desc$, spreader$);
+        }
+
+        /**
+         * {@return the address}
+         */
+        public static MemorySegment address() {
+            return ADDR;
+        }
+
+        /**
+         * {@return the specialized method handle}
+         */
+        public MethodHandle handle() {
+            return handle;
+        }
+
+        /**
+         * {@return the specialized descriptor}
+         */
+        public FunctionDescriptor descriptor() {
+            return descriptor;
+        }
+
+        public void apply(MemorySegment x0, Object... x1) {
+            try {
+                if (TRACE_DOWNCALLS) {
+                    traceDowncall("__va_start", x0, x1);
+                }
+                spreader.invokeExact(x0, x1);
+            } catch(IllegalArgumentException | ClassCastException ex$)  {
+                throw ex$; // rethrow IAE from passing wrong number/type of args
+            } catch (Throwable ex$) {
+               throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned long long size_t
+     * }
+     */
+    public static final OfLong size_t = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef long long ptrdiff_t
+     * }
+     */
+    public static final OfLong ptrdiff_t = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef long long intptr_t
+     * }
+     */
+    public static final OfLong intptr_t = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef _Bool __vcrt_bool
+     * }
+     */
+    public static final OfBoolean __vcrt_bool = freeglut_h.C_BOOL;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned short wchar_t
+     * }
+     */
+    public static final OfShort wchar_t = freeglut_h.C_SHORT;
+
+    private static class __security_init_cookie {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(    );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("__security_init_cookie");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void __security_init_cookie()
+     * }
+     */
+    public static FunctionDescriptor __security_init_cookie$descriptor() {
+        return __security_init_cookie.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void __security_init_cookie()
+     * }
+     */
+    public static MethodHandle __security_init_cookie$handle() {
+        return __security_init_cookie.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * void __security_init_cookie()
+     * }
+     */
+    public static MemorySegment __security_init_cookie$address() {
+        return __security_init_cookie.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void __security_init_cookie()
+     * }
+     */
+    public static void __security_init_cookie() {
+        var mh$ = __security_init_cookie.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("__security_init_cookie");
+            }
+            mh$.invokeExact();
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class __security_check_cookie {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
+            freeglut_h.C_LONG_LONG
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("__security_check_cookie");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void __security_check_cookie(uintptr_t _StackCookie)
+     * }
+     */
+    public static FunctionDescriptor __security_check_cookie$descriptor() {
+        return __security_check_cookie.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void __security_check_cookie(uintptr_t _StackCookie)
+     * }
+     */
+    public static MethodHandle __security_check_cookie$handle() {
+        return __security_check_cookie.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * void __security_check_cookie(uintptr_t _StackCookie)
+     * }
+     */
+    public static MemorySegment __security_check_cookie$address() {
+        return __security_check_cookie.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void __security_check_cookie(uintptr_t _StackCookie)
+     * }
+     */
+    public static void __security_check_cookie(long _StackCookie) {
+        var mh$ = __security_check_cookie.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("__security_check_cookie", _StackCookie);
+            }
+            mh$.invokeExact(_StackCookie);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class __report_gsfailure {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
+            freeglut_h.C_LONG_LONG
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("__report_gsfailure");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void __report_gsfailure(uintptr_t _StackCookie)
+     * }
+     */
+    public static FunctionDescriptor __report_gsfailure$descriptor() {
+        return __report_gsfailure.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void __report_gsfailure(uintptr_t _StackCookie)
+     * }
+     */
+    public static MethodHandle __report_gsfailure$handle() {
+        return __report_gsfailure.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * void __report_gsfailure(uintptr_t _StackCookie)
+     * }
+     */
+    public static MemorySegment __report_gsfailure$address() {
+        return __report_gsfailure.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void __report_gsfailure(uintptr_t _StackCookie)
+     * }
+     */
+    public static void __report_gsfailure(long _StackCookie) {
+        var mh$ = __report_gsfailure.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("__report_gsfailure", _StackCookie);
+            }
+            mh$.invokeExact(_StackCookie);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class __security_cookie$constants {
+        public static final OfLong LAYOUT = freeglut_h.C_LONG_LONG;
+        public static final MemorySegment SEGMENT = freeglut_h.findOrThrow("__security_cookie").reinterpret(LAYOUT.byteSize());
+    }
+
+    /**
+     * Layout for variable:
+     * {@snippet lang=c :
+     * extern uintptr_t __security_cookie
+     * }
+     */
+    public static OfLong __security_cookie$layout() {
+        return __security_cookie$constants.LAYOUT;
+    }
+
+    /**
+     * Segment for variable:
+     * {@snippet lang=c :
+     * extern uintptr_t __security_cookie
+     * }
+     */
+    public static MemorySegment __security_cookie$segment() {
+        return __security_cookie$constants.SEGMENT;
+    }
+
+    /**
+     * Getter for variable:
+     * {@snippet lang=c :
+     * extern uintptr_t __security_cookie
+     * }
+     */
+    public static long __security_cookie() {
+        return __security_cookie$constants.SEGMENT.get(__security_cookie$constants.LAYOUT, 0L);
+    }
+
+    /**
+     * Setter for variable:
+     * {@snippet lang=c :
+     * extern uintptr_t __security_cookie
+     * }
+     */
+    public static void __security_cookie(long varValue) {
+        __security_cookie$constants.SEGMENT.set(__security_cookie$constants.LAYOUT, 0L, varValue);
+    }
+    private static final int ExceptionContinueExecution = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * enum _EXCEPTION_DISPOSITION.ExceptionContinueExecution = 0
+     * }
+     */
+    public static int ExceptionContinueExecution() {
+        return ExceptionContinueExecution;
+    }
+    private static final int ExceptionContinueSearch = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum _EXCEPTION_DISPOSITION.ExceptionContinueSearch = 1
+     * }
+     */
+    public static int ExceptionContinueSearch() {
+        return ExceptionContinueSearch;
+    }
+    private static final int ExceptionNestedException = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum _EXCEPTION_DISPOSITION.ExceptionNestedException = 2
+     * }
+     */
+    public static int ExceptionNestedException() {
+        return ExceptionNestedException;
+    }
+    private static final int ExceptionCollidedUnwind = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * enum _EXCEPTION_DISPOSITION.ExceptionCollidedUnwind = 3
+     * }
+     */
+    public static int ExceptionCollidedUnwind() {
+        return ExceptionCollidedUnwind;
+    }
+
+    private static class __C_specific_handler {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_POINTER,
+            freeglut_h.C_POINTER,
+            freeglut_h.C_POINTER,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("__C_specific_handler");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * EXCEPTION_DISPOSITION __C_specific_handler(struct _EXCEPTION_RECORD *ExceptionRecord, void *EstablisherFrame, struct _CONTEXT *ContextRecord, struct _DISPATCHER_CONTEXT *DispatcherContext)
+     * }
+     */
+    public static FunctionDescriptor __C_specific_handler$descriptor() {
+        return __C_specific_handler.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * EXCEPTION_DISPOSITION __C_specific_handler(struct _EXCEPTION_RECORD *ExceptionRecord, void *EstablisherFrame, struct _CONTEXT *ContextRecord, struct _DISPATCHER_CONTEXT *DispatcherContext)
+     * }
+     */
+    public static MethodHandle __C_specific_handler$handle() {
+        return __C_specific_handler.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * EXCEPTION_DISPOSITION __C_specific_handler(struct _EXCEPTION_RECORD *ExceptionRecord, void *EstablisherFrame, struct _CONTEXT *ContextRecord, struct _DISPATCHER_CONTEXT *DispatcherContext)
+     * }
+     */
+    public static MemorySegment __C_specific_handler$address() {
+        return __C_specific_handler.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * EXCEPTION_DISPOSITION __C_specific_handler(struct _EXCEPTION_RECORD *ExceptionRecord, void *EstablisherFrame, struct _CONTEXT *ContextRecord, struct _DISPATCHER_CONTEXT *DispatcherContext)
+     * }
+     */
+    public static int __C_specific_handler(MemorySegment ExceptionRecord, MemorySegment EstablisherFrame, MemorySegment ContextRecord, MemorySegment DispatcherContext) {
+        var mh$ = __C_specific_handler.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("__C_specific_handler", ExceptionRecord, EstablisherFrame, ContextRecord, DispatcherContext);
+            }
+            return (int)mh$.invokeExact(ExceptionRecord, EstablisherFrame, ContextRecord, DispatcherContext);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _exception_code {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_LONG    );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_exception_code");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * unsigned long _exception_code()
+     * }
+     */
+    public static FunctionDescriptor _exception_code$descriptor() {
+        return _exception_code.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * unsigned long _exception_code()
+     * }
+     */
+    public static MethodHandle _exception_code$handle() {
+        return _exception_code.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * unsigned long _exception_code()
+     * }
+     */
+    public static MemorySegment _exception_code$address() {
+        return _exception_code.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * unsigned long _exception_code()
+     * }
+     */
+    public static int _exception_code() {
+        var mh$ = _exception_code.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_exception_code");
+            }
+            return (int)mh$.invokeExact();
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _exception_info {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_POINTER    );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_exception_info");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void *_exception_info()
+     * }
+     */
+    public static FunctionDescriptor _exception_info$descriptor() {
+        return _exception_info.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void *_exception_info()
+     * }
+     */
+    public static MethodHandle _exception_info$handle() {
+        return _exception_info.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * void *_exception_info()
+     * }
+     */
+    public static MemorySegment _exception_info$address() {
+        return _exception_info.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void *_exception_info()
+     * }
+     */
+    public static MemorySegment _exception_info() {
+        var mh$ = _exception_info.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_exception_info");
+            }
+            return (MemorySegment)mh$.invokeExact();
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _abnormal_termination {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT    );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_abnormal_termination");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _abnormal_termination()
+     * }
+     */
+    public static FunctionDescriptor _abnormal_termination$descriptor() {
+        return _abnormal_termination.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _abnormal_termination()
+     * }
+     */
+    public static MethodHandle _abnormal_termination$handle() {
+        return _abnormal_termination.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _abnormal_termination()
+     * }
+     */
+    public static MemorySegment _abnormal_termination$address() {
+        return _abnormal_termination.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _abnormal_termination()
+     * }
+     */
+    public static int _abnormal_termination() {
+        var mh$ = _abnormal_termination.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_abnormal_termination");
+            }
+            return (int)mh$.invokeExact();
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef __builtin_va_list __gnuc_va_list
+     * }
+     */
+    public static final AddressLayout __gnuc_va_list = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned long ULONG
+     * }
+     */
+    public static final OfInt ULONG = freeglut_h.C_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef ULONG *PULONG
+     * }
+     */
+    public static final AddressLayout PULONG = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned short USHORT
+     * }
+     */
+    public static final OfShort USHORT = freeglut_h.C_SHORT;
+    /**
+     * {@snippet lang=c :
+     * typedef USHORT *PUSHORT
+     * }
+     */
+    public static final AddressLayout PUSHORT = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned char UCHAR
+     * }
+     */
+    public static final OfByte UCHAR = freeglut_h.C_CHAR;
+    /**
+     * {@snippet lang=c :
+     * typedef UCHAR *PUCHAR
+     * }
+     */
+    public static final AddressLayout PUCHAR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef char *PSZ
+     * }
+     */
+    public static final AddressLayout PSZ = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned long DWORD
+     * }
+     */
+    public static final OfInt DWORD = freeglut_h.C_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef int BOOL
+     * }
+     */
+    public static final OfInt BOOL = freeglut_h.C_INT;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned char BYTE
+     * }
+     */
+    public static final OfByte BYTE = freeglut_h.C_CHAR;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned short WORD
+     * }
+     */
+    public static final OfShort WORD = freeglut_h.C_SHORT;
+    /**
+     * {@snippet lang=c :
+     * typedef float FLOAT
+     * }
+     */
+    public static final OfFloat FLOAT = freeglut_h.C_FLOAT;
+    /**
+     * {@snippet lang=c :
+     * typedef FLOAT *PFLOAT
+     * }
+     */
+    public static final AddressLayout PFLOAT = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef BOOL *PBOOL
+     * }
+     */
+    public static final AddressLayout PBOOL = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef BOOL *LPBOOL
+     * }
+     */
+    public static final AddressLayout LPBOOL = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef BYTE *PBYTE
+     * }
+     */
+    public static final AddressLayout PBYTE = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef BYTE *LPBYTE
+     * }
+     */
+    public static final AddressLayout LPBYTE = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef int *PINT
+     * }
+     */
+    public static final AddressLayout PINT = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef int *LPINT
+     * }
+     */
+    public static final AddressLayout LPINT = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef WORD *PWORD
+     * }
+     */
+    public static final AddressLayout PWORD = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef WORD *LPWORD
+     * }
+     */
+    public static final AddressLayout LPWORD = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef long *LPLONG
+     * }
+     */
+    public static final AddressLayout LPLONG = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef DWORD *PDWORD
+     * }
+     */
+    public static final AddressLayout PDWORD = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef DWORD *LPDWORD
+     * }
+     */
+    public static final AddressLayout LPDWORD = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef void *LPVOID
+     * }
+     */
+    public static final AddressLayout LPVOID = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const void *LPCVOID
+     * }
+     */
+    public static final AddressLayout LPCVOID = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef int INT
+     * }
+     */
+    public static final OfInt INT = freeglut_h.C_INT;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned int UINT
+     * }
+     */
+    public static final OfInt UINT = freeglut_h.C_INT;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned int *PUINT
+     * }
+     */
+    public static final AddressLayout PUINT = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef _Bool __crt_bool
+     * }
+     */
+    public static final OfBoolean __crt_bool = freeglut_h.C_BOOL;
+
+    private static class _invalid_parameter_noinfo {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(    );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_invalid_parameter_noinfo");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void _invalid_parameter_noinfo()
+     * }
+     */
+    public static FunctionDescriptor _invalid_parameter_noinfo$descriptor() {
+        return _invalid_parameter_noinfo.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void _invalid_parameter_noinfo()
+     * }
+     */
+    public static MethodHandle _invalid_parameter_noinfo$handle() {
+        return _invalid_parameter_noinfo.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * void _invalid_parameter_noinfo()
+     * }
+     */
+    public static MemorySegment _invalid_parameter_noinfo$address() {
+        return _invalid_parameter_noinfo.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void _invalid_parameter_noinfo()
+     * }
+     */
+    public static void _invalid_parameter_noinfo() {
+        var mh$ = _invalid_parameter_noinfo.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_invalid_parameter_noinfo");
+            }
+            mh$.invokeExact();
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _invalid_parameter_noinfo_noreturn {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(    );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_invalid_parameter_noinfo_noreturn");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void _invalid_parameter_noinfo_noreturn()
+     * }
+     */
+    public static FunctionDescriptor _invalid_parameter_noinfo_noreturn$descriptor() {
+        return _invalid_parameter_noinfo_noreturn.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void _invalid_parameter_noinfo_noreturn()
+     * }
+     */
+    public static MethodHandle _invalid_parameter_noinfo_noreturn$handle() {
+        return _invalid_parameter_noinfo_noreturn.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * void _invalid_parameter_noinfo_noreturn()
+     * }
+     */
+    public static MemorySegment _invalid_parameter_noinfo_noreturn$address() {
+        return _invalid_parameter_noinfo_noreturn.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void _invalid_parameter_noinfo_noreturn()
+     * }
+     */
+    public static void _invalid_parameter_noinfo_noreturn() {
+        var mh$ = _invalid_parameter_noinfo_noreturn.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_invalid_parameter_noinfo_noreturn");
+            }
+            mh$.invokeExact();
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _invoke_watson {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
+            freeglut_h.C_POINTER,
+            freeglut_h.C_POINTER,
+            freeglut_h.C_POINTER,
+            freeglut_h.C_INT,
+            freeglut_h.C_LONG_LONG
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_invoke_watson");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * void _invoke_watson(const wchar_t *_Expression, const wchar_t *_FunctionName, const wchar_t *_FileName, unsigned int _LineNo, uintptr_t _Reserved)
+     * }
+     */
+    public static FunctionDescriptor _invoke_watson$descriptor() {
+        return _invoke_watson.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * void _invoke_watson(const wchar_t *_Expression, const wchar_t *_FunctionName, const wchar_t *_FileName, unsigned int _LineNo, uintptr_t _Reserved)
+     * }
+     */
+    public static MethodHandle _invoke_watson$handle() {
+        return _invoke_watson.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * void _invoke_watson(const wchar_t *_Expression, const wchar_t *_FunctionName, const wchar_t *_FileName, unsigned int _LineNo, uintptr_t _Reserved)
+     * }
+     */
+    public static MemorySegment _invoke_watson$address() {
+        return _invoke_watson.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void _invoke_watson(const wchar_t *_Expression, const wchar_t *_FunctionName, const wchar_t *_FileName, unsigned int _LineNo, uintptr_t _Reserved)
+     * }
+     */
+    public static void _invoke_watson(MemorySegment _Expression, MemorySegment _FunctionName, MemorySegment _FileName, int _LineNo, long _Reserved) {
+        var mh$ = _invoke_watson.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_invoke_watson", _Expression, _FunctionName, _FileName, _LineNo, _Reserved);
+            }
+            mh$.invokeExact(_Expression, _FunctionName, _FileName, _LineNo, _Reserved);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef int errno_t
+     * }
+     */
+    public static final OfInt errno_t = freeglut_h.C_INT;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned short wint_t
+     * }
+     */
+    public static final OfShort wint_t = freeglut_h.C_SHORT;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned short wctype_t
+     * }
+     */
+    public static final OfShort wctype_t = freeglut_h.C_SHORT;
+    /**
+     * {@snippet lang=c :
+     * typedef long __time32_t
+     * }
+     */
+    public static final OfInt __time32_t = freeglut_h.C_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef long long __time64_t
+     * }
+     */
+    public static final OfLong __time64_t = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef __crt_locale_pointers *_locale_t
+     * }
+     */
+    public static final AddressLayout _locale_t = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef __time64_t time_t
+     * }
+     */
+    public static final OfLong time_t = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef size_t rsize_t
+     * }
+     */
+    public static final OfLong rsize_t = freeglut_h.C_LONG_LONG;
+
+    private static class __pctype_func {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_POINTER    );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("__pctype_func");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * const unsigned short *__pctype_func()
+     * }
+     */
+    public static FunctionDescriptor __pctype_func$descriptor() {
+        return __pctype_func.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * const unsigned short *__pctype_func()
+     * }
+     */
+    public static MethodHandle __pctype_func$handle() {
+        return __pctype_func.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * const unsigned short *__pctype_func()
+     * }
+     */
+    public static MemorySegment __pctype_func$address() {
+        return __pctype_func.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * const unsigned short *__pctype_func()
+     * }
+     */
+    public static MemorySegment __pctype_func() {
+        var mh$ = __pctype_func.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("__pctype_func");
+            }
+            return (MemorySegment)mh$.invokeExact();
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class __pwctype_func {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_POINTER    );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("__pwctype_func");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * const wctype_t *__pwctype_func()
+     * }
+     */
+    public static FunctionDescriptor __pwctype_func$descriptor() {
+        return __pwctype_func.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * const wctype_t *__pwctype_func()
+     * }
+     */
+    public static MethodHandle __pwctype_func$handle() {
+        return __pwctype_func.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * const wctype_t *__pwctype_func()
+     * }
+     */
+    public static MemorySegment __pwctype_func$address() {
+        return __pwctype_func.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * const wctype_t *__pwctype_func()
+     * }
+     */
+    public static MemorySegment __pwctype_func() {
+        var mh$ = __pwctype_func.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("__pwctype_func");
+            }
+            return (MemorySegment)mh$.invokeExact();
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class iswalnum {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("iswalnum");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int iswalnum(wint_t _C)
+     * }
+     */
+    public static FunctionDescriptor iswalnum$descriptor() {
+        return iswalnum.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int iswalnum(wint_t _C)
+     * }
+     */
+    public static MethodHandle iswalnum$handle() {
+        return iswalnum.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int iswalnum(wint_t _C)
+     * }
+     */
+    public static MemorySegment iswalnum$address() {
+        return iswalnum.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int iswalnum(wint_t _C)
+     * }
+     */
+    public static int iswalnum(short _C) {
+        var mh$ = iswalnum.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("iswalnum", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class iswalpha {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("iswalpha");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int iswalpha(wint_t _C)
+     * }
+     */
+    public static FunctionDescriptor iswalpha$descriptor() {
+        return iswalpha.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int iswalpha(wint_t _C)
+     * }
+     */
+    public static MethodHandle iswalpha$handle() {
+        return iswalpha.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int iswalpha(wint_t _C)
+     * }
+     */
+    public static MemorySegment iswalpha$address() {
+        return iswalpha.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int iswalpha(wint_t _C)
+     * }
+     */
+    public static int iswalpha(short _C) {
+        var mh$ = iswalpha.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("iswalpha", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class iswascii {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("iswascii");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int iswascii(wint_t _C)
+     * }
+     */
+    public static FunctionDescriptor iswascii$descriptor() {
+        return iswascii.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int iswascii(wint_t _C)
+     * }
+     */
+    public static MethodHandle iswascii$handle() {
+        return iswascii.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int iswascii(wint_t _C)
+     * }
+     */
+    public static MemorySegment iswascii$address() {
+        return iswascii.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int iswascii(wint_t _C)
+     * }
+     */
+    public static int iswascii(short _C) {
+        var mh$ = iswascii.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("iswascii", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class iswblank {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("iswblank");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int iswblank(wint_t _C)
+     * }
+     */
+    public static FunctionDescriptor iswblank$descriptor() {
+        return iswblank.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int iswblank(wint_t _C)
+     * }
+     */
+    public static MethodHandle iswblank$handle() {
+        return iswblank.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int iswblank(wint_t _C)
+     * }
+     */
+    public static MemorySegment iswblank$address() {
+        return iswblank.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int iswblank(wint_t _C)
+     * }
+     */
+    public static int iswblank(short _C) {
+        var mh$ = iswblank.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("iswblank", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class iswcntrl {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("iswcntrl");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int iswcntrl(wint_t _C)
+     * }
+     */
+    public static FunctionDescriptor iswcntrl$descriptor() {
+        return iswcntrl.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int iswcntrl(wint_t _C)
+     * }
+     */
+    public static MethodHandle iswcntrl$handle() {
+        return iswcntrl.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int iswcntrl(wint_t _C)
+     * }
+     */
+    public static MemorySegment iswcntrl$address() {
+        return iswcntrl.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int iswcntrl(wint_t _C)
+     * }
+     */
+    public static int iswcntrl(short _C) {
+        var mh$ = iswcntrl.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("iswcntrl", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class iswdigit {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("iswdigit");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int iswdigit(wint_t _C)
+     * }
+     */
+    public static FunctionDescriptor iswdigit$descriptor() {
+        return iswdigit.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int iswdigit(wint_t _C)
+     * }
+     */
+    public static MethodHandle iswdigit$handle() {
+        return iswdigit.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int iswdigit(wint_t _C)
+     * }
+     */
+    public static MemorySegment iswdigit$address() {
+        return iswdigit.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int iswdigit(wint_t _C)
+     * }
+     */
+    public static int iswdigit(short _C) {
+        var mh$ = iswdigit.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("iswdigit", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class iswgraph {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("iswgraph");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int iswgraph(wint_t _C)
+     * }
+     */
+    public static FunctionDescriptor iswgraph$descriptor() {
+        return iswgraph.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int iswgraph(wint_t _C)
+     * }
+     */
+    public static MethodHandle iswgraph$handle() {
+        return iswgraph.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int iswgraph(wint_t _C)
+     * }
+     */
+    public static MemorySegment iswgraph$address() {
+        return iswgraph.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int iswgraph(wint_t _C)
+     * }
+     */
+    public static int iswgraph(short _C) {
+        var mh$ = iswgraph.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("iswgraph", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class iswlower {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("iswlower");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int iswlower(wint_t _C)
+     * }
+     */
+    public static FunctionDescriptor iswlower$descriptor() {
+        return iswlower.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int iswlower(wint_t _C)
+     * }
+     */
+    public static MethodHandle iswlower$handle() {
+        return iswlower.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int iswlower(wint_t _C)
+     * }
+     */
+    public static MemorySegment iswlower$address() {
+        return iswlower.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int iswlower(wint_t _C)
+     * }
+     */
+    public static int iswlower(short _C) {
+        var mh$ = iswlower.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("iswlower", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class iswprint {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("iswprint");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int iswprint(wint_t _C)
+     * }
+     */
+    public static FunctionDescriptor iswprint$descriptor() {
+        return iswprint.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int iswprint(wint_t _C)
+     * }
+     */
+    public static MethodHandle iswprint$handle() {
+        return iswprint.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int iswprint(wint_t _C)
+     * }
+     */
+    public static MemorySegment iswprint$address() {
+        return iswprint.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int iswprint(wint_t _C)
+     * }
+     */
+    public static int iswprint(short _C) {
+        var mh$ = iswprint.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("iswprint", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class iswpunct {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("iswpunct");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int iswpunct(wint_t _C)
+     * }
+     */
+    public static FunctionDescriptor iswpunct$descriptor() {
+        return iswpunct.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int iswpunct(wint_t _C)
+     * }
+     */
+    public static MethodHandle iswpunct$handle() {
+        return iswpunct.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int iswpunct(wint_t _C)
+     * }
+     */
+    public static MemorySegment iswpunct$address() {
+        return iswpunct.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int iswpunct(wint_t _C)
+     * }
+     */
+    public static int iswpunct(short _C) {
+        var mh$ = iswpunct.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("iswpunct", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class iswspace {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("iswspace");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int iswspace(wint_t _C)
+     * }
+     */
+    public static FunctionDescriptor iswspace$descriptor() {
+        return iswspace.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int iswspace(wint_t _C)
+     * }
+     */
+    public static MethodHandle iswspace$handle() {
+        return iswspace.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int iswspace(wint_t _C)
+     * }
+     */
+    public static MemorySegment iswspace$address() {
+        return iswspace.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int iswspace(wint_t _C)
+     * }
+     */
+    public static int iswspace(short _C) {
+        var mh$ = iswspace.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("iswspace", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class iswupper {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("iswupper");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int iswupper(wint_t _C)
+     * }
+     */
+    public static FunctionDescriptor iswupper$descriptor() {
+        return iswupper.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int iswupper(wint_t _C)
+     * }
+     */
+    public static MethodHandle iswupper$handle() {
+        return iswupper.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int iswupper(wint_t _C)
+     * }
+     */
+    public static MemorySegment iswupper$address() {
+        return iswupper.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int iswupper(wint_t _C)
+     * }
+     */
+    public static int iswupper(short _C) {
+        var mh$ = iswupper.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("iswupper", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class iswxdigit {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("iswxdigit");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int iswxdigit(wint_t _C)
+     * }
+     */
+    public static FunctionDescriptor iswxdigit$descriptor() {
+        return iswxdigit.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int iswxdigit(wint_t _C)
+     * }
+     */
+    public static MethodHandle iswxdigit$handle() {
+        return iswxdigit.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int iswxdigit(wint_t _C)
+     * }
+     */
+    public static MemorySegment iswxdigit$address() {
+        return iswxdigit.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int iswxdigit(wint_t _C)
+     * }
+     */
+    public static int iswxdigit(short _C) {
+        var mh$ = iswxdigit.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("iswxdigit", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class __iswcsymf {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("__iswcsymf");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int __iswcsymf(wint_t _C)
+     * }
+     */
+    public static FunctionDescriptor __iswcsymf$descriptor() {
+        return __iswcsymf.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int __iswcsymf(wint_t _C)
+     * }
+     */
+    public static MethodHandle __iswcsymf$handle() {
+        return __iswcsymf.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int __iswcsymf(wint_t _C)
+     * }
+     */
+    public static MemorySegment __iswcsymf$address() {
+        return __iswcsymf.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int __iswcsymf(wint_t _C)
+     * }
+     */
+    public static int __iswcsymf(short _C) {
+        var mh$ = __iswcsymf.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("__iswcsymf", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class __iswcsym {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("__iswcsym");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int __iswcsym(wint_t _C)
+     * }
+     */
+    public static FunctionDescriptor __iswcsym$descriptor() {
+        return __iswcsym.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int __iswcsym(wint_t _C)
+     * }
+     */
+    public static MethodHandle __iswcsym$handle() {
+        return __iswcsym.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int __iswcsym(wint_t _C)
+     * }
+     */
+    public static MemorySegment __iswcsym$address() {
+        return __iswcsym.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int __iswcsym(wint_t _C)
+     * }
+     */
+    public static int __iswcsym(short _C) {
+        var mh$ = __iswcsym.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("__iswcsym", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _iswalnum_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_iswalnum_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _iswalnum_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _iswalnum_l$descriptor() {
+        return _iswalnum_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _iswalnum_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _iswalnum_l$handle() {
+        return _iswalnum_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _iswalnum_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _iswalnum_l$address() {
+        return _iswalnum_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _iswalnum_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static int _iswalnum_l(short _C, MemorySegment _Locale) {
+        var mh$ = _iswalnum_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_iswalnum_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _iswalpha_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_iswalpha_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _iswalpha_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _iswalpha_l$descriptor() {
+        return _iswalpha_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _iswalpha_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _iswalpha_l$handle() {
+        return _iswalpha_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _iswalpha_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _iswalpha_l$address() {
+        return _iswalpha_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _iswalpha_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static int _iswalpha_l(short _C, MemorySegment _Locale) {
+        var mh$ = _iswalpha_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_iswalpha_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _iswblank_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_iswblank_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _iswblank_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _iswblank_l$descriptor() {
+        return _iswblank_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _iswblank_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _iswblank_l$handle() {
+        return _iswblank_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _iswblank_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _iswblank_l$address() {
+        return _iswblank_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _iswblank_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static int _iswblank_l(short _C, MemorySegment _Locale) {
+        var mh$ = _iswblank_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_iswblank_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _iswcntrl_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_iswcntrl_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _iswcntrl_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _iswcntrl_l$descriptor() {
+        return _iswcntrl_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _iswcntrl_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _iswcntrl_l$handle() {
+        return _iswcntrl_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _iswcntrl_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _iswcntrl_l$address() {
+        return _iswcntrl_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _iswcntrl_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static int _iswcntrl_l(short _C, MemorySegment _Locale) {
+        var mh$ = _iswcntrl_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_iswcntrl_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _iswdigit_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_iswdigit_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _iswdigit_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _iswdigit_l$descriptor() {
+        return _iswdigit_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _iswdigit_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _iswdigit_l$handle() {
+        return _iswdigit_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _iswdigit_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _iswdigit_l$address() {
+        return _iswdigit_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _iswdigit_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static int _iswdigit_l(short _C, MemorySegment _Locale) {
+        var mh$ = _iswdigit_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_iswdigit_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _iswgraph_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_iswgraph_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _iswgraph_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _iswgraph_l$descriptor() {
+        return _iswgraph_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _iswgraph_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _iswgraph_l$handle() {
+        return _iswgraph_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _iswgraph_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _iswgraph_l$address() {
+        return _iswgraph_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _iswgraph_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static int _iswgraph_l(short _C, MemorySegment _Locale) {
+        var mh$ = _iswgraph_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_iswgraph_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _iswlower_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_iswlower_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _iswlower_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _iswlower_l$descriptor() {
+        return _iswlower_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _iswlower_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _iswlower_l$handle() {
+        return _iswlower_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _iswlower_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _iswlower_l$address() {
+        return _iswlower_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _iswlower_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static int _iswlower_l(short _C, MemorySegment _Locale) {
+        var mh$ = _iswlower_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_iswlower_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _iswprint_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_iswprint_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _iswprint_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _iswprint_l$descriptor() {
+        return _iswprint_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _iswprint_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _iswprint_l$handle() {
+        return _iswprint_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _iswprint_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _iswprint_l$address() {
+        return _iswprint_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _iswprint_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static int _iswprint_l(short _C, MemorySegment _Locale) {
+        var mh$ = _iswprint_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_iswprint_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _iswpunct_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_iswpunct_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _iswpunct_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _iswpunct_l$descriptor() {
+        return _iswpunct_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _iswpunct_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _iswpunct_l$handle() {
+        return _iswpunct_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _iswpunct_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _iswpunct_l$address() {
+        return _iswpunct_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _iswpunct_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static int _iswpunct_l(short _C, MemorySegment _Locale) {
+        var mh$ = _iswpunct_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_iswpunct_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _iswspace_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_iswspace_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _iswspace_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _iswspace_l$descriptor() {
+        return _iswspace_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _iswspace_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _iswspace_l$handle() {
+        return _iswspace_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _iswspace_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _iswspace_l$address() {
+        return _iswspace_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _iswspace_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static int _iswspace_l(short _C, MemorySegment _Locale) {
+        var mh$ = _iswspace_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_iswspace_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _iswupper_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_iswupper_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _iswupper_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _iswupper_l$descriptor() {
+        return _iswupper_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _iswupper_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _iswupper_l$handle() {
+        return _iswupper_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _iswupper_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _iswupper_l$address() {
+        return _iswupper_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _iswupper_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static int _iswupper_l(short _C, MemorySegment _Locale) {
+        var mh$ = _iswupper_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_iswupper_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _iswxdigit_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_iswxdigit_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _iswxdigit_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _iswxdigit_l$descriptor() {
+        return _iswxdigit_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _iswxdigit_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _iswxdigit_l$handle() {
+        return _iswxdigit_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _iswxdigit_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _iswxdigit_l$address() {
+        return _iswxdigit_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _iswxdigit_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static int _iswxdigit_l(short _C, MemorySegment _Locale) {
+        var mh$ = _iswxdigit_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_iswxdigit_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _iswcsymf_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_iswcsymf_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _iswcsymf_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _iswcsymf_l$descriptor() {
+        return _iswcsymf_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _iswcsymf_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _iswcsymf_l$handle() {
+        return _iswcsymf_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _iswcsymf_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _iswcsymf_l$address() {
+        return _iswcsymf_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _iswcsymf_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static int _iswcsymf_l(short _C, MemorySegment _Locale) {
+        var mh$ = _iswcsymf_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_iswcsymf_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _iswcsym_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_iswcsym_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _iswcsym_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _iswcsym_l$descriptor() {
+        return _iswcsym_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _iswcsym_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _iswcsym_l$handle() {
+        return _iswcsym_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _iswcsym_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _iswcsym_l$address() {
+        return _iswcsym_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _iswcsym_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static int _iswcsym_l(short _C, MemorySegment _Locale) {
+        var mh$ = _iswcsym_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_iswcsym_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class towupper {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_SHORT,
+            freeglut_h.C_SHORT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("towupper");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * wint_t towupper(wint_t _C)
+     * }
+     */
+    public static FunctionDescriptor towupper$descriptor() {
+        return towupper.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * wint_t towupper(wint_t _C)
+     * }
+     */
+    public static MethodHandle towupper$handle() {
+        return towupper.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * wint_t towupper(wint_t _C)
+     * }
+     */
+    public static MemorySegment towupper$address() {
+        return towupper.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * wint_t towupper(wint_t _C)
+     * }
+     */
+    public static short towupper(short _C) {
+        var mh$ = towupper.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("towupper", _C);
+            }
+            return (short)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class towlower {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_SHORT,
+            freeglut_h.C_SHORT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("towlower");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * wint_t towlower(wint_t _C)
+     * }
+     */
+    public static FunctionDescriptor towlower$descriptor() {
+        return towlower.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * wint_t towlower(wint_t _C)
+     * }
+     */
+    public static MethodHandle towlower$handle() {
+        return towlower.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * wint_t towlower(wint_t _C)
+     * }
+     */
+    public static MemorySegment towlower$address() {
+        return towlower.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * wint_t towlower(wint_t _C)
+     * }
+     */
+    public static short towlower(short _C) {
+        var mh$ = towlower.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("towlower", _C);
+            }
+            return (short)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class iswctype {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_SHORT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("iswctype");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int iswctype(wint_t _C, wctype_t _Type)
+     * }
+     */
+    public static FunctionDescriptor iswctype$descriptor() {
+        return iswctype.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int iswctype(wint_t _C, wctype_t _Type)
+     * }
+     */
+    public static MethodHandle iswctype$handle() {
+        return iswctype.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int iswctype(wint_t _C, wctype_t _Type)
+     * }
+     */
+    public static MemorySegment iswctype$address() {
+        return iswctype.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int iswctype(wint_t _C, wctype_t _Type)
+     * }
+     */
+    public static int iswctype(short _C, short _Type) {
+        var mh$ = iswctype.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("iswctype", _C, _Type);
+            }
+            return (int)mh$.invokeExact(_C, _Type);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _towupper_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_SHORT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_towupper_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * wint_t _towupper_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _towupper_l$descriptor() {
+        return _towupper_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * wint_t _towupper_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _towupper_l$handle() {
+        return _towupper_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * wint_t _towupper_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _towupper_l$address() {
+        return _towupper_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * wint_t _towupper_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static short _towupper_l(short _C, MemorySegment _Locale) {
+        var mh$ = _towupper_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_towupper_l", _C, _Locale);
+            }
+            return (short)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _towlower_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_SHORT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_towlower_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * wint_t _towlower_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _towlower_l$descriptor() {
+        return _towlower_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * wint_t _towlower_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _towlower_l$handle() {
+        return _towlower_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * wint_t _towlower_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _towlower_l$address() {
+        return _towlower_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * wint_t _towlower_l(wint_t _C, _locale_t _Locale)
+     * }
+     */
+    public static short _towlower_l(short _C, MemorySegment _Locale) {
+        var mh$ = _towlower_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_towlower_l", _C, _Locale);
+            }
+            return (short)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _iswctype_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_iswctype_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _iswctype_l(wint_t _C, wctype_t _Type, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _iswctype_l$descriptor() {
+        return _iswctype_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _iswctype_l(wint_t _C, wctype_t _Type, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _iswctype_l$handle() {
+        return _iswctype_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _iswctype_l(wint_t _C, wctype_t _Type, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _iswctype_l$address() {
+        return _iswctype_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _iswctype_l(wint_t _C, wctype_t _Type, _locale_t _Locale)
+     * }
+     */
+    public static int _iswctype_l(short _C, short _Type, MemorySegment _Locale) {
+        var mh$ = _iswctype_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_iswctype_l", _C, _Type, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Type, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class isleadbyte {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("isleadbyte");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int isleadbyte(int _C)
+     * }
+     */
+    public static FunctionDescriptor isleadbyte$descriptor() {
+        return isleadbyte.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int isleadbyte(int _C)
+     * }
+     */
+    public static MethodHandle isleadbyte$handle() {
+        return isleadbyte.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int isleadbyte(int _C)
+     * }
+     */
+    public static MemorySegment isleadbyte$address() {
+        return isleadbyte.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int isleadbyte(int _C)
+     * }
+     */
+    public static int isleadbyte(int _C) {
+        var mh$ = isleadbyte.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("isleadbyte", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _isleadbyte_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_isleadbyte_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _isleadbyte_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _isleadbyte_l$descriptor() {
+        return _isleadbyte_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _isleadbyte_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _isleadbyte_l$handle() {
+        return _isleadbyte_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _isleadbyte_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _isleadbyte_l$address() {
+        return _isleadbyte_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _isleadbyte_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static int _isleadbyte_l(int _C, MemorySegment _Locale) {
+        var mh$ = _isleadbyte_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_isleadbyte_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class is_wctype {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_SHORT,
+            freeglut_h.C_SHORT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("is_wctype");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int is_wctype(wint_t _C, wctype_t _Type)
+     * }
+     */
+    public static FunctionDescriptor is_wctype$descriptor() {
+        return is_wctype.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int is_wctype(wint_t _C, wctype_t _Type)
+     * }
+     */
+    public static MethodHandle is_wctype$handle() {
+        return is_wctype.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int is_wctype(wint_t _C, wctype_t _Type)
+     * }
+     */
+    public static MemorySegment is_wctype$address() {
+        return is_wctype.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int is_wctype(wint_t _C, wctype_t _Type)
+     * }
+     */
+    public static int is_wctype(short _C, short _Type) {
+        var mh$ = is_wctype.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("is_wctype", _C, _Type);
+            }
+            return (int)mh$.invokeExact(_C, _Type);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _isctype {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_isctype");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _isctype(int _C, int _Type)
+     * }
+     */
+    public static FunctionDescriptor _isctype$descriptor() {
+        return _isctype.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _isctype(int _C, int _Type)
+     * }
+     */
+    public static MethodHandle _isctype$handle() {
+        return _isctype.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _isctype(int _C, int _Type)
+     * }
+     */
+    public static MemorySegment _isctype$address() {
+        return _isctype.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _isctype(int _C, int _Type)
+     * }
+     */
+    public static int _isctype(int _C, int _Type) {
+        var mh$ = _isctype.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_isctype", _C, _Type);
+            }
+            return (int)mh$.invokeExact(_C, _Type);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _isctype_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT,
+            freeglut_h.C_INT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_isctype_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _isctype_l(int _C, int _Type, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _isctype_l$descriptor() {
+        return _isctype_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _isctype_l(int _C, int _Type, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _isctype_l$handle() {
+        return _isctype_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _isctype_l(int _C, int _Type, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _isctype_l$address() {
+        return _isctype_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _isctype_l(int _C, int _Type, _locale_t _Locale)
+     * }
+     */
+    public static int _isctype_l(int _C, int _Type, MemorySegment _Locale) {
+        var mh$ = _isctype_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_isctype_l", _C, _Type, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Type, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class isalpha {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("isalpha");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int isalpha(int _C)
+     * }
+     */
+    public static FunctionDescriptor isalpha$descriptor() {
+        return isalpha.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int isalpha(int _C)
+     * }
+     */
+    public static MethodHandle isalpha$handle() {
+        return isalpha.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int isalpha(int _C)
+     * }
+     */
+    public static MemorySegment isalpha$address() {
+        return isalpha.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int isalpha(int _C)
+     * }
+     */
+    public static int isalpha(int _C) {
+        var mh$ = isalpha.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("isalpha", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _isalpha_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_isalpha_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _isalpha_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _isalpha_l$descriptor() {
+        return _isalpha_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _isalpha_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _isalpha_l$handle() {
+        return _isalpha_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _isalpha_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _isalpha_l$address() {
+        return _isalpha_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _isalpha_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static int _isalpha_l(int _C, MemorySegment _Locale) {
+        var mh$ = _isalpha_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_isalpha_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class isupper {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("isupper");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int isupper(int _C)
+     * }
+     */
+    public static FunctionDescriptor isupper$descriptor() {
+        return isupper.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int isupper(int _C)
+     * }
+     */
+    public static MethodHandle isupper$handle() {
+        return isupper.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int isupper(int _C)
+     * }
+     */
+    public static MemorySegment isupper$address() {
+        return isupper.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int isupper(int _C)
+     * }
+     */
+    public static int isupper(int _C) {
+        var mh$ = isupper.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("isupper", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _isupper_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_isupper_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _isupper_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _isupper_l$descriptor() {
+        return _isupper_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _isupper_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _isupper_l$handle() {
+        return _isupper_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _isupper_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _isupper_l$address() {
+        return _isupper_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _isupper_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static int _isupper_l(int _C, MemorySegment _Locale) {
+        var mh$ = _isupper_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_isupper_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class islower {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("islower");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int islower(int _C)
+     * }
+     */
+    public static FunctionDescriptor islower$descriptor() {
+        return islower.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int islower(int _C)
+     * }
+     */
+    public static MethodHandle islower$handle() {
+        return islower.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int islower(int _C)
+     * }
+     */
+    public static MemorySegment islower$address() {
+        return islower.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int islower(int _C)
+     * }
+     */
+    public static int islower(int _C) {
+        var mh$ = islower.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("islower", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _islower_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_islower_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _islower_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _islower_l$descriptor() {
+        return _islower_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _islower_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _islower_l$handle() {
+        return _islower_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _islower_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _islower_l$address() {
+        return _islower_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _islower_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static int _islower_l(int _C, MemorySegment _Locale) {
+        var mh$ = _islower_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_islower_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class isdigit {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("isdigit");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int isdigit(int _C)
+     * }
+     */
+    public static FunctionDescriptor isdigit$descriptor() {
+        return isdigit.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int isdigit(int _C)
+     * }
+     */
+    public static MethodHandle isdigit$handle() {
+        return isdigit.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int isdigit(int _C)
+     * }
+     */
+    public static MemorySegment isdigit$address() {
+        return isdigit.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int isdigit(int _C)
+     * }
+     */
+    public static int isdigit(int _C) {
+        var mh$ = isdigit.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("isdigit", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _isdigit_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_isdigit_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _isdigit_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _isdigit_l$descriptor() {
+        return _isdigit_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _isdigit_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _isdigit_l$handle() {
+        return _isdigit_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _isdigit_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _isdigit_l$address() {
+        return _isdigit_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _isdigit_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static int _isdigit_l(int _C, MemorySegment _Locale) {
+        var mh$ = _isdigit_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_isdigit_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class isxdigit {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("isxdigit");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int isxdigit(int _C)
+     * }
+     */
+    public static FunctionDescriptor isxdigit$descriptor() {
+        return isxdigit.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int isxdigit(int _C)
+     * }
+     */
+    public static MethodHandle isxdigit$handle() {
+        return isxdigit.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int isxdigit(int _C)
+     * }
+     */
+    public static MemorySegment isxdigit$address() {
+        return isxdigit.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int isxdigit(int _C)
+     * }
+     */
+    public static int isxdigit(int _C) {
+        var mh$ = isxdigit.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("isxdigit", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _isxdigit_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_isxdigit_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _isxdigit_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _isxdigit_l$descriptor() {
+        return _isxdigit_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _isxdigit_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _isxdigit_l$handle() {
+        return _isxdigit_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _isxdigit_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _isxdigit_l$address() {
+        return _isxdigit_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _isxdigit_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static int _isxdigit_l(int _C, MemorySegment _Locale) {
+        var mh$ = _isxdigit_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_isxdigit_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class isspace {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("isspace");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int isspace(int _C)
+     * }
+     */
+    public static FunctionDescriptor isspace$descriptor() {
+        return isspace.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int isspace(int _C)
+     * }
+     */
+    public static MethodHandle isspace$handle() {
+        return isspace.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int isspace(int _C)
+     * }
+     */
+    public static MemorySegment isspace$address() {
+        return isspace.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int isspace(int _C)
+     * }
+     */
+    public static int isspace(int _C) {
+        var mh$ = isspace.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("isspace", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _isspace_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_isspace_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _isspace_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _isspace_l$descriptor() {
+        return _isspace_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _isspace_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _isspace_l$handle() {
+        return _isspace_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _isspace_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _isspace_l$address() {
+        return _isspace_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _isspace_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static int _isspace_l(int _C, MemorySegment _Locale) {
+        var mh$ = _isspace_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_isspace_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class ispunct {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("ispunct");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int ispunct(int _C)
+     * }
+     */
+    public static FunctionDescriptor ispunct$descriptor() {
+        return ispunct.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int ispunct(int _C)
+     * }
+     */
+    public static MethodHandle ispunct$handle() {
+        return ispunct.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int ispunct(int _C)
+     * }
+     */
+    public static MemorySegment ispunct$address() {
+        return ispunct.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int ispunct(int _C)
+     * }
+     */
+    public static int ispunct(int _C) {
+        var mh$ = ispunct.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("ispunct", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _ispunct_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_ispunct_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _ispunct_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _ispunct_l$descriptor() {
+        return _ispunct_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _ispunct_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _ispunct_l$handle() {
+        return _ispunct_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _ispunct_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _ispunct_l$address() {
+        return _ispunct_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _ispunct_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static int _ispunct_l(int _C, MemorySegment _Locale) {
+        var mh$ = _ispunct_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_ispunct_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class isblank {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("isblank");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int isblank(int _C)
+     * }
+     */
+    public static FunctionDescriptor isblank$descriptor() {
+        return isblank.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int isblank(int _C)
+     * }
+     */
+    public static MethodHandle isblank$handle() {
+        return isblank.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int isblank(int _C)
+     * }
+     */
+    public static MemorySegment isblank$address() {
+        return isblank.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int isblank(int _C)
+     * }
+     */
+    public static int isblank(int _C) {
+        var mh$ = isblank.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("isblank", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _isblank_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_isblank_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _isblank_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _isblank_l$descriptor() {
+        return _isblank_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _isblank_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _isblank_l$handle() {
+        return _isblank_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _isblank_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _isblank_l$address() {
+        return _isblank_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _isblank_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static int _isblank_l(int _C, MemorySegment _Locale) {
+        var mh$ = _isblank_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_isblank_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class isalnum {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("isalnum");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int isalnum(int _C)
+     * }
+     */
+    public static FunctionDescriptor isalnum$descriptor() {
+        return isalnum.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int isalnum(int _C)
+     * }
+     */
+    public static MethodHandle isalnum$handle() {
+        return isalnum.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int isalnum(int _C)
+     * }
+     */
+    public static MemorySegment isalnum$address() {
+        return isalnum.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int isalnum(int _C)
+     * }
+     */
+    public static int isalnum(int _C) {
+        var mh$ = isalnum.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("isalnum", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _isalnum_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_isalnum_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _isalnum_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _isalnum_l$descriptor() {
+        return _isalnum_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _isalnum_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _isalnum_l$handle() {
+        return _isalnum_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _isalnum_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _isalnum_l$address() {
+        return _isalnum_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _isalnum_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static int _isalnum_l(int _C, MemorySegment _Locale) {
+        var mh$ = _isalnum_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_isalnum_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class isprint {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("isprint");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int isprint(int _C)
+     * }
+     */
+    public static FunctionDescriptor isprint$descriptor() {
+        return isprint.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int isprint(int _C)
+     * }
+     */
+    public static MethodHandle isprint$handle() {
+        return isprint.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int isprint(int _C)
+     * }
+     */
+    public static MemorySegment isprint$address() {
+        return isprint.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int isprint(int _C)
+     * }
+     */
+    public static int isprint(int _C) {
+        var mh$ = isprint.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("isprint", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _isprint_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_isprint_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _isprint_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _isprint_l$descriptor() {
+        return _isprint_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _isprint_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _isprint_l$handle() {
+        return _isprint_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _isprint_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _isprint_l$address() {
+        return _isprint_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _isprint_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static int _isprint_l(int _C, MemorySegment _Locale) {
+        var mh$ = _isprint_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_isprint_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class isgraph {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("isgraph");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int isgraph(int _C)
+     * }
+     */
+    public static FunctionDescriptor isgraph$descriptor() {
+        return isgraph.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int isgraph(int _C)
+     * }
+     */
+    public static MethodHandle isgraph$handle() {
+        return isgraph.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int isgraph(int _C)
+     * }
+     */
+    public static MemorySegment isgraph$address() {
+        return isgraph.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int isgraph(int _C)
+     * }
+     */
+    public static int isgraph(int _C) {
+        var mh$ = isgraph.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("isgraph", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _isgraph_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_isgraph_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _isgraph_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _isgraph_l$descriptor() {
+        return _isgraph_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _isgraph_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _isgraph_l$handle() {
+        return _isgraph_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _isgraph_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _isgraph_l$address() {
+        return _isgraph_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _isgraph_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static int _isgraph_l(int _C, MemorySegment _Locale) {
+        var mh$ = _isgraph_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_isgraph_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class iscntrl {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("iscntrl");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int iscntrl(int _C)
+     * }
+     */
+    public static FunctionDescriptor iscntrl$descriptor() {
+        return iscntrl.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int iscntrl(int _C)
+     * }
+     */
+    public static MethodHandle iscntrl$handle() {
+        return iscntrl.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int iscntrl(int _C)
+     * }
+     */
+    public static MemorySegment iscntrl$address() {
+        return iscntrl.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int iscntrl(int _C)
+     * }
+     */
+    public static int iscntrl(int _C) {
+        var mh$ = iscntrl.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("iscntrl", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _iscntrl_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_iscntrl_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _iscntrl_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _iscntrl_l$descriptor() {
+        return _iscntrl_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _iscntrl_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _iscntrl_l$handle() {
+        return _iscntrl_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _iscntrl_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _iscntrl_l$address() {
+        return _iscntrl_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _iscntrl_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static int _iscntrl_l(int _C, MemorySegment _Locale) {
+        var mh$ = _iscntrl_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_iscntrl_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class toupper {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("toupper");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int toupper(int _C)
+     * }
+     */
+    public static FunctionDescriptor toupper$descriptor() {
+        return toupper.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int toupper(int _C)
+     * }
+     */
+    public static MethodHandle toupper$handle() {
+        return toupper.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int toupper(int _C)
+     * }
+     */
+    public static MemorySegment toupper$address() {
+        return toupper.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int toupper(int _C)
+     * }
+     */
+    public static int toupper(int _C) {
+        var mh$ = toupper.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("toupper", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class tolower {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("tolower");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int tolower(int _C)
+     * }
+     */
+    public static FunctionDescriptor tolower$descriptor() {
+        return tolower.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int tolower(int _C)
+     * }
+     */
+    public static MethodHandle tolower$handle() {
+        return tolower.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int tolower(int _C)
+     * }
+     */
+    public static MemorySegment tolower$address() {
+        return tolower.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int tolower(int _C)
+     * }
+     */
+    public static int tolower(int _C) {
+        var mh$ = tolower.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("tolower", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _tolower {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_tolower");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _tolower(int _C)
+     * }
+     */
+    public static FunctionDescriptor _tolower$descriptor() {
+        return _tolower.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _tolower(int _C)
+     * }
+     */
+    public static MethodHandle _tolower$handle() {
+        return _tolower.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _tolower(int _C)
+     * }
+     */
+    public static MemorySegment _tolower$address() {
+        return _tolower.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _tolower(int _C)
+     * }
+     */
+    public static int _tolower(int _C) {
+        var mh$ = _tolower.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_tolower", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _tolower_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_tolower_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _tolower_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _tolower_l$descriptor() {
+        return _tolower_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _tolower_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _tolower_l$handle() {
+        return _tolower_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _tolower_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _tolower_l$address() {
+        return _tolower_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _tolower_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static int _tolower_l(int _C, MemorySegment _Locale) {
+        var mh$ = _tolower_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_tolower_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _toupper {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_toupper");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _toupper(int _C)
+     * }
+     */
+    public static FunctionDescriptor _toupper$descriptor() {
+        return _toupper.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _toupper(int _C)
+     * }
+     */
+    public static MethodHandle _toupper$handle() {
+        return _toupper.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _toupper(int _C)
+     * }
+     */
+    public static MemorySegment _toupper$address() {
+        return _toupper.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _toupper(int _C)
+     * }
+     */
+    public static int _toupper(int _C) {
+        var mh$ = _toupper.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_toupper", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class _toupper_l {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("_toupper_l");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int _toupper_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor _toupper_l$descriptor() {
+        return _toupper_l.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int _toupper_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MethodHandle _toupper_l$handle() {
+        return _toupper_l.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int _toupper_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static MemorySegment _toupper_l$address() {
+        return _toupper_l.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int _toupper_l(int _C, _locale_t _Locale)
+     * }
+     */
+    public static int _toupper_l(int _C, MemorySegment _Locale) {
+        var mh$ = _toupper_l.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("_toupper_l", _C, _Locale);
+            }
+            return (int)mh$.invokeExact(_C, _Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class __isascii {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("__isascii");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int __isascii(int _C)
+     * }
+     */
+    public static FunctionDescriptor __isascii$descriptor() {
+        return __isascii.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int __isascii(int _C)
+     * }
+     */
+    public static MethodHandle __isascii$handle() {
+        return __isascii.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int __isascii(int _C)
+     * }
+     */
+    public static MemorySegment __isascii$address() {
+        return __isascii.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int __isascii(int _C)
+     * }
+     */
+    public static int __isascii(int _C) {
+        var mh$ = __isascii.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("__isascii", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class __toascii {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("__toascii");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int __toascii(int _C)
+     * }
+     */
+    public static FunctionDescriptor __toascii$descriptor() {
+        return __toascii.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int __toascii(int _C)
+     * }
+     */
+    public static MethodHandle __toascii$handle() {
+        return __toascii.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int __toascii(int _C)
+     * }
+     */
+    public static MemorySegment __toascii$address() {
+        return __toascii.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int __toascii(int _C)
+     * }
+     */
+    public static int __toascii(int _C) {
+        var mh$ = __toascii.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("__toascii", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class __iscsymf {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("__iscsymf");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int __iscsymf(int _C)
+     * }
+     */
+    public static FunctionDescriptor __iscsymf$descriptor() {
+        return __iscsymf.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int __iscsymf(int _C)
+     * }
+     */
+    public static MethodHandle __iscsymf$handle() {
+        return __iscsymf.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int __iscsymf(int _C)
+     * }
+     */
+    public static MemorySegment __iscsymf$address() {
+        return __iscsymf.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int __iscsymf(int _C)
+     * }
+     */
+    public static int __iscsymf(int _C) {
+        var mh$ = __iscsymf.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("__iscsymf", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class __iscsym {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_INT
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("__iscsym");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int __iscsym(int _C)
+     * }
+     */
+    public static FunctionDescriptor __iscsym$descriptor() {
+        return __iscsym.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int __iscsym(int _C)
+     * }
+     */
+    public static MethodHandle __iscsym$handle() {
+        return __iscsym.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int __iscsym(int _C)
+     * }
+     */
+    public static MemorySegment __iscsym$address() {
+        return __iscsym.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int __iscsym(int _C)
+     * }
+     */
+    public static int __iscsym(int _C) {
+        var mh$ = __iscsym.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("__iscsym", _C);
+            }
+            return (int)mh$.invokeExact(_C);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class ___mb_cur_max_func {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT    );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("___mb_cur_max_func");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int ___mb_cur_max_func()
+     * }
+     */
+    public static FunctionDescriptor ___mb_cur_max_func$descriptor() {
+        return ___mb_cur_max_func.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int ___mb_cur_max_func()
+     * }
+     */
+    public static MethodHandle ___mb_cur_max_func$handle() {
+        return ___mb_cur_max_func.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int ___mb_cur_max_func()
+     * }
+     */
+    public static MemorySegment ___mb_cur_max_func$address() {
+        return ___mb_cur_max_func.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int ___mb_cur_max_func()
+     * }
+     */
+    public static int ___mb_cur_max_func() {
+        var mh$ = ___mb_cur_max_func.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("___mb_cur_max_func");
+            }
+            return (int)mh$.invokeExact();
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    private static class ___mb_cur_max_l_func {
+        public static final FunctionDescriptor DESC = FunctionDescriptor.of(
+            freeglut_h.C_INT,
+            freeglut_h.C_POINTER
+        );
+
+        public static final MemorySegment ADDR = freeglut_h.findOrThrow("___mb_cur_max_l_func");
+
+        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
+    }
+
+    /**
+     * Function descriptor for:
+     * {@snippet lang=c :
+     * int ___mb_cur_max_l_func(_locale_t _Locale)
+     * }
+     */
+    public static FunctionDescriptor ___mb_cur_max_l_func$descriptor() {
+        return ___mb_cur_max_l_func.DESC;
+    }
+
+    /**
+     * Downcall method handle for:
+     * {@snippet lang=c :
+     * int ___mb_cur_max_l_func(_locale_t _Locale)
+     * }
+     */
+    public static MethodHandle ___mb_cur_max_l_func$handle() {
+        return ___mb_cur_max_l_func.HANDLE;
+    }
+
+    /**
+     * Address for:
+     * {@snippet lang=c :
+     * int ___mb_cur_max_l_func(_locale_t _Locale)
+     * }
+     */
+    public static MemorySegment ___mb_cur_max_l_func$address() {
+        return ___mb_cur_max_l_func.ADDR;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int ___mb_cur_max_l_func(_locale_t _Locale)
+     * }
+     */
+    public static int ___mb_cur_max_l_func(MemorySegment _Locale) {
+        var mh$ = ___mb_cur_max_l_func.HANDLE;
+        try {
+            if (TRACE_DOWNCALLS) {
+                traceDowncall("___mb_cur_max_l_func", _Locale);
+            }
+            return (int)mh$.invokeExact(_Locale);
+        } catch (Throwable ex$) {
+           throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned long long POINTER_64_INT
+     * }
+     */
+    public static final OfLong POINTER_64_INT = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef signed char INT8
+     * }
+     */
+    public static final OfByte INT8 = freeglut_h.C_CHAR;
+    /**
+     * {@snippet lang=c :
+     * typedef signed char *PINT8
+     * }
+     */
+    public static final AddressLayout PINT8 = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef short INT16
+     * }
+     */
+    public static final OfShort INT16 = freeglut_h.C_SHORT;
+    /**
+     * {@snippet lang=c :
+     * typedef short *PINT16
+     * }
+     */
+    public static final AddressLayout PINT16 = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef int INT32
+     * }
+     */
+    public static final OfInt INT32 = freeglut_h.C_INT;
+    /**
+     * {@snippet lang=c :
+     * typedef int *PINT32
+     * }
+     */
+    public static final AddressLayout PINT32 = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef long long INT64
+     * }
+     */
+    public static final OfLong INT64 = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef long long *PINT64
+     * }
+     */
+    public static final AddressLayout PINT64 = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned char UINT8
+     * }
+     */
+    public static final OfByte UINT8 = freeglut_h.C_CHAR;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned char *PUINT8
+     * }
+     */
+    public static final AddressLayout PUINT8 = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned short UINT16
+     * }
+     */
+    public static final OfShort UINT16 = freeglut_h.C_SHORT;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned short *PUINT16
+     * }
+     */
+    public static final AddressLayout PUINT16 = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned int UINT32
+     * }
+     */
+    public static final OfInt UINT32 = freeglut_h.C_INT;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned int *PUINT32
+     * }
+     */
+    public static final AddressLayout PUINT32 = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned long long UINT64
+     * }
+     */
+    public static final OfLong UINT64 = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned long long *PUINT64
+     * }
+     */
+    public static final AddressLayout PUINT64 = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef int LONG32
+     * }
+     */
+    public static final OfInt LONG32 = freeglut_h.C_INT;
+    /**
+     * {@snippet lang=c :
+     * typedef int *PLONG32
+     * }
+     */
+    public static final AddressLayout PLONG32 = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned int ULONG32
+     * }
+     */
+    public static final OfInt ULONG32 = freeglut_h.C_INT;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned int *PULONG32
+     * }
+     */
+    public static final AddressLayout PULONG32 = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned int DWORD32
+     * }
+     */
+    public static final OfInt DWORD32 = freeglut_h.C_INT;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned int *PDWORD32
+     * }
+     */
+    public static final AddressLayout PDWORD32 = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef long long INT_PTR
+     * }
+     */
+    public static final OfLong INT_PTR = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef long long *PINT_PTR
+     * }
+     */
+    public static final AddressLayout PINT_PTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned long long UINT_PTR
+     * }
+     */
+    public static final OfLong UINT_PTR = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned long long *PUINT_PTR
+     * }
+     */
+    public static final AddressLayout PUINT_PTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef long long LONG_PTR
+     * }
+     */
+    public static final OfLong LONG_PTR = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef long long *PLONG_PTR
+     * }
+     */
+    public static final AddressLayout PLONG_PTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned long long ULONG_PTR
+     * }
+     */
+    public static final OfLong ULONG_PTR = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned long long *PULONG_PTR
+     * }
+     */
+    public static final AddressLayout PULONG_PTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef long long SHANDLE_PTR
+     * }
+     */
+    public static final OfLong SHANDLE_PTR = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned long long HANDLE_PTR
+     * }
+     */
+    public static final OfLong HANDLE_PTR = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned int UHALF_PTR
+     * }
+     */
+    public static final OfInt UHALF_PTR = freeglut_h.C_INT;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned int *PUHALF_PTR
+     * }
+     */
+    public static final AddressLayout PUHALF_PTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef int HALF_PTR
+     * }
+     */
+    public static final OfInt HALF_PTR = freeglut_h.C_INT;
+    /**
+     * {@snippet lang=c :
+     * typedef int *PHALF_PTR
+     * }
+     */
+    public static final AddressLayout PHALF_PTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef ULONG_PTR SIZE_T
+     * }
+     */
+    public static final OfLong SIZE_T$1 = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef ULONG_PTR *PSIZE_T
+     * }
+     */
+    public static final AddressLayout PSIZE_T = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef LONG_PTR SSIZE_T
+     * }
+     */
+    public static final OfLong SSIZE_T = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef LONG_PTR *PSSIZE_T
+     * }
+     */
+    public static final AddressLayout PSSIZE_T = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef ULONG_PTR DWORD_PTR
+     * }
+     */
+    public static final OfLong DWORD_PTR = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef ULONG_PTR *PDWORD_PTR
+     * }
+     */
+    public static final AddressLayout PDWORD_PTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef long long LONG64
+     * }
+     */
+    public static final OfLong LONG64 = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef long long *PLONG64
+     * }
+     */
+    public static final AddressLayout PLONG64 = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned long long ULONG64
+     * }
+     */
+    public static final OfLong ULONG64 = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned long long *PULONG64
+     * }
+     */
+    public static final AddressLayout PULONG64 = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned long long DWORD64
+     * }
+     */
+    public static final OfLong DWORD64 = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef unsigned long long *PDWORD64
+     * }
+     */
+    public static final AddressLayout PDWORD64 = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef ULONG_PTR KAFFINITY
+     * }
+     */
+    public static final OfLong KAFFINITY = freeglut_h.C_LONG_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef KAFFINITY *PKAFFINITY
+     * }
+     */
+    public static final AddressLayout PKAFFINITY = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef void *PVOID
+     * }
+     */
+    public static final AddressLayout PVOID = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef void * __ptr64 PVOID64
+     * }
+     */
+    public static final AddressLayout PVOID64 = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef char CHAR
+     * }
+     */
+    public static final OfByte CHAR = freeglut_h.C_CHAR;
+    /**
+     * {@snippet lang=c :
+     * typedef short SHORT
+     * }
+     */
+    public static final OfShort SHORT = freeglut_h.C_SHORT;
+    /**
+     * {@snippet lang=c :
+     * typedef long LONG
+     * }
+     */
+    public static final OfInt LONG = freeglut_h.C_LONG;
+    /**
+     * {@snippet lang=c :
+     * typedef wchar_t WCHAR
+     * }
+     */
+    public static final OfShort WCHAR = freeglut_h.C_SHORT;
+    /**
+     * {@snippet lang=c :
+     * typedef WCHAR *PWCHAR
+     * }
+     */
+    public static final AddressLayout PWCHAR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef WCHAR *LPWCH
+     * }
+     */
+    public static final AddressLayout LPWCH = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef WCHAR *PWCH
+     * }
+     */
+    public static final AddressLayout PWCH = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const WCHAR *LPCWCH
+     * }
+     */
+    public static final AddressLayout LPCWCH = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const WCHAR *PCWCH
+     * }
+     */
+    public static final AddressLayout PCWCH = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef WCHAR *NWPSTR
+     * }
+     */
+    public static final AddressLayout NWPSTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef WCHAR *LPWSTR
+     * }
+     */
+    public static final AddressLayout LPWSTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef WCHAR *PWSTR
+     * }
+     */
+    public static final AddressLayout PWSTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef PWSTR *PZPWSTR
+     * }
+     */
+    public static final AddressLayout PZPWSTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const PWSTR *PCZPWSTR
+     * }
+     */
+    public static final AddressLayout PCZPWSTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef __unaligned WCHAR *LPUWSTR
+     * }
+     */
+    public static final AddressLayout LPUWSTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef __unaligned WCHAR *PUWSTR
+     * }
+     */
+    public static final AddressLayout PUWSTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const WCHAR *LPCWSTR
+     * }
+     */
+    public static final AddressLayout LPCWSTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const WCHAR *PCWSTR
+     * }
+     */
+    public static final AddressLayout PCWSTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef PCWSTR *PZPCWSTR
+     * }
+     */
+    public static final AddressLayout PZPCWSTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const PCWSTR *PCZPCWSTR
+     * }
+     */
+    public static final AddressLayout PCZPCWSTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const __unaligned WCHAR *LPCUWSTR
+     * }
+     */
+    public static final AddressLayout LPCUWSTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const __unaligned WCHAR *PCUWSTR
+     * }
+     */
+    public static final AddressLayout PCUWSTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef WCHAR *PZZWSTR
+     * }
+     */
+    public static final AddressLayout PZZWSTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const WCHAR *PCZZWSTR
+     * }
+     */
+    public static final AddressLayout PCZZWSTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef __unaligned WCHAR *PUZZWSTR
+     * }
+     */
+    public static final AddressLayout PUZZWSTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const __unaligned WCHAR *PCUZZWSTR
+     * }
+     */
+    public static final AddressLayout PCUZZWSTR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef WCHAR *PNZWCH
+     * }
+     */
+    public static final AddressLayout PNZWCH = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const WCHAR *PCNZWCH
+     * }
+     */
+    public static final AddressLayout PCNZWCH = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef __unaligned WCHAR *PUNZWCH
+     * }
+     */
+    public static final AddressLayout PUNZWCH = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const __unaligned WCHAR *PCUNZWCH
+     * }
+     */
+    public static final AddressLayout PCUNZWCH = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const WCHAR *LPCWCHAR
+     * }
+     */
+    public static final AddressLayout LPCWCHAR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const WCHAR *PCWCHAR
+     * }
+     */
+    public static final AddressLayout PCWCHAR = freeglut_h.C_POINTER;
+    /**
+     * {@snippet lang=c :
+     * typedef const __unaligned WCHAR *LPCUWCHAR
+     * }
+     */
+    public static final AddressLayout LPCUWCHAR = freeglut_h.C_POINTER;
 }
-
 

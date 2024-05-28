@@ -2,445 +2,1005 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct IMarshalVtbl {
+ *     HRESULT (*QueryInterface)(IMarshal *, const IID *const, void **) __attribute__((stdcall));
+ *     ULONG (*AddRef)(IMarshal *) __attribute__((stdcall));
+ *     ULONG (*Release)(IMarshal *) __attribute__((stdcall));
+ *     HRESULT (*GetUnmarshalClass)(IMarshal *, const IID *const, void *, DWORD, void *, DWORD, CLSID *) __attribute__((stdcall));
+ *     HRESULT (*GetMarshalSizeMax)(IMarshal *, const IID *const, void *, DWORD, void *, DWORD, DWORD *) __attribute__((stdcall));
+ *     HRESULT (*MarshalInterface)(IMarshal *, IStream *, const IID *const, void *, DWORD, void *, DWORD) __attribute__((stdcall));
+ *     HRESULT (*UnmarshalInterface)(IMarshal *, IStream *, const IID *const, void **) __attribute__((stdcall));
+ *     HRESULT (*ReleaseMarshalData)(IMarshal *, IStream *) __attribute__((stdcall));
+ *     HRESULT (*DisconnectObject)(IMarshal *, DWORD) __attribute__((stdcall));
+ * }
+ * }
+ */
 public class IMarshalVtbl {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("QueryInterface"),
-        Constants$root.C_POINTER$LAYOUT.withName("AddRef"),
-        Constants$root.C_POINTER$LAYOUT.withName("Release"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetUnmarshalClass"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetMarshalSizeMax"),
-        Constants$root.C_POINTER$LAYOUT.withName("MarshalInterface"),
-        Constants$root.C_POINTER$LAYOUT.withName("UnmarshalInterface"),
-        Constants$root.C_POINTER$LAYOUT.withName("ReleaseMarshalData"),
-        Constants$root.C_POINTER$LAYOUT.withName("DisconnectObject")
+    IMarshalVtbl() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("QueryInterface"),
+        wgl_h.C_POINTER.withName("AddRef"),
+        wgl_h.C_POINTER.withName("Release"),
+        wgl_h.C_POINTER.withName("GetUnmarshalClass"),
+        wgl_h.C_POINTER.withName("GetMarshalSizeMax"),
+        wgl_h.C_POINTER.withName("MarshalInterface"),
+        wgl_h.C_POINTER.withName("UnmarshalInterface"),
+        wgl_h.C_POINTER.withName("ReleaseMarshalData"),
+        wgl_h.C_POINTER.withName("DisconnectObject")
     ).withName("IMarshalVtbl");
-    public static MemoryLayout $LAYOUT() {
-        return IMarshalVtbl.$struct$LAYOUT;
-    }
-    static final FunctionDescriptor QueryInterface$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle QueryInterface$MH = RuntimeHelper.downcallHandle(
-        IMarshalVtbl.QueryInterface$FUNC
-    );
-    public interface QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(QueryInterface fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(QueryInterface.class, fi, IMarshalVtbl.QueryInterface$FUNC, session);
-        }
-        static QueryInterface ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IMarshalVtbl.QueryInterface$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
 
-    static final VarHandle QueryInterface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueryInterface"));
-    public static VarHandle QueryInterface$VH() {
-        return IMarshalVtbl.QueryInterface$VH;
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMarshalVtbl.QueryInterface$VH.get(seg);
-    }
-    public static void QueryInterface$set( MemorySegment seg, MemoryAddress x) {
-        IMarshalVtbl.QueryInterface$VH.set(seg, x);
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMarshalVtbl.QueryInterface$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void QueryInterface$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMarshalVtbl.QueryInterface$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static QueryInterface QueryInterface (MemorySegment segment, MemorySession session) {
-        return QueryInterface.ofAddress(QueryInterface$get(segment), session);
-    }
-    static final FunctionDescriptor AddRef$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle AddRef$MH = RuntimeHelper.downcallHandle(
-        IMarshalVtbl.AddRef$FUNC
-    );
-    public interface AddRef {
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IMarshal *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(AddRef fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(AddRef.class, fi, IMarshalVtbl.AddRef$FUNC, session);
+        QueryInterface() {
+            // Should not be called directly
         }
-        static AddRef ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IMarshalVtbl.AddRef$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(QueryInterface.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(QueryInterface.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle AddRef$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddRef"));
-    public static VarHandle AddRef$VH() {
-        return IMarshalVtbl.AddRef$VH;
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMarshalVtbl.AddRef$VH.get(seg);
-    }
-    public static void AddRef$set( MemorySegment seg, MemoryAddress x) {
-        IMarshalVtbl.AddRef$VH.set(seg, x);
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMarshalVtbl.AddRef$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddRef$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMarshalVtbl.AddRef$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static AddRef AddRef (MemorySegment segment, MemorySession session) {
-        return AddRef.ofAddress(AddRef$get(segment), session);
-    }
-    static final FunctionDescriptor Release$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Release$MH = RuntimeHelper.downcallHandle(
-        IMarshalVtbl.Release$FUNC
-    );
-    public interface Release {
+    private static final AddressLayout QueryInterface$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("QueryInterface"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Release fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Release.class, fi, IMarshalVtbl.Release$FUNC, session);
-        }
-        static Release ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IMarshalVtbl.Release$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IMarshal *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout QueryInterface$layout() {
+        return QueryInterface$LAYOUT;
     }
 
-    static final VarHandle Release$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Release"));
-    public static VarHandle Release$VH() {
-        return IMarshalVtbl.Release$VH;
-    }
-    public static MemoryAddress Release$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMarshalVtbl.Release$VH.get(seg);
-    }
-    public static void Release$set( MemorySegment seg, MemoryAddress x) {
-        IMarshalVtbl.Release$VH.set(seg, x);
-    }
-    public static MemoryAddress Release$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMarshalVtbl.Release$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Release$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMarshalVtbl.Release$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Release Release (MemorySegment segment, MemorySession session) {
-        return Release.ofAddress(Release$get(segment), session);
-    }
-    static final FunctionDescriptor GetUnmarshalClass$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetUnmarshalClass$MH = RuntimeHelper.downcallHandle(
-        IMarshalVtbl.GetUnmarshalClass$FUNC
-    );
-    public interface GetUnmarshalClass {
+    private static final long QueryInterface$OFFSET = 0;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, int _x3, java.lang.foreign.MemoryAddress _x4, int _x5, java.lang.foreign.MemoryAddress _x6);
-        static MemorySegment allocate(GetUnmarshalClass fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetUnmarshalClass.class, fi, IMarshalVtbl.GetUnmarshalClass$FUNC, session);
-        }
-        static GetUnmarshalClass ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, int __x3, java.lang.foreign.MemoryAddress __x4, int __x5, java.lang.foreign.MemoryAddress __x6) -> {
-                try {
-                    return (int)IMarshalVtbl.GetUnmarshalClass$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, __x3, (java.lang.foreign.Addressable)__x4, __x5, (java.lang.foreign.Addressable)__x6);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IMarshal *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long QueryInterface$offset() {
+        return QueryInterface$OFFSET;
     }
 
-    static final VarHandle GetUnmarshalClass$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetUnmarshalClass"));
-    public static VarHandle GetUnmarshalClass$VH() {
-        return IMarshalVtbl.GetUnmarshalClass$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IMarshal *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment QueryInterface(MemorySegment struct) {
+        return struct.get(QueryInterface$LAYOUT, QueryInterface$OFFSET);
     }
-    public static MemoryAddress GetUnmarshalClass$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMarshalVtbl.GetUnmarshalClass$VH.get(seg);
-    }
-    public static void GetUnmarshalClass$set( MemorySegment seg, MemoryAddress x) {
-        IMarshalVtbl.GetUnmarshalClass$VH.set(seg, x);
-    }
-    public static MemoryAddress GetUnmarshalClass$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMarshalVtbl.GetUnmarshalClass$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetUnmarshalClass$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMarshalVtbl.GetUnmarshalClass$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetUnmarshalClass GetUnmarshalClass (MemorySegment segment, MemorySession session) {
-        return GetUnmarshalClass.ofAddress(GetUnmarshalClass$get(segment), session);
-    }
-    static final FunctionDescriptor GetMarshalSizeMax$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetMarshalSizeMax$MH = RuntimeHelper.downcallHandle(
-        IMarshalVtbl.GetMarshalSizeMax$FUNC
-    );
-    public interface GetMarshalSizeMax {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, int _x3, java.lang.foreign.MemoryAddress _x4, int _x5, java.lang.foreign.MemoryAddress _x6);
-        static MemorySegment allocate(GetMarshalSizeMax fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetMarshalSizeMax.class, fi, IMarshalVtbl.GetMarshalSizeMax$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IMarshal *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void QueryInterface(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(QueryInterface$LAYOUT, QueryInterface$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IMarshal *) __attribute__((stdcall))
+     * }
+     */
+    public static class AddRef {
+
+        AddRef() {
+            // Should not be called directly
         }
-        static GetMarshalSizeMax ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, int __x3, java.lang.foreign.MemoryAddress __x4, int __x5, java.lang.foreign.MemoryAddress __x6) -> {
-                try {
-                    return (int)IMarshalVtbl.GetMarshalSizeMax$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, __x3, (java.lang.foreign.Addressable)__x4, __x5, (java.lang.foreign.Addressable)__x6);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(AddRef.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(AddRef.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle GetMarshalSizeMax$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetMarshalSizeMax"));
-    public static VarHandle GetMarshalSizeMax$VH() {
-        return IMarshalVtbl.GetMarshalSizeMax$VH;
-    }
-    public static MemoryAddress GetMarshalSizeMax$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMarshalVtbl.GetMarshalSizeMax$VH.get(seg);
-    }
-    public static void GetMarshalSizeMax$set( MemorySegment seg, MemoryAddress x) {
-        IMarshalVtbl.GetMarshalSizeMax$VH.set(seg, x);
-    }
-    public static MemoryAddress GetMarshalSizeMax$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMarshalVtbl.GetMarshalSizeMax$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetMarshalSizeMax$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMarshalVtbl.GetMarshalSizeMax$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetMarshalSizeMax GetMarshalSizeMax (MemorySegment segment, MemorySession session) {
-        return GetMarshalSizeMax.ofAddress(GetMarshalSizeMax$get(segment), session);
-    }
-    static final FunctionDescriptor MarshalInterface$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle MarshalInterface$MH = RuntimeHelper.downcallHandle(
-        IMarshalVtbl.MarshalInterface$FUNC
-    );
-    public interface MarshalInterface {
+    private static final AddressLayout AddRef$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AddRef"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, int _x4, java.lang.foreign.MemoryAddress _x5, int _x6);
-        static MemorySegment allocate(MarshalInterface fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(MarshalInterface.class, fi, IMarshalVtbl.MarshalInterface$FUNC, session);
-        }
-        static MarshalInterface ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, int __x4, java.lang.foreign.MemoryAddress __x5, int __x6) -> {
-                try {
-                    return (int)IMarshalVtbl.MarshalInterface$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, __x4, (java.lang.foreign.Addressable)__x5, __x6);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IMarshal *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout AddRef$layout() {
+        return AddRef$LAYOUT;
     }
 
-    static final VarHandle MarshalInterface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MarshalInterface"));
-    public static VarHandle MarshalInterface$VH() {
-        return IMarshalVtbl.MarshalInterface$VH;
-    }
-    public static MemoryAddress MarshalInterface$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMarshalVtbl.MarshalInterface$VH.get(seg);
-    }
-    public static void MarshalInterface$set( MemorySegment seg, MemoryAddress x) {
-        IMarshalVtbl.MarshalInterface$VH.set(seg, x);
-    }
-    public static MemoryAddress MarshalInterface$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMarshalVtbl.MarshalInterface$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MarshalInterface$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMarshalVtbl.MarshalInterface$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MarshalInterface MarshalInterface (MemorySegment segment, MemorySession session) {
-        return MarshalInterface.ofAddress(MarshalInterface$get(segment), session);
-    }
-    static final FunctionDescriptor UnmarshalInterface$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle UnmarshalInterface$MH = RuntimeHelper.downcallHandle(
-        IMarshalVtbl.UnmarshalInterface$FUNC
-    );
-    public interface UnmarshalInterface {
+    private static final long AddRef$OFFSET = 8;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3);
-        static MemorySegment allocate(UnmarshalInterface fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(UnmarshalInterface.class, fi, IMarshalVtbl.UnmarshalInterface$FUNC, session);
-        }
-        static UnmarshalInterface ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3) -> {
-                try {
-                    return (int)IMarshalVtbl.UnmarshalInterface$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IMarshal *) __attribute__((stdcall))
+     * }
+     */
+    public static final long AddRef$offset() {
+        return AddRef$OFFSET;
     }
 
-    static final VarHandle UnmarshalInterface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UnmarshalInterface"));
-    public static VarHandle UnmarshalInterface$VH() {
-        return IMarshalVtbl.UnmarshalInterface$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IMarshal *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment AddRef(MemorySegment struct) {
+        return struct.get(AddRef$LAYOUT, AddRef$OFFSET);
     }
-    public static MemoryAddress UnmarshalInterface$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMarshalVtbl.UnmarshalInterface$VH.get(seg);
-    }
-    public static void UnmarshalInterface$set( MemorySegment seg, MemoryAddress x) {
-        IMarshalVtbl.UnmarshalInterface$VH.set(seg, x);
-    }
-    public static MemoryAddress UnmarshalInterface$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMarshalVtbl.UnmarshalInterface$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UnmarshalInterface$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMarshalVtbl.UnmarshalInterface$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static UnmarshalInterface UnmarshalInterface (MemorySegment segment, MemorySession session) {
-        return UnmarshalInterface.ofAddress(UnmarshalInterface$get(segment), session);
-    }
-    static final FunctionDescriptor ReleaseMarshalData$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle ReleaseMarshalData$MH = RuntimeHelper.downcallHandle(
-        IMarshalVtbl.ReleaseMarshalData$FUNC
-    );
-    public interface ReleaseMarshalData {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(ReleaseMarshalData fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(ReleaseMarshalData.class, fi, IMarshalVtbl.ReleaseMarshalData$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IMarshal *) __attribute__((stdcall))
+     * }
+     */
+    public static void AddRef(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AddRef$LAYOUT, AddRef$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*Release)(IMarshal *) __attribute__((stdcall))
+     * }
+     */
+    public static class Release {
+
+        Release() {
+            // Should not be called directly
         }
-        static ReleaseMarshalData ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IMarshalVtbl.ReleaseMarshalData$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Release.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Release.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle ReleaseMarshalData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ReleaseMarshalData"));
-    public static VarHandle ReleaseMarshalData$VH() {
-        return IMarshalVtbl.ReleaseMarshalData$VH;
-    }
-    public static MemoryAddress ReleaseMarshalData$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMarshalVtbl.ReleaseMarshalData$VH.get(seg);
-    }
-    public static void ReleaseMarshalData$set( MemorySegment seg, MemoryAddress x) {
-        IMarshalVtbl.ReleaseMarshalData$VH.set(seg, x);
-    }
-    public static MemoryAddress ReleaseMarshalData$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMarshalVtbl.ReleaseMarshalData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ReleaseMarshalData$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMarshalVtbl.ReleaseMarshalData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static ReleaseMarshalData ReleaseMarshalData (MemorySegment segment, MemorySession session) {
-        return ReleaseMarshalData.ofAddress(ReleaseMarshalData$get(segment), session);
-    }
-    static final FunctionDescriptor DisconnectObject$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle DisconnectObject$MH = RuntimeHelper.downcallHandle(
-        IMarshalVtbl.DisconnectObject$FUNC
-    );
-    public interface DisconnectObject {
+    private static final AddressLayout Release$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Release"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1);
-        static MemorySegment allocate(DisconnectObject fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(DisconnectObject.class, fi, IMarshalVtbl.DisconnectObject$FUNC, session);
-        }
-        static DisconnectObject ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1) -> {
-                try {
-                    return (int)IMarshalVtbl.DisconnectObject$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IMarshal *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Release$layout() {
+        return Release$LAYOUT;
     }
 
-    static final VarHandle DisconnectObject$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DisconnectObject"));
-    public static VarHandle DisconnectObject$VH() {
-        return IMarshalVtbl.DisconnectObject$VH;
+    private static final long Release$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IMarshal *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Release$offset() {
+        return Release$OFFSET;
     }
-    public static MemoryAddress DisconnectObject$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMarshalVtbl.DisconnectObject$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IMarshal *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Release(MemorySegment struct) {
+        return struct.get(Release$LAYOUT, Release$OFFSET);
     }
-    public static void DisconnectObject$set( MemorySegment seg, MemoryAddress x) {
-        IMarshalVtbl.DisconnectObject$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IMarshal *) __attribute__((stdcall))
+     * }
+     */
+    public static void Release(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Release$LAYOUT, Release$OFFSET, fieldValue);
     }
-    public static MemoryAddress DisconnectObject$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMarshalVtbl.DisconnectObject$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetUnmarshalClass)(IMarshal *, const IID *const, void *, DWORD, void *, DWORD, CLSID *) __attribute__((stdcall))
+     * }
+     */
+    public static class GetUnmarshalClass {
+
+        GetUnmarshalClass() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3, MemorySegment _x4, int _x5, MemorySegment _x6);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetUnmarshalClass.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetUnmarshalClass.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3, MemorySegment _x4, int _x5, MemorySegment _x6) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5, _x6);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
     }
-    public static void DisconnectObject$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMarshalVtbl.DisconnectObject$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final AddressLayout GetUnmarshalClass$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetUnmarshalClass"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetUnmarshalClass)(IMarshal *, const IID *const, void *, DWORD, void *, DWORD, CLSID *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetUnmarshalClass$layout() {
+        return GetUnmarshalClass$LAYOUT;
     }
-    public static DisconnectObject DisconnectObject (MemorySegment segment, MemorySession session) {
-        return DisconnectObject.ofAddress(DisconnectObject$get(segment), session);
+
+    private static final long GetUnmarshalClass$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetUnmarshalClass)(IMarshal *, const IID *const, void *, DWORD, void *, DWORD, CLSID *) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetUnmarshalClass$offset() {
+        return GetUnmarshalClass$OFFSET;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetUnmarshalClass)(IMarshal *, const IID *const, void *, DWORD, void *, DWORD, CLSID *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetUnmarshalClass(MemorySegment struct) {
+        return struct.get(GetUnmarshalClass$LAYOUT, GetUnmarshalClass$OFFSET);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetUnmarshalClass)(IMarshal *, const IID *const, void *, DWORD, void *, DWORD, CLSID *) __attribute__((stdcall))
+     * }
+     */
+    public static void GetUnmarshalClass(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetUnmarshalClass$LAYOUT, GetUnmarshalClass$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetMarshalSizeMax)(IMarshal *, const IID *const, void *, DWORD, void *, DWORD, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static class GetMarshalSizeMax {
+
+        GetMarshalSizeMax() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3, MemorySegment _x4, int _x5, MemorySegment _x6);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetMarshalSizeMax.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetMarshalSizeMax.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3, MemorySegment _x4, int _x5, MemorySegment _x6) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5, _x6);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout GetMarshalSizeMax$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetMarshalSizeMax"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetMarshalSizeMax)(IMarshal *, const IID *const, void *, DWORD, void *, DWORD, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetMarshalSizeMax$layout() {
+        return GetMarshalSizeMax$LAYOUT;
+    }
+
+    private static final long GetMarshalSizeMax$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetMarshalSizeMax)(IMarshal *, const IID *const, void *, DWORD, void *, DWORD, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetMarshalSizeMax$offset() {
+        return GetMarshalSizeMax$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetMarshalSizeMax)(IMarshal *, const IID *const, void *, DWORD, void *, DWORD, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetMarshalSizeMax(MemorySegment struct) {
+        return struct.get(GetMarshalSizeMax$LAYOUT, GetMarshalSizeMax$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetMarshalSizeMax)(IMarshal *, const IID *const, void *, DWORD, void *, DWORD, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static void GetMarshalSizeMax(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetMarshalSizeMax$LAYOUT, GetMarshalSizeMax$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*MarshalInterface)(IMarshal *, IStream *, const IID *const, void *, DWORD, void *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class MarshalInterface {
+
+        MarshalInterface() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, int _x4, MemorySegment _x5, int _x6);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(MarshalInterface.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(MarshalInterface.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, int _x4, MemorySegment _x5, int _x6) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5, _x6);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout MarshalInterface$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("MarshalInterface"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*MarshalInterface)(IMarshal *, IStream *, const IID *const, void *, DWORD, void *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout MarshalInterface$layout() {
+        return MarshalInterface$LAYOUT;
+    }
+
+    private static final long MarshalInterface$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*MarshalInterface)(IMarshal *, IStream *, const IID *const, void *, DWORD, void *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long MarshalInterface$offset() {
+        return MarshalInterface$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*MarshalInterface)(IMarshal *, IStream *, const IID *const, void *, DWORD, void *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment MarshalInterface(MemorySegment struct) {
+        return struct.get(MarshalInterface$LAYOUT, MarshalInterface$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*MarshalInterface)(IMarshal *, IStream *, const IID *const, void *, DWORD, void *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void MarshalInterface(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(MarshalInterface$LAYOUT, MarshalInterface$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*UnmarshalInterface)(IMarshal *, IStream *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class UnmarshalInterface {
+
+        UnmarshalInterface() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(UnmarshalInterface.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(UnmarshalInterface.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout UnmarshalInterface$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("UnmarshalInterface"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*UnmarshalInterface)(IMarshal *, IStream *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout UnmarshalInterface$layout() {
+        return UnmarshalInterface$LAYOUT;
+    }
+
+    private static final long UnmarshalInterface$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*UnmarshalInterface)(IMarshal *, IStream *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long UnmarshalInterface$offset() {
+        return UnmarshalInterface$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*UnmarshalInterface)(IMarshal *, IStream *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment UnmarshalInterface(MemorySegment struct) {
+        return struct.get(UnmarshalInterface$LAYOUT, UnmarshalInterface$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*UnmarshalInterface)(IMarshal *, IStream *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void UnmarshalInterface(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(UnmarshalInterface$LAYOUT, UnmarshalInterface$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*ReleaseMarshalData)(IMarshal *, IStream *) __attribute__((stdcall))
+     * }
+     */
+    public static class ReleaseMarshalData {
+
+        ReleaseMarshalData() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(ReleaseMarshalData.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(ReleaseMarshalData.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout ReleaseMarshalData$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ReleaseMarshalData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*ReleaseMarshalData)(IMarshal *, IStream *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout ReleaseMarshalData$layout() {
+        return ReleaseMarshalData$LAYOUT;
+    }
+
+    private static final long ReleaseMarshalData$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*ReleaseMarshalData)(IMarshal *, IStream *) __attribute__((stdcall))
+     * }
+     */
+    public static final long ReleaseMarshalData$offset() {
+        return ReleaseMarshalData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*ReleaseMarshalData)(IMarshal *, IStream *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment ReleaseMarshalData(MemorySegment struct) {
+        return struct.get(ReleaseMarshalData$LAYOUT, ReleaseMarshalData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*ReleaseMarshalData)(IMarshal *, IStream *) __attribute__((stdcall))
+     * }
+     */
+    public static void ReleaseMarshalData(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ReleaseMarshalData$LAYOUT, ReleaseMarshalData$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*DisconnectObject)(IMarshal *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class DisconnectObject {
+
+        DisconnectObject() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(DisconnectObject.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(DisconnectObject.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout DisconnectObject$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("DisconnectObject"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*DisconnectObject)(IMarshal *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout DisconnectObject$layout() {
+        return DisconnectObject$LAYOUT;
+    }
+
+    private static final long DisconnectObject$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*DisconnectObject)(IMarshal *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long DisconnectObject$offset() {
+        return DisconnectObject$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*DisconnectObject)(IMarshal *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment DisconnectObject(MemorySegment struct) {
+        return struct.get(DisconnectObject$LAYOUT, DisconnectObject$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*DisconnectObject)(IMarshal *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void DisconnectObject(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(DisconnectObject$LAYOUT, DisconnectObject$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

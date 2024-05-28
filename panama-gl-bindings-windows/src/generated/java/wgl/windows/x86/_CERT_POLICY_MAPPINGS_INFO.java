@@ -2,59 +2,173 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_POLICY_MAPPINGS_INFO {
+ *     DWORD cPolicyMapping;
+ *     PCERT_POLICY_MAPPING rgPolicyMapping;
+ * }
+ * }
+ */
 public class _CERT_POLICY_MAPPINGS_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cPolicyMapping"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgPolicyMapping")
-    ).withName("_CERT_POLICY_MAPPINGS_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_POLICY_MAPPINGS_INFO.$struct$LAYOUT;
+    _CERT_POLICY_MAPPINGS_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle cPolicyMapping$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cPolicyMapping"));
-    public static VarHandle cPolicyMapping$VH() {
-        return _CERT_POLICY_MAPPINGS_INFO.cPolicyMapping$VH;
-    }
-    public static int cPolicyMapping$get(MemorySegment seg) {
-        return (int)_CERT_POLICY_MAPPINGS_INFO.cPolicyMapping$VH.get(seg);
-    }
-    public static void cPolicyMapping$set( MemorySegment seg, int x) {
-        _CERT_POLICY_MAPPINGS_INFO.cPolicyMapping$VH.set(seg, x);
-    }
-    public static int cPolicyMapping$get(MemorySegment seg, long index) {
-        return (int)_CERT_POLICY_MAPPINGS_INFO.cPolicyMapping$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cPolicyMapping$set(MemorySegment seg, long index, int x) {
-        _CERT_POLICY_MAPPINGS_INFO.cPolicyMapping$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgPolicyMapping$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgPolicyMapping"));
-    public static VarHandle rgPolicyMapping$VH() {
-        return _CERT_POLICY_MAPPINGS_INFO.rgPolicyMapping$VH;
-    }
-    public static MemoryAddress rgPolicyMapping$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_POLICY_MAPPINGS_INFO.rgPolicyMapping$VH.get(seg);
-    }
-    public static void rgPolicyMapping$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_POLICY_MAPPINGS_INFO.rgPolicyMapping$VH.set(seg, x);
-    }
-    public static MemoryAddress rgPolicyMapping$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_POLICY_MAPPINGS_INFO.rgPolicyMapping$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgPolicyMapping$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_POLICY_MAPPINGS_INFO.rgPolicyMapping$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cPolicyMapping"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgPolicyMapping")
+    ).withName("_CERT_POLICY_MAPPINGS_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cPolicyMapping$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cPolicyMapping"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cPolicyMapping
+     * }
+     */
+    public static final OfInt cPolicyMapping$layout() {
+        return cPolicyMapping$LAYOUT;
+    }
+
+    private static final long cPolicyMapping$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cPolicyMapping
+     * }
+     */
+    public static final long cPolicyMapping$offset() {
+        return cPolicyMapping$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cPolicyMapping
+     * }
+     */
+    public static int cPolicyMapping(MemorySegment struct) {
+        return struct.get(cPolicyMapping$LAYOUT, cPolicyMapping$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cPolicyMapping
+     * }
+     */
+    public static void cPolicyMapping(MemorySegment struct, int fieldValue) {
+        struct.set(cPolicyMapping$LAYOUT, cPolicyMapping$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgPolicyMapping$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgPolicyMapping"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCERT_POLICY_MAPPING rgPolicyMapping
+     * }
+     */
+    public static final AddressLayout rgPolicyMapping$layout() {
+        return rgPolicyMapping$LAYOUT;
+    }
+
+    private static final long rgPolicyMapping$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCERT_POLICY_MAPPING rgPolicyMapping
+     * }
+     */
+    public static final long rgPolicyMapping$offset() {
+        return rgPolicyMapping$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCERT_POLICY_MAPPING rgPolicyMapping
+     * }
+     */
+    public static MemorySegment rgPolicyMapping(MemorySegment struct) {
+        return struct.get(rgPolicyMapping$LAYOUT, rgPolicyMapping$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCERT_POLICY_MAPPING rgPolicyMapping
+     * }
+     */
+    public static void rgPolicyMapping(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgPolicyMapping$LAYOUT, rgPolicyMapping$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

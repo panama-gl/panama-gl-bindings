@@ -2,27 +2,67 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNWGLBINDDISPLAYCOLORTABLEEXTPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    byte apply(short id);
-    static MemorySegment allocate(PFNWGLBINDDISPLAYCOLORTABLEEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNWGLBINDDISPLAYCOLORTABLEEXTPROC.class, fi, constants$1387.PFNWGLBINDDISPLAYCOLORTABLEEXTPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef GLboolean (*PFNWGLBINDDISPLAYCOLORTABLEEXTPROC)(GLushort) __attribute__((stdcall))
+ * }
+ */
+public class PFNWGLBINDDISPLAYCOLORTABLEEXTPROC {
+
+    PFNWGLBINDDISPLAYCOLORTABLEEXTPROC() {
+        // Should not be called directly
     }
-    static PFNWGLBINDDISPLAYCOLORTABLEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (short _id) -> {
-            try {
-                return (byte)constants$1387.PFNWGLBINDDISPLAYCOLORTABLEEXTPROC$MH.invokeExact((Addressable)symbol, _id);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        byte apply(short id);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_CHAR,
+        wgl_h.C_SHORT
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNWGLBINDDISPLAYCOLORTABLEEXTPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNWGLBINDDISPLAYCOLORTABLEEXTPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static byte invoke(MemorySegment funcPtr,short id) {
+        try {
+            return (byte) DOWN$MH.invokeExact(funcPtr, id);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

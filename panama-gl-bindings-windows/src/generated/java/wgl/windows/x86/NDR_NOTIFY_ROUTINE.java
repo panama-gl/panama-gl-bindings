@@ -2,27 +2,64 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface NDR_NOTIFY_ROUTINE {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    void apply();
-    static MemorySegment allocate(NDR_NOTIFY_ROUTINE fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(NDR_NOTIFY_ROUTINE.class, fi, constants$822.NDR_NOTIFY_ROUTINE$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef void (*NDR_NOTIFY_ROUTINE)(void) __attribute__((stdcall))
+ * }
+ */
+public class NDR_NOTIFY_ROUTINE {
+
+    NDR_NOTIFY_ROUTINE() {
+        // Should not be called directly
     }
-    static NDR_NOTIFY_ROUTINE ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return () -> {
-            try {
-                constants$822.NDR_NOTIFY_ROUTINE$MH.invokeExact((Addressable)symbol);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply();
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid();
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(NDR_NOTIFY_ROUTINE.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(NDR_NOTIFY_ROUTINE.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr) {
+        try {
+             DOWN$MH.invokeExact(funcPtr);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

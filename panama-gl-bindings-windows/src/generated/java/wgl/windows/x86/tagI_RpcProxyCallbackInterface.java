@@ -2,204 +2,494 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagI_RpcProxyCallbackInterface {
+ *     I_RpcProxyIsValidMachineFn IsValidMachineFn;
+ *     I_RpcProxyGetClientAddressFn GetClientAddressFn;
+ *     I_RpcProxyGetConnectionTimeoutFn GetConnectionTimeoutFn;
+ *     I_RpcPerformCalloutFn PerformCalloutFn;
+ *     I_RpcFreeCalloutStateFn FreeCalloutStateFn;
+ *     I_RpcProxyGetClientSessionAndResourceUUID GetClientSessionAndResourceUUIDFn;
+ *     I_RpcProxyFilterIfFn ProxyFilterIfFn;
+ *     I_RpcProxyUpdatePerfCounterFn RpcProxyUpdatePerfCounterFn;
+ *     I_RpcProxyUpdatePerfCounterBackendServerFn RpcProxyUpdatePerfCounterBackendServerFn;
+ * }
+ * }
+ */
 public class tagI_RpcProxyCallbackInterface {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("IsValidMachineFn"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetClientAddressFn"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetConnectionTimeoutFn"),
-        Constants$root.C_POINTER$LAYOUT.withName("PerformCalloutFn"),
-        Constants$root.C_POINTER$LAYOUT.withName("FreeCalloutStateFn"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetClientSessionAndResourceUUIDFn"),
-        Constants$root.C_POINTER$LAYOUT.withName("ProxyFilterIfFn"),
-        Constants$root.C_POINTER$LAYOUT.withName("RpcProxyUpdatePerfCounterFn"),
-        Constants$root.C_POINTER$LAYOUT.withName("RpcProxyUpdatePerfCounterBackendServerFn")
-    ).withName("tagI_RpcProxyCallbackInterface");
-    public static MemoryLayout $LAYOUT() {
-        return tagI_RpcProxyCallbackInterface.$struct$LAYOUT;
+    tagI_RpcProxyCallbackInterface() {
+        // Should not be called directly
     }
-    static final VarHandle IsValidMachineFn$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("IsValidMachineFn"));
-    public static VarHandle IsValidMachineFn$VH() {
-        return tagI_RpcProxyCallbackInterface.IsValidMachineFn$VH;
-    }
-    public static MemoryAddress IsValidMachineFn$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagI_RpcProxyCallbackInterface.IsValidMachineFn$VH.get(seg);
-    }
-    public static void IsValidMachineFn$set( MemorySegment seg, MemoryAddress x) {
-        tagI_RpcProxyCallbackInterface.IsValidMachineFn$VH.set(seg, x);
-    }
-    public static MemoryAddress IsValidMachineFn$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagI_RpcProxyCallbackInterface.IsValidMachineFn$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void IsValidMachineFn$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagI_RpcProxyCallbackInterface.IsValidMachineFn$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static I_RpcProxyIsValidMachineFn IsValidMachineFn (MemorySegment segment, MemorySession session) {
-        return I_RpcProxyIsValidMachineFn.ofAddress(IsValidMachineFn$get(segment), session);
-    }
-    static final VarHandle GetClientAddressFn$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetClientAddressFn"));
-    public static VarHandle GetClientAddressFn$VH() {
-        return tagI_RpcProxyCallbackInterface.GetClientAddressFn$VH;
-    }
-    public static MemoryAddress GetClientAddressFn$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagI_RpcProxyCallbackInterface.GetClientAddressFn$VH.get(seg);
-    }
-    public static void GetClientAddressFn$set( MemorySegment seg, MemoryAddress x) {
-        tagI_RpcProxyCallbackInterface.GetClientAddressFn$VH.set(seg, x);
-    }
-    public static MemoryAddress GetClientAddressFn$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagI_RpcProxyCallbackInterface.GetClientAddressFn$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetClientAddressFn$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagI_RpcProxyCallbackInterface.GetClientAddressFn$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static I_RpcProxyGetClientAddressFn GetClientAddressFn (MemorySegment segment, MemorySession session) {
-        return I_RpcProxyGetClientAddressFn.ofAddress(GetClientAddressFn$get(segment), session);
-    }
-    static final VarHandle GetConnectionTimeoutFn$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetConnectionTimeoutFn"));
-    public static VarHandle GetConnectionTimeoutFn$VH() {
-        return tagI_RpcProxyCallbackInterface.GetConnectionTimeoutFn$VH;
-    }
-    public static MemoryAddress GetConnectionTimeoutFn$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagI_RpcProxyCallbackInterface.GetConnectionTimeoutFn$VH.get(seg);
-    }
-    public static void GetConnectionTimeoutFn$set( MemorySegment seg, MemoryAddress x) {
-        tagI_RpcProxyCallbackInterface.GetConnectionTimeoutFn$VH.set(seg, x);
-    }
-    public static MemoryAddress GetConnectionTimeoutFn$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagI_RpcProxyCallbackInterface.GetConnectionTimeoutFn$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetConnectionTimeoutFn$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagI_RpcProxyCallbackInterface.GetConnectionTimeoutFn$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static I_RpcProxyGetConnectionTimeoutFn GetConnectionTimeoutFn (MemorySegment segment, MemorySession session) {
-        return I_RpcProxyGetConnectionTimeoutFn.ofAddress(GetConnectionTimeoutFn$get(segment), session);
-    }
-    static final VarHandle PerformCalloutFn$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PerformCalloutFn"));
-    public static VarHandle PerformCalloutFn$VH() {
-        return tagI_RpcProxyCallbackInterface.PerformCalloutFn$VH;
-    }
-    public static MemoryAddress PerformCalloutFn$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagI_RpcProxyCallbackInterface.PerformCalloutFn$VH.get(seg);
-    }
-    public static void PerformCalloutFn$set( MemorySegment seg, MemoryAddress x) {
-        tagI_RpcProxyCallbackInterface.PerformCalloutFn$VH.set(seg, x);
-    }
-    public static MemoryAddress PerformCalloutFn$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagI_RpcProxyCallbackInterface.PerformCalloutFn$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PerformCalloutFn$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagI_RpcProxyCallbackInterface.PerformCalloutFn$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static I_RpcPerformCalloutFn PerformCalloutFn (MemorySegment segment, MemorySession session) {
-        return I_RpcPerformCalloutFn.ofAddress(PerformCalloutFn$get(segment), session);
-    }
-    static final VarHandle FreeCalloutStateFn$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FreeCalloutStateFn"));
-    public static VarHandle FreeCalloutStateFn$VH() {
-        return tagI_RpcProxyCallbackInterface.FreeCalloutStateFn$VH;
-    }
-    public static MemoryAddress FreeCalloutStateFn$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagI_RpcProxyCallbackInterface.FreeCalloutStateFn$VH.get(seg);
-    }
-    public static void FreeCalloutStateFn$set( MemorySegment seg, MemoryAddress x) {
-        tagI_RpcProxyCallbackInterface.FreeCalloutStateFn$VH.set(seg, x);
-    }
-    public static MemoryAddress FreeCalloutStateFn$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagI_RpcProxyCallbackInterface.FreeCalloutStateFn$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FreeCalloutStateFn$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagI_RpcProxyCallbackInterface.FreeCalloutStateFn$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static I_RpcFreeCalloutStateFn FreeCalloutStateFn (MemorySegment segment, MemorySession session) {
-        return I_RpcFreeCalloutStateFn.ofAddress(FreeCalloutStateFn$get(segment), session);
-    }
-    static final VarHandle GetClientSessionAndResourceUUIDFn$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetClientSessionAndResourceUUIDFn"));
-    public static VarHandle GetClientSessionAndResourceUUIDFn$VH() {
-        return tagI_RpcProxyCallbackInterface.GetClientSessionAndResourceUUIDFn$VH;
-    }
-    public static MemoryAddress GetClientSessionAndResourceUUIDFn$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagI_RpcProxyCallbackInterface.GetClientSessionAndResourceUUIDFn$VH.get(seg);
-    }
-    public static void GetClientSessionAndResourceUUIDFn$set( MemorySegment seg, MemoryAddress x) {
-        tagI_RpcProxyCallbackInterface.GetClientSessionAndResourceUUIDFn$VH.set(seg, x);
-    }
-    public static MemoryAddress GetClientSessionAndResourceUUIDFn$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagI_RpcProxyCallbackInterface.GetClientSessionAndResourceUUIDFn$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetClientSessionAndResourceUUIDFn$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagI_RpcProxyCallbackInterface.GetClientSessionAndResourceUUIDFn$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static I_RpcProxyGetClientSessionAndResourceUUID GetClientSessionAndResourceUUIDFn (MemorySegment segment, MemorySession session) {
-        return I_RpcProxyGetClientSessionAndResourceUUID.ofAddress(GetClientSessionAndResourceUUIDFn$get(segment), session);
-    }
-    static final VarHandle ProxyFilterIfFn$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProxyFilterIfFn"));
-    public static VarHandle ProxyFilterIfFn$VH() {
-        return tagI_RpcProxyCallbackInterface.ProxyFilterIfFn$VH;
-    }
-    public static MemoryAddress ProxyFilterIfFn$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagI_RpcProxyCallbackInterface.ProxyFilterIfFn$VH.get(seg);
-    }
-    public static void ProxyFilterIfFn$set( MemorySegment seg, MemoryAddress x) {
-        tagI_RpcProxyCallbackInterface.ProxyFilterIfFn$VH.set(seg, x);
-    }
-    public static MemoryAddress ProxyFilterIfFn$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagI_RpcProxyCallbackInterface.ProxyFilterIfFn$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProxyFilterIfFn$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagI_RpcProxyCallbackInterface.ProxyFilterIfFn$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static I_RpcProxyFilterIfFn ProxyFilterIfFn (MemorySegment segment, MemorySession session) {
-        return I_RpcProxyFilterIfFn.ofAddress(ProxyFilterIfFn$get(segment), session);
-    }
-    static final VarHandle RpcProxyUpdatePerfCounterFn$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RpcProxyUpdatePerfCounterFn"));
-    public static VarHandle RpcProxyUpdatePerfCounterFn$VH() {
-        return tagI_RpcProxyCallbackInterface.RpcProxyUpdatePerfCounterFn$VH;
-    }
-    public static MemoryAddress RpcProxyUpdatePerfCounterFn$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagI_RpcProxyCallbackInterface.RpcProxyUpdatePerfCounterFn$VH.get(seg);
-    }
-    public static void RpcProxyUpdatePerfCounterFn$set( MemorySegment seg, MemoryAddress x) {
-        tagI_RpcProxyCallbackInterface.RpcProxyUpdatePerfCounterFn$VH.set(seg, x);
-    }
-    public static MemoryAddress RpcProxyUpdatePerfCounterFn$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagI_RpcProxyCallbackInterface.RpcProxyUpdatePerfCounterFn$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RpcProxyUpdatePerfCounterFn$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagI_RpcProxyCallbackInterface.RpcProxyUpdatePerfCounterFn$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static I_RpcProxyUpdatePerfCounterFn RpcProxyUpdatePerfCounterFn (MemorySegment segment, MemorySession session) {
-        return I_RpcProxyUpdatePerfCounterFn.ofAddress(RpcProxyUpdatePerfCounterFn$get(segment), session);
-    }
-    static final VarHandle RpcProxyUpdatePerfCounterBackendServerFn$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RpcProxyUpdatePerfCounterBackendServerFn"));
-    public static VarHandle RpcProxyUpdatePerfCounterBackendServerFn$VH() {
-        return tagI_RpcProxyCallbackInterface.RpcProxyUpdatePerfCounterBackendServerFn$VH;
-    }
-    public static MemoryAddress RpcProxyUpdatePerfCounterBackendServerFn$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagI_RpcProxyCallbackInterface.RpcProxyUpdatePerfCounterBackendServerFn$VH.get(seg);
-    }
-    public static void RpcProxyUpdatePerfCounterBackendServerFn$set( MemorySegment seg, MemoryAddress x) {
-        tagI_RpcProxyCallbackInterface.RpcProxyUpdatePerfCounterBackendServerFn$VH.set(seg, x);
-    }
-    public static MemoryAddress RpcProxyUpdatePerfCounterBackendServerFn$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagI_RpcProxyCallbackInterface.RpcProxyUpdatePerfCounterBackendServerFn$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RpcProxyUpdatePerfCounterBackendServerFn$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagI_RpcProxyCallbackInterface.RpcProxyUpdatePerfCounterBackendServerFn$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static I_RpcProxyUpdatePerfCounterBackendServerFn RpcProxyUpdatePerfCounterBackendServerFn (MemorySegment segment, MemorySession session) {
-        return I_RpcProxyUpdatePerfCounterBackendServerFn.ofAddress(RpcProxyUpdatePerfCounterBackendServerFn$get(segment), session);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("IsValidMachineFn"),
+        wgl_h.C_POINTER.withName("GetClientAddressFn"),
+        wgl_h.C_POINTER.withName("GetConnectionTimeoutFn"),
+        wgl_h.C_POINTER.withName("PerformCalloutFn"),
+        wgl_h.C_POINTER.withName("FreeCalloutStateFn"),
+        wgl_h.C_POINTER.withName("GetClientSessionAndResourceUUIDFn"),
+        wgl_h.C_POINTER.withName("ProxyFilterIfFn"),
+        wgl_h.C_POINTER.withName("RpcProxyUpdatePerfCounterFn"),
+        wgl_h.C_POINTER.withName("RpcProxyUpdatePerfCounterBackendServerFn")
+    ).withName("tagI_RpcProxyCallbackInterface");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout IsValidMachineFn$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("IsValidMachineFn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * I_RpcProxyIsValidMachineFn IsValidMachineFn
+     * }
+     */
+    public static final AddressLayout IsValidMachineFn$layout() {
+        return IsValidMachineFn$LAYOUT;
+    }
+
+    private static final long IsValidMachineFn$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * I_RpcProxyIsValidMachineFn IsValidMachineFn
+     * }
+     */
+    public static final long IsValidMachineFn$offset() {
+        return IsValidMachineFn$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * I_RpcProxyIsValidMachineFn IsValidMachineFn
+     * }
+     */
+    public static MemorySegment IsValidMachineFn(MemorySegment struct) {
+        return struct.get(IsValidMachineFn$LAYOUT, IsValidMachineFn$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * I_RpcProxyIsValidMachineFn IsValidMachineFn
+     * }
+     */
+    public static void IsValidMachineFn(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(IsValidMachineFn$LAYOUT, IsValidMachineFn$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout GetClientAddressFn$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetClientAddressFn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * I_RpcProxyGetClientAddressFn GetClientAddressFn
+     * }
+     */
+    public static final AddressLayout GetClientAddressFn$layout() {
+        return GetClientAddressFn$LAYOUT;
+    }
+
+    private static final long GetClientAddressFn$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * I_RpcProxyGetClientAddressFn GetClientAddressFn
+     * }
+     */
+    public static final long GetClientAddressFn$offset() {
+        return GetClientAddressFn$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * I_RpcProxyGetClientAddressFn GetClientAddressFn
+     * }
+     */
+    public static MemorySegment GetClientAddressFn(MemorySegment struct) {
+        return struct.get(GetClientAddressFn$LAYOUT, GetClientAddressFn$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * I_RpcProxyGetClientAddressFn GetClientAddressFn
+     * }
+     */
+    public static void GetClientAddressFn(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetClientAddressFn$LAYOUT, GetClientAddressFn$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout GetConnectionTimeoutFn$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetConnectionTimeoutFn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * I_RpcProxyGetConnectionTimeoutFn GetConnectionTimeoutFn
+     * }
+     */
+    public static final AddressLayout GetConnectionTimeoutFn$layout() {
+        return GetConnectionTimeoutFn$LAYOUT;
+    }
+
+    private static final long GetConnectionTimeoutFn$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * I_RpcProxyGetConnectionTimeoutFn GetConnectionTimeoutFn
+     * }
+     */
+    public static final long GetConnectionTimeoutFn$offset() {
+        return GetConnectionTimeoutFn$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * I_RpcProxyGetConnectionTimeoutFn GetConnectionTimeoutFn
+     * }
+     */
+    public static MemorySegment GetConnectionTimeoutFn(MemorySegment struct) {
+        return struct.get(GetConnectionTimeoutFn$LAYOUT, GetConnectionTimeoutFn$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * I_RpcProxyGetConnectionTimeoutFn GetConnectionTimeoutFn
+     * }
+     */
+    public static void GetConnectionTimeoutFn(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetConnectionTimeoutFn$LAYOUT, GetConnectionTimeoutFn$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout PerformCalloutFn$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("PerformCalloutFn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * I_RpcPerformCalloutFn PerformCalloutFn
+     * }
+     */
+    public static final AddressLayout PerformCalloutFn$layout() {
+        return PerformCalloutFn$LAYOUT;
+    }
+
+    private static final long PerformCalloutFn$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * I_RpcPerformCalloutFn PerformCalloutFn
+     * }
+     */
+    public static final long PerformCalloutFn$offset() {
+        return PerformCalloutFn$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * I_RpcPerformCalloutFn PerformCalloutFn
+     * }
+     */
+    public static MemorySegment PerformCalloutFn(MemorySegment struct) {
+        return struct.get(PerformCalloutFn$LAYOUT, PerformCalloutFn$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * I_RpcPerformCalloutFn PerformCalloutFn
+     * }
+     */
+    public static void PerformCalloutFn(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(PerformCalloutFn$LAYOUT, PerformCalloutFn$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout FreeCalloutStateFn$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("FreeCalloutStateFn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * I_RpcFreeCalloutStateFn FreeCalloutStateFn
+     * }
+     */
+    public static final AddressLayout FreeCalloutStateFn$layout() {
+        return FreeCalloutStateFn$LAYOUT;
+    }
+
+    private static final long FreeCalloutStateFn$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * I_RpcFreeCalloutStateFn FreeCalloutStateFn
+     * }
+     */
+    public static final long FreeCalloutStateFn$offset() {
+        return FreeCalloutStateFn$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * I_RpcFreeCalloutStateFn FreeCalloutStateFn
+     * }
+     */
+    public static MemorySegment FreeCalloutStateFn(MemorySegment struct) {
+        return struct.get(FreeCalloutStateFn$LAYOUT, FreeCalloutStateFn$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * I_RpcFreeCalloutStateFn FreeCalloutStateFn
+     * }
+     */
+    public static void FreeCalloutStateFn(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(FreeCalloutStateFn$LAYOUT, FreeCalloutStateFn$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout GetClientSessionAndResourceUUIDFn$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetClientSessionAndResourceUUIDFn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * I_RpcProxyGetClientSessionAndResourceUUID GetClientSessionAndResourceUUIDFn
+     * }
+     */
+    public static final AddressLayout GetClientSessionAndResourceUUIDFn$layout() {
+        return GetClientSessionAndResourceUUIDFn$LAYOUT;
+    }
+
+    private static final long GetClientSessionAndResourceUUIDFn$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * I_RpcProxyGetClientSessionAndResourceUUID GetClientSessionAndResourceUUIDFn
+     * }
+     */
+    public static final long GetClientSessionAndResourceUUIDFn$offset() {
+        return GetClientSessionAndResourceUUIDFn$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * I_RpcProxyGetClientSessionAndResourceUUID GetClientSessionAndResourceUUIDFn
+     * }
+     */
+    public static MemorySegment GetClientSessionAndResourceUUIDFn(MemorySegment struct) {
+        return struct.get(GetClientSessionAndResourceUUIDFn$LAYOUT, GetClientSessionAndResourceUUIDFn$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * I_RpcProxyGetClientSessionAndResourceUUID GetClientSessionAndResourceUUIDFn
+     * }
+     */
+    public static void GetClientSessionAndResourceUUIDFn(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetClientSessionAndResourceUUIDFn$LAYOUT, GetClientSessionAndResourceUUIDFn$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ProxyFilterIfFn$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ProxyFilterIfFn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * I_RpcProxyFilterIfFn ProxyFilterIfFn
+     * }
+     */
+    public static final AddressLayout ProxyFilterIfFn$layout() {
+        return ProxyFilterIfFn$LAYOUT;
+    }
+
+    private static final long ProxyFilterIfFn$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * I_RpcProxyFilterIfFn ProxyFilterIfFn
+     * }
+     */
+    public static final long ProxyFilterIfFn$offset() {
+        return ProxyFilterIfFn$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * I_RpcProxyFilterIfFn ProxyFilterIfFn
+     * }
+     */
+    public static MemorySegment ProxyFilterIfFn(MemorySegment struct) {
+        return struct.get(ProxyFilterIfFn$LAYOUT, ProxyFilterIfFn$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * I_RpcProxyFilterIfFn ProxyFilterIfFn
+     * }
+     */
+    public static void ProxyFilterIfFn(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ProxyFilterIfFn$LAYOUT, ProxyFilterIfFn$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout RpcProxyUpdatePerfCounterFn$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("RpcProxyUpdatePerfCounterFn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * I_RpcProxyUpdatePerfCounterFn RpcProxyUpdatePerfCounterFn
+     * }
+     */
+    public static final AddressLayout RpcProxyUpdatePerfCounterFn$layout() {
+        return RpcProxyUpdatePerfCounterFn$LAYOUT;
+    }
+
+    private static final long RpcProxyUpdatePerfCounterFn$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * I_RpcProxyUpdatePerfCounterFn RpcProxyUpdatePerfCounterFn
+     * }
+     */
+    public static final long RpcProxyUpdatePerfCounterFn$offset() {
+        return RpcProxyUpdatePerfCounterFn$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * I_RpcProxyUpdatePerfCounterFn RpcProxyUpdatePerfCounterFn
+     * }
+     */
+    public static MemorySegment RpcProxyUpdatePerfCounterFn(MemorySegment struct) {
+        return struct.get(RpcProxyUpdatePerfCounterFn$LAYOUT, RpcProxyUpdatePerfCounterFn$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * I_RpcProxyUpdatePerfCounterFn RpcProxyUpdatePerfCounterFn
+     * }
+     */
+    public static void RpcProxyUpdatePerfCounterFn(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(RpcProxyUpdatePerfCounterFn$LAYOUT, RpcProxyUpdatePerfCounterFn$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout RpcProxyUpdatePerfCounterBackendServerFn$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("RpcProxyUpdatePerfCounterBackendServerFn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * I_RpcProxyUpdatePerfCounterBackendServerFn RpcProxyUpdatePerfCounterBackendServerFn
+     * }
+     */
+    public static final AddressLayout RpcProxyUpdatePerfCounterBackendServerFn$layout() {
+        return RpcProxyUpdatePerfCounterBackendServerFn$LAYOUT;
+    }
+
+    private static final long RpcProxyUpdatePerfCounterBackendServerFn$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * I_RpcProxyUpdatePerfCounterBackendServerFn RpcProxyUpdatePerfCounterBackendServerFn
+     * }
+     */
+    public static final long RpcProxyUpdatePerfCounterBackendServerFn$offset() {
+        return RpcProxyUpdatePerfCounterBackendServerFn$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * I_RpcProxyUpdatePerfCounterBackendServerFn RpcProxyUpdatePerfCounterBackendServerFn
+     * }
+     */
+    public static MemorySegment RpcProxyUpdatePerfCounterBackendServerFn(MemorySegment struct) {
+        return struct.get(RpcProxyUpdatePerfCounterBackendServerFn$LAYOUT, RpcProxyUpdatePerfCounterBackendServerFn$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * I_RpcProxyUpdatePerfCounterBackendServerFn RpcProxyUpdatePerfCounterBackendServerFn
+     * }
+     */
+    public static void RpcProxyUpdatePerfCounterBackendServerFn(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(RpcProxyUpdatePerfCounterBackendServerFn$LAYOUT, RpcProxyUpdatePerfCounterBackendServerFn$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

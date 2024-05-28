@@ -2,56 +2,367 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DEVICEDUMP_PUBLIC_SUBSECTION {
+ *     DWORD dwFlags;
+ *     GP_LOG_PAGE_DESCRIPTOR GPLogTable[16];
+ *     CHAR szDescription[16];
+ *     BYTE bData[1];
+ * }
+ * }
+ */
 public class _DEVICEDUMP_PUBLIC_SUBSECTION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwFlags"),
-        MemoryLayout.sequenceLayout(16, MemoryLayout.structLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("LogAddress"),
-            Constants$root.C_SHORT$LAYOUT.withName("LogSectors")
-        ).withName("_GP_LOG_PAGE_DESCRIPTOR")).withName("GPLogTable"),
-        MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("szDescription"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_CHAR$LAYOUT).withName("bData")
-    ).withName("_DEVICEDUMP_PUBLIC_SUBSECTION");
-    public static MemoryLayout $LAYOUT() {
-        return _DEVICEDUMP_PUBLIC_SUBSECTION.$struct$LAYOUT;
+    _DEVICEDUMP_PUBLIC_SUBSECTION() {
+        // Should not be called directly
     }
-    static final VarHandle dwFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFlags"));
-    public static VarHandle dwFlags$VH() {
-        return _DEVICEDUMP_PUBLIC_SUBSECTION.dwFlags$VH;
-    }
-    public static int dwFlags$get(MemorySegment seg) {
-        return (int)_DEVICEDUMP_PUBLIC_SUBSECTION.dwFlags$VH.get(seg);
-    }
-    public static void dwFlags$set( MemorySegment seg, int x) {
-        _DEVICEDUMP_PUBLIC_SUBSECTION.dwFlags$VH.set(seg, x);
-    }
-    public static int dwFlags$get(MemorySegment seg, long index) {
-        return (int)_DEVICEDUMP_PUBLIC_SUBSECTION.dwFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFlags$set(MemorySegment seg, long index, int x) {
-        _DEVICEDUMP_PUBLIC_SUBSECTION.dwFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment GPLogTable$slice(MemorySegment seg) {
-        return seg.asSlice(4, 64);
-    }
-    public static MemorySegment szDescription$slice(MemorySegment seg) {
-        return seg.asSlice(68, 16);
-    }
-    public static MemorySegment bData$slice(MemorySegment seg) {
-        return seg.asSlice(84, 1);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwFlags"),
+        MemoryLayout.sequenceLayout(16, _GP_LOG_PAGE_DESCRIPTOR.layout()).withName("GPLogTable"),
+        MemoryLayout.sequenceLayout(16, wgl_h.C_CHAR).withName("szDescription"),
+        MemoryLayout.sequenceLayout(1, wgl_h.C_CHAR).withName("bData")
+    ).withName("_DEVICEDUMP_PUBLIC_SUBSECTION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final OfInt dwFlags$layout() {
+        return dwFlags$LAYOUT;
+    }
+
+    private static final long dwFlags$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final long dwFlags$offset() {
+        return dwFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static int dwFlags(MemorySegment struct) {
+        return struct.get(dwFlags$LAYOUT, dwFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static void dwFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwFlags$LAYOUT, dwFlags$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout GPLogTable$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("GPLogTable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GP_LOG_PAGE_DESCRIPTOR GPLogTable[16]
+     * }
+     */
+    public static final SequenceLayout GPLogTable$layout() {
+        return GPLogTable$LAYOUT;
+    }
+
+    private static final long GPLogTable$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GP_LOG_PAGE_DESCRIPTOR GPLogTable[16]
+     * }
+     */
+    public static final long GPLogTable$offset() {
+        return GPLogTable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GP_LOG_PAGE_DESCRIPTOR GPLogTable[16]
+     * }
+     */
+    public static MemorySegment GPLogTable(MemorySegment struct) {
+        return struct.asSlice(GPLogTable$OFFSET, GPLogTable$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GP_LOG_PAGE_DESCRIPTOR GPLogTable[16]
+     * }
+     */
+    public static void GPLogTable(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, GPLogTable$OFFSET, GPLogTable$LAYOUT.byteSize());
+    }
+
+    private static long[] GPLogTable$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * GP_LOG_PAGE_DESCRIPTOR GPLogTable[16]
+     * }
+     */
+    public static long[] GPLogTable$dimensions() {
+        return GPLogTable$DIMS;
+    }
+    private static final MethodHandle GPLogTable$ELEM_HANDLE = GPLogTable$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * GP_LOG_PAGE_DESCRIPTOR GPLogTable[16]
+     * }
+     */
+    public static MemorySegment GPLogTable(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)GPLogTable$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * GP_LOG_PAGE_DESCRIPTOR GPLogTable[16]
+     * }
+     */
+    public static void GPLogTable(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, GPLogTable(struct, index0), 0L, _GP_LOG_PAGE_DESCRIPTOR.layout().byteSize());
+    }
+
+    private static final SequenceLayout szDescription$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("szDescription"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHAR szDescription[16]
+     * }
+     */
+    public static final SequenceLayout szDescription$layout() {
+        return szDescription$LAYOUT;
+    }
+
+    private static final long szDescription$OFFSET = 68;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHAR szDescription[16]
+     * }
+     */
+    public static final long szDescription$offset() {
+        return szDescription$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHAR szDescription[16]
+     * }
+     */
+    public static MemorySegment szDescription(MemorySegment struct) {
+        return struct.asSlice(szDescription$OFFSET, szDescription$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHAR szDescription[16]
+     * }
+     */
+    public static void szDescription(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, szDescription$OFFSET, szDescription$LAYOUT.byteSize());
+    }
+
+    private static long[] szDescription$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * CHAR szDescription[16]
+     * }
+     */
+    public static long[] szDescription$dimensions() {
+        return szDescription$DIMS;
+    }
+    private static final VarHandle szDescription$ELEM_HANDLE = szDescription$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * CHAR szDescription[16]
+     * }
+     */
+    public static byte szDescription(MemorySegment struct, long index0) {
+        return (byte)szDescription$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * CHAR szDescription[16]
+     * }
+     */
+    public static void szDescription(MemorySegment struct, long index0, byte fieldValue) {
+        szDescription$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout bData$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("bData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bData[1]
+     * }
+     */
+    public static final SequenceLayout bData$layout() {
+        return bData$LAYOUT;
+    }
+
+    private static final long bData$OFFSET = 84;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bData[1]
+     * }
+     */
+    public static final long bData$offset() {
+        return bData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bData[1]
+     * }
+     */
+    public static MemorySegment bData(MemorySegment struct) {
+        return struct.asSlice(bData$OFFSET, bData$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bData[1]
+     * }
+     */
+    public static void bData(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, bData$OFFSET, bData$LAYOUT.byteSize());
+    }
+
+    private static long[] bData$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE bData[1]
+     * }
+     */
+    public static long[] bData$dimensions() {
+        return bData$DIMS;
+    }
+    private static final VarHandle bData$ELEM_HANDLE = bData$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE bData[1]
+     * }
+     */
+    public static byte bData(MemorySegment struct, long index0) {
+        return (byte)bData$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE bData[1]
+     * }
+     */
+    public static void bData(MemorySegment struct, long index0, byte fieldValue) {
+        bData$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

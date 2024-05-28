@@ -2,27 +2,68 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNGLDRAWARRAYSEXTPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    void apply(int mode, int first, int count);
-    static MemorySegment allocate(PFNGLDRAWARRAYSEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWARRAYSEXTPROC.class, fi, constants$695.PFNGLDRAWARRAYSEXTPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef void (*PFNGLDRAWARRAYSEXTPROC)(GLenum, GLint, GLsizei) __attribute__((stdcall))
+ * }
+ */
+public class PFNGLDRAWARRAYSEXTPROC {
+
+    PFNGLDRAWARRAYSEXTPROC() {
+        // Should not be called directly
     }
-    static PFNGLDRAWARRAYSEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _mode, int _first, int _count) -> {
-            try {
-                constants$696.PFNGLDRAWARRAYSEXTPROC$MH.invokeExact((Addressable)symbol, _mode, _first, _count);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply(int mode, int first, int count);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+        freeglut_h.C_INT,
+        freeglut_h.C_INT,
+        freeglut_h.C_INT
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = freeglut_h.upcallHandle(PFNGLDRAWARRAYSEXTPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNGLDRAWARRAYSEXTPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr,int mode, int first, int count) {
+        try {
+             DOWN$MH.invokeExact(funcPtr, mode, first, count);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

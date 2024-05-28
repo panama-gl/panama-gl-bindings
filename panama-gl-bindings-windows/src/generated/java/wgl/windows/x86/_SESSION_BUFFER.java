@@ -2,100 +2,422 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SESSION_BUFFER {
+ *     UCHAR lsn;
+ *     UCHAR state;
+ *     UCHAR local_name[16];
+ *     UCHAR remote_name[16];
+ *     UCHAR rcvs_outstanding;
+ *     UCHAR sends_outstanding;
+ * }
+ * }
+ */
 public class _SESSION_BUFFER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("lsn"),
-        Constants$root.C_CHAR$LAYOUT.withName("state"),
-        MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("local_name"),
-        MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("remote_name"),
-        Constants$root.C_CHAR$LAYOUT.withName("rcvs_outstanding"),
-        Constants$root.C_CHAR$LAYOUT.withName("sends_outstanding")
-    ).withName("_SESSION_BUFFER");
-    public static MemoryLayout $LAYOUT() {
-        return _SESSION_BUFFER.$struct$LAYOUT;
+    _SESSION_BUFFER() {
+        // Should not be called directly
     }
-    static final VarHandle lsn$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lsn"));
-    public static VarHandle lsn$VH() {
-        return _SESSION_BUFFER.lsn$VH;
-    }
-    public static byte lsn$get(MemorySegment seg) {
-        return (byte)_SESSION_BUFFER.lsn$VH.get(seg);
-    }
-    public static void lsn$set( MemorySegment seg, byte x) {
-        _SESSION_BUFFER.lsn$VH.set(seg, x);
-    }
-    public static byte lsn$get(MemorySegment seg, long index) {
-        return (byte)_SESSION_BUFFER.lsn$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lsn$set(MemorySegment seg, long index, byte x) {
-        _SESSION_BUFFER.lsn$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle state$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("state"));
-    public static VarHandle state$VH() {
-        return _SESSION_BUFFER.state$VH;
-    }
-    public static byte state$get(MemorySegment seg) {
-        return (byte)_SESSION_BUFFER.state$VH.get(seg);
-    }
-    public static void state$set( MemorySegment seg, byte x) {
-        _SESSION_BUFFER.state$VH.set(seg, x);
-    }
-    public static byte state$get(MemorySegment seg, long index) {
-        return (byte)_SESSION_BUFFER.state$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void state$set(MemorySegment seg, long index, byte x) {
-        _SESSION_BUFFER.state$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment local_name$slice(MemorySegment seg) {
-        return seg.asSlice(2, 16);
-    }
-    public static MemorySegment remote_name$slice(MemorySegment seg) {
-        return seg.asSlice(18, 16);
-    }
-    static final VarHandle rcvs_outstanding$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rcvs_outstanding"));
-    public static VarHandle rcvs_outstanding$VH() {
-        return _SESSION_BUFFER.rcvs_outstanding$VH;
-    }
-    public static byte rcvs_outstanding$get(MemorySegment seg) {
-        return (byte)_SESSION_BUFFER.rcvs_outstanding$VH.get(seg);
-    }
-    public static void rcvs_outstanding$set( MemorySegment seg, byte x) {
-        _SESSION_BUFFER.rcvs_outstanding$VH.set(seg, x);
-    }
-    public static byte rcvs_outstanding$get(MemorySegment seg, long index) {
-        return (byte)_SESSION_BUFFER.rcvs_outstanding$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rcvs_outstanding$set(MemorySegment seg, long index, byte x) {
-        _SESSION_BUFFER.rcvs_outstanding$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle sends_outstanding$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("sends_outstanding"));
-    public static VarHandle sends_outstanding$VH() {
-        return _SESSION_BUFFER.sends_outstanding$VH;
-    }
-    public static byte sends_outstanding$get(MemorySegment seg) {
-        return (byte)_SESSION_BUFFER.sends_outstanding$VH.get(seg);
-    }
-    public static void sends_outstanding$set( MemorySegment seg, byte x) {
-        _SESSION_BUFFER.sends_outstanding$VH.set(seg, x);
-    }
-    public static byte sends_outstanding$get(MemorySegment seg, long index) {
-        return (byte)_SESSION_BUFFER.sends_outstanding$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void sends_outstanding$set(MemorySegment seg, long index, byte x) {
-        _SESSION_BUFFER.sends_outstanding$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_CHAR.withName("lsn"),
+        wgl_h.C_CHAR.withName("state"),
+        MemoryLayout.sequenceLayout(16, wgl_h.C_CHAR).withName("local_name"),
+        MemoryLayout.sequenceLayout(16, wgl_h.C_CHAR).withName("remote_name"),
+        wgl_h.C_CHAR.withName("rcvs_outstanding"),
+        wgl_h.C_CHAR.withName("sends_outstanding")
+    ).withName("_SESSION_BUFFER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte lsn$LAYOUT = (OfByte)$LAYOUT.select(groupElement("lsn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR lsn
+     * }
+     */
+    public static final OfByte lsn$layout() {
+        return lsn$LAYOUT;
+    }
+
+    private static final long lsn$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR lsn
+     * }
+     */
+    public static final long lsn$offset() {
+        return lsn$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR lsn
+     * }
+     */
+    public static byte lsn(MemorySegment struct) {
+        return struct.get(lsn$LAYOUT, lsn$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR lsn
+     * }
+     */
+    public static void lsn(MemorySegment struct, byte fieldValue) {
+        struct.set(lsn$LAYOUT, lsn$OFFSET, fieldValue);
+    }
+
+    private static final OfByte state$LAYOUT = (OfByte)$LAYOUT.select(groupElement("state"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR state
+     * }
+     */
+    public static final OfByte state$layout() {
+        return state$LAYOUT;
+    }
+
+    private static final long state$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR state
+     * }
+     */
+    public static final long state$offset() {
+        return state$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR state
+     * }
+     */
+    public static byte state(MemorySegment struct) {
+        return struct.get(state$LAYOUT, state$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR state
+     * }
+     */
+    public static void state(MemorySegment struct, byte fieldValue) {
+        struct.set(state$LAYOUT, state$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout local_name$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("local_name"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR local_name[16]
+     * }
+     */
+    public static final SequenceLayout local_name$layout() {
+        return local_name$LAYOUT;
+    }
+
+    private static final long local_name$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR local_name[16]
+     * }
+     */
+    public static final long local_name$offset() {
+        return local_name$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR local_name[16]
+     * }
+     */
+    public static MemorySegment local_name(MemorySegment struct) {
+        return struct.asSlice(local_name$OFFSET, local_name$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR local_name[16]
+     * }
+     */
+    public static void local_name(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, local_name$OFFSET, local_name$LAYOUT.byteSize());
+    }
+
+    private static long[] local_name$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * UCHAR local_name[16]
+     * }
+     */
+    public static long[] local_name$dimensions() {
+        return local_name$DIMS;
+    }
+    private static final VarHandle local_name$ELEM_HANDLE = local_name$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * UCHAR local_name[16]
+     * }
+     */
+    public static byte local_name(MemorySegment struct, long index0) {
+        return (byte)local_name$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * UCHAR local_name[16]
+     * }
+     */
+    public static void local_name(MemorySegment struct, long index0, byte fieldValue) {
+        local_name$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout remote_name$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("remote_name"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR remote_name[16]
+     * }
+     */
+    public static final SequenceLayout remote_name$layout() {
+        return remote_name$LAYOUT;
+    }
+
+    private static final long remote_name$OFFSET = 18;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR remote_name[16]
+     * }
+     */
+    public static final long remote_name$offset() {
+        return remote_name$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR remote_name[16]
+     * }
+     */
+    public static MemorySegment remote_name(MemorySegment struct) {
+        return struct.asSlice(remote_name$OFFSET, remote_name$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR remote_name[16]
+     * }
+     */
+    public static void remote_name(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, remote_name$OFFSET, remote_name$LAYOUT.byteSize());
+    }
+
+    private static long[] remote_name$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * UCHAR remote_name[16]
+     * }
+     */
+    public static long[] remote_name$dimensions() {
+        return remote_name$DIMS;
+    }
+    private static final VarHandle remote_name$ELEM_HANDLE = remote_name$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * UCHAR remote_name[16]
+     * }
+     */
+    public static byte remote_name(MemorySegment struct, long index0) {
+        return (byte)remote_name$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * UCHAR remote_name[16]
+     * }
+     */
+    public static void remote_name(MemorySegment struct, long index0, byte fieldValue) {
+        remote_name$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfByte rcvs_outstanding$LAYOUT = (OfByte)$LAYOUT.select(groupElement("rcvs_outstanding"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR rcvs_outstanding
+     * }
+     */
+    public static final OfByte rcvs_outstanding$layout() {
+        return rcvs_outstanding$LAYOUT;
+    }
+
+    private static final long rcvs_outstanding$OFFSET = 34;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR rcvs_outstanding
+     * }
+     */
+    public static final long rcvs_outstanding$offset() {
+        return rcvs_outstanding$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR rcvs_outstanding
+     * }
+     */
+    public static byte rcvs_outstanding(MemorySegment struct) {
+        return struct.get(rcvs_outstanding$LAYOUT, rcvs_outstanding$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR rcvs_outstanding
+     * }
+     */
+    public static void rcvs_outstanding(MemorySegment struct, byte fieldValue) {
+        struct.set(rcvs_outstanding$LAYOUT, rcvs_outstanding$OFFSET, fieldValue);
+    }
+
+    private static final OfByte sends_outstanding$LAYOUT = (OfByte)$LAYOUT.select(groupElement("sends_outstanding"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR sends_outstanding
+     * }
+     */
+    public static final OfByte sends_outstanding$layout() {
+        return sends_outstanding$LAYOUT;
+    }
+
+    private static final long sends_outstanding$OFFSET = 35;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR sends_outstanding
+     * }
+     */
+    public static final long sends_outstanding$offset() {
+        return sends_outstanding$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR sends_outstanding
+     * }
+     */
+    public static byte sends_outstanding(MemorySegment struct) {
+        return struct.get(sends_outstanding$LAYOUT, sends_outstanding$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR sends_outstanding
+     * }
+     */
+    public static void sends_outstanding(MemorySegment struct, byte fieldValue) {
+        struct.set(sends_outstanding$LAYOUT, sends_outstanding$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

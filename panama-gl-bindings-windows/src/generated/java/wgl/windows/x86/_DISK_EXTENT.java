@@ -2,70 +2,219 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DISK_EXTENT {
+ *     DWORD DiskNumber;
+ *     LARGE_INTEGER StartingOffset;
+ *     LARGE_INTEGER ExtentLength;
+ * }
+ * }
+ */
 public class _DISK_EXTENT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("DiskNumber"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("StartingOffset"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("ExtentLength")
-    ).withName("_DISK_EXTENT");
-    public static MemoryLayout $LAYOUT() {
-        return _DISK_EXTENT.$struct$LAYOUT;
+    _DISK_EXTENT() {
+        // Should not be called directly
     }
-    static final VarHandle DiskNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DiskNumber"));
-    public static VarHandle DiskNumber$VH() {
-        return _DISK_EXTENT.DiskNumber$VH;
-    }
-    public static int DiskNumber$get(MemorySegment seg) {
-        return (int)_DISK_EXTENT.DiskNumber$VH.get(seg);
-    }
-    public static void DiskNumber$set( MemorySegment seg, int x) {
-        _DISK_EXTENT.DiskNumber$VH.set(seg, x);
-    }
-    public static int DiskNumber$get(MemorySegment seg, long index) {
-        return (int)_DISK_EXTENT.DiskNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DiskNumber$set(MemorySegment seg, long index, int x) {
-        _DISK_EXTENT.DiskNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment StartingOffset$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    public static MemorySegment ExtentLength$slice(MemorySegment seg) {
-        return seg.asSlice(16, 8);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("DiskNumber"),
+        MemoryLayout.paddingLayout(4),
+        _LARGE_INTEGER.layout().withName("StartingOffset"),
+        _LARGE_INTEGER.layout().withName("ExtentLength")
+    ).withName("_DISK_EXTENT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt DiskNumber$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DiskNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DiskNumber
+     * }
+     */
+    public static final OfInt DiskNumber$layout() {
+        return DiskNumber$LAYOUT;
+    }
+
+    private static final long DiskNumber$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DiskNumber
+     * }
+     */
+    public static final long DiskNumber$offset() {
+        return DiskNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DiskNumber
+     * }
+     */
+    public static int DiskNumber(MemorySegment struct) {
+        return struct.get(DiskNumber$LAYOUT, DiskNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DiskNumber
+     * }
+     */
+    public static void DiskNumber(MemorySegment struct, int fieldValue) {
+        struct.set(DiskNumber$LAYOUT, DiskNumber$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout StartingOffset$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("StartingOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingOffset
+     * }
+     */
+    public static final GroupLayout StartingOffset$layout() {
+        return StartingOffset$LAYOUT;
+    }
+
+    private static final long StartingOffset$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingOffset
+     * }
+     */
+    public static final long StartingOffset$offset() {
+        return StartingOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingOffset
+     * }
+     */
+    public static MemorySegment StartingOffset(MemorySegment struct) {
+        return struct.asSlice(StartingOffset$OFFSET, StartingOffset$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingOffset
+     * }
+     */
+    public static void StartingOffset(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, StartingOffset$OFFSET, StartingOffset$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout ExtentLength$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ExtentLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER ExtentLength
+     * }
+     */
+    public static final GroupLayout ExtentLength$layout() {
+        return ExtentLength$LAYOUT;
+    }
+
+    private static final long ExtentLength$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER ExtentLength
+     * }
+     */
+    public static final long ExtentLength$offset() {
+        return ExtentLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER ExtentLength
+     * }
+     */
+    public static MemorySegment ExtentLength(MemorySegment struct) {
+        return struct.asSlice(ExtentLength$OFFSET, ExtentLength$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER ExtentLength
+     * }
+     */
+    public static void ExtentLength(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ExtentLength$OFFSET, ExtentLength$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,109 +2,402 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DEVICEDUMP_STORAGEDEVICE_DATA {
+ *     DEVICEDUMP_STRUCTURE_VERSION Descriptor;
+ *     DEVICEDUMP_SECTION_HEADER SectionHeader;
+ *     DWORD dwBufferSize;
+ *     DWORD dwReasonForCollection;
+ *     DEVICEDUMP_SUBSECTION_POINTER PublicData;
+ *     DEVICEDUMP_SUBSECTION_POINTER RestrictedData;
+ *     DEVICEDUMP_SUBSECTION_POINTER PrivateData;
+ * }
+ * }
+ */
 public class _DEVICEDUMP_STORAGEDEVICE_DATA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwSignature"),
-            Constants$root.C_LONG$LAYOUT.withName("dwVersion"),
-            Constants$root.C_LONG$LAYOUT.withName("dwSize")
-        ).withName("Descriptor"),
-        MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-            ).withName("guidDeviceDataId"),
-            MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("sOrganizationID"),
-            Constants$root.C_LONG$LAYOUT.withName("dwFirmwareRevision"),
-            MemoryLayout.sequenceLayout(32, Constants$root.C_CHAR$LAYOUT).withName("sModelNumber"),
-            MemoryLayout.sequenceLayout(32, Constants$root.C_CHAR$LAYOUT).withName("szDeviceManufacturingID"),
-            Constants$root.C_LONG$LAYOUT.withName("dwFlags"),
-            Constants$root.C_LONG$LAYOUT.withName("bRestrictedPrivateDataVersion"),
-            Constants$root.C_LONG$LAYOUT.withName("dwFirmwareIssueId"),
-            MemoryLayout.sequenceLayout(132, Constants$root.C_CHAR$LAYOUT).withName("szIssueDescriptionString")
-        ).withName("SectionHeader"),
-        Constants$root.C_LONG$LAYOUT.withName("dwBufferSize"),
-        Constants$root.C_LONG$LAYOUT.withName("dwReasonForCollection"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwSize"),
-            Constants$root.C_LONG$LAYOUT.withName("dwFlags"),
-            Constants$root.C_LONG$LAYOUT.withName("dwOffset")
-        ).withName("PublicData"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwSize"),
-            Constants$root.C_LONG$LAYOUT.withName("dwFlags"),
-            Constants$root.C_LONG$LAYOUT.withName("dwOffset")
-        ).withName("RestrictedData"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwSize"),
-            Constants$root.C_LONG$LAYOUT.withName("dwFlags"),
-            Constants$root.C_LONG$LAYOUT.withName("dwOffset")
-        ).withName("PrivateData")
-    ).withName("_DEVICEDUMP_STORAGEDEVICE_DATA");
-    public static MemoryLayout $LAYOUT() {
-        return _DEVICEDUMP_STORAGEDEVICE_DATA.$struct$LAYOUT;
+    _DEVICEDUMP_STORAGEDEVICE_DATA() {
+        // Should not be called directly
     }
-    public static MemorySegment Descriptor$slice(MemorySegment seg) {
-        return seg.asSlice(0, 12);
-    }
-    public static MemorySegment SectionHeader$slice(MemorySegment seg) {
-        return seg.asSlice(12, 244);
-    }
-    static final VarHandle dwBufferSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwBufferSize"));
-    public static VarHandle dwBufferSize$VH() {
-        return _DEVICEDUMP_STORAGEDEVICE_DATA.dwBufferSize$VH;
-    }
-    public static int dwBufferSize$get(MemorySegment seg) {
-        return (int)_DEVICEDUMP_STORAGEDEVICE_DATA.dwBufferSize$VH.get(seg);
-    }
-    public static void dwBufferSize$set( MemorySegment seg, int x) {
-        _DEVICEDUMP_STORAGEDEVICE_DATA.dwBufferSize$VH.set(seg, x);
-    }
-    public static int dwBufferSize$get(MemorySegment seg, long index) {
-        return (int)_DEVICEDUMP_STORAGEDEVICE_DATA.dwBufferSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwBufferSize$set(MemorySegment seg, long index, int x) {
-        _DEVICEDUMP_STORAGEDEVICE_DATA.dwBufferSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwReasonForCollection$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwReasonForCollection"));
-    public static VarHandle dwReasonForCollection$VH() {
-        return _DEVICEDUMP_STORAGEDEVICE_DATA.dwReasonForCollection$VH;
-    }
-    public static int dwReasonForCollection$get(MemorySegment seg) {
-        return (int)_DEVICEDUMP_STORAGEDEVICE_DATA.dwReasonForCollection$VH.get(seg);
-    }
-    public static void dwReasonForCollection$set( MemorySegment seg, int x) {
-        _DEVICEDUMP_STORAGEDEVICE_DATA.dwReasonForCollection$VH.set(seg, x);
-    }
-    public static int dwReasonForCollection$get(MemorySegment seg, long index) {
-        return (int)_DEVICEDUMP_STORAGEDEVICE_DATA.dwReasonForCollection$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwReasonForCollection$set(MemorySegment seg, long index, int x) {
-        _DEVICEDUMP_STORAGEDEVICE_DATA.dwReasonForCollection$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment PublicData$slice(MemorySegment seg) {
-        return seg.asSlice(264, 12);
-    }
-    public static MemorySegment RestrictedData$slice(MemorySegment seg) {
-        return seg.asSlice(276, 12);
-    }
-    public static MemorySegment PrivateData$slice(MemorySegment seg) {
-        return seg.asSlice(288, 12);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _DEVICEDUMP_STRUCTURE_VERSION.layout().withName("Descriptor"),
+        _DEVICEDUMP_SECTION_HEADER.layout().withName("SectionHeader"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwBufferSize"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwReasonForCollection"),
+        _DEVICEDUMP_SUBSECTION_POINTER.layout().withName("PublicData"),
+        _DEVICEDUMP_SUBSECTION_POINTER.layout().withName("RestrictedData"),
+        _DEVICEDUMP_SUBSECTION_POINTER.layout().withName("PrivateData")
+    ).withName("_DEVICEDUMP_STORAGEDEVICE_DATA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout Descriptor$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Descriptor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_STRUCTURE_VERSION Descriptor
+     * }
+     */
+    public static final GroupLayout Descriptor$layout() {
+        return Descriptor$LAYOUT;
+    }
+
+    private static final long Descriptor$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_STRUCTURE_VERSION Descriptor
+     * }
+     */
+    public static final long Descriptor$offset() {
+        return Descriptor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_STRUCTURE_VERSION Descriptor
+     * }
+     */
+    public static MemorySegment Descriptor(MemorySegment struct) {
+        return struct.asSlice(Descriptor$OFFSET, Descriptor$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_STRUCTURE_VERSION Descriptor
+     * }
+     */
+    public static void Descriptor(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Descriptor$OFFSET, Descriptor$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout SectionHeader$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("SectionHeader"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_SECTION_HEADER SectionHeader
+     * }
+     */
+    public static final GroupLayout SectionHeader$layout() {
+        return SectionHeader$LAYOUT;
+    }
+
+    private static final long SectionHeader$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_SECTION_HEADER SectionHeader
+     * }
+     */
+    public static final long SectionHeader$offset() {
+        return SectionHeader$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_SECTION_HEADER SectionHeader
+     * }
+     */
+    public static MemorySegment SectionHeader(MemorySegment struct) {
+        return struct.asSlice(SectionHeader$OFFSET, SectionHeader$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_SECTION_HEADER SectionHeader
+     * }
+     */
+    public static void SectionHeader(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, SectionHeader$OFFSET, SectionHeader$LAYOUT.byteSize());
+    }
+
+    private static final OfInt dwBufferSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwBufferSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwBufferSize
+     * }
+     */
+    public static final OfInt dwBufferSize$layout() {
+        return dwBufferSize$LAYOUT;
+    }
+
+    private static final long dwBufferSize$OFFSET = 256;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwBufferSize
+     * }
+     */
+    public static final long dwBufferSize$offset() {
+        return dwBufferSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwBufferSize
+     * }
+     */
+    public static int dwBufferSize(MemorySegment struct) {
+        return struct.get(dwBufferSize$LAYOUT, dwBufferSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwBufferSize
+     * }
+     */
+    public static void dwBufferSize(MemorySegment struct, int fieldValue) {
+        struct.set(dwBufferSize$LAYOUT, dwBufferSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwReasonForCollection$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwReasonForCollection"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwReasonForCollection
+     * }
+     */
+    public static final OfInt dwReasonForCollection$layout() {
+        return dwReasonForCollection$LAYOUT;
+    }
+
+    private static final long dwReasonForCollection$OFFSET = 260;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwReasonForCollection
+     * }
+     */
+    public static final long dwReasonForCollection$offset() {
+        return dwReasonForCollection$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwReasonForCollection
+     * }
+     */
+    public static int dwReasonForCollection(MemorySegment struct) {
+        return struct.get(dwReasonForCollection$LAYOUT, dwReasonForCollection$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwReasonForCollection
+     * }
+     */
+    public static void dwReasonForCollection(MemorySegment struct, int fieldValue) {
+        struct.set(dwReasonForCollection$LAYOUT, dwReasonForCollection$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout PublicData$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("PublicData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_SUBSECTION_POINTER PublicData
+     * }
+     */
+    public static final GroupLayout PublicData$layout() {
+        return PublicData$LAYOUT;
+    }
+
+    private static final long PublicData$OFFSET = 264;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_SUBSECTION_POINTER PublicData
+     * }
+     */
+    public static final long PublicData$offset() {
+        return PublicData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_SUBSECTION_POINTER PublicData
+     * }
+     */
+    public static MemorySegment PublicData(MemorySegment struct) {
+        return struct.asSlice(PublicData$OFFSET, PublicData$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_SUBSECTION_POINTER PublicData
+     * }
+     */
+    public static void PublicData(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, PublicData$OFFSET, PublicData$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout RestrictedData$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("RestrictedData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_SUBSECTION_POINTER RestrictedData
+     * }
+     */
+    public static final GroupLayout RestrictedData$layout() {
+        return RestrictedData$LAYOUT;
+    }
+
+    private static final long RestrictedData$OFFSET = 276;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_SUBSECTION_POINTER RestrictedData
+     * }
+     */
+    public static final long RestrictedData$offset() {
+        return RestrictedData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_SUBSECTION_POINTER RestrictedData
+     * }
+     */
+    public static MemorySegment RestrictedData(MemorySegment struct) {
+        return struct.asSlice(RestrictedData$OFFSET, RestrictedData$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_SUBSECTION_POINTER RestrictedData
+     * }
+     */
+    public static void RestrictedData(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, RestrictedData$OFFSET, RestrictedData$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout PrivateData$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("PrivateData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_SUBSECTION_POINTER PrivateData
+     * }
+     */
+    public static final GroupLayout PrivateData$layout() {
+        return PrivateData$LAYOUT;
+    }
+
+    private static final long PrivateData$OFFSET = 288;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_SUBSECTION_POINTER PrivateData
+     * }
+     */
+    public static final long PrivateData$offset() {
+        return PrivateData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_SUBSECTION_POINTER PrivateData
+     * }
+     */
+    public static MemorySegment PrivateData(MemorySegment struct) {
+        return struct.asSlice(PrivateData$OFFSET, PrivateData$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DEVICEDUMP_SUBSECTION_POINTER PrivateData
+     * }
+     */
+    public static void PrivateData(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, PrivateData$OFFSET, PrivateData$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

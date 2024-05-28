@@ -2,27 +2,68 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNWGLGETGENLOCKSOURCEI3DPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemoryAddress hDC, java.lang.foreign.MemoryAddress uSource);
-    static MemorySegment allocate(PFNWGLGETGENLOCKSOURCEI3DPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNWGLGETGENLOCKSOURCEI3DPROC.class, fi, constants$1395.PFNWGLGETGENLOCKSOURCEI3DPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PFNWGLGETGENLOCKSOURCEI3DPROC)(HDC, UINT *) __attribute__((stdcall))
+ * }
+ */
+public class PFNWGLGETGENLOCKSOURCEI3DPROC {
+
+    PFNWGLGETGENLOCKSOURCEI3DPROC() {
+        // Should not be called directly
     }
-    static PFNWGLGETGENLOCKSOURCEI3DPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _hDC, java.lang.foreign.MemoryAddress _uSource) -> {
-            try {
-                return (int)constants$1395.PFNWGLGETGENLOCKSOURCEI3DPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_hDC, (java.lang.foreign.Addressable)_uSource);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment hDC, MemorySegment uSource);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNWGLGETGENLOCKSOURCEI3DPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNWGLGETGENLOCKSOURCEI3DPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment hDC, MemorySegment uSource) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, hDC, uSource);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

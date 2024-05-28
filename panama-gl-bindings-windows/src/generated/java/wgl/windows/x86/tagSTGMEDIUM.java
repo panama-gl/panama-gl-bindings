@@ -2,180 +2,499 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagSTGMEDIUM {
+ *     DWORD tymed;
+ *     union {
+ *         HBITMAP hBitmap;
+ *         HMETAFILEPICT hMetaFilePict;
+ *         HENHMETAFILE hEnhMetaFile;
+ *         HGLOBAL hGlobal;
+ *         LPOLESTR lpszFileName;
+ *         IStream *pstm;
+ *         IStorage *pstg;
+ *     };
+ *     IUnknown *pUnkForRelease;
+ * }
+ * }
+ */
 public class tagSTGMEDIUM {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("tymed"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.unionLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("hBitmap"),
-            Constants$root.C_POINTER$LAYOUT.withName("hMetaFilePict"),
-            Constants$root.C_POINTER$LAYOUT.withName("hEnhMetaFile"),
-            Constants$root.C_POINTER$LAYOUT.withName("hGlobal"),
-            Constants$root.C_POINTER$LAYOUT.withName("lpszFileName"),
-            Constants$root.C_POINTER$LAYOUT.withName("pstm"),
-            Constants$root.C_POINTER$LAYOUT.withName("pstg")
-        ).withName("$anon$0"),
-        Constants$root.C_POINTER$LAYOUT.withName("pUnkForRelease")
-    ).withName("tagSTGMEDIUM");
-    public static MemoryLayout $LAYOUT() {
-        return tagSTGMEDIUM.$struct$LAYOUT;
+    tagSTGMEDIUM() {
+        // Should not be called directly
     }
-    static final VarHandle tymed$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("tymed"));
-    public static VarHandle tymed$VH() {
-        return tagSTGMEDIUM.tymed$VH;
-    }
-    public static int tymed$get(MemorySegment seg) {
-        return (int)tagSTGMEDIUM.tymed$VH.get(seg);
-    }
-    public static void tymed$set( MemorySegment seg, int x) {
-        tagSTGMEDIUM.tymed$VH.set(seg, x);
-    }
-    public static int tymed$get(MemorySegment seg, long index) {
-        return (int)tagSTGMEDIUM.tymed$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void tymed$set(MemorySegment seg, long index, int x) {
-        tagSTGMEDIUM.tymed$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hBitmap$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("hBitmap"));
-    public static VarHandle hBitmap$VH() {
-        return tagSTGMEDIUM.hBitmap$VH;
-    }
-    public static MemoryAddress hBitmap$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagSTGMEDIUM.hBitmap$VH.get(seg);
-    }
-    public static void hBitmap$set( MemorySegment seg, MemoryAddress x) {
-        tagSTGMEDIUM.hBitmap$VH.set(seg, x);
-    }
-    public static MemoryAddress hBitmap$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagSTGMEDIUM.hBitmap$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hBitmap$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagSTGMEDIUM.hBitmap$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hMetaFilePict$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("hMetaFilePict"));
-    public static VarHandle hMetaFilePict$VH() {
-        return tagSTGMEDIUM.hMetaFilePict$VH;
-    }
-    public static MemoryAddress hMetaFilePict$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagSTGMEDIUM.hMetaFilePict$VH.get(seg);
-    }
-    public static void hMetaFilePict$set( MemorySegment seg, MemoryAddress x) {
-        tagSTGMEDIUM.hMetaFilePict$VH.set(seg, x);
-    }
-    public static MemoryAddress hMetaFilePict$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagSTGMEDIUM.hMetaFilePict$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hMetaFilePict$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagSTGMEDIUM.hMetaFilePict$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hEnhMetaFile$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("hEnhMetaFile"));
-    public static VarHandle hEnhMetaFile$VH() {
-        return tagSTGMEDIUM.hEnhMetaFile$VH;
-    }
-    public static MemoryAddress hEnhMetaFile$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagSTGMEDIUM.hEnhMetaFile$VH.get(seg);
-    }
-    public static void hEnhMetaFile$set( MemorySegment seg, MemoryAddress x) {
-        tagSTGMEDIUM.hEnhMetaFile$VH.set(seg, x);
-    }
-    public static MemoryAddress hEnhMetaFile$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagSTGMEDIUM.hEnhMetaFile$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hEnhMetaFile$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagSTGMEDIUM.hEnhMetaFile$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hGlobal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("hGlobal"));
-    public static VarHandle hGlobal$VH() {
-        return tagSTGMEDIUM.hGlobal$VH;
-    }
-    public static MemoryAddress hGlobal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagSTGMEDIUM.hGlobal$VH.get(seg);
-    }
-    public static void hGlobal$set( MemorySegment seg, MemoryAddress x) {
-        tagSTGMEDIUM.hGlobal$VH.set(seg, x);
-    }
-    public static MemoryAddress hGlobal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagSTGMEDIUM.hGlobal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hGlobal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagSTGMEDIUM.hGlobal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpszFileName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("lpszFileName"));
-    public static VarHandle lpszFileName$VH() {
-        return tagSTGMEDIUM.lpszFileName$VH;
-    }
-    public static MemoryAddress lpszFileName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagSTGMEDIUM.lpszFileName$VH.get(seg);
-    }
-    public static void lpszFileName$set( MemorySegment seg, MemoryAddress x) {
-        tagSTGMEDIUM.lpszFileName$VH.set(seg, x);
-    }
-    public static MemoryAddress lpszFileName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagSTGMEDIUM.lpszFileName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpszFileName$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagSTGMEDIUM.lpszFileName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pstm$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pstm"));
-    public static VarHandle pstm$VH() {
-        return tagSTGMEDIUM.pstm$VH;
-    }
-    public static MemoryAddress pstm$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagSTGMEDIUM.pstm$VH.get(seg);
-    }
-    public static void pstm$set( MemorySegment seg, MemoryAddress x) {
-        tagSTGMEDIUM.pstm$VH.set(seg, x);
-    }
-    public static MemoryAddress pstm$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagSTGMEDIUM.pstm$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pstm$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagSTGMEDIUM.pstm$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pstg$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pstg"));
-    public static VarHandle pstg$VH() {
-        return tagSTGMEDIUM.pstg$VH;
-    }
-    public static MemoryAddress pstg$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagSTGMEDIUM.pstg$VH.get(seg);
-    }
-    public static void pstg$set( MemorySegment seg, MemoryAddress x) {
-        tagSTGMEDIUM.pstg$VH.set(seg, x);
-    }
-    public static MemoryAddress pstg$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagSTGMEDIUM.pstg$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pstg$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagSTGMEDIUM.pstg$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pUnkForRelease$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pUnkForRelease"));
-    public static VarHandle pUnkForRelease$VH() {
-        return tagSTGMEDIUM.pUnkForRelease$VH;
-    }
-    public static MemoryAddress pUnkForRelease$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagSTGMEDIUM.pUnkForRelease$VH.get(seg);
-    }
-    public static void pUnkForRelease$set( MemorySegment seg, MemoryAddress x) {
-        tagSTGMEDIUM.pUnkForRelease$VH.set(seg, x);
-    }
-    public static MemoryAddress pUnkForRelease$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagSTGMEDIUM.pUnkForRelease$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pUnkForRelease$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagSTGMEDIUM.pUnkForRelease$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("tymed"),
+        MemoryLayout.paddingLayout(4),
+        MemoryLayout.unionLayout(
+            wgl_h.C_POINTER.withName("hBitmap"),
+            wgl_h.C_POINTER.withName("hMetaFilePict"),
+            wgl_h.C_POINTER.withName("hEnhMetaFile"),
+            wgl_h.C_POINTER.withName("hGlobal"),
+            wgl_h.C_POINTER.withName("lpszFileName"),
+            wgl_h.C_POINTER.withName("pstm"),
+            wgl_h.C_POINTER.withName("pstg")
+        ).withName("$anon$11272:36"),
+        wgl_h.C_POINTER.withName("pUnkForRelease")
+    ).withName("tagSTGMEDIUM");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt tymed$LAYOUT = (OfInt)$LAYOUT.select(groupElement("tymed"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD tymed
+     * }
+     */
+    public static final OfInt tymed$layout() {
+        return tymed$LAYOUT;
+    }
+
+    private static final long tymed$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD tymed
+     * }
+     */
+    public static final long tymed$offset() {
+        return tymed$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD tymed
+     * }
+     */
+    public static int tymed(MemorySegment struct) {
+        return struct.get(tymed$LAYOUT, tymed$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD tymed
+     * }
+     */
+    public static void tymed(MemorySegment struct, int fieldValue) {
+        struct.set(tymed$LAYOUT, tymed$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hBitmap$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$11272:36"), groupElement("hBitmap"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HBITMAP hBitmap
+     * }
+     */
+    public static final AddressLayout hBitmap$layout() {
+        return hBitmap$LAYOUT;
+    }
+
+    private static final long hBitmap$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HBITMAP hBitmap
+     * }
+     */
+    public static final long hBitmap$offset() {
+        return hBitmap$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HBITMAP hBitmap
+     * }
+     */
+    public static MemorySegment hBitmap(MemorySegment struct) {
+        return struct.get(hBitmap$LAYOUT, hBitmap$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HBITMAP hBitmap
+     * }
+     */
+    public static void hBitmap(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hBitmap$LAYOUT, hBitmap$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hMetaFilePict$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$11272:36"), groupElement("hMetaFilePict"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HMETAFILEPICT hMetaFilePict
+     * }
+     */
+    public static final AddressLayout hMetaFilePict$layout() {
+        return hMetaFilePict$LAYOUT;
+    }
+
+    private static final long hMetaFilePict$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HMETAFILEPICT hMetaFilePict
+     * }
+     */
+    public static final long hMetaFilePict$offset() {
+        return hMetaFilePict$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HMETAFILEPICT hMetaFilePict
+     * }
+     */
+    public static MemorySegment hMetaFilePict(MemorySegment struct) {
+        return struct.get(hMetaFilePict$LAYOUT, hMetaFilePict$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HMETAFILEPICT hMetaFilePict
+     * }
+     */
+    public static void hMetaFilePict(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hMetaFilePict$LAYOUT, hMetaFilePict$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hEnhMetaFile$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$11272:36"), groupElement("hEnhMetaFile"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HENHMETAFILE hEnhMetaFile
+     * }
+     */
+    public static final AddressLayout hEnhMetaFile$layout() {
+        return hEnhMetaFile$LAYOUT;
+    }
+
+    private static final long hEnhMetaFile$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HENHMETAFILE hEnhMetaFile
+     * }
+     */
+    public static final long hEnhMetaFile$offset() {
+        return hEnhMetaFile$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HENHMETAFILE hEnhMetaFile
+     * }
+     */
+    public static MemorySegment hEnhMetaFile(MemorySegment struct) {
+        return struct.get(hEnhMetaFile$LAYOUT, hEnhMetaFile$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HENHMETAFILE hEnhMetaFile
+     * }
+     */
+    public static void hEnhMetaFile(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hEnhMetaFile$LAYOUT, hEnhMetaFile$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hGlobal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$11272:36"), groupElement("hGlobal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HGLOBAL hGlobal
+     * }
+     */
+    public static final AddressLayout hGlobal$layout() {
+        return hGlobal$LAYOUT;
+    }
+
+    private static final long hGlobal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HGLOBAL hGlobal
+     * }
+     */
+    public static final long hGlobal$offset() {
+        return hGlobal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HGLOBAL hGlobal
+     * }
+     */
+    public static MemorySegment hGlobal(MemorySegment struct) {
+        return struct.get(hGlobal$LAYOUT, hGlobal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HGLOBAL hGlobal
+     * }
+     */
+    public static void hGlobal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hGlobal$LAYOUT, hGlobal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpszFileName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$11272:36"), groupElement("lpszFileName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPOLESTR lpszFileName
+     * }
+     */
+    public static final AddressLayout lpszFileName$layout() {
+        return lpszFileName$LAYOUT;
+    }
+
+    private static final long lpszFileName$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPOLESTR lpszFileName
+     * }
+     */
+    public static final long lpszFileName$offset() {
+        return lpszFileName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPOLESTR lpszFileName
+     * }
+     */
+    public static MemorySegment lpszFileName(MemorySegment struct) {
+        return struct.get(lpszFileName$LAYOUT, lpszFileName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPOLESTR lpszFileName
+     * }
+     */
+    public static void lpszFileName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpszFileName$LAYOUT, lpszFileName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pstm$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$11272:36"), groupElement("pstm"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IStream *pstm
+     * }
+     */
+    public static final AddressLayout pstm$layout() {
+        return pstm$LAYOUT;
+    }
+
+    private static final long pstm$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IStream *pstm
+     * }
+     */
+    public static final long pstm$offset() {
+        return pstm$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IStream *pstm
+     * }
+     */
+    public static MemorySegment pstm(MemorySegment struct) {
+        return struct.get(pstm$LAYOUT, pstm$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IStream *pstm
+     * }
+     */
+    public static void pstm(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pstm$LAYOUT, pstm$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pstg$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$11272:36"), groupElement("pstg"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IStorage *pstg
+     * }
+     */
+    public static final AddressLayout pstg$layout() {
+        return pstg$LAYOUT;
+    }
+
+    private static final long pstg$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IStorage *pstg
+     * }
+     */
+    public static final long pstg$offset() {
+        return pstg$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IStorage *pstg
+     * }
+     */
+    public static MemorySegment pstg(MemorySegment struct) {
+        return struct.get(pstg$LAYOUT, pstg$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IStorage *pstg
+     * }
+     */
+    public static void pstg(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pstg$LAYOUT, pstg$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pUnkForRelease$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pUnkForRelease"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IUnknown *pUnkForRelease
+     * }
+     */
+    public static final AddressLayout pUnkForRelease$layout() {
+        return pUnkForRelease$LAYOUT;
+    }
+
+    private static final long pUnkForRelease$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IUnknown *pUnkForRelease
+     * }
+     */
+    public static final long pUnkForRelease$offset() {
+        return pUnkForRelease$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IUnknown *pUnkForRelease
+     * }
+     */
+    public static MemorySegment pUnkForRelease(MemorySegment struct) {
+        return struct.get(pUnkForRelease$LAYOUT, pUnkForRelease$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IUnknown *pUnkForRelease
+     * }
+     */
+    public static void pUnkForRelease(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pUnkForRelease$LAYOUT, pUnkForRelease$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

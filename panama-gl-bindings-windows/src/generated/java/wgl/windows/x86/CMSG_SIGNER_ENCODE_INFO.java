@@ -2,13 +2,39 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CMSG_SIGNER_ENCODE_INFO {
+ *     DWORD cbSize;
+ *     PCERT_INFO pCertInfo;
+ *     union {
+ *         HCRYPTPROV hCryptProv;
+ *         NCRYPT_KEY_HANDLE hNCryptKey;
+ *     };
+ *     DWORD dwKeySpec;
+ *     CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm;
+ *     void *pvHashAuxInfo;
+ *     DWORD cAuthAttr;
+ *     PCRYPT_ATTRIBUTE rgAuthAttr;
+ *     DWORD cUnauthAttr;
+ *     PCRYPT_ATTRIBUTE rgUnauthAttr;
+ * } CMSG_SIGNER_ENCODE_INFO
+ * }
+ */
 public class CMSG_SIGNER_ENCODE_INFO extends _CMSG_SIGNER_ENCODE_INFO {
 
+    CMSG_SIGNER_ENCODE_INFO() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,13 +2,29 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _DEVICE_DATA_SET_REPAIR_PARAMETERS {
+ *     DWORD NumberOfRepairCopies;
+ *     DWORD SourceCopy;
+ *     DWORD RepairCopies[1];
+ * } DEVICE_DATA_SET_REPAIR_PARAMETERS
+ * }
+ */
 public class DEVICE_DATA_SET_REPAIR_PARAMETERS extends _DEVICE_DATA_SET_REPAIR_PARAMETERS {
 
+    DEVICE_DATA_SET_REPAIR_PARAMETERS() {
+        // Should not be called directly
+    }
 }
-
 

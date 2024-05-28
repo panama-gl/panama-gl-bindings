@@ -2,13 +2,29 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CMSG_STREAM_INFO {
+ *     DWORD cbContent;
+ *     PFN_CMSG_STREAM_OUTPUT pfnStreamOutput;
+ *     void *pvArg;
+ * } CMSG_STREAM_INFO
+ * }
+ */
 public class CMSG_STREAM_INFO extends _CMSG_STREAM_INFO {
 
+    CMSG_STREAM_INFO() {
+        // Should not be called directly
+    }
 }
-
 

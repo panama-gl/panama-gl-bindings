@@ -2,127 +2,394 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STORAGE_DEVICE_TIERING_DESCRIPTOR {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     DWORD Flags;
+ *     DWORD TotalNumberOfTiers;
+ *     DWORD NumberOfTiersReturned;
+ *     STORAGE_TIER Tiers[1];
+ * }
+ * }
+ */
 public class _STORAGE_DEVICE_TIERING_DESCRIPTOR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("TotalNumberOfTiers"),
-        Constants$root.C_LONG$LAYOUT.withName("NumberOfTiersReturned"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-            ).withName("Id"),
-            MemoryLayout.sequenceLayout(256, Constants$root.C_SHORT$LAYOUT).withName("Name"),
-            MemoryLayout.sequenceLayout(256, Constants$root.C_SHORT$LAYOUT).withName("Description"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Flags"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("ProvisionedCapacity"),
-            Constants$root.C_LONG$LAYOUT.withName("MediaType"),
-            Constants$root.C_LONG$LAYOUT.withName("Class")
-        ).withName("_STORAGE_TIER")).withName("Tiers")
-    ).withName("_STORAGE_DEVICE_TIERING_DESCRIPTOR");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_DEVICE_TIERING_DESCRIPTOR.$struct$LAYOUT;
+    _STORAGE_DEVICE_TIERING_DESCRIPTOR() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _STORAGE_DEVICE_TIERING_DESCRIPTOR.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_TIERING_DESCRIPTOR.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_TIERING_DESCRIPTOR.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_TIERING_DESCRIPTOR.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_TIERING_DESCRIPTOR.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _STORAGE_DEVICE_TIERING_DESCRIPTOR.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_TIERING_DESCRIPTOR.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_TIERING_DESCRIPTOR.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_TIERING_DESCRIPTOR.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_TIERING_DESCRIPTOR.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _STORAGE_DEVICE_TIERING_DESCRIPTOR.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_TIERING_DESCRIPTOR.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_TIERING_DESCRIPTOR.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_TIERING_DESCRIPTOR.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_TIERING_DESCRIPTOR.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TotalNumberOfTiers$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TotalNumberOfTiers"));
-    public static VarHandle TotalNumberOfTiers$VH() {
-        return _STORAGE_DEVICE_TIERING_DESCRIPTOR.TotalNumberOfTiers$VH;
-    }
-    public static int TotalNumberOfTiers$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_TIERING_DESCRIPTOR.TotalNumberOfTiers$VH.get(seg);
-    }
-    public static void TotalNumberOfTiers$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_TIERING_DESCRIPTOR.TotalNumberOfTiers$VH.set(seg, x);
-    }
-    public static int TotalNumberOfTiers$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_TIERING_DESCRIPTOR.TotalNumberOfTiers$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TotalNumberOfTiers$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_TIERING_DESCRIPTOR.TotalNumberOfTiers$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberOfTiersReturned$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfTiersReturned"));
-    public static VarHandle NumberOfTiersReturned$VH() {
-        return _STORAGE_DEVICE_TIERING_DESCRIPTOR.NumberOfTiersReturned$VH;
-    }
-    public static int NumberOfTiersReturned$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_TIERING_DESCRIPTOR.NumberOfTiersReturned$VH.get(seg);
-    }
-    public static void NumberOfTiersReturned$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_TIERING_DESCRIPTOR.NumberOfTiersReturned$VH.set(seg, x);
-    }
-    public static int NumberOfTiersReturned$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_TIERING_DESCRIPTOR.NumberOfTiersReturned$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfTiersReturned$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_TIERING_DESCRIPTOR.NumberOfTiersReturned$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Tiers$slice(MemorySegment seg) {
-        return seg.asSlice(24, 1064);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_LONG.withName("TotalNumberOfTiers"),
+        wgl_h.C_LONG.withName("NumberOfTiersReturned"),
+        MemoryLayout.paddingLayout(4),
+        MemoryLayout.sequenceLayout(1, _STORAGE_TIER.layout()).withName("Tiers")
+    ).withName("_STORAGE_DEVICE_TIERING_DESCRIPTOR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt TotalNumberOfTiers$LAYOUT = (OfInt)$LAYOUT.select(groupElement("TotalNumberOfTiers"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD TotalNumberOfTiers
+     * }
+     */
+    public static final OfInt TotalNumberOfTiers$layout() {
+        return TotalNumberOfTiers$LAYOUT;
+    }
+
+    private static final long TotalNumberOfTiers$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD TotalNumberOfTiers
+     * }
+     */
+    public static final long TotalNumberOfTiers$offset() {
+        return TotalNumberOfTiers$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD TotalNumberOfTiers
+     * }
+     */
+    public static int TotalNumberOfTiers(MemorySegment struct) {
+        return struct.get(TotalNumberOfTiers$LAYOUT, TotalNumberOfTiers$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD TotalNumberOfTiers
+     * }
+     */
+    public static void TotalNumberOfTiers(MemorySegment struct, int fieldValue) {
+        struct.set(TotalNumberOfTiers$LAYOUT, TotalNumberOfTiers$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NumberOfTiersReturned$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberOfTiersReturned"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfTiersReturned
+     * }
+     */
+    public static final OfInt NumberOfTiersReturned$layout() {
+        return NumberOfTiersReturned$LAYOUT;
+    }
+
+    private static final long NumberOfTiersReturned$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfTiersReturned
+     * }
+     */
+    public static final long NumberOfTiersReturned$offset() {
+        return NumberOfTiersReturned$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfTiersReturned
+     * }
+     */
+    public static int NumberOfTiersReturned(MemorySegment struct) {
+        return struct.get(NumberOfTiersReturned$LAYOUT, NumberOfTiersReturned$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfTiersReturned
+     * }
+     */
+    public static void NumberOfTiersReturned(MemorySegment struct, int fieldValue) {
+        struct.set(NumberOfTiersReturned$LAYOUT, NumberOfTiersReturned$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Tiers$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Tiers"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * STORAGE_TIER Tiers[1]
+     * }
+     */
+    public static final SequenceLayout Tiers$layout() {
+        return Tiers$LAYOUT;
+    }
+
+    private static final long Tiers$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * STORAGE_TIER Tiers[1]
+     * }
+     */
+    public static final long Tiers$offset() {
+        return Tiers$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * STORAGE_TIER Tiers[1]
+     * }
+     */
+    public static MemorySegment Tiers(MemorySegment struct) {
+        return struct.asSlice(Tiers$OFFSET, Tiers$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * STORAGE_TIER Tiers[1]
+     * }
+     */
+    public static void Tiers(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Tiers$OFFSET, Tiers$LAYOUT.byteSize());
+    }
+
+    private static long[] Tiers$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * STORAGE_TIER Tiers[1]
+     * }
+     */
+    public static long[] Tiers$dimensions() {
+        return Tiers$DIMS;
+    }
+    private static final MethodHandle Tiers$ELEM_HANDLE = Tiers$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * STORAGE_TIER Tiers[1]
+     * }
+     */
+    public static MemorySegment Tiers(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)Tiers$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * STORAGE_TIER Tiers[1]
+     * }
+     */
+    public static void Tiers(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, Tiers(struct, index0), 0L, _STORAGE_TIER.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

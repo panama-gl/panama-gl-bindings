@@ -2,230 +2,634 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagMENUITEMINFOW {
+ *     UINT cbSize;
+ *     UINT fMask;
+ *     UINT fType;
+ *     UINT fState;
+ *     UINT wID;
+ *     HMENU hSubMenu;
+ *     HBITMAP hbmpChecked;
+ *     HBITMAP hbmpUnchecked;
+ *     ULONG_PTR dwItemData;
+ *     LPWSTR dwTypeData;
+ *     UINT cch;
+ *     HBITMAP hbmpItem;
+ * }
+ * }
+ */
 public class tagMENUITEMINFOW {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        Constants$root.C_LONG$LAYOUT.withName("fMask"),
-        Constants$root.C_LONG$LAYOUT.withName("fType"),
-        Constants$root.C_LONG$LAYOUT.withName("fState"),
-        Constants$root.C_LONG$LAYOUT.withName("wID"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("hSubMenu"),
-        Constants$root.C_POINTER$LAYOUT.withName("hbmpChecked"),
-        Constants$root.C_POINTER$LAYOUT.withName("hbmpUnchecked"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("dwItemData"),
-        Constants$root.C_POINTER$LAYOUT.withName("dwTypeData"),
-        Constants$root.C_LONG$LAYOUT.withName("cch"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("hbmpItem")
-    ).withName("tagMENUITEMINFOW");
-    public static MemoryLayout $LAYOUT() {
-        return tagMENUITEMINFOW.$struct$LAYOUT;
+    tagMENUITEMINFOW() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return tagMENUITEMINFOW.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)tagMENUITEMINFOW.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        tagMENUITEMINFOW.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)tagMENUITEMINFOW.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        tagMENUITEMINFOW.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fMask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fMask"));
-    public static VarHandle fMask$VH() {
-        return tagMENUITEMINFOW.fMask$VH;
-    }
-    public static int fMask$get(MemorySegment seg) {
-        return (int)tagMENUITEMINFOW.fMask$VH.get(seg);
-    }
-    public static void fMask$set( MemorySegment seg, int x) {
-        tagMENUITEMINFOW.fMask$VH.set(seg, x);
-    }
-    public static int fMask$get(MemorySegment seg, long index) {
-        return (int)tagMENUITEMINFOW.fMask$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fMask$set(MemorySegment seg, long index, int x) {
-        tagMENUITEMINFOW.fMask$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fType"));
-    public static VarHandle fType$VH() {
-        return tagMENUITEMINFOW.fType$VH;
-    }
-    public static int fType$get(MemorySegment seg) {
-        return (int)tagMENUITEMINFOW.fType$VH.get(seg);
-    }
-    public static void fType$set( MemorySegment seg, int x) {
-        tagMENUITEMINFOW.fType$VH.set(seg, x);
-    }
-    public static int fType$get(MemorySegment seg, long index) {
-        return (int)tagMENUITEMINFOW.fType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fType$set(MemorySegment seg, long index, int x) {
-        tagMENUITEMINFOW.fType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fState"));
-    public static VarHandle fState$VH() {
-        return tagMENUITEMINFOW.fState$VH;
-    }
-    public static int fState$get(MemorySegment seg) {
-        return (int)tagMENUITEMINFOW.fState$VH.get(seg);
-    }
-    public static void fState$set( MemorySegment seg, int x) {
-        tagMENUITEMINFOW.fState$VH.set(seg, x);
-    }
-    public static int fState$get(MemorySegment seg, long index) {
-        return (int)tagMENUITEMINFOW.fState$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fState$set(MemorySegment seg, long index, int x) {
-        tagMENUITEMINFOW.fState$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wID$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wID"));
-    public static VarHandle wID$VH() {
-        return tagMENUITEMINFOW.wID$VH;
-    }
-    public static int wID$get(MemorySegment seg) {
-        return (int)tagMENUITEMINFOW.wID$VH.get(seg);
-    }
-    public static void wID$set( MemorySegment seg, int x) {
-        tagMENUITEMINFOW.wID$VH.set(seg, x);
-    }
-    public static int wID$get(MemorySegment seg, long index) {
-        return (int)tagMENUITEMINFOW.wID$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wID$set(MemorySegment seg, long index, int x) {
-        tagMENUITEMINFOW.wID$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hSubMenu$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hSubMenu"));
-    public static VarHandle hSubMenu$VH() {
-        return tagMENUITEMINFOW.hSubMenu$VH;
-    }
-    public static MemoryAddress hSubMenu$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMENUITEMINFOW.hSubMenu$VH.get(seg);
-    }
-    public static void hSubMenu$set( MemorySegment seg, MemoryAddress x) {
-        tagMENUITEMINFOW.hSubMenu$VH.set(seg, x);
-    }
-    public static MemoryAddress hSubMenu$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMENUITEMINFOW.hSubMenu$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hSubMenu$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMENUITEMINFOW.hSubMenu$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hbmpChecked$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hbmpChecked"));
-    public static VarHandle hbmpChecked$VH() {
-        return tagMENUITEMINFOW.hbmpChecked$VH;
-    }
-    public static MemoryAddress hbmpChecked$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMENUITEMINFOW.hbmpChecked$VH.get(seg);
-    }
-    public static void hbmpChecked$set( MemorySegment seg, MemoryAddress x) {
-        tagMENUITEMINFOW.hbmpChecked$VH.set(seg, x);
-    }
-    public static MemoryAddress hbmpChecked$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMENUITEMINFOW.hbmpChecked$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hbmpChecked$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMENUITEMINFOW.hbmpChecked$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hbmpUnchecked$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hbmpUnchecked"));
-    public static VarHandle hbmpUnchecked$VH() {
-        return tagMENUITEMINFOW.hbmpUnchecked$VH;
-    }
-    public static MemoryAddress hbmpUnchecked$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMENUITEMINFOW.hbmpUnchecked$VH.get(seg);
-    }
-    public static void hbmpUnchecked$set( MemorySegment seg, MemoryAddress x) {
-        tagMENUITEMINFOW.hbmpUnchecked$VH.set(seg, x);
-    }
-    public static MemoryAddress hbmpUnchecked$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMENUITEMINFOW.hbmpUnchecked$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hbmpUnchecked$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMENUITEMINFOW.hbmpUnchecked$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwItemData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwItemData"));
-    public static VarHandle dwItemData$VH() {
-        return tagMENUITEMINFOW.dwItemData$VH;
-    }
-    public static long dwItemData$get(MemorySegment seg) {
-        return (long)tagMENUITEMINFOW.dwItemData$VH.get(seg);
-    }
-    public static void dwItemData$set( MemorySegment seg, long x) {
-        tagMENUITEMINFOW.dwItemData$VH.set(seg, x);
-    }
-    public static long dwItemData$get(MemorySegment seg, long index) {
-        return (long)tagMENUITEMINFOW.dwItemData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwItemData$set(MemorySegment seg, long index, long x) {
-        tagMENUITEMINFOW.dwItemData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwTypeData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwTypeData"));
-    public static VarHandle dwTypeData$VH() {
-        return tagMENUITEMINFOW.dwTypeData$VH;
-    }
-    public static MemoryAddress dwTypeData$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMENUITEMINFOW.dwTypeData$VH.get(seg);
-    }
-    public static void dwTypeData$set( MemorySegment seg, MemoryAddress x) {
-        tagMENUITEMINFOW.dwTypeData$VH.set(seg, x);
-    }
-    public static MemoryAddress dwTypeData$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMENUITEMINFOW.dwTypeData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwTypeData$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMENUITEMINFOW.dwTypeData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cch$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cch"));
-    public static VarHandle cch$VH() {
-        return tagMENUITEMINFOW.cch$VH;
-    }
-    public static int cch$get(MemorySegment seg) {
-        return (int)tagMENUITEMINFOW.cch$VH.get(seg);
-    }
-    public static void cch$set( MemorySegment seg, int x) {
-        tagMENUITEMINFOW.cch$VH.set(seg, x);
-    }
-    public static int cch$get(MemorySegment seg, long index) {
-        return (int)tagMENUITEMINFOW.cch$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cch$set(MemorySegment seg, long index, int x) {
-        tagMENUITEMINFOW.cch$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hbmpItem$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hbmpItem"));
-    public static VarHandle hbmpItem$VH() {
-        return tagMENUITEMINFOW.hbmpItem$VH;
-    }
-    public static MemoryAddress hbmpItem$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMENUITEMINFOW.hbmpItem$VH.get(seg);
-    }
-    public static void hbmpItem$set( MemorySegment seg, MemoryAddress x) {
-        tagMENUITEMINFOW.hbmpItem$VH.set(seg, x);
-    }
-    public static MemoryAddress hbmpItem$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMENUITEMINFOW.hbmpItem$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hbmpItem$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMENUITEMINFOW.hbmpItem$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_INT.withName("cbSize"),
+        freeglut_h.C_INT.withName("fMask"),
+        freeglut_h.C_INT.withName("fType"),
+        freeglut_h.C_INT.withName("fState"),
+        freeglut_h.C_INT.withName("wID"),
+        MemoryLayout.paddingLayout(4),
+        freeglut_h.C_POINTER.withName("hSubMenu"),
+        freeglut_h.C_POINTER.withName("hbmpChecked"),
+        freeglut_h.C_POINTER.withName("hbmpUnchecked"),
+        freeglut_h.C_LONG_LONG.withName("dwItemData"),
+        freeglut_h.C_POINTER.withName("dwTypeData"),
+        freeglut_h.C_INT.withName("cch"),
+        MemoryLayout.paddingLayout(4),
+        freeglut_h.C_POINTER.withName("hbmpItem")
+    ).withName("tagMENUITEMINFOW");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fMask$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fMask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT fMask
+     * }
+     */
+    public static final OfInt fMask$layout() {
+        return fMask$LAYOUT;
+    }
+
+    private static final long fMask$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT fMask
+     * }
+     */
+    public static final long fMask$offset() {
+        return fMask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT fMask
+     * }
+     */
+    public static int fMask(MemorySegment struct) {
+        return struct.get(fMask$LAYOUT, fMask$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT fMask
+     * }
+     */
+    public static void fMask(MemorySegment struct, int fieldValue) {
+        struct.set(fMask$LAYOUT, fMask$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT fType
+     * }
+     */
+    public static final OfInt fType$layout() {
+        return fType$LAYOUT;
+    }
+
+    private static final long fType$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT fType
+     * }
+     */
+    public static final long fType$offset() {
+        return fType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT fType
+     * }
+     */
+    public static int fType(MemorySegment struct) {
+        return struct.get(fType$LAYOUT, fType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT fType
+     * }
+     */
+    public static void fType(MemorySegment struct, int fieldValue) {
+        struct.set(fType$LAYOUT, fType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fState$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT fState
+     * }
+     */
+    public static final OfInt fState$layout() {
+        return fState$LAYOUT;
+    }
+
+    private static final long fState$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT fState
+     * }
+     */
+    public static final long fState$offset() {
+        return fState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT fState
+     * }
+     */
+    public static int fState(MemorySegment struct) {
+        return struct.get(fState$LAYOUT, fState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT fState
+     * }
+     */
+    public static void fState(MemorySegment struct, int fieldValue) {
+        struct.set(fState$LAYOUT, fState$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wID$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wID"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wID
+     * }
+     */
+    public static final OfInt wID$layout() {
+        return wID$LAYOUT;
+    }
+
+    private static final long wID$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wID
+     * }
+     */
+    public static final long wID$offset() {
+        return wID$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wID
+     * }
+     */
+    public static int wID(MemorySegment struct) {
+        return struct.get(wID$LAYOUT, wID$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wID
+     * }
+     */
+    public static void wID(MemorySegment struct, int fieldValue) {
+        struct.set(wID$LAYOUT, wID$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hSubMenu$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hSubMenu"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HMENU hSubMenu
+     * }
+     */
+    public static final AddressLayout hSubMenu$layout() {
+        return hSubMenu$LAYOUT;
+    }
+
+    private static final long hSubMenu$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HMENU hSubMenu
+     * }
+     */
+    public static final long hSubMenu$offset() {
+        return hSubMenu$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HMENU hSubMenu
+     * }
+     */
+    public static MemorySegment hSubMenu(MemorySegment struct) {
+        return struct.get(hSubMenu$LAYOUT, hSubMenu$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HMENU hSubMenu
+     * }
+     */
+    public static void hSubMenu(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hSubMenu$LAYOUT, hSubMenu$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hbmpChecked$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hbmpChecked"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HBITMAP hbmpChecked
+     * }
+     */
+    public static final AddressLayout hbmpChecked$layout() {
+        return hbmpChecked$LAYOUT;
+    }
+
+    private static final long hbmpChecked$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HBITMAP hbmpChecked
+     * }
+     */
+    public static final long hbmpChecked$offset() {
+        return hbmpChecked$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HBITMAP hbmpChecked
+     * }
+     */
+    public static MemorySegment hbmpChecked(MemorySegment struct) {
+        return struct.get(hbmpChecked$LAYOUT, hbmpChecked$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HBITMAP hbmpChecked
+     * }
+     */
+    public static void hbmpChecked(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hbmpChecked$LAYOUT, hbmpChecked$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hbmpUnchecked$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hbmpUnchecked"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HBITMAP hbmpUnchecked
+     * }
+     */
+    public static final AddressLayout hbmpUnchecked$layout() {
+        return hbmpUnchecked$LAYOUT;
+    }
+
+    private static final long hbmpUnchecked$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HBITMAP hbmpUnchecked
+     * }
+     */
+    public static final long hbmpUnchecked$offset() {
+        return hbmpUnchecked$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HBITMAP hbmpUnchecked
+     * }
+     */
+    public static MemorySegment hbmpUnchecked(MemorySegment struct) {
+        return struct.get(hbmpUnchecked$LAYOUT, hbmpUnchecked$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HBITMAP hbmpUnchecked
+     * }
+     */
+    public static void hbmpUnchecked(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hbmpUnchecked$LAYOUT, hbmpUnchecked$OFFSET, fieldValue);
+    }
+
+    private static final OfLong dwItemData$LAYOUT = (OfLong)$LAYOUT.select(groupElement("dwItemData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG_PTR dwItemData
+     * }
+     */
+    public static final OfLong dwItemData$layout() {
+        return dwItemData$LAYOUT;
+    }
+
+    private static final long dwItemData$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG_PTR dwItemData
+     * }
+     */
+    public static final long dwItemData$offset() {
+        return dwItemData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR dwItemData
+     * }
+     */
+    public static long dwItemData(MemorySegment struct) {
+        return struct.get(dwItemData$LAYOUT, dwItemData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR dwItemData
+     * }
+     */
+    public static void dwItemData(MemorySegment struct, long fieldValue) {
+        struct.set(dwItemData$LAYOUT, dwItemData$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout dwTypeData$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("dwTypeData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR dwTypeData
+     * }
+     */
+    public static final AddressLayout dwTypeData$layout() {
+        return dwTypeData$LAYOUT;
+    }
+
+    private static final long dwTypeData$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR dwTypeData
+     * }
+     */
+    public static final long dwTypeData$offset() {
+        return dwTypeData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR dwTypeData
+     * }
+     */
+    public static MemorySegment dwTypeData(MemorySegment struct) {
+        return struct.get(dwTypeData$LAYOUT, dwTypeData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR dwTypeData
+     * }
+     */
+    public static void dwTypeData(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(dwTypeData$LAYOUT, dwTypeData$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cch$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cch"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT cch
+     * }
+     */
+    public static final OfInt cch$layout() {
+        return cch$LAYOUT;
+    }
+
+    private static final long cch$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT cch
+     * }
+     */
+    public static final long cch$offset() {
+        return cch$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT cch
+     * }
+     */
+    public static int cch(MemorySegment struct) {
+        return struct.get(cch$LAYOUT, cch$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT cch
+     * }
+     */
+    public static void cch(MemorySegment struct, int fieldValue) {
+        struct.set(cch$LAYOUT, cch$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hbmpItem$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hbmpItem"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HBITMAP hbmpItem
+     * }
+     */
+    public static final AddressLayout hbmpItem$layout() {
+        return hbmpItem$LAYOUT;
+    }
+
+    private static final long hbmpItem$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HBITMAP hbmpItem
+     * }
+     */
+    public static final long hbmpItem$offset() {
+        return hbmpItem$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HBITMAP hbmpItem
+     * }
+     */
+    public static MemorySegment hbmpItem(MemorySegment struct) {
+        return struct.get(hbmpItem$LAYOUT, hbmpItem$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HBITMAP hbmpItem
+     * }
+     */
+    public static void hbmpItem(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hbmpItem$LAYOUT, hbmpItem$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

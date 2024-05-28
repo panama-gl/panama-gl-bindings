@@ -2,61 +2,177 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CMC_TAGGED_REQUEST {
+ *     DWORD dwTaggedRequestChoice;
+ *     union {
+ *         PCMC_TAGGED_CERT_REQUEST pTaggedCertRequest;
+ *     };
+ * }
+ * }
+ */
 public class _CMC_TAGGED_REQUEST {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwTaggedRequestChoice"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.unionLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("pTaggedCertRequest")
-        ).withName("$anon$0")
-    ).withName("_CMC_TAGGED_REQUEST");
-    public static MemoryLayout $LAYOUT() {
-        return _CMC_TAGGED_REQUEST.$struct$LAYOUT;
+    _CMC_TAGGED_REQUEST() {
+        // Should not be called directly
     }
-    static final VarHandle dwTaggedRequestChoice$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwTaggedRequestChoice"));
-    public static VarHandle dwTaggedRequestChoice$VH() {
-        return _CMC_TAGGED_REQUEST.dwTaggedRequestChoice$VH;
-    }
-    public static int dwTaggedRequestChoice$get(MemorySegment seg) {
-        return (int)_CMC_TAGGED_REQUEST.dwTaggedRequestChoice$VH.get(seg);
-    }
-    public static void dwTaggedRequestChoice$set( MemorySegment seg, int x) {
-        _CMC_TAGGED_REQUEST.dwTaggedRequestChoice$VH.set(seg, x);
-    }
-    public static int dwTaggedRequestChoice$get(MemorySegment seg, long index) {
-        return (int)_CMC_TAGGED_REQUEST.dwTaggedRequestChoice$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwTaggedRequestChoice$set(MemorySegment seg, long index, int x) {
-        _CMC_TAGGED_REQUEST.dwTaggedRequestChoice$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pTaggedCertRequest$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pTaggedCertRequest"));
-    public static VarHandle pTaggedCertRequest$VH() {
-        return _CMC_TAGGED_REQUEST.pTaggedCertRequest$VH;
-    }
-    public static MemoryAddress pTaggedCertRequest$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMC_TAGGED_REQUEST.pTaggedCertRequest$VH.get(seg);
-    }
-    public static void pTaggedCertRequest$set( MemorySegment seg, MemoryAddress x) {
-        _CMC_TAGGED_REQUEST.pTaggedCertRequest$VH.set(seg, x);
-    }
-    public static MemoryAddress pTaggedCertRequest$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMC_TAGGED_REQUEST.pTaggedCertRequest$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pTaggedCertRequest$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMC_TAGGED_REQUEST.pTaggedCertRequest$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwTaggedRequestChoice"),
+        MemoryLayout.paddingLayout(4),
+        MemoryLayout.unionLayout(
+            wgl_h.C_POINTER.withName("pTaggedCertRequest")
+        ).withName("$anon$5231:5")
+    ).withName("_CMC_TAGGED_REQUEST");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwTaggedRequestChoice$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwTaggedRequestChoice"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwTaggedRequestChoice
+     * }
+     */
+    public static final OfInt dwTaggedRequestChoice$layout() {
+        return dwTaggedRequestChoice$LAYOUT;
+    }
+
+    private static final long dwTaggedRequestChoice$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwTaggedRequestChoice
+     * }
+     */
+    public static final long dwTaggedRequestChoice$offset() {
+        return dwTaggedRequestChoice$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwTaggedRequestChoice
+     * }
+     */
+    public static int dwTaggedRequestChoice(MemorySegment struct) {
+        return struct.get(dwTaggedRequestChoice$LAYOUT, dwTaggedRequestChoice$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwTaggedRequestChoice
+     * }
+     */
+    public static void dwTaggedRequestChoice(MemorySegment struct, int fieldValue) {
+        struct.set(dwTaggedRequestChoice$LAYOUT, dwTaggedRequestChoice$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pTaggedCertRequest$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$5231:5"), groupElement("pTaggedCertRequest"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_CERT_REQUEST pTaggedCertRequest
+     * }
+     */
+    public static final AddressLayout pTaggedCertRequest$layout() {
+        return pTaggedCertRequest$LAYOUT;
+    }
+
+    private static final long pTaggedCertRequest$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_CERT_REQUEST pTaggedCertRequest
+     * }
+     */
+    public static final long pTaggedCertRequest$offset() {
+        return pTaggedCertRequest$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_CERT_REQUEST pTaggedCertRequest
+     * }
+     */
+    public static MemorySegment pTaggedCertRequest(MemorySegment struct) {
+        return struct.get(pTaggedCertRequest$LAYOUT, pTaggedCertRequest$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCMC_TAGGED_CERT_REQUEST pTaggedCertRequest
+     * }
+     */
+    public static void pTaggedCertRequest(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pTaggedCertRequest$LAYOUT, pTaggedCertRequest$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

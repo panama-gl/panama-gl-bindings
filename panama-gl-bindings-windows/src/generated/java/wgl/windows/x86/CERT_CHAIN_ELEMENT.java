@@ -2,13 +2,33 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CERT_CHAIN_ELEMENT {
+ *     DWORD cbSize;
+ *     PCCERT_CONTEXT pCertContext;
+ *     CERT_TRUST_STATUS TrustStatus;
+ *     PCERT_REVOCATION_INFO pRevocationInfo;
+ *     PCERT_ENHKEY_USAGE pIssuanceUsage;
+ *     PCERT_ENHKEY_USAGE pApplicationUsage;
+ *     LPCWSTR pwszExtendedErrorInfo;
+ * } CERT_CHAIN_ELEMENT
+ * }
+ */
 public class CERT_CHAIN_ELEMENT extends _CERT_CHAIN_ELEMENT {
 
+    CERT_CHAIN_ELEMENT() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES {
+ *     ULONG Version;
+ *     ULONG Flags;
+ *     ULONG cbPublicKeyBlob;
+ * }
+ * }
+ */
 public class _NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("cbPublicKeyBlob")
-    ).withName("_NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES");
-    public static MemoryLayout $LAYOUT() {
-        return _NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES.$struct$LAYOUT;
+    _NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbPublicKeyBlob$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbPublicKeyBlob"));
-    public static VarHandle cbPublicKeyBlob$VH() {
-        return _NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES.cbPublicKeyBlob$VH;
-    }
-    public static int cbPublicKeyBlob$get(MemorySegment seg) {
-        return (int)_NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES.cbPublicKeyBlob$VH.get(seg);
-    }
-    public static void cbPublicKeyBlob$set( MemorySegment seg, int x) {
-        _NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES.cbPublicKeyBlob$VH.set(seg, x);
-    }
-    public static int cbPublicKeyBlob$get(MemorySegment seg, long index) {
-        return (int)_NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES.cbPublicKeyBlob$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbPublicKeyBlob$set(MemorySegment seg, long index, int x) {
-        _NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES.cbPublicKeyBlob$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_LONG.withName("cbPublicKeyBlob")
+    ).withName("_NCRYPT_ISOLATED_KEY_ATTESTED_ATTRIBUTES");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbPublicKeyBlob$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbPublicKeyBlob"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cbPublicKeyBlob
+     * }
+     */
+    public static final OfInt cbPublicKeyBlob$layout() {
+        return cbPublicKeyBlob$LAYOUT;
+    }
+
+    private static final long cbPublicKeyBlob$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cbPublicKeyBlob
+     * }
+     */
+    public static final long cbPublicKeyBlob$offset() {
+        return cbPublicKeyBlob$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cbPublicKeyBlob
+     * }
+     */
+    public static int cbPublicKeyBlob(MemorySegment struct) {
+        return struct.get(cbPublicKeyBlob$LAYOUT, cbPublicKeyBlob$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cbPublicKeyBlob
+     * }
+     */
+    public static void cbPublicKeyBlob(MemorySegment struct, int fieldValue) {
+        struct.set(cbPublicKeyBlob$LAYOUT, cbPublicKeyBlob$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

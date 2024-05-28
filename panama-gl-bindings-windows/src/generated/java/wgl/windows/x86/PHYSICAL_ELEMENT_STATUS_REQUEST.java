@@ -2,13 +2,32 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _PHYSICAL_ELEMENT_STATUS_REQUEST {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     DWORD StartingElement;
+ *     BYTE Filter;
+ *     BYTE ReportType;
+ *     BYTE Reserved[2];
+ * } PHYSICAL_ELEMENT_STATUS_REQUEST
+ * }
+ */
 public class PHYSICAL_ELEMENT_STATUS_REQUEST extends _PHYSICAL_ELEMENT_STATUS_REQUEST {
 
+    PHYSICAL_ELEMENT_STATUS_REQUEST() {
+        // Should not be called directly
+    }
 }
-
 

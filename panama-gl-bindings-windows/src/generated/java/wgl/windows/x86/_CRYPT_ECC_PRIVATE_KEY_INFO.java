@@ -2,77 +2,265 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_ECC_PRIVATE_KEY_INFO {
+ *     DWORD dwVersion;
+ *     CRYPT_DER_BLOB PrivateKey;
+ *     LPSTR szCurveOid;
+ *     CRYPT_BIT_BLOB PublicKey;
+ * }
+ * }
+ */
 public class _CRYPT_ECC_PRIVATE_KEY_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwVersion"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData")
-        ).withName("PrivateKey"),
-        Constants$root.C_POINTER$LAYOUT.withName("szCurveOid"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData"),
-            Constants$root.C_LONG$LAYOUT.withName("cUnusedBits"),
-            MemoryLayout.paddingLayout(32)
-        ).withName("PublicKey")
-    ).withName("_CRYPT_ECC_PRIVATE_KEY_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_ECC_PRIVATE_KEY_INFO.$struct$LAYOUT;
+    _CRYPT_ECC_PRIVATE_KEY_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle dwVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwVersion"));
-    public static VarHandle dwVersion$VH() {
-        return _CRYPT_ECC_PRIVATE_KEY_INFO.dwVersion$VH;
-    }
-    public static int dwVersion$get(MemorySegment seg) {
-        return (int)_CRYPT_ECC_PRIVATE_KEY_INFO.dwVersion$VH.get(seg);
-    }
-    public static void dwVersion$set( MemorySegment seg, int x) {
-        _CRYPT_ECC_PRIVATE_KEY_INFO.dwVersion$VH.set(seg, x);
-    }
-    public static int dwVersion$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_ECC_PRIVATE_KEY_INFO.dwVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwVersion$set(MemorySegment seg, long index, int x) {
-        _CRYPT_ECC_PRIVATE_KEY_INFO.dwVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment PrivateKey$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    static final VarHandle szCurveOid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("szCurveOid"));
-    public static VarHandle szCurveOid$VH() {
-        return _CRYPT_ECC_PRIVATE_KEY_INFO.szCurveOid$VH;
-    }
-    public static MemoryAddress szCurveOid$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_ECC_PRIVATE_KEY_INFO.szCurveOid$VH.get(seg);
-    }
-    public static void szCurveOid$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_ECC_PRIVATE_KEY_INFO.szCurveOid$VH.set(seg, x);
-    }
-    public static MemoryAddress szCurveOid$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_ECC_PRIVATE_KEY_INFO.szCurveOid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void szCurveOid$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_ECC_PRIVATE_KEY_INFO.szCurveOid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment PublicKey$slice(MemorySegment seg) {
-        return seg.asSlice(32, 24);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwVersion"),
+        MemoryLayout.paddingLayout(4),
+        _CRYPTOAPI_BLOB.layout().withName("PrivateKey"),
+        wgl_h.C_POINTER.withName("szCurveOid"),
+        _CRYPT_BIT_BLOB.layout().withName("PublicKey")
+    ).withName("_CRYPT_ECC_PRIVATE_KEY_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final OfInt dwVersion$layout() {
+        return dwVersion$LAYOUT;
+    }
+
+    private static final long dwVersion$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final long dwVersion$offset() {
+        return dwVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static int dwVersion(MemorySegment struct) {
+        return struct.get(dwVersion$LAYOUT, dwVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static void dwVersion(MemorySegment struct, int fieldValue) {
+        struct.set(dwVersion$LAYOUT, dwVersion$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout PrivateKey$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("PrivateKey"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_DER_BLOB PrivateKey
+     * }
+     */
+    public static final GroupLayout PrivateKey$layout() {
+        return PrivateKey$LAYOUT;
+    }
+
+    private static final long PrivateKey$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_DER_BLOB PrivateKey
+     * }
+     */
+    public static final long PrivateKey$offset() {
+        return PrivateKey$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_DER_BLOB PrivateKey
+     * }
+     */
+    public static MemorySegment PrivateKey(MemorySegment struct) {
+        return struct.asSlice(PrivateKey$OFFSET, PrivateKey$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_DER_BLOB PrivateKey
+     * }
+     */
+    public static void PrivateKey(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, PrivateKey$OFFSET, PrivateKey$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout szCurveOid$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("szCurveOid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR szCurveOid
+     * }
+     */
+    public static final AddressLayout szCurveOid$layout() {
+        return szCurveOid$LAYOUT;
+    }
+
+    private static final long szCurveOid$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR szCurveOid
+     * }
+     */
+    public static final long szCurveOid$offset() {
+        return szCurveOid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR szCurveOid
+     * }
+     */
+    public static MemorySegment szCurveOid(MemorySegment struct) {
+        return struct.get(szCurveOid$LAYOUT, szCurveOid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR szCurveOid
+     * }
+     */
+    public static void szCurveOid(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(szCurveOid$LAYOUT, szCurveOid$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout PublicKey$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("PublicKey"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB PublicKey
+     * }
+     */
+    public static final GroupLayout PublicKey$layout() {
+        return PublicKey$LAYOUT;
+    }
+
+    private static final long PublicKey$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB PublicKey
+     * }
+     */
+    public static final long PublicKey$offset() {
+        return PublicKey$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB PublicKey
+     * }
+     */
+    public static MemorySegment PublicKey(MemorySegment struct) {
+        return struct.asSlice(PublicKey$OFFSET, PublicKey$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB PublicKey
+     * }
+     */
+    public static void PublicKey(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, PublicKey$OFFSET, PublicKey$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

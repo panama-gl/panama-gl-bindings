@@ -2,178 +2,542 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_CHAIN_CONTEXT {
+ *     DWORD cbSize;
+ *     CERT_TRUST_STATUS TrustStatus;
+ *     DWORD cChain;
+ *     PCERT_SIMPLE_CHAIN *rgpChain;
+ *     DWORD cLowerQualityChainContext;
+ *     PCCERT_CHAIN_CONTEXT *rgpLowerQualityChainContext;
+ *     BOOL fHasRevocationFreshnessTime;
+ *     DWORD dwRevocationFreshnessTime;
+ *     DWORD dwCreateFlags;
+ *     GUID ChainId;
+ * }
+ * }
+ */
 public class _CERT_CHAIN_CONTEXT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwErrorStatus"),
-            Constants$root.C_LONG$LAYOUT.withName("dwInfoStatus")
-        ).withName("TrustStatus"),
-        Constants$root.C_LONG$LAYOUT.withName("cChain"),
-        Constants$root.C_POINTER$LAYOUT.withName("rgpChain"),
-        Constants$root.C_LONG$LAYOUT.withName("cLowerQualityChainContext"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgpLowerQualityChainContext"),
-        Constants$root.C_LONG$LAYOUT.withName("fHasRevocationFreshnessTime"),
-        Constants$root.C_LONG$LAYOUT.withName("dwRevocationFreshnessTime"),
-        Constants$root.C_LONG$LAYOUT.withName("dwCreateFlags"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("ChainId"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_CERT_CHAIN_CONTEXT");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_CHAIN_CONTEXT.$struct$LAYOUT;
+    _CERT_CHAIN_CONTEXT() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _CERT_CHAIN_CONTEXT.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_CERT_CHAIN_CONTEXT.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _CERT_CHAIN_CONTEXT.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_CERT_CHAIN_CONTEXT.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _CERT_CHAIN_CONTEXT.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment TrustStatus$slice(MemorySegment seg) {
-        return seg.asSlice(4, 8);
-    }
-    static final VarHandle cChain$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cChain"));
-    public static VarHandle cChain$VH() {
-        return _CERT_CHAIN_CONTEXT.cChain$VH;
-    }
-    public static int cChain$get(MemorySegment seg) {
-        return (int)_CERT_CHAIN_CONTEXT.cChain$VH.get(seg);
-    }
-    public static void cChain$set( MemorySegment seg, int x) {
-        _CERT_CHAIN_CONTEXT.cChain$VH.set(seg, x);
-    }
-    public static int cChain$get(MemorySegment seg, long index) {
-        return (int)_CERT_CHAIN_CONTEXT.cChain$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cChain$set(MemorySegment seg, long index, int x) {
-        _CERT_CHAIN_CONTEXT.cChain$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgpChain$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgpChain"));
-    public static VarHandle rgpChain$VH() {
-        return _CERT_CHAIN_CONTEXT.rgpChain$VH;
-    }
-    public static MemoryAddress rgpChain$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_CONTEXT.rgpChain$VH.get(seg);
-    }
-    public static void rgpChain$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_CHAIN_CONTEXT.rgpChain$VH.set(seg, x);
-    }
-    public static MemoryAddress rgpChain$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_CONTEXT.rgpChain$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgpChain$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_CHAIN_CONTEXT.rgpChain$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cLowerQualityChainContext$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cLowerQualityChainContext"));
-    public static VarHandle cLowerQualityChainContext$VH() {
-        return _CERT_CHAIN_CONTEXT.cLowerQualityChainContext$VH;
-    }
-    public static int cLowerQualityChainContext$get(MemorySegment seg) {
-        return (int)_CERT_CHAIN_CONTEXT.cLowerQualityChainContext$VH.get(seg);
-    }
-    public static void cLowerQualityChainContext$set( MemorySegment seg, int x) {
-        _CERT_CHAIN_CONTEXT.cLowerQualityChainContext$VH.set(seg, x);
-    }
-    public static int cLowerQualityChainContext$get(MemorySegment seg, long index) {
-        return (int)_CERT_CHAIN_CONTEXT.cLowerQualityChainContext$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cLowerQualityChainContext$set(MemorySegment seg, long index, int x) {
-        _CERT_CHAIN_CONTEXT.cLowerQualityChainContext$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgpLowerQualityChainContext$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgpLowerQualityChainContext"));
-    public static VarHandle rgpLowerQualityChainContext$VH() {
-        return _CERT_CHAIN_CONTEXT.rgpLowerQualityChainContext$VH;
-    }
-    public static MemoryAddress rgpLowerQualityChainContext$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_CONTEXT.rgpLowerQualityChainContext$VH.get(seg);
-    }
-    public static void rgpLowerQualityChainContext$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_CHAIN_CONTEXT.rgpLowerQualityChainContext$VH.set(seg, x);
-    }
-    public static MemoryAddress rgpLowerQualityChainContext$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_CONTEXT.rgpLowerQualityChainContext$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgpLowerQualityChainContext$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_CHAIN_CONTEXT.rgpLowerQualityChainContext$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fHasRevocationFreshnessTime$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fHasRevocationFreshnessTime"));
-    public static VarHandle fHasRevocationFreshnessTime$VH() {
-        return _CERT_CHAIN_CONTEXT.fHasRevocationFreshnessTime$VH;
-    }
-    public static int fHasRevocationFreshnessTime$get(MemorySegment seg) {
-        return (int)_CERT_CHAIN_CONTEXT.fHasRevocationFreshnessTime$VH.get(seg);
-    }
-    public static void fHasRevocationFreshnessTime$set( MemorySegment seg, int x) {
-        _CERT_CHAIN_CONTEXT.fHasRevocationFreshnessTime$VH.set(seg, x);
-    }
-    public static int fHasRevocationFreshnessTime$get(MemorySegment seg, long index) {
-        return (int)_CERT_CHAIN_CONTEXT.fHasRevocationFreshnessTime$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fHasRevocationFreshnessTime$set(MemorySegment seg, long index, int x) {
-        _CERT_CHAIN_CONTEXT.fHasRevocationFreshnessTime$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwRevocationFreshnessTime$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwRevocationFreshnessTime"));
-    public static VarHandle dwRevocationFreshnessTime$VH() {
-        return _CERT_CHAIN_CONTEXT.dwRevocationFreshnessTime$VH;
-    }
-    public static int dwRevocationFreshnessTime$get(MemorySegment seg) {
-        return (int)_CERT_CHAIN_CONTEXT.dwRevocationFreshnessTime$VH.get(seg);
-    }
-    public static void dwRevocationFreshnessTime$set( MemorySegment seg, int x) {
-        _CERT_CHAIN_CONTEXT.dwRevocationFreshnessTime$VH.set(seg, x);
-    }
-    public static int dwRevocationFreshnessTime$get(MemorySegment seg, long index) {
-        return (int)_CERT_CHAIN_CONTEXT.dwRevocationFreshnessTime$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwRevocationFreshnessTime$set(MemorySegment seg, long index, int x) {
-        _CERT_CHAIN_CONTEXT.dwRevocationFreshnessTime$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwCreateFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwCreateFlags"));
-    public static VarHandle dwCreateFlags$VH() {
-        return _CERT_CHAIN_CONTEXT.dwCreateFlags$VH;
-    }
-    public static int dwCreateFlags$get(MemorySegment seg) {
-        return (int)_CERT_CHAIN_CONTEXT.dwCreateFlags$VH.get(seg);
-    }
-    public static void dwCreateFlags$set( MemorySegment seg, int x) {
-        _CERT_CHAIN_CONTEXT.dwCreateFlags$VH.set(seg, x);
-    }
-    public static int dwCreateFlags$get(MemorySegment seg, long index) {
-        return (int)_CERT_CHAIN_CONTEXT.dwCreateFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwCreateFlags$set(MemorySegment seg, long index, int x) {
-        _CERT_CHAIN_CONTEXT.dwCreateFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment ChainId$slice(MemorySegment seg) {
-        return seg.asSlice(52, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        _CERT_TRUST_STATUS.layout().withName("TrustStatus"),
+        wgl_h.C_LONG.withName("cChain"),
+        wgl_h.C_POINTER.withName("rgpChain"),
+        wgl_h.C_LONG.withName("cLowerQualityChainContext"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgpLowerQualityChainContext"),
+        wgl_h.C_INT.withName("fHasRevocationFreshnessTime"),
+        wgl_h.C_LONG.withName("dwRevocationFreshnessTime"),
+        wgl_h.C_LONG.withName("dwCreateFlags"),
+        _GUID.layout().withName("ChainId"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_CERT_CHAIN_CONTEXT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout TrustStatus$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("TrustStatus"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CERT_TRUST_STATUS TrustStatus
+     * }
+     */
+    public static final GroupLayout TrustStatus$layout() {
+        return TrustStatus$LAYOUT;
+    }
+
+    private static final long TrustStatus$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CERT_TRUST_STATUS TrustStatus
+     * }
+     */
+    public static final long TrustStatus$offset() {
+        return TrustStatus$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CERT_TRUST_STATUS TrustStatus
+     * }
+     */
+    public static MemorySegment TrustStatus(MemorySegment struct) {
+        return struct.asSlice(TrustStatus$OFFSET, TrustStatus$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CERT_TRUST_STATUS TrustStatus
+     * }
+     */
+    public static void TrustStatus(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, TrustStatus$OFFSET, TrustStatus$LAYOUT.byteSize());
+    }
+
+    private static final OfInt cChain$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cChain"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cChain
+     * }
+     */
+    public static final OfInt cChain$layout() {
+        return cChain$LAYOUT;
+    }
+
+    private static final long cChain$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cChain
+     * }
+     */
+    public static final long cChain$offset() {
+        return cChain$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cChain
+     * }
+     */
+    public static int cChain(MemorySegment struct) {
+        return struct.get(cChain$LAYOUT, cChain$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cChain
+     * }
+     */
+    public static void cChain(MemorySegment struct, int fieldValue) {
+        struct.set(cChain$LAYOUT, cChain$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgpChain$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgpChain"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCERT_SIMPLE_CHAIN *rgpChain
+     * }
+     */
+    public static final AddressLayout rgpChain$layout() {
+        return rgpChain$LAYOUT;
+    }
+
+    private static final long rgpChain$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCERT_SIMPLE_CHAIN *rgpChain
+     * }
+     */
+    public static final long rgpChain$offset() {
+        return rgpChain$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCERT_SIMPLE_CHAIN *rgpChain
+     * }
+     */
+    public static MemorySegment rgpChain(MemorySegment struct) {
+        return struct.get(rgpChain$LAYOUT, rgpChain$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCERT_SIMPLE_CHAIN *rgpChain
+     * }
+     */
+    public static void rgpChain(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgpChain$LAYOUT, rgpChain$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cLowerQualityChainContext$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cLowerQualityChainContext"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cLowerQualityChainContext
+     * }
+     */
+    public static final OfInt cLowerQualityChainContext$layout() {
+        return cLowerQualityChainContext$LAYOUT;
+    }
+
+    private static final long cLowerQualityChainContext$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cLowerQualityChainContext
+     * }
+     */
+    public static final long cLowerQualityChainContext$offset() {
+        return cLowerQualityChainContext$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cLowerQualityChainContext
+     * }
+     */
+    public static int cLowerQualityChainContext(MemorySegment struct) {
+        return struct.get(cLowerQualityChainContext$LAYOUT, cLowerQualityChainContext$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cLowerQualityChainContext
+     * }
+     */
+    public static void cLowerQualityChainContext(MemorySegment struct, int fieldValue) {
+        struct.set(cLowerQualityChainContext$LAYOUT, cLowerQualityChainContext$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgpLowerQualityChainContext$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgpLowerQualityChainContext"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCCERT_CHAIN_CONTEXT *rgpLowerQualityChainContext
+     * }
+     */
+    public static final AddressLayout rgpLowerQualityChainContext$layout() {
+        return rgpLowerQualityChainContext$LAYOUT;
+    }
+
+    private static final long rgpLowerQualityChainContext$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCCERT_CHAIN_CONTEXT *rgpLowerQualityChainContext
+     * }
+     */
+    public static final long rgpLowerQualityChainContext$offset() {
+        return rgpLowerQualityChainContext$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCCERT_CHAIN_CONTEXT *rgpLowerQualityChainContext
+     * }
+     */
+    public static MemorySegment rgpLowerQualityChainContext(MemorySegment struct) {
+        return struct.get(rgpLowerQualityChainContext$LAYOUT, rgpLowerQualityChainContext$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCCERT_CHAIN_CONTEXT *rgpLowerQualityChainContext
+     * }
+     */
+    public static void rgpLowerQualityChainContext(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgpLowerQualityChainContext$LAYOUT, rgpLowerQualityChainContext$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fHasRevocationFreshnessTime$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fHasRevocationFreshnessTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL fHasRevocationFreshnessTime
+     * }
+     */
+    public static final OfInt fHasRevocationFreshnessTime$layout() {
+        return fHasRevocationFreshnessTime$LAYOUT;
+    }
+
+    private static final long fHasRevocationFreshnessTime$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL fHasRevocationFreshnessTime
+     * }
+     */
+    public static final long fHasRevocationFreshnessTime$offset() {
+        return fHasRevocationFreshnessTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL fHasRevocationFreshnessTime
+     * }
+     */
+    public static int fHasRevocationFreshnessTime(MemorySegment struct) {
+        return struct.get(fHasRevocationFreshnessTime$LAYOUT, fHasRevocationFreshnessTime$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL fHasRevocationFreshnessTime
+     * }
+     */
+    public static void fHasRevocationFreshnessTime(MemorySegment struct, int fieldValue) {
+        struct.set(fHasRevocationFreshnessTime$LAYOUT, fHasRevocationFreshnessTime$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwRevocationFreshnessTime$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwRevocationFreshnessTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwRevocationFreshnessTime
+     * }
+     */
+    public static final OfInt dwRevocationFreshnessTime$layout() {
+        return dwRevocationFreshnessTime$LAYOUT;
+    }
+
+    private static final long dwRevocationFreshnessTime$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwRevocationFreshnessTime
+     * }
+     */
+    public static final long dwRevocationFreshnessTime$offset() {
+        return dwRevocationFreshnessTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwRevocationFreshnessTime
+     * }
+     */
+    public static int dwRevocationFreshnessTime(MemorySegment struct) {
+        return struct.get(dwRevocationFreshnessTime$LAYOUT, dwRevocationFreshnessTime$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwRevocationFreshnessTime
+     * }
+     */
+    public static void dwRevocationFreshnessTime(MemorySegment struct, int fieldValue) {
+        struct.set(dwRevocationFreshnessTime$LAYOUT, dwRevocationFreshnessTime$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwCreateFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwCreateFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwCreateFlags
+     * }
+     */
+    public static final OfInt dwCreateFlags$layout() {
+        return dwCreateFlags$LAYOUT;
+    }
+
+    private static final long dwCreateFlags$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwCreateFlags
+     * }
+     */
+    public static final long dwCreateFlags$offset() {
+        return dwCreateFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwCreateFlags
+     * }
+     */
+    public static int dwCreateFlags(MemorySegment struct) {
+        return struct.get(dwCreateFlags$LAYOUT, dwCreateFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwCreateFlags
+     * }
+     */
+    public static void dwCreateFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwCreateFlags$LAYOUT, dwCreateFlags$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout ChainId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ChainId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID ChainId
+     * }
+     */
+    public static final GroupLayout ChainId$layout() {
+        return ChainId$LAYOUT;
+    }
+
+    private static final long ChainId$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID ChainId
+     * }
+     */
+    public static final long ChainId$offset() {
+        return ChainId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID ChainId
+     * }
+     */
+    public static MemorySegment ChainId(MemorySegment struct) {
+        return struct.asSlice(ChainId$OFFSET, ChainId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID ChainId
+     * }
+     */
+    public static void ChainId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ChainId$OFFSET, ChainId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

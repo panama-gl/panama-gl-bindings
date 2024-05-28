@@ -2,27 +2,75 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface LPPROGRESS_ROUTINE {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemorySegment TotalFileSize, java.lang.foreign.MemorySegment TotalBytesTransferred, java.lang.foreign.MemorySegment StreamSize, java.lang.foreign.MemorySegment StreamBytesTransferred, int dwStreamNumber, int dwCallbackReason, java.lang.foreign.MemoryAddress hSourceFile, java.lang.foreign.MemoryAddress hDestinationFile, java.lang.foreign.MemoryAddress lpData);
-    static MemorySegment allocate(LPPROGRESS_ROUTINE fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(LPPROGRESS_ROUTINE.class, fi, constants$305.LPPROGRESS_ROUTINE$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef DWORD (*LPPROGRESS_ROUTINE)(LARGE_INTEGER, LARGE_INTEGER, LARGE_INTEGER, LARGE_INTEGER, DWORD, DWORD, HANDLE, HANDLE, LPVOID) __attribute__((stdcall))
+ * }
+ */
+public class LPPROGRESS_ROUTINE {
+
+    LPPROGRESS_ROUTINE() {
+        // Should not be called directly
     }
-    static LPPROGRESS_ROUTINE ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemorySegment _TotalFileSize, java.lang.foreign.MemorySegment _TotalBytesTransferred, java.lang.foreign.MemorySegment _StreamSize, java.lang.foreign.MemorySegment _StreamBytesTransferred, int _dwStreamNumber, int _dwCallbackReason, java.lang.foreign.MemoryAddress _hSourceFile, java.lang.foreign.MemoryAddress _hDestinationFile, java.lang.foreign.MemoryAddress _lpData) -> {
-            try {
-                return (int)constants$305.LPPROGRESS_ROUTINE$MH.invokeExact((Addressable)symbol, _TotalFileSize, _TotalBytesTransferred, _StreamSize, _StreamBytesTransferred, _dwStreamNumber, _dwCallbackReason, (java.lang.foreign.Addressable)_hSourceFile, (java.lang.foreign.Addressable)_hDestinationFile, (java.lang.foreign.Addressable)_lpData);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment TotalFileSize, MemorySegment TotalBytesTransferred, MemorySegment StreamSize, MemorySegment StreamBytesTransferred, int dwStreamNumber, int dwCallbackReason, MemorySegment hSourceFile, MemorySegment hDestinationFile, MemorySegment lpData);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        freeglut_h.C_LONG,
+        _LARGE_INTEGER.layout(),
+        _LARGE_INTEGER.layout(),
+        _LARGE_INTEGER.layout(),
+        _LARGE_INTEGER.layout(),
+        freeglut_h.C_LONG,
+        freeglut_h.C_LONG,
+        freeglut_h.C_POINTER,
+        freeglut_h.C_POINTER,
+        freeglut_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = freeglut_h.upcallHandle(LPPROGRESS_ROUTINE.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(LPPROGRESS_ROUTINE.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment TotalFileSize, MemorySegment TotalBytesTransferred, MemorySegment StreamSize, MemorySegment StreamBytesTransferred, int dwStreamNumber, int dwCallbackReason, MemorySegment hSourceFile, MemorySegment hDestinationFile, MemorySegment lpData) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, TotalFileSize, TotalBytesTransferred, StreamSize, StreamBytesTransferred, dwStreamNumber, dwCallbackReason, hSourceFile, hDestinationFile, lpData);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

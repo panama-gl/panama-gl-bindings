@@ -2,65 +2,255 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _FILE_LEVEL_TRIM {
+ *     DWORD Key;
+ *     DWORD NumRanges;
+ *     FILE_LEVEL_TRIM_RANGE Ranges[1];
+ * }
+ * }
+ */
 public class _FILE_LEVEL_TRIM {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Key"),
-        Constants$root.C_LONG$LAYOUT.withName("NumRanges"),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Offset"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Length")
-        ).withName("_FILE_LEVEL_TRIM_RANGE")).withName("Ranges")
-    ).withName("_FILE_LEVEL_TRIM");
-    public static MemoryLayout $LAYOUT() {
-        return _FILE_LEVEL_TRIM.$struct$LAYOUT;
+    _FILE_LEVEL_TRIM() {
+        // Should not be called directly
     }
-    static final VarHandle Key$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Key"));
-    public static VarHandle Key$VH() {
-        return _FILE_LEVEL_TRIM.Key$VH;
-    }
-    public static int Key$get(MemorySegment seg) {
-        return (int)_FILE_LEVEL_TRIM.Key$VH.get(seg);
-    }
-    public static void Key$set( MemorySegment seg, int x) {
-        _FILE_LEVEL_TRIM.Key$VH.set(seg, x);
-    }
-    public static int Key$get(MemorySegment seg, long index) {
-        return (int)_FILE_LEVEL_TRIM.Key$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Key$set(MemorySegment seg, long index, int x) {
-        _FILE_LEVEL_TRIM.Key$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumRanges$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumRanges"));
-    public static VarHandle NumRanges$VH() {
-        return _FILE_LEVEL_TRIM.NumRanges$VH;
-    }
-    public static int NumRanges$get(MemorySegment seg) {
-        return (int)_FILE_LEVEL_TRIM.NumRanges$VH.get(seg);
-    }
-    public static void NumRanges$set( MemorySegment seg, int x) {
-        _FILE_LEVEL_TRIM.NumRanges$VH.set(seg, x);
-    }
-    public static int NumRanges$get(MemorySegment seg, long index) {
-        return (int)_FILE_LEVEL_TRIM.NumRanges$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumRanges$set(MemorySegment seg, long index, int x) {
-        _FILE_LEVEL_TRIM.NumRanges$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Ranges$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Key"),
+        wgl_h.C_LONG.withName("NumRanges"),
+        MemoryLayout.sequenceLayout(1, _FILE_LEVEL_TRIM_RANGE.layout()).withName("Ranges")
+    ).withName("_FILE_LEVEL_TRIM");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Key$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Key"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Key
+     * }
+     */
+    public static final OfInt Key$layout() {
+        return Key$LAYOUT;
+    }
+
+    private static final long Key$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Key
+     * }
+     */
+    public static final long Key$offset() {
+        return Key$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Key
+     * }
+     */
+    public static int Key(MemorySegment struct) {
+        return struct.get(Key$LAYOUT, Key$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Key
+     * }
+     */
+    public static void Key(MemorySegment struct, int fieldValue) {
+        struct.set(Key$LAYOUT, Key$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NumRanges$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumRanges"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NumRanges
+     * }
+     */
+    public static final OfInt NumRanges$layout() {
+        return NumRanges$LAYOUT;
+    }
+
+    private static final long NumRanges$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NumRanges
+     * }
+     */
+    public static final long NumRanges$offset() {
+        return NumRanges$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NumRanges
+     * }
+     */
+    public static int NumRanges(MemorySegment struct) {
+        return struct.get(NumRanges$LAYOUT, NumRanges$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NumRanges
+     * }
+     */
+    public static void NumRanges(MemorySegment struct, int fieldValue) {
+        struct.set(NumRanges$LAYOUT, NumRanges$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Ranges$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Ranges"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FILE_LEVEL_TRIM_RANGE Ranges[1]
+     * }
+     */
+    public static final SequenceLayout Ranges$layout() {
+        return Ranges$LAYOUT;
+    }
+
+    private static final long Ranges$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FILE_LEVEL_TRIM_RANGE Ranges[1]
+     * }
+     */
+    public static final long Ranges$offset() {
+        return Ranges$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FILE_LEVEL_TRIM_RANGE Ranges[1]
+     * }
+     */
+    public static MemorySegment Ranges(MemorySegment struct) {
+        return struct.asSlice(Ranges$OFFSET, Ranges$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FILE_LEVEL_TRIM_RANGE Ranges[1]
+     * }
+     */
+    public static void Ranges(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Ranges$OFFSET, Ranges$LAYOUT.byteSize());
+    }
+
+    private static long[] Ranges$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * FILE_LEVEL_TRIM_RANGE Ranges[1]
+     * }
+     */
+    public static long[] Ranges$dimensions() {
+        return Ranges$DIMS;
+    }
+    private static final MethodHandle Ranges$ELEM_HANDLE = Ranges$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * FILE_LEVEL_TRIM_RANGE Ranges[1]
+     * }
+     */
+    public static MemorySegment Ranges(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)Ranges$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * FILE_LEVEL_TRIM_RANGE Ranges[1]
+     * }
+     */
+    public static void Ranges(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, Ranges(struct, index0), 0L, _FILE_LEVEL_TRIM_RANGE.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

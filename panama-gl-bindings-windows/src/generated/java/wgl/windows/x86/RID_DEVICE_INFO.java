@@ -2,13 +2,33 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagRID_DEVICE_INFO {
+ *     DWORD cbSize;
+ *     DWORD dwType;
+ *     union {
+ *         RID_DEVICE_INFO_MOUSE mouse;
+ *         RID_DEVICE_INFO_KEYBOARD keyboard;
+ *         RID_DEVICE_INFO_HID hid;
+ *     };
+ * } RID_DEVICE_INFO
+ * }
+ */
 public class RID_DEVICE_INFO extends tagRID_DEVICE_INFO {
 
+    RID_DEVICE_INFO() {
+        // Should not be called directly
+    }
 }
-
 

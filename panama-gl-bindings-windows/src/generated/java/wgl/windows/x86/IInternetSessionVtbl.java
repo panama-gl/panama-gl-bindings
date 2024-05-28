@@ -2,493 +2,1109 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct IInternetSessionVtbl {
+ *     HRESULT (*QueryInterface)(IInternetSession *, const IID *const, void **) __attribute__((stdcall));
+ *     ULONG (*AddRef)(IInternetSession *) __attribute__((stdcall));
+ *     ULONG (*Release)(IInternetSession *) __attribute__((stdcall));
+ *     HRESULT (*RegisterNameSpace)(IInternetSession *, IClassFactory *, const IID *const, LPCWSTR, ULONG, const LPCWSTR *, DWORD) __attribute__((stdcall));
+ *     HRESULT (*UnregisterNameSpace)(IInternetSession *, IClassFactory *, LPCWSTR) __attribute__((stdcall));
+ *     HRESULT (*RegisterMimeFilter)(IInternetSession *, IClassFactory *, const IID *const, LPCWSTR) __attribute__((stdcall));
+ *     HRESULT (*UnregisterMimeFilter)(IInternetSession *, IClassFactory *, LPCWSTR) __attribute__((stdcall));
+ *     HRESULT (*CreateBinding)(IInternetSession *, LPBC, LPCWSTR, IUnknown *, IUnknown **, IInternetProtocol **, DWORD) __attribute__((stdcall));
+ *     HRESULT (*SetSessionOption)(IInternetSession *, DWORD, LPVOID, DWORD, DWORD) __attribute__((stdcall));
+ *     HRESULT (*GetSessionOption)(IInternetSession *, DWORD, LPVOID, DWORD *, DWORD) __attribute__((stdcall));
+ * }
+ * }
+ */
 public class IInternetSessionVtbl {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("QueryInterface"),
-        Constants$root.C_POINTER$LAYOUT.withName("AddRef"),
-        Constants$root.C_POINTER$LAYOUT.withName("Release"),
-        Constants$root.C_POINTER$LAYOUT.withName("RegisterNameSpace"),
-        Constants$root.C_POINTER$LAYOUT.withName("UnregisterNameSpace"),
-        Constants$root.C_POINTER$LAYOUT.withName("RegisterMimeFilter"),
-        Constants$root.C_POINTER$LAYOUT.withName("UnregisterMimeFilter"),
-        Constants$root.C_POINTER$LAYOUT.withName("CreateBinding"),
-        Constants$root.C_POINTER$LAYOUT.withName("SetSessionOption"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetSessionOption")
+    IInternetSessionVtbl() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("QueryInterface"),
+        wgl_h.C_POINTER.withName("AddRef"),
+        wgl_h.C_POINTER.withName("Release"),
+        wgl_h.C_POINTER.withName("RegisterNameSpace"),
+        wgl_h.C_POINTER.withName("UnregisterNameSpace"),
+        wgl_h.C_POINTER.withName("RegisterMimeFilter"),
+        wgl_h.C_POINTER.withName("UnregisterMimeFilter"),
+        wgl_h.C_POINTER.withName("CreateBinding"),
+        wgl_h.C_POINTER.withName("SetSessionOption"),
+        wgl_h.C_POINTER.withName("GetSessionOption")
     ).withName("IInternetSessionVtbl");
-    public static MemoryLayout $LAYOUT() {
-        return IInternetSessionVtbl.$struct$LAYOUT;
-    }
-    static final FunctionDescriptor QueryInterface$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle QueryInterface$MH = RuntimeHelper.downcallHandle(
-        IInternetSessionVtbl.QueryInterface$FUNC
-    );
-    public interface QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(QueryInterface fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(QueryInterface.class, fi, IInternetSessionVtbl.QueryInterface$FUNC, session);
-        }
-        static QueryInterface ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IInternetSessionVtbl.QueryInterface$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
 
-    static final VarHandle QueryInterface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueryInterface"));
-    public static VarHandle QueryInterface$VH() {
-        return IInternetSessionVtbl.QueryInterface$VH;
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.QueryInterface$VH.get(seg);
-    }
-    public static void QueryInterface$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSessionVtbl.QueryInterface$VH.set(seg, x);
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.QueryInterface$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void QueryInterface$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSessionVtbl.QueryInterface$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static QueryInterface QueryInterface (MemorySegment segment, MemorySession session) {
-        return QueryInterface.ofAddress(QueryInterface$get(segment), session);
-    }
-    static final FunctionDescriptor AddRef$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle AddRef$MH = RuntimeHelper.downcallHandle(
-        IInternetSessionVtbl.AddRef$FUNC
-    );
-    public interface AddRef {
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetSession *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(AddRef fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(AddRef.class, fi, IInternetSessionVtbl.AddRef$FUNC, session);
+        QueryInterface() {
+            // Should not be called directly
         }
-        static AddRef ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IInternetSessionVtbl.AddRef$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(QueryInterface.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(QueryInterface.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle AddRef$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddRef"));
-    public static VarHandle AddRef$VH() {
-        return IInternetSessionVtbl.AddRef$VH;
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.AddRef$VH.get(seg);
-    }
-    public static void AddRef$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSessionVtbl.AddRef$VH.set(seg, x);
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.AddRef$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddRef$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSessionVtbl.AddRef$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static AddRef AddRef (MemorySegment segment, MemorySession session) {
-        return AddRef.ofAddress(AddRef$get(segment), session);
-    }
-    static final FunctionDescriptor Release$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Release$MH = RuntimeHelper.downcallHandle(
-        IInternetSessionVtbl.Release$FUNC
-    );
-    public interface Release {
+    private static final AddressLayout QueryInterface$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("QueryInterface"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Release fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Release.class, fi, IInternetSessionVtbl.Release$FUNC, session);
-        }
-        static Release ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IInternetSessionVtbl.Release$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetSession *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout QueryInterface$layout() {
+        return QueryInterface$LAYOUT;
     }
 
-    static final VarHandle Release$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Release"));
-    public static VarHandle Release$VH() {
-        return IInternetSessionVtbl.Release$VH;
-    }
-    public static MemoryAddress Release$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.Release$VH.get(seg);
-    }
-    public static void Release$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSessionVtbl.Release$VH.set(seg, x);
-    }
-    public static MemoryAddress Release$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.Release$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Release$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSessionVtbl.Release$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Release Release (MemorySegment segment, MemorySession session) {
-        return Release.ofAddress(Release$get(segment), session);
-    }
-    static final FunctionDescriptor RegisterNameSpace$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle RegisterNameSpace$MH = RuntimeHelper.downcallHandle(
-        IInternetSessionVtbl.RegisterNameSpace$FUNC
-    );
-    public interface RegisterNameSpace {
+    private static final long QueryInterface$OFFSET = 0;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, int _x4, java.lang.foreign.MemoryAddress _x5, int _x6);
-        static MemorySegment allocate(RegisterNameSpace fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(RegisterNameSpace.class, fi, IInternetSessionVtbl.RegisterNameSpace$FUNC, session);
-        }
-        static RegisterNameSpace ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, int __x4, java.lang.foreign.MemoryAddress __x5, int __x6) -> {
-                try {
-                    return (int)IInternetSessionVtbl.RegisterNameSpace$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, __x4, (java.lang.foreign.Addressable)__x5, __x6);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetSession *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long QueryInterface$offset() {
+        return QueryInterface$OFFSET;
     }
 
-    static final VarHandle RegisterNameSpace$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RegisterNameSpace"));
-    public static VarHandle RegisterNameSpace$VH() {
-        return IInternetSessionVtbl.RegisterNameSpace$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetSession *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment QueryInterface(MemorySegment struct) {
+        return struct.get(QueryInterface$LAYOUT, QueryInterface$OFFSET);
     }
-    public static MemoryAddress RegisterNameSpace$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.RegisterNameSpace$VH.get(seg);
-    }
-    public static void RegisterNameSpace$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSessionVtbl.RegisterNameSpace$VH.set(seg, x);
-    }
-    public static MemoryAddress RegisterNameSpace$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.RegisterNameSpace$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RegisterNameSpace$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSessionVtbl.RegisterNameSpace$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static RegisterNameSpace RegisterNameSpace (MemorySegment segment, MemorySession session) {
-        return RegisterNameSpace.ofAddress(RegisterNameSpace$get(segment), session);
-    }
-    static final FunctionDescriptor UnregisterNameSpace$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle UnregisterNameSpace$MH = RuntimeHelper.downcallHandle(
-        IInternetSessionVtbl.UnregisterNameSpace$FUNC
-    );
-    public interface UnregisterNameSpace {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(UnregisterNameSpace fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(UnregisterNameSpace.class, fi, IInternetSessionVtbl.UnregisterNameSpace$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetSession *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void QueryInterface(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(QueryInterface$LAYOUT, QueryInterface$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetSession *) __attribute__((stdcall))
+     * }
+     */
+    public static class AddRef {
+
+        AddRef() {
+            // Should not be called directly
         }
-        static UnregisterNameSpace ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IInternetSessionVtbl.UnregisterNameSpace$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(AddRef.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(AddRef.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle UnregisterNameSpace$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UnregisterNameSpace"));
-    public static VarHandle UnregisterNameSpace$VH() {
-        return IInternetSessionVtbl.UnregisterNameSpace$VH;
-    }
-    public static MemoryAddress UnregisterNameSpace$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.UnregisterNameSpace$VH.get(seg);
-    }
-    public static void UnregisterNameSpace$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSessionVtbl.UnregisterNameSpace$VH.set(seg, x);
-    }
-    public static MemoryAddress UnregisterNameSpace$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.UnregisterNameSpace$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UnregisterNameSpace$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSessionVtbl.UnregisterNameSpace$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static UnregisterNameSpace UnregisterNameSpace (MemorySegment segment, MemorySession session) {
-        return UnregisterNameSpace.ofAddress(UnregisterNameSpace$get(segment), session);
-    }
-    static final FunctionDescriptor RegisterMimeFilter$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle RegisterMimeFilter$MH = RuntimeHelper.downcallHandle(
-        IInternetSessionVtbl.RegisterMimeFilter$FUNC
-    );
-    public interface RegisterMimeFilter {
+    private static final AddressLayout AddRef$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AddRef"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3);
-        static MemorySegment allocate(RegisterMimeFilter fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(RegisterMimeFilter.class, fi, IInternetSessionVtbl.RegisterMimeFilter$FUNC, session);
-        }
-        static RegisterMimeFilter ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3) -> {
-                try {
-                    return (int)IInternetSessionVtbl.RegisterMimeFilter$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetSession *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout AddRef$layout() {
+        return AddRef$LAYOUT;
     }
 
-    static final VarHandle RegisterMimeFilter$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RegisterMimeFilter"));
-    public static VarHandle RegisterMimeFilter$VH() {
-        return IInternetSessionVtbl.RegisterMimeFilter$VH;
-    }
-    public static MemoryAddress RegisterMimeFilter$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.RegisterMimeFilter$VH.get(seg);
-    }
-    public static void RegisterMimeFilter$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSessionVtbl.RegisterMimeFilter$VH.set(seg, x);
-    }
-    public static MemoryAddress RegisterMimeFilter$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.RegisterMimeFilter$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RegisterMimeFilter$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSessionVtbl.RegisterMimeFilter$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static RegisterMimeFilter RegisterMimeFilter (MemorySegment segment, MemorySession session) {
-        return RegisterMimeFilter.ofAddress(RegisterMimeFilter$get(segment), session);
-    }
-    static final FunctionDescriptor UnregisterMimeFilter$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle UnregisterMimeFilter$MH = RuntimeHelper.downcallHandle(
-        IInternetSessionVtbl.UnregisterMimeFilter$FUNC
-    );
-    public interface UnregisterMimeFilter {
+    private static final long AddRef$OFFSET = 8;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(UnregisterMimeFilter fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(UnregisterMimeFilter.class, fi, IInternetSessionVtbl.UnregisterMimeFilter$FUNC, session);
-        }
-        static UnregisterMimeFilter ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IInternetSessionVtbl.UnregisterMimeFilter$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetSession *) __attribute__((stdcall))
+     * }
+     */
+    public static final long AddRef$offset() {
+        return AddRef$OFFSET;
     }
 
-    static final VarHandle UnregisterMimeFilter$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UnregisterMimeFilter"));
-    public static VarHandle UnregisterMimeFilter$VH() {
-        return IInternetSessionVtbl.UnregisterMimeFilter$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetSession *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment AddRef(MemorySegment struct) {
+        return struct.get(AddRef$LAYOUT, AddRef$OFFSET);
     }
-    public static MemoryAddress UnregisterMimeFilter$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.UnregisterMimeFilter$VH.get(seg);
-    }
-    public static void UnregisterMimeFilter$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSessionVtbl.UnregisterMimeFilter$VH.set(seg, x);
-    }
-    public static MemoryAddress UnregisterMimeFilter$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.UnregisterMimeFilter$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UnregisterMimeFilter$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSessionVtbl.UnregisterMimeFilter$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static UnregisterMimeFilter UnregisterMimeFilter (MemorySegment segment, MemorySession session) {
-        return UnregisterMimeFilter.ofAddress(UnregisterMimeFilter$get(segment), session);
-    }
-    static final FunctionDescriptor CreateBinding$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle CreateBinding$MH = RuntimeHelper.downcallHandle(
-        IInternetSessionVtbl.CreateBinding$FUNC
-    );
-    public interface CreateBinding {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, java.lang.foreign.MemoryAddress _x4, java.lang.foreign.MemoryAddress _x5, int _x6);
-        static MemorySegment allocate(CreateBinding fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(CreateBinding.class, fi, IInternetSessionVtbl.CreateBinding$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetSession *) __attribute__((stdcall))
+     * }
+     */
+    public static void AddRef(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AddRef$LAYOUT, AddRef$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetSession *) __attribute__((stdcall))
+     * }
+     */
+    public static class Release {
+
+        Release() {
+            // Should not be called directly
         }
-        static CreateBinding ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, java.lang.foreign.MemoryAddress __x4, java.lang.foreign.MemoryAddress __x5, int __x6) -> {
-                try {
-                    return (int)IInternetSessionVtbl.CreateBinding$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, (java.lang.foreign.Addressable)__x4, (java.lang.foreign.Addressable)__x5, __x6);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Release.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Release.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle CreateBinding$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CreateBinding"));
-    public static VarHandle CreateBinding$VH() {
-        return IInternetSessionVtbl.CreateBinding$VH;
-    }
-    public static MemoryAddress CreateBinding$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.CreateBinding$VH.get(seg);
-    }
-    public static void CreateBinding$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSessionVtbl.CreateBinding$VH.set(seg, x);
-    }
-    public static MemoryAddress CreateBinding$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.CreateBinding$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CreateBinding$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSessionVtbl.CreateBinding$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static CreateBinding CreateBinding (MemorySegment segment, MemorySession session) {
-        return CreateBinding.ofAddress(CreateBinding$get(segment), session);
-    }
-    static final FunctionDescriptor SetSessionOption$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle SetSessionOption$MH = RuntimeHelper.downcallHandle(
-        IInternetSessionVtbl.SetSessionOption$FUNC
-    );
-    public interface SetSessionOption {
+    private static final AddressLayout Release$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Release"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, java.lang.foreign.MemoryAddress _x2, int _x3, int _x4);
-        static MemorySegment allocate(SetSessionOption fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(SetSessionOption.class, fi, IInternetSessionVtbl.SetSessionOption$FUNC, session);
-        }
-        static SetSessionOption ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, java.lang.foreign.MemoryAddress __x2, int __x3, int __x4) -> {
-                try {
-                    return (int)IInternetSessionVtbl.SetSessionOption$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, (java.lang.foreign.Addressable)__x2, __x3, __x4);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetSession *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Release$layout() {
+        return Release$LAYOUT;
     }
 
-    static final VarHandle SetSessionOption$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SetSessionOption"));
-    public static VarHandle SetSessionOption$VH() {
-        return IInternetSessionVtbl.SetSessionOption$VH;
-    }
-    public static MemoryAddress SetSessionOption$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.SetSessionOption$VH.get(seg);
-    }
-    public static void SetSessionOption$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSessionVtbl.SetSessionOption$VH.set(seg, x);
-    }
-    public static MemoryAddress SetSessionOption$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.SetSessionOption$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SetSessionOption$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSessionVtbl.SetSessionOption$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static SetSessionOption SetSessionOption (MemorySegment segment, MemorySession session) {
-        return SetSessionOption.ofAddress(SetSessionOption$get(segment), session);
-    }
-    static final FunctionDescriptor GetSessionOption$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle GetSessionOption$MH = RuntimeHelper.downcallHandle(
-        IInternetSessionVtbl.GetSessionOption$FUNC
-    );
-    public interface GetSessionOption {
+    private static final long Release$OFFSET = 16;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, int _x4);
-        static MemorySegment allocate(GetSessionOption fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetSessionOption.class, fi, IInternetSessionVtbl.GetSessionOption$FUNC, session);
-        }
-        static GetSessionOption ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, int __x4) -> {
-                try {
-                    return (int)IInternetSessionVtbl.GetSessionOption$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, __x4);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetSession *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Release$offset() {
+        return Release$OFFSET;
     }
 
-    static final VarHandle GetSessionOption$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetSessionOption"));
-    public static VarHandle GetSessionOption$VH() {
-        return IInternetSessionVtbl.GetSessionOption$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetSession *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Release(MemorySegment struct) {
+        return struct.get(Release$LAYOUT, Release$OFFSET);
     }
-    public static MemoryAddress GetSessionOption$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.GetSessionOption$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetSession *) __attribute__((stdcall))
+     * }
+     */
+    public static void Release(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Release$LAYOUT, Release$OFFSET, fieldValue);
     }
-    public static void GetSessionOption$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSessionVtbl.GetSessionOption$VH.set(seg, x);
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*RegisterNameSpace)(IInternetSession *, IClassFactory *, const IID *const, LPCWSTR, ULONG, const LPCWSTR *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class RegisterNameSpace {
+
+        RegisterNameSpace() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, int _x4, MemorySegment _x5, int _x6);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(RegisterNameSpace.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(RegisterNameSpace.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, int _x4, MemorySegment _x5, int _x6) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5, _x6);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
     }
-    public static MemoryAddress GetSessionOption$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSessionVtbl.GetSessionOption$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final AddressLayout RegisterNameSpace$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("RegisterNameSpace"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*RegisterNameSpace)(IInternetSession *, IClassFactory *, const IID *const, LPCWSTR, ULONG, const LPCWSTR *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout RegisterNameSpace$layout() {
+        return RegisterNameSpace$LAYOUT;
     }
-    public static void GetSessionOption$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSessionVtbl.GetSessionOption$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long RegisterNameSpace$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*RegisterNameSpace)(IInternetSession *, IClassFactory *, const IID *const, LPCWSTR, ULONG, const LPCWSTR *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long RegisterNameSpace$offset() {
+        return RegisterNameSpace$OFFSET;
     }
-    public static GetSessionOption GetSessionOption (MemorySegment segment, MemorySession session) {
-        return GetSessionOption.ofAddress(GetSessionOption$get(segment), session);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*RegisterNameSpace)(IInternetSession *, IClassFactory *, const IID *const, LPCWSTR, ULONG, const LPCWSTR *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment RegisterNameSpace(MemorySegment struct) {
+        return struct.get(RegisterNameSpace$LAYOUT, RegisterNameSpace$OFFSET);
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*RegisterNameSpace)(IInternetSession *, IClassFactory *, const IID *const, LPCWSTR, ULONG, const LPCWSTR *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void RegisterNameSpace(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(RegisterNameSpace$LAYOUT, RegisterNameSpace$OFFSET, fieldValue);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*UnregisterNameSpace)(IInternetSession *, IClassFactory *, LPCWSTR) __attribute__((stdcall))
+     * }
+     */
+    public static class UnregisterNameSpace {
+
+        UnregisterNameSpace() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(UnregisterNameSpace.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(UnregisterNameSpace.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout UnregisterNameSpace$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("UnregisterNameSpace"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*UnregisterNameSpace)(IInternetSession *, IClassFactory *, LPCWSTR) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout UnregisterNameSpace$layout() {
+        return UnregisterNameSpace$LAYOUT;
+    }
+
+    private static final long UnregisterNameSpace$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*UnregisterNameSpace)(IInternetSession *, IClassFactory *, LPCWSTR) __attribute__((stdcall))
+     * }
+     */
+    public static final long UnregisterNameSpace$offset() {
+        return UnregisterNameSpace$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*UnregisterNameSpace)(IInternetSession *, IClassFactory *, LPCWSTR) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment UnregisterNameSpace(MemorySegment struct) {
+        return struct.get(UnregisterNameSpace$LAYOUT, UnregisterNameSpace$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*UnregisterNameSpace)(IInternetSession *, IClassFactory *, LPCWSTR) __attribute__((stdcall))
+     * }
+     */
+    public static void UnregisterNameSpace(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(UnregisterNameSpace$LAYOUT, UnregisterNameSpace$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*RegisterMimeFilter)(IInternetSession *, IClassFactory *, const IID *const, LPCWSTR) __attribute__((stdcall))
+     * }
+     */
+    public static class RegisterMimeFilter {
+
+        RegisterMimeFilter() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(RegisterMimeFilter.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(RegisterMimeFilter.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout RegisterMimeFilter$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("RegisterMimeFilter"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*RegisterMimeFilter)(IInternetSession *, IClassFactory *, const IID *const, LPCWSTR) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout RegisterMimeFilter$layout() {
+        return RegisterMimeFilter$LAYOUT;
+    }
+
+    private static final long RegisterMimeFilter$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*RegisterMimeFilter)(IInternetSession *, IClassFactory *, const IID *const, LPCWSTR) __attribute__((stdcall))
+     * }
+     */
+    public static final long RegisterMimeFilter$offset() {
+        return RegisterMimeFilter$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*RegisterMimeFilter)(IInternetSession *, IClassFactory *, const IID *const, LPCWSTR) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment RegisterMimeFilter(MemorySegment struct) {
+        return struct.get(RegisterMimeFilter$LAYOUT, RegisterMimeFilter$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*RegisterMimeFilter)(IInternetSession *, IClassFactory *, const IID *const, LPCWSTR) __attribute__((stdcall))
+     * }
+     */
+    public static void RegisterMimeFilter(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(RegisterMimeFilter$LAYOUT, RegisterMimeFilter$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*UnregisterMimeFilter)(IInternetSession *, IClassFactory *, LPCWSTR) __attribute__((stdcall))
+     * }
+     */
+    public static class UnregisterMimeFilter {
+
+        UnregisterMimeFilter() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(UnregisterMimeFilter.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(UnregisterMimeFilter.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout UnregisterMimeFilter$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("UnregisterMimeFilter"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*UnregisterMimeFilter)(IInternetSession *, IClassFactory *, LPCWSTR) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout UnregisterMimeFilter$layout() {
+        return UnregisterMimeFilter$LAYOUT;
+    }
+
+    private static final long UnregisterMimeFilter$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*UnregisterMimeFilter)(IInternetSession *, IClassFactory *, LPCWSTR) __attribute__((stdcall))
+     * }
+     */
+    public static final long UnregisterMimeFilter$offset() {
+        return UnregisterMimeFilter$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*UnregisterMimeFilter)(IInternetSession *, IClassFactory *, LPCWSTR) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment UnregisterMimeFilter(MemorySegment struct) {
+        return struct.get(UnregisterMimeFilter$LAYOUT, UnregisterMimeFilter$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*UnregisterMimeFilter)(IInternetSession *, IClassFactory *, LPCWSTR) __attribute__((stdcall))
+     * }
+     */
+    public static void UnregisterMimeFilter(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(UnregisterMimeFilter$LAYOUT, UnregisterMimeFilter$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*CreateBinding)(IInternetSession *, LPBC, LPCWSTR, IUnknown *, IUnknown **, IInternetProtocol **, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class CreateBinding {
+
+        CreateBinding() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4, MemorySegment _x5, int _x6);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(CreateBinding.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(CreateBinding.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4, MemorySegment _x5, int _x6) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5, _x6);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout CreateBinding$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("CreateBinding"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*CreateBinding)(IInternetSession *, LPBC, LPCWSTR, IUnknown *, IUnknown **, IInternetProtocol **, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout CreateBinding$layout() {
+        return CreateBinding$LAYOUT;
+    }
+
+    private static final long CreateBinding$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*CreateBinding)(IInternetSession *, LPBC, LPCWSTR, IUnknown *, IUnknown **, IInternetProtocol **, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long CreateBinding$offset() {
+        return CreateBinding$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*CreateBinding)(IInternetSession *, LPBC, LPCWSTR, IUnknown *, IUnknown **, IInternetProtocol **, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment CreateBinding(MemorySegment struct) {
+        return struct.get(CreateBinding$LAYOUT, CreateBinding$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*CreateBinding)(IInternetSession *, LPBC, LPCWSTR, IUnknown *, IUnknown **, IInternetProtocol **, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void CreateBinding(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(CreateBinding$LAYOUT, CreateBinding$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*SetSessionOption)(IInternetSession *, DWORD, LPVOID, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class SetSessionOption {
+
+        SetSessionOption() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, MemorySegment _x2, int _x3, int _x4);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(SetSessionOption.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(SetSessionOption.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, MemorySegment _x2, int _x3, int _x4) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout SetSessionOption$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SetSessionOption"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetSessionOption)(IInternetSession *, DWORD, LPVOID, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout SetSessionOption$layout() {
+        return SetSessionOption$LAYOUT;
+    }
+
+    private static final long SetSessionOption$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetSessionOption)(IInternetSession *, DWORD, LPVOID, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long SetSessionOption$offset() {
+        return SetSessionOption$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetSessionOption)(IInternetSession *, DWORD, LPVOID, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment SetSessionOption(MemorySegment struct) {
+        return struct.get(SetSessionOption$LAYOUT, SetSessionOption$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetSessionOption)(IInternetSession *, DWORD, LPVOID, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void SetSessionOption(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SetSessionOption$LAYOUT, SetSessionOption$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetSessionOption)(IInternetSession *, DWORD, LPVOID, DWORD *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class GetSessionOption {
+
+        GetSessionOption() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, MemorySegment _x2, MemorySegment _x3, int _x4);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetSessionOption.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetSessionOption.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, MemorySegment _x2, MemorySegment _x3, int _x4) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout GetSessionOption$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetSessionOption"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetSessionOption)(IInternetSession *, DWORD, LPVOID, DWORD *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetSessionOption$layout() {
+        return GetSessionOption$LAYOUT;
+    }
+
+    private static final long GetSessionOption$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetSessionOption)(IInternetSession *, DWORD, LPVOID, DWORD *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetSessionOption$offset() {
+        return GetSessionOption$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetSessionOption)(IInternetSession *, DWORD, LPVOID, DWORD *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetSessionOption(MemorySegment struct) {
+        return struct.get(GetSessionOption$LAYOUT, GetSessionOption$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetSessionOption)(IInternetSession *, DWORD, LPVOID, DWORD *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void GetSessionOption(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetSessionOption$LAYOUT, GetSessionOption$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

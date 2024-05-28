@@ -2,27 +2,70 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFN_CERT_ENUM_SYSTEM_STORE_LOCATION {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemoryAddress pwszStoreLocation, int dwFlags, java.lang.foreign.MemoryAddress pvReserved, java.lang.foreign.MemoryAddress pvArg);
-    static MemorySegment allocate(PFN_CERT_ENUM_SYSTEM_STORE_LOCATION fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFN_CERT_ENUM_SYSTEM_STORE_LOCATION.class, fi, constants$784.PFN_CERT_ENUM_SYSTEM_STORE_LOCATION$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PFN_CERT_ENUM_SYSTEM_STORE_LOCATION)(LPCWSTR, DWORD, void *, void *) __attribute__((stdcall))
+ * }
+ */
+public class PFN_CERT_ENUM_SYSTEM_STORE_LOCATION {
+
+    PFN_CERT_ENUM_SYSTEM_STORE_LOCATION() {
+        // Should not be called directly
     }
-    static PFN_CERT_ENUM_SYSTEM_STORE_LOCATION ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _pwszStoreLocation, int _dwFlags, java.lang.foreign.MemoryAddress _pvReserved, java.lang.foreign.MemoryAddress _pvArg) -> {
-            try {
-                return (int)constants$785.PFN_CERT_ENUM_SYSTEM_STORE_LOCATION$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_pwszStoreLocation, _dwFlags, (java.lang.foreign.Addressable)_pvReserved, (java.lang.foreign.Addressable)_pvArg);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment pwszStoreLocation, int dwFlags, MemorySegment pvReserved, MemorySegment pvArg);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_POINTER,
+        wgl_h.C_LONG,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFN_CERT_ENUM_SYSTEM_STORE_LOCATION.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFN_CERT_ENUM_SYSTEM_STORE_LOCATION.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment pwszStoreLocation, int dwFlags, MemorySegment pvReserved, MemorySegment pvArg) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, pwszStoreLocation, dwFlags, pvReserved, pvArg);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

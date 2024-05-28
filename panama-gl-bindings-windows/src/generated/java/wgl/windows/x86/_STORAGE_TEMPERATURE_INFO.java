@@ -2,177 +2,494 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STORAGE_TEMPERATURE_INFO {
+ *     WORD Index;
+ *     SHORT Temperature;
+ *     SHORT OverThreshold;
+ *     SHORT UnderThreshold;
+ *     BOOLEAN OverThresholdChangable;
+ *     BOOLEAN UnderThresholdChangable;
+ *     BOOLEAN EventGenerated;
+ *     BYTE Reserved0;
+ *     DWORD Reserved1;
+ * }
+ * }
+ */
 public class _STORAGE_TEMPERATURE_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("Index"),
-        Constants$root.C_SHORT$LAYOUT.withName("Temperature"),
-        Constants$root.C_SHORT$LAYOUT.withName("OverThreshold"),
-        Constants$root.C_SHORT$LAYOUT.withName("UnderThreshold"),
-        Constants$root.C_CHAR$LAYOUT.withName("OverThresholdChangable"),
-        Constants$root.C_CHAR$LAYOUT.withName("UnderThresholdChangable"),
-        Constants$root.C_CHAR$LAYOUT.withName("EventGenerated"),
-        Constants$root.C_CHAR$LAYOUT.withName("Reserved0"),
-        Constants$root.C_LONG$LAYOUT.withName("Reserved1")
-    ).withName("_STORAGE_TEMPERATURE_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_TEMPERATURE_INFO.$struct$LAYOUT;
+    _STORAGE_TEMPERATURE_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle Index$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Index"));
-    public static VarHandle Index$VH() {
-        return _STORAGE_TEMPERATURE_INFO.Index$VH;
-    }
-    public static short Index$get(MemorySegment seg) {
-        return (short)_STORAGE_TEMPERATURE_INFO.Index$VH.get(seg);
-    }
-    public static void Index$set( MemorySegment seg, short x) {
-        _STORAGE_TEMPERATURE_INFO.Index$VH.set(seg, x);
-    }
-    public static short Index$get(MemorySegment seg, long index) {
-        return (short)_STORAGE_TEMPERATURE_INFO.Index$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Index$set(MemorySegment seg, long index, short x) {
-        _STORAGE_TEMPERATURE_INFO.Index$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Temperature$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Temperature"));
-    public static VarHandle Temperature$VH() {
-        return _STORAGE_TEMPERATURE_INFO.Temperature$VH;
-    }
-    public static short Temperature$get(MemorySegment seg) {
-        return (short)_STORAGE_TEMPERATURE_INFO.Temperature$VH.get(seg);
-    }
-    public static void Temperature$set( MemorySegment seg, short x) {
-        _STORAGE_TEMPERATURE_INFO.Temperature$VH.set(seg, x);
-    }
-    public static short Temperature$get(MemorySegment seg, long index) {
-        return (short)_STORAGE_TEMPERATURE_INFO.Temperature$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Temperature$set(MemorySegment seg, long index, short x) {
-        _STORAGE_TEMPERATURE_INFO.Temperature$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle OverThreshold$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OverThreshold"));
-    public static VarHandle OverThreshold$VH() {
-        return _STORAGE_TEMPERATURE_INFO.OverThreshold$VH;
-    }
-    public static short OverThreshold$get(MemorySegment seg) {
-        return (short)_STORAGE_TEMPERATURE_INFO.OverThreshold$VH.get(seg);
-    }
-    public static void OverThreshold$set( MemorySegment seg, short x) {
-        _STORAGE_TEMPERATURE_INFO.OverThreshold$VH.set(seg, x);
-    }
-    public static short OverThreshold$get(MemorySegment seg, long index) {
-        return (short)_STORAGE_TEMPERATURE_INFO.OverThreshold$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void OverThreshold$set(MemorySegment seg, long index, short x) {
-        _STORAGE_TEMPERATURE_INFO.OverThreshold$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle UnderThreshold$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UnderThreshold"));
-    public static VarHandle UnderThreshold$VH() {
-        return _STORAGE_TEMPERATURE_INFO.UnderThreshold$VH;
-    }
-    public static short UnderThreshold$get(MemorySegment seg) {
-        return (short)_STORAGE_TEMPERATURE_INFO.UnderThreshold$VH.get(seg);
-    }
-    public static void UnderThreshold$set( MemorySegment seg, short x) {
-        _STORAGE_TEMPERATURE_INFO.UnderThreshold$VH.set(seg, x);
-    }
-    public static short UnderThreshold$get(MemorySegment seg, long index) {
-        return (short)_STORAGE_TEMPERATURE_INFO.UnderThreshold$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UnderThreshold$set(MemorySegment seg, long index, short x) {
-        _STORAGE_TEMPERATURE_INFO.UnderThreshold$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle OverThresholdChangable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OverThresholdChangable"));
-    public static VarHandle OverThresholdChangable$VH() {
-        return _STORAGE_TEMPERATURE_INFO.OverThresholdChangable$VH;
-    }
-    public static byte OverThresholdChangable$get(MemorySegment seg) {
-        return (byte)_STORAGE_TEMPERATURE_INFO.OverThresholdChangable$VH.get(seg);
-    }
-    public static void OverThresholdChangable$set( MemorySegment seg, byte x) {
-        _STORAGE_TEMPERATURE_INFO.OverThresholdChangable$VH.set(seg, x);
-    }
-    public static byte OverThresholdChangable$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_TEMPERATURE_INFO.OverThresholdChangable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void OverThresholdChangable$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_TEMPERATURE_INFO.OverThresholdChangable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle UnderThresholdChangable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UnderThresholdChangable"));
-    public static VarHandle UnderThresholdChangable$VH() {
-        return _STORAGE_TEMPERATURE_INFO.UnderThresholdChangable$VH;
-    }
-    public static byte UnderThresholdChangable$get(MemorySegment seg) {
-        return (byte)_STORAGE_TEMPERATURE_INFO.UnderThresholdChangable$VH.get(seg);
-    }
-    public static void UnderThresholdChangable$set( MemorySegment seg, byte x) {
-        _STORAGE_TEMPERATURE_INFO.UnderThresholdChangable$VH.set(seg, x);
-    }
-    public static byte UnderThresholdChangable$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_TEMPERATURE_INFO.UnderThresholdChangable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UnderThresholdChangable$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_TEMPERATURE_INFO.UnderThresholdChangable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EventGenerated$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EventGenerated"));
-    public static VarHandle EventGenerated$VH() {
-        return _STORAGE_TEMPERATURE_INFO.EventGenerated$VH;
-    }
-    public static byte EventGenerated$get(MemorySegment seg) {
-        return (byte)_STORAGE_TEMPERATURE_INFO.EventGenerated$VH.get(seg);
-    }
-    public static void EventGenerated$set( MemorySegment seg, byte x) {
-        _STORAGE_TEMPERATURE_INFO.EventGenerated$VH.set(seg, x);
-    }
-    public static byte EventGenerated$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_TEMPERATURE_INFO.EventGenerated$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EventGenerated$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_TEMPERATURE_INFO.EventGenerated$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved0$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved0"));
-    public static VarHandle Reserved0$VH() {
-        return _STORAGE_TEMPERATURE_INFO.Reserved0$VH;
-    }
-    public static byte Reserved0$get(MemorySegment seg) {
-        return (byte)_STORAGE_TEMPERATURE_INFO.Reserved0$VH.get(seg);
-    }
-    public static void Reserved0$set( MemorySegment seg, byte x) {
-        _STORAGE_TEMPERATURE_INFO.Reserved0$VH.set(seg, x);
-    }
-    public static byte Reserved0$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_TEMPERATURE_INFO.Reserved0$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved0$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_TEMPERATURE_INFO.Reserved0$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved1"));
-    public static VarHandle Reserved1$VH() {
-        return _STORAGE_TEMPERATURE_INFO.Reserved1$VH;
-    }
-    public static int Reserved1$get(MemorySegment seg) {
-        return (int)_STORAGE_TEMPERATURE_INFO.Reserved1$VH.get(seg);
-    }
-    public static void Reserved1$set( MemorySegment seg, int x) {
-        _STORAGE_TEMPERATURE_INFO.Reserved1$VH.set(seg, x);
-    }
-    public static int Reserved1$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_TEMPERATURE_INFO.Reserved1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved1$set(MemorySegment seg, long index, int x) {
-        _STORAGE_TEMPERATURE_INFO.Reserved1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("Index"),
+        wgl_h.C_SHORT.withName("Temperature"),
+        wgl_h.C_SHORT.withName("OverThreshold"),
+        wgl_h.C_SHORT.withName("UnderThreshold"),
+        wgl_h.C_CHAR.withName("OverThresholdChangable"),
+        wgl_h.C_CHAR.withName("UnderThresholdChangable"),
+        wgl_h.C_CHAR.withName("EventGenerated"),
+        wgl_h.C_CHAR.withName("Reserved0"),
+        wgl_h.C_LONG.withName("Reserved1")
+    ).withName("_STORAGE_TEMPERATURE_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort Index$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Index"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Index
+     * }
+     */
+    public static final OfShort Index$layout() {
+        return Index$LAYOUT;
+    }
+
+    private static final long Index$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Index
+     * }
+     */
+    public static final long Index$offset() {
+        return Index$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Index
+     * }
+     */
+    public static short Index(MemorySegment struct) {
+        return struct.get(Index$LAYOUT, Index$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Index
+     * }
+     */
+    public static void Index(MemorySegment struct, short fieldValue) {
+        struct.set(Index$LAYOUT, Index$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Temperature$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Temperature"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SHORT Temperature
+     * }
+     */
+    public static final OfShort Temperature$layout() {
+        return Temperature$LAYOUT;
+    }
+
+    private static final long Temperature$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SHORT Temperature
+     * }
+     */
+    public static final long Temperature$offset() {
+        return Temperature$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SHORT Temperature
+     * }
+     */
+    public static short Temperature(MemorySegment struct) {
+        return struct.get(Temperature$LAYOUT, Temperature$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SHORT Temperature
+     * }
+     */
+    public static void Temperature(MemorySegment struct, short fieldValue) {
+        struct.set(Temperature$LAYOUT, Temperature$OFFSET, fieldValue);
+    }
+
+    private static final OfShort OverThreshold$LAYOUT = (OfShort)$LAYOUT.select(groupElement("OverThreshold"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SHORT OverThreshold
+     * }
+     */
+    public static final OfShort OverThreshold$layout() {
+        return OverThreshold$LAYOUT;
+    }
+
+    private static final long OverThreshold$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SHORT OverThreshold
+     * }
+     */
+    public static final long OverThreshold$offset() {
+        return OverThreshold$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SHORT OverThreshold
+     * }
+     */
+    public static short OverThreshold(MemorySegment struct) {
+        return struct.get(OverThreshold$LAYOUT, OverThreshold$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SHORT OverThreshold
+     * }
+     */
+    public static void OverThreshold(MemorySegment struct, short fieldValue) {
+        struct.set(OverThreshold$LAYOUT, OverThreshold$OFFSET, fieldValue);
+    }
+
+    private static final OfShort UnderThreshold$LAYOUT = (OfShort)$LAYOUT.select(groupElement("UnderThreshold"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SHORT UnderThreshold
+     * }
+     */
+    public static final OfShort UnderThreshold$layout() {
+        return UnderThreshold$LAYOUT;
+    }
+
+    private static final long UnderThreshold$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SHORT UnderThreshold
+     * }
+     */
+    public static final long UnderThreshold$offset() {
+        return UnderThreshold$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SHORT UnderThreshold
+     * }
+     */
+    public static short UnderThreshold(MemorySegment struct) {
+        return struct.get(UnderThreshold$LAYOUT, UnderThreshold$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SHORT UnderThreshold
+     * }
+     */
+    public static void UnderThreshold(MemorySegment struct, short fieldValue) {
+        struct.set(UnderThreshold$LAYOUT, UnderThreshold$OFFSET, fieldValue);
+    }
+
+    private static final OfByte OverThresholdChangable$LAYOUT = (OfByte)$LAYOUT.select(groupElement("OverThresholdChangable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN OverThresholdChangable
+     * }
+     */
+    public static final OfByte OverThresholdChangable$layout() {
+        return OverThresholdChangable$LAYOUT;
+    }
+
+    private static final long OverThresholdChangable$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN OverThresholdChangable
+     * }
+     */
+    public static final long OverThresholdChangable$offset() {
+        return OverThresholdChangable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN OverThresholdChangable
+     * }
+     */
+    public static byte OverThresholdChangable(MemorySegment struct) {
+        return struct.get(OverThresholdChangable$LAYOUT, OverThresholdChangable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN OverThresholdChangable
+     * }
+     */
+    public static void OverThresholdChangable(MemorySegment struct, byte fieldValue) {
+        struct.set(OverThresholdChangable$LAYOUT, OverThresholdChangable$OFFSET, fieldValue);
+    }
+
+    private static final OfByte UnderThresholdChangable$LAYOUT = (OfByte)$LAYOUT.select(groupElement("UnderThresholdChangable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN UnderThresholdChangable
+     * }
+     */
+    public static final OfByte UnderThresholdChangable$layout() {
+        return UnderThresholdChangable$LAYOUT;
+    }
+
+    private static final long UnderThresholdChangable$OFFSET = 9;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN UnderThresholdChangable
+     * }
+     */
+    public static final long UnderThresholdChangable$offset() {
+        return UnderThresholdChangable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN UnderThresholdChangable
+     * }
+     */
+    public static byte UnderThresholdChangable(MemorySegment struct) {
+        return struct.get(UnderThresholdChangable$LAYOUT, UnderThresholdChangable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN UnderThresholdChangable
+     * }
+     */
+    public static void UnderThresholdChangable(MemorySegment struct, byte fieldValue) {
+        struct.set(UnderThresholdChangable$LAYOUT, UnderThresholdChangable$OFFSET, fieldValue);
+    }
+
+    private static final OfByte EventGenerated$LAYOUT = (OfByte)$LAYOUT.select(groupElement("EventGenerated"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN EventGenerated
+     * }
+     */
+    public static final OfByte EventGenerated$layout() {
+        return EventGenerated$LAYOUT;
+    }
+
+    private static final long EventGenerated$OFFSET = 10;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN EventGenerated
+     * }
+     */
+    public static final long EventGenerated$offset() {
+        return EventGenerated$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN EventGenerated
+     * }
+     */
+    public static byte EventGenerated(MemorySegment struct) {
+        return struct.get(EventGenerated$LAYOUT, EventGenerated$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN EventGenerated
+     * }
+     */
+    public static void EventGenerated(MemorySegment struct, byte fieldValue) {
+        struct.set(EventGenerated$LAYOUT, EventGenerated$OFFSET, fieldValue);
+    }
+
+    private static final OfByte Reserved0$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Reserved0"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0
+     * }
+     */
+    public static final OfByte Reserved0$layout() {
+        return Reserved0$LAYOUT;
+    }
+
+    private static final long Reserved0$OFFSET = 11;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0
+     * }
+     */
+    public static final long Reserved0$offset() {
+        return Reserved0$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0
+     * }
+     */
+    public static byte Reserved0(MemorySegment struct) {
+        return struct.get(Reserved0$LAYOUT, Reserved0$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0
+     * }
+     */
+    public static void Reserved0(MemorySegment struct, byte fieldValue) {
+        struct.set(Reserved0$LAYOUT, Reserved0$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Reserved1$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static final OfInt Reserved1$layout() {
+        return Reserved1$LAYOUT;
+    }
+
+    private static final long Reserved1$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static final long Reserved1$offset() {
+        return Reserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static int Reserved1(MemorySegment struct) {
+        return struct.get(Reserved1$LAYOUT, Reserved1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static void Reserved1(MemorySegment struct, int fieldValue) {
+        struct.set(Reserved1$LAYOUT, Reserved1$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

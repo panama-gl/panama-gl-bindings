@@ -2,165 +2,457 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagRAWMOUSE {
+ *     USHORT usFlags;
+ *     union {
+ *         ULONG ulButtons;
+ *         struct {
+ *             USHORT usButtonFlags;
+ *             USHORT usButtonData;
+ *         };
+ *     };
+ *     ULONG ulRawButtons;
+ *     LONG lLastX;
+ *     LONG lLastY;
+ *     ULONG ulExtraInformation;
+ * }
+ * }
+ */
 public class tagRAWMOUSE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("usFlags"),
-        MemoryLayout.paddingLayout(16),
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("ulButtons"),
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("usButtonFlags"),
-                Constants$root.C_SHORT$LAYOUT.withName("usButtonData")
-            ).withName("$anon$0")
-        ).withName("$anon$0"),
-        Constants$root.C_LONG$LAYOUT.withName("ulRawButtons"),
-        Constants$root.C_LONG$LAYOUT.withName("lLastX"),
-        Constants$root.C_LONG$LAYOUT.withName("lLastY"),
-        Constants$root.C_LONG$LAYOUT.withName("ulExtraInformation")
-    ).withName("tagRAWMOUSE");
-    public static MemoryLayout $LAYOUT() {
-        return tagRAWMOUSE.$struct$LAYOUT;
+    tagRAWMOUSE() {
+        // Should not be called directly
     }
-    static final VarHandle usFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("usFlags"));
-    public static VarHandle usFlags$VH() {
-        return tagRAWMOUSE.usFlags$VH;
-    }
-    public static short usFlags$get(MemorySegment seg) {
-        return (short)tagRAWMOUSE.usFlags$VH.get(seg);
-    }
-    public static void usFlags$set( MemorySegment seg, short x) {
-        tagRAWMOUSE.usFlags$VH.set(seg, x);
-    }
-    public static short usFlags$get(MemorySegment seg, long index) {
-        return (short)tagRAWMOUSE.usFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void usFlags$set(MemorySegment seg, long index, short x) {
-        tagRAWMOUSE.usFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ulButtons$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("ulButtons"));
-    public static VarHandle ulButtons$VH() {
-        return tagRAWMOUSE.ulButtons$VH;
-    }
-    public static int ulButtons$get(MemorySegment seg) {
-        return (int)tagRAWMOUSE.ulButtons$VH.get(seg);
-    }
-    public static void ulButtons$set( MemorySegment seg, int x) {
-        tagRAWMOUSE.ulButtons$VH.set(seg, x);
-    }
-    public static int ulButtons$get(MemorySegment seg, long index) {
-        return (int)tagRAWMOUSE.ulButtons$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ulButtons$set(MemorySegment seg, long index, int x) {
-        tagRAWMOUSE.ulButtons$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle usButtonFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("usButtonFlags"));
-    public static VarHandle usButtonFlags$VH() {
-        return tagRAWMOUSE.usButtonFlags$VH;
-    }
-    public static short usButtonFlags$get(MemorySegment seg) {
-        return (short)tagRAWMOUSE.usButtonFlags$VH.get(seg);
-    }
-    public static void usButtonFlags$set( MemorySegment seg, short x) {
-        tagRAWMOUSE.usButtonFlags$VH.set(seg, x);
-    }
-    public static short usButtonFlags$get(MemorySegment seg, long index) {
-        return (short)tagRAWMOUSE.usButtonFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void usButtonFlags$set(MemorySegment seg, long index, short x) {
-        tagRAWMOUSE.usButtonFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle usButtonData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("usButtonData"));
-    public static VarHandle usButtonData$VH() {
-        return tagRAWMOUSE.usButtonData$VH;
-    }
-    public static short usButtonData$get(MemorySegment seg) {
-        return (short)tagRAWMOUSE.usButtonData$VH.get(seg);
-    }
-    public static void usButtonData$set( MemorySegment seg, short x) {
-        tagRAWMOUSE.usButtonData$VH.set(seg, x);
-    }
-    public static short usButtonData$get(MemorySegment seg, long index) {
-        return (short)tagRAWMOUSE.usButtonData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void usButtonData$set(MemorySegment seg, long index, short x) {
-        tagRAWMOUSE.usButtonData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ulRawButtons$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ulRawButtons"));
-    public static VarHandle ulRawButtons$VH() {
-        return tagRAWMOUSE.ulRawButtons$VH;
-    }
-    public static int ulRawButtons$get(MemorySegment seg) {
-        return (int)tagRAWMOUSE.ulRawButtons$VH.get(seg);
-    }
-    public static void ulRawButtons$set( MemorySegment seg, int x) {
-        tagRAWMOUSE.ulRawButtons$VH.set(seg, x);
-    }
-    public static int ulRawButtons$get(MemorySegment seg, long index) {
-        return (int)tagRAWMOUSE.ulRawButtons$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ulRawButtons$set(MemorySegment seg, long index, int x) {
-        tagRAWMOUSE.ulRawButtons$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lLastX$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lLastX"));
-    public static VarHandle lLastX$VH() {
-        return tagRAWMOUSE.lLastX$VH;
-    }
-    public static int lLastX$get(MemorySegment seg) {
-        return (int)tagRAWMOUSE.lLastX$VH.get(seg);
-    }
-    public static void lLastX$set( MemorySegment seg, int x) {
-        tagRAWMOUSE.lLastX$VH.set(seg, x);
-    }
-    public static int lLastX$get(MemorySegment seg, long index) {
-        return (int)tagRAWMOUSE.lLastX$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lLastX$set(MemorySegment seg, long index, int x) {
-        tagRAWMOUSE.lLastX$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lLastY$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lLastY"));
-    public static VarHandle lLastY$VH() {
-        return tagRAWMOUSE.lLastY$VH;
-    }
-    public static int lLastY$get(MemorySegment seg) {
-        return (int)tagRAWMOUSE.lLastY$VH.get(seg);
-    }
-    public static void lLastY$set( MemorySegment seg, int x) {
-        tagRAWMOUSE.lLastY$VH.set(seg, x);
-    }
-    public static int lLastY$get(MemorySegment seg, long index) {
-        return (int)tagRAWMOUSE.lLastY$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lLastY$set(MemorySegment seg, long index, int x) {
-        tagRAWMOUSE.lLastY$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ulExtraInformation$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ulExtraInformation"));
-    public static VarHandle ulExtraInformation$VH() {
-        return tagRAWMOUSE.ulExtraInformation$VH;
-    }
-    public static int ulExtraInformation$get(MemorySegment seg) {
-        return (int)tagRAWMOUSE.ulExtraInformation$VH.get(seg);
-    }
-    public static void ulExtraInformation$set( MemorySegment seg, int x) {
-        tagRAWMOUSE.ulExtraInformation$VH.set(seg, x);
-    }
-    public static int ulExtraInformation$get(MemorySegment seg, long index) {
-        return (int)tagRAWMOUSE.ulExtraInformation$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ulExtraInformation$set(MemorySegment seg, long index, int x) {
-        tagRAWMOUSE.ulExtraInformation$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_SHORT.withName("usFlags"),
+        MemoryLayout.paddingLayout(2),
+        MemoryLayout.unionLayout(
+            freeglut_h.C_LONG.withName("ulButtons"),
+            MemoryLayout.structLayout(
+                freeglut_h.C_SHORT.withName("usButtonFlags"),
+                freeglut_h.C_SHORT.withName("usButtonData")
+            ).withName("$anon$14916:9")
+        ).withName("$anon$14914:5"),
+        freeglut_h.C_LONG.withName("ulRawButtons"),
+        freeglut_h.C_LONG.withName("lLastX"),
+        freeglut_h.C_LONG.withName("lLastY"),
+        freeglut_h.C_LONG.withName("ulExtraInformation")
+    ).withName("tagRAWMOUSE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort usFlags$LAYOUT = (OfShort)$LAYOUT.select(groupElement("usFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT usFlags
+     * }
+     */
+    public static final OfShort usFlags$layout() {
+        return usFlags$LAYOUT;
+    }
+
+    private static final long usFlags$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT usFlags
+     * }
+     */
+    public static final long usFlags$offset() {
+        return usFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT usFlags
+     * }
+     */
+    public static short usFlags(MemorySegment struct) {
+        return struct.get(usFlags$LAYOUT, usFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT usFlags
+     * }
+     */
+    public static void usFlags(MemorySegment struct, short fieldValue) {
+        struct.set(usFlags$LAYOUT, usFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ulButtons$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$14914:5"), groupElement("ulButtons"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG ulButtons
+     * }
+     */
+    public static final OfInt ulButtons$layout() {
+        return ulButtons$LAYOUT;
+    }
+
+    private static final long ulButtons$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG ulButtons
+     * }
+     */
+    public static final long ulButtons$offset() {
+        return ulButtons$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG ulButtons
+     * }
+     */
+    public static int ulButtons(MemorySegment struct) {
+        return struct.get(ulButtons$LAYOUT, ulButtons$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG ulButtons
+     * }
+     */
+    public static void ulButtons(MemorySegment struct, int fieldValue) {
+        struct.set(ulButtons$LAYOUT, ulButtons$OFFSET, fieldValue);
+    }
+
+    private static final OfShort usButtonFlags$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$14914:5"), groupElement("$anon$14916:9"), groupElement("usButtonFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT usButtonFlags
+     * }
+     */
+    public static final OfShort usButtonFlags$layout() {
+        return usButtonFlags$LAYOUT;
+    }
+
+    private static final long usButtonFlags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT usButtonFlags
+     * }
+     */
+    public static final long usButtonFlags$offset() {
+        return usButtonFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT usButtonFlags
+     * }
+     */
+    public static short usButtonFlags(MemorySegment struct) {
+        return struct.get(usButtonFlags$LAYOUT, usButtonFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT usButtonFlags
+     * }
+     */
+    public static void usButtonFlags(MemorySegment struct, short fieldValue) {
+        struct.set(usButtonFlags$LAYOUT, usButtonFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfShort usButtonData$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$14914:5"), groupElement("$anon$14916:9"), groupElement("usButtonData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT usButtonData
+     * }
+     */
+    public static final OfShort usButtonData$layout() {
+        return usButtonData$LAYOUT;
+    }
+
+    private static final long usButtonData$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT usButtonData
+     * }
+     */
+    public static final long usButtonData$offset() {
+        return usButtonData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT usButtonData
+     * }
+     */
+    public static short usButtonData(MemorySegment struct) {
+        return struct.get(usButtonData$LAYOUT, usButtonData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT usButtonData
+     * }
+     */
+    public static void usButtonData(MemorySegment struct, short fieldValue) {
+        struct.set(usButtonData$LAYOUT, usButtonData$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ulRawButtons$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ulRawButtons"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG ulRawButtons
+     * }
+     */
+    public static final OfInt ulRawButtons$layout() {
+        return ulRawButtons$LAYOUT;
+    }
+
+    private static final long ulRawButtons$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG ulRawButtons
+     * }
+     */
+    public static final long ulRawButtons$offset() {
+        return ulRawButtons$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG ulRawButtons
+     * }
+     */
+    public static int ulRawButtons(MemorySegment struct) {
+        return struct.get(ulRawButtons$LAYOUT, ulRawButtons$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG ulRawButtons
+     * }
+     */
+    public static void ulRawButtons(MemorySegment struct, int fieldValue) {
+        struct.set(ulRawButtons$LAYOUT, ulRawButtons$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lLastX$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lLastX"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG lLastX
+     * }
+     */
+    public static final OfInt lLastX$layout() {
+        return lLastX$LAYOUT;
+    }
+
+    private static final long lLastX$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG lLastX
+     * }
+     */
+    public static final long lLastX$offset() {
+        return lLastX$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG lLastX
+     * }
+     */
+    public static int lLastX(MemorySegment struct) {
+        return struct.get(lLastX$LAYOUT, lLastX$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG lLastX
+     * }
+     */
+    public static void lLastX(MemorySegment struct, int fieldValue) {
+        struct.set(lLastX$LAYOUT, lLastX$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lLastY$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lLastY"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG lLastY
+     * }
+     */
+    public static final OfInt lLastY$layout() {
+        return lLastY$LAYOUT;
+    }
+
+    private static final long lLastY$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG lLastY
+     * }
+     */
+    public static final long lLastY$offset() {
+        return lLastY$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG lLastY
+     * }
+     */
+    public static int lLastY(MemorySegment struct) {
+        return struct.get(lLastY$LAYOUT, lLastY$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG lLastY
+     * }
+     */
+    public static void lLastY(MemorySegment struct, int fieldValue) {
+        struct.set(lLastY$LAYOUT, lLastY$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ulExtraInformation$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ulExtraInformation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG ulExtraInformation
+     * }
+     */
+    public static final OfInt ulExtraInformation$layout() {
+        return ulExtraInformation$LAYOUT;
+    }
+
+    private static final long ulExtraInformation$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG ulExtraInformation
+     * }
+     */
+    public static final long ulExtraInformation$offset() {
+        return ulExtraInformation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG ulExtraInformation
+     * }
+     */
+    public static int ulExtraInformation(MemorySegment struct) {
+        return struct.get(ulExtraInformation$LAYOUT, ulExtraInformation$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG ulExtraInformation
+     * }
+     */
+    public static void ulExtraInformation(MemorySegment struct, int fieldValue) {
+        struct.set(ulExtraInformation$LAYOUT, ulExtraInformation$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -1,6 +1,6 @@
-sudo xattr -r -d com.apple.quarantine /Library/Java/JavaVirtualMachines/jextract-19/bin/
+sudo xattr -r -d com.apple.quarantine /Library/Java/JavaVirtualMachines/jextract-22/
 
-JEXTRACT=/Library/Java/JavaVirtualMachines/jextract-19/bin/jextract
+JEXTRACT=/Library/Java/JavaVirtualMachines/jextract-22/jextract
 
 #SDK_DIR=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/
 #-F/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/
@@ -18,6 +18,5 @@ $JEXTRACT \
   -lGLUT.framework \
   --target-package cgl.macos.arm \
   --output ../../panama-gl-bindings-macos/src/generated/java/ \
-  --source \
   --header-class-name cgl_h \
  include_cgl.h

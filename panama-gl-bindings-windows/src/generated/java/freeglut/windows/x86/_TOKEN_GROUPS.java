@@ -2,50 +2,210 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _TOKEN_GROUPS {
+ *     DWORD GroupCount;
+ *     SID_AND_ATTRIBUTES Groups[1];
+ * }
+ * }
+ */
 public class _TOKEN_GROUPS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("GroupCount"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("Sid"),
-            Constants$root.C_LONG$LAYOUT.withName("Attributes"),
-            MemoryLayout.paddingLayout(32)
-        ).withName("_SID_AND_ATTRIBUTES")).withName("Groups")
-    ).withName("_TOKEN_GROUPS");
-    public static MemoryLayout $LAYOUT() {
-        return _TOKEN_GROUPS.$struct$LAYOUT;
+    _TOKEN_GROUPS() {
+        // Should not be called directly
     }
-    static final VarHandle GroupCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GroupCount"));
-    public static VarHandle GroupCount$VH() {
-        return _TOKEN_GROUPS.GroupCount$VH;
-    }
-    public static int GroupCount$get(MemorySegment seg) {
-        return (int)_TOKEN_GROUPS.GroupCount$VH.get(seg);
-    }
-    public static void GroupCount$set( MemorySegment seg, int x) {
-        _TOKEN_GROUPS.GroupCount$VH.set(seg, x);
-    }
-    public static int GroupCount$get(MemorySegment seg, long index) {
-        return (int)_TOKEN_GROUPS.GroupCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GroupCount$set(MemorySegment seg, long index, int x) {
-        _TOKEN_GROUPS.GroupCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Groups$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("GroupCount"),
+        MemoryLayout.paddingLayout(4),
+        MemoryLayout.sequenceLayout(1, _SID_AND_ATTRIBUTES.layout()).withName("Groups")
+    ).withName("_TOKEN_GROUPS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt GroupCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("GroupCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD GroupCount
+     * }
+     */
+    public static final OfInt GroupCount$layout() {
+        return GroupCount$LAYOUT;
+    }
+
+    private static final long GroupCount$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD GroupCount
+     * }
+     */
+    public static final long GroupCount$offset() {
+        return GroupCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD GroupCount
+     * }
+     */
+    public static int GroupCount(MemorySegment struct) {
+        return struct.get(GroupCount$LAYOUT, GroupCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD GroupCount
+     * }
+     */
+    public static void GroupCount(MemorySegment struct, int fieldValue) {
+        struct.set(GroupCount$LAYOUT, GroupCount$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Groups$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Groups"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SID_AND_ATTRIBUTES Groups[1]
+     * }
+     */
+    public static final SequenceLayout Groups$layout() {
+        return Groups$LAYOUT;
+    }
+
+    private static final long Groups$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SID_AND_ATTRIBUTES Groups[1]
+     * }
+     */
+    public static final long Groups$offset() {
+        return Groups$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SID_AND_ATTRIBUTES Groups[1]
+     * }
+     */
+    public static MemorySegment Groups(MemorySegment struct) {
+        return struct.asSlice(Groups$OFFSET, Groups$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SID_AND_ATTRIBUTES Groups[1]
+     * }
+     */
+    public static void Groups(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Groups$OFFSET, Groups$LAYOUT.byteSize());
+    }
+
+    private static long[] Groups$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * SID_AND_ATTRIBUTES Groups[1]
+     * }
+     */
+    public static long[] Groups$dimensions() {
+        return Groups$DIMS;
+    }
+    private static final MethodHandle Groups$ELEM_HANDLE = Groups$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * SID_AND_ATTRIBUTES Groups[1]
+     * }
+     */
+    public static MemorySegment Groups(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)Groups$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * SID_AND_ATTRIBUTES Groups[1]
+     * }
+     */
+    public static void Groups(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, Groups(struct, index0), 0L, _SID_AND_ATTRIBUTES.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

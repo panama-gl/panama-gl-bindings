@@ -2,112 +2,313 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _NCRYPT_KEY_ATTEST_PADDING_INFO {
+ *     ULONG magic;
+ *     PUCHAR pbKeyBlob;
+ *     ULONG cbKeyBlob;
+ *     PUCHAR pbKeyAuth;
+ *     ULONG cbKeyAuth;
+ * }
+ * }
+ */
 public class _NCRYPT_KEY_ATTEST_PADDING_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("magic"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pbKeyBlob"),
-        Constants$root.C_LONG$LAYOUT.withName("cbKeyBlob"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pbKeyAuth"),
-        Constants$root.C_LONG$LAYOUT.withName("cbKeyAuth"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_NCRYPT_KEY_ATTEST_PADDING_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _NCRYPT_KEY_ATTEST_PADDING_INFO.$struct$LAYOUT;
+    _NCRYPT_KEY_ATTEST_PADDING_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle magic$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("magic"));
-    public static VarHandle magic$VH() {
-        return _NCRYPT_KEY_ATTEST_PADDING_INFO.magic$VH;
-    }
-    public static int magic$get(MemorySegment seg) {
-        return (int)_NCRYPT_KEY_ATTEST_PADDING_INFO.magic$VH.get(seg);
-    }
-    public static void magic$set( MemorySegment seg, int x) {
-        _NCRYPT_KEY_ATTEST_PADDING_INFO.magic$VH.set(seg, x);
-    }
-    public static int magic$get(MemorySegment seg, long index) {
-        return (int)_NCRYPT_KEY_ATTEST_PADDING_INFO.magic$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void magic$set(MemorySegment seg, long index, int x) {
-        _NCRYPT_KEY_ATTEST_PADDING_INFO.magic$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pbKeyBlob$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pbKeyBlob"));
-    public static VarHandle pbKeyBlob$VH() {
-        return _NCRYPT_KEY_ATTEST_PADDING_INFO.pbKeyBlob$VH;
-    }
-    public static MemoryAddress pbKeyBlob$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_NCRYPT_KEY_ATTEST_PADDING_INFO.pbKeyBlob$VH.get(seg);
-    }
-    public static void pbKeyBlob$set( MemorySegment seg, MemoryAddress x) {
-        _NCRYPT_KEY_ATTEST_PADDING_INFO.pbKeyBlob$VH.set(seg, x);
-    }
-    public static MemoryAddress pbKeyBlob$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_NCRYPT_KEY_ATTEST_PADDING_INFO.pbKeyBlob$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pbKeyBlob$set(MemorySegment seg, long index, MemoryAddress x) {
-        _NCRYPT_KEY_ATTEST_PADDING_INFO.pbKeyBlob$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbKeyBlob$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbKeyBlob"));
-    public static VarHandle cbKeyBlob$VH() {
-        return _NCRYPT_KEY_ATTEST_PADDING_INFO.cbKeyBlob$VH;
-    }
-    public static int cbKeyBlob$get(MemorySegment seg) {
-        return (int)_NCRYPT_KEY_ATTEST_PADDING_INFO.cbKeyBlob$VH.get(seg);
-    }
-    public static void cbKeyBlob$set( MemorySegment seg, int x) {
-        _NCRYPT_KEY_ATTEST_PADDING_INFO.cbKeyBlob$VH.set(seg, x);
-    }
-    public static int cbKeyBlob$get(MemorySegment seg, long index) {
-        return (int)_NCRYPT_KEY_ATTEST_PADDING_INFO.cbKeyBlob$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbKeyBlob$set(MemorySegment seg, long index, int x) {
-        _NCRYPT_KEY_ATTEST_PADDING_INFO.cbKeyBlob$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pbKeyAuth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pbKeyAuth"));
-    public static VarHandle pbKeyAuth$VH() {
-        return _NCRYPT_KEY_ATTEST_PADDING_INFO.pbKeyAuth$VH;
-    }
-    public static MemoryAddress pbKeyAuth$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_NCRYPT_KEY_ATTEST_PADDING_INFO.pbKeyAuth$VH.get(seg);
-    }
-    public static void pbKeyAuth$set( MemorySegment seg, MemoryAddress x) {
-        _NCRYPT_KEY_ATTEST_PADDING_INFO.pbKeyAuth$VH.set(seg, x);
-    }
-    public static MemoryAddress pbKeyAuth$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_NCRYPT_KEY_ATTEST_PADDING_INFO.pbKeyAuth$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pbKeyAuth$set(MemorySegment seg, long index, MemoryAddress x) {
-        _NCRYPT_KEY_ATTEST_PADDING_INFO.pbKeyAuth$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbKeyAuth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbKeyAuth"));
-    public static VarHandle cbKeyAuth$VH() {
-        return _NCRYPT_KEY_ATTEST_PADDING_INFO.cbKeyAuth$VH;
-    }
-    public static int cbKeyAuth$get(MemorySegment seg) {
-        return (int)_NCRYPT_KEY_ATTEST_PADDING_INFO.cbKeyAuth$VH.get(seg);
-    }
-    public static void cbKeyAuth$set( MemorySegment seg, int x) {
-        _NCRYPT_KEY_ATTEST_PADDING_INFO.cbKeyAuth$VH.set(seg, x);
-    }
-    public static int cbKeyAuth$get(MemorySegment seg, long index) {
-        return (int)_NCRYPT_KEY_ATTEST_PADDING_INFO.cbKeyAuth$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbKeyAuth$set(MemorySegment seg, long index, int x) {
-        _NCRYPT_KEY_ATTEST_PADDING_INFO.cbKeyAuth$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("magic"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pbKeyBlob"),
+        wgl_h.C_LONG.withName("cbKeyBlob"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pbKeyAuth"),
+        wgl_h.C_LONG.withName("cbKeyAuth"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_NCRYPT_KEY_ATTEST_PADDING_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt magic$LAYOUT = (OfInt)$LAYOUT.select(groupElement("magic"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG magic
+     * }
+     */
+    public static final OfInt magic$layout() {
+        return magic$LAYOUT;
+    }
+
+    private static final long magic$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG magic
+     * }
+     */
+    public static final long magic$offset() {
+        return magic$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG magic
+     * }
+     */
+    public static int magic(MemorySegment struct) {
+        return struct.get(magic$LAYOUT, magic$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG magic
+     * }
+     */
+    public static void magic(MemorySegment struct, int fieldValue) {
+        struct.set(magic$LAYOUT, magic$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pbKeyBlob$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pbKeyBlob"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PUCHAR pbKeyBlob
+     * }
+     */
+    public static final AddressLayout pbKeyBlob$layout() {
+        return pbKeyBlob$LAYOUT;
+    }
+
+    private static final long pbKeyBlob$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PUCHAR pbKeyBlob
+     * }
+     */
+    public static final long pbKeyBlob$offset() {
+        return pbKeyBlob$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PUCHAR pbKeyBlob
+     * }
+     */
+    public static MemorySegment pbKeyBlob(MemorySegment struct) {
+        return struct.get(pbKeyBlob$LAYOUT, pbKeyBlob$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PUCHAR pbKeyBlob
+     * }
+     */
+    public static void pbKeyBlob(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pbKeyBlob$LAYOUT, pbKeyBlob$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbKeyBlob$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbKeyBlob"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cbKeyBlob
+     * }
+     */
+    public static final OfInt cbKeyBlob$layout() {
+        return cbKeyBlob$LAYOUT;
+    }
+
+    private static final long cbKeyBlob$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cbKeyBlob
+     * }
+     */
+    public static final long cbKeyBlob$offset() {
+        return cbKeyBlob$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cbKeyBlob
+     * }
+     */
+    public static int cbKeyBlob(MemorySegment struct) {
+        return struct.get(cbKeyBlob$LAYOUT, cbKeyBlob$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cbKeyBlob
+     * }
+     */
+    public static void cbKeyBlob(MemorySegment struct, int fieldValue) {
+        struct.set(cbKeyBlob$LAYOUT, cbKeyBlob$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pbKeyAuth$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pbKeyAuth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PUCHAR pbKeyAuth
+     * }
+     */
+    public static final AddressLayout pbKeyAuth$layout() {
+        return pbKeyAuth$LAYOUT;
+    }
+
+    private static final long pbKeyAuth$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PUCHAR pbKeyAuth
+     * }
+     */
+    public static final long pbKeyAuth$offset() {
+        return pbKeyAuth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PUCHAR pbKeyAuth
+     * }
+     */
+    public static MemorySegment pbKeyAuth(MemorySegment struct) {
+        return struct.get(pbKeyAuth$LAYOUT, pbKeyAuth$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PUCHAR pbKeyAuth
+     * }
+     */
+    public static void pbKeyAuth(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pbKeyAuth$LAYOUT, pbKeyAuth$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbKeyAuth$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbKeyAuth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cbKeyAuth
+     * }
+     */
+    public static final OfInt cbKeyAuth$layout() {
+        return cbKeyAuth$LAYOUT;
+    }
+
+    private static final long cbKeyAuth$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cbKeyAuth
+     * }
+     */
+    public static final long cbKeyAuth$offset() {
+        return cbKeyAuth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cbKeyAuth
+     * }
+     */
+    public static int cbKeyAuth(MemorySegment struct) {
+        return struct.get(cbKeyAuth$LAYOUT, cbKeyAuth$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cbKeyAuth
+     * }
+     */
+    public static void cbKeyAuth(MemorySegment struct, int fieldValue) {
+        struct.set(cbKeyAuth$LAYOUT, cbKeyAuth$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

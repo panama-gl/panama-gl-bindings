@@ -2,149 +2,449 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _TAPE_STATISTICS {
+ *     DWORD Version;
+ *     DWORD Flags;
+ *     LARGE_INTEGER RecoveredWrites;
+ *     LARGE_INTEGER UnrecoveredWrites;
+ *     LARGE_INTEGER RecoveredReads;
+ *     LARGE_INTEGER UnrecoveredReads;
+ *     BYTE CompressionRatioReads;
+ *     BYTE CompressionRatioWrites;
+ * }
+ * }
+ */
 public class _TAPE_STATISTICS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("RecoveredWrites"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("UnrecoveredWrites"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("RecoveredReads"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("UnrecoveredReads"),
-        Constants$root.C_CHAR$LAYOUT.withName("CompressionRatioReads"),
-        Constants$root.C_CHAR$LAYOUT.withName("CompressionRatioWrites"),
-        MemoryLayout.paddingLayout(48)
-    ).withName("_TAPE_STATISTICS");
-    public static MemoryLayout $LAYOUT() {
-        return _TAPE_STATISTICS.$struct$LAYOUT;
+    _TAPE_STATISTICS() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _TAPE_STATISTICS.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_TAPE_STATISTICS.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _TAPE_STATISTICS.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_TAPE_STATISTICS.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _TAPE_STATISTICS.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _TAPE_STATISTICS.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_TAPE_STATISTICS.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _TAPE_STATISTICS.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_TAPE_STATISTICS.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _TAPE_STATISTICS.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment RecoveredWrites$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    public static MemorySegment UnrecoveredWrites$slice(MemorySegment seg) {
-        return seg.asSlice(16, 8);
-    }
-    public static MemorySegment RecoveredReads$slice(MemorySegment seg) {
-        return seg.asSlice(24, 8);
-    }
-    public static MemorySegment UnrecoveredReads$slice(MemorySegment seg) {
-        return seg.asSlice(32, 8);
-    }
-    static final VarHandle CompressionRatioReads$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CompressionRatioReads"));
-    public static VarHandle CompressionRatioReads$VH() {
-        return _TAPE_STATISTICS.CompressionRatioReads$VH;
-    }
-    public static byte CompressionRatioReads$get(MemorySegment seg) {
-        return (byte)_TAPE_STATISTICS.CompressionRatioReads$VH.get(seg);
-    }
-    public static void CompressionRatioReads$set( MemorySegment seg, byte x) {
-        _TAPE_STATISTICS.CompressionRatioReads$VH.set(seg, x);
-    }
-    public static byte CompressionRatioReads$get(MemorySegment seg, long index) {
-        return (byte)_TAPE_STATISTICS.CompressionRatioReads$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CompressionRatioReads$set(MemorySegment seg, long index, byte x) {
-        _TAPE_STATISTICS.CompressionRatioReads$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CompressionRatioWrites$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CompressionRatioWrites"));
-    public static VarHandle CompressionRatioWrites$VH() {
-        return _TAPE_STATISTICS.CompressionRatioWrites$VH;
-    }
-    public static byte CompressionRatioWrites$get(MemorySegment seg) {
-        return (byte)_TAPE_STATISTICS.CompressionRatioWrites$VH.get(seg);
-    }
-    public static void CompressionRatioWrites$set( MemorySegment seg, byte x) {
-        _TAPE_STATISTICS.CompressionRatioWrites$VH.set(seg, x);
-    }
-    public static byte CompressionRatioWrites$get(MemorySegment seg, long index) {
-        return (byte)_TAPE_STATISTICS.CompressionRatioWrites$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CompressionRatioWrites$set(MemorySegment seg, long index, byte x) {
-        _TAPE_STATISTICS.CompressionRatioWrites$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Flags"),
+        _LARGE_INTEGER.layout().withName("RecoveredWrites"),
+        _LARGE_INTEGER.layout().withName("UnrecoveredWrites"),
+        _LARGE_INTEGER.layout().withName("RecoveredReads"),
+        _LARGE_INTEGER.layout().withName("UnrecoveredReads"),
+        wgl_h.C_CHAR.withName("CompressionRatioReads"),
+        wgl_h.C_CHAR.withName("CompressionRatioWrites"),
+        MemoryLayout.paddingLayout(6)
+    ).withName("_TAPE_STATISTICS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout RecoveredWrites$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("RecoveredWrites"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER RecoveredWrites
+     * }
+     */
+    public static final GroupLayout RecoveredWrites$layout() {
+        return RecoveredWrites$LAYOUT;
+    }
+
+    private static final long RecoveredWrites$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER RecoveredWrites
+     * }
+     */
+    public static final long RecoveredWrites$offset() {
+        return RecoveredWrites$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER RecoveredWrites
+     * }
+     */
+    public static MemorySegment RecoveredWrites(MemorySegment struct) {
+        return struct.asSlice(RecoveredWrites$OFFSET, RecoveredWrites$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER RecoveredWrites
+     * }
+     */
+    public static void RecoveredWrites(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, RecoveredWrites$OFFSET, RecoveredWrites$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout UnrecoveredWrites$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("UnrecoveredWrites"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER UnrecoveredWrites
+     * }
+     */
+    public static final GroupLayout UnrecoveredWrites$layout() {
+        return UnrecoveredWrites$LAYOUT;
+    }
+
+    private static final long UnrecoveredWrites$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER UnrecoveredWrites
+     * }
+     */
+    public static final long UnrecoveredWrites$offset() {
+        return UnrecoveredWrites$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER UnrecoveredWrites
+     * }
+     */
+    public static MemorySegment UnrecoveredWrites(MemorySegment struct) {
+        return struct.asSlice(UnrecoveredWrites$OFFSET, UnrecoveredWrites$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER UnrecoveredWrites
+     * }
+     */
+    public static void UnrecoveredWrites(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, UnrecoveredWrites$OFFSET, UnrecoveredWrites$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout RecoveredReads$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("RecoveredReads"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER RecoveredReads
+     * }
+     */
+    public static final GroupLayout RecoveredReads$layout() {
+        return RecoveredReads$LAYOUT;
+    }
+
+    private static final long RecoveredReads$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER RecoveredReads
+     * }
+     */
+    public static final long RecoveredReads$offset() {
+        return RecoveredReads$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER RecoveredReads
+     * }
+     */
+    public static MemorySegment RecoveredReads(MemorySegment struct) {
+        return struct.asSlice(RecoveredReads$OFFSET, RecoveredReads$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER RecoveredReads
+     * }
+     */
+    public static void RecoveredReads(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, RecoveredReads$OFFSET, RecoveredReads$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout UnrecoveredReads$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("UnrecoveredReads"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER UnrecoveredReads
+     * }
+     */
+    public static final GroupLayout UnrecoveredReads$layout() {
+        return UnrecoveredReads$LAYOUT;
+    }
+
+    private static final long UnrecoveredReads$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER UnrecoveredReads
+     * }
+     */
+    public static final long UnrecoveredReads$offset() {
+        return UnrecoveredReads$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER UnrecoveredReads
+     * }
+     */
+    public static MemorySegment UnrecoveredReads(MemorySegment struct) {
+        return struct.asSlice(UnrecoveredReads$OFFSET, UnrecoveredReads$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER UnrecoveredReads
+     * }
+     */
+    public static void UnrecoveredReads(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, UnrecoveredReads$OFFSET, UnrecoveredReads$LAYOUT.byteSize());
+    }
+
+    private static final OfByte CompressionRatioReads$LAYOUT = (OfByte)$LAYOUT.select(groupElement("CompressionRatioReads"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE CompressionRatioReads
+     * }
+     */
+    public static final OfByte CompressionRatioReads$layout() {
+        return CompressionRatioReads$LAYOUT;
+    }
+
+    private static final long CompressionRatioReads$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE CompressionRatioReads
+     * }
+     */
+    public static final long CompressionRatioReads$offset() {
+        return CompressionRatioReads$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE CompressionRatioReads
+     * }
+     */
+    public static byte CompressionRatioReads(MemorySegment struct) {
+        return struct.get(CompressionRatioReads$LAYOUT, CompressionRatioReads$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE CompressionRatioReads
+     * }
+     */
+    public static void CompressionRatioReads(MemorySegment struct, byte fieldValue) {
+        struct.set(CompressionRatioReads$LAYOUT, CompressionRatioReads$OFFSET, fieldValue);
+    }
+
+    private static final OfByte CompressionRatioWrites$LAYOUT = (OfByte)$LAYOUT.select(groupElement("CompressionRatioWrites"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE CompressionRatioWrites
+     * }
+     */
+    public static final OfByte CompressionRatioWrites$layout() {
+        return CompressionRatioWrites$LAYOUT;
+    }
+
+    private static final long CompressionRatioWrites$OFFSET = 41;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE CompressionRatioWrites
+     * }
+     */
+    public static final long CompressionRatioWrites$offset() {
+        return CompressionRatioWrites$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE CompressionRatioWrites
+     * }
+     */
+    public static byte CompressionRatioWrites(MemorySegment struct) {
+        return struct.get(CompressionRatioWrites$LAYOUT, CompressionRatioWrites$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE CompressionRatioWrites
+     * }
+     */
+    public static void CompressionRatioWrites(MemorySegment struct, byte fieldValue) {
+        struct.set(CompressionRatioWrites$LAYOUT, CompressionRatioWrites$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

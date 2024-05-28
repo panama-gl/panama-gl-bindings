@@ -2,13 +2,33 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _DRIVE_LAYOUT_INFORMATION_EX {
+ *     DWORD PartitionStyle;
+ *     DWORD PartitionCount;
+ *     union {
+ *         DRIVE_LAYOUT_INFORMATION_MBR Mbr;
+ *         DRIVE_LAYOUT_INFORMATION_GPT Gpt;
+ *     };
+ *     PARTITION_INFORMATION_EX PartitionEntry[1];
+ * } DRIVE_LAYOUT_INFORMATION_EX
+ * }
+ */
 public class DRIVE_LAYOUT_INFORMATION_EX extends _DRIVE_LAYOUT_INFORMATION_EX {
 
+    DRIVE_LAYOUT_INFORMATION_EX() {
+        // Should not be called directly
+    }
 }
-
 

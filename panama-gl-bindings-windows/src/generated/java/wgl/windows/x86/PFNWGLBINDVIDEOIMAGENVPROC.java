@@ -2,27 +2,69 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNWGLBINDVIDEOIMAGENVPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemoryAddress hVideoDevice, java.lang.foreign.MemoryAddress hPbuffer, int iVideoBuffer);
-    static MemorySegment allocate(PFNWGLBINDVIDEOIMAGENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNWGLBINDVIDEOIMAGENVPROC.class, fi, constants$1413.PFNWGLBINDVIDEOIMAGENVPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PFNWGLBINDVIDEOIMAGENVPROC)(HPVIDEODEV, HPBUFFERARB, int) __attribute__((stdcall))
+ * }
+ */
+public class PFNWGLBINDVIDEOIMAGENVPROC {
+
+    PFNWGLBINDVIDEOIMAGENVPROC() {
+        // Should not be called directly
     }
-    static PFNWGLBINDVIDEOIMAGENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _hVideoDevice, java.lang.foreign.MemoryAddress _hPbuffer, int _iVideoBuffer) -> {
-            try {
-                return (int)constants$1413.PFNWGLBINDVIDEOIMAGENVPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_hVideoDevice, (java.lang.foreign.Addressable)_hPbuffer, _iVideoBuffer);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment hVideoDevice, MemorySegment hPbuffer, int iVideoBuffer);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_INT
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNWGLBINDVIDEOIMAGENVPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNWGLBINDVIDEOIMAGENVPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment hVideoDevice, MemorySegment hPbuffer, int iVideoBuffer) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, hVideoDevice, hPbuffer, iVideoBuffer);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

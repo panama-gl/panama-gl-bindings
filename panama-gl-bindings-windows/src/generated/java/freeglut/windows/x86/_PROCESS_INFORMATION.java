@@ -2,92 +2,264 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PROCESS_INFORMATION {
+ *     HANDLE hProcess;
+ *     HANDLE hThread;
+ *     DWORD dwProcessId;
+ *     DWORD dwThreadId;
+ * }
+ * }
+ */
 public class _PROCESS_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("hProcess"),
-        Constants$root.C_POINTER$LAYOUT.withName("hThread"),
-        Constants$root.C_LONG$LAYOUT.withName("dwProcessId"),
-        Constants$root.C_LONG$LAYOUT.withName("dwThreadId")
-    ).withName("_PROCESS_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return _PROCESS_INFORMATION.$struct$LAYOUT;
+    _PROCESS_INFORMATION() {
+        // Should not be called directly
     }
-    static final VarHandle hProcess$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hProcess"));
-    public static VarHandle hProcess$VH() {
-        return _PROCESS_INFORMATION.hProcess$VH;
-    }
-    public static MemoryAddress hProcess$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PROCESS_INFORMATION.hProcess$VH.get(seg);
-    }
-    public static void hProcess$set( MemorySegment seg, MemoryAddress x) {
-        _PROCESS_INFORMATION.hProcess$VH.set(seg, x);
-    }
-    public static MemoryAddress hProcess$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PROCESS_INFORMATION.hProcess$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hProcess$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PROCESS_INFORMATION.hProcess$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hThread$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hThread"));
-    public static VarHandle hThread$VH() {
-        return _PROCESS_INFORMATION.hThread$VH;
-    }
-    public static MemoryAddress hThread$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PROCESS_INFORMATION.hThread$VH.get(seg);
-    }
-    public static void hThread$set( MemorySegment seg, MemoryAddress x) {
-        _PROCESS_INFORMATION.hThread$VH.set(seg, x);
-    }
-    public static MemoryAddress hThread$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PROCESS_INFORMATION.hThread$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hThread$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PROCESS_INFORMATION.hThread$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwProcessId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwProcessId"));
-    public static VarHandle dwProcessId$VH() {
-        return _PROCESS_INFORMATION.dwProcessId$VH;
-    }
-    public static int dwProcessId$get(MemorySegment seg) {
-        return (int)_PROCESS_INFORMATION.dwProcessId$VH.get(seg);
-    }
-    public static void dwProcessId$set( MemorySegment seg, int x) {
-        _PROCESS_INFORMATION.dwProcessId$VH.set(seg, x);
-    }
-    public static int dwProcessId$get(MemorySegment seg, long index) {
-        return (int)_PROCESS_INFORMATION.dwProcessId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwProcessId$set(MemorySegment seg, long index, int x) {
-        _PROCESS_INFORMATION.dwProcessId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwThreadId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwThreadId"));
-    public static VarHandle dwThreadId$VH() {
-        return _PROCESS_INFORMATION.dwThreadId$VH;
-    }
-    public static int dwThreadId$get(MemorySegment seg) {
-        return (int)_PROCESS_INFORMATION.dwThreadId$VH.get(seg);
-    }
-    public static void dwThreadId$set( MemorySegment seg, int x) {
-        _PROCESS_INFORMATION.dwThreadId$VH.set(seg, x);
-    }
-    public static int dwThreadId$get(MemorySegment seg, long index) {
-        return (int)_PROCESS_INFORMATION.dwThreadId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwThreadId$set(MemorySegment seg, long index, int x) {
-        _PROCESS_INFORMATION.dwThreadId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_POINTER.withName("hProcess"),
+        freeglut_h.C_POINTER.withName("hThread"),
+        freeglut_h.C_LONG.withName("dwProcessId"),
+        freeglut_h.C_LONG.withName("dwThreadId")
+    ).withName("_PROCESS_INFORMATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout hProcess$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hProcess"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HANDLE hProcess
+     * }
+     */
+    public static final AddressLayout hProcess$layout() {
+        return hProcess$LAYOUT;
+    }
+
+    private static final long hProcess$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HANDLE hProcess
+     * }
+     */
+    public static final long hProcess$offset() {
+        return hProcess$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HANDLE hProcess
+     * }
+     */
+    public static MemorySegment hProcess(MemorySegment struct) {
+        return struct.get(hProcess$LAYOUT, hProcess$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HANDLE hProcess
+     * }
+     */
+    public static void hProcess(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hProcess$LAYOUT, hProcess$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hThread$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hThread"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HANDLE hThread
+     * }
+     */
+    public static final AddressLayout hThread$layout() {
+        return hThread$LAYOUT;
+    }
+
+    private static final long hThread$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HANDLE hThread
+     * }
+     */
+    public static final long hThread$offset() {
+        return hThread$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HANDLE hThread
+     * }
+     */
+    public static MemorySegment hThread(MemorySegment struct) {
+        return struct.get(hThread$LAYOUT, hThread$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HANDLE hThread
+     * }
+     */
+    public static void hThread(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hThread$LAYOUT, hThread$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwProcessId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwProcessId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwProcessId
+     * }
+     */
+    public static final OfInt dwProcessId$layout() {
+        return dwProcessId$LAYOUT;
+    }
+
+    private static final long dwProcessId$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwProcessId
+     * }
+     */
+    public static final long dwProcessId$offset() {
+        return dwProcessId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwProcessId
+     * }
+     */
+    public static int dwProcessId(MemorySegment struct) {
+        return struct.get(dwProcessId$LAYOUT, dwProcessId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwProcessId
+     * }
+     */
+    public static void dwProcessId(MemorySegment struct, int fieldValue) {
+        struct.set(dwProcessId$LAYOUT, dwProcessId$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwThreadId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwThreadId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwThreadId
+     * }
+     */
+    public static final OfInt dwThreadId$layout() {
+        return dwThreadId$LAYOUT;
+    }
+
+    private static final long dwThreadId$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwThreadId
+     * }
+     */
+    public static final long dwThreadId$offset() {
+        return dwThreadId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwThreadId
+     * }
+     */
+    public static int dwThreadId(MemorySegment struct) {
+        return struct.get(dwThreadId$LAYOUT, dwThreadId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwThreadId
+     * }
+     */
+    public static void dwThreadId(MemorySegment struct, int fieldValue) {
+        struct.set(dwThreadId$LAYOUT, dwThreadId$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

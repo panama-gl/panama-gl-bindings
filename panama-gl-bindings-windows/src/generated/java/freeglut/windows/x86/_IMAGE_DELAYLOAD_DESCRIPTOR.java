@@ -2,193 +2,598 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _IMAGE_DELAYLOAD_DESCRIPTOR {
+ *     union {
+ *         DWORD AllAttributes;
+ *         struct {
+ *             DWORD RvaBased : 1;
+ *             DWORD ReservedAttributes : 31;
+ *         };
+ *     } Attributes;
+ *     DWORD DllNameRVA;
+ *     DWORD ModuleHandleRVA;
+ *     DWORD ImportAddressTableRVA;
+ *     DWORD ImportNameTableRVA;
+ *     DWORD BoundImportAddressTableRVA;
+ *     DWORD UnloadInformationTableRVA;
+ *     DWORD TimeDateStamp;
+ * }
+ * }
+ */
 public class _IMAGE_DELAYLOAD_DESCRIPTOR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("AllAttributes"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    MemoryLayout.paddingLayout(1).withName("RvaBased"),
-                    MemoryLayout.paddingLayout(31).withName("ReservedAttributes")
-                )
-            ).withName("$anon$0")
-        ).withName("Attributes"),
-        Constants$root.C_LONG$LAYOUT.withName("DllNameRVA"),
-        Constants$root.C_LONG$LAYOUT.withName("ModuleHandleRVA"),
-        Constants$root.C_LONG$LAYOUT.withName("ImportAddressTableRVA"),
-        Constants$root.C_LONG$LAYOUT.withName("ImportNameTableRVA"),
-        Constants$root.C_LONG$LAYOUT.withName("BoundImportAddressTableRVA"),
-        Constants$root.C_LONG$LAYOUT.withName("UnloadInformationTableRVA"),
-        Constants$root.C_LONG$LAYOUT.withName("TimeDateStamp")
-    ).withName("_IMAGE_DELAYLOAD_DESCRIPTOR");
-    public static MemoryLayout $LAYOUT() {
-        return _IMAGE_DELAYLOAD_DESCRIPTOR.$struct$LAYOUT;
+    _IMAGE_DELAYLOAD_DESCRIPTOR() {
+        // Should not be called directly
     }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _IMAGE_DELAYLOAD_DESCRIPTOR.Attributes.layout().withName("Attributes"),
+        freeglut_h.C_LONG.withName("DllNameRVA"),
+        freeglut_h.C_LONG.withName("ModuleHandleRVA"),
+        freeglut_h.C_LONG.withName("ImportAddressTableRVA"),
+        freeglut_h.C_LONG.withName("ImportNameTableRVA"),
+        freeglut_h.C_LONG.withName("BoundImportAddressTableRVA"),
+        freeglut_h.C_LONG.withName("UnloadInformationTableRVA"),
+        freeglut_h.C_LONG.withName("TimeDateStamp")
+    ).withName("_IMAGE_DELAYLOAD_DESCRIPTOR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     DWORD AllAttributes;
+     *     struct {
+     *         DWORD RvaBased : 1;
+     *         DWORD ReservedAttributes : 31;
+     *     };
+     * }
+     * }
+     */
     public static class Attributes {
 
-        static final  GroupLayout Attributes$union$LAYOUT = MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("AllAttributes"),
+        Attributes() {
+            // Should not be called directly
+        }
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            freeglut_h.C_LONG.withName("AllAttributes"),
             MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    MemoryLayout.paddingLayout(1).withName("RvaBased"),
-                    MemoryLayout.paddingLayout(31).withName("ReservedAttributes")
-                )
-            ).withName("$anon$0")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return Attributes.Attributes$union$LAYOUT;
+                MemoryLayout.paddingLayout(4)
+            ).withName("$anon$18333:9")
+        ).withName("$anon$18331:5");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        static final VarHandle AllAttributes$VH = Attributes$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AllAttributes"));
-        public static VarHandle AllAttributes$VH() {
-            return Attributes.AllAttributes$VH;
+
+        private static final OfInt AllAttributes$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AllAttributes"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD AllAttributes
+         * }
+         */
+        public static final OfInt AllAttributes$layout() {
+            return AllAttributes$LAYOUT;
         }
-        public static int AllAttributes$get(MemorySegment seg) {
-            return (int)Attributes.AllAttributes$VH.get(seg);
+
+        private static final long AllAttributes$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD AllAttributes
+         * }
+         */
+        public static final long AllAttributes$offset() {
+            return AllAttributes$OFFSET;
         }
-        public static void AllAttributes$set( MemorySegment seg, int x) {
-            Attributes.AllAttributes$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD AllAttributes
+         * }
+         */
+        public static int AllAttributes(MemorySegment union) {
+            return union.get(AllAttributes$LAYOUT, AllAttributes$OFFSET);
         }
-        public static int AllAttributes$get(MemorySegment seg, long index) {
-            return (int)Attributes.AllAttributes$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD AllAttributes
+         * }
+         */
+        public static void AllAttributes(MemorySegment union, int fieldValue) {
+            union.set(AllAttributes$LAYOUT, AllAttributes$OFFSET, fieldValue);
         }
-        public static void AllAttributes$set(MemorySegment seg, long index, int x) {
-            Attributes.AllAttributes$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment Attributes$slice(MemorySegment seg) {
-        return seg.asSlice(0, 4);
+    private static final GroupLayout Attributes$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Attributes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     DWORD AllAttributes;
+     *     struct {
+     *         DWORD RvaBased : 1;
+     *         DWORD ReservedAttributes : 31;
+     *     };
+     * } Attributes
+     * }
+     */
+    public static final GroupLayout Attributes$layout() {
+        return Attributes$LAYOUT;
     }
-    static final VarHandle DllNameRVA$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DllNameRVA"));
-    public static VarHandle DllNameRVA$VH() {
-        return _IMAGE_DELAYLOAD_DESCRIPTOR.DllNameRVA$VH;
+
+    private static final long Attributes$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     DWORD AllAttributes;
+     *     struct {
+     *         DWORD RvaBased : 1;
+     *         DWORD ReservedAttributes : 31;
+     *     };
+     * } Attributes
+     * }
+     */
+    public static final long Attributes$offset() {
+        return Attributes$OFFSET;
     }
-    public static int DllNameRVA$get(MemorySegment seg) {
-        return (int)_IMAGE_DELAYLOAD_DESCRIPTOR.DllNameRVA$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     DWORD AllAttributes;
+     *     struct {
+     *         DWORD RvaBased : 1;
+     *         DWORD ReservedAttributes : 31;
+     *     };
+     * } Attributes
+     * }
+     */
+    public static MemorySegment Attributes(MemorySegment struct) {
+        return struct.asSlice(Attributes$OFFSET, Attributes$LAYOUT.byteSize());
     }
-    public static void DllNameRVA$set( MemorySegment seg, int x) {
-        _IMAGE_DELAYLOAD_DESCRIPTOR.DllNameRVA$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     DWORD AllAttributes;
+     *     struct {
+     *         DWORD RvaBased : 1;
+     *         DWORD ReservedAttributes : 31;
+     *     };
+     * } Attributes
+     * }
+     */
+    public static void Attributes(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Attributes$OFFSET, Attributes$LAYOUT.byteSize());
     }
-    public static int DllNameRVA$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_DELAYLOAD_DESCRIPTOR.DllNameRVA$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfInt DllNameRVA$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DllNameRVA"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DllNameRVA
+     * }
+     */
+    public static final OfInt DllNameRVA$layout() {
+        return DllNameRVA$LAYOUT;
     }
-    public static void DllNameRVA$set(MemorySegment seg, long index, int x) {
-        _IMAGE_DELAYLOAD_DESCRIPTOR.DllNameRVA$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long DllNameRVA$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DllNameRVA
+     * }
+     */
+    public static final long DllNameRVA$offset() {
+        return DllNameRVA$OFFSET;
     }
-    static final VarHandle ModuleHandleRVA$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ModuleHandleRVA"));
-    public static VarHandle ModuleHandleRVA$VH() {
-        return _IMAGE_DELAYLOAD_DESCRIPTOR.ModuleHandleRVA$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DllNameRVA
+     * }
+     */
+    public static int DllNameRVA(MemorySegment struct) {
+        return struct.get(DllNameRVA$LAYOUT, DllNameRVA$OFFSET);
     }
-    public static int ModuleHandleRVA$get(MemorySegment seg) {
-        return (int)_IMAGE_DELAYLOAD_DESCRIPTOR.ModuleHandleRVA$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DllNameRVA
+     * }
+     */
+    public static void DllNameRVA(MemorySegment struct, int fieldValue) {
+        struct.set(DllNameRVA$LAYOUT, DllNameRVA$OFFSET, fieldValue);
     }
-    public static void ModuleHandleRVA$set( MemorySegment seg, int x) {
-        _IMAGE_DELAYLOAD_DESCRIPTOR.ModuleHandleRVA$VH.set(seg, x);
+
+    private static final OfInt ModuleHandleRVA$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ModuleHandleRVA"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ModuleHandleRVA
+     * }
+     */
+    public static final OfInt ModuleHandleRVA$layout() {
+        return ModuleHandleRVA$LAYOUT;
     }
-    public static int ModuleHandleRVA$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_DELAYLOAD_DESCRIPTOR.ModuleHandleRVA$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long ModuleHandleRVA$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ModuleHandleRVA
+     * }
+     */
+    public static final long ModuleHandleRVA$offset() {
+        return ModuleHandleRVA$OFFSET;
     }
-    public static void ModuleHandleRVA$set(MemorySegment seg, long index, int x) {
-        _IMAGE_DELAYLOAD_DESCRIPTOR.ModuleHandleRVA$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ModuleHandleRVA
+     * }
+     */
+    public static int ModuleHandleRVA(MemorySegment struct) {
+        return struct.get(ModuleHandleRVA$LAYOUT, ModuleHandleRVA$OFFSET);
     }
-    static final VarHandle ImportAddressTableRVA$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ImportAddressTableRVA"));
-    public static VarHandle ImportAddressTableRVA$VH() {
-        return _IMAGE_DELAYLOAD_DESCRIPTOR.ImportAddressTableRVA$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ModuleHandleRVA
+     * }
+     */
+    public static void ModuleHandleRVA(MemorySegment struct, int fieldValue) {
+        struct.set(ModuleHandleRVA$LAYOUT, ModuleHandleRVA$OFFSET, fieldValue);
     }
-    public static int ImportAddressTableRVA$get(MemorySegment seg) {
-        return (int)_IMAGE_DELAYLOAD_DESCRIPTOR.ImportAddressTableRVA$VH.get(seg);
+
+    private static final OfInt ImportAddressTableRVA$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ImportAddressTableRVA"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ImportAddressTableRVA
+     * }
+     */
+    public static final OfInt ImportAddressTableRVA$layout() {
+        return ImportAddressTableRVA$LAYOUT;
     }
-    public static void ImportAddressTableRVA$set( MemorySegment seg, int x) {
-        _IMAGE_DELAYLOAD_DESCRIPTOR.ImportAddressTableRVA$VH.set(seg, x);
+
+    private static final long ImportAddressTableRVA$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ImportAddressTableRVA
+     * }
+     */
+    public static final long ImportAddressTableRVA$offset() {
+        return ImportAddressTableRVA$OFFSET;
     }
-    public static int ImportAddressTableRVA$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_DELAYLOAD_DESCRIPTOR.ImportAddressTableRVA$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ImportAddressTableRVA
+     * }
+     */
+    public static int ImportAddressTableRVA(MemorySegment struct) {
+        return struct.get(ImportAddressTableRVA$LAYOUT, ImportAddressTableRVA$OFFSET);
     }
-    public static void ImportAddressTableRVA$set(MemorySegment seg, long index, int x) {
-        _IMAGE_DELAYLOAD_DESCRIPTOR.ImportAddressTableRVA$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ImportAddressTableRVA
+     * }
+     */
+    public static void ImportAddressTableRVA(MemorySegment struct, int fieldValue) {
+        struct.set(ImportAddressTableRVA$LAYOUT, ImportAddressTableRVA$OFFSET, fieldValue);
     }
-    static final VarHandle ImportNameTableRVA$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ImportNameTableRVA"));
-    public static VarHandle ImportNameTableRVA$VH() {
-        return _IMAGE_DELAYLOAD_DESCRIPTOR.ImportNameTableRVA$VH;
+
+    private static final OfInt ImportNameTableRVA$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ImportNameTableRVA"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ImportNameTableRVA
+     * }
+     */
+    public static final OfInt ImportNameTableRVA$layout() {
+        return ImportNameTableRVA$LAYOUT;
     }
-    public static int ImportNameTableRVA$get(MemorySegment seg) {
-        return (int)_IMAGE_DELAYLOAD_DESCRIPTOR.ImportNameTableRVA$VH.get(seg);
+
+    private static final long ImportNameTableRVA$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ImportNameTableRVA
+     * }
+     */
+    public static final long ImportNameTableRVA$offset() {
+        return ImportNameTableRVA$OFFSET;
     }
-    public static void ImportNameTableRVA$set( MemorySegment seg, int x) {
-        _IMAGE_DELAYLOAD_DESCRIPTOR.ImportNameTableRVA$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ImportNameTableRVA
+     * }
+     */
+    public static int ImportNameTableRVA(MemorySegment struct) {
+        return struct.get(ImportNameTableRVA$LAYOUT, ImportNameTableRVA$OFFSET);
     }
-    public static int ImportNameTableRVA$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_DELAYLOAD_DESCRIPTOR.ImportNameTableRVA$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ImportNameTableRVA
+     * }
+     */
+    public static void ImportNameTableRVA(MemorySegment struct, int fieldValue) {
+        struct.set(ImportNameTableRVA$LAYOUT, ImportNameTableRVA$OFFSET, fieldValue);
     }
-    public static void ImportNameTableRVA$set(MemorySegment seg, long index, int x) {
-        _IMAGE_DELAYLOAD_DESCRIPTOR.ImportNameTableRVA$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfInt BoundImportAddressTableRVA$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BoundImportAddressTableRVA"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BoundImportAddressTableRVA
+     * }
+     */
+    public static final OfInt BoundImportAddressTableRVA$layout() {
+        return BoundImportAddressTableRVA$LAYOUT;
     }
-    static final VarHandle BoundImportAddressTableRVA$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BoundImportAddressTableRVA"));
-    public static VarHandle BoundImportAddressTableRVA$VH() {
-        return _IMAGE_DELAYLOAD_DESCRIPTOR.BoundImportAddressTableRVA$VH;
+
+    private static final long BoundImportAddressTableRVA$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BoundImportAddressTableRVA
+     * }
+     */
+    public static final long BoundImportAddressTableRVA$offset() {
+        return BoundImportAddressTableRVA$OFFSET;
     }
-    public static int BoundImportAddressTableRVA$get(MemorySegment seg) {
-        return (int)_IMAGE_DELAYLOAD_DESCRIPTOR.BoundImportAddressTableRVA$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BoundImportAddressTableRVA
+     * }
+     */
+    public static int BoundImportAddressTableRVA(MemorySegment struct) {
+        return struct.get(BoundImportAddressTableRVA$LAYOUT, BoundImportAddressTableRVA$OFFSET);
     }
-    public static void BoundImportAddressTableRVA$set( MemorySegment seg, int x) {
-        _IMAGE_DELAYLOAD_DESCRIPTOR.BoundImportAddressTableRVA$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BoundImportAddressTableRVA
+     * }
+     */
+    public static void BoundImportAddressTableRVA(MemorySegment struct, int fieldValue) {
+        struct.set(BoundImportAddressTableRVA$LAYOUT, BoundImportAddressTableRVA$OFFSET, fieldValue);
     }
-    public static int BoundImportAddressTableRVA$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_DELAYLOAD_DESCRIPTOR.BoundImportAddressTableRVA$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfInt UnloadInformationTableRVA$LAYOUT = (OfInt)$LAYOUT.select(groupElement("UnloadInformationTableRVA"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD UnloadInformationTableRVA
+     * }
+     */
+    public static final OfInt UnloadInformationTableRVA$layout() {
+        return UnloadInformationTableRVA$LAYOUT;
     }
-    public static void BoundImportAddressTableRVA$set(MemorySegment seg, long index, int x) {
-        _IMAGE_DELAYLOAD_DESCRIPTOR.BoundImportAddressTableRVA$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long UnloadInformationTableRVA$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD UnloadInformationTableRVA
+     * }
+     */
+    public static final long UnloadInformationTableRVA$offset() {
+        return UnloadInformationTableRVA$OFFSET;
     }
-    static final VarHandle UnloadInformationTableRVA$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UnloadInformationTableRVA"));
-    public static VarHandle UnloadInformationTableRVA$VH() {
-        return _IMAGE_DELAYLOAD_DESCRIPTOR.UnloadInformationTableRVA$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD UnloadInformationTableRVA
+     * }
+     */
+    public static int UnloadInformationTableRVA(MemorySegment struct) {
+        return struct.get(UnloadInformationTableRVA$LAYOUT, UnloadInformationTableRVA$OFFSET);
     }
-    public static int UnloadInformationTableRVA$get(MemorySegment seg) {
-        return (int)_IMAGE_DELAYLOAD_DESCRIPTOR.UnloadInformationTableRVA$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD UnloadInformationTableRVA
+     * }
+     */
+    public static void UnloadInformationTableRVA(MemorySegment struct, int fieldValue) {
+        struct.set(UnloadInformationTableRVA$LAYOUT, UnloadInformationTableRVA$OFFSET, fieldValue);
     }
-    public static void UnloadInformationTableRVA$set( MemorySegment seg, int x) {
-        _IMAGE_DELAYLOAD_DESCRIPTOR.UnloadInformationTableRVA$VH.set(seg, x);
+
+    private static final OfInt TimeDateStamp$LAYOUT = (OfInt)$LAYOUT.select(groupElement("TimeDateStamp"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static final OfInt TimeDateStamp$layout() {
+        return TimeDateStamp$LAYOUT;
     }
-    public static int UnloadInformationTableRVA$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_DELAYLOAD_DESCRIPTOR.UnloadInformationTableRVA$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long TimeDateStamp$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static final long TimeDateStamp$offset() {
+        return TimeDateStamp$OFFSET;
     }
-    public static void UnloadInformationTableRVA$set(MemorySegment seg, long index, int x) {
-        _IMAGE_DELAYLOAD_DESCRIPTOR.UnloadInformationTableRVA$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static int TimeDateStamp(MemorySegment struct) {
+        return struct.get(TimeDateStamp$LAYOUT, TimeDateStamp$OFFSET);
     }
-    static final VarHandle TimeDateStamp$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TimeDateStamp"));
-    public static VarHandle TimeDateStamp$VH() {
-        return _IMAGE_DELAYLOAD_DESCRIPTOR.TimeDateStamp$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static void TimeDateStamp(MemorySegment struct, int fieldValue) {
+        struct.set(TimeDateStamp$LAYOUT, TimeDateStamp$OFFSET, fieldValue);
     }
-    public static int TimeDateStamp$get(MemorySegment seg) {
-        return (int)_IMAGE_DELAYLOAD_DESCRIPTOR.TimeDateStamp$VH.get(seg);
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
     }
-    public static void TimeDateStamp$set( MemorySegment seg, int x) {
-        _IMAGE_DELAYLOAD_DESCRIPTOR.TimeDateStamp$VH.set(seg, x);
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
     }
-    public static int TimeDateStamp$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_DELAYLOAD_DESCRIPTOR.TimeDateStamp$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
     }
-    public static void TimeDateStamp$set(MemorySegment seg, long index, int x) {
-        _IMAGE_DELAYLOAD_DESCRIPTOR.TimeDateStamp$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
-
 

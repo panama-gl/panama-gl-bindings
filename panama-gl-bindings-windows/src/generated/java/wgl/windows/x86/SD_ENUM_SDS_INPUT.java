@@ -2,13 +2,28 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _SD_ENUM_SDS_INPUT {
+ *     DWORDLONG StartingOffset;
+ *     DWORDLONG MaxSDEntriesToReturn;
+ * } SD_ENUM_SDS_INPUT
+ * }
+ */
 public class SD_ENUM_SDS_INPUT extends _SD_ENUM_SDS_INPUT {
 
+    SD_ENUM_SDS_INPUT() {
+        // Should not be called directly
+    }
 }
-
 

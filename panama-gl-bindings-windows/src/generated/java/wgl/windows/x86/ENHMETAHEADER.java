@@ -2,13 +2,45 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagENHMETAHEADER {
+ *     DWORD iType;
+ *     DWORD nSize;
+ *     RECTL rclBounds;
+ *     RECTL rclFrame;
+ *     DWORD dSignature;
+ *     DWORD nVersion;
+ *     DWORD nBytes;
+ *     DWORD nRecords;
+ *     WORD nHandles;
+ *     WORD sReserved;
+ *     DWORD nDescription;
+ *     DWORD offDescription;
+ *     DWORD nPalEntries;
+ *     SIZEL szlDevice;
+ *     SIZEL szlMillimeters;
+ *     DWORD cbPixelFormat;
+ *     DWORD offPixelFormat;
+ *     DWORD bOpenGL;
+ *     SIZEL szlMicrometers;
+ * } ENHMETAHEADER
+ * }
+ */
 public class ENHMETAHEADER extends tagENHMETAHEADER {
 
+    ENHMETAHEADER() {
+        // Should not be called directly
+    }
 }
-
 

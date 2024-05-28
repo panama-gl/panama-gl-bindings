@@ -2,13 +2,27 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _SERVICE_DELAYED_AUTO_START_INFO {
+ *     BOOL fDelayedAutostart;
+ * } SERVICE_DELAYED_AUTO_START_INFO
+ * }
+ */
 public class SERVICE_DELAYED_AUTO_START_INFO extends _SERVICE_DELAYED_AUTO_START_INFO {
 
+    SERVICE_DELAYED_AUTO_START_INFO() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,75 +2,218 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagKERNINGPAIR {
+ *     WORD wFirst;
+ *     WORD wSecond;
+ *     int iKernAmount;
+ * }
+ * }
+ */
 public class tagKERNINGPAIR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("wFirst"),
-        Constants$root.C_SHORT$LAYOUT.withName("wSecond"),
-        Constants$root.C_LONG$LAYOUT.withName("iKernAmount")
-    ).withName("tagKERNINGPAIR");
-    public static MemoryLayout $LAYOUT() {
-        return tagKERNINGPAIR.$struct$LAYOUT;
+    tagKERNINGPAIR() {
+        // Should not be called directly
     }
-    static final VarHandle wFirst$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wFirst"));
-    public static VarHandle wFirst$VH() {
-        return tagKERNINGPAIR.wFirst$VH;
-    }
-    public static short wFirst$get(MemorySegment seg) {
-        return (short)tagKERNINGPAIR.wFirst$VH.get(seg);
-    }
-    public static void wFirst$set( MemorySegment seg, short x) {
-        tagKERNINGPAIR.wFirst$VH.set(seg, x);
-    }
-    public static short wFirst$get(MemorySegment seg, long index) {
-        return (short)tagKERNINGPAIR.wFirst$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wFirst$set(MemorySegment seg, long index, short x) {
-        tagKERNINGPAIR.wFirst$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wSecond$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wSecond"));
-    public static VarHandle wSecond$VH() {
-        return tagKERNINGPAIR.wSecond$VH;
-    }
-    public static short wSecond$get(MemorySegment seg) {
-        return (short)tagKERNINGPAIR.wSecond$VH.get(seg);
-    }
-    public static void wSecond$set( MemorySegment seg, short x) {
-        tagKERNINGPAIR.wSecond$VH.set(seg, x);
-    }
-    public static short wSecond$get(MemorySegment seg, long index) {
-        return (short)tagKERNINGPAIR.wSecond$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wSecond$set(MemorySegment seg, long index, short x) {
-        tagKERNINGPAIR.wSecond$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iKernAmount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iKernAmount"));
-    public static VarHandle iKernAmount$VH() {
-        return tagKERNINGPAIR.iKernAmount$VH;
-    }
-    public static int iKernAmount$get(MemorySegment seg) {
-        return (int)tagKERNINGPAIR.iKernAmount$VH.get(seg);
-    }
-    public static void iKernAmount$set( MemorySegment seg, int x) {
-        tagKERNINGPAIR.iKernAmount$VH.set(seg, x);
-    }
-    public static int iKernAmount$get(MemorySegment seg, long index) {
-        return (int)tagKERNINGPAIR.iKernAmount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iKernAmount$set(MemorySegment seg, long index, int x) {
-        tagKERNINGPAIR.iKernAmount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_SHORT.withName("wFirst"),
+        freeglut_h.C_SHORT.withName("wSecond"),
+        freeglut_h.C_INT.withName("iKernAmount")
+    ).withName("tagKERNINGPAIR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort wFirst$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wFirst"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wFirst
+     * }
+     */
+    public static final OfShort wFirst$layout() {
+        return wFirst$LAYOUT;
+    }
+
+    private static final long wFirst$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wFirst
+     * }
+     */
+    public static final long wFirst$offset() {
+        return wFirst$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wFirst
+     * }
+     */
+    public static short wFirst(MemorySegment struct) {
+        return struct.get(wFirst$LAYOUT, wFirst$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wFirst
+     * }
+     */
+    public static void wFirst(MemorySegment struct, short fieldValue) {
+        struct.set(wFirst$LAYOUT, wFirst$OFFSET, fieldValue);
+    }
+
+    private static final OfShort wSecond$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wSecond"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wSecond
+     * }
+     */
+    public static final OfShort wSecond$layout() {
+        return wSecond$LAYOUT;
+    }
+
+    private static final long wSecond$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wSecond
+     * }
+     */
+    public static final long wSecond$offset() {
+        return wSecond$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wSecond
+     * }
+     */
+    public static short wSecond(MemorySegment struct) {
+        return struct.get(wSecond$LAYOUT, wSecond$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wSecond
+     * }
+     */
+    public static void wSecond(MemorySegment struct, short fieldValue) {
+        struct.set(wSecond$LAYOUT, wSecond$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iKernAmount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iKernAmount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iKernAmount
+     * }
+     */
+    public static final OfInt iKernAmount$layout() {
+        return iKernAmount$LAYOUT;
+    }
+
+    private static final long iKernAmount$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iKernAmount
+     * }
+     */
+    public static final long iKernAmount$offset() {
+        return iKernAmount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iKernAmount
+     * }
+     */
+    public static int iKernAmount(MemorySegment struct) {
+        return struct.get(iKernAmount$LAYOUT, iKernAmount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iKernAmount
+     * }
+     */
+    public static void iKernAmount(MemorySegment struct, int fieldValue) {
+        struct.set(iKernAmount$LAYOUT, iKernAmount$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

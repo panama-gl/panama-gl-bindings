@@ -2,228 +2,684 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO {
+ *     DWORD cbSize;
+ *     CRYPT_ALGORITHM_IDENTIFIER KeyEncryptionAlgorithm;
+ *     void *pvKeyEncryptionAuxInfo;
+ *     CRYPT_ALGORITHM_IDENTIFIER KeyWrapAlgorithm;
+ *     void *pvKeyWrapAuxInfo;
+ *     HCRYPTPROV_LEGACY hCryptProv;
+ *     DWORD dwKeySpec;
+ *     DWORD dwKeyChoice;
+ *     union {
+ *         PCRYPT_ALGORITHM_IDENTIFIER pEphemeralAlgorithm;
+ *         PCERT_ID pSenderId;
+ *     };
+ *     CRYPT_DATA_BLOB UserKeyingMaterial;
+ *     DWORD cRecipientEncryptedKeys;
+ *     PCMSG_RECIPIENT_ENCRYPTED_KEY_ENCODE_INFO *rgpRecipientEncryptedKeys;
+ * }
+ * }
+ */
 public class _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.structLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("pszObjId"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                MemoryLayout.paddingLayout(32),
-                Constants$root.C_POINTER$LAYOUT.withName("pbData")
-            ).withName("Parameters")
-        ).withName("KeyEncryptionAlgorithm"),
-        Constants$root.C_POINTER$LAYOUT.withName("pvKeyEncryptionAuxInfo"),
-        MemoryLayout.structLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("pszObjId"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                MemoryLayout.paddingLayout(32),
-                Constants$root.C_POINTER$LAYOUT.withName("pbData")
-            ).withName("Parameters")
-        ).withName("KeyWrapAlgorithm"),
-        Constants$root.C_POINTER$LAYOUT.withName("pvKeyWrapAuxInfo"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("hCryptProv"),
-        Constants$root.C_LONG$LAYOUT.withName("dwKeySpec"),
-        Constants$root.C_LONG$LAYOUT.withName("dwKeyChoice"),
-        MemoryLayout.unionLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("pEphemeralAlgorithm"),
-            Constants$root.C_POINTER$LAYOUT.withName("pSenderId")
-        ).withName("$anon$0"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData")
-        ).withName("UserKeyingMaterial"),
-        Constants$root.C_LONG$LAYOUT.withName("cRecipientEncryptedKeys"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgpRecipientEncryptedKeys")
-    ).withName("_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.$struct$LAYOUT;
+    _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment KeyEncryptionAlgorithm$slice(MemorySegment seg) {
-        return seg.asSlice(8, 24);
-    }
-    static final VarHandle pvKeyEncryptionAuxInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pvKeyEncryptionAuxInfo"));
-    public static VarHandle pvKeyEncryptionAuxInfo$VH() {
-        return _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pvKeyEncryptionAuxInfo$VH;
-    }
-    public static MemoryAddress pvKeyEncryptionAuxInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pvKeyEncryptionAuxInfo$VH.get(seg);
-    }
-    public static void pvKeyEncryptionAuxInfo$set( MemorySegment seg, MemoryAddress x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pvKeyEncryptionAuxInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress pvKeyEncryptionAuxInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pvKeyEncryptionAuxInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pvKeyEncryptionAuxInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pvKeyEncryptionAuxInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment KeyWrapAlgorithm$slice(MemorySegment seg) {
-        return seg.asSlice(40, 24);
-    }
-    static final VarHandle pvKeyWrapAuxInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pvKeyWrapAuxInfo"));
-    public static VarHandle pvKeyWrapAuxInfo$VH() {
-        return _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pvKeyWrapAuxInfo$VH;
-    }
-    public static MemoryAddress pvKeyWrapAuxInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pvKeyWrapAuxInfo$VH.get(seg);
-    }
-    public static void pvKeyWrapAuxInfo$set( MemorySegment seg, MemoryAddress x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pvKeyWrapAuxInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress pvKeyWrapAuxInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pvKeyWrapAuxInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pvKeyWrapAuxInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pvKeyWrapAuxInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hCryptProv$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hCryptProv"));
-    public static VarHandle hCryptProv$VH() {
-        return _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.hCryptProv$VH;
-    }
-    public static long hCryptProv$get(MemorySegment seg) {
-        return (long)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.hCryptProv$VH.get(seg);
-    }
-    public static void hCryptProv$set( MemorySegment seg, long x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.hCryptProv$VH.set(seg, x);
-    }
-    public static long hCryptProv$get(MemorySegment seg, long index) {
-        return (long)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.hCryptProv$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hCryptProv$set(MemorySegment seg, long index, long x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.hCryptProv$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwKeySpec$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwKeySpec"));
-    public static VarHandle dwKeySpec$VH() {
-        return _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.dwKeySpec$VH;
-    }
-    public static int dwKeySpec$get(MemorySegment seg) {
-        return (int)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.dwKeySpec$VH.get(seg);
-    }
-    public static void dwKeySpec$set( MemorySegment seg, int x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.dwKeySpec$VH.set(seg, x);
-    }
-    public static int dwKeySpec$get(MemorySegment seg, long index) {
-        return (int)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.dwKeySpec$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwKeySpec$set(MemorySegment seg, long index, int x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.dwKeySpec$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwKeyChoice$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwKeyChoice"));
-    public static VarHandle dwKeyChoice$VH() {
-        return _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.dwKeyChoice$VH;
-    }
-    public static int dwKeyChoice$get(MemorySegment seg) {
-        return (int)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.dwKeyChoice$VH.get(seg);
-    }
-    public static void dwKeyChoice$set( MemorySegment seg, int x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.dwKeyChoice$VH.set(seg, x);
-    }
-    public static int dwKeyChoice$get(MemorySegment seg, long index) {
-        return (int)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.dwKeyChoice$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwKeyChoice$set(MemorySegment seg, long index, int x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.dwKeyChoice$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pEphemeralAlgorithm$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pEphemeralAlgorithm"));
-    public static VarHandle pEphemeralAlgorithm$VH() {
-        return _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pEphemeralAlgorithm$VH;
-    }
-    public static MemoryAddress pEphemeralAlgorithm$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pEphemeralAlgorithm$VH.get(seg);
-    }
-    public static void pEphemeralAlgorithm$set( MemorySegment seg, MemoryAddress x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pEphemeralAlgorithm$VH.set(seg, x);
-    }
-    public static MemoryAddress pEphemeralAlgorithm$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pEphemeralAlgorithm$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pEphemeralAlgorithm$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pEphemeralAlgorithm$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pSenderId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pSenderId"));
-    public static VarHandle pSenderId$VH() {
-        return _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pSenderId$VH;
-    }
-    public static MemoryAddress pSenderId$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pSenderId$VH.get(seg);
-    }
-    public static void pSenderId$set( MemorySegment seg, MemoryAddress x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pSenderId$VH.set(seg, x);
-    }
-    public static MemoryAddress pSenderId$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pSenderId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pSenderId$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.pSenderId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment UserKeyingMaterial$slice(MemorySegment seg) {
-        return seg.asSlice(96, 16);
-    }
-    static final VarHandle cRecipientEncryptedKeys$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cRecipientEncryptedKeys"));
-    public static VarHandle cRecipientEncryptedKeys$VH() {
-        return _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.cRecipientEncryptedKeys$VH;
-    }
-    public static int cRecipientEncryptedKeys$get(MemorySegment seg) {
-        return (int)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.cRecipientEncryptedKeys$VH.get(seg);
-    }
-    public static void cRecipientEncryptedKeys$set( MemorySegment seg, int x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.cRecipientEncryptedKeys$VH.set(seg, x);
-    }
-    public static int cRecipientEncryptedKeys$get(MemorySegment seg, long index) {
-        return (int)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.cRecipientEncryptedKeys$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cRecipientEncryptedKeys$set(MemorySegment seg, long index, int x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.cRecipientEncryptedKeys$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgpRecipientEncryptedKeys$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgpRecipientEncryptedKeys"));
-    public static VarHandle rgpRecipientEncryptedKeys$VH() {
-        return _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.rgpRecipientEncryptedKeys$VH;
-    }
-    public static MemoryAddress rgpRecipientEncryptedKeys$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.rgpRecipientEncryptedKeys$VH.get(seg);
-    }
-    public static void rgpRecipientEncryptedKeys$set( MemorySegment seg, MemoryAddress x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.rgpRecipientEncryptedKeys$VH.set(seg, x);
-    }
-    public static MemoryAddress rgpRecipientEncryptedKeys$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.rgpRecipientEncryptedKeys$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgpRecipientEncryptedKeys$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO.rgpRecipientEncryptedKeys$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        MemoryLayout.paddingLayout(4),
+        _CRYPT_ALGORITHM_IDENTIFIER.layout().withName("KeyEncryptionAlgorithm"),
+        wgl_h.C_POINTER.withName("pvKeyEncryptionAuxInfo"),
+        _CRYPT_ALGORITHM_IDENTIFIER.layout().withName("KeyWrapAlgorithm"),
+        wgl_h.C_POINTER.withName("pvKeyWrapAuxInfo"),
+        wgl_h.C_LONG_LONG.withName("hCryptProv"),
+        wgl_h.C_LONG.withName("dwKeySpec"),
+        wgl_h.C_LONG.withName("dwKeyChoice"),
+        MemoryLayout.unionLayout(
+            wgl_h.C_POINTER.withName("pEphemeralAlgorithm"),
+            wgl_h.C_POINTER.withName("pSenderId")
+        ).withName("$anon$6946:5"),
+        _CRYPTOAPI_BLOB.layout().withName("UserKeyingMaterial"),
+        wgl_h.C_LONG.withName("cRecipientEncryptedKeys"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgpRecipientEncryptedKeys")
+    ).withName("_CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout KeyEncryptionAlgorithm$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("KeyEncryptionAlgorithm"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER KeyEncryptionAlgorithm
+     * }
+     */
+    public static final GroupLayout KeyEncryptionAlgorithm$layout() {
+        return KeyEncryptionAlgorithm$LAYOUT;
+    }
+
+    private static final long KeyEncryptionAlgorithm$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER KeyEncryptionAlgorithm
+     * }
+     */
+    public static final long KeyEncryptionAlgorithm$offset() {
+        return KeyEncryptionAlgorithm$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER KeyEncryptionAlgorithm
+     * }
+     */
+    public static MemorySegment KeyEncryptionAlgorithm(MemorySegment struct) {
+        return struct.asSlice(KeyEncryptionAlgorithm$OFFSET, KeyEncryptionAlgorithm$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER KeyEncryptionAlgorithm
+     * }
+     */
+    public static void KeyEncryptionAlgorithm(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, KeyEncryptionAlgorithm$OFFSET, KeyEncryptionAlgorithm$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout pvKeyEncryptionAuxInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pvKeyEncryptionAuxInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *pvKeyEncryptionAuxInfo
+     * }
+     */
+    public static final AddressLayout pvKeyEncryptionAuxInfo$layout() {
+        return pvKeyEncryptionAuxInfo$LAYOUT;
+    }
+
+    private static final long pvKeyEncryptionAuxInfo$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *pvKeyEncryptionAuxInfo
+     * }
+     */
+    public static final long pvKeyEncryptionAuxInfo$offset() {
+        return pvKeyEncryptionAuxInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *pvKeyEncryptionAuxInfo
+     * }
+     */
+    public static MemorySegment pvKeyEncryptionAuxInfo(MemorySegment struct) {
+        return struct.get(pvKeyEncryptionAuxInfo$LAYOUT, pvKeyEncryptionAuxInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *pvKeyEncryptionAuxInfo
+     * }
+     */
+    public static void pvKeyEncryptionAuxInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pvKeyEncryptionAuxInfo$LAYOUT, pvKeyEncryptionAuxInfo$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout KeyWrapAlgorithm$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("KeyWrapAlgorithm"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER KeyWrapAlgorithm
+     * }
+     */
+    public static final GroupLayout KeyWrapAlgorithm$layout() {
+        return KeyWrapAlgorithm$LAYOUT;
+    }
+
+    private static final long KeyWrapAlgorithm$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER KeyWrapAlgorithm
+     * }
+     */
+    public static final long KeyWrapAlgorithm$offset() {
+        return KeyWrapAlgorithm$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER KeyWrapAlgorithm
+     * }
+     */
+    public static MemorySegment KeyWrapAlgorithm(MemorySegment struct) {
+        return struct.asSlice(KeyWrapAlgorithm$OFFSET, KeyWrapAlgorithm$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER KeyWrapAlgorithm
+     * }
+     */
+    public static void KeyWrapAlgorithm(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, KeyWrapAlgorithm$OFFSET, KeyWrapAlgorithm$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout pvKeyWrapAuxInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pvKeyWrapAuxInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *pvKeyWrapAuxInfo
+     * }
+     */
+    public static final AddressLayout pvKeyWrapAuxInfo$layout() {
+        return pvKeyWrapAuxInfo$LAYOUT;
+    }
+
+    private static final long pvKeyWrapAuxInfo$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *pvKeyWrapAuxInfo
+     * }
+     */
+    public static final long pvKeyWrapAuxInfo$offset() {
+        return pvKeyWrapAuxInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *pvKeyWrapAuxInfo
+     * }
+     */
+    public static MemorySegment pvKeyWrapAuxInfo(MemorySegment struct) {
+        return struct.get(pvKeyWrapAuxInfo$LAYOUT, pvKeyWrapAuxInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *pvKeyWrapAuxInfo
+     * }
+     */
+    public static void pvKeyWrapAuxInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pvKeyWrapAuxInfo$LAYOUT, pvKeyWrapAuxInfo$OFFSET, fieldValue);
+    }
+
+    private static final OfLong hCryptProv$LAYOUT = (OfLong)$LAYOUT.select(groupElement("hCryptProv"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HCRYPTPROV_LEGACY hCryptProv
+     * }
+     */
+    public static final OfLong hCryptProv$layout() {
+        return hCryptProv$LAYOUT;
+    }
+
+    private static final long hCryptProv$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HCRYPTPROV_LEGACY hCryptProv
+     * }
+     */
+    public static final long hCryptProv$offset() {
+        return hCryptProv$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HCRYPTPROV_LEGACY hCryptProv
+     * }
+     */
+    public static long hCryptProv(MemorySegment struct) {
+        return struct.get(hCryptProv$LAYOUT, hCryptProv$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HCRYPTPROV_LEGACY hCryptProv
+     * }
+     */
+    public static void hCryptProv(MemorySegment struct, long fieldValue) {
+        struct.set(hCryptProv$LAYOUT, hCryptProv$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwKeySpec$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwKeySpec"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwKeySpec
+     * }
+     */
+    public static final OfInt dwKeySpec$layout() {
+        return dwKeySpec$LAYOUT;
+    }
+
+    private static final long dwKeySpec$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwKeySpec
+     * }
+     */
+    public static final long dwKeySpec$offset() {
+        return dwKeySpec$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwKeySpec
+     * }
+     */
+    public static int dwKeySpec(MemorySegment struct) {
+        return struct.get(dwKeySpec$LAYOUT, dwKeySpec$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwKeySpec
+     * }
+     */
+    public static void dwKeySpec(MemorySegment struct, int fieldValue) {
+        struct.set(dwKeySpec$LAYOUT, dwKeySpec$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwKeyChoice$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwKeyChoice"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwKeyChoice
+     * }
+     */
+    public static final OfInt dwKeyChoice$layout() {
+        return dwKeyChoice$LAYOUT;
+    }
+
+    private static final long dwKeyChoice$OFFSET = 84;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwKeyChoice
+     * }
+     */
+    public static final long dwKeyChoice$offset() {
+        return dwKeyChoice$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwKeyChoice
+     * }
+     */
+    public static int dwKeyChoice(MemorySegment struct) {
+        return struct.get(dwKeyChoice$LAYOUT, dwKeyChoice$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwKeyChoice
+     * }
+     */
+    public static void dwKeyChoice(MemorySegment struct, int fieldValue) {
+        struct.set(dwKeyChoice$LAYOUT, dwKeyChoice$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pEphemeralAlgorithm$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$6946:5"), groupElement("pEphemeralAlgorithm"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCRYPT_ALGORITHM_IDENTIFIER pEphemeralAlgorithm
+     * }
+     */
+    public static final AddressLayout pEphemeralAlgorithm$layout() {
+        return pEphemeralAlgorithm$LAYOUT;
+    }
+
+    private static final long pEphemeralAlgorithm$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCRYPT_ALGORITHM_IDENTIFIER pEphemeralAlgorithm
+     * }
+     */
+    public static final long pEphemeralAlgorithm$offset() {
+        return pEphemeralAlgorithm$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCRYPT_ALGORITHM_IDENTIFIER pEphemeralAlgorithm
+     * }
+     */
+    public static MemorySegment pEphemeralAlgorithm(MemorySegment struct) {
+        return struct.get(pEphemeralAlgorithm$LAYOUT, pEphemeralAlgorithm$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCRYPT_ALGORITHM_IDENTIFIER pEphemeralAlgorithm
+     * }
+     */
+    public static void pEphemeralAlgorithm(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pEphemeralAlgorithm$LAYOUT, pEphemeralAlgorithm$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pSenderId$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$6946:5"), groupElement("pSenderId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCERT_ID pSenderId
+     * }
+     */
+    public static final AddressLayout pSenderId$layout() {
+        return pSenderId$LAYOUT;
+    }
+
+    private static final long pSenderId$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCERT_ID pSenderId
+     * }
+     */
+    public static final long pSenderId$offset() {
+        return pSenderId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCERT_ID pSenderId
+     * }
+     */
+    public static MemorySegment pSenderId(MemorySegment struct) {
+        return struct.get(pSenderId$LAYOUT, pSenderId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCERT_ID pSenderId
+     * }
+     */
+    public static void pSenderId(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pSenderId$LAYOUT, pSenderId$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout UserKeyingMaterial$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("UserKeyingMaterial"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB UserKeyingMaterial
+     * }
+     */
+    public static final GroupLayout UserKeyingMaterial$layout() {
+        return UserKeyingMaterial$LAYOUT;
+    }
+
+    private static final long UserKeyingMaterial$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB UserKeyingMaterial
+     * }
+     */
+    public static final long UserKeyingMaterial$offset() {
+        return UserKeyingMaterial$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB UserKeyingMaterial
+     * }
+     */
+    public static MemorySegment UserKeyingMaterial(MemorySegment struct) {
+        return struct.asSlice(UserKeyingMaterial$OFFSET, UserKeyingMaterial$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB UserKeyingMaterial
+     * }
+     */
+    public static void UserKeyingMaterial(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, UserKeyingMaterial$OFFSET, UserKeyingMaterial$LAYOUT.byteSize());
+    }
+
+    private static final OfInt cRecipientEncryptedKeys$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cRecipientEncryptedKeys"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cRecipientEncryptedKeys
+     * }
+     */
+    public static final OfInt cRecipientEncryptedKeys$layout() {
+        return cRecipientEncryptedKeys$LAYOUT;
+    }
+
+    private static final long cRecipientEncryptedKeys$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cRecipientEncryptedKeys
+     * }
+     */
+    public static final long cRecipientEncryptedKeys$offset() {
+        return cRecipientEncryptedKeys$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cRecipientEncryptedKeys
+     * }
+     */
+    public static int cRecipientEncryptedKeys(MemorySegment struct) {
+        return struct.get(cRecipientEncryptedKeys$LAYOUT, cRecipientEncryptedKeys$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cRecipientEncryptedKeys
+     * }
+     */
+    public static void cRecipientEncryptedKeys(MemorySegment struct, int fieldValue) {
+        struct.set(cRecipientEncryptedKeys$LAYOUT, cRecipientEncryptedKeys$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgpRecipientEncryptedKeys$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgpRecipientEncryptedKeys"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCMSG_RECIPIENT_ENCRYPTED_KEY_ENCODE_INFO *rgpRecipientEncryptedKeys
+     * }
+     */
+    public static final AddressLayout rgpRecipientEncryptedKeys$layout() {
+        return rgpRecipientEncryptedKeys$LAYOUT;
+    }
+
+    private static final long rgpRecipientEncryptedKeys$OFFSET = 120;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCMSG_RECIPIENT_ENCRYPTED_KEY_ENCODE_INFO *rgpRecipientEncryptedKeys
+     * }
+     */
+    public static final long rgpRecipientEncryptedKeys$offset() {
+        return rgpRecipientEncryptedKeys$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCMSG_RECIPIENT_ENCRYPTED_KEY_ENCODE_INFO *rgpRecipientEncryptedKeys
+     * }
+     */
+    public static MemorySegment rgpRecipientEncryptedKeys(MemorySegment struct) {
+        return struct.get(rgpRecipientEncryptedKeys$LAYOUT, rgpRecipientEncryptedKeys$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCMSG_RECIPIENT_ENCRYPTED_KEY_ENCODE_INFO *rgpRecipientEncryptedKeys
+     * }
+     */
+    public static void rgpRecipientEncryptedKeys(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgpRecipientEncryptedKeys$LAYOUT, rgpRecipientEncryptedKeys$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

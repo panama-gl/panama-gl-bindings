@@ -2,116 +2,382 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _GDI_OBJECT {
+ *     DWORD ObjectType;
+ *     union __MIDL_IAdviseSink_0002 {
+ *         wireHBITMAP hBitmap;
+ *         wireHPALETTE hPalette;
+ *         wireHGLOBAL hGeneric;
+ *     } u;
+ * }
+ * }
+ */
 public class _GDI_OBJECT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ObjectType"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.unionLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("hBitmap"),
-            Constants$root.C_POINTER$LAYOUT.withName("hPalette"),
-            Constants$root.C_POINTER$LAYOUT.withName("hGeneric")
-        ).withName("u")
+    _GDI_OBJECT() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("ObjectType"),
+        MemoryLayout.paddingLayout(4),
+        _GDI_OBJECT.__MIDL_IAdviseSink_0002.layout().withName("u")
     ).withName("_GDI_OBJECT");
-    public static MemoryLayout $LAYOUT() {
-        return _GDI_OBJECT.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle ObjectType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ObjectType"));
-    public static VarHandle ObjectType$VH() {
-        return _GDI_OBJECT.ObjectType$VH;
+
+    private static final OfInt ObjectType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ObjectType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ObjectType
+     * }
+     */
+    public static final OfInt ObjectType$layout() {
+        return ObjectType$LAYOUT;
     }
-    public static int ObjectType$get(MemorySegment seg) {
-        return (int)_GDI_OBJECT.ObjectType$VH.get(seg);
+
+    private static final long ObjectType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ObjectType
+     * }
+     */
+    public static final long ObjectType$offset() {
+        return ObjectType$OFFSET;
     }
-    public static void ObjectType$set( MemorySegment seg, int x) {
-        _GDI_OBJECT.ObjectType$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ObjectType
+     * }
+     */
+    public static int ObjectType(MemorySegment struct) {
+        return struct.get(ObjectType$LAYOUT, ObjectType$OFFSET);
     }
-    public static int ObjectType$get(MemorySegment seg, long index) {
-        return (int)_GDI_OBJECT.ObjectType$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ObjectType
+     * }
+     */
+    public static void ObjectType(MemorySegment struct, int fieldValue) {
+        struct.set(ObjectType$LAYOUT, ObjectType$OFFSET, fieldValue);
     }
-    public static void ObjectType$set(MemorySegment seg, long index, int x) {
-        _GDI_OBJECT.ObjectType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * union __MIDL_IAdviseSink_0002 {
+     *     wireHBITMAP hBitmap;
+     *     wireHPALETTE hPalette;
+     *     wireHGLOBAL hGeneric;
+     * }
+     * }
+     */
     public static class __MIDL_IAdviseSink_0002 {
 
-        static final  GroupLayout __MIDL_IAdviseSink_0002$union$LAYOUT = MemoryLayout.unionLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("hBitmap"),
-            Constants$root.C_POINTER$LAYOUT.withName("hPalette"),
-            Constants$root.C_POINTER$LAYOUT.withName("hGeneric")
+        __MIDL_IAdviseSink_0002() {
+            // Should not be called directly
+        }
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            wgl_h.C_POINTER.withName("hBitmap"),
+            wgl_h.C_POINTER.withName("hPalette"),
+            wgl_h.C_POINTER.withName("hGeneric")
         ).withName("__MIDL_IAdviseSink_0002");
-        public static MemoryLayout $LAYOUT() {
-            return __MIDL_IAdviseSink_0002.__MIDL_IAdviseSink_0002$union$LAYOUT;
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        static final VarHandle hBitmap$VH = __MIDL_IAdviseSink_0002$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hBitmap"));
-        public static VarHandle hBitmap$VH() {
-            return __MIDL_IAdviseSink_0002.hBitmap$VH;
+
+        private static final AddressLayout hBitmap$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hBitmap"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * wireHBITMAP hBitmap
+         * }
+         */
+        public static final AddressLayout hBitmap$layout() {
+            return hBitmap$LAYOUT;
         }
-        public static MemoryAddress hBitmap$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)__MIDL_IAdviseSink_0002.hBitmap$VH.get(seg);
+
+        private static final long hBitmap$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * wireHBITMAP hBitmap
+         * }
+         */
+        public static final long hBitmap$offset() {
+            return hBitmap$OFFSET;
         }
-        public static void hBitmap$set( MemorySegment seg, MemoryAddress x) {
-            __MIDL_IAdviseSink_0002.hBitmap$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * wireHBITMAP hBitmap
+         * }
+         */
+        public static MemorySegment hBitmap(MemorySegment union) {
+            return union.get(hBitmap$LAYOUT, hBitmap$OFFSET);
         }
-        public static MemoryAddress hBitmap$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)__MIDL_IAdviseSink_0002.hBitmap$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * wireHBITMAP hBitmap
+         * }
+         */
+        public static void hBitmap(MemorySegment union, MemorySegment fieldValue) {
+            union.set(hBitmap$LAYOUT, hBitmap$OFFSET, fieldValue);
         }
-        public static void hBitmap$set(MemorySegment seg, long index, MemoryAddress x) {
-            __MIDL_IAdviseSink_0002.hBitmap$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final AddressLayout hPalette$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hPalette"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * wireHPALETTE hPalette
+         * }
+         */
+        public static final AddressLayout hPalette$layout() {
+            return hPalette$LAYOUT;
         }
-        static final VarHandle hPalette$VH = __MIDL_IAdviseSink_0002$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hPalette"));
-        public static VarHandle hPalette$VH() {
-            return __MIDL_IAdviseSink_0002.hPalette$VH;
+
+        private static final long hPalette$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * wireHPALETTE hPalette
+         * }
+         */
+        public static final long hPalette$offset() {
+            return hPalette$OFFSET;
         }
-        public static MemoryAddress hPalette$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)__MIDL_IAdviseSink_0002.hPalette$VH.get(seg);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * wireHPALETTE hPalette
+         * }
+         */
+        public static MemorySegment hPalette(MemorySegment union) {
+            return union.get(hPalette$LAYOUT, hPalette$OFFSET);
         }
-        public static void hPalette$set( MemorySegment seg, MemoryAddress x) {
-            __MIDL_IAdviseSink_0002.hPalette$VH.set(seg, x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * wireHPALETTE hPalette
+         * }
+         */
+        public static void hPalette(MemorySegment union, MemorySegment fieldValue) {
+            union.set(hPalette$LAYOUT, hPalette$OFFSET, fieldValue);
         }
-        public static MemoryAddress hPalette$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)__MIDL_IAdviseSink_0002.hPalette$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final AddressLayout hGeneric$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hGeneric"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * wireHGLOBAL hGeneric
+         * }
+         */
+        public static final AddressLayout hGeneric$layout() {
+            return hGeneric$LAYOUT;
         }
-        public static void hPalette$set(MemorySegment seg, long index, MemoryAddress x) {
-            __MIDL_IAdviseSink_0002.hPalette$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final long hGeneric$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * wireHGLOBAL hGeneric
+         * }
+         */
+        public static final long hGeneric$offset() {
+            return hGeneric$OFFSET;
         }
-        static final VarHandle hGeneric$VH = __MIDL_IAdviseSink_0002$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hGeneric"));
-        public static VarHandle hGeneric$VH() {
-            return __MIDL_IAdviseSink_0002.hGeneric$VH;
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * wireHGLOBAL hGeneric
+         * }
+         */
+        public static MemorySegment hGeneric(MemorySegment union) {
+            return union.get(hGeneric$LAYOUT, hGeneric$OFFSET);
         }
-        public static MemoryAddress hGeneric$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)__MIDL_IAdviseSink_0002.hGeneric$VH.get(seg);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * wireHGLOBAL hGeneric
+         * }
+         */
+        public static void hGeneric(MemorySegment union, MemorySegment fieldValue) {
+            union.set(hGeneric$LAYOUT, hGeneric$OFFSET, fieldValue);
         }
-        public static void hGeneric$set( MemorySegment seg, MemoryAddress x) {
-            __MIDL_IAdviseSink_0002.hGeneric$VH.set(seg, x);
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static MemoryAddress hGeneric$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)__MIDL_IAdviseSink_0002.hGeneric$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static void hGeneric$set(MemorySegment seg, long index, MemoryAddress x) {
-            __MIDL_IAdviseSink_0002.hGeneric$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment u$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
+    private static final GroupLayout u$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("u"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union __MIDL_IAdviseSink_0002 u
+     * }
+     */
+    public static final GroupLayout u$layout() {
+        return u$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long u$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union __MIDL_IAdviseSink_0002 u
+     * }
+     */
+    public static final long u$offset() {
+        return u$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union __MIDL_IAdviseSink_0002 u
+     * }
+     */
+    public static MemorySegment u(MemorySegment struct) {
+        return struct.asSlice(u$OFFSET, u$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union __MIDL_IAdviseSink_0002 u
+     * }
+     */
+    public static void u(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, u$OFFSET, u$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

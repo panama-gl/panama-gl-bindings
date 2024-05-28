@@ -2,13 +2,33 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CRYPT_GET_TIME_VALID_OBJECT_EXTRA_INFO {
+ *     DWORD cbSize;
+ *     int iDeltaCrlIndicator;
+ *     LPFILETIME pftCacheResync;
+ *     LPFILETIME pLastSyncTime;
+ *     LPFILETIME pMaxAgeTime;
+ *     PCERT_REVOCATION_CHAIN_PARA pChainPara;
+ *     PCRYPT_INTEGER_BLOB pDeltaCrlIndicator;
+ * } CRYPT_GET_TIME_VALID_OBJECT_EXTRA_INFO
+ * }
+ */
 public class CRYPT_GET_TIME_VALID_OBJECT_EXTRA_INFO extends _CRYPT_GET_TIME_VALID_OBJECT_EXTRA_INFO {
 
+    CRYPT_GET_TIME_VALID_OBJECT_EXTRA_INFO() {
+        // Should not be called directly
+    }
 }
-
 

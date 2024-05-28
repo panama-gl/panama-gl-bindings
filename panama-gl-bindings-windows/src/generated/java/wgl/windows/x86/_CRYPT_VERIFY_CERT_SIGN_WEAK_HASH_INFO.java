@@ -2,77 +2,220 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO {
+ *     DWORD cCNGHashAlgid;
+ *     PCWSTR *rgpwszCNGHashAlgid;
+ *     DWORD dwWeakIndex;
+ * }
+ * }
+ */
 public class _CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cCNGHashAlgid"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgpwszCNGHashAlgid"),
-        Constants$root.C_LONG$LAYOUT.withName("dwWeakIndex"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO.$struct$LAYOUT;
+    _CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle cCNGHashAlgid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cCNGHashAlgid"));
-    public static VarHandle cCNGHashAlgid$VH() {
-        return _CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO.cCNGHashAlgid$VH;
-    }
-    public static int cCNGHashAlgid$get(MemorySegment seg) {
-        return (int)_CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO.cCNGHashAlgid$VH.get(seg);
-    }
-    public static void cCNGHashAlgid$set( MemorySegment seg, int x) {
-        _CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO.cCNGHashAlgid$VH.set(seg, x);
-    }
-    public static int cCNGHashAlgid$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO.cCNGHashAlgid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cCNGHashAlgid$set(MemorySegment seg, long index, int x) {
-        _CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO.cCNGHashAlgid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgpwszCNGHashAlgid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgpwszCNGHashAlgid"));
-    public static VarHandle rgpwszCNGHashAlgid$VH() {
-        return _CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO.rgpwszCNGHashAlgid$VH;
-    }
-    public static MemoryAddress rgpwszCNGHashAlgid$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO.rgpwszCNGHashAlgid$VH.get(seg);
-    }
-    public static void rgpwszCNGHashAlgid$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO.rgpwszCNGHashAlgid$VH.set(seg, x);
-    }
-    public static MemoryAddress rgpwszCNGHashAlgid$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO.rgpwszCNGHashAlgid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgpwszCNGHashAlgid$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO.rgpwszCNGHashAlgid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwWeakIndex$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwWeakIndex"));
-    public static VarHandle dwWeakIndex$VH() {
-        return _CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO.dwWeakIndex$VH;
-    }
-    public static int dwWeakIndex$get(MemorySegment seg) {
-        return (int)_CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO.dwWeakIndex$VH.get(seg);
-    }
-    public static void dwWeakIndex$set( MemorySegment seg, int x) {
-        _CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO.dwWeakIndex$VH.set(seg, x);
-    }
-    public static int dwWeakIndex$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO.dwWeakIndex$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwWeakIndex$set(MemorySegment seg, long index, int x) {
-        _CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO.dwWeakIndex$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cCNGHashAlgid"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgpwszCNGHashAlgid"),
+        wgl_h.C_LONG.withName("dwWeakIndex"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cCNGHashAlgid$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cCNGHashAlgid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cCNGHashAlgid
+     * }
+     */
+    public static final OfInt cCNGHashAlgid$layout() {
+        return cCNGHashAlgid$LAYOUT;
+    }
+
+    private static final long cCNGHashAlgid$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cCNGHashAlgid
+     * }
+     */
+    public static final long cCNGHashAlgid$offset() {
+        return cCNGHashAlgid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cCNGHashAlgid
+     * }
+     */
+    public static int cCNGHashAlgid(MemorySegment struct) {
+        return struct.get(cCNGHashAlgid$LAYOUT, cCNGHashAlgid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cCNGHashAlgid
+     * }
+     */
+    public static void cCNGHashAlgid(MemorySegment struct, int fieldValue) {
+        struct.set(cCNGHashAlgid$LAYOUT, cCNGHashAlgid$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgpwszCNGHashAlgid$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgpwszCNGHashAlgid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCWSTR *rgpwszCNGHashAlgid
+     * }
+     */
+    public static final AddressLayout rgpwszCNGHashAlgid$layout() {
+        return rgpwszCNGHashAlgid$LAYOUT;
+    }
+
+    private static final long rgpwszCNGHashAlgid$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCWSTR *rgpwszCNGHashAlgid
+     * }
+     */
+    public static final long rgpwszCNGHashAlgid$offset() {
+        return rgpwszCNGHashAlgid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCWSTR *rgpwszCNGHashAlgid
+     * }
+     */
+    public static MemorySegment rgpwszCNGHashAlgid(MemorySegment struct) {
+        return struct.get(rgpwszCNGHashAlgid$LAYOUT, rgpwszCNGHashAlgid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCWSTR *rgpwszCNGHashAlgid
+     * }
+     */
+    public static void rgpwszCNGHashAlgid(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgpwszCNGHashAlgid$LAYOUT, rgpwszCNGHashAlgid$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwWeakIndex$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwWeakIndex"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwWeakIndex
+     * }
+     */
+    public static final OfInt dwWeakIndex$layout() {
+        return dwWeakIndex$LAYOUT;
+    }
+
+    private static final long dwWeakIndex$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwWeakIndex
+     * }
+     */
+    public static final long dwWeakIndex$offset() {
+        return dwWeakIndex$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwWeakIndex
+     * }
+     */
+    public static int dwWeakIndex(MemorySegment struct) {
+        return struct.get(dwWeakIndex$LAYOUT, dwWeakIndex$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwWeakIndex
+     * }
+     */
+    public static void dwWeakIndex(MemorySegment struct, int fieldValue) {
+        struct.set(dwWeakIndex$LAYOUT, dwWeakIndex$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

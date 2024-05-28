@@ -2,13 +2,33 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CERT_SIMPLE_CHAIN {
+ *     DWORD cbSize;
+ *     CERT_TRUST_STATUS TrustStatus;
+ *     DWORD cElement;
+ *     PCERT_CHAIN_ELEMENT *rgpElement;
+ *     PCERT_TRUST_LIST_INFO pTrustListInfo;
+ *     BOOL fHasRevocationFreshnessTime;
+ *     DWORD dwRevocationFreshnessTime;
+ * } CERT_SIMPLE_CHAIN
+ * }
+ */
 public class CERT_SIMPLE_CHAIN extends _CERT_SIMPLE_CHAIN {
 
+    CERT_SIMPLE_CHAIN() {
+        // Should not be called directly
+    }
 }
-
 

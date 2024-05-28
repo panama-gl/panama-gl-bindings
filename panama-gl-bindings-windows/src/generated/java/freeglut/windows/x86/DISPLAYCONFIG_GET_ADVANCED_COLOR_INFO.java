@@ -2,13 +2,39 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _DISPLAYCONFIG_GET_ADVANCED_COLOR_INFO {
+ *     DISPLAYCONFIG_DEVICE_INFO_HEADER header;
+ *     union {
+ *         struct {
+ *             UINT32 advancedColorSupported : 1;
+ *             UINT32 advancedColorEnabled : 1;
+ *             UINT32 wideColorEnforced : 1;
+ *             UINT32 advancedColorForceDisabled : 1;
+ *             UINT32 reserved : 28;
+ *         };
+ *         UINT32 value;
+ *     };
+ *     DISPLAYCONFIG_COLOR_ENCODING colorEncoding;
+ *     UINT32 bitsPerColorChannel;
+ * } DISPLAYCONFIG_GET_ADVANCED_COLOR_INFO
+ * }
+ */
 public class DISPLAYCONFIG_GET_ADVANCED_COLOR_INFO extends _DISPLAYCONFIG_GET_ADVANCED_COLOR_INFO {
 
+    DISPLAYCONFIG_GET_ADVANCED_COLOR_INFO() {
+        // Should not be called directly
+    }
 }
-
 

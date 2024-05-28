@@ -2,234 +2,881 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _LDT_ENTRY {
+ *     WORD LimitLow;
+ *     WORD BaseLow;
+ *     union {
+ *         struct {
+ *             BYTE BaseMid;
+ *             BYTE Flags1;
+ *             BYTE Flags2;
+ *             BYTE BaseHi;
+ *         } Bytes;
+ *         struct {
+ *             DWORD BaseMid : 8;
+ *             DWORD Type : 5;
+ *             DWORD Dpl : 2;
+ *             DWORD Pres : 1;
+ *             DWORD LimitHi : 4;
+ *             DWORD Sys : 1;
+ *             DWORD Reserved_0 : 1;
+ *             DWORD Default_Big : 1;
+ *             DWORD Granularity : 1;
+ *             DWORD BaseHi : 8;
+ *         } Bits;
+ *     } HighWord;
+ * }
+ * }
+ */
 public class _LDT_ENTRY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("LimitLow"),
-        Constants$root.C_SHORT$LAYOUT.withName("BaseLow"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_CHAR$LAYOUT.withName("BaseMid"),
-                Constants$root.C_CHAR$LAYOUT.withName("Flags1"),
-                Constants$root.C_CHAR$LAYOUT.withName("Flags2"),
-                Constants$root.C_CHAR$LAYOUT.withName("BaseHi")
-            ).withName("Bytes"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    MemoryLayout.paddingLayout(8).withName("BaseMid"),
-                    MemoryLayout.paddingLayout(5).withName("Type"),
-                    MemoryLayout.paddingLayout(2).withName("Dpl"),
-                    MemoryLayout.paddingLayout(1).withName("Pres"),
-                    MemoryLayout.paddingLayout(4).withName("LimitHi"),
-                    MemoryLayout.paddingLayout(1).withName("Sys"),
-                    MemoryLayout.paddingLayout(1).withName("Reserved_0"),
-                    MemoryLayout.paddingLayout(1).withName("Default_Big"),
-                    MemoryLayout.paddingLayout(1).withName("Granularity"),
-                    MemoryLayout.paddingLayout(8).withName("BaseHi")
-                )
-            ).withName("Bits")
-        ).withName("HighWord")
+    _LDT_ENTRY() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("LimitLow"),
+        wgl_h.C_SHORT.withName("BaseLow"),
+        _LDT_ENTRY.HighWord.layout().withName("HighWord")
     ).withName("_LDT_ENTRY");
-    public static MemoryLayout $LAYOUT() {
-        return _LDT_ENTRY.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle LimitLow$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LimitLow"));
-    public static VarHandle LimitLow$VH() {
-        return _LDT_ENTRY.LimitLow$VH;
+
+    private static final OfShort LimitLow$LAYOUT = (OfShort)$LAYOUT.select(groupElement("LimitLow"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD LimitLow
+     * }
+     */
+    public static final OfShort LimitLow$layout() {
+        return LimitLow$LAYOUT;
     }
-    public static short LimitLow$get(MemorySegment seg) {
-        return (short)_LDT_ENTRY.LimitLow$VH.get(seg);
+
+    private static final long LimitLow$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD LimitLow
+     * }
+     */
+    public static final long LimitLow$offset() {
+        return LimitLow$OFFSET;
     }
-    public static void LimitLow$set( MemorySegment seg, short x) {
-        _LDT_ENTRY.LimitLow$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD LimitLow
+     * }
+     */
+    public static short LimitLow(MemorySegment struct) {
+        return struct.get(LimitLow$LAYOUT, LimitLow$OFFSET);
     }
-    public static short LimitLow$get(MemorySegment seg, long index) {
-        return (short)_LDT_ENTRY.LimitLow$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD LimitLow
+     * }
+     */
+    public static void LimitLow(MemorySegment struct, short fieldValue) {
+        struct.set(LimitLow$LAYOUT, LimitLow$OFFSET, fieldValue);
     }
-    public static void LimitLow$set(MemorySegment seg, long index, short x) {
-        _LDT_ENTRY.LimitLow$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfShort BaseLow$LAYOUT = (OfShort)$LAYOUT.select(groupElement("BaseLow"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD BaseLow
+     * }
+     */
+    public static final OfShort BaseLow$layout() {
+        return BaseLow$LAYOUT;
     }
-    static final VarHandle BaseLow$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BaseLow"));
-    public static VarHandle BaseLow$VH() {
-        return _LDT_ENTRY.BaseLow$VH;
+
+    private static final long BaseLow$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD BaseLow
+     * }
+     */
+    public static final long BaseLow$offset() {
+        return BaseLow$OFFSET;
     }
-    public static short BaseLow$get(MemorySegment seg) {
-        return (short)_LDT_ENTRY.BaseLow$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD BaseLow
+     * }
+     */
+    public static short BaseLow(MemorySegment struct) {
+        return struct.get(BaseLow$LAYOUT, BaseLow$OFFSET);
     }
-    public static void BaseLow$set( MemorySegment seg, short x) {
-        _LDT_ENTRY.BaseLow$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD BaseLow
+     * }
+     */
+    public static void BaseLow(MemorySegment struct, short fieldValue) {
+        struct.set(BaseLow$LAYOUT, BaseLow$OFFSET, fieldValue);
     }
-    public static short BaseLow$get(MemorySegment seg, long index) {
-        return (short)_LDT_ENTRY.BaseLow$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BaseLow$set(MemorySegment seg, long index, short x) {
-        _LDT_ENTRY.BaseLow$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         BYTE BaseMid;
+     *         BYTE Flags1;
+     *         BYTE Flags2;
+     *         BYTE BaseHi;
+     *     } Bytes;
+     *     struct {
+     *         DWORD BaseMid : 8;
+     *         DWORD Type : 5;
+     *         DWORD Dpl : 2;
+     *         DWORD Pres : 1;
+     *         DWORD LimitHi : 4;
+     *         DWORD Sys : 1;
+     *         DWORD Reserved_0 : 1;
+     *         DWORD Default_Big : 1;
+     *         DWORD Granularity : 1;
+     *         DWORD BaseHi : 8;
+     *     } Bits;
+     * }
+     * }
+     */
     public static class HighWord {
 
-        static final  GroupLayout HighWord$union$LAYOUT = MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_CHAR$LAYOUT.withName("BaseMid"),
-                Constants$root.C_CHAR$LAYOUT.withName("Flags1"),
-                Constants$root.C_CHAR$LAYOUT.withName("Flags2"),
-                Constants$root.C_CHAR$LAYOUT.withName("BaseHi")
-            ).withName("Bytes"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    MemoryLayout.paddingLayout(8).withName("BaseMid"),
-                    MemoryLayout.paddingLayout(5).withName("Type"),
-                    MemoryLayout.paddingLayout(2).withName("Dpl"),
-                    MemoryLayout.paddingLayout(1).withName("Pres"),
-                    MemoryLayout.paddingLayout(4).withName("LimitHi"),
-                    MemoryLayout.paddingLayout(1).withName("Sys"),
-                    MemoryLayout.paddingLayout(1).withName("Reserved_0"),
-                    MemoryLayout.paddingLayout(1).withName("Default_Big"),
-                    MemoryLayout.paddingLayout(1).withName("Granularity"),
-                    MemoryLayout.paddingLayout(8).withName("BaseHi")
-                )
-            ).withName("Bits")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return HighWord.HighWord$union$LAYOUT;
+        HighWord() {
+            // Should not be called directly
         }
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            _LDT_ENTRY.HighWord.Bytes.layout().withName("Bytes"),
+            _LDT_ENTRY.HighWord.Bits.layout().withName("Bits")
+        ).withName("$anon$7724:5");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
+        }
+
+        /**
+         * {@snippet lang=c :
+         * struct {
+         *     BYTE BaseMid;
+         *     BYTE Flags1;
+         *     BYTE Flags2;
+         *     BYTE BaseHi;
+         * }
+         * }
+         */
         public static class Bytes {
 
-            static final  GroupLayout HighWord$Bytes$struct$LAYOUT = MemoryLayout.structLayout(
-                Constants$root.C_CHAR$LAYOUT.withName("BaseMid"),
-                Constants$root.C_CHAR$LAYOUT.withName("Flags1"),
-                Constants$root.C_CHAR$LAYOUT.withName("Flags2"),
-                Constants$root.C_CHAR$LAYOUT.withName("BaseHi")
-            );
-            public static MemoryLayout $LAYOUT() {
-                return Bytes.HighWord$Bytes$struct$LAYOUT;
+            Bytes() {
+                // Should not be called directly
             }
-            static final VarHandle BaseMid$VH = HighWord$Bytes$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BaseMid"));
-            public static VarHandle BaseMid$VH() {
-                return Bytes.BaseMid$VH;
+
+            private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                wgl_h.C_CHAR.withName("BaseMid"),
+                wgl_h.C_CHAR.withName("Flags1"),
+                wgl_h.C_CHAR.withName("Flags2"),
+                wgl_h.C_CHAR.withName("BaseHi")
+            ).withName("$anon$7725:9");
+
+            /**
+             * The layout of this struct
+             */
+            public static final GroupLayout layout() {
+                return $LAYOUT;
             }
-            public static byte BaseMid$get(MemorySegment seg) {
-                return (byte)Bytes.BaseMid$VH.get(seg);
+
+            private static final OfByte BaseMid$LAYOUT = (OfByte)$LAYOUT.select(groupElement("BaseMid"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * BYTE BaseMid
+             * }
+             */
+            public static final OfByte BaseMid$layout() {
+                return BaseMid$LAYOUT;
             }
-            public static void BaseMid$set( MemorySegment seg, byte x) {
-                Bytes.BaseMid$VH.set(seg, x);
+
+            private static final long BaseMid$OFFSET = 0;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * BYTE BaseMid
+             * }
+             */
+            public static final long BaseMid$offset() {
+                return BaseMid$OFFSET;
             }
-            public static byte BaseMid$get(MemorySegment seg, long index) {
-                return (byte)Bytes.BaseMid$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * BYTE BaseMid
+             * }
+             */
+            public static byte BaseMid(MemorySegment struct) {
+                return struct.get(BaseMid$LAYOUT, BaseMid$OFFSET);
             }
-            public static void BaseMid$set(MemorySegment seg, long index, byte x) {
-                Bytes.BaseMid$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * BYTE BaseMid
+             * }
+             */
+            public static void BaseMid(MemorySegment struct, byte fieldValue) {
+                struct.set(BaseMid$LAYOUT, BaseMid$OFFSET, fieldValue);
             }
-            static final VarHandle Flags1$VH = HighWord$Bytes$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags1"));
-            public static VarHandle Flags1$VH() {
-                return Bytes.Flags1$VH;
+
+            private static final OfByte Flags1$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Flags1"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * BYTE Flags1
+             * }
+             */
+            public static final OfByte Flags1$layout() {
+                return Flags1$LAYOUT;
             }
-            public static byte Flags1$get(MemorySegment seg) {
-                return (byte)Bytes.Flags1$VH.get(seg);
+
+            private static final long Flags1$OFFSET = 1;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * BYTE Flags1
+             * }
+             */
+            public static final long Flags1$offset() {
+                return Flags1$OFFSET;
             }
-            public static void Flags1$set( MemorySegment seg, byte x) {
-                Bytes.Flags1$VH.set(seg, x);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * BYTE Flags1
+             * }
+             */
+            public static byte Flags1(MemorySegment struct) {
+                return struct.get(Flags1$LAYOUT, Flags1$OFFSET);
             }
-            public static byte Flags1$get(MemorySegment seg, long index) {
-                return (byte)Bytes.Flags1$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * BYTE Flags1
+             * }
+             */
+            public static void Flags1(MemorySegment struct, byte fieldValue) {
+                struct.set(Flags1$LAYOUT, Flags1$OFFSET, fieldValue);
             }
-            public static void Flags1$set(MemorySegment seg, long index, byte x) {
-                Bytes.Flags1$VH.set(seg.asSlice(index*sizeof()), x);
+
+            private static final OfByte Flags2$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Flags2"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * BYTE Flags2
+             * }
+             */
+            public static final OfByte Flags2$layout() {
+                return Flags2$LAYOUT;
             }
-            static final VarHandle Flags2$VH = HighWord$Bytes$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags2"));
-            public static VarHandle Flags2$VH() {
-                return Bytes.Flags2$VH;
+
+            private static final long Flags2$OFFSET = 2;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * BYTE Flags2
+             * }
+             */
+            public static final long Flags2$offset() {
+                return Flags2$OFFSET;
             }
-            public static byte Flags2$get(MemorySegment seg) {
-                return (byte)Bytes.Flags2$VH.get(seg);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * BYTE Flags2
+             * }
+             */
+            public static byte Flags2(MemorySegment struct) {
+                return struct.get(Flags2$LAYOUT, Flags2$OFFSET);
             }
-            public static void Flags2$set( MemorySegment seg, byte x) {
-                Bytes.Flags2$VH.set(seg, x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * BYTE Flags2
+             * }
+             */
+            public static void Flags2(MemorySegment struct, byte fieldValue) {
+                struct.set(Flags2$LAYOUT, Flags2$OFFSET, fieldValue);
             }
-            public static byte Flags2$get(MemorySegment seg, long index) {
-                return (byte)Bytes.Flags2$VH.get(seg.asSlice(index*sizeof()));
+
+            private static final OfByte BaseHi$LAYOUT = (OfByte)$LAYOUT.select(groupElement("BaseHi"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * BYTE BaseHi
+             * }
+             */
+            public static final OfByte BaseHi$layout() {
+                return BaseHi$LAYOUT;
             }
-            public static void Flags2$set(MemorySegment seg, long index, byte x) {
-                Bytes.Flags2$VH.set(seg.asSlice(index*sizeof()), x);
+
+            private static final long BaseHi$OFFSET = 3;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * BYTE BaseHi
+             * }
+             */
+            public static final long BaseHi$offset() {
+                return BaseHi$OFFSET;
             }
-            static final VarHandle BaseHi$VH = HighWord$Bytes$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BaseHi"));
-            public static VarHandle BaseHi$VH() {
-                return Bytes.BaseHi$VH;
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * BYTE BaseHi
+             * }
+             */
+            public static byte BaseHi(MemorySegment struct) {
+                return struct.get(BaseHi$LAYOUT, BaseHi$OFFSET);
             }
-            public static byte BaseHi$get(MemorySegment seg) {
-                return (byte)Bytes.BaseHi$VH.get(seg);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * BYTE BaseHi
+             * }
+             */
+            public static void BaseHi(MemorySegment struct, byte fieldValue) {
+                struct.set(BaseHi$LAYOUT, BaseHi$OFFSET, fieldValue);
             }
-            public static void BaseHi$set( MemorySegment seg, byte x) {
-                Bytes.BaseHi$VH.set(seg, x);
+
+            /**
+             * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+             * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+             */
+            public static MemorySegment asSlice(MemorySegment array, long index) {
+                return array.asSlice(layout().byteSize() * index);
             }
-            public static byte BaseHi$get(MemorySegment seg, long index) {
-                return (byte)Bytes.BaseHi$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * The size (in bytes) of this struct
+             */
+            public static long sizeof() { return layout().byteSize(); }
+
+            /**
+             * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+             */
+            public static MemorySegment allocate(SegmentAllocator allocator) {
+                return allocator.allocate(layout());
             }
-            public static void BaseHi$set(MemorySegment seg, long index, byte x) {
-                Bytes.BaseHi$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Allocate an array of size {@code elementCount} using {@code allocator}.
+             * The returned segment has size {@code elementCount * layout().byteSize()}.
+             */
+            public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
             }
-            public static long sizeof() { return $LAYOUT().byteSize(); }
-            public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-            public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                return reinterpret(addr, 1, arena, cleanup);
             }
-            public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code elementCount * layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+            }
         }
 
-        public static MemorySegment Bytes$slice(MemorySegment seg) {
-            return seg.asSlice(0, 4);
+        private static final GroupLayout Bytes$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Bytes"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * struct {
+         *     BYTE BaseMid;
+         *     BYTE Flags1;
+         *     BYTE Flags2;
+         *     BYTE BaseHi;
+         * } Bytes
+         * }
+         */
+        public static final GroupLayout Bytes$layout() {
+            return Bytes$LAYOUT;
         }
+
+        private static final long Bytes$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * struct {
+         *     BYTE BaseMid;
+         *     BYTE Flags1;
+         *     BYTE Flags2;
+         *     BYTE BaseHi;
+         * } Bytes
+         * }
+         */
+        public static final long Bytes$offset() {
+            return Bytes$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     BYTE BaseMid;
+         *     BYTE Flags1;
+         *     BYTE Flags2;
+         *     BYTE BaseHi;
+         * } Bytes
+         * }
+         */
+        public static MemorySegment Bytes(MemorySegment union) {
+            return union.asSlice(Bytes$OFFSET, Bytes$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     BYTE BaseMid;
+         *     BYTE Flags1;
+         *     BYTE Flags2;
+         *     BYTE BaseHi;
+         * } Bytes
+         * }
+         */
+        public static void Bytes(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, Bytes$OFFSET, Bytes$LAYOUT.byteSize());
+        }
+
+        /**
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD BaseMid : 8;
+         *     DWORD Type : 5;
+         *     DWORD Dpl : 2;
+         *     DWORD Pres : 1;
+         *     DWORD LimitHi : 4;
+         *     DWORD Sys : 1;
+         *     DWORD Reserved_0 : 1;
+         *     DWORD Default_Big : 1;
+         *     DWORD Granularity : 1;
+         *     DWORD BaseHi : 8;
+         * }
+         * }
+         */
         public static class Bits {
 
-            static final  GroupLayout HighWord$Bits$struct$LAYOUT = MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    MemoryLayout.paddingLayout(8).withName("BaseMid"),
-                    MemoryLayout.paddingLayout(5).withName("Type"),
-                    MemoryLayout.paddingLayout(2).withName("Dpl"),
-                    MemoryLayout.paddingLayout(1).withName("Pres"),
-                    MemoryLayout.paddingLayout(4).withName("LimitHi"),
-                    MemoryLayout.paddingLayout(1).withName("Sys"),
-                    MemoryLayout.paddingLayout(1).withName("Reserved_0"),
-                    MemoryLayout.paddingLayout(1).withName("Default_Big"),
-                    MemoryLayout.paddingLayout(1).withName("Granularity"),
-                    MemoryLayout.paddingLayout(8).withName("BaseHi")
-                )
-            );
-            public static MemoryLayout $LAYOUT() {
-                return Bits.HighWord$Bits$struct$LAYOUT;
+            Bits() {
+                // Should not be called directly
             }
-            public static long sizeof() { return $LAYOUT().byteSize(); }
-            public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-            public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+            private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                MemoryLayout.paddingLayout(4)
+            ).withName("$anon$7731:9");
+
+            /**
+             * The layout of this struct
+             */
+            public static final GroupLayout layout() {
+                return $LAYOUT;
             }
-            public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+            /**
+             * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+             * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+             */
+            public static MemorySegment asSlice(MemorySegment array, long index) {
+                return array.asSlice(layout().byteSize() * index);
+            }
+
+            /**
+             * The size (in bytes) of this struct
+             */
+            public static long sizeof() { return layout().byteSize(); }
+
+            /**
+             * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+             */
+            public static MemorySegment allocate(SegmentAllocator allocator) {
+                return allocator.allocate(layout());
+            }
+
+            /**
+             * Allocate an array of size {@code elementCount} using {@code allocator}.
+             * The returned segment has size {@code elementCount * layout().byteSize()}.
+             */
+            public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                return reinterpret(addr, 1, arena, cleanup);
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code elementCount * layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+            }
         }
 
-        public static MemorySegment Bits$slice(MemorySegment seg) {
-            return seg.asSlice(0, 4);
+        private static final GroupLayout Bits$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Bits"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD BaseMid : 8;
+         *     DWORD Type : 5;
+         *     DWORD Dpl : 2;
+         *     DWORD Pres : 1;
+         *     DWORD LimitHi : 4;
+         *     DWORD Sys : 1;
+         *     DWORD Reserved_0 : 1;
+         *     DWORD Default_Big : 1;
+         *     DWORD Granularity : 1;
+         *     DWORD BaseHi : 8;
+         * } Bits
+         * }
+         */
+        public static final GroupLayout Bits$layout() {
+            return Bits$LAYOUT;
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        private static final long Bits$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD BaseMid : 8;
+         *     DWORD Type : 5;
+         *     DWORD Dpl : 2;
+         *     DWORD Pres : 1;
+         *     DWORD LimitHi : 4;
+         *     DWORD Sys : 1;
+         *     DWORD Reserved_0 : 1;
+         *     DWORD Default_Big : 1;
+         *     DWORD Granularity : 1;
+         *     DWORD BaseHi : 8;
+         * } Bits
+         * }
+         */
+        public static final long Bits$offset() {
+            return Bits$OFFSET;
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD BaseMid : 8;
+         *     DWORD Type : 5;
+         *     DWORD Dpl : 2;
+         *     DWORD Pres : 1;
+         *     DWORD LimitHi : 4;
+         *     DWORD Sys : 1;
+         *     DWORD Reserved_0 : 1;
+         *     DWORD Default_Big : 1;
+         *     DWORD Granularity : 1;
+         *     DWORD BaseHi : 8;
+         * } Bits
+         * }
+         */
+        public static MemorySegment Bits(MemorySegment union) {
+            return union.asSlice(Bits$OFFSET, Bits$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD BaseMid : 8;
+         *     DWORD Type : 5;
+         *     DWORD Dpl : 2;
+         *     DWORD Pres : 1;
+         *     DWORD LimitHi : 4;
+         *     DWORD Sys : 1;
+         *     DWORD Reserved_0 : 1;
+         *     DWORD Default_Big : 1;
+         *     DWORD Granularity : 1;
+         *     DWORD BaseHi : 8;
+         * } Bits
+         * }
+         */
+        public static void Bits(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, Bits$OFFSET, Bits$LAYOUT.byteSize());
+        }
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
+        }
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment HighWord$slice(MemorySegment seg) {
-        return seg.asSlice(4, 4);
+    private static final GroupLayout HighWord$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("HighWord"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         BYTE BaseMid;
+     *         BYTE Flags1;
+     *         BYTE Flags2;
+     *         BYTE BaseHi;
+     *     } Bytes;
+     *     struct {
+     *         DWORD BaseMid : 8;
+     *         DWORD Type : 5;
+     *         DWORD Dpl : 2;
+     *         DWORD Pres : 1;
+     *         DWORD LimitHi : 4;
+     *         DWORD Sys : 1;
+     *         DWORD Reserved_0 : 1;
+     *         DWORD Default_Big : 1;
+     *         DWORD Granularity : 1;
+     *         DWORD BaseHi : 8;
+     *     } Bits;
+     * } HighWord
+     * }
+     */
+    public static final GroupLayout HighWord$layout() {
+        return HighWord$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long HighWord$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         BYTE BaseMid;
+     *         BYTE Flags1;
+     *         BYTE Flags2;
+     *         BYTE BaseHi;
+     *     } Bytes;
+     *     struct {
+     *         DWORD BaseMid : 8;
+     *         DWORD Type : 5;
+     *         DWORD Dpl : 2;
+     *         DWORD Pres : 1;
+     *         DWORD LimitHi : 4;
+     *         DWORD Sys : 1;
+     *         DWORD Reserved_0 : 1;
+     *         DWORD Default_Big : 1;
+     *         DWORD Granularity : 1;
+     *         DWORD BaseHi : 8;
+     *     } Bits;
+     * } HighWord
+     * }
+     */
+    public static final long HighWord$offset() {
+        return HighWord$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         BYTE BaseMid;
+     *         BYTE Flags1;
+     *         BYTE Flags2;
+     *         BYTE BaseHi;
+     *     } Bytes;
+     *     struct {
+     *         DWORD BaseMid : 8;
+     *         DWORD Type : 5;
+     *         DWORD Dpl : 2;
+     *         DWORD Pres : 1;
+     *         DWORD LimitHi : 4;
+     *         DWORD Sys : 1;
+     *         DWORD Reserved_0 : 1;
+     *         DWORD Default_Big : 1;
+     *         DWORD Granularity : 1;
+     *         DWORD BaseHi : 8;
+     *     } Bits;
+     * } HighWord
+     * }
+     */
+    public static MemorySegment HighWord(MemorySegment struct) {
+        return struct.asSlice(HighWord$OFFSET, HighWord$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         BYTE BaseMid;
+     *         BYTE Flags1;
+     *         BYTE Flags2;
+     *         BYTE BaseHi;
+     *     } Bytes;
+     *     struct {
+     *         DWORD BaseMid : 8;
+     *         DWORD Type : 5;
+     *         DWORD Dpl : 2;
+     *         DWORD Pres : 1;
+     *         DWORD LimitHi : 4;
+     *         DWORD Sys : 1;
+     *         DWORD Reserved_0 : 1;
+     *         DWORD Default_Big : 1;
+     *         DWORD Granularity : 1;
+     *         DWORD BaseHi : 8;
+     *     } Bits;
+     * } HighWord
+     * }
+     */
+    public static void HighWord(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, HighWord$OFFSET, HighWord$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

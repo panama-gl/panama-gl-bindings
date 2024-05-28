@@ -2,706 +2,1599 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct IMallocSpyVtbl {
+ *     HRESULT (*QueryInterface)(IMallocSpy *, const IID *const, void **) __attribute__((stdcall));
+ *     ULONG (*AddRef)(IMallocSpy *) __attribute__((stdcall));
+ *     ULONG (*Release)(IMallocSpy *) __attribute__((stdcall));
+ *     SIZE_T (*PreAlloc)(IMallocSpy *, SIZE_T) __attribute__((stdcall));
+ *     void *(*PostAlloc)(IMallocSpy *, void *) __attribute__((stdcall));
+ *     void *(*PreFree)(IMallocSpy *, void *, BOOL) __attribute__((stdcall));
+ *     void (*PostFree)(IMallocSpy *, BOOL) __attribute__((stdcall));
+ *     SIZE_T (*PreRealloc)(IMallocSpy *, void *, SIZE_T, void **, BOOL) __attribute__((stdcall));
+ *     void *(*PostRealloc)(IMallocSpy *, void *, BOOL) __attribute__((stdcall));
+ *     void *(*PreGetSize)(IMallocSpy *, void *, BOOL) __attribute__((stdcall));
+ *     SIZE_T (*PostGetSize)(IMallocSpy *, SIZE_T, BOOL) __attribute__((stdcall));
+ *     void *(*PreDidAlloc)(IMallocSpy *, void *, BOOL) __attribute__((stdcall));
+ *     int (*PostDidAlloc)(IMallocSpy *, void *, BOOL, int) __attribute__((stdcall));
+ *     void (*PreHeapMinimize)(IMallocSpy *) __attribute__((stdcall));
+ *     void (*PostHeapMinimize)(IMallocSpy *) __attribute__((stdcall));
+ * }
+ * }
+ */
 public class IMallocSpyVtbl {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("QueryInterface"),
-        Constants$root.C_POINTER$LAYOUT.withName("AddRef"),
-        Constants$root.C_POINTER$LAYOUT.withName("Release"),
-        Constants$root.C_POINTER$LAYOUT.withName("PreAlloc"),
-        Constants$root.C_POINTER$LAYOUT.withName("PostAlloc"),
-        Constants$root.C_POINTER$LAYOUT.withName("PreFree"),
-        Constants$root.C_POINTER$LAYOUT.withName("PostFree"),
-        Constants$root.C_POINTER$LAYOUT.withName("PreRealloc"),
-        Constants$root.C_POINTER$LAYOUT.withName("PostRealloc"),
-        Constants$root.C_POINTER$LAYOUT.withName("PreGetSize"),
-        Constants$root.C_POINTER$LAYOUT.withName("PostGetSize"),
-        Constants$root.C_POINTER$LAYOUT.withName("PreDidAlloc"),
-        Constants$root.C_POINTER$LAYOUT.withName("PostDidAlloc"),
-        Constants$root.C_POINTER$LAYOUT.withName("PreHeapMinimize"),
-        Constants$root.C_POINTER$LAYOUT.withName("PostHeapMinimize")
+    IMallocSpyVtbl() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("QueryInterface"),
+        wgl_h.C_POINTER.withName("AddRef"),
+        wgl_h.C_POINTER.withName("Release"),
+        wgl_h.C_POINTER.withName("PreAlloc"),
+        wgl_h.C_POINTER.withName("PostAlloc"),
+        wgl_h.C_POINTER.withName("PreFree"),
+        wgl_h.C_POINTER.withName("PostFree"),
+        wgl_h.C_POINTER.withName("PreRealloc"),
+        wgl_h.C_POINTER.withName("PostRealloc"),
+        wgl_h.C_POINTER.withName("PreGetSize"),
+        wgl_h.C_POINTER.withName("PostGetSize"),
+        wgl_h.C_POINTER.withName("PreDidAlloc"),
+        wgl_h.C_POINTER.withName("PostDidAlloc"),
+        wgl_h.C_POINTER.withName("PreHeapMinimize"),
+        wgl_h.C_POINTER.withName("PostHeapMinimize")
     ).withName("IMallocSpyVtbl");
-    public static MemoryLayout $LAYOUT() {
-        return IMallocSpyVtbl.$struct$LAYOUT;
-    }
-    static final FunctionDescriptor QueryInterface$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle QueryInterface$MH = RuntimeHelper.downcallHandle(
-        IMallocSpyVtbl.QueryInterface$FUNC
-    );
-    public interface QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(QueryInterface fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(QueryInterface.class, fi, IMallocSpyVtbl.QueryInterface$FUNC, session);
-        }
-        static QueryInterface ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IMallocSpyVtbl.QueryInterface$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
 
-    static final VarHandle QueryInterface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueryInterface"));
-    public static VarHandle QueryInterface$VH() {
-        return IMallocSpyVtbl.QueryInterface$VH;
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.QueryInterface$VH.get(seg);
-    }
-    public static void QueryInterface$set( MemorySegment seg, MemoryAddress x) {
-        IMallocSpyVtbl.QueryInterface$VH.set(seg, x);
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.QueryInterface$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void QueryInterface$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMallocSpyVtbl.QueryInterface$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static QueryInterface QueryInterface (MemorySegment segment, MemorySession session) {
-        return QueryInterface.ofAddress(QueryInterface$get(segment), session);
-    }
-    static final FunctionDescriptor AddRef$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle AddRef$MH = RuntimeHelper.downcallHandle(
-        IMallocSpyVtbl.AddRef$FUNC
-    );
-    public interface AddRef {
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IMallocSpy *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(AddRef fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(AddRef.class, fi, IMallocSpyVtbl.AddRef$FUNC, session);
+        QueryInterface() {
+            // Should not be called directly
         }
-        static AddRef ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IMallocSpyVtbl.AddRef$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(QueryInterface.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(QueryInterface.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle AddRef$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddRef"));
-    public static VarHandle AddRef$VH() {
-        return IMallocSpyVtbl.AddRef$VH;
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.AddRef$VH.get(seg);
-    }
-    public static void AddRef$set( MemorySegment seg, MemoryAddress x) {
-        IMallocSpyVtbl.AddRef$VH.set(seg, x);
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.AddRef$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddRef$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMallocSpyVtbl.AddRef$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static AddRef AddRef (MemorySegment segment, MemorySession session) {
-        return AddRef.ofAddress(AddRef$get(segment), session);
-    }
-    static final FunctionDescriptor Release$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Release$MH = RuntimeHelper.downcallHandle(
-        IMallocSpyVtbl.Release$FUNC
-    );
-    public interface Release {
+    private static final AddressLayout QueryInterface$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("QueryInterface"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Release fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Release.class, fi, IMallocSpyVtbl.Release$FUNC, session);
-        }
-        static Release ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IMallocSpyVtbl.Release$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IMallocSpy *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout QueryInterface$layout() {
+        return QueryInterface$LAYOUT;
     }
 
-    static final VarHandle Release$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Release"));
-    public static VarHandle Release$VH() {
-        return IMallocSpyVtbl.Release$VH;
-    }
-    public static MemoryAddress Release$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.Release$VH.get(seg);
-    }
-    public static void Release$set( MemorySegment seg, MemoryAddress x) {
-        IMallocSpyVtbl.Release$VH.set(seg, x);
-    }
-    public static MemoryAddress Release$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.Release$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Release$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMallocSpyVtbl.Release$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Release Release (MemorySegment segment, MemorySession session) {
-        return Release.ofAddress(Release$get(segment), session);
-    }
-    static final FunctionDescriptor PreAlloc$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PreAlloc$MH = RuntimeHelper.downcallHandle(
-        IMallocSpyVtbl.PreAlloc$FUNC
-    );
-    public interface PreAlloc {
+    private static final long QueryInterface$OFFSET = 0;
 
-        long apply(java.lang.foreign.MemoryAddress _x0, long _x1);
-        static MemorySegment allocate(PreAlloc fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(PreAlloc.class, fi, IMallocSpyVtbl.PreAlloc$FUNC, session);
-        }
-        static PreAlloc ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, long __x1) -> {
-                try {
-                    return (long)IMallocSpyVtbl.PreAlloc$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IMallocSpy *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long QueryInterface$offset() {
+        return QueryInterface$OFFSET;
     }
 
-    static final VarHandle PreAlloc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PreAlloc"));
-    public static VarHandle PreAlloc$VH() {
-        return IMallocSpyVtbl.PreAlloc$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IMallocSpy *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment QueryInterface(MemorySegment struct) {
+        return struct.get(QueryInterface$LAYOUT, QueryInterface$OFFSET);
     }
-    public static MemoryAddress PreAlloc$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PreAlloc$VH.get(seg);
-    }
-    public static void PreAlloc$set( MemorySegment seg, MemoryAddress x) {
-        IMallocSpyVtbl.PreAlloc$VH.set(seg, x);
-    }
-    public static MemoryAddress PreAlloc$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PreAlloc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PreAlloc$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMallocSpyVtbl.PreAlloc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PreAlloc PreAlloc (MemorySegment segment, MemorySession session) {
-        return PreAlloc.ofAddress(PreAlloc$get(segment), session);
-    }
-    static final FunctionDescriptor PostAlloc$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PostAlloc$MH = RuntimeHelper.downcallHandle(
-        IMallocSpyVtbl.PostAlloc$FUNC
-    );
-    public interface PostAlloc {
 
-        java.lang.foreign.Addressable apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(PostAlloc fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(PostAlloc.class, fi, IMallocSpyVtbl.PostAlloc$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IMallocSpy *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void QueryInterface(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(QueryInterface$LAYOUT, QueryInterface$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static class AddRef {
+
+        AddRef() {
+            // Should not be called directly
         }
-        static PostAlloc ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PostAlloc$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(AddRef.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(AddRef.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle PostAlloc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PostAlloc"));
-    public static VarHandle PostAlloc$VH() {
-        return IMallocSpyVtbl.PostAlloc$VH;
-    }
-    public static MemoryAddress PostAlloc$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PostAlloc$VH.get(seg);
-    }
-    public static void PostAlloc$set( MemorySegment seg, MemoryAddress x) {
-        IMallocSpyVtbl.PostAlloc$VH.set(seg, x);
-    }
-    public static MemoryAddress PostAlloc$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PostAlloc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PostAlloc$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMallocSpyVtbl.PostAlloc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PostAlloc PostAlloc (MemorySegment segment, MemorySession session) {
-        return PostAlloc.ofAddress(PostAlloc$get(segment), session);
-    }
-    static final FunctionDescriptor PreFree$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle PreFree$MH = RuntimeHelper.downcallHandle(
-        IMallocSpyVtbl.PreFree$FUNC
-    );
-    public interface PreFree {
+    private static final AddressLayout AddRef$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AddRef"));
 
-        java.lang.foreign.Addressable apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, int _x2);
-        static MemorySegment allocate(PreFree fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(PreFree.class, fi, IMallocSpyVtbl.PreFree$FUNC, session);
-        }
-        static PreFree ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, int __x2) -> {
-                try {
-                    return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PreFree$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, __x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout AddRef$layout() {
+        return AddRef$LAYOUT;
     }
 
-    static final VarHandle PreFree$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PreFree"));
-    public static VarHandle PreFree$VH() {
-        return IMallocSpyVtbl.PreFree$VH;
-    }
-    public static MemoryAddress PreFree$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PreFree$VH.get(seg);
-    }
-    public static void PreFree$set( MemorySegment seg, MemoryAddress x) {
-        IMallocSpyVtbl.PreFree$VH.set(seg, x);
-    }
-    public static MemoryAddress PreFree$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PreFree$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PreFree$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMallocSpyVtbl.PreFree$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PreFree PreFree (MemorySegment segment, MemorySession session) {
-        return PreFree.ofAddress(PreFree$get(segment), session);
-    }
-    static final FunctionDescriptor PostFree$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle PostFree$MH = RuntimeHelper.downcallHandle(
-        IMallocSpyVtbl.PostFree$FUNC
-    );
-    public interface PostFree {
+    private static final long AddRef$OFFSET = 8;
 
-        void apply(java.lang.foreign.MemoryAddress _x0, int _x1);
-        static MemorySegment allocate(PostFree fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(PostFree.class, fi, IMallocSpyVtbl.PostFree$FUNC, session);
-        }
-        static PostFree ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1) -> {
-                try {
-                    IMallocSpyVtbl.PostFree$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static final long AddRef$offset() {
+        return AddRef$OFFSET;
     }
 
-    static final VarHandle PostFree$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PostFree"));
-    public static VarHandle PostFree$VH() {
-        return IMallocSpyVtbl.PostFree$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment AddRef(MemorySegment struct) {
+        return struct.get(AddRef$LAYOUT, AddRef$OFFSET);
     }
-    public static MemoryAddress PostFree$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PostFree$VH.get(seg);
-    }
-    public static void PostFree$set( MemorySegment seg, MemoryAddress x) {
-        IMallocSpyVtbl.PostFree$VH.set(seg, x);
-    }
-    public static MemoryAddress PostFree$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PostFree$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PostFree$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMallocSpyVtbl.PostFree$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PostFree PostFree (MemorySegment segment, MemorySession session) {
-        return PostFree.ofAddress(PostFree$get(segment), session);
-    }
-    static final FunctionDescriptor PreRealloc$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle PreRealloc$MH = RuntimeHelper.downcallHandle(
-        IMallocSpyVtbl.PreRealloc$FUNC
-    );
-    public interface PreRealloc {
 
-        long apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, long _x2, java.lang.foreign.MemoryAddress _x3, int _x4);
-        static MemorySegment allocate(PreRealloc fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(PreRealloc.class, fi, IMallocSpyVtbl.PreRealloc$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static void AddRef(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AddRef$LAYOUT, AddRef$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*Release)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static class Release {
+
+        Release() {
+            // Should not be called directly
         }
-        static PreRealloc ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, long __x2, java.lang.foreign.MemoryAddress __x3, int __x4) -> {
-                try {
-                    return (long)IMallocSpyVtbl.PreRealloc$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, __x2, (java.lang.foreign.Addressable)__x3, __x4);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Release.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Release.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle PreRealloc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PreRealloc"));
-    public static VarHandle PreRealloc$VH() {
-        return IMallocSpyVtbl.PreRealloc$VH;
-    }
-    public static MemoryAddress PreRealloc$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PreRealloc$VH.get(seg);
-    }
-    public static void PreRealloc$set( MemorySegment seg, MemoryAddress x) {
-        IMallocSpyVtbl.PreRealloc$VH.set(seg, x);
-    }
-    public static MemoryAddress PreRealloc$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PreRealloc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PreRealloc$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMallocSpyVtbl.PreRealloc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PreRealloc PreRealloc (MemorySegment segment, MemorySession session) {
-        return PreRealloc.ofAddress(PreRealloc$get(segment), session);
-    }
-    static final FunctionDescriptor PostRealloc$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle PostRealloc$MH = RuntimeHelper.downcallHandle(
-        IMallocSpyVtbl.PostRealloc$FUNC
-    );
-    public interface PostRealloc {
+    private static final AddressLayout Release$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Release"));
 
-        java.lang.foreign.Addressable apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, int _x2);
-        static MemorySegment allocate(PostRealloc fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(PostRealloc.class, fi, IMallocSpyVtbl.PostRealloc$FUNC, session);
-        }
-        static PostRealloc ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, int __x2) -> {
-                try {
-                    return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PostRealloc$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, __x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Release$layout() {
+        return Release$LAYOUT;
     }
 
-    static final VarHandle PostRealloc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PostRealloc"));
-    public static VarHandle PostRealloc$VH() {
-        return IMallocSpyVtbl.PostRealloc$VH;
-    }
-    public static MemoryAddress PostRealloc$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PostRealloc$VH.get(seg);
-    }
-    public static void PostRealloc$set( MemorySegment seg, MemoryAddress x) {
-        IMallocSpyVtbl.PostRealloc$VH.set(seg, x);
-    }
-    public static MemoryAddress PostRealloc$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PostRealloc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PostRealloc$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMallocSpyVtbl.PostRealloc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PostRealloc PostRealloc (MemorySegment segment, MemorySession session) {
-        return PostRealloc.ofAddress(PostRealloc$get(segment), session);
-    }
-    static final FunctionDescriptor PreGetSize$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle PreGetSize$MH = RuntimeHelper.downcallHandle(
-        IMallocSpyVtbl.PreGetSize$FUNC
-    );
-    public interface PreGetSize {
+    private static final long Release$OFFSET = 16;
 
-        java.lang.foreign.Addressable apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, int _x2);
-        static MemorySegment allocate(PreGetSize fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(PreGetSize.class, fi, IMallocSpyVtbl.PreGetSize$FUNC, session);
-        }
-        static PreGetSize ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, int __x2) -> {
-                try {
-                    return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PreGetSize$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, __x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Release$offset() {
+        return Release$OFFSET;
     }
 
-    static final VarHandle PreGetSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PreGetSize"));
-    public static VarHandle PreGetSize$VH() {
-        return IMallocSpyVtbl.PreGetSize$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Release(MemorySegment struct) {
+        return struct.get(Release$LAYOUT, Release$OFFSET);
     }
-    public static MemoryAddress PreGetSize$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PreGetSize$VH.get(seg);
-    }
-    public static void PreGetSize$set( MemorySegment seg, MemoryAddress x) {
-        IMallocSpyVtbl.PreGetSize$VH.set(seg, x);
-    }
-    public static MemoryAddress PreGetSize$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PreGetSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PreGetSize$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMallocSpyVtbl.PreGetSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PreGetSize PreGetSize (MemorySegment segment, MemorySession session) {
-        return PreGetSize.ofAddress(PreGetSize$get(segment), session);
-    }
-    static final FunctionDescriptor PostGetSize$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle PostGetSize$MH = RuntimeHelper.downcallHandle(
-        IMallocSpyVtbl.PostGetSize$FUNC
-    );
-    public interface PostGetSize {
 
-        long apply(java.lang.foreign.MemoryAddress _x0, long _x1, int _x2);
-        static MemorySegment allocate(PostGetSize fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(PostGetSize.class, fi, IMallocSpyVtbl.PostGetSize$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static void Release(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Release$LAYOUT, Release$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * SIZE_T (*PreAlloc)(IMallocSpy *, SIZE_T) __attribute__((stdcall))
+     * }
+     */
+    public static class PreAlloc {
+
+        PreAlloc() {
+            // Should not be called directly
         }
-        static PostGetSize ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, long __x1, int __x2) -> {
-                try {
-                    return (long)IMallocSpyVtbl.PostGetSize$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, __x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            long apply(MemorySegment _x0, long _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(PreAlloc.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(PreAlloc.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static long invoke(MemorySegment funcPtr,MemorySegment _x0, long _x1) {
+            try {
+                return (long) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle PostGetSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PostGetSize"));
-    public static VarHandle PostGetSize$VH() {
-        return IMallocSpyVtbl.PostGetSize$VH;
-    }
-    public static MemoryAddress PostGetSize$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PostGetSize$VH.get(seg);
-    }
-    public static void PostGetSize$set( MemorySegment seg, MemoryAddress x) {
-        IMallocSpyVtbl.PostGetSize$VH.set(seg, x);
-    }
-    public static MemoryAddress PostGetSize$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PostGetSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PostGetSize$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMallocSpyVtbl.PostGetSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PostGetSize PostGetSize (MemorySegment segment, MemorySession session) {
-        return PostGetSize.ofAddress(PostGetSize$get(segment), session);
-    }
-    static final FunctionDescriptor PreDidAlloc$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle PreDidAlloc$MH = RuntimeHelper.downcallHandle(
-        IMallocSpyVtbl.PreDidAlloc$FUNC
-    );
-    public interface PreDidAlloc {
+    private static final AddressLayout PreAlloc$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("PreAlloc"));
 
-        java.lang.foreign.Addressable apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, int _x2);
-        static MemorySegment allocate(PreDidAlloc fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(PreDidAlloc.class, fi, IMallocSpyVtbl.PreDidAlloc$FUNC, session);
-        }
-        static PreDidAlloc ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, int __x2) -> {
-                try {
-                    return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PreDidAlloc$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, __x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SIZE_T (*PreAlloc)(IMallocSpy *, SIZE_T) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout PreAlloc$layout() {
+        return PreAlloc$LAYOUT;
     }
 
-    static final VarHandle PreDidAlloc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PreDidAlloc"));
-    public static VarHandle PreDidAlloc$VH() {
-        return IMallocSpyVtbl.PreDidAlloc$VH;
-    }
-    public static MemoryAddress PreDidAlloc$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PreDidAlloc$VH.get(seg);
-    }
-    public static void PreDidAlloc$set( MemorySegment seg, MemoryAddress x) {
-        IMallocSpyVtbl.PreDidAlloc$VH.set(seg, x);
-    }
-    public static MemoryAddress PreDidAlloc$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PreDidAlloc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PreDidAlloc$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMallocSpyVtbl.PreDidAlloc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PreDidAlloc PreDidAlloc (MemorySegment segment, MemorySession session) {
-        return PreDidAlloc.ofAddress(PreDidAlloc$get(segment), session);
-    }
-    static final FunctionDescriptor PostDidAlloc$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle PostDidAlloc$MH = RuntimeHelper.downcallHandle(
-        IMallocSpyVtbl.PostDidAlloc$FUNC
-    );
-    public interface PostDidAlloc {
+    private static final long PreAlloc$OFFSET = 24;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, int _x2, int _x3);
-        static MemorySegment allocate(PostDidAlloc fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(PostDidAlloc.class, fi, IMallocSpyVtbl.PostDidAlloc$FUNC, session);
-        }
-        static PostDidAlloc ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, int __x2, int __x3) -> {
-                try {
-                    return (int)IMallocSpyVtbl.PostDidAlloc$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, __x2, __x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SIZE_T (*PreAlloc)(IMallocSpy *, SIZE_T) __attribute__((stdcall))
+     * }
+     */
+    public static final long PreAlloc$offset() {
+        return PreAlloc$OFFSET;
     }
 
-    static final VarHandle PostDidAlloc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PostDidAlloc"));
-    public static VarHandle PostDidAlloc$VH() {
-        return IMallocSpyVtbl.PostDidAlloc$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SIZE_T (*PreAlloc)(IMallocSpy *, SIZE_T) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment PreAlloc(MemorySegment struct) {
+        return struct.get(PreAlloc$LAYOUT, PreAlloc$OFFSET);
     }
-    public static MemoryAddress PostDidAlloc$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PostDidAlloc$VH.get(seg);
-    }
-    public static void PostDidAlloc$set( MemorySegment seg, MemoryAddress x) {
-        IMallocSpyVtbl.PostDidAlloc$VH.set(seg, x);
-    }
-    public static MemoryAddress PostDidAlloc$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PostDidAlloc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PostDidAlloc$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMallocSpyVtbl.PostDidAlloc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PostDidAlloc PostDidAlloc (MemorySegment segment, MemorySession session) {
-        return PostDidAlloc.ofAddress(PostDidAlloc$get(segment), session);
-    }
-    static final FunctionDescriptor PreHeapMinimize$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PreHeapMinimize$MH = RuntimeHelper.downcallHandle(
-        IMallocSpyVtbl.PreHeapMinimize$FUNC
-    );
-    public interface PreHeapMinimize {
 
-        void apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(PreHeapMinimize fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(PreHeapMinimize.class, fi, IMallocSpyVtbl.PreHeapMinimize$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SIZE_T (*PreAlloc)(IMallocSpy *, SIZE_T) __attribute__((stdcall))
+     * }
+     */
+    public static void PreAlloc(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(PreAlloc$LAYOUT, PreAlloc$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void *(*PostAlloc)(IMallocSpy *, void *) __attribute__((stdcall))
+     * }
+     */
+    public static class PostAlloc {
+
+        PostAlloc() {
+            // Should not be called directly
         }
-        static PreHeapMinimize ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    IMallocSpyVtbl.PreHeapMinimize$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            MemorySegment apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(PostAlloc.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(PostAlloc.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static MemorySegment invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (MemorySegment) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle PreHeapMinimize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PreHeapMinimize"));
-    public static VarHandle PreHeapMinimize$VH() {
-        return IMallocSpyVtbl.PreHeapMinimize$VH;
-    }
-    public static MemoryAddress PreHeapMinimize$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PreHeapMinimize$VH.get(seg);
-    }
-    public static void PreHeapMinimize$set( MemorySegment seg, MemoryAddress x) {
-        IMallocSpyVtbl.PreHeapMinimize$VH.set(seg, x);
-    }
-    public static MemoryAddress PreHeapMinimize$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PreHeapMinimize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PreHeapMinimize$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMallocSpyVtbl.PreHeapMinimize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PreHeapMinimize PreHeapMinimize (MemorySegment segment, MemorySession session) {
-        return PreHeapMinimize.ofAddress(PreHeapMinimize$get(segment), session);
-    }
-    static final FunctionDescriptor PostHeapMinimize$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PostHeapMinimize$MH = RuntimeHelper.downcallHandle(
-        IMallocSpyVtbl.PostHeapMinimize$FUNC
-    );
-    public interface PostHeapMinimize {
+    private static final AddressLayout PostAlloc$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("PostAlloc"));
 
-        void apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(PostHeapMinimize fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(PostHeapMinimize.class, fi, IMallocSpyVtbl.PostHeapMinimize$FUNC, session);
-        }
-        static PostHeapMinimize ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    IMallocSpyVtbl.PostHeapMinimize$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *(*PostAlloc)(IMallocSpy *, void *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout PostAlloc$layout() {
+        return PostAlloc$LAYOUT;
     }
 
-    static final VarHandle PostHeapMinimize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PostHeapMinimize"));
-    public static VarHandle PostHeapMinimize$VH() {
-        return IMallocSpyVtbl.PostHeapMinimize$VH;
+    private static final long PostAlloc$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *(*PostAlloc)(IMallocSpy *, void *) __attribute__((stdcall))
+     * }
+     */
+    public static final long PostAlloc$offset() {
+        return PostAlloc$OFFSET;
     }
-    public static MemoryAddress PostHeapMinimize$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PostHeapMinimize$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *(*PostAlloc)(IMallocSpy *, void *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment PostAlloc(MemorySegment struct) {
+        return struct.get(PostAlloc$LAYOUT, PostAlloc$OFFSET);
     }
-    public static void PostHeapMinimize$set( MemorySegment seg, MemoryAddress x) {
-        IMallocSpyVtbl.PostHeapMinimize$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *(*PostAlloc)(IMallocSpy *, void *) __attribute__((stdcall))
+     * }
+     */
+    public static void PostAlloc(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(PostAlloc$LAYOUT, PostAlloc$OFFSET, fieldValue);
     }
-    public static MemoryAddress PostHeapMinimize$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IMallocSpyVtbl.PostHeapMinimize$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * {@snippet lang=c :
+     * void *(*PreFree)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static class PreFree {
+
+        PreFree() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            MemorySegment apply(MemorySegment _x0, MemorySegment _x1, int _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_INT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(PreFree.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(PreFree.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static MemorySegment invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, int _x2) {
+            try {
+                return (MemorySegment) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
     }
-    public static void PostHeapMinimize$set(MemorySegment seg, long index, MemoryAddress x) {
-        IMallocSpyVtbl.PostHeapMinimize$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final AddressLayout PreFree$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("PreFree"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *(*PreFree)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout PreFree$layout() {
+        return PreFree$LAYOUT;
     }
-    public static PostHeapMinimize PostHeapMinimize (MemorySegment segment, MemorySession session) {
-        return PostHeapMinimize.ofAddress(PostHeapMinimize$get(segment), session);
+
+    private static final long PreFree$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *(*PreFree)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final long PreFree$offset() {
+        return PreFree$OFFSET;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *(*PreFree)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment PreFree(MemorySegment struct) {
+        return struct.get(PreFree$LAYOUT, PreFree$OFFSET);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *(*PreFree)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static void PreFree(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(PreFree$LAYOUT, PreFree$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void (*PostFree)(IMallocSpy *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static class PostFree {
+
+        PostFree() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0, int _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER,
+            wgl_h.C_INT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(PostFree.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(PostFree.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout PostFree$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("PostFree"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*PostFree)(IMallocSpy *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout PostFree$layout() {
+        return PostFree$LAYOUT;
+    }
+
+    private static final long PostFree$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*PostFree)(IMallocSpy *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final long PostFree$offset() {
+        return PostFree$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*PostFree)(IMallocSpy *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment PostFree(MemorySegment struct) {
+        return struct.get(PostFree$LAYOUT, PostFree$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*PostFree)(IMallocSpy *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static void PostFree(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(PostFree$LAYOUT, PostFree$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * SIZE_T (*PreRealloc)(IMallocSpy *, void *, SIZE_T, void **, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static class PreRealloc {
+
+        PreRealloc() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            long apply(MemorySegment _x0, MemorySegment _x1, long _x2, MemorySegment _x3, int _x4);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_INT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(PreRealloc.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(PreRealloc.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static long invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, long _x2, MemorySegment _x3, int _x4) {
+            try {
+                return (long) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout PreRealloc$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("PreRealloc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SIZE_T (*PreRealloc)(IMallocSpy *, void *, SIZE_T, void **, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout PreRealloc$layout() {
+        return PreRealloc$LAYOUT;
+    }
+
+    private static final long PreRealloc$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SIZE_T (*PreRealloc)(IMallocSpy *, void *, SIZE_T, void **, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final long PreRealloc$offset() {
+        return PreRealloc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SIZE_T (*PreRealloc)(IMallocSpy *, void *, SIZE_T, void **, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment PreRealloc(MemorySegment struct) {
+        return struct.get(PreRealloc$LAYOUT, PreRealloc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SIZE_T (*PreRealloc)(IMallocSpy *, void *, SIZE_T, void **, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static void PreRealloc(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(PreRealloc$LAYOUT, PreRealloc$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void *(*PostRealloc)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static class PostRealloc {
+
+        PostRealloc() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            MemorySegment apply(MemorySegment _x0, MemorySegment _x1, int _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_INT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(PostRealloc.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(PostRealloc.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static MemorySegment invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, int _x2) {
+            try {
+                return (MemorySegment) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout PostRealloc$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("PostRealloc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *(*PostRealloc)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout PostRealloc$layout() {
+        return PostRealloc$LAYOUT;
+    }
+
+    private static final long PostRealloc$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *(*PostRealloc)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final long PostRealloc$offset() {
+        return PostRealloc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *(*PostRealloc)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment PostRealloc(MemorySegment struct) {
+        return struct.get(PostRealloc$LAYOUT, PostRealloc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *(*PostRealloc)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static void PostRealloc(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(PostRealloc$LAYOUT, PostRealloc$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void *(*PreGetSize)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static class PreGetSize {
+
+        PreGetSize() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            MemorySegment apply(MemorySegment _x0, MemorySegment _x1, int _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_INT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(PreGetSize.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(PreGetSize.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static MemorySegment invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, int _x2) {
+            try {
+                return (MemorySegment) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout PreGetSize$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("PreGetSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *(*PreGetSize)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout PreGetSize$layout() {
+        return PreGetSize$LAYOUT;
+    }
+
+    private static final long PreGetSize$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *(*PreGetSize)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final long PreGetSize$offset() {
+        return PreGetSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *(*PreGetSize)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment PreGetSize(MemorySegment struct) {
+        return struct.get(PreGetSize$LAYOUT, PreGetSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *(*PreGetSize)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static void PreGetSize(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(PreGetSize$LAYOUT, PreGetSize$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * SIZE_T (*PostGetSize)(IMallocSpy *, SIZE_T, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static class PostGetSize {
+
+        PostGetSize() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            long apply(MemorySegment _x0, long _x1, int _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_INT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(PostGetSize.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(PostGetSize.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static long invoke(MemorySegment funcPtr,MemorySegment _x0, long _x1, int _x2) {
+            try {
+                return (long) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout PostGetSize$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("PostGetSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SIZE_T (*PostGetSize)(IMallocSpy *, SIZE_T, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout PostGetSize$layout() {
+        return PostGetSize$LAYOUT;
+    }
+
+    private static final long PostGetSize$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SIZE_T (*PostGetSize)(IMallocSpy *, SIZE_T, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final long PostGetSize$offset() {
+        return PostGetSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SIZE_T (*PostGetSize)(IMallocSpy *, SIZE_T, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment PostGetSize(MemorySegment struct) {
+        return struct.get(PostGetSize$LAYOUT, PostGetSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SIZE_T (*PostGetSize)(IMallocSpy *, SIZE_T, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static void PostGetSize(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(PostGetSize$LAYOUT, PostGetSize$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void *(*PreDidAlloc)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static class PreDidAlloc {
+
+        PreDidAlloc() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            MemorySegment apply(MemorySegment _x0, MemorySegment _x1, int _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_INT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(PreDidAlloc.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(PreDidAlloc.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static MemorySegment invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, int _x2) {
+            try {
+                return (MemorySegment) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout PreDidAlloc$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("PreDidAlloc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *(*PreDidAlloc)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout PreDidAlloc$layout() {
+        return PreDidAlloc$LAYOUT;
+    }
+
+    private static final long PreDidAlloc$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *(*PreDidAlloc)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final long PreDidAlloc$offset() {
+        return PreDidAlloc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *(*PreDidAlloc)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment PreDidAlloc(MemorySegment struct) {
+        return struct.get(PreDidAlloc$LAYOUT, PreDidAlloc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *(*PreDidAlloc)(IMallocSpy *, void *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static void PreDidAlloc(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(PreDidAlloc$LAYOUT, PreDidAlloc$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * int (*PostDidAlloc)(IMallocSpy *, void *, BOOL, int) __attribute__((stdcall))
+     * }
+     */
+    public static class PostDidAlloc {
+
+        PostDidAlloc() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, int _x2, int _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_INT,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_INT,
+            wgl_h.C_INT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(PostDidAlloc.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(PostDidAlloc.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, int _x2, int _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout PostDidAlloc$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("PostDidAlloc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int (*PostDidAlloc)(IMallocSpy *, void *, BOOL, int) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout PostDidAlloc$layout() {
+        return PostDidAlloc$LAYOUT;
+    }
+
+    private static final long PostDidAlloc$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int (*PostDidAlloc)(IMallocSpy *, void *, BOOL, int) __attribute__((stdcall))
+     * }
+     */
+    public static final long PostDidAlloc$offset() {
+        return PostDidAlloc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int (*PostDidAlloc)(IMallocSpy *, void *, BOOL, int) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment PostDidAlloc(MemorySegment struct) {
+        return struct.get(PostDidAlloc$LAYOUT, PostDidAlloc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int (*PostDidAlloc)(IMallocSpy *, void *, BOOL, int) __attribute__((stdcall))
+     * }
+     */
+    public static void PostDidAlloc(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(PostDidAlloc$LAYOUT, PostDidAlloc$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void (*PreHeapMinimize)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static class PreHeapMinimize {
+
+        PreHeapMinimize() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(PreHeapMinimize.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(PreHeapMinimize.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout PreHeapMinimize$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("PreHeapMinimize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*PreHeapMinimize)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout PreHeapMinimize$layout() {
+        return PreHeapMinimize$LAYOUT;
+    }
+
+    private static final long PreHeapMinimize$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*PreHeapMinimize)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static final long PreHeapMinimize$offset() {
+        return PreHeapMinimize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*PreHeapMinimize)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment PreHeapMinimize(MemorySegment struct) {
+        return struct.get(PreHeapMinimize$LAYOUT, PreHeapMinimize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*PreHeapMinimize)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static void PreHeapMinimize(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(PreHeapMinimize$LAYOUT, PreHeapMinimize$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void (*PostHeapMinimize)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static class PostHeapMinimize {
+
+        PostHeapMinimize() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(PostHeapMinimize.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(PostHeapMinimize.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout PostHeapMinimize$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("PostHeapMinimize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*PostHeapMinimize)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout PostHeapMinimize$layout() {
+        return PostHeapMinimize$LAYOUT;
+    }
+
+    private static final long PostHeapMinimize$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*PostHeapMinimize)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static final long PostHeapMinimize$offset() {
+        return PostHeapMinimize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*PostHeapMinimize)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment PostHeapMinimize(MemorySegment struct) {
+        return struct.get(PostHeapMinimize$LAYOUT, PostHeapMinimize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*PostHeapMinimize)(IMallocSpy *) __attribute__((stdcall))
+     * }
+     */
+    public static void PostHeapMinimize(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(PostHeapMinimize$LAYOUT, PostHeapMinimize$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

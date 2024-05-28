@@ -2,13 +2,31 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CRYPT_AES_128_KEY_STATE {
+ *     unsigned char Key[16];
+ *     unsigned char IV[16];
+ *     unsigned char EncryptionState[11][16];
+ *     unsigned char DecryptionState[11][16];
+ *     unsigned char Feedback[16];
+ * } CRYPT_AES_128_KEY_STATE
+ * }
+ */
 public class CRYPT_AES_128_KEY_STATE extends _CRYPT_AES_128_KEY_STATE {
 
+    CRYPT_AES_128_KEY_STATE() {
+        // Should not be called directly
+    }
 }
-
 

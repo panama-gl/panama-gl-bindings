@@ -2,109 +2,310 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct waveformat_tag {
+ *     WORD wFormatTag;
+ *     WORD nChannels;
+ *     DWORD nSamplesPerSec;
+ *     DWORD nAvgBytesPerSec;
+ *     WORD nBlockAlign;
+ * }
+ * }
+ */
 public class waveformat_tag {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("wFormatTag"),
-        Constants$root.C_SHORT$LAYOUT.withName("nChannels"),
-        Constants$root.C_LONG$LAYOUT.withName("nSamplesPerSec"),
-        Constants$root.C_LONG$LAYOUT.withName("nAvgBytesPerSec"),
-        Constants$root.C_SHORT$LAYOUT.withName("nBlockAlign")
-    ).withName("waveformat_tag");
-    public static MemoryLayout $LAYOUT() {
-        return waveformat_tag.$struct$LAYOUT;
+    waveformat_tag() {
+        // Should not be called directly
     }
-    static final VarHandle wFormatTag$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wFormatTag"));
-    public static VarHandle wFormatTag$VH() {
-        return waveformat_tag.wFormatTag$VH;
-    }
-    public static short wFormatTag$get(MemorySegment seg) {
-        return (short)waveformat_tag.wFormatTag$VH.get(seg);
-    }
-    public static void wFormatTag$set( MemorySegment seg, short x) {
-        waveformat_tag.wFormatTag$VH.set(seg, x);
-    }
-    public static short wFormatTag$get(MemorySegment seg, long index) {
-        return (short)waveformat_tag.wFormatTag$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wFormatTag$set(MemorySegment seg, long index, short x) {
-        waveformat_tag.wFormatTag$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nChannels$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nChannels"));
-    public static VarHandle nChannels$VH() {
-        return waveformat_tag.nChannels$VH;
-    }
-    public static short nChannels$get(MemorySegment seg) {
-        return (short)waveformat_tag.nChannels$VH.get(seg);
-    }
-    public static void nChannels$set( MemorySegment seg, short x) {
-        waveformat_tag.nChannels$VH.set(seg, x);
-    }
-    public static short nChannels$get(MemorySegment seg, long index) {
-        return (short)waveformat_tag.nChannels$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nChannels$set(MemorySegment seg, long index, short x) {
-        waveformat_tag.nChannels$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nSamplesPerSec$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nSamplesPerSec"));
-    public static VarHandle nSamplesPerSec$VH() {
-        return waveformat_tag.nSamplesPerSec$VH;
-    }
-    public static int nSamplesPerSec$get(MemorySegment seg) {
-        return (int)waveformat_tag.nSamplesPerSec$VH.get(seg);
-    }
-    public static void nSamplesPerSec$set( MemorySegment seg, int x) {
-        waveformat_tag.nSamplesPerSec$VH.set(seg, x);
-    }
-    public static int nSamplesPerSec$get(MemorySegment seg, long index) {
-        return (int)waveformat_tag.nSamplesPerSec$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nSamplesPerSec$set(MemorySegment seg, long index, int x) {
-        waveformat_tag.nSamplesPerSec$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nAvgBytesPerSec$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nAvgBytesPerSec"));
-    public static VarHandle nAvgBytesPerSec$VH() {
-        return waveformat_tag.nAvgBytesPerSec$VH;
-    }
-    public static int nAvgBytesPerSec$get(MemorySegment seg) {
-        return (int)waveformat_tag.nAvgBytesPerSec$VH.get(seg);
-    }
-    public static void nAvgBytesPerSec$set( MemorySegment seg, int x) {
-        waveformat_tag.nAvgBytesPerSec$VH.set(seg, x);
-    }
-    public static int nAvgBytesPerSec$get(MemorySegment seg, long index) {
-        return (int)waveformat_tag.nAvgBytesPerSec$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nAvgBytesPerSec$set(MemorySegment seg, long index, int x) {
-        waveformat_tag.nAvgBytesPerSec$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nBlockAlign$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nBlockAlign"));
-    public static VarHandle nBlockAlign$VH() {
-        return waveformat_tag.nBlockAlign$VH;
-    }
-    public static short nBlockAlign$get(MemorySegment seg) {
-        return (short)waveformat_tag.nBlockAlign$VH.get(seg);
-    }
-    public static void nBlockAlign$set( MemorySegment seg, short x) {
-        waveformat_tag.nBlockAlign$VH.set(seg, x);
-    }
-    public static short nBlockAlign$get(MemorySegment seg, long index) {
-        return (short)waveformat_tag.nBlockAlign$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nBlockAlign$set(MemorySegment seg, long index, short x) {
-        waveformat_tag.nBlockAlign$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.align(wgl_h.C_SHORT, 1).withName("wFormatTag"),
+        wgl_h.align(wgl_h.C_SHORT, 1).withName("nChannels"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("nSamplesPerSec"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("nAvgBytesPerSec"),
+        wgl_h.align(wgl_h.C_SHORT, 1).withName("nBlockAlign")
+    ).withName("waveformat_tag");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort wFormatTag$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wFormatTag"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wFormatTag
+     * }
+     */
+    public static final OfShort wFormatTag$layout() {
+        return wFormatTag$LAYOUT;
+    }
+
+    private static final long wFormatTag$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wFormatTag
+     * }
+     */
+    public static final long wFormatTag$offset() {
+        return wFormatTag$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wFormatTag
+     * }
+     */
+    public static short wFormatTag(MemorySegment struct) {
+        return struct.get(wFormatTag$LAYOUT, wFormatTag$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wFormatTag
+     * }
+     */
+    public static void wFormatTag(MemorySegment struct, short fieldValue) {
+        struct.set(wFormatTag$LAYOUT, wFormatTag$OFFSET, fieldValue);
+    }
+
+    private static final OfShort nChannels$LAYOUT = (OfShort)$LAYOUT.select(groupElement("nChannels"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD nChannels
+     * }
+     */
+    public static final OfShort nChannels$layout() {
+        return nChannels$LAYOUT;
+    }
+
+    private static final long nChannels$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD nChannels
+     * }
+     */
+    public static final long nChannels$offset() {
+        return nChannels$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD nChannels
+     * }
+     */
+    public static short nChannels(MemorySegment struct) {
+        return struct.get(nChannels$LAYOUT, nChannels$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD nChannels
+     * }
+     */
+    public static void nChannels(MemorySegment struct, short fieldValue) {
+        struct.set(nChannels$LAYOUT, nChannels$OFFSET, fieldValue);
+    }
+
+    private static final OfInt nSamplesPerSec$LAYOUT = (OfInt)$LAYOUT.select(groupElement("nSamplesPerSec"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD nSamplesPerSec
+     * }
+     */
+    public static final OfInt nSamplesPerSec$layout() {
+        return nSamplesPerSec$LAYOUT;
+    }
+
+    private static final long nSamplesPerSec$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD nSamplesPerSec
+     * }
+     */
+    public static final long nSamplesPerSec$offset() {
+        return nSamplesPerSec$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD nSamplesPerSec
+     * }
+     */
+    public static int nSamplesPerSec(MemorySegment struct) {
+        return struct.get(nSamplesPerSec$LAYOUT, nSamplesPerSec$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD nSamplesPerSec
+     * }
+     */
+    public static void nSamplesPerSec(MemorySegment struct, int fieldValue) {
+        struct.set(nSamplesPerSec$LAYOUT, nSamplesPerSec$OFFSET, fieldValue);
+    }
+
+    private static final OfInt nAvgBytesPerSec$LAYOUT = (OfInt)$LAYOUT.select(groupElement("nAvgBytesPerSec"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD nAvgBytesPerSec
+     * }
+     */
+    public static final OfInt nAvgBytesPerSec$layout() {
+        return nAvgBytesPerSec$LAYOUT;
+    }
+
+    private static final long nAvgBytesPerSec$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD nAvgBytesPerSec
+     * }
+     */
+    public static final long nAvgBytesPerSec$offset() {
+        return nAvgBytesPerSec$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD nAvgBytesPerSec
+     * }
+     */
+    public static int nAvgBytesPerSec(MemorySegment struct) {
+        return struct.get(nAvgBytesPerSec$LAYOUT, nAvgBytesPerSec$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD nAvgBytesPerSec
+     * }
+     */
+    public static void nAvgBytesPerSec(MemorySegment struct, int fieldValue) {
+        struct.set(nAvgBytesPerSec$LAYOUT, nAvgBytesPerSec$OFFSET, fieldValue);
+    }
+
+    private static final OfShort nBlockAlign$LAYOUT = (OfShort)$LAYOUT.select(groupElement("nBlockAlign"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD nBlockAlign
+     * }
+     */
+    public static final OfShort nBlockAlign$layout() {
+        return nBlockAlign$LAYOUT;
+    }
+
+    private static final long nBlockAlign$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD nBlockAlign
+     * }
+     */
+    public static final long nBlockAlign$offset() {
+        return nBlockAlign$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD nBlockAlign
+     * }
+     */
+    public static short nBlockAlign(MemorySegment struct) {
+        return struct.get(nBlockAlign$LAYOUT, nBlockAlign$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD nBlockAlign
+     * }
+     */
+    public static void nBlockAlign(MemorySegment struct, short fieldValue) {
+        struct.set(nBlockAlign$LAYOUT, nBlockAlign$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA {
+ *     DWORD cbSize;
+ *     DWORD dwSignerIndex;
+ *     DWORD dwUnauthAttrIndex;
+ * }
+ * }
+ */
 public class _CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        Constants$root.C_LONG$LAYOUT.withName("dwSignerIndex"),
-        Constants$root.C_LONG$LAYOUT.withName("dwUnauthAttrIndex")
-    ).withName("_CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA");
-    public static MemoryLayout $LAYOUT() {
-        return _CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA.$struct$LAYOUT;
+    _CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwSignerIndex$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwSignerIndex"));
-    public static VarHandle dwSignerIndex$VH() {
-        return _CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA.dwSignerIndex$VH;
-    }
-    public static int dwSignerIndex$get(MemorySegment seg) {
-        return (int)_CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA.dwSignerIndex$VH.get(seg);
-    }
-    public static void dwSignerIndex$set( MemorySegment seg, int x) {
-        _CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA.dwSignerIndex$VH.set(seg, x);
-    }
-    public static int dwSignerIndex$get(MemorySegment seg, long index) {
-        return (int)_CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA.dwSignerIndex$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwSignerIndex$set(MemorySegment seg, long index, int x) {
-        _CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA.dwSignerIndex$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwUnauthAttrIndex$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwUnauthAttrIndex"));
-    public static VarHandle dwUnauthAttrIndex$VH() {
-        return _CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA.dwUnauthAttrIndex$VH;
-    }
-    public static int dwUnauthAttrIndex$get(MemorySegment seg) {
-        return (int)_CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA.dwUnauthAttrIndex$VH.get(seg);
-    }
-    public static void dwUnauthAttrIndex$set( MemorySegment seg, int x) {
-        _CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA.dwUnauthAttrIndex$VH.set(seg, x);
-    }
-    public static int dwUnauthAttrIndex$get(MemorySegment seg, long index) {
-        return (int)_CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA.dwUnauthAttrIndex$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwUnauthAttrIndex$set(MemorySegment seg, long index, int x) {
-        _CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA.dwUnauthAttrIndex$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        wgl_h.C_LONG.withName("dwSignerIndex"),
+        wgl_h.C_LONG.withName("dwUnauthAttrIndex")
+    ).withName("_CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwSignerIndex$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwSignerIndex"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwSignerIndex
+     * }
+     */
+    public static final OfInt dwSignerIndex$layout() {
+        return dwSignerIndex$LAYOUT;
+    }
+
+    private static final long dwSignerIndex$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwSignerIndex
+     * }
+     */
+    public static final long dwSignerIndex$offset() {
+        return dwSignerIndex$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwSignerIndex
+     * }
+     */
+    public static int dwSignerIndex(MemorySegment struct) {
+        return struct.get(dwSignerIndex$LAYOUT, dwSignerIndex$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwSignerIndex
+     * }
+     */
+    public static void dwSignerIndex(MemorySegment struct, int fieldValue) {
+        struct.set(dwSignerIndex$LAYOUT, dwSignerIndex$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwUnauthAttrIndex$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwUnauthAttrIndex"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwUnauthAttrIndex
+     * }
+     */
+    public static final OfInt dwUnauthAttrIndex$layout() {
+        return dwUnauthAttrIndex$LAYOUT;
+    }
+
+    private static final long dwUnauthAttrIndex$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwUnauthAttrIndex
+     * }
+     */
+    public static final long dwUnauthAttrIndex$offset() {
+        return dwUnauthAttrIndex$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwUnauthAttrIndex
+     * }
+     */
+    public static int dwUnauthAttrIndex(MemorySegment struct) {
+        return struct.get(dwUnauthAttrIndex$LAYOUT, dwUnauthAttrIndex$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwUnauthAttrIndex
+     * }
+     */
+    public static void dwUnauthAttrIndex(MemorySegment struct, int fieldValue) {
+        struct.set(dwUnauthAttrIndex$LAYOUT, dwUnauthAttrIndex$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

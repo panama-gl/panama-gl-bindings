@@ -2,13 +2,28 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _TRANSACTIONMANAGER_LOGPATH_INFORMATION {
+ *     DWORD LogPathLength;
+ *     WCHAR LogPath[1];
+ * } TRANSACTIONMANAGER_LOGPATH_INFORMATION
+ * }
+ */
 public class TRANSACTIONMANAGER_LOGPATH_INFORMATION extends _TRANSACTIONMANAGER_LOGPATH_INFORMATION {
 
+    TRANSACTIONMANAGER_LOGPATH_INFORMATION() {
+        // Should not be called directly
+    }
 }
-
 

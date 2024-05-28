@@ -2,63 +2,252 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _MESSAGE_RESOURCE_ENTRY {
+ *     WORD Length;
+ *     WORD Flags;
+ *     BYTE Text[1];
+ * }
+ * }
+ */
 public class _MESSAGE_RESOURCE_ENTRY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("Length"),
-        Constants$root.C_SHORT$LAYOUT.withName("Flags"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_CHAR$LAYOUT).withName("Text"),
-        MemoryLayout.paddingLayout(8)
-    ).withName("_MESSAGE_RESOURCE_ENTRY");
-    public static MemoryLayout $LAYOUT() {
-        return _MESSAGE_RESOURCE_ENTRY.$struct$LAYOUT;
+    _MESSAGE_RESOURCE_ENTRY() {
+        // Should not be called directly
     }
-    static final VarHandle Length$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Length"));
-    public static VarHandle Length$VH() {
-        return _MESSAGE_RESOURCE_ENTRY.Length$VH;
-    }
-    public static short Length$get(MemorySegment seg) {
-        return (short)_MESSAGE_RESOURCE_ENTRY.Length$VH.get(seg);
-    }
-    public static void Length$set( MemorySegment seg, short x) {
-        _MESSAGE_RESOURCE_ENTRY.Length$VH.set(seg, x);
-    }
-    public static short Length$get(MemorySegment seg, long index) {
-        return (short)_MESSAGE_RESOURCE_ENTRY.Length$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Length$set(MemorySegment seg, long index, short x) {
-        _MESSAGE_RESOURCE_ENTRY.Length$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _MESSAGE_RESOURCE_ENTRY.Flags$VH;
-    }
-    public static short Flags$get(MemorySegment seg) {
-        return (short)_MESSAGE_RESOURCE_ENTRY.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, short x) {
-        _MESSAGE_RESOURCE_ENTRY.Flags$VH.set(seg, x);
-    }
-    public static short Flags$get(MemorySegment seg, long index) {
-        return (short)_MESSAGE_RESOURCE_ENTRY.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, short x) {
-        _MESSAGE_RESOURCE_ENTRY.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Text$slice(MemorySegment seg) {
-        return seg.asSlice(4, 1);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("Length"),
+        wgl_h.C_SHORT.withName("Flags"),
+        MemoryLayout.sequenceLayout(1, wgl_h.C_CHAR).withName("Text"),
+        MemoryLayout.paddingLayout(1)
+    ).withName("_MESSAGE_RESOURCE_ENTRY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort Length$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Length"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Length
+     * }
+     */
+    public static final OfShort Length$layout() {
+        return Length$LAYOUT;
+    }
+
+    private static final long Length$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Length
+     * }
+     */
+    public static final long Length$offset() {
+        return Length$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Length
+     * }
+     */
+    public static short Length(MemorySegment struct) {
+        return struct.get(Length$LAYOUT, Length$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Length
+     * }
+     */
+    public static void Length(MemorySegment struct, short fieldValue) {
+        struct.set(Length$LAYOUT, Length$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Flags$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static final OfShort Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static short Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, short fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Text$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Text"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Text[1]
+     * }
+     */
+    public static final SequenceLayout Text$layout() {
+        return Text$LAYOUT;
+    }
+
+    private static final long Text$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Text[1]
+     * }
+     */
+    public static final long Text$offset() {
+        return Text$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Text[1]
+     * }
+     */
+    public static MemorySegment Text(MemorySegment struct) {
+        return struct.asSlice(Text$OFFSET, Text$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Text[1]
+     * }
+     */
+    public static void Text(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Text$OFFSET, Text$LAYOUT.byteSize());
+    }
+
+    private static long[] Text$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Text[1]
+     * }
+     */
+    public static long[] Text$dimensions() {
+        return Text$DIMS;
+    }
+    private static final VarHandle Text$ELEM_HANDLE = Text$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Text[1]
+     * }
+     */
+    public static byte Text(MemorySegment struct, long index0) {
+        return (byte)Text$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Text[1]
+     * }
+     */
+    public static void Text(MemorySegment struct, long index0, byte fieldValue) {
+        Text$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

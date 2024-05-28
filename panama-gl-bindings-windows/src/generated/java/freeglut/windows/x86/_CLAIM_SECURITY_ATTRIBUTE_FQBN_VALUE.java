@@ -2,58 +2,172 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE {
+ *     DWORD64 Version;
+ *     PWSTR Name;
+ * }
+ * }
+ */
 public class _CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_POINTER$LAYOUT.withName("Name")
-    ).withName("_CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE");
-    public static MemoryLayout $LAYOUT() {
-        return _CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE.$struct$LAYOUT;
+    _CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE.Version$VH;
-    }
-    public static long Version$get(MemorySegment seg) {
-        return (long)_CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, long x) {
-        _CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE.Version$VH.set(seg, x);
-    }
-    public static long Version$get(MemorySegment seg, long index) {
-        return (long)_CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, long x) {
-        _CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Name$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Name"));
-    public static VarHandle Name$VH() {
-        return _CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE.Name$VH;
-    }
-    public static MemoryAddress Name$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE.Name$VH.get(seg);
-    }
-    public static void Name$set( MemorySegment seg, MemoryAddress x) {
-        _CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE.Name$VH.set(seg, x);
-    }
-    public static MemoryAddress Name$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE.Name$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Name$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE.Name$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG_LONG.withName("Version"),
+        freeglut_h.C_POINTER.withName("Name")
+    ).withName("_CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong Version$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Version
+     * }
+     */
+    public static final OfLong Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Version
+     * }
+     */
+    public static long Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Version
+     * }
+     */
+    public static void Version(MemorySegment struct, long fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout Name$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Name"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PWSTR Name
+     * }
+     */
+    public static final AddressLayout Name$layout() {
+        return Name$LAYOUT;
+    }
+
+    private static final long Name$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PWSTR Name
+     * }
+     */
+    public static final long Name$offset() {
+        return Name$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PWSTR Name
+     * }
+     */
+    public static MemorySegment Name(MemorySegment struct) {
+        return struct.get(Name$LAYOUT, Name$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PWSTR Name
+     * }
+     */
+    public static void Name(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Name$LAYOUT, Name$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,93 +2,310 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_TIMESTAMP_RESPONSE {
+ *     DWORD dwStatus;
+ *     DWORD cFreeText;
+ *     LPWSTR *rgFreeText;
+ *     CRYPT_BIT_BLOB FailureInfo;
+ *     CRYPT_DER_BLOB ContentInfo;
+ * }
+ * }
+ */
 public class _CRYPT_TIMESTAMP_RESPONSE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwStatus"),
-        Constants$root.C_LONG$LAYOUT.withName("cFreeText"),
-        Constants$root.C_POINTER$LAYOUT.withName("rgFreeText"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData"),
-            Constants$root.C_LONG$LAYOUT.withName("cUnusedBits"),
-            MemoryLayout.paddingLayout(32)
-        ).withName("FailureInfo"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData")
-        ).withName("ContentInfo")
-    ).withName("_CRYPT_TIMESTAMP_RESPONSE");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_TIMESTAMP_RESPONSE.$struct$LAYOUT;
+    _CRYPT_TIMESTAMP_RESPONSE() {
+        // Should not be called directly
     }
-    static final VarHandle dwStatus$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwStatus"));
-    public static VarHandle dwStatus$VH() {
-        return _CRYPT_TIMESTAMP_RESPONSE.dwStatus$VH;
-    }
-    public static int dwStatus$get(MemorySegment seg) {
-        return (int)_CRYPT_TIMESTAMP_RESPONSE.dwStatus$VH.get(seg);
-    }
-    public static void dwStatus$set( MemorySegment seg, int x) {
-        _CRYPT_TIMESTAMP_RESPONSE.dwStatus$VH.set(seg, x);
-    }
-    public static int dwStatus$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_TIMESTAMP_RESPONSE.dwStatus$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwStatus$set(MemorySegment seg, long index, int x) {
-        _CRYPT_TIMESTAMP_RESPONSE.dwStatus$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cFreeText$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cFreeText"));
-    public static VarHandle cFreeText$VH() {
-        return _CRYPT_TIMESTAMP_RESPONSE.cFreeText$VH;
-    }
-    public static int cFreeText$get(MemorySegment seg) {
-        return (int)_CRYPT_TIMESTAMP_RESPONSE.cFreeText$VH.get(seg);
-    }
-    public static void cFreeText$set( MemorySegment seg, int x) {
-        _CRYPT_TIMESTAMP_RESPONSE.cFreeText$VH.set(seg, x);
-    }
-    public static int cFreeText$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_TIMESTAMP_RESPONSE.cFreeText$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cFreeText$set(MemorySegment seg, long index, int x) {
-        _CRYPT_TIMESTAMP_RESPONSE.cFreeText$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgFreeText$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgFreeText"));
-    public static VarHandle rgFreeText$VH() {
-        return _CRYPT_TIMESTAMP_RESPONSE.rgFreeText$VH;
-    }
-    public static MemoryAddress rgFreeText$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_TIMESTAMP_RESPONSE.rgFreeText$VH.get(seg);
-    }
-    public static void rgFreeText$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_TIMESTAMP_RESPONSE.rgFreeText$VH.set(seg, x);
-    }
-    public static MemoryAddress rgFreeText$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_TIMESTAMP_RESPONSE.rgFreeText$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgFreeText$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_TIMESTAMP_RESPONSE.rgFreeText$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment FailureInfo$slice(MemorySegment seg) {
-        return seg.asSlice(16, 24);
-    }
-    public static MemorySegment ContentInfo$slice(MemorySegment seg) {
-        return seg.asSlice(40, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwStatus"),
+        wgl_h.C_LONG.withName("cFreeText"),
+        wgl_h.C_POINTER.withName("rgFreeText"),
+        _CRYPT_BIT_BLOB.layout().withName("FailureInfo"),
+        _CRYPTOAPI_BLOB.layout().withName("ContentInfo")
+    ).withName("_CRYPT_TIMESTAMP_RESPONSE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwStatus$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwStatus"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwStatus
+     * }
+     */
+    public static final OfInt dwStatus$layout() {
+        return dwStatus$LAYOUT;
+    }
+
+    private static final long dwStatus$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwStatus
+     * }
+     */
+    public static final long dwStatus$offset() {
+        return dwStatus$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwStatus
+     * }
+     */
+    public static int dwStatus(MemorySegment struct) {
+        return struct.get(dwStatus$LAYOUT, dwStatus$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwStatus
+     * }
+     */
+    public static void dwStatus(MemorySegment struct, int fieldValue) {
+        struct.set(dwStatus$LAYOUT, dwStatus$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cFreeText$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cFreeText"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cFreeText
+     * }
+     */
+    public static final OfInt cFreeText$layout() {
+        return cFreeText$LAYOUT;
+    }
+
+    private static final long cFreeText$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cFreeText
+     * }
+     */
+    public static final long cFreeText$offset() {
+        return cFreeText$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cFreeText
+     * }
+     */
+    public static int cFreeText(MemorySegment struct) {
+        return struct.get(cFreeText$LAYOUT, cFreeText$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cFreeText
+     * }
+     */
+    public static void cFreeText(MemorySegment struct, int fieldValue) {
+        struct.set(cFreeText$LAYOUT, cFreeText$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgFreeText$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgFreeText"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR *rgFreeText
+     * }
+     */
+    public static final AddressLayout rgFreeText$layout() {
+        return rgFreeText$LAYOUT;
+    }
+
+    private static final long rgFreeText$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR *rgFreeText
+     * }
+     */
+    public static final long rgFreeText$offset() {
+        return rgFreeText$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR *rgFreeText
+     * }
+     */
+    public static MemorySegment rgFreeText(MemorySegment struct) {
+        return struct.get(rgFreeText$LAYOUT, rgFreeText$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR *rgFreeText
+     * }
+     */
+    public static void rgFreeText(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgFreeText$LAYOUT, rgFreeText$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout FailureInfo$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("FailureInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB FailureInfo
+     * }
+     */
+    public static final GroupLayout FailureInfo$layout() {
+        return FailureInfo$LAYOUT;
+    }
+
+    private static final long FailureInfo$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB FailureInfo
+     * }
+     */
+    public static final long FailureInfo$offset() {
+        return FailureInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB FailureInfo
+     * }
+     */
+    public static MemorySegment FailureInfo(MemorySegment struct) {
+        return struct.asSlice(FailureInfo$OFFSET, FailureInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB FailureInfo
+     * }
+     */
+    public static void FailureInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, FailureInfo$OFFSET, FailureInfo$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout ContentInfo$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ContentInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_DER_BLOB ContentInfo
+     * }
+     */
+    public static final GroupLayout ContentInfo$layout() {
+        return ContentInfo$LAYOUT;
+    }
+
+    private static final long ContentInfo$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_DER_BLOB ContentInfo
+     * }
+     */
+    public static final long ContentInfo$offset() {
+        return ContentInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_DER_BLOB ContentInfo
+     * }
+     */
+    public static MemorySegment ContentInfo(MemorySegment struct) {
+        return struct.asSlice(ContentInfo$OFFSET, ContentInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_DER_BLOB ContentInfo
+     * }
+     */
+    public static void ContentInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ContentInfo$OFFSET, ContentInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

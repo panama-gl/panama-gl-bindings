@@ -2,79 +2,297 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     DWORD TimeCheck;
+ *     BYTE DemotePercent;
+ *     BYTE PromotePercent;
+ *     BYTE Spare[2];
+ * }
+ * }
+ */
 public class PROCESSOR_IDLESTATE_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("TimeCheck"),
-        Constants$root.C_CHAR$LAYOUT.withName("DemotePercent"),
-        Constants$root.C_CHAR$LAYOUT.withName("PromotePercent"),
-        MemoryLayout.sequenceLayout(2, Constants$root.C_CHAR$LAYOUT).withName("Spare")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return PROCESSOR_IDLESTATE_INFO.$struct$LAYOUT;
+    PROCESSOR_IDLESTATE_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle TimeCheck$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TimeCheck"));
-    public static VarHandle TimeCheck$VH() {
-        return PROCESSOR_IDLESTATE_INFO.TimeCheck$VH;
-    }
-    public static int TimeCheck$get(MemorySegment seg) {
-        return (int)PROCESSOR_IDLESTATE_INFO.TimeCheck$VH.get(seg);
-    }
-    public static void TimeCheck$set( MemorySegment seg, int x) {
-        PROCESSOR_IDLESTATE_INFO.TimeCheck$VH.set(seg, x);
-    }
-    public static int TimeCheck$get(MemorySegment seg, long index) {
-        return (int)PROCESSOR_IDLESTATE_INFO.TimeCheck$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TimeCheck$set(MemorySegment seg, long index, int x) {
-        PROCESSOR_IDLESTATE_INFO.TimeCheck$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DemotePercent$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DemotePercent"));
-    public static VarHandle DemotePercent$VH() {
-        return PROCESSOR_IDLESTATE_INFO.DemotePercent$VH;
-    }
-    public static byte DemotePercent$get(MemorySegment seg) {
-        return (byte)PROCESSOR_IDLESTATE_INFO.DemotePercent$VH.get(seg);
-    }
-    public static void DemotePercent$set( MemorySegment seg, byte x) {
-        PROCESSOR_IDLESTATE_INFO.DemotePercent$VH.set(seg, x);
-    }
-    public static byte DemotePercent$get(MemorySegment seg, long index) {
-        return (byte)PROCESSOR_IDLESTATE_INFO.DemotePercent$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DemotePercent$set(MemorySegment seg, long index, byte x) {
-        PROCESSOR_IDLESTATE_INFO.DemotePercent$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PromotePercent$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PromotePercent"));
-    public static VarHandle PromotePercent$VH() {
-        return PROCESSOR_IDLESTATE_INFO.PromotePercent$VH;
-    }
-    public static byte PromotePercent$get(MemorySegment seg) {
-        return (byte)PROCESSOR_IDLESTATE_INFO.PromotePercent$VH.get(seg);
-    }
-    public static void PromotePercent$set( MemorySegment seg, byte x) {
-        PROCESSOR_IDLESTATE_INFO.PromotePercent$VH.set(seg, x);
-    }
-    public static byte PromotePercent$get(MemorySegment seg, long index) {
-        return (byte)PROCESSOR_IDLESTATE_INFO.PromotePercent$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PromotePercent$set(MemorySegment seg, long index, byte x) {
-        PROCESSOR_IDLESTATE_INFO.PromotePercent$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Spare$slice(MemorySegment seg) {
-        return seg.asSlice(6, 2);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("TimeCheck"),
+        freeglut_h.C_CHAR.withName("DemotePercent"),
+        freeglut_h.C_CHAR.withName("PromotePercent"),
+        MemoryLayout.sequenceLayout(2, freeglut_h.C_CHAR).withName("Spare")
+    ).withName("$anon$16628:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt TimeCheck$LAYOUT = (OfInt)$LAYOUT.select(groupElement("TimeCheck"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD TimeCheck
+     * }
+     */
+    public static final OfInt TimeCheck$layout() {
+        return TimeCheck$LAYOUT;
+    }
+
+    private static final long TimeCheck$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD TimeCheck
+     * }
+     */
+    public static final long TimeCheck$offset() {
+        return TimeCheck$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD TimeCheck
+     * }
+     */
+    public static int TimeCheck(MemorySegment struct) {
+        return struct.get(TimeCheck$LAYOUT, TimeCheck$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD TimeCheck
+     * }
+     */
+    public static void TimeCheck(MemorySegment struct, int fieldValue) {
+        struct.set(TimeCheck$LAYOUT, TimeCheck$OFFSET, fieldValue);
+    }
+
+    private static final OfByte DemotePercent$LAYOUT = (OfByte)$LAYOUT.select(groupElement("DemotePercent"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE DemotePercent
+     * }
+     */
+    public static final OfByte DemotePercent$layout() {
+        return DemotePercent$LAYOUT;
+    }
+
+    private static final long DemotePercent$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE DemotePercent
+     * }
+     */
+    public static final long DemotePercent$offset() {
+        return DemotePercent$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE DemotePercent
+     * }
+     */
+    public static byte DemotePercent(MemorySegment struct) {
+        return struct.get(DemotePercent$LAYOUT, DemotePercent$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE DemotePercent
+     * }
+     */
+    public static void DemotePercent(MemorySegment struct, byte fieldValue) {
+        struct.set(DemotePercent$LAYOUT, DemotePercent$OFFSET, fieldValue);
+    }
+
+    private static final OfByte PromotePercent$LAYOUT = (OfByte)$LAYOUT.select(groupElement("PromotePercent"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE PromotePercent
+     * }
+     */
+    public static final OfByte PromotePercent$layout() {
+        return PromotePercent$LAYOUT;
+    }
+
+    private static final long PromotePercent$OFFSET = 5;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE PromotePercent
+     * }
+     */
+    public static final long PromotePercent$offset() {
+        return PromotePercent$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE PromotePercent
+     * }
+     */
+    public static byte PromotePercent(MemorySegment struct) {
+        return struct.get(PromotePercent$LAYOUT, PromotePercent$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE PromotePercent
+     * }
+     */
+    public static void PromotePercent(MemorySegment struct, byte fieldValue) {
+        struct.set(PromotePercent$LAYOUT, PromotePercent$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Spare$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Spare"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Spare[2]
+     * }
+     */
+    public static final SequenceLayout Spare$layout() {
+        return Spare$LAYOUT;
+    }
+
+    private static final long Spare$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Spare[2]
+     * }
+     */
+    public static final long Spare$offset() {
+        return Spare$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Spare[2]
+     * }
+     */
+    public static MemorySegment Spare(MemorySegment struct) {
+        return struct.asSlice(Spare$OFFSET, Spare$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Spare[2]
+     * }
+     */
+    public static void Spare(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Spare$OFFSET, Spare$LAYOUT.byteSize());
+    }
+
+    private static long[] Spare$DIMS = { 2 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Spare[2]
+     * }
+     */
+    public static long[] Spare$dimensions() {
+        return Spare$DIMS;
+    }
+    private static final VarHandle Spare$ELEM_HANDLE = Spare$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Spare[2]
+     * }
+     */
+    public static byte Spare(MemorySegment struct, long index0) {
+        return (byte)Spare$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Spare[2]
+     * }
+     */
+    public static void Spare(MemorySegment struct, long index0, byte fieldValue) {
+        Spare$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

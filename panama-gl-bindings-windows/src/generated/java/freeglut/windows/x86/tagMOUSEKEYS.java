@@ -2,143 +2,402 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagMOUSEKEYS {
+ *     UINT cbSize;
+ *     DWORD dwFlags;
+ *     DWORD iMaxSpeed;
+ *     DWORD iTimeToMaxSpeed;
+ *     DWORD iCtrlSpeed;
+ *     DWORD dwReserved1;
+ *     DWORD dwReserved2;
+ * }
+ * }
+ */
 public class tagMOUSEKEYS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("iMaxSpeed"),
-        Constants$root.C_LONG$LAYOUT.withName("iTimeToMaxSpeed"),
-        Constants$root.C_LONG$LAYOUT.withName("iCtrlSpeed"),
-        Constants$root.C_LONG$LAYOUT.withName("dwReserved1"),
-        Constants$root.C_LONG$LAYOUT.withName("dwReserved2")
-    ).withName("tagMOUSEKEYS");
-    public static MemoryLayout $LAYOUT() {
-        return tagMOUSEKEYS.$struct$LAYOUT;
+    tagMOUSEKEYS() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return tagMOUSEKEYS.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)tagMOUSEKEYS.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        tagMOUSEKEYS.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)tagMOUSEKEYS.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        tagMOUSEKEYS.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFlags"));
-    public static VarHandle dwFlags$VH() {
-        return tagMOUSEKEYS.dwFlags$VH;
-    }
-    public static int dwFlags$get(MemorySegment seg) {
-        return (int)tagMOUSEKEYS.dwFlags$VH.get(seg);
-    }
-    public static void dwFlags$set( MemorySegment seg, int x) {
-        tagMOUSEKEYS.dwFlags$VH.set(seg, x);
-    }
-    public static int dwFlags$get(MemorySegment seg, long index) {
-        return (int)tagMOUSEKEYS.dwFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFlags$set(MemorySegment seg, long index, int x) {
-        tagMOUSEKEYS.dwFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iMaxSpeed$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iMaxSpeed"));
-    public static VarHandle iMaxSpeed$VH() {
-        return tagMOUSEKEYS.iMaxSpeed$VH;
-    }
-    public static int iMaxSpeed$get(MemorySegment seg) {
-        return (int)tagMOUSEKEYS.iMaxSpeed$VH.get(seg);
-    }
-    public static void iMaxSpeed$set( MemorySegment seg, int x) {
-        tagMOUSEKEYS.iMaxSpeed$VH.set(seg, x);
-    }
-    public static int iMaxSpeed$get(MemorySegment seg, long index) {
-        return (int)tagMOUSEKEYS.iMaxSpeed$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iMaxSpeed$set(MemorySegment seg, long index, int x) {
-        tagMOUSEKEYS.iMaxSpeed$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iTimeToMaxSpeed$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iTimeToMaxSpeed"));
-    public static VarHandle iTimeToMaxSpeed$VH() {
-        return tagMOUSEKEYS.iTimeToMaxSpeed$VH;
-    }
-    public static int iTimeToMaxSpeed$get(MemorySegment seg) {
-        return (int)tagMOUSEKEYS.iTimeToMaxSpeed$VH.get(seg);
-    }
-    public static void iTimeToMaxSpeed$set( MemorySegment seg, int x) {
-        tagMOUSEKEYS.iTimeToMaxSpeed$VH.set(seg, x);
-    }
-    public static int iTimeToMaxSpeed$get(MemorySegment seg, long index) {
-        return (int)tagMOUSEKEYS.iTimeToMaxSpeed$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iTimeToMaxSpeed$set(MemorySegment seg, long index, int x) {
-        tagMOUSEKEYS.iTimeToMaxSpeed$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iCtrlSpeed$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iCtrlSpeed"));
-    public static VarHandle iCtrlSpeed$VH() {
-        return tagMOUSEKEYS.iCtrlSpeed$VH;
-    }
-    public static int iCtrlSpeed$get(MemorySegment seg) {
-        return (int)tagMOUSEKEYS.iCtrlSpeed$VH.get(seg);
-    }
-    public static void iCtrlSpeed$set( MemorySegment seg, int x) {
-        tagMOUSEKEYS.iCtrlSpeed$VH.set(seg, x);
-    }
-    public static int iCtrlSpeed$get(MemorySegment seg, long index) {
-        return (int)tagMOUSEKEYS.iCtrlSpeed$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iCtrlSpeed$set(MemorySegment seg, long index, int x) {
-        tagMOUSEKEYS.iCtrlSpeed$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwReserved1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwReserved1"));
-    public static VarHandle dwReserved1$VH() {
-        return tagMOUSEKEYS.dwReserved1$VH;
-    }
-    public static int dwReserved1$get(MemorySegment seg) {
-        return (int)tagMOUSEKEYS.dwReserved1$VH.get(seg);
-    }
-    public static void dwReserved1$set( MemorySegment seg, int x) {
-        tagMOUSEKEYS.dwReserved1$VH.set(seg, x);
-    }
-    public static int dwReserved1$get(MemorySegment seg, long index) {
-        return (int)tagMOUSEKEYS.dwReserved1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwReserved1$set(MemorySegment seg, long index, int x) {
-        tagMOUSEKEYS.dwReserved1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwReserved2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwReserved2"));
-    public static VarHandle dwReserved2$VH() {
-        return tagMOUSEKEYS.dwReserved2$VH;
-    }
-    public static int dwReserved2$get(MemorySegment seg) {
-        return (int)tagMOUSEKEYS.dwReserved2$VH.get(seg);
-    }
-    public static void dwReserved2$set( MemorySegment seg, int x) {
-        tagMOUSEKEYS.dwReserved2$VH.set(seg, x);
-    }
-    public static int dwReserved2$get(MemorySegment seg, long index) {
-        return (int)tagMOUSEKEYS.dwReserved2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwReserved2$set(MemorySegment seg, long index, int x) {
-        tagMOUSEKEYS.dwReserved2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_INT.withName("cbSize"),
+        freeglut_h.C_LONG.withName("dwFlags"),
+        freeglut_h.C_LONG.withName("iMaxSpeed"),
+        freeglut_h.C_LONG.withName("iTimeToMaxSpeed"),
+        freeglut_h.C_LONG.withName("iCtrlSpeed"),
+        freeglut_h.C_LONG.withName("dwReserved1"),
+        freeglut_h.C_LONG.withName("dwReserved2")
+    ).withName("tagMOUSEKEYS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final OfInt dwFlags$layout() {
+        return dwFlags$LAYOUT;
+    }
+
+    private static final long dwFlags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final long dwFlags$offset() {
+        return dwFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static int dwFlags(MemorySegment struct) {
+        return struct.get(dwFlags$LAYOUT, dwFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static void dwFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwFlags$LAYOUT, dwFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iMaxSpeed$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iMaxSpeed"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD iMaxSpeed
+     * }
+     */
+    public static final OfInt iMaxSpeed$layout() {
+        return iMaxSpeed$LAYOUT;
+    }
+
+    private static final long iMaxSpeed$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD iMaxSpeed
+     * }
+     */
+    public static final long iMaxSpeed$offset() {
+        return iMaxSpeed$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD iMaxSpeed
+     * }
+     */
+    public static int iMaxSpeed(MemorySegment struct) {
+        return struct.get(iMaxSpeed$LAYOUT, iMaxSpeed$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD iMaxSpeed
+     * }
+     */
+    public static void iMaxSpeed(MemorySegment struct, int fieldValue) {
+        struct.set(iMaxSpeed$LAYOUT, iMaxSpeed$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iTimeToMaxSpeed$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iTimeToMaxSpeed"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD iTimeToMaxSpeed
+     * }
+     */
+    public static final OfInt iTimeToMaxSpeed$layout() {
+        return iTimeToMaxSpeed$LAYOUT;
+    }
+
+    private static final long iTimeToMaxSpeed$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD iTimeToMaxSpeed
+     * }
+     */
+    public static final long iTimeToMaxSpeed$offset() {
+        return iTimeToMaxSpeed$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD iTimeToMaxSpeed
+     * }
+     */
+    public static int iTimeToMaxSpeed(MemorySegment struct) {
+        return struct.get(iTimeToMaxSpeed$LAYOUT, iTimeToMaxSpeed$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD iTimeToMaxSpeed
+     * }
+     */
+    public static void iTimeToMaxSpeed(MemorySegment struct, int fieldValue) {
+        struct.set(iTimeToMaxSpeed$LAYOUT, iTimeToMaxSpeed$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iCtrlSpeed$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iCtrlSpeed"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD iCtrlSpeed
+     * }
+     */
+    public static final OfInt iCtrlSpeed$layout() {
+        return iCtrlSpeed$LAYOUT;
+    }
+
+    private static final long iCtrlSpeed$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD iCtrlSpeed
+     * }
+     */
+    public static final long iCtrlSpeed$offset() {
+        return iCtrlSpeed$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD iCtrlSpeed
+     * }
+     */
+    public static int iCtrlSpeed(MemorySegment struct) {
+        return struct.get(iCtrlSpeed$LAYOUT, iCtrlSpeed$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD iCtrlSpeed
+     * }
+     */
+    public static void iCtrlSpeed(MemorySegment struct, int fieldValue) {
+        struct.set(iCtrlSpeed$LAYOUT, iCtrlSpeed$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwReserved1$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwReserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved1
+     * }
+     */
+    public static final OfInt dwReserved1$layout() {
+        return dwReserved1$LAYOUT;
+    }
+
+    private static final long dwReserved1$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved1
+     * }
+     */
+    public static final long dwReserved1$offset() {
+        return dwReserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved1
+     * }
+     */
+    public static int dwReserved1(MemorySegment struct) {
+        return struct.get(dwReserved1$LAYOUT, dwReserved1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved1
+     * }
+     */
+    public static void dwReserved1(MemorySegment struct, int fieldValue) {
+        struct.set(dwReserved1$LAYOUT, dwReserved1$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwReserved2$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwReserved2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved2
+     * }
+     */
+    public static final OfInt dwReserved2$layout() {
+        return dwReserved2$LAYOUT;
+    }
+
+    private static final long dwReserved2$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved2
+     * }
+     */
+    public static final long dwReserved2$offset() {
+        return dwReserved2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved2
+     * }
+     */
+    public static int dwReserved2(MemorySegment struct) {
+        return struct.get(dwReserved2$LAYOUT, dwReserved2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved2
+     * }
+     */
+    public static void dwReserved2(MemorySegment struct, int fieldValue) {
+        struct.set(dwReserved2$LAYOUT, dwReserved2$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

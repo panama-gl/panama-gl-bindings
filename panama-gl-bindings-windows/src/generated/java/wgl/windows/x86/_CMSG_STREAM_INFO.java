@@ -2,79 +2,219 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CMSG_STREAM_INFO {
+ *     DWORD cbContent;
+ *     PFN_CMSG_STREAM_OUTPUT pfnStreamOutput;
+ *     void *pvArg;
+ * }
+ * }
+ */
 public class _CMSG_STREAM_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbContent"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pfnStreamOutput"),
-        Constants$root.C_POINTER$LAYOUT.withName("pvArg")
-    ).withName("_CMSG_STREAM_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CMSG_STREAM_INFO.$struct$LAYOUT;
+    _CMSG_STREAM_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle cbContent$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbContent"));
-    public static VarHandle cbContent$VH() {
-        return _CMSG_STREAM_INFO.cbContent$VH;
-    }
-    public static int cbContent$get(MemorySegment seg) {
-        return (int)_CMSG_STREAM_INFO.cbContent$VH.get(seg);
-    }
-    public static void cbContent$set( MemorySegment seg, int x) {
-        _CMSG_STREAM_INFO.cbContent$VH.set(seg, x);
-    }
-    public static int cbContent$get(MemorySegment seg, long index) {
-        return (int)_CMSG_STREAM_INFO.cbContent$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbContent$set(MemorySegment seg, long index, int x) {
-        _CMSG_STREAM_INFO.cbContent$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pfnStreamOutput$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnStreamOutput"));
-    public static VarHandle pfnStreamOutput$VH() {
-        return _CMSG_STREAM_INFO.pfnStreamOutput$VH;
-    }
-    public static MemoryAddress pfnStreamOutput$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_STREAM_INFO.pfnStreamOutput$VH.get(seg);
-    }
-    public static void pfnStreamOutput$set( MemorySegment seg, MemoryAddress x) {
-        _CMSG_STREAM_INFO.pfnStreamOutput$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnStreamOutput$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_STREAM_INFO.pfnStreamOutput$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnStreamOutput$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMSG_STREAM_INFO.pfnStreamOutput$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PFN_CMSG_STREAM_OUTPUT pfnStreamOutput (MemorySegment segment, MemorySession session) {
-        return PFN_CMSG_STREAM_OUTPUT.ofAddress(pfnStreamOutput$get(segment), session);
-    }
-    static final VarHandle pvArg$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pvArg"));
-    public static VarHandle pvArg$VH() {
-        return _CMSG_STREAM_INFO.pvArg$VH;
-    }
-    public static MemoryAddress pvArg$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_STREAM_INFO.pvArg$VH.get(seg);
-    }
-    public static void pvArg$set( MemorySegment seg, MemoryAddress x) {
-        _CMSG_STREAM_INFO.pvArg$VH.set(seg, x);
-    }
-    public static MemoryAddress pvArg$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_STREAM_INFO.pvArg$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pvArg$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMSG_STREAM_INFO.pvArg$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbContent"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pfnStreamOutput"),
+        wgl_h.C_POINTER.withName("pvArg")
+    ).withName("_CMSG_STREAM_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbContent$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbContent"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbContent
+     * }
+     */
+    public static final OfInt cbContent$layout() {
+        return cbContent$LAYOUT;
+    }
+
+    private static final long cbContent$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbContent
+     * }
+     */
+    public static final long cbContent$offset() {
+        return cbContent$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbContent
+     * }
+     */
+    public static int cbContent(MemorySegment struct) {
+        return struct.get(cbContent$LAYOUT, cbContent$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbContent
+     * }
+     */
+    public static void cbContent(MemorySegment struct, int fieldValue) {
+        struct.set(cbContent$LAYOUT, cbContent$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pfnStreamOutput$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnStreamOutput"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PFN_CMSG_STREAM_OUTPUT pfnStreamOutput
+     * }
+     */
+    public static final AddressLayout pfnStreamOutput$layout() {
+        return pfnStreamOutput$LAYOUT;
+    }
+
+    private static final long pfnStreamOutput$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PFN_CMSG_STREAM_OUTPUT pfnStreamOutput
+     * }
+     */
+    public static final long pfnStreamOutput$offset() {
+        return pfnStreamOutput$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PFN_CMSG_STREAM_OUTPUT pfnStreamOutput
+     * }
+     */
+    public static MemorySegment pfnStreamOutput(MemorySegment struct) {
+        return struct.get(pfnStreamOutput$LAYOUT, pfnStreamOutput$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PFN_CMSG_STREAM_OUTPUT pfnStreamOutput
+     * }
+     */
+    public static void pfnStreamOutput(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnStreamOutput$LAYOUT, pfnStreamOutput$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pvArg$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pvArg"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *pvArg
+     * }
+     */
+    public static final AddressLayout pvArg$layout() {
+        return pvArg$LAYOUT;
+    }
+
+    private static final long pvArg$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *pvArg
+     * }
+     */
+    public static final long pvArg$offset() {
+        return pvArg$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *pvArg
+     * }
+     */
+    public static MemorySegment pvArg(MemorySegment struct) {
+        return struct.get(pvArg$LAYOUT, pvArg$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *pvArg
+     * }
+     */
+    public static void pvArg(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pvArg$LAYOUT, pvArg$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

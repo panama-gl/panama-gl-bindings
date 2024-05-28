@@ -2,93 +2,265 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PRINTER_NOTIFY_OPTIONS {
+ *     DWORD Version;
+ *     DWORD Flags;
+ *     DWORD Count;
+ *     PPRINTER_NOTIFY_OPTIONS_TYPE pTypes;
+ * }
+ * }
+ */
 public class _PRINTER_NOTIFY_OPTIONS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("Count"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pTypes")
-    ).withName("_PRINTER_NOTIFY_OPTIONS");
-    public static MemoryLayout $LAYOUT() {
-        return _PRINTER_NOTIFY_OPTIONS.$struct$LAYOUT;
+    _PRINTER_NOTIFY_OPTIONS() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _PRINTER_NOTIFY_OPTIONS.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_PRINTER_NOTIFY_OPTIONS.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _PRINTER_NOTIFY_OPTIONS.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_PRINTER_NOTIFY_OPTIONS.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _PRINTER_NOTIFY_OPTIONS.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _PRINTER_NOTIFY_OPTIONS.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_PRINTER_NOTIFY_OPTIONS.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _PRINTER_NOTIFY_OPTIONS.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_PRINTER_NOTIFY_OPTIONS.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _PRINTER_NOTIFY_OPTIONS.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Count$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Count"));
-    public static VarHandle Count$VH() {
-        return _PRINTER_NOTIFY_OPTIONS.Count$VH;
-    }
-    public static int Count$get(MemorySegment seg) {
-        return (int)_PRINTER_NOTIFY_OPTIONS.Count$VH.get(seg);
-    }
-    public static void Count$set( MemorySegment seg, int x) {
-        _PRINTER_NOTIFY_OPTIONS.Count$VH.set(seg, x);
-    }
-    public static int Count$get(MemorySegment seg, long index) {
-        return (int)_PRINTER_NOTIFY_OPTIONS.Count$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Count$set(MemorySegment seg, long index, int x) {
-        _PRINTER_NOTIFY_OPTIONS.Count$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pTypes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pTypes"));
-    public static VarHandle pTypes$VH() {
-        return _PRINTER_NOTIFY_OPTIONS.pTypes$VH;
-    }
-    public static MemoryAddress pTypes$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_NOTIFY_OPTIONS.pTypes$VH.get(seg);
-    }
-    public static void pTypes$set( MemorySegment seg, MemoryAddress x) {
-        _PRINTER_NOTIFY_OPTIONS.pTypes$VH.set(seg, x);
-    }
-    public static MemoryAddress pTypes$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_NOTIFY_OPTIONS.pTypes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pTypes$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PRINTER_NOTIFY_OPTIONS.pTypes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_LONG.withName("Count"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pTypes")
+    ).withName("_PRINTER_NOTIFY_OPTIONS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Count$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Count"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Count
+     * }
+     */
+    public static final OfInt Count$layout() {
+        return Count$LAYOUT;
+    }
+
+    private static final long Count$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Count
+     * }
+     */
+    public static final long Count$offset() {
+        return Count$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Count
+     * }
+     */
+    public static int Count(MemorySegment struct) {
+        return struct.get(Count$LAYOUT, Count$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Count
+     * }
+     */
+    public static void Count(MemorySegment struct, int fieldValue) {
+        struct.set(Count$LAYOUT, Count$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pTypes$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pTypes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PPRINTER_NOTIFY_OPTIONS_TYPE pTypes
+     * }
+     */
+    public static final AddressLayout pTypes$layout() {
+        return pTypes$LAYOUT;
+    }
+
+    private static final long pTypes$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PPRINTER_NOTIFY_OPTIONS_TYPE pTypes
+     * }
+     */
+    public static final long pTypes$offset() {
+        return pTypes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PPRINTER_NOTIFY_OPTIONS_TYPE pTypes
+     * }
+     */
+    public static MemorySegment pTypes(MemorySegment struct) {
+        return struct.get(pTypes$LAYOUT, pTypes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PPRINTER_NOTIFY_OPTIONS_TYPE pTypes
+     * }
+     */
+    public static void pTypes(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pTypes$LAYOUT, pTypes$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

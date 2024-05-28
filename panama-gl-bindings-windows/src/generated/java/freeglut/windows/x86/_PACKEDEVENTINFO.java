@@ -2,59 +2,218 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PACKEDEVENTINFO {
+ *     DWORD ulSize;
+ *     DWORD ulNumEventsForLogFile;
+ *     DWORD ulOffsets[];
+ * }
+ * }
+ */
 public class _PACKEDEVENTINFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ulSize"),
-        Constants$root.C_LONG$LAYOUT.withName("ulNumEventsForLogFile"),
-        MemoryLayout.sequenceLayout(0, Constants$root.C_LONG$LAYOUT).withName("ulOffsets")
-    ).withName("_PACKEDEVENTINFO");
-    public static MemoryLayout $LAYOUT() {
-        return _PACKEDEVENTINFO.$struct$LAYOUT;
+    _PACKEDEVENTINFO() {
+        // Should not be called directly
     }
-    static final VarHandle ulSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ulSize"));
-    public static VarHandle ulSize$VH() {
-        return _PACKEDEVENTINFO.ulSize$VH;
-    }
-    public static int ulSize$get(MemorySegment seg) {
-        return (int)_PACKEDEVENTINFO.ulSize$VH.get(seg);
-    }
-    public static void ulSize$set( MemorySegment seg, int x) {
-        _PACKEDEVENTINFO.ulSize$VH.set(seg, x);
-    }
-    public static int ulSize$get(MemorySegment seg, long index) {
-        return (int)_PACKEDEVENTINFO.ulSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ulSize$set(MemorySegment seg, long index, int x) {
-        _PACKEDEVENTINFO.ulSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ulNumEventsForLogFile$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ulNumEventsForLogFile"));
-    public static VarHandle ulNumEventsForLogFile$VH() {
-        return _PACKEDEVENTINFO.ulNumEventsForLogFile$VH;
-    }
-    public static int ulNumEventsForLogFile$get(MemorySegment seg) {
-        return (int)_PACKEDEVENTINFO.ulNumEventsForLogFile$VH.get(seg);
-    }
-    public static void ulNumEventsForLogFile$set( MemorySegment seg, int x) {
-        _PACKEDEVENTINFO.ulNumEventsForLogFile$VH.set(seg, x);
-    }
-    public static int ulNumEventsForLogFile$get(MemorySegment seg, long index) {
-        return (int)_PACKEDEVENTINFO.ulNumEventsForLogFile$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ulNumEventsForLogFile$set(MemorySegment seg, long index, int x) {
-        _PACKEDEVENTINFO.ulNumEventsForLogFile$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("ulSize"),
+        freeglut_h.C_LONG.withName("ulNumEventsForLogFile"),
+        MemoryLayout.sequenceLayout(0, freeglut_h.C_LONG).withName("ulOffsets")
+    ).withName("_PACKEDEVENTINFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt ulSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ulSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ulSize
+     * }
+     */
+    public static final OfInt ulSize$layout() {
+        return ulSize$LAYOUT;
+    }
+
+    private static final long ulSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ulSize
+     * }
+     */
+    public static final long ulSize$offset() {
+        return ulSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ulSize
+     * }
+     */
+    public static int ulSize(MemorySegment struct) {
+        return struct.get(ulSize$LAYOUT, ulSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ulSize
+     * }
+     */
+    public static void ulSize(MemorySegment struct, int fieldValue) {
+        struct.set(ulSize$LAYOUT, ulSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ulNumEventsForLogFile$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ulNumEventsForLogFile"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ulNumEventsForLogFile
+     * }
+     */
+    public static final OfInt ulNumEventsForLogFile$layout() {
+        return ulNumEventsForLogFile$LAYOUT;
+    }
+
+    private static final long ulNumEventsForLogFile$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ulNumEventsForLogFile
+     * }
+     */
+    public static final long ulNumEventsForLogFile$offset() {
+        return ulNumEventsForLogFile$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ulNumEventsForLogFile
+     * }
+     */
+    public static int ulNumEventsForLogFile(MemorySegment struct) {
+        return struct.get(ulNumEventsForLogFile$LAYOUT, ulNumEventsForLogFile$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ulNumEventsForLogFile
+     * }
+     */
+    public static void ulNumEventsForLogFile(MemorySegment struct, int fieldValue) {
+        struct.set(ulNumEventsForLogFile$LAYOUT, ulNumEventsForLogFile$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout ulOffsets$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("ulOffsets"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ulOffsets[]
+     * }
+     */
+    public static final SequenceLayout ulOffsets$layout() {
+        return ulOffsets$LAYOUT;
+    }
+
+    private static final long ulOffsets$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ulOffsets[]
+     * }
+     */
+    public static final long ulOffsets$offset() {
+        return ulOffsets$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ulOffsets[]
+     * }
+     */
+    public static MemorySegment ulOffsets(MemorySegment struct) {
+        return struct.asSlice(ulOffsets$OFFSET, ulOffsets$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ulOffsets[]
+     * }
+     */
+    public static void ulOffsets(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ulOffsets$OFFSET, ulOffsets$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

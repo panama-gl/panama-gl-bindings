@@ -2,59 +2,173 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagPARAMDESC {
+ *     LPPARAMDESCEX pparamdescex;
+ *     USHORT wParamFlags;
+ * }
+ * }
+ */
 public class tagPARAMDESC {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("pparamdescex"),
-        Constants$root.C_SHORT$LAYOUT.withName("wParamFlags"),
-        MemoryLayout.paddingLayout(48)
-    ).withName("tagPARAMDESC");
-    public static MemoryLayout $LAYOUT() {
-        return tagPARAMDESC.$struct$LAYOUT;
+    tagPARAMDESC() {
+        // Should not be called directly
     }
-    static final VarHandle pparamdescex$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pparamdescex"));
-    public static VarHandle pparamdescex$VH() {
-        return tagPARAMDESC.pparamdescex$VH;
-    }
-    public static MemoryAddress pparamdescex$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPARAMDESC.pparamdescex$VH.get(seg);
-    }
-    public static void pparamdescex$set( MemorySegment seg, MemoryAddress x) {
-        tagPARAMDESC.pparamdescex$VH.set(seg, x);
-    }
-    public static MemoryAddress pparamdescex$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPARAMDESC.pparamdescex$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pparamdescex$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPARAMDESC.pparamdescex$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wParamFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wParamFlags"));
-    public static VarHandle wParamFlags$VH() {
-        return tagPARAMDESC.wParamFlags$VH;
-    }
-    public static short wParamFlags$get(MemorySegment seg) {
-        return (short)tagPARAMDESC.wParamFlags$VH.get(seg);
-    }
-    public static void wParamFlags$set( MemorySegment seg, short x) {
-        tagPARAMDESC.wParamFlags$VH.set(seg, x);
-    }
-    public static short wParamFlags$get(MemorySegment seg, long index) {
-        return (short)tagPARAMDESC.wParamFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wParamFlags$set(MemorySegment seg, long index, short x) {
-        tagPARAMDESC.wParamFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("pparamdescex"),
+        wgl_h.C_SHORT.withName("wParamFlags"),
+        MemoryLayout.paddingLayout(6)
+    ).withName("tagPARAMDESC");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout pparamdescex$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pparamdescex"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPPARAMDESCEX pparamdescex
+     * }
+     */
+    public static final AddressLayout pparamdescex$layout() {
+        return pparamdescex$LAYOUT;
+    }
+
+    private static final long pparamdescex$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPPARAMDESCEX pparamdescex
+     * }
+     */
+    public static final long pparamdescex$offset() {
+        return pparamdescex$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPPARAMDESCEX pparamdescex
+     * }
+     */
+    public static MemorySegment pparamdescex(MemorySegment struct) {
+        return struct.get(pparamdescex$LAYOUT, pparamdescex$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPPARAMDESCEX pparamdescex
+     * }
+     */
+    public static void pparamdescex(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pparamdescex$LAYOUT, pparamdescex$OFFSET, fieldValue);
+    }
+
+    private static final OfShort wParamFlags$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wParamFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT wParamFlags
+     * }
+     */
+    public static final OfShort wParamFlags$layout() {
+        return wParamFlags$LAYOUT;
+    }
+
+    private static final long wParamFlags$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT wParamFlags
+     * }
+     */
+    public static final long wParamFlags$offset() {
+        return wParamFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT wParamFlags
+     * }
+     */
+    public static short wParamFlags(MemorySegment struct) {
+        return struct.get(wParamFlags$LAYOUT, wParamFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT wParamFlags
+     * }
+     */
+    public static void wParamFlags(MemorySegment struct, short fieldValue) {
+        struct.set(wParamFlags$LAYOUT, wParamFlags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

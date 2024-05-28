@@ -2,145 +2,404 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SERVICE_NOTIFY_2A {
+ *     DWORD dwVersion;
+ *     PFN_SC_NOTIFY_CALLBACK pfnNotifyCallback;
+ *     PVOID pContext;
+ *     DWORD dwNotificationStatus;
+ *     SERVICE_STATUS_PROCESS ServiceStatus;
+ *     DWORD dwNotificationTriggered;
+ *     LPSTR pszServiceNames;
+ * }
+ * }
+ */
 public class _SERVICE_NOTIFY_2A {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwVersion"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pfnNotifyCallback"),
-        Constants$root.C_POINTER$LAYOUT.withName("pContext"),
-        Constants$root.C_LONG$LAYOUT.withName("dwNotificationStatus"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwServiceType"),
-            Constants$root.C_LONG$LAYOUT.withName("dwCurrentState"),
-            Constants$root.C_LONG$LAYOUT.withName("dwControlsAccepted"),
-            Constants$root.C_LONG$LAYOUT.withName("dwWin32ExitCode"),
-            Constants$root.C_LONG$LAYOUT.withName("dwServiceSpecificExitCode"),
-            Constants$root.C_LONG$LAYOUT.withName("dwCheckPoint"),
-            Constants$root.C_LONG$LAYOUT.withName("dwWaitHint"),
-            Constants$root.C_LONG$LAYOUT.withName("dwProcessId"),
-            Constants$root.C_LONG$LAYOUT.withName("dwServiceFlags")
-        ).withName("ServiceStatus"),
-        Constants$root.C_LONG$LAYOUT.withName("dwNotificationTriggered"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pszServiceNames")
-    ).withName("_SERVICE_NOTIFY_2A");
-    public static MemoryLayout $LAYOUT() {
-        return _SERVICE_NOTIFY_2A.$struct$LAYOUT;
+    _SERVICE_NOTIFY_2A() {
+        // Should not be called directly
     }
-    static final VarHandle dwVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwVersion"));
-    public static VarHandle dwVersion$VH() {
-        return _SERVICE_NOTIFY_2A.dwVersion$VH;
-    }
-    public static int dwVersion$get(MemorySegment seg) {
-        return (int)_SERVICE_NOTIFY_2A.dwVersion$VH.get(seg);
-    }
-    public static void dwVersion$set( MemorySegment seg, int x) {
-        _SERVICE_NOTIFY_2A.dwVersion$VH.set(seg, x);
-    }
-    public static int dwVersion$get(MemorySegment seg, long index) {
-        return (int)_SERVICE_NOTIFY_2A.dwVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwVersion$set(MemorySegment seg, long index, int x) {
-        _SERVICE_NOTIFY_2A.dwVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pfnNotifyCallback$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnNotifyCallback"));
-    public static VarHandle pfnNotifyCallback$VH() {
-        return _SERVICE_NOTIFY_2A.pfnNotifyCallback$VH;
-    }
-    public static MemoryAddress pfnNotifyCallback$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SERVICE_NOTIFY_2A.pfnNotifyCallback$VH.get(seg);
-    }
-    public static void pfnNotifyCallback$set( MemorySegment seg, MemoryAddress x) {
-        _SERVICE_NOTIFY_2A.pfnNotifyCallback$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnNotifyCallback$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SERVICE_NOTIFY_2A.pfnNotifyCallback$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnNotifyCallback$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SERVICE_NOTIFY_2A.pfnNotifyCallback$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PFN_SC_NOTIFY_CALLBACK pfnNotifyCallback (MemorySegment segment, MemorySession session) {
-        return PFN_SC_NOTIFY_CALLBACK.ofAddress(pfnNotifyCallback$get(segment), session);
-    }
-    static final VarHandle pContext$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pContext"));
-    public static VarHandle pContext$VH() {
-        return _SERVICE_NOTIFY_2A.pContext$VH;
-    }
-    public static MemoryAddress pContext$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SERVICE_NOTIFY_2A.pContext$VH.get(seg);
-    }
-    public static void pContext$set( MemorySegment seg, MemoryAddress x) {
-        _SERVICE_NOTIFY_2A.pContext$VH.set(seg, x);
-    }
-    public static MemoryAddress pContext$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SERVICE_NOTIFY_2A.pContext$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pContext$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SERVICE_NOTIFY_2A.pContext$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwNotificationStatus$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwNotificationStatus"));
-    public static VarHandle dwNotificationStatus$VH() {
-        return _SERVICE_NOTIFY_2A.dwNotificationStatus$VH;
-    }
-    public static int dwNotificationStatus$get(MemorySegment seg) {
-        return (int)_SERVICE_NOTIFY_2A.dwNotificationStatus$VH.get(seg);
-    }
-    public static void dwNotificationStatus$set( MemorySegment seg, int x) {
-        _SERVICE_NOTIFY_2A.dwNotificationStatus$VH.set(seg, x);
-    }
-    public static int dwNotificationStatus$get(MemorySegment seg, long index) {
-        return (int)_SERVICE_NOTIFY_2A.dwNotificationStatus$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwNotificationStatus$set(MemorySegment seg, long index, int x) {
-        _SERVICE_NOTIFY_2A.dwNotificationStatus$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment ServiceStatus$slice(MemorySegment seg) {
-        return seg.asSlice(28, 36);
-    }
-    static final VarHandle dwNotificationTriggered$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwNotificationTriggered"));
-    public static VarHandle dwNotificationTriggered$VH() {
-        return _SERVICE_NOTIFY_2A.dwNotificationTriggered$VH;
-    }
-    public static int dwNotificationTriggered$get(MemorySegment seg) {
-        return (int)_SERVICE_NOTIFY_2A.dwNotificationTriggered$VH.get(seg);
-    }
-    public static void dwNotificationTriggered$set( MemorySegment seg, int x) {
-        _SERVICE_NOTIFY_2A.dwNotificationTriggered$VH.set(seg, x);
-    }
-    public static int dwNotificationTriggered$get(MemorySegment seg, long index) {
-        return (int)_SERVICE_NOTIFY_2A.dwNotificationTriggered$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwNotificationTriggered$set(MemorySegment seg, long index, int x) {
-        _SERVICE_NOTIFY_2A.dwNotificationTriggered$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pszServiceNames$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pszServiceNames"));
-    public static VarHandle pszServiceNames$VH() {
-        return _SERVICE_NOTIFY_2A.pszServiceNames$VH;
-    }
-    public static MemoryAddress pszServiceNames$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SERVICE_NOTIFY_2A.pszServiceNames$VH.get(seg);
-    }
-    public static void pszServiceNames$set( MemorySegment seg, MemoryAddress x) {
-        _SERVICE_NOTIFY_2A.pszServiceNames$VH.set(seg, x);
-    }
-    public static MemoryAddress pszServiceNames$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SERVICE_NOTIFY_2A.pszServiceNames$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pszServiceNames$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SERVICE_NOTIFY_2A.pszServiceNames$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwVersion"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pfnNotifyCallback"),
+        wgl_h.C_POINTER.withName("pContext"),
+        wgl_h.C_LONG.withName("dwNotificationStatus"),
+        _SERVICE_STATUS_PROCESS.layout().withName("ServiceStatus"),
+        wgl_h.C_LONG.withName("dwNotificationTriggered"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pszServiceNames")
+    ).withName("_SERVICE_NOTIFY_2A");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final OfInt dwVersion$layout() {
+        return dwVersion$LAYOUT;
+    }
+
+    private static final long dwVersion$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final long dwVersion$offset() {
+        return dwVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static int dwVersion(MemorySegment struct) {
+        return struct.get(dwVersion$LAYOUT, dwVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static void dwVersion(MemorySegment struct, int fieldValue) {
+        struct.set(dwVersion$LAYOUT, dwVersion$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pfnNotifyCallback$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnNotifyCallback"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PFN_SC_NOTIFY_CALLBACK pfnNotifyCallback
+     * }
+     */
+    public static final AddressLayout pfnNotifyCallback$layout() {
+        return pfnNotifyCallback$LAYOUT;
+    }
+
+    private static final long pfnNotifyCallback$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PFN_SC_NOTIFY_CALLBACK pfnNotifyCallback
+     * }
+     */
+    public static final long pfnNotifyCallback$offset() {
+        return pfnNotifyCallback$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PFN_SC_NOTIFY_CALLBACK pfnNotifyCallback
+     * }
+     */
+    public static MemorySegment pfnNotifyCallback(MemorySegment struct) {
+        return struct.get(pfnNotifyCallback$LAYOUT, pfnNotifyCallback$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PFN_SC_NOTIFY_CALLBACK pfnNotifyCallback
+     * }
+     */
+    public static void pfnNotifyCallback(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnNotifyCallback$LAYOUT, pfnNotifyCallback$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pContext$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pContext"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PVOID pContext
+     * }
+     */
+    public static final AddressLayout pContext$layout() {
+        return pContext$LAYOUT;
+    }
+
+    private static final long pContext$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PVOID pContext
+     * }
+     */
+    public static final long pContext$offset() {
+        return pContext$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PVOID pContext
+     * }
+     */
+    public static MemorySegment pContext(MemorySegment struct) {
+        return struct.get(pContext$LAYOUT, pContext$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PVOID pContext
+     * }
+     */
+    public static void pContext(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pContext$LAYOUT, pContext$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwNotificationStatus$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwNotificationStatus"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwNotificationStatus
+     * }
+     */
+    public static final OfInt dwNotificationStatus$layout() {
+        return dwNotificationStatus$LAYOUT;
+    }
+
+    private static final long dwNotificationStatus$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwNotificationStatus
+     * }
+     */
+    public static final long dwNotificationStatus$offset() {
+        return dwNotificationStatus$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwNotificationStatus
+     * }
+     */
+    public static int dwNotificationStatus(MemorySegment struct) {
+        return struct.get(dwNotificationStatus$LAYOUT, dwNotificationStatus$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwNotificationStatus
+     * }
+     */
+    public static void dwNotificationStatus(MemorySegment struct, int fieldValue) {
+        struct.set(dwNotificationStatus$LAYOUT, dwNotificationStatus$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout ServiceStatus$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ServiceStatus"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SERVICE_STATUS_PROCESS ServiceStatus
+     * }
+     */
+    public static final GroupLayout ServiceStatus$layout() {
+        return ServiceStatus$LAYOUT;
+    }
+
+    private static final long ServiceStatus$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SERVICE_STATUS_PROCESS ServiceStatus
+     * }
+     */
+    public static final long ServiceStatus$offset() {
+        return ServiceStatus$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SERVICE_STATUS_PROCESS ServiceStatus
+     * }
+     */
+    public static MemorySegment ServiceStatus(MemorySegment struct) {
+        return struct.asSlice(ServiceStatus$OFFSET, ServiceStatus$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SERVICE_STATUS_PROCESS ServiceStatus
+     * }
+     */
+    public static void ServiceStatus(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ServiceStatus$OFFSET, ServiceStatus$LAYOUT.byteSize());
+    }
+
+    private static final OfInt dwNotificationTriggered$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwNotificationTriggered"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwNotificationTriggered
+     * }
+     */
+    public static final OfInt dwNotificationTriggered$layout() {
+        return dwNotificationTriggered$LAYOUT;
+    }
+
+    private static final long dwNotificationTriggered$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwNotificationTriggered
+     * }
+     */
+    public static final long dwNotificationTriggered$offset() {
+        return dwNotificationTriggered$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwNotificationTriggered
+     * }
+     */
+    public static int dwNotificationTriggered(MemorySegment struct) {
+        return struct.get(dwNotificationTriggered$LAYOUT, dwNotificationTriggered$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwNotificationTriggered
+     * }
+     */
+    public static void dwNotificationTriggered(MemorySegment struct, int fieldValue) {
+        struct.set(dwNotificationTriggered$LAYOUT, dwNotificationTriggered$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pszServiceNames$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pszServiceNames"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pszServiceNames
+     * }
+     */
+    public static final AddressLayout pszServiceNames$layout() {
+        return pszServiceNames$LAYOUT;
+    }
+
+    private static final long pszServiceNames$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pszServiceNames
+     * }
+     */
+    public static final long pszServiceNames$offset() {
+        return pszServiceNames$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pszServiceNames
+     * }
+     */
+    public static MemorySegment pszServiceNames(MemorySegment struct) {
+        return struct.get(pszServiceNames$LAYOUT, pszServiceNames$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pszServiceNames
+     * }
+     */
+    public static void pszServiceNames(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pszServiceNames$LAYOUT, pszServiceNames$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

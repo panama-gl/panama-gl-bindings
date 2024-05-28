@@ -2,94 +2,266 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CTL_FIND_SUBJECT_PARA {
+ *     DWORD cbSize;
+ *     PCTL_FIND_USAGE_PARA pUsagePara;
+ *     DWORD dwSubjectType;
+ *     void *pvSubject;
+ * }
+ * }
+ */
 public class _CTL_FIND_SUBJECT_PARA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pUsagePara"),
-        Constants$root.C_LONG$LAYOUT.withName("dwSubjectType"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pvSubject")
-    ).withName("_CTL_FIND_SUBJECT_PARA");
-    public static MemoryLayout $LAYOUT() {
-        return _CTL_FIND_SUBJECT_PARA.$struct$LAYOUT;
+    _CTL_FIND_SUBJECT_PARA() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _CTL_FIND_SUBJECT_PARA.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_CTL_FIND_SUBJECT_PARA.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _CTL_FIND_SUBJECT_PARA.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_CTL_FIND_SUBJECT_PARA.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _CTL_FIND_SUBJECT_PARA.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pUsagePara$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pUsagePara"));
-    public static VarHandle pUsagePara$VH() {
-        return _CTL_FIND_SUBJECT_PARA.pUsagePara$VH;
-    }
-    public static MemoryAddress pUsagePara$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CTL_FIND_SUBJECT_PARA.pUsagePara$VH.get(seg);
-    }
-    public static void pUsagePara$set( MemorySegment seg, MemoryAddress x) {
-        _CTL_FIND_SUBJECT_PARA.pUsagePara$VH.set(seg, x);
-    }
-    public static MemoryAddress pUsagePara$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CTL_FIND_SUBJECT_PARA.pUsagePara$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pUsagePara$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CTL_FIND_SUBJECT_PARA.pUsagePara$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwSubjectType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwSubjectType"));
-    public static VarHandle dwSubjectType$VH() {
-        return _CTL_FIND_SUBJECT_PARA.dwSubjectType$VH;
-    }
-    public static int dwSubjectType$get(MemorySegment seg) {
-        return (int)_CTL_FIND_SUBJECT_PARA.dwSubjectType$VH.get(seg);
-    }
-    public static void dwSubjectType$set( MemorySegment seg, int x) {
-        _CTL_FIND_SUBJECT_PARA.dwSubjectType$VH.set(seg, x);
-    }
-    public static int dwSubjectType$get(MemorySegment seg, long index) {
-        return (int)_CTL_FIND_SUBJECT_PARA.dwSubjectType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwSubjectType$set(MemorySegment seg, long index, int x) {
-        _CTL_FIND_SUBJECT_PARA.dwSubjectType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pvSubject$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pvSubject"));
-    public static VarHandle pvSubject$VH() {
-        return _CTL_FIND_SUBJECT_PARA.pvSubject$VH;
-    }
-    public static MemoryAddress pvSubject$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CTL_FIND_SUBJECT_PARA.pvSubject$VH.get(seg);
-    }
-    public static void pvSubject$set( MemorySegment seg, MemoryAddress x) {
-        _CTL_FIND_SUBJECT_PARA.pvSubject$VH.set(seg, x);
-    }
-    public static MemoryAddress pvSubject$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CTL_FIND_SUBJECT_PARA.pvSubject$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pvSubject$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CTL_FIND_SUBJECT_PARA.pvSubject$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pUsagePara"),
+        wgl_h.C_LONG.withName("dwSubjectType"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pvSubject")
+    ).withName("_CTL_FIND_SUBJECT_PARA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pUsagePara$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pUsagePara"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCTL_FIND_USAGE_PARA pUsagePara
+     * }
+     */
+    public static final AddressLayout pUsagePara$layout() {
+        return pUsagePara$LAYOUT;
+    }
+
+    private static final long pUsagePara$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCTL_FIND_USAGE_PARA pUsagePara
+     * }
+     */
+    public static final long pUsagePara$offset() {
+        return pUsagePara$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCTL_FIND_USAGE_PARA pUsagePara
+     * }
+     */
+    public static MemorySegment pUsagePara(MemorySegment struct) {
+        return struct.get(pUsagePara$LAYOUT, pUsagePara$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCTL_FIND_USAGE_PARA pUsagePara
+     * }
+     */
+    public static void pUsagePara(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pUsagePara$LAYOUT, pUsagePara$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwSubjectType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwSubjectType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwSubjectType
+     * }
+     */
+    public static final OfInt dwSubjectType$layout() {
+        return dwSubjectType$LAYOUT;
+    }
+
+    private static final long dwSubjectType$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwSubjectType
+     * }
+     */
+    public static final long dwSubjectType$offset() {
+        return dwSubjectType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwSubjectType
+     * }
+     */
+    public static int dwSubjectType(MemorySegment struct) {
+        return struct.get(dwSubjectType$LAYOUT, dwSubjectType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwSubjectType
+     * }
+     */
+    public static void dwSubjectType(MemorySegment struct, int fieldValue) {
+        struct.set(dwSubjectType$LAYOUT, dwSubjectType$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pvSubject$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pvSubject"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *pvSubject
+     * }
+     */
+    public static final AddressLayout pvSubject$layout() {
+        return pvSubject$LAYOUT;
+    }
+
+    private static final long pvSubject$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *pvSubject
+     * }
+     */
+    public static final long pvSubject$offset() {
+        return pvSubject$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *pvSubject
+     * }
+     */
+    public static MemorySegment pvSubject(MemorySegment struct) {
+        return struct.get(pvSubject$LAYOUT, pvSubject$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *pvSubject
+     * }
+     */
+    public static void pvSubject(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pvSubject$LAYOUT, pvSubject$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

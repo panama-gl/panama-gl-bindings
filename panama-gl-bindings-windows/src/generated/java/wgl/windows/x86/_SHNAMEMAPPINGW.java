@@ -2,92 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SHNAMEMAPPINGW {
+ *     LPWSTR pszOldPath;
+ *     LPWSTR pszNewPath;
+ *     int cchOldPath;
+ *     int cchNewPath;
+ * }
+ * }
+ */
 public class _SHNAMEMAPPINGW {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("pszOldPath"),
-        Constants$root.C_POINTER$LAYOUT.withName("pszNewPath"),
-        Constants$root.C_LONG$LAYOUT.withName("cchOldPath"),
-        Constants$root.C_LONG$LAYOUT.withName("cchNewPath")
-    ).withName("_SHNAMEMAPPINGW");
-    public static MemoryLayout $LAYOUT() {
-        return _SHNAMEMAPPINGW.$struct$LAYOUT;
+    _SHNAMEMAPPINGW() {
+        // Should not be called directly
     }
-    static final VarHandle pszOldPath$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pszOldPath"));
-    public static VarHandle pszOldPath$VH() {
-        return _SHNAMEMAPPINGW.pszOldPath$VH;
-    }
-    public static MemoryAddress pszOldPath$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SHNAMEMAPPINGW.pszOldPath$VH.get(seg);
-    }
-    public static void pszOldPath$set( MemorySegment seg, MemoryAddress x) {
-        _SHNAMEMAPPINGW.pszOldPath$VH.set(seg, x);
-    }
-    public static MemoryAddress pszOldPath$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SHNAMEMAPPINGW.pszOldPath$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pszOldPath$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SHNAMEMAPPINGW.pszOldPath$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pszNewPath$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pszNewPath"));
-    public static VarHandle pszNewPath$VH() {
-        return _SHNAMEMAPPINGW.pszNewPath$VH;
-    }
-    public static MemoryAddress pszNewPath$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SHNAMEMAPPINGW.pszNewPath$VH.get(seg);
-    }
-    public static void pszNewPath$set( MemorySegment seg, MemoryAddress x) {
-        _SHNAMEMAPPINGW.pszNewPath$VH.set(seg, x);
-    }
-    public static MemoryAddress pszNewPath$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SHNAMEMAPPINGW.pszNewPath$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pszNewPath$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SHNAMEMAPPINGW.pszNewPath$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cchOldPath$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cchOldPath"));
-    public static VarHandle cchOldPath$VH() {
-        return _SHNAMEMAPPINGW.cchOldPath$VH;
-    }
-    public static int cchOldPath$get(MemorySegment seg) {
-        return (int)_SHNAMEMAPPINGW.cchOldPath$VH.get(seg);
-    }
-    public static void cchOldPath$set( MemorySegment seg, int x) {
-        _SHNAMEMAPPINGW.cchOldPath$VH.set(seg, x);
-    }
-    public static int cchOldPath$get(MemorySegment seg, long index) {
-        return (int)_SHNAMEMAPPINGW.cchOldPath$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cchOldPath$set(MemorySegment seg, long index, int x) {
-        _SHNAMEMAPPINGW.cchOldPath$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cchNewPath$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cchNewPath"));
-    public static VarHandle cchNewPath$VH() {
-        return _SHNAMEMAPPINGW.cchNewPath$VH;
-    }
-    public static int cchNewPath$get(MemorySegment seg) {
-        return (int)_SHNAMEMAPPINGW.cchNewPath$VH.get(seg);
-    }
-    public static void cchNewPath$set( MemorySegment seg, int x) {
-        _SHNAMEMAPPINGW.cchNewPath$VH.set(seg, x);
-    }
-    public static int cchNewPath$get(MemorySegment seg, long index) {
-        return (int)_SHNAMEMAPPINGW.cchNewPath$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cchNewPath$set(MemorySegment seg, long index, int x) {
-        _SHNAMEMAPPINGW.cchNewPath$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("pszOldPath"),
+        wgl_h.C_POINTER.withName("pszNewPath"),
+        wgl_h.C_INT.withName("cchOldPath"),
+        wgl_h.C_INT.withName("cchNewPath")
+    ).withName("_SHNAMEMAPPINGW");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout pszOldPath$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pszOldPath"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pszOldPath
+     * }
+     */
+    public static final AddressLayout pszOldPath$layout() {
+        return pszOldPath$LAYOUT;
+    }
+
+    private static final long pszOldPath$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pszOldPath
+     * }
+     */
+    public static final long pszOldPath$offset() {
+        return pszOldPath$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pszOldPath
+     * }
+     */
+    public static MemorySegment pszOldPath(MemorySegment struct) {
+        return struct.get(pszOldPath$LAYOUT, pszOldPath$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pszOldPath
+     * }
+     */
+    public static void pszOldPath(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pszOldPath$LAYOUT, pszOldPath$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pszNewPath$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pszNewPath"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pszNewPath
+     * }
+     */
+    public static final AddressLayout pszNewPath$layout() {
+        return pszNewPath$LAYOUT;
+    }
+
+    private static final long pszNewPath$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pszNewPath
+     * }
+     */
+    public static final long pszNewPath$offset() {
+        return pszNewPath$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pszNewPath
+     * }
+     */
+    public static MemorySegment pszNewPath(MemorySegment struct) {
+        return struct.get(pszNewPath$LAYOUT, pszNewPath$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pszNewPath
+     * }
+     */
+    public static void pszNewPath(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pszNewPath$LAYOUT, pszNewPath$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cchOldPath$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cchOldPath"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int cchOldPath
+     * }
+     */
+    public static final OfInt cchOldPath$layout() {
+        return cchOldPath$LAYOUT;
+    }
+
+    private static final long cchOldPath$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int cchOldPath
+     * }
+     */
+    public static final long cchOldPath$offset() {
+        return cchOldPath$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int cchOldPath
+     * }
+     */
+    public static int cchOldPath(MemorySegment struct) {
+        return struct.get(cchOldPath$LAYOUT, cchOldPath$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int cchOldPath
+     * }
+     */
+    public static void cchOldPath(MemorySegment struct, int fieldValue) {
+        struct.set(cchOldPath$LAYOUT, cchOldPath$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cchNewPath$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cchNewPath"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int cchNewPath
+     * }
+     */
+    public static final OfInt cchNewPath$layout() {
+        return cchNewPath$LAYOUT;
+    }
+
+    private static final long cchNewPath$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int cchNewPath
+     * }
+     */
+    public static final long cchNewPath$offset() {
+        return cchNewPath$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int cchNewPath
+     * }
+     */
+    public static int cchNewPath(MemorySegment struct) {
+        return struct.get(cchNewPath$LAYOUT, cchNewPath$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int cchNewPath
+     * }
+     */
+    public static void cchNewPath(MemorySegment struct, int fieldValue) {
+        struct.set(cchNewPath$LAYOUT, cchNewPath$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

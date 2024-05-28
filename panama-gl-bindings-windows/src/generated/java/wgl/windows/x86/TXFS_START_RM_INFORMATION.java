@@ -2,13 +2,38 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _TXFS_START_RM_INFORMATION {
+ *     DWORD Flags;
+ *     DWORDLONG LogContainerSize;
+ *     DWORD LogContainerCountMin;
+ *     DWORD LogContainerCountMax;
+ *     DWORD LogGrowthIncrement;
+ *     DWORD LogAutoShrinkPercentage;
+ *     DWORD TmLogPathOffset;
+ *     WORD TmLogPathLength;
+ *     WORD LoggingMode;
+ *     WORD LogPathLength;
+ *     WORD Reserved;
+ *     WCHAR LogPath[1];
+ * } TXFS_START_RM_INFORMATION
+ * }
+ */
 public class TXFS_START_RM_INFORMATION extends _TXFS_START_RM_INFORMATION {
 
+    TXFS_START_RM_INFORMATION() {
+        // Should not be called directly
+    }
 }
-
 

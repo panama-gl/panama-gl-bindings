@@ -2,162 +2,450 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SE_ACCESS_REQUEST {
+ *     DWORD Size;
+ *     PSE_SECURITY_DESCRIPTOR SeSecurityDescriptor;
+ *     ACCESS_MASK DesiredAccess;
+ *     ACCESS_MASK PreviouslyGrantedAccess;
+ *     PSID PrincipalSelfSid;
+ *     PGENERIC_MAPPING GenericMapping;
+ *     DWORD ObjectTypeListCount;
+ *     POBJECT_TYPE_LIST ObjectTypeList;
+ * }
+ * }
+ */
 public class _SE_ACCESS_REQUEST {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("SeSecurityDescriptor"),
-        Constants$root.C_LONG$LAYOUT.withName("DesiredAccess"),
-        Constants$root.C_LONG$LAYOUT.withName("PreviouslyGrantedAccess"),
-        Constants$root.C_POINTER$LAYOUT.withName("PrincipalSelfSid"),
-        Constants$root.C_POINTER$LAYOUT.withName("GenericMapping"),
-        Constants$root.C_LONG$LAYOUT.withName("ObjectTypeListCount"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("ObjectTypeList")
-    ).withName("_SE_ACCESS_REQUEST");
-    public static MemoryLayout $LAYOUT() {
-        return _SE_ACCESS_REQUEST.$struct$LAYOUT;
+    _SE_ACCESS_REQUEST() {
+        // Should not be called directly
     }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _SE_ACCESS_REQUEST.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_SE_ACCESS_REQUEST.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _SE_ACCESS_REQUEST.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_SE_ACCESS_REQUEST.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _SE_ACCESS_REQUEST.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SeSecurityDescriptor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SeSecurityDescriptor"));
-    public static VarHandle SeSecurityDescriptor$VH() {
-        return _SE_ACCESS_REQUEST.SeSecurityDescriptor$VH;
-    }
-    public static MemoryAddress SeSecurityDescriptor$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SE_ACCESS_REQUEST.SeSecurityDescriptor$VH.get(seg);
-    }
-    public static void SeSecurityDescriptor$set( MemorySegment seg, MemoryAddress x) {
-        _SE_ACCESS_REQUEST.SeSecurityDescriptor$VH.set(seg, x);
-    }
-    public static MemoryAddress SeSecurityDescriptor$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SE_ACCESS_REQUEST.SeSecurityDescriptor$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SeSecurityDescriptor$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SE_ACCESS_REQUEST.SeSecurityDescriptor$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DesiredAccess$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DesiredAccess"));
-    public static VarHandle DesiredAccess$VH() {
-        return _SE_ACCESS_REQUEST.DesiredAccess$VH;
-    }
-    public static int DesiredAccess$get(MemorySegment seg) {
-        return (int)_SE_ACCESS_REQUEST.DesiredAccess$VH.get(seg);
-    }
-    public static void DesiredAccess$set( MemorySegment seg, int x) {
-        _SE_ACCESS_REQUEST.DesiredAccess$VH.set(seg, x);
-    }
-    public static int DesiredAccess$get(MemorySegment seg, long index) {
-        return (int)_SE_ACCESS_REQUEST.DesiredAccess$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DesiredAccess$set(MemorySegment seg, long index, int x) {
-        _SE_ACCESS_REQUEST.DesiredAccess$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PreviouslyGrantedAccess$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PreviouslyGrantedAccess"));
-    public static VarHandle PreviouslyGrantedAccess$VH() {
-        return _SE_ACCESS_REQUEST.PreviouslyGrantedAccess$VH;
-    }
-    public static int PreviouslyGrantedAccess$get(MemorySegment seg) {
-        return (int)_SE_ACCESS_REQUEST.PreviouslyGrantedAccess$VH.get(seg);
-    }
-    public static void PreviouslyGrantedAccess$set( MemorySegment seg, int x) {
-        _SE_ACCESS_REQUEST.PreviouslyGrantedAccess$VH.set(seg, x);
-    }
-    public static int PreviouslyGrantedAccess$get(MemorySegment seg, long index) {
-        return (int)_SE_ACCESS_REQUEST.PreviouslyGrantedAccess$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PreviouslyGrantedAccess$set(MemorySegment seg, long index, int x) {
-        _SE_ACCESS_REQUEST.PreviouslyGrantedAccess$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PrincipalSelfSid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PrincipalSelfSid"));
-    public static VarHandle PrincipalSelfSid$VH() {
-        return _SE_ACCESS_REQUEST.PrincipalSelfSid$VH;
-    }
-    public static MemoryAddress PrincipalSelfSid$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SE_ACCESS_REQUEST.PrincipalSelfSid$VH.get(seg);
-    }
-    public static void PrincipalSelfSid$set( MemorySegment seg, MemoryAddress x) {
-        _SE_ACCESS_REQUEST.PrincipalSelfSid$VH.set(seg, x);
-    }
-    public static MemoryAddress PrincipalSelfSid$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SE_ACCESS_REQUEST.PrincipalSelfSid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PrincipalSelfSid$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SE_ACCESS_REQUEST.PrincipalSelfSid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle GenericMapping$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GenericMapping"));
-    public static VarHandle GenericMapping$VH() {
-        return _SE_ACCESS_REQUEST.GenericMapping$VH;
-    }
-    public static MemoryAddress GenericMapping$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SE_ACCESS_REQUEST.GenericMapping$VH.get(seg);
-    }
-    public static void GenericMapping$set( MemorySegment seg, MemoryAddress x) {
-        _SE_ACCESS_REQUEST.GenericMapping$VH.set(seg, x);
-    }
-    public static MemoryAddress GenericMapping$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SE_ACCESS_REQUEST.GenericMapping$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GenericMapping$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SE_ACCESS_REQUEST.GenericMapping$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ObjectTypeListCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ObjectTypeListCount"));
-    public static VarHandle ObjectTypeListCount$VH() {
-        return _SE_ACCESS_REQUEST.ObjectTypeListCount$VH;
-    }
-    public static int ObjectTypeListCount$get(MemorySegment seg) {
-        return (int)_SE_ACCESS_REQUEST.ObjectTypeListCount$VH.get(seg);
-    }
-    public static void ObjectTypeListCount$set( MemorySegment seg, int x) {
-        _SE_ACCESS_REQUEST.ObjectTypeListCount$VH.set(seg, x);
-    }
-    public static int ObjectTypeListCount$get(MemorySegment seg, long index) {
-        return (int)_SE_ACCESS_REQUEST.ObjectTypeListCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ObjectTypeListCount$set(MemorySegment seg, long index, int x) {
-        _SE_ACCESS_REQUEST.ObjectTypeListCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ObjectTypeList$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ObjectTypeList"));
-    public static VarHandle ObjectTypeList$VH() {
-        return _SE_ACCESS_REQUEST.ObjectTypeList$VH;
-    }
-    public static MemoryAddress ObjectTypeList$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SE_ACCESS_REQUEST.ObjectTypeList$VH.get(seg);
-    }
-    public static void ObjectTypeList$set( MemorySegment seg, MemoryAddress x) {
-        _SE_ACCESS_REQUEST.ObjectTypeList$VH.set(seg, x);
-    }
-    public static MemoryAddress ObjectTypeList$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SE_ACCESS_REQUEST.ObjectTypeList$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ObjectTypeList$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SE_ACCESS_REQUEST.ObjectTypeList$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("Size"),
+        MemoryLayout.paddingLayout(4),
+        freeglut_h.C_POINTER.withName("SeSecurityDescriptor"),
+        freeglut_h.C_LONG.withName("DesiredAccess"),
+        freeglut_h.C_LONG.withName("PreviouslyGrantedAccess"),
+        freeglut_h.C_POINTER.withName("PrincipalSelfSid"),
+        freeglut_h.C_POINTER.withName("GenericMapping"),
+        freeglut_h.C_LONG.withName("ObjectTypeListCount"),
+        MemoryLayout.paddingLayout(4),
+        freeglut_h.C_POINTER.withName("ObjectTypeList")
+    ).withName("_SE_ACCESS_REQUEST");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout SeSecurityDescriptor$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SeSecurityDescriptor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PSE_SECURITY_DESCRIPTOR SeSecurityDescriptor
+     * }
+     */
+    public static final AddressLayout SeSecurityDescriptor$layout() {
+        return SeSecurityDescriptor$LAYOUT;
+    }
+
+    private static final long SeSecurityDescriptor$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PSE_SECURITY_DESCRIPTOR SeSecurityDescriptor
+     * }
+     */
+    public static final long SeSecurityDescriptor$offset() {
+        return SeSecurityDescriptor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PSE_SECURITY_DESCRIPTOR SeSecurityDescriptor
+     * }
+     */
+    public static MemorySegment SeSecurityDescriptor(MemorySegment struct) {
+        return struct.get(SeSecurityDescriptor$LAYOUT, SeSecurityDescriptor$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PSE_SECURITY_DESCRIPTOR SeSecurityDescriptor
+     * }
+     */
+    public static void SeSecurityDescriptor(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SeSecurityDescriptor$LAYOUT, SeSecurityDescriptor$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DesiredAccess$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DesiredAccess"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK DesiredAccess
+     * }
+     */
+    public static final OfInt DesiredAccess$layout() {
+        return DesiredAccess$LAYOUT;
+    }
+
+    private static final long DesiredAccess$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK DesiredAccess
+     * }
+     */
+    public static final long DesiredAccess$offset() {
+        return DesiredAccess$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK DesiredAccess
+     * }
+     */
+    public static int DesiredAccess(MemorySegment struct) {
+        return struct.get(DesiredAccess$LAYOUT, DesiredAccess$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK DesiredAccess
+     * }
+     */
+    public static void DesiredAccess(MemorySegment struct, int fieldValue) {
+        struct.set(DesiredAccess$LAYOUT, DesiredAccess$OFFSET, fieldValue);
+    }
+
+    private static final OfInt PreviouslyGrantedAccess$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PreviouslyGrantedAccess"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK PreviouslyGrantedAccess
+     * }
+     */
+    public static final OfInt PreviouslyGrantedAccess$layout() {
+        return PreviouslyGrantedAccess$LAYOUT;
+    }
+
+    private static final long PreviouslyGrantedAccess$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK PreviouslyGrantedAccess
+     * }
+     */
+    public static final long PreviouslyGrantedAccess$offset() {
+        return PreviouslyGrantedAccess$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK PreviouslyGrantedAccess
+     * }
+     */
+    public static int PreviouslyGrantedAccess(MemorySegment struct) {
+        return struct.get(PreviouslyGrantedAccess$LAYOUT, PreviouslyGrantedAccess$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ACCESS_MASK PreviouslyGrantedAccess
+     * }
+     */
+    public static void PreviouslyGrantedAccess(MemorySegment struct, int fieldValue) {
+        struct.set(PreviouslyGrantedAccess$LAYOUT, PreviouslyGrantedAccess$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout PrincipalSelfSid$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("PrincipalSelfSid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PSID PrincipalSelfSid
+     * }
+     */
+    public static final AddressLayout PrincipalSelfSid$layout() {
+        return PrincipalSelfSid$LAYOUT;
+    }
+
+    private static final long PrincipalSelfSid$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PSID PrincipalSelfSid
+     * }
+     */
+    public static final long PrincipalSelfSid$offset() {
+        return PrincipalSelfSid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PSID PrincipalSelfSid
+     * }
+     */
+    public static MemorySegment PrincipalSelfSid(MemorySegment struct) {
+        return struct.get(PrincipalSelfSid$LAYOUT, PrincipalSelfSid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PSID PrincipalSelfSid
+     * }
+     */
+    public static void PrincipalSelfSid(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(PrincipalSelfSid$LAYOUT, PrincipalSelfSid$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout GenericMapping$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GenericMapping"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PGENERIC_MAPPING GenericMapping
+     * }
+     */
+    public static final AddressLayout GenericMapping$layout() {
+        return GenericMapping$LAYOUT;
+    }
+
+    private static final long GenericMapping$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PGENERIC_MAPPING GenericMapping
+     * }
+     */
+    public static final long GenericMapping$offset() {
+        return GenericMapping$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PGENERIC_MAPPING GenericMapping
+     * }
+     */
+    public static MemorySegment GenericMapping(MemorySegment struct) {
+        return struct.get(GenericMapping$LAYOUT, GenericMapping$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PGENERIC_MAPPING GenericMapping
+     * }
+     */
+    public static void GenericMapping(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GenericMapping$LAYOUT, GenericMapping$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ObjectTypeListCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ObjectTypeListCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ObjectTypeListCount
+     * }
+     */
+    public static final OfInt ObjectTypeListCount$layout() {
+        return ObjectTypeListCount$LAYOUT;
+    }
+
+    private static final long ObjectTypeListCount$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ObjectTypeListCount
+     * }
+     */
+    public static final long ObjectTypeListCount$offset() {
+        return ObjectTypeListCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ObjectTypeListCount
+     * }
+     */
+    public static int ObjectTypeListCount(MemorySegment struct) {
+        return struct.get(ObjectTypeListCount$LAYOUT, ObjectTypeListCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ObjectTypeListCount
+     * }
+     */
+    public static void ObjectTypeListCount(MemorySegment struct, int fieldValue) {
+        struct.set(ObjectTypeListCount$LAYOUT, ObjectTypeListCount$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ObjectTypeList$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ObjectTypeList"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POBJECT_TYPE_LIST ObjectTypeList
+     * }
+     */
+    public static final AddressLayout ObjectTypeList$layout() {
+        return ObjectTypeList$LAYOUT;
+    }
+
+    private static final long ObjectTypeList$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POBJECT_TYPE_LIST ObjectTypeList
+     * }
+     */
+    public static final long ObjectTypeList$offset() {
+        return ObjectTypeList$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POBJECT_TYPE_LIST ObjectTypeList
+     * }
+     */
+    public static MemorySegment ObjectTypeList(MemorySegment struct) {
+        return struct.get(ObjectTypeList$LAYOUT, ObjectTypeList$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POBJECT_TYPE_LIST ObjectTypeList
+     * }
+     */
+    public static void ObjectTypeList(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ObjectTypeList$LAYOUT, ObjectTypeList$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

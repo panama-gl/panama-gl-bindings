@@ -2,75 +2,218 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _REDIRECTION_DESCRIPTOR {
+ *     ULONG Version;
+ *     ULONG FunctionCount;
+ *     PCREDIRECTION_FUNCTION_DESCRIPTOR Redirections;
+ * }
+ * }
+ */
 public class _REDIRECTION_DESCRIPTOR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("FunctionCount"),
-        Constants$root.C_POINTER$LAYOUT.withName("Redirections")
-    ).withName("_REDIRECTION_DESCRIPTOR");
-    public static MemoryLayout $LAYOUT() {
-        return _REDIRECTION_DESCRIPTOR.$struct$LAYOUT;
+    _REDIRECTION_DESCRIPTOR() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _REDIRECTION_DESCRIPTOR.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_REDIRECTION_DESCRIPTOR.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _REDIRECTION_DESCRIPTOR.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_REDIRECTION_DESCRIPTOR.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _REDIRECTION_DESCRIPTOR.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FunctionCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FunctionCount"));
-    public static VarHandle FunctionCount$VH() {
-        return _REDIRECTION_DESCRIPTOR.FunctionCount$VH;
-    }
-    public static int FunctionCount$get(MemorySegment seg) {
-        return (int)_REDIRECTION_DESCRIPTOR.FunctionCount$VH.get(seg);
-    }
-    public static void FunctionCount$set( MemorySegment seg, int x) {
-        _REDIRECTION_DESCRIPTOR.FunctionCount$VH.set(seg, x);
-    }
-    public static int FunctionCount$get(MemorySegment seg, long index) {
-        return (int)_REDIRECTION_DESCRIPTOR.FunctionCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FunctionCount$set(MemorySegment seg, long index, int x) {
-        _REDIRECTION_DESCRIPTOR.FunctionCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Redirections$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Redirections"));
-    public static VarHandle Redirections$VH() {
-        return _REDIRECTION_DESCRIPTOR.Redirections$VH;
-    }
-    public static MemoryAddress Redirections$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_REDIRECTION_DESCRIPTOR.Redirections$VH.get(seg);
-    }
-    public static void Redirections$set( MemorySegment seg, MemoryAddress x) {
-        _REDIRECTION_DESCRIPTOR.Redirections$VH.set(seg, x);
-    }
-    public static MemoryAddress Redirections$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_REDIRECTION_DESCRIPTOR.Redirections$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Redirections$set(MemorySegment seg, long index, MemoryAddress x) {
-        _REDIRECTION_DESCRIPTOR.Redirections$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("Version"),
+        freeglut_h.C_LONG.withName("FunctionCount"),
+        freeglut_h.C_POINTER.withName("Redirections")
+    ).withName("_REDIRECTION_DESCRIPTOR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt FunctionCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("FunctionCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG FunctionCount
+     * }
+     */
+    public static final OfInt FunctionCount$layout() {
+        return FunctionCount$LAYOUT;
+    }
+
+    private static final long FunctionCount$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG FunctionCount
+     * }
+     */
+    public static final long FunctionCount$offset() {
+        return FunctionCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG FunctionCount
+     * }
+     */
+    public static int FunctionCount(MemorySegment struct) {
+        return struct.get(FunctionCount$LAYOUT, FunctionCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG FunctionCount
+     * }
+     */
+    public static void FunctionCount(MemorySegment struct, int fieldValue) {
+        struct.set(FunctionCount$LAYOUT, FunctionCount$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout Redirections$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Redirections"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCREDIRECTION_FUNCTION_DESCRIPTOR Redirections
+     * }
+     */
+    public static final AddressLayout Redirections$layout() {
+        return Redirections$LAYOUT;
+    }
+
+    private static final long Redirections$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCREDIRECTION_FUNCTION_DESCRIPTOR Redirections
+     * }
+     */
+    public static final long Redirections$offset() {
+        return Redirections$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCREDIRECTION_FUNCTION_DESCRIPTOR Redirections
+     * }
+     */
+    public static MemorySegment Redirections(MemorySegment struct) {
+        return struct.get(Redirections$LAYOUT, Redirections$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCREDIRECTION_FUNCTION_DESCRIPTOR Redirections
+     * }
+     */
+    public static void Redirections(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Redirections$LAYOUT, Redirections$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

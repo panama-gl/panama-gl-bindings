@@ -2,91 +2,344 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _LOOKUP_STREAM_FROM_CLUSTER_ENTRY {
+ *     DWORD OffsetToNext;
+ *     DWORD Flags;
+ *     LARGE_INTEGER Reserved;
+ *     LARGE_INTEGER Cluster;
+ *     WCHAR FileName[1];
+ * }
+ * }
+ */
 public class _LOOKUP_STREAM_FROM_CLUSTER_ENTRY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("OffsetToNext"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("Reserved"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("Cluster"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_SHORT$LAYOUT).withName("FileName"),
-        MemoryLayout.paddingLayout(48)
-    ).withName("_LOOKUP_STREAM_FROM_CLUSTER_ENTRY");
-    public static MemoryLayout $LAYOUT() {
-        return _LOOKUP_STREAM_FROM_CLUSTER_ENTRY.$struct$LAYOUT;
+    _LOOKUP_STREAM_FROM_CLUSTER_ENTRY() {
+        // Should not be called directly
     }
-    static final VarHandle OffsetToNext$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OffsetToNext"));
-    public static VarHandle OffsetToNext$VH() {
-        return _LOOKUP_STREAM_FROM_CLUSTER_ENTRY.OffsetToNext$VH;
-    }
-    public static int OffsetToNext$get(MemorySegment seg) {
-        return (int)_LOOKUP_STREAM_FROM_CLUSTER_ENTRY.OffsetToNext$VH.get(seg);
-    }
-    public static void OffsetToNext$set( MemorySegment seg, int x) {
-        _LOOKUP_STREAM_FROM_CLUSTER_ENTRY.OffsetToNext$VH.set(seg, x);
-    }
-    public static int OffsetToNext$get(MemorySegment seg, long index) {
-        return (int)_LOOKUP_STREAM_FROM_CLUSTER_ENTRY.OffsetToNext$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void OffsetToNext$set(MemorySegment seg, long index, int x) {
-        _LOOKUP_STREAM_FROM_CLUSTER_ENTRY.OffsetToNext$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _LOOKUP_STREAM_FROM_CLUSTER_ENTRY.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_LOOKUP_STREAM_FROM_CLUSTER_ENTRY.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _LOOKUP_STREAM_FROM_CLUSTER_ENTRY.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_LOOKUP_STREAM_FROM_CLUSTER_ENTRY.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _LOOKUP_STREAM_FROM_CLUSTER_ENTRY.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Reserved$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    public static MemorySegment Cluster$slice(MemorySegment seg) {
-        return seg.asSlice(16, 8);
-    }
-    public static MemorySegment FileName$slice(MemorySegment seg) {
-        return seg.asSlice(24, 2);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("OffsetToNext"),
+        wgl_h.C_LONG.withName("Flags"),
+        _LARGE_INTEGER.layout().withName("Reserved"),
+        _LARGE_INTEGER.layout().withName("Cluster"),
+        MemoryLayout.sequenceLayout(1, wgl_h.C_SHORT).withName("FileName"),
+        MemoryLayout.paddingLayout(6)
+    ).withName("_LOOKUP_STREAM_FROM_CLUSTER_ENTRY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt OffsetToNext$LAYOUT = (OfInt)$LAYOUT.select(groupElement("OffsetToNext"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD OffsetToNext
+     * }
+     */
+    public static final OfInt OffsetToNext$layout() {
+        return OffsetToNext$LAYOUT;
+    }
+
+    private static final long OffsetToNext$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD OffsetToNext
+     * }
+     */
+    public static final long OffsetToNext$offset() {
+        return OffsetToNext$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD OffsetToNext
+     * }
+     */
+    public static int OffsetToNext(MemorySegment struct) {
+        return struct.get(OffsetToNext$LAYOUT, OffsetToNext$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD OffsetToNext
+     * }
+     */
+    public static void OffsetToNext(MemorySegment struct, int fieldValue) {
+        struct.set(OffsetToNext$LAYOUT, OffsetToNext$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout Reserved$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Reserved
+     * }
+     */
+    public static final GroupLayout Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Reserved
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Reserved
+     * }
+     */
+    public static MemorySegment Reserved(MemorySegment struct) {
+        return struct.asSlice(Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Reserved
+     * }
+     */
+    public static void Reserved(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Cluster$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Cluster"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Cluster
+     * }
+     */
+    public static final GroupLayout Cluster$layout() {
+        return Cluster$LAYOUT;
+    }
+
+    private static final long Cluster$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Cluster
+     * }
+     */
+    public static final long Cluster$offset() {
+        return Cluster$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Cluster
+     * }
+     */
+    public static MemorySegment Cluster(MemorySegment struct) {
+        return struct.asSlice(Cluster$OFFSET, Cluster$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Cluster
+     * }
+     */
+    public static void Cluster(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Cluster$OFFSET, Cluster$LAYOUT.byteSize());
+    }
+
+    private static final SequenceLayout FileName$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("FileName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR FileName[1]
+     * }
+     */
+    public static final SequenceLayout FileName$layout() {
+        return FileName$LAYOUT;
+    }
+
+    private static final long FileName$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR FileName[1]
+     * }
+     */
+    public static final long FileName$offset() {
+        return FileName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR FileName[1]
+     * }
+     */
+    public static MemorySegment FileName(MemorySegment struct) {
+        return struct.asSlice(FileName$OFFSET, FileName$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR FileName[1]
+     * }
+     */
+    public static void FileName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, FileName$OFFSET, FileName$LAYOUT.byteSize());
+    }
+
+    private static long[] FileName$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR FileName[1]
+     * }
+     */
+    public static long[] FileName$dimensions() {
+        return FileName$DIMS;
+    }
+    private static final VarHandle FileName$ELEM_HANDLE = FileName$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR FileName[1]
+     * }
+     */
+    public static short FileName(MemorySegment struct, long index0) {
+        return (short)FileName$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR FileName[1]
+     * }
+     */
+    public static void FileName(MemorySegment struct, long index0, short fieldValue) {
+        FileName$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,113 +2,389 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _OFSTRUCT {
+ *     BYTE cBytes;
+ *     BYTE fFixedDisk;
+ *     WORD nErrCode;
+ *     WORD Reserved1;
+ *     WORD Reserved2;
+ *     CHAR szPathName[128];
+ * }
+ * }
+ */
 public class _OFSTRUCT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("cBytes"),
-        Constants$root.C_CHAR$LAYOUT.withName("fFixedDisk"),
-        Constants$root.C_SHORT$LAYOUT.withName("nErrCode"),
-        Constants$root.C_SHORT$LAYOUT.withName("Reserved1"),
-        Constants$root.C_SHORT$LAYOUT.withName("Reserved2"),
-        MemoryLayout.sequenceLayout(128, Constants$root.C_CHAR$LAYOUT).withName("szPathName")
-    ).withName("_OFSTRUCT");
-    public static MemoryLayout $LAYOUT() {
-        return _OFSTRUCT.$struct$LAYOUT;
+    _OFSTRUCT() {
+        // Should not be called directly
     }
-    static final VarHandle cBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cBytes"));
-    public static VarHandle cBytes$VH() {
-        return _OFSTRUCT.cBytes$VH;
-    }
-    public static byte cBytes$get(MemorySegment seg) {
-        return (byte)_OFSTRUCT.cBytes$VH.get(seg);
-    }
-    public static void cBytes$set( MemorySegment seg, byte x) {
-        _OFSTRUCT.cBytes$VH.set(seg, x);
-    }
-    public static byte cBytes$get(MemorySegment seg, long index) {
-        return (byte)_OFSTRUCT.cBytes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cBytes$set(MemorySegment seg, long index, byte x) {
-        _OFSTRUCT.cBytes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fFixedDisk$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fFixedDisk"));
-    public static VarHandle fFixedDisk$VH() {
-        return _OFSTRUCT.fFixedDisk$VH;
-    }
-    public static byte fFixedDisk$get(MemorySegment seg) {
-        return (byte)_OFSTRUCT.fFixedDisk$VH.get(seg);
-    }
-    public static void fFixedDisk$set( MemorySegment seg, byte x) {
-        _OFSTRUCT.fFixedDisk$VH.set(seg, x);
-    }
-    public static byte fFixedDisk$get(MemorySegment seg, long index) {
-        return (byte)_OFSTRUCT.fFixedDisk$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fFixedDisk$set(MemorySegment seg, long index, byte x) {
-        _OFSTRUCT.fFixedDisk$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nErrCode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nErrCode"));
-    public static VarHandle nErrCode$VH() {
-        return _OFSTRUCT.nErrCode$VH;
-    }
-    public static short nErrCode$get(MemorySegment seg) {
-        return (short)_OFSTRUCT.nErrCode$VH.get(seg);
-    }
-    public static void nErrCode$set( MemorySegment seg, short x) {
-        _OFSTRUCT.nErrCode$VH.set(seg, x);
-    }
-    public static short nErrCode$get(MemorySegment seg, long index) {
-        return (short)_OFSTRUCT.nErrCode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nErrCode$set(MemorySegment seg, long index, short x) {
-        _OFSTRUCT.nErrCode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved1"));
-    public static VarHandle Reserved1$VH() {
-        return _OFSTRUCT.Reserved1$VH;
-    }
-    public static short Reserved1$get(MemorySegment seg) {
-        return (short)_OFSTRUCT.Reserved1$VH.get(seg);
-    }
-    public static void Reserved1$set( MemorySegment seg, short x) {
-        _OFSTRUCT.Reserved1$VH.set(seg, x);
-    }
-    public static short Reserved1$get(MemorySegment seg, long index) {
-        return (short)_OFSTRUCT.Reserved1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved1$set(MemorySegment seg, long index, short x) {
-        _OFSTRUCT.Reserved1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved2"));
-    public static VarHandle Reserved2$VH() {
-        return _OFSTRUCT.Reserved2$VH;
-    }
-    public static short Reserved2$get(MemorySegment seg) {
-        return (short)_OFSTRUCT.Reserved2$VH.get(seg);
-    }
-    public static void Reserved2$set( MemorySegment seg, short x) {
-        _OFSTRUCT.Reserved2$VH.set(seg, x);
-    }
-    public static short Reserved2$get(MemorySegment seg, long index) {
-        return (short)_OFSTRUCT.Reserved2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved2$set(MemorySegment seg, long index, short x) {
-        _OFSTRUCT.Reserved2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment szPathName$slice(MemorySegment seg) {
-        return seg.asSlice(8, 128);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_CHAR.withName("cBytes"),
+        wgl_h.C_CHAR.withName("fFixedDisk"),
+        wgl_h.C_SHORT.withName("nErrCode"),
+        wgl_h.C_SHORT.withName("Reserved1"),
+        wgl_h.C_SHORT.withName("Reserved2"),
+        MemoryLayout.sequenceLayout(128, wgl_h.C_CHAR).withName("szPathName")
+    ).withName("_OFSTRUCT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte cBytes$LAYOUT = (OfByte)$LAYOUT.select(groupElement("cBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE cBytes
+     * }
+     */
+    public static final OfByte cBytes$layout() {
+        return cBytes$LAYOUT;
+    }
+
+    private static final long cBytes$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE cBytes
+     * }
+     */
+    public static final long cBytes$offset() {
+        return cBytes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE cBytes
+     * }
+     */
+    public static byte cBytes(MemorySegment struct) {
+        return struct.get(cBytes$LAYOUT, cBytes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE cBytes
+     * }
+     */
+    public static void cBytes(MemorySegment struct, byte fieldValue) {
+        struct.set(cBytes$LAYOUT, cBytes$OFFSET, fieldValue);
+    }
+
+    private static final OfByte fFixedDisk$LAYOUT = (OfByte)$LAYOUT.select(groupElement("fFixedDisk"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE fFixedDisk
+     * }
+     */
+    public static final OfByte fFixedDisk$layout() {
+        return fFixedDisk$LAYOUT;
+    }
+
+    private static final long fFixedDisk$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE fFixedDisk
+     * }
+     */
+    public static final long fFixedDisk$offset() {
+        return fFixedDisk$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE fFixedDisk
+     * }
+     */
+    public static byte fFixedDisk(MemorySegment struct) {
+        return struct.get(fFixedDisk$LAYOUT, fFixedDisk$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE fFixedDisk
+     * }
+     */
+    public static void fFixedDisk(MemorySegment struct, byte fieldValue) {
+        struct.set(fFixedDisk$LAYOUT, fFixedDisk$OFFSET, fieldValue);
+    }
+
+    private static final OfShort nErrCode$LAYOUT = (OfShort)$LAYOUT.select(groupElement("nErrCode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD nErrCode
+     * }
+     */
+    public static final OfShort nErrCode$layout() {
+        return nErrCode$LAYOUT;
+    }
+
+    private static final long nErrCode$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD nErrCode
+     * }
+     */
+    public static final long nErrCode$offset() {
+        return nErrCode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD nErrCode
+     * }
+     */
+    public static short nErrCode(MemorySegment struct) {
+        return struct.get(nErrCode$LAYOUT, nErrCode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD nErrCode
+     * }
+     */
+    public static void nErrCode(MemorySegment struct, short fieldValue) {
+        struct.set(nErrCode$LAYOUT, nErrCode$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Reserved1$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Reserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Reserved1
+     * }
+     */
+    public static final OfShort Reserved1$layout() {
+        return Reserved1$LAYOUT;
+    }
+
+    private static final long Reserved1$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Reserved1
+     * }
+     */
+    public static final long Reserved1$offset() {
+        return Reserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Reserved1
+     * }
+     */
+    public static short Reserved1(MemorySegment struct) {
+        return struct.get(Reserved1$LAYOUT, Reserved1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Reserved1
+     * }
+     */
+    public static void Reserved1(MemorySegment struct, short fieldValue) {
+        struct.set(Reserved1$LAYOUT, Reserved1$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Reserved2$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Reserved2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Reserved2
+     * }
+     */
+    public static final OfShort Reserved2$layout() {
+        return Reserved2$LAYOUT;
+    }
+
+    private static final long Reserved2$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Reserved2
+     * }
+     */
+    public static final long Reserved2$offset() {
+        return Reserved2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Reserved2
+     * }
+     */
+    public static short Reserved2(MemorySegment struct) {
+        return struct.get(Reserved2$LAYOUT, Reserved2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Reserved2
+     * }
+     */
+    public static void Reserved2(MemorySegment struct, short fieldValue) {
+        struct.set(Reserved2$LAYOUT, Reserved2$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout szPathName$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("szPathName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHAR szPathName[128]
+     * }
+     */
+    public static final SequenceLayout szPathName$layout() {
+        return szPathName$LAYOUT;
+    }
+
+    private static final long szPathName$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHAR szPathName[128]
+     * }
+     */
+    public static final long szPathName$offset() {
+        return szPathName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHAR szPathName[128]
+     * }
+     */
+    public static MemorySegment szPathName(MemorySegment struct) {
+        return struct.asSlice(szPathName$OFFSET, szPathName$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHAR szPathName[128]
+     * }
+     */
+    public static void szPathName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, szPathName$OFFSET, szPathName$LAYOUT.byteSize());
+    }
+
+    private static long[] szPathName$DIMS = { 128 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * CHAR szPathName[128]
+     * }
+     */
+    public static long[] szPathName$dimensions() {
+        return szPathName$DIMS;
+    }
+    private static final VarHandle szPathName$ELEM_HANDLE = szPathName$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * CHAR szPathName[128]
+     * }
+     */
+    public static byte szPathName(MemorySegment struct, long index0) {
+        return (byte)szPathName$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * CHAR szPathName[128]
+     * }
+     */
+    public static void szPathName(MemorySegment struct, long index0, byte fieldValue) {
+        szPathName$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

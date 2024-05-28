@@ -2,13 +2,35 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagALTTABINFO {
+ *     DWORD cbSize;
+ *     int cItems;
+ *     int cColumns;
+ *     int cRows;
+ *     int iColFocus;
+ *     int iRowFocus;
+ *     int cxItem;
+ *     int cyItem;
+ *     POINT ptStart;
+ * } ALTTABINFO
+ * }
+ */
 public class ALTTABINFO extends tagALTTABINFO {
 
+    ALTTABINFO() {
+        // Should not be called directly
+    }
 }
-
 

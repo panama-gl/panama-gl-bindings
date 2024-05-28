@@ -2,13 +2,43 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _DRIVER_INFO_6A {
+ *     DWORD cVersion;
+ *     LPSTR pName;
+ *     LPSTR pEnvironment;
+ *     LPSTR pDriverPath;
+ *     LPSTR pDataFile;
+ *     LPSTR pConfigFile;
+ *     LPSTR pHelpFile;
+ *     LPSTR pDependentFiles;
+ *     LPSTR pMonitorName;
+ *     LPSTR pDefaultDataType;
+ *     LPSTR pszzPreviousNames;
+ *     FILETIME ftDriverDate;
+ *     DWORDLONG dwlDriverVersion;
+ *     LPSTR pszMfgName;
+ *     LPSTR pszOEMUrl;
+ *     LPSTR pszHardwareID;
+ *     LPSTR pszProvider;
+ * } DRIVER_INFO_6A
+ * }
+ */
 public class DRIVER_INFO_6A extends _DRIVER_INFO_6A {
 
+    DRIVER_INFO_6A() {
+        // Should not be called directly
+    }
 }
-
 

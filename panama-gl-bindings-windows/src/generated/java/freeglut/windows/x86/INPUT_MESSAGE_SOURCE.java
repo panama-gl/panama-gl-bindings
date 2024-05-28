@@ -2,13 +2,28 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagINPUT_MESSAGE_SOURCE {
+ *     INPUT_MESSAGE_DEVICE_TYPE deviceType;
+ *     INPUT_MESSAGE_ORIGIN_ID originId;
+ * } INPUT_MESSAGE_SOURCE
+ * }
+ */
 public class INPUT_MESSAGE_SOURCE extends tagINPUT_MESSAGE_SOURCE {
 
+    INPUT_MESSAGE_SOURCE() {
+        // Should not be called directly
+    }
 }
-
 

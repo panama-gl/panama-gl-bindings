@@ -2,160 +2,448 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _IMAGE_COFF_SYMBOLS_HEADER {
+ *     DWORD NumberOfSymbols;
+ *     DWORD LvaToFirstSymbol;
+ *     DWORD NumberOfLinenumbers;
+ *     DWORD LvaToFirstLinenumber;
+ *     DWORD RvaToFirstByteOfCode;
+ *     DWORD RvaToLastByteOfCode;
+ *     DWORD RvaToFirstByteOfData;
+ *     DWORD RvaToLastByteOfData;
+ * }
+ * }
+ */
 public class _IMAGE_COFF_SYMBOLS_HEADER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("NumberOfSymbols"),
-        Constants$root.C_LONG$LAYOUT.withName("LvaToFirstSymbol"),
-        Constants$root.C_LONG$LAYOUT.withName("NumberOfLinenumbers"),
-        Constants$root.C_LONG$LAYOUT.withName("LvaToFirstLinenumber"),
-        Constants$root.C_LONG$LAYOUT.withName("RvaToFirstByteOfCode"),
-        Constants$root.C_LONG$LAYOUT.withName("RvaToLastByteOfCode"),
-        Constants$root.C_LONG$LAYOUT.withName("RvaToFirstByteOfData"),
-        Constants$root.C_LONG$LAYOUT.withName("RvaToLastByteOfData")
-    ).withName("_IMAGE_COFF_SYMBOLS_HEADER");
-    public static MemoryLayout $LAYOUT() {
-        return _IMAGE_COFF_SYMBOLS_HEADER.$struct$LAYOUT;
+    _IMAGE_COFF_SYMBOLS_HEADER() {
+        // Should not be called directly
     }
-    static final VarHandle NumberOfSymbols$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfSymbols"));
-    public static VarHandle NumberOfSymbols$VH() {
-        return _IMAGE_COFF_SYMBOLS_HEADER.NumberOfSymbols$VH;
-    }
-    public static int NumberOfSymbols$get(MemorySegment seg) {
-        return (int)_IMAGE_COFF_SYMBOLS_HEADER.NumberOfSymbols$VH.get(seg);
-    }
-    public static void NumberOfSymbols$set( MemorySegment seg, int x) {
-        _IMAGE_COFF_SYMBOLS_HEADER.NumberOfSymbols$VH.set(seg, x);
-    }
-    public static int NumberOfSymbols$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_COFF_SYMBOLS_HEADER.NumberOfSymbols$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfSymbols$set(MemorySegment seg, long index, int x) {
-        _IMAGE_COFF_SYMBOLS_HEADER.NumberOfSymbols$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LvaToFirstSymbol$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LvaToFirstSymbol"));
-    public static VarHandle LvaToFirstSymbol$VH() {
-        return _IMAGE_COFF_SYMBOLS_HEADER.LvaToFirstSymbol$VH;
-    }
-    public static int LvaToFirstSymbol$get(MemorySegment seg) {
-        return (int)_IMAGE_COFF_SYMBOLS_HEADER.LvaToFirstSymbol$VH.get(seg);
-    }
-    public static void LvaToFirstSymbol$set( MemorySegment seg, int x) {
-        _IMAGE_COFF_SYMBOLS_HEADER.LvaToFirstSymbol$VH.set(seg, x);
-    }
-    public static int LvaToFirstSymbol$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_COFF_SYMBOLS_HEADER.LvaToFirstSymbol$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LvaToFirstSymbol$set(MemorySegment seg, long index, int x) {
-        _IMAGE_COFF_SYMBOLS_HEADER.LvaToFirstSymbol$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberOfLinenumbers$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfLinenumbers"));
-    public static VarHandle NumberOfLinenumbers$VH() {
-        return _IMAGE_COFF_SYMBOLS_HEADER.NumberOfLinenumbers$VH;
-    }
-    public static int NumberOfLinenumbers$get(MemorySegment seg) {
-        return (int)_IMAGE_COFF_SYMBOLS_HEADER.NumberOfLinenumbers$VH.get(seg);
-    }
-    public static void NumberOfLinenumbers$set( MemorySegment seg, int x) {
-        _IMAGE_COFF_SYMBOLS_HEADER.NumberOfLinenumbers$VH.set(seg, x);
-    }
-    public static int NumberOfLinenumbers$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_COFF_SYMBOLS_HEADER.NumberOfLinenumbers$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfLinenumbers$set(MemorySegment seg, long index, int x) {
-        _IMAGE_COFF_SYMBOLS_HEADER.NumberOfLinenumbers$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LvaToFirstLinenumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LvaToFirstLinenumber"));
-    public static VarHandle LvaToFirstLinenumber$VH() {
-        return _IMAGE_COFF_SYMBOLS_HEADER.LvaToFirstLinenumber$VH;
-    }
-    public static int LvaToFirstLinenumber$get(MemorySegment seg) {
-        return (int)_IMAGE_COFF_SYMBOLS_HEADER.LvaToFirstLinenumber$VH.get(seg);
-    }
-    public static void LvaToFirstLinenumber$set( MemorySegment seg, int x) {
-        _IMAGE_COFF_SYMBOLS_HEADER.LvaToFirstLinenumber$VH.set(seg, x);
-    }
-    public static int LvaToFirstLinenumber$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_COFF_SYMBOLS_HEADER.LvaToFirstLinenumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LvaToFirstLinenumber$set(MemorySegment seg, long index, int x) {
-        _IMAGE_COFF_SYMBOLS_HEADER.LvaToFirstLinenumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RvaToFirstByteOfCode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RvaToFirstByteOfCode"));
-    public static VarHandle RvaToFirstByteOfCode$VH() {
-        return _IMAGE_COFF_SYMBOLS_HEADER.RvaToFirstByteOfCode$VH;
-    }
-    public static int RvaToFirstByteOfCode$get(MemorySegment seg) {
-        return (int)_IMAGE_COFF_SYMBOLS_HEADER.RvaToFirstByteOfCode$VH.get(seg);
-    }
-    public static void RvaToFirstByteOfCode$set( MemorySegment seg, int x) {
-        _IMAGE_COFF_SYMBOLS_HEADER.RvaToFirstByteOfCode$VH.set(seg, x);
-    }
-    public static int RvaToFirstByteOfCode$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_COFF_SYMBOLS_HEADER.RvaToFirstByteOfCode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RvaToFirstByteOfCode$set(MemorySegment seg, long index, int x) {
-        _IMAGE_COFF_SYMBOLS_HEADER.RvaToFirstByteOfCode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RvaToLastByteOfCode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RvaToLastByteOfCode"));
-    public static VarHandle RvaToLastByteOfCode$VH() {
-        return _IMAGE_COFF_SYMBOLS_HEADER.RvaToLastByteOfCode$VH;
-    }
-    public static int RvaToLastByteOfCode$get(MemorySegment seg) {
-        return (int)_IMAGE_COFF_SYMBOLS_HEADER.RvaToLastByteOfCode$VH.get(seg);
-    }
-    public static void RvaToLastByteOfCode$set( MemorySegment seg, int x) {
-        _IMAGE_COFF_SYMBOLS_HEADER.RvaToLastByteOfCode$VH.set(seg, x);
-    }
-    public static int RvaToLastByteOfCode$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_COFF_SYMBOLS_HEADER.RvaToLastByteOfCode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RvaToLastByteOfCode$set(MemorySegment seg, long index, int x) {
-        _IMAGE_COFF_SYMBOLS_HEADER.RvaToLastByteOfCode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RvaToFirstByteOfData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RvaToFirstByteOfData"));
-    public static VarHandle RvaToFirstByteOfData$VH() {
-        return _IMAGE_COFF_SYMBOLS_HEADER.RvaToFirstByteOfData$VH;
-    }
-    public static int RvaToFirstByteOfData$get(MemorySegment seg) {
-        return (int)_IMAGE_COFF_SYMBOLS_HEADER.RvaToFirstByteOfData$VH.get(seg);
-    }
-    public static void RvaToFirstByteOfData$set( MemorySegment seg, int x) {
-        _IMAGE_COFF_SYMBOLS_HEADER.RvaToFirstByteOfData$VH.set(seg, x);
-    }
-    public static int RvaToFirstByteOfData$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_COFF_SYMBOLS_HEADER.RvaToFirstByteOfData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RvaToFirstByteOfData$set(MemorySegment seg, long index, int x) {
-        _IMAGE_COFF_SYMBOLS_HEADER.RvaToFirstByteOfData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RvaToLastByteOfData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RvaToLastByteOfData"));
-    public static VarHandle RvaToLastByteOfData$VH() {
-        return _IMAGE_COFF_SYMBOLS_HEADER.RvaToLastByteOfData$VH;
-    }
-    public static int RvaToLastByteOfData$get(MemorySegment seg) {
-        return (int)_IMAGE_COFF_SYMBOLS_HEADER.RvaToLastByteOfData$VH.get(seg);
-    }
-    public static void RvaToLastByteOfData$set( MemorySegment seg, int x) {
-        _IMAGE_COFF_SYMBOLS_HEADER.RvaToLastByteOfData$VH.set(seg, x);
-    }
-    public static int RvaToLastByteOfData$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_COFF_SYMBOLS_HEADER.RvaToLastByteOfData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RvaToLastByteOfData$set(MemorySegment seg, long index, int x) {
-        _IMAGE_COFF_SYMBOLS_HEADER.RvaToLastByteOfData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("NumberOfSymbols"),
+        wgl_h.C_LONG.withName("LvaToFirstSymbol"),
+        wgl_h.C_LONG.withName("NumberOfLinenumbers"),
+        wgl_h.C_LONG.withName("LvaToFirstLinenumber"),
+        wgl_h.C_LONG.withName("RvaToFirstByteOfCode"),
+        wgl_h.C_LONG.withName("RvaToLastByteOfCode"),
+        wgl_h.C_LONG.withName("RvaToFirstByteOfData"),
+        wgl_h.C_LONG.withName("RvaToLastByteOfData")
+    ).withName("_IMAGE_COFF_SYMBOLS_HEADER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt NumberOfSymbols$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberOfSymbols"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfSymbols
+     * }
+     */
+    public static final OfInt NumberOfSymbols$layout() {
+        return NumberOfSymbols$LAYOUT;
+    }
+
+    private static final long NumberOfSymbols$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfSymbols
+     * }
+     */
+    public static final long NumberOfSymbols$offset() {
+        return NumberOfSymbols$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfSymbols
+     * }
+     */
+    public static int NumberOfSymbols(MemorySegment struct) {
+        return struct.get(NumberOfSymbols$LAYOUT, NumberOfSymbols$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfSymbols
+     * }
+     */
+    public static void NumberOfSymbols(MemorySegment struct, int fieldValue) {
+        struct.set(NumberOfSymbols$LAYOUT, NumberOfSymbols$OFFSET, fieldValue);
+    }
+
+    private static final OfInt LvaToFirstSymbol$LAYOUT = (OfInt)$LAYOUT.select(groupElement("LvaToFirstSymbol"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD LvaToFirstSymbol
+     * }
+     */
+    public static final OfInt LvaToFirstSymbol$layout() {
+        return LvaToFirstSymbol$LAYOUT;
+    }
+
+    private static final long LvaToFirstSymbol$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD LvaToFirstSymbol
+     * }
+     */
+    public static final long LvaToFirstSymbol$offset() {
+        return LvaToFirstSymbol$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD LvaToFirstSymbol
+     * }
+     */
+    public static int LvaToFirstSymbol(MemorySegment struct) {
+        return struct.get(LvaToFirstSymbol$LAYOUT, LvaToFirstSymbol$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD LvaToFirstSymbol
+     * }
+     */
+    public static void LvaToFirstSymbol(MemorySegment struct, int fieldValue) {
+        struct.set(LvaToFirstSymbol$LAYOUT, LvaToFirstSymbol$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NumberOfLinenumbers$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberOfLinenumbers"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfLinenumbers
+     * }
+     */
+    public static final OfInt NumberOfLinenumbers$layout() {
+        return NumberOfLinenumbers$LAYOUT;
+    }
+
+    private static final long NumberOfLinenumbers$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfLinenumbers
+     * }
+     */
+    public static final long NumberOfLinenumbers$offset() {
+        return NumberOfLinenumbers$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfLinenumbers
+     * }
+     */
+    public static int NumberOfLinenumbers(MemorySegment struct) {
+        return struct.get(NumberOfLinenumbers$LAYOUT, NumberOfLinenumbers$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfLinenumbers
+     * }
+     */
+    public static void NumberOfLinenumbers(MemorySegment struct, int fieldValue) {
+        struct.set(NumberOfLinenumbers$LAYOUT, NumberOfLinenumbers$OFFSET, fieldValue);
+    }
+
+    private static final OfInt LvaToFirstLinenumber$LAYOUT = (OfInt)$LAYOUT.select(groupElement("LvaToFirstLinenumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD LvaToFirstLinenumber
+     * }
+     */
+    public static final OfInt LvaToFirstLinenumber$layout() {
+        return LvaToFirstLinenumber$LAYOUT;
+    }
+
+    private static final long LvaToFirstLinenumber$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD LvaToFirstLinenumber
+     * }
+     */
+    public static final long LvaToFirstLinenumber$offset() {
+        return LvaToFirstLinenumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD LvaToFirstLinenumber
+     * }
+     */
+    public static int LvaToFirstLinenumber(MemorySegment struct) {
+        return struct.get(LvaToFirstLinenumber$LAYOUT, LvaToFirstLinenumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD LvaToFirstLinenumber
+     * }
+     */
+    public static void LvaToFirstLinenumber(MemorySegment struct, int fieldValue) {
+        struct.set(LvaToFirstLinenumber$LAYOUT, LvaToFirstLinenumber$OFFSET, fieldValue);
+    }
+
+    private static final OfInt RvaToFirstByteOfCode$LAYOUT = (OfInt)$LAYOUT.select(groupElement("RvaToFirstByteOfCode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD RvaToFirstByteOfCode
+     * }
+     */
+    public static final OfInt RvaToFirstByteOfCode$layout() {
+        return RvaToFirstByteOfCode$LAYOUT;
+    }
+
+    private static final long RvaToFirstByteOfCode$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD RvaToFirstByteOfCode
+     * }
+     */
+    public static final long RvaToFirstByteOfCode$offset() {
+        return RvaToFirstByteOfCode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD RvaToFirstByteOfCode
+     * }
+     */
+    public static int RvaToFirstByteOfCode(MemorySegment struct) {
+        return struct.get(RvaToFirstByteOfCode$LAYOUT, RvaToFirstByteOfCode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD RvaToFirstByteOfCode
+     * }
+     */
+    public static void RvaToFirstByteOfCode(MemorySegment struct, int fieldValue) {
+        struct.set(RvaToFirstByteOfCode$LAYOUT, RvaToFirstByteOfCode$OFFSET, fieldValue);
+    }
+
+    private static final OfInt RvaToLastByteOfCode$LAYOUT = (OfInt)$LAYOUT.select(groupElement("RvaToLastByteOfCode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD RvaToLastByteOfCode
+     * }
+     */
+    public static final OfInt RvaToLastByteOfCode$layout() {
+        return RvaToLastByteOfCode$LAYOUT;
+    }
+
+    private static final long RvaToLastByteOfCode$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD RvaToLastByteOfCode
+     * }
+     */
+    public static final long RvaToLastByteOfCode$offset() {
+        return RvaToLastByteOfCode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD RvaToLastByteOfCode
+     * }
+     */
+    public static int RvaToLastByteOfCode(MemorySegment struct) {
+        return struct.get(RvaToLastByteOfCode$LAYOUT, RvaToLastByteOfCode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD RvaToLastByteOfCode
+     * }
+     */
+    public static void RvaToLastByteOfCode(MemorySegment struct, int fieldValue) {
+        struct.set(RvaToLastByteOfCode$LAYOUT, RvaToLastByteOfCode$OFFSET, fieldValue);
+    }
+
+    private static final OfInt RvaToFirstByteOfData$LAYOUT = (OfInt)$LAYOUT.select(groupElement("RvaToFirstByteOfData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD RvaToFirstByteOfData
+     * }
+     */
+    public static final OfInt RvaToFirstByteOfData$layout() {
+        return RvaToFirstByteOfData$LAYOUT;
+    }
+
+    private static final long RvaToFirstByteOfData$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD RvaToFirstByteOfData
+     * }
+     */
+    public static final long RvaToFirstByteOfData$offset() {
+        return RvaToFirstByteOfData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD RvaToFirstByteOfData
+     * }
+     */
+    public static int RvaToFirstByteOfData(MemorySegment struct) {
+        return struct.get(RvaToFirstByteOfData$LAYOUT, RvaToFirstByteOfData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD RvaToFirstByteOfData
+     * }
+     */
+    public static void RvaToFirstByteOfData(MemorySegment struct, int fieldValue) {
+        struct.set(RvaToFirstByteOfData$LAYOUT, RvaToFirstByteOfData$OFFSET, fieldValue);
+    }
+
+    private static final OfInt RvaToLastByteOfData$LAYOUT = (OfInt)$LAYOUT.select(groupElement("RvaToLastByteOfData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD RvaToLastByteOfData
+     * }
+     */
+    public static final OfInt RvaToLastByteOfData$layout() {
+        return RvaToLastByteOfData$LAYOUT;
+    }
+
+    private static final long RvaToLastByteOfData$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD RvaToLastByteOfData
+     * }
+     */
+    public static final long RvaToLastByteOfData$offset() {
+        return RvaToLastByteOfData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD RvaToLastByteOfData
+     * }
+     */
+    public static int RvaToLastByteOfData(MemorySegment struct) {
+        return struct.get(RvaToLastByteOfData$LAYOUT, RvaToLastByteOfData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD RvaToLastByteOfData
+     * }
+     */
+    public static void RvaToLastByteOfData(MemorySegment struct, int fieldValue) {
+        struct.set(RvaToLastByteOfData$LAYOUT, RvaToLastByteOfData$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

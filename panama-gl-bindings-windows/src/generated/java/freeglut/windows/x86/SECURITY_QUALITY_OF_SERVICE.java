@@ -2,13 +2,30 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _SECURITY_QUALITY_OF_SERVICE {
+ *     DWORD Length;
+ *     SECURITY_IMPERSONATION_LEVEL ImpersonationLevel;
+ *     SECURITY_CONTEXT_TRACKING_MODE ContextTrackingMode;
+ *     BOOLEAN EffectiveOnly;
+ * } SECURITY_QUALITY_OF_SERVICE
+ * }
+ */
 public class SECURITY_QUALITY_OF_SERVICE extends _SECURITY_QUALITY_OF_SERVICE {
 
+    SECURITY_QUALITY_OF_SERVICE() {
+        // Should not be called directly
+    }
 }
-
 

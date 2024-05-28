@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _ABCFLOAT {
+ *     FLOAT abcfA;
+ *     FLOAT abcfB;
+ *     FLOAT abcfC;
+ * }
+ * }
+ */
 public class _ABCFLOAT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_FLOAT$LAYOUT.withName("abcfA"),
-        Constants$root.C_FLOAT$LAYOUT.withName("abcfB"),
-        Constants$root.C_FLOAT$LAYOUT.withName("abcfC")
-    ).withName("_ABCFLOAT");
-    public static MemoryLayout $LAYOUT() {
-        return _ABCFLOAT.$struct$LAYOUT;
+    _ABCFLOAT() {
+        // Should not be called directly
     }
-    static final VarHandle abcfA$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("abcfA"));
-    public static VarHandle abcfA$VH() {
-        return _ABCFLOAT.abcfA$VH;
-    }
-    public static float abcfA$get(MemorySegment seg) {
-        return (float)_ABCFLOAT.abcfA$VH.get(seg);
-    }
-    public static void abcfA$set( MemorySegment seg, float x) {
-        _ABCFLOAT.abcfA$VH.set(seg, x);
-    }
-    public static float abcfA$get(MemorySegment seg, long index) {
-        return (float)_ABCFLOAT.abcfA$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void abcfA$set(MemorySegment seg, long index, float x) {
-        _ABCFLOAT.abcfA$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle abcfB$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("abcfB"));
-    public static VarHandle abcfB$VH() {
-        return _ABCFLOAT.abcfB$VH;
-    }
-    public static float abcfB$get(MemorySegment seg) {
-        return (float)_ABCFLOAT.abcfB$VH.get(seg);
-    }
-    public static void abcfB$set( MemorySegment seg, float x) {
-        _ABCFLOAT.abcfB$VH.set(seg, x);
-    }
-    public static float abcfB$get(MemorySegment seg, long index) {
-        return (float)_ABCFLOAT.abcfB$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void abcfB$set(MemorySegment seg, long index, float x) {
-        _ABCFLOAT.abcfB$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle abcfC$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("abcfC"));
-    public static VarHandle abcfC$VH() {
-        return _ABCFLOAT.abcfC$VH;
-    }
-    public static float abcfC$get(MemorySegment seg) {
-        return (float)_ABCFLOAT.abcfC$VH.get(seg);
-    }
-    public static void abcfC$set( MemorySegment seg, float x) {
-        _ABCFLOAT.abcfC$VH.set(seg, x);
-    }
-    public static float abcfC$get(MemorySegment seg, long index) {
-        return (float)_ABCFLOAT.abcfC$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void abcfC$set(MemorySegment seg, long index, float x) {
-        _ABCFLOAT.abcfC$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_FLOAT.withName("abcfA"),
+        wgl_h.C_FLOAT.withName("abcfB"),
+        wgl_h.C_FLOAT.withName("abcfC")
+    ).withName("_ABCFLOAT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfFloat abcfA$LAYOUT = (OfFloat)$LAYOUT.select(groupElement("abcfA"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FLOAT abcfA
+     * }
+     */
+    public static final OfFloat abcfA$layout() {
+        return abcfA$LAYOUT;
+    }
+
+    private static final long abcfA$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FLOAT abcfA
+     * }
+     */
+    public static final long abcfA$offset() {
+        return abcfA$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FLOAT abcfA
+     * }
+     */
+    public static float abcfA(MemorySegment struct) {
+        return struct.get(abcfA$LAYOUT, abcfA$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FLOAT abcfA
+     * }
+     */
+    public static void abcfA(MemorySegment struct, float fieldValue) {
+        struct.set(abcfA$LAYOUT, abcfA$OFFSET, fieldValue);
+    }
+
+    private static final OfFloat abcfB$LAYOUT = (OfFloat)$LAYOUT.select(groupElement("abcfB"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FLOAT abcfB
+     * }
+     */
+    public static final OfFloat abcfB$layout() {
+        return abcfB$LAYOUT;
+    }
+
+    private static final long abcfB$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FLOAT abcfB
+     * }
+     */
+    public static final long abcfB$offset() {
+        return abcfB$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FLOAT abcfB
+     * }
+     */
+    public static float abcfB(MemorySegment struct) {
+        return struct.get(abcfB$LAYOUT, abcfB$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FLOAT abcfB
+     * }
+     */
+    public static void abcfB(MemorySegment struct, float fieldValue) {
+        struct.set(abcfB$LAYOUT, abcfB$OFFSET, fieldValue);
+    }
+
+    private static final OfFloat abcfC$LAYOUT = (OfFloat)$LAYOUT.select(groupElement("abcfC"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FLOAT abcfC
+     * }
+     */
+    public static final OfFloat abcfC$layout() {
+        return abcfC$LAYOUT;
+    }
+
+    private static final long abcfC$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FLOAT abcfC
+     * }
+     */
+    public static final long abcfC$offset() {
+        return abcfC$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FLOAT abcfC
+     * }
+     */
+    public static float abcfC(MemorySegment struct) {
+        return struct.get(abcfC$LAYOUT, abcfC$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FLOAT abcfC
+     * }
+     */
+    public static void abcfC(MemorySegment struct, float fieldValue) {
+        struct.set(abcfC$LAYOUT, abcfC$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

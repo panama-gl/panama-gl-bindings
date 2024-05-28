@@ -2,211 +2,586 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     DWORD Latency;
+ *     DWORD Power;
+ *     DWORD TimeCheck;
+ *     BYTE PromotePercent;
+ *     BYTE DemotePercent;
+ *     BYTE StateType;
+ *     BYTE Reserved;
+ *     DWORD StateFlags;
+ *     DWORD Context;
+ *     DWORD IdleHandler;
+ *     DWORD Reserved1;
+ * }
+ * }
+ */
 public class PPM_WMI_IDLE_STATE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Latency"),
-        Constants$root.C_LONG$LAYOUT.withName("Power"),
-        Constants$root.C_LONG$LAYOUT.withName("TimeCheck"),
-        Constants$root.C_CHAR$LAYOUT.withName("PromotePercent"),
-        Constants$root.C_CHAR$LAYOUT.withName("DemotePercent"),
-        Constants$root.C_CHAR$LAYOUT.withName("StateType"),
-        Constants$root.C_CHAR$LAYOUT.withName("Reserved"),
-        Constants$root.C_LONG$LAYOUT.withName("StateFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("Context"),
-        Constants$root.C_LONG$LAYOUT.withName("IdleHandler"),
-        Constants$root.C_LONG$LAYOUT.withName("Reserved1")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return PPM_WMI_IDLE_STATE.$struct$LAYOUT;
+    PPM_WMI_IDLE_STATE() {
+        // Should not be called directly
     }
-    static final VarHandle Latency$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Latency"));
-    public static VarHandle Latency$VH() {
-        return PPM_WMI_IDLE_STATE.Latency$VH;
-    }
-    public static int Latency$get(MemorySegment seg) {
-        return (int)PPM_WMI_IDLE_STATE.Latency$VH.get(seg);
-    }
-    public static void Latency$set( MemorySegment seg, int x) {
-        PPM_WMI_IDLE_STATE.Latency$VH.set(seg, x);
-    }
-    public static int Latency$get(MemorySegment seg, long index) {
-        return (int)PPM_WMI_IDLE_STATE.Latency$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Latency$set(MemorySegment seg, long index, int x) {
-        PPM_WMI_IDLE_STATE.Latency$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Power$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Power"));
-    public static VarHandle Power$VH() {
-        return PPM_WMI_IDLE_STATE.Power$VH;
-    }
-    public static int Power$get(MemorySegment seg) {
-        return (int)PPM_WMI_IDLE_STATE.Power$VH.get(seg);
-    }
-    public static void Power$set( MemorySegment seg, int x) {
-        PPM_WMI_IDLE_STATE.Power$VH.set(seg, x);
-    }
-    public static int Power$get(MemorySegment seg, long index) {
-        return (int)PPM_WMI_IDLE_STATE.Power$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Power$set(MemorySegment seg, long index, int x) {
-        PPM_WMI_IDLE_STATE.Power$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TimeCheck$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TimeCheck"));
-    public static VarHandle TimeCheck$VH() {
-        return PPM_WMI_IDLE_STATE.TimeCheck$VH;
-    }
-    public static int TimeCheck$get(MemorySegment seg) {
-        return (int)PPM_WMI_IDLE_STATE.TimeCheck$VH.get(seg);
-    }
-    public static void TimeCheck$set( MemorySegment seg, int x) {
-        PPM_WMI_IDLE_STATE.TimeCheck$VH.set(seg, x);
-    }
-    public static int TimeCheck$get(MemorySegment seg, long index) {
-        return (int)PPM_WMI_IDLE_STATE.TimeCheck$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TimeCheck$set(MemorySegment seg, long index, int x) {
-        PPM_WMI_IDLE_STATE.TimeCheck$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PromotePercent$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PromotePercent"));
-    public static VarHandle PromotePercent$VH() {
-        return PPM_WMI_IDLE_STATE.PromotePercent$VH;
-    }
-    public static byte PromotePercent$get(MemorySegment seg) {
-        return (byte)PPM_WMI_IDLE_STATE.PromotePercent$VH.get(seg);
-    }
-    public static void PromotePercent$set( MemorySegment seg, byte x) {
-        PPM_WMI_IDLE_STATE.PromotePercent$VH.set(seg, x);
-    }
-    public static byte PromotePercent$get(MemorySegment seg, long index) {
-        return (byte)PPM_WMI_IDLE_STATE.PromotePercent$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PromotePercent$set(MemorySegment seg, long index, byte x) {
-        PPM_WMI_IDLE_STATE.PromotePercent$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DemotePercent$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DemotePercent"));
-    public static VarHandle DemotePercent$VH() {
-        return PPM_WMI_IDLE_STATE.DemotePercent$VH;
-    }
-    public static byte DemotePercent$get(MemorySegment seg) {
-        return (byte)PPM_WMI_IDLE_STATE.DemotePercent$VH.get(seg);
-    }
-    public static void DemotePercent$set( MemorySegment seg, byte x) {
-        PPM_WMI_IDLE_STATE.DemotePercent$VH.set(seg, x);
-    }
-    public static byte DemotePercent$get(MemorySegment seg, long index) {
-        return (byte)PPM_WMI_IDLE_STATE.DemotePercent$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DemotePercent$set(MemorySegment seg, long index, byte x) {
-        PPM_WMI_IDLE_STATE.DemotePercent$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle StateType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StateType"));
-    public static VarHandle StateType$VH() {
-        return PPM_WMI_IDLE_STATE.StateType$VH;
-    }
-    public static byte StateType$get(MemorySegment seg) {
-        return (byte)PPM_WMI_IDLE_STATE.StateType$VH.get(seg);
-    }
-    public static void StateType$set( MemorySegment seg, byte x) {
-        PPM_WMI_IDLE_STATE.StateType$VH.set(seg, x);
-    }
-    public static byte StateType$get(MemorySegment seg, long index) {
-        return (byte)PPM_WMI_IDLE_STATE.StateType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StateType$set(MemorySegment seg, long index, byte x) {
-        PPM_WMI_IDLE_STATE.StateType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved"));
-    public static VarHandle Reserved$VH() {
-        return PPM_WMI_IDLE_STATE.Reserved$VH;
-    }
-    public static byte Reserved$get(MemorySegment seg) {
-        return (byte)PPM_WMI_IDLE_STATE.Reserved$VH.get(seg);
-    }
-    public static void Reserved$set( MemorySegment seg, byte x) {
-        PPM_WMI_IDLE_STATE.Reserved$VH.set(seg, x);
-    }
-    public static byte Reserved$get(MemorySegment seg, long index) {
-        return (byte)PPM_WMI_IDLE_STATE.Reserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved$set(MemorySegment seg, long index, byte x) {
-        PPM_WMI_IDLE_STATE.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle StateFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StateFlags"));
-    public static VarHandle StateFlags$VH() {
-        return PPM_WMI_IDLE_STATE.StateFlags$VH;
-    }
-    public static int StateFlags$get(MemorySegment seg) {
-        return (int)PPM_WMI_IDLE_STATE.StateFlags$VH.get(seg);
-    }
-    public static void StateFlags$set( MemorySegment seg, int x) {
-        PPM_WMI_IDLE_STATE.StateFlags$VH.set(seg, x);
-    }
-    public static int StateFlags$get(MemorySegment seg, long index) {
-        return (int)PPM_WMI_IDLE_STATE.StateFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StateFlags$set(MemorySegment seg, long index, int x) {
-        PPM_WMI_IDLE_STATE.StateFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Context$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Context"));
-    public static VarHandle Context$VH() {
-        return PPM_WMI_IDLE_STATE.Context$VH;
-    }
-    public static int Context$get(MemorySegment seg) {
-        return (int)PPM_WMI_IDLE_STATE.Context$VH.get(seg);
-    }
-    public static void Context$set( MemorySegment seg, int x) {
-        PPM_WMI_IDLE_STATE.Context$VH.set(seg, x);
-    }
-    public static int Context$get(MemorySegment seg, long index) {
-        return (int)PPM_WMI_IDLE_STATE.Context$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Context$set(MemorySegment seg, long index, int x) {
-        PPM_WMI_IDLE_STATE.Context$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle IdleHandler$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("IdleHandler"));
-    public static VarHandle IdleHandler$VH() {
-        return PPM_WMI_IDLE_STATE.IdleHandler$VH;
-    }
-    public static int IdleHandler$get(MemorySegment seg) {
-        return (int)PPM_WMI_IDLE_STATE.IdleHandler$VH.get(seg);
-    }
-    public static void IdleHandler$set( MemorySegment seg, int x) {
-        PPM_WMI_IDLE_STATE.IdleHandler$VH.set(seg, x);
-    }
-    public static int IdleHandler$get(MemorySegment seg, long index) {
-        return (int)PPM_WMI_IDLE_STATE.IdleHandler$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void IdleHandler$set(MemorySegment seg, long index, int x) {
-        PPM_WMI_IDLE_STATE.IdleHandler$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved1"));
-    public static VarHandle Reserved1$VH() {
-        return PPM_WMI_IDLE_STATE.Reserved1$VH;
-    }
-    public static int Reserved1$get(MemorySegment seg) {
-        return (int)PPM_WMI_IDLE_STATE.Reserved1$VH.get(seg);
-    }
-    public static void Reserved1$set( MemorySegment seg, int x) {
-        PPM_WMI_IDLE_STATE.Reserved1$VH.set(seg, x);
-    }
-    public static int Reserved1$get(MemorySegment seg, long index) {
-        return (int)PPM_WMI_IDLE_STATE.Reserved1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved1$set(MemorySegment seg, long index, int x) {
-        PPM_WMI_IDLE_STATE.Reserved1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("Latency"),
+        freeglut_h.C_LONG.withName("Power"),
+        freeglut_h.C_LONG.withName("TimeCheck"),
+        freeglut_h.C_CHAR.withName("PromotePercent"),
+        freeglut_h.C_CHAR.withName("DemotePercent"),
+        freeglut_h.C_CHAR.withName("StateType"),
+        freeglut_h.C_CHAR.withName("Reserved"),
+        freeglut_h.C_LONG.withName("StateFlags"),
+        freeglut_h.C_LONG.withName("Context"),
+        freeglut_h.C_LONG.withName("IdleHandler"),
+        freeglut_h.C_LONG.withName("Reserved1")
+    ).withName("$anon$16219:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Latency$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Latency"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Latency
+     * }
+     */
+    public static final OfInt Latency$layout() {
+        return Latency$LAYOUT;
+    }
+
+    private static final long Latency$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Latency
+     * }
+     */
+    public static final long Latency$offset() {
+        return Latency$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Latency
+     * }
+     */
+    public static int Latency(MemorySegment struct) {
+        return struct.get(Latency$LAYOUT, Latency$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Latency
+     * }
+     */
+    public static void Latency(MemorySegment struct, int fieldValue) {
+        struct.set(Latency$LAYOUT, Latency$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Power$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Power"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Power
+     * }
+     */
+    public static final OfInt Power$layout() {
+        return Power$LAYOUT;
+    }
+
+    private static final long Power$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Power
+     * }
+     */
+    public static final long Power$offset() {
+        return Power$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Power
+     * }
+     */
+    public static int Power(MemorySegment struct) {
+        return struct.get(Power$LAYOUT, Power$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Power
+     * }
+     */
+    public static void Power(MemorySegment struct, int fieldValue) {
+        struct.set(Power$LAYOUT, Power$OFFSET, fieldValue);
+    }
+
+    private static final OfInt TimeCheck$LAYOUT = (OfInt)$LAYOUT.select(groupElement("TimeCheck"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD TimeCheck
+     * }
+     */
+    public static final OfInt TimeCheck$layout() {
+        return TimeCheck$LAYOUT;
+    }
+
+    private static final long TimeCheck$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD TimeCheck
+     * }
+     */
+    public static final long TimeCheck$offset() {
+        return TimeCheck$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD TimeCheck
+     * }
+     */
+    public static int TimeCheck(MemorySegment struct) {
+        return struct.get(TimeCheck$LAYOUT, TimeCheck$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD TimeCheck
+     * }
+     */
+    public static void TimeCheck(MemorySegment struct, int fieldValue) {
+        struct.set(TimeCheck$LAYOUT, TimeCheck$OFFSET, fieldValue);
+    }
+
+    private static final OfByte PromotePercent$LAYOUT = (OfByte)$LAYOUT.select(groupElement("PromotePercent"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE PromotePercent
+     * }
+     */
+    public static final OfByte PromotePercent$layout() {
+        return PromotePercent$LAYOUT;
+    }
+
+    private static final long PromotePercent$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE PromotePercent
+     * }
+     */
+    public static final long PromotePercent$offset() {
+        return PromotePercent$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE PromotePercent
+     * }
+     */
+    public static byte PromotePercent(MemorySegment struct) {
+        return struct.get(PromotePercent$LAYOUT, PromotePercent$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE PromotePercent
+     * }
+     */
+    public static void PromotePercent(MemorySegment struct, byte fieldValue) {
+        struct.set(PromotePercent$LAYOUT, PromotePercent$OFFSET, fieldValue);
+    }
+
+    private static final OfByte DemotePercent$LAYOUT = (OfByte)$LAYOUT.select(groupElement("DemotePercent"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE DemotePercent
+     * }
+     */
+    public static final OfByte DemotePercent$layout() {
+        return DemotePercent$LAYOUT;
+    }
+
+    private static final long DemotePercent$OFFSET = 13;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE DemotePercent
+     * }
+     */
+    public static final long DemotePercent$offset() {
+        return DemotePercent$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE DemotePercent
+     * }
+     */
+    public static byte DemotePercent(MemorySegment struct) {
+        return struct.get(DemotePercent$LAYOUT, DemotePercent$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE DemotePercent
+     * }
+     */
+    public static void DemotePercent(MemorySegment struct, byte fieldValue) {
+        struct.set(DemotePercent$LAYOUT, DemotePercent$OFFSET, fieldValue);
+    }
+
+    private static final OfByte StateType$LAYOUT = (OfByte)$LAYOUT.select(groupElement("StateType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE StateType
+     * }
+     */
+    public static final OfByte StateType$layout() {
+        return StateType$LAYOUT;
+    }
+
+    private static final long StateType$OFFSET = 14;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE StateType
+     * }
+     */
+    public static final long StateType$offset() {
+        return StateType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE StateType
+     * }
+     */
+    public static byte StateType(MemorySegment struct) {
+        return struct.get(StateType$LAYOUT, StateType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE StateType
+     * }
+     */
+    public static void StateType(MemorySegment struct, byte fieldValue) {
+        struct.set(StateType$LAYOUT, StateType$OFFSET, fieldValue);
+    }
+
+    private static final OfByte Reserved$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Reserved
+     * }
+     */
+    public static final OfByte Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 15;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Reserved
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved
+     * }
+     */
+    public static byte Reserved(MemorySegment struct) {
+        return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved
+     * }
+     */
+    public static void Reserved(MemorySegment struct, byte fieldValue) {
+        struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
+    }
+
+    private static final OfInt StateFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("StateFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD StateFlags
+     * }
+     */
+    public static final OfInt StateFlags$layout() {
+        return StateFlags$LAYOUT;
+    }
+
+    private static final long StateFlags$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD StateFlags
+     * }
+     */
+    public static final long StateFlags$offset() {
+        return StateFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD StateFlags
+     * }
+     */
+    public static int StateFlags(MemorySegment struct) {
+        return struct.get(StateFlags$LAYOUT, StateFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD StateFlags
+     * }
+     */
+    public static void StateFlags(MemorySegment struct, int fieldValue) {
+        struct.set(StateFlags$LAYOUT, StateFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Context$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Context"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Context
+     * }
+     */
+    public static final OfInt Context$layout() {
+        return Context$LAYOUT;
+    }
+
+    private static final long Context$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Context
+     * }
+     */
+    public static final long Context$offset() {
+        return Context$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Context
+     * }
+     */
+    public static int Context(MemorySegment struct) {
+        return struct.get(Context$LAYOUT, Context$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Context
+     * }
+     */
+    public static void Context(MemorySegment struct, int fieldValue) {
+        struct.set(Context$LAYOUT, Context$OFFSET, fieldValue);
+    }
+
+    private static final OfInt IdleHandler$LAYOUT = (OfInt)$LAYOUT.select(groupElement("IdleHandler"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD IdleHandler
+     * }
+     */
+    public static final OfInt IdleHandler$layout() {
+        return IdleHandler$LAYOUT;
+    }
+
+    private static final long IdleHandler$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD IdleHandler
+     * }
+     */
+    public static final long IdleHandler$offset() {
+        return IdleHandler$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD IdleHandler
+     * }
+     */
+    public static int IdleHandler(MemorySegment struct) {
+        return struct.get(IdleHandler$LAYOUT, IdleHandler$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD IdleHandler
+     * }
+     */
+    public static void IdleHandler(MemorySegment struct, int fieldValue) {
+        struct.set(IdleHandler$LAYOUT, IdleHandler$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Reserved1$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static final OfInt Reserved1$layout() {
+        return Reserved1$LAYOUT;
+    }
+
+    private static final long Reserved1$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static final long Reserved1$offset() {
+        return Reserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static int Reserved1(MemorySegment struct) {
+        return struct.get(Reserved1$LAYOUT, Reserved1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static void Reserved1(MemorySegment struct, int fieldValue) {
+        struct.set(Reserved1$LAYOUT, Reserved1$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,97 +2,389 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _KCRM_TRANSACTION_BLOB {
+ *     UOW UOW;
+ *     GUID TmIdentity;
+ *     ULONG IsolationLevel;
+ *     ULONG IsolationFlags;
+ *     ULONG Timeout;
+ *     WCHAR Description[64];
+ * }
+ * }
+ */
 public class _KCRM_TRANSACTION_BLOB {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("UOW"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("TmIdentity"),
-        Constants$root.C_LONG$LAYOUT.withName("IsolationLevel"),
-        Constants$root.C_LONG$LAYOUT.withName("IsolationFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("Timeout"),
-        MemoryLayout.sequenceLayout(64, Constants$root.C_SHORT$LAYOUT).withName("Description")
-    ).withName("_KCRM_TRANSACTION_BLOB");
-    public static MemoryLayout $LAYOUT() {
-        return _KCRM_TRANSACTION_BLOB.$struct$LAYOUT;
+    _KCRM_TRANSACTION_BLOB() {
+        // Should not be called directly
     }
-    public static MemorySegment UOW$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
-    }
-    public static MemorySegment TmIdentity$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
-    }
-    static final VarHandle IsolationLevel$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("IsolationLevel"));
-    public static VarHandle IsolationLevel$VH() {
-        return _KCRM_TRANSACTION_BLOB.IsolationLevel$VH;
-    }
-    public static int IsolationLevel$get(MemorySegment seg) {
-        return (int)_KCRM_TRANSACTION_BLOB.IsolationLevel$VH.get(seg);
-    }
-    public static void IsolationLevel$set( MemorySegment seg, int x) {
-        _KCRM_TRANSACTION_BLOB.IsolationLevel$VH.set(seg, x);
-    }
-    public static int IsolationLevel$get(MemorySegment seg, long index) {
-        return (int)_KCRM_TRANSACTION_BLOB.IsolationLevel$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void IsolationLevel$set(MemorySegment seg, long index, int x) {
-        _KCRM_TRANSACTION_BLOB.IsolationLevel$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle IsolationFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("IsolationFlags"));
-    public static VarHandle IsolationFlags$VH() {
-        return _KCRM_TRANSACTION_BLOB.IsolationFlags$VH;
-    }
-    public static int IsolationFlags$get(MemorySegment seg) {
-        return (int)_KCRM_TRANSACTION_BLOB.IsolationFlags$VH.get(seg);
-    }
-    public static void IsolationFlags$set( MemorySegment seg, int x) {
-        _KCRM_TRANSACTION_BLOB.IsolationFlags$VH.set(seg, x);
-    }
-    public static int IsolationFlags$get(MemorySegment seg, long index) {
-        return (int)_KCRM_TRANSACTION_BLOB.IsolationFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void IsolationFlags$set(MemorySegment seg, long index, int x) {
-        _KCRM_TRANSACTION_BLOB.IsolationFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Timeout$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Timeout"));
-    public static VarHandle Timeout$VH() {
-        return _KCRM_TRANSACTION_BLOB.Timeout$VH;
-    }
-    public static int Timeout$get(MemorySegment seg) {
-        return (int)_KCRM_TRANSACTION_BLOB.Timeout$VH.get(seg);
-    }
-    public static void Timeout$set( MemorySegment seg, int x) {
-        _KCRM_TRANSACTION_BLOB.Timeout$VH.set(seg, x);
-    }
-    public static int Timeout$get(MemorySegment seg, long index) {
-        return (int)_KCRM_TRANSACTION_BLOB.Timeout$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Timeout$set(MemorySegment seg, long index, int x) {
-        _KCRM_TRANSACTION_BLOB.Timeout$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Description$slice(MemorySegment seg) {
-        return seg.asSlice(44, 128);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _GUID.layout().withName("UOW"),
+        _GUID.layout().withName("TmIdentity"),
+        freeglut_h.C_LONG.withName("IsolationLevel"),
+        freeglut_h.C_LONG.withName("IsolationFlags"),
+        freeglut_h.C_LONG.withName("Timeout"),
+        MemoryLayout.sequenceLayout(64, freeglut_h.C_SHORT).withName("Description")
+    ).withName("_KCRM_TRANSACTION_BLOB");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout UOW$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("UOW"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UOW UOW
+     * }
+     */
+    public static final GroupLayout UOW$layout() {
+        return UOW$LAYOUT;
+    }
+
+    private static final long UOW$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UOW UOW
+     * }
+     */
+    public static final long UOW$offset() {
+        return UOW$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UOW UOW
+     * }
+     */
+    public static MemorySegment UOW(MemorySegment struct) {
+        return struct.asSlice(UOW$OFFSET, UOW$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UOW UOW
+     * }
+     */
+    public static void UOW(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, UOW$OFFSET, UOW$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout TmIdentity$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("TmIdentity"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID TmIdentity
+     * }
+     */
+    public static final GroupLayout TmIdentity$layout() {
+        return TmIdentity$LAYOUT;
+    }
+
+    private static final long TmIdentity$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID TmIdentity
+     * }
+     */
+    public static final long TmIdentity$offset() {
+        return TmIdentity$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID TmIdentity
+     * }
+     */
+    public static MemorySegment TmIdentity(MemorySegment struct) {
+        return struct.asSlice(TmIdentity$OFFSET, TmIdentity$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID TmIdentity
+     * }
+     */
+    public static void TmIdentity(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, TmIdentity$OFFSET, TmIdentity$LAYOUT.byteSize());
+    }
+
+    private static final OfInt IsolationLevel$LAYOUT = (OfInt)$LAYOUT.select(groupElement("IsolationLevel"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG IsolationLevel
+     * }
+     */
+    public static final OfInt IsolationLevel$layout() {
+        return IsolationLevel$LAYOUT;
+    }
+
+    private static final long IsolationLevel$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG IsolationLevel
+     * }
+     */
+    public static final long IsolationLevel$offset() {
+        return IsolationLevel$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG IsolationLevel
+     * }
+     */
+    public static int IsolationLevel(MemorySegment struct) {
+        return struct.get(IsolationLevel$LAYOUT, IsolationLevel$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG IsolationLevel
+     * }
+     */
+    public static void IsolationLevel(MemorySegment struct, int fieldValue) {
+        struct.set(IsolationLevel$LAYOUT, IsolationLevel$OFFSET, fieldValue);
+    }
+
+    private static final OfInt IsolationFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("IsolationFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG IsolationFlags
+     * }
+     */
+    public static final OfInt IsolationFlags$layout() {
+        return IsolationFlags$LAYOUT;
+    }
+
+    private static final long IsolationFlags$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG IsolationFlags
+     * }
+     */
+    public static final long IsolationFlags$offset() {
+        return IsolationFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG IsolationFlags
+     * }
+     */
+    public static int IsolationFlags(MemorySegment struct) {
+        return struct.get(IsolationFlags$LAYOUT, IsolationFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG IsolationFlags
+     * }
+     */
+    public static void IsolationFlags(MemorySegment struct, int fieldValue) {
+        struct.set(IsolationFlags$LAYOUT, IsolationFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Timeout$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Timeout"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG Timeout
+     * }
+     */
+    public static final OfInt Timeout$layout() {
+        return Timeout$LAYOUT;
+    }
+
+    private static final long Timeout$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG Timeout
+     * }
+     */
+    public static final long Timeout$offset() {
+        return Timeout$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG Timeout
+     * }
+     */
+    public static int Timeout(MemorySegment struct) {
+        return struct.get(Timeout$LAYOUT, Timeout$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG Timeout
+     * }
+     */
+    public static void Timeout(MemorySegment struct, int fieldValue) {
+        struct.set(Timeout$LAYOUT, Timeout$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Description$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Description"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR Description[64]
+     * }
+     */
+    public static final SequenceLayout Description$layout() {
+        return Description$LAYOUT;
+    }
+
+    private static final long Description$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR Description[64]
+     * }
+     */
+    public static final long Description$offset() {
+        return Description$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR Description[64]
+     * }
+     */
+    public static MemorySegment Description(MemorySegment struct) {
+        return struct.asSlice(Description$OFFSET, Description$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR Description[64]
+     * }
+     */
+    public static void Description(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Description$OFFSET, Description$LAYOUT.byteSize());
+    }
+
+    private static long[] Description$DIMS = { 64 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR Description[64]
+     * }
+     */
+    public static long[] Description$dimensions() {
+        return Description$DIMS;
+    }
+    private static final VarHandle Description$ELEM_HANDLE = Description$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR Description[64]
+     * }
+     */
+    public static short Description(MemorySegment struct, long index0) {
+        return (short)Description$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR Description[64]
+     * }
+     */
+    public static void Description(MemorySegment struct, long index0, short fieldValue) {
+        Description$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

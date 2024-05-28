@@ -2,28 +2,159 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagHANDLETABLE {
+ *     HGDIOBJ objectHandle[1];
+ * }
+ * }
+ */
 public class tagHANDLETABLE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(1, Constants$root.C_POINTER$LAYOUT).withName("objectHandle")
-    ).withName("tagHANDLETABLE");
-    public static MemoryLayout $LAYOUT() {
-        return tagHANDLETABLE.$struct$LAYOUT;
+    tagHANDLETABLE() {
+        // Should not be called directly
     }
-    public static MemorySegment objectHandle$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        MemoryLayout.sequenceLayout(1, freeglut_h.C_POINTER).withName("objectHandle")
+    ).withName("tagHANDLETABLE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final SequenceLayout objectHandle$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("objectHandle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HGDIOBJ objectHandle[1]
+     * }
+     */
+    public static final SequenceLayout objectHandle$layout() {
+        return objectHandle$LAYOUT;
+    }
+
+    private static final long objectHandle$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HGDIOBJ objectHandle[1]
+     * }
+     */
+    public static final long objectHandle$offset() {
+        return objectHandle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HGDIOBJ objectHandle[1]
+     * }
+     */
+    public static MemorySegment objectHandle(MemorySegment struct) {
+        return struct.asSlice(objectHandle$OFFSET, objectHandle$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HGDIOBJ objectHandle[1]
+     * }
+     */
+    public static void objectHandle(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, objectHandle$OFFSET, objectHandle$LAYOUT.byteSize());
+    }
+
+    private static long[] objectHandle$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * HGDIOBJ objectHandle[1]
+     * }
+     */
+    public static long[] objectHandle$dimensions() {
+        return objectHandle$DIMS;
+    }
+    private static final VarHandle objectHandle$ELEM_HANDLE = objectHandle$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * HGDIOBJ objectHandle[1]
+     * }
+     */
+    public static MemorySegment objectHandle(MemorySegment struct, long index0) {
+        return (MemorySegment)objectHandle$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * HGDIOBJ objectHandle[1]
+     * }
+     */
+    public static void objectHandle(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        objectHandle$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

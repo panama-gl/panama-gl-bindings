@@ -2,61 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagEMRCREATEPALETTE {
+ *     EMR emr;
+ *     DWORD ihPal;
+ *     LOGPALETTE lgpl;
+ * }
+ * }
+ */
 public class tagEMRCREATEPALETTE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("iType"),
-            Constants$root.C_LONG$LAYOUT.withName("nSize")
-        ).withName("emr"),
-        Constants$root.C_LONG$LAYOUT.withName("ihPal"),
-        MemoryLayout.structLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("palVersion"),
-            Constants$root.C_SHORT$LAYOUT.withName("palNumEntries"),
-            MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-                Constants$root.C_CHAR$LAYOUT.withName("peRed"),
-                Constants$root.C_CHAR$LAYOUT.withName("peGreen"),
-                Constants$root.C_CHAR$LAYOUT.withName("peBlue"),
-                Constants$root.C_CHAR$LAYOUT.withName("peFlags")
-            ).withName("tagPALETTEENTRY")).withName("palPalEntry")
-        ).withName("lgpl")
-    ).withName("tagEMRCREATEPALETTE");
-    public static MemoryLayout $LAYOUT() {
-        return tagEMRCREATEPALETTE.$struct$LAYOUT;
+    tagEMRCREATEPALETTE() {
+        // Should not be called directly
     }
-    public static MemorySegment emr$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    static final VarHandle ihPal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ihPal"));
-    public static VarHandle ihPal$VH() {
-        return tagEMRCREATEPALETTE.ihPal$VH;
-    }
-    public static int ihPal$get(MemorySegment seg) {
-        return (int)tagEMRCREATEPALETTE.ihPal$VH.get(seg);
-    }
-    public static void ihPal$set( MemorySegment seg, int x) {
-        tagEMRCREATEPALETTE.ihPal$VH.set(seg, x);
-    }
-    public static int ihPal$get(MemorySegment seg, long index) {
-        return (int)tagEMRCREATEPALETTE.ihPal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ihPal$set(MemorySegment seg, long index, int x) {
-        tagEMRCREATEPALETTE.ihPal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment lgpl$slice(MemorySegment seg) {
-        return seg.asSlice(12, 8);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        tagEMR.layout().withName("emr"),
+        wgl_h.C_LONG.withName("ihPal"),
+        tagLOGPALETTE.layout().withName("lgpl")
+    ).withName("tagEMRCREATEPALETTE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout emr$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("emr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static final GroupLayout emr$layout() {
+        return emr$LAYOUT;
+    }
+
+    private static final long emr$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static final long emr$offset() {
+        return emr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static MemorySegment emr(MemorySegment struct) {
+        return struct.asSlice(emr$OFFSET, emr$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static void emr(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, emr$OFFSET, emr$LAYOUT.byteSize());
+    }
+
+    private static final OfInt ihPal$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ihPal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ihPal
+     * }
+     */
+    public static final OfInt ihPal$layout() {
+        return ihPal$LAYOUT;
+    }
+
+    private static final long ihPal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ihPal
+     * }
+     */
+    public static final long ihPal$offset() {
+        return ihPal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ihPal
+     * }
+     */
+    public static int ihPal(MemorySegment struct) {
+        return struct.get(ihPal$LAYOUT, ihPal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ihPal
+     * }
+     */
+    public static void ihPal(MemorySegment struct, int fieldValue) {
+        struct.set(ihPal$LAYOUT, ihPal$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout lgpl$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("lgpl"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LOGPALETTE lgpl
+     * }
+     */
+    public static final GroupLayout lgpl$layout() {
+        return lgpl$LAYOUT;
+    }
+
+    private static final long lgpl$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LOGPALETTE lgpl
+     * }
+     */
+    public static final long lgpl$offset() {
+        return lgpl$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LOGPALETTE lgpl
+     * }
+     */
+    public static MemorySegment lgpl(MemorySegment struct) {
+        return struct.asSlice(lgpl$OFFSET, lgpl$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LOGPALETTE lgpl
+     * }
+     */
+    public static void lgpl(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, lgpl$OFFSET, lgpl$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

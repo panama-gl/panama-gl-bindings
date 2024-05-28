@@ -2,62 +2,257 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagARRAYDESC {
+ *     TYPEDESC tdescElem;
+ *     USHORT cDims;
+ *     SAFEARRAYBOUND rgbounds[1];
+ * }
+ * }
+ */
 public class tagARRAYDESC {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                Constants$root.C_POINTER$LAYOUT.withName("lptdesc"),
-                Constants$root.C_POINTER$LAYOUT.withName("lpadesc"),
-                Constants$root.C_LONG$LAYOUT.withName("hreftype")
-            ).withName("$anon$0"),
-            Constants$root.C_SHORT$LAYOUT.withName("vt"),
-            MemoryLayout.paddingLayout(48)
-        ).withName("tdescElem"),
-        Constants$root.C_SHORT$LAYOUT.withName("cDims"),
-        MemoryLayout.paddingLayout(16),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cElements"),
-            Constants$root.C_LONG$LAYOUT.withName("lLbound")
-        ).withName("tagSAFEARRAYBOUND")).withName("rgbounds"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("tagARRAYDESC");
-    public static MemoryLayout $LAYOUT() {
-        return tagARRAYDESC.$struct$LAYOUT;
+    tagARRAYDESC() {
+        // Should not be called directly
     }
-    public static MemorySegment tdescElem$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
-    }
-    static final VarHandle cDims$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cDims"));
-    public static VarHandle cDims$VH() {
-        return tagARRAYDESC.cDims$VH;
-    }
-    public static short cDims$get(MemorySegment seg) {
-        return (short)tagARRAYDESC.cDims$VH.get(seg);
-    }
-    public static void cDims$set( MemorySegment seg, short x) {
-        tagARRAYDESC.cDims$VH.set(seg, x);
-    }
-    public static short cDims$get(MemorySegment seg, long index) {
-        return (short)tagARRAYDESC.cDims$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cDims$set(MemorySegment seg, long index, short x) {
-        tagARRAYDESC.cDims$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment rgbounds$slice(MemorySegment seg) {
-        return seg.asSlice(20, 8);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        tagTYPEDESC.layout().withName("tdescElem"),
+        wgl_h.C_SHORT.withName("cDims"),
+        MemoryLayout.paddingLayout(2),
+        MemoryLayout.sequenceLayout(1, tagSAFEARRAYBOUND.layout()).withName("rgbounds"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("tagARRAYDESC");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout tdescElem$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("tdescElem"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * TYPEDESC tdescElem
+     * }
+     */
+    public static final GroupLayout tdescElem$layout() {
+        return tdescElem$LAYOUT;
+    }
+
+    private static final long tdescElem$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * TYPEDESC tdescElem
+     * }
+     */
+    public static final long tdescElem$offset() {
+        return tdescElem$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * TYPEDESC tdescElem
+     * }
+     */
+    public static MemorySegment tdescElem(MemorySegment struct) {
+        return struct.asSlice(tdescElem$OFFSET, tdescElem$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * TYPEDESC tdescElem
+     * }
+     */
+    public static void tdescElem(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, tdescElem$OFFSET, tdescElem$LAYOUT.byteSize());
+    }
+
+    private static final OfShort cDims$LAYOUT = (OfShort)$LAYOUT.select(groupElement("cDims"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT cDims
+     * }
+     */
+    public static final OfShort cDims$layout() {
+        return cDims$LAYOUT;
+    }
+
+    private static final long cDims$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT cDims
+     * }
+     */
+    public static final long cDims$offset() {
+        return cDims$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT cDims
+     * }
+     */
+    public static short cDims(MemorySegment struct) {
+        return struct.get(cDims$LAYOUT, cDims$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT cDims
+     * }
+     */
+    public static void cDims(MemorySegment struct, short fieldValue) {
+        struct.set(cDims$LAYOUT, cDims$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout rgbounds$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("rgbounds"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SAFEARRAYBOUND rgbounds[1]
+     * }
+     */
+    public static final SequenceLayout rgbounds$layout() {
+        return rgbounds$LAYOUT;
+    }
+
+    private static final long rgbounds$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SAFEARRAYBOUND rgbounds[1]
+     * }
+     */
+    public static final long rgbounds$offset() {
+        return rgbounds$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SAFEARRAYBOUND rgbounds[1]
+     * }
+     */
+    public static MemorySegment rgbounds(MemorySegment struct) {
+        return struct.asSlice(rgbounds$OFFSET, rgbounds$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SAFEARRAYBOUND rgbounds[1]
+     * }
+     */
+    public static void rgbounds(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rgbounds$OFFSET, rgbounds$LAYOUT.byteSize());
+    }
+
+    private static long[] rgbounds$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * SAFEARRAYBOUND rgbounds[1]
+     * }
+     */
+    public static long[] rgbounds$dimensions() {
+        return rgbounds$DIMS;
+    }
+    private static final MethodHandle rgbounds$ELEM_HANDLE = rgbounds$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * SAFEARRAYBOUND rgbounds[1]
+     * }
+     */
+    public static MemorySegment rgbounds(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)rgbounds$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * SAFEARRAYBOUND rgbounds[1]
+     * }
+     */
+    public static void rgbounds(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, rgbounds(struct, index0), 0L, tagSAFEARRAYBOUND.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CLASS_MEDIA_CHANGE_CONTEXT {
+ *     DWORD MediaChangeCount;
+ *     DWORD NewState;
+ * }
+ * }
+ */
 public class _CLASS_MEDIA_CHANGE_CONTEXT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("MediaChangeCount"),
-        Constants$root.C_LONG$LAYOUT.withName("NewState")
-    ).withName("_CLASS_MEDIA_CHANGE_CONTEXT");
-    public static MemoryLayout $LAYOUT() {
-        return _CLASS_MEDIA_CHANGE_CONTEXT.$struct$LAYOUT;
+    _CLASS_MEDIA_CHANGE_CONTEXT() {
+        // Should not be called directly
     }
-    static final VarHandle MediaChangeCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MediaChangeCount"));
-    public static VarHandle MediaChangeCount$VH() {
-        return _CLASS_MEDIA_CHANGE_CONTEXT.MediaChangeCount$VH;
-    }
-    public static int MediaChangeCount$get(MemorySegment seg) {
-        return (int)_CLASS_MEDIA_CHANGE_CONTEXT.MediaChangeCount$VH.get(seg);
-    }
-    public static void MediaChangeCount$set( MemorySegment seg, int x) {
-        _CLASS_MEDIA_CHANGE_CONTEXT.MediaChangeCount$VH.set(seg, x);
-    }
-    public static int MediaChangeCount$get(MemorySegment seg, long index) {
-        return (int)_CLASS_MEDIA_CHANGE_CONTEXT.MediaChangeCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MediaChangeCount$set(MemorySegment seg, long index, int x) {
-        _CLASS_MEDIA_CHANGE_CONTEXT.MediaChangeCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NewState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NewState"));
-    public static VarHandle NewState$VH() {
-        return _CLASS_MEDIA_CHANGE_CONTEXT.NewState$VH;
-    }
-    public static int NewState$get(MemorySegment seg) {
-        return (int)_CLASS_MEDIA_CHANGE_CONTEXT.NewState$VH.get(seg);
-    }
-    public static void NewState$set( MemorySegment seg, int x) {
-        _CLASS_MEDIA_CHANGE_CONTEXT.NewState$VH.set(seg, x);
-    }
-    public static int NewState$get(MemorySegment seg, long index) {
-        return (int)_CLASS_MEDIA_CHANGE_CONTEXT.NewState$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NewState$set(MemorySegment seg, long index, int x) {
-        _CLASS_MEDIA_CHANGE_CONTEXT.NewState$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("MediaChangeCount"),
+        wgl_h.C_LONG.withName("NewState")
+    ).withName("_CLASS_MEDIA_CHANGE_CONTEXT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt MediaChangeCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MediaChangeCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MediaChangeCount
+     * }
+     */
+    public static final OfInt MediaChangeCount$layout() {
+        return MediaChangeCount$LAYOUT;
+    }
+
+    private static final long MediaChangeCount$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MediaChangeCount
+     * }
+     */
+    public static final long MediaChangeCount$offset() {
+        return MediaChangeCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MediaChangeCount
+     * }
+     */
+    public static int MediaChangeCount(MemorySegment struct) {
+        return struct.get(MediaChangeCount$LAYOUT, MediaChangeCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MediaChangeCount
+     * }
+     */
+    public static void MediaChangeCount(MemorySegment struct, int fieldValue) {
+        struct.set(MediaChangeCount$LAYOUT, MediaChangeCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NewState$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NewState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NewState
+     * }
+     */
+    public static final OfInt NewState$layout() {
+        return NewState$LAYOUT;
+    }
+
+    private static final long NewState$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NewState
+     * }
+     */
+    public static final long NewState$offset() {
+        return NewState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NewState
+     * }
+     */
+    public static int NewState(MemorySegment struct) {
+        return struct.get(NewState$LAYOUT, NewState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NewState
+     * }
+     */
+    public static void NewState(MemorySegment struct, int fieldValue) {
+        struct.set(NewState$LAYOUT, NewState$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

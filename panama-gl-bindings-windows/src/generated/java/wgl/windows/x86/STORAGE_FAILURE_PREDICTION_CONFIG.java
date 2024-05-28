@@ -2,13 +2,31 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _STORAGE_FAILURE_PREDICTION_CONFIG {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     BOOLEAN Set;
+ *     BOOLEAN Enabled;
+ *     WORD Reserved;
+ * } STORAGE_FAILURE_PREDICTION_CONFIG
+ * }
+ */
 public class STORAGE_FAILURE_PREDICTION_CONFIG extends _STORAGE_FAILURE_PREDICTION_CONFIG {
 
+    STORAGE_FAILURE_PREDICTION_CONFIG() {
+        // Should not be called directly
+    }
 }
-
 

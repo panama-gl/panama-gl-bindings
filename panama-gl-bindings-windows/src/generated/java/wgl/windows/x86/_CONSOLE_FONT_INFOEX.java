@@ -2,103 +2,389 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CONSOLE_FONT_INFOEX {
+ *     ULONG cbSize;
+ *     DWORD nFont;
+ *     COORD dwFontSize;
+ *     UINT FontFamily;
+ *     UINT FontWeight;
+ *     WCHAR FaceName[32];
+ * }
+ * }
+ */
 public class _CONSOLE_FONT_INFOEX {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        Constants$root.C_LONG$LAYOUT.withName("nFont"),
-        MemoryLayout.structLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("X"),
-            Constants$root.C_SHORT$LAYOUT.withName("Y")
-        ).withName("dwFontSize"),
-        Constants$root.C_LONG$LAYOUT.withName("FontFamily"),
-        Constants$root.C_LONG$LAYOUT.withName("FontWeight"),
-        MemoryLayout.sequenceLayout(32, Constants$root.C_SHORT$LAYOUT).withName("FaceName")
-    ).withName("_CONSOLE_FONT_INFOEX");
-    public static MemoryLayout $LAYOUT() {
-        return _CONSOLE_FONT_INFOEX.$struct$LAYOUT;
+    _CONSOLE_FONT_INFOEX() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _CONSOLE_FONT_INFOEX.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_CONSOLE_FONT_INFOEX.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _CONSOLE_FONT_INFOEX.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_CONSOLE_FONT_INFOEX.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _CONSOLE_FONT_INFOEX.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nFont$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nFont"));
-    public static VarHandle nFont$VH() {
-        return _CONSOLE_FONT_INFOEX.nFont$VH;
-    }
-    public static int nFont$get(MemorySegment seg) {
-        return (int)_CONSOLE_FONT_INFOEX.nFont$VH.get(seg);
-    }
-    public static void nFont$set( MemorySegment seg, int x) {
-        _CONSOLE_FONT_INFOEX.nFont$VH.set(seg, x);
-    }
-    public static int nFont$get(MemorySegment seg, long index) {
-        return (int)_CONSOLE_FONT_INFOEX.nFont$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nFont$set(MemorySegment seg, long index, int x) {
-        _CONSOLE_FONT_INFOEX.nFont$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment dwFontSize$slice(MemorySegment seg) {
-        return seg.asSlice(8, 4);
-    }
-    static final VarHandle FontFamily$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FontFamily"));
-    public static VarHandle FontFamily$VH() {
-        return _CONSOLE_FONT_INFOEX.FontFamily$VH;
-    }
-    public static int FontFamily$get(MemorySegment seg) {
-        return (int)_CONSOLE_FONT_INFOEX.FontFamily$VH.get(seg);
-    }
-    public static void FontFamily$set( MemorySegment seg, int x) {
-        _CONSOLE_FONT_INFOEX.FontFamily$VH.set(seg, x);
-    }
-    public static int FontFamily$get(MemorySegment seg, long index) {
-        return (int)_CONSOLE_FONT_INFOEX.FontFamily$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FontFamily$set(MemorySegment seg, long index, int x) {
-        _CONSOLE_FONT_INFOEX.FontFamily$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FontWeight$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FontWeight"));
-    public static VarHandle FontWeight$VH() {
-        return _CONSOLE_FONT_INFOEX.FontWeight$VH;
-    }
-    public static int FontWeight$get(MemorySegment seg) {
-        return (int)_CONSOLE_FONT_INFOEX.FontWeight$VH.get(seg);
-    }
-    public static void FontWeight$set( MemorySegment seg, int x) {
-        _CONSOLE_FONT_INFOEX.FontWeight$VH.set(seg, x);
-    }
-    public static int FontWeight$get(MemorySegment seg, long index) {
-        return (int)_CONSOLE_FONT_INFOEX.FontWeight$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FontWeight$set(MemorySegment seg, long index, int x) {
-        _CONSOLE_FONT_INFOEX.FontWeight$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment FaceName$slice(MemorySegment seg) {
-        return seg.asSlice(20, 64);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        wgl_h.C_LONG.withName("nFont"),
+        _COORD.layout().withName("dwFontSize"),
+        wgl_h.C_INT.withName("FontFamily"),
+        wgl_h.C_INT.withName("FontWeight"),
+        MemoryLayout.sequenceLayout(32, wgl_h.C_SHORT).withName("FaceName")
+    ).withName("_CONSOLE_FONT_INFOEX");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt nFont$LAYOUT = (OfInt)$LAYOUT.select(groupElement("nFont"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD nFont
+     * }
+     */
+    public static final OfInt nFont$layout() {
+        return nFont$LAYOUT;
+    }
+
+    private static final long nFont$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD nFont
+     * }
+     */
+    public static final long nFont$offset() {
+        return nFont$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD nFont
+     * }
+     */
+    public static int nFont(MemorySegment struct) {
+        return struct.get(nFont$LAYOUT, nFont$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD nFont
+     * }
+     */
+    public static void nFont(MemorySegment struct, int fieldValue) {
+        struct.set(nFont$LAYOUT, nFont$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout dwFontSize$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("dwFontSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * COORD dwFontSize
+     * }
+     */
+    public static final GroupLayout dwFontSize$layout() {
+        return dwFontSize$LAYOUT;
+    }
+
+    private static final long dwFontSize$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * COORD dwFontSize
+     * }
+     */
+    public static final long dwFontSize$offset() {
+        return dwFontSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * COORD dwFontSize
+     * }
+     */
+    public static MemorySegment dwFontSize(MemorySegment struct) {
+        return struct.asSlice(dwFontSize$OFFSET, dwFontSize$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * COORD dwFontSize
+     * }
+     */
+    public static void dwFontSize(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, dwFontSize$OFFSET, dwFontSize$LAYOUT.byteSize());
+    }
+
+    private static final OfInt FontFamily$LAYOUT = (OfInt)$LAYOUT.select(groupElement("FontFamily"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT FontFamily
+     * }
+     */
+    public static final OfInt FontFamily$layout() {
+        return FontFamily$LAYOUT;
+    }
+
+    private static final long FontFamily$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT FontFamily
+     * }
+     */
+    public static final long FontFamily$offset() {
+        return FontFamily$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT FontFamily
+     * }
+     */
+    public static int FontFamily(MemorySegment struct) {
+        return struct.get(FontFamily$LAYOUT, FontFamily$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT FontFamily
+     * }
+     */
+    public static void FontFamily(MemorySegment struct, int fieldValue) {
+        struct.set(FontFamily$LAYOUT, FontFamily$OFFSET, fieldValue);
+    }
+
+    private static final OfInt FontWeight$LAYOUT = (OfInt)$LAYOUT.select(groupElement("FontWeight"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT FontWeight
+     * }
+     */
+    public static final OfInt FontWeight$layout() {
+        return FontWeight$LAYOUT;
+    }
+
+    private static final long FontWeight$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT FontWeight
+     * }
+     */
+    public static final long FontWeight$offset() {
+        return FontWeight$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT FontWeight
+     * }
+     */
+    public static int FontWeight(MemorySegment struct) {
+        return struct.get(FontWeight$LAYOUT, FontWeight$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT FontWeight
+     * }
+     */
+    public static void FontWeight(MemorySegment struct, int fieldValue) {
+        struct.set(FontWeight$LAYOUT, FontWeight$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout FaceName$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("FaceName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR FaceName[32]
+     * }
+     */
+    public static final SequenceLayout FaceName$layout() {
+        return FaceName$LAYOUT;
+    }
+
+    private static final long FaceName$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR FaceName[32]
+     * }
+     */
+    public static final long FaceName$offset() {
+        return FaceName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR FaceName[32]
+     * }
+     */
+    public static MemorySegment FaceName(MemorySegment struct) {
+        return struct.asSlice(FaceName$OFFSET, FaceName$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR FaceName[32]
+     * }
+     */
+    public static void FaceName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, FaceName$OFFSET, FaceName$LAYOUT.byteSize());
+    }
+
+    private static long[] FaceName$DIMS = { 32 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR FaceName[32]
+     * }
+     */
+    public static long[] FaceName$dimensions() {
+        return FaceName$DIMS;
+    }
+    private static final VarHandle FaceName$ELEM_HANDLE = FaceName$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR FaceName[32]
+     * }
+     */
+    public static short FaceName(MemorySegment struct, long index0) {
+        return (short)FaceName$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR FaceName[32]
+     * }
+     */
+    public static void FaceName(MemorySegment struct, long index0, short fieldValue) {
+        FaceName$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

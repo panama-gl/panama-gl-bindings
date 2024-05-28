@@ -2,13 +2,29 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _STORAGE_HW_ENDURANCE_DATA_DESCRIPTOR {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     STORAGE_HW_ENDURANCE_INFO EnduranceInfo;
+ * } STORAGE_HW_ENDURANCE_DATA_DESCRIPTOR
+ * }
+ */
 public class STORAGE_HW_ENDURANCE_DATA_DESCRIPTOR extends _STORAGE_HW_ENDURANCE_DATA_DESCRIPTOR {
 
+    STORAGE_HW_ENDURANCE_DATA_DESCRIPTOR() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,383 +2,887 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct IRunnableObjectVtbl {
+ *     HRESULT (*QueryInterface)(IRunnableObject *, const IID *const, void **) __attribute__((stdcall));
+ *     ULONG (*AddRef)(IRunnableObject *) __attribute__((stdcall));
+ *     ULONG (*Release)(IRunnableObject *) __attribute__((stdcall));
+ *     HRESULT (*GetRunningClass)(IRunnableObject *, LPCLSID) __attribute__((stdcall));
+ *     HRESULT (*Run)(IRunnableObject *, LPBINDCTX) __attribute__((stdcall));
+ *     BOOL (*IsRunning)(IRunnableObject *) __attribute__((stdcall));
+ *     HRESULT (*LockRunning)(IRunnableObject *, BOOL, BOOL) __attribute__((stdcall));
+ *     HRESULT (*SetContainedObject)(IRunnableObject *, BOOL) __attribute__((stdcall));
+ * }
+ * }
+ */
 public class IRunnableObjectVtbl {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("QueryInterface"),
-        Constants$root.C_POINTER$LAYOUT.withName("AddRef"),
-        Constants$root.C_POINTER$LAYOUT.withName("Release"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetRunningClass"),
-        Constants$root.C_POINTER$LAYOUT.withName("Run"),
-        Constants$root.C_POINTER$LAYOUT.withName("IsRunning"),
-        Constants$root.C_POINTER$LAYOUT.withName("LockRunning"),
-        Constants$root.C_POINTER$LAYOUT.withName("SetContainedObject")
+    IRunnableObjectVtbl() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("QueryInterface"),
+        wgl_h.C_POINTER.withName("AddRef"),
+        wgl_h.C_POINTER.withName("Release"),
+        wgl_h.C_POINTER.withName("GetRunningClass"),
+        wgl_h.C_POINTER.withName("Run"),
+        wgl_h.C_POINTER.withName("IsRunning"),
+        wgl_h.C_POINTER.withName("LockRunning"),
+        wgl_h.C_POINTER.withName("SetContainedObject")
     ).withName("IRunnableObjectVtbl");
-    public static MemoryLayout $LAYOUT() {
-        return IRunnableObjectVtbl.$struct$LAYOUT;
-    }
-    static final FunctionDescriptor QueryInterface$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle QueryInterface$MH = RuntimeHelper.downcallHandle(
-        IRunnableObjectVtbl.QueryInterface$FUNC
-    );
-    public interface QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(QueryInterface fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(QueryInterface.class, fi, IRunnableObjectVtbl.QueryInterface$FUNC, session);
-        }
-        static QueryInterface ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IRunnableObjectVtbl.QueryInterface$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
 
-    static final VarHandle QueryInterface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueryInterface"));
-    public static VarHandle QueryInterface$VH() {
-        return IRunnableObjectVtbl.QueryInterface$VH;
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IRunnableObjectVtbl.QueryInterface$VH.get(seg);
-    }
-    public static void QueryInterface$set( MemorySegment seg, MemoryAddress x) {
-        IRunnableObjectVtbl.QueryInterface$VH.set(seg, x);
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IRunnableObjectVtbl.QueryInterface$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void QueryInterface$set(MemorySegment seg, long index, MemoryAddress x) {
-        IRunnableObjectVtbl.QueryInterface$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static QueryInterface QueryInterface (MemorySegment segment, MemorySession session) {
-        return QueryInterface.ofAddress(QueryInterface$get(segment), session);
-    }
-    static final FunctionDescriptor AddRef$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle AddRef$MH = RuntimeHelper.downcallHandle(
-        IRunnableObjectVtbl.AddRef$FUNC
-    );
-    public interface AddRef {
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IRunnableObject *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(AddRef fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(AddRef.class, fi, IRunnableObjectVtbl.AddRef$FUNC, session);
+        QueryInterface() {
+            // Should not be called directly
         }
-        static AddRef ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IRunnableObjectVtbl.AddRef$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(QueryInterface.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(QueryInterface.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle AddRef$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddRef"));
-    public static VarHandle AddRef$VH() {
-        return IRunnableObjectVtbl.AddRef$VH;
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IRunnableObjectVtbl.AddRef$VH.get(seg);
-    }
-    public static void AddRef$set( MemorySegment seg, MemoryAddress x) {
-        IRunnableObjectVtbl.AddRef$VH.set(seg, x);
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IRunnableObjectVtbl.AddRef$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddRef$set(MemorySegment seg, long index, MemoryAddress x) {
-        IRunnableObjectVtbl.AddRef$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static AddRef AddRef (MemorySegment segment, MemorySession session) {
-        return AddRef.ofAddress(AddRef$get(segment), session);
-    }
-    static final FunctionDescriptor Release$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Release$MH = RuntimeHelper.downcallHandle(
-        IRunnableObjectVtbl.Release$FUNC
-    );
-    public interface Release {
+    private static final AddressLayout QueryInterface$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("QueryInterface"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Release fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Release.class, fi, IRunnableObjectVtbl.Release$FUNC, session);
-        }
-        static Release ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IRunnableObjectVtbl.Release$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IRunnableObject *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout QueryInterface$layout() {
+        return QueryInterface$LAYOUT;
     }
 
-    static final VarHandle Release$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Release"));
-    public static VarHandle Release$VH() {
-        return IRunnableObjectVtbl.Release$VH;
-    }
-    public static MemoryAddress Release$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IRunnableObjectVtbl.Release$VH.get(seg);
-    }
-    public static void Release$set( MemorySegment seg, MemoryAddress x) {
-        IRunnableObjectVtbl.Release$VH.set(seg, x);
-    }
-    public static MemoryAddress Release$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IRunnableObjectVtbl.Release$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Release$set(MemorySegment seg, long index, MemoryAddress x) {
-        IRunnableObjectVtbl.Release$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Release Release (MemorySegment segment, MemorySession session) {
-        return Release.ofAddress(Release$get(segment), session);
-    }
-    static final FunctionDescriptor GetRunningClass$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetRunningClass$MH = RuntimeHelper.downcallHandle(
-        IRunnableObjectVtbl.GetRunningClass$FUNC
-    );
-    public interface GetRunningClass {
+    private static final long QueryInterface$OFFSET = 0;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(GetRunningClass fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetRunningClass.class, fi, IRunnableObjectVtbl.GetRunningClass$FUNC, session);
-        }
-        static GetRunningClass ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IRunnableObjectVtbl.GetRunningClass$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IRunnableObject *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long QueryInterface$offset() {
+        return QueryInterface$OFFSET;
     }
 
-    static final VarHandle GetRunningClass$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetRunningClass"));
-    public static VarHandle GetRunningClass$VH() {
-        return IRunnableObjectVtbl.GetRunningClass$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IRunnableObject *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment QueryInterface(MemorySegment struct) {
+        return struct.get(QueryInterface$LAYOUT, QueryInterface$OFFSET);
     }
-    public static MemoryAddress GetRunningClass$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IRunnableObjectVtbl.GetRunningClass$VH.get(seg);
-    }
-    public static void GetRunningClass$set( MemorySegment seg, MemoryAddress x) {
-        IRunnableObjectVtbl.GetRunningClass$VH.set(seg, x);
-    }
-    public static MemoryAddress GetRunningClass$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IRunnableObjectVtbl.GetRunningClass$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetRunningClass$set(MemorySegment seg, long index, MemoryAddress x) {
-        IRunnableObjectVtbl.GetRunningClass$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetRunningClass GetRunningClass (MemorySegment segment, MemorySession session) {
-        return GetRunningClass.ofAddress(GetRunningClass$get(segment), session);
-    }
-    static final FunctionDescriptor Run$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Run$MH = RuntimeHelper.downcallHandle(
-        IRunnableObjectVtbl.Run$FUNC
-    );
-    public interface Run {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(Run fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Run.class, fi, IRunnableObjectVtbl.Run$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IRunnableObject *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void QueryInterface(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(QueryInterface$LAYOUT, QueryInterface$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IRunnableObject *) __attribute__((stdcall))
+     * }
+     */
+    public static class AddRef {
+
+        AddRef() {
+            // Should not be called directly
         }
-        static Run ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IRunnableObjectVtbl.Run$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(AddRef.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(AddRef.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle Run$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Run"));
-    public static VarHandle Run$VH() {
-        return IRunnableObjectVtbl.Run$VH;
-    }
-    public static MemoryAddress Run$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IRunnableObjectVtbl.Run$VH.get(seg);
-    }
-    public static void Run$set( MemorySegment seg, MemoryAddress x) {
-        IRunnableObjectVtbl.Run$VH.set(seg, x);
-    }
-    public static MemoryAddress Run$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IRunnableObjectVtbl.Run$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Run$set(MemorySegment seg, long index, MemoryAddress x) {
-        IRunnableObjectVtbl.Run$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Run Run (MemorySegment segment, MemorySession session) {
-        return Run.ofAddress(Run$get(segment), session);
-    }
-    static final FunctionDescriptor IsRunning$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle IsRunning$MH = RuntimeHelper.downcallHandle(
-        IRunnableObjectVtbl.IsRunning$FUNC
-    );
-    public interface IsRunning {
+    private static final AddressLayout AddRef$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AddRef"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(IsRunning fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(IsRunning.class, fi, IRunnableObjectVtbl.IsRunning$FUNC, session);
-        }
-        static IsRunning ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IRunnableObjectVtbl.IsRunning$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IRunnableObject *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout AddRef$layout() {
+        return AddRef$LAYOUT;
     }
 
-    static final VarHandle IsRunning$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("IsRunning"));
-    public static VarHandle IsRunning$VH() {
-        return IRunnableObjectVtbl.IsRunning$VH;
-    }
-    public static MemoryAddress IsRunning$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IRunnableObjectVtbl.IsRunning$VH.get(seg);
-    }
-    public static void IsRunning$set( MemorySegment seg, MemoryAddress x) {
-        IRunnableObjectVtbl.IsRunning$VH.set(seg, x);
-    }
-    public static MemoryAddress IsRunning$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IRunnableObjectVtbl.IsRunning$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void IsRunning$set(MemorySegment seg, long index, MemoryAddress x) {
-        IRunnableObjectVtbl.IsRunning$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static IsRunning IsRunning (MemorySegment segment, MemorySession session) {
-        return IsRunning.ofAddress(IsRunning$get(segment), session);
-    }
-    static final FunctionDescriptor LockRunning$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle LockRunning$MH = RuntimeHelper.downcallHandle(
-        IRunnableObjectVtbl.LockRunning$FUNC
-    );
-    public interface LockRunning {
+    private static final long AddRef$OFFSET = 8;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, int _x2);
-        static MemorySegment allocate(LockRunning fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(LockRunning.class, fi, IRunnableObjectVtbl.LockRunning$FUNC, session);
-        }
-        static LockRunning ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, int __x2) -> {
-                try {
-                    return (int)IRunnableObjectVtbl.LockRunning$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, __x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IRunnableObject *) __attribute__((stdcall))
+     * }
+     */
+    public static final long AddRef$offset() {
+        return AddRef$OFFSET;
     }
 
-    static final VarHandle LockRunning$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LockRunning"));
-    public static VarHandle LockRunning$VH() {
-        return IRunnableObjectVtbl.LockRunning$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IRunnableObject *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment AddRef(MemorySegment struct) {
+        return struct.get(AddRef$LAYOUT, AddRef$OFFSET);
     }
-    public static MemoryAddress LockRunning$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IRunnableObjectVtbl.LockRunning$VH.get(seg);
-    }
-    public static void LockRunning$set( MemorySegment seg, MemoryAddress x) {
-        IRunnableObjectVtbl.LockRunning$VH.set(seg, x);
-    }
-    public static MemoryAddress LockRunning$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IRunnableObjectVtbl.LockRunning$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LockRunning$set(MemorySegment seg, long index, MemoryAddress x) {
-        IRunnableObjectVtbl.LockRunning$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static LockRunning LockRunning (MemorySegment segment, MemorySession session) {
-        return LockRunning.ofAddress(LockRunning$get(segment), session);
-    }
-    static final FunctionDescriptor SetContainedObject$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle SetContainedObject$MH = RuntimeHelper.downcallHandle(
-        IRunnableObjectVtbl.SetContainedObject$FUNC
-    );
-    public interface SetContainedObject {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1);
-        static MemorySegment allocate(SetContainedObject fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(SetContainedObject.class, fi, IRunnableObjectVtbl.SetContainedObject$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IRunnableObject *) __attribute__((stdcall))
+     * }
+     */
+    public static void AddRef(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AddRef$LAYOUT, AddRef$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*Release)(IRunnableObject *) __attribute__((stdcall))
+     * }
+     */
+    public static class Release {
+
+        Release() {
+            // Should not be called directly
         }
-        static SetContainedObject ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1) -> {
-                try {
-                    return (int)IRunnableObjectVtbl.SetContainedObject$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Release.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Release.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle SetContainedObject$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SetContainedObject"));
-    public static VarHandle SetContainedObject$VH() {
-        return IRunnableObjectVtbl.SetContainedObject$VH;
+    private static final AddressLayout Release$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Release"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IRunnableObject *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Release$layout() {
+        return Release$LAYOUT;
     }
-    public static MemoryAddress SetContainedObject$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IRunnableObjectVtbl.SetContainedObject$VH.get(seg);
+
+    private static final long Release$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IRunnableObject *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Release$offset() {
+        return Release$OFFSET;
     }
-    public static void SetContainedObject$set( MemorySegment seg, MemoryAddress x) {
-        IRunnableObjectVtbl.SetContainedObject$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IRunnableObject *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Release(MemorySegment struct) {
+        return struct.get(Release$LAYOUT, Release$OFFSET);
     }
-    public static MemoryAddress SetContainedObject$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IRunnableObjectVtbl.SetContainedObject$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IRunnableObject *) __attribute__((stdcall))
+     * }
+     */
+    public static void Release(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Release$LAYOUT, Release$OFFSET, fieldValue);
     }
-    public static void SetContainedObject$set(MemorySegment seg, long index, MemoryAddress x) {
-        IRunnableObjectVtbl.SetContainedObject$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetRunningClass)(IRunnableObject *, LPCLSID) __attribute__((stdcall))
+     * }
+     */
+    public static class GetRunningClass {
+
+        GetRunningClass() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetRunningClass.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetRunningClass.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
     }
-    public static SetContainedObject SetContainedObject (MemorySegment segment, MemorySession session) {
-        return SetContainedObject.ofAddress(SetContainedObject$get(segment), session);
+
+    private static final AddressLayout GetRunningClass$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetRunningClass"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetRunningClass)(IRunnableObject *, LPCLSID) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetRunningClass$layout() {
+        return GetRunningClass$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long GetRunningClass$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetRunningClass)(IRunnableObject *, LPCLSID) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetRunningClass$offset() {
+        return GetRunningClass$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetRunningClass)(IRunnableObject *, LPCLSID) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetRunningClass(MemorySegment struct) {
+        return struct.get(GetRunningClass$LAYOUT, GetRunningClass$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetRunningClass)(IRunnableObject *, LPCLSID) __attribute__((stdcall))
+     * }
+     */
+    public static void GetRunningClass(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetRunningClass$LAYOUT, GetRunningClass$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*Run)(IRunnableObject *, LPBINDCTX) __attribute__((stdcall))
+     * }
+     */
+    public static class Run {
+
+        Run() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Run.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Run.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout Run$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Run"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*Run)(IRunnableObject *, LPBINDCTX) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Run$layout() {
+        return Run$LAYOUT;
+    }
+
+    private static final long Run$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*Run)(IRunnableObject *, LPBINDCTX) __attribute__((stdcall))
+     * }
+     */
+    public static final long Run$offset() {
+        return Run$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Run)(IRunnableObject *, LPBINDCTX) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Run(MemorySegment struct) {
+        return struct.get(Run$LAYOUT, Run$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Run)(IRunnableObject *, LPBINDCTX) __attribute__((stdcall))
+     * }
+     */
+    public static void Run(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Run$LAYOUT, Run$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * BOOL (*IsRunning)(IRunnableObject *) __attribute__((stdcall))
+     * }
+     */
+    public static class IsRunning {
+
+        IsRunning() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_INT,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(IsRunning.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(IsRunning.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout IsRunning$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("IsRunning"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL (*IsRunning)(IRunnableObject *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout IsRunning$layout() {
+        return IsRunning$LAYOUT;
+    }
+
+    private static final long IsRunning$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL (*IsRunning)(IRunnableObject *) __attribute__((stdcall))
+     * }
+     */
+    public static final long IsRunning$offset() {
+        return IsRunning$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL (*IsRunning)(IRunnableObject *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment IsRunning(MemorySegment struct) {
+        return struct.get(IsRunning$LAYOUT, IsRunning$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL (*IsRunning)(IRunnableObject *) __attribute__((stdcall))
+     * }
+     */
+    public static void IsRunning(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(IsRunning$LAYOUT, IsRunning$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*LockRunning)(IRunnableObject *, BOOL, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static class LockRunning {
+
+        LockRunning() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, int _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_INT,
+            wgl_h.C_INT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(LockRunning.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(LockRunning.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, int _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout LockRunning$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("LockRunning"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*LockRunning)(IRunnableObject *, BOOL, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout LockRunning$layout() {
+        return LockRunning$LAYOUT;
+    }
+
+    private static final long LockRunning$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*LockRunning)(IRunnableObject *, BOOL, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final long LockRunning$offset() {
+        return LockRunning$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*LockRunning)(IRunnableObject *, BOOL, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment LockRunning(MemorySegment struct) {
+        return struct.get(LockRunning$LAYOUT, LockRunning$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*LockRunning)(IRunnableObject *, BOOL, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static void LockRunning(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(LockRunning$LAYOUT, LockRunning$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*SetContainedObject)(IRunnableObject *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static class SetContainedObject {
+
+        SetContainedObject() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_INT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(SetContainedObject.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(SetContainedObject.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout SetContainedObject$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SetContainedObject"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetContainedObject)(IRunnableObject *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout SetContainedObject$layout() {
+        return SetContainedObject$LAYOUT;
+    }
+
+    private static final long SetContainedObject$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetContainedObject)(IRunnableObject *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final long SetContainedObject$offset() {
+        return SetContainedObject$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetContainedObject)(IRunnableObject *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment SetContainedObject(MemorySegment struct) {
+        return struct.get(SetContainedObject$LAYOUT, SetContainedObject$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetContainedObject)(IRunnableObject *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static void SetContainedObject(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SetContainedObject$LAYOUT, SetContainedObject$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

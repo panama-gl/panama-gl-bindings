@@ -2,13 +2,35 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _STORAGE_OFFLOAD_TOKEN {
+ *     BYTE TokenType[4];
+ *     BYTE Reserved[2];
+ *     BYTE TokenIdLength[2];
+ *     union {
+ *         struct {
+ *             BYTE Reserved2[504];
+ *         } StorageOffloadZeroDataToken;
+ *         BYTE Token[504];
+ *     };
+ * } STORAGE_OFFLOAD_TOKEN
+ * }
+ */
 public class STORAGE_OFFLOAD_TOKEN extends _STORAGE_OFFLOAD_TOKEN {
 
+    STORAGE_OFFLOAD_TOKEN() {
+        // Should not be called directly
+    }
 }
-
 

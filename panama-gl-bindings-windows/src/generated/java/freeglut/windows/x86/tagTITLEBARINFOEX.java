@@ -2,63 +2,334 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagTITLEBARINFOEX {
+ *     DWORD cbSize;
+ *     RECT rcTitleBar;
+ *     DWORD rgstate[6];
+ *     RECT rgrect[6];
+ * }
+ * }
+ */
 public class tagTITLEBARINFOEX {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("left"),
-            Constants$root.C_LONG$LAYOUT.withName("top"),
-            Constants$root.C_LONG$LAYOUT.withName("right"),
-            Constants$root.C_LONG$LAYOUT.withName("bottom")
-        ).withName("rcTitleBar"),
-        MemoryLayout.sequenceLayout(6, Constants$root.C_LONG$LAYOUT).withName("rgstate"),
-        MemoryLayout.sequenceLayout(6, MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("left"),
-            Constants$root.C_LONG$LAYOUT.withName("top"),
-            Constants$root.C_LONG$LAYOUT.withName("right"),
-            Constants$root.C_LONG$LAYOUT.withName("bottom")
-        ).withName("tagRECT")).withName("rgrect")
-    ).withName("tagTITLEBARINFOEX");
-    public static MemoryLayout $LAYOUT() {
-        return tagTITLEBARINFOEX.$struct$LAYOUT;
+    tagTITLEBARINFOEX() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return tagTITLEBARINFOEX.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)tagTITLEBARINFOEX.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        tagTITLEBARINFOEX.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)tagTITLEBARINFOEX.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        tagTITLEBARINFOEX.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment rcTitleBar$slice(MemorySegment seg) {
-        return seg.asSlice(4, 16);
-    }
-    public static MemorySegment rgstate$slice(MemorySegment seg) {
-        return seg.asSlice(20, 24);
-    }
-    public static MemorySegment rgrect$slice(MemorySegment seg) {
-        return seg.asSlice(44, 96);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("cbSize"),
+        tagRECT.layout().withName("rcTitleBar"),
+        MemoryLayout.sequenceLayout(6, freeglut_h.C_LONG).withName("rgstate"),
+        MemoryLayout.sequenceLayout(6, tagRECT.layout()).withName("rgrect")
+    ).withName("tagTITLEBARINFOEX");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout rcTitleBar$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("rcTitleBar"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RECT rcTitleBar
+     * }
+     */
+    public static final GroupLayout rcTitleBar$layout() {
+        return rcTitleBar$LAYOUT;
+    }
+
+    private static final long rcTitleBar$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RECT rcTitleBar
+     * }
+     */
+    public static final long rcTitleBar$offset() {
+        return rcTitleBar$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RECT rcTitleBar
+     * }
+     */
+    public static MemorySegment rcTitleBar(MemorySegment struct) {
+        return struct.asSlice(rcTitleBar$OFFSET, rcTitleBar$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RECT rcTitleBar
+     * }
+     */
+    public static void rcTitleBar(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rcTitleBar$OFFSET, rcTitleBar$LAYOUT.byteSize());
+    }
+
+    private static final SequenceLayout rgstate$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("rgstate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD rgstate[6]
+     * }
+     */
+    public static final SequenceLayout rgstate$layout() {
+        return rgstate$LAYOUT;
+    }
+
+    private static final long rgstate$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD rgstate[6]
+     * }
+     */
+    public static final long rgstate$offset() {
+        return rgstate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD rgstate[6]
+     * }
+     */
+    public static MemorySegment rgstate(MemorySegment struct) {
+        return struct.asSlice(rgstate$OFFSET, rgstate$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD rgstate[6]
+     * }
+     */
+    public static void rgstate(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rgstate$OFFSET, rgstate$LAYOUT.byteSize());
+    }
+
+    private static long[] rgstate$DIMS = { 6 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DWORD rgstate[6]
+     * }
+     */
+    public static long[] rgstate$dimensions() {
+        return rgstate$DIMS;
+    }
+    private static final VarHandle rgstate$ELEM_HANDLE = rgstate$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DWORD rgstate[6]
+     * }
+     */
+    public static int rgstate(MemorySegment struct, long index0) {
+        return (int)rgstate$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DWORD rgstate[6]
+     * }
+     */
+    public static void rgstate(MemorySegment struct, long index0, int fieldValue) {
+        rgstate$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout rgrect$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("rgrect"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RECT rgrect[6]
+     * }
+     */
+    public static final SequenceLayout rgrect$layout() {
+        return rgrect$LAYOUT;
+    }
+
+    private static final long rgrect$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RECT rgrect[6]
+     * }
+     */
+    public static final long rgrect$offset() {
+        return rgrect$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RECT rgrect[6]
+     * }
+     */
+    public static MemorySegment rgrect(MemorySegment struct) {
+        return struct.asSlice(rgrect$OFFSET, rgrect$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RECT rgrect[6]
+     * }
+     */
+    public static void rgrect(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rgrect$OFFSET, rgrect$LAYOUT.byteSize());
+    }
+
+    private static long[] rgrect$DIMS = { 6 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * RECT rgrect[6]
+     * }
+     */
+    public static long[] rgrect$dimensions() {
+        return rgrect$DIMS;
+    }
+    private static final MethodHandle rgrect$ELEM_HANDLE = rgrect$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * RECT rgrect[6]
+     * }
+     */
+    public static MemorySegment rgrect(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)rgrect$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * RECT rgrect[6]
+     * }
+     */
+    public static void rgrect(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, rgrect(struct, index0), 0L, tagRECT.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

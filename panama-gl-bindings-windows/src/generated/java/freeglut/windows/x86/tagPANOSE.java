@@ -2,194 +2,540 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagPANOSE {
+ *     BYTE bFamilyType;
+ *     BYTE bSerifStyle;
+ *     BYTE bWeight;
+ *     BYTE bProportion;
+ *     BYTE bContrast;
+ *     BYTE bStrokeVariation;
+ *     BYTE bArmStyle;
+ *     BYTE bLetterform;
+ *     BYTE bMidline;
+ *     BYTE bXHeight;
+ * }
+ * }
+ */
 public class tagPANOSE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("bFamilyType"),
-        Constants$root.C_CHAR$LAYOUT.withName("bSerifStyle"),
-        Constants$root.C_CHAR$LAYOUT.withName("bWeight"),
-        Constants$root.C_CHAR$LAYOUT.withName("bProportion"),
-        Constants$root.C_CHAR$LAYOUT.withName("bContrast"),
-        Constants$root.C_CHAR$LAYOUT.withName("bStrokeVariation"),
-        Constants$root.C_CHAR$LAYOUT.withName("bArmStyle"),
-        Constants$root.C_CHAR$LAYOUT.withName("bLetterform"),
-        Constants$root.C_CHAR$LAYOUT.withName("bMidline"),
-        Constants$root.C_CHAR$LAYOUT.withName("bXHeight")
-    ).withName("tagPANOSE");
-    public static MemoryLayout $LAYOUT() {
-        return tagPANOSE.$struct$LAYOUT;
+    tagPANOSE() {
+        // Should not be called directly
     }
-    static final VarHandle bFamilyType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bFamilyType"));
-    public static VarHandle bFamilyType$VH() {
-        return tagPANOSE.bFamilyType$VH;
-    }
-    public static byte bFamilyType$get(MemorySegment seg) {
-        return (byte)tagPANOSE.bFamilyType$VH.get(seg);
-    }
-    public static void bFamilyType$set( MemorySegment seg, byte x) {
-        tagPANOSE.bFamilyType$VH.set(seg, x);
-    }
-    public static byte bFamilyType$get(MemorySegment seg, long index) {
-        return (byte)tagPANOSE.bFamilyType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bFamilyType$set(MemorySegment seg, long index, byte x) {
-        tagPANOSE.bFamilyType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bSerifStyle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bSerifStyle"));
-    public static VarHandle bSerifStyle$VH() {
-        return tagPANOSE.bSerifStyle$VH;
-    }
-    public static byte bSerifStyle$get(MemorySegment seg) {
-        return (byte)tagPANOSE.bSerifStyle$VH.get(seg);
-    }
-    public static void bSerifStyle$set( MemorySegment seg, byte x) {
-        tagPANOSE.bSerifStyle$VH.set(seg, x);
-    }
-    public static byte bSerifStyle$get(MemorySegment seg, long index) {
-        return (byte)tagPANOSE.bSerifStyle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bSerifStyle$set(MemorySegment seg, long index, byte x) {
-        tagPANOSE.bSerifStyle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bWeight$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bWeight"));
-    public static VarHandle bWeight$VH() {
-        return tagPANOSE.bWeight$VH;
-    }
-    public static byte bWeight$get(MemorySegment seg) {
-        return (byte)tagPANOSE.bWeight$VH.get(seg);
-    }
-    public static void bWeight$set( MemorySegment seg, byte x) {
-        tagPANOSE.bWeight$VH.set(seg, x);
-    }
-    public static byte bWeight$get(MemorySegment seg, long index) {
-        return (byte)tagPANOSE.bWeight$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bWeight$set(MemorySegment seg, long index, byte x) {
-        tagPANOSE.bWeight$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bProportion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bProportion"));
-    public static VarHandle bProportion$VH() {
-        return tagPANOSE.bProportion$VH;
-    }
-    public static byte bProportion$get(MemorySegment seg) {
-        return (byte)tagPANOSE.bProportion$VH.get(seg);
-    }
-    public static void bProportion$set( MemorySegment seg, byte x) {
-        tagPANOSE.bProportion$VH.set(seg, x);
-    }
-    public static byte bProportion$get(MemorySegment seg, long index) {
-        return (byte)tagPANOSE.bProportion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bProportion$set(MemorySegment seg, long index, byte x) {
-        tagPANOSE.bProportion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bContrast$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bContrast"));
-    public static VarHandle bContrast$VH() {
-        return tagPANOSE.bContrast$VH;
-    }
-    public static byte bContrast$get(MemorySegment seg) {
-        return (byte)tagPANOSE.bContrast$VH.get(seg);
-    }
-    public static void bContrast$set( MemorySegment seg, byte x) {
-        tagPANOSE.bContrast$VH.set(seg, x);
-    }
-    public static byte bContrast$get(MemorySegment seg, long index) {
-        return (byte)tagPANOSE.bContrast$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bContrast$set(MemorySegment seg, long index, byte x) {
-        tagPANOSE.bContrast$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bStrokeVariation$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bStrokeVariation"));
-    public static VarHandle bStrokeVariation$VH() {
-        return tagPANOSE.bStrokeVariation$VH;
-    }
-    public static byte bStrokeVariation$get(MemorySegment seg) {
-        return (byte)tagPANOSE.bStrokeVariation$VH.get(seg);
-    }
-    public static void bStrokeVariation$set( MemorySegment seg, byte x) {
-        tagPANOSE.bStrokeVariation$VH.set(seg, x);
-    }
-    public static byte bStrokeVariation$get(MemorySegment seg, long index) {
-        return (byte)tagPANOSE.bStrokeVariation$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bStrokeVariation$set(MemorySegment seg, long index, byte x) {
-        tagPANOSE.bStrokeVariation$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bArmStyle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bArmStyle"));
-    public static VarHandle bArmStyle$VH() {
-        return tagPANOSE.bArmStyle$VH;
-    }
-    public static byte bArmStyle$get(MemorySegment seg) {
-        return (byte)tagPANOSE.bArmStyle$VH.get(seg);
-    }
-    public static void bArmStyle$set( MemorySegment seg, byte x) {
-        tagPANOSE.bArmStyle$VH.set(seg, x);
-    }
-    public static byte bArmStyle$get(MemorySegment seg, long index) {
-        return (byte)tagPANOSE.bArmStyle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bArmStyle$set(MemorySegment seg, long index, byte x) {
-        tagPANOSE.bArmStyle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bLetterform$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bLetterform"));
-    public static VarHandle bLetterform$VH() {
-        return tagPANOSE.bLetterform$VH;
-    }
-    public static byte bLetterform$get(MemorySegment seg) {
-        return (byte)tagPANOSE.bLetterform$VH.get(seg);
-    }
-    public static void bLetterform$set( MemorySegment seg, byte x) {
-        tagPANOSE.bLetterform$VH.set(seg, x);
-    }
-    public static byte bLetterform$get(MemorySegment seg, long index) {
-        return (byte)tagPANOSE.bLetterform$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bLetterform$set(MemorySegment seg, long index, byte x) {
-        tagPANOSE.bLetterform$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bMidline$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bMidline"));
-    public static VarHandle bMidline$VH() {
-        return tagPANOSE.bMidline$VH;
-    }
-    public static byte bMidline$get(MemorySegment seg) {
-        return (byte)tagPANOSE.bMidline$VH.get(seg);
-    }
-    public static void bMidline$set( MemorySegment seg, byte x) {
-        tagPANOSE.bMidline$VH.set(seg, x);
-    }
-    public static byte bMidline$get(MemorySegment seg, long index) {
-        return (byte)tagPANOSE.bMidline$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bMidline$set(MemorySegment seg, long index, byte x) {
-        tagPANOSE.bMidline$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bXHeight$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bXHeight"));
-    public static VarHandle bXHeight$VH() {
-        return tagPANOSE.bXHeight$VH;
-    }
-    public static byte bXHeight$get(MemorySegment seg) {
-        return (byte)tagPANOSE.bXHeight$VH.get(seg);
-    }
-    public static void bXHeight$set( MemorySegment seg, byte x) {
-        tagPANOSE.bXHeight$VH.set(seg, x);
-    }
-    public static byte bXHeight$get(MemorySegment seg, long index) {
-        return (byte)tagPANOSE.bXHeight$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bXHeight$set(MemorySegment seg, long index, byte x) {
-        tagPANOSE.bXHeight$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_CHAR.withName("bFamilyType"),
+        freeglut_h.C_CHAR.withName("bSerifStyle"),
+        freeglut_h.C_CHAR.withName("bWeight"),
+        freeglut_h.C_CHAR.withName("bProportion"),
+        freeglut_h.C_CHAR.withName("bContrast"),
+        freeglut_h.C_CHAR.withName("bStrokeVariation"),
+        freeglut_h.C_CHAR.withName("bArmStyle"),
+        freeglut_h.C_CHAR.withName("bLetterform"),
+        freeglut_h.C_CHAR.withName("bMidline"),
+        freeglut_h.C_CHAR.withName("bXHeight")
+    ).withName("tagPANOSE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte bFamilyType$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bFamilyType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bFamilyType
+     * }
+     */
+    public static final OfByte bFamilyType$layout() {
+        return bFamilyType$LAYOUT;
+    }
+
+    private static final long bFamilyType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bFamilyType
+     * }
+     */
+    public static final long bFamilyType$offset() {
+        return bFamilyType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bFamilyType
+     * }
+     */
+    public static byte bFamilyType(MemorySegment struct) {
+        return struct.get(bFamilyType$LAYOUT, bFamilyType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bFamilyType
+     * }
+     */
+    public static void bFamilyType(MemorySegment struct, byte fieldValue) {
+        struct.set(bFamilyType$LAYOUT, bFamilyType$OFFSET, fieldValue);
+    }
+
+    private static final OfByte bSerifStyle$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bSerifStyle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bSerifStyle
+     * }
+     */
+    public static final OfByte bSerifStyle$layout() {
+        return bSerifStyle$LAYOUT;
+    }
+
+    private static final long bSerifStyle$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bSerifStyle
+     * }
+     */
+    public static final long bSerifStyle$offset() {
+        return bSerifStyle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bSerifStyle
+     * }
+     */
+    public static byte bSerifStyle(MemorySegment struct) {
+        return struct.get(bSerifStyle$LAYOUT, bSerifStyle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bSerifStyle
+     * }
+     */
+    public static void bSerifStyle(MemorySegment struct, byte fieldValue) {
+        struct.set(bSerifStyle$LAYOUT, bSerifStyle$OFFSET, fieldValue);
+    }
+
+    private static final OfByte bWeight$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bWeight"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bWeight
+     * }
+     */
+    public static final OfByte bWeight$layout() {
+        return bWeight$LAYOUT;
+    }
+
+    private static final long bWeight$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bWeight
+     * }
+     */
+    public static final long bWeight$offset() {
+        return bWeight$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bWeight
+     * }
+     */
+    public static byte bWeight(MemorySegment struct) {
+        return struct.get(bWeight$LAYOUT, bWeight$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bWeight
+     * }
+     */
+    public static void bWeight(MemorySegment struct, byte fieldValue) {
+        struct.set(bWeight$LAYOUT, bWeight$OFFSET, fieldValue);
+    }
+
+    private static final OfByte bProportion$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bProportion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bProportion
+     * }
+     */
+    public static final OfByte bProportion$layout() {
+        return bProportion$LAYOUT;
+    }
+
+    private static final long bProportion$OFFSET = 3;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bProportion
+     * }
+     */
+    public static final long bProportion$offset() {
+        return bProportion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bProportion
+     * }
+     */
+    public static byte bProportion(MemorySegment struct) {
+        return struct.get(bProportion$LAYOUT, bProportion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bProportion
+     * }
+     */
+    public static void bProportion(MemorySegment struct, byte fieldValue) {
+        struct.set(bProportion$LAYOUT, bProportion$OFFSET, fieldValue);
+    }
+
+    private static final OfByte bContrast$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bContrast"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bContrast
+     * }
+     */
+    public static final OfByte bContrast$layout() {
+        return bContrast$LAYOUT;
+    }
+
+    private static final long bContrast$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bContrast
+     * }
+     */
+    public static final long bContrast$offset() {
+        return bContrast$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bContrast
+     * }
+     */
+    public static byte bContrast(MemorySegment struct) {
+        return struct.get(bContrast$LAYOUT, bContrast$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bContrast
+     * }
+     */
+    public static void bContrast(MemorySegment struct, byte fieldValue) {
+        struct.set(bContrast$LAYOUT, bContrast$OFFSET, fieldValue);
+    }
+
+    private static final OfByte bStrokeVariation$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bStrokeVariation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bStrokeVariation
+     * }
+     */
+    public static final OfByte bStrokeVariation$layout() {
+        return bStrokeVariation$LAYOUT;
+    }
+
+    private static final long bStrokeVariation$OFFSET = 5;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bStrokeVariation
+     * }
+     */
+    public static final long bStrokeVariation$offset() {
+        return bStrokeVariation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bStrokeVariation
+     * }
+     */
+    public static byte bStrokeVariation(MemorySegment struct) {
+        return struct.get(bStrokeVariation$LAYOUT, bStrokeVariation$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bStrokeVariation
+     * }
+     */
+    public static void bStrokeVariation(MemorySegment struct, byte fieldValue) {
+        struct.set(bStrokeVariation$LAYOUT, bStrokeVariation$OFFSET, fieldValue);
+    }
+
+    private static final OfByte bArmStyle$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bArmStyle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bArmStyle
+     * }
+     */
+    public static final OfByte bArmStyle$layout() {
+        return bArmStyle$LAYOUT;
+    }
+
+    private static final long bArmStyle$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bArmStyle
+     * }
+     */
+    public static final long bArmStyle$offset() {
+        return bArmStyle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bArmStyle
+     * }
+     */
+    public static byte bArmStyle(MemorySegment struct) {
+        return struct.get(bArmStyle$LAYOUT, bArmStyle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bArmStyle
+     * }
+     */
+    public static void bArmStyle(MemorySegment struct, byte fieldValue) {
+        struct.set(bArmStyle$LAYOUT, bArmStyle$OFFSET, fieldValue);
+    }
+
+    private static final OfByte bLetterform$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bLetterform"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bLetterform
+     * }
+     */
+    public static final OfByte bLetterform$layout() {
+        return bLetterform$LAYOUT;
+    }
+
+    private static final long bLetterform$OFFSET = 7;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bLetterform
+     * }
+     */
+    public static final long bLetterform$offset() {
+        return bLetterform$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bLetterform
+     * }
+     */
+    public static byte bLetterform(MemorySegment struct) {
+        return struct.get(bLetterform$LAYOUT, bLetterform$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bLetterform
+     * }
+     */
+    public static void bLetterform(MemorySegment struct, byte fieldValue) {
+        struct.set(bLetterform$LAYOUT, bLetterform$OFFSET, fieldValue);
+    }
+
+    private static final OfByte bMidline$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bMidline"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bMidline
+     * }
+     */
+    public static final OfByte bMidline$layout() {
+        return bMidline$LAYOUT;
+    }
+
+    private static final long bMidline$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bMidline
+     * }
+     */
+    public static final long bMidline$offset() {
+        return bMidline$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bMidline
+     * }
+     */
+    public static byte bMidline(MemorySegment struct) {
+        return struct.get(bMidline$LAYOUT, bMidline$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bMidline
+     * }
+     */
+    public static void bMidline(MemorySegment struct, byte fieldValue) {
+        struct.set(bMidline$LAYOUT, bMidline$OFFSET, fieldValue);
+    }
+
+    private static final OfByte bXHeight$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bXHeight"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bXHeight
+     * }
+     */
+    public static final OfByte bXHeight$layout() {
+        return bXHeight$LAYOUT;
+    }
+
+    private static final long bXHeight$OFFSET = 9;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bXHeight
+     * }
+     */
+    public static final long bXHeight$offset() {
+        return bXHeight$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bXHeight
+     * }
+     */
+    public static byte bXHeight(MemorySegment struct) {
+        return struct.get(bXHeight$LAYOUT, bXHeight$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bXHeight
+     * }
+     */
+    public static void bXHeight(MemorySegment struct, byte fieldValue) {
+        struct.set(bXHeight$LAYOUT, bXHeight$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

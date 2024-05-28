@@ -2,27 +2,70 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface TIMECALLBACK {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    void apply(int uTimerID, int uMsg, long dwUser, long dw1, long dw2);
-    static MemorySegment allocate(TIMECALLBACK fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(TIMECALLBACK.class, fi, constants$623.TIMECALLBACK$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef void (TIMECALLBACK)(UINT, UINT, DWORD_PTR, DWORD_PTR, DWORD_PTR) __attribute__((stdcall))
+ * }
+ */
+public class TIMECALLBACK {
+
+    TIMECALLBACK() {
+        // Should not be called directly
     }
-    static TIMECALLBACK ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _uTimerID, int _uMsg, long _dwUser, long _dw1, long _dw2) -> {
-            try {
-                constants$623.TIMECALLBACK$MH.invokeExact((Addressable)symbol, _uTimerID, _uMsg, _dwUser, _dw1, _dw2);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply(int uTimerID, int uMsg, long dwUser, long dw1, long dw2);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_LONG_LONG,
+        wgl_h.C_LONG_LONG,
+        wgl_h.C_LONG_LONG
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(TIMECALLBACK.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(TIMECALLBACK.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr,int uTimerID, int uMsg, long dwUser, long dw1, long dw2) {
+        try {
+             DOWN$MH.invokeExact(funcPtr, uTimerID, uMsg, dwUser, dw1, dw2);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

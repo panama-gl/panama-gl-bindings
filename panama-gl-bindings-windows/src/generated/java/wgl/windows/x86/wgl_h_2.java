@@ -2,3013 +2,9944 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
- class wgl_h_2 extends wgl_h_1 {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    public static int FAST_FAIL_INCORRECT_STACK() {
-        return (int)4L;
-    }
-    public static int FAST_FAIL_INVALID_ARG() {
-        return (int)5L;
-    }
-    public static int FAST_FAIL_GS_COOKIE_INIT() {
-        return (int)6L;
-    }
-    public static int FAST_FAIL_FATAL_APP_EXIT() {
-        return (int)7L;
-    }
-    public static int FAST_FAIL_RANGE_CHECK_FAILURE() {
-        return (int)8L;
-    }
-    public static int FAST_FAIL_UNSAFE_REGISTRY_ACCESS() {
-        return (int)9L;
-    }
-    public static int FAST_FAIL_GUARD_ICALL_CHECK_FAILURE() {
-        return (int)10L;
-    }
-    public static int FAST_FAIL_GUARD_WRITE_CHECK_FAILURE() {
-        return (int)11L;
-    }
-    public static int FAST_FAIL_INVALID_FIBER_SWITCH() {
-        return (int)12L;
-    }
-    public static int FAST_FAIL_INVALID_SET_OF_CONTEXT() {
-        return (int)13L;
-    }
-    public static int FAST_FAIL_INVALID_REFERENCE_COUNT() {
-        return (int)14L;
-    }
-    public static int FAST_FAIL_INVALID_JUMP_BUFFER() {
-        return (int)18L;
-    }
-    public static int FAST_FAIL_MRDATA_MODIFIED() {
-        return (int)19L;
-    }
-    public static int FAST_FAIL_CERTIFICATION_FAILURE() {
-        return (int)20L;
-    }
-    public static int FAST_FAIL_INVALID_EXCEPTION_CHAIN() {
-        return (int)21L;
-    }
-    public static int FAST_FAIL_CRYPTO_LIBRARY() {
-        return (int)22L;
-    }
-    public static int FAST_FAIL_INVALID_CALL_IN_DLL_CALLOUT() {
-        return (int)23L;
-    }
-    public static int FAST_FAIL_INVALID_IMAGE_BASE() {
-        return (int)24L;
-    }
-    public static int FAST_FAIL_DLOAD_PROTECTION_FAILURE() {
-        return (int)25L;
-    }
-    public static int FAST_FAIL_UNSAFE_EXTENSION_CALL() {
-        return (int)26L;
-    }
-    public static int FAST_FAIL_DEPRECATED_SERVICE_INVOKED() {
-        return (int)27L;
-    }
-    public static int FAST_FAIL_INVALID_BUFFER_ACCESS() {
-        return (int)28L;
-    }
-    public static int FAST_FAIL_INVALID_BALANCED_TREE() {
-        return (int)29L;
-    }
-    public static int FAST_FAIL_INVALID_NEXT_THREAD() {
-        return (int)30L;
-    }
-    public static int FAST_FAIL_GUARD_ICALL_CHECK_SUPPRESSED() {
-        return (int)31L;
-    }
-    public static int FAST_FAIL_APCS_DISABLED() {
-        return (int)32L;
-    }
-    public static int FAST_FAIL_INVALID_IDLE_STATE() {
-        return (int)33L;
-    }
-    public static int FAST_FAIL_MRDATA_PROTECTION_FAILURE() {
-        return (int)34L;
-    }
-    public static int FAST_FAIL_UNEXPECTED_HEAP_EXCEPTION() {
-        return (int)35L;
-    }
-    public static int FAST_FAIL_INVALID_LOCK_STATE() {
-        return (int)36L;
-    }
-    public static int FAST_FAIL_GUARD_JUMPTABLE() {
-        return (int)37L;
-    }
-    public static int FAST_FAIL_INVALID_LONGJUMP_TARGET() {
-        return (int)38L;
-    }
-    public static int FAST_FAIL_INVALID_DISPATCH_CONTEXT() {
-        return (int)39L;
-    }
-    public static int FAST_FAIL_INVALID_THREAD() {
-        return (int)40L;
-    }
-    public static int FAST_FAIL_INVALID_SYSCALL_NUMBER() {
-        return (int)41L;
-    }
-    public static int FAST_FAIL_INVALID_FILE_OPERATION() {
-        return (int)42L;
-    }
-    public static int FAST_FAIL_LPAC_ACCESS_DENIED() {
-        return (int)43L;
-    }
-    public static int FAST_FAIL_GUARD_SS_FAILURE() {
-        return (int)44L;
-    }
-    public static int FAST_FAIL_LOADER_CONTINUITY_FAILURE() {
-        return (int)45L;
-    }
-    public static int FAST_FAIL_GUARD_EXPORT_SUPPRESSION_FAILURE() {
-        return (int)46L;
-    }
-    public static int FAST_FAIL_INVALID_CONTROL_STACK() {
-        return (int)47L;
-    }
-    public static int FAST_FAIL_SET_CONTEXT_DENIED() {
-        return (int)48L;
-    }
-    public static int FAST_FAIL_INVALID_IAT() {
-        return (int)49L;
-    }
-    public static int FAST_FAIL_HEAP_METADATA_CORRUPTION() {
-        return (int)50L;
-    }
-    public static int FAST_FAIL_PAYLOAD_RESTRICTION_VIOLATION() {
-        return (int)51L;
-    }
-    public static int FAST_FAIL_LOW_LABEL_ACCESS_DENIED() {
-        return (int)52L;
-    }
-    public static int FAST_FAIL_ENCLAVE_CALL_FAILURE() {
-        return (int)53L;
-    }
-    public static int FAST_FAIL_UNHANDLED_LSS_EXCEPTON() {
-        return (int)54L;
-    }
-    public static int FAST_FAIL_ADMINLESS_ACCESS_DENIED() {
-        return (int)55L;
-    }
-    public static int FAST_FAIL_UNEXPECTED_CALL() {
-        return (int)56L;
-    }
-    public static int FAST_FAIL_CONTROL_INVALID_RETURN_ADDRESS() {
-        return (int)57L;
-    }
-    public static int FAST_FAIL_UNEXPECTED_HOST_BEHAVIOR() {
-        return (int)58L;
-    }
-    public static int FAST_FAIL_FLAGS_CORRUPTION() {
-        return (int)59L;
-    }
-    public static int FAST_FAIL_VEH_CORRUPTION() {
-        return (int)60L;
-    }
-    public static int FAST_FAIL_ETW_CORRUPTION() {
-        return (int)61L;
-    }
-    public static int FAST_FAIL_RIO_ABORT() {
-        return (int)62L;
-    }
-    public static int FAST_FAIL_INVALID_PFN() {
-        return (int)63L;
-    }
-    public static int HEAP_NO_SERIALIZE() {
-        return (int)1L;
-    }
-    public static int HEAP_GROWABLE() {
-        return (int)2L;
-    }
-    public static int HEAP_GENERATE_EXCEPTIONS() {
-        return (int)4L;
-    }
-    public static int HEAP_ZERO_MEMORY() {
-        return (int)8L;
-    }
-    public static int HEAP_REALLOC_IN_PLACE_ONLY() {
-        return (int)16L;
-    }
-    public static int HEAP_TAIL_CHECKING_ENABLED() {
-        return (int)32L;
-    }
-    public static int HEAP_FREE_CHECKING_ENABLED() {
-        return (int)64L;
-    }
-    public static int HEAP_DISABLE_COALESCE_ON_FREE() {
-        return (int)128L;
-    }
-    public static int HEAP_CREATE_ALIGN_16() {
-        return (int)65536L;
-    }
-    public static int HEAP_CREATE_ENABLE_TRACING() {
-        return (int)131072L;
-    }
-    public static int HEAP_CREATE_ENABLE_EXECUTE() {
-        return (int)262144L;
-    }
-    public static int HEAP_MAXIMUM_TAG() {
-        return (int)4095L;
-    }
-    public static int HEAP_PSEUDO_TAG_FLAG() {
-        return (int)32768L;
-    }
-    public static int HEAP_TAG_SHIFT() {
-        return (int)18L;
-    }
-    public static int HEAP_CREATE_SEGMENT_HEAP() {
-        return (int)256L;
-    }
-    public static int HEAP_CREATE_HARDENED() {
-        return (int)512L;
-    }
-    public static int IS_TEXT_UNICODE_ASCII16() {
-        return (int)1L;
-    }
-    public static int IS_TEXT_UNICODE_REVERSE_ASCII16() {
-        return (int)16L;
-    }
-    public static int IS_TEXT_UNICODE_STATISTICS() {
-        return (int)2L;
-    }
-    public static int IS_TEXT_UNICODE_REVERSE_STATISTICS() {
-        return (int)32L;
-    }
-    public static int IS_TEXT_UNICODE_CONTROLS() {
-        return (int)4L;
-    }
-    public static int IS_TEXT_UNICODE_REVERSE_CONTROLS() {
-        return (int)64L;
-    }
-    public static int IS_TEXT_UNICODE_SIGNATURE() {
-        return (int)8L;
-    }
-    public static int IS_TEXT_UNICODE_REVERSE_SIGNATURE() {
-        return (int)128L;
-    }
-    public static int IS_TEXT_UNICODE_ILLEGAL_CHARS() {
-        return (int)256L;
-    }
-    public static int IS_TEXT_UNICODE_ODD_LENGTH() {
-        return (int)512L;
-    }
-    public static int IS_TEXT_UNICODE_DBCS_LEADBYTE() {
-        return (int)1024L;
-    }
-    public static int IS_TEXT_UNICODE_NULL_BYTES() {
-        return (int)4096L;
-    }
-    public static int IS_TEXT_UNICODE_UNICODE_MASK() {
-        return (int)15L;
-    }
-    public static int IS_TEXT_UNICODE_REVERSE_MASK() {
-        return (int)240L;
-    }
-    public static int IS_TEXT_UNICODE_NOT_UNICODE_MASK() {
-        return (int)3840L;
-    }
-    public static int IS_TEXT_UNICODE_NOT_ASCII_MASK() {
-        return (int)61440L;
-    }
-    public static int SEF_DACL_AUTO_INHERIT() {
-        return (int)1L;
-    }
-    public static int SEF_SACL_AUTO_INHERIT() {
-        return (int)2L;
-    }
-    public static int SEF_DEFAULT_DESCRIPTOR_FOR_OBJECT() {
-        return (int)4L;
-    }
-    public static int SEF_AVOID_PRIVILEGE_CHECK() {
-        return (int)8L;
-    }
-    public static int SEF_AVOID_OWNER_CHECK() {
-        return (int)16L;
-    }
-    public static int SEF_DEFAULT_OWNER_FROM_PARENT() {
-        return (int)32L;
-    }
-    public static int SEF_DEFAULT_GROUP_FROM_PARENT() {
-        return (int)64L;
-    }
-    public static int SEF_MACL_NO_WRITE_UP() {
-        return (int)256L;
-    }
-    public static int SEF_MACL_NO_READ_UP() {
-        return (int)512L;
-    }
-    public static int SEF_MACL_NO_EXECUTE_UP() {
-        return (int)1024L;
-    }
-    public static int SEF_AI_USE_EXTRA_PARAMS() {
-        return (int)2048L;
-    }
-    public static int SEF_AVOID_OWNER_RESTRICTION() {
-        return (int)4096L;
-    }
-    public static int SEF_FORCE_USER_MODE() {
-        return (int)8192L;
-    }
-    public static int MESSAGE_RESOURCE_UNICODE() {
-        return (int)1L;
-    }
-    public static int MESSAGE_RESOURCE_UTF8() {
-        return (int)2L;
-    }
-    public static int VER_EQUAL() {
-        return (int)1L;
-    }
-    public static int VER_GREATER() {
-        return (int)2L;
-    }
-    public static int VER_GREATER_EQUAL() {
-        return (int)3L;
-    }
-    public static int VER_LESS() {
-        return (int)4L;
-    }
-    public static int VER_LESS_EQUAL() {
-        return (int)5L;
-    }
-    public static int VER_AND() {
-        return (int)6L;
-    }
-    public static int VER_OR() {
-        return (int)7L;
-    }
-    public static int VER_CONDITION_MASK() {
-        return (int)7L;
-    }
-    public static int VER_NUM_BITS_PER_CONDITION_MASK() {
-        return (int)3L;
-    }
-    public static int VER_MINORVERSION() {
-        return (int)1L;
-    }
-    public static int VER_MAJORVERSION() {
-        return (int)2L;
-    }
-    public static int VER_BUILDNUMBER() {
-        return (int)4L;
-    }
-    public static int VER_PLATFORMID() {
-        return (int)8L;
-    }
-    public static int VER_SERVICEPACKMINOR() {
-        return (int)16L;
-    }
-    public static int VER_SERVICEPACKMAJOR() {
-        return (int)32L;
-    }
-    public static int VER_SUITENAME() {
-        return (int)64L;
-    }
-    public static int VER_PRODUCT_TYPE() {
-        return (int)128L;
-    }
-    public static int VER_NT_WORKSTATION() {
-        return (int)1L;
-    }
-    public static int VER_NT_DOMAIN_CONTROLLER() {
-        return (int)2L;
-    }
-    public static int VER_NT_SERVER() {
-        return (int)3L;
-    }
-    public static int VER_PLATFORM_WIN32s() {
-        return (int)0L;
-    }
-    public static int VER_PLATFORM_WIN32_WINDOWS() {
-        return (int)1L;
-    }
-    public static int VER_PLATFORM_WIN32_NT() {
-        return (int)2L;
-    }
-    public static int RTL_CORRELATION_VECTOR_STRING_LENGTH() {
-        return (int)129L;
-    }
-    public static int IMAGE_POLICY_METADATA_VERSION() {
-        return (int)1L;
-    }
-    public static int RTL_CRITICAL_SECTION_FLAG_NO_DEBUG_INFO() {
-        return (int)16777216L;
-    }
-    public static int RTL_CRITICAL_SECTION_FLAG_DYNAMIC_SPIN() {
-        return (int)33554432L;
-    }
-    public static int RTL_CRITICAL_SECTION_FLAG_STATIC_INIT() {
-        return (int)67108864L;
-    }
-    public static int RTL_CRITICAL_SECTION_FLAG_RESOURCE_TYPE() {
-        return (int)134217728L;
-    }
-    public static int RTL_CRITICAL_SECTION_FLAG_FORCE_DEBUG_INFO() {
-        return (int)268435456L;
-    }
-    public static int RTL_CRITICAL_SECTION_DEBUG_FLAG_STATIC_INIT() {
-        return (int)1L;
-    }
-    public static int RTL_CONDITION_VARIABLE_LOCKMODE_SHARED() {
-        return (int)1L;
-    }
-    public static int HEAP_OPTIMIZE_RESOURCES_CURRENT_VERSION() {
-        return (int)1L;
-    }
-    public static int WT_EXECUTEDEFAULT() {
-        return (int)0L;
-    }
-    public static int WT_EXECUTEINIOTHREAD() {
-        return (int)1L;
-    }
-    public static int WT_EXECUTEINUITHREAD() {
-        return (int)2L;
-    }
-    public static int WT_EXECUTEINWAITTHREAD() {
-        return (int)4L;
-    }
-    public static int WT_EXECUTEONLYONCE() {
-        return (int)8L;
-    }
-    public static int WT_EXECUTEINTIMERTHREAD() {
-        return (int)32L;
-    }
-    public static int WT_EXECUTELONGFUNCTION() {
-        return (int)16L;
-    }
-    public static int WT_EXECUTEINPERSISTENTIOTHREAD() {
-        return (int)64L;
-    }
-    public static int WT_EXECUTEINPERSISTENTTHREAD() {
-        return (int)128L;
-    }
-    public static int WT_TRANSFER_IMPERSONATION() {
-        return (int)256L;
-    }
-    public static int WT_EXECUTEINLONGTHREAD() {
-        return (int)16L;
-    }
-    public static int WT_EXECUTEDELETEWAIT() {
-        return (int)8L;
-    }
-    public static int CREATE_BOUNDARY_DESCRIPTOR_ADD_APPCONTAINER_SID() {
-        return (int)1L;
-    }
-    public static int PERFORMANCE_DATA_VERSION() {
-        return (int)1L;
-    }
-    public static int READ_THREAD_PROFILING_FLAG_DISPATCHING() {
-        return (int)1L;
-    }
-    public static int READ_THREAD_PROFILING_FLAG_HARDWARE_COUNTERS() {
-        return (int)2L;
-    }
-    public static int UNIFIEDBUILDREVISION_MIN() {
-        return (int)0L;
-    }
-    public static int DEVICEFAMILYINFOENUM_UAP() {
-        return (int)0L;
-    }
-    public static int DEVICEFAMILYINFOENUM_WINDOWS_8X() {
-        return (int)1L;
-    }
-    public static int DEVICEFAMILYINFOENUM_WINDOWS_PHONE_8X() {
-        return (int)2L;
-    }
-    public static int DEVICEFAMILYINFOENUM_DESKTOP() {
-        return (int)3L;
-    }
-    public static int DEVICEFAMILYINFOENUM_MOBILE() {
-        return (int)4L;
-    }
-    public static int DEVICEFAMILYINFOENUM_XBOX() {
-        return (int)5L;
-    }
-    public static int DEVICEFAMILYINFOENUM_TEAM() {
-        return (int)6L;
-    }
-    public static int DEVICEFAMILYINFOENUM_IOT() {
-        return (int)7L;
-    }
-    public static int DEVICEFAMILYINFOENUM_IOT_HEADLESS() {
-        return (int)8L;
-    }
-    public static int DEVICEFAMILYINFOENUM_SERVER() {
-        return (int)9L;
-    }
-    public static int DEVICEFAMILYINFOENUM_HOLOGRAPHIC() {
-        return (int)10L;
-    }
-    public static int DEVICEFAMILYINFOENUM_XBOXSRA() {
-        return (int)11L;
-    }
-    public static int DEVICEFAMILYINFOENUM_XBOXERA() {
-        return (int)12L;
-    }
-    public static int DEVICEFAMILYINFOENUM_SERVER_NANO() {
-        return (int)13L;
-    }
-    public static int DEVICEFAMILYINFOENUM_8828080() {
-        return (int)14L;
-    }
-    public static int DEVICEFAMILYINFOENUM_7067329() {
-        return (int)15L;
-    }
-    public static int DEVICEFAMILYINFOENUM_WINDOWS_CORE() {
-        return (int)16L;
-    }
-    public static int DEVICEFAMILYINFOENUM_WINDOWS_CORE_HEADLESS() {
-        return (int)17L;
-    }
-    public static int DEVICEFAMILYINFOENUM_MAX() {
-        return (int)17L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_UNKNOWN() {
-        return (int)0L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_PHONE() {
-        return (int)1L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_TABLET() {
-        return (int)2L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_DESKTOP() {
-        return (int)3L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_NOTEBOOK() {
-        return (int)4L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_CONVERTIBLE() {
-        return (int)5L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_DETACHABLE() {
-        return (int)6L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_ALLINONE() {
-        return (int)7L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_STICKPC() {
-        return (int)8L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_PUCK() {
-        return (int)9L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_LARGESCREEN() {
-        return (int)10L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_HMD() {
-        return (int)11L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_INDUSTRY_HANDHELD() {
-        return (int)12L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_INDUSTRY_TABLET() {
-        return (int)13L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_BANKING() {
-        return (int)14L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_BUILDING_AUTOMATION() {
-        return (int)15L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_DIGITAL_SIGNAGE() {
-        return (int)16L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_GAMING() {
-        return (int)17L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_HOME_AUTOMATION() {
-        return (int)18L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_INDUSTRIAL_AUTOMATION() {
-        return (int)19L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_KIOSK() {
-        return (int)20L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_MAKER_BOARD() {
-        return (int)21L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_MEDICAL() {
-        return (int)22L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_NETWORKING() {
-        return (int)23L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_POINT_OF_SERVICE() {
-        return (int)24L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_PRINTING() {
-        return (int)25L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_THIN_CLIENT() {
-        return (int)26L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_TOY() {
-        return (int)27L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_VENDING() {
-        return (int)28L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_INDUSTRY_OTHER() {
-        return (int)29L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_XBOX_ONE() {
-        return (int)30L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_XBOX_ONE_S() {
-        return (int)31L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_XBOX_ONE_X() {
-        return (int)32L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_XBOX_ONE_X_DEVKIT() {
-        return (int)33L;
-    }
-    public static int DEVICEFAMILYDEVICEFORM_MAX() {
-        return (int)33L;
-    }
-    public static int DLL_PROCESS_ATTACH() {
-        return (int)1L;
-    }
-    public static int DLL_THREAD_ATTACH() {
-        return (int)2L;
-    }
-    public static int DLL_THREAD_DETACH() {
-        return (int)3L;
-    }
-    public static int DLL_PROCESS_DETACH() {
-        return (int)0L;
-    }
-    public static int EVENTLOG_SEQUENTIAL_READ() {
-        return (int)1L;
-    }
-    public static int EVENTLOG_SEEK_READ() {
-        return (int)2L;
-    }
-    public static int EVENTLOG_FORWARDS_READ() {
-        return (int)4L;
-    }
-    public static int EVENTLOG_BACKWARDS_READ() {
-        return (int)8L;
-    }
-    public static int EVENTLOG_SUCCESS() {
-        return (int)0L;
-    }
-    public static int EVENTLOG_ERROR_TYPE() {
-        return (int)1L;
-    }
-    public static int EVENTLOG_WARNING_TYPE() {
-        return (int)2L;
-    }
-    public static int EVENTLOG_INFORMATION_TYPE() {
-        return (int)4L;
-    }
-    public static int EVENTLOG_AUDIT_SUCCESS() {
-        return (int)8L;
-    }
-    public static int EVENTLOG_AUDIT_FAILURE() {
-        return (int)16L;
-    }
-    public static int EVENTLOG_START_PAIRED_EVENT() {
-        return (int)1L;
-    }
-    public static int EVENTLOG_END_PAIRED_EVENT() {
-        return (int)2L;
-    }
-    public static int EVENTLOG_END_ALL_PAIRED_EVENTS() {
-        return (int)4L;
-    }
-    public static int EVENTLOG_PAIRED_EVENT_ACTIVE() {
-        return (int)8L;
-    }
-    public static int EVENTLOG_PAIRED_EVENT_INACTIVE() {
-        return (int)16L;
-    }
-    public static int MAXLOGICALLOGNAMESIZE() {
-        return (int)256L;
-    }
-    public static int REG_STANDARD_FORMAT() {
-        return (int)1L;
-    }
-    public static int REG_LATEST_FORMAT() {
-        return (int)2L;
-    }
-    public static int REG_NO_COMPRESSION() {
-        return (int)4L;
-    }
-    public static int REG_FORCE_UNLOAD() {
-        return (int)1L;
-    }
-    public static int SERVICE_KERNEL_DRIVER() {
-        return (int)1L;
-    }
-    public static int SERVICE_FILE_SYSTEM_DRIVER() {
-        return (int)2L;
-    }
-    public static int SERVICE_ADAPTER() {
-        return (int)4L;
-    }
-    public static int SERVICE_RECOGNIZER_DRIVER() {
-        return (int)8L;
-    }
-    public static int SERVICE_WIN32_OWN_PROCESS() {
-        return (int)16L;
-    }
-    public static int SERVICE_WIN32_SHARE_PROCESS() {
-        return (int)32L;
-    }
-    public static int SERVICE_USER_SERVICE() {
-        return (int)64L;
-    }
-    public static int SERVICE_USERSERVICE_INSTANCE() {
-        return (int)128L;
-    }
-    public static int SERVICE_INTERACTIVE_PROCESS() {
-        return (int)256L;
-    }
-    public static int SERVICE_PKG_SERVICE() {
-        return (int)512L;
-    }
-    public static int SERVICE_BOOT_START() {
-        return (int)0L;
-    }
-    public static int SERVICE_SYSTEM_START() {
-        return (int)1L;
-    }
-    public static int SERVICE_AUTO_START() {
-        return (int)2L;
-    }
-    public static int SERVICE_DEMAND_START() {
-        return (int)3L;
-    }
-    public static int SERVICE_DISABLED() {
-        return (int)4L;
-    }
-    public static int SERVICE_ERROR_IGNORE() {
-        return (int)0L;
-    }
-    public static int SERVICE_ERROR_NORMAL() {
-        return (int)1L;
-    }
-    public static int SERVICE_ERROR_SEVERE() {
-        return (int)2L;
-    }
-    public static int SERVICE_ERROR_CRITICAL() {
-        return (int)3L;
-    }
-    public static int CM_SERVICE_NETWORK_BOOT_LOAD() {
-        return (int)1L;
-    }
-    public static int CM_SERVICE_VIRTUAL_DISK_BOOT_LOAD() {
-        return (int)2L;
-    }
-    public static int CM_SERVICE_USB_DISK_BOOT_LOAD() {
-        return (int)4L;
-    }
-    public static int CM_SERVICE_SD_DISK_BOOT_LOAD() {
-        return (int)8L;
-    }
-    public static int CM_SERVICE_USB3_DISK_BOOT_LOAD() {
-        return (int)16L;
-    }
-    public static int CM_SERVICE_MEASURED_BOOT_LOAD() {
-        return (int)32L;
-    }
-    public static int CM_SERVICE_VERIFIER_BOOT_LOAD() {
-        return (int)64L;
-    }
-    public static int CM_SERVICE_WINPE_BOOT_LOAD() {
-        return (int)128L;
-    }
-    public static int CM_SERVICE_RAM_DISK_BOOT_LOAD() {
-        return (int)256L;
-    }
-    public static int TAPE_DRIVE_FIXED() {
-        return (int)1L;
-    }
-    public static int TAPE_DRIVE_SELECT() {
-        return (int)2L;
-    }
-    public static int TAPE_DRIVE_INITIATOR() {
-        return (int)4L;
-    }
-    public static int TAPE_DRIVE_ERASE_SHORT() {
-        return (int)16L;
-    }
-    public static int TAPE_DRIVE_ERASE_LONG() {
-        return (int)32L;
-    }
-    public static int TAPE_DRIVE_ERASE_BOP_ONLY() {
-        return (int)64L;
-    }
-    public static int TAPE_DRIVE_ERASE_IMMEDIATE() {
-        return (int)128L;
-    }
-    public static int TAPE_DRIVE_TAPE_CAPACITY() {
-        return (int)256L;
-    }
-    public static int TAPE_DRIVE_TAPE_REMAINING() {
-        return (int)512L;
-    }
-    public static int TAPE_DRIVE_FIXED_BLOCK() {
-        return (int)1024L;
-    }
-    public static int TAPE_DRIVE_VARIABLE_BLOCK() {
-        return (int)2048L;
-    }
-    public static int TAPE_DRIVE_WRITE_PROTECT() {
-        return (int)4096L;
-    }
-    public static int TAPE_DRIVE_EOT_WZ_SIZE() {
-        return (int)8192L;
-    }
-    public static int TAPE_DRIVE_ECC() {
-        return (int)65536L;
-    }
-    public static int TAPE_DRIVE_COMPRESSION() {
-        return (int)131072L;
-    }
-    public static int TAPE_DRIVE_PADDING() {
-        return (int)262144L;
-    }
-    public static int TAPE_DRIVE_REPORT_SMKS() {
-        return (int)524288L;
-    }
-    public static int TAPE_DRIVE_GET_ABSOLUTE_BLK() {
-        return (int)1048576L;
-    }
-    public static int TAPE_DRIVE_GET_LOGICAL_BLK() {
-        return (int)2097152L;
-    }
-    public static int TAPE_DRIVE_SET_EOT_WZ_SIZE() {
-        return (int)4194304L;
-    }
-    public static int TAPE_DRIVE_EJECT_MEDIA() {
-        return (int)16777216L;
-    }
-    public static int TAPE_DRIVE_CLEAN_REQUESTS() {
-        return (int)33554432L;
-    }
-    public static int TAPE_DRIVE_SET_CMP_BOP_ONLY() {
-        return (int)67108864L;
-    }
-    public static int TRANSACTION_MANAGER_VOLATILE() {
-        return (int)1L;
-    }
-    public static int TRANSACTION_MANAGER_COMMIT_DEFAULT() {
-        return (int)0L;
-    }
-    public static int TRANSACTION_MANAGER_COMMIT_SYSTEM_VOLUME() {
-        return (int)2L;
-    }
-    public static int TRANSACTION_MANAGER_COMMIT_SYSTEM_HIVES() {
-        return (int)4L;
-    }
-    public static int TRANSACTION_MANAGER_COMMIT_LOWEST() {
-        return (int)8L;
-    }
-    public static int TRANSACTION_MANAGER_CORRUPT_FOR_RECOVERY() {
-        return (int)16L;
-    }
-    public static int TRANSACTION_MANAGER_CORRUPT_FOR_PROGRESS() {
-        return (int)32L;
-    }
-    public static int TRANSACTION_MANAGER_MAXIMUM_OPTION() {
-        return (int)63L;
-    }
-    public static int TRANSACTION_DO_NOT_PROMOTE() {
-        return (int)1L;
-    }
-    public static int TRANSACTION_MAXIMUM_OPTION() {
-        return (int)1L;
-    }
-    public static int RESOURCE_MANAGER_VOLATILE() {
-        return (int)1L;
-    }
-    public static int RESOURCE_MANAGER_COMMUNICATION() {
-        return (int)2L;
-    }
-    public static int RESOURCE_MANAGER_MAXIMUM_OPTION() {
-        return (int)3L;
-    }
-    public static int CRM_PROTOCOL_EXPLICIT_MARSHAL_ONLY() {
-        return (int)1L;
-    }
-    public static int CRM_PROTOCOL_DYNAMIC_MARSHAL_INFO() {
-        return (int)2L;
-    }
-    public static int CRM_PROTOCOL_MAXIMUM_OPTION() {
-        return (int)3L;
-    }
-    public static int ENLISTMENT_SUPERIOR() {
-        return (int)1L;
-    }
-    public static int ENLISTMENT_MAXIMUM_OPTION() {
-        return (int)1L;
-    }
-    public static int TRANSACTION_NOTIFY_MASK() {
-        return (int)1073741823L;
-    }
-    public static int TRANSACTION_NOTIFY_PREPREPARE() {
-        return (int)1L;
-    }
-    public static int TRANSACTION_NOTIFY_PREPARE() {
-        return (int)2L;
-    }
-    public static int TRANSACTION_NOTIFY_COMMIT() {
-        return (int)4L;
-    }
-    public static int TRANSACTION_NOTIFY_ROLLBACK() {
-        return (int)8L;
-    }
-    public static int TRANSACTION_NOTIFY_PREPREPARE_COMPLETE() {
-        return (int)16L;
-    }
-    public static int TRANSACTION_NOTIFY_PREPARE_COMPLETE() {
-        return (int)32L;
-    }
-    public static int TRANSACTION_NOTIFY_COMMIT_COMPLETE() {
-        return (int)64L;
-    }
-    public static int TRANSACTION_NOTIFY_ROLLBACK_COMPLETE() {
-        return (int)128L;
-    }
-    public static int TRANSACTION_NOTIFY_RECOVER() {
-        return (int)256L;
-    }
-    public static int TRANSACTION_NOTIFY_SINGLE_PHASE_COMMIT() {
-        return (int)512L;
-    }
-    public static int TRANSACTION_NOTIFY_DELEGATE_COMMIT() {
-        return (int)1024L;
-    }
-    public static int TRANSACTION_NOTIFY_RECOVER_QUERY() {
-        return (int)2048L;
-    }
-    public static int TRANSACTION_NOTIFY_ENLIST_PREPREPARE() {
-        return (int)4096L;
-    }
-    public static int TRANSACTION_NOTIFY_LAST_RECOVER() {
-        return (int)8192L;
-    }
-    public static int TRANSACTION_NOTIFY_INDOUBT() {
-        return (int)16384L;
-    }
-    public static int TRANSACTION_NOTIFY_PROPAGATE_PULL() {
-        return (int)32768L;
-    }
-    public static int TRANSACTION_NOTIFY_PROPAGATE_PUSH() {
-        return (int)65536L;
-    }
-    public static int TRANSACTION_NOTIFY_MARSHAL() {
-        return (int)131072L;
-    }
-    public static int TRANSACTION_NOTIFY_ENLIST_MASK() {
-        return (int)262144L;
-    }
-    public static int TRANSACTION_NOTIFY_RM_DISCONNECTED() {
-        return (int)16777216L;
-    }
-    public static int TRANSACTION_NOTIFY_TM_ONLINE() {
-        return (int)33554432L;
-    }
-    public static int TRANSACTION_NOTIFY_COMMIT_REQUEST() {
-        return (int)67108864L;
-    }
-    public static int TRANSACTION_NOTIFY_PROMOTE() {
-        return (int)134217728L;
-    }
-    public static int TRANSACTION_NOTIFY_PROMOTE_NEW() {
-        return (int)268435456L;
-    }
-    public static int TRANSACTION_NOTIFY_REQUEST_OUTCOME() {
-        return (int)536870912L;
-    }
-    public static int TRANSACTION_NOTIFY_COMMIT_FINALIZE() {
-        return (int)1073741824L;
-    }
-    public static int TRANSACTION_NOTIFICATION_TM_ONLINE_FLAG_IS_CLUSTERED() {
-        return (int)1L;
-    }
-    public static int KTM_MARSHAL_BLOB_VERSION_MAJOR() {
-        return (int)1L;
-    }
-    public static int KTM_MARSHAL_BLOB_VERSION_MINOR() {
-        return (int)1L;
-    }
-    public static int MAX_TRANSACTION_DESCRIPTION_LENGTH() {
-        return (int)64L;
-    }
-    public static int MAX_RESOURCEMANAGER_DESCRIPTION_LENGTH() {
-        return (int)64L;
-    }
-    public static int APP_LOCAL_DEVICE_ID_SIZE() {
-        return (int)32L;
-    }
-    public static int DM_UPDATE() {
-        return (int)1L;
-    }
-    public static int DM_COPY() {
-        return (int)2L;
-    }
-    public static int DM_PROMPT() {
-        return (int)4L;
-    }
-    public static int DM_MODIFY() {
-        return (int)8L;
-    }
-    public static int DC_FIELDS() {
-        return (int)1L;
-    }
-    public static int DC_PAPERS() {
-        return (int)2L;
-    }
-    public static int DC_PAPERSIZE() {
-        return (int)3L;
-    }
-    public static int DC_MINEXTENT() {
-        return (int)4L;
-    }
-    public static int DC_MAXEXTENT() {
-        return (int)5L;
-    }
-    public static int DC_BINS() {
-        return (int)6L;
-    }
-    public static int DC_DUPLEX() {
-        return (int)7L;
-    }
-    public static int DC_SIZE() {
-        return (int)8L;
-    }
-    public static int DC_EXTRA() {
-        return (int)9L;
-    }
-    public static int DC_VERSION() {
-        return (int)10L;
-    }
-    public static int DC_DRIVER() {
-        return (int)11L;
-    }
-    public static int DC_BINNAMES() {
-        return (int)12L;
-    }
-    public static int DC_ENUMRESOLUTIONS() {
-        return (int)13L;
-    }
-    public static int DC_FILEDEPENDENCIES() {
-        return (int)14L;
-    }
-    public static int DC_TRUETYPE() {
-        return (int)15L;
-    }
-    public static int DC_PAPERNAMES() {
-        return (int)16L;
-    }
-    public static int DC_ORIENTATION() {
-        return (int)17L;
-    }
-    public static int DC_COPIES() {
-        return (int)18L;
-    }
-    public static int FIND_FIRST_EX_CASE_SENSITIVE() {
-        return (int)1L;
-    }
-    public static int FIND_FIRST_EX_LARGE_FETCH() {
-        return (int)2L;
-    }
-    public static int FIND_FIRST_EX_ON_DISK_ENTRIES_ONLY() {
-        return (int)4L;
-    }
-    public static int LOCKFILE_FAIL_IMMEDIATELY() {
-        return (int)1L;
-    }
-    public static int LOCKFILE_EXCLUSIVE_LOCK() {
-        return (int)2L;
-    }
-    public static int PROCESS_HEAP_REGION() {
-        return (int)1L;
-    }
-    public static int PROCESS_HEAP_UNCOMMITTED_RANGE() {
-        return (int)2L;
-    }
-    public static int PROCESS_HEAP_ENTRY_BUSY() {
-        return (int)4L;
-    }
-    public static int PROCESS_HEAP_SEG_ALLOC() {
-        return (int)8L;
-    }
-    public static int PROCESS_HEAP_ENTRY_MOVEABLE() {
-        return (int)16L;
-    }
-    public static int PROCESS_HEAP_ENTRY_DDESHARE() {
-        return (int)32L;
-    }
-    public static int EXCEPTION_DEBUG_EVENT() {
-        return (int)1L;
-    }
-    public static int CREATE_THREAD_DEBUG_EVENT() {
-        return (int)2L;
-    }
-    public static int CREATE_PROCESS_DEBUG_EVENT() {
-        return (int)3L;
-    }
-    public static int EXIT_THREAD_DEBUG_EVENT() {
-        return (int)4L;
-    }
-    public static int EXIT_PROCESS_DEBUG_EVENT() {
-        return (int)5L;
-    }
-    public static int LOAD_DLL_DEBUG_EVENT() {
-        return (int)6L;
-    }
-    public static int UNLOAD_DLL_DEBUG_EVENT() {
-        return (int)7L;
-    }
-    public static int OUTPUT_DEBUG_STRING_EVENT() {
-        return (int)8L;
-    }
-    public static int RIP_EVENT() {
-        return (int)9L;
-    }
-    public static int LMEM_FIXED() {
-        return (int)0L;
-    }
-    public static int LMEM_MOVEABLE() {
-        return (int)2L;
-    }
-    public static int LMEM_NOCOMPACT() {
-        return (int)16L;
-    }
-    public static int LMEM_NODISCARD() {
-        return (int)32L;
-    }
-    public static int LMEM_ZEROINIT() {
-        return (int)64L;
-    }
-    public static int LMEM_MODIFY() {
-        return (int)128L;
-    }
-    public static int LMEM_DISCARDABLE() {
-        return (int)3840L;
-    }
-    public static int LMEM_VALID_FLAGS() {
-        return (int)3954L;
-    }
-    public static int LMEM_INVALID_HANDLE() {
-        return (int)32768L;
-    }
-    public static int LMEM_DISCARDED() {
-        return (int)16384L;
-    }
-    public static int LMEM_LOCKCOUNT() {
-        return (int)255L;
-    }
-    public static int CREATE_NEW() {
-        return (int)1L;
-    }
-    public static int CREATE_ALWAYS() {
-        return (int)2L;
-    }
-    public static int OPEN_EXISTING() {
-        return (int)3L;
-    }
-    public static int OPEN_ALWAYS() {
-        return (int)4L;
-    }
-    public static int TRUNCATE_EXISTING() {
-        return (int)5L;
-    }
-    public static int CREATE_MUTEX_INITIAL_OWNER() {
-        return (int)1L;
-    }
-    public static int CREATE_EVENT_MANUAL_RESET() {
-        return (int)1L;
-    }
-    public static int CREATE_EVENT_INITIAL_SET() {
-        return (int)2L;
-    }
-    public static int CREATE_WAITABLE_TIMER_MANUAL_RESET() {
-        return (int)1L;
-    }
-    public static int CREATE_WAITABLE_TIMER_HIGH_RESOLUTION() {
-        return (int)2L;
-    }
-    public static int SYNCHRONIZATION_BARRIER_FLAGS_SPIN_ONLY() {
-        return (int)1L;
-    }
-    public static int SYNCHRONIZATION_BARRIER_FLAGS_BLOCK_ONLY() {
-        return (int)2L;
-    }
-    public static int SYNCHRONIZATION_BARRIER_FLAGS_NO_DELETE() {
-        return (int)4L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_REPLACE_VALUE() {
-        return (int)1L;
-    }
-    public static int THREAD_POWER_THROTTLING_CURRENT_VERSION() {
-        return (int)1L;
-    }
-    public static int THREAD_POWER_THROTTLING_EXECUTION_SPEED() {
-        return (int)1L;
-    }
-    public static int PME_CURRENT_VERSION() {
-        return (int)1L;
-    }
-    public static int PME_FAILFAST_ON_COMMIT_FAIL_DISABLE() {
-        return (int)0L;
-    }
-    public static int PME_FAILFAST_ON_COMMIT_FAIL_ENABLE() {
-        return (int)1L;
-    }
-    public static int PROCESS_POWER_THROTTLING_CURRENT_VERSION() {
-        return (int)1L;
-    }
-    public static int PROCESS_POWER_THROTTLING_EXECUTION_SPEED() {
-        return (int)1L;
-    }
-    public static int PROCESS_LEAP_SECOND_INFO_FLAG_ENABLE_SIXTY_SECOND() {
-        return (int)1L;
-    }
-    public static int USER_CET_ENVIRONMENT_WIN32_PROCESS() {
-        return (int)0L;
-    }
-    public static int USER_CET_ENVIRONMENT_SGX2_ENCLAVE() {
-        return (int)2L;
-    }
-    public static int USER_CET_ENVIRONMENT_VBS_ENCLAVE() {
-        return (int)16L;
-    }
-    public static int USER_CET_ENVIRONMENT_VBS_BASIC_ENCLAVE() {
-        return (int)17L;
-    }
-    public static int SCEX2_ALT_NETBIOS_NAME() {
-        return (int)1L;
-    }
-    public static int FILE_MAP_COPY() {
-        return (int)1L;
-    }
-    public static int FILE_MAP_TARGETS_INVALID() {
-        return (int)1073741824L;
-    }
-    public static int FILE_MAP_LARGE_PAGES() {
-        return (int)536870912L;
-    }
-    public static int FILE_CACHE_MAX_HARD_ENABLE() {
-        return (int)1L;
-    }
-    public static int FILE_CACHE_MAX_HARD_DISABLE() {
-        return (int)2L;
-    }
-    public static int FILE_CACHE_MIN_HARD_ENABLE() {
-        return (int)4L;
-    }
-    public static int FILE_CACHE_MIN_HARD_DISABLE() {
-        return (int)8L;
-    }
-    public static int MEHC_PATROL_SCRUBBER_PRESENT() {
-        return (int)1L;
-    }
-    public static int SUPPORT_LANG_NUMBER() {
-        return (int)32L;
-    }
-    public static int CURRENT_IMPORT_REDIRECTION_VERSION() {
-        return (int)1L;
-    }
-    public static int DONT_RESOLVE_DLL_REFERENCES() {
-        return (int)1L;
-    }
-    public static int LOAD_LIBRARY_AS_DATAFILE() {
-        return (int)2L;
-    }
-    public static int LOAD_WITH_ALTERED_SEARCH_PATH() {
-        return (int)8L;
-    }
-    public static int LOAD_IGNORE_CODE_AUTHZ_LEVEL() {
-        return (int)16L;
-    }
-    public static int LOAD_LIBRARY_AS_IMAGE_RESOURCE() {
-        return (int)32L;
-    }
-    public static int LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE() {
-        return (int)64L;
-    }
-    public static int LOAD_LIBRARY_REQUIRE_SIGNED_TARGET() {
-        return (int)128L;
-    }
-    public static int LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR() {
-        return (int)256L;
-    }
-    public static int LOAD_LIBRARY_SEARCH_APPLICATION_DIR() {
-        return (int)512L;
-    }
-    public static int LOAD_LIBRARY_SEARCH_USER_DIRS() {
-        return (int)1024L;
-    }
-    public static int LOAD_LIBRARY_SEARCH_SYSTEM32() {
-        return (int)2048L;
-    }
-    public static int LOAD_LIBRARY_SEARCH_DEFAULT_DIRS() {
-        return (int)4096L;
-    }
-    public static int LOAD_LIBRARY_SAFE_CURRENT_DIRS() {
-        return (int)8192L;
-    }
-    public static int LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER() {
-        return (int)16384L;
-    }
-    public static int LOAD_LIBRARY_OS_INTEGRITY_CONTINUITY() {
-        return (int)32768L;
-    }
-    public static int PRIVATE_NAMESPACE_FLAG_DESTROY() {
-        return (int)1L;
-    }
-    public static int FILE_BEGIN() {
-        return (int)0L;
-    }
-    public static int FILE_CURRENT() {
-        return (int)1L;
-    }
-    public static int FILE_END() {
-        return (int)2L;
-    }
-    public static int FILE_FLAG_OVERLAPPED() {
-        return (int)1073741824L;
-    }
-    public static int FILE_FLAG_NO_BUFFERING() {
-        return (int)536870912L;
-    }
-    public static int FILE_FLAG_RANDOM_ACCESS() {
-        return (int)268435456L;
-    }
-    public static int FILE_FLAG_SEQUENTIAL_SCAN() {
-        return (int)134217728L;
-    }
-    public static int FILE_FLAG_DELETE_ON_CLOSE() {
-        return (int)67108864L;
-    }
-    public static int FILE_FLAG_BACKUP_SEMANTICS() {
-        return (int)33554432L;
-    }
-    public static int FILE_FLAG_POSIX_SEMANTICS() {
-        return (int)16777216L;
-    }
-    public static int FILE_FLAG_SESSION_AWARE() {
-        return (int)8388608L;
-    }
-    public static int FILE_FLAG_OPEN_REPARSE_POINT() {
-        return (int)2097152L;
-    }
-    public static int FILE_FLAG_OPEN_NO_RECALL() {
-        return (int)1048576L;
-    }
-    public static int FILE_FLAG_FIRST_PIPE_INSTANCE() {
-        return (int)524288L;
-    }
-    public static int FILE_FLAG_OPEN_REQUIRING_OPLOCK() {
-        return (int)262144L;
-    }
-    public static int PROGRESS_CONTINUE() {
-        return (int)0L;
-    }
-    public static int PROGRESS_CANCEL() {
-        return (int)1L;
-    }
-    public static int PROGRESS_STOP() {
-        return (int)2L;
-    }
-    public static int PROGRESS_QUIET() {
-        return (int)3L;
-    }
-    public static int CALLBACK_CHUNK_FINISHED() {
-        return (int)0L;
-    }
-    public static int CALLBACK_STREAM_SWITCH() {
-        return (int)1L;
-    }
-    public static int COPY_FILE_FAIL_IF_EXISTS() {
-        return (int)1L;
-    }
-    public static int COPY_FILE_RESTARTABLE() {
-        return (int)2L;
-    }
-    public static int COPY_FILE_OPEN_SOURCE_FOR_WRITE() {
-        return (int)4L;
-    }
-    public static int COPY_FILE_ALLOW_DECRYPTED_DESTINATION() {
-        return (int)8L;
-    }
-    public static int COPY_FILE_COPY_SYMLINK() {
-        return (int)2048L;
-    }
-    public static int COPY_FILE_NO_BUFFERING() {
-        return (int)4096L;
-    }
-    public static int COPY_FILE_REQUEST_SECURITY_PRIVILEGES() {
-        return (int)8192L;
-    }
-    public static int COPY_FILE_RESUME_FROM_PAUSE() {
-        return (int)16384L;
-    }
-    public static int COPY_FILE_NO_OFFLOAD() {
-        return (int)262144L;
-    }
-    public static int COPY_FILE_IGNORE_EDP_BLOCK() {
-        return (int)4194304L;
-    }
-    public static int COPY_FILE_IGNORE_SOURCE_ENCRYPTION() {
-        return (int)8388608L;
-    }
-    public static int COPY_FILE_DONT_REQUEST_DEST_WRITE_DAC() {
-        return (int)33554432L;
-    }
-    public static int COPY_FILE_REQUEST_COMPRESSED_TRAFFIC() {
-        return (int)268435456L;
-    }
-    public static int COPY_FILE_OPEN_AND_COPY_REPARSE_POINT() {
-        return (int)2097152L;
-    }
-    public static int COPY_FILE_DIRECTORY() {
-        return (int)128L;
-    }
-    public static int COPY_FILE_SKIP_ALTERNATE_STREAMS() {
-        return (int)32768L;
-    }
-    public static int COPY_FILE_DISABLE_PRE_ALLOCATION() {
-        return (int)67108864L;
-    }
-    public static int COPY_FILE_ENABLE_LOW_FREE_SPACE_MODE() {
-        return (int)134217728L;
-    }
-    public static int REPLACEFILE_WRITE_THROUGH() {
-        return (int)1L;
-    }
-    public static int REPLACEFILE_IGNORE_MERGE_ERRORS() {
-        return (int)2L;
-    }
-    public static int REPLACEFILE_IGNORE_ACL_ERRORS() {
-        return (int)4L;
-    }
-    public static int PIPE_ACCESS_INBOUND() {
-        return (int)1L;
-    }
-    public static int PIPE_ACCESS_OUTBOUND() {
-        return (int)2L;
-    }
-    public static int PIPE_ACCESS_DUPLEX() {
-        return (int)3L;
-    }
-    public static int PIPE_CLIENT_END() {
-        return (int)0L;
-    }
-    public static int PIPE_SERVER_END() {
-        return (int)1L;
-    }
-    public static int PIPE_WAIT() {
-        return (int)0L;
-    }
-    public static int PIPE_NOWAIT() {
-        return (int)1L;
-    }
-    public static int PIPE_READMODE_BYTE() {
-        return (int)0L;
-    }
-    public static int PIPE_READMODE_MESSAGE() {
-        return (int)2L;
-    }
-    public static int PIPE_TYPE_BYTE() {
-        return (int)0L;
-    }
-    public static int PIPE_TYPE_MESSAGE() {
-        return (int)4L;
-    }
-    public static int PIPE_ACCEPT_REMOTE_CLIENTS() {
-        return (int)0L;
-    }
-    public static int PIPE_REJECT_REMOTE_CLIENTS() {
-        return (int)8L;
-    }
-    public static int PIPE_UNLIMITED_INSTANCES() {
-        return (int)255L;
-    }
-    public static int SECURITY_CONTEXT_TRACKING() {
-        return (int)262144L;
-    }
-    public static int SECURITY_EFFECTIVE_ONLY() {
-        return (int)524288L;
-    }
-    public static int SECURITY_SQOS_PRESENT() {
-        return (int)1048576L;
-    }
-    public static int SECURITY_VALID_SQOS_FLAGS() {
-        return (int)2031616L;
-    }
-    public static int FAIL_FAST_GENERATE_EXCEPTION_ADDRESS() {
-        return (int)1L;
-    }
-    public static int FAIL_FAST_NO_HARD_ERROR_DLG() {
-        return (int)2L;
-    }
-    public static int DTR_CONTROL_DISABLE() {
-        return (int)0L;
-    }
-    public static int DTR_CONTROL_ENABLE() {
-        return (int)1L;
-    }
-    public static int DTR_CONTROL_HANDSHAKE() {
-        return (int)2L;
-    }
-    public static int RTS_CONTROL_DISABLE() {
-        return (int)0L;
-    }
-    public static int RTS_CONTROL_ENABLE() {
-        return (int)1L;
-    }
-    public static int RTS_CONTROL_HANDSHAKE() {
-        return (int)2L;
-    }
-    public static int RTS_CONTROL_TOGGLE() {
-        return (int)3L;
-    }
-    public static int GMEM_FIXED() {
-        return (int)0L;
-    }
-    public static int GMEM_MOVEABLE() {
-        return (int)2L;
-    }
-    public static int GMEM_NOCOMPACT() {
-        return (int)16L;
-    }
-    public static int GMEM_NODISCARD() {
-        return (int)32L;
-    }
-    public static int GMEM_ZEROINIT() {
-        return (int)64L;
-    }
-    public static int GMEM_MODIFY() {
-        return (int)128L;
-    }
-    public static int GMEM_DISCARDABLE() {
-        return (int)256L;
-    }
-    public static int GMEM_NOT_BANKED() {
-        return (int)4096L;
-    }
-    public static int GMEM_SHARE() {
-        return (int)8192L;
-    }
-    public static int GMEM_DDESHARE() {
-        return (int)8192L;
-    }
-    public static int GMEM_NOTIFY() {
-        return (int)16384L;
-    }
-    public static int GMEM_VALID_FLAGS() {
-        return (int)32626L;
-    }
-    public static int GMEM_INVALID_HANDLE() {
-        return (int)32768L;
-    }
-    public static int GMEM_DISCARDED() {
-        return (int)16384L;
-    }
-    public static int GMEM_LOCKCOUNT() {
-        return (int)255L;
-    }
-    public static int DEBUG_PROCESS() {
-        return (int)1L;
-    }
-    public static int DEBUG_ONLY_THIS_PROCESS() {
-        return (int)2L;
-    }
-    public static int CREATE_SUSPENDED() {
-        return (int)4L;
-    }
-    public static int DETACHED_PROCESS() {
-        return (int)8L;
-    }
-    public static int CREATE_NEW_CONSOLE() {
-        return (int)16L;
-    }
-    public static int NORMAL_PRIORITY_CLASS() {
-        return (int)32L;
-    }
-    public static int IDLE_PRIORITY_CLASS() {
-        return (int)64L;
-    }
-    public static int HIGH_PRIORITY_CLASS() {
-        return (int)128L;
-    }
-    public static int REALTIME_PRIORITY_CLASS() {
-        return (int)256L;
-    }
-    public static int CREATE_NEW_PROCESS_GROUP() {
-        return (int)512L;
-    }
-    public static int CREATE_UNICODE_ENVIRONMENT() {
-        return (int)1024L;
-    }
-    public static int CREATE_SEPARATE_WOW_VDM() {
-        return (int)2048L;
-    }
-    public static int CREATE_SHARED_WOW_VDM() {
-        return (int)4096L;
-    }
-    public static int CREATE_FORCEDOS() {
-        return (int)8192L;
-    }
-    public static int BELOW_NORMAL_PRIORITY_CLASS() {
-        return (int)16384L;
-    }
-    public static int ABOVE_NORMAL_PRIORITY_CLASS() {
-        return (int)32768L;
-    }
-    public static int INHERIT_PARENT_AFFINITY() {
-        return (int)65536L;
-    }
-    public static int INHERIT_CALLER_PRIORITY() {
-        return (int)131072L;
-    }
-    public static int CREATE_PROTECTED_PROCESS() {
-        return (int)262144L;
-    }
-    public static int EXTENDED_STARTUPINFO_PRESENT() {
-        return (int)524288L;
-    }
-    public static int PROCESS_MODE_BACKGROUND_BEGIN() {
-        return (int)1048576L;
-    }
-    public static int PROCESS_MODE_BACKGROUND_END() {
-        return (int)2097152L;
-    }
-    public static int CREATE_SECURE_PROCESS() {
-        return (int)4194304L;
-    }
-    public static int CREATE_BREAKAWAY_FROM_JOB() {
-        return (int)16777216L;
-    }
-    public static int CREATE_PRESERVE_CODE_AUTHZ_LEVEL() {
-        return (int)33554432L;
-    }
-    public static int CREATE_DEFAULT_ERROR_MODE() {
-        return (int)67108864L;
-    }
-    public static int CREATE_NO_WINDOW() {
-        return (int)134217728L;
-    }
-    public static int PROFILE_USER() {
-        return (int)268435456L;
-    }
-    public static int PROFILE_KERNEL() {
-        return (int)536870912L;
-    }
-    public static int PROFILE_SERVER() {
-        return (int)1073741824L;
-    }
-    public static int STACK_SIZE_PARAM_IS_A_RESERVATION() {
-        return (int)65536L;
-    }
-    public static int THREAD_PRIORITY_NORMAL() {
-        return (int)0L;
-    }
-    public static int THREAD_MODE_BACKGROUND_BEGIN() {
-        return (int)65536L;
-    }
-    public static int THREAD_MODE_BACKGROUND_END() {
-        return (int)131072L;
-    }
-    public static int VOLUME_NAME_DOS() {
-        return (int)0L;
-    }
-    public static int VOLUME_NAME_GUID() {
-        return (int)1L;
-    }
-    public static int VOLUME_NAME_NT() {
-        return (int)2L;
-    }
-    public static int VOLUME_NAME_NONE() {
-        return (int)4L;
-    }
-    public static int FILE_NAME_NORMALIZED() {
-        return (int)0L;
-    }
-    public static int FILE_NAME_OPENED() {
-        return (int)8L;
-    }
-    public static int DRIVE_UNKNOWN() {
-        return (int)0L;
-    }
-    public static int DRIVE_NO_ROOT_DIR() {
-        return (int)1L;
-    }
-    public static int DRIVE_REMOVABLE() {
-        return (int)2L;
-    }
-    public static int DRIVE_FIXED() {
-        return (int)3L;
-    }
-    public static int DRIVE_REMOTE() {
-        return (int)4L;
-    }
-    public static int DRIVE_CDROM() {
-        return (int)5L;
-    }
-    public static int DRIVE_RAMDISK() {
-        return (int)6L;
-    }
-    public static int FILE_TYPE_UNKNOWN() {
-        return (int)0L;
-    }
-    public static int FILE_TYPE_DISK() {
-        return (int)1L;
-    }
-    public static int FILE_TYPE_CHAR() {
-        return (int)2L;
-    }
-    public static int FILE_TYPE_PIPE() {
-        return (int)3L;
-    }
-    public static int FILE_TYPE_REMOTE() {
-        return (int)32768L;
-    }
-    public static int NOPARITY() {
-        return (int)0L;
-    }
-    public static int ODDPARITY() {
-        return (int)1L;
-    }
-    public static int EVENPARITY() {
-        return (int)2L;
-    }
-    public static int MARKPARITY() {
-        return (int)3L;
-    }
-    public static int SPACEPARITY() {
-        return (int)4L;
-    }
-    public static int ONESTOPBIT() {
-        return (int)0L;
-    }
-    public static int ONE5STOPBITS() {
-        return (int)1L;
-    }
-    public static int TWOSTOPBITS() {
-        return (int)2L;
-    }
-    public static int IGNORE() {
-        return (int)0L;
-    }
-    public static int CBR_110() {
-        return (int)110L;
-    }
-    public static int CBR_300() {
-        return (int)300L;
-    }
-    public static int CBR_600() {
-        return (int)600L;
-    }
-    public static int CBR_1200() {
-        return (int)1200L;
-    }
-    public static int CBR_2400() {
-        return (int)2400L;
-    }
-    public static int CBR_4800() {
-        return (int)4800L;
-    }
-    public static int CBR_9600() {
-        return (int)9600L;
-    }
-    public static int CBR_14400() {
-        return (int)14400L;
-    }
-    public static int CBR_19200() {
-        return (int)19200L;
-    }
-    public static int CBR_38400() {
-        return (int)38400L;
-    }
-    public static int CBR_56000() {
-        return (int)56000L;
-    }
-    public static int CBR_57600() {
-        return (int)57600L;
-    }
-    public static int CBR_115200() {
-        return (int)115200L;
-    }
-    public static int CBR_128000() {
-        return (int)128000L;
-    }
-    public static int CBR_256000() {
-        return (int)256000L;
-    }
-    public static int CE_RXOVER() {
-        return (int)1L;
-    }
-    public static int CE_OVERRUN() {
-        return (int)2L;
-    }
-    public static int CE_RXPARITY() {
-        return (int)4L;
-    }
-    public static int CE_FRAME() {
-        return (int)8L;
-    }
-    public static int CE_BREAK() {
-        return (int)16L;
-    }
-    public static int CE_TXFULL() {
-        return (int)256L;
-    }
-    public static int CE_PTO() {
-        return (int)512L;
-    }
-    public static int CE_IOE() {
-        return (int)1024L;
-    }
-    public static int CE_DNS() {
-        return (int)2048L;
-    }
-    public static int CE_OOP() {
-        return (int)4096L;
-    }
-    public static int CE_MODE() {
-        return (int)32768L;
-    }
-    public static int EV_RXCHAR() {
-        return (int)1L;
-    }
-    public static int EV_RXFLAG() {
-        return (int)2L;
-    }
-    public static int EV_TXEMPTY() {
-        return (int)4L;
-    }
-    public static int EV_CTS() {
-        return (int)8L;
-    }
-    public static int EV_DSR() {
-        return (int)16L;
-    }
-    public static int EV_RLSD() {
-        return (int)32L;
-    }
-    public static int EV_BREAK() {
-        return (int)64L;
-    }
-    public static int EV_ERR() {
-        return (int)128L;
-    }
-    public static int EV_RING() {
-        return (int)256L;
-    }
-    public static int EV_PERR() {
-        return (int)512L;
-    }
-    public static int EV_RX80FULL() {
-        return (int)1024L;
-    }
-    public static int EV_EVENT1() {
-        return (int)2048L;
-    }
-    public static int EV_EVENT2() {
-        return (int)4096L;
-    }
-    public static int SETXOFF() {
-        return (int)1L;
-    }
-    public static int SETXON() {
-        return (int)2L;
-    }
-    public static int SETRTS() {
-        return (int)3L;
-    }
-    public static int CLRRTS() {
-        return (int)4L;
-    }
-    public static int SETDTR() {
-        return (int)5L;
-    }
-    public static int CLRDTR() {
-        return (int)6L;
-    }
-    public static int RESETDEV() {
-        return (int)7L;
-    }
-    public static int SETBREAK() {
-        return (int)8L;
-    }
-    public static int CLRBREAK() {
-        return (int)9L;
-    }
-    public static int PURGE_TXABORT() {
-        return (int)1L;
-    }
-    public static int PURGE_RXABORT() {
-        return (int)2L;
-    }
-    public static int PURGE_TXCLEAR() {
-        return (int)4L;
-    }
-    public static int PURGE_RXCLEAR() {
-        return (int)8L;
-    }
-    public static int LPTx() {
-        return (int)128L;
-    }
-    public static int S_QUEUEEMPTY() {
-        return (int)0L;
-    }
-    public static int S_THRESHOLD() {
-        return (int)1L;
-    }
-    public static int S_ALLTHRESHOLD() {
-        return (int)2L;
-    }
-    public static int S_NORMAL() {
-        return (int)0L;
-    }
-    public static int S_LEGATO() {
-        return (int)1L;
-    }
-    public static int S_STACCATO() {
-        return (int)2L;
-    }
-    public static int S_PERIOD512() {
-        return (int)0L;
-    }
-    public static int S_PERIOD1024() {
-        return (int)1L;
-    }
-    public static int S_PERIOD2048() {
-        return (int)2L;
-    }
-    public static int S_PERIODVOICE() {
-        return (int)3L;
-    }
-    public static int S_WHITE512() {
-        return (int)4L;
-    }
-    public static int S_WHITE1024() {
-        return (int)5L;
-    }
-    public static int S_WHITE2048() {
-        return (int)6L;
-    }
-    public static int S_WHITEVOICE() {
-        return (int)7L;
-    }
-    public static int NMPWAIT_NOWAIT() {
-        return (int)1L;
-    }
-    public static int NMPWAIT_USE_DEFAULT_WAIT() {
-        return (int)0L;
-    }
-    public static int OF_READ() {
-        return (int)0L;
-    }
-    public static int OF_WRITE() {
-        return (int)1L;
-    }
-    public static int OF_READWRITE() {
-        return (int)2L;
-    }
-    public static int OF_SHARE_COMPAT() {
-        return (int)0L;
-    }
-    public static int OF_SHARE_EXCLUSIVE() {
-        return (int)16L;
-    }
-    public static int OF_SHARE_DENY_WRITE() {
-        return (int)32L;
-    }
-    public static int OF_SHARE_DENY_READ() {
-        return (int)48L;
-    }
-    public static int OF_SHARE_DENY_NONE() {
-        return (int)64L;
-    }
-    public static int OF_PARSE() {
-        return (int)256L;
-    }
-    public static int OF_DELETE() {
-        return (int)512L;
-    }
-    public static int OF_VERIFY() {
-        return (int)1024L;
-    }
-    public static int OF_CANCEL() {
-        return (int)2048L;
-    }
-    public static int OF_CREATE() {
-        return (int)4096L;
-    }
-    public static int OF_PROMPT() {
-        return (int)8192L;
-    }
-    public static int OF_EXIST() {
-        return (int)16384L;
-    }
-    public static int OF_REOPEN() {
-        return (int)32768L;
-    }
-    public static int OFS_MAXPATHNAME() {
-        return (int)128L;
-    }
-    public static int MAXINTATOM() {
-        return (int)49152L;
-    }
-    public static int SCS_32BIT_BINARY() {
-        return (int)0L;
-    }
-    public static int SCS_DOS_BINARY() {
-        return (int)1L;
-    }
-    public static int SCS_WOW_BINARY() {
-        return (int)2L;
-    }
-    public static int SCS_PIF_BINARY() {
-        return (int)3L;
-    }
-    public static int SCS_POSIX_BINARY() {
-        return (int)4L;
-    }
-    public static int SCS_OS216_BINARY() {
-        return (int)5L;
-    }
-    public static int SCS_64BIT_BINARY() {
-        return (int)6L;
-    }
-    public static int FIBER_FLAG_FLOAT_SWITCH() {
-        return (int)1L;
-    }
-    public static int PROCESS_DEP_ENABLE() {
-        return (int)1L;
-    }
-    public static int PROCESS_DEP_DISABLE_ATL_THUNK_EMULATION() {
-        return (int)2L;
-    }
-    public static int FILE_SKIP_COMPLETION_PORT_ON_SUCCESS() {
-        return (int)1L;
-    }
-    public static int FILE_SKIP_SET_EVENT_ON_HANDLE() {
-        return (int)2L;
-    }
-    public static int SEM_FAILCRITICALERRORS() {
-        return (int)1L;
-    }
-    public static int SEM_NOGPFAULTERRORBOX() {
-        return (int)2L;
-    }
-    public static int SEM_NOALIGNMENTFAULTEXCEPT() {
-        return (int)4L;
-    }
-    public static int SEM_NOOPENFILEERRORBOX() {
-        return (int)32768L;
-    }
-    public static int HANDLE_FLAG_INHERIT() {
-        return (int)1L;
-    }
-    public static int HANDLE_FLAG_PROTECT_FROM_CLOSE() {
-        return (int)2L;
-    }
-    public static int HINSTANCE_ERROR() {
-        return (int)32L;
-    }
-    public static int GET_TAPE_MEDIA_INFORMATION() {
-        return (int)0L;
-    }
-    public static int GET_TAPE_DRIVE_INFORMATION() {
-        return (int)1L;
-    }
-    public static int SET_TAPE_MEDIA_INFORMATION() {
-        return (int)0L;
-    }
-    public static int SET_TAPE_DRIVE_INFORMATION() {
-        return (int)1L;
-    }
-    public static int FORMAT_MESSAGE_ALLOCATE_BUFFER() {
-        return (int)256L;
-    }
-    public static int FORMAT_MESSAGE_IGNORE_INSERTS() {
-        return (int)512L;
-    }
-    public static int FORMAT_MESSAGE_FROM_STRING() {
-        return (int)1024L;
-    }
-    public static int FORMAT_MESSAGE_FROM_HMODULE() {
-        return (int)2048L;
-    }
-    public static int FORMAT_MESSAGE_FROM_SYSTEM() {
-        return (int)4096L;
-    }
-    public static int FORMAT_MESSAGE_ARGUMENT_ARRAY() {
-        return (int)8192L;
-    }
-    public static int FORMAT_MESSAGE_MAX_WIDTH_MASK() {
-        return (int)255L;
-    }
-    public static int FILE_ENCRYPTABLE() {
-        return (int)0L;
-    }
-    public static int FILE_IS_ENCRYPTED() {
-        return (int)1L;
-    }
-    public static int FILE_SYSTEM_ATTR() {
-        return (int)2L;
-    }
-    public static int FILE_ROOT_DIR() {
-        return (int)3L;
-    }
-    public static int FILE_SYSTEM_DIR() {
-        return (int)4L;
-    }
-    public static int FILE_UNKNOWN() {
-        return (int)5L;
-    }
-    public static int FILE_SYSTEM_NOT_SUPPORT() {
-        return (int)6L;
-    }
-    public static int FILE_USER_DISALLOWED() {
-        return (int)7L;
-    }
-    public static int FILE_READ_ONLY() {
-        return (int)8L;
-    }
-    public static int FILE_DIR_DISALLOWED() {
-        return (int)9L;
-    }
-    public static int BACKUP_INVALID() {
-        return (int)0L;
-    }
-    public static int BACKUP_DATA() {
-        return (int)1L;
-    }
-    public static int BACKUP_EA_DATA() {
-        return (int)2L;
-    }
-    public static int BACKUP_SECURITY_DATA() {
-        return (int)3L;
-    }
-    public static int BACKUP_ALTERNATE_DATA() {
-        return (int)4L;
-    }
-    public static int BACKUP_LINK() {
-        return (int)5L;
-    }
-    public static int BACKUP_PROPERTY_DATA() {
-        return (int)6L;
-    }
-    public static int BACKUP_OBJECT_ID() {
-        return (int)7L;
-    }
-    public static int BACKUP_REPARSE_DATA() {
-        return (int)8L;
-    }
-    public static int BACKUP_SPARSE_BLOCK() {
-        return (int)9L;
-    }
-    public static int BACKUP_TXFS_DATA() {
-        return (int)10L;
-    }
-    public static int BACKUP_GHOSTED_FILE_EXTENTS() {
-        return (int)11L;
-    }
-    public static int STREAM_NORMAL_ATTRIBUTE() {
-        return (int)0L;
-    }
-    public static int STREAM_MODIFIED_WHEN_READ() {
-        return (int)1L;
-    }
-    public static int STREAM_CONTAINS_SECURITY() {
-        return (int)2L;
-    }
-    public static int STREAM_CONTAINS_PROPERTIES() {
-        return (int)4L;
-    }
-    public static int STREAM_SPARSE_ATTRIBUTE() {
-        return (int)8L;
-    }
-    public static int STREAM_CONTAINS_GHOSTED_FILE_EXTENTS() {
-        return (int)16L;
-    }
-    public static int STARTF_USESHOWWINDOW() {
-        return (int)1L;
-    }
-    public static int STARTF_USESIZE() {
-        return (int)2L;
-    }
-    public static int STARTF_USEPOSITION() {
-        return (int)4L;
-    }
-    public static int STARTF_USECOUNTCHARS() {
-        return (int)8L;
-    }
-    public static int STARTF_USEFILLATTRIBUTE() {
-        return (int)16L;
-    }
-    public static int STARTF_RUNFULLSCREEN() {
-        return (int)32L;
-    }
-    public static int STARTF_FORCEONFEEDBACK() {
-        return (int)64L;
-    }
-    public static int STARTF_FORCEOFFFEEDBACK() {
-        return (int)128L;
-    }
-    public static int STARTF_USESTDHANDLES() {
-        return (int)256L;
-    }
-    public static int STARTF_USEHOTKEY() {
-        return (int)512L;
-    }
-    public static int STARTF_TITLEISLINKNAME() {
-        return (int)2048L;
-    }
-    public static int STARTF_TITLEISAPPID() {
-        return (int)4096L;
-    }
-    public static int STARTF_PREVENTPINNING() {
-        return (int)8192L;
-    }
-    public static int STARTF_UNTRUSTEDSOURCE() {
-        return (int)32768L;
-    }
-    public static int SHUTDOWN_NORETRY() {
-        return (int)1L;
-    }
-    public static int PROTECTION_LEVEL_WINTCB_LIGHT() {
-        return (int)0L;
-    }
-    public static int PROTECTION_LEVEL_WINDOWS() {
-        return (int)1L;
-    }
-    public static int PROTECTION_LEVEL_WINDOWS_LIGHT() {
-        return (int)2L;
-    }
-    public static int PROTECTION_LEVEL_ANTIMALWARE_LIGHT() {
-        return (int)3L;
-    }
-    public static int PROTECTION_LEVEL_LSA_LIGHT() {
-        return (int)4L;
-    }
-    public static int PROTECTION_LEVEL_WINTCB() {
-        return (int)5L;
-    }
-    public static int PROTECTION_LEVEL_CODEGEN_LIGHT() {
-        return (int)6L;
-    }
-    public static int PROTECTION_LEVEL_AUTHENTICODE() {
-        return (int)7L;
-    }
-    public static int PROTECTION_LEVEL_PPL_APP() {
-        return (int)8L;
-    }
-    public static int PROCESS_NAME_NATIVE() {
-        return (int)1L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_NUMBER() {
-        return (int)65535L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_THREAD() {
-        return (int)65536L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_INPUT() {
-        return (int)131072L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_ADDITIVE() {
-        return (int)262144L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_DEP_ENABLE() {
-        return (int)1L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_DEP_ATL_THUNK_ENABLE() {
-        return (int)2L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_SEHOP_ENABLE() {
-        return (int)4L;
-    }
-    public static int PROCESS_CREATION_CHILD_PROCESS_RESTRICTED() {
-        return (int)1L;
-    }
-    public static int PROCESS_CREATION_CHILD_PROCESS_OVERRIDE() {
-        return (int)2L;
-    }
-    public static int PROCESS_CREATION_CHILD_PROCESS_RESTRICTED_UNLESS_SECURE() {
-        return (int)4L;
-    }
-    public static int PROCESS_CREATION_ALL_APPLICATION_PACKAGES_OPT_OUT() {
-        return (int)1L;
-    }
-    public static int PROCESS_CREATION_DESKTOP_APP_BREAKAWAY_ENABLE_PROCESS_TREE() {
-        return (int)1L;
-    }
-    public static int PROCESS_CREATION_DESKTOP_APP_BREAKAWAY_DISABLE_PROCESS_TREE() {
-        return (int)2L;
-    }
-    public static int PROCESS_CREATION_DESKTOP_APP_BREAKAWAY_OVERRIDE() {
-        return (int)4L;
-    }
-    public static int ATOM_FLAG_GLOBAL() {
-        return (int)2L;
-    }
-    public static int BASE_SEARCH_PATH_ENABLE_SAFE_SEARCHMODE() {
-        return (int)1L;
-    }
-    public static int BASE_SEARCH_PATH_DISABLE_SAFE_SEARCHMODE() {
-        return (int)65536L;
-    }
-    public static int BASE_SEARCH_PATH_PERMANENT() {
-        return (int)32768L;
-    }
-    public static int DDD_RAW_TARGET_PATH() {
-        return (int)1L;
-    }
-    public static int DDD_REMOVE_DEFINITION() {
-        return (int)2L;
-    }
-    public static int DDD_EXACT_MATCH_ON_REMOVE() {
-        return (int)4L;
-    }
-    public static int DDD_NO_BROADCAST_SYSTEM() {
-        return (int)8L;
-    }
-    public static int DDD_LUID_BROADCAST_DRIVE() {
-        return (int)16L;
-    }
-    public static int MOVEFILE_REPLACE_EXISTING() {
-        return (int)1L;
-    }
-    public static int MOVEFILE_COPY_ALLOWED() {
-        return (int)2L;
-    }
-    public static int MOVEFILE_DELAY_UNTIL_REBOOT() {
-        return (int)4L;
-    }
-    public static int MOVEFILE_WRITE_THROUGH() {
-        return (int)8L;
-    }
-    public static int MOVEFILE_CREATE_HARDLINK() {
-        return (int)16L;
-    }
-    public static int MOVEFILE_FAIL_IF_NOT_TRACKABLE() {
-        return (int)32L;
-    }
-    public static int EVENTLOG_FULL_INFO() {
-        return (int)0L;
-    }
-    public static int OPERATION_API_VERSION() {
-        return (int)1L;
-    }
-    public static int OPERATION_START_TRACE_CURRENT_THREAD() {
-        return (int)1L;
-    }
-    public static int OPERATION_END_DISCARD() {
-        return (int)1L;
-    }
-    public static int MAX_COMPUTERNAME_LENGTH() {
-        return (int)15L;
-    }
-    public static int LOGON32_LOGON_INTERACTIVE() {
-        return (int)2L;
-    }
-    public static int LOGON32_LOGON_NETWORK() {
-        return (int)3L;
-    }
-    public static int LOGON32_LOGON_BATCH() {
-        return (int)4L;
-    }
-    public static int LOGON32_LOGON_SERVICE() {
-        return (int)5L;
-    }
-    public static int LOGON32_LOGON_UNLOCK() {
-        return (int)7L;
-    }
-    public static int LOGON32_LOGON_NETWORK_CLEARTEXT() {
-        return (int)8L;
-    }
-    public static int LOGON32_LOGON_NEW_CREDENTIALS() {
-        return (int)9L;
-    }
-    public static int LOGON32_PROVIDER_DEFAULT() {
-        return (int)0L;
-    }
-    public static int LOGON32_PROVIDER_WINNT35() {
-        return (int)1L;
-    }
-    public static int LOGON32_PROVIDER_WINNT40() {
-        return (int)2L;
-    }
-    public static int LOGON32_PROVIDER_WINNT50() {
-        return (int)3L;
-    }
-    public static int LOGON32_PROVIDER_VIRTUAL() {
-        return (int)4L;
-    }
-    public static int LOGON_WITH_PROFILE() {
-        return (int)1L;
-    }
-    public static int LOGON_NETCREDENTIALS_ONLY() {
-        return (int)2L;
-    }
-    public static int HW_PROFILE_GUIDLEN() {
-        return (int)39L;
-    }
-    public static int MAX_PROFILE_LEN() {
-        return (int)80L;
-    }
-    public static int FACILITY_NULL() {
-        return (int)0L;
-    }
-    public static int FACILITY_RPC() {
-        return (int)1L;
-    }
-    public static int FACILITY_DISPATCH() {
-        return (int)2L;
-    }
-    public static int FACILITY_STORAGE() {
-        return (int)3L;
-    }
-    public static int FACILITY_ITF() {
-        return (int)4L;
-    }
-    public static int FACILITY_WIN32() {
-        return (int)7L;
-    }
-    public static int FACILITY_WINDOWS() {
-        return (int)8L;
-    }
-    public static int FACILITY_SSPI() {
-        return (int)9L;
-    }
-    public static int FACILITY_SECURITY() {
-        return (int)9L;
-    }
-    public static int FACILITY_CONTROL() {
-        return (int)10L;
-    }
-    public static int FACILITY_CERT() {
-        return (int)11L;
-    }
-    public static int FACILITY_INTERNET() {
-        return (int)12L;
-    }
-    public static int FACILITY_MEDIASERVER() {
-        return (int)13L;
-    }
-    public static int FACILITY_MSMQ() {
-        return (int)14L;
-    }
-    public static int FACILITY_SETUPAPI() {
-        return (int)15L;
-    }
-    public static int FACILITY_SCARD() {
-        return (int)16L;
-    }
-    public static int FACILITY_COMPLUS() {
-        return (int)17L;
-    }
-    public static int FACILITY_AAF() {
-        return (int)18L;
-    }
-    public static int FACILITY_URT() {
-        return (int)19L;
-    }
-    public static int FACILITY_ACS() {
-        return (int)20L;
-    }
-    public static int FACILITY_DPLAY() {
-        return (int)21L;
-    }
-    public static int FACILITY_UMI() {
-        return (int)22L;
-    }
-    public static int FACILITY_SXS() {
-        return (int)23L;
-    }
-    public static int FACILITY_WINDOWS_CE() {
-        return (int)24L;
-    }
-    public static int FACILITY_HTTP() {
-        return (int)25L;
-    }
-    public static int FACILITY_USERMODE_COMMONLOG() {
-        return (int)26L;
-    }
-    public static int FACILITY_WER() {
-        return (int)27L;
-    }
-    public static int FACILITY_USERMODE_FILTER_MANAGER() {
-        return (int)31L;
-    }
-    public static int FACILITY_BACKGROUNDCOPY() {
-        return (int)32L;
-    }
-    public static int FACILITY_CONFIGURATION() {
-        return (int)33L;
-    }
-    public static int FACILITY_WIA() {
-        return (int)33L;
-    }
-    public static int FACILITY_STATE_MANAGEMENT() {
-        return (int)34L;
-    }
-    public static int FACILITY_METADIRECTORY() {
-        return (int)35L;
-    }
-    public static int FACILITY_WINDOWSUPDATE() {
-        return (int)36L;
-    }
-    public static int FACILITY_DIRECTORYSERVICE() {
-        return (int)37L;
-    }
-    public static int FACILITY_GRAPHICS() {
-        return (int)38L;
-    }
-    public static int FACILITY_SHELL() {
-        return (int)39L;
-    }
-    public static int FACILITY_NAP() {
-        return (int)39L;
-    }
-    public static int FACILITY_TPM_SERVICES() {
-        return (int)40L;
-    }
-    public static int FACILITY_TPM_SOFTWARE() {
-        return (int)41L;
-    }
-    public static int FACILITY_UI() {
-        return (int)42L;
-    }
-    public static int FACILITY_XAML() {
-        return (int)43L;
-    }
-    public static int FACILITY_ACTION_QUEUE() {
-        return (int)44L;
-    }
-    public static int FACILITY_PLA() {
-        return (int)48L;
-    }
-    public static int FACILITY_WINDOWS_SETUP() {
-        return (int)48L;
-    }
-    public static int FACILITY_FVE() {
-        return (int)49L;
-    }
-    public static int FACILITY_FWP() {
-        return (int)50L;
-    }
-    public static int FACILITY_WINRM() {
-        return (int)51L;
-    }
-    public static int FACILITY_NDIS() {
-        return (int)52L;
-    }
-    public static int FACILITY_USERMODE_HYPERVISOR() {
-        return (int)53L;
-    }
-    public static int FACILITY_CMI() {
-        return (int)54L;
-    }
-    public static int FACILITY_USERMODE_VIRTUALIZATION() {
-        return (int)55L;
-    }
-    public static int FACILITY_USERMODE_VOLMGR() {
-        return (int)56L;
-    }
-    public static int FACILITY_BCD() {
-        return (int)57L;
-    }
-    public static int FACILITY_USERMODE_VHD() {
-        return (int)58L;
-    }
-    public static int FACILITY_USERMODE_HNS() {
-        return (int)59L;
-    }
-    public static int FACILITY_SDIAG() {
-        return (int)60L;
-    }
-    public static int FACILITY_WEBSERVICES() {
-        return (int)61L;
-    }
-    public static int FACILITY_WINPE() {
-        return (int)61L;
-    }
-    public static int FACILITY_WPN() {
-        return (int)62L;
-    }
-    public static int FACILITY_WINDOWS_STORE() {
-        return (int)63L;
-    }
-    public static int FACILITY_INPUT() {
-        return (int)64L;
-    }
-    public static int FACILITY_QUIC() {
-        return (int)65L;
-    }
-    public static int FACILITY_EAP() {
-        return (int)66L;
-    }
-    public static int FACILITY_WINDOWS_DEFENDER() {
-        return (int)80L;
-    }
-    public static int FACILITY_OPC() {
-        return (int)81L;
-    }
-    public static int FACILITY_XPS() {
-        return (int)82L;
-    }
-    public static int FACILITY_MBN() {
-        return (int)84L;
-    }
-    public static int FACILITY_POWERSHELL() {
-        return (int)84L;
-    }
-    public static int FACILITY_RAS() {
-        return (int)83L;
-    }
-    public static int FACILITY_P2P_INT() {
-        return (int)98L;
-    }
-    public static int FACILITY_P2P() {
-        return (int)99L;
-    }
-    public static int FACILITY_DAF() {
-        return (int)100L;
-    }
-    public static int FACILITY_BLUETOOTH_ATT() {
-        return (int)101L;
-    }
-    public static int FACILITY_AUDIO() {
-        return (int)102L;
-    }
-    public static int FACILITY_STATEREPOSITORY() {
-        return (int)103L;
-    }
-    public static int FACILITY_VISUALCPP() {
-        return (int)109L;
-    }
-    public static int FACILITY_SCRIPT() {
-        return (int)112L;
-    }
-    public static int FACILITY_PARSE() {
-        return (int)113L;
-    }
-    public static int FACILITY_BLB() {
-        return (int)120L;
-    }
-    public static int FACILITY_BLB_CLI() {
-        return (int)121L;
-    }
-    public static int FACILITY_WSBAPP() {
-        return (int)122L;
-    }
-    public static int FACILITY_BLBUI() {
-        return (int)128L;
-    }
-    public static int FACILITY_USN() {
-        return (int)129L;
-    }
-    public static int FACILITY_USERMODE_VOLSNAP() {
-        return (int)130L;
-    }
-    public static int FACILITY_TIERING() {
-        return (int)131L;
-    }
-    public static int FACILITY_WSB_ONLINE() {
-        return (int)133L;
-    }
-    public static int FACILITY_ONLINE_ID() {
-        return (int)134L;
-    }
-    public static int FACILITY_DEVICE_UPDATE_AGENT() {
-        return (int)135L;
-    }
-    public static int FACILITY_DRVSERVICING() {
-        return (int)136L;
-    }
-    public static int FACILITY_DLS() {
-        return (int)153L;
-    }
-    public static int FACILITY_DELIVERY_OPTIMIZATION() {
-        return (int)208L;
-    }
-    public static int FACILITY_USERMODE_SPACES() {
-        return (int)231L;
-    }
-    public static int FACILITY_USER_MODE_SECURITY_CORE() {
-        return (int)232L;
-    }
-    public static int FACILITY_USERMODE_LICENSING() {
-        return (int)234L;
-    }
-    public static int FACILITY_SOS() {
-        return (int)160L;
-    }
-    public static int FACILITY_DEBUGGERS() {
-        return (int)176L;
-    }
-    public static int FACILITY_SPP() {
-        return (int)256L;
-    }
-    public static int FACILITY_RESTORE() {
-        return (int)256L;
-    }
-    public static int FACILITY_DMSERVER() {
-        return (int)256L;
-    }
-    public static int FACILITY_DEPLOYMENT_SERVICES_SERVER() {
-        return (int)257L;
-    }
-    public static int FACILITY_DEPLOYMENT_SERVICES_IMAGING() {
-        return (int)258L;
-    }
-    public static int FACILITY_DEPLOYMENT_SERVICES_MANAGEMENT() {
-        return (int)259L;
-    }
-    public static int FACILITY_DEPLOYMENT_SERVICES_UTIL() {
-        return (int)260L;
-    }
-    public static int FACILITY_DEPLOYMENT_SERVICES_BINLSVC() {
-        return (int)261L;
-    }
-    public static int FACILITY_DEPLOYMENT_SERVICES_PXE() {
-        return (int)263L;
-    }
-    public static int FACILITY_DEPLOYMENT_SERVICES_TFTP() {
-        return (int)264L;
-    }
-    public static int FACILITY_DEPLOYMENT_SERVICES_TRANSPORT_MANAGEMENT() {
-        return (int)272L;
-    }
-    public static int FACILITY_DEPLOYMENT_SERVICES_DRIVER_PROVISIONING() {
-        return (int)278L;
-    }
-    public static int FACILITY_DEPLOYMENT_SERVICES_MULTICAST_SERVER() {
-        return (int)289L;
-    }
-    public static int FACILITY_DEPLOYMENT_SERVICES_MULTICAST_CLIENT() {
-        return (int)290L;
-    }
-    public static int FACILITY_DEPLOYMENT_SERVICES_CONTENT_PROVIDER() {
-        return (int)293L;
-    }
-    public static int FACILITY_LINGUISTIC_SERVICES() {
-        return (int)305L;
-    }
-    public static int FACILITY_AUDIOSTREAMING() {
-        return (int)1094L;
-    }
-    public static int FACILITY_TTD() {
-        return (int)1490L;
-    }
-    public static int FACILITY_ACCELERATOR() {
-        return (int)1536L;
-    }
-    public static int FACILITY_WMAAECMA() {
-        return (int)1996L;
-    }
-    public static int FACILITY_DIRECTMUSIC() {
-        return (int)2168L;
-    }
-    public static int FACILITY_DIRECT3D10() {
-        return (int)2169L;
-    }
-    public static int FACILITY_DXGI() {
-        return (int)2170L;
-    }
-    public static int FACILITY_DXGI_DDI() {
-        return (int)2171L;
-    }
-    public static int FACILITY_DIRECT3D11() {
-        return (int)2172L;
-    }
-    public static int FACILITY_DIRECT3D11_DEBUG() {
-        return (int)2173L;
-    }
-    public static int FACILITY_DIRECT3D12() {
-        return (int)2174L;
-    }
-    public static int FACILITY_DIRECT3D12_DEBUG() {
-        return (int)2175L;
-    }
-    public static int FACILITY_DXCORE() {
-        return (int)2176L;
-    }
-    public static int FACILITY_LEAP() {
-        return (int)2184L;
-    }
-    public static int FACILITY_AUDCLNT() {
-        return (int)2185L;
-    }
-    public static int FACILITY_WINCODEC_DWRITE_DWM() {
-        return (int)2200L;
-    }
-    public static int FACILITY_WINML() {
-        return (int)2192L;
-    }
-    public static int FACILITY_DIRECT2D() {
-        return (int)2201L;
-    }
-    public static int FACILITY_DEFRAG() {
-        return (int)2304L;
-    }
-    public static int FACILITY_USERMODE_SDBUS() {
-        return (int)2305L;
-    }
-    public static int FACILITY_JSCRIPT() {
-        return (int)2306L;
-    }
-    public static int FACILITY_PIDGENX() {
-        return (int)2561L;
-    }
-    public static int FACILITY_EAS() {
-        return (int)85L;
-    }
-    public static int FACILITY_WEB() {
-        return (int)885L;
-    }
-    public static int FACILITY_WEB_SOCKET() {
-        return (int)886L;
-    }
-    public static int FACILITY_MOBILE() {
-        return (int)1793L;
-    }
-    public static int FACILITY_SQLITE() {
-        return (int)1967L;
-    }
-    public static int FACILITY_UTC() {
-        return (int)1989L;
-    }
-    public static int FACILITY_WEP() {
-        return (int)2049L;
-    }
-    public static int FACILITY_SYNCENGINE() {
-        return (int)2050L;
-    }
-    public static int FACILITY_XBOX() {
-        return (int)2339L;
-    }
-    public static int FACILITY_GAME() {
-        return (int)2340L;
-    }
-    public static int FACILITY_PIX() {
-        return (int)2748L;
-    }
-    public static int DNS_ERROR_RESPONSE_CODES_BASE() {
-        return (int)9000L;
-    }
-    public static int DNS_ERROR_MASK() {
-        return (int)9000L;
-    }
-    public static int DNS_ERROR_DNSSEC_BASE() {
-        return (int)9100L;
-    }
-    public static int DNS_ERROR_PACKET_FMT_BASE() {
-        return (int)9500L;
-    }
-    public static int DNS_ERROR_GENERAL_API_BASE() {
-        return (int)9550L;
-    }
-    public static int DNS_ERROR_ZONE_BASE() {
-        return (int)9600L;
-    }
-    public static int DNS_ERROR_DATAFILE_BASE() {
-        return (int)9650L;
-    }
-    public static int DNS_ERROR_DATABASE_BASE() {
-        return (int)9700L;
-    }
-    public static int DNS_ERROR_OPERATION_BASE() {
-        return (int)9750L;
-    }
-    public static int DNS_ERROR_SECURE_BASE() {
-        return (int)9800L;
-    }
-    public static int DNS_ERROR_SETUP_BASE() {
-        return (int)9850L;
-    }
-    public static int DNS_ERROR_DP_BASE() {
-        return (int)9900L;
-    }
-    public static int WSABASEERR() {
-        return (int)10000L;
-    }
-    public static int SEVERITY_SUCCESS() {
-        return (int)0L;
-    }
-    public static int SEVERITY_ERROR() {
-        return (int)1L;
-    }
-    public static int FACILITY_NT_BIT() {
-        return (int)268435456L;
-    }
-    public static int NOERROR() {
-        return (int)0L;
-    }
-    public static int XACT_S_FIRST() {
-        return (int)315392L;
-    }
-    public static int XACT_S_LAST() {
-        return (int)315408L;
-    }
-    public static int NTE_OP_OK() {
-        return (int)0L;
-    }
-    public static int TC_NORMAL() {
-        return (int)0L;
-    }
-    public static int TC_HARDERR() {
-        return (int)1L;
-    }
-    public static int TC_GP_TRAP() {
-        return (int)2L;
-    }
-    public static int TC_SIGNAL() {
-        return (int)3L;
-    }
-    public static int AC_LINE_OFFLINE() {
-        return (int)0L;
-    }
-    public static int AC_LINE_ONLINE() {
-        return (int)1L;
-    }
-    public static int AC_LINE_BACKUP_POWER() {
-        return (int)2L;
-    }
-    public static int AC_LINE_UNKNOWN() {
-        return (int)255L;
-    }
-    public static int BATTERY_FLAG_HIGH() {
-        return (int)1L;
-    }
-    public static int BATTERY_FLAG_LOW() {
-        return (int)2L;
-    }
-    public static int BATTERY_FLAG_CRITICAL() {
-        return (int)4L;
-    }
-    public static int BATTERY_FLAG_CHARGING() {
-        return (int)8L;
-    }
-    public static int BATTERY_FLAG_NO_BATTERY() {
-        return (int)128L;
-    }
-    public static int BATTERY_FLAG_UNKNOWN() {
-        return (int)255L;
-    }
-    public static int BATTERY_PERCENTAGE_UNKNOWN() {
-        return (int)255L;
-    }
-    public static int SYSTEM_STATUS_FLAG_POWER_SAVING_ON() {
-        return (int)1L;
-    }
-    public static int ACTIVATION_CONTEXT_BASIC_INFORMATION_DEFINED() {
-        return (int)1L;
-    }
-    public static int RESTART_MAX_CMD_LINE() {
-        return (int)1024L;
-    }
-    public static int RESTART_NO_CRASH() {
-        return (int)1L;
-    }
-    public static int RESTART_NO_HANG() {
-        return (int)2L;
-    }
-    public static int RESTART_NO_PATCH() {
-        return (int)4L;
-    }
-    public static int RESTART_NO_REBOOT() {
-        return (int)8L;
-    }
-    public static int RECOVERY_DEFAULT_PING_INTERVAL() {
-        return (int)5000L;
-    }
-    public static int FILE_RENAME_FLAG_REPLACE_IF_EXISTS() {
-        return (int)1L;
-    }
-    public static int FILE_RENAME_FLAG_POSIX_SEMANTICS() {
-        return (int)2L;
-    }
-    public static int FILE_RENAME_FLAG_SUPPRESS_PIN_STATE_INHERITANCE() {
-        return (int)4L;
-    }
-    public static int FILE_DISPOSITION_FLAG_DO_NOT_DELETE() {
-        return (int)0L;
-    }
-    public static int FILE_DISPOSITION_FLAG_DELETE() {
-        return (int)1L;
-    }
-    public static int FILE_DISPOSITION_FLAG_POSIX_SEMANTICS() {
-        return (int)2L;
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+public class wgl_h_2 extends wgl_h_3 {
+
+    wgl_h_2() {
+        // Should not be called directly
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_NETSCAPE_CERT_SEQUENCE "2.16.840.1.113730.2.5"
+     * }
+     */
+    public static MemorySegment szOID_NETSCAPE_CERT_SEQUENCE() {
+        class Holder {
+            static final MemorySegment szOID_NETSCAPE_CERT_SEQUENCE
+                = wgl_h.LIBRARY_ARENA.allocateFrom("2.16.840.1.113730.2.5");
+        }
+        return Holder.szOID_NETSCAPE_CERT_SEQUENCE;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CT_PKI_DATA "1.3.6.1.5.5.7.12.2"
+     * }
+     */
+    public static MemorySegment szOID_CT_PKI_DATA() {
+        class Holder {
+            static final MemorySegment szOID_CT_PKI_DATA
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.12.2");
+        }
+        return Holder.szOID_CT_PKI_DATA;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CT_PKI_RESPONSE "1.3.6.1.5.5.7.12.3"
+     * }
+     */
+    public static MemorySegment szOID_CT_PKI_RESPONSE() {
+        class Holder {
+            static final MemorySegment szOID_CT_PKI_RESPONSE
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.12.3");
+        }
+        return Holder.szOID_CT_PKI_RESPONSE;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_PKIX_NO_SIGNATURE "1.3.6.1.5.5.7.6.2"
+     * }
+     */
+    public static MemorySegment szOID_PKIX_NO_SIGNATURE() {
+        class Holder {
+            static final MemorySegment szOID_PKIX_NO_SIGNATURE
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.6.2");
+        }
+        return Holder.szOID_PKIX_NO_SIGNATURE;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC "1.3.6.1.5.5.7.7"
+     * }
+     */
+    public static MemorySegment szOID_CMC() {
+        class Holder {
+            static final MemorySegment szOID_CMC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7");
+        }
+        return Holder.szOID_CMC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_STATUS_INFO "1.3.6.1.5.5.7.7.1"
+     * }
+     */
+    public static MemorySegment szOID_CMC_STATUS_INFO() {
+        class Holder {
+            static final MemorySegment szOID_CMC_STATUS_INFO
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.1");
+        }
+        return Holder.szOID_CMC_STATUS_INFO;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_IDENTIFICATION "1.3.6.1.5.5.7.7.2"
+     * }
+     */
+    public static MemorySegment szOID_CMC_IDENTIFICATION() {
+        class Holder {
+            static final MemorySegment szOID_CMC_IDENTIFICATION
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.2");
+        }
+        return Holder.szOID_CMC_IDENTIFICATION;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_IDENTITY_PROOF "1.3.6.1.5.5.7.7.3"
+     * }
+     */
+    public static MemorySegment szOID_CMC_IDENTITY_PROOF() {
+        class Holder {
+            static final MemorySegment szOID_CMC_IDENTITY_PROOF
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.3");
+        }
+        return Holder.szOID_CMC_IDENTITY_PROOF;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_DATA_RETURN "1.3.6.1.5.5.7.7.4"
+     * }
+     */
+    public static MemorySegment szOID_CMC_DATA_RETURN() {
+        class Holder {
+            static final MemorySegment szOID_CMC_DATA_RETURN
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.4");
+        }
+        return Holder.szOID_CMC_DATA_RETURN;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_TRANSACTION_ID "1.3.6.1.5.5.7.7.5"
+     * }
+     */
+    public static MemorySegment szOID_CMC_TRANSACTION_ID() {
+        class Holder {
+            static final MemorySegment szOID_CMC_TRANSACTION_ID
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.5");
+        }
+        return Holder.szOID_CMC_TRANSACTION_ID;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_SENDER_NONCE "1.3.6.1.5.5.7.7.6"
+     * }
+     */
+    public static MemorySegment szOID_CMC_SENDER_NONCE() {
+        class Holder {
+            static final MemorySegment szOID_CMC_SENDER_NONCE
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.6");
+        }
+        return Holder.szOID_CMC_SENDER_NONCE;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_RECIPIENT_NONCE "1.3.6.1.5.5.7.7.7"
+     * }
+     */
+    public static MemorySegment szOID_CMC_RECIPIENT_NONCE() {
+        class Holder {
+            static final MemorySegment szOID_CMC_RECIPIENT_NONCE
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.7");
+        }
+        return Holder.szOID_CMC_RECIPIENT_NONCE;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_ADD_EXTENSIONS "1.3.6.1.5.5.7.7.8"
+     * }
+     */
+    public static MemorySegment szOID_CMC_ADD_EXTENSIONS() {
+        class Holder {
+            static final MemorySegment szOID_CMC_ADD_EXTENSIONS
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.8");
+        }
+        return Holder.szOID_CMC_ADD_EXTENSIONS;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_ENCRYPTED_POP "1.3.6.1.5.5.7.7.9"
+     * }
+     */
+    public static MemorySegment szOID_CMC_ENCRYPTED_POP() {
+        class Holder {
+            static final MemorySegment szOID_CMC_ENCRYPTED_POP
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.9");
+        }
+        return Holder.szOID_CMC_ENCRYPTED_POP;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_DECRYPTED_POP "1.3.6.1.5.5.7.7.10"
+     * }
+     */
+    public static MemorySegment szOID_CMC_DECRYPTED_POP() {
+        class Holder {
+            static final MemorySegment szOID_CMC_DECRYPTED_POP
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.10");
+        }
+        return Holder.szOID_CMC_DECRYPTED_POP;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_LRA_POP_WITNESS "1.3.6.1.5.5.7.7.11"
+     * }
+     */
+    public static MemorySegment szOID_CMC_LRA_POP_WITNESS() {
+        class Holder {
+            static final MemorySegment szOID_CMC_LRA_POP_WITNESS
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.11");
+        }
+        return Holder.szOID_CMC_LRA_POP_WITNESS;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_GET_CERT "1.3.6.1.5.5.7.7.15"
+     * }
+     */
+    public static MemorySegment szOID_CMC_GET_CERT() {
+        class Holder {
+            static final MemorySegment szOID_CMC_GET_CERT
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.15");
+        }
+        return Holder.szOID_CMC_GET_CERT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_GET_CRL "1.3.6.1.5.5.7.7.16"
+     * }
+     */
+    public static MemorySegment szOID_CMC_GET_CRL() {
+        class Holder {
+            static final MemorySegment szOID_CMC_GET_CRL
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.16");
+        }
+        return Holder.szOID_CMC_GET_CRL;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_REVOKE_REQUEST "1.3.6.1.5.5.7.7.17"
+     * }
+     */
+    public static MemorySegment szOID_CMC_REVOKE_REQUEST() {
+        class Holder {
+            static final MemorySegment szOID_CMC_REVOKE_REQUEST
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.17");
+        }
+        return Holder.szOID_CMC_REVOKE_REQUEST;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_REG_INFO "1.3.6.1.5.5.7.7.18"
+     * }
+     */
+    public static MemorySegment szOID_CMC_REG_INFO() {
+        class Holder {
+            static final MemorySegment szOID_CMC_REG_INFO
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.18");
+        }
+        return Holder.szOID_CMC_REG_INFO;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_RESPONSE_INFO "1.3.6.1.5.5.7.7.19"
+     * }
+     */
+    public static MemorySegment szOID_CMC_RESPONSE_INFO() {
+        class Holder {
+            static final MemorySegment szOID_CMC_RESPONSE_INFO
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.19");
+        }
+        return Holder.szOID_CMC_RESPONSE_INFO;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_QUERY_PENDING "1.3.6.1.5.5.7.7.21"
+     * }
+     */
+    public static MemorySegment szOID_CMC_QUERY_PENDING() {
+        class Holder {
+            static final MemorySegment szOID_CMC_QUERY_PENDING
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.21");
+        }
+        return Holder.szOID_CMC_QUERY_PENDING;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_ID_POP_LINK_RANDOM "1.3.6.1.5.5.7.7.22"
+     * }
+     */
+    public static MemorySegment szOID_CMC_ID_POP_LINK_RANDOM() {
+        class Holder {
+            static final MemorySegment szOID_CMC_ID_POP_LINK_RANDOM
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.22");
+        }
+        return Holder.szOID_CMC_ID_POP_LINK_RANDOM;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_ID_POP_LINK_WITNESS "1.3.6.1.5.5.7.7.23"
+     * }
+     */
+    public static MemorySegment szOID_CMC_ID_POP_LINK_WITNESS() {
+        class Holder {
+            static final MemorySegment szOID_CMC_ID_POP_LINK_WITNESS
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.23");
+        }
+        return Holder.szOID_CMC_ID_POP_LINK_WITNESS;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_ID_CONFIRM_CERT_ACCEPTANCE "1.3.6.1.5.5.7.7.24"
+     * }
+     */
+    public static MemorySegment szOID_CMC_ID_CONFIRM_CERT_ACCEPTANCE() {
+        class Holder {
+            static final MemorySegment szOID_CMC_ID_CONFIRM_CERT_ACCEPTANCE
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.7.24");
+        }
+        return Holder.szOID_CMC_ID_CONFIRM_CERT_ACCEPTANCE;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CMC_ADD_ATTRIBUTES "1.3.6.1.4.1.311.10.10.1"
+     * }
+     */
+    public static MemorySegment szOID_CMC_ADD_ATTRIBUTES() {
+        class Holder {
+            static final MemorySegment szOID_CMC_ADD_ATTRIBUTES
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.4.1.311.10.10.1");
+        }
+        return Holder.szOID_CMC_ADD_ATTRIBUTES;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_LOYALTY_OTHER_LOGOTYPE "1.3.6.1.5.5.7.20.1"
+     * }
+     */
+    public static MemorySegment szOID_LOYALTY_OTHER_LOGOTYPE() {
+        class Holder {
+            static final MemorySegment szOID_LOYALTY_OTHER_LOGOTYPE
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.20.1");
+        }
+        return Holder.szOID_LOYALTY_OTHER_LOGOTYPE;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_BACKGROUND_OTHER_LOGOTYPE "1.3.6.1.5.5.7.20.2"
+     * }
+     */
+    public static MemorySegment szOID_BACKGROUND_OTHER_LOGOTYPE() {
+        class Holder {
+            static final MemorySegment szOID_BACKGROUND_OTHER_LOGOTYPE
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.20.2");
+        }
+        return Holder.szOID_BACKGROUND_OTHER_LOGOTYPE;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_PKIX_OCSP_BASIC_SIGNED_RESPONSE "1.3.6.1.5.5.7.48.1.1"
+     * }
+     */
+    public static MemorySegment szOID_PKIX_OCSP_BASIC_SIGNED_RESPONSE() {
+        class Holder {
+            static final MemorySegment szOID_PKIX_OCSP_BASIC_SIGNED_RESPONSE
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.48.1.1");
+        }
+        return Holder.szOID_PKIX_OCSP_BASIC_SIGNED_RESPONSE;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_ENCODE_OBJECT_FUNC "CryptDllEncodeObject"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_ENCODE_OBJECT_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_ENCODE_OBJECT_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptDllEncodeObject");
+        }
+        return Holder.CRYPT_OID_ENCODE_OBJECT_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_DECODE_OBJECT_FUNC "CryptDllDecodeObject"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_DECODE_OBJECT_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_DECODE_OBJECT_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptDllDecodeObject");
+        }
+        return Holder.CRYPT_OID_DECODE_OBJECT_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_ENCODE_OBJECT_EX_FUNC "CryptDllEncodeObjectEx"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_ENCODE_OBJECT_EX_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_ENCODE_OBJECT_EX_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptDllEncodeObjectEx");
+        }
+        return Holder.CRYPT_OID_ENCODE_OBJECT_EX_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_DECODE_OBJECT_EX_FUNC "CryptDllDecodeObjectEx"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_DECODE_OBJECT_EX_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_DECODE_OBJECT_EX_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptDllDecodeObjectEx");
+        }
+        return Holder.CRYPT_OID_DECODE_OBJECT_EX_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_CREATE_COM_OBJECT_FUNC "CryptDllCreateCOMObject"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_CREATE_COM_OBJECT_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_CREATE_COM_OBJECT_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptDllCreateCOMObject");
+        }
+        return Holder.CRYPT_OID_CREATE_COM_OBJECT_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_VERIFY_REVOCATION_FUNC "CertDllVerifyRevocation"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_VERIFY_REVOCATION_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_VERIFY_REVOCATION_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CertDllVerifyRevocation");
+        }
+        return Holder.CRYPT_OID_VERIFY_REVOCATION_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_VERIFY_CTL_USAGE_FUNC "CertDllVerifyCTLUsage"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_VERIFY_CTL_USAGE_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_VERIFY_CTL_USAGE_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CertDllVerifyCTLUsage");
+        }
+        return Holder.CRYPT_OID_VERIFY_CTL_USAGE_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_FORMAT_OBJECT_FUNC "CryptDllFormatObject"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_FORMAT_OBJECT_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_FORMAT_OBJECT_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptDllFormatObject");
+        }
+        return Holder.CRYPT_OID_FORMAT_OBJECT_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_FIND_OID_INFO_FUNC "CryptDllFindOIDInfo"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_FIND_OID_INFO_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_FIND_OID_INFO_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptDllFindOIDInfo");
+        }
+        return Holder.CRYPT_OID_FIND_OID_INFO_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_FIND_LOCALIZED_NAME_FUNC "CryptDllFindLocalizedName"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_FIND_LOCALIZED_NAME_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_FIND_LOCALIZED_NAME_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptDllFindLocalizedName");
+        }
+        return Holder.CRYPT_OID_FIND_LOCALIZED_NAME_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_REGPATH "Software\Microsoft\Cryptography\OID"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_REGPATH() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_REGPATH
+                = wgl_h.LIBRARY_ARENA.allocateFrom("Software\\Microsoft\\Cryptography\\OID");
+        }
+        return Holder.CRYPT_OID_REGPATH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_REG_ENCODING_TYPE_PREFIX "EncodingType "
+     * }
+     */
+    public static MemorySegment CRYPT_OID_REG_ENCODING_TYPE_PREFIX() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_REG_ENCODING_TYPE_PREFIX
+                = wgl_h.LIBRARY_ARENA.allocateFrom("EncodingType ");
+        }
+        return Holder.CRYPT_OID_REG_ENCODING_TYPE_PREFIX;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_REG_DLL_VALUE_NAME "D"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_REG_DLL_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_REG_DLL_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.CRYPT_OID_REG_DLL_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_REG_FUNC_NAME_VALUE_NAME "F"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_REG_FUNC_NAME_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_REG_FUNC_NAME_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("F");
+        }
+        return Holder.CRYPT_OID_REG_FUNC_NAME_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_REG_FUNC_NAME_VALUE_NAME_A "FuncName"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_REG_FUNC_NAME_VALUE_NAME_A() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_REG_FUNC_NAME_VALUE_NAME_A
+                = wgl_h.LIBRARY_ARENA.allocateFrom("FuncName");
+        }
+        return Holder.CRYPT_OID_REG_FUNC_NAME_VALUE_NAME_A;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_REG_FLAGS_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_REG_FLAGS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_REG_FLAGS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPT_OID_REG_FLAGS_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_DEFAULT_OID "DEFAULT"
+     * }
+     */
+    public static MemorySegment CRYPT_DEFAULT_OID() {
+        class Holder {
+            static final MemorySegment CRYPT_DEFAULT_OID
+                = wgl_h.LIBRARY_ARENA.allocateFrom("DEFAULT");
+        }
+        return Holder.CRYPT_DEFAULT_OID;
+    }
+    private static final int CRYPT_REGISTER_LAST_INDEX = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_REGISTER_LAST_INDEX 4294967295
+     * }
+     */
+    public static int CRYPT_REGISTER_LAST_INDEX() {
+        return CRYPT_REGISTER_LAST_INDEX;
+    }
+    private static final int CRYPT_MATCH_ANY_ENCODING_TYPE = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_MATCH_ANY_ENCODING_TYPE 4294967295
+     * }
+     */
+    public static int CRYPT_MATCH_ANY_ENCODING_TYPE() {
+        return CRYPT_MATCH_ANY_ENCODING_TYPE;
+    }
+    private static final int CALG_OID_INFO_CNG_ONLY = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define CALG_OID_INFO_CNG_ONLY 4294967295
+     * }
+     */
+    public static int CALG_OID_INFO_CNG_ONLY() {
+        return CALG_OID_INFO_CNG_ONLY;
+    }
+    private static final int CALG_OID_INFO_PARAMETERS = (int)4294967294L;
+    /**
+     * {@snippet lang=c :
+     * #define CALG_OID_INFO_PARAMETERS 4294967294
+     * }
+     */
+    public static int CALG_OID_INFO_PARAMETERS() {
+        return CALG_OID_INFO_PARAMETERS;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_INFO_HASH_PARAMETERS_ALGORITHM "C"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_INFO_HASH_PARAMETERS_ALGORITHM() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_INFO_HASH_PARAMETERS_ALGORITHM
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPT_OID_INFO_HASH_PARAMETERS_ALGORITHM;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_INFO_ECC_PARAMETERS_ALGORITHM "C"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_INFO_ECC_PARAMETERS_ALGORITHM() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_INFO_ECC_PARAMETERS_ALGORITHM
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPT_OID_INFO_ECC_PARAMETERS_ALGORITHM;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_INFO_MGF1_PARAMETERS_ALGORITHM "C"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_INFO_MGF1_PARAMETERS_ALGORITHM() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_INFO_MGF1_PARAMETERS_ALGORITHM
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPT_OID_INFO_MGF1_PARAMETERS_ALGORITHM;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_INFO_NO_SIGN_ALGORITHM "C"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_INFO_NO_SIGN_ALGORITHM() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_INFO_NO_SIGN_ALGORITHM
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPT_OID_INFO_NO_SIGN_ALGORITHM;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_INFO_OAEP_PARAMETERS_ALGORITHM "C"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_INFO_OAEP_PARAMETERS_ALGORITHM() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_INFO_OAEP_PARAMETERS_ALGORITHM
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPT_OID_INFO_OAEP_PARAMETERS_ALGORITHM;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_INFO_ECC_WRAP_PARAMETERS_ALGORITHM "C"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_INFO_ECC_WRAP_PARAMETERS_ALGORITHM() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_INFO_ECC_WRAP_PARAMETERS_ALGORITHM
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPT_OID_INFO_ECC_WRAP_PARAMETERS_ALGORITHM;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_INFO_NO_PARAMETERS_ALGORITHM "C"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_INFO_NO_PARAMETERS_ALGORITHM() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_INFO_NO_PARAMETERS_ALGORITHM
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPT_OID_INFO_NO_PARAMETERS_ALGORITHM;
+    }
+    private static final int CRYPT_FIRST_ALG_OID_GROUP_ID = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_FIRST_ALG_OID_GROUP_ID 1
+     * }
+     */
+    public static int CRYPT_FIRST_ALG_OID_GROUP_ID() {
+        return CRYPT_FIRST_ALG_OID_GROUP_ID;
+    }
+    private static final int CRYPT_LAST_ALG_OID_GROUP_ID = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_LAST_ALG_OID_GROUP_ID 4
+     * }
+     */
+    public static int CRYPT_LAST_ALG_OID_GROUP_ID() {
+        return CRYPT_LAST_ALG_OID_GROUP_ID;
+    }
+    private static final int CRYPT_OID_PUBKEY_SIGN_ONLY_FLAG = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_PUBKEY_SIGN_ONLY_FLAG 2147483648
+     * }
+     */
+    public static int CRYPT_OID_PUBKEY_SIGN_ONLY_FLAG() {
+        return CRYPT_OID_PUBKEY_SIGN_ONLY_FLAG;
+    }
+    private static final int CRYPT_OID_INFO_OID_KEY_FLAGS_MASK = (int)4294901760L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_INFO_OID_KEY_FLAGS_MASK 4294901760
+     * }
+     */
+    public static int CRYPT_OID_INFO_OID_KEY_FLAGS_MASK() {
+        return CRYPT_OID_INFO_OID_KEY_FLAGS_MASK;
+    }
+    private static final int CRYPT_OID_INFO_PUBKEY_SIGN_KEY_FLAG = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_INFO_PUBKEY_SIGN_KEY_FLAG 2147483648
+     * }
+     */
+    public static int CRYPT_OID_INFO_PUBKEY_SIGN_KEY_FLAG() {
+        return CRYPT_OID_INFO_PUBKEY_SIGN_KEY_FLAG;
+    }
+    private static final int CRYPT_OID_DISABLE_SEARCH_DS_FLAG = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_DISABLE_SEARCH_DS_FLAG 2147483648
+     * }
+     */
+    public static int CRYPT_OID_DISABLE_SEARCH_DS_FLAG() {
+        return CRYPT_OID_DISABLE_SEARCH_DS_FLAG;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_LOCALIZED_NAME_OID "LocalizedNames"
+     * }
+     */
+    public static MemorySegment CRYPT_LOCALIZED_NAME_OID() {
+        class Holder {
+            static final MemorySegment CRYPT_LOCALIZED_NAME_OID
+                = wgl_h.LIBRARY_ARENA.allocateFrom("LocalizedNames");
+        }
+        return Holder.CRYPT_LOCALIZED_NAME_OID;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STRONG_SIGN_ECDSA_ALGORITHM "E"
+     * }
+     */
+    public static MemorySegment CERT_STRONG_SIGN_ECDSA_ALGORITHM() {
+        class Holder {
+            static final MemorySegment CERT_STRONG_SIGN_ECDSA_ALGORITHM
+                = wgl_h.LIBRARY_ARENA.allocateFrom("E");
+        }
+        return Holder.CERT_STRONG_SIGN_ECDSA_ALGORITHM;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CERT_STRONG_SIGN_OS_PREFIX "1.3.6.1.4.1.311.72.1."
+     * }
+     */
+    public static MemorySegment szOID_CERT_STRONG_SIGN_OS_PREFIX() {
+        class Holder {
+            static final MemorySegment szOID_CERT_STRONG_SIGN_OS_PREFIX
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.4.1.311.72.1.");
+        }
+        return Holder.szOID_CERT_STRONG_SIGN_OS_PREFIX;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CERT_STRONG_SIGN_OS_1 "1.3.6.1.4.1.311.72.1.1"
+     * }
+     */
+    public static MemorySegment szOID_CERT_STRONG_SIGN_OS_1() {
+        class Holder {
+            static final MemorySegment szOID_CERT_STRONG_SIGN_OS_1
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.4.1.311.72.1.1");
+        }
+        return Holder.szOID_CERT_STRONG_SIGN_OS_1;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CERT_STRONG_SIGN_OS_CURRENT "1.3.6.1.4.1.311.72.1.1"
+     * }
+     */
+    public static MemorySegment szOID_CERT_STRONG_SIGN_OS_CURRENT() {
+        class Holder {
+            static final MemorySegment szOID_CERT_STRONG_SIGN_OS_CURRENT
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.4.1.311.72.1.1");
+        }
+        return Holder.szOID_CERT_STRONG_SIGN_OS_CURRENT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CERT_STRONG_KEY_OS_PREFIX "1.3.6.1.4.1.311.72.2."
+     * }
+     */
+    public static MemorySegment szOID_CERT_STRONG_KEY_OS_PREFIX() {
+        class Holder {
+            static final MemorySegment szOID_CERT_STRONG_KEY_OS_PREFIX
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.4.1.311.72.2.");
+        }
+        return Holder.szOID_CERT_STRONG_KEY_OS_PREFIX;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CERT_STRONG_KEY_OS_1 "1.3.6.1.4.1.311.72.2.1"
+     * }
+     */
+    public static MemorySegment szOID_CERT_STRONG_KEY_OS_1() {
+        class Holder {
+            static final MemorySegment szOID_CERT_STRONG_KEY_OS_1
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.4.1.311.72.2.1");
+        }
+        return Holder.szOID_CERT_STRONG_KEY_OS_1;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CERT_STRONG_KEY_OS_CURRENT "1.3.6.1.4.1.311.72.2.1"
+     * }
+     */
+    public static MemorySegment szOID_CERT_STRONG_KEY_OS_CURRENT() {
+        class Holder {
+            static final MemorySegment szOID_CERT_STRONG_KEY_OS_CURRENT
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.4.1.311.72.2.1");
+        }
+        return Holder.szOID_CERT_STRONG_KEY_OS_CURRENT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_PKCS_7_DATA "1.2.840.113549.1.7.1"
+     * }
+     */
+    public static MemorySegment szOID_PKCS_7_DATA() {
+        class Holder {
+            static final MemorySegment szOID_PKCS_7_DATA
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.1.7.1");
+        }
+        return Holder.szOID_PKCS_7_DATA;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_PKCS_7_SIGNED "1.2.840.113549.1.7.2"
+     * }
+     */
+    public static MemorySegment szOID_PKCS_7_SIGNED() {
+        class Holder {
+            static final MemorySegment szOID_PKCS_7_SIGNED
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.1.7.2");
+        }
+        return Holder.szOID_PKCS_7_SIGNED;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_PKCS_7_ENVELOPED "1.2.840.113549.1.7.3"
+     * }
+     */
+    public static MemorySegment szOID_PKCS_7_ENVELOPED() {
+        class Holder {
+            static final MemorySegment szOID_PKCS_7_ENVELOPED
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.1.7.3");
+        }
+        return Holder.szOID_PKCS_7_ENVELOPED;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_PKCS_7_SIGNEDANDENVELOPED "1.2.840.113549.1.7.4"
+     * }
+     */
+    public static MemorySegment szOID_PKCS_7_SIGNEDANDENVELOPED() {
+        class Holder {
+            static final MemorySegment szOID_PKCS_7_SIGNEDANDENVELOPED
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.1.7.4");
+        }
+        return Holder.szOID_PKCS_7_SIGNEDANDENVELOPED;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_PKCS_7_DIGESTED "1.2.840.113549.1.7.5"
+     * }
+     */
+    public static MemorySegment szOID_PKCS_7_DIGESTED() {
+        class Holder {
+            static final MemorySegment szOID_PKCS_7_DIGESTED
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.1.7.5");
+        }
+        return Holder.szOID_PKCS_7_DIGESTED;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_PKCS_7_ENCRYPTED "1.2.840.113549.1.7.6"
+     * }
+     */
+    public static MemorySegment szOID_PKCS_7_ENCRYPTED() {
+        class Holder {
+            static final MemorySegment szOID_PKCS_7_ENCRYPTED
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.1.7.6");
+        }
+        return Holder.szOID_PKCS_7_ENCRYPTED;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_PKCS_9_CONTENT_TYPE "1.2.840.113549.1.9.3"
+     * }
+     */
+    public static MemorySegment szOID_PKCS_9_CONTENT_TYPE() {
+        class Holder {
+            static final MemorySegment szOID_PKCS_9_CONTENT_TYPE
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.1.9.3");
+        }
+        return Holder.szOID_PKCS_9_CONTENT_TYPE;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_PKCS_9_MESSAGE_DIGEST "1.2.840.113549.1.9.4"
+     * }
+     */
+    public static MemorySegment szOID_PKCS_9_MESSAGE_DIGEST() {
+        class Holder {
+            static final MemorySegment szOID_PKCS_9_MESSAGE_DIGEST
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.1.9.4");
+        }
+        return Holder.szOID_PKCS_9_MESSAGE_DIGEST;
+    }
+    private static final int CMSG_ALL_FLAGS = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_ALL_FLAGS 4294967295
+     * }
+     */
+    public static int CMSG_ALL_FLAGS() {
+        return CMSG_ALL_FLAGS;
+    }
+    private static final int CMSG_DATA_FLAG = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_DATA_FLAG 2
+     * }
+     */
+    public static int CMSG_DATA_FLAG() {
+        return CMSG_DATA_FLAG;
+    }
+    private static final int CMSG_SIGNED_FLAG = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_SIGNED_FLAG 4
+     * }
+     */
+    public static int CMSG_SIGNED_FLAG() {
+        return CMSG_SIGNED_FLAG;
+    }
+    private static final int CMSG_ENVELOPED_FLAG = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_ENVELOPED_FLAG 8
+     * }
+     */
+    public static int CMSG_ENVELOPED_FLAG() {
+        return CMSG_ENVELOPED_FLAG;
+    }
+    private static final int CMSG_SIGNED_AND_ENVELOPED_FLAG = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_SIGNED_AND_ENVELOPED_FLAG 16
+     * }
+     */
+    public static int CMSG_SIGNED_AND_ENVELOPED_FLAG() {
+        return CMSG_SIGNED_AND_ENVELOPED_FLAG;
+    }
+    private static final int CMSG_HASHED_FLAG = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_HASHED_FLAG 32
+     * }
+     */
+    public static int CMSG_HASHED_FLAG() {
+        return CMSG_HASHED_FLAG;
+    }
+    private static final int CMSG_ENCRYPTED_FLAG = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_ENCRYPTED_FLAG 64
+     * }
+     */
+    public static int CMSG_ENCRYPTED_FLAG() {
+        return CMSG_ENCRYPTED_FLAG;
+    }
+    private static final int CMSG_SP3_COMPATIBLE_ENCRYPT_FLAG = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_SP3_COMPATIBLE_ENCRYPT_FLAG 2147483648
+     * }
+     */
+    public static int CMSG_SP3_COMPATIBLE_ENCRYPT_FLAG() {
+        return CMSG_SP3_COMPATIBLE_ENCRYPT_FLAG;
+    }
+    private static final int CMSG_INDEFINITE_LENGTH = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_INDEFINITE_LENGTH 4294967295
+     * }
+     */
+    public static int CMSG_INDEFINITE_LENGTH() {
+        return CMSG_INDEFINITE_LENGTH;
+    }
+    private static final int CMSG_SIGNED_DATA_PKCS_1_5_VERSION = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_SIGNED_DATA_PKCS_1_5_VERSION 1
+     * }
+     */
+    public static int CMSG_SIGNED_DATA_PKCS_1_5_VERSION() {
+        return CMSG_SIGNED_DATA_PKCS_1_5_VERSION;
+    }
+    private static final int CMSG_SIGNED_DATA_CMS_VERSION = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_SIGNED_DATA_CMS_VERSION 3
+     * }
+     */
+    public static int CMSG_SIGNED_DATA_CMS_VERSION() {
+        return CMSG_SIGNED_DATA_CMS_VERSION;
+    }
+    private static final int CMSG_SIGNER_INFO_PKCS_1_5_VERSION = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_SIGNER_INFO_PKCS_1_5_VERSION 1
+     * }
+     */
+    public static int CMSG_SIGNER_INFO_PKCS_1_5_VERSION() {
+        return CMSG_SIGNER_INFO_PKCS_1_5_VERSION;
+    }
+    private static final int CMSG_SIGNER_INFO_CMS_VERSION = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_SIGNER_INFO_CMS_VERSION 3
+     * }
+     */
+    public static int CMSG_SIGNER_INFO_CMS_VERSION() {
+        return CMSG_SIGNER_INFO_CMS_VERSION;
+    }
+    private static final int CMSG_HASHED_DATA_PKCS_1_5_VERSION = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_HASHED_DATA_PKCS_1_5_VERSION 0
+     * }
+     */
+    public static int CMSG_HASHED_DATA_PKCS_1_5_VERSION() {
+        return CMSG_HASHED_DATA_PKCS_1_5_VERSION;
+    }
+    private static final int CMSG_HASHED_DATA_CMS_VERSION = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_HASHED_DATA_CMS_VERSION 2
+     * }
+     */
+    public static int CMSG_HASHED_DATA_CMS_VERSION() {
+        return CMSG_HASHED_DATA_CMS_VERSION;
+    }
+    private static final int CMSG_ENVELOPED_DATA_PKCS_1_5_VERSION = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_ENVELOPED_DATA_PKCS_1_5_VERSION 0
+     * }
+     */
+    public static int CMSG_ENVELOPED_DATA_PKCS_1_5_VERSION() {
+        return CMSG_ENVELOPED_DATA_PKCS_1_5_VERSION;
+    }
+    private static final int CMSG_ENVELOPED_DATA_CMS_VERSION = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_ENVELOPED_DATA_CMS_VERSION 2
+     * }
+     */
+    public static int CMSG_ENVELOPED_DATA_CMS_VERSION() {
+        return CMSG_ENVELOPED_DATA_CMS_VERSION;
+    }
+    private static final int CMSG_KEY_TRANS_PKCS_1_5_VERSION = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_KEY_TRANS_PKCS_1_5_VERSION 0
+     * }
+     */
+    public static int CMSG_KEY_TRANS_PKCS_1_5_VERSION() {
+        return CMSG_KEY_TRANS_PKCS_1_5_VERSION;
+    }
+    private static final int CMSG_KEY_TRANS_CMS_VERSION = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_KEY_TRANS_CMS_VERSION 2
+     * }
+     */
+    public static int CMSG_KEY_TRANS_CMS_VERSION() {
+        return CMSG_KEY_TRANS_CMS_VERSION;
+    }
+    private static final int CMSG_KEY_AGREE_VERSION = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_KEY_AGREE_VERSION 3
+     * }
+     */
+    public static int CMSG_KEY_AGREE_VERSION() {
+        return CMSG_KEY_AGREE_VERSION;
+    }
+    private static final int CMSG_MAIL_LIST_VERSION = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_MAIL_LIST_VERSION 4
+     * }
+     */
+    public static int CMSG_MAIL_LIST_VERSION() {
+        return CMSG_MAIL_LIST_VERSION;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_GEN_ENCRYPT_KEY_FUNC "CryptMsgDllGenEncryptKey"
+     * }
+     */
+    public static MemorySegment CMSG_OID_GEN_ENCRYPT_KEY_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_GEN_ENCRYPT_KEY_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllGenEncryptKey");
+        }
+        return Holder.CMSG_OID_GEN_ENCRYPT_KEY_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_EXPORT_ENCRYPT_KEY_FUNC "CryptMsgDllExportEncryptKey"
+     * }
+     */
+    public static MemorySegment CMSG_OID_EXPORT_ENCRYPT_KEY_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_EXPORT_ENCRYPT_KEY_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllExportEncryptKey");
+        }
+        return Holder.CMSG_OID_EXPORT_ENCRYPT_KEY_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_IMPORT_ENCRYPT_KEY_FUNC "CryptMsgDllImportEncryptKey"
+     * }
+     */
+    public static MemorySegment CMSG_OID_IMPORT_ENCRYPT_KEY_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_IMPORT_ENCRYPT_KEY_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllImportEncryptKey");
+        }
+        return Holder.CMSG_OID_IMPORT_ENCRYPT_KEY_FUNC;
+    }
+    private static final MemorySegment CMSG_DEFAULT_INSTALLABLE_FUNC_OID = MemorySegment.ofAddress(1L);
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_DEFAULT_INSTALLABLE_FUNC_OID (void*) 1
+     * }
+     */
+    public static MemorySegment CMSG_DEFAULT_INSTALLABLE_FUNC_OID() {
+        return CMSG_DEFAULT_INSTALLABLE_FUNC_OID;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_GEN_CONTENT_ENCRYPT_KEY_FUNC "CryptMsgDllGenContentEncryptKey"
+     * }
+     */
+    public static MemorySegment CMSG_OID_GEN_CONTENT_ENCRYPT_KEY_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_GEN_CONTENT_ENCRYPT_KEY_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllGenContentEncryptKey");
+        }
+        return Holder.CMSG_OID_GEN_CONTENT_ENCRYPT_KEY_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_CAPI1_GEN_CONTENT_ENCRYPT_KEY_FUNC "CryptMsgDllGenContentEncryptKey"
+     * }
+     */
+    public static MemorySegment CMSG_OID_CAPI1_GEN_CONTENT_ENCRYPT_KEY_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_CAPI1_GEN_CONTENT_ENCRYPT_KEY_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllGenContentEncryptKey");
+        }
+        return Holder.CMSG_OID_CAPI1_GEN_CONTENT_ENCRYPT_KEY_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_CNG_GEN_CONTENT_ENCRYPT_KEY_FUNC "CryptMsgDllCNGGenContentEncryptKey"
+     * }
+     */
+    public static MemorySegment CMSG_OID_CNG_GEN_CONTENT_ENCRYPT_KEY_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_CNG_GEN_CONTENT_ENCRYPT_KEY_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllCNGGenContentEncryptKey");
+        }
+        return Holder.CMSG_OID_CNG_GEN_CONTENT_ENCRYPT_KEY_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_EXPORT_KEY_TRANS_FUNC "CryptMsgDllExportKeyTrans"
+     * }
+     */
+    public static MemorySegment CMSG_OID_EXPORT_KEY_TRANS_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_EXPORT_KEY_TRANS_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllExportKeyTrans");
+        }
+        return Holder.CMSG_OID_EXPORT_KEY_TRANS_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_CAPI1_EXPORT_KEY_TRANS_FUNC "CryptMsgDllExportKeyTrans"
+     * }
+     */
+    public static MemorySegment CMSG_OID_CAPI1_EXPORT_KEY_TRANS_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_CAPI1_EXPORT_KEY_TRANS_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllExportKeyTrans");
+        }
+        return Holder.CMSG_OID_CAPI1_EXPORT_KEY_TRANS_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_CNG_EXPORT_KEY_TRANS_FUNC "CryptMsgDllCNGExportKeyTrans"
+     * }
+     */
+    public static MemorySegment CMSG_OID_CNG_EXPORT_KEY_TRANS_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_CNG_EXPORT_KEY_TRANS_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllCNGExportKeyTrans");
+        }
+        return Holder.CMSG_OID_CNG_EXPORT_KEY_TRANS_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_EXPORT_KEY_AGREE_FUNC "CryptMsgDllExportKeyAgree"
+     * }
+     */
+    public static MemorySegment CMSG_OID_EXPORT_KEY_AGREE_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_EXPORT_KEY_AGREE_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllExportKeyAgree");
+        }
+        return Holder.CMSG_OID_EXPORT_KEY_AGREE_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_CAPI1_EXPORT_KEY_AGREE_FUNC "CryptMsgDllExportKeyAgree"
+     * }
+     */
+    public static MemorySegment CMSG_OID_CAPI1_EXPORT_KEY_AGREE_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_CAPI1_EXPORT_KEY_AGREE_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllExportKeyAgree");
+        }
+        return Holder.CMSG_OID_CAPI1_EXPORT_KEY_AGREE_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_CNG_EXPORT_KEY_AGREE_FUNC "CryptMsgDllCNGExportKeyAgree"
+     * }
+     */
+    public static MemorySegment CMSG_OID_CNG_EXPORT_KEY_AGREE_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_CNG_EXPORT_KEY_AGREE_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllCNGExportKeyAgree");
+        }
+        return Holder.CMSG_OID_CNG_EXPORT_KEY_AGREE_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_EXPORT_MAIL_LIST_FUNC "CryptMsgDllExportMailList"
+     * }
+     */
+    public static MemorySegment CMSG_OID_EXPORT_MAIL_LIST_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_EXPORT_MAIL_LIST_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllExportMailList");
+        }
+        return Holder.CMSG_OID_EXPORT_MAIL_LIST_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_CAPI1_EXPORT_MAIL_LIST_FUNC "CryptMsgDllExportMailList"
+     * }
+     */
+    public static MemorySegment CMSG_OID_CAPI1_EXPORT_MAIL_LIST_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_CAPI1_EXPORT_MAIL_LIST_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllExportMailList");
+        }
+        return Holder.CMSG_OID_CAPI1_EXPORT_MAIL_LIST_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_IMPORT_KEY_TRANS_FUNC "CryptMsgDllImportKeyTrans"
+     * }
+     */
+    public static MemorySegment CMSG_OID_IMPORT_KEY_TRANS_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_IMPORT_KEY_TRANS_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllImportKeyTrans");
+        }
+        return Holder.CMSG_OID_IMPORT_KEY_TRANS_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_CAPI1_IMPORT_KEY_TRANS_FUNC "CryptMsgDllImportKeyTrans"
+     * }
+     */
+    public static MemorySegment CMSG_OID_CAPI1_IMPORT_KEY_TRANS_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_CAPI1_IMPORT_KEY_TRANS_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllImportKeyTrans");
+        }
+        return Holder.CMSG_OID_CAPI1_IMPORT_KEY_TRANS_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_IMPORT_KEY_AGREE_FUNC "CryptMsgDllImportKeyAgree"
+     * }
+     */
+    public static MemorySegment CMSG_OID_IMPORT_KEY_AGREE_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_IMPORT_KEY_AGREE_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllImportKeyAgree");
+        }
+        return Holder.CMSG_OID_IMPORT_KEY_AGREE_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_CAPI1_IMPORT_KEY_AGREE_FUNC "CryptMsgDllImportKeyAgree"
+     * }
+     */
+    public static MemorySegment CMSG_OID_CAPI1_IMPORT_KEY_AGREE_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_CAPI1_IMPORT_KEY_AGREE_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllImportKeyAgree");
+        }
+        return Holder.CMSG_OID_CAPI1_IMPORT_KEY_AGREE_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_IMPORT_MAIL_LIST_FUNC "CryptMsgDllImportMailList"
+     * }
+     */
+    public static MemorySegment CMSG_OID_IMPORT_MAIL_LIST_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_IMPORT_MAIL_LIST_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllImportMailList");
+        }
+        return Holder.CMSG_OID_IMPORT_MAIL_LIST_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_CAPI1_IMPORT_MAIL_LIST_FUNC "CryptMsgDllImportMailList"
+     * }
+     */
+    public static MemorySegment CMSG_OID_CAPI1_IMPORT_MAIL_LIST_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_CAPI1_IMPORT_MAIL_LIST_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllImportMailList");
+        }
+        return Holder.CMSG_OID_CAPI1_IMPORT_MAIL_LIST_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_CNG_IMPORT_KEY_TRANS_FUNC "CryptMsgDllCNGImportKeyTrans"
+     * }
+     */
+    public static MemorySegment CMSG_OID_CNG_IMPORT_KEY_TRANS_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_CNG_IMPORT_KEY_TRANS_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllCNGImportKeyTrans");
+        }
+        return Holder.CMSG_OID_CNG_IMPORT_KEY_TRANS_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_CNG_IMPORT_KEY_AGREE_FUNC "CryptMsgDllCNGImportKeyAgree"
+     * }
+     */
+    public static MemorySegment CMSG_OID_CNG_IMPORT_KEY_AGREE_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_CNG_IMPORT_KEY_AGREE_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllCNGImportKeyAgree");
+        }
+        return Holder.CMSG_OID_CNG_IMPORT_KEY_AGREE_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CMSG_OID_CNG_IMPORT_CONTENT_ENCRYPT_KEY_FUNC "CryptMsgDllCNGImportContentEncryptKey"
+     * }
+     */
+    public static MemorySegment CMSG_OID_CNG_IMPORT_CONTENT_ENCRYPT_KEY_FUNC() {
+        class Holder {
+            static final MemorySegment CMSG_OID_CNG_IMPORT_CONTENT_ENCRYPT_KEY_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptMsgDllCNGImportContentEncryptKey");
+        }
+        return Holder.CMSG_OID_CNG_IMPORT_CONTENT_ENCRYPT_KEY_FUNC;
+    }
+    private static final int CERT_HASH_PROP_ID = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_HASH_PROP_ID 3
+     * }
+     */
+    public static int CERT_HASH_PROP_ID() {
+        return CERT_HASH_PROP_ID;
+    }
+    private static final int CERT_CTL_USAGE_PROP_ID = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CTL_USAGE_PROP_ID 9
+     * }
+     */
+    public static int CERT_CTL_USAGE_PROP_ID() {
+        return CERT_CTL_USAGE_PROP_ID;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CERT_PROP_ID_PREFIX "1.3.6.1.4.1.311.10.11."
+     * }
+     */
+    public static MemorySegment szOID_CERT_PROP_ID_PREFIX() {
+        class Holder {
+            static final MemorySegment szOID_CERT_PROP_ID_PREFIX
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.4.1.311.10.11.");
+        }
+        return Holder.szOID_CERT_PROP_ID_PREFIX;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CERT_KEY_IDENTIFIER_PROP_ID "1.3.6.1.4.1.311.10.11.20"
+     * }
+     */
+    public static MemorySegment szOID_CERT_KEY_IDENTIFIER_PROP_ID() {
+        class Holder {
+            static final MemorySegment szOID_CERT_KEY_IDENTIFIER_PROP_ID
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.4.1.311.10.11.20");
+        }
+        return Holder.szOID_CERT_KEY_IDENTIFIER_PROP_ID;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CERT_ISSUER_SERIAL_NUMBER_MD5_HASH_PROP_ID "1.3.6.1.4.1.311.10.11.28"
+     * }
+     */
+    public static MemorySegment szOID_CERT_ISSUER_SERIAL_NUMBER_MD5_HASH_PROP_ID() {
+        class Holder {
+            static final MemorySegment szOID_CERT_ISSUER_SERIAL_NUMBER_MD5_HASH_PROP_ID
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.4.1.311.10.11.28");
+        }
+        return Holder.szOID_CERT_ISSUER_SERIAL_NUMBER_MD5_HASH_PROP_ID;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CERT_SUBJECT_NAME_MD5_HASH_PROP_ID "1.3.6.1.4.1.311.10.11.29"
+     * }
+     */
+    public static MemorySegment szOID_CERT_SUBJECT_NAME_MD5_HASH_PROP_ID() {
+        class Holder {
+            static final MemorySegment szOID_CERT_SUBJECT_NAME_MD5_HASH_PROP_ID
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.4.1.311.10.11.29");
+        }
+        return Holder.szOID_CERT_SUBJECT_NAME_MD5_HASH_PROP_ID;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CERT_MD5_HASH_PROP_ID "1.3.6.1.4.1.311.10.11.4"
+     * }
+     */
+    public static MemorySegment szOID_CERT_MD5_HASH_PROP_ID() {
+        class Holder {
+            static final MemorySegment szOID_CERT_MD5_HASH_PROP_ID
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.4.1.311.10.11.4");
+        }
+        return Holder.szOID_CERT_MD5_HASH_PROP_ID;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CERT_SIGNATURE_HASH_PROP_ID "1.3.6.1.4.1.311.10.11.15"
+     * }
+     */
+    public static MemorySegment szOID_CERT_SIGNATURE_HASH_PROP_ID() {
+        class Holder {
+            static final MemorySegment szOID_CERT_SIGNATURE_HASH_PROP_ID
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.4.1.311.10.11.15");
+        }
+        return Holder.szOID_CERT_SIGNATURE_HASH_PROP_ID;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_DISALLOWED_HASH "1.3.6.1.4.1.311.10.11.15"
+     * }
+     */
+    public static MemorySegment szOID_DISALLOWED_HASH() {
+        class Holder {
+            static final MemorySegment szOID_DISALLOWED_HASH
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.4.1.311.10.11.15");
+        }
+        return Holder.szOID_DISALLOWED_HASH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_CERT_DISALLOWED_FILETIME_PROP_ID "1.3.6.1.4.1.311.10.11.104"
+     * }
+     */
+    public static MemorySegment szOID_CERT_DISALLOWED_FILETIME_PROP_ID() {
+        class Holder {
+            static final MemorySegment szOID_CERT_DISALLOWED_FILETIME_PROP_ID
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.4.1.311.10.11.104");
+        }
+        return Holder.szOID_CERT_DISALLOWED_FILETIME_PROP_ID;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_ROOT_PROGRAM_AUTO_UPDATE_CA_REVOCATION "1.3.6.1.4.1.311.60.3.1"
+     * }
+     */
+    public static MemorySegment szOID_ROOT_PROGRAM_AUTO_UPDATE_CA_REVOCATION() {
+        class Holder {
+            static final MemorySegment szOID_ROOT_PROGRAM_AUTO_UPDATE_CA_REVOCATION
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.4.1.311.60.3.1");
+        }
+        return Holder.szOID_ROOT_PROGRAM_AUTO_UPDATE_CA_REVOCATION;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_ROOT_PROGRAM_AUTO_UPDATE_END_REVOCATION "1.3.6.1.4.1.311.60.3.2"
+     * }
+     */
+    public static MemorySegment szOID_ROOT_PROGRAM_AUTO_UPDATE_END_REVOCATION() {
+        class Holder {
+            static final MemorySegment szOID_ROOT_PROGRAM_AUTO_UPDATE_END_REVOCATION
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.4.1.311.60.3.2");
+        }
+        return Holder.szOID_ROOT_PROGRAM_AUTO_UPDATE_END_REVOCATION;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_ROOT_PROGRAM_NO_OCSP_FAILOVER_TO_CRL "1.3.6.1.4.1.311.60.3.3"
+     * }
+     */
+    public static MemorySegment szOID_ROOT_PROGRAM_NO_OCSP_FAILOVER_TO_CRL() {
+        class Holder {
+            static final MemorySegment szOID_ROOT_PROGRAM_NO_OCSP_FAILOVER_TO_CRL
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.4.1.311.60.3.3");
+        }
+        return Holder.szOID_ROOT_PROGRAM_NO_OCSP_FAILOVER_TO_CRL;
+    }
+    private static final int CERT_NCRYPT_KEY_SPEC = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_NCRYPT_KEY_SPEC 4294967295
+     * }
+     */
+    public static int CERT_NCRYPT_KEY_SPEC() {
+        return CERT_NCRYPT_KEY_SPEC;
+    }
+    private static final MemorySegment CERT_STORE_PROV_MSG = MemorySegment.ofAddress(1L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_MSG (void*) 1
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_MSG() {
+        return CERT_STORE_PROV_MSG;
+    }
+    private static final MemorySegment CERT_STORE_PROV_MEMORY = MemorySegment.ofAddress(2L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_MEMORY (void*) 2
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_MEMORY() {
+        return CERT_STORE_PROV_MEMORY;
+    }
+    private static final MemorySegment CERT_STORE_PROV_FILE = MemorySegment.ofAddress(3L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_FILE (void*) 3
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_FILE() {
+        return CERT_STORE_PROV_FILE;
+    }
+    private static final MemorySegment CERT_STORE_PROV_REG = MemorySegment.ofAddress(4L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_REG (void*) 4
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_REG() {
+        return CERT_STORE_PROV_REG;
+    }
+    private static final MemorySegment CERT_STORE_PROV_PKCS7 = MemorySegment.ofAddress(5L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_PKCS7 (void*) 5
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_PKCS7() {
+        return CERT_STORE_PROV_PKCS7;
+    }
+    private static final MemorySegment CERT_STORE_PROV_SERIALIZED = MemorySegment.ofAddress(6L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_SERIALIZED (void*) 6
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_SERIALIZED() {
+        return CERT_STORE_PROV_SERIALIZED;
+    }
+    private static final MemorySegment CERT_STORE_PROV_FILENAME_A = MemorySegment.ofAddress(7L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_FILENAME_A (void*) 7
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_FILENAME_A() {
+        return CERT_STORE_PROV_FILENAME_A;
+    }
+    private static final MemorySegment CERT_STORE_PROV_FILENAME_W = MemorySegment.ofAddress(8L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_FILENAME_W (void*) 8
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_FILENAME_W() {
+        return CERT_STORE_PROV_FILENAME_W;
+    }
+    private static final MemorySegment CERT_STORE_PROV_FILENAME = MemorySegment.ofAddress(8L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_FILENAME (void*) 8
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_FILENAME() {
+        return CERT_STORE_PROV_FILENAME;
+    }
+    private static final MemorySegment CERT_STORE_PROV_SYSTEM_A = MemorySegment.ofAddress(9L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_SYSTEM_A (void*) 9
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_SYSTEM_A() {
+        return CERT_STORE_PROV_SYSTEM_A;
+    }
+    private static final MemorySegment CERT_STORE_PROV_SYSTEM_W = MemorySegment.ofAddress(10L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_SYSTEM_W (void*) 10
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_SYSTEM_W() {
+        return CERT_STORE_PROV_SYSTEM_W;
+    }
+    private static final MemorySegment CERT_STORE_PROV_SYSTEM = MemorySegment.ofAddress(10L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_SYSTEM (void*) 10
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_SYSTEM() {
+        return CERT_STORE_PROV_SYSTEM;
+    }
+    private static final MemorySegment CERT_STORE_PROV_COLLECTION = MemorySegment.ofAddress(11L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_COLLECTION (void*) 11
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_COLLECTION() {
+        return CERT_STORE_PROV_COLLECTION;
+    }
+    private static final MemorySegment CERT_STORE_PROV_SYSTEM_REGISTRY_A = MemorySegment.ofAddress(12L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_SYSTEM_REGISTRY_A (void*) 12
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_SYSTEM_REGISTRY_A() {
+        return CERT_STORE_PROV_SYSTEM_REGISTRY_A;
+    }
+    private static final MemorySegment CERT_STORE_PROV_SYSTEM_REGISTRY_W = MemorySegment.ofAddress(13L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_SYSTEM_REGISTRY_W (void*) 13
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_SYSTEM_REGISTRY_W() {
+        return CERT_STORE_PROV_SYSTEM_REGISTRY_W;
+    }
+    private static final MemorySegment CERT_STORE_PROV_SYSTEM_REGISTRY = MemorySegment.ofAddress(13L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_SYSTEM_REGISTRY (void*) 13
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_SYSTEM_REGISTRY() {
+        return CERT_STORE_PROV_SYSTEM_REGISTRY;
+    }
+    private static final MemorySegment CERT_STORE_PROV_PHYSICAL_W = MemorySegment.ofAddress(14L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_PHYSICAL_W (void*) 14
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_PHYSICAL_W() {
+        return CERT_STORE_PROV_PHYSICAL_W;
+    }
+    private static final MemorySegment CERT_STORE_PROV_PHYSICAL = MemorySegment.ofAddress(14L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_PHYSICAL (void*) 14
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_PHYSICAL() {
+        return CERT_STORE_PROV_PHYSICAL;
+    }
+    private static final MemorySegment CERT_STORE_PROV_SMART_CARD_W = MemorySegment.ofAddress(15L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_SMART_CARD_W (void*) 15
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_SMART_CARD_W() {
+        return CERT_STORE_PROV_SMART_CARD_W;
+    }
+    private static final MemorySegment CERT_STORE_PROV_SMART_CARD = MemorySegment.ofAddress(15L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_SMART_CARD (void*) 15
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_SMART_CARD() {
+        return CERT_STORE_PROV_SMART_CARD;
+    }
+    private static final MemorySegment CERT_STORE_PROV_LDAP_W = MemorySegment.ofAddress(16L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_LDAP_W (void*) 16
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_LDAP_W() {
+        return CERT_STORE_PROV_LDAP_W;
+    }
+    private static final MemorySegment CERT_STORE_PROV_LDAP = MemorySegment.ofAddress(16L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_LDAP (void*) 16
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_LDAP() {
+        return CERT_STORE_PROV_LDAP;
+    }
+    private static final MemorySegment CERT_STORE_PROV_PKCS12 = MemorySegment.ofAddress(17L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_PROV_PKCS12 (void*) 17
+     * }
+     */
+    public static MemorySegment CERT_STORE_PROV_PKCS12() {
+        return CERT_STORE_PROV_PKCS12;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define sz_CERT_STORE_PROV_MEMORY "Memory"
+     * }
+     */
+    public static MemorySegment sz_CERT_STORE_PROV_MEMORY() {
+        class Holder {
+            static final MemorySegment sz_CERT_STORE_PROV_MEMORY
+                = wgl_h.LIBRARY_ARENA.allocateFrom("Memory");
+        }
+        return Holder.sz_CERT_STORE_PROV_MEMORY;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define sz_CERT_STORE_PROV_FILENAME_W "File"
+     * }
+     */
+    public static MemorySegment sz_CERT_STORE_PROV_FILENAME_W() {
+        class Holder {
+            static final MemorySegment sz_CERT_STORE_PROV_FILENAME_W
+                = wgl_h.LIBRARY_ARENA.allocateFrom("File");
+        }
+        return Holder.sz_CERT_STORE_PROV_FILENAME_W;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define sz_CERT_STORE_PROV_FILENAME "File"
+     * }
+     */
+    public static MemorySegment sz_CERT_STORE_PROV_FILENAME() {
+        class Holder {
+            static final MemorySegment sz_CERT_STORE_PROV_FILENAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("File");
+        }
+        return Holder.sz_CERT_STORE_PROV_FILENAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define sz_CERT_STORE_PROV_SYSTEM_W "System"
+     * }
+     */
+    public static MemorySegment sz_CERT_STORE_PROV_SYSTEM_W() {
+        class Holder {
+            static final MemorySegment sz_CERT_STORE_PROV_SYSTEM_W
+                = wgl_h.LIBRARY_ARENA.allocateFrom("System");
+        }
+        return Holder.sz_CERT_STORE_PROV_SYSTEM_W;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define sz_CERT_STORE_PROV_SYSTEM "System"
+     * }
+     */
+    public static MemorySegment sz_CERT_STORE_PROV_SYSTEM() {
+        class Holder {
+            static final MemorySegment sz_CERT_STORE_PROV_SYSTEM
+                = wgl_h.LIBRARY_ARENA.allocateFrom("System");
+        }
+        return Holder.sz_CERT_STORE_PROV_SYSTEM;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define sz_CERT_STORE_PROV_PKCS7 "PKCS7"
+     * }
+     */
+    public static MemorySegment sz_CERT_STORE_PROV_PKCS7() {
+        class Holder {
+            static final MemorySegment sz_CERT_STORE_PROV_PKCS7
+                = wgl_h.LIBRARY_ARENA.allocateFrom("PKCS7");
+        }
+        return Holder.sz_CERT_STORE_PROV_PKCS7;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define sz_CERT_STORE_PROV_PKCS12 "PKCS12"
+     * }
+     */
+    public static MemorySegment sz_CERT_STORE_PROV_PKCS12() {
+        class Holder {
+            static final MemorySegment sz_CERT_STORE_PROV_PKCS12
+                = wgl_h.LIBRARY_ARENA.allocateFrom("PKCS12");
+        }
+        return Holder.sz_CERT_STORE_PROV_PKCS12;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define sz_CERT_STORE_PROV_SERIALIZED "Serialized"
+     * }
+     */
+    public static MemorySegment sz_CERT_STORE_PROV_SERIALIZED() {
+        class Holder {
+            static final MemorySegment sz_CERT_STORE_PROV_SERIALIZED
+                = wgl_h.LIBRARY_ARENA.allocateFrom("Serialized");
+        }
+        return Holder.sz_CERT_STORE_PROV_SERIALIZED;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define sz_CERT_STORE_PROV_COLLECTION "Collection"
+     * }
+     */
+    public static MemorySegment sz_CERT_STORE_PROV_COLLECTION() {
+        class Holder {
+            static final MemorySegment sz_CERT_STORE_PROV_COLLECTION
+                = wgl_h.LIBRARY_ARENA.allocateFrom("Collection");
+        }
+        return Holder.sz_CERT_STORE_PROV_COLLECTION;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define sz_CERT_STORE_PROV_SYSTEM_REGISTRY_W "SystemRegistry"
+     * }
+     */
+    public static MemorySegment sz_CERT_STORE_PROV_SYSTEM_REGISTRY_W() {
+        class Holder {
+            static final MemorySegment sz_CERT_STORE_PROV_SYSTEM_REGISTRY_W
+                = wgl_h.LIBRARY_ARENA.allocateFrom("SystemRegistry");
+        }
+        return Holder.sz_CERT_STORE_PROV_SYSTEM_REGISTRY_W;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define sz_CERT_STORE_PROV_SYSTEM_REGISTRY "SystemRegistry"
+     * }
+     */
+    public static MemorySegment sz_CERT_STORE_PROV_SYSTEM_REGISTRY() {
+        class Holder {
+            static final MemorySegment sz_CERT_STORE_PROV_SYSTEM_REGISTRY
+                = wgl_h.LIBRARY_ARENA.allocateFrom("SystemRegistry");
+        }
+        return Holder.sz_CERT_STORE_PROV_SYSTEM_REGISTRY;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define sz_CERT_STORE_PROV_PHYSICAL_W "Physical"
+     * }
+     */
+    public static MemorySegment sz_CERT_STORE_PROV_PHYSICAL_W() {
+        class Holder {
+            static final MemorySegment sz_CERT_STORE_PROV_PHYSICAL_W
+                = wgl_h.LIBRARY_ARENA.allocateFrom("Physical");
+        }
+        return Holder.sz_CERT_STORE_PROV_PHYSICAL_W;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define sz_CERT_STORE_PROV_PHYSICAL "Physical"
+     * }
+     */
+    public static MemorySegment sz_CERT_STORE_PROV_PHYSICAL() {
+        class Holder {
+            static final MemorySegment sz_CERT_STORE_PROV_PHYSICAL
+                = wgl_h.LIBRARY_ARENA.allocateFrom("Physical");
+        }
+        return Holder.sz_CERT_STORE_PROV_PHYSICAL;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define sz_CERT_STORE_PROV_SMART_CARD_W "SmartCard"
+     * }
+     */
+    public static MemorySegment sz_CERT_STORE_PROV_SMART_CARD_W() {
+        class Holder {
+            static final MemorySegment sz_CERT_STORE_PROV_SMART_CARD_W
+                = wgl_h.LIBRARY_ARENA.allocateFrom("SmartCard");
+        }
+        return Holder.sz_CERT_STORE_PROV_SMART_CARD_W;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define sz_CERT_STORE_PROV_SMART_CARD "SmartCard"
+     * }
+     */
+    public static MemorySegment sz_CERT_STORE_PROV_SMART_CARD() {
+        class Holder {
+            static final MemorySegment sz_CERT_STORE_PROV_SMART_CARD
+                = wgl_h.LIBRARY_ARENA.allocateFrom("SmartCard");
+        }
+        return Holder.sz_CERT_STORE_PROV_SMART_CARD;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define sz_CERT_STORE_PROV_LDAP_W "Ldap"
+     * }
+     */
+    public static MemorySegment sz_CERT_STORE_PROV_LDAP_W() {
+        class Holder {
+            static final MemorySegment sz_CERT_STORE_PROV_LDAP_W
+                = wgl_h.LIBRARY_ARENA.allocateFrom("Ldap");
+        }
+        return Holder.sz_CERT_STORE_PROV_LDAP_W;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define sz_CERT_STORE_PROV_LDAP "Ldap"
+     * }
+     */
+    public static MemorySegment sz_CERT_STORE_PROV_LDAP() {
+        class Holder {
+            static final MemorySegment sz_CERT_STORE_PROV_LDAP
+                = wgl_h.LIBRARY_ARENA.allocateFrom("Ldap");
+        }
+        return Holder.sz_CERT_STORE_PROV_LDAP;
+    }
+    private static final int CERT_SYSTEM_STORE_MASK = (int)4294901760L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SYSTEM_STORE_MASK 4294901760
+     * }
+     */
+    public static int CERT_SYSTEM_STORE_MASK() {
+        return CERT_SYSTEM_STORE_MASK;
+    }
+    private static final int CERT_SYSTEM_STORE_RELOCATE_FLAG = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SYSTEM_STORE_RELOCATE_FLAG 2147483648
+     * }
+     */
+    public static int CERT_SYSTEM_STORE_RELOCATE_FLAG() {
+        return CERT_SYSTEM_STORE_RELOCATE_FLAG;
+    }
+    private static final int CERT_SYSTEM_STORE_CURRENT_USER = (int)65536L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SYSTEM_STORE_CURRENT_USER 65536
+     * }
+     */
+    public static int CERT_SYSTEM_STORE_CURRENT_USER() {
+        return CERT_SYSTEM_STORE_CURRENT_USER;
+    }
+    private static final int CERT_SYSTEM_STORE_LOCAL_MACHINE = (int)131072L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SYSTEM_STORE_LOCAL_MACHINE 131072
+     * }
+     */
+    public static int CERT_SYSTEM_STORE_LOCAL_MACHINE() {
+        return CERT_SYSTEM_STORE_LOCAL_MACHINE;
+    }
+    private static final int CERT_SYSTEM_STORE_CURRENT_SERVICE = (int)262144L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SYSTEM_STORE_CURRENT_SERVICE 262144
+     * }
+     */
+    public static int CERT_SYSTEM_STORE_CURRENT_SERVICE() {
+        return CERT_SYSTEM_STORE_CURRENT_SERVICE;
+    }
+    private static final int CERT_SYSTEM_STORE_SERVICES = (int)327680L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SYSTEM_STORE_SERVICES 327680
+     * }
+     */
+    public static int CERT_SYSTEM_STORE_SERVICES() {
+        return CERT_SYSTEM_STORE_SERVICES;
+    }
+    private static final int CERT_SYSTEM_STORE_USERS = (int)393216L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SYSTEM_STORE_USERS 393216
+     * }
+     */
+    public static int CERT_SYSTEM_STORE_USERS() {
+        return CERT_SYSTEM_STORE_USERS;
+    }
+    private static final int CERT_SYSTEM_STORE_CURRENT_USER_GROUP_POLICY = (int)458752L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SYSTEM_STORE_CURRENT_USER_GROUP_POLICY 458752
+     * }
+     */
+    public static int CERT_SYSTEM_STORE_CURRENT_USER_GROUP_POLICY() {
+        return CERT_SYSTEM_STORE_CURRENT_USER_GROUP_POLICY;
+    }
+    private static final int CERT_SYSTEM_STORE_LOCAL_MACHINE_GROUP_POLICY = (int)524288L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SYSTEM_STORE_LOCAL_MACHINE_GROUP_POLICY 524288
+     * }
+     */
+    public static int CERT_SYSTEM_STORE_LOCAL_MACHINE_GROUP_POLICY() {
+        return CERT_SYSTEM_STORE_LOCAL_MACHINE_GROUP_POLICY;
+    }
+    private static final int CERT_SYSTEM_STORE_LOCAL_MACHINE_ENTERPRISE = (int)589824L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SYSTEM_STORE_LOCAL_MACHINE_ENTERPRISE 589824
+     * }
+     */
+    public static int CERT_SYSTEM_STORE_LOCAL_MACHINE_ENTERPRISE() {
+        return CERT_SYSTEM_STORE_LOCAL_MACHINE_ENTERPRISE;
+    }
+    private static final int CERT_SYSTEM_STORE_LOCAL_MACHINE_WCOS = (int)655360L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SYSTEM_STORE_LOCAL_MACHINE_WCOS 655360
+     * }
+     */
+    public static int CERT_SYSTEM_STORE_LOCAL_MACHINE_WCOS() {
+        return CERT_SYSTEM_STORE_LOCAL_MACHINE_WCOS;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_GROUP_POLICY_SYSTEM_STORE_REGPATH "S"
+     * }
+     */
+    public static MemorySegment CERT_GROUP_POLICY_SYSTEM_STORE_REGPATH() {
+        class Holder {
+            static final MemorySegment CERT_GROUP_POLICY_SYSTEM_STORE_REGPATH
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_GROUP_POLICY_SYSTEM_STORE_REGPATH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_EFSBLOB_REGPATH "S"
+     * }
+     */
+    public static MemorySegment CERT_EFSBLOB_REGPATH() {
+        class Holder {
+            static final MemorySegment CERT_EFSBLOB_REGPATH
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_EFSBLOB_REGPATH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_EFSBLOB_VALUE_NAME "E"
+     * }
+     */
+    public static MemorySegment CERT_EFSBLOB_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_EFSBLOB_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("E");
+        }
+        return Holder.CERT_EFSBLOB_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PROT_ROOT_FLAGS_REGPATH "S"
+     * }
+     */
+    public static MemorySegment CERT_PROT_ROOT_FLAGS_REGPATH() {
+        class Holder {
+            static final MemorySegment CERT_PROT_ROOT_FLAGS_REGPATH
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_PROT_ROOT_FLAGS_REGPATH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PROT_ROOT_FLAGS_VALUE_NAME "F"
+     * }
+     */
+    public static MemorySegment CERT_PROT_ROOT_FLAGS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_PROT_ROOT_FLAGS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("F");
+        }
+        return Holder.CERT_PROT_ROOT_FLAGS_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PROT_ROOT_PEER_USAGES_VALUE_NAME "P"
+     * }
+     */
+    public static MemorySegment CERT_PROT_ROOT_PEER_USAGES_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_PROT_ROOT_PEER_USAGES_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("P");
+        }
+        return Holder.CERT_PROT_ROOT_PEER_USAGES_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PROT_ROOT_PEER_USAGES_VALUE_NAME_A "PeerUsages"
+     * }
+     */
+    public static MemorySegment CERT_PROT_ROOT_PEER_USAGES_VALUE_NAME_A() {
+        class Holder {
+            static final MemorySegment CERT_PROT_ROOT_PEER_USAGES_VALUE_NAME_A
+                = wgl_h.LIBRARY_ARENA.allocateFrom("PeerUsages");
+        }
+        return Holder.CERT_PROT_ROOT_PEER_USAGES_VALUE_NAME_A;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PROT_ROOT_PEER_USAGES_DEFAULT_A "1.3.6.1.5.5.7.3.2"
+     * }
+     */
+    public static MemorySegment CERT_PROT_ROOT_PEER_USAGES_DEFAULT_A() {
+        class Holder {
+            static final MemorySegment CERT_PROT_ROOT_PEER_USAGES_DEFAULT_A
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.3.6.1.5.5.7.3.2");
+        }
+        return Holder.CERT_PROT_ROOT_PEER_USAGES_DEFAULT_A;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_TRUST_PUB_SAFER_GROUP_POLICY_REGPATH "S"
+     * }
+     */
+    public static MemorySegment CERT_TRUST_PUB_SAFER_GROUP_POLICY_REGPATH() {
+        class Holder {
+            static final MemorySegment CERT_TRUST_PUB_SAFER_GROUP_POLICY_REGPATH
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_TRUST_PUB_SAFER_GROUP_POLICY_REGPATH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_LOCAL_MACHINE_SYSTEM_STORE_REGPATH "S"
+     * }
+     */
+    public static MemorySegment CERT_LOCAL_MACHINE_SYSTEM_STORE_REGPATH() {
+        class Holder {
+            static final MemorySegment CERT_LOCAL_MACHINE_SYSTEM_STORE_REGPATH
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_LOCAL_MACHINE_SYSTEM_STORE_REGPATH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_TRUST_PUB_SAFER_LOCAL_MACHINE_REGPATH "S"
+     * }
+     */
+    public static MemorySegment CERT_TRUST_PUB_SAFER_LOCAL_MACHINE_REGPATH() {
+        class Holder {
+            static final MemorySegment CERT_TRUST_PUB_SAFER_LOCAL_MACHINE_REGPATH
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_TRUST_PUB_SAFER_LOCAL_MACHINE_REGPATH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_TRUST_PUB_AUTHENTICODE_FLAGS_VALUE_NAME "A"
+     * }
+     */
+    public static MemorySegment CERT_TRUST_PUB_AUTHENTICODE_FLAGS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_TRUST_PUB_AUTHENTICODE_FLAGS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("A");
+        }
+        return Holder.CERT_TRUST_PUB_AUTHENTICODE_FLAGS_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_OCM_SUBCOMPONENTS_LOCAL_MACHINE_REGPATH "S"
+     * }
+     */
+    public static MemorySegment CERT_OCM_SUBCOMPONENTS_LOCAL_MACHINE_REGPATH() {
+        class Holder {
+            static final MemorySegment CERT_OCM_SUBCOMPONENTS_LOCAL_MACHINE_REGPATH
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_OCM_SUBCOMPONENTS_LOCAL_MACHINE_REGPATH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_OCM_SUBCOMPONENTS_ROOT_AUTO_UPDATE_VALUE_NAME "R"
+     * }
+     */
+    public static MemorySegment CERT_OCM_SUBCOMPONENTS_ROOT_AUTO_UPDATE_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_OCM_SUBCOMPONENTS_ROOT_AUTO_UPDATE_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("R");
+        }
+        return Holder.CERT_OCM_SUBCOMPONENTS_ROOT_AUTO_UPDATE_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_DISABLE_ROOT_AUTO_UPDATE_REGPATH "S"
+     * }
+     */
+    public static MemorySegment CERT_DISABLE_ROOT_AUTO_UPDATE_REGPATH() {
+        class Holder {
+            static final MemorySegment CERT_DISABLE_ROOT_AUTO_UPDATE_REGPATH
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_DISABLE_ROOT_AUTO_UPDATE_REGPATH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_DISABLE_ROOT_AUTO_UPDATE_VALUE_NAME "D"
+     * }
+     */
+    public static MemorySegment CERT_DISABLE_ROOT_AUTO_UPDATE_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_DISABLE_ROOT_AUTO_UPDATE_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.CERT_DISABLE_ROOT_AUTO_UPDATE_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_ENABLE_DISALLOWED_CERT_AUTO_UPDATE_VALUE_NAME "E"
+     * }
+     */
+    public static MemorySegment CERT_ENABLE_DISALLOWED_CERT_AUTO_UPDATE_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_ENABLE_DISALLOWED_CERT_AUTO_UPDATE_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("E");
+        }
+        return Holder.CERT_ENABLE_DISALLOWED_CERT_AUTO_UPDATE_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_DISABLE_PIN_RULES_AUTO_UPDATE_VALUE_NAME "D"
+     * }
+     */
+    public static MemorySegment CERT_DISABLE_PIN_RULES_AUTO_UPDATE_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_DISABLE_PIN_RULES_AUTO_UPDATE_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.CERT_DISABLE_PIN_RULES_AUTO_UPDATE_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_AUTO_UPDATE_LOCAL_MACHINE_REGPATH "S"
+     * }
+     */
+    public static MemorySegment CERT_AUTO_UPDATE_LOCAL_MACHINE_REGPATH() {
+        class Holder {
+            static final MemorySegment CERT_AUTO_UPDATE_LOCAL_MACHINE_REGPATH
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_AUTO_UPDATE_LOCAL_MACHINE_REGPATH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_AUTO_UPDATE_ROOT_DIR_URL_VALUE_NAME "R"
+     * }
+     */
+    public static MemorySegment CERT_AUTO_UPDATE_ROOT_DIR_URL_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_AUTO_UPDATE_ROOT_DIR_URL_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("R");
+        }
+        return Holder.CERT_AUTO_UPDATE_ROOT_DIR_URL_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_AUTO_UPDATE_SYNC_FROM_DIR_URL_VALUE_NAME "S"
+     * }
+     */
+    public static MemorySegment CERT_AUTO_UPDATE_SYNC_FROM_DIR_URL_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_AUTO_UPDATE_SYNC_FROM_DIR_URL_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_AUTO_UPDATE_SYNC_FROM_DIR_URL_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_AUTH_ROOT_AUTO_UPDATE_LOCAL_MACHINE_REGPATH "S"
+     * }
+     */
+    public static MemorySegment CERT_AUTH_ROOT_AUTO_UPDATE_LOCAL_MACHINE_REGPATH() {
+        class Holder {
+            static final MemorySegment CERT_AUTH_ROOT_AUTO_UPDATE_LOCAL_MACHINE_REGPATH
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_AUTH_ROOT_AUTO_UPDATE_LOCAL_MACHINE_REGPATH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_AUTH_ROOT_AUTO_UPDATE_ROOT_DIR_URL_VALUE_NAME "R"
+     * }
+     */
+    public static MemorySegment CERT_AUTH_ROOT_AUTO_UPDATE_ROOT_DIR_URL_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_AUTH_ROOT_AUTO_UPDATE_ROOT_DIR_URL_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("R");
+        }
+        return Holder.CERT_AUTH_ROOT_AUTO_UPDATE_ROOT_DIR_URL_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_AUTH_ROOT_AUTO_UPDATE_SYNC_DELTA_TIME_VALUE_NAME "S"
+     * }
+     */
+    public static MemorySegment CERT_AUTH_ROOT_AUTO_UPDATE_SYNC_DELTA_TIME_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_AUTH_ROOT_AUTO_UPDATE_SYNC_DELTA_TIME_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_AUTH_ROOT_AUTO_UPDATE_SYNC_DELTA_TIME_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_AUTH_ROOT_AUTO_UPDATE_FLAGS_VALUE_NAME "F"
+     * }
+     */
+    public static MemorySegment CERT_AUTH_ROOT_AUTO_UPDATE_FLAGS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_AUTH_ROOT_AUTO_UPDATE_FLAGS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("F");
+        }
+        return Holder.CERT_AUTH_ROOT_AUTO_UPDATE_FLAGS_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_AUTH_ROOT_AUTO_UPDATE_LAST_SYNC_TIME_VALUE_NAME "L"
+     * }
+     */
+    public static MemorySegment CERT_AUTH_ROOT_AUTO_UPDATE_LAST_SYNC_TIME_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_AUTH_ROOT_AUTO_UPDATE_LAST_SYNC_TIME_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("L");
+        }
+        return Holder.CERT_AUTH_ROOT_AUTO_UPDATE_LAST_SYNC_TIME_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_AUTH_ROOT_AUTO_UPDATE_ENCODED_CTL_VALUE_NAME "E"
+     * }
+     */
+    public static MemorySegment CERT_AUTH_ROOT_AUTO_UPDATE_ENCODED_CTL_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_AUTH_ROOT_AUTO_UPDATE_ENCODED_CTL_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("E");
+        }
+        return Holder.CERT_AUTH_ROOT_AUTO_UPDATE_ENCODED_CTL_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_AUTH_ROOT_CTL_FILENAME "a"
+     * }
+     */
+    public static MemorySegment CERT_AUTH_ROOT_CTL_FILENAME() {
+        class Holder {
+            static final MemorySegment CERT_AUTH_ROOT_CTL_FILENAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("a");
+        }
+        return Holder.CERT_AUTH_ROOT_CTL_FILENAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_AUTH_ROOT_CTL_FILENAME_A "authroot.stl"
+     * }
+     */
+    public static MemorySegment CERT_AUTH_ROOT_CTL_FILENAME_A() {
+        class Holder {
+            static final MemorySegment CERT_AUTH_ROOT_CTL_FILENAME_A
+                = wgl_h.LIBRARY_ARENA.allocateFrom("authroot.stl");
+        }
+        return Holder.CERT_AUTH_ROOT_CTL_FILENAME_A;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_AUTH_ROOT_CAB_FILENAME "a"
+     * }
+     */
+    public static MemorySegment CERT_AUTH_ROOT_CAB_FILENAME() {
+        class Holder {
+            static final MemorySegment CERT_AUTH_ROOT_CAB_FILENAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("a");
+        }
+        return Holder.CERT_AUTH_ROOT_CAB_FILENAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_AUTH_ROOT_SEQ_FILENAME "a"
+     * }
+     */
+    public static MemorySegment CERT_AUTH_ROOT_SEQ_FILENAME() {
+        class Holder {
+            static final MemorySegment CERT_AUTH_ROOT_SEQ_FILENAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("a");
+        }
+        return Holder.CERT_AUTH_ROOT_SEQ_FILENAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_AUTH_ROOT_CERT_EXT "."
+     * }
+     */
+    public static MemorySegment CERT_AUTH_ROOT_CERT_EXT() {
+        class Holder {
+            static final MemorySegment CERT_AUTH_ROOT_CERT_EXT
+                = wgl_h.LIBRARY_ARENA.allocateFrom(".");
+        }
+        return Holder.CERT_AUTH_ROOT_CERT_EXT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_DISALLOWED_CERT_AUTO_UPDATE_SYNC_DELTA_TIME_VALUE_NAME "D"
+     * }
+     */
+    public static MemorySegment CERT_DISALLOWED_CERT_AUTO_UPDATE_SYNC_DELTA_TIME_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_DISALLOWED_CERT_AUTO_UPDATE_SYNC_DELTA_TIME_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.CERT_DISALLOWED_CERT_AUTO_UPDATE_SYNC_DELTA_TIME_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_DISALLOWED_CERT_AUTO_UPDATE_LAST_SYNC_TIME_VALUE_NAME "D"
+     * }
+     */
+    public static MemorySegment CERT_DISALLOWED_CERT_AUTO_UPDATE_LAST_SYNC_TIME_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_DISALLOWED_CERT_AUTO_UPDATE_LAST_SYNC_TIME_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.CERT_DISALLOWED_CERT_AUTO_UPDATE_LAST_SYNC_TIME_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_DISALLOWED_CERT_AUTO_UPDATE_ENCODED_CTL_VALUE_NAME "D"
+     * }
+     */
+    public static MemorySegment CERT_DISALLOWED_CERT_AUTO_UPDATE_ENCODED_CTL_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_DISALLOWED_CERT_AUTO_UPDATE_ENCODED_CTL_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.CERT_DISALLOWED_CERT_AUTO_UPDATE_ENCODED_CTL_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_DISALLOWED_CERT_CTL_FILENAME "d"
+     * }
+     */
+    public static MemorySegment CERT_DISALLOWED_CERT_CTL_FILENAME() {
+        class Holder {
+            static final MemorySegment CERT_DISALLOWED_CERT_CTL_FILENAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("d");
+        }
+        return Holder.CERT_DISALLOWED_CERT_CTL_FILENAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_DISALLOWED_CERT_CTL_FILENAME_A "disallowedcert.stl"
+     * }
+     */
+    public static MemorySegment CERT_DISALLOWED_CERT_CTL_FILENAME_A() {
+        class Holder {
+            static final MemorySegment CERT_DISALLOWED_CERT_CTL_FILENAME_A
+                = wgl_h.LIBRARY_ARENA.allocateFrom("disallowedcert.stl");
+        }
+        return Holder.CERT_DISALLOWED_CERT_CTL_FILENAME_A;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_DISALLOWED_CERT_CAB_FILENAME "d"
+     * }
+     */
+    public static MemorySegment CERT_DISALLOWED_CERT_CAB_FILENAME() {
+        class Holder {
+            static final MemorySegment CERT_DISALLOWED_CERT_CAB_FILENAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("d");
+        }
+        return Holder.CERT_DISALLOWED_CERT_CAB_FILENAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_DISALLOWED_CERT_AUTO_UPDATE_LIST_IDENTIFIER "D"
+     * }
+     */
+    public static MemorySegment CERT_DISALLOWED_CERT_AUTO_UPDATE_LIST_IDENTIFIER() {
+        class Holder {
+            static final MemorySegment CERT_DISALLOWED_CERT_AUTO_UPDATE_LIST_IDENTIFIER
+                = wgl_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.CERT_DISALLOWED_CERT_AUTO_UPDATE_LIST_IDENTIFIER;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PIN_RULES_AUTO_UPDATE_SYNC_DELTA_TIME_VALUE_NAME "P"
+     * }
+     */
+    public static MemorySegment CERT_PIN_RULES_AUTO_UPDATE_SYNC_DELTA_TIME_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_PIN_RULES_AUTO_UPDATE_SYNC_DELTA_TIME_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("P");
+        }
+        return Holder.CERT_PIN_RULES_AUTO_UPDATE_SYNC_DELTA_TIME_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PIN_RULES_AUTO_UPDATE_LAST_SYNC_TIME_VALUE_NAME "P"
+     * }
+     */
+    public static MemorySegment CERT_PIN_RULES_AUTO_UPDATE_LAST_SYNC_TIME_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_PIN_RULES_AUTO_UPDATE_LAST_SYNC_TIME_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("P");
+        }
+        return Holder.CERT_PIN_RULES_AUTO_UPDATE_LAST_SYNC_TIME_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PIN_RULES_AUTO_UPDATE_ENCODED_CTL_VALUE_NAME "P"
+     * }
+     */
+    public static MemorySegment CERT_PIN_RULES_AUTO_UPDATE_ENCODED_CTL_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_PIN_RULES_AUTO_UPDATE_ENCODED_CTL_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("P");
+        }
+        return Holder.CERT_PIN_RULES_AUTO_UPDATE_ENCODED_CTL_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PIN_RULES_CTL_FILENAME "p"
+     * }
+     */
+    public static MemorySegment CERT_PIN_RULES_CTL_FILENAME() {
+        class Holder {
+            static final MemorySegment CERT_PIN_RULES_CTL_FILENAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("p");
+        }
+        return Holder.CERT_PIN_RULES_CTL_FILENAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PIN_RULES_CTL_FILENAME_A "pinrules.stl"
+     * }
+     */
+    public static MemorySegment CERT_PIN_RULES_CTL_FILENAME_A() {
+        class Holder {
+            static final MemorySegment CERT_PIN_RULES_CTL_FILENAME_A
+                = wgl_h.LIBRARY_ARENA.allocateFrom("pinrules.stl");
+        }
+        return Holder.CERT_PIN_RULES_CTL_FILENAME_A;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PIN_RULES_CAB_FILENAME "p"
+     * }
+     */
+    public static MemorySegment CERT_PIN_RULES_CAB_FILENAME() {
+        class Holder {
+            static final MemorySegment CERT_PIN_RULES_CAB_FILENAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("p");
+        }
+        return Holder.CERT_PIN_RULES_CAB_FILENAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PIN_RULES_AUTO_UPDATE_LIST_IDENTIFIER "P"
+     * }
+     */
+    public static MemorySegment CERT_PIN_RULES_AUTO_UPDATE_LIST_IDENTIFIER() {
+        class Holder {
+            static final MemorySegment CERT_PIN_RULES_AUTO_UPDATE_LIST_IDENTIFIER
+                = wgl_h.LIBRARY_ARENA.allocateFrom("P");
+        }
+        return Holder.CERT_PIN_RULES_AUTO_UPDATE_LIST_IDENTIFIER;
+    }
+    private static final int CERT_REGISTRY_STORE_CLIENT_GPT_FLAG = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_REGISTRY_STORE_CLIENT_GPT_FLAG 2147483648
+     * }
+     */
+    public static int CERT_REGISTRY_STORE_CLIENT_GPT_FLAG() {
+        return CERT_REGISTRY_STORE_CLIENT_GPT_FLAG;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_IE_DIRTY_FLAGS_REGPATH "S"
+     * }
+     */
+    public static MemorySegment CERT_IE_DIRTY_FLAGS_REGPATH() {
+        class Holder {
+            static final MemorySegment CERT_IE_DIRTY_FLAGS_REGPATH
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_IE_DIRTY_FLAGS_REGPATH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_OPEN_STORE_PROV_FUNC "CertDllOpenStoreProv"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_OPEN_STORE_PROV_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_OPEN_STORE_PROV_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CertDllOpenStoreProv");
+        }
+        return Holder.CRYPT_OID_OPEN_STORE_PROV_FUNC;
+    }
+    private static final int CERT_STORE_SAVE_TO_FILENAME = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_SAVE_TO_FILENAME 4
+     * }
+     */
+    public static int CERT_STORE_SAVE_TO_FILENAME() {
+        return CERT_STORE_SAVE_TO_FILENAME;
+    }
+    private static final int CERT_COMPARE_HASH = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_COMPARE_HASH 1
+     * }
+     */
+    public static int CERT_COMPARE_HASH() {
+        return CERT_COMPARE_HASH;
+    }
+    private static final int CERT_COMPARE_CTL_USAGE = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_COMPARE_CTL_USAGE 10
+     * }
+     */
+    public static int CERT_COMPARE_CTL_USAGE() {
+        return CERT_COMPARE_CTL_USAGE;
+    }
+    private static final int CERT_FIND_ANY = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_ANY 0
+     * }
+     */
+    public static int CERT_FIND_ANY() {
+        return CERT_FIND_ANY;
+    }
+    private static final int CERT_FIND_SHA1_HASH = (int)65536L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_SHA1_HASH 65536
+     * }
+     */
+    public static int CERT_FIND_SHA1_HASH() {
+        return CERT_FIND_SHA1_HASH;
+    }
+    private static final int CERT_FIND_MD5_HASH = (int)262144L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_MD5_HASH 262144
+     * }
+     */
+    public static int CERT_FIND_MD5_HASH() {
+        return CERT_FIND_MD5_HASH;
+    }
+    private static final int CERT_FIND_SIGNATURE_HASH = (int)917504L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_SIGNATURE_HASH 917504
+     * }
+     */
+    public static int CERT_FIND_SIGNATURE_HASH() {
+        return CERT_FIND_SIGNATURE_HASH;
+    }
+    private static final int CERT_FIND_KEY_IDENTIFIER = (int)983040L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_KEY_IDENTIFIER 983040
+     * }
+     */
+    public static int CERT_FIND_KEY_IDENTIFIER() {
+        return CERT_FIND_KEY_IDENTIFIER;
+    }
+    private static final int CERT_FIND_HASH = (int)65536L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_HASH 65536
+     * }
+     */
+    public static int CERT_FIND_HASH() {
+        return CERT_FIND_HASH;
+    }
+    private static final int CERT_FIND_PROPERTY = (int)327680L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_PROPERTY 327680
+     * }
+     */
+    public static int CERT_FIND_PROPERTY() {
+        return CERT_FIND_PROPERTY;
+    }
+    private static final int CERT_FIND_PUBLIC_KEY = (int)393216L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_PUBLIC_KEY 393216
+     * }
+     */
+    public static int CERT_FIND_PUBLIC_KEY() {
+        return CERT_FIND_PUBLIC_KEY;
+    }
+    private static final int CERT_FIND_SUBJECT_NAME = (int)131079L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_SUBJECT_NAME 131079
+     * }
+     */
+    public static int CERT_FIND_SUBJECT_NAME() {
+        return CERT_FIND_SUBJECT_NAME;
+    }
+    private static final int CERT_FIND_SUBJECT_ATTR = (int)196615L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_SUBJECT_ATTR 196615
+     * }
+     */
+    public static int CERT_FIND_SUBJECT_ATTR() {
+        return CERT_FIND_SUBJECT_ATTR;
+    }
+    private static final int CERT_FIND_ISSUER_NAME = (int)131076L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_ISSUER_NAME 131076
+     * }
+     */
+    public static int CERT_FIND_ISSUER_NAME() {
+        return CERT_FIND_ISSUER_NAME;
+    }
+    private static final int CERT_FIND_ISSUER_ATTR = (int)196612L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_ISSUER_ATTR 196612
+     * }
+     */
+    public static int CERT_FIND_ISSUER_ATTR() {
+        return CERT_FIND_ISSUER_ATTR;
+    }
+    private static final int CERT_FIND_SUBJECT_STR_A = (int)458759L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_SUBJECT_STR_A 458759
+     * }
+     */
+    public static int CERT_FIND_SUBJECT_STR_A() {
+        return CERT_FIND_SUBJECT_STR_A;
+    }
+    private static final int CERT_FIND_SUBJECT_STR_W = (int)524295L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_SUBJECT_STR_W 524295
+     * }
+     */
+    public static int CERT_FIND_SUBJECT_STR_W() {
+        return CERT_FIND_SUBJECT_STR_W;
+    }
+    private static final int CERT_FIND_SUBJECT_STR = (int)524295L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_SUBJECT_STR 524295
+     * }
+     */
+    public static int CERT_FIND_SUBJECT_STR() {
+        return CERT_FIND_SUBJECT_STR;
+    }
+    private static final int CERT_FIND_ISSUER_STR_A = (int)458756L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_ISSUER_STR_A 458756
+     * }
+     */
+    public static int CERT_FIND_ISSUER_STR_A() {
+        return CERT_FIND_ISSUER_STR_A;
+    }
+    private static final int CERT_FIND_ISSUER_STR_W = (int)524292L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_ISSUER_STR_W 524292
+     * }
+     */
+    public static int CERT_FIND_ISSUER_STR_W() {
+        return CERT_FIND_ISSUER_STR_W;
+    }
+    private static final int CERT_FIND_ISSUER_STR = (int)524292L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_ISSUER_STR 524292
+     * }
+     */
+    public static int CERT_FIND_ISSUER_STR() {
+        return CERT_FIND_ISSUER_STR;
+    }
+    private static final int CERT_FIND_KEY_SPEC = (int)589824L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_KEY_SPEC 589824
+     * }
+     */
+    public static int CERT_FIND_KEY_SPEC() {
+        return CERT_FIND_KEY_SPEC;
+    }
+    private static final int CERT_FIND_ENHKEY_USAGE = (int)655360L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_ENHKEY_USAGE 655360
+     * }
+     */
+    public static int CERT_FIND_ENHKEY_USAGE() {
+        return CERT_FIND_ENHKEY_USAGE;
+    }
+    private static final int CERT_FIND_CTL_USAGE = (int)655360L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_CTL_USAGE 655360
+     * }
+     */
+    public static int CERT_FIND_CTL_USAGE() {
+        return CERT_FIND_CTL_USAGE;
+    }
+    private static final int CERT_FIND_SUBJECT_CERT = (int)720896L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_SUBJECT_CERT 720896
+     * }
+     */
+    public static int CERT_FIND_SUBJECT_CERT() {
+        return CERT_FIND_SUBJECT_CERT;
+    }
+    private static final int CERT_FIND_ISSUER_OF = (int)786432L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_ISSUER_OF 786432
+     * }
+     */
+    public static int CERT_FIND_ISSUER_OF() {
+        return CERT_FIND_ISSUER_OF;
+    }
+    private static final int CERT_FIND_EXISTING = (int)851968L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_EXISTING 851968
+     * }
+     */
+    public static int CERT_FIND_EXISTING() {
+        return CERT_FIND_EXISTING;
+    }
+    private static final int CERT_FIND_CERT_ID = (int)1048576L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_CERT_ID 1048576
+     * }
+     */
+    public static int CERT_FIND_CERT_ID() {
+        return CERT_FIND_CERT_ID;
+    }
+    private static final int CERT_FIND_CROSS_CERT_DIST_POINTS = (int)1114112L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_CROSS_CERT_DIST_POINTS 1114112
+     * }
+     */
+    public static int CERT_FIND_CROSS_CERT_DIST_POINTS() {
+        return CERT_FIND_CROSS_CERT_DIST_POINTS;
+    }
+    private static final int CERT_FIND_PUBKEY_MD5_HASH = (int)1179648L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_PUBKEY_MD5_HASH 1179648
+     * }
+     */
+    public static int CERT_FIND_PUBKEY_MD5_HASH() {
+        return CERT_FIND_PUBKEY_MD5_HASH;
+    }
+    private static final int CERT_FIND_SUBJECT_INFO_ACCESS = (int)1245184L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_SUBJECT_INFO_ACCESS 1245184
+     * }
+     */
+    public static int CERT_FIND_SUBJECT_INFO_ACCESS() {
+        return CERT_FIND_SUBJECT_INFO_ACCESS;
+    }
+    private static final int CERT_FIND_HASH_STR = (int)1310720L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_HASH_STR 1310720
+     * }
+     */
+    public static int CERT_FIND_HASH_STR() {
+        return CERT_FIND_HASH_STR;
+    }
+    private static final int CERT_FIND_HAS_PRIVATE_KEY = (int)1376256L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_HAS_PRIVATE_KEY 1376256
+     * }
+     */
+    public static int CERT_FIND_HAS_PRIVATE_KEY() {
+        return CERT_FIND_HAS_PRIVATE_KEY;
+    }
+    private static final int CERT_FIND_OPTIONAL_CTL_USAGE_FLAG = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_OPTIONAL_CTL_USAGE_FLAG 1
+     * }
+     */
+    public static int CERT_FIND_OPTIONAL_CTL_USAGE_FLAG() {
+        return CERT_FIND_OPTIONAL_CTL_USAGE_FLAG;
+    }
+    private static final int CERT_FIND_EXT_ONLY_CTL_USAGE_FLAG = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_EXT_ONLY_CTL_USAGE_FLAG 2
+     * }
+     */
+    public static int CERT_FIND_EXT_ONLY_CTL_USAGE_FLAG() {
+        return CERT_FIND_EXT_ONLY_CTL_USAGE_FLAG;
+    }
+    private static final int CERT_FIND_PROP_ONLY_CTL_USAGE_FLAG = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_PROP_ONLY_CTL_USAGE_FLAG 4
+     * }
+     */
+    public static int CERT_FIND_PROP_ONLY_CTL_USAGE_FLAG() {
+        return CERT_FIND_PROP_ONLY_CTL_USAGE_FLAG;
+    }
+    private static final int CERT_FIND_NO_CTL_USAGE_FLAG = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_NO_CTL_USAGE_FLAG 8
+     * }
+     */
+    public static int CERT_FIND_NO_CTL_USAGE_FLAG() {
+        return CERT_FIND_NO_CTL_USAGE_FLAG;
+    }
+    private static final int CERT_FIND_OR_CTL_USAGE_FLAG = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_OR_CTL_USAGE_FLAG 16
+     * }
+     */
+    public static int CERT_FIND_OR_CTL_USAGE_FLAG() {
+        return CERT_FIND_OR_CTL_USAGE_FLAG;
+    }
+    private static final int CERT_FIND_VALID_CTL_USAGE_FLAG = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_FIND_VALID_CTL_USAGE_FLAG 32
+     * }
+     */
+    public static int CERT_FIND_VALID_CTL_USAGE_FLAG() {
+        return CERT_FIND_VALID_CTL_USAGE_FLAG;
+    }
+    private static final int CERT_SET_PROPERTY_IGNORE_PERSIST_ERROR_FLAG = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SET_PROPERTY_IGNORE_PERSIST_ERROR_FLAG 2147483648
+     * }
+     */
+    public static int CERT_SET_PROPERTY_IGNORE_PERSIST_ERROR_FLAG() {
+        return CERT_SET_PROPERTY_IGNORE_PERSIST_ERROR_FLAG;
+    }
+    private static final int CERT_STORE_ALL_CONTEXT_FLAG = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_ALL_CONTEXT_FLAG 4294967295
+     * }
+     */
+    public static int CERT_STORE_ALL_CONTEXT_FLAG() {
+        return CERT_STORE_ALL_CONTEXT_FLAG;
+    }
+    private static final int CERT_STORE_CERTIFICATE_CONTEXT_FLAG = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_CERTIFICATE_CONTEXT_FLAG 2
+     * }
+     */
+    public static int CERT_STORE_CERTIFICATE_CONTEXT_FLAG() {
+        return CERT_STORE_CERTIFICATE_CONTEXT_FLAG;
+    }
+    private static final int CERT_STORE_CRL_CONTEXT_FLAG = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_CRL_CONTEXT_FLAG 4
+     * }
+     */
+    public static int CERT_STORE_CRL_CONTEXT_FLAG() {
+        return CERT_STORE_CRL_CONTEXT_FLAG;
+    }
+    private static final int CERT_STORE_CTL_CONTEXT_FLAG = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_STORE_CTL_CONTEXT_FLAG 8
+     * }
+     */
+    public static int CERT_STORE_CTL_CONTEXT_FLAG() {
+        return CERT_STORE_CTL_CONTEXT_FLAG;
+    }
+    private static final int CTL_FIND_NO_LIST_ID_CBDATA = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define CTL_FIND_NO_LIST_ID_CBDATA 4294967295
+     * }
+     */
+    public static int CTL_FIND_NO_LIST_ID_CBDATA() {
+        return CTL_FIND_NO_LIST_ID_CBDATA;
+    }
+    private static final MemorySegment CTL_FIND_NO_SIGNER_PTR = MemorySegment.ofAddress(-1L);
+    /**
+     * {@snippet lang=c :
+     * #define CTL_FIND_NO_SIGNER_PTR (void*) -1
+     * }
+     */
+    public static MemorySegment CTL_FIND_NO_SIGNER_PTR() {
+        return CTL_FIND_NO_SIGNER_PTR;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PHYSICAL_STORE_DEFAULT_NAME "."
+     * }
+     */
+    public static MemorySegment CERT_PHYSICAL_STORE_DEFAULT_NAME() {
+        class Holder {
+            static final MemorySegment CERT_PHYSICAL_STORE_DEFAULT_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom(".");
+        }
+        return Holder.CERT_PHYSICAL_STORE_DEFAULT_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PHYSICAL_STORE_GROUP_POLICY_NAME "."
+     * }
+     */
+    public static MemorySegment CERT_PHYSICAL_STORE_GROUP_POLICY_NAME() {
+        class Holder {
+            static final MemorySegment CERT_PHYSICAL_STORE_GROUP_POLICY_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom(".");
+        }
+        return Holder.CERT_PHYSICAL_STORE_GROUP_POLICY_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PHYSICAL_STORE_LOCAL_MACHINE_NAME "."
+     * }
+     */
+    public static MemorySegment CERT_PHYSICAL_STORE_LOCAL_MACHINE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_PHYSICAL_STORE_LOCAL_MACHINE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom(".");
+        }
+        return Holder.CERT_PHYSICAL_STORE_LOCAL_MACHINE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PHYSICAL_STORE_DS_USER_CERTIFICATE_NAME "."
+     * }
+     */
+    public static MemorySegment CERT_PHYSICAL_STORE_DS_USER_CERTIFICATE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_PHYSICAL_STORE_DS_USER_CERTIFICATE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom(".");
+        }
+        return Holder.CERT_PHYSICAL_STORE_DS_USER_CERTIFICATE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PHYSICAL_STORE_LOCAL_MACHINE_GROUP_POLICY_NAME "."
+     * }
+     */
+    public static MemorySegment CERT_PHYSICAL_STORE_LOCAL_MACHINE_GROUP_POLICY_NAME() {
+        class Holder {
+            static final MemorySegment CERT_PHYSICAL_STORE_LOCAL_MACHINE_GROUP_POLICY_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom(".");
+        }
+        return Holder.CERT_PHYSICAL_STORE_LOCAL_MACHINE_GROUP_POLICY_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PHYSICAL_STORE_ENTERPRISE_NAME "."
+     * }
+     */
+    public static MemorySegment CERT_PHYSICAL_STORE_ENTERPRISE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_PHYSICAL_STORE_ENTERPRISE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom(".");
+        }
+        return Holder.CERT_PHYSICAL_STORE_ENTERPRISE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PHYSICAL_STORE_AUTH_ROOT_NAME "."
+     * }
+     */
+    public static MemorySegment CERT_PHYSICAL_STORE_AUTH_ROOT_NAME() {
+        class Holder {
+            static final MemorySegment CERT_PHYSICAL_STORE_AUTH_ROOT_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom(".");
+        }
+        return Holder.CERT_PHYSICAL_STORE_AUTH_ROOT_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_PHYSICAL_STORE_SMART_CARD_NAME "."
+     * }
+     */
+    public static MemorySegment CERT_PHYSICAL_STORE_SMART_CARD_NAME() {
+        class Holder {
+            static final MemorySegment CERT_PHYSICAL_STORE_SMART_CARD_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom(".");
+        }
+        return Holder.CERT_PHYSICAL_STORE_SMART_CARD_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_OPEN_SYSTEM_STORE_PROV_FUNC "CertDllOpenSystemStoreProv"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_OPEN_SYSTEM_STORE_PROV_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_OPEN_SYSTEM_STORE_PROV_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CertDllOpenSystemStoreProv");
+        }
+        return Holder.CRYPT_OID_OPEN_SYSTEM_STORE_PROV_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_REGISTER_SYSTEM_STORE_FUNC "CertDllRegisterSystemStore"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_REGISTER_SYSTEM_STORE_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_REGISTER_SYSTEM_STORE_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CertDllRegisterSystemStore");
+        }
+        return Holder.CRYPT_OID_REGISTER_SYSTEM_STORE_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_UNREGISTER_SYSTEM_STORE_FUNC "CertDllUnregisterSystemStore"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_UNREGISTER_SYSTEM_STORE_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_UNREGISTER_SYSTEM_STORE_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CertDllUnregisterSystemStore");
+        }
+        return Holder.CRYPT_OID_UNREGISTER_SYSTEM_STORE_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_ENUM_SYSTEM_STORE_FUNC "CertDllEnumSystemStore"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_ENUM_SYSTEM_STORE_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_ENUM_SYSTEM_STORE_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CertDllEnumSystemStore");
+        }
+        return Holder.CRYPT_OID_ENUM_SYSTEM_STORE_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_REGISTER_PHYSICAL_STORE_FUNC "CertDllRegisterPhysicalStore"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_REGISTER_PHYSICAL_STORE_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_REGISTER_PHYSICAL_STORE_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CertDllRegisterPhysicalStore");
+        }
+        return Holder.CRYPT_OID_REGISTER_PHYSICAL_STORE_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_UNREGISTER_PHYSICAL_STORE_FUNC "CertDllUnregisterPhysicalStore"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_UNREGISTER_PHYSICAL_STORE_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_UNREGISTER_PHYSICAL_STORE_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CertDllUnregisterPhysicalStore");
+        }
+        return Holder.CRYPT_OID_UNREGISTER_PHYSICAL_STORE_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_ENUM_PHYSICAL_STORE_FUNC "CertDllEnumPhysicalStore"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_ENUM_PHYSICAL_STORE_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_ENUM_PHYSICAL_STORE_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CertDllEnumPhysicalStore");
+        }
+        return Holder.CRYPT_OID_ENUM_PHYSICAL_STORE_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_SYSTEM_STORE_LOCATION_VALUE_NAME "S"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_SYSTEM_STORE_LOCATION_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_SYSTEM_STORE_LOCATION_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CRYPT_OID_SYSTEM_STORE_LOCATION_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC "CryptDllExtractEncodedSignatureParameters"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptDllExtractEncodedSignatureParameters");
+        }
+        return Holder.CRYPT_OID_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_SIGN_AND_ENCODE_HASH_FUNC "CryptDllSignAndEncodeHash"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_SIGN_AND_ENCODE_HASH_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_SIGN_AND_ENCODE_HASH_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptDllSignAndEncodeHash");
+        }
+        return Holder.CRYPT_OID_SIGN_AND_ENCODE_HASH_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_VERIFY_ENCODED_SIGNATURE_FUNC "CryptDllVerifyEncodedSignature"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_VERIFY_ENCODED_SIGNATURE_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_VERIFY_ENCODED_SIGNATURE_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptDllVerifyEncodedSignature");
+        }
+        return Holder.CRYPT_OID_VERIFY_ENCODED_SIGNATURE_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_EXPORT_PUBLIC_KEY_INFO_FUNC "CryptDllExportPublicKeyInfoEx"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_EXPORT_PUBLIC_KEY_INFO_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_EXPORT_PUBLIC_KEY_INFO_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptDllExportPublicKeyInfoEx");
+        }
+        return Holder.CRYPT_OID_EXPORT_PUBLIC_KEY_INFO_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC "CryptDllExportPublicKeyInfoEx2"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptDllExportPublicKeyInfoEx2");
+        }
+        return Holder.CRYPT_OID_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC "CryptDllExportPublicKeyInfoFromBCryptKeyHandle"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptDllExportPublicKeyInfoFromBCryptKeyHandle");
+        }
+        return Holder.CRYPT_OID_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_IMPORT_PUBLIC_KEY_INFO_FUNC "CryptDllImportPublicKeyInfoEx"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_IMPORT_PUBLIC_KEY_INFO_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_IMPORT_PUBLIC_KEY_INFO_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptDllImportPublicKeyInfoEx");
+        }
+        return Holder.CRYPT_OID_IMPORT_PUBLIC_KEY_INFO_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC "CryptDllImportPublicKeyInfoEx2"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptDllImportPublicKeyInfoEx2");
+        }
+        return Holder.CRYPT_OID_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_IMPORT_PRIVATE_KEY_INFO_FUNC "CryptDllImportPrivateKeyInfoEx"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_IMPORT_PRIVATE_KEY_INFO_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_IMPORT_PRIVATE_KEY_INFO_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptDllImportPrivateKeyInfoEx");
+        }
+        return Holder.CRYPT_OID_IMPORT_PRIVATE_KEY_INFO_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_EXPORT_PRIVATE_KEY_INFO_FUNC "CryptDllExportPrivateKeyInfoEx"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_EXPORT_PRIVATE_KEY_INFO_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_EXPORT_PRIVATE_KEY_INFO_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CryptDllExportPrivateKeyInfoEx");
+        }
+        return Holder.CRYPT_OID_EXPORT_PRIVATE_KEY_INFO_FUNC;
+    }
+    private static final int CRYPT_DELETE_KEYSET = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_DELETE_KEYSET 16
+     * }
+     */
+    public static int CRYPT_DELETE_KEYSET() {
+        return CRYPT_DELETE_KEYSET;
+    }
+    private static final int CERT_QUERY_CONTENT_FLAG_CERT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_CONTENT_FLAG_CERT 2
+     * }
+     */
+    public static int CERT_QUERY_CONTENT_FLAG_CERT() {
+        return CERT_QUERY_CONTENT_FLAG_CERT;
+    }
+    private static final int CERT_QUERY_CONTENT_FLAG_CTL = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_CONTENT_FLAG_CTL 4
+     * }
+     */
+    public static int CERT_QUERY_CONTENT_FLAG_CTL() {
+        return CERT_QUERY_CONTENT_FLAG_CTL;
+    }
+    private static final int CERT_QUERY_CONTENT_FLAG_CRL = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_CONTENT_FLAG_CRL 8
+     * }
+     */
+    public static int CERT_QUERY_CONTENT_FLAG_CRL() {
+        return CERT_QUERY_CONTENT_FLAG_CRL;
+    }
+    private static final int CERT_QUERY_CONTENT_FLAG_SERIALIZED_STORE = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_CONTENT_FLAG_SERIALIZED_STORE 16
+     * }
+     */
+    public static int CERT_QUERY_CONTENT_FLAG_SERIALIZED_STORE() {
+        return CERT_QUERY_CONTENT_FLAG_SERIALIZED_STORE;
+    }
+    private static final int CERT_QUERY_CONTENT_FLAG_SERIALIZED_CERT = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_CONTENT_FLAG_SERIALIZED_CERT 32
+     * }
+     */
+    public static int CERT_QUERY_CONTENT_FLAG_SERIALIZED_CERT() {
+        return CERT_QUERY_CONTENT_FLAG_SERIALIZED_CERT;
+    }
+    private static final int CERT_QUERY_CONTENT_FLAG_SERIALIZED_CTL = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_CONTENT_FLAG_SERIALIZED_CTL 64
+     * }
+     */
+    public static int CERT_QUERY_CONTENT_FLAG_SERIALIZED_CTL() {
+        return CERT_QUERY_CONTENT_FLAG_SERIALIZED_CTL;
+    }
+    private static final int CERT_QUERY_CONTENT_FLAG_SERIALIZED_CRL = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_CONTENT_FLAG_SERIALIZED_CRL 128
+     * }
+     */
+    public static int CERT_QUERY_CONTENT_FLAG_SERIALIZED_CRL() {
+        return CERT_QUERY_CONTENT_FLAG_SERIALIZED_CRL;
+    }
+    private static final int CERT_QUERY_CONTENT_FLAG_PKCS7_SIGNED = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_CONTENT_FLAG_PKCS7_SIGNED 256
+     * }
+     */
+    public static int CERT_QUERY_CONTENT_FLAG_PKCS7_SIGNED() {
+        return CERT_QUERY_CONTENT_FLAG_PKCS7_SIGNED;
+    }
+    private static final int CERT_QUERY_CONTENT_FLAG_PKCS7_UNSIGNED = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_CONTENT_FLAG_PKCS7_UNSIGNED 512
+     * }
+     */
+    public static int CERT_QUERY_CONTENT_FLAG_PKCS7_UNSIGNED() {
+        return CERT_QUERY_CONTENT_FLAG_PKCS7_UNSIGNED;
+    }
+    private static final int CERT_QUERY_CONTENT_FLAG_PKCS7_SIGNED_EMBED = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_CONTENT_FLAG_PKCS7_SIGNED_EMBED 1024
+     * }
+     */
+    public static int CERT_QUERY_CONTENT_FLAG_PKCS7_SIGNED_EMBED() {
+        return CERT_QUERY_CONTENT_FLAG_PKCS7_SIGNED_EMBED;
+    }
+    private static final int CERT_QUERY_CONTENT_FLAG_PKCS10 = (int)2048L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_CONTENT_FLAG_PKCS10 2048
+     * }
+     */
+    public static int CERT_QUERY_CONTENT_FLAG_PKCS10() {
+        return CERT_QUERY_CONTENT_FLAG_PKCS10;
+    }
+    private static final int CERT_QUERY_CONTENT_FLAG_PFX = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_CONTENT_FLAG_PFX 4096
+     * }
+     */
+    public static int CERT_QUERY_CONTENT_FLAG_PFX() {
+        return CERT_QUERY_CONTENT_FLAG_PFX;
+    }
+    private static final int CERT_QUERY_CONTENT_FLAG_CERT_PAIR = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_CONTENT_FLAG_CERT_PAIR 8192
+     * }
+     */
+    public static int CERT_QUERY_CONTENT_FLAG_CERT_PAIR() {
+        return CERT_QUERY_CONTENT_FLAG_CERT_PAIR;
+    }
+    private static final int CERT_QUERY_CONTENT_FLAG_PFX_AND_LOAD = (int)16384L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_CONTENT_FLAG_PFX_AND_LOAD 16384
+     * }
+     */
+    public static int CERT_QUERY_CONTENT_FLAG_PFX_AND_LOAD() {
+        return CERT_QUERY_CONTENT_FLAG_PFX_AND_LOAD;
+    }
+    private static final int CERT_QUERY_CONTENT_FLAG_ALL = (int)16382L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_CONTENT_FLAG_ALL 16382
+     * }
+     */
+    public static int CERT_QUERY_CONTENT_FLAG_ALL() {
+        return CERT_QUERY_CONTENT_FLAG_ALL;
+    }
+    private static final int CERT_QUERY_CONTENT_FLAG_ALL_ISSUER_CERT = (int)818L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_CONTENT_FLAG_ALL_ISSUER_CERT 818
+     * }
+     */
+    public static int CERT_QUERY_CONTENT_FLAG_ALL_ISSUER_CERT() {
+        return CERT_QUERY_CONTENT_FLAG_ALL_ISSUER_CERT;
+    }
+    private static final int CERT_QUERY_FORMAT_FLAG_BINARY = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_FORMAT_FLAG_BINARY 2
+     * }
+     */
+    public static int CERT_QUERY_FORMAT_FLAG_BINARY() {
+        return CERT_QUERY_FORMAT_FLAG_BINARY;
+    }
+    private static final int CERT_QUERY_FORMAT_FLAG_BASE64_ENCODED = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_FORMAT_FLAG_BASE64_ENCODED 4
+     * }
+     */
+    public static int CERT_QUERY_FORMAT_FLAG_BASE64_ENCODED() {
+        return CERT_QUERY_FORMAT_FLAG_BASE64_ENCODED;
+    }
+    private static final int CERT_QUERY_FORMAT_FLAG_ASN_ASCII_HEX_ENCODED = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_FORMAT_FLAG_ASN_ASCII_HEX_ENCODED 8
+     * }
+     */
+    public static int CERT_QUERY_FORMAT_FLAG_ASN_ASCII_HEX_ENCODED() {
+        return CERT_QUERY_FORMAT_FLAG_ASN_ASCII_HEX_ENCODED;
+    }
+    private static final int CERT_QUERY_FORMAT_FLAG_ALL = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_QUERY_FORMAT_FLAG_ALL 14
+     * }
+     */
+    public static int CERT_QUERY_FORMAT_FLAG_ALL() {
+        return CERT_QUERY_FORMAT_FLAG_ALL;
+    }
+    private static final MemorySegment CREDENTIAL_OID_PASSWORD_CREDENTIALS_A = MemorySegment.ofAddress(1L);
+    /**
+     * {@snippet lang=c :
+     * #define CREDENTIAL_OID_PASSWORD_CREDENTIALS_A (void*) 1
+     * }
+     */
+    public static MemorySegment CREDENTIAL_OID_PASSWORD_CREDENTIALS_A() {
+        return CREDENTIAL_OID_PASSWORD_CREDENTIALS_A;
+    }
+    private static final MemorySegment CREDENTIAL_OID_PASSWORD_CREDENTIALS_W = MemorySegment.ofAddress(2L);
+    /**
+     * {@snippet lang=c :
+     * #define CREDENTIAL_OID_PASSWORD_CREDENTIALS_W (void*) 2
+     * }
+     */
+    public static MemorySegment CREDENTIAL_OID_PASSWORD_CREDENTIALS_W() {
+        return CREDENTIAL_OID_PASSWORD_CREDENTIALS_W;
+    }
+    private static final MemorySegment CREDENTIAL_OID_PASSWORD_CREDENTIALS = MemorySegment.ofAddress(1L);
+    /**
+     * {@snippet lang=c :
+     * #define CREDENTIAL_OID_PASSWORD_CREDENTIALS (void*) 1
+     * }
+     */
+    public static MemorySegment CREDENTIAL_OID_PASSWORD_CREDENTIALS() {
+        return CREDENTIAL_OID_PASSWORD_CREDENTIALS;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SCHEME_OID_RETRIEVE_ENCODED_OBJECT_FUNC "SchemeDllRetrieveEncodedObject"
+     * }
+     */
+    public static MemorySegment SCHEME_OID_RETRIEVE_ENCODED_OBJECT_FUNC() {
+        class Holder {
+            static final MemorySegment SCHEME_OID_RETRIEVE_ENCODED_OBJECT_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("SchemeDllRetrieveEncodedObject");
+        }
+        return Holder.SCHEME_OID_RETRIEVE_ENCODED_OBJECT_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SCHEME_OID_RETRIEVE_ENCODED_OBJECTW_FUNC "SchemeDllRetrieveEncodedObjectW"
+     * }
+     */
+    public static MemorySegment SCHEME_OID_RETRIEVE_ENCODED_OBJECTW_FUNC() {
+        class Holder {
+            static final MemorySegment SCHEME_OID_RETRIEVE_ENCODED_OBJECTW_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("SchemeDllRetrieveEncodedObjectW");
+        }
+        return Holder.SCHEME_OID_RETRIEVE_ENCODED_OBJECTW_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CONTEXT_OID_CREATE_OBJECT_CONTEXT_FUNC "ContextDllCreateObjectContext"
+     * }
+     */
+    public static MemorySegment CONTEXT_OID_CREATE_OBJECT_CONTEXT_FUNC() {
+        class Holder {
+            static final MemorySegment CONTEXT_OID_CREATE_OBJECT_CONTEXT_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("ContextDllCreateObjectContext");
+        }
+        return Holder.CONTEXT_OID_CREATE_OBJECT_CONTEXT_FUNC;
+    }
+    private static final MemorySegment CONTEXT_OID_CERTIFICATE = MemorySegment.ofAddress(1L);
+    /**
+     * {@snippet lang=c :
+     * #define CONTEXT_OID_CERTIFICATE (void*) 1
+     * }
+     */
+    public static MemorySegment CONTEXT_OID_CERTIFICATE() {
+        return CONTEXT_OID_CERTIFICATE;
+    }
+    private static final MemorySegment CONTEXT_OID_CRL = MemorySegment.ofAddress(2L);
+    /**
+     * {@snippet lang=c :
+     * #define CONTEXT_OID_CRL (void*) 2
+     * }
+     */
+    public static MemorySegment CONTEXT_OID_CRL() {
+        return CONTEXT_OID_CRL;
+    }
+    private static final MemorySegment CONTEXT_OID_CTL = MemorySegment.ofAddress(3L);
+    /**
+     * {@snippet lang=c :
+     * #define CONTEXT_OID_CTL (void*) 3
+     * }
+     */
+    public static MemorySegment CONTEXT_OID_CTL() {
+        return CONTEXT_OID_CTL;
+    }
+    private static final MemorySegment CONTEXT_OID_PKCS7 = MemorySegment.ofAddress(4L);
+    /**
+     * {@snippet lang=c :
+     * #define CONTEXT_OID_PKCS7 (void*) 4
+     * }
+     */
+    public static MemorySegment CONTEXT_OID_PKCS7() {
+        return CONTEXT_OID_PKCS7;
+    }
+    private static final MemorySegment CONTEXT_OID_CAPI2_ANY = MemorySegment.ofAddress(5L);
+    /**
+     * {@snippet lang=c :
+     * #define CONTEXT_OID_CAPI2_ANY (void*) 5
+     * }
+     */
+    public static MemorySegment CONTEXT_OID_CAPI2_ANY() {
+        return CONTEXT_OID_CAPI2_ANY;
+    }
+    private static final MemorySegment CONTEXT_OID_OCSP_RESP = MemorySegment.ofAddress(6L);
+    /**
+     * {@snippet lang=c :
+     * #define CONTEXT_OID_OCSP_RESP (void*) 6
+     * }
+     */
+    public static MemorySegment CONTEXT_OID_OCSP_RESP() {
+        return CONTEXT_OID_OCSP_RESP;
+    }
+    private static final int CRYPTNET_URL_CACHE_DISABLE_FLUSH = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_URL_CACHE_DISABLE_FLUSH 4294967295
+     * }
+     */
+    public static int CRYPTNET_URL_CACHE_DISABLE_FLUSH() {
+        return CRYPTNET_URL_CACHE_DISABLE_FLUSH;
+    }
+    private static final MemorySegment CRYPT_PARAM_ASYNC_RETRIEVAL_COMPLETION = MemorySegment.ofAddress(1L);
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_PARAM_ASYNC_RETRIEVAL_COMPLETION (void*) 1
+     * }
+     */
+    public static MemorySegment CRYPT_PARAM_ASYNC_RETRIEVAL_COMPLETION() {
+        return CRYPT_PARAM_ASYNC_RETRIEVAL_COMPLETION;
+    }
+    private static final MemorySegment CRYPT_PARAM_CANCEL_ASYNC_RETRIEVAL = MemorySegment.ofAddress(2L);
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_PARAM_CANCEL_ASYNC_RETRIEVAL (void*) 2
+     * }
+     */
+    public static MemorySegment CRYPT_PARAM_CANCEL_ASYNC_RETRIEVAL() {
+        return CRYPT_PARAM_CANCEL_ASYNC_RETRIEVAL;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define URL_OID_GET_OBJECT_URL_FUNC "UrlDllGetObjectUrl"
+     * }
+     */
+    public static MemorySegment URL_OID_GET_OBJECT_URL_FUNC() {
+        class Holder {
+            static final MemorySegment URL_OID_GET_OBJECT_URL_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("UrlDllGetObjectUrl");
+        }
+        return Holder.URL_OID_GET_OBJECT_URL_FUNC;
+    }
+    private static final MemorySegment URL_OID_CERTIFICATE_ISSUER = MemorySegment.ofAddress(1L);
+    /**
+     * {@snippet lang=c :
+     * #define URL_OID_CERTIFICATE_ISSUER (void*) 1
+     * }
+     */
+    public static MemorySegment URL_OID_CERTIFICATE_ISSUER() {
+        return URL_OID_CERTIFICATE_ISSUER;
+    }
+    private static final MemorySegment URL_OID_CERTIFICATE_CRL_DIST_POINT = MemorySegment.ofAddress(2L);
+    /**
+     * {@snippet lang=c :
+     * #define URL_OID_CERTIFICATE_CRL_DIST_POINT (void*) 2
+     * }
+     */
+    public static MemorySegment URL_OID_CERTIFICATE_CRL_DIST_POINT() {
+        return URL_OID_CERTIFICATE_CRL_DIST_POINT;
+    }
+    private static final MemorySegment URL_OID_CTL_ISSUER = MemorySegment.ofAddress(3L);
+    /**
+     * {@snippet lang=c :
+     * #define URL_OID_CTL_ISSUER (void*) 3
+     * }
+     */
+    public static MemorySegment URL_OID_CTL_ISSUER() {
+        return URL_OID_CTL_ISSUER;
+    }
+    private static final MemorySegment URL_OID_CTL_NEXT_UPDATE = MemorySegment.ofAddress(4L);
+    /**
+     * {@snippet lang=c :
+     * #define URL_OID_CTL_NEXT_UPDATE (void*) 4
+     * }
+     */
+    public static MemorySegment URL_OID_CTL_NEXT_UPDATE() {
+        return URL_OID_CTL_NEXT_UPDATE;
+    }
+    private static final MemorySegment URL_OID_CRL_ISSUER = MemorySegment.ofAddress(5L);
+    /**
+     * {@snippet lang=c :
+     * #define URL_OID_CRL_ISSUER (void*) 5
+     * }
+     */
+    public static MemorySegment URL_OID_CRL_ISSUER() {
+        return URL_OID_CRL_ISSUER;
+    }
+    private static final MemorySegment URL_OID_CERTIFICATE_FRESHEST_CRL = MemorySegment.ofAddress(6L);
+    /**
+     * {@snippet lang=c :
+     * #define URL_OID_CERTIFICATE_FRESHEST_CRL (void*) 6
+     * }
+     */
+    public static MemorySegment URL_OID_CERTIFICATE_FRESHEST_CRL() {
+        return URL_OID_CERTIFICATE_FRESHEST_CRL;
+    }
+    private static final MemorySegment URL_OID_CRL_FRESHEST_CRL = MemorySegment.ofAddress(7L);
+    /**
+     * {@snippet lang=c :
+     * #define URL_OID_CRL_FRESHEST_CRL (void*) 7
+     * }
+     */
+    public static MemorySegment URL_OID_CRL_FRESHEST_CRL() {
+        return URL_OID_CRL_FRESHEST_CRL;
+    }
+    private static final MemorySegment URL_OID_CROSS_CERT_DIST_POINT = MemorySegment.ofAddress(8L);
+    /**
+     * {@snippet lang=c :
+     * #define URL_OID_CROSS_CERT_DIST_POINT (void*) 8
+     * }
+     */
+    public static MemorySegment URL_OID_CROSS_CERT_DIST_POINT() {
+        return URL_OID_CROSS_CERT_DIST_POINT;
+    }
+    private static final MemorySegment URL_OID_CERTIFICATE_OCSP = MemorySegment.ofAddress(9L);
+    /**
+     * {@snippet lang=c :
+     * #define URL_OID_CERTIFICATE_OCSP (void*) 9
+     * }
+     */
+    public static MemorySegment URL_OID_CERTIFICATE_OCSP() {
+        return URL_OID_CERTIFICATE_OCSP;
+    }
+    private static final MemorySegment URL_OID_CERTIFICATE_OCSP_AND_CRL_DIST_POINT = MemorySegment.ofAddress(10L);
+    /**
+     * {@snippet lang=c :
+     * #define URL_OID_CERTIFICATE_OCSP_AND_CRL_DIST_POINT (void*) 10
+     * }
+     */
+    public static MemorySegment URL_OID_CERTIFICATE_OCSP_AND_CRL_DIST_POINT() {
+        return URL_OID_CERTIFICATE_OCSP_AND_CRL_DIST_POINT;
+    }
+    private static final MemorySegment URL_OID_CERTIFICATE_CRL_DIST_POINT_AND_OCSP = MemorySegment.ofAddress(11L);
+    /**
+     * {@snippet lang=c :
+     * #define URL_OID_CERTIFICATE_CRL_DIST_POINT_AND_OCSP (void*) 11
+     * }
+     */
+    public static MemorySegment URL_OID_CERTIFICATE_CRL_DIST_POINT_AND_OCSP() {
+        return URL_OID_CERTIFICATE_CRL_DIST_POINT_AND_OCSP;
+    }
+    private static final MemorySegment URL_OID_CROSS_CERT_SUBJECT_INFO_ACCESS = MemorySegment.ofAddress(12L);
+    /**
+     * {@snippet lang=c :
+     * #define URL_OID_CROSS_CERT_SUBJECT_INFO_ACCESS (void*) 12
+     * }
+     */
+    public static MemorySegment URL_OID_CROSS_CERT_SUBJECT_INFO_ACCESS() {
+        return URL_OID_CROSS_CERT_SUBJECT_INFO_ACCESS;
+    }
+    private static final MemorySegment URL_OID_CERTIFICATE_ONLY_OCSP = MemorySegment.ofAddress(13L);
+    /**
+     * {@snippet lang=c :
+     * #define URL_OID_CERTIFICATE_ONLY_OCSP (void*) 13
+     * }
+     */
+    public static MemorySegment URL_OID_CERTIFICATE_ONLY_OCSP() {
+        return URL_OID_CERTIFICATE_ONLY_OCSP;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define TIME_VALID_OID_GET_OBJECT_FUNC "TimeValidDllGetObject"
+     * }
+     */
+    public static MemorySegment TIME_VALID_OID_GET_OBJECT_FUNC() {
+        class Holder {
+            static final MemorySegment TIME_VALID_OID_GET_OBJECT_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("TimeValidDllGetObject");
+        }
+        return Holder.TIME_VALID_OID_GET_OBJECT_FUNC;
+    }
+    private static final MemorySegment TIME_VALID_OID_GET_CTL = MemorySegment.ofAddress(1L);
+    /**
+     * {@snippet lang=c :
+     * #define TIME_VALID_OID_GET_CTL (void*) 1
+     * }
+     */
+    public static MemorySegment TIME_VALID_OID_GET_CTL() {
+        return TIME_VALID_OID_GET_CTL;
+    }
+    private static final MemorySegment TIME_VALID_OID_GET_CRL = MemorySegment.ofAddress(2L);
+    /**
+     * {@snippet lang=c :
+     * #define TIME_VALID_OID_GET_CRL (void*) 2
+     * }
+     */
+    public static MemorySegment TIME_VALID_OID_GET_CRL() {
+        return TIME_VALID_OID_GET_CRL;
+    }
+    private static final MemorySegment TIME_VALID_OID_GET_CRL_FROM_CERT = MemorySegment.ofAddress(3L);
+    /**
+     * {@snippet lang=c :
+     * #define TIME_VALID_OID_GET_CRL_FROM_CERT (void*) 3
+     * }
+     */
+    public static MemorySegment TIME_VALID_OID_GET_CRL_FROM_CERT() {
+        return TIME_VALID_OID_GET_CRL_FROM_CERT;
+    }
+    private static final MemorySegment TIME_VALID_OID_GET_FRESHEST_CRL_FROM_CERT = MemorySegment.ofAddress(4L);
+    /**
+     * {@snippet lang=c :
+     * #define TIME_VALID_OID_GET_FRESHEST_CRL_FROM_CERT (void*) 4
+     * }
+     */
+    public static MemorySegment TIME_VALID_OID_GET_FRESHEST_CRL_FROM_CERT() {
+        return TIME_VALID_OID_GET_FRESHEST_CRL_FROM_CERT;
+    }
+    private static final MemorySegment TIME_VALID_OID_GET_FRESHEST_CRL_FROM_CRL = MemorySegment.ofAddress(5L);
+    /**
+     * {@snippet lang=c :
+     * #define TIME_VALID_OID_GET_FRESHEST_CRL_FROM_CRL (void*) 5
+     * }
+     */
+    public static MemorySegment TIME_VALID_OID_GET_FRESHEST_CRL_FROM_CRL() {
+        return TIME_VALID_OID_GET_FRESHEST_CRL_FROM_CRL;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define TIME_VALID_OID_FLUSH_OBJECT_FUNC "TimeValidDllFlushObject"
+     * }
+     */
+    public static MemorySegment TIME_VALID_OID_FLUSH_OBJECT_FUNC() {
+        class Holder {
+            static final MemorySegment TIME_VALID_OID_FLUSH_OBJECT_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("TimeValidDllFlushObject");
+        }
+        return Holder.TIME_VALID_OID_FLUSH_OBJECT_FUNC;
+    }
+    private static final MemorySegment TIME_VALID_OID_FLUSH_CTL = MemorySegment.ofAddress(1L);
+    /**
+     * {@snippet lang=c :
+     * #define TIME_VALID_OID_FLUSH_CTL (void*) 1
+     * }
+     */
+    public static MemorySegment TIME_VALID_OID_FLUSH_CTL() {
+        return TIME_VALID_OID_FLUSH_CTL;
+    }
+    private static final MemorySegment TIME_VALID_OID_FLUSH_CRL = MemorySegment.ofAddress(2L);
+    /**
+     * {@snippet lang=c :
+     * #define TIME_VALID_OID_FLUSH_CRL (void*) 2
+     * }
+     */
+    public static MemorySegment TIME_VALID_OID_FLUSH_CRL() {
+        return TIME_VALID_OID_FLUSH_CRL;
+    }
+    private static final MemorySegment TIME_VALID_OID_FLUSH_CRL_FROM_CERT = MemorySegment.ofAddress(3L);
+    /**
+     * {@snippet lang=c :
+     * #define TIME_VALID_OID_FLUSH_CRL_FROM_CERT (void*) 3
+     * }
+     */
+    public static MemorySegment TIME_VALID_OID_FLUSH_CRL_FROM_CERT() {
+        return TIME_VALID_OID_FLUSH_CRL_FROM_CERT;
+    }
+    private static final MemorySegment TIME_VALID_OID_FLUSH_FRESHEST_CRL_FROM_CERT = MemorySegment.ofAddress(4L);
+    /**
+     * {@snippet lang=c :
+     * #define TIME_VALID_OID_FLUSH_FRESHEST_CRL_FROM_CERT (void*) 4
+     * }
+     */
+    public static MemorySegment TIME_VALID_OID_FLUSH_FRESHEST_CRL_FROM_CERT() {
+        return TIME_VALID_OID_FLUSH_FRESHEST_CRL_FROM_CERT;
+    }
+    private static final MemorySegment TIME_VALID_OID_FLUSH_FRESHEST_CRL_FROM_CRL = MemorySegment.ofAddress(5L);
+    /**
+     * {@snippet lang=c :
+     * #define TIME_VALID_OID_FLUSH_FRESHEST_CRL_FROM_CRL (void*) 5
+     * }
+     */
+    public static MemorySegment TIME_VALID_OID_FLUSH_FRESHEST_CRL_FROM_CRL() {
+        return TIME_VALID_OID_FLUSH_FRESHEST_CRL_FROM_CRL;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_CONFIG_REGPATH "S"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_CONFIG_REGPATH() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_CONFIG_REGPATH
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_CHAIN_CONFIG_REGPATH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_MAX_URL_RETRIEVAL_BYTE_COUNT_VALUE_NAME "M"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_MAX_URL_RETRIEVAL_BYTE_COUNT_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_MAX_URL_RETRIEVAL_BYTE_COUNT_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("M");
+        }
+        return Holder.CERT_CHAIN_MAX_URL_RETRIEVAL_BYTE_COUNT_VALUE_NAME;
+    }
+    private static final int CERT_CHAIN_MAX_URL_RETRIEVAL_BYTE_COUNT_DEFAULT = (int)104857600L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_MAX_URL_RETRIEVAL_BYTE_COUNT_DEFAULT 104857600
+     * }
+     */
+    public static int CERT_CHAIN_MAX_URL_RETRIEVAL_BYTE_COUNT_DEFAULT() {
+        return CERT_CHAIN_MAX_URL_RETRIEVAL_BYTE_COUNT_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_CACHE_RESYNC_FILETIME_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_CACHE_RESYNC_FILETIME_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_CACHE_RESYNC_FILETIME_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CERT_CHAIN_CACHE_RESYNC_FILETIME_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_DISABLE_MANDATORY_BASIC_CONSTRAINTS_VALUE_NAME "D"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_DISABLE_MANDATORY_BASIC_CONSTRAINTS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_DISABLE_MANDATORY_BASIC_CONSTRAINTS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.CERT_CHAIN_DISABLE_MANDATORY_BASIC_CONSTRAINTS_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_DISABLE_CA_NAME_CONSTRAINTS_VALUE_NAME "D"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_DISABLE_CA_NAME_CONSTRAINTS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_DISABLE_CA_NAME_CONSTRAINTS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.CERT_CHAIN_DISABLE_CA_NAME_CONSTRAINTS_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_DISABLE_UNSUPPORTED_CRITICAL_EXTENSIONS_VALUE_NAME "D"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_DISABLE_UNSUPPORTED_CRITICAL_EXTENSIONS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_DISABLE_UNSUPPORTED_CRITICAL_EXTENSIONS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.CERT_CHAIN_DISABLE_UNSUPPORTED_CRITICAL_EXTENSIONS_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_MAX_AIA_URL_COUNT_IN_CERT_VALUE_NAME "M"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_MAX_AIA_URL_COUNT_IN_CERT_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_MAX_AIA_URL_COUNT_IN_CERT_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("M");
+        }
+        return Holder.CERT_CHAIN_MAX_AIA_URL_COUNT_IN_CERT_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_MAX_AIA_URL_RETRIEVAL_COUNT_PER_CHAIN_VALUE_NAME "M"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_MAX_AIA_URL_RETRIEVAL_COUNT_PER_CHAIN_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_MAX_AIA_URL_RETRIEVAL_COUNT_PER_CHAIN_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("M");
+        }
+        return Holder.CERT_CHAIN_MAX_AIA_URL_RETRIEVAL_COUNT_PER_CHAIN_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_MAX_AIA_URL_RETRIEVAL_BYTE_COUNT_VALUE_NAME "M"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_MAX_AIA_URL_RETRIEVAL_BYTE_COUNT_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_MAX_AIA_URL_RETRIEVAL_BYTE_COUNT_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("M");
+        }
+        return Holder.CERT_CHAIN_MAX_AIA_URL_RETRIEVAL_BYTE_COUNT_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_MAX_AIA_URL_RETRIEVAL_CERT_COUNT_VALUE_NAME "M"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_MAX_AIA_URL_RETRIEVAL_CERT_COUNT_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_MAX_AIA_URL_RETRIEVAL_CERT_COUNT_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("M");
+        }
+        return Holder.CERT_CHAIN_MAX_AIA_URL_RETRIEVAL_CERT_COUNT_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_OCSP_VALIDITY_SECONDS_VALUE_NAME "O"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_OCSP_VALIDITY_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_OCSP_VALIDITY_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("O");
+        }
+        return Holder.CERT_CHAIN_OCSP_VALIDITY_SECONDS_VALUE_NAME;
+    }
+    private static final int CERT_CHAIN_OCSP_VALIDITY_SECONDS_DEFAULT = (int)43200L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_OCSP_VALIDITY_SECONDS_DEFAULT 43200
+     * }
+     */
+    public static int CERT_CHAIN_OCSP_VALIDITY_SECONDS_DEFAULT() {
+        return CERT_CHAIN_OCSP_VALIDITY_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_DISABLE_SERIAL_CHAIN_VALUE_NAME "D"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_DISABLE_SERIAL_CHAIN_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_DISABLE_SERIAL_CHAIN_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.CERT_CHAIN_DISABLE_SERIAL_CHAIN_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_SERIAL_CHAIN_LOG_FILE_NAME_VALUE_NAME "S"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_SERIAL_CHAIN_LOG_FILE_NAME_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_SERIAL_CHAIN_LOG_FILE_NAME_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_CHAIN_SERIAL_CHAIN_LOG_FILE_NAME_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_DISABLE_SYNC_WITH_SSL_TIME_VALUE_NAME "D"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_DISABLE_SYNC_WITH_SSL_TIME_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_DISABLE_SYNC_WITH_SSL_TIME_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.CERT_CHAIN_DISABLE_SYNC_WITH_SSL_TIME_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_MAX_SSL_TIME_UPDATED_EVENT_COUNT_VALUE_NAME "M"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_MAX_SSL_TIME_UPDATED_EVENT_COUNT_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_MAX_SSL_TIME_UPDATED_EVENT_COUNT_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("M");
+        }
+        return Holder.CERT_CHAIN_MAX_SSL_TIME_UPDATED_EVENT_COUNT_VALUE_NAME;
+    }
+    private static final int CERT_CHAIN_MAX_SSL_TIME_UPDATED_EVENT_COUNT_DISABLE = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_MAX_SSL_TIME_UPDATED_EVENT_COUNT_DISABLE 4294967295
+     * }
+     */
+    public static int CERT_CHAIN_MAX_SSL_TIME_UPDATED_EVENT_COUNT_DISABLE() {
+        return CERT_CHAIN_MAX_SSL_TIME_UPDATED_EVENT_COUNT_DISABLE;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_SSL_HANDSHAKE_LOG_FILE_NAME_VALUE_NAME "S"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_SSL_HANDSHAKE_LOG_FILE_NAME_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_SSL_HANDSHAKE_LOG_FILE_NAME_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_CHAIN_SSL_HANDSHAKE_LOG_FILE_NAME_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_ENABLE_WEAK_SIGNATURE_FLAGS_VALUE_NAME "E"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_ENABLE_WEAK_SIGNATURE_FLAGS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_ENABLE_WEAK_SIGNATURE_FLAGS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("E");
+        }
+        return Holder.CERT_CHAIN_ENABLE_WEAK_SIGNATURE_FLAGS_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_MIN_RSA_PUB_KEY_BIT_LENGTH_VALUE_NAME "M"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_MIN_RSA_PUB_KEY_BIT_LENGTH_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_MIN_RSA_PUB_KEY_BIT_LENGTH_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("M");
+        }
+        return Holder.CERT_CHAIN_MIN_RSA_PUB_KEY_BIT_LENGTH_VALUE_NAME;
+    }
+    private static final int CERT_CHAIN_MIN_RSA_PUB_KEY_BIT_LENGTH_DISABLE = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_MIN_RSA_PUB_KEY_BIT_LENGTH_DISABLE 4294967295
+     * }
+     */
+    public static int CERT_CHAIN_MIN_RSA_PUB_KEY_BIT_LENGTH_DISABLE() {
+        return CERT_CHAIN_MIN_RSA_PUB_KEY_BIT_LENGTH_DISABLE;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_WEAK_RSA_PUB_KEY_TIME_VALUE_NAME "W"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_WEAK_RSA_PUB_KEY_TIME_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_WEAK_RSA_PUB_KEY_TIME_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("W");
+        }
+        return Holder.CERT_CHAIN_WEAK_RSA_PUB_KEY_TIME_VALUE_NAME;
+    }
+    private static final long CERT_CHAIN_WEAK_RSA_PUB_KEY_TIME_DEFAULT = 129067776000000000L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_WEAK_RSA_PUB_KEY_TIME_DEFAULT 129067776000000000
+     * }
+     */
+    public static long CERT_CHAIN_WEAK_RSA_PUB_KEY_TIME_DEFAULT() {
+        return CERT_CHAIN_WEAK_RSA_PUB_KEY_TIME_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_WEAK_SIGNATURE_LOG_DIR_VALUE_NAME "W"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_WEAK_SIGNATURE_LOG_DIR_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_WEAK_SIGNATURE_LOG_DIR_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("W");
+        }
+        return Holder.CERT_CHAIN_WEAK_SIGNATURE_LOG_DIR_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_DEFAULT_CONFIG_SUBDIR "D"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_DEFAULT_CONFIG_SUBDIR() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_DEFAULT_CONFIG_SUBDIR
+                = wgl_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.CERT_CHAIN_DEFAULT_CONFIG_SUBDIR;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_WEAK_PREFIX_NAME "W"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_WEAK_PREFIX_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_WEAK_PREFIX_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("W");
+        }
+        return Holder.CERT_CHAIN_WEAK_PREFIX_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_WEAK_THIRD_PARTY_CONFIG_NAME "T"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_WEAK_THIRD_PARTY_CONFIG_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_WEAK_THIRD_PARTY_CONFIG_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("T");
+        }
+        return Holder.CERT_CHAIN_WEAK_THIRD_PARTY_CONFIG_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_WEAK_ALL_CONFIG_NAME "A"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_WEAK_ALL_CONFIG_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_WEAK_ALL_CONFIG_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("A");
+        }
+        return Holder.CERT_CHAIN_WEAK_ALL_CONFIG_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_WEAK_FLAGS_NAME "F"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_WEAK_FLAGS_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_WEAK_FLAGS_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("F");
+        }
+        return Holder.CERT_CHAIN_WEAK_FLAGS_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_WEAK_HYGIENE_NAME "H"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_WEAK_HYGIENE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_WEAK_HYGIENE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("H");
+        }
+        return Holder.CERT_CHAIN_WEAK_HYGIENE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_WEAK_AFTER_TIME_NAME "A"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_WEAK_AFTER_TIME_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_WEAK_AFTER_TIME_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("A");
+        }
+        return Holder.CERT_CHAIN_WEAK_AFTER_TIME_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_WEAK_FILE_HASH_AFTER_TIME_NAME "F"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_WEAK_FILE_HASH_AFTER_TIME_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_WEAK_FILE_HASH_AFTER_TIME_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("F");
+        }
+        return Holder.CERT_CHAIN_WEAK_FILE_HASH_AFTER_TIME_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_WEAK_TIMESTAMP_HASH_AFTER_TIME_NAME "T"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_WEAK_TIMESTAMP_HASH_AFTER_TIME_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_WEAK_TIMESTAMP_HASH_AFTER_TIME_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("T");
+        }
+        return Holder.CERT_CHAIN_WEAK_TIMESTAMP_HASH_AFTER_TIME_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_WEAK_MIN_BIT_LENGTH_NAME "M"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_WEAK_MIN_BIT_LENGTH_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_WEAK_MIN_BIT_LENGTH_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("M");
+        }
+        return Holder.CERT_CHAIN_WEAK_MIN_BIT_LENGTH_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_WEAK_SHA256_ALLOW_NAME "S"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_WEAK_SHA256_ALLOW_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_WEAK_SHA256_ALLOW_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_CHAIN_WEAK_SHA256_ALLOW_NAME;
+    }
+    private static final int CERT_CHAIN_MIN_PUB_KEY_BIT_LENGTH_DISABLE = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_MIN_PUB_KEY_BIT_LENGTH_DISABLE 4294967295
+     * }
+     */
+    public static int CERT_CHAIN_MIN_PUB_KEY_BIT_LENGTH_DISABLE() {
+        return CERT_CHAIN_MIN_PUB_KEY_BIT_LENGTH_DISABLE;
+    }
+    private static final int CERT_CHAIN_ENABLE_WEAK_SETTINGS_FLAG = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_ENABLE_WEAK_SETTINGS_FLAG 2147483648
+     * }
+     */
+    public static int CERT_CHAIN_ENABLE_WEAK_SETTINGS_FLAG() {
+        return CERT_CHAIN_ENABLE_WEAK_SETTINGS_FLAG;
+    }
+    private static final int CERT_CHAIN_DISABLE_WEAK_FLAGS = (int)215285760L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_DISABLE_WEAK_FLAGS 215285760
+     * }
+     */
+    public static int CERT_CHAIN_DISABLE_WEAK_FLAGS() {
+        return CERT_CHAIN_DISABLE_WEAK_FLAGS;
+    }
+    private static final int CERT_CHAIN_DISABLE_FILE_HASH_WEAK_FLAGS = (int)12288L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_DISABLE_FILE_HASH_WEAK_FLAGS 12288
+     * }
+     */
+    public static int CERT_CHAIN_DISABLE_FILE_HASH_WEAK_FLAGS() {
+        return CERT_CHAIN_DISABLE_FILE_HASH_WEAK_FLAGS;
+    }
+    private static final int CERT_CHAIN_DISABLE_TIMESTAMP_HASH_WEAK_FLAGS = (int)49152L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_DISABLE_TIMESTAMP_HASH_WEAK_FLAGS 49152
+     * }
+     */
+    public static int CERT_CHAIN_DISABLE_TIMESTAMP_HASH_WEAK_FLAGS() {
+        return CERT_CHAIN_DISABLE_TIMESTAMP_HASH_WEAK_FLAGS;
+    }
+    private static final int CERT_CHAIN_ENABLE_HYGIENE_FLAGS = (int)857866240L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_ENABLE_HYGIENE_FLAGS 857866240
+     * }
+     */
+    public static int CERT_CHAIN_ENABLE_HYGIENE_FLAGS() {
+        return CERT_CHAIN_ENABLE_HYGIENE_FLAGS;
+    }
+    private static final int CERT_CHAIN_MOTW_WEAK_FLAGS = (int)1786773504L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_MOTW_WEAK_FLAGS 1786773504
+     * }
+     */
+    public static int CERT_CHAIN_MOTW_WEAK_FLAGS() {
+        return CERT_CHAIN_MOTW_WEAK_FLAGS;
+    }
+    private static final int CERT_CHAIN_OPT_IN_WEAK_FLAGS = (int)262144L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_OPT_IN_WEAK_FLAGS 262144
+     * }
+     */
+    public static int CERT_CHAIN_OPT_IN_WEAK_FLAGS() {
+        return CERT_CHAIN_OPT_IN_WEAK_FLAGS;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_AUTO_FLAGS_VALUE_NAME "A"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_AUTO_FLAGS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_AUTO_FLAGS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("A");
+        }
+        return Holder.CERT_CHAIN_AUTO_FLAGS_VALUE_NAME;
+    }
+    private static final int CERT_CHAIN_AUTO_LOG_FLAGS = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_AUTO_LOG_FLAGS 14
+     * }
+     */
+    public static int CERT_CHAIN_AUTO_LOG_FLAGS() {
+        return CERT_CHAIN_AUTO_LOG_FLAGS;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_AUTO_FLUSH_FIRST_DELTA_SECONDS_VALUE_NAME "A"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_AUTO_FLUSH_FIRST_DELTA_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_AUTO_FLUSH_FIRST_DELTA_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("A");
+        }
+        return Holder.CERT_CHAIN_AUTO_FLUSH_FIRST_DELTA_SECONDS_VALUE_NAME;
+    }
+    private static final int CERT_CHAIN_AUTO_FLUSH_FIRST_DELTA_SECONDS_DEFAULT = (int)300L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_AUTO_FLUSH_FIRST_DELTA_SECONDS_DEFAULT 300
+     * }
+     */
+    public static int CERT_CHAIN_AUTO_FLUSH_FIRST_DELTA_SECONDS_DEFAULT() {
+        return CERT_CHAIN_AUTO_FLUSH_FIRST_DELTA_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_AUTO_FLUSH_NEXT_DELTA_SECONDS_VALUE_NAME "A"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_AUTO_FLUSH_NEXT_DELTA_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_AUTO_FLUSH_NEXT_DELTA_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("A");
+        }
+        return Holder.CERT_CHAIN_AUTO_FLUSH_NEXT_DELTA_SECONDS_VALUE_NAME;
+    }
+    private static final int CERT_CHAIN_AUTO_FLUSH_NEXT_DELTA_SECONDS_DEFAULT = (int)1800L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_AUTO_FLUSH_NEXT_DELTA_SECONDS_DEFAULT 1800
+     * }
+     */
+    public static int CERT_CHAIN_AUTO_FLUSH_NEXT_DELTA_SECONDS_DEFAULT() {
+        return CERT_CHAIN_AUTO_FLUSH_NEXT_DELTA_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_AUTO_LOG_FILE_NAME_VALUE_NAME "A"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_AUTO_LOG_FILE_NAME_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_AUTO_LOG_FILE_NAME_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("A");
+        }
+        return Holder.CERT_CHAIN_AUTO_LOG_FILE_NAME_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_DISABLE_AUTO_FLUSH_PROCESS_NAME_LIST_VALUE_NAME "D"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_DISABLE_AUTO_FLUSH_PROCESS_NAME_LIST_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_DISABLE_AUTO_FLUSH_PROCESS_NAME_LIST_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.CERT_CHAIN_DISABLE_AUTO_FLUSH_PROCESS_NAME_LIST_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SRV_OCSP_RESP_MIN_VALIDITY_SECONDS_VALUE_NAME "S"
+     * }
+     */
+    public static MemorySegment CERT_SRV_OCSP_RESP_MIN_VALIDITY_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_SRV_OCSP_RESP_MIN_VALIDITY_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_SRV_OCSP_RESP_MIN_VALIDITY_SECONDS_VALUE_NAME;
+    }
+    private static final int CERT_SRV_OCSP_RESP_MIN_VALIDITY_SECONDS_DEFAULT = (int)600L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SRV_OCSP_RESP_MIN_VALIDITY_SECONDS_DEFAULT 600
+     * }
+     */
+    public static int CERT_SRV_OCSP_RESP_MIN_VALIDITY_SECONDS_DEFAULT() {
+        return CERT_SRV_OCSP_RESP_MIN_VALIDITY_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SRV_OCSP_RESP_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_VALUE_NAME "S"
+     * }
+     */
+    public static MemorySegment CERT_SRV_OCSP_RESP_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_SRV_OCSP_RESP_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_SRV_OCSP_RESP_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_VALUE_NAME;
+    }
+    private static final int CERT_SRV_OCSP_RESP_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_DEFAULT = (int)15000L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SRV_OCSP_RESP_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_DEFAULT 15000
+     * }
+     */
+    public static int CERT_SRV_OCSP_RESP_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_DEFAULT() {
+        return CERT_SRV_OCSP_RESP_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SRV_OCSP_RESP_MAX_BEFORE_NEXT_UPDATE_SECONDS_VALUE_NAME "S"
+     * }
+     */
+    public static MemorySegment CERT_SRV_OCSP_RESP_MAX_BEFORE_NEXT_UPDATE_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_SRV_OCSP_RESP_MAX_BEFORE_NEXT_UPDATE_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_SRV_OCSP_RESP_MAX_BEFORE_NEXT_UPDATE_SECONDS_VALUE_NAME;
+    }
+    private static final int CERT_SRV_OCSP_RESP_MAX_BEFORE_NEXT_UPDATE_SECONDS_DEFAULT = (int)14400L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SRV_OCSP_RESP_MAX_BEFORE_NEXT_UPDATE_SECONDS_DEFAULT 14400
+     * }
+     */
+    public static int CERT_SRV_OCSP_RESP_MAX_BEFORE_NEXT_UPDATE_SECONDS_DEFAULT() {
+        return CERT_SRV_OCSP_RESP_MAX_BEFORE_NEXT_UPDATE_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SRV_OCSP_RESP_MIN_BEFORE_NEXT_UPDATE_SECONDS_VALUE_NAME "S"
+     * }
+     */
+    public static MemorySegment CERT_SRV_OCSP_RESP_MIN_BEFORE_NEXT_UPDATE_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_SRV_OCSP_RESP_MIN_BEFORE_NEXT_UPDATE_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_SRV_OCSP_RESP_MIN_BEFORE_NEXT_UPDATE_SECONDS_VALUE_NAME;
+    }
+    private static final int CERT_SRV_OCSP_RESP_MIN_BEFORE_NEXT_UPDATE_SECONDS_DEFAULT = (int)120L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SRV_OCSP_RESP_MIN_BEFORE_NEXT_UPDATE_SECONDS_DEFAULT 120
+     * }
+     */
+    public static int CERT_SRV_OCSP_RESP_MIN_BEFORE_NEXT_UPDATE_SECONDS_DEFAULT() {
+        return CERT_SRV_OCSP_RESP_MIN_BEFORE_NEXT_UPDATE_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SRV_OCSP_RESP_MIN_AFTER_NEXT_UPDATE_SECONDS_VALUE_NAME "S"
+     * }
+     */
+    public static MemorySegment CERT_SRV_OCSP_RESP_MIN_AFTER_NEXT_UPDATE_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_SRV_OCSP_RESP_MIN_AFTER_NEXT_UPDATE_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_SRV_OCSP_RESP_MIN_AFTER_NEXT_UPDATE_SECONDS_VALUE_NAME;
+    }
+    private static final int CERT_SRV_OCSP_RESP_MIN_AFTER_NEXT_UPDATE_SECONDS_DEFAULT = (int)60L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SRV_OCSP_RESP_MIN_AFTER_NEXT_UPDATE_SECONDS_DEFAULT 60
+     * }
+     */
+    public static int CERT_SRV_OCSP_RESP_MIN_AFTER_NEXT_UPDATE_SECONDS_DEFAULT() {
+        return CERT_SRV_OCSP_RESP_MIN_AFTER_NEXT_UPDATE_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SRV_OCSP_RESP_MIN_SYNC_CERT_FILE_SECONDS_VALUE_NAME "S"
+     * }
+     */
+    public static MemorySegment CERT_SRV_OCSP_RESP_MIN_SYNC_CERT_FILE_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_SRV_OCSP_RESP_MIN_SYNC_CERT_FILE_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_SRV_OCSP_RESP_MIN_SYNC_CERT_FILE_SECONDS_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SRV_OCSP_RESP_MAX_SYNC_CERT_FILE_SECONDS_VALUE_NAME "S"
+     * }
+     */
+    public static MemorySegment CERT_SRV_OCSP_RESP_MAX_SYNC_CERT_FILE_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_SRV_OCSP_RESP_MAX_SYNC_CERT_FILE_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_SRV_OCSP_RESP_MAX_SYNC_CERT_FILE_SECONDS_VALUE_NAME;
+    }
+    private static final int CERT_SRV_OCSP_RESP_MAX_SYNC_CERT_FILE_SECONDS_DEFAULT = (int)3600L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SRV_OCSP_RESP_MAX_SYNC_CERT_FILE_SECONDS_DEFAULT 3600
+     * }
+     */
+    public static int CERT_SRV_OCSP_RESP_MAX_SYNC_CERT_FILE_SECONDS_DEFAULT() {
+        return CERT_SRV_OCSP_RESP_MAX_SYNC_CERT_FILE_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_MAX_CACHED_OCSP_PER_CRL_COUNT_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CRYPTNET_MAX_CACHED_OCSP_PER_CRL_COUNT_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_MAX_CACHED_OCSP_PER_CRL_COUNT_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPTNET_MAX_CACHED_OCSP_PER_CRL_COUNT_VALUE_NAME;
+    }
+    private static final int CRYPTNET_OCSP_AFTER_CRL_DISABLE = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_OCSP_AFTER_CRL_DISABLE 4294967295
+     * }
+     */
+    public static int CRYPTNET_OCSP_AFTER_CRL_DISABLE() {
+        return CRYPTNET_OCSP_AFTER_CRL_DISABLE;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_URL_CACHE_DEFAULT_FLUSH_EXEMPT_SECONDS_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CRYPTNET_URL_CACHE_DEFAULT_FLUSH_EXEMPT_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_URL_CACHE_DEFAULT_FLUSH_EXEMPT_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPTNET_URL_CACHE_DEFAULT_FLUSH_EXEMPT_SECONDS_VALUE_NAME;
+    }
+    private static final int CRYPTNET_URL_CACHE_DEFAULT_FLUSH_EXEMPT_SECONDS_DEFAULT = (int)2419200L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_URL_CACHE_DEFAULT_FLUSH_EXEMPT_SECONDS_DEFAULT 2419200
+     * }
+     */
+    public static int CRYPTNET_URL_CACHE_DEFAULT_FLUSH_EXEMPT_SECONDS_DEFAULT() {
+        return CRYPTNET_URL_CACHE_DEFAULT_FLUSH_EXEMPT_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_MIN_MAX_AGE_SECONDS_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CRYPTNET_PRE_FETCH_MIN_MAX_AGE_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_PRE_FETCH_MIN_MAX_AGE_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPTNET_PRE_FETCH_MIN_MAX_AGE_SECONDS_VALUE_NAME;
+    }
+    private static final int CRYPTNET_PRE_FETCH_MIN_MAX_AGE_SECONDS_DEFAULT = (int)3600L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_MIN_MAX_AGE_SECONDS_DEFAULT 3600
+     * }
+     */
+    public static int CRYPTNET_PRE_FETCH_MIN_MAX_AGE_SECONDS_DEFAULT() {
+        return CRYPTNET_PRE_FETCH_MIN_MAX_AGE_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_MAX_MAX_AGE_SECONDS_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CRYPTNET_PRE_FETCH_MAX_MAX_AGE_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_PRE_FETCH_MAX_MAX_AGE_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPTNET_PRE_FETCH_MAX_MAX_AGE_SECONDS_VALUE_NAME;
+    }
+    private static final int CRYPTNET_PRE_FETCH_MAX_MAX_AGE_SECONDS_DEFAULT = (int)1209600L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_MAX_MAX_AGE_SECONDS_DEFAULT 1209600
+     * }
+     */
+    public static int CRYPTNET_PRE_FETCH_MAX_MAX_AGE_SECONDS_DEFAULT() {
+        return CRYPTNET_PRE_FETCH_MAX_MAX_AGE_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_MIN_OCSP_VALIDITY_PERIOD_SECONDS_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CRYPTNET_PRE_FETCH_MIN_OCSP_VALIDITY_PERIOD_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_PRE_FETCH_MIN_OCSP_VALIDITY_PERIOD_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPTNET_PRE_FETCH_MIN_OCSP_VALIDITY_PERIOD_SECONDS_VALUE_NAME;
+    }
+    private static final int CRYPTNET_PRE_FETCH_MIN_OCSP_VALIDITY_PERIOD_SECONDS_DEFAULT = (int)1209600L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_MIN_OCSP_VALIDITY_PERIOD_SECONDS_DEFAULT 1209600
+     * }
+     */
+    public static int CRYPTNET_PRE_FETCH_MIN_OCSP_VALIDITY_PERIOD_SECONDS_DEFAULT() {
+        return CRYPTNET_PRE_FETCH_MIN_OCSP_VALIDITY_PERIOD_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_AFTER_PUBLISH_PRE_FETCH_DIVISOR_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CRYPTNET_PRE_FETCH_AFTER_PUBLISH_PRE_FETCH_DIVISOR_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_PRE_FETCH_AFTER_PUBLISH_PRE_FETCH_DIVISOR_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPTNET_PRE_FETCH_AFTER_PUBLISH_PRE_FETCH_DIVISOR_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_BEFORE_NEXT_UPDATE_PRE_FETCH_DIVISOR_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CRYPTNET_PRE_FETCH_BEFORE_NEXT_UPDATE_PRE_FETCH_DIVISOR_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_PRE_FETCH_BEFORE_NEXT_UPDATE_PRE_FETCH_DIVISOR_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPTNET_PRE_FETCH_BEFORE_NEXT_UPDATE_PRE_FETCH_DIVISOR_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_MIN_BEFORE_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CRYPTNET_PRE_FETCH_MIN_BEFORE_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_PRE_FETCH_MIN_BEFORE_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPTNET_PRE_FETCH_MIN_BEFORE_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_VALUE_NAME;
+    }
+    private static final int CRYPTNET_PRE_FETCH_MIN_BEFORE_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_DEFAULT = (int)3600L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_MIN_BEFORE_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_DEFAULT 3600
+     * }
+     */
+    public static int CRYPTNET_PRE_FETCH_MIN_BEFORE_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_DEFAULT() {
+        return CRYPTNET_PRE_FETCH_MIN_BEFORE_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_VALIDITY_PERIOD_AFTER_NEXT_UPDATE_PRE_FETCH_DIVISOR_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CRYPTNET_PRE_FETCH_VALIDITY_PERIOD_AFTER_NEXT_UPDATE_PRE_FETCH_DIVISOR_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_PRE_FETCH_VALIDITY_PERIOD_AFTER_NEXT_UPDATE_PRE_FETCH_DIVISOR_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPTNET_PRE_FETCH_VALIDITY_PERIOD_AFTER_NEXT_UPDATE_PRE_FETCH_DIVISOR_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_MAX_AFTER_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CRYPTNET_PRE_FETCH_MAX_AFTER_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_PRE_FETCH_MAX_AFTER_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPTNET_PRE_FETCH_MAX_AFTER_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_VALUE_NAME;
+    }
+    private static final int CRYPTNET_PRE_FETCH_MAX_AFTER_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_DEFAULT = (int)14400L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_MAX_AFTER_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_DEFAULT 14400
+     * }
+     */
+    public static int CRYPTNET_PRE_FETCH_MAX_AFTER_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_DEFAULT() {
+        return CRYPTNET_PRE_FETCH_MAX_AFTER_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_MIN_AFTER_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CRYPTNET_PRE_FETCH_MIN_AFTER_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_PRE_FETCH_MIN_AFTER_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPTNET_PRE_FETCH_MIN_AFTER_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_VALUE_NAME;
+    }
+    private static final int CRYPTNET_PRE_FETCH_MIN_AFTER_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_DEFAULT = (int)1800L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_MIN_AFTER_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_DEFAULT 1800
+     * }
+     */
+    public static int CRYPTNET_PRE_FETCH_MIN_AFTER_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_DEFAULT() {
+        return CRYPTNET_PRE_FETCH_MIN_AFTER_NEXT_UPDATE_PRE_FETCH_PERIOD_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_AFTER_CURRENT_TIME_PRE_FETCH_PERIOD_SECONDS_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CRYPTNET_PRE_FETCH_AFTER_CURRENT_TIME_PRE_FETCH_PERIOD_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_PRE_FETCH_AFTER_CURRENT_TIME_PRE_FETCH_PERIOD_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPTNET_PRE_FETCH_AFTER_CURRENT_TIME_PRE_FETCH_PERIOD_SECONDS_VALUE_NAME;
+    }
+    private static final int CRYPTNET_PRE_FETCH_AFTER_CURRENT_TIME_PRE_FETCH_PERIOD_SECONDS_DEFAULT = (int)1800L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_AFTER_CURRENT_TIME_PRE_FETCH_PERIOD_SECONDS_DEFAULT 1800
+     * }
+     */
+    public static int CRYPTNET_PRE_FETCH_AFTER_CURRENT_TIME_PRE_FETCH_PERIOD_SECONDS_DEFAULT() {
+        return CRYPTNET_PRE_FETCH_AFTER_CURRENT_TIME_PRE_FETCH_PERIOD_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_TRIGGER_PERIOD_SECONDS_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CRYPTNET_PRE_FETCH_TRIGGER_PERIOD_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_PRE_FETCH_TRIGGER_PERIOD_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPTNET_PRE_FETCH_TRIGGER_PERIOD_SECONDS_VALUE_NAME;
+    }
+    private static final int CRYPTNET_PRE_FETCH_TRIGGER_PERIOD_SECONDS_DEFAULT = (int)600L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_TRIGGER_PERIOD_SECONDS_DEFAULT 600
+     * }
+     */
+    public static int CRYPTNET_PRE_FETCH_TRIGGER_PERIOD_SECONDS_DEFAULT() {
+        return CRYPTNET_PRE_FETCH_TRIGGER_PERIOD_SECONDS_DEFAULT;
+    }
+    private static final int CRYPTNET_PRE_FETCH_TRIGGER_DISABLE = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_TRIGGER_DISABLE 4294967295
+     * }
+     */
+    public static int CRYPTNET_PRE_FETCH_TRIGGER_DISABLE() {
+        return CRYPTNET_PRE_FETCH_TRIGGER_DISABLE;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_SCAN_AFTER_TRIGGER_DELAY_SECONDS_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CRYPTNET_PRE_FETCH_SCAN_AFTER_TRIGGER_DELAY_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_PRE_FETCH_SCAN_AFTER_TRIGGER_DELAY_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPTNET_PRE_FETCH_SCAN_AFTER_TRIGGER_DELAY_SECONDS_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_RETRIEVAL_TIMEOUT_SECONDS_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CRYPTNET_PRE_FETCH_RETRIEVAL_TIMEOUT_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_PRE_FETCH_RETRIEVAL_TIMEOUT_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPTNET_PRE_FETCH_RETRIEVAL_TIMEOUT_SECONDS_VALUE_NAME;
+    }
+    private static final int CRYPTNET_PRE_FETCH_RETRIEVAL_TIMEOUT_SECONDS_DEFAULT = (int)300L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_PRE_FETCH_RETRIEVAL_TIMEOUT_SECONDS_DEFAULT 300
+     * }
+     */
+    public static int CRYPTNET_PRE_FETCH_RETRIEVAL_TIMEOUT_SECONDS_DEFAULT() {
+        return CRYPTNET_PRE_FETCH_RETRIEVAL_TIMEOUT_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CRL_PRE_FETCH_CONFIG_REGPATH "S"
+     * }
+     */
+    public static MemorySegment CRYPTNET_CRL_PRE_FETCH_CONFIG_REGPATH() {
+        class Holder {
+            static final MemorySegment CRYPTNET_CRL_PRE_FETCH_CONFIG_REGPATH
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CRYPTNET_CRL_PRE_FETCH_CONFIG_REGPATH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CRL_PRE_FETCH_PROCESS_NAME_LIST_VALUE_NAME "P"
+     * }
+     */
+    public static MemorySegment CRYPTNET_CRL_PRE_FETCH_PROCESS_NAME_LIST_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_CRL_PRE_FETCH_PROCESS_NAME_LIST_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("P");
+        }
+        return Holder.CRYPTNET_CRL_PRE_FETCH_PROCESS_NAME_LIST_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CRL_PRE_FETCH_URL_LIST_VALUE_NAME "P"
+     * }
+     */
+    public static MemorySegment CRYPTNET_CRL_PRE_FETCH_URL_LIST_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_CRL_PRE_FETCH_URL_LIST_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("P");
+        }
+        return Holder.CRYPTNET_CRL_PRE_FETCH_URL_LIST_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CRL_PRE_FETCH_DISABLE_INFORMATION_EVENTS_VALUE_NAME "D"
+     * }
+     */
+    public static MemorySegment CRYPTNET_CRL_PRE_FETCH_DISABLE_INFORMATION_EVENTS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_CRL_PRE_FETCH_DISABLE_INFORMATION_EVENTS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.CRYPTNET_CRL_PRE_FETCH_DISABLE_INFORMATION_EVENTS_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CRL_PRE_FETCH_LOG_FILE_NAME_VALUE_NAME "L"
+     * }
+     */
+    public static MemorySegment CRYPTNET_CRL_PRE_FETCH_LOG_FILE_NAME_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_CRL_PRE_FETCH_LOG_FILE_NAME_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("L");
+        }
+        return Holder.CRYPTNET_CRL_PRE_FETCH_LOG_FILE_NAME_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CRL_PRE_FETCH_TIMEOUT_SECONDS_VALUE_NAME "T"
+     * }
+     */
+    public static MemorySegment CRYPTNET_CRL_PRE_FETCH_TIMEOUT_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_CRL_PRE_FETCH_TIMEOUT_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("T");
+        }
+        return Holder.CRYPTNET_CRL_PRE_FETCH_TIMEOUT_SECONDS_VALUE_NAME;
+    }
+    private static final int CRYPTNET_CRL_PRE_FETCH_TIMEOUT_SECONDS_DEFAULT = (int)300L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CRL_PRE_FETCH_TIMEOUT_SECONDS_DEFAULT 300
+     * }
+     */
+    public static int CRYPTNET_CRL_PRE_FETCH_TIMEOUT_SECONDS_DEFAULT() {
+        return CRYPTNET_CRL_PRE_FETCH_TIMEOUT_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CRL_PRE_FETCH_MAX_AGE_SECONDS_VALUE_NAME "M"
+     * }
+     */
+    public static MemorySegment CRYPTNET_CRL_PRE_FETCH_MAX_AGE_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_CRL_PRE_FETCH_MAX_AGE_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("M");
+        }
+        return Holder.CRYPTNET_CRL_PRE_FETCH_MAX_AGE_SECONDS_VALUE_NAME;
+    }
+    private static final int CRYPTNET_CRL_PRE_FETCH_MAX_AGE_SECONDS_DEFAULT = (int)7200L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CRL_PRE_FETCH_MAX_AGE_SECONDS_DEFAULT 7200
+     * }
+     */
+    public static int CRYPTNET_CRL_PRE_FETCH_MAX_AGE_SECONDS_DEFAULT() {
+        return CRYPTNET_CRL_PRE_FETCH_MAX_AGE_SECONDS_DEFAULT;
+    }
+    private static final int CRYPTNET_CRL_PRE_FETCH_MAX_AGE_SECONDS_MIN = (int)300L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CRL_PRE_FETCH_MAX_AGE_SECONDS_MIN 300
+     * }
+     */
+    public static int CRYPTNET_CRL_PRE_FETCH_MAX_AGE_SECONDS_MIN() {
+        return CRYPTNET_CRL_PRE_FETCH_MAX_AGE_SECONDS_MIN;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CRL_PRE_FETCH_PUBLISH_BEFORE_NEXT_UPDATE_SECONDS_VALUE_NAME "P"
+     * }
+     */
+    public static MemorySegment CRYPTNET_CRL_PRE_FETCH_PUBLISH_BEFORE_NEXT_UPDATE_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_CRL_PRE_FETCH_PUBLISH_BEFORE_NEXT_UPDATE_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("P");
+        }
+        return Holder.CRYPTNET_CRL_PRE_FETCH_PUBLISH_BEFORE_NEXT_UPDATE_SECONDS_VALUE_NAME;
+    }
+    private static final int CRYPTNET_CRL_PRE_FETCH_PUBLISH_BEFORE_NEXT_UPDATE_SECONDS_DEFAULT = (int)3600L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CRL_PRE_FETCH_PUBLISH_BEFORE_NEXT_UPDATE_SECONDS_DEFAULT 3600
+     * }
+     */
+    public static int CRYPTNET_CRL_PRE_FETCH_PUBLISH_BEFORE_NEXT_UPDATE_SECONDS_DEFAULT() {
+        return CRYPTNET_CRL_PRE_FETCH_PUBLISH_BEFORE_NEXT_UPDATE_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CRL_PRE_FETCH_PUBLISH_RANDOM_INTERVAL_SECONDS_VALUE_NAME "P"
+     * }
+     */
+    public static MemorySegment CRYPTNET_CRL_PRE_FETCH_PUBLISH_RANDOM_INTERVAL_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_CRL_PRE_FETCH_PUBLISH_RANDOM_INTERVAL_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("P");
+        }
+        return Holder.CRYPTNET_CRL_PRE_FETCH_PUBLISH_RANDOM_INTERVAL_SECONDS_VALUE_NAME;
+    }
+    private static final int CRYPTNET_CRL_PRE_FETCH_PUBLISH_RANDOM_INTERVAL_SECONDS_DEFAULT = (int)300L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CRL_PRE_FETCH_PUBLISH_RANDOM_INTERVAL_SECONDS_DEFAULT 300
+     * }
+     */
+    public static int CRYPTNET_CRL_PRE_FETCH_PUBLISH_RANDOM_INTERVAL_SECONDS_DEFAULT() {
+        return CRYPTNET_CRL_PRE_FETCH_PUBLISH_RANDOM_INTERVAL_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CRL_PRE_FETCH_MIN_BEFORE_NEXT_UPDATE_SECONDS_VALUE_NAME "M"
+     * }
+     */
+    public static MemorySegment CRYPTNET_CRL_PRE_FETCH_MIN_BEFORE_NEXT_UPDATE_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_CRL_PRE_FETCH_MIN_BEFORE_NEXT_UPDATE_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("M");
+        }
+        return Holder.CRYPTNET_CRL_PRE_FETCH_MIN_BEFORE_NEXT_UPDATE_SECONDS_VALUE_NAME;
+    }
+    private static final int CRYPTNET_CRL_PRE_FETCH_MIN_BEFORE_NEXT_UPDATE_SECONDS_DEFAULT = (int)300L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CRL_PRE_FETCH_MIN_BEFORE_NEXT_UPDATE_SECONDS_DEFAULT 300
+     * }
+     */
+    public static int CRYPTNET_CRL_PRE_FETCH_MIN_BEFORE_NEXT_UPDATE_SECONDS_DEFAULT() {
+        return CRYPTNET_CRL_PRE_FETCH_MIN_BEFORE_NEXT_UPDATE_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CRL_PRE_FETCH_MIN_AFTER_NEXT_UPDATE_SECONDS_VALUE_NAME "M"
+     * }
+     */
+    public static MemorySegment CRYPTNET_CRL_PRE_FETCH_MIN_AFTER_NEXT_UPDATE_SECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_CRL_PRE_FETCH_MIN_AFTER_NEXT_UPDATE_SECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("M");
+        }
+        return Holder.CRYPTNET_CRL_PRE_FETCH_MIN_AFTER_NEXT_UPDATE_SECONDS_VALUE_NAME;
+    }
+    private static final int CRYPTNET_CRL_PRE_FETCH_MIN_AFTER_NEXT_UPDATE_SECONDS_DEFAULT = (int)300L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CRL_PRE_FETCH_MIN_AFTER_NEXT_UPDATE_SECONDS_DEFAULT 300
+     * }
+     */
+    public static int CRYPTNET_CRL_PRE_FETCH_MIN_AFTER_NEXT_UPDATE_SECONDS_DEFAULT() {
+        return CRYPTNET_CRL_PRE_FETCH_MIN_AFTER_NEXT_UPDATE_SECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_GROUP_POLICY_CHAIN_CONFIG_REGPATH "S"
+     * }
+     */
+    public static MemorySegment CERT_GROUP_POLICY_CHAIN_CONFIG_REGPATH() {
+        class Holder {
+            static final MemorySegment CERT_GROUP_POLICY_CHAIN_CONFIG_REGPATH
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.CERT_GROUP_POLICY_CHAIN_CONFIG_REGPATH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CERT_CHAIN_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_VALUE_NAME;
+    }
+    private static final int CERT_CHAIN_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_DEFAULT = (int)15000L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_DEFAULT 15000
+     * }
+     */
+    public static int CERT_CHAIN_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_DEFAULT() {
+        return CERT_CHAIN_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_REV_ACCUMULATIVE_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_REV_ACCUMULATIVE_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_REV_ACCUMULATIVE_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CERT_CHAIN_REV_ACCUMULATIVE_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_VALUE_NAME;
+    }
+    private static final int CERT_CHAIN_REV_ACCUMULATIVE_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_DEFAULT = (int)20000L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_REV_ACCUMULATIVE_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_DEFAULT 20000
+     * }
+     */
+    public static int CERT_CHAIN_REV_ACCUMULATIVE_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_DEFAULT() {
+        return CERT_CHAIN_REV_ACCUMULATIVE_URL_RETRIEVAL_TIMEOUT_MILLISECONDS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_RETR_BEHAVIOR_INET_AUTH_VALUE_NAME "E"
+     * }
+     */
+    public static MemorySegment CERT_RETR_BEHAVIOR_INET_AUTH_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_RETR_BEHAVIOR_INET_AUTH_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("E");
+        }
+        return Holder.CERT_RETR_BEHAVIOR_INET_AUTH_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_RETR_BEHAVIOR_INET_STATUS_VALUE_NAME "E"
+     * }
+     */
+    public static MemorySegment CERT_RETR_BEHAVIOR_INET_STATUS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_RETR_BEHAVIOR_INET_STATUS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("E");
+        }
+        return Holder.CERT_RETR_BEHAVIOR_INET_STATUS_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_RETR_BEHAVIOR_FILE_VALUE_NAME "A"
+     * }
+     */
+    public static MemorySegment CERT_RETR_BEHAVIOR_FILE_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_RETR_BEHAVIOR_FILE_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("A");
+        }
+        return Holder.CERT_RETR_BEHAVIOR_FILE_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_RETR_BEHAVIOR_LDAP_VALUE_NAME "D"
+     * }
+     */
+    public static MemorySegment CERT_RETR_BEHAVIOR_LDAP_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_RETR_BEHAVIOR_LDAP_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.CERT_RETR_BEHAVIOR_LDAP_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CACHED_OCSP_SWITCH_TO_CRL_COUNT_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CRYPTNET_CACHED_OCSP_SWITCH_TO_CRL_COUNT_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CRYPTNET_CACHED_OCSP_SWITCH_TO_CRL_COUNT_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CRYPTNET_CACHED_OCSP_SWITCH_TO_CRL_COUNT_VALUE_NAME;
+    }
+    private static final int CRYPTNET_CRL_BEFORE_OCSP_ENABLE = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTNET_CRL_BEFORE_OCSP_ENABLE 4294967295
+     * }
+     */
+    public static int CRYPTNET_CRL_BEFORE_OCSP_ENABLE() {
+        return CRYPTNET_CRL_BEFORE_OCSP_ENABLE;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_DISABLE_AIA_URL_RETRIEVAL_VALUE_NAME "D"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_DISABLE_AIA_URL_RETRIEVAL_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_DISABLE_AIA_URL_RETRIEVAL_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.CERT_CHAIN_DISABLE_AIA_URL_RETRIEVAL_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_OPTIONS_VALUE_NAME "O"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_OPTIONS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_OPTIONS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("O");
+        }
+        return Holder.CERT_CHAIN_OPTIONS_VALUE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_CROSS_CERT_DOWNLOAD_INTERVAL_HOURS_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_CROSS_CERT_DOWNLOAD_INTERVAL_HOURS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_CROSS_CERT_DOWNLOAD_INTERVAL_HOURS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CERT_CHAIN_CROSS_CERT_DOWNLOAD_INTERVAL_HOURS_VALUE_NAME;
+    }
+    private static final int CERT_CHAIN_CROSS_CERT_DOWNLOAD_INTERVAL_HOURS_DEFAULT = (int)168L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_CROSS_CERT_DOWNLOAD_INTERVAL_HOURS_DEFAULT 168
+     * }
+     */
+    public static int CERT_CHAIN_CROSS_CERT_DOWNLOAD_INTERVAL_HOURS_DEFAULT() {
+        return CERT_CHAIN_CROSS_CERT_DOWNLOAD_INTERVAL_HOURS_DEFAULT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_CRL_VALIDITY_EXT_PERIOD_HOURS_VALUE_NAME "C"
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_CRL_VALIDITY_EXT_PERIOD_HOURS_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment CERT_CHAIN_CRL_VALIDITY_EXT_PERIOD_HOURS_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("C");
+        }
+        return Holder.CERT_CHAIN_CRL_VALIDITY_EXT_PERIOD_HOURS_VALUE_NAME;
+    }
+    private static final MemorySegment HCCE_CURRENT_USER = MemorySegment.ofAddress(0L);
+    /**
+     * {@snippet lang=c :
+     * #define HCCE_CURRENT_USER (void*) 0
+     * }
+     */
+    public static MemorySegment HCCE_CURRENT_USER() {
+        return HCCE_CURRENT_USER;
+    }
+    private static final MemorySegment HCCE_LOCAL_MACHINE = MemorySegment.ofAddress(1L);
+    /**
+     * {@snippet lang=c :
+     * #define HCCE_LOCAL_MACHINE (void*) 1
+     * }
+     */
+    public static MemorySegment HCCE_LOCAL_MACHINE() {
+        return HCCE_LOCAL_MACHINE;
+    }
+    private static final MemorySegment HCCE_SERIAL_LOCAL_MACHINE = MemorySegment.ofAddress(2L);
+    /**
+     * {@snippet lang=c :
+     * #define HCCE_SERIAL_LOCAL_MACHINE (void*) 2
+     * }
+     */
+    public static MemorySegment HCCE_SERIAL_LOCAL_MACHINE() {
+        return HCCE_SERIAL_LOCAL_MACHINE;
+    }
+    private static final int CERT_CHAIN_REVOCATION_CHECK_CACHE_ONLY = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_REVOCATION_CHECK_CACHE_ONLY 2147483648
+     * }
+     */
+    public static int CERT_CHAIN_REVOCATION_CHECK_CACHE_ONLY() {
+        return CERT_CHAIN_REVOCATION_CHECK_CACHE_ONLY;
+    }
+    private static final MemorySegment REVOCATION_OID_CRL_REVOCATION = MemorySegment.ofAddress(1L);
+    /**
+     * {@snippet lang=c :
+     * #define REVOCATION_OID_CRL_REVOCATION (void*) 1
+     * }
+     */
+    public static MemorySegment REVOCATION_OID_CRL_REVOCATION() {
+        return REVOCATION_OID_CRL_REVOCATION;
+    }
+    private static final int CERT_CHAIN_POLICY_IGNORE_ALL_NOT_TIME_VALID_FLAGS = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_POLICY_IGNORE_ALL_NOT_TIME_VALID_FLAGS 7
+     * }
+     */
+    public static int CERT_CHAIN_POLICY_IGNORE_ALL_NOT_TIME_VALID_FLAGS() {
+        return CERT_CHAIN_POLICY_IGNORE_ALL_NOT_TIME_VALID_FLAGS;
+    }
+    private static final int CERT_CHAIN_POLICY_IGNORE_ALL_REV_UNKNOWN_FLAGS = (int)3840L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_POLICY_IGNORE_ALL_REV_UNKNOWN_FLAGS 3840
+     * }
+     */
+    public static int CERT_CHAIN_POLICY_IGNORE_ALL_REV_UNKNOWN_FLAGS() {
+        return CERT_CHAIN_POLICY_IGNORE_ALL_REV_UNKNOWN_FLAGS;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_OID_VERIFY_CERTIFICATE_CHAIN_POLICY_FUNC "CertDllVerifyCertificateChainPolicy"
+     * }
+     */
+    public static MemorySegment CRYPT_OID_VERIFY_CERTIFICATE_CHAIN_POLICY_FUNC() {
+        class Holder {
+            static final MemorySegment CRYPT_OID_VERIFY_CERTIFICATE_CHAIN_POLICY_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("CertDllVerifyCertificateChainPolicy");
+        }
+        return Holder.CRYPT_OID_VERIFY_CERTIFICATE_CHAIN_POLICY_FUNC;
+    }
+    private static final MemorySegment CERT_CHAIN_POLICY_BASE = MemorySegment.ofAddress(1L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_POLICY_BASE (void*) 1
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_POLICY_BASE() {
+        return CERT_CHAIN_POLICY_BASE;
+    }
+    private static final MemorySegment CERT_CHAIN_POLICY_AUTHENTICODE = MemorySegment.ofAddress(2L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_POLICY_AUTHENTICODE (void*) 2
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_POLICY_AUTHENTICODE() {
+        return CERT_CHAIN_POLICY_AUTHENTICODE;
+    }
+    private static final MemorySegment CERT_CHAIN_POLICY_AUTHENTICODE_TS = MemorySegment.ofAddress(3L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_POLICY_AUTHENTICODE_TS (void*) 3
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_POLICY_AUTHENTICODE_TS() {
+        return CERT_CHAIN_POLICY_AUTHENTICODE_TS;
+    }
+    private static final MemorySegment CERT_CHAIN_POLICY_SSL = MemorySegment.ofAddress(4L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_POLICY_SSL (void*) 4
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_POLICY_SSL() {
+        return CERT_CHAIN_POLICY_SSL;
+    }
+    private static final MemorySegment CERT_CHAIN_POLICY_BASIC_CONSTRAINTS = MemorySegment.ofAddress(5L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_POLICY_BASIC_CONSTRAINTS (void*) 5
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_POLICY_BASIC_CONSTRAINTS() {
+        return CERT_CHAIN_POLICY_BASIC_CONSTRAINTS;
+    }
+    private static final MemorySegment CERT_CHAIN_POLICY_NT_AUTH = MemorySegment.ofAddress(6L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_POLICY_NT_AUTH (void*) 6
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_POLICY_NT_AUTH() {
+        return CERT_CHAIN_POLICY_NT_AUTH;
+    }
+    private static final MemorySegment CERT_CHAIN_POLICY_MICROSOFT_ROOT = MemorySegment.ofAddress(7L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_POLICY_MICROSOFT_ROOT (void*) 7
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_POLICY_MICROSOFT_ROOT() {
+        return CERT_CHAIN_POLICY_MICROSOFT_ROOT;
+    }
+    private static final MemorySegment CERT_CHAIN_POLICY_EV = MemorySegment.ofAddress(8L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_POLICY_EV (void*) 8
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_POLICY_EV() {
+        return CERT_CHAIN_POLICY_EV;
+    }
+    private static final MemorySegment CERT_CHAIN_POLICY_SSL_F12 = MemorySegment.ofAddress(9L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_POLICY_SSL_F12 (void*) 9
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_POLICY_SSL_F12() {
+        return CERT_CHAIN_POLICY_SSL_F12;
+    }
+    private static final MemorySegment CERT_CHAIN_POLICY_SSL_HPKP_HEADER = MemorySegment.ofAddress(10L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_POLICY_SSL_HPKP_HEADER (void*) 10
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_POLICY_SSL_HPKP_HEADER() {
+        return CERT_CHAIN_POLICY_SSL_HPKP_HEADER;
+    }
+    private static final MemorySegment CERT_CHAIN_POLICY_THIRD_PARTY_ROOT = MemorySegment.ofAddress(11L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_POLICY_THIRD_PARTY_ROOT (void*) 11
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_POLICY_THIRD_PARTY_ROOT() {
+        return CERT_CHAIN_POLICY_THIRD_PARTY_ROOT;
+    }
+    private static final MemorySegment CERT_CHAIN_POLICY_SSL_KEY_PIN = MemorySegment.ofAddress(12L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_POLICY_SSL_KEY_PIN (void*) 12
+     * }
+     */
+    public static MemorySegment CERT_CHAIN_POLICY_SSL_KEY_PIN() {
+        return CERT_CHAIN_POLICY_SSL_KEY_PIN;
+    }
+    private static final int BASIC_CONSTRAINTS_CERT_CHAIN_POLICY_CA_FLAG = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define BASIC_CONSTRAINTS_CERT_CHAIN_POLICY_CA_FLAG 2147483648
+     * }
+     */
+    public static int BASIC_CONSTRAINTS_CERT_CHAIN_POLICY_CA_FLAG() {
+        return BASIC_CONSTRAINTS_CERT_CHAIN_POLICY_CA_FLAG;
+    }
+    private static final int CERT_CHAIN_POLICY_SSL_KEY_PIN_MISMATCH_ERROR = (int)-2L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_POLICY_SSL_KEY_PIN_MISMATCH_ERROR -2
+     * }
+     */
+    public static int CERT_CHAIN_POLICY_SSL_KEY_PIN_MISMATCH_ERROR() {
+        return CERT_CHAIN_POLICY_SSL_KEY_PIN_MISMATCH_ERROR;
+    }
+    private static final int CERT_CHAIN_POLICY_SSL_KEY_PIN_MITM_ERROR = (int)-1L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_CHAIN_POLICY_SSL_KEY_PIN_MITM_ERROR -1
+     * }
+     */
+    public static int CERT_CHAIN_POLICY_SSL_KEY_PIN_MITM_ERROR() {
+        return CERT_CHAIN_POLICY_SSL_KEY_PIN_MITM_ERROR;
+    }
+    private static final int CRYPT_STRING_NOCR = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPT_STRING_NOCR 2147483648
+     * }
+     */
+    public static int CRYPT_STRING_NOCR() {
+        return CRYPT_STRING_NOCR;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_PKCS_12_PbeIds "1.2.840.113549.1.12.1"
+     * }
+     */
+    public static MemorySegment szOID_PKCS_12_PbeIds() {
+        class Holder {
+            static final MemorySegment szOID_PKCS_12_PbeIds
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.1.12.1");
+        }
+        return Holder.szOID_PKCS_12_PbeIds;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_PKCS_12_pbeWithSHA1And128BitRC4 "1.2.840.113549.1.12.1.1"
+     * }
+     */
+    public static MemorySegment szOID_PKCS_12_pbeWithSHA1And128BitRC4() {
+        class Holder {
+            static final MemorySegment szOID_PKCS_12_pbeWithSHA1And128BitRC4
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.1.12.1.1");
+        }
+        return Holder.szOID_PKCS_12_pbeWithSHA1And128BitRC4;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_PKCS_12_pbeWithSHA1And40BitRC4 "1.2.840.113549.1.12.1.2"
+     * }
+     */
+    public static MemorySegment szOID_PKCS_12_pbeWithSHA1And40BitRC4() {
+        class Holder {
+            static final MemorySegment szOID_PKCS_12_pbeWithSHA1And40BitRC4
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.1.12.1.2");
+        }
+        return Holder.szOID_PKCS_12_pbeWithSHA1And40BitRC4;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_PKCS_12_pbeWithSHA1And3KeyTripleDES "1.2.840.113549.1.12.1.3"
+     * }
+     */
+    public static MemorySegment szOID_PKCS_12_pbeWithSHA1And3KeyTripleDES() {
+        class Holder {
+            static final MemorySegment szOID_PKCS_12_pbeWithSHA1And3KeyTripleDES
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.1.12.1.3");
+        }
+        return Holder.szOID_PKCS_12_pbeWithSHA1And3KeyTripleDES;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_PKCS_12_pbeWithSHA1And2KeyTripleDES "1.2.840.113549.1.12.1.4"
+     * }
+     */
+    public static MemorySegment szOID_PKCS_12_pbeWithSHA1And2KeyTripleDES() {
+        class Holder {
+            static final MemorySegment szOID_PKCS_12_pbeWithSHA1And2KeyTripleDES
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.1.12.1.4");
+        }
+        return Holder.szOID_PKCS_12_pbeWithSHA1And2KeyTripleDES;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_PKCS_12_pbeWithSHA1And128BitRC2 "1.2.840.113549.1.12.1.5"
+     * }
+     */
+    public static MemorySegment szOID_PKCS_12_pbeWithSHA1And128BitRC2() {
+        class Holder {
+            static final MemorySegment szOID_PKCS_12_pbeWithSHA1And128BitRC2
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.1.12.1.5");
+        }
+        return Holder.szOID_PKCS_12_pbeWithSHA1And128BitRC2;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_PKCS_12_pbeWithSHA1And40BitRC2 "1.2.840.113549.1.12.1.6"
+     * }
+     */
+    public static MemorySegment szOID_PKCS_12_pbeWithSHA1And40BitRC2() {
+        class Holder {
+            static final MemorySegment szOID_PKCS_12_pbeWithSHA1And40BitRC2
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.1.12.1.6");
+        }
+        return Holder.szOID_PKCS_12_pbeWithSHA1And40BitRC2;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_PKCS_5_PBKDF2 "1.2.840.113549.1.5.12"
+     * }
+     */
+    public static MemorySegment szOID_PKCS_5_PBKDF2() {
+        class Holder {
+            static final MemorySegment szOID_PKCS_5_PBKDF2
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.1.5.12");
+        }
+        return Holder.szOID_PKCS_5_PBKDF2;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szOID_PKCS_5_PBES2 "1.2.840.113549.1.5.13"
+     * }
+     */
+    public static MemorySegment szOID_PKCS_5_PBES2() {
+        class Holder {
+            static final MemorySegment szOID_PKCS_5_PBES2
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.1.5.13");
+        }
+        return Holder.szOID_PKCS_5_PBES2;
+    }
+    private static final int PKCS12_IMPORT_RESERVED_MASK = (int)4294901760L;
+    /**
+     * {@snippet lang=c :
+     * #define PKCS12_IMPORT_RESERVED_MASK 4294901760
+     * }
+     */
+    public static int PKCS12_IMPORT_RESERVED_MASK() {
+        return PKCS12_IMPORT_RESERVED_MASK;
+    }
+    private static final int PKCS12_OBJECT_LOCATOR_ALL_IMPORT_FLAGS = (int)33360L;
+    /**
+     * {@snippet lang=c :
+     * #define PKCS12_OBJECT_LOCATOR_ALL_IMPORT_FLAGS 33360
+     * }
+     */
+    public static int PKCS12_OBJECT_LOCATOR_ALL_IMPORT_FLAGS() {
+        return PKCS12_OBJECT_LOCATOR_ALL_IMPORT_FLAGS;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define PKCS12_ONLY_CERTIFICATES_PROVIDER_NAME "P"
+     * }
+     */
+    public static MemorySegment PKCS12_ONLY_CERTIFICATES_PROVIDER_NAME() {
+        class Holder {
+            static final MemorySegment PKCS12_ONLY_CERTIFICATES_PROVIDER_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("P");
+        }
+        return Holder.PKCS12_ONLY_CERTIFICATES_PROVIDER_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define PKCS12_ONLY_CERTIFICATES_CONTAINER_NAME "P"
+     * }
+     */
+    public static MemorySegment PKCS12_ONLY_CERTIFICATES_CONTAINER_NAME() {
+        class Holder {
+            static final MemorySegment PKCS12_ONLY_CERTIFICATES_CONTAINER_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("P");
+        }
+        return Holder.PKCS12_ONLY_CERTIFICATES_CONTAINER_NAME;
+    }
+    private static final int PKCS12_EXPORT_RESERVED_MASK = (int)4294901760L;
+    /**
+     * {@snippet lang=c :
+     * #define PKCS12_EXPORT_RESERVED_MASK 4294901760
+     * }
+     */
+    public static int PKCS12_EXPORT_RESERVED_MASK() {
+        return PKCS12_EXPORT_RESERVED_MASK;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define PKCS12_PBKDF2_ID_HMAC_SHA1 "1.2.840.113549.2.7"
+     * }
+     */
+    public static MemorySegment PKCS12_PBKDF2_ID_HMAC_SHA1() {
+        class Holder {
+            static final MemorySegment PKCS12_PBKDF2_ID_HMAC_SHA1
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.2.7");
+        }
+        return Holder.PKCS12_PBKDF2_ID_HMAC_SHA1;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define PKCS12_PBKDF2_ID_HMAC_SHA256 "1.2.840.113549.2.9"
+     * }
+     */
+    public static MemorySegment PKCS12_PBKDF2_ID_HMAC_SHA256() {
+        class Holder {
+            static final MemorySegment PKCS12_PBKDF2_ID_HMAC_SHA256
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.2.9");
+        }
+        return Holder.PKCS12_PBKDF2_ID_HMAC_SHA256;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define PKCS12_PBKDF2_ID_HMAC_SHA384 "1.2.840.113549.2.10"
+     * }
+     */
+    public static MemorySegment PKCS12_PBKDF2_ID_HMAC_SHA384() {
+        class Holder {
+            static final MemorySegment PKCS12_PBKDF2_ID_HMAC_SHA384
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.2.10");
+        }
+        return Holder.PKCS12_PBKDF2_ID_HMAC_SHA384;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define PKCS12_PBKDF2_ID_HMAC_SHA512 "1.2.840.113549.2.11"
+     * }
+     */
+    public static MemorySegment PKCS12_PBKDF2_ID_HMAC_SHA512() {
+        class Holder {
+            static final MemorySegment PKCS12_PBKDF2_ID_HMAC_SHA512
+                = wgl_h.LIBRARY_ARENA.allocateFrom("1.2.840.113549.2.11");
+        }
+        return Holder.PKCS12_PBKDF2_ID_HMAC_SHA512;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define PKCS12_PBES2_ALG_AES256_SHA256 "A"
+     * }
+     */
+    public static MemorySegment PKCS12_PBES2_ALG_AES256_SHA256() {
+        class Holder {
+            static final MemorySegment PKCS12_PBES2_ALG_AES256_SHA256
+                = wgl_h.LIBRARY_ARENA.allocateFrom("A");
+        }
+        return Holder.PKCS12_PBES2_ALG_AES256_SHA256;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define PKCS12_CONFIG_REGPATH "S"
+     * }
+     */
+    public static MemorySegment PKCS12_CONFIG_REGPATH() {
+        class Holder {
+            static final MemorySegment PKCS12_CONFIG_REGPATH
+                = wgl_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.PKCS12_CONFIG_REGPATH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define PKCS12_ENCRYPT_CERTIFICATES_VALUE_NAME "E"
+     * }
+     */
+    public static MemorySegment PKCS12_ENCRYPT_CERTIFICATES_VALUE_NAME() {
+        class Holder {
+            static final MemorySegment PKCS12_ENCRYPT_CERTIFICATES_VALUE_NAME
+                = wgl_h.LIBRARY_ARENA.allocateFrom("E");
+        }
+        return Holder.PKCS12_ENCRYPT_CERTIFICATES_VALUE_NAME;
+    }
+    private static final MemorySegment CERT_RETRIEVE_ISSUER_LOGO = MemorySegment.ofAddress(1L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_RETRIEVE_ISSUER_LOGO (void*) 1
+     * }
+     */
+    public static MemorySegment CERT_RETRIEVE_ISSUER_LOGO() {
+        return CERT_RETRIEVE_ISSUER_LOGO;
+    }
+    private static final MemorySegment CERT_RETRIEVE_SUBJECT_LOGO = MemorySegment.ofAddress(2L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_RETRIEVE_SUBJECT_LOGO (void*) 2
+     * }
+     */
+    public static MemorySegment CERT_RETRIEVE_SUBJECT_LOGO() {
+        return CERT_RETRIEVE_SUBJECT_LOGO;
+    }
+    private static final MemorySegment CERT_RETRIEVE_COMMUNITY_LOGO = MemorySegment.ofAddress(3L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_RETRIEVE_COMMUNITY_LOGO (void*) 3
+     * }
+     */
+    public static MemorySegment CERT_RETRIEVE_COMMUNITY_LOGO() {
+        return CERT_RETRIEVE_COMMUNITY_LOGO;
+    }
+    private static final MemorySegment CERT_RETRIEVE_BIOMETRIC_PREDEFINED_BASE_TYPE = MemorySegment.ofAddress(1000L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_RETRIEVE_BIOMETRIC_PREDEFINED_BASE_TYPE (void*) 1000
+     * }
+     */
+    public static MemorySegment CERT_RETRIEVE_BIOMETRIC_PREDEFINED_BASE_TYPE() {
+        return CERT_RETRIEVE_BIOMETRIC_PREDEFINED_BASE_TYPE;
+    }
+    private static final MemorySegment CERT_RETRIEVE_BIOMETRIC_PICTURE_TYPE = MemorySegment.ofAddress(1000L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_RETRIEVE_BIOMETRIC_PICTURE_TYPE (void*) 1000
+     * }
+     */
+    public static MemorySegment CERT_RETRIEVE_BIOMETRIC_PICTURE_TYPE() {
+        return CERT_RETRIEVE_BIOMETRIC_PICTURE_TYPE;
+    }
+    private static final MemorySegment CERT_RETRIEVE_BIOMETRIC_SIGNATURE_TYPE = MemorySegment.ofAddress(1001L);
+    /**
+     * {@snippet lang=c :
+     * #define CERT_RETRIEVE_BIOMETRIC_SIGNATURE_TYPE (void*) 1001
+     * }
+     */
+    public static MemorySegment CERT_RETRIEVE_BIOMETRIC_SIGNATURE_TYPE() {
+        return CERT_RETRIEVE_BIOMETRIC_SIGNATURE_TYPE;
+    }
+    private static final int CERT_SELECT_LAST = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SELECT_LAST 11
+     * }
+     */
+    public static int CERT_SELECT_LAST() {
+        return CERT_SELECT_LAST;
+    }
+    private static final int CERT_SELECT_MAX = (int)33L;
+    /**
+     * {@snippet lang=c :
+     * #define CERT_SELECT_MAX 33
+     * }
+     */
+    public static int CERT_SELECT_MAX() {
+        return CERT_SELECT_MAX;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SSL_OBJECT_LOCATOR_PFX_FUNC "SslObjectLocatorInitializePfx"
+     * }
+     */
+    public static MemorySegment SSL_OBJECT_LOCATOR_PFX_FUNC() {
+        class Holder {
+            static final MemorySegment SSL_OBJECT_LOCATOR_PFX_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("SslObjectLocatorInitializePfx");
+        }
+        return Holder.SSL_OBJECT_LOCATOR_PFX_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SSL_OBJECT_LOCATOR_ISSUER_LIST_FUNC "SslObjectLocatorInitializeIssuerList"
+     * }
+     */
+    public static MemorySegment SSL_OBJECT_LOCATOR_ISSUER_LIST_FUNC() {
+        class Holder {
+            static final MemorySegment SSL_OBJECT_LOCATOR_ISSUER_LIST_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("SslObjectLocatorInitializeIssuerList");
+        }
+        return Holder.SSL_OBJECT_LOCATOR_ISSUER_LIST_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SSL_OBJECT_LOCATOR_CERT_VALIDATION_CONFIG_FUNC "SslObjectLocatorInitializeCertValidationConfig"
+     * }
+     */
+    public static MemorySegment SSL_OBJECT_LOCATOR_CERT_VALIDATION_CONFIG_FUNC() {
+        class Holder {
+            static final MemorySegment SSL_OBJECT_LOCATOR_CERT_VALIDATION_CONFIG_FUNC
+                = wgl_h.LIBRARY_ARENA.allocateFrom("SslObjectLocatorInitializeCertValidationConfig");
+        }
+        return Holder.SSL_OBJECT_LOCATOR_CERT_VALIDATION_CONFIG_FUNC;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define szFORCE_KEY_PROTECTION "ForceKeyProtection"
+     * }
+     */
+    public static MemorySegment szFORCE_KEY_PROTECTION() {
+        class Holder {
+            static final MemorySegment szFORCE_KEY_PROTECTION
+                = wgl_h.LIBRARY_ARENA.allocateFrom("ForceKeyProtection");
+        }
+        return Holder.szFORCE_KEY_PROTECTION;
+    }
+    private static final int CRYPTPROTECT_LAST_RESERVED_FLAGVAL = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define CRYPTPROTECT_LAST_RESERVED_FLAGVAL 4294967295
+     * }
+     */
+    public static int CRYPTPROTECT_LAST_RESERVED_FLAGVAL() {
+        return CRYPTPROTECT_LAST_RESERVED_FLAGVAL;
+    }
+    private static final int __RPCNDR_H_VERSION__ = (int)500L;
+    /**
+     * {@snippet lang=c :
+     * #define __RPCNDR_H_VERSION__ 500
+     * }
+     */
+    public static int __RPCNDR_H_VERSION__() {
+        return __RPCNDR_H_VERSION__;
+    }
+    private static final int __RPCSAL_H_VERSION__ = (int)100L;
+    /**
+     * {@snippet lang=c :
+     * #define __RPCSAL_H_VERSION__ 100
+     * }
+     */
+    public static int __RPCSAL_H_VERSION__() {
+        return __RPCSAL_H_VERSION__;
+    }
+    private static final int NDR_CHAR_REP_MASK = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * #define NDR_CHAR_REP_MASK 15
+     * }
+     */
+    public static int NDR_CHAR_REP_MASK() {
+        return NDR_CHAR_REP_MASK;
+    }
+    private static final int NDR_INT_REP_MASK = (int)240L;
+    /**
+     * {@snippet lang=c :
+     * #define NDR_INT_REP_MASK 240
+     * }
+     */
+    public static int NDR_INT_REP_MASK() {
+        return NDR_INT_REP_MASK;
+    }
+    private static final int NDR_FLOAT_REP_MASK = (int)65280L;
+    /**
+     * {@snippet lang=c :
+     * #define NDR_FLOAT_REP_MASK 65280
+     * }
+     */
+    public static int NDR_FLOAT_REP_MASK() {
+        return NDR_FLOAT_REP_MASK;
+    }
+    private static final int NDR_LITTLE_ENDIAN = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define NDR_LITTLE_ENDIAN 16
+     * }
+     */
+    public static int NDR_LITTLE_ENDIAN() {
+        return NDR_LITTLE_ENDIAN;
+    }
+    private static final int NDR_BIG_ENDIAN = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define NDR_BIG_ENDIAN 0
+     * }
+     */
+    public static int NDR_BIG_ENDIAN() {
+        return NDR_BIG_ENDIAN;
+    }
+    private static final int NDR_IEEE_FLOAT = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define NDR_IEEE_FLOAT 0
+     * }
+     */
+    public static int NDR_IEEE_FLOAT() {
+        return NDR_IEEE_FLOAT;
+    }
+    private static final int NDR_VAX_FLOAT = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define NDR_VAX_FLOAT 256
+     * }
+     */
+    public static int NDR_VAX_FLOAT() {
+        return NDR_VAX_FLOAT;
+    }
+    private static final int NDR_IBM_FLOAT = (int)768L;
+    /**
+     * {@snippet lang=c :
+     * #define NDR_IBM_FLOAT 768
+     * }
+     */
+    public static int NDR_IBM_FLOAT() {
+        return NDR_IBM_FLOAT;
+    }
+    private static final int NDR_ASCII_CHAR = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define NDR_ASCII_CHAR 0
+     * }
+     */
+    public static int NDR_ASCII_CHAR() {
+        return NDR_ASCII_CHAR;
+    }
+    private static final int NDR_EBCDIC_CHAR = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define NDR_EBCDIC_CHAR 1
+     * }
+     */
+    public static int NDR_EBCDIC_CHAR() {
+        return NDR_EBCDIC_CHAR;
+    }
+    private static final int NDR_LOCAL_DATA_REPRESENTATION = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define NDR_LOCAL_DATA_REPRESENTATION 16
+     * }
+     */
+    public static int NDR_LOCAL_DATA_REPRESENTATION() {
+        return NDR_LOCAL_DATA_REPRESENTATION;
+    }
+    private static final int NDR_LOCAL_ENDIAN = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define NDR_LOCAL_ENDIAN 16
+     * }
+     */
+    public static int NDR_LOCAL_ENDIAN() {
+        return NDR_LOCAL_ENDIAN;
+    }
+    private static final int USER_MARSHAL_CB_SIGNATURE = (int)1431523907L;
+    /**
+     * {@snippet lang=c :
+     * #define USER_MARSHAL_CB_SIGNATURE 1431523907
+     * }
+     */
+    public static int USER_MARSHAL_CB_SIGNATURE() {
+        return USER_MARSHAL_CB_SIGNATURE;
+    }
+    private static final int MIDL_WINRT_TYPE_SERIALIZATION_INFO_CURRENT_VERSION = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define MIDL_WINRT_TYPE_SERIALIZATION_INFO_CURRENT_VERSION 1
+     * }
+     */
+    public static int MIDL_WINRT_TYPE_SERIALIZATION_INFO_CURRENT_VERSION() {
+        return MIDL_WINRT_TYPE_SERIALIZATION_INFO_CURRENT_VERSION;
+    }
+    private static final int CLSCTX_VALID_MASK = (int)-2082474977L;
+    /**
+     * {@snippet lang=c :
+     * #define CLSCTX_VALID_MASK -2082474977
+     * }
+     */
+    public static int CLSCTX_VALID_MASK() {
+        return CLSCTX_VALID_MASK;
+    }
+    private static final int WDT_INPROC_CALL = (int)1215587415L;
+    /**
+     * {@snippet lang=c :
+     * #define WDT_INPROC_CALL 1215587415
+     * }
+     */
+    public static int WDT_INPROC_CALL() {
+        return WDT_INPROC_CALL;
+    }
+    private static final int WDT_REMOTE_CALL = (int)1383359575L;
+    /**
+     * {@snippet lang=c :
+     * #define WDT_REMOTE_CALL 1383359575
+     * }
+     */
+    public static int WDT_REMOTE_CALL() {
+        return WDT_REMOTE_CALL;
+    }
+    private static final int WDT_INPROC64_CALL = (int)1349805143L;
+    /**
+     * {@snippet lang=c :
+     * #define WDT_INPROC64_CALL 1349805143
+     * }
+     */
+    public static int WDT_INPROC64_CALL() {
+        return WDT_INPROC64_CALL;
+    }
+    private static final byte DECIMAL_NEG = (byte)128L;
+    /**
+     * {@snippet lang=c :
+     * #define DECIMAL_NEG 128
+     * }
+     */
+    public static byte DECIMAL_NEG() {
+        return DECIMAL_NEG;
+    }
+    private static final short VARIANT_TRUE = (short)-1L;
+    /**
+     * {@snippet lang=c :
+     * #define VARIANT_TRUE -1
+     * }
+     */
+    public static short VARIANT_TRUE() {
+        return VARIANT_TRUE;
+    }
+    private static final short VARIANT_FALSE = (short)0L;
+    /**
+     * {@snippet lang=c :
+     * #define VARIANT_FALSE 0
+     * }
+     */
+    public static short VARIANT_FALSE() {
+        return VARIANT_FALSE;
+    }
+    private static final int METHOD_DIRECT_TO_HARDWARE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define METHOD_DIRECT_TO_HARDWARE 1
+     * }
+     */
+    public static int METHOD_DIRECT_TO_HARDWARE() {
+        return METHOD_DIRECT_TO_HARDWARE;
+    }
+    private static final int METHOD_DIRECT_FROM_HARDWARE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define METHOD_DIRECT_FROM_HARDWARE 2
+     * }
+     */
+    public static int METHOD_DIRECT_FROM_HARDWARE() {
+        return METHOD_DIRECT_FROM_HARDWARE;
+    }
+    private static final int FILE_SPECIAL_ACCESS = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_SPECIAL_ACCESS 0
+     * }
+     */
+    public static int FILE_SPECIAL_ACCESS() {
+        return FILE_SPECIAL_ACCESS;
+    }
+    private static final int FILE_READ_ACCESS = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_READ_ACCESS 1
+     * }
+     */
+    public static int FILE_READ_ACCESS() {
+        return FILE_READ_ACCESS;
+    }
+    private static final int FILE_WRITE_ACCESS = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_WRITE_ACCESS 2
+     * }
+     */
+    public static int FILE_WRITE_ACCESS() {
+        return FILE_WRITE_ACCESS;
+    }
+    private static final int IOCTL_STORAGE_BASE = (int)45L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_BASE 45
+     * }
+     */
+    public static int IOCTL_STORAGE_BASE() {
+        return IOCTL_STORAGE_BASE;
+    }
+    private static final int IOCTL_STORAGE_CHECK_VERIFY = (int)2967552L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_CHECK_VERIFY 2967552
+     * }
+     */
+    public static int IOCTL_STORAGE_CHECK_VERIFY() {
+        return IOCTL_STORAGE_CHECK_VERIFY;
+    }
+    private static final int IOCTL_STORAGE_CHECK_VERIFY2 = (int)2951168L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_CHECK_VERIFY2 2951168
+     * }
+     */
+    public static int IOCTL_STORAGE_CHECK_VERIFY2() {
+        return IOCTL_STORAGE_CHECK_VERIFY2;
+    }
+    private static final int IOCTL_STORAGE_MEDIA_REMOVAL = (int)2967556L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_MEDIA_REMOVAL 2967556
+     * }
+     */
+    public static int IOCTL_STORAGE_MEDIA_REMOVAL() {
+        return IOCTL_STORAGE_MEDIA_REMOVAL;
+    }
+    private static final int IOCTL_STORAGE_EJECT_MEDIA = (int)2967560L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_EJECT_MEDIA 2967560
+     * }
+     */
+    public static int IOCTL_STORAGE_EJECT_MEDIA() {
+        return IOCTL_STORAGE_EJECT_MEDIA;
+    }
+    private static final int IOCTL_STORAGE_LOAD_MEDIA = (int)2967564L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_LOAD_MEDIA 2967564
+     * }
+     */
+    public static int IOCTL_STORAGE_LOAD_MEDIA() {
+        return IOCTL_STORAGE_LOAD_MEDIA;
+    }
+    private static final int IOCTL_STORAGE_LOAD_MEDIA2 = (int)2951180L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_LOAD_MEDIA2 2951180
+     * }
+     */
+    public static int IOCTL_STORAGE_LOAD_MEDIA2() {
+        return IOCTL_STORAGE_LOAD_MEDIA2;
+    }
+    private static final int IOCTL_STORAGE_RESERVE = (int)2967568L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_RESERVE 2967568
+     * }
+     */
+    public static int IOCTL_STORAGE_RESERVE() {
+        return IOCTL_STORAGE_RESERVE;
+    }
+    private static final int IOCTL_STORAGE_RELEASE = (int)2967572L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_RELEASE 2967572
+     * }
+     */
+    public static int IOCTL_STORAGE_RELEASE() {
+        return IOCTL_STORAGE_RELEASE;
+    }
+    private static final int IOCTL_STORAGE_FIND_NEW_DEVICES = (int)2967576L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_FIND_NEW_DEVICES 2967576
+     * }
+     */
+    public static int IOCTL_STORAGE_FIND_NEW_DEVICES() {
+        return IOCTL_STORAGE_FIND_NEW_DEVICES;
+    }
+    private static final int IOCTL_STORAGE_EJECTION_CONTROL = (int)2951488L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_EJECTION_CONTROL 2951488
+     * }
+     */
+    public static int IOCTL_STORAGE_EJECTION_CONTROL() {
+        return IOCTL_STORAGE_EJECTION_CONTROL;
+    }
+    private static final int IOCTL_STORAGE_MCN_CONTROL = (int)2951492L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_MCN_CONTROL 2951492
+     * }
+     */
+    public static int IOCTL_STORAGE_MCN_CONTROL() {
+        return IOCTL_STORAGE_MCN_CONTROL;
+    }
+    private static final int IOCTL_STORAGE_GET_MEDIA_TYPES = (int)2952192L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_GET_MEDIA_TYPES 2952192
+     * }
+     */
+    public static int IOCTL_STORAGE_GET_MEDIA_TYPES() {
+        return IOCTL_STORAGE_GET_MEDIA_TYPES;
+    }
+    private static final int IOCTL_STORAGE_GET_MEDIA_TYPES_EX = (int)2952196L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_GET_MEDIA_TYPES_EX 2952196
+     * }
+     */
+    public static int IOCTL_STORAGE_GET_MEDIA_TYPES_EX() {
+        return IOCTL_STORAGE_GET_MEDIA_TYPES_EX;
+    }
+    private static final int IOCTL_STORAGE_GET_MEDIA_SERIAL_NUMBER = (int)2952208L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_GET_MEDIA_SERIAL_NUMBER 2952208
+     * }
+     */
+    public static int IOCTL_STORAGE_GET_MEDIA_SERIAL_NUMBER() {
+        return IOCTL_STORAGE_GET_MEDIA_SERIAL_NUMBER;
+    }
+    private static final int IOCTL_STORAGE_GET_HOTPLUG_INFO = (int)2952212L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_GET_HOTPLUG_INFO 2952212
+     * }
+     */
+    public static int IOCTL_STORAGE_GET_HOTPLUG_INFO() {
+        return IOCTL_STORAGE_GET_HOTPLUG_INFO;
+    }
+    private static final int IOCTL_STORAGE_SET_HOTPLUG_INFO = (int)3001368L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_SET_HOTPLUG_INFO 3001368
+     * }
+     */
+    public static int IOCTL_STORAGE_SET_HOTPLUG_INFO() {
+        return IOCTL_STORAGE_SET_HOTPLUG_INFO;
+    }
+    private static final int IOCTL_STORAGE_RESET_BUS = (int)2969600L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_RESET_BUS 2969600
+     * }
+     */
+    public static int IOCTL_STORAGE_RESET_BUS() {
+        return IOCTL_STORAGE_RESET_BUS;
+    }
+    private static final int IOCTL_STORAGE_RESET_DEVICE = (int)2969604L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_RESET_DEVICE 2969604
+     * }
+     */
+    public static int IOCTL_STORAGE_RESET_DEVICE() {
+        return IOCTL_STORAGE_RESET_DEVICE;
+    }
+    private static final int IOCTL_STORAGE_BREAK_RESERVATION = (int)2969620L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_BREAK_RESERVATION 2969620
+     * }
+     */
+    public static int IOCTL_STORAGE_BREAK_RESERVATION() {
+        return IOCTL_STORAGE_BREAK_RESERVATION;
+    }
+    private static final int IOCTL_STORAGE_PERSISTENT_RESERVE_IN = (int)2969624L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_PERSISTENT_RESERVE_IN 2969624
+     * }
+     */
+    public static int IOCTL_STORAGE_PERSISTENT_RESERVE_IN() {
+        return IOCTL_STORAGE_PERSISTENT_RESERVE_IN;
+    }
+    private static final int IOCTL_STORAGE_PERSISTENT_RESERVE_OUT = (int)3002396L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_PERSISTENT_RESERVE_OUT 3002396
+     * }
+     */
+    public static int IOCTL_STORAGE_PERSISTENT_RESERVE_OUT() {
+        return IOCTL_STORAGE_PERSISTENT_RESERVE_OUT;
+    }
+    private static final int IOCTL_STORAGE_GET_DEVICE_NUMBER = (int)2953344L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_GET_DEVICE_NUMBER 2953344
+     * }
+     */
+    public static int IOCTL_STORAGE_GET_DEVICE_NUMBER() {
+        return IOCTL_STORAGE_GET_DEVICE_NUMBER;
+    }
+    private static final int IOCTL_STORAGE_GET_DEVICE_NUMBER_EX = (int)2953348L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_GET_DEVICE_NUMBER_EX 2953348
+     * }
+     */
+    public static int IOCTL_STORAGE_GET_DEVICE_NUMBER_EX() {
+        return IOCTL_STORAGE_GET_DEVICE_NUMBER_EX;
+    }
+    private static final int IOCTL_STORAGE_PREDICT_FAILURE = (int)2953472L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_PREDICT_FAILURE 2953472
+     * }
+     */
+    public static int IOCTL_STORAGE_PREDICT_FAILURE() {
+        return IOCTL_STORAGE_PREDICT_FAILURE;
+    }
+    private static final int IOCTL_STORAGE_FAILURE_PREDICTION_CONFIG = (int)2953476L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_FAILURE_PREDICTION_CONFIG 2953476
+     * }
+     */
+    public static int IOCTL_STORAGE_FAILURE_PREDICTION_CONFIG() {
+        return IOCTL_STORAGE_FAILURE_PREDICTION_CONFIG;
+    }
+    private static final int IOCTL_STORAGE_GET_COUNTERS = (int)2953480L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_GET_COUNTERS 2953480
+     * }
+     */
+    public static int IOCTL_STORAGE_GET_COUNTERS() {
+        return IOCTL_STORAGE_GET_COUNTERS;
+    }
+    private static final int IOCTL_STORAGE_READ_CAPACITY = (int)2969920L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_READ_CAPACITY 2969920
+     * }
+     */
+    public static int IOCTL_STORAGE_READ_CAPACITY() {
+        return IOCTL_STORAGE_READ_CAPACITY;
+    }
+    private static final int IOCTL_STORAGE_GET_DEVICE_TELEMETRY = (int)3002816L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_GET_DEVICE_TELEMETRY 3002816
+     * }
+     */
+    public static int IOCTL_STORAGE_GET_DEVICE_TELEMETRY() {
+        return IOCTL_STORAGE_GET_DEVICE_TELEMETRY;
+    }
+    private static final int IOCTL_STORAGE_DEVICE_TELEMETRY_NOTIFY = (int)3002820L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_DEVICE_TELEMETRY_NOTIFY 3002820
+     * }
+     */
+    public static int IOCTL_STORAGE_DEVICE_TELEMETRY_NOTIFY() {
+        return IOCTL_STORAGE_DEVICE_TELEMETRY_NOTIFY;
+    }
+    private static final int IOCTL_STORAGE_DEVICE_TELEMETRY_QUERY_CAPS = (int)3002824L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_DEVICE_TELEMETRY_QUERY_CAPS 3002824
+     * }
+     */
+    public static int IOCTL_STORAGE_DEVICE_TELEMETRY_QUERY_CAPS() {
+        return IOCTL_STORAGE_DEVICE_TELEMETRY_QUERY_CAPS;
+    }
+    private static final int IOCTL_STORAGE_GET_DEVICE_TELEMETRY_RAW = (int)3002828L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_GET_DEVICE_TELEMETRY_RAW 3002828
+     * }
+     */
+    public static int IOCTL_STORAGE_GET_DEVICE_TELEMETRY_RAW() {
+        return IOCTL_STORAGE_GET_DEVICE_TELEMETRY_RAW;
+    }
+    private static final int IOCTL_STORAGE_SET_TEMPERATURE_THRESHOLD = (int)3002880L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_SET_TEMPERATURE_THRESHOLD 3002880
+     * }
+     */
+    public static int IOCTL_STORAGE_SET_TEMPERATURE_THRESHOLD() {
+        return IOCTL_STORAGE_SET_TEMPERATURE_THRESHOLD;
+    }
+    private static final int IOCTL_STORAGE_PROTOCOL_COMMAND = (int)3003328L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_PROTOCOL_COMMAND 3003328
+     * }
+     */
+    public static int IOCTL_STORAGE_PROTOCOL_COMMAND() {
+        return IOCTL_STORAGE_PROTOCOL_COMMAND;
+    }
+    private static final int IOCTL_STORAGE_QUERY_PROPERTY = (int)2954240L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_QUERY_PROPERTY 2954240
+     * }
+     */
+    public static int IOCTL_STORAGE_QUERY_PROPERTY() {
+        return IOCTL_STORAGE_QUERY_PROPERTY;
+    }
+    private static final int IOCTL_STORAGE_MANAGE_DATA_SET_ATTRIBUTES = (int)2987012L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_MANAGE_DATA_SET_ATTRIBUTES 2987012
+     * }
+     */
+    public static int IOCTL_STORAGE_MANAGE_DATA_SET_ATTRIBUTES() {
+        return IOCTL_STORAGE_MANAGE_DATA_SET_ATTRIBUTES;
+    }
+    private static final int IOCTL_STORAGE_GET_LB_PROVISIONING_MAP_RESOURCES = (int)2970632L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_GET_LB_PROVISIONING_MAP_RESOURCES 2970632
+     * }
+     */
+    public static int IOCTL_STORAGE_GET_LB_PROVISIONING_MAP_RESOURCES() {
+        return IOCTL_STORAGE_GET_LB_PROVISIONING_MAP_RESOURCES;
+    }
+    private static final int IOCTL_STORAGE_SET_PROPERTY = (int)2987020L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_SET_PROPERTY 2987020
+     * }
+     */
+    public static int IOCTL_STORAGE_SET_PROPERTY() {
+        return IOCTL_STORAGE_SET_PROPERTY;
+    }
+    private static final int IOCTL_STORAGE_REINITIALIZE_MEDIA = (int)2987584L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_REINITIALIZE_MEDIA 2987584
+     * }
+     */
+    public static int IOCTL_STORAGE_REINITIALIZE_MEDIA() {
+        return IOCTL_STORAGE_REINITIALIZE_MEDIA;
+    }
+    private static final int IOCTL_STORAGE_GET_BC_PROPERTIES = (int)2971648L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_GET_BC_PROPERTIES 2971648
+     * }
+     */
+    public static int IOCTL_STORAGE_GET_BC_PROPERTIES() {
+        return IOCTL_STORAGE_GET_BC_PROPERTIES;
+    }
+    private static final int IOCTL_STORAGE_ALLOCATE_BC_STREAM = (int)3004420L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_ALLOCATE_BC_STREAM 3004420
+     * }
+     */
+    public static int IOCTL_STORAGE_ALLOCATE_BC_STREAM() {
+        return IOCTL_STORAGE_ALLOCATE_BC_STREAM;
+    }
+    private static final int IOCTL_STORAGE_FREE_BC_STREAM = (int)3004424L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_FREE_BC_STREAM 3004424
+     * }
+     */
+    public static int IOCTL_STORAGE_FREE_BC_STREAM() {
+        return IOCTL_STORAGE_FREE_BC_STREAM;
+    }
+    private static final int IOCTL_STORAGE_CHECK_PRIORITY_HINT_SUPPORT = (int)2955392L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_CHECK_PRIORITY_HINT_SUPPORT 2955392
+     * }
+     */
+    public static int IOCTL_STORAGE_CHECK_PRIORITY_HINT_SUPPORT() {
+        return IOCTL_STORAGE_CHECK_PRIORITY_HINT_SUPPORT;
+    }
+    private static final int IOCTL_STORAGE_START_DATA_INTEGRITY_CHECK = (int)3004548L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_START_DATA_INTEGRITY_CHECK 3004548
+     * }
+     */
+    public static int IOCTL_STORAGE_START_DATA_INTEGRITY_CHECK() {
+        return IOCTL_STORAGE_START_DATA_INTEGRITY_CHECK;
+    }
+    private static final int IOCTL_STORAGE_STOP_DATA_INTEGRITY_CHECK = (int)3004552L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_STOP_DATA_INTEGRITY_CHECK 3004552
+     * }
+     */
+    public static int IOCTL_STORAGE_STOP_DATA_INTEGRITY_CHECK() {
+        return IOCTL_STORAGE_STOP_DATA_INTEGRITY_CHECK;
+    }
+    private static final int OBSOLETE_IOCTL_STORAGE_RESET_BUS = (int)3002368L;
+    /**
+     * {@snippet lang=c :
+     * #define OBSOLETE_IOCTL_STORAGE_RESET_BUS 3002368
+     * }
+     */
+    public static int OBSOLETE_IOCTL_STORAGE_RESET_BUS() {
+        return OBSOLETE_IOCTL_STORAGE_RESET_BUS;
+    }
+    private static final int OBSOLETE_IOCTL_STORAGE_RESET_DEVICE = (int)3002372L;
+    /**
+     * {@snippet lang=c :
+     * #define OBSOLETE_IOCTL_STORAGE_RESET_DEVICE 3002372
+     * }
+     */
+    public static int OBSOLETE_IOCTL_STORAGE_RESET_DEVICE() {
+        return OBSOLETE_IOCTL_STORAGE_RESET_DEVICE;
+    }
+    private static final int IOCTL_STORAGE_FIRMWARE_GET_INFO = (int)2956288L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_FIRMWARE_GET_INFO 2956288
+     * }
+     */
+    public static int IOCTL_STORAGE_FIRMWARE_GET_INFO() {
+        return IOCTL_STORAGE_FIRMWARE_GET_INFO;
+    }
+    private static final int IOCTL_STORAGE_FIRMWARE_DOWNLOAD = (int)3005444L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_FIRMWARE_DOWNLOAD 3005444
+     * }
+     */
+    public static int IOCTL_STORAGE_FIRMWARE_DOWNLOAD() {
+        return IOCTL_STORAGE_FIRMWARE_DOWNLOAD;
+    }
+    private static final int IOCTL_STORAGE_FIRMWARE_ACTIVATE = (int)3005448L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_FIRMWARE_ACTIVATE 3005448
+     * }
+     */
+    public static int IOCTL_STORAGE_FIRMWARE_ACTIVATE() {
+        return IOCTL_STORAGE_FIRMWARE_ACTIVATE;
+    }
+    private static final int IOCTL_STORAGE_ENABLE_IDLE_POWER = (int)2956416L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_ENABLE_IDLE_POWER 2956416
+     * }
+     */
+    public static int IOCTL_STORAGE_ENABLE_IDLE_POWER() {
+        return IOCTL_STORAGE_ENABLE_IDLE_POWER;
+    }
+    private static final int IOCTL_STORAGE_GET_IDLE_POWERUP_REASON = (int)2956420L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_GET_IDLE_POWERUP_REASON 2956420
+     * }
+     */
+    public static int IOCTL_STORAGE_GET_IDLE_POWERUP_REASON() {
+        return IOCTL_STORAGE_GET_IDLE_POWERUP_REASON;
+    }
+    private static final int IOCTL_STORAGE_POWER_ACTIVE = (int)2956424L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_POWER_ACTIVE 2956424
+     * }
+     */
+    public static int IOCTL_STORAGE_POWER_ACTIVE() {
+        return IOCTL_STORAGE_POWER_ACTIVE;
+    }
+    private static final int IOCTL_STORAGE_POWER_IDLE = (int)2956428L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_POWER_IDLE 2956428
+     * }
+     */
+    public static int IOCTL_STORAGE_POWER_IDLE() {
+        return IOCTL_STORAGE_POWER_IDLE;
+    }
+    private static final int IOCTL_STORAGE_EVENT_NOTIFICATION = (int)2956432L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_EVENT_NOTIFICATION 2956432
+     * }
+     */
+    public static int IOCTL_STORAGE_EVENT_NOTIFICATION() {
+        return IOCTL_STORAGE_EVENT_NOTIFICATION;
+    }
+    private static final int IOCTL_STORAGE_DEVICE_POWER_CAP = (int)2956436L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_DEVICE_POWER_CAP 2956436
+     * }
+     */
+    public static int IOCTL_STORAGE_DEVICE_POWER_CAP() {
+        return IOCTL_STORAGE_DEVICE_POWER_CAP;
+    }
+    private static final int IOCTL_STORAGE_RPMB_COMMAND = (int)2956440L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_RPMB_COMMAND 2956440
+     * }
+     */
+    public static int IOCTL_STORAGE_RPMB_COMMAND() {
+        return IOCTL_STORAGE_RPMB_COMMAND;
+    }
+    private static final int IOCTL_STORAGE_ATTRIBUTE_MANAGEMENT = (int)3005596L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_ATTRIBUTE_MANAGEMENT 3005596
+     * }
+     */
+    public static int IOCTL_STORAGE_ATTRIBUTE_MANAGEMENT() {
+        return IOCTL_STORAGE_ATTRIBUTE_MANAGEMENT;
+    }
+    private static final int IOCTL_STORAGE_DIAGNOSTIC = (int)2956448L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_DIAGNOSTIC 2956448
+     * }
+     */
+    public static int IOCTL_STORAGE_DIAGNOSTIC() {
+        return IOCTL_STORAGE_DIAGNOSTIC;
+    }
+    private static final int IOCTL_STORAGE_GET_PHYSICAL_ELEMENT_STATUS = (int)2956452L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_GET_PHYSICAL_ELEMENT_STATUS 2956452
+     * }
+     */
+    public static int IOCTL_STORAGE_GET_PHYSICAL_ELEMENT_STATUS() {
+        return IOCTL_STORAGE_GET_PHYSICAL_ELEMENT_STATUS;
+    }
+    private static final int IOCTL_STORAGE_REMOVE_ELEMENT_AND_TRUNCATE = (int)2956480L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_REMOVE_ELEMENT_AND_TRUNCATE 2956480
+     * }
+     */
+    public static int IOCTL_STORAGE_REMOVE_ELEMENT_AND_TRUNCATE() {
+        return IOCTL_STORAGE_REMOVE_ELEMENT_AND_TRUNCATE;
+    }
+    private static final int IOCTL_STORAGE_GET_DEVICE_INTERNAL_LOG = (int)2956484L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_STORAGE_GET_DEVICE_INTERNAL_LOG 2956484
+     * }
+     */
+    public static int IOCTL_STORAGE_GET_DEVICE_INTERNAL_LOG() {
+        return IOCTL_STORAGE_GET_DEVICE_INTERNAL_LOG;
+    }
+    private static final int TAPE_RETURN_STATISTICS = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_RETURN_STATISTICS 0
+     * }
+     */
+    public static int TAPE_RETURN_STATISTICS() {
+        return TAPE_RETURN_STATISTICS;
+    }
+    private static final int TAPE_RETURN_ENV_INFO = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_RETURN_ENV_INFO 1
+     * }
+     */
+    public static int TAPE_RETURN_ENV_INFO() {
+        return TAPE_RETURN_ENV_INFO;
+    }
+    private static final int TAPE_RESET_STATISTICS = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_RESET_STATISTICS 2
+     * }
+     */
+    public static int TAPE_RESET_STATISTICS() {
+        return TAPE_RESET_STATISTICS;
+    }
+    private static final int MEDIA_CURRENTLY_MOUNTED = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define MEDIA_CURRENTLY_MOUNTED 2147483648
+     * }
+     */
+    public static int MEDIA_CURRENTLY_MOUNTED() {
+        return MEDIA_CURRENTLY_MOUNTED;
+    }
+    private static final int NO_SRBTYPE_ADAPTER_DESCRIPTOR_SIZE = (int)30L;
+    /**
+     * {@snippet lang=c :
+     * #define NO_SRBTYPE_ADAPTER_DESCRIPTOR_SIZE 30
+     * }
+     */
+    public static int NO_SRBTYPE_ADAPTER_DESCRIPTOR_SIZE() {
+        return NO_SRBTYPE_ADAPTER_DESCRIPTOR_SIZE;
+    }
+    private static final long STORAGE_MINIPORT_DESCRIPTOR_V1_SIZE = 16L;
+    /**
+     * {@snippet lang=c :
+     * #define STORAGE_MINIPORT_DESCRIPTOR_V1_SIZE 16
+     * }
+     */
+    public static long STORAGE_MINIPORT_DESCRIPTOR_V1_SIZE() {
+        return STORAGE_MINIPORT_DESCRIPTOR_V1_SIZE;
+    }
+    private static final int StorageIdTypeNAA = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define StorageIdTypeNAA 3
+     * }
+     */
+    public static int StorageIdTypeNAA() {
+        return StorageIdTypeNAA;
+    }
+    private static final long DEVICE_LB_PROVISIONING_DESCRIPTOR_V1_SIZE = 32L;
+    /**
+     * {@snippet lang=c :
+     * #define DEVICE_LB_PROVISIONING_DESCRIPTOR_V1_SIZE 32
+     * }
+     */
+    public static long DEVICE_LB_PROVISIONING_DESCRIPTOR_V1_SIZE() {
+        return DEVICE_LB_PROVISIONING_DESCRIPTOR_V1_SIZE;
+    }
+    private static final int STORAGE_TIER_NAME_LENGTH = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define STORAGE_TIER_NAME_LENGTH 256
+     * }
+     */
+    public static int STORAGE_TIER_NAME_LENGTH() {
+        return STORAGE_TIER_NAME_LENGTH;
+    }
+    private static final int STORAGE_TIER_DESCRIPTION_LENGTH = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define STORAGE_TIER_DESCRIPTION_LENGTH 512
+     * }
+     */
+    public static int STORAGE_TIER_DESCRIPTION_LENGTH() {
+        return STORAGE_TIER_DESCRIPTION_LENGTH;
+    }
+    private static final int STORAGE_TIER_FLAG_NO_SEEK_PENALTY = (int)131072L;
+    /**
+     * {@snippet lang=c :
+     * #define STORAGE_TIER_FLAG_NO_SEEK_PENALTY 131072
+     * }
+     */
+    public static int STORAGE_TIER_FLAG_NO_SEEK_PENALTY() {
+        return STORAGE_TIER_FLAG_NO_SEEK_PENALTY;
+    }
+    private static final int STORAGE_TIER_FLAG_WRITE_BACK_CACHE = (int)2097152L;
+    /**
+     * {@snippet lang=c :
+     * #define STORAGE_TIER_FLAG_WRITE_BACK_CACHE 2097152
+     * }
+     */
+    public static int STORAGE_TIER_FLAG_WRITE_BACK_CACHE() {
+        return STORAGE_TIER_FLAG_WRITE_BACK_CACHE;
+    }
+    private static final int STORAGE_TIER_FLAG_READ_CACHE = (int)4194304L;
+    /**
+     * {@snippet lang=c :
+     * #define STORAGE_TIER_FLAG_READ_CACHE 4194304
+     * }
+     */
+    public static int STORAGE_TIER_FLAG_READ_CACHE() {
+        return STORAGE_TIER_FLAG_READ_CACHE;
+    }
+    private static final int STORAGE_TIER_FLAG_PARITY = (int)8388608L;
+    /**
+     * {@snippet lang=c :
+     * #define STORAGE_TIER_FLAG_PARITY 8388608
+     * }
+     */
+    public static int STORAGE_TIER_FLAG_PARITY() {
+        return STORAGE_TIER_FLAG_PARITY;
+    }
+    private static final int STORAGE_TIER_FLAG_SMR = (int)16777216L;
+    /**
+     * {@snippet lang=c :
+     * #define STORAGE_TIER_FLAG_SMR 16777216
+     * }
+     */
+    public static int STORAGE_TIER_FLAG_SMR() {
+        return STORAGE_TIER_FLAG_SMR;
+    }
+    private static final int STORAGE_ADAPTER_SERIAL_NUMBER_V1_MAX_LENGTH = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define STORAGE_ADAPTER_SERIAL_NUMBER_V1_MAX_LENGTH 128
+     * }
+     */
+    public static int STORAGE_ADAPTER_SERIAL_NUMBER_V1_MAX_LENGTH() {
+        return STORAGE_ADAPTER_SERIAL_NUMBER_V1_MAX_LENGTH;
+    }
+    private static final long STORAGE_ADAPTER_SERIAL_NUMBER_V1_VERSION = 264L;
+    /**
+     * {@snippet lang=c :
+     * #define STORAGE_ADAPTER_SERIAL_NUMBER_V1_VERSION 264
+     * }
+     */
+    public static long STORAGE_ADAPTER_SERIAL_NUMBER_V1_VERSION() {
+        return STORAGE_ADAPTER_SERIAL_NUMBER_V1_VERSION;
+    }
+    private static final long STORAGE_ADAPTER_SERIAL_NUMBER_V1_SIZE = 264L;
+    /**
+     * {@snippet lang=c :
+     * #define STORAGE_ADAPTER_SERIAL_NUMBER_V1_SIZE 264
+     * }
+     */
+    public static long STORAGE_ADAPTER_SERIAL_NUMBER_V1_SIZE() {
+        return STORAGE_ADAPTER_SERIAL_NUMBER_V1_SIZE;
+    }
+    private static final int STORAGE_DEVICE_NUMA_NODE_UNKNOWN = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define STORAGE_DEVICE_NUMA_NODE_UNKNOWN 4294967295
+     * }
+     */
+    public static int STORAGE_DEVICE_NUMA_NODE_UNKNOWN() {
+        return STORAGE_DEVICE_NUMA_NODE_UNKNOWN;
+    }
+    private static final int DeviceDsmActionFlag_NonDestructive = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmActionFlag_NonDestructive 2147483648
+     * }
+     */
+    public static int DeviceDsmActionFlag_NonDestructive() {
+        return DeviceDsmActionFlag_NonDestructive;
+    }
+    private static final int DeviceDsmAction_None = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_None 0
+     * }
+     */
+    public static int DeviceDsmAction_None() {
+        return DeviceDsmAction_None;
+    }
+    private static final int DeviceDsmAction_Trim = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_Trim 1
+     * }
+     */
+    public static int DeviceDsmAction_Trim() {
+        return DeviceDsmAction_Trim;
+    }
+    private static final int DeviceDsmAction_Notification = (int)2147483650L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_Notification 2147483650
+     * }
+     */
+    public static int DeviceDsmAction_Notification() {
+        return DeviceDsmAction_Notification;
+    }
+    private static final int DeviceDsmAction_OffloadRead = (int)2147483651L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_OffloadRead 2147483651
+     * }
+     */
+    public static int DeviceDsmAction_OffloadRead() {
+        return DeviceDsmAction_OffloadRead;
+    }
+    private static final int DeviceDsmAction_OffloadWrite = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_OffloadWrite 4
+     * }
+     */
+    public static int DeviceDsmAction_OffloadWrite() {
+        return DeviceDsmAction_OffloadWrite;
+    }
+    private static final int DeviceDsmAction_Allocation = (int)2147483653L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_Allocation 2147483653
+     * }
+     */
+    public static int DeviceDsmAction_Allocation() {
+        return DeviceDsmAction_Allocation;
+    }
+    private static final int DeviceDsmAction_Repair = (int)2147483654L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_Repair 2147483654
+     * }
+     */
+    public static int DeviceDsmAction_Repair() {
+        return DeviceDsmAction_Repair;
+    }
+    private static final int DeviceDsmAction_Scrub = (int)2147483655L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_Scrub 2147483655
+     * }
+     */
+    public static int DeviceDsmAction_Scrub() {
+        return DeviceDsmAction_Scrub;
+    }
+    private static final int DeviceDsmAction_DrtQuery = (int)2147483656L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_DrtQuery 2147483656
+     * }
+     */
+    public static int DeviceDsmAction_DrtQuery() {
+        return DeviceDsmAction_DrtQuery;
+    }
+    private static final int DeviceDsmAction_DrtClear = (int)2147483657L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_DrtClear 2147483657
+     * }
+     */
+    public static int DeviceDsmAction_DrtClear() {
+        return DeviceDsmAction_DrtClear;
+    }
+    private static final int DeviceDsmAction_DrtDisable = (int)2147483658L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_DrtDisable 2147483658
+     * }
+     */
+    public static int DeviceDsmAction_DrtDisable() {
+        return DeviceDsmAction_DrtDisable;
+    }
+    private static final int DeviceDsmAction_TieringQuery = (int)2147483659L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_TieringQuery 2147483659
+     * }
+     */
+    public static int DeviceDsmAction_TieringQuery() {
+        return DeviceDsmAction_TieringQuery;
+    }
+    private static final int DeviceDsmAction_Map = (int)2147483660L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_Map 2147483660
+     * }
+     */
+    public static int DeviceDsmAction_Map() {
+        return DeviceDsmAction_Map;
+    }
+    private static final int DeviceDsmAction_RegenerateParity = (int)2147483661L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_RegenerateParity 2147483661
+     * }
+     */
+    public static int DeviceDsmAction_RegenerateParity() {
+        return DeviceDsmAction_RegenerateParity;
+    }
+    private static final int DeviceDsmAction_NvCache_Change_Priority = (int)2147483662L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_NvCache_Change_Priority 2147483662
+     * }
+     */
+    public static int DeviceDsmAction_NvCache_Change_Priority() {
+        return DeviceDsmAction_NvCache_Change_Priority;
+    }
+    private static final int DeviceDsmAction_NvCache_Evict = (int)2147483663L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_NvCache_Evict 2147483663
+     * }
+     */
+    public static int DeviceDsmAction_NvCache_Evict() {
+        return DeviceDsmAction_NvCache_Evict;
+    }
+    private static final int DeviceDsmAction_TopologyIdQuery = (int)2147483664L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_TopologyIdQuery 2147483664
+     * }
+     */
+    public static int DeviceDsmAction_TopologyIdQuery() {
+        return DeviceDsmAction_TopologyIdQuery;
+    }
+    private static final int DeviceDsmAction_GetPhysicalAddresses = (int)2147483665L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_GetPhysicalAddresses 2147483665
+     * }
+     */
+    public static int DeviceDsmAction_GetPhysicalAddresses() {
+        return DeviceDsmAction_GetPhysicalAddresses;
+    }
+    private static final int DeviceDsmAction_ScopeRegen = (int)2147483666L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_ScopeRegen 2147483666
+     * }
+     */
+    public static int DeviceDsmAction_ScopeRegen() {
+        return DeviceDsmAction_ScopeRegen;
+    }
+    private static final int DeviceDsmAction_ReportZones = (int)2147483667L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_ReportZones 2147483667
+     * }
+     */
+    public static int DeviceDsmAction_ReportZones() {
+        return DeviceDsmAction_ReportZones;
+    }
+    private static final int DeviceDsmAction_OpenZone = (int)2147483668L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_OpenZone 2147483668
+     * }
+     */
+    public static int DeviceDsmAction_OpenZone() {
+        return DeviceDsmAction_OpenZone;
+    }
+    private static final int DeviceDsmAction_FinishZone = (int)2147483669L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_FinishZone 2147483669
+     * }
+     */
+    public static int DeviceDsmAction_FinishZone() {
+        return DeviceDsmAction_FinishZone;
+    }
+    private static final int DeviceDsmAction_CloseZone = (int)2147483670L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_CloseZone 2147483670
+     * }
+     */
+    public static int DeviceDsmAction_CloseZone() {
+        return DeviceDsmAction_CloseZone;
+    }
+    private static final int DeviceDsmAction_ResetWritePointer = (int)23L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_ResetWritePointer 23
+     * }
+     */
+    public static int DeviceDsmAction_ResetWritePointer() {
+        return DeviceDsmAction_ResetWritePointer;
+    }
+    private static final int DeviceDsmAction_GetRangeErrorInfo = (int)2147483672L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_GetRangeErrorInfo 2147483672
+     * }
+     */
+    public static int DeviceDsmAction_GetRangeErrorInfo() {
+        return DeviceDsmAction_GetRangeErrorInfo;
+    }
+    private static final int DeviceDsmAction_WriteZeroes = (int)25L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_WriteZeroes 25
+     * }
+     */
+    public static int DeviceDsmAction_WriteZeroes() {
+        return DeviceDsmAction_WriteZeroes;
+    }
+    private static final int DeviceDsmAction_LostQuery = (int)2147483674L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_LostQuery 2147483674
+     * }
+     */
+    public static int DeviceDsmAction_LostQuery() {
+        return DeviceDsmAction_LostQuery;
+    }
+    private static final int DeviceDsmAction_GetFreeSpace = (int)2147483675L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_GetFreeSpace 2147483675
+     * }
+     */
+    public static int DeviceDsmAction_GetFreeSpace() {
+        return DeviceDsmAction_GetFreeSpace;
+    }
+    private static final int DeviceDsmAction_ConversionQuery = (int)2147483676L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_ConversionQuery 2147483676
+     * }
+     */
+    public static int DeviceDsmAction_ConversionQuery() {
+        return DeviceDsmAction_ConversionQuery;
+    }
+    private static final int DeviceDsmAction_VdtSet = (int)29L;
+    /**
+     * {@snippet lang=c :
+     * #define DeviceDsmAction_VdtSet 29
+     * }
+     */
+    public static int DeviceDsmAction_VdtSet() {
+        return DeviceDsmAction_VdtSet;
+    }
+    private static final int DEVICE_DSM_FLAG_TRIM_NOT_FS_ALLOCATED = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define DEVICE_DSM_FLAG_TRIM_NOT_FS_ALLOCATED 2147483648
+     * }
+     */
+    public static int DEVICE_DSM_FLAG_TRIM_NOT_FS_ALLOCATED() {
+        return DEVICE_DSM_FLAG_TRIM_NOT_FS_ALLOCATED;
+    }
+    private static final int STORAGE_OFFLOAD_TOKEN_TYPE_ZERO_DATA = (int)4294901761L;
+    /**
+     * {@snippet lang=c :
+     * #define STORAGE_OFFLOAD_TOKEN_TYPE_ZERO_DATA 4294901761
+     * }
+     */
+    public static int STORAGE_OFFLOAD_TOKEN_TYPE_ZERO_DATA() {
+        return STORAGE_OFFLOAD_TOKEN_TYPE_ZERO_DATA;
+    }
+    private static final int DEVICE_DATA_SET_LBP_STATE_PARAMETERS_VERSION_V1 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define DEVICE_DATA_SET_LBP_STATE_PARAMETERS_VERSION_V1 1
+     * }
+     */
+    public static int DEVICE_DATA_SET_LBP_STATE_PARAMETERS_VERSION_V1() {
+        return DEVICE_DATA_SET_LBP_STATE_PARAMETERS_VERSION_V1;
+    }
+    private static final long DEVICE_DSM_ALLOCATION_OUTPUT_V1 = 32L;
+    /**
+     * {@snippet lang=c :
+     * #define DEVICE_DSM_ALLOCATION_OUTPUT_V1 32
+     * }
+     */
+    public static long DEVICE_DSM_ALLOCATION_OUTPUT_V1() {
+        return DEVICE_DSM_ALLOCATION_OUTPUT_V1;
+    }
+    private static final long DEVICE_DATA_SET_LB_PROVISIONING_STATE_VERSION_V1 = 32L;
+    /**
+     * {@snippet lang=c :
+     * #define DEVICE_DATA_SET_LB_PROVISIONING_STATE_VERSION_V1 32
+     * }
+     */
+    public static long DEVICE_DATA_SET_LB_PROVISIONING_STATE_VERSION_V1() {
+        return DEVICE_DATA_SET_LB_PROVISIONING_STATE_VERSION_V1;
+    }
+    private static final long DEVICE_DSM_ALLOCATION_OUTPUT_V2 = 40L;
+    /**
+     * {@snippet lang=c :
+     * #define DEVICE_DSM_ALLOCATION_OUTPUT_V2 40
+     * }
+     */
+    public static long DEVICE_DSM_ALLOCATION_OUTPUT_V2() {
+        return DEVICE_DSM_ALLOCATION_OUTPUT_V2;
+    }
+    private static final long DEVICE_DATA_SET_LB_PROVISIONING_STATE_VERSION_V2 = 40L;
+    /**
+     * {@snippet lang=c :
+     * #define DEVICE_DATA_SET_LB_PROVISIONING_STATE_VERSION_V2 40
+     * }
+     */
+    public static long DEVICE_DATA_SET_LB_PROVISIONING_STATE_VERSION_V2() {
+        return DEVICE_DATA_SET_LB_PROVISIONING_STATE_VERSION_V2;
+    }
+    private static final long DEVICE_DSM_PHYSICAL_ADDRESS_HAS_MEMORY_ERROR = -1L;
+    /**
+     * {@snippet lang=c :
+     * #define DEVICE_DSM_PHYSICAL_ADDRESS_HAS_MEMORY_ERROR -1
+     * }
+     */
+    public static long DEVICE_DSM_PHYSICAL_ADDRESS_HAS_MEMORY_ERROR() {
+        return DEVICE_DSM_PHYSICAL_ADDRESS_HAS_MEMORY_ERROR;
+    }
+    private static final int DEVICE_DSM_PHYSICAL_ADDRESSES_OUTPUT_VERSION_V1 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define DEVICE_DSM_PHYSICAL_ADDRESSES_OUTPUT_VERSION_V1 1
+     * }
+     */
+    public static int DEVICE_DSM_PHYSICAL_ADDRESSES_OUTPUT_VERSION_V1() {
+        return DEVICE_DSM_PHYSICAL_ADDRESSES_OUTPUT_VERSION_V1;
+    }
+    private static final int DEVICE_DSM_RANGE_ERROR_INFO_VERSION_V1 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define DEVICE_DSM_RANGE_ERROR_INFO_VERSION_V1 1
+     * }
+     */
+    public static int DEVICE_DSM_RANGE_ERROR_INFO_VERSION_V1() {
+        return DEVICE_DSM_RANGE_ERROR_INFO_VERSION_V1;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define STORAGE_CRASH_TELEMETRY_REGKEY "\"
+     * }
+     */
+    public static MemorySegment STORAGE_CRASH_TELEMETRY_REGKEY() {
+        class Holder {
+            static final MemorySegment STORAGE_CRASH_TELEMETRY_REGKEY
+                = wgl_h.LIBRARY_ARENA.allocateFrom("\\");
+        }
+        return Holder.STORAGE_CRASH_TELEMETRY_REGKEY;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define STORAGE_DEVICE_TELEMETRY_REGKEY "\"
+     * }
+     */
+    public static MemorySegment STORAGE_DEVICE_TELEMETRY_REGKEY() {
+        class Holder {
+            static final MemorySegment STORAGE_DEVICE_TELEMETRY_REGKEY
+                = wgl_h.LIBRARY_ARENA.allocateFrom("\\");
+        }
+        return Holder.STORAGE_DEVICE_TELEMETRY_REGKEY;
+    }
+    private static final int FW_ISSUEID_UNKNOWN = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define FW_ISSUEID_UNKNOWN 4294967295
+     * }
+     */
+    public static int FW_ISSUEID_UNKNOWN() {
+        return FW_ISSUEID_UNKNOWN;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define TC_PUBLIC_DATA_TYPE_ATAGP "ATAGPLogPages"
+     * }
+     */
+    public static MemorySegment TC_PUBLIC_DATA_TYPE_ATAGP() {
+        class Holder {
+            static final MemorySegment TC_PUBLIC_DATA_TYPE_ATAGP
+                = wgl_h.LIBRARY_ARENA.allocateFrom("ATAGPLogPages");
+        }
+        return Holder.TC_PUBLIC_DATA_TYPE_ATAGP;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define TC_PUBLIC_DATA_TYPE_ATASMART "ATASMARTPages"
+     * }
+     */
+    public static MemorySegment TC_PUBLIC_DATA_TYPE_ATASMART() {
+        class Holder {
+            static final MemorySegment TC_PUBLIC_DATA_TYPE_ATASMART
+                = wgl_h.LIBRARY_ARENA.allocateFrom("ATASMARTPages");
+        }
+        return Holder.TC_PUBLIC_DATA_TYPE_ATASMART;
+    }
+    private static final int STORAGE_EVENT_ALL = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define STORAGE_EVENT_ALL 7
+     * }
+     */
+    public static int STORAGE_EVENT_ALL() {
+        return STORAGE_EVENT_ALL;
+    }
+    private static final long STORAGE_COUNTERS_VERSION_V1 = 32L;
+    /**
+     * {@snippet lang=c :
+     * #define STORAGE_COUNTERS_VERSION_V1 32
+     * }
+     */
+    public static long STORAGE_COUNTERS_VERSION_V1() {
+        return STORAGE_COUNTERS_VERSION_V1;
+    }
+    private static final int STORAGE_HW_FIRMWARE_REQUEST_FLAG_SWITCH_TO_EXISTING_FIRMWARE = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define STORAGE_HW_FIRMWARE_REQUEST_FLAG_SWITCH_TO_EXISTING_FIRMWARE 2147483648
+     * }
+     */
+    public static int STORAGE_HW_FIRMWARE_REQUEST_FLAG_SWITCH_TO_EXISTING_FIRMWARE() {
+        return STORAGE_HW_FIRMWARE_REQUEST_FLAG_SWITCH_TO_EXISTING_FIRMWARE;
+    }
+    private static final int STORAGE_PROTOCOL_COMMAND_FLAG_ADAPTER_REQUEST = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define STORAGE_PROTOCOL_COMMAND_FLAG_ADAPTER_REQUEST 2147483648
+     * }
+     */
+    public static int STORAGE_PROTOCOL_COMMAND_FLAG_ADAPTER_REQUEST() {
+        return STORAGE_PROTOCOL_COMMAND_FLAG_ADAPTER_REQUEST;
+    }
+    private static final int IOCTL_SCMBUS_BASE = (int)89L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_SCMBUS_BASE 89
+     * }
+     */
+    public static int IOCTL_SCMBUS_BASE() {
+        return IOCTL_SCMBUS_BASE;
+    }
+    private static final int IOCTL_SCM_BUS_GET_LOGICAL_DEVICES = (int)5832704L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_SCM_BUS_GET_LOGICAL_DEVICES 5832704
+     * }
+     */
+    public static int IOCTL_SCM_BUS_GET_LOGICAL_DEVICES() {
+        return IOCTL_SCM_BUS_GET_LOGICAL_DEVICES;
+    }
+    private static final int IOCTL_SCM_BUS_GET_PHYSICAL_DEVICES = (int)5832708L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_SCM_BUS_GET_PHYSICAL_DEVICES 5832708
+     * }
+     */
+    public static int IOCTL_SCM_BUS_GET_PHYSICAL_DEVICES() {
+        return IOCTL_SCM_BUS_GET_PHYSICAL_DEVICES;
+    }
+    private static final int IOCTL_SCM_BUS_GET_REGIONS = (int)5832712L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_SCM_BUS_GET_REGIONS 5832712
+     * }
+     */
+    public static int IOCTL_SCM_BUS_GET_REGIONS() {
+        return IOCTL_SCM_BUS_GET_REGIONS;
+    }
+    private static final int IOCTL_SCM_LD_GET_INTERLEAVE_SET = (int)5835776L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_SCM_LD_GET_INTERLEAVE_SET 5835776
+     * }
+     */
+    public static int IOCTL_SCM_LD_GET_INTERLEAVE_SET() {
+        return IOCTL_SCM_LD_GET_INTERLEAVE_SET;
+    }
+    private static final int IOCTL_SCM_PD_QUERY_PROPERTY = (int)5838848L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_SCM_PD_QUERY_PROPERTY 5838848
+     * }
+     */
+    public static int IOCTL_SCM_PD_QUERY_PROPERTY() {
+        return IOCTL_SCM_PD_QUERY_PROPERTY;
+    }
+    private static final int IOCTL_SCM_PD_FIRMWARE_DOWNLOAD = (int)5871620L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_SCM_PD_FIRMWARE_DOWNLOAD 5871620
+     * }
+     */
+    public static int IOCTL_SCM_PD_FIRMWARE_DOWNLOAD() {
+        return IOCTL_SCM_PD_FIRMWARE_DOWNLOAD;
+    }
+    private static final int IOCTL_SCM_PD_FIRMWARE_ACTIVATE = (int)5871624L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_SCM_PD_FIRMWARE_ACTIVATE 5871624
+     * }
+     */
+    public static int IOCTL_SCM_PD_FIRMWARE_ACTIVATE() {
+        return IOCTL_SCM_PD_FIRMWARE_ACTIVATE;
+    }
+    private static final int IOCTL_SCM_PD_PASSTHROUGH = (int)5888012L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_SCM_PD_PASSTHROUGH 5888012
+     * }
+     */
+    public static int IOCTL_SCM_PD_PASSTHROUGH() {
+        return IOCTL_SCM_PD_PASSTHROUGH;
+    }
+    private static final int IOCTL_SCM_PD_UPDATE_MANAGEMENT_STATUS = (int)5838864L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_SCM_PD_UPDATE_MANAGEMENT_STATUS 5838864
+     * }
+     */
+    public static int IOCTL_SCM_PD_UPDATE_MANAGEMENT_STATUS() {
+        return IOCTL_SCM_PD_UPDATE_MANAGEMENT_STATUS;
+    }
+    private static final int IOCTL_SCM_PD_REINITIALIZE_MEDIA = (int)5871636L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_SCM_PD_REINITIALIZE_MEDIA 5871636
+     * }
+     */
+    public static int IOCTL_SCM_PD_REINITIALIZE_MEDIA() {
+        return IOCTL_SCM_PD_REINITIALIZE_MEDIA;
+    }
+    private static final long SCM_REGION_SPA_UNKNOWN = -1L;
+    /**
+     * {@snippet lang=c :
+     * #define SCM_REGION_SPA_UNKNOWN -1
+     * }
+     */
+    public static long SCM_REGION_SPA_UNKNOWN() {
+        return SCM_REGION_SPA_UNKNOWN;
+    }
+    private static final long SCM_PD_MEMORY_SIZE_UNKNOWN = -1L;
+    /**
+     * {@snippet lang=c :
+     * #define SCM_PD_MEMORY_SIZE_UNKNOWN -1
+     * }
+     */
+    public static long SCM_PD_MEMORY_SIZE_UNKNOWN() {
+        return SCM_PD_MEMORY_SIZE_UNKNOWN;
+    }
+    private static final int IOCTL_DISK_BASE = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_BASE 7
+     * }
+     */
+    public static int IOCTL_DISK_BASE() {
+        return IOCTL_DISK_BASE;
+    }
+    private static final int IOCTL_DISK_GET_DRIVE_GEOMETRY = (int)458752L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_GET_DRIVE_GEOMETRY 458752
+     * }
+     */
+    public static int IOCTL_DISK_GET_DRIVE_GEOMETRY() {
+        return IOCTL_DISK_GET_DRIVE_GEOMETRY;
+    }
+    private static final int IOCTL_DISK_GET_PARTITION_INFO = (int)475140L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_GET_PARTITION_INFO 475140
+     * }
+     */
+    public static int IOCTL_DISK_GET_PARTITION_INFO() {
+        return IOCTL_DISK_GET_PARTITION_INFO;
+    }
+    private static final int IOCTL_DISK_SET_PARTITION_INFO = (int)507912L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_SET_PARTITION_INFO 507912
+     * }
+     */
+    public static int IOCTL_DISK_SET_PARTITION_INFO() {
+        return IOCTL_DISK_SET_PARTITION_INFO;
+    }
+    private static final int IOCTL_DISK_GET_DRIVE_LAYOUT = (int)475148L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_GET_DRIVE_LAYOUT 475148
+     * }
+     */
+    public static int IOCTL_DISK_GET_DRIVE_LAYOUT() {
+        return IOCTL_DISK_GET_DRIVE_LAYOUT;
+    }
+    private static final int IOCTL_DISK_SET_DRIVE_LAYOUT = (int)507920L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_SET_DRIVE_LAYOUT 507920
+     * }
+     */
+    public static int IOCTL_DISK_SET_DRIVE_LAYOUT() {
+        return IOCTL_DISK_SET_DRIVE_LAYOUT;
+    }
+    private static final int IOCTL_DISK_VERIFY = (int)458772L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_VERIFY 458772
+     * }
+     */
+    public static int IOCTL_DISK_VERIFY() {
+        return IOCTL_DISK_VERIFY;
+    }
+    private static final int IOCTL_DISK_FORMAT_TRACKS = (int)507928L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_FORMAT_TRACKS 507928
+     * }
+     */
+    public static int IOCTL_DISK_FORMAT_TRACKS() {
+        return IOCTL_DISK_FORMAT_TRACKS;
+    }
+    private static final int IOCTL_DISK_REASSIGN_BLOCKS = (int)507932L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_REASSIGN_BLOCKS 507932
+     * }
+     */
+    public static int IOCTL_DISK_REASSIGN_BLOCKS() {
+        return IOCTL_DISK_REASSIGN_BLOCKS;
+    }
+    private static final int IOCTL_DISK_PERFORMANCE = (int)458784L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_PERFORMANCE 458784
+     * }
+     */
+    public static int IOCTL_DISK_PERFORMANCE() {
+        return IOCTL_DISK_PERFORMANCE;
+    }
+    private static final int IOCTL_DISK_IS_WRITABLE = (int)458788L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_IS_WRITABLE 458788
+     * }
+     */
+    public static int IOCTL_DISK_IS_WRITABLE() {
+        return IOCTL_DISK_IS_WRITABLE;
+    }
+    private static final int IOCTL_DISK_LOGGING = (int)458792L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_LOGGING 458792
+     * }
+     */
+    public static int IOCTL_DISK_LOGGING() {
+        return IOCTL_DISK_LOGGING;
+    }
+    private static final int IOCTL_DISK_FORMAT_TRACKS_EX = (int)507948L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_FORMAT_TRACKS_EX 507948
+     * }
+     */
+    public static int IOCTL_DISK_FORMAT_TRACKS_EX() {
+        return IOCTL_DISK_FORMAT_TRACKS_EX;
+    }
+    private static final int IOCTL_DISK_HISTOGRAM_STRUCTURE = (int)458800L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_HISTOGRAM_STRUCTURE 458800
+     * }
+     */
+    public static int IOCTL_DISK_HISTOGRAM_STRUCTURE() {
+        return IOCTL_DISK_HISTOGRAM_STRUCTURE;
+    }
+    private static final int IOCTL_DISK_HISTOGRAM_DATA = (int)458804L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_HISTOGRAM_DATA 458804
+     * }
+     */
+    public static int IOCTL_DISK_HISTOGRAM_DATA() {
+        return IOCTL_DISK_HISTOGRAM_DATA;
+    }
+    private static final int IOCTL_DISK_HISTOGRAM_RESET = (int)458808L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_HISTOGRAM_RESET 458808
+     * }
+     */
+    public static int IOCTL_DISK_HISTOGRAM_RESET() {
+        return IOCTL_DISK_HISTOGRAM_RESET;
+    }
+    private static final int IOCTL_DISK_REQUEST_STRUCTURE = (int)458812L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_REQUEST_STRUCTURE 458812
+     * }
+     */
+    public static int IOCTL_DISK_REQUEST_STRUCTURE() {
+        return IOCTL_DISK_REQUEST_STRUCTURE;
+    }
+    private static final int IOCTL_DISK_REQUEST_DATA = (int)458816L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_REQUEST_DATA 458816
+     * }
+     */
+    public static int IOCTL_DISK_REQUEST_DATA() {
+        return IOCTL_DISK_REQUEST_DATA;
+    }
+    private static final int IOCTL_DISK_PERFORMANCE_OFF = (int)458848L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_PERFORMANCE_OFF 458848
+     * }
+     */
+    public static int IOCTL_DISK_PERFORMANCE_OFF() {
+        return IOCTL_DISK_PERFORMANCE_OFF;
+    }
+    private static final int IOCTL_DISK_CONTROLLER_NUMBER = (int)458820L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_CONTROLLER_NUMBER 458820
+     * }
+     */
+    public static int IOCTL_DISK_CONTROLLER_NUMBER() {
+        return IOCTL_DISK_CONTROLLER_NUMBER;
+    }
+    private static final int SMART_GET_VERSION = (int)475264L;
+    /**
+     * {@snippet lang=c :
+     * #define SMART_GET_VERSION 475264
+     * }
+     */
+    public static int SMART_GET_VERSION() {
+        return SMART_GET_VERSION;
+    }
+    private static final int SMART_SEND_DRIVE_COMMAND = (int)508036L;
+    /**
+     * {@snippet lang=c :
+     * #define SMART_SEND_DRIVE_COMMAND 508036
+     * }
+     */
+    public static int SMART_SEND_DRIVE_COMMAND() {
+        return SMART_SEND_DRIVE_COMMAND;
+    }
+    private static final int SMART_RCV_DRIVE_DATA = (int)508040L;
+    /**
+     * {@snippet lang=c :
+     * #define SMART_RCV_DRIVE_DATA 508040
+     * }
+     */
+    public static int SMART_RCV_DRIVE_DATA() {
+        return SMART_RCV_DRIVE_DATA;
+    }
+    private static final int IOCTL_DISK_GET_PARTITION_INFO_EX = (int)458824L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_GET_PARTITION_INFO_EX 458824
+     * }
+     */
+    public static int IOCTL_DISK_GET_PARTITION_INFO_EX() {
+        return IOCTL_DISK_GET_PARTITION_INFO_EX;
+    }
+    private static final int IOCTL_DISK_SET_PARTITION_INFO_EX = (int)507980L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_SET_PARTITION_INFO_EX 507980
+     * }
+     */
+    public static int IOCTL_DISK_SET_PARTITION_INFO_EX() {
+        return IOCTL_DISK_SET_PARTITION_INFO_EX;
+    }
+    private static final int IOCTL_DISK_GET_DRIVE_LAYOUT_EX = (int)458832L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_GET_DRIVE_LAYOUT_EX 458832
+     * }
+     */
+    public static int IOCTL_DISK_GET_DRIVE_LAYOUT_EX() {
+        return IOCTL_DISK_GET_DRIVE_LAYOUT_EX;
+    }
+    private static final int IOCTL_DISK_SET_DRIVE_LAYOUT_EX = (int)507988L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_SET_DRIVE_LAYOUT_EX 507988
+     * }
+     */
+    public static int IOCTL_DISK_SET_DRIVE_LAYOUT_EX() {
+        return IOCTL_DISK_SET_DRIVE_LAYOUT_EX;
+    }
+    private static final int IOCTL_DISK_CREATE_DISK = (int)507992L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_CREATE_DISK 507992
+     * }
+     */
+    public static int IOCTL_DISK_CREATE_DISK() {
+        return IOCTL_DISK_CREATE_DISK;
+    }
+    private static final int IOCTL_DISK_GET_LENGTH_INFO = (int)475228L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_GET_LENGTH_INFO 475228
+     * }
+     */
+    public static int IOCTL_DISK_GET_LENGTH_INFO() {
+        return IOCTL_DISK_GET_LENGTH_INFO;
+    }
+    private static final int IOCTL_DISK_GET_DRIVE_GEOMETRY_EX = (int)458912L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_GET_DRIVE_GEOMETRY_EX 458912
+     * }
+     */
+    public static int IOCTL_DISK_GET_DRIVE_GEOMETRY_EX() {
+        return IOCTL_DISK_GET_DRIVE_GEOMETRY_EX;
+    }
+    private static final int IOCTL_DISK_REASSIGN_BLOCKS_EX = (int)508068L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_REASSIGN_BLOCKS_EX 508068
+     * }
+     */
+    public static int IOCTL_DISK_REASSIGN_BLOCKS_EX() {
+        return IOCTL_DISK_REASSIGN_BLOCKS_EX;
+    }
+    private static final int IOCTL_DISK_UPDATE_DRIVE_SIZE = (int)508104L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_UPDATE_DRIVE_SIZE 508104
+     * }
+     */
+    public static int IOCTL_DISK_UPDATE_DRIVE_SIZE() {
+        return IOCTL_DISK_UPDATE_DRIVE_SIZE;
+    }
+    private static final int IOCTL_DISK_GROW_PARTITION = (int)508112L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_GROW_PARTITION 508112
+     * }
+     */
+    public static int IOCTL_DISK_GROW_PARTITION() {
+        return IOCTL_DISK_GROW_PARTITION;
+    }
+    private static final int IOCTL_DISK_GET_CACHE_INFORMATION = (int)475348L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_GET_CACHE_INFORMATION 475348
+     * }
+     */
+    public static int IOCTL_DISK_GET_CACHE_INFORMATION() {
+        return IOCTL_DISK_GET_CACHE_INFORMATION;
+    }
+    private static final int IOCTL_DISK_SET_CACHE_INFORMATION = (int)508120L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_SET_CACHE_INFORMATION 508120
+     * }
+     */
+    public static int IOCTL_DISK_SET_CACHE_INFORMATION() {
+        return IOCTL_DISK_SET_CACHE_INFORMATION;
+    }
+    private static final int OBSOLETE_DISK_GET_WRITE_CACHE_STATE = (int)475356L;
+    /**
+     * {@snippet lang=c :
+     * #define OBSOLETE_DISK_GET_WRITE_CACHE_STATE 475356
+     * }
+     */
+    public static int OBSOLETE_DISK_GET_WRITE_CACHE_STATE() {
+        return OBSOLETE_DISK_GET_WRITE_CACHE_STATE;
+    }
+    private static final int IOCTL_DISK_DELETE_DRIVE_LAYOUT = (int)508160L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_DELETE_DRIVE_LAYOUT 508160
+     * }
+     */
+    public static int IOCTL_DISK_DELETE_DRIVE_LAYOUT() {
+        return IOCTL_DISK_DELETE_DRIVE_LAYOUT;
+    }
+    private static final int IOCTL_DISK_UPDATE_PROPERTIES = (int)459072L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_UPDATE_PROPERTIES 459072
+     * }
+     */
+    public static int IOCTL_DISK_UPDATE_PROPERTIES() {
+        return IOCTL_DISK_UPDATE_PROPERTIES;
+    }
+    private static final int IOCTL_DISK_FORMAT_DRIVE = (int)508876L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_FORMAT_DRIVE 508876
+     * }
+     */
+    public static int IOCTL_DISK_FORMAT_DRIVE() {
+        return IOCTL_DISK_FORMAT_DRIVE;
+    }
+    private static final int IOCTL_DISK_SENSE_DEVICE = (int)459744L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_SENSE_DEVICE 459744
+     * }
+     */
+    public static int IOCTL_DISK_SENSE_DEVICE() {
+        return IOCTL_DISK_SENSE_DEVICE;
+    }
+    private static final int IOCTL_DISK_CHECK_VERIFY = (int)477184L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_CHECK_VERIFY 477184
+     * }
+     */
+    public static int IOCTL_DISK_CHECK_VERIFY() {
+        return IOCTL_DISK_CHECK_VERIFY;
+    }
+    private static final int IOCTL_DISK_MEDIA_REMOVAL = (int)477188L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_MEDIA_REMOVAL 477188
+     * }
+     */
+    public static int IOCTL_DISK_MEDIA_REMOVAL() {
+        return IOCTL_DISK_MEDIA_REMOVAL;
+    }
+    private static final int IOCTL_DISK_EJECT_MEDIA = (int)477192L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_EJECT_MEDIA 477192
+     * }
+     */
+    public static int IOCTL_DISK_EJECT_MEDIA() {
+        return IOCTL_DISK_EJECT_MEDIA;
+    }
+    private static final int IOCTL_DISK_LOAD_MEDIA = (int)477196L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_LOAD_MEDIA 477196
+     * }
+     */
+    public static int IOCTL_DISK_LOAD_MEDIA() {
+        return IOCTL_DISK_LOAD_MEDIA;
+    }
+    private static final int IOCTL_DISK_RESERVE = (int)477200L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_RESERVE 477200
+     * }
+     */
+    public static int IOCTL_DISK_RESERVE() {
+        return IOCTL_DISK_RESERVE;
+    }
+    private static final int IOCTL_DISK_RELEASE = (int)477204L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_RELEASE 477204
+     * }
+     */
+    public static int IOCTL_DISK_RELEASE() {
+        return IOCTL_DISK_RELEASE;
+    }
+    private static final int IOCTL_DISK_FIND_NEW_DEVICES = (int)477208L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_FIND_NEW_DEVICES 477208
+     * }
+     */
+    public static int IOCTL_DISK_FIND_NEW_DEVICES() {
+        return IOCTL_DISK_FIND_NEW_DEVICES;
+    }
+    private static final int IOCTL_DISK_GET_MEDIA_TYPES = (int)461824L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_GET_MEDIA_TYPES 461824
+     * }
+     */
+    public static int IOCTL_DISK_GET_MEDIA_TYPES() {
+        return IOCTL_DISK_GET_MEDIA_TYPES;
+    }
+    private static final int GPT_ATTRIBUTE_PLATFORM_REQUIRED = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GPT_ATTRIBUTE_PLATFORM_REQUIRED 1
+     * }
+     */
+    public static int GPT_ATTRIBUTE_PLATFORM_REQUIRED() {
+        return GPT_ATTRIBUTE_PLATFORM_REQUIRED;
+    }
+    private static final int GPT_ATTRIBUTE_NO_BLOCK_IO_PROTOCOL = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GPT_ATTRIBUTE_NO_BLOCK_IO_PROTOCOL 2
+     * }
+     */
+    public static int GPT_ATTRIBUTE_NO_BLOCK_IO_PROTOCOL() {
+        return GPT_ATTRIBUTE_NO_BLOCK_IO_PROTOCOL;
+    }
+    private static final int GPT_ATTRIBUTE_LEGACY_BIOS_BOOTABLE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define GPT_ATTRIBUTE_LEGACY_BIOS_BOOTABLE 4
+     * }
+     */
+    public static int GPT_ATTRIBUTE_LEGACY_BIOS_BOOTABLE() {
+        return GPT_ATTRIBUTE_LEGACY_BIOS_BOOTABLE;
+    }
+    private static final long GPT_BASIC_DATA_ATTRIBUTE_NO_DRIVE_LETTER = -9223372036854775808L;
+    /**
+     * {@snippet lang=c :
+     * #define GPT_BASIC_DATA_ATTRIBUTE_NO_DRIVE_LETTER -9223372036854775808
+     * }
+     */
+    public static long GPT_BASIC_DATA_ATTRIBUTE_NO_DRIVE_LETTER() {
+        return GPT_BASIC_DATA_ATTRIBUTE_NO_DRIVE_LETTER;
+    }
+    private static final long GPT_BASIC_DATA_ATTRIBUTE_HIDDEN = 4611686018427387904L;
+    /**
+     * {@snippet lang=c :
+     * #define GPT_BASIC_DATA_ATTRIBUTE_HIDDEN 4611686018427387904
+     * }
+     */
+    public static long GPT_BASIC_DATA_ATTRIBUTE_HIDDEN() {
+        return GPT_BASIC_DATA_ATTRIBUTE_HIDDEN;
+    }
+    private static final long GPT_BASIC_DATA_ATTRIBUTE_SHADOW_COPY = 2305843009213693952L;
+    /**
+     * {@snippet lang=c :
+     * #define GPT_BASIC_DATA_ATTRIBUTE_SHADOW_COPY 2305843009213693952
+     * }
+     */
+    public static long GPT_BASIC_DATA_ATTRIBUTE_SHADOW_COPY() {
+        return GPT_BASIC_DATA_ATTRIBUTE_SHADOW_COPY;
+    }
+    private static final long GPT_BASIC_DATA_ATTRIBUTE_READ_ONLY = 1152921504606846976L;
+    /**
+     * {@snippet lang=c :
+     * #define GPT_BASIC_DATA_ATTRIBUTE_READ_ONLY 1152921504606846976
+     * }
+     */
+    public static long GPT_BASIC_DATA_ATTRIBUTE_READ_ONLY() {
+        return GPT_BASIC_DATA_ATTRIBUTE_READ_ONLY;
+    }
+    private static final long GPT_BASIC_DATA_ATTRIBUTE_OFFLINE = 576460752303423488L;
+    /**
+     * {@snippet lang=c :
+     * #define GPT_BASIC_DATA_ATTRIBUTE_OFFLINE 576460752303423488
+     * }
+     */
+    public static long GPT_BASIC_DATA_ATTRIBUTE_OFFLINE() {
+        return GPT_BASIC_DATA_ATTRIBUTE_OFFLINE;
+    }
+    private static final long GPT_BASIC_DATA_ATTRIBUTE_DAX = 288230376151711744L;
+    /**
+     * {@snippet lang=c :
+     * #define GPT_BASIC_DATA_ATTRIBUTE_DAX 288230376151711744
+     * }
+     */
+    public static long GPT_BASIC_DATA_ATTRIBUTE_DAX() {
+        return GPT_BASIC_DATA_ATTRIBUTE_DAX;
+    }
+    private static final long GPT_BASIC_DATA_ATTRIBUTE_SERVICE = 144115188075855872L;
+    /**
+     * {@snippet lang=c :
+     * #define GPT_BASIC_DATA_ATTRIBUTE_SERVICE 144115188075855872
+     * }
+     */
+    public static long GPT_BASIC_DATA_ATTRIBUTE_SERVICE() {
+        return GPT_BASIC_DATA_ATTRIBUTE_SERVICE;
+    }
+    private static final long GPT_SPACES_ATTRIBUTE_NO_METADATA = -9223372036854775808L;
+    /**
+     * {@snippet lang=c :
+     * #define GPT_SPACES_ATTRIBUTE_NO_METADATA -9223372036854775808
+     * }
+     */
+    public static long GPT_SPACES_ATTRIBUTE_NO_METADATA() {
+        return GPT_SPACES_ATTRIBUTE_NO_METADATA;
+    }
+    private static final long HISTOGRAM_BUCKET_SIZE = 8L;
+    /**
+     * {@snippet lang=c :
+     * #define HISTOGRAM_BUCKET_SIZE 8
+     * }
+     */
+    public static long HISTOGRAM_BUCKET_SIZE() {
+        return HISTOGRAM_BUCKET_SIZE;
+    }
+    private static final long DISK_HISTOGRAM_SIZE = 72L;
+    /**
+     * {@snippet lang=c :
+     * #define DISK_HISTOGRAM_SIZE 72
+     * }
+     */
+    public static long DISK_HISTOGRAM_SIZE() {
+        return DISK_HISTOGRAM_SIZE;
+    }
+    private static final int IOCTL_DISK_GET_DISK_ATTRIBUTES = (int)458992L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_GET_DISK_ATTRIBUTES 458992
+     * }
+     */
+    public static int IOCTL_DISK_GET_DISK_ATTRIBUTES() {
+        return IOCTL_DISK_GET_DISK_ATTRIBUTES;
+    }
+    private static final int IOCTL_DISK_SET_DISK_ATTRIBUTES = (int)508148L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_SET_DISK_ATTRIBUTES 508148
+     * }
+     */
+    public static int IOCTL_DISK_SET_DISK_ATTRIBUTES() {
+        return IOCTL_DISK_SET_DISK_ATTRIBUTES;
+    }
+    private static final int IOCTL_DISK_RESET_SNAPSHOT_INFO = (int)508432L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_DISK_RESET_SNAPSHOT_INFO 508432
+     * }
+     */
+    public static int IOCTL_DISK_RESET_SNAPSHOT_INFO() {
+        return IOCTL_DISK_RESET_SNAPSHOT_INFO;
+    }
+    private static final int IOCTL_CHANGER_BASE = (int)48L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_CHANGER_BASE 48
+     * }
+     */
+    public static int IOCTL_CHANGER_BASE() {
+        return IOCTL_CHANGER_BASE;
+    }
+    private static final int IOCTL_CHANGER_GET_PARAMETERS = (int)3162112L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_CHANGER_GET_PARAMETERS 3162112
+     * }
+     */
+    public static int IOCTL_CHANGER_GET_PARAMETERS() {
+        return IOCTL_CHANGER_GET_PARAMETERS;
+    }
+    private static final int IOCTL_CHANGER_GET_STATUS = (int)3162116L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_CHANGER_GET_STATUS 3162116
+     * }
+     */
+    public static int IOCTL_CHANGER_GET_STATUS() {
+        return IOCTL_CHANGER_GET_STATUS;
+    }
+    private static final int IOCTL_CHANGER_GET_PRODUCT_DATA = (int)3162120L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_CHANGER_GET_PRODUCT_DATA 3162120
+     * }
+     */
+    public static int IOCTL_CHANGER_GET_PRODUCT_DATA() {
+        return IOCTL_CHANGER_GET_PRODUCT_DATA;
+    }
+    private static final int IOCTL_CHANGER_SET_ACCESS = (int)3194896L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_CHANGER_SET_ACCESS 3194896
+     * }
+     */
+    public static int IOCTL_CHANGER_SET_ACCESS() {
+        return IOCTL_CHANGER_SET_ACCESS;
+    }
+    private static final int IOCTL_CHANGER_GET_ELEMENT_STATUS = (int)3194900L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_CHANGER_GET_ELEMENT_STATUS 3194900
+     * }
+     */
+    public static int IOCTL_CHANGER_GET_ELEMENT_STATUS() {
+        return IOCTL_CHANGER_GET_ELEMENT_STATUS;
+    }
+    private static final int IOCTL_CHANGER_INITIALIZE_ELEMENT_STATUS = (int)3162136L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_CHANGER_INITIALIZE_ELEMENT_STATUS 3162136
+     * }
+     */
+    public static int IOCTL_CHANGER_INITIALIZE_ELEMENT_STATUS() {
+        return IOCTL_CHANGER_INITIALIZE_ELEMENT_STATUS;
+    }
+    private static final int IOCTL_CHANGER_SET_POSITION = (int)3162140L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_CHANGER_SET_POSITION 3162140
+     * }
+     */
+    public static int IOCTL_CHANGER_SET_POSITION() {
+        return IOCTL_CHANGER_SET_POSITION;
+    }
+    private static final int IOCTL_CHANGER_EXCHANGE_MEDIUM = (int)3162144L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_CHANGER_EXCHANGE_MEDIUM 3162144
+     * }
+     */
+    public static int IOCTL_CHANGER_EXCHANGE_MEDIUM() {
+        return IOCTL_CHANGER_EXCHANGE_MEDIUM;
+    }
+    private static final int IOCTL_CHANGER_MOVE_MEDIUM = (int)3162148L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_CHANGER_MOVE_MEDIUM 3162148
+     * }
+     */
+    public static int IOCTL_CHANGER_MOVE_MEDIUM() {
+        return IOCTL_CHANGER_MOVE_MEDIUM;
+    }
+    private static final int IOCTL_CHANGER_REINITIALIZE_TRANSPORT = (int)3162152L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_CHANGER_REINITIALIZE_TRANSPORT 3162152
+     * }
+     */
+    public static int IOCTL_CHANGER_REINITIALIZE_TRANSPORT() {
+        return IOCTL_CHANGER_REINITIALIZE_TRANSPORT;
+    }
+    private static final int IOCTL_CHANGER_QUERY_VOLUME_TAGS = (int)3194924L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_CHANGER_QUERY_VOLUME_TAGS 3194924
+     * }
+     */
+    public static int IOCTL_CHANGER_QUERY_VOLUME_TAGS() {
+        return IOCTL_CHANGER_QUERY_VOLUME_TAGS;
+    }
+    private static final int CHANGER_RESERVED_BIT = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define CHANGER_RESERVED_BIT 2147483648
+     * }
+     */
+    public static int CHANGER_RESERVED_BIT() {
+        return CHANGER_RESERVED_BIT;
+    }
+    private static final int CHANGER_PREDISMOUNT_ALIGN_TO_SLOT = (int)2147483649L;
+    /**
+     * {@snippet lang=c :
+     * #define CHANGER_PREDISMOUNT_ALIGN_TO_SLOT 2147483649
+     * }
+     */
+    public static int CHANGER_PREDISMOUNT_ALIGN_TO_SLOT() {
+        return CHANGER_PREDISMOUNT_ALIGN_TO_SLOT;
+    }
+    private static final int CHANGER_PREDISMOUNT_ALIGN_TO_DRIVE = (int)2147483650L;
+    /**
+     * {@snippet lang=c :
+     * #define CHANGER_PREDISMOUNT_ALIGN_TO_DRIVE 2147483650
+     * }
+     */
+    public static int CHANGER_PREDISMOUNT_ALIGN_TO_DRIVE() {
+        return CHANGER_PREDISMOUNT_ALIGN_TO_DRIVE;
+    }
+    private static final int CHANGER_CLEANER_AUTODISMOUNT = (int)2147483652L;
+    /**
+     * {@snippet lang=c :
+     * #define CHANGER_CLEANER_AUTODISMOUNT 2147483652
+     * }
+     */
+    public static int CHANGER_CLEANER_AUTODISMOUNT() {
+        return CHANGER_CLEANER_AUTODISMOUNT;
+    }
+    private static final int CHANGER_TRUE_EXCHANGE_CAPABLE = (int)2147483656L;
+    /**
+     * {@snippet lang=c :
+     * #define CHANGER_TRUE_EXCHANGE_CAPABLE 2147483656
+     * }
+     */
+    public static int CHANGER_TRUE_EXCHANGE_CAPABLE() {
+        return CHANGER_TRUE_EXCHANGE_CAPABLE;
+    }
+    private static final int CHANGER_SLOTS_USE_TRAYS = (int)2147483664L;
+    /**
+     * {@snippet lang=c :
+     * #define CHANGER_SLOTS_USE_TRAYS 2147483664
+     * }
+     */
+    public static int CHANGER_SLOTS_USE_TRAYS() {
+        return CHANGER_SLOTS_USE_TRAYS;
+    }
+    private static final int CHANGER_RTN_MEDIA_TO_ORIGINAL_ADDR = (int)2147483680L;
+    /**
+     * {@snippet lang=c :
+     * #define CHANGER_RTN_MEDIA_TO_ORIGINAL_ADDR 2147483680
+     * }
+     */
+    public static int CHANGER_RTN_MEDIA_TO_ORIGINAL_ADDR() {
+        return CHANGER_RTN_MEDIA_TO_ORIGINAL_ADDR;
+    }
+    private static final int CHANGER_CLEANER_OPS_NOT_SUPPORTED = (int)2147483712L;
+    /**
+     * {@snippet lang=c :
+     * #define CHANGER_CLEANER_OPS_NOT_SUPPORTED 2147483712
+     * }
+     */
+    public static int CHANGER_CLEANER_OPS_NOT_SUPPORTED() {
+        return CHANGER_CLEANER_OPS_NOT_SUPPORTED;
+    }
+    private static final int CHANGER_IEPORT_USER_CONTROL_OPEN = (int)2147483776L;
+    /**
+     * {@snippet lang=c :
+     * #define CHANGER_IEPORT_USER_CONTROL_OPEN 2147483776
+     * }
+     */
+    public static int CHANGER_IEPORT_USER_CONTROL_OPEN() {
+        return CHANGER_IEPORT_USER_CONTROL_OPEN;
+    }
+    private static final int CHANGER_IEPORT_USER_CONTROL_CLOSE = (int)2147483904L;
+    /**
+     * {@snippet lang=c :
+     * #define CHANGER_IEPORT_USER_CONTROL_CLOSE 2147483904
+     * }
+     */
+    public static int CHANGER_IEPORT_USER_CONTROL_CLOSE() {
+        return CHANGER_IEPORT_USER_CONTROL_CLOSE;
+    }
+    private static final int CHANGER_MOVE_EXTENDS_IEPORT = (int)2147484160L;
+    /**
+     * {@snippet lang=c :
+     * #define CHANGER_MOVE_EXTENDS_IEPORT 2147484160
+     * }
+     */
+    public static int CHANGER_MOVE_EXTENDS_IEPORT() {
+        return CHANGER_MOVE_EXTENDS_IEPORT;
+    }
+    private static final int CHANGER_MOVE_RETRACTS_IEPORT = (int)2147484672L;
+    /**
+     * {@snippet lang=c :
+     * #define CHANGER_MOVE_RETRACTS_IEPORT 2147484672
+     * }
+     */
+    public static int CHANGER_MOVE_RETRACTS_IEPORT() {
+        return CHANGER_MOVE_RETRACTS_IEPORT;
+    }
+    private static final int ERROR_UNHANDLED_ERROR = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_UNHANDLED_ERROR 4294967295
+     * }
+     */
+    public static int ERROR_UNHANDLED_ERROR() {
+        return ERROR_UNHANDLED_ERROR;
+    }
+    private static final int IOCTL_SERIAL_LSRMST_INSERT = (int)1769596L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_SERIAL_LSRMST_INSERT 1769596
+     * }
+     */
+    public static int IOCTL_SERIAL_LSRMST_INSERT() {
+        return IOCTL_SERIAL_LSRMST_INSERT;
+    }
+    private static final int IOCTL_SERENUM_EXPOSE_HARDWARE = (int)3604992L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_SERENUM_EXPOSE_HARDWARE 3604992
+     * }
+     */
+    public static int IOCTL_SERENUM_EXPOSE_HARDWARE() {
+        return IOCTL_SERENUM_EXPOSE_HARDWARE;
+    }
+    private static final int IOCTL_SERENUM_REMOVE_HARDWARE = (int)3604996L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_SERENUM_REMOVE_HARDWARE 3604996
+     * }
+     */
+    public static int IOCTL_SERENUM_REMOVE_HARDWARE() {
+        return IOCTL_SERENUM_REMOVE_HARDWARE;
+    }
+    private static final int IOCTL_SERENUM_PORT_DESC = (int)3605000L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_SERENUM_PORT_DESC 3605000
+     * }
+     */
+    public static int IOCTL_SERENUM_PORT_DESC() {
+        return IOCTL_SERENUM_PORT_DESC;
+    }
+    private static final int IOCTL_SERENUM_GET_PORT_NAME = (int)3605004L;
+    /**
+     * {@snippet lang=c :
+     * #define IOCTL_SERENUM_GET_PORT_NAME 3605004
+     * }
+     */
+    public static int IOCTL_SERENUM_GET_PORT_NAME() {
+        return IOCTL_SERENUM_GET_PORT_NAME;
+    }
+    private static final byte SERIAL_LSRMST_ESCAPE = (byte)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SERIAL_LSRMST_ESCAPE 0
+     * }
+     */
+    public static byte SERIAL_LSRMST_ESCAPE() {
+        return SERIAL_LSRMST_ESCAPE;
+    }
+    private static final byte SERIAL_LSRMST_LSR_DATA = (byte)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SERIAL_LSRMST_LSR_DATA 1
+     * }
+     */
+    public static byte SERIAL_LSRMST_LSR_DATA() {
+        return SERIAL_LSRMST_LSR_DATA;
+    }
+    private static final byte SERIAL_LSRMST_LSR_NODATA = (byte)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SERIAL_LSRMST_LSR_NODATA 2
+     * }
+     */
+    public static byte SERIAL_LSRMST_LSR_NODATA() {
+        return SERIAL_LSRMST_LSR_NODATA;
+    }
+    private static final byte SERIAL_LSRMST_MST = (byte)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SERIAL_LSRMST_MST 3
+     * }
+     */
+    public static byte SERIAL_LSRMST_MST() {
+        return SERIAL_LSRMST_MST;
+    }
+    private static final int SERIAL_IOC_FCR_FIFO_ENABLE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SERIAL_IOC_FCR_FIFO_ENABLE 1
+     * }
+     */
+    public static int SERIAL_IOC_FCR_FIFO_ENABLE() {
+        return SERIAL_IOC_FCR_FIFO_ENABLE;
+    }
+    private static final int SERIAL_IOC_FCR_RCVR_RESET = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SERIAL_IOC_FCR_RCVR_RESET 2
+     * }
+     */
+    public static int SERIAL_IOC_FCR_RCVR_RESET() {
+        return SERIAL_IOC_FCR_RCVR_RESET;
+    }
+    private static final int SERIAL_IOC_FCR_XMIT_RESET = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SERIAL_IOC_FCR_XMIT_RESET 4
+     * }
+     */
+    public static int SERIAL_IOC_FCR_XMIT_RESET() {
+        return SERIAL_IOC_FCR_XMIT_RESET;
+    }
+    private static final int SERIAL_IOC_FCR_DMA_MODE = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define SERIAL_IOC_FCR_DMA_MODE 8
+     * }
+     */
+    public static int SERIAL_IOC_FCR_DMA_MODE() {
+        return SERIAL_IOC_FCR_DMA_MODE;
+    }
+    private static final int SERIAL_IOC_FCR_RES1 = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define SERIAL_IOC_FCR_RES1 16
+     * }
+     */
+    public static int SERIAL_IOC_FCR_RES1() {
+        return SERIAL_IOC_FCR_RES1;
+    }
+    private static final int SERIAL_IOC_FCR_RES2 = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define SERIAL_IOC_FCR_RES2 32
+     * }
+     */
+    public static int SERIAL_IOC_FCR_RES2() {
+        return SERIAL_IOC_FCR_RES2;
+    }
+    private static final int SERIAL_IOC_FCR_RCVR_TRIGGER_LSB = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define SERIAL_IOC_FCR_RCVR_TRIGGER_LSB 64
+     * }
+     */
+    public static int SERIAL_IOC_FCR_RCVR_TRIGGER_LSB() {
+        return SERIAL_IOC_FCR_RCVR_TRIGGER_LSB;
+    }
+    private static final int SERIAL_IOC_FCR_RCVR_TRIGGER_MSB = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define SERIAL_IOC_FCR_RCVR_TRIGGER_MSB 128
+     * }
+     */
+    public static int SERIAL_IOC_FCR_RCVR_TRIGGER_MSB() {
+        return SERIAL_IOC_FCR_RCVR_TRIGGER_MSB;
+    }
+    private static final int SERIAL_IOC_MCR_DTR = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SERIAL_IOC_MCR_DTR 1
+     * }
+     */
+    public static int SERIAL_IOC_MCR_DTR() {
+        return SERIAL_IOC_MCR_DTR;
+    }
+    private static final int SERIAL_IOC_MCR_RTS = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SERIAL_IOC_MCR_RTS 2
+     * }
+     */
+    public static int SERIAL_IOC_MCR_RTS() {
+        return SERIAL_IOC_MCR_RTS;
+    }
+    private static final int SERIAL_IOC_MCR_OUT1 = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SERIAL_IOC_MCR_OUT1 4
+     * }
+     */
+    public static int SERIAL_IOC_MCR_OUT1() {
+        return SERIAL_IOC_MCR_OUT1;
+    }
+    private static final int SERIAL_IOC_MCR_OUT2 = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define SERIAL_IOC_MCR_OUT2 8
+     * }
+     */
+    public static int SERIAL_IOC_MCR_OUT2() {
+        return SERIAL_IOC_MCR_OUT2;
+    }
+    private static final int SERIAL_IOC_MCR_LOOP = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define SERIAL_IOC_MCR_LOOP 16
+     * }
+     */
+    public static int SERIAL_IOC_MCR_LOOP() {
+        return SERIAL_IOC_MCR_LOOP;
+    }
+    private static final int FSCTL_REQUEST_OPLOCK_LEVEL_1 = (int)589824L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_REQUEST_OPLOCK_LEVEL_1 589824
+     * }
+     */
+    public static int FSCTL_REQUEST_OPLOCK_LEVEL_1() {
+        return FSCTL_REQUEST_OPLOCK_LEVEL_1;
+    }
+    private static final int FSCTL_REQUEST_OPLOCK_LEVEL_2 = (int)589828L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_REQUEST_OPLOCK_LEVEL_2 589828
+     * }
+     */
+    public static int FSCTL_REQUEST_OPLOCK_LEVEL_2() {
+        return FSCTL_REQUEST_OPLOCK_LEVEL_2;
+    }
+    private static final int FSCTL_REQUEST_BATCH_OPLOCK = (int)589832L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_REQUEST_BATCH_OPLOCK 589832
+     * }
+     */
+    public static int FSCTL_REQUEST_BATCH_OPLOCK() {
+        return FSCTL_REQUEST_BATCH_OPLOCK;
+    }
+    private static final int FSCTL_OPLOCK_BREAK_ACKNOWLEDGE = (int)589836L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_OPLOCK_BREAK_ACKNOWLEDGE 589836
+     * }
+     */
+    public static int FSCTL_OPLOCK_BREAK_ACKNOWLEDGE() {
+        return FSCTL_OPLOCK_BREAK_ACKNOWLEDGE;
+    }
+    private static final int FSCTL_OPBATCH_ACK_CLOSE_PENDING = (int)589840L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_OPBATCH_ACK_CLOSE_PENDING 589840
+     * }
+     */
+    public static int FSCTL_OPBATCH_ACK_CLOSE_PENDING() {
+        return FSCTL_OPBATCH_ACK_CLOSE_PENDING;
+    }
+    private static final int FSCTL_OPLOCK_BREAK_NOTIFY = (int)589844L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_OPLOCK_BREAK_NOTIFY 589844
+     * }
+     */
+    public static int FSCTL_OPLOCK_BREAK_NOTIFY() {
+        return FSCTL_OPLOCK_BREAK_NOTIFY;
+    }
+    private static final int FSCTL_LOCK_VOLUME = (int)589848L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_LOCK_VOLUME 589848
+     * }
+     */
+    public static int FSCTL_LOCK_VOLUME() {
+        return FSCTL_LOCK_VOLUME;
+    }
+    private static final int FSCTL_UNLOCK_VOLUME = (int)589852L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_UNLOCK_VOLUME 589852
+     * }
+     */
+    public static int FSCTL_UNLOCK_VOLUME() {
+        return FSCTL_UNLOCK_VOLUME;
+    }
+    private static final int FSCTL_DISMOUNT_VOLUME = (int)589856L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_DISMOUNT_VOLUME 589856
+     * }
+     */
+    public static int FSCTL_DISMOUNT_VOLUME() {
+        return FSCTL_DISMOUNT_VOLUME;
+    }
+    private static final int FSCTL_IS_VOLUME_MOUNTED = (int)589864L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_IS_VOLUME_MOUNTED 589864
+     * }
+     */
+    public static int FSCTL_IS_VOLUME_MOUNTED() {
+        return FSCTL_IS_VOLUME_MOUNTED;
+    }
+    private static final int FSCTL_IS_PATHNAME_VALID = (int)589868L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_IS_PATHNAME_VALID 589868
+     * }
+     */
+    public static int FSCTL_IS_PATHNAME_VALID() {
+        return FSCTL_IS_PATHNAME_VALID;
+    }
+    private static final int FSCTL_MARK_VOLUME_DIRTY = (int)589872L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_MARK_VOLUME_DIRTY 589872
+     * }
+     */
+    public static int FSCTL_MARK_VOLUME_DIRTY() {
+        return FSCTL_MARK_VOLUME_DIRTY;
+    }
+    private static final int FSCTL_QUERY_RETRIEVAL_POINTERS = (int)589883L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_QUERY_RETRIEVAL_POINTERS 589883
+     * }
+     */
+    public static int FSCTL_QUERY_RETRIEVAL_POINTERS() {
+        return FSCTL_QUERY_RETRIEVAL_POINTERS;
+    }
+    private static final int FSCTL_GET_COMPRESSION = (int)589884L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_GET_COMPRESSION 589884
+     * }
+     */
+    public static int FSCTL_GET_COMPRESSION() {
+        return FSCTL_GET_COMPRESSION;
+    }
+    private static final int FSCTL_SET_COMPRESSION = (int)639040L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SET_COMPRESSION 639040
+     * }
+     */
+    public static int FSCTL_SET_COMPRESSION() {
+        return FSCTL_SET_COMPRESSION;
+    }
+    private static final int FSCTL_SET_BOOTLOADER_ACCESSED = (int)589903L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SET_BOOTLOADER_ACCESSED 589903
+     * }
+     */
+    public static int FSCTL_SET_BOOTLOADER_ACCESSED() {
+        return FSCTL_SET_BOOTLOADER_ACCESSED;
+    }
+    private static final int FSCTL_MARK_AS_SYSTEM_HIVE = (int)589903L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_MARK_AS_SYSTEM_HIVE 589903
+     * }
+     */
+    public static int FSCTL_MARK_AS_SYSTEM_HIVE() {
+        return FSCTL_MARK_AS_SYSTEM_HIVE;
+    }
+    private static final int FSCTL_OPLOCK_BREAK_ACK_NO_2 = (int)589904L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_OPLOCK_BREAK_ACK_NO_2 589904
+     * }
+     */
+    public static int FSCTL_OPLOCK_BREAK_ACK_NO_2() {
+        return FSCTL_OPLOCK_BREAK_ACK_NO_2;
+    }
+    private static final int FSCTL_INVALIDATE_VOLUMES = (int)589908L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_INVALIDATE_VOLUMES 589908
+     * }
+     */
+    public static int FSCTL_INVALIDATE_VOLUMES() {
+        return FSCTL_INVALIDATE_VOLUMES;
+    }
+    private static final int FSCTL_QUERY_FAT_BPB = (int)589912L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_QUERY_FAT_BPB 589912
+     * }
+     */
+    public static int FSCTL_QUERY_FAT_BPB() {
+        return FSCTL_QUERY_FAT_BPB;
+    }
+    private static final int FSCTL_REQUEST_FILTER_OPLOCK = (int)589916L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_REQUEST_FILTER_OPLOCK 589916
+     * }
+     */
+    public static int FSCTL_REQUEST_FILTER_OPLOCK() {
+        return FSCTL_REQUEST_FILTER_OPLOCK;
+    }
+    private static final int FSCTL_FILESYSTEM_GET_STATISTICS = (int)589920L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_FILESYSTEM_GET_STATISTICS 589920
+     * }
+     */
+    public static int FSCTL_FILESYSTEM_GET_STATISTICS() {
+        return FSCTL_FILESYSTEM_GET_STATISTICS;
+    }
+    private static final int FSCTL_GET_NTFS_VOLUME_DATA = (int)589924L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_GET_NTFS_VOLUME_DATA 589924
+     * }
+     */
+    public static int FSCTL_GET_NTFS_VOLUME_DATA() {
+        return FSCTL_GET_NTFS_VOLUME_DATA;
+    }
+    private static final int FSCTL_GET_NTFS_FILE_RECORD = (int)589928L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_GET_NTFS_FILE_RECORD 589928
+     * }
+     */
+    public static int FSCTL_GET_NTFS_FILE_RECORD() {
+        return FSCTL_GET_NTFS_FILE_RECORD;
+    }
+    private static final int FSCTL_GET_VOLUME_BITMAP = (int)589935L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_GET_VOLUME_BITMAP 589935
+     * }
+     */
+    public static int FSCTL_GET_VOLUME_BITMAP() {
+        return FSCTL_GET_VOLUME_BITMAP;
+    }
+    private static final int FSCTL_GET_RETRIEVAL_POINTERS = (int)589939L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_GET_RETRIEVAL_POINTERS 589939
+     * }
+     */
+    public static int FSCTL_GET_RETRIEVAL_POINTERS() {
+        return FSCTL_GET_RETRIEVAL_POINTERS;
+    }
+    private static final int FSCTL_MOVE_FILE = (int)589940L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_MOVE_FILE 589940
+     * }
+     */
+    public static int FSCTL_MOVE_FILE() {
+        return FSCTL_MOVE_FILE;
+    }
+    private static final int FSCTL_IS_VOLUME_DIRTY = (int)589944L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_IS_VOLUME_DIRTY 589944
+     * }
+     */
+    public static int FSCTL_IS_VOLUME_DIRTY() {
+        return FSCTL_IS_VOLUME_DIRTY;
+    }
+    private static final int FSCTL_ALLOW_EXTENDED_DASD_IO = (int)589955L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_ALLOW_EXTENDED_DASD_IO 589955
+     * }
+     */
+    public static int FSCTL_ALLOW_EXTENDED_DASD_IO() {
+        return FSCTL_ALLOW_EXTENDED_DASD_IO;
+    }
+    private static final int FSCTL_FIND_FILES_BY_SID = (int)589967L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_FIND_FILES_BY_SID 589967
+     * }
+     */
+    public static int FSCTL_FIND_FILES_BY_SID() {
+        return FSCTL_FIND_FILES_BY_SID;
+    }
+    private static final int FSCTL_SET_OBJECT_ID = (int)589976L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SET_OBJECT_ID 589976
+     * }
+     */
+    public static int FSCTL_SET_OBJECT_ID() {
+        return FSCTL_SET_OBJECT_ID;
+    }
+    private static final int FSCTL_GET_OBJECT_ID = (int)589980L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_GET_OBJECT_ID 589980
+     * }
+     */
+    public static int FSCTL_GET_OBJECT_ID() {
+        return FSCTL_GET_OBJECT_ID;
+    }
+    private static final int FSCTL_DELETE_OBJECT_ID = (int)589984L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_DELETE_OBJECT_ID 589984
+     * }
+     */
+    public static int FSCTL_DELETE_OBJECT_ID() {
+        return FSCTL_DELETE_OBJECT_ID;
+    }
+    private static final int FSCTL_SET_REPARSE_POINT = (int)589988L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SET_REPARSE_POINT 589988
+     * }
+     */
+    public static int FSCTL_SET_REPARSE_POINT() {
+        return FSCTL_SET_REPARSE_POINT;
+    }
+    private static final int FSCTL_GET_REPARSE_POINT = (int)589992L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_GET_REPARSE_POINT 589992
+     * }
+     */
+    public static int FSCTL_GET_REPARSE_POINT() {
+        return FSCTL_GET_REPARSE_POINT;
+    }
+    private static final int FSCTL_DELETE_REPARSE_POINT = (int)589996L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_DELETE_REPARSE_POINT 589996
+     * }
+     */
+    public static int FSCTL_DELETE_REPARSE_POINT() {
+        return FSCTL_DELETE_REPARSE_POINT;
+    }
+    private static final int FSCTL_ENUM_USN_DATA = (int)590003L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_ENUM_USN_DATA 590003
+     * }
+     */
+    public static int FSCTL_ENUM_USN_DATA() {
+        return FSCTL_ENUM_USN_DATA;
+    }
+    private static final int FSCTL_SECURITY_ID_CHECK = (int)606391L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SECURITY_ID_CHECK 606391
+     * }
+     */
+    public static int FSCTL_SECURITY_ID_CHECK() {
+        return FSCTL_SECURITY_ID_CHECK;
+    }
+    private static final int FSCTL_READ_USN_JOURNAL = (int)590011L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_READ_USN_JOURNAL 590011
+     * }
+     */
+    public static int FSCTL_READ_USN_JOURNAL() {
+        return FSCTL_READ_USN_JOURNAL;
+    }
+    private static final int FSCTL_SET_OBJECT_ID_EXTENDED = (int)590012L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SET_OBJECT_ID_EXTENDED 590012
+     * }
+     */
+    public static int FSCTL_SET_OBJECT_ID_EXTENDED() {
+        return FSCTL_SET_OBJECT_ID_EXTENDED;
+    }
+    private static final int FSCTL_CREATE_OR_GET_OBJECT_ID = (int)590016L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_CREATE_OR_GET_OBJECT_ID 590016
+     * }
+     */
+    public static int FSCTL_CREATE_OR_GET_OBJECT_ID() {
+        return FSCTL_CREATE_OR_GET_OBJECT_ID;
+    }
+    private static final int FSCTL_SET_SPARSE = (int)590020L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SET_SPARSE 590020
+     * }
+     */
+    public static int FSCTL_SET_SPARSE() {
+        return FSCTL_SET_SPARSE;
+    }
+    private static final int FSCTL_SET_ZERO_DATA = (int)622792L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SET_ZERO_DATA 622792
+     * }
+     */
+    public static int FSCTL_SET_ZERO_DATA() {
+        return FSCTL_SET_ZERO_DATA;
+    }
+    private static final int FSCTL_QUERY_ALLOCATED_RANGES = (int)606415L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_QUERY_ALLOCATED_RANGES 606415
+     * }
+     */
+    public static int FSCTL_QUERY_ALLOCATED_RANGES() {
+        return FSCTL_QUERY_ALLOCATED_RANGES;
+    }
+    private static final int FSCTL_ENABLE_UPGRADE = (int)622800L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_ENABLE_UPGRADE 622800
+     * }
+     */
+    public static int FSCTL_ENABLE_UPGRADE() {
+        return FSCTL_ENABLE_UPGRADE;
+    }
+    private static final int FSCTL_SET_ENCRYPTION = (int)590039L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SET_ENCRYPTION 590039
+     * }
+     */
+    public static int FSCTL_SET_ENCRYPTION() {
+        return FSCTL_SET_ENCRYPTION;
+    }
+    private static final int FSCTL_ENCRYPTION_FSCTL_IO = (int)590043L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_ENCRYPTION_FSCTL_IO 590043
+     * }
+     */
+    public static int FSCTL_ENCRYPTION_FSCTL_IO() {
+        return FSCTL_ENCRYPTION_FSCTL_IO;
+    }
+    private static final int FSCTL_WRITE_RAW_ENCRYPTED = (int)590047L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_WRITE_RAW_ENCRYPTED 590047
+     * }
+     */
+    public static int FSCTL_WRITE_RAW_ENCRYPTED() {
+        return FSCTL_WRITE_RAW_ENCRYPTED;
+    }
+    private static final int FSCTL_READ_RAW_ENCRYPTED = (int)590051L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_READ_RAW_ENCRYPTED 590051
+     * }
+     */
+    public static int FSCTL_READ_RAW_ENCRYPTED() {
+        return FSCTL_READ_RAW_ENCRYPTED;
+    }
+    private static final int FSCTL_CREATE_USN_JOURNAL = (int)590055L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_CREATE_USN_JOURNAL 590055
+     * }
+     */
+    public static int FSCTL_CREATE_USN_JOURNAL() {
+        return FSCTL_CREATE_USN_JOURNAL;
+    }
+    private static final int FSCTL_READ_FILE_USN_DATA = (int)590059L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_READ_FILE_USN_DATA 590059
+     * }
+     */
+    public static int FSCTL_READ_FILE_USN_DATA() {
+        return FSCTL_READ_FILE_USN_DATA;
+    }
+    private static final int FSCTL_WRITE_USN_CLOSE_RECORD = (int)590063L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_WRITE_USN_CLOSE_RECORD 590063
+     * }
+     */
+    public static int FSCTL_WRITE_USN_CLOSE_RECORD() {
+        return FSCTL_WRITE_USN_CLOSE_RECORD;
+    }
+    private static final int FSCTL_EXTEND_VOLUME = (int)590064L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_EXTEND_VOLUME 590064
+     * }
+     */
+    public static int FSCTL_EXTEND_VOLUME() {
+        return FSCTL_EXTEND_VOLUME;
+    }
+    private static final int FSCTL_QUERY_USN_JOURNAL = (int)590068L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_QUERY_USN_JOURNAL 590068
+     * }
+     */
+    public static int FSCTL_QUERY_USN_JOURNAL() {
+        return FSCTL_QUERY_USN_JOURNAL;
+    }
+    private static final int FSCTL_DELETE_USN_JOURNAL = (int)590072L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_DELETE_USN_JOURNAL 590072
+     * }
+     */
+    public static int FSCTL_DELETE_USN_JOURNAL() {
+        return FSCTL_DELETE_USN_JOURNAL;
+    }
+    private static final int FSCTL_MARK_HANDLE = (int)590076L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_MARK_HANDLE 590076
+     * }
+     */
+    public static int FSCTL_MARK_HANDLE() {
+        return FSCTL_MARK_HANDLE;
+    }
+    private static final int FSCTL_SIS_COPYFILE = (int)590080L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SIS_COPYFILE 590080
+     * }
+     */
+    public static int FSCTL_SIS_COPYFILE() {
+        return FSCTL_SIS_COPYFILE;
+    }
+    private static final int FSCTL_SIS_LINK_FILES = (int)639236L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SIS_LINK_FILES 639236
+     * }
+     */
+    public static int FSCTL_SIS_LINK_FILES() {
+        return FSCTL_SIS_LINK_FILES;
+    }
+    private static final int FSCTL_RECALL_FILE = (int)590103L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_RECALL_FILE 590103
+     * }
+     */
+    public static int FSCTL_RECALL_FILE() {
+        return FSCTL_RECALL_FILE;
+    }
+    private static final int FSCTL_READ_FROM_PLEX = (int)606494L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_READ_FROM_PLEX 606494
+     * }
+     */
+    public static int FSCTL_READ_FROM_PLEX() {
+        return FSCTL_READ_FROM_PLEX;
+    }
+    private static final int FSCTL_FILE_PREFETCH = (int)590112L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_FILE_PREFETCH 590112
+     * }
+     */
+    public static int FSCTL_FILE_PREFETCH() {
+        return FSCTL_FILE_PREFETCH;
+    }
+    private static final int FSCTL_MAKE_MEDIA_COMPATIBLE = (int)622896L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_MAKE_MEDIA_COMPATIBLE 622896
+     * }
+     */
+    public static int FSCTL_MAKE_MEDIA_COMPATIBLE() {
+        return FSCTL_MAKE_MEDIA_COMPATIBLE;
+    }
+    private static final int FSCTL_SET_DEFECT_MANAGEMENT = (int)622900L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SET_DEFECT_MANAGEMENT 622900
+     * }
+     */
+    public static int FSCTL_SET_DEFECT_MANAGEMENT() {
+        return FSCTL_SET_DEFECT_MANAGEMENT;
+    }
+    private static final int FSCTL_QUERY_SPARING_INFO = (int)590136L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_QUERY_SPARING_INFO 590136
+     * }
+     */
+    public static int FSCTL_QUERY_SPARING_INFO() {
+        return FSCTL_QUERY_SPARING_INFO;
+    }
+    private static final int FSCTL_QUERY_ON_DISK_VOLUME_INFO = (int)590140L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_QUERY_ON_DISK_VOLUME_INFO 590140
+     * }
+     */
+    public static int FSCTL_QUERY_ON_DISK_VOLUME_INFO() {
+        return FSCTL_QUERY_ON_DISK_VOLUME_INFO;
+    }
+    private static final int FSCTL_SET_VOLUME_COMPRESSION_STATE = (int)590144L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SET_VOLUME_COMPRESSION_STATE 590144
+     * }
+     */
+    public static int FSCTL_SET_VOLUME_COMPRESSION_STATE() {
+        return FSCTL_SET_VOLUME_COMPRESSION_STATE;
+    }
+    private static final int FSCTL_TXFS_MODIFY_RM = (int)622916L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_TXFS_MODIFY_RM 622916
+     * }
+     */
+    public static int FSCTL_TXFS_MODIFY_RM() {
+        return FSCTL_TXFS_MODIFY_RM;
+    }
+    private static final int FSCTL_TXFS_QUERY_RM_INFORMATION = (int)606536L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_TXFS_QUERY_RM_INFORMATION 606536
+     * }
+     */
+    public static int FSCTL_TXFS_QUERY_RM_INFORMATION() {
+        return FSCTL_TXFS_QUERY_RM_INFORMATION;
+    }
+    private static final int FSCTL_TXFS_ROLLFORWARD_REDO = (int)622928L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_TXFS_ROLLFORWARD_REDO 622928
+     * }
+     */
+    public static int FSCTL_TXFS_ROLLFORWARD_REDO() {
+        return FSCTL_TXFS_ROLLFORWARD_REDO;
+    }
+    private static final int FSCTL_TXFS_ROLLFORWARD_UNDO = (int)622932L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_TXFS_ROLLFORWARD_UNDO 622932
+     * }
+     */
+    public static int FSCTL_TXFS_ROLLFORWARD_UNDO() {
+        return FSCTL_TXFS_ROLLFORWARD_UNDO;
+    }
+    private static final int FSCTL_TXFS_START_RM = (int)622936L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_TXFS_START_RM 622936
+     * }
+     */
+    public static int FSCTL_TXFS_START_RM() {
+        return FSCTL_TXFS_START_RM;
+    }
+    private static final int FSCTL_TXFS_SHUTDOWN_RM = (int)622940L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_TXFS_SHUTDOWN_RM 622940
+     * }
+     */
+    public static int FSCTL_TXFS_SHUTDOWN_RM() {
+        return FSCTL_TXFS_SHUTDOWN_RM;
+    }
+    private static final int FSCTL_TXFS_READ_BACKUP_INFORMATION = (int)606560L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_TXFS_READ_BACKUP_INFORMATION 606560
+     * }
+     */
+    public static int FSCTL_TXFS_READ_BACKUP_INFORMATION() {
+        return FSCTL_TXFS_READ_BACKUP_INFORMATION;
+    }
+    private static final int FSCTL_TXFS_WRITE_BACKUP_INFORMATION = (int)622948L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_TXFS_WRITE_BACKUP_INFORMATION 622948
+     * }
+     */
+    public static int FSCTL_TXFS_WRITE_BACKUP_INFORMATION() {
+        return FSCTL_TXFS_WRITE_BACKUP_INFORMATION;
+    }
+    private static final int FSCTL_TXFS_CREATE_SECONDARY_RM = (int)622952L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_TXFS_CREATE_SECONDARY_RM 622952
+     * }
+     */
+    public static int FSCTL_TXFS_CREATE_SECONDARY_RM() {
+        return FSCTL_TXFS_CREATE_SECONDARY_RM;
+    }
+    private static final int FSCTL_TXFS_GET_METADATA_INFO = (int)606572L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_TXFS_GET_METADATA_INFO 606572
+     * }
+     */
+    public static int FSCTL_TXFS_GET_METADATA_INFO() {
+        return FSCTL_TXFS_GET_METADATA_INFO;
+    }
+    private static final int FSCTL_TXFS_GET_TRANSACTED_VERSION = (int)606576L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_TXFS_GET_TRANSACTED_VERSION 606576
+     * }
+     */
+    public static int FSCTL_TXFS_GET_TRANSACTED_VERSION() {
+        return FSCTL_TXFS_GET_TRANSACTED_VERSION;
+    }
+    private static final int FSCTL_TXFS_SAVEPOINT_INFORMATION = (int)622968L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_TXFS_SAVEPOINT_INFORMATION 622968
+     * }
+     */
+    public static int FSCTL_TXFS_SAVEPOINT_INFORMATION() {
+        return FSCTL_TXFS_SAVEPOINT_INFORMATION;
+    }
+    private static final int FSCTL_TXFS_CREATE_MINIVERSION = (int)622972L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_TXFS_CREATE_MINIVERSION 622972
+     * }
+     */
+    public static int FSCTL_TXFS_CREATE_MINIVERSION() {
+        return FSCTL_TXFS_CREATE_MINIVERSION;
+    }
+    private static final int FSCTL_TXFS_TRANSACTION_ACTIVE = (int)606604L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_TXFS_TRANSACTION_ACTIVE 606604
+     * }
+     */
+    public static int FSCTL_TXFS_TRANSACTION_ACTIVE() {
+        return FSCTL_TXFS_TRANSACTION_ACTIVE;
+    }
+    private static final int FSCTL_SET_ZERO_ON_DEALLOCATION = (int)590228L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SET_ZERO_ON_DEALLOCATION 590228
+     * }
+     */
+    public static int FSCTL_SET_ZERO_ON_DEALLOCATION() {
+        return FSCTL_SET_ZERO_ON_DEALLOCATION;
+    }
+    private static final int FSCTL_SET_REPAIR = (int)590232L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SET_REPAIR 590232
+     * }
+     */
+    public static int FSCTL_SET_REPAIR() {
+        return FSCTL_SET_REPAIR;
+    }
+    private static final int FSCTL_GET_REPAIR = (int)590236L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_GET_REPAIR 590236
+     * }
+     */
+    public static int FSCTL_GET_REPAIR() {
+        return FSCTL_GET_REPAIR;
+    }
+    private static final int FSCTL_WAIT_FOR_REPAIR = (int)590240L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_WAIT_FOR_REPAIR 590240
+     * }
+     */
+    public static int FSCTL_WAIT_FOR_REPAIR() {
+        return FSCTL_WAIT_FOR_REPAIR;
+    }
+    private static final int FSCTL_INITIATE_REPAIR = (int)590248L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_INITIATE_REPAIR 590248
+     * }
+     */
+    public static int FSCTL_INITIATE_REPAIR() {
+        return FSCTL_INITIATE_REPAIR;
+    }
+    private static final int FSCTL_CSC_INTERNAL = (int)590255L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_CSC_INTERNAL 590255
+     * }
+     */
+    public static int FSCTL_CSC_INTERNAL() {
+        return FSCTL_CSC_INTERNAL;
+    }
+    private static final int FSCTL_SHRINK_VOLUME = (int)590256L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SHRINK_VOLUME 590256
+     * }
+     */
+    public static int FSCTL_SHRINK_VOLUME() {
+        return FSCTL_SHRINK_VOLUME;
+    }
+    private static final int FSCTL_SET_SHORT_NAME_BEHAVIOR = (int)590260L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SET_SHORT_NAME_BEHAVIOR 590260
+     * }
+     */
+    public static int FSCTL_SET_SHORT_NAME_BEHAVIOR() {
+        return FSCTL_SET_SHORT_NAME_BEHAVIOR;
+    }
+    private static final int FSCTL_DFSR_SET_GHOST_HANDLE_STATE = (int)590264L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_DFSR_SET_GHOST_HANDLE_STATE 590264
+     * }
+     */
+    public static int FSCTL_DFSR_SET_GHOST_HANDLE_STATE() {
+        return FSCTL_DFSR_SET_GHOST_HANDLE_STATE;
+    }
+    private static final int FSCTL_TXFS_LIST_TRANSACTION_LOCKED_FILES = (int)606688L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_TXFS_LIST_TRANSACTION_LOCKED_FILES 606688
+     * }
+     */
+    public static int FSCTL_TXFS_LIST_TRANSACTION_LOCKED_FILES() {
+        return FSCTL_TXFS_LIST_TRANSACTION_LOCKED_FILES;
+    }
+    private static final int FSCTL_TXFS_LIST_TRANSACTIONS = (int)606692L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_TXFS_LIST_TRANSACTIONS 606692
+     * }
+     */
+    public static int FSCTL_TXFS_LIST_TRANSACTIONS() {
+        return FSCTL_TXFS_LIST_TRANSACTIONS;
+    }
+    private static final int FSCTL_QUERY_PAGEFILE_ENCRYPTION = (int)590312L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_QUERY_PAGEFILE_ENCRYPTION 590312
+     * }
+     */
+    public static int FSCTL_QUERY_PAGEFILE_ENCRYPTION() {
+        return FSCTL_QUERY_PAGEFILE_ENCRYPTION;
+    }
+    private static final int FSCTL_RESET_VOLUME_ALLOCATION_HINTS = (int)590316L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_RESET_VOLUME_ALLOCATION_HINTS 590316
+     * }
+     */
+    public static int FSCTL_RESET_VOLUME_ALLOCATION_HINTS() {
+        return FSCTL_RESET_VOLUME_ALLOCATION_HINTS;
+    }
+    private static final int FSCTL_QUERY_DEPENDENT_VOLUME = (int)590320L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_QUERY_DEPENDENT_VOLUME 590320
+     * }
+     */
+    public static int FSCTL_QUERY_DEPENDENT_VOLUME() {
+        return FSCTL_QUERY_DEPENDENT_VOLUME;
+    }
+    private static final int FSCTL_SD_GLOBAL_CHANGE = (int)590324L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SD_GLOBAL_CHANGE 590324
+     * }
+     */
+    public static int FSCTL_SD_GLOBAL_CHANGE() {
+        return FSCTL_SD_GLOBAL_CHANGE;
+    }
+    private static final int FSCTL_TXFS_READ_BACKUP_INFORMATION2 = (int)590328L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_TXFS_READ_BACKUP_INFORMATION2 590328
+     * }
+     */
+    public static int FSCTL_TXFS_READ_BACKUP_INFORMATION2() {
+        return FSCTL_TXFS_READ_BACKUP_INFORMATION2;
+    }
+    private static final int FSCTL_LOOKUP_STREAM_FROM_CLUSTER = (int)590332L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_LOOKUP_STREAM_FROM_CLUSTER 590332
+     * }
+     */
+    public static int FSCTL_LOOKUP_STREAM_FROM_CLUSTER() {
+        return FSCTL_LOOKUP_STREAM_FROM_CLUSTER;
+    }
+    private static final int FSCTL_TXFS_WRITE_BACKUP_INFORMATION2 = (int)590336L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_TXFS_WRITE_BACKUP_INFORMATION2 590336
+     * }
+     */
+    public static int FSCTL_TXFS_WRITE_BACKUP_INFORMATION2() {
+        return FSCTL_TXFS_WRITE_BACKUP_INFORMATION2;
+    }
+    private static final int FSCTL_FILE_TYPE_NOTIFICATION = (int)590340L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_FILE_TYPE_NOTIFICATION 590340
+     * }
+     */
+    public static int FSCTL_FILE_TYPE_NOTIFICATION() {
+        return FSCTL_FILE_TYPE_NOTIFICATION;
+    }
+    private static final int FSCTL_FILE_LEVEL_TRIM = (int)623112L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_FILE_LEVEL_TRIM 623112
+     * }
+     */
+    public static int FSCTL_FILE_LEVEL_TRIM() {
+        return FSCTL_FILE_LEVEL_TRIM;
+    }
+    private static final int FSCTL_GET_BOOT_AREA_INFO = (int)590384L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_GET_BOOT_AREA_INFO 590384
+     * }
+     */
+    public static int FSCTL_GET_BOOT_AREA_INFO() {
+        return FSCTL_GET_BOOT_AREA_INFO;
+    }
+    private static final int FSCTL_GET_RETRIEVAL_POINTER_BASE = (int)590388L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_GET_RETRIEVAL_POINTER_BASE 590388
+     * }
+     */
+    public static int FSCTL_GET_RETRIEVAL_POINTER_BASE() {
+        return FSCTL_GET_RETRIEVAL_POINTER_BASE;
+    }
+    private static final int FSCTL_SET_PERSISTENT_VOLUME_STATE = (int)590392L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SET_PERSISTENT_VOLUME_STATE 590392
+     * }
+     */
+    public static int FSCTL_SET_PERSISTENT_VOLUME_STATE() {
+        return FSCTL_SET_PERSISTENT_VOLUME_STATE;
+    }
+    private static final int FSCTL_QUERY_PERSISTENT_VOLUME_STATE = (int)590396L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_QUERY_PERSISTENT_VOLUME_STATE 590396
+     * }
+     */
+    public static int FSCTL_QUERY_PERSISTENT_VOLUME_STATE() {
+        return FSCTL_QUERY_PERSISTENT_VOLUME_STATE;
+    }
+    private static final int FSCTL_REQUEST_OPLOCK = (int)590400L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_REQUEST_OPLOCK 590400
+     * }
+     */
+    public static int FSCTL_REQUEST_OPLOCK() {
+        return FSCTL_REQUEST_OPLOCK;
+    }
+    private static final int FSCTL_CSV_TUNNEL_REQUEST = (int)590404L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_CSV_TUNNEL_REQUEST 590404
+     * }
+     */
+    public static int FSCTL_CSV_TUNNEL_REQUEST() {
+        return FSCTL_CSV_TUNNEL_REQUEST;
+    }
+    private static final int FSCTL_IS_CSV_FILE = (int)590408L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_IS_CSV_FILE 590408
+     * }
+     */
+    public static int FSCTL_IS_CSV_FILE() {
+        return FSCTL_IS_CSV_FILE;
+    }
+    private static final int FSCTL_QUERY_FILE_SYSTEM_RECOGNITION = (int)590412L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_QUERY_FILE_SYSTEM_RECOGNITION 590412
+     * }
+     */
+    public static int FSCTL_QUERY_FILE_SYSTEM_RECOGNITION() {
+        return FSCTL_QUERY_FILE_SYSTEM_RECOGNITION;
+    }
+    private static final int FSCTL_CSV_GET_VOLUME_PATH_NAME = (int)590416L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_CSV_GET_VOLUME_PATH_NAME 590416
+     * }
+     */
+    public static int FSCTL_CSV_GET_VOLUME_PATH_NAME() {
+        return FSCTL_CSV_GET_VOLUME_PATH_NAME;
+    }
+    private static final int FSCTL_CSV_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT = (int)590420L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_CSV_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT 590420
+     * }
+     */
+    public static int FSCTL_CSV_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT() {
+        return FSCTL_CSV_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT;
+    }
+    private static final int FSCTL_CSV_GET_VOLUME_PATH_NAMES_FOR_VOLUME_NAME = (int)590424L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_CSV_GET_VOLUME_PATH_NAMES_FOR_VOLUME_NAME 590424
+     * }
+     */
+    public static int FSCTL_CSV_GET_VOLUME_PATH_NAMES_FOR_VOLUME_NAME() {
+        return FSCTL_CSV_GET_VOLUME_PATH_NAMES_FOR_VOLUME_NAME;
+    }
+    private static final int FSCTL_IS_FILE_ON_CSV_VOLUME = (int)590428L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_IS_FILE_ON_CSV_VOLUME 590428
+     * }
+     */
+    public static int FSCTL_IS_FILE_ON_CSV_VOLUME() {
+        return FSCTL_IS_FILE_ON_CSV_VOLUME;
+    }
+    private static final int FSCTL_CORRUPTION_HANDLING = (int)590432L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_CORRUPTION_HANDLING 590432
+     * }
+     */
+    public static int FSCTL_CORRUPTION_HANDLING() {
+        return FSCTL_CORRUPTION_HANDLING;
+    }
+    private static final int FSCTL_OFFLOAD_READ = (int)606820L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_OFFLOAD_READ 606820
+     * }
+     */
+    public static int FSCTL_OFFLOAD_READ() {
+        return FSCTL_OFFLOAD_READ;
+    }
+    private static final int FSCTL_OFFLOAD_WRITE = (int)623208L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_OFFLOAD_WRITE 623208
+     * }
+     */
+    public static int FSCTL_OFFLOAD_WRITE() {
+        return FSCTL_OFFLOAD_WRITE;
+    }
+    private static final int FSCTL_CSV_INTERNAL = (int)590444L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_CSV_INTERNAL 590444
+     * }
+     */
+    public static int FSCTL_CSV_INTERNAL() {
+        return FSCTL_CSV_INTERNAL;
+    }
+    private static final int FSCTL_SET_PURGE_FAILURE_MODE = (int)590448L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SET_PURGE_FAILURE_MODE 590448
+     * }
+     */
+    public static int FSCTL_SET_PURGE_FAILURE_MODE() {
+        return FSCTL_SET_PURGE_FAILURE_MODE;
+    }
+    private static final int FSCTL_QUERY_FILE_LAYOUT = (int)590455L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_QUERY_FILE_LAYOUT 590455
+     * }
+     */
+    public static int FSCTL_QUERY_FILE_LAYOUT() {
+        return FSCTL_QUERY_FILE_LAYOUT;
+    }
+    private static final int FSCTL_IS_VOLUME_OWNED_BYCSVFS = (int)590456L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_IS_VOLUME_OWNED_BYCSVFS 590456
+     * }
+     */
+    public static int FSCTL_IS_VOLUME_OWNED_BYCSVFS() {
+        return FSCTL_IS_VOLUME_OWNED_BYCSVFS;
+    }
+    private static final int FSCTL_GET_INTEGRITY_INFORMATION = (int)590460L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_GET_INTEGRITY_INFORMATION 590460
+     * }
+     */
+    public static int FSCTL_GET_INTEGRITY_INFORMATION() {
+        return FSCTL_GET_INTEGRITY_INFORMATION;
+    }
+    private static final int FSCTL_SET_INTEGRITY_INFORMATION = (int)639616L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SET_INTEGRITY_INFORMATION 639616
+     * }
+     */
+    public static int FSCTL_SET_INTEGRITY_INFORMATION() {
+        return FSCTL_SET_INTEGRITY_INFORMATION;
+    }
+    private static final int FSCTL_QUERY_FILE_REGIONS = (int)590468L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_QUERY_FILE_REGIONS 590468
+     * }
+     */
+    public static int FSCTL_QUERY_FILE_REGIONS() {
+        return FSCTL_QUERY_FILE_REGIONS;
+    }
+    private static final int FSCTL_RKF_INTERNAL = (int)590511L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_RKF_INTERNAL 590511
+     * }
+     */
+    public static int FSCTL_RKF_INTERNAL() {
+        return FSCTL_RKF_INTERNAL;
+    }
+    private static final int FSCTL_SCRUB_DATA = (int)590512L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SCRUB_DATA 590512
+     * }
+     */
+    public static int FSCTL_SCRUB_DATA() {
+        return FSCTL_SCRUB_DATA;
+    }
+    private static final int FSCTL_REPAIR_COPIES = (int)639668L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_REPAIR_COPIES 639668
+     * }
+     */
+    public static int FSCTL_REPAIR_COPIES() {
+        return FSCTL_REPAIR_COPIES;
+    }
+    private static final int FSCTL_DISABLE_LOCAL_BUFFERING = (int)590520L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_DISABLE_LOCAL_BUFFERING 590520
+     * }
+     */
+    public static int FSCTL_DISABLE_LOCAL_BUFFERING() {
+        return FSCTL_DISABLE_LOCAL_BUFFERING;
+    }
+    private static final int FSCTL_CSV_MGMT_LOCK = (int)590524L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_CSV_MGMT_LOCK 590524
+     * }
+     */
+    public static int FSCTL_CSV_MGMT_LOCK() {
+        return FSCTL_CSV_MGMT_LOCK;
+    }
+    private static final int FSCTL_CSV_QUERY_DOWN_LEVEL_FILE_SYSTEM_CHARACTERISTICS = (int)590528L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_CSV_QUERY_DOWN_LEVEL_FILE_SYSTEM_CHARACTERISTICS 590528
+     * }
+     */
+    public static int FSCTL_CSV_QUERY_DOWN_LEVEL_FILE_SYSTEM_CHARACTERISTICS() {
+        return FSCTL_CSV_QUERY_DOWN_LEVEL_FILE_SYSTEM_CHARACTERISTICS;
+    }
+    private static final int FSCTL_ADVANCE_FILE_ID = (int)590532L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_ADVANCE_FILE_ID 590532
+     * }
+     */
+    public static int FSCTL_ADVANCE_FILE_ID() {
+        return FSCTL_ADVANCE_FILE_ID;
+    }
+    private static final int FSCTL_CSV_SYNC_TUNNEL_REQUEST = (int)590536L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_CSV_SYNC_TUNNEL_REQUEST 590536
+     * }
+     */
+    public static int FSCTL_CSV_SYNC_TUNNEL_REQUEST() {
+        return FSCTL_CSV_SYNC_TUNNEL_REQUEST;
+    }
+    private static final int FSCTL_CSV_QUERY_VETO_FILE_DIRECT_IO = (int)590540L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_CSV_QUERY_VETO_FILE_DIRECT_IO 590540
+     * }
+     */
+    public static int FSCTL_CSV_QUERY_VETO_FILE_DIRECT_IO() {
+        return FSCTL_CSV_QUERY_VETO_FILE_DIRECT_IO;
+    }
+    private static final int FSCTL_WRITE_USN_REASON = (int)590544L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_WRITE_USN_REASON 590544
+     * }
+     */
+    public static int FSCTL_WRITE_USN_REASON() {
+        return FSCTL_WRITE_USN_REASON;
+    }
+    private static final int FSCTL_CSV_CONTROL = (int)590548L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_CSV_CONTROL 590548
+     * }
+     */
+    public static int FSCTL_CSV_CONTROL() {
+        return FSCTL_CSV_CONTROL;
+    }
+    private static final int FSCTL_GET_REFS_VOLUME_DATA = (int)590552L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_GET_REFS_VOLUME_DATA 590552
+     * }
+     */
+    public static int FSCTL_GET_REFS_VOLUME_DATA() {
+        return FSCTL_GET_REFS_VOLUME_DATA;
+    }
+    private static final int FSCTL_CSV_H_BREAKING_SYNC_TUNNEL_REQUEST = (int)590564L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_CSV_H_BREAKING_SYNC_TUNNEL_REQUEST 590564
+     * }
+     */
+    public static int FSCTL_CSV_H_BREAKING_SYNC_TUNNEL_REQUEST() {
+        return FSCTL_CSV_H_BREAKING_SYNC_TUNNEL_REQUEST;
+    }
+    private static final int FSCTL_QUERY_STORAGE_CLASSES = (int)590572L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_QUERY_STORAGE_CLASSES 590572
+     * }
+     */
+    public static int FSCTL_QUERY_STORAGE_CLASSES() {
+        return FSCTL_QUERY_STORAGE_CLASSES;
+    }
+    private static final int FSCTL_QUERY_REGION_INFO = (int)590576L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_QUERY_REGION_INFO 590576
+     * }
+     */
+    public static int FSCTL_QUERY_REGION_INFO() {
+        return FSCTL_QUERY_REGION_INFO;
+    }
+    private static final int FSCTL_USN_TRACK_MODIFIED_RANGES = (int)590580L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_USN_TRACK_MODIFIED_RANGES 590580
+     * }
+     */
+    public static int FSCTL_USN_TRACK_MODIFIED_RANGES() {
+        return FSCTL_USN_TRACK_MODIFIED_RANGES;
+    }
+    private static final int FSCTL_QUERY_SHARED_VIRTUAL_DISK_SUPPORT = (int)590592L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_QUERY_SHARED_VIRTUAL_DISK_SUPPORT 590592
+     * }
+     */
+    public static int FSCTL_QUERY_SHARED_VIRTUAL_DISK_SUPPORT() {
+        return FSCTL_QUERY_SHARED_VIRTUAL_DISK_SUPPORT;
+    }
+    private static final int FSCTL_SVHDX_SYNC_TUNNEL_REQUEST = (int)590596L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SVHDX_SYNC_TUNNEL_REQUEST 590596
+     * }
+     */
+    public static int FSCTL_SVHDX_SYNC_TUNNEL_REQUEST() {
+        return FSCTL_SVHDX_SYNC_TUNNEL_REQUEST;
+    }
+    private static final int FSCTL_SVHDX_SET_INITIATOR_INFORMATION = (int)590600L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SVHDX_SET_INITIATOR_INFORMATION 590600
+     * }
+     */
+    public static int FSCTL_SVHDX_SET_INITIATOR_INFORMATION() {
+        return FSCTL_SVHDX_SET_INITIATOR_INFORMATION;
+    }
+    private static final int FSCTL_SET_EXTERNAL_BACKING = (int)590604L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SET_EXTERNAL_BACKING 590604
+     * }
+     */
+    public static int FSCTL_SET_EXTERNAL_BACKING() {
+        return FSCTL_SET_EXTERNAL_BACKING;
+    }
+    private static final int FSCTL_GET_EXTERNAL_BACKING = (int)590608L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_GET_EXTERNAL_BACKING 590608
+     * }
+     */
+    public static int FSCTL_GET_EXTERNAL_BACKING() {
+        return FSCTL_GET_EXTERNAL_BACKING;
+    }
+    private static final int FSCTL_DELETE_EXTERNAL_BACKING = (int)590612L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_DELETE_EXTERNAL_BACKING 590612
+     * }
+     */
+    public static int FSCTL_DELETE_EXTERNAL_BACKING() {
+        return FSCTL_DELETE_EXTERNAL_BACKING;
+    }
+    private static final int FSCTL_ENUM_EXTERNAL_BACKING = (int)590616L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_ENUM_EXTERNAL_BACKING 590616
+     * }
+     */
+    public static int FSCTL_ENUM_EXTERNAL_BACKING() {
+        return FSCTL_ENUM_EXTERNAL_BACKING;
+    }
+    private static final int FSCTL_ENUM_OVERLAY = (int)590623L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_ENUM_OVERLAY 590623
+     * }
+     */
+    public static int FSCTL_ENUM_OVERLAY() {
+        return FSCTL_ENUM_OVERLAY;
+    }
+    private static final int FSCTL_ADD_OVERLAY = (int)623408L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_ADD_OVERLAY 623408
+     * }
+     */
+    public static int FSCTL_ADD_OVERLAY() {
+        return FSCTL_ADD_OVERLAY;
+    }
+    private static final int FSCTL_REMOVE_OVERLAY = (int)623412L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_REMOVE_OVERLAY 623412
+     * }
+     */
+    public static int FSCTL_REMOVE_OVERLAY() {
+        return FSCTL_REMOVE_OVERLAY;
+    }
+    private static final int FSCTL_UPDATE_OVERLAY = (int)623416L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_UPDATE_OVERLAY 623416
+     * }
+     */
+    public static int FSCTL_UPDATE_OVERLAY() {
+        return FSCTL_UPDATE_OVERLAY;
+    }
+    private static final int FSCTL_SHUFFLE_FILE = (int)639808L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SHUFFLE_FILE 639808
+     * }
+     */
+    public static int FSCTL_SHUFFLE_FILE() {
+        return FSCTL_SHUFFLE_FILE;
+    }
+    private static final int FSCTL_DUPLICATE_EXTENTS_TO_FILE = (int)623428L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_DUPLICATE_EXTENTS_TO_FILE 623428
+     * }
+     */
+    public static int FSCTL_DUPLICATE_EXTENTS_TO_FILE() {
+        return FSCTL_DUPLICATE_EXTENTS_TO_FILE;
+    }
+    private static final int FSCTL_SPARSE_OVERALLOCATE = (int)590668L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SPARSE_OVERALLOCATE 590668
+     * }
+     */
+    public static int FSCTL_SPARSE_OVERALLOCATE() {
+        return FSCTL_SPARSE_OVERALLOCATE;
+    }
+    private static final int FSCTL_STORAGE_QOS_CONTROL = (int)590672L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_STORAGE_QOS_CONTROL 590672
+     * }
+     */
+    public static int FSCTL_STORAGE_QOS_CONTROL() {
+        return FSCTL_STORAGE_QOS_CONTROL;
+    }
+    private static final int FSCTL_INITIATE_FILE_METADATA_OPTIMIZATION = (int)590684L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_INITIATE_FILE_METADATA_OPTIMIZATION 590684
+     * }
+     */
+    public static int FSCTL_INITIATE_FILE_METADATA_OPTIMIZATION() {
+        return FSCTL_INITIATE_FILE_METADATA_OPTIMIZATION;
+    }
+    private static final int FSCTL_QUERY_FILE_METADATA_OPTIMIZATION = (int)590688L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_QUERY_FILE_METADATA_OPTIMIZATION 590688
+     * }
+     */
+    public static int FSCTL_QUERY_FILE_METADATA_OPTIMIZATION() {
+        return FSCTL_QUERY_FILE_METADATA_OPTIMIZATION;
+    }
+    private static final int FSCTL_SVHDX_ASYNC_TUNNEL_REQUEST = (int)590692L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_SVHDX_ASYNC_TUNNEL_REQUEST 590692
+     * }
+     */
+    public static int FSCTL_SVHDX_ASYNC_TUNNEL_REQUEST() {
+        return FSCTL_SVHDX_ASYNC_TUNNEL_REQUEST;
+    }
+    private static final int FSCTL_GET_WOF_VERSION = (int)590696L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_GET_WOF_VERSION 590696
+     * }
+     */
+    public static int FSCTL_GET_WOF_VERSION() {
+        return FSCTL_GET_WOF_VERSION;
+    }
+    private static final int FSCTL_HCS_SYNC_TUNNEL_REQUEST = (int)590700L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_HCS_SYNC_TUNNEL_REQUEST 590700
+     * }
+     */
+    public static int FSCTL_HCS_SYNC_TUNNEL_REQUEST() {
+        return FSCTL_HCS_SYNC_TUNNEL_REQUEST;
+    }
+    private static final int FSCTL_HCS_ASYNC_TUNNEL_REQUEST = (int)590704L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_HCS_ASYNC_TUNNEL_REQUEST 590704
+     * }
+     */
+    public static int FSCTL_HCS_ASYNC_TUNNEL_REQUEST() {
+        return FSCTL_HCS_ASYNC_TUNNEL_REQUEST;
+    }
+    private static final int FSCTL_QUERY_EXTENT_READ_CACHE_INFO = (int)590711L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_QUERY_EXTENT_READ_CACHE_INFO 590711
+     * }
+     */
+    public static int FSCTL_QUERY_EXTENT_READ_CACHE_INFO() {
+        return FSCTL_QUERY_EXTENT_READ_CACHE_INFO;
+    }
+    private static final int FSCTL_QUERY_REFS_VOLUME_COUNTER_INFO = (int)590715L;
+    /**
+     * {@snippet lang=c :
+     * #define FSCTL_QUERY_REFS_VOLUME_COUNTER_INFO 590715
+     * }
+     */
+    public static int FSCTL_QUERY_REFS_VOLUME_COUNTER_INFO() {
+        return FSCTL_QUERY_REFS_VOLUME_COUNTER_INFO;
     }
 }
-
 

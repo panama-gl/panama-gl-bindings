@@ -2,143 +2,402 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _IMAGE_HOT_PATCH_INFO {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     DWORD SequenceNumber;
+ *     DWORD BaseImageList;
+ *     DWORD BaseImageCount;
+ *     DWORD BufferOffset;
+ *     DWORD ExtraPatchSize;
+ * }
+ * }
+ */
 public class _IMAGE_HOT_PATCH_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("SequenceNumber"),
-        Constants$root.C_LONG$LAYOUT.withName("BaseImageList"),
-        Constants$root.C_LONG$LAYOUT.withName("BaseImageCount"),
-        Constants$root.C_LONG$LAYOUT.withName("BufferOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("ExtraPatchSize")
-    ).withName("_IMAGE_HOT_PATCH_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _IMAGE_HOT_PATCH_INFO.$struct$LAYOUT;
+    _IMAGE_HOT_PATCH_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _IMAGE_HOT_PATCH_INFO.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_IMAGE_HOT_PATCH_INFO.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _IMAGE_HOT_PATCH_INFO.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_HOT_PATCH_INFO.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _IMAGE_HOT_PATCH_INFO.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _IMAGE_HOT_PATCH_INFO.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_IMAGE_HOT_PATCH_INFO.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _IMAGE_HOT_PATCH_INFO.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_HOT_PATCH_INFO.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _IMAGE_HOT_PATCH_INFO.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SequenceNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SequenceNumber"));
-    public static VarHandle SequenceNumber$VH() {
-        return _IMAGE_HOT_PATCH_INFO.SequenceNumber$VH;
-    }
-    public static int SequenceNumber$get(MemorySegment seg) {
-        return (int)_IMAGE_HOT_PATCH_INFO.SequenceNumber$VH.get(seg);
-    }
-    public static void SequenceNumber$set( MemorySegment seg, int x) {
-        _IMAGE_HOT_PATCH_INFO.SequenceNumber$VH.set(seg, x);
-    }
-    public static int SequenceNumber$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_HOT_PATCH_INFO.SequenceNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SequenceNumber$set(MemorySegment seg, long index, int x) {
-        _IMAGE_HOT_PATCH_INFO.SequenceNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BaseImageList$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BaseImageList"));
-    public static VarHandle BaseImageList$VH() {
-        return _IMAGE_HOT_PATCH_INFO.BaseImageList$VH;
-    }
-    public static int BaseImageList$get(MemorySegment seg) {
-        return (int)_IMAGE_HOT_PATCH_INFO.BaseImageList$VH.get(seg);
-    }
-    public static void BaseImageList$set( MemorySegment seg, int x) {
-        _IMAGE_HOT_PATCH_INFO.BaseImageList$VH.set(seg, x);
-    }
-    public static int BaseImageList$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_HOT_PATCH_INFO.BaseImageList$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BaseImageList$set(MemorySegment seg, long index, int x) {
-        _IMAGE_HOT_PATCH_INFO.BaseImageList$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BaseImageCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BaseImageCount"));
-    public static VarHandle BaseImageCount$VH() {
-        return _IMAGE_HOT_PATCH_INFO.BaseImageCount$VH;
-    }
-    public static int BaseImageCount$get(MemorySegment seg) {
-        return (int)_IMAGE_HOT_PATCH_INFO.BaseImageCount$VH.get(seg);
-    }
-    public static void BaseImageCount$set( MemorySegment seg, int x) {
-        _IMAGE_HOT_PATCH_INFO.BaseImageCount$VH.set(seg, x);
-    }
-    public static int BaseImageCount$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_HOT_PATCH_INFO.BaseImageCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BaseImageCount$set(MemorySegment seg, long index, int x) {
-        _IMAGE_HOT_PATCH_INFO.BaseImageCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BufferOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BufferOffset"));
-    public static VarHandle BufferOffset$VH() {
-        return _IMAGE_HOT_PATCH_INFO.BufferOffset$VH;
-    }
-    public static int BufferOffset$get(MemorySegment seg) {
-        return (int)_IMAGE_HOT_PATCH_INFO.BufferOffset$VH.get(seg);
-    }
-    public static void BufferOffset$set( MemorySegment seg, int x) {
-        _IMAGE_HOT_PATCH_INFO.BufferOffset$VH.set(seg, x);
-    }
-    public static int BufferOffset$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_HOT_PATCH_INFO.BufferOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BufferOffset$set(MemorySegment seg, long index, int x) {
-        _IMAGE_HOT_PATCH_INFO.BufferOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ExtraPatchSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ExtraPatchSize"));
-    public static VarHandle ExtraPatchSize$VH() {
-        return _IMAGE_HOT_PATCH_INFO.ExtraPatchSize$VH;
-    }
-    public static int ExtraPatchSize$get(MemorySegment seg) {
-        return (int)_IMAGE_HOT_PATCH_INFO.ExtraPatchSize$VH.get(seg);
-    }
-    public static void ExtraPatchSize$set( MemorySegment seg, int x) {
-        _IMAGE_HOT_PATCH_INFO.ExtraPatchSize$VH.set(seg, x);
-    }
-    public static int ExtraPatchSize$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_HOT_PATCH_INFO.ExtraPatchSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ExtraPatchSize$set(MemorySegment seg, long index, int x) {
-        _IMAGE_HOT_PATCH_INFO.ExtraPatchSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("Version"),
+        freeglut_h.C_LONG.withName("Size"),
+        freeglut_h.C_LONG.withName("SequenceNumber"),
+        freeglut_h.C_LONG.withName("BaseImageList"),
+        freeglut_h.C_LONG.withName("BaseImageCount"),
+        freeglut_h.C_LONG.withName("BufferOffset"),
+        freeglut_h.C_LONG.withName("ExtraPatchSize")
+    ).withName("_IMAGE_HOT_PATCH_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt SequenceNumber$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SequenceNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SequenceNumber
+     * }
+     */
+    public static final OfInt SequenceNumber$layout() {
+        return SequenceNumber$LAYOUT;
+    }
+
+    private static final long SequenceNumber$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SequenceNumber
+     * }
+     */
+    public static final long SequenceNumber$offset() {
+        return SequenceNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SequenceNumber
+     * }
+     */
+    public static int SequenceNumber(MemorySegment struct) {
+        return struct.get(SequenceNumber$LAYOUT, SequenceNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SequenceNumber
+     * }
+     */
+    public static void SequenceNumber(MemorySegment struct, int fieldValue) {
+        struct.set(SequenceNumber$LAYOUT, SequenceNumber$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BaseImageList$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BaseImageList"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BaseImageList
+     * }
+     */
+    public static final OfInt BaseImageList$layout() {
+        return BaseImageList$LAYOUT;
+    }
+
+    private static final long BaseImageList$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BaseImageList
+     * }
+     */
+    public static final long BaseImageList$offset() {
+        return BaseImageList$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BaseImageList
+     * }
+     */
+    public static int BaseImageList(MemorySegment struct) {
+        return struct.get(BaseImageList$LAYOUT, BaseImageList$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BaseImageList
+     * }
+     */
+    public static void BaseImageList(MemorySegment struct, int fieldValue) {
+        struct.set(BaseImageList$LAYOUT, BaseImageList$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BaseImageCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BaseImageCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BaseImageCount
+     * }
+     */
+    public static final OfInt BaseImageCount$layout() {
+        return BaseImageCount$LAYOUT;
+    }
+
+    private static final long BaseImageCount$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BaseImageCount
+     * }
+     */
+    public static final long BaseImageCount$offset() {
+        return BaseImageCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BaseImageCount
+     * }
+     */
+    public static int BaseImageCount(MemorySegment struct) {
+        return struct.get(BaseImageCount$LAYOUT, BaseImageCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BaseImageCount
+     * }
+     */
+    public static void BaseImageCount(MemorySegment struct, int fieldValue) {
+        struct.set(BaseImageCount$LAYOUT, BaseImageCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BufferOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BufferOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BufferOffset
+     * }
+     */
+    public static final OfInt BufferOffset$layout() {
+        return BufferOffset$LAYOUT;
+    }
+
+    private static final long BufferOffset$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BufferOffset
+     * }
+     */
+    public static final long BufferOffset$offset() {
+        return BufferOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BufferOffset
+     * }
+     */
+    public static int BufferOffset(MemorySegment struct) {
+        return struct.get(BufferOffset$LAYOUT, BufferOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BufferOffset
+     * }
+     */
+    public static void BufferOffset(MemorySegment struct, int fieldValue) {
+        struct.set(BufferOffset$LAYOUT, BufferOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ExtraPatchSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ExtraPatchSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ExtraPatchSize
+     * }
+     */
+    public static final OfInt ExtraPatchSize$layout() {
+        return ExtraPatchSize$LAYOUT;
+    }
+
+    private static final long ExtraPatchSize$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ExtraPatchSize
+     * }
+     */
+    public static final long ExtraPatchSize$offset() {
+        return ExtraPatchSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ExtraPatchSize
+     * }
+     */
+    public static int ExtraPatchSize(MemorySegment struct) {
+        return struct.get(ExtraPatchSize$LAYOUT, ExtraPatchSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ExtraPatchSize
+     * }
+     */
+    public static void ExtraPatchSize(MemorySegment struct, int fieldValue) {
+        struct.set(ExtraPatchSize$LAYOUT, ExtraPatchSize$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

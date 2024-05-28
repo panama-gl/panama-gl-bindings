@@ -2,13 +2,30 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct __NCRYPT_KEY_ACCESS_POLICY_BLOB {
+ *     DWORD dwVersion;
+ *     DWORD dwPolicyFlags;
+ *     DWORD cbUserSid;
+ *     DWORD cbApplicationSid;
+ * } NCRYPT_KEY_ACCESS_POLICY_BLOB
+ * }
+ */
 public class NCRYPT_KEY_ACCESS_POLICY_BLOB extends __NCRYPT_KEY_ACCESS_POLICY_BLOB {
 
+    NCRYPT_KEY_ACCESS_POLICY_BLOB() {
+        // Should not be called directly
+    }
 }
-
 

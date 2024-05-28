@@ -2,75 +2,218 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _ACL_SIZE_INFORMATION {
+ *     DWORD AceCount;
+ *     DWORD AclBytesInUse;
+ *     DWORD AclBytesFree;
+ * }
+ * }
+ */
 public class _ACL_SIZE_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("AceCount"),
-        Constants$root.C_LONG$LAYOUT.withName("AclBytesInUse"),
-        Constants$root.C_LONG$LAYOUT.withName("AclBytesFree")
-    ).withName("_ACL_SIZE_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return _ACL_SIZE_INFORMATION.$struct$LAYOUT;
+    _ACL_SIZE_INFORMATION() {
+        // Should not be called directly
     }
-    static final VarHandle AceCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AceCount"));
-    public static VarHandle AceCount$VH() {
-        return _ACL_SIZE_INFORMATION.AceCount$VH;
-    }
-    public static int AceCount$get(MemorySegment seg) {
-        return (int)_ACL_SIZE_INFORMATION.AceCount$VH.get(seg);
-    }
-    public static void AceCount$set( MemorySegment seg, int x) {
-        _ACL_SIZE_INFORMATION.AceCount$VH.set(seg, x);
-    }
-    public static int AceCount$get(MemorySegment seg, long index) {
-        return (int)_ACL_SIZE_INFORMATION.AceCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AceCount$set(MemorySegment seg, long index, int x) {
-        _ACL_SIZE_INFORMATION.AceCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AclBytesInUse$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AclBytesInUse"));
-    public static VarHandle AclBytesInUse$VH() {
-        return _ACL_SIZE_INFORMATION.AclBytesInUse$VH;
-    }
-    public static int AclBytesInUse$get(MemorySegment seg) {
-        return (int)_ACL_SIZE_INFORMATION.AclBytesInUse$VH.get(seg);
-    }
-    public static void AclBytesInUse$set( MemorySegment seg, int x) {
-        _ACL_SIZE_INFORMATION.AclBytesInUse$VH.set(seg, x);
-    }
-    public static int AclBytesInUse$get(MemorySegment seg, long index) {
-        return (int)_ACL_SIZE_INFORMATION.AclBytesInUse$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AclBytesInUse$set(MemorySegment seg, long index, int x) {
-        _ACL_SIZE_INFORMATION.AclBytesInUse$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AclBytesFree$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AclBytesFree"));
-    public static VarHandle AclBytesFree$VH() {
-        return _ACL_SIZE_INFORMATION.AclBytesFree$VH;
-    }
-    public static int AclBytesFree$get(MemorySegment seg) {
-        return (int)_ACL_SIZE_INFORMATION.AclBytesFree$VH.get(seg);
-    }
-    public static void AclBytesFree$set( MemorySegment seg, int x) {
-        _ACL_SIZE_INFORMATION.AclBytesFree$VH.set(seg, x);
-    }
-    public static int AclBytesFree$get(MemorySegment seg, long index) {
-        return (int)_ACL_SIZE_INFORMATION.AclBytesFree$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AclBytesFree$set(MemorySegment seg, long index, int x) {
-        _ACL_SIZE_INFORMATION.AclBytesFree$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("AceCount"),
+        freeglut_h.C_LONG.withName("AclBytesInUse"),
+        freeglut_h.C_LONG.withName("AclBytesFree")
+    ).withName("_ACL_SIZE_INFORMATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt AceCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AceCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD AceCount
+     * }
+     */
+    public static final OfInt AceCount$layout() {
+        return AceCount$LAYOUT;
+    }
+
+    private static final long AceCount$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD AceCount
+     * }
+     */
+    public static final long AceCount$offset() {
+        return AceCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD AceCount
+     * }
+     */
+    public static int AceCount(MemorySegment struct) {
+        return struct.get(AceCount$LAYOUT, AceCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD AceCount
+     * }
+     */
+    public static void AceCount(MemorySegment struct, int fieldValue) {
+        struct.set(AceCount$LAYOUT, AceCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt AclBytesInUse$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AclBytesInUse"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD AclBytesInUse
+     * }
+     */
+    public static final OfInt AclBytesInUse$layout() {
+        return AclBytesInUse$LAYOUT;
+    }
+
+    private static final long AclBytesInUse$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD AclBytesInUse
+     * }
+     */
+    public static final long AclBytesInUse$offset() {
+        return AclBytesInUse$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD AclBytesInUse
+     * }
+     */
+    public static int AclBytesInUse(MemorySegment struct) {
+        return struct.get(AclBytesInUse$LAYOUT, AclBytesInUse$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD AclBytesInUse
+     * }
+     */
+    public static void AclBytesInUse(MemorySegment struct, int fieldValue) {
+        struct.set(AclBytesInUse$LAYOUT, AclBytesInUse$OFFSET, fieldValue);
+    }
+
+    private static final OfInt AclBytesFree$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AclBytesFree"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD AclBytesFree
+     * }
+     */
+    public static final OfInt AclBytesFree$layout() {
+        return AclBytesFree$LAYOUT;
+    }
+
+    private static final long AclBytesFree$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD AclBytesFree
+     * }
+     */
+    public static final long AclBytesFree$offset() {
+        return AclBytesFree$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD AclBytesFree
+     * }
+     */
+    public static int AclBytesFree(MemorySegment struct) {
+        return struct.get(AclBytesFree$LAYOUT, AclBytesFree$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD AclBytesFree
+     * }
+     */
+    public static void AclBytesFree(MemorySegment struct, int fieldValue) {
+        struct.set(AclBytesFree$LAYOUT, AclBytesFree$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

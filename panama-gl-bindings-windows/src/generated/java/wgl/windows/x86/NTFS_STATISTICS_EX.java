@@ -2,13 +2,114 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _NTFS_STATISTICS_EX {
+ *     DWORD LogFileFullExceptions;
+ *     DWORD OtherExceptions;
+ *     DWORDLONG MftReads;
+ *     DWORDLONG MftReadBytes;
+ *     DWORDLONG MftWrites;
+ *     DWORDLONG MftWriteBytes;
+ *     struct {
+ *         DWORD Write;
+ *         DWORD Create;
+ *         DWORD SetInfo;
+ *         DWORD Flush;
+ *     } MftWritesUserLevel;
+ *     DWORD MftWritesFlushForLogFileFull;
+ *     DWORD MftWritesLazyWriter;
+ *     DWORD MftWritesUserRequest;
+ *     DWORDLONG Mft2Writes;
+ *     DWORDLONG Mft2WriteBytes;
+ *     struct {
+ *         DWORD Write;
+ *         DWORD Create;
+ *         DWORD SetInfo;
+ *         DWORD Flush;
+ *     } Mft2WritesUserLevel;
+ *     DWORD Mft2WritesFlushForLogFileFull;
+ *     DWORD Mft2WritesLazyWriter;
+ *     DWORD Mft2WritesUserRequest;
+ *     DWORDLONG RootIndexReads;
+ *     DWORDLONG RootIndexReadBytes;
+ *     DWORDLONG RootIndexWrites;
+ *     DWORDLONG RootIndexWriteBytes;
+ *     DWORDLONG BitmapReads;
+ *     DWORDLONG BitmapReadBytes;
+ *     DWORDLONG BitmapWrites;
+ *     DWORDLONG BitmapWriteBytes;
+ *     DWORD BitmapWritesFlushForLogFileFull;
+ *     DWORD BitmapWritesLazyWriter;
+ *     DWORD BitmapWritesUserRequest;
+ *     struct {
+ *         DWORD Write;
+ *         DWORD Create;
+ *         DWORD SetInfo;
+ *         DWORD Flush;
+ *     } BitmapWritesUserLevel;
+ *     DWORDLONG MftBitmapReads;
+ *     DWORDLONG MftBitmapReadBytes;
+ *     DWORDLONG MftBitmapWrites;
+ *     DWORDLONG MftBitmapWriteBytes;
+ *     DWORD MftBitmapWritesFlushForLogFileFull;
+ *     DWORD MftBitmapWritesLazyWriter;
+ *     DWORD MftBitmapWritesUserRequest;
+ *     struct {
+ *         DWORD Write;
+ *         DWORD Create;
+ *         DWORD SetInfo;
+ *         DWORD Flush;
+ *     } MftBitmapWritesUserLevel;
+ *     DWORDLONG UserIndexReads;
+ *     DWORDLONG UserIndexReadBytes;
+ *     DWORDLONG UserIndexWrites;
+ *     DWORDLONG UserIndexWriteBytes;
+ *     DWORDLONG LogFileReads;
+ *     DWORDLONG LogFileReadBytes;
+ *     DWORDLONG LogFileWrites;
+ *     DWORDLONG LogFileWriteBytes;
+ *     struct {
+ *         DWORD Calls;
+ *         DWORD RunsReturned;
+ *         DWORD Hints;
+ *         DWORD HintsHonored;
+ *         DWORD Cache;
+ *         DWORD CacheMiss;
+ *         DWORDLONG Clusters;
+ *         DWORDLONG HintsClusters;
+ *         DWORDLONG CacheClusters;
+ *         DWORDLONG CacheMissClusters;
+ *     } Allocate;
+ *     DWORD DiskResourcesExhausted;
+ *     DWORDLONG VolumeTrimCount;
+ *     DWORDLONG VolumeTrimTime;
+ *     DWORDLONG VolumeTrimByteCount;
+ *     DWORDLONG FileLevelTrimCount;
+ *     DWORDLONG FileLevelTrimTime;
+ *     DWORDLONG FileLevelTrimByteCount;
+ *     DWORDLONG VolumeTrimSkippedCount;
+ *     DWORDLONG VolumeTrimSkippedByteCount;
+ *     DWORDLONG NtfsFillStatInfoFromMftRecordCalledCount;
+ *     DWORDLONG NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount;
+ *     DWORDLONG NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount;
+ * } NTFS_STATISTICS_EX
+ * }
+ */
 public class NTFS_STATISTICS_EX extends _NTFS_STATISTICS_EX {
 
+    NTFS_STATISTICS_EX() {
+        // Should not be called directly
+    }
 }
-
 

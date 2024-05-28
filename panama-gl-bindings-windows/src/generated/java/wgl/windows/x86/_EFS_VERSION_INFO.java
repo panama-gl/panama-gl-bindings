@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _EFS_VERSION_INFO {
+ *     DWORD EfsVersion;
+ *     DWORD SubVersion;
+ * }
+ * }
+ */
 public class _EFS_VERSION_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("EfsVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("SubVersion")
-    ).withName("_EFS_VERSION_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _EFS_VERSION_INFO.$struct$LAYOUT;
+    _EFS_VERSION_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle EfsVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EfsVersion"));
-    public static VarHandle EfsVersion$VH() {
-        return _EFS_VERSION_INFO.EfsVersion$VH;
-    }
-    public static int EfsVersion$get(MemorySegment seg) {
-        return (int)_EFS_VERSION_INFO.EfsVersion$VH.get(seg);
-    }
-    public static void EfsVersion$set( MemorySegment seg, int x) {
-        _EFS_VERSION_INFO.EfsVersion$VH.set(seg, x);
-    }
-    public static int EfsVersion$get(MemorySegment seg, long index) {
-        return (int)_EFS_VERSION_INFO.EfsVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EfsVersion$set(MemorySegment seg, long index, int x) {
-        _EFS_VERSION_INFO.EfsVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SubVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SubVersion"));
-    public static VarHandle SubVersion$VH() {
-        return _EFS_VERSION_INFO.SubVersion$VH;
-    }
-    public static int SubVersion$get(MemorySegment seg) {
-        return (int)_EFS_VERSION_INFO.SubVersion$VH.get(seg);
-    }
-    public static void SubVersion$set( MemorySegment seg, int x) {
-        _EFS_VERSION_INFO.SubVersion$VH.set(seg, x);
-    }
-    public static int SubVersion$get(MemorySegment seg, long index) {
-        return (int)_EFS_VERSION_INFO.SubVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SubVersion$set(MemorySegment seg, long index, int x) {
-        _EFS_VERSION_INFO.SubVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("EfsVersion"),
+        wgl_h.C_LONG.withName("SubVersion")
+    ).withName("_EFS_VERSION_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt EfsVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("EfsVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD EfsVersion
+     * }
+     */
+    public static final OfInt EfsVersion$layout() {
+        return EfsVersion$LAYOUT;
+    }
+
+    private static final long EfsVersion$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD EfsVersion
+     * }
+     */
+    public static final long EfsVersion$offset() {
+        return EfsVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD EfsVersion
+     * }
+     */
+    public static int EfsVersion(MemorySegment struct) {
+        return struct.get(EfsVersion$LAYOUT, EfsVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD EfsVersion
+     * }
+     */
+    public static void EfsVersion(MemorySegment struct, int fieldValue) {
+        struct.set(EfsVersion$LAYOUT, EfsVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt SubVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SubVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SubVersion
+     * }
+     */
+    public static final OfInt SubVersion$layout() {
+        return SubVersion$LAYOUT;
+    }
+
+    private static final long SubVersion$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SubVersion
+     * }
+     */
+    public static final long SubVersion$offset() {
+        return SubVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SubVersion
+     * }
+     */
+    public static int SubVersion(MemorySegment struct) {
+        return struct.get(SubVersion$LAYOUT, SubVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SubVersion
+     * }
+     */
+    public static void SubVersion(MemorySegment struct, int fieldValue) {
+        struct.set(SubVersion$LAYOUT, SubVersion$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

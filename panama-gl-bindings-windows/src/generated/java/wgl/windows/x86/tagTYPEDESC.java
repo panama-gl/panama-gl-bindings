@@ -2,95 +2,269 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagTYPEDESC {
+ *     union {
+ *         struct tagTYPEDESC *lptdesc;
+ *         struct tagARRAYDESC *lpadesc;
+ *         HREFTYPE hreftype;
+ *     };
+ *     VARTYPE vt;
+ * }
+ * }
+ */
 public class tagTYPEDESC {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.unionLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("lptdesc"),
-            Constants$root.C_POINTER$LAYOUT.withName("lpadesc"),
-            Constants$root.C_LONG$LAYOUT.withName("hreftype")
-        ).withName("$anon$0"),
-        Constants$root.C_SHORT$LAYOUT.withName("vt"),
-        MemoryLayout.paddingLayout(48)
-    ).withName("tagTYPEDESC");
-    public static MemoryLayout $LAYOUT() {
-        return tagTYPEDESC.$struct$LAYOUT;
+    tagTYPEDESC() {
+        // Should not be called directly
     }
-    static final VarHandle lptdesc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("lptdesc"));
-    public static VarHandle lptdesc$VH() {
-        return tagTYPEDESC.lptdesc$VH;
-    }
-    public static MemoryAddress lptdesc$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagTYPEDESC.lptdesc$VH.get(seg);
-    }
-    public static void lptdesc$set( MemorySegment seg, MemoryAddress x) {
-        tagTYPEDESC.lptdesc$VH.set(seg, x);
-    }
-    public static MemoryAddress lptdesc$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagTYPEDESC.lptdesc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lptdesc$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagTYPEDESC.lptdesc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpadesc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("lpadesc"));
-    public static VarHandle lpadesc$VH() {
-        return tagTYPEDESC.lpadesc$VH;
-    }
-    public static MemoryAddress lpadesc$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagTYPEDESC.lpadesc$VH.get(seg);
-    }
-    public static void lpadesc$set( MemorySegment seg, MemoryAddress x) {
-        tagTYPEDESC.lpadesc$VH.set(seg, x);
-    }
-    public static MemoryAddress lpadesc$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagTYPEDESC.lpadesc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpadesc$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagTYPEDESC.lpadesc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hreftype$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("hreftype"));
-    public static VarHandle hreftype$VH() {
-        return tagTYPEDESC.hreftype$VH;
-    }
-    public static int hreftype$get(MemorySegment seg) {
-        return (int)tagTYPEDESC.hreftype$VH.get(seg);
-    }
-    public static void hreftype$set( MemorySegment seg, int x) {
-        tagTYPEDESC.hreftype$VH.set(seg, x);
-    }
-    public static int hreftype$get(MemorySegment seg, long index) {
-        return (int)tagTYPEDESC.hreftype$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hreftype$set(MemorySegment seg, long index, int x) {
-        tagTYPEDESC.hreftype$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle vt$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("vt"));
-    public static VarHandle vt$VH() {
-        return tagTYPEDESC.vt$VH;
-    }
-    public static short vt$get(MemorySegment seg) {
-        return (short)tagTYPEDESC.vt$VH.get(seg);
-    }
-    public static void vt$set( MemorySegment seg, short x) {
-        tagTYPEDESC.vt$VH.set(seg, x);
-    }
-    public static short vt$get(MemorySegment seg, long index) {
-        return (short)tagTYPEDESC.vt$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void vt$set(MemorySegment seg, long index, short x) {
-        tagTYPEDESC.vt$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        MemoryLayout.unionLayout(
+            wgl_h.C_POINTER.withName("lptdesc"),
+            wgl_h.C_POINTER.withName("lpadesc"),
+            wgl_h.C_LONG.withName("hreftype")
+        ).withName("$anon$645:36"),
+        wgl_h.C_SHORT.withName("vt"),
+        MemoryLayout.paddingLayout(6)
+    ).withName("tagTYPEDESC");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout lptdesc$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$645:36"), groupElement("lptdesc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct tagTYPEDESC *lptdesc
+     * }
+     */
+    public static final AddressLayout lptdesc$layout() {
+        return lptdesc$LAYOUT;
+    }
+
+    private static final long lptdesc$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct tagTYPEDESC *lptdesc
+     * }
+     */
+    public static final long lptdesc$offset() {
+        return lptdesc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct tagTYPEDESC *lptdesc
+     * }
+     */
+    public static MemorySegment lptdesc(MemorySegment struct) {
+        return struct.get(lptdesc$LAYOUT, lptdesc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct tagTYPEDESC *lptdesc
+     * }
+     */
+    public static void lptdesc(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lptdesc$LAYOUT, lptdesc$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpadesc$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$645:36"), groupElement("lpadesc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct tagARRAYDESC *lpadesc
+     * }
+     */
+    public static final AddressLayout lpadesc$layout() {
+        return lpadesc$LAYOUT;
+    }
+
+    private static final long lpadesc$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct tagARRAYDESC *lpadesc
+     * }
+     */
+    public static final long lpadesc$offset() {
+        return lpadesc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct tagARRAYDESC *lpadesc
+     * }
+     */
+    public static MemorySegment lpadesc(MemorySegment struct) {
+        return struct.get(lpadesc$LAYOUT, lpadesc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct tagARRAYDESC *lpadesc
+     * }
+     */
+    public static void lpadesc(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpadesc$LAYOUT, lpadesc$OFFSET, fieldValue);
+    }
+
+    private static final OfInt hreftype$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$645:36"), groupElement("hreftype"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HREFTYPE hreftype
+     * }
+     */
+    public static final OfInt hreftype$layout() {
+        return hreftype$LAYOUT;
+    }
+
+    private static final long hreftype$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HREFTYPE hreftype
+     * }
+     */
+    public static final long hreftype$offset() {
+        return hreftype$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HREFTYPE hreftype
+     * }
+     */
+    public static int hreftype(MemorySegment struct) {
+        return struct.get(hreftype$LAYOUT, hreftype$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HREFTYPE hreftype
+     * }
+     */
+    public static void hreftype(MemorySegment struct, int fieldValue) {
+        struct.set(hreftype$LAYOUT, hreftype$OFFSET, fieldValue);
+    }
+
+    private static final OfShort vt$LAYOUT = (OfShort)$LAYOUT.select(groupElement("vt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * VARTYPE vt
+     * }
+     */
+    public static final OfShort vt$layout() {
+        return vt$LAYOUT;
+    }
+
+    private static final long vt$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * VARTYPE vt
+     * }
+     */
+    public static final long vt$offset() {
+        return vt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * VARTYPE vt
+     * }
+     */
+    public static short vt(MemorySegment struct) {
+        return struct.get(vt$LAYOUT, vt$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * VARTYPE vt
+     * }
+     */
+    public static void vt(MemorySegment struct, short fieldValue) {
+        struct.set(vt$LAYOUT, vt$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

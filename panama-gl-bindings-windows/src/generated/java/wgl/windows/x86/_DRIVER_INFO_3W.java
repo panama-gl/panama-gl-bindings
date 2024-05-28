@@ -2,195 +2,541 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DRIVER_INFO_3W {
+ *     DWORD cVersion;
+ *     LPWSTR pName;
+ *     LPWSTR pEnvironment;
+ *     LPWSTR pDriverPath;
+ *     LPWSTR pDataFile;
+ *     LPWSTR pConfigFile;
+ *     LPWSTR pHelpFile;
+ *     LPWSTR pDependentFiles;
+ *     LPWSTR pMonitorName;
+ *     LPWSTR pDefaultDataType;
+ * }
+ * }
+ */
 public class _DRIVER_INFO_3W {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cVersion"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pName"),
-        Constants$root.C_POINTER$LAYOUT.withName("pEnvironment"),
-        Constants$root.C_POINTER$LAYOUT.withName("pDriverPath"),
-        Constants$root.C_POINTER$LAYOUT.withName("pDataFile"),
-        Constants$root.C_POINTER$LAYOUT.withName("pConfigFile"),
-        Constants$root.C_POINTER$LAYOUT.withName("pHelpFile"),
-        Constants$root.C_POINTER$LAYOUT.withName("pDependentFiles"),
-        Constants$root.C_POINTER$LAYOUT.withName("pMonitorName"),
-        Constants$root.C_POINTER$LAYOUT.withName("pDefaultDataType")
-    ).withName("_DRIVER_INFO_3W");
-    public static MemoryLayout $LAYOUT() {
-        return _DRIVER_INFO_3W.$struct$LAYOUT;
+    _DRIVER_INFO_3W() {
+        // Should not be called directly
     }
-    static final VarHandle cVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cVersion"));
-    public static VarHandle cVersion$VH() {
-        return _DRIVER_INFO_3W.cVersion$VH;
-    }
-    public static int cVersion$get(MemorySegment seg) {
-        return (int)_DRIVER_INFO_3W.cVersion$VH.get(seg);
-    }
-    public static void cVersion$set( MemorySegment seg, int x) {
-        _DRIVER_INFO_3W.cVersion$VH.set(seg, x);
-    }
-    public static int cVersion$get(MemorySegment seg, long index) {
-        return (int)_DRIVER_INFO_3W.cVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cVersion$set(MemorySegment seg, long index, int x) {
-        _DRIVER_INFO_3W.cVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pName"));
-    public static VarHandle pName$VH() {
-        return _DRIVER_INFO_3W.pName$VH;
-    }
-    public static MemoryAddress pName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_DRIVER_INFO_3W.pName$VH.get(seg);
-    }
-    public static void pName$set( MemorySegment seg, MemoryAddress x) {
-        _DRIVER_INFO_3W.pName$VH.set(seg, x);
-    }
-    public static MemoryAddress pName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_DRIVER_INFO_3W.pName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _DRIVER_INFO_3W.pName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pEnvironment$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pEnvironment"));
-    public static VarHandle pEnvironment$VH() {
-        return _DRIVER_INFO_3W.pEnvironment$VH;
-    }
-    public static MemoryAddress pEnvironment$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_DRIVER_INFO_3W.pEnvironment$VH.get(seg);
-    }
-    public static void pEnvironment$set( MemorySegment seg, MemoryAddress x) {
-        _DRIVER_INFO_3W.pEnvironment$VH.set(seg, x);
-    }
-    public static MemoryAddress pEnvironment$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_DRIVER_INFO_3W.pEnvironment$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pEnvironment$set(MemorySegment seg, long index, MemoryAddress x) {
-        _DRIVER_INFO_3W.pEnvironment$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pDriverPath$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pDriverPath"));
-    public static VarHandle pDriverPath$VH() {
-        return _DRIVER_INFO_3W.pDriverPath$VH;
-    }
-    public static MemoryAddress pDriverPath$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_DRIVER_INFO_3W.pDriverPath$VH.get(seg);
-    }
-    public static void pDriverPath$set( MemorySegment seg, MemoryAddress x) {
-        _DRIVER_INFO_3W.pDriverPath$VH.set(seg, x);
-    }
-    public static MemoryAddress pDriverPath$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_DRIVER_INFO_3W.pDriverPath$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pDriverPath$set(MemorySegment seg, long index, MemoryAddress x) {
-        _DRIVER_INFO_3W.pDriverPath$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pDataFile$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pDataFile"));
-    public static VarHandle pDataFile$VH() {
-        return _DRIVER_INFO_3W.pDataFile$VH;
-    }
-    public static MemoryAddress pDataFile$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_DRIVER_INFO_3W.pDataFile$VH.get(seg);
-    }
-    public static void pDataFile$set( MemorySegment seg, MemoryAddress x) {
-        _DRIVER_INFO_3W.pDataFile$VH.set(seg, x);
-    }
-    public static MemoryAddress pDataFile$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_DRIVER_INFO_3W.pDataFile$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pDataFile$set(MemorySegment seg, long index, MemoryAddress x) {
-        _DRIVER_INFO_3W.pDataFile$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pConfigFile$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pConfigFile"));
-    public static VarHandle pConfigFile$VH() {
-        return _DRIVER_INFO_3W.pConfigFile$VH;
-    }
-    public static MemoryAddress pConfigFile$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_DRIVER_INFO_3W.pConfigFile$VH.get(seg);
-    }
-    public static void pConfigFile$set( MemorySegment seg, MemoryAddress x) {
-        _DRIVER_INFO_3W.pConfigFile$VH.set(seg, x);
-    }
-    public static MemoryAddress pConfigFile$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_DRIVER_INFO_3W.pConfigFile$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pConfigFile$set(MemorySegment seg, long index, MemoryAddress x) {
-        _DRIVER_INFO_3W.pConfigFile$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pHelpFile$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pHelpFile"));
-    public static VarHandle pHelpFile$VH() {
-        return _DRIVER_INFO_3W.pHelpFile$VH;
-    }
-    public static MemoryAddress pHelpFile$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_DRIVER_INFO_3W.pHelpFile$VH.get(seg);
-    }
-    public static void pHelpFile$set( MemorySegment seg, MemoryAddress x) {
-        _DRIVER_INFO_3W.pHelpFile$VH.set(seg, x);
-    }
-    public static MemoryAddress pHelpFile$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_DRIVER_INFO_3W.pHelpFile$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pHelpFile$set(MemorySegment seg, long index, MemoryAddress x) {
-        _DRIVER_INFO_3W.pHelpFile$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pDependentFiles$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pDependentFiles"));
-    public static VarHandle pDependentFiles$VH() {
-        return _DRIVER_INFO_3W.pDependentFiles$VH;
-    }
-    public static MemoryAddress pDependentFiles$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_DRIVER_INFO_3W.pDependentFiles$VH.get(seg);
-    }
-    public static void pDependentFiles$set( MemorySegment seg, MemoryAddress x) {
-        _DRIVER_INFO_3W.pDependentFiles$VH.set(seg, x);
-    }
-    public static MemoryAddress pDependentFiles$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_DRIVER_INFO_3W.pDependentFiles$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pDependentFiles$set(MemorySegment seg, long index, MemoryAddress x) {
-        _DRIVER_INFO_3W.pDependentFiles$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pMonitorName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pMonitorName"));
-    public static VarHandle pMonitorName$VH() {
-        return _DRIVER_INFO_3W.pMonitorName$VH;
-    }
-    public static MemoryAddress pMonitorName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_DRIVER_INFO_3W.pMonitorName$VH.get(seg);
-    }
-    public static void pMonitorName$set( MemorySegment seg, MemoryAddress x) {
-        _DRIVER_INFO_3W.pMonitorName$VH.set(seg, x);
-    }
-    public static MemoryAddress pMonitorName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_DRIVER_INFO_3W.pMonitorName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pMonitorName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _DRIVER_INFO_3W.pMonitorName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pDefaultDataType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pDefaultDataType"));
-    public static VarHandle pDefaultDataType$VH() {
-        return _DRIVER_INFO_3W.pDefaultDataType$VH;
-    }
-    public static MemoryAddress pDefaultDataType$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_DRIVER_INFO_3W.pDefaultDataType$VH.get(seg);
-    }
-    public static void pDefaultDataType$set( MemorySegment seg, MemoryAddress x) {
-        _DRIVER_INFO_3W.pDefaultDataType$VH.set(seg, x);
-    }
-    public static MemoryAddress pDefaultDataType$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_DRIVER_INFO_3W.pDefaultDataType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pDefaultDataType$set(MemorySegment seg, long index, MemoryAddress x) {
-        _DRIVER_INFO_3W.pDefaultDataType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cVersion"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pName"),
+        wgl_h.C_POINTER.withName("pEnvironment"),
+        wgl_h.C_POINTER.withName("pDriverPath"),
+        wgl_h.C_POINTER.withName("pDataFile"),
+        wgl_h.C_POINTER.withName("pConfigFile"),
+        wgl_h.C_POINTER.withName("pHelpFile"),
+        wgl_h.C_POINTER.withName("pDependentFiles"),
+        wgl_h.C_POINTER.withName("pMonitorName"),
+        wgl_h.C_POINTER.withName("pDefaultDataType")
+    ).withName("_DRIVER_INFO_3W");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cVersion
+     * }
+     */
+    public static final OfInt cVersion$layout() {
+        return cVersion$LAYOUT;
+    }
+
+    private static final long cVersion$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cVersion
+     * }
+     */
+    public static final long cVersion$offset() {
+        return cVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cVersion
+     * }
+     */
+    public static int cVersion(MemorySegment struct) {
+        return struct.get(cVersion$LAYOUT, cVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cVersion
+     * }
+     */
+    public static void cVersion(MemorySegment struct, int fieldValue) {
+        struct.set(cVersion$LAYOUT, cVersion$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pName
+     * }
+     */
+    public static final AddressLayout pName$layout() {
+        return pName$LAYOUT;
+    }
+
+    private static final long pName$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pName
+     * }
+     */
+    public static final long pName$offset() {
+        return pName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pName
+     * }
+     */
+    public static MemorySegment pName(MemorySegment struct) {
+        return struct.get(pName$LAYOUT, pName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pName
+     * }
+     */
+    public static void pName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pName$LAYOUT, pName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pEnvironment$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pEnvironment"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pEnvironment
+     * }
+     */
+    public static final AddressLayout pEnvironment$layout() {
+        return pEnvironment$LAYOUT;
+    }
+
+    private static final long pEnvironment$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pEnvironment
+     * }
+     */
+    public static final long pEnvironment$offset() {
+        return pEnvironment$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pEnvironment
+     * }
+     */
+    public static MemorySegment pEnvironment(MemorySegment struct) {
+        return struct.get(pEnvironment$LAYOUT, pEnvironment$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pEnvironment
+     * }
+     */
+    public static void pEnvironment(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pEnvironment$LAYOUT, pEnvironment$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pDriverPath$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pDriverPath"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pDriverPath
+     * }
+     */
+    public static final AddressLayout pDriverPath$layout() {
+        return pDriverPath$LAYOUT;
+    }
+
+    private static final long pDriverPath$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pDriverPath
+     * }
+     */
+    public static final long pDriverPath$offset() {
+        return pDriverPath$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pDriverPath
+     * }
+     */
+    public static MemorySegment pDriverPath(MemorySegment struct) {
+        return struct.get(pDriverPath$LAYOUT, pDriverPath$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pDriverPath
+     * }
+     */
+    public static void pDriverPath(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pDriverPath$LAYOUT, pDriverPath$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pDataFile$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pDataFile"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pDataFile
+     * }
+     */
+    public static final AddressLayout pDataFile$layout() {
+        return pDataFile$LAYOUT;
+    }
+
+    private static final long pDataFile$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pDataFile
+     * }
+     */
+    public static final long pDataFile$offset() {
+        return pDataFile$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pDataFile
+     * }
+     */
+    public static MemorySegment pDataFile(MemorySegment struct) {
+        return struct.get(pDataFile$LAYOUT, pDataFile$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pDataFile
+     * }
+     */
+    public static void pDataFile(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pDataFile$LAYOUT, pDataFile$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pConfigFile$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pConfigFile"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pConfigFile
+     * }
+     */
+    public static final AddressLayout pConfigFile$layout() {
+        return pConfigFile$LAYOUT;
+    }
+
+    private static final long pConfigFile$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pConfigFile
+     * }
+     */
+    public static final long pConfigFile$offset() {
+        return pConfigFile$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pConfigFile
+     * }
+     */
+    public static MemorySegment pConfigFile(MemorySegment struct) {
+        return struct.get(pConfigFile$LAYOUT, pConfigFile$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pConfigFile
+     * }
+     */
+    public static void pConfigFile(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pConfigFile$LAYOUT, pConfigFile$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pHelpFile$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pHelpFile"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pHelpFile
+     * }
+     */
+    public static final AddressLayout pHelpFile$layout() {
+        return pHelpFile$LAYOUT;
+    }
+
+    private static final long pHelpFile$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pHelpFile
+     * }
+     */
+    public static final long pHelpFile$offset() {
+        return pHelpFile$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pHelpFile
+     * }
+     */
+    public static MemorySegment pHelpFile(MemorySegment struct) {
+        return struct.get(pHelpFile$LAYOUT, pHelpFile$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pHelpFile
+     * }
+     */
+    public static void pHelpFile(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pHelpFile$LAYOUT, pHelpFile$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pDependentFiles$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pDependentFiles"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pDependentFiles
+     * }
+     */
+    public static final AddressLayout pDependentFiles$layout() {
+        return pDependentFiles$LAYOUT;
+    }
+
+    private static final long pDependentFiles$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pDependentFiles
+     * }
+     */
+    public static final long pDependentFiles$offset() {
+        return pDependentFiles$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pDependentFiles
+     * }
+     */
+    public static MemorySegment pDependentFiles(MemorySegment struct) {
+        return struct.get(pDependentFiles$LAYOUT, pDependentFiles$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pDependentFiles
+     * }
+     */
+    public static void pDependentFiles(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pDependentFiles$LAYOUT, pDependentFiles$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pMonitorName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pMonitorName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pMonitorName
+     * }
+     */
+    public static final AddressLayout pMonitorName$layout() {
+        return pMonitorName$LAYOUT;
+    }
+
+    private static final long pMonitorName$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pMonitorName
+     * }
+     */
+    public static final long pMonitorName$offset() {
+        return pMonitorName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pMonitorName
+     * }
+     */
+    public static MemorySegment pMonitorName(MemorySegment struct) {
+        return struct.get(pMonitorName$LAYOUT, pMonitorName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pMonitorName
+     * }
+     */
+    public static void pMonitorName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pMonitorName$LAYOUT, pMonitorName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pDefaultDataType$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pDefaultDataType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pDefaultDataType
+     * }
+     */
+    public static final AddressLayout pDefaultDataType$layout() {
+        return pDefaultDataType$LAYOUT;
+    }
+
+    private static final long pDefaultDataType$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pDefaultDataType
+     * }
+     */
+    public static final long pDefaultDataType$offset() {
+        return pDefaultDataType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pDefaultDataType
+     * }
+     */
+    public static MemorySegment pDefaultDataType(MemorySegment struct) {
+        return struct.get(pDefaultDataType$LAYOUT, pDefaultDataType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pDefaultDataType
+     * }
+     */
+    public static void pDefaultDataType(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pDefaultDataType$LAYOUT, pDefaultDataType$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

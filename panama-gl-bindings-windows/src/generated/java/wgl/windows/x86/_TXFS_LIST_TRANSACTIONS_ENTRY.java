@@ -2,102 +2,311 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _TXFS_LIST_TRANSACTIONS_ENTRY {
+ *     GUID TransactionId;
+ *     DWORD TransactionState;
+ *     DWORD Reserved1;
+ *     DWORD Reserved2;
+ *     LONGLONG Reserved3;
+ * }
+ * }
+ */
 public class _TXFS_LIST_TRANSACTIONS_ENTRY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("TransactionId"),
-        Constants$root.C_LONG$LAYOUT.withName("TransactionState"),
-        Constants$root.C_LONG$LAYOUT.withName("Reserved1"),
-        Constants$root.C_LONG$LAYOUT.withName("Reserved2"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Reserved3")
-    ).withName("_TXFS_LIST_TRANSACTIONS_ENTRY");
-    public static MemoryLayout $LAYOUT() {
-        return _TXFS_LIST_TRANSACTIONS_ENTRY.$struct$LAYOUT;
+    _TXFS_LIST_TRANSACTIONS_ENTRY() {
+        // Should not be called directly
     }
-    public static MemorySegment TransactionId$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
-    }
-    static final VarHandle TransactionState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TransactionState"));
-    public static VarHandle TransactionState$VH() {
-        return _TXFS_LIST_TRANSACTIONS_ENTRY.TransactionState$VH;
-    }
-    public static int TransactionState$get(MemorySegment seg) {
-        return (int)_TXFS_LIST_TRANSACTIONS_ENTRY.TransactionState$VH.get(seg);
-    }
-    public static void TransactionState$set( MemorySegment seg, int x) {
-        _TXFS_LIST_TRANSACTIONS_ENTRY.TransactionState$VH.set(seg, x);
-    }
-    public static int TransactionState$get(MemorySegment seg, long index) {
-        return (int)_TXFS_LIST_TRANSACTIONS_ENTRY.TransactionState$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TransactionState$set(MemorySegment seg, long index, int x) {
-        _TXFS_LIST_TRANSACTIONS_ENTRY.TransactionState$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved1"));
-    public static VarHandle Reserved1$VH() {
-        return _TXFS_LIST_TRANSACTIONS_ENTRY.Reserved1$VH;
-    }
-    public static int Reserved1$get(MemorySegment seg) {
-        return (int)_TXFS_LIST_TRANSACTIONS_ENTRY.Reserved1$VH.get(seg);
-    }
-    public static void Reserved1$set( MemorySegment seg, int x) {
-        _TXFS_LIST_TRANSACTIONS_ENTRY.Reserved1$VH.set(seg, x);
-    }
-    public static int Reserved1$get(MemorySegment seg, long index) {
-        return (int)_TXFS_LIST_TRANSACTIONS_ENTRY.Reserved1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved1$set(MemorySegment seg, long index, int x) {
-        _TXFS_LIST_TRANSACTIONS_ENTRY.Reserved1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved2"));
-    public static VarHandle Reserved2$VH() {
-        return _TXFS_LIST_TRANSACTIONS_ENTRY.Reserved2$VH;
-    }
-    public static int Reserved2$get(MemorySegment seg) {
-        return (int)_TXFS_LIST_TRANSACTIONS_ENTRY.Reserved2$VH.get(seg);
-    }
-    public static void Reserved2$set( MemorySegment seg, int x) {
-        _TXFS_LIST_TRANSACTIONS_ENTRY.Reserved2$VH.set(seg, x);
-    }
-    public static int Reserved2$get(MemorySegment seg, long index) {
-        return (int)_TXFS_LIST_TRANSACTIONS_ENTRY.Reserved2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved2$set(MemorySegment seg, long index, int x) {
-        _TXFS_LIST_TRANSACTIONS_ENTRY.Reserved2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved3$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved3"));
-    public static VarHandle Reserved3$VH() {
-        return _TXFS_LIST_TRANSACTIONS_ENTRY.Reserved3$VH;
-    }
-    public static long Reserved3$get(MemorySegment seg) {
-        return (long)_TXFS_LIST_TRANSACTIONS_ENTRY.Reserved3$VH.get(seg);
-    }
-    public static void Reserved3$set( MemorySegment seg, long x) {
-        _TXFS_LIST_TRANSACTIONS_ENTRY.Reserved3$VH.set(seg, x);
-    }
-    public static long Reserved3$get(MemorySegment seg, long index) {
-        return (long)_TXFS_LIST_TRANSACTIONS_ENTRY.Reserved3$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved3$set(MemorySegment seg, long index, long x) {
-        _TXFS_LIST_TRANSACTIONS_ENTRY.Reserved3$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _GUID.layout().withName("TransactionId"),
+        wgl_h.C_LONG.withName("TransactionState"),
+        wgl_h.C_LONG.withName("Reserved1"),
+        wgl_h.C_LONG.withName("Reserved2"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_LONG_LONG.withName("Reserved3")
+    ).withName("_TXFS_LIST_TRANSACTIONS_ENTRY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout TransactionId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("TransactionId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID TransactionId
+     * }
+     */
+    public static final GroupLayout TransactionId$layout() {
+        return TransactionId$LAYOUT;
+    }
+
+    private static final long TransactionId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID TransactionId
+     * }
+     */
+    public static final long TransactionId$offset() {
+        return TransactionId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID TransactionId
+     * }
+     */
+    public static MemorySegment TransactionId(MemorySegment struct) {
+        return struct.asSlice(TransactionId$OFFSET, TransactionId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID TransactionId
+     * }
+     */
+    public static void TransactionId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, TransactionId$OFFSET, TransactionId$LAYOUT.byteSize());
+    }
+
+    private static final OfInt TransactionState$LAYOUT = (OfInt)$LAYOUT.select(groupElement("TransactionState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD TransactionState
+     * }
+     */
+    public static final OfInt TransactionState$layout() {
+        return TransactionState$LAYOUT;
+    }
+
+    private static final long TransactionState$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD TransactionState
+     * }
+     */
+    public static final long TransactionState$offset() {
+        return TransactionState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD TransactionState
+     * }
+     */
+    public static int TransactionState(MemorySegment struct) {
+        return struct.get(TransactionState$LAYOUT, TransactionState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD TransactionState
+     * }
+     */
+    public static void TransactionState(MemorySegment struct, int fieldValue) {
+        struct.set(TransactionState$LAYOUT, TransactionState$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Reserved1$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static final OfInt Reserved1$layout() {
+        return Reserved1$LAYOUT;
+    }
+
+    private static final long Reserved1$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static final long Reserved1$offset() {
+        return Reserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static int Reserved1(MemorySegment struct) {
+        return struct.get(Reserved1$LAYOUT, Reserved1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static void Reserved1(MemorySegment struct, int fieldValue) {
+        struct.set(Reserved1$LAYOUT, Reserved1$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Reserved2$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2
+     * }
+     */
+    public static final OfInt Reserved2$layout() {
+        return Reserved2$LAYOUT;
+    }
+
+    private static final long Reserved2$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2
+     * }
+     */
+    public static final long Reserved2$offset() {
+        return Reserved2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2
+     * }
+     */
+    public static int Reserved2(MemorySegment struct) {
+        return struct.get(Reserved2$LAYOUT, Reserved2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2
+     * }
+     */
+    public static void Reserved2(MemorySegment struct, int fieldValue) {
+        struct.set(Reserved2$LAYOUT, Reserved2$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Reserved3$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Reserved3"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONGLONG Reserved3
+     * }
+     */
+    public static final OfLong Reserved3$layout() {
+        return Reserved3$LAYOUT;
+    }
+
+    private static final long Reserved3$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONGLONG Reserved3
+     * }
+     */
+    public static final long Reserved3$offset() {
+        return Reserved3$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONGLONG Reserved3
+     * }
+     */
+    public static long Reserved3(MemorySegment struct) {
+        return struct.get(Reserved3$LAYOUT, Reserved3$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONGLONG Reserved3
+     * }
+     */
+    public static void Reserved3(MemorySegment struct, long fieldValue) {
+        struct.set(Reserved3$LAYOUT, Reserved3$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,27 +2,71 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface ENHMFENUMPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemoryAddress hdc, java.lang.foreign.MemoryAddress lpht, java.lang.foreign.MemoryAddress lpmr, int nHandles, long data);
-    static MemorySegment allocate(ENHMFENUMPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(ENHMFENUMPROC.class, fi, constants$386.ENHMFENUMPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef int (*ENHMFENUMPROC)(HDC, HANDLETABLE *, const ENHMETARECORD *, int, LPARAM) __attribute__((stdcall))
+ * }
+ */
+public class ENHMFENUMPROC {
+
+    ENHMFENUMPROC() {
+        // Should not be called directly
     }
-    static ENHMFENUMPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _hdc, java.lang.foreign.MemoryAddress _lpht, java.lang.foreign.MemoryAddress _lpmr, int _nHandles, long _data) -> {
-            try {
-                return (int)constants$386.ENHMFENUMPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_hdc, (java.lang.foreign.Addressable)_lpht, (java.lang.foreign.Addressable)_lpmr, _nHandles, _data);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment hdc, MemorySegment lpht, MemorySegment lpmr, int nHandles, long data);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        freeglut_h.C_INT,
+        freeglut_h.C_POINTER,
+        freeglut_h.C_POINTER,
+        freeglut_h.C_POINTER,
+        freeglut_h.C_INT,
+        freeglut_h.C_LONG_LONG
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = freeglut_h.upcallHandle(ENHMFENUMPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(ENHMFENUMPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment hdc, MemorySegment lpht, MemorySegment lpmr, int nHandles, long data) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, hdc, lpht, lpmr, nHandles, data);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

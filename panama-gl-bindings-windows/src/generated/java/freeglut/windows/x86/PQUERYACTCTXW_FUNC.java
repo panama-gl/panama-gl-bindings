@@ -2,27 +2,73 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PQUERYACTCTXW_FUNC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(int dwFlags, java.lang.foreign.MemoryAddress hActCtx, java.lang.foreign.MemoryAddress pvSubInstance, int ulInfoClass, java.lang.foreign.MemoryAddress pvBuffer, long cbBuffer, java.lang.foreign.MemoryAddress pcbWrittenOrRequired);
-    static MemorySegment allocate(PQUERYACTCTXW_FUNC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PQUERYACTCTXW_FUNC.class, fi, constants$336.PQUERYACTCTXW_FUNC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PQUERYACTCTXW_FUNC)(DWORD, HANDLE, PVOID, ULONG, PVOID, SIZE_T, SIZE_T *) __attribute__((stdcall))
+ * }
+ */
+public class PQUERYACTCTXW_FUNC {
+
+    PQUERYACTCTXW_FUNC() {
+        // Should not be called directly
     }
-    static PQUERYACTCTXW_FUNC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _dwFlags, java.lang.foreign.MemoryAddress _hActCtx, java.lang.foreign.MemoryAddress _pvSubInstance, int _ulInfoClass, java.lang.foreign.MemoryAddress _pvBuffer, long _cbBuffer, java.lang.foreign.MemoryAddress _pcbWrittenOrRequired) -> {
-            try {
-                return (int)constants$337.PQUERYACTCTXW_FUNC$MH.invokeExact((Addressable)symbol, _dwFlags, (java.lang.foreign.Addressable)_hActCtx, (java.lang.foreign.Addressable)_pvSubInstance, _ulInfoClass, (java.lang.foreign.Addressable)_pvBuffer, _cbBuffer, (java.lang.foreign.Addressable)_pcbWrittenOrRequired);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(int dwFlags, MemorySegment hActCtx, MemorySegment pvSubInstance, int ulInfoClass, MemorySegment pvBuffer, long cbBuffer, MemorySegment pcbWrittenOrRequired);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        freeglut_h.C_INT,
+        freeglut_h.C_LONG,
+        freeglut_h.C_POINTER,
+        freeglut_h.C_POINTER,
+        freeglut_h.C_LONG,
+        freeglut_h.C_POINTER,
+        freeglut_h.C_LONG_LONG,
+        freeglut_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = freeglut_h.upcallHandle(PQUERYACTCTXW_FUNC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PQUERYACTCTXW_FUNC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,int dwFlags, MemorySegment hActCtx, MemorySegment pvSubInstance, int ulInfoClass, MemorySegment pvBuffer, long cbBuffer, MemorySegment pcbWrittenOrRequired) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, dwFlags, hActCtx, pvSubInstance, ulInfoClass, pvBuffer, cbBuffer, pcbWrittenOrRequired);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

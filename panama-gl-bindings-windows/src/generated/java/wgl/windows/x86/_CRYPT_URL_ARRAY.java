@@ -2,59 +2,173 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_URL_ARRAY {
+ *     DWORD cUrl;
+ *     LPWSTR *rgwszUrl;
+ * }
+ * }
+ */
 public class _CRYPT_URL_ARRAY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cUrl"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgwszUrl")
-    ).withName("_CRYPT_URL_ARRAY");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_URL_ARRAY.$struct$LAYOUT;
+    _CRYPT_URL_ARRAY() {
+        // Should not be called directly
     }
-    static final VarHandle cUrl$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cUrl"));
-    public static VarHandle cUrl$VH() {
-        return _CRYPT_URL_ARRAY.cUrl$VH;
-    }
-    public static int cUrl$get(MemorySegment seg) {
-        return (int)_CRYPT_URL_ARRAY.cUrl$VH.get(seg);
-    }
-    public static void cUrl$set( MemorySegment seg, int x) {
-        _CRYPT_URL_ARRAY.cUrl$VH.set(seg, x);
-    }
-    public static int cUrl$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_URL_ARRAY.cUrl$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cUrl$set(MemorySegment seg, long index, int x) {
-        _CRYPT_URL_ARRAY.cUrl$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgwszUrl$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgwszUrl"));
-    public static VarHandle rgwszUrl$VH() {
-        return _CRYPT_URL_ARRAY.rgwszUrl$VH;
-    }
-    public static MemoryAddress rgwszUrl$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_URL_ARRAY.rgwszUrl$VH.get(seg);
-    }
-    public static void rgwszUrl$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_URL_ARRAY.rgwszUrl$VH.set(seg, x);
-    }
-    public static MemoryAddress rgwszUrl$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_URL_ARRAY.rgwszUrl$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgwszUrl$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_URL_ARRAY.rgwszUrl$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cUrl"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgwszUrl")
+    ).withName("_CRYPT_URL_ARRAY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cUrl$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cUrl"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cUrl
+     * }
+     */
+    public static final OfInt cUrl$layout() {
+        return cUrl$LAYOUT;
+    }
+
+    private static final long cUrl$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cUrl
+     * }
+     */
+    public static final long cUrl$offset() {
+        return cUrl$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cUrl
+     * }
+     */
+    public static int cUrl(MemorySegment struct) {
+        return struct.get(cUrl$LAYOUT, cUrl$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cUrl
+     * }
+     */
+    public static void cUrl(MemorySegment struct, int fieldValue) {
+        struct.set(cUrl$LAYOUT, cUrl$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgwszUrl$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgwszUrl"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR *rgwszUrl
+     * }
+     */
+    public static final AddressLayout rgwszUrl$layout() {
+        return rgwszUrl$LAYOUT;
+    }
+
+    private static final long rgwszUrl$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR *rgwszUrl
+     * }
+     */
+    public static final long rgwszUrl$offset() {
+        return rgwszUrl$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR *rgwszUrl
+     * }
+     */
+    public static MemorySegment rgwszUrl(MemorySegment struct) {
+        return struct.get(rgwszUrl$LAYOUT, rgwszUrl$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR *rgwszUrl
+     * }
+     */
+    public static void rgwszUrl(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgwszUrl$LAYOUT, rgwszUrl$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

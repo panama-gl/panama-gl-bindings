@@ -2,110 +2,311 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagDELETEITEMSTRUCT {
+ *     UINT CtlType;
+ *     UINT CtlID;
+ *     UINT itemID;
+ *     HWND hwndItem;
+ *     ULONG_PTR itemData;
+ * }
+ * }
+ */
 public class tagDELETEITEMSTRUCT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("CtlType"),
-        Constants$root.C_LONG$LAYOUT.withName("CtlID"),
-        Constants$root.C_LONG$LAYOUT.withName("itemID"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("hwndItem"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("itemData")
-    ).withName("tagDELETEITEMSTRUCT");
-    public static MemoryLayout $LAYOUT() {
-        return tagDELETEITEMSTRUCT.$struct$LAYOUT;
+    tagDELETEITEMSTRUCT() {
+        // Should not be called directly
     }
-    static final VarHandle CtlType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CtlType"));
-    public static VarHandle CtlType$VH() {
-        return tagDELETEITEMSTRUCT.CtlType$VH;
-    }
-    public static int CtlType$get(MemorySegment seg) {
-        return (int)tagDELETEITEMSTRUCT.CtlType$VH.get(seg);
-    }
-    public static void CtlType$set( MemorySegment seg, int x) {
-        tagDELETEITEMSTRUCT.CtlType$VH.set(seg, x);
-    }
-    public static int CtlType$get(MemorySegment seg, long index) {
-        return (int)tagDELETEITEMSTRUCT.CtlType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CtlType$set(MemorySegment seg, long index, int x) {
-        tagDELETEITEMSTRUCT.CtlType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CtlID$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CtlID"));
-    public static VarHandle CtlID$VH() {
-        return tagDELETEITEMSTRUCT.CtlID$VH;
-    }
-    public static int CtlID$get(MemorySegment seg) {
-        return (int)tagDELETEITEMSTRUCT.CtlID$VH.get(seg);
-    }
-    public static void CtlID$set( MemorySegment seg, int x) {
-        tagDELETEITEMSTRUCT.CtlID$VH.set(seg, x);
-    }
-    public static int CtlID$get(MemorySegment seg, long index) {
-        return (int)tagDELETEITEMSTRUCT.CtlID$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CtlID$set(MemorySegment seg, long index, int x) {
-        tagDELETEITEMSTRUCT.CtlID$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle itemID$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("itemID"));
-    public static VarHandle itemID$VH() {
-        return tagDELETEITEMSTRUCT.itemID$VH;
-    }
-    public static int itemID$get(MemorySegment seg) {
-        return (int)tagDELETEITEMSTRUCT.itemID$VH.get(seg);
-    }
-    public static void itemID$set( MemorySegment seg, int x) {
-        tagDELETEITEMSTRUCT.itemID$VH.set(seg, x);
-    }
-    public static int itemID$get(MemorySegment seg, long index) {
-        return (int)tagDELETEITEMSTRUCT.itemID$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void itemID$set(MemorySegment seg, long index, int x) {
-        tagDELETEITEMSTRUCT.itemID$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hwndItem$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hwndItem"));
-    public static VarHandle hwndItem$VH() {
-        return tagDELETEITEMSTRUCT.hwndItem$VH;
-    }
-    public static MemoryAddress hwndItem$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagDELETEITEMSTRUCT.hwndItem$VH.get(seg);
-    }
-    public static void hwndItem$set( MemorySegment seg, MemoryAddress x) {
-        tagDELETEITEMSTRUCT.hwndItem$VH.set(seg, x);
-    }
-    public static MemoryAddress hwndItem$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagDELETEITEMSTRUCT.hwndItem$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hwndItem$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagDELETEITEMSTRUCT.hwndItem$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle itemData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("itemData"));
-    public static VarHandle itemData$VH() {
-        return tagDELETEITEMSTRUCT.itemData$VH;
-    }
-    public static long itemData$get(MemorySegment seg) {
-        return (long)tagDELETEITEMSTRUCT.itemData$VH.get(seg);
-    }
-    public static void itemData$set( MemorySegment seg, long x) {
-        tagDELETEITEMSTRUCT.itemData$VH.set(seg, x);
-    }
-    public static long itemData$get(MemorySegment seg, long index) {
-        return (long)tagDELETEITEMSTRUCT.itemData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void itemData$set(MemorySegment seg, long index, long x) {
-        tagDELETEITEMSTRUCT.itemData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("CtlType"),
+        wgl_h.C_INT.withName("CtlID"),
+        wgl_h.C_INT.withName("itemID"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("hwndItem"),
+        wgl_h.C_LONG_LONG.withName("itemData")
+    ).withName("tagDELETEITEMSTRUCT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt CtlType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CtlType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT CtlType
+     * }
+     */
+    public static final OfInt CtlType$layout() {
+        return CtlType$LAYOUT;
+    }
+
+    private static final long CtlType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT CtlType
+     * }
+     */
+    public static final long CtlType$offset() {
+        return CtlType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT CtlType
+     * }
+     */
+    public static int CtlType(MemorySegment struct) {
+        return struct.get(CtlType$LAYOUT, CtlType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT CtlType
+     * }
+     */
+    public static void CtlType(MemorySegment struct, int fieldValue) {
+        struct.set(CtlType$LAYOUT, CtlType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt CtlID$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CtlID"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT CtlID
+     * }
+     */
+    public static final OfInt CtlID$layout() {
+        return CtlID$LAYOUT;
+    }
+
+    private static final long CtlID$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT CtlID
+     * }
+     */
+    public static final long CtlID$offset() {
+        return CtlID$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT CtlID
+     * }
+     */
+    public static int CtlID(MemorySegment struct) {
+        return struct.get(CtlID$LAYOUT, CtlID$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT CtlID
+     * }
+     */
+    public static void CtlID(MemorySegment struct, int fieldValue) {
+        struct.set(CtlID$LAYOUT, CtlID$OFFSET, fieldValue);
+    }
+
+    private static final OfInt itemID$LAYOUT = (OfInt)$LAYOUT.select(groupElement("itemID"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT itemID
+     * }
+     */
+    public static final OfInt itemID$layout() {
+        return itemID$LAYOUT;
+    }
+
+    private static final long itemID$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT itemID
+     * }
+     */
+    public static final long itemID$offset() {
+        return itemID$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT itemID
+     * }
+     */
+    public static int itemID(MemorySegment struct) {
+        return struct.get(itemID$LAYOUT, itemID$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT itemID
+     * }
+     */
+    public static void itemID(MemorySegment struct, int fieldValue) {
+        struct.set(itemID$LAYOUT, itemID$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hwndItem$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hwndItem"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HWND hwndItem
+     * }
+     */
+    public static final AddressLayout hwndItem$layout() {
+        return hwndItem$LAYOUT;
+    }
+
+    private static final long hwndItem$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HWND hwndItem
+     * }
+     */
+    public static final long hwndItem$offset() {
+        return hwndItem$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HWND hwndItem
+     * }
+     */
+    public static MemorySegment hwndItem(MemorySegment struct) {
+        return struct.get(hwndItem$LAYOUT, hwndItem$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HWND hwndItem
+     * }
+     */
+    public static void hwndItem(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hwndItem$LAYOUT, hwndItem$OFFSET, fieldValue);
+    }
+
+    private static final OfLong itemData$LAYOUT = (OfLong)$LAYOUT.select(groupElement("itemData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG_PTR itemData
+     * }
+     */
+    public static final OfLong itemData$layout() {
+        return itemData$LAYOUT;
+    }
+
+    private static final long itemData$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG_PTR itemData
+     * }
+     */
+    public static final long itemData$offset() {
+        return itemData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR itemData
+     * }
+     */
+    public static long itemData(MemorySegment struct) {
+        return struct.get(itemData$LAYOUT, itemData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR itemData
+     * }
+     */
+    public static void itemData(MemorySegment struct, long fieldValue) {
+        struct.set(itemData$LAYOUT, itemData$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,13 +2,33 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _SERVICE_NOTIFY_2A {
+ *     DWORD dwVersion;
+ *     PFN_SC_NOTIFY_CALLBACK pfnNotifyCallback;
+ *     PVOID pContext;
+ *     DWORD dwNotificationStatus;
+ *     SERVICE_STATUS_PROCESS ServiceStatus;
+ *     DWORD dwNotificationTriggered;
+ *     LPSTR pszServiceNames;
+ * } SERVICE_NOTIFY_2A
+ * }
+ */
 public class SERVICE_NOTIFY_2A extends _SERVICE_NOTIFY_2A {
 
+    SERVICE_NOTIFY_2A() {
+        // Should not be called directly
+    }
 }
-
 

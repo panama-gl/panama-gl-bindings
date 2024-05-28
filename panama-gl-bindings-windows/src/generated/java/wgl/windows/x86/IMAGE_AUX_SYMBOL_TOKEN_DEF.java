@@ -2,79 +2,297 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct IMAGE_AUX_SYMBOL_TOKEN_DEF {
+ *     BYTE bAuxType;
+ *     BYTE bReserved;
+ *     DWORD SymbolTableIndex;
+ *     BYTE rgbReserved[12];
+ * }
+ * }
+ */
 public class IMAGE_AUX_SYMBOL_TOKEN_DEF {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("bAuxType"),
-        Constants$root.C_CHAR$LAYOUT.withName("bReserved"),
-        Constants$root.C_LONG$LAYOUT.withName("SymbolTableIndex"),
-        MemoryLayout.sequenceLayout(12, Constants$root.C_CHAR$LAYOUT).withName("rgbReserved")
-    ).withName("IMAGE_AUX_SYMBOL_TOKEN_DEF");
-    public static MemoryLayout $LAYOUT() {
-        return IMAGE_AUX_SYMBOL_TOKEN_DEF.$struct$LAYOUT;
+    IMAGE_AUX_SYMBOL_TOKEN_DEF() {
+        // Should not be called directly
     }
-    static final VarHandle bAuxType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bAuxType"));
-    public static VarHandle bAuxType$VH() {
-        return IMAGE_AUX_SYMBOL_TOKEN_DEF.bAuxType$VH;
-    }
-    public static byte bAuxType$get(MemorySegment seg) {
-        return (byte)IMAGE_AUX_SYMBOL_TOKEN_DEF.bAuxType$VH.get(seg);
-    }
-    public static void bAuxType$set( MemorySegment seg, byte x) {
-        IMAGE_AUX_SYMBOL_TOKEN_DEF.bAuxType$VH.set(seg, x);
-    }
-    public static byte bAuxType$get(MemorySegment seg, long index) {
-        return (byte)IMAGE_AUX_SYMBOL_TOKEN_DEF.bAuxType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bAuxType$set(MemorySegment seg, long index, byte x) {
-        IMAGE_AUX_SYMBOL_TOKEN_DEF.bAuxType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bReserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bReserved"));
-    public static VarHandle bReserved$VH() {
-        return IMAGE_AUX_SYMBOL_TOKEN_DEF.bReserved$VH;
-    }
-    public static byte bReserved$get(MemorySegment seg) {
-        return (byte)IMAGE_AUX_SYMBOL_TOKEN_DEF.bReserved$VH.get(seg);
-    }
-    public static void bReserved$set( MemorySegment seg, byte x) {
-        IMAGE_AUX_SYMBOL_TOKEN_DEF.bReserved$VH.set(seg, x);
-    }
-    public static byte bReserved$get(MemorySegment seg, long index) {
-        return (byte)IMAGE_AUX_SYMBOL_TOKEN_DEF.bReserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bReserved$set(MemorySegment seg, long index, byte x) {
-        IMAGE_AUX_SYMBOL_TOKEN_DEF.bReserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SymbolTableIndex$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SymbolTableIndex"));
-    public static VarHandle SymbolTableIndex$VH() {
-        return IMAGE_AUX_SYMBOL_TOKEN_DEF.SymbolTableIndex$VH;
-    }
-    public static int SymbolTableIndex$get(MemorySegment seg) {
-        return (int)IMAGE_AUX_SYMBOL_TOKEN_DEF.SymbolTableIndex$VH.get(seg);
-    }
-    public static void SymbolTableIndex$set( MemorySegment seg, int x) {
-        IMAGE_AUX_SYMBOL_TOKEN_DEF.SymbolTableIndex$VH.set(seg, x);
-    }
-    public static int SymbolTableIndex$get(MemorySegment seg, long index) {
-        return (int)IMAGE_AUX_SYMBOL_TOKEN_DEF.SymbolTableIndex$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SymbolTableIndex$set(MemorySegment seg, long index, int x) {
-        IMAGE_AUX_SYMBOL_TOKEN_DEF.SymbolTableIndex$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment rgbReserved$slice(MemorySegment seg) {
-        return seg.asSlice(6, 12);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_CHAR.withName("bAuxType"),
+        wgl_h.C_CHAR.withName("bReserved"),
+        wgl_h.align(wgl_h.C_LONG, 2).withName("SymbolTableIndex"),
+        MemoryLayout.sequenceLayout(12, wgl_h.C_CHAR).withName("rgbReserved")
+    ).withName("IMAGE_AUX_SYMBOL_TOKEN_DEF");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte bAuxType$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bAuxType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bAuxType
+     * }
+     */
+    public static final OfByte bAuxType$layout() {
+        return bAuxType$LAYOUT;
+    }
+
+    private static final long bAuxType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bAuxType
+     * }
+     */
+    public static final long bAuxType$offset() {
+        return bAuxType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bAuxType
+     * }
+     */
+    public static byte bAuxType(MemorySegment struct) {
+        return struct.get(bAuxType$LAYOUT, bAuxType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bAuxType
+     * }
+     */
+    public static void bAuxType(MemorySegment struct, byte fieldValue) {
+        struct.set(bAuxType$LAYOUT, bAuxType$OFFSET, fieldValue);
+    }
+
+    private static final OfByte bReserved$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bReserved
+     * }
+     */
+    public static final OfByte bReserved$layout() {
+        return bReserved$LAYOUT;
+    }
+
+    private static final long bReserved$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bReserved
+     * }
+     */
+    public static final long bReserved$offset() {
+        return bReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bReserved
+     * }
+     */
+    public static byte bReserved(MemorySegment struct) {
+        return struct.get(bReserved$LAYOUT, bReserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bReserved
+     * }
+     */
+    public static void bReserved(MemorySegment struct, byte fieldValue) {
+        struct.set(bReserved$LAYOUT, bReserved$OFFSET, fieldValue);
+    }
+
+    private static final OfInt SymbolTableIndex$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SymbolTableIndex"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SymbolTableIndex
+     * }
+     */
+    public static final OfInt SymbolTableIndex$layout() {
+        return SymbolTableIndex$LAYOUT;
+    }
+
+    private static final long SymbolTableIndex$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SymbolTableIndex
+     * }
+     */
+    public static final long SymbolTableIndex$offset() {
+        return SymbolTableIndex$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SymbolTableIndex
+     * }
+     */
+    public static int SymbolTableIndex(MemorySegment struct) {
+        return struct.get(SymbolTableIndex$LAYOUT, SymbolTableIndex$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SymbolTableIndex
+     * }
+     */
+    public static void SymbolTableIndex(MemorySegment struct, int fieldValue) {
+        struct.set(SymbolTableIndex$LAYOUT, SymbolTableIndex$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout rgbReserved$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("rgbReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE rgbReserved[12]
+     * }
+     */
+    public static final SequenceLayout rgbReserved$layout() {
+        return rgbReserved$LAYOUT;
+    }
+
+    private static final long rgbReserved$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE rgbReserved[12]
+     * }
+     */
+    public static final long rgbReserved$offset() {
+        return rgbReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbReserved[12]
+     * }
+     */
+    public static MemorySegment rgbReserved(MemorySegment struct) {
+        return struct.asSlice(rgbReserved$OFFSET, rgbReserved$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbReserved[12]
+     * }
+     */
+    public static void rgbReserved(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rgbReserved$OFFSET, rgbReserved$LAYOUT.byteSize());
+    }
+
+    private static long[] rgbReserved$DIMS = { 12 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE rgbReserved[12]
+     * }
+     */
+    public static long[] rgbReserved$dimensions() {
+        return rgbReserved$DIMS;
+    }
+    private static final VarHandle rgbReserved$ELEM_HANDLE = rgbReserved$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbReserved[12]
+     * }
+     */
+    public static byte rgbReserved(MemorySegment struct, long index0) {
+        return (byte)rgbReserved$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbReserved[12]
+     * }
+     */
+    public static void rgbReserved(MemorySegment struct, long index0, byte fieldValue) {
+        rgbReserved$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

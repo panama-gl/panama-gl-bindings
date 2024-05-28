@@ -2,180 +2,497 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagRPC_CALL_ATTRIBUTES_V1_W {
+ *     unsigned int Version;
+ *     unsigned long Flags;
+ *     unsigned long ServerPrincipalNameBufferLength;
+ *     unsigned short *ServerPrincipalName;
+ *     unsigned long ClientPrincipalNameBufferLength;
+ *     unsigned short *ClientPrincipalName;
+ *     unsigned long AuthenticationLevel;
+ *     unsigned long AuthenticationService;
+ *     BOOL NullSession;
+ * }
+ * }
+ */
 public class tagRPC_CALL_ATTRIBUTES_V1_W {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("ServerPrincipalNameBufferLength"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("ServerPrincipalName"),
-        Constants$root.C_LONG$LAYOUT.withName("ClientPrincipalNameBufferLength"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("ClientPrincipalName"),
-        Constants$root.C_LONG$LAYOUT.withName("AuthenticationLevel"),
-        Constants$root.C_LONG$LAYOUT.withName("AuthenticationService"),
-        Constants$root.C_LONG$LAYOUT.withName("NullSession"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("tagRPC_CALL_ATTRIBUTES_V1_W");
-    public static MemoryLayout $LAYOUT() {
-        return tagRPC_CALL_ATTRIBUTES_V1_W.$struct$LAYOUT;
+    tagRPC_CALL_ATTRIBUTES_V1_W() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return tagRPC_CALL_ATTRIBUTES_V1_W.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)tagRPC_CALL_ATTRIBUTES_V1_W.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        tagRPC_CALL_ATTRIBUTES_V1_W.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)tagRPC_CALL_ATTRIBUTES_V1_W.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        tagRPC_CALL_ATTRIBUTES_V1_W.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return tagRPC_CALL_ATTRIBUTES_V1_W.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)tagRPC_CALL_ATTRIBUTES_V1_W.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        tagRPC_CALL_ATTRIBUTES_V1_W.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)tagRPC_CALL_ATTRIBUTES_V1_W.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        tagRPC_CALL_ATTRIBUTES_V1_W.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ServerPrincipalNameBufferLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ServerPrincipalNameBufferLength"));
-    public static VarHandle ServerPrincipalNameBufferLength$VH() {
-        return tagRPC_CALL_ATTRIBUTES_V1_W.ServerPrincipalNameBufferLength$VH;
-    }
-    public static int ServerPrincipalNameBufferLength$get(MemorySegment seg) {
-        return (int)tagRPC_CALL_ATTRIBUTES_V1_W.ServerPrincipalNameBufferLength$VH.get(seg);
-    }
-    public static void ServerPrincipalNameBufferLength$set( MemorySegment seg, int x) {
-        tagRPC_CALL_ATTRIBUTES_V1_W.ServerPrincipalNameBufferLength$VH.set(seg, x);
-    }
-    public static int ServerPrincipalNameBufferLength$get(MemorySegment seg, long index) {
-        return (int)tagRPC_CALL_ATTRIBUTES_V1_W.ServerPrincipalNameBufferLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ServerPrincipalNameBufferLength$set(MemorySegment seg, long index, int x) {
-        tagRPC_CALL_ATTRIBUTES_V1_W.ServerPrincipalNameBufferLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ServerPrincipalName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ServerPrincipalName"));
-    public static VarHandle ServerPrincipalName$VH() {
-        return tagRPC_CALL_ATTRIBUTES_V1_W.ServerPrincipalName$VH;
-    }
-    public static MemoryAddress ServerPrincipalName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagRPC_CALL_ATTRIBUTES_V1_W.ServerPrincipalName$VH.get(seg);
-    }
-    public static void ServerPrincipalName$set( MemorySegment seg, MemoryAddress x) {
-        tagRPC_CALL_ATTRIBUTES_V1_W.ServerPrincipalName$VH.set(seg, x);
-    }
-    public static MemoryAddress ServerPrincipalName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagRPC_CALL_ATTRIBUTES_V1_W.ServerPrincipalName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ServerPrincipalName$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagRPC_CALL_ATTRIBUTES_V1_W.ServerPrincipalName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ClientPrincipalNameBufferLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ClientPrincipalNameBufferLength"));
-    public static VarHandle ClientPrincipalNameBufferLength$VH() {
-        return tagRPC_CALL_ATTRIBUTES_V1_W.ClientPrincipalNameBufferLength$VH;
-    }
-    public static int ClientPrincipalNameBufferLength$get(MemorySegment seg) {
-        return (int)tagRPC_CALL_ATTRIBUTES_V1_W.ClientPrincipalNameBufferLength$VH.get(seg);
-    }
-    public static void ClientPrincipalNameBufferLength$set( MemorySegment seg, int x) {
-        tagRPC_CALL_ATTRIBUTES_V1_W.ClientPrincipalNameBufferLength$VH.set(seg, x);
-    }
-    public static int ClientPrincipalNameBufferLength$get(MemorySegment seg, long index) {
-        return (int)tagRPC_CALL_ATTRIBUTES_V1_W.ClientPrincipalNameBufferLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ClientPrincipalNameBufferLength$set(MemorySegment seg, long index, int x) {
-        tagRPC_CALL_ATTRIBUTES_V1_W.ClientPrincipalNameBufferLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ClientPrincipalName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ClientPrincipalName"));
-    public static VarHandle ClientPrincipalName$VH() {
-        return tagRPC_CALL_ATTRIBUTES_V1_W.ClientPrincipalName$VH;
-    }
-    public static MemoryAddress ClientPrincipalName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagRPC_CALL_ATTRIBUTES_V1_W.ClientPrincipalName$VH.get(seg);
-    }
-    public static void ClientPrincipalName$set( MemorySegment seg, MemoryAddress x) {
-        tagRPC_CALL_ATTRIBUTES_V1_W.ClientPrincipalName$VH.set(seg, x);
-    }
-    public static MemoryAddress ClientPrincipalName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagRPC_CALL_ATTRIBUTES_V1_W.ClientPrincipalName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ClientPrincipalName$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagRPC_CALL_ATTRIBUTES_V1_W.ClientPrincipalName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AuthenticationLevel$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AuthenticationLevel"));
-    public static VarHandle AuthenticationLevel$VH() {
-        return tagRPC_CALL_ATTRIBUTES_V1_W.AuthenticationLevel$VH;
-    }
-    public static int AuthenticationLevel$get(MemorySegment seg) {
-        return (int)tagRPC_CALL_ATTRIBUTES_V1_W.AuthenticationLevel$VH.get(seg);
-    }
-    public static void AuthenticationLevel$set( MemorySegment seg, int x) {
-        tagRPC_CALL_ATTRIBUTES_V1_W.AuthenticationLevel$VH.set(seg, x);
-    }
-    public static int AuthenticationLevel$get(MemorySegment seg, long index) {
-        return (int)tagRPC_CALL_ATTRIBUTES_V1_W.AuthenticationLevel$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AuthenticationLevel$set(MemorySegment seg, long index, int x) {
-        tagRPC_CALL_ATTRIBUTES_V1_W.AuthenticationLevel$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AuthenticationService$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AuthenticationService"));
-    public static VarHandle AuthenticationService$VH() {
-        return tagRPC_CALL_ATTRIBUTES_V1_W.AuthenticationService$VH;
-    }
-    public static int AuthenticationService$get(MemorySegment seg) {
-        return (int)tagRPC_CALL_ATTRIBUTES_V1_W.AuthenticationService$VH.get(seg);
-    }
-    public static void AuthenticationService$set( MemorySegment seg, int x) {
-        tagRPC_CALL_ATTRIBUTES_V1_W.AuthenticationService$VH.set(seg, x);
-    }
-    public static int AuthenticationService$get(MemorySegment seg, long index) {
-        return (int)tagRPC_CALL_ATTRIBUTES_V1_W.AuthenticationService$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AuthenticationService$set(MemorySegment seg, long index, int x) {
-        tagRPC_CALL_ATTRIBUTES_V1_W.AuthenticationService$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NullSession$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NullSession"));
-    public static VarHandle NullSession$VH() {
-        return tagRPC_CALL_ATTRIBUTES_V1_W.NullSession$VH;
-    }
-    public static int NullSession$get(MemorySegment seg) {
-        return (int)tagRPC_CALL_ATTRIBUTES_V1_W.NullSession$VH.get(seg);
-    }
-    public static void NullSession$set( MemorySegment seg, int x) {
-        tagRPC_CALL_ATTRIBUTES_V1_W.NullSession$VH.set(seg, x);
-    }
-    public static int NullSession$get(MemorySegment seg, long index) {
-        return (int)tagRPC_CALL_ATTRIBUTES_V1_W.NullSession$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NullSession$set(MemorySegment seg, long index, int x) {
-        tagRPC_CALL_ATTRIBUTES_V1_W.NullSession$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("Version"),
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_LONG.withName("ServerPrincipalNameBufferLength"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("ServerPrincipalName"),
+        wgl_h.C_LONG.withName("ClientPrincipalNameBufferLength"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("ClientPrincipalName"),
+        wgl_h.C_LONG.withName("AuthenticationLevel"),
+        wgl_h.C_LONG.withName("AuthenticationService"),
+        wgl_h.C_INT.withName("NullSession"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("tagRPC_CALL_ATTRIBUTES_V1_W");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned int Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned int Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned int Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned int Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ServerPrincipalNameBufferLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ServerPrincipalNameBufferLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long ServerPrincipalNameBufferLength
+     * }
+     */
+    public static final OfInt ServerPrincipalNameBufferLength$layout() {
+        return ServerPrincipalNameBufferLength$LAYOUT;
+    }
+
+    private static final long ServerPrincipalNameBufferLength$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long ServerPrincipalNameBufferLength
+     * }
+     */
+    public static final long ServerPrincipalNameBufferLength$offset() {
+        return ServerPrincipalNameBufferLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long ServerPrincipalNameBufferLength
+     * }
+     */
+    public static int ServerPrincipalNameBufferLength(MemorySegment struct) {
+        return struct.get(ServerPrincipalNameBufferLength$LAYOUT, ServerPrincipalNameBufferLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long ServerPrincipalNameBufferLength
+     * }
+     */
+    public static void ServerPrincipalNameBufferLength(MemorySegment struct, int fieldValue) {
+        struct.set(ServerPrincipalNameBufferLength$LAYOUT, ServerPrincipalNameBufferLength$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ServerPrincipalName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ServerPrincipalName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned short *ServerPrincipalName
+     * }
+     */
+    public static final AddressLayout ServerPrincipalName$layout() {
+        return ServerPrincipalName$LAYOUT;
+    }
+
+    private static final long ServerPrincipalName$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned short *ServerPrincipalName
+     * }
+     */
+    public static final long ServerPrincipalName$offset() {
+        return ServerPrincipalName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned short *ServerPrincipalName
+     * }
+     */
+    public static MemorySegment ServerPrincipalName(MemorySegment struct) {
+        return struct.get(ServerPrincipalName$LAYOUT, ServerPrincipalName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned short *ServerPrincipalName
+     * }
+     */
+    public static void ServerPrincipalName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ServerPrincipalName$LAYOUT, ServerPrincipalName$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ClientPrincipalNameBufferLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ClientPrincipalNameBufferLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long ClientPrincipalNameBufferLength
+     * }
+     */
+    public static final OfInt ClientPrincipalNameBufferLength$layout() {
+        return ClientPrincipalNameBufferLength$LAYOUT;
+    }
+
+    private static final long ClientPrincipalNameBufferLength$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long ClientPrincipalNameBufferLength
+     * }
+     */
+    public static final long ClientPrincipalNameBufferLength$offset() {
+        return ClientPrincipalNameBufferLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long ClientPrincipalNameBufferLength
+     * }
+     */
+    public static int ClientPrincipalNameBufferLength(MemorySegment struct) {
+        return struct.get(ClientPrincipalNameBufferLength$LAYOUT, ClientPrincipalNameBufferLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long ClientPrincipalNameBufferLength
+     * }
+     */
+    public static void ClientPrincipalNameBufferLength(MemorySegment struct, int fieldValue) {
+        struct.set(ClientPrincipalNameBufferLength$LAYOUT, ClientPrincipalNameBufferLength$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ClientPrincipalName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ClientPrincipalName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned short *ClientPrincipalName
+     * }
+     */
+    public static final AddressLayout ClientPrincipalName$layout() {
+        return ClientPrincipalName$LAYOUT;
+    }
+
+    private static final long ClientPrincipalName$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned short *ClientPrincipalName
+     * }
+     */
+    public static final long ClientPrincipalName$offset() {
+        return ClientPrincipalName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned short *ClientPrincipalName
+     * }
+     */
+    public static MemorySegment ClientPrincipalName(MemorySegment struct) {
+        return struct.get(ClientPrincipalName$LAYOUT, ClientPrincipalName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned short *ClientPrincipalName
+     * }
+     */
+    public static void ClientPrincipalName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ClientPrincipalName$LAYOUT, ClientPrincipalName$OFFSET, fieldValue);
+    }
+
+    private static final OfInt AuthenticationLevel$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AuthenticationLevel"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long AuthenticationLevel
+     * }
+     */
+    public static final OfInt AuthenticationLevel$layout() {
+        return AuthenticationLevel$LAYOUT;
+    }
+
+    private static final long AuthenticationLevel$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long AuthenticationLevel
+     * }
+     */
+    public static final long AuthenticationLevel$offset() {
+        return AuthenticationLevel$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long AuthenticationLevel
+     * }
+     */
+    public static int AuthenticationLevel(MemorySegment struct) {
+        return struct.get(AuthenticationLevel$LAYOUT, AuthenticationLevel$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long AuthenticationLevel
+     * }
+     */
+    public static void AuthenticationLevel(MemorySegment struct, int fieldValue) {
+        struct.set(AuthenticationLevel$LAYOUT, AuthenticationLevel$OFFSET, fieldValue);
+    }
+
+    private static final OfInt AuthenticationService$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AuthenticationService"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long AuthenticationService
+     * }
+     */
+    public static final OfInt AuthenticationService$layout() {
+        return AuthenticationService$LAYOUT;
+    }
+
+    private static final long AuthenticationService$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long AuthenticationService
+     * }
+     */
+    public static final long AuthenticationService$offset() {
+        return AuthenticationService$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long AuthenticationService
+     * }
+     */
+    public static int AuthenticationService(MemorySegment struct) {
+        return struct.get(AuthenticationService$LAYOUT, AuthenticationService$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long AuthenticationService
+     * }
+     */
+    public static void AuthenticationService(MemorySegment struct, int fieldValue) {
+        struct.set(AuthenticationService$LAYOUT, AuthenticationService$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NullSession$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NullSession"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL NullSession
+     * }
+     */
+    public static final OfInt NullSession$layout() {
+        return NullSession$LAYOUT;
+    }
+
+    private static final long NullSession$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL NullSession
+     * }
+     */
+    public static final long NullSession$offset() {
+        return NullSession$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL NullSession
+     * }
+     */
+    public static int NullSession(MemorySegment struct) {
+        return struct.get(NullSession$LAYOUT, NullSession$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL NullSession
+     * }
+     */
+    public static void NullSession(MemorySegment struct, int fieldValue) {
+        struct.set(NullSession$LAYOUT, NullSession$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

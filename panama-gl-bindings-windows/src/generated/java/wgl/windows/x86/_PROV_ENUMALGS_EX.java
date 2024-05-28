@@ -2,151 +2,560 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PROV_ENUMALGS_EX {
+ *     ALG_ID aiAlgid;
+ *     DWORD dwDefaultLen;
+ *     DWORD dwMinLen;
+ *     DWORD dwMaxLen;
+ *     DWORD dwProtocols;
+ *     DWORD dwNameLen;
+ *     CHAR szName[20];
+ *     DWORD dwLongNameLen;
+ *     CHAR szLongName[40];
+ * }
+ * }
+ */
 public class _PROV_ENUMALGS_EX {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("aiAlgid"),
-        Constants$root.C_LONG$LAYOUT.withName("dwDefaultLen"),
-        Constants$root.C_LONG$LAYOUT.withName("dwMinLen"),
-        Constants$root.C_LONG$LAYOUT.withName("dwMaxLen"),
-        Constants$root.C_LONG$LAYOUT.withName("dwProtocols"),
-        Constants$root.C_LONG$LAYOUT.withName("dwNameLen"),
-        MemoryLayout.sequenceLayout(20, Constants$root.C_CHAR$LAYOUT).withName("szName"),
-        Constants$root.C_LONG$LAYOUT.withName("dwLongNameLen"),
-        MemoryLayout.sequenceLayout(40, Constants$root.C_CHAR$LAYOUT).withName("szLongName")
-    ).withName("_PROV_ENUMALGS_EX");
-    public static MemoryLayout $LAYOUT() {
-        return _PROV_ENUMALGS_EX.$struct$LAYOUT;
+    _PROV_ENUMALGS_EX() {
+        // Should not be called directly
     }
-    static final VarHandle aiAlgid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("aiAlgid"));
-    public static VarHandle aiAlgid$VH() {
-        return _PROV_ENUMALGS_EX.aiAlgid$VH;
-    }
-    public static int aiAlgid$get(MemorySegment seg) {
-        return (int)_PROV_ENUMALGS_EX.aiAlgid$VH.get(seg);
-    }
-    public static void aiAlgid$set( MemorySegment seg, int x) {
-        _PROV_ENUMALGS_EX.aiAlgid$VH.set(seg, x);
-    }
-    public static int aiAlgid$get(MemorySegment seg, long index) {
-        return (int)_PROV_ENUMALGS_EX.aiAlgid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void aiAlgid$set(MemorySegment seg, long index, int x) {
-        _PROV_ENUMALGS_EX.aiAlgid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwDefaultLen$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwDefaultLen"));
-    public static VarHandle dwDefaultLen$VH() {
-        return _PROV_ENUMALGS_EX.dwDefaultLen$VH;
-    }
-    public static int dwDefaultLen$get(MemorySegment seg) {
-        return (int)_PROV_ENUMALGS_EX.dwDefaultLen$VH.get(seg);
-    }
-    public static void dwDefaultLen$set( MemorySegment seg, int x) {
-        _PROV_ENUMALGS_EX.dwDefaultLen$VH.set(seg, x);
-    }
-    public static int dwDefaultLen$get(MemorySegment seg, long index) {
-        return (int)_PROV_ENUMALGS_EX.dwDefaultLen$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwDefaultLen$set(MemorySegment seg, long index, int x) {
-        _PROV_ENUMALGS_EX.dwDefaultLen$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwMinLen$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwMinLen"));
-    public static VarHandle dwMinLen$VH() {
-        return _PROV_ENUMALGS_EX.dwMinLen$VH;
-    }
-    public static int dwMinLen$get(MemorySegment seg) {
-        return (int)_PROV_ENUMALGS_EX.dwMinLen$VH.get(seg);
-    }
-    public static void dwMinLen$set( MemorySegment seg, int x) {
-        _PROV_ENUMALGS_EX.dwMinLen$VH.set(seg, x);
-    }
-    public static int dwMinLen$get(MemorySegment seg, long index) {
-        return (int)_PROV_ENUMALGS_EX.dwMinLen$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwMinLen$set(MemorySegment seg, long index, int x) {
-        _PROV_ENUMALGS_EX.dwMinLen$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwMaxLen$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwMaxLen"));
-    public static VarHandle dwMaxLen$VH() {
-        return _PROV_ENUMALGS_EX.dwMaxLen$VH;
-    }
-    public static int dwMaxLen$get(MemorySegment seg) {
-        return (int)_PROV_ENUMALGS_EX.dwMaxLen$VH.get(seg);
-    }
-    public static void dwMaxLen$set( MemorySegment seg, int x) {
-        _PROV_ENUMALGS_EX.dwMaxLen$VH.set(seg, x);
-    }
-    public static int dwMaxLen$get(MemorySegment seg, long index) {
-        return (int)_PROV_ENUMALGS_EX.dwMaxLen$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwMaxLen$set(MemorySegment seg, long index, int x) {
-        _PROV_ENUMALGS_EX.dwMaxLen$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwProtocols$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwProtocols"));
-    public static VarHandle dwProtocols$VH() {
-        return _PROV_ENUMALGS_EX.dwProtocols$VH;
-    }
-    public static int dwProtocols$get(MemorySegment seg) {
-        return (int)_PROV_ENUMALGS_EX.dwProtocols$VH.get(seg);
-    }
-    public static void dwProtocols$set( MemorySegment seg, int x) {
-        _PROV_ENUMALGS_EX.dwProtocols$VH.set(seg, x);
-    }
-    public static int dwProtocols$get(MemorySegment seg, long index) {
-        return (int)_PROV_ENUMALGS_EX.dwProtocols$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwProtocols$set(MemorySegment seg, long index, int x) {
-        _PROV_ENUMALGS_EX.dwProtocols$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwNameLen$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwNameLen"));
-    public static VarHandle dwNameLen$VH() {
-        return _PROV_ENUMALGS_EX.dwNameLen$VH;
-    }
-    public static int dwNameLen$get(MemorySegment seg) {
-        return (int)_PROV_ENUMALGS_EX.dwNameLen$VH.get(seg);
-    }
-    public static void dwNameLen$set( MemorySegment seg, int x) {
-        _PROV_ENUMALGS_EX.dwNameLen$VH.set(seg, x);
-    }
-    public static int dwNameLen$get(MemorySegment seg, long index) {
-        return (int)_PROV_ENUMALGS_EX.dwNameLen$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwNameLen$set(MemorySegment seg, long index, int x) {
-        _PROV_ENUMALGS_EX.dwNameLen$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment szName$slice(MemorySegment seg) {
-        return seg.asSlice(24, 20);
-    }
-    static final VarHandle dwLongNameLen$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwLongNameLen"));
-    public static VarHandle dwLongNameLen$VH() {
-        return _PROV_ENUMALGS_EX.dwLongNameLen$VH;
-    }
-    public static int dwLongNameLen$get(MemorySegment seg) {
-        return (int)_PROV_ENUMALGS_EX.dwLongNameLen$VH.get(seg);
-    }
-    public static void dwLongNameLen$set( MemorySegment seg, int x) {
-        _PROV_ENUMALGS_EX.dwLongNameLen$VH.set(seg, x);
-    }
-    public static int dwLongNameLen$get(MemorySegment seg, long index) {
-        return (int)_PROV_ENUMALGS_EX.dwLongNameLen$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwLongNameLen$set(MemorySegment seg, long index, int x) {
-        _PROV_ENUMALGS_EX.dwLongNameLen$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment szLongName$slice(MemorySegment seg) {
-        return seg.asSlice(48, 40);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("aiAlgid"),
+        wgl_h.C_LONG.withName("dwDefaultLen"),
+        wgl_h.C_LONG.withName("dwMinLen"),
+        wgl_h.C_LONG.withName("dwMaxLen"),
+        wgl_h.C_LONG.withName("dwProtocols"),
+        wgl_h.C_LONG.withName("dwNameLen"),
+        MemoryLayout.sequenceLayout(20, wgl_h.C_CHAR).withName("szName"),
+        wgl_h.C_LONG.withName("dwLongNameLen"),
+        MemoryLayout.sequenceLayout(40, wgl_h.C_CHAR).withName("szLongName")
+    ).withName("_PROV_ENUMALGS_EX");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt aiAlgid$LAYOUT = (OfInt)$LAYOUT.select(groupElement("aiAlgid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ALG_ID aiAlgid
+     * }
+     */
+    public static final OfInt aiAlgid$layout() {
+        return aiAlgid$LAYOUT;
+    }
+
+    private static final long aiAlgid$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ALG_ID aiAlgid
+     * }
+     */
+    public static final long aiAlgid$offset() {
+        return aiAlgid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ALG_ID aiAlgid
+     * }
+     */
+    public static int aiAlgid(MemorySegment struct) {
+        return struct.get(aiAlgid$LAYOUT, aiAlgid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ALG_ID aiAlgid
+     * }
+     */
+    public static void aiAlgid(MemorySegment struct, int fieldValue) {
+        struct.set(aiAlgid$LAYOUT, aiAlgid$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwDefaultLen$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwDefaultLen"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwDefaultLen
+     * }
+     */
+    public static final OfInt dwDefaultLen$layout() {
+        return dwDefaultLen$LAYOUT;
+    }
+
+    private static final long dwDefaultLen$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwDefaultLen
+     * }
+     */
+    public static final long dwDefaultLen$offset() {
+        return dwDefaultLen$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwDefaultLen
+     * }
+     */
+    public static int dwDefaultLen(MemorySegment struct) {
+        return struct.get(dwDefaultLen$LAYOUT, dwDefaultLen$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwDefaultLen
+     * }
+     */
+    public static void dwDefaultLen(MemorySegment struct, int fieldValue) {
+        struct.set(dwDefaultLen$LAYOUT, dwDefaultLen$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwMinLen$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwMinLen"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwMinLen
+     * }
+     */
+    public static final OfInt dwMinLen$layout() {
+        return dwMinLen$LAYOUT;
+    }
+
+    private static final long dwMinLen$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwMinLen
+     * }
+     */
+    public static final long dwMinLen$offset() {
+        return dwMinLen$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwMinLen
+     * }
+     */
+    public static int dwMinLen(MemorySegment struct) {
+        return struct.get(dwMinLen$LAYOUT, dwMinLen$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwMinLen
+     * }
+     */
+    public static void dwMinLen(MemorySegment struct, int fieldValue) {
+        struct.set(dwMinLen$LAYOUT, dwMinLen$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwMaxLen$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwMaxLen"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwMaxLen
+     * }
+     */
+    public static final OfInt dwMaxLen$layout() {
+        return dwMaxLen$LAYOUT;
+    }
+
+    private static final long dwMaxLen$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwMaxLen
+     * }
+     */
+    public static final long dwMaxLen$offset() {
+        return dwMaxLen$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwMaxLen
+     * }
+     */
+    public static int dwMaxLen(MemorySegment struct) {
+        return struct.get(dwMaxLen$LAYOUT, dwMaxLen$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwMaxLen
+     * }
+     */
+    public static void dwMaxLen(MemorySegment struct, int fieldValue) {
+        struct.set(dwMaxLen$LAYOUT, dwMaxLen$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwProtocols$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwProtocols"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwProtocols
+     * }
+     */
+    public static final OfInt dwProtocols$layout() {
+        return dwProtocols$LAYOUT;
+    }
+
+    private static final long dwProtocols$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwProtocols
+     * }
+     */
+    public static final long dwProtocols$offset() {
+        return dwProtocols$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwProtocols
+     * }
+     */
+    public static int dwProtocols(MemorySegment struct) {
+        return struct.get(dwProtocols$LAYOUT, dwProtocols$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwProtocols
+     * }
+     */
+    public static void dwProtocols(MemorySegment struct, int fieldValue) {
+        struct.set(dwProtocols$LAYOUT, dwProtocols$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwNameLen$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwNameLen"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwNameLen
+     * }
+     */
+    public static final OfInt dwNameLen$layout() {
+        return dwNameLen$LAYOUT;
+    }
+
+    private static final long dwNameLen$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwNameLen
+     * }
+     */
+    public static final long dwNameLen$offset() {
+        return dwNameLen$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwNameLen
+     * }
+     */
+    public static int dwNameLen(MemorySegment struct) {
+        return struct.get(dwNameLen$LAYOUT, dwNameLen$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwNameLen
+     * }
+     */
+    public static void dwNameLen(MemorySegment struct, int fieldValue) {
+        struct.set(dwNameLen$LAYOUT, dwNameLen$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout szName$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("szName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHAR szName[20]
+     * }
+     */
+    public static final SequenceLayout szName$layout() {
+        return szName$LAYOUT;
+    }
+
+    private static final long szName$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHAR szName[20]
+     * }
+     */
+    public static final long szName$offset() {
+        return szName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHAR szName[20]
+     * }
+     */
+    public static MemorySegment szName(MemorySegment struct) {
+        return struct.asSlice(szName$OFFSET, szName$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHAR szName[20]
+     * }
+     */
+    public static void szName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, szName$OFFSET, szName$LAYOUT.byteSize());
+    }
+
+    private static long[] szName$DIMS = { 20 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * CHAR szName[20]
+     * }
+     */
+    public static long[] szName$dimensions() {
+        return szName$DIMS;
+    }
+    private static final VarHandle szName$ELEM_HANDLE = szName$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * CHAR szName[20]
+     * }
+     */
+    public static byte szName(MemorySegment struct, long index0) {
+        return (byte)szName$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * CHAR szName[20]
+     * }
+     */
+    public static void szName(MemorySegment struct, long index0, byte fieldValue) {
+        szName$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt dwLongNameLen$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwLongNameLen"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwLongNameLen
+     * }
+     */
+    public static final OfInt dwLongNameLen$layout() {
+        return dwLongNameLen$LAYOUT;
+    }
+
+    private static final long dwLongNameLen$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwLongNameLen
+     * }
+     */
+    public static final long dwLongNameLen$offset() {
+        return dwLongNameLen$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwLongNameLen
+     * }
+     */
+    public static int dwLongNameLen(MemorySegment struct) {
+        return struct.get(dwLongNameLen$LAYOUT, dwLongNameLen$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwLongNameLen
+     * }
+     */
+    public static void dwLongNameLen(MemorySegment struct, int fieldValue) {
+        struct.set(dwLongNameLen$LAYOUT, dwLongNameLen$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout szLongName$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("szLongName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHAR szLongName[40]
+     * }
+     */
+    public static final SequenceLayout szLongName$layout() {
+        return szLongName$LAYOUT;
+    }
+
+    private static final long szLongName$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHAR szLongName[40]
+     * }
+     */
+    public static final long szLongName$offset() {
+        return szLongName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHAR szLongName[40]
+     * }
+     */
+    public static MemorySegment szLongName(MemorySegment struct) {
+        return struct.asSlice(szLongName$OFFSET, szLongName$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHAR szLongName[40]
+     * }
+     */
+    public static void szLongName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, szLongName$OFFSET, szLongName$LAYOUT.byteSize());
+    }
+
+    private static long[] szLongName$DIMS = { 40 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * CHAR szLongName[40]
+     * }
+     */
+    public static long[] szLongName$dimensions() {
+        return szLongName$DIMS;
+    }
+    private static final VarHandle szLongName$ELEM_HANDLE = szLongName$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * CHAR szLongName[40]
+     * }
+     */
+    public static byte szLongName(MemorySegment struct, long index0) {
+        return (byte)szLongName$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * CHAR szLongName[40]
+     * }
+     */
+    public static void szLongName(MemorySegment struct, long index0, byte fieldValue) {
+        szLongName$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

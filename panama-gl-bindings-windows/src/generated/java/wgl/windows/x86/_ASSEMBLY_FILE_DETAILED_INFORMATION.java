@@ -2,110 +2,311 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _ASSEMBLY_FILE_DETAILED_INFORMATION {
+ *     DWORD ulFlags;
+ *     DWORD ulFilenameLength;
+ *     DWORD ulPathLength;
+ *     PCWSTR lpFileName;
+ *     PCWSTR lpFilePath;
+ * }
+ * }
+ */
 public class _ASSEMBLY_FILE_DETAILED_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ulFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("ulFilenameLength"),
-        Constants$root.C_LONG$LAYOUT.withName("ulPathLength"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("lpFileName"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpFilePath")
-    ).withName("_ASSEMBLY_FILE_DETAILED_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return _ASSEMBLY_FILE_DETAILED_INFORMATION.$struct$LAYOUT;
+    _ASSEMBLY_FILE_DETAILED_INFORMATION() {
+        // Should not be called directly
     }
-    static final VarHandle ulFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ulFlags"));
-    public static VarHandle ulFlags$VH() {
-        return _ASSEMBLY_FILE_DETAILED_INFORMATION.ulFlags$VH;
-    }
-    public static int ulFlags$get(MemorySegment seg) {
-        return (int)_ASSEMBLY_FILE_DETAILED_INFORMATION.ulFlags$VH.get(seg);
-    }
-    public static void ulFlags$set( MemorySegment seg, int x) {
-        _ASSEMBLY_FILE_DETAILED_INFORMATION.ulFlags$VH.set(seg, x);
-    }
-    public static int ulFlags$get(MemorySegment seg, long index) {
-        return (int)_ASSEMBLY_FILE_DETAILED_INFORMATION.ulFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ulFlags$set(MemorySegment seg, long index, int x) {
-        _ASSEMBLY_FILE_DETAILED_INFORMATION.ulFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ulFilenameLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ulFilenameLength"));
-    public static VarHandle ulFilenameLength$VH() {
-        return _ASSEMBLY_FILE_DETAILED_INFORMATION.ulFilenameLength$VH;
-    }
-    public static int ulFilenameLength$get(MemorySegment seg) {
-        return (int)_ASSEMBLY_FILE_DETAILED_INFORMATION.ulFilenameLength$VH.get(seg);
-    }
-    public static void ulFilenameLength$set( MemorySegment seg, int x) {
-        _ASSEMBLY_FILE_DETAILED_INFORMATION.ulFilenameLength$VH.set(seg, x);
-    }
-    public static int ulFilenameLength$get(MemorySegment seg, long index) {
-        return (int)_ASSEMBLY_FILE_DETAILED_INFORMATION.ulFilenameLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ulFilenameLength$set(MemorySegment seg, long index, int x) {
-        _ASSEMBLY_FILE_DETAILED_INFORMATION.ulFilenameLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ulPathLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ulPathLength"));
-    public static VarHandle ulPathLength$VH() {
-        return _ASSEMBLY_FILE_DETAILED_INFORMATION.ulPathLength$VH;
-    }
-    public static int ulPathLength$get(MemorySegment seg) {
-        return (int)_ASSEMBLY_FILE_DETAILED_INFORMATION.ulPathLength$VH.get(seg);
-    }
-    public static void ulPathLength$set( MemorySegment seg, int x) {
-        _ASSEMBLY_FILE_DETAILED_INFORMATION.ulPathLength$VH.set(seg, x);
-    }
-    public static int ulPathLength$get(MemorySegment seg, long index) {
-        return (int)_ASSEMBLY_FILE_DETAILED_INFORMATION.ulPathLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ulPathLength$set(MemorySegment seg, long index, int x) {
-        _ASSEMBLY_FILE_DETAILED_INFORMATION.ulPathLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpFileName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpFileName"));
-    public static VarHandle lpFileName$VH() {
-        return _ASSEMBLY_FILE_DETAILED_INFORMATION.lpFileName$VH;
-    }
-    public static MemoryAddress lpFileName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_ASSEMBLY_FILE_DETAILED_INFORMATION.lpFileName$VH.get(seg);
-    }
-    public static void lpFileName$set( MemorySegment seg, MemoryAddress x) {
-        _ASSEMBLY_FILE_DETAILED_INFORMATION.lpFileName$VH.set(seg, x);
-    }
-    public static MemoryAddress lpFileName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_ASSEMBLY_FILE_DETAILED_INFORMATION.lpFileName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpFileName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _ASSEMBLY_FILE_DETAILED_INFORMATION.lpFileName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpFilePath$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpFilePath"));
-    public static VarHandle lpFilePath$VH() {
-        return _ASSEMBLY_FILE_DETAILED_INFORMATION.lpFilePath$VH;
-    }
-    public static MemoryAddress lpFilePath$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_ASSEMBLY_FILE_DETAILED_INFORMATION.lpFilePath$VH.get(seg);
-    }
-    public static void lpFilePath$set( MemorySegment seg, MemoryAddress x) {
-        _ASSEMBLY_FILE_DETAILED_INFORMATION.lpFilePath$VH.set(seg, x);
-    }
-    public static MemoryAddress lpFilePath$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_ASSEMBLY_FILE_DETAILED_INFORMATION.lpFilePath$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpFilePath$set(MemorySegment seg, long index, MemoryAddress x) {
-        _ASSEMBLY_FILE_DETAILED_INFORMATION.lpFilePath$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("ulFlags"),
+        wgl_h.C_LONG.withName("ulFilenameLength"),
+        wgl_h.C_LONG.withName("ulPathLength"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("lpFileName"),
+        wgl_h.C_POINTER.withName("lpFilePath")
+    ).withName("_ASSEMBLY_FILE_DETAILED_INFORMATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt ulFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ulFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ulFlags
+     * }
+     */
+    public static final OfInt ulFlags$layout() {
+        return ulFlags$LAYOUT;
+    }
+
+    private static final long ulFlags$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ulFlags
+     * }
+     */
+    public static final long ulFlags$offset() {
+        return ulFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ulFlags
+     * }
+     */
+    public static int ulFlags(MemorySegment struct) {
+        return struct.get(ulFlags$LAYOUT, ulFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ulFlags
+     * }
+     */
+    public static void ulFlags(MemorySegment struct, int fieldValue) {
+        struct.set(ulFlags$LAYOUT, ulFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ulFilenameLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ulFilenameLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ulFilenameLength
+     * }
+     */
+    public static final OfInt ulFilenameLength$layout() {
+        return ulFilenameLength$LAYOUT;
+    }
+
+    private static final long ulFilenameLength$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ulFilenameLength
+     * }
+     */
+    public static final long ulFilenameLength$offset() {
+        return ulFilenameLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ulFilenameLength
+     * }
+     */
+    public static int ulFilenameLength(MemorySegment struct) {
+        return struct.get(ulFilenameLength$LAYOUT, ulFilenameLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ulFilenameLength
+     * }
+     */
+    public static void ulFilenameLength(MemorySegment struct, int fieldValue) {
+        struct.set(ulFilenameLength$LAYOUT, ulFilenameLength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ulPathLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ulPathLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ulPathLength
+     * }
+     */
+    public static final OfInt ulPathLength$layout() {
+        return ulPathLength$LAYOUT;
+    }
+
+    private static final long ulPathLength$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ulPathLength
+     * }
+     */
+    public static final long ulPathLength$offset() {
+        return ulPathLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ulPathLength
+     * }
+     */
+    public static int ulPathLength(MemorySegment struct) {
+        return struct.get(ulPathLength$LAYOUT, ulPathLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ulPathLength
+     * }
+     */
+    public static void ulPathLength(MemorySegment struct, int fieldValue) {
+        struct.set(ulPathLength$LAYOUT, ulPathLength$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpFileName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpFileName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCWSTR lpFileName
+     * }
+     */
+    public static final AddressLayout lpFileName$layout() {
+        return lpFileName$LAYOUT;
+    }
+
+    private static final long lpFileName$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCWSTR lpFileName
+     * }
+     */
+    public static final long lpFileName$offset() {
+        return lpFileName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCWSTR lpFileName
+     * }
+     */
+    public static MemorySegment lpFileName(MemorySegment struct) {
+        return struct.get(lpFileName$LAYOUT, lpFileName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCWSTR lpFileName
+     * }
+     */
+    public static void lpFileName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpFileName$LAYOUT, lpFileName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpFilePath$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpFilePath"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCWSTR lpFilePath
+     * }
+     */
+    public static final AddressLayout lpFilePath$layout() {
+        return lpFilePath$LAYOUT;
+    }
+
+    private static final long lpFilePath$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCWSTR lpFilePath
+     * }
+     */
+    public static final long lpFilePath$offset() {
+        return lpFilePath$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCWSTR lpFilePath
+     * }
+     */
+    public static MemorySegment lpFilePath(MemorySegment struct) {
+        return struct.get(lpFilePath$LAYOUT, lpFilePath$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCWSTR lpFilePath
+     * }
+     */
+    public static void lpFilePath(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpFilePath$LAYOUT, lpFilePath$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

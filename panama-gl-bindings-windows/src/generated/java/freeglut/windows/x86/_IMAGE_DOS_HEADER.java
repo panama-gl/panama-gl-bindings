@@ -2,321 +2,1020 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _IMAGE_DOS_HEADER {
+ *     WORD e_magic;
+ *     WORD e_cblp;
+ *     WORD e_cp;
+ *     WORD e_crlc;
+ *     WORD e_cparhdr;
+ *     WORD e_minalloc;
+ *     WORD e_maxalloc;
+ *     WORD e_ss;
+ *     WORD e_sp;
+ *     WORD e_csum;
+ *     WORD e_ip;
+ *     WORD e_cs;
+ *     WORD e_lfarlc;
+ *     WORD e_ovno;
+ *     WORD e_res[4];
+ *     WORD e_oemid;
+ *     WORD e_oeminfo;
+ *     WORD e_res2[10];
+ *     LONG e_lfanew;
+ * }
+ * }
+ */
 public class _IMAGE_DOS_HEADER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("e_magic"),
-        Constants$root.C_SHORT$LAYOUT.withName("e_cblp"),
-        Constants$root.C_SHORT$LAYOUT.withName("e_cp"),
-        Constants$root.C_SHORT$LAYOUT.withName("e_crlc"),
-        Constants$root.C_SHORT$LAYOUT.withName("e_cparhdr"),
-        Constants$root.C_SHORT$LAYOUT.withName("e_minalloc"),
-        Constants$root.C_SHORT$LAYOUT.withName("e_maxalloc"),
-        Constants$root.C_SHORT$LAYOUT.withName("e_ss"),
-        Constants$root.C_SHORT$LAYOUT.withName("e_sp"),
-        Constants$root.C_SHORT$LAYOUT.withName("e_csum"),
-        Constants$root.C_SHORT$LAYOUT.withName("e_ip"),
-        Constants$root.C_SHORT$LAYOUT.withName("e_cs"),
-        Constants$root.C_SHORT$LAYOUT.withName("e_lfarlc"),
-        Constants$root.C_SHORT$LAYOUT.withName("e_ovno"),
-        MemoryLayout.sequenceLayout(4, Constants$root.C_SHORT$LAYOUT).withName("e_res"),
-        Constants$root.C_SHORT$LAYOUT.withName("e_oemid"),
-        Constants$root.C_SHORT$LAYOUT.withName("e_oeminfo"),
-        MemoryLayout.sequenceLayout(10, Constants$root.C_SHORT$LAYOUT).withName("e_res2"),
-        Constants$root.C_LONG$LAYOUT.withName("e_lfanew")
-    ).withName("_IMAGE_DOS_HEADER");
-    public static MemoryLayout $LAYOUT() {
-        return _IMAGE_DOS_HEADER.$struct$LAYOUT;
+    _IMAGE_DOS_HEADER() {
+        // Should not be called directly
     }
-    static final VarHandle e_magic$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e_magic"));
-    public static VarHandle e_magic$VH() {
-        return _IMAGE_DOS_HEADER.e_magic$VH;
-    }
-    public static short e_magic$get(MemorySegment seg) {
-        return (short)_IMAGE_DOS_HEADER.e_magic$VH.get(seg);
-    }
-    public static void e_magic$set( MemorySegment seg, short x) {
-        _IMAGE_DOS_HEADER.e_magic$VH.set(seg, x);
-    }
-    public static short e_magic$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_DOS_HEADER.e_magic$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e_magic$set(MemorySegment seg, long index, short x) {
-        _IMAGE_DOS_HEADER.e_magic$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e_cblp$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e_cblp"));
-    public static VarHandle e_cblp$VH() {
-        return _IMAGE_DOS_HEADER.e_cblp$VH;
-    }
-    public static short e_cblp$get(MemorySegment seg) {
-        return (short)_IMAGE_DOS_HEADER.e_cblp$VH.get(seg);
-    }
-    public static void e_cblp$set( MemorySegment seg, short x) {
-        _IMAGE_DOS_HEADER.e_cblp$VH.set(seg, x);
-    }
-    public static short e_cblp$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_DOS_HEADER.e_cblp$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e_cblp$set(MemorySegment seg, long index, short x) {
-        _IMAGE_DOS_HEADER.e_cblp$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e_cp$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e_cp"));
-    public static VarHandle e_cp$VH() {
-        return _IMAGE_DOS_HEADER.e_cp$VH;
-    }
-    public static short e_cp$get(MemorySegment seg) {
-        return (short)_IMAGE_DOS_HEADER.e_cp$VH.get(seg);
-    }
-    public static void e_cp$set( MemorySegment seg, short x) {
-        _IMAGE_DOS_HEADER.e_cp$VH.set(seg, x);
-    }
-    public static short e_cp$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_DOS_HEADER.e_cp$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e_cp$set(MemorySegment seg, long index, short x) {
-        _IMAGE_DOS_HEADER.e_cp$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e_crlc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e_crlc"));
-    public static VarHandle e_crlc$VH() {
-        return _IMAGE_DOS_HEADER.e_crlc$VH;
-    }
-    public static short e_crlc$get(MemorySegment seg) {
-        return (short)_IMAGE_DOS_HEADER.e_crlc$VH.get(seg);
-    }
-    public static void e_crlc$set( MemorySegment seg, short x) {
-        _IMAGE_DOS_HEADER.e_crlc$VH.set(seg, x);
-    }
-    public static short e_crlc$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_DOS_HEADER.e_crlc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e_crlc$set(MemorySegment seg, long index, short x) {
-        _IMAGE_DOS_HEADER.e_crlc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e_cparhdr$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e_cparhdr"));
-    public static VarHandle e_cparhdr$VH() {
-        return _IMAGE_DOS_HEADER.e_cparhdr$VH;
-    }
-    public static short e_cparhdr$get(MemorySegment seg) {
-        return (short)_IMAGE_DOS_HEADER.e_cparhdr$VH.get(seg);
-    }
-    public static void e_cparhdr$set( MemorySegment seg, short x) {
-        _IMAGE_DOS_HEADER.e_cparhdr$VH.set(seg, x);
-    }
-    public static short e_cparhdr$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_DOS_HEADER.e_cparhdr$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e_cparhdr$set(MemorySegment seg, long index, short x) {
-        _IMAGE_DOS_HEADER.e_cparhdr$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e_minalloc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e_minalloc"));
-    public static VarHandle e_minalloc$VH() {
-        return _IMAGE_DOS_HEADER.e_minalloc$VH;
-    }
-    public static short e_minalloc$get(MemorySegment seg) {
-        return (short)_IMAGE_DOS_HEADER.e_minalloc$VH.get(seg);
-    }
-    public static void e_minalloc$set( MemorySegment seg, short x) {
-        _IMAGE_DOS_HEADER.e_minalloc$VH.set(seg, x);
-    }
-    public static short e_minalloc$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_DOS_HEADER.e_minalloc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e_minalloc$set(MemorySegment seg, long index, short x) {
-        _IMAGE_DOS_HEADER.e_minalloc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e_maxalloc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e_maxalloc"));
-    public static VarHandle e_maxalloc$VH() {
-        return _IMAGE_DOS_HEADER.e_maxalloc$VH;
-    }
-    public static short e_maxalloc$get(MemorySegment seg) {
-        return (short)_IMAGE_DOS_HEADER.e_maxalloc$VH.get(seg);
-    }
-    public static void e_maxalloc$set( MemorySegment seg, short x) {
-        _IMAGE_DOS_HEADER.e_maxalloc$VH.set(seg, x);
-    }
-    public static short e_maxalloc$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_DOS_HEADER.e_maxalloc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e_maxalloc$set(MemorySegment seg, long index, short x) {
-        _IMAGE_DOS_HEADER.e_maxalloc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e_ss$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e_ss"));
-    public static VarHandle e_ss$VH() {
-        return _IMAGE_DOS_HEADER.e_ss$VH;
-    }
-    public static short e_ss$get(MemorySegment seg) {
-        return (short)_IMAGE_DOS_HEADER.e_ss$VH.get(seg);
-    }
-    public static void e_ss$set( MemorySegment seg, short x) {
-        _IMAGE_DOS_HEADER.e_ss$VH.set(seg, x);
-    }
-    public static short e_ss$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_DOS_HEADER.e_ss$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e_ss$set(MemorySegment seg, long index, short x) {
-        _IMAGE_DOS_HEADER.e_ss$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e_sp$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e_sp"));
-    public static VarHandle e_sp$VH() {
-        return _IMAGE_DOS_HEADER.e_sp$VH;
-    }
-    public static short e_sp$get(MemorySegment seg) {
-        return (short)_IMAGE_DOS_HEADER.e_sp$VH.get(seg);
-    }
-    public static void e_sp$set( MemorySegment seg, short x) {
-        _IMAGE_DOS_HEADER.e_sp$VH.set(seg, x);
-    }
-    public static short e_sp$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_DOS_HEADER.e_sp$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e_sp$set(MemorySegment seg, long index, short x) {
-        _IMAGE_DOS_HEADER.e_sp$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e_csum$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e_csum"));
-    public static VarHandle e_csum$VH() {
-        return _IMAGE_DOS_HEADER.e_csum$VH;
-    }
-    public static short e_csum$get(MemorySegment seg) {
-        return (short)_IMAGE_DOS_HEADER.e_csum$VH.get(seg);
-    }
-    public static void e_csum$set( MemorySegment seg, short x) {
-        _IMAGE_DOS_HEADER.e_csum$VH.set(seg, x);
-    }
-    public static short e_csum$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_DOS_HEADER.e_csum$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e_csum$set(MemorySegment seg, long index, short x) {
-        _IMAGE_DOS_HEADER.e_csum$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e_ip$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e_ip"));
-    public static VarHandle e_ip$VH() {
-        return _IMAGE_DOS_HEADER.e_ip$VH;
-    }
-    public static short e_ip$get(MemorySegment seg) {
-        return (short)_IMAGE_DOS_HEADER.e_ip$VH.get(seg);
-    }
-    public static void e_ip$set( MemorySegment seg, short x) {
-        _IMAGE_DOS_HEADER.e_ip$VH.set(seg, x);
-    }
-    public static short e_ip$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_DOS_HEADER.e_ip$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e_ip$set(MemorySegment seg, long index, short x) {
-        _IMAGE_DOS_HEADER.e_ip$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e_cs$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e_cs"));
-    public static VarHandle e_cs$VH() {
-        return _IMAGE_DOS_HEADER.e_cs$VH;
-    }
-    public static short e_cs$get(MemorySegment seg) {
-        return (short)_IMAGE_DOS_HEADER.e_cs$VH.get(seg);
-    }
-    public static void e_cs$set( MemorySegment seg, short x) {
-        _IMAGE_DOS_HEADER.e_cs$VH.set(seg, x);
-    }
-    public static short e_cs$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_DOS_HEADER.e_cs$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e_cs$set(MemorySegment seg, long index, short x) {
-        _IMAGE_DOS_HEADER.e_cs$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e_lfarlc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e_lfarlc"));
-    public static VarHandle e_lfarlc$VH() {
-        return _IMAGE_DOS_HEADER.e_lfarlc$VH;
-    }
-    public static short e_lfarlc$get(MemorySegment seg) {
-        return (short)_IMAGE_DOS_HEADER.e_lfarlc$VH.get(seg);
-    }
-    public static void e_lfarlc$set( MemorySegment seg, short x) {
-        _IMAGE_DOS_HEADER.e_lfarlc$VH.set(seg, x);
-    }
-    public static short e_lfarlc$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_DOS_HEADER.e_lfarlc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e_lfarlc$set(MemorySegment seg, long index, short x) {
-        _IMAGE_DOS_HEADER.e_lfarlc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e_ovno$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e_ovno"));
-    public static VarHandle e_ovno$VH() {
-        return _IMAGE_DOS_HEADER.e_ovno$VH;
-    }
-    public static short e_ovno$get(MemorySegment seg) {
-        return (short)_IMAGE_DOS_HEADER.e_ovno$VH.get(seg);
-    }
-    public static void e_ovno$set( MemorySegment seg, short x) {
-        _IMAGE_DOS_HEADER.e_ovno$VH.set(seg, x);
-    }
-    public static short e_ovno$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_DOS_HEADER.e_ovno$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e_ovno$set(MemorySegment seg, long index, short x) {
-        _IMAGE_DOS_HEADER.e_ovno$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment e_res$slice(MemorySegment seg) {
-        return seg.asSlice(28, 8);
-    }
-    static final VarHandle e_oemid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e_oemid"));
-    public static VarHandle e_oemid$VH() {
-        return _IMAGE_DOS_HEADER.e_oemid$VH;
-    }
-    public static short e_oemid$get(MemorySegment seg) {
-        return (short)_IMAGE_DOS_HEADER.e_oemid$VH.get(seg);
-    }
-    public static void e_oemid$set( MemorySegment seg, short x) {
-        _IMAGE_DOS_HEADER.e_oemid$VH.set(seg, x);
-    }
-    public static short e_oemid$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_DOS_HEADER.e_oemid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e_oemid$set(MemorySegment seg, long index, short x) {
-        _IMAGE_DOS_HEADER.e_oemid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle e_oeminfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e_oeminfo"));
-    public static VarHandle e_oeminfo$VH() {
-        return _IMAGE_DOS_HEADER.e_oeminfo$VH;
-    }
-    public static short e_oeminfo$get(MemorySegment seg) {
-        return (short)_IMAGE_DOS_HEADER.e_oeminfo$VH.get(seg);
-    }
-    public static void e_oeminfo$set( MemorySegment seg, short x) {
-        _IMAGE_DOS_HEADER.e_oeminfo$VH.set(seg, x);
-    }
-    public static short e_oeminfo$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_DOS_HEADER.e_oeminfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e_oeminfo$set(MemorySegment seg, long index, short x) {
-        _IMAGE_DOS_HEADER.e_oeminfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment e_res2$slice(MemorySegment seg) {
-        return seg.asSlice(40, 20);
-    }
-    static final VarHandle e_lfanew$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("e_lfanew"));
-    public static VarHandle e_lfanew$VH() {
-        return _IMAGE_DOS_HEADER.e_lfanew$VH;
-    }
-    public static int e_lfanew$get(MemorySegment seg) {
-        return (int)_IMAGE_DOS_HEADER.e_lfanew$VH.get(seg);
-    }
-    public static void e_lfanew$set( MemorySegment seg, int x) {
-        _IMAGE_DOS_HEADER.e_lfanew$VH.set(seg, x);
-    }
-    public static int e_lfanew$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_DOS_HEADER.e_lfanew$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void e_lfanew$set(MemorySegment seg, long index, int x) {
-        _IMAGE_DOS_HEADER.e_lfanew$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_SHORT.withName("e_magic"),
+        freeglut_h.C_SHORT.withName("e_cblp"),
+        freeglut_h.C_SHORT.withName("e_cp"),
+        freeglut_h.C_SHORT.withName("e_crlc"),
+        freeglut_h.C_SHORT.withName("e_cparhdr"),
+        freeglut_h.C_SHORT.withName("e_minalloc"),
+        freeglut_h.C_SHORT.withName("e_maxalloc"),
+        freeglut_h.C_SHORT.withName("e_ss"),
+        freeglut_h.C_SHORT.withName("e_sp"),
+        freeglut_h.C_SHORT.withName("e_csum"),
+        freeglut_h.C_SHORT.withName("e_ip"),
+        freeglut_h.C_SHORT.withName("e_cs"),
+        freeglut_h.C_SHORT.withName("e_lfarlc"),
+        freeglut_h.C_SHORT.withName("e_ovno"),
+        MemoryLayout.sequenceLayout(4, freeglut_h.C_SHORT).withName("e_res"),
+        freeglut_h.C_SHORT.withName("e_oemid"),
+        freeglut_h.C_SHORT.withName("e_oeminfo"),
+        MemoryLayout.sequenceLayout(10, freeglut_h.C_SHORT).withName("e_res2"),
+        freeglut_h.align(freeglut_h.C_LONG, 2).withName("e_lfanew")
+    ).withName("_IMAGE_DOS_HEADER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort e_magic$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e_magic"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e_magic
+     * }
+     */
+    public static final OfShort e_magic$layout() {
+        return e_magic$LAYOUT;
+    }
+
+    private static final long e_magic$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e_magic
+     * }
+     */
+    public static final long e_magic$offset() {
+        return e_magic$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e_magic
+     * }
+     */
+    public static short e_magic(MemorySegment struct) {
+        return struct.get(e_magic$LAYOUT, e_magic$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e_magic
+     * }
+     */
+    public static void e_magic(MemorySegment struct, short fieldValue) {
+        struct.set(e_magic$LAYOUT, e_magic$OFFSET, fieldValue);
+    }
+
+    private static final OfShort e_cblp$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e_cblp"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e_cblp
+     * }
+     */
+    public static final OfShort e_cblp$layout() {
+        return e_cblp$LAYOUT;
+    }
+
+    private static final long e_cblp$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e_cblp
+     * }
+     */
+    public static final long e_cblp$offset() {
+        return e_cblp$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e_cblp
+     * }
+     */
+    public static short e_cblp(MemorySegment struct) {
+        return struct.get(e_cblp$LAYOUT, e_cblp$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e_cblp
+     * }
+     */
+    public static void e_cblp(MemorySegment struct, short fieldValue) {
+        struct.set(e_cblp$LAYOUT, e_cblp$OFFSET, fieldValue);
+    }
+
+    private static final OfShort e_cp$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e_cp"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e_cp
+     * }
+     */
+    public static final OfShort e_cp$layout() {
+        return e_cp$LAYOUT;
+    }
+
+    private static final long e_cp$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e_cp
+     * }
+     */
+    public static final long e_cp$offset() {
+        return e_cp$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e_cp
+     * }
+     */
+    public static short e_cp(MemorySegment struct) {
+        return struct.get(e_cp$LAYOUT, e_cp$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e_cp
+     * }
+     */
+    public static void e_cp(MemorySegment struct, short fieldValue) {
+        struct.set(e_cp$LAYOUT, e_cp$OFFSET, fieldValue);
+    }
+
+    private static final OfShort e_crlc$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e_crlc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e_crlc
+     * }
+     */
+    public static final OfShort e_crlc$layout() {
+        return e_crlc$LAYOUT;
+    }
+
+    private static final long e_crlc$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e_crlc
+     * }
+     */
+    public static final long e_crlc$offset() {
+        return e_crlc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e_crlc
+     * }
+     */
+    public static short e_crlc(MemorySegment struct) {
+        return struct.get(e_crlc$LAYOUT, e_crlc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e_crlc
+     * }
+     */
+    public static void e_crlc(MemorySegment struct, short fieldValue) {
+        struct.set(e_crlc$LAYOUT, e_crlc$OFFSET, fieldValue);
+    }
+
+    private static final OfShort e_cparhdr$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e_cparhdr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e_cparhdr
+     * }
+     */
+    public static final OfShort e_cparhdr$layout() {
+        return e_cparhdr$LAYOUT;
+    }
+
+    private static final long e_cparhdr$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e_cparhdr
+     * }
+     */
+    public static final long e_cparhdr$offset() {
+        return e_cparhdr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e_cparhdr
+     * }
+     */
+    public static short e_cparhdr(MemorySegment struct) {
+        return struct.get(e_cparhdr$LAYOUT, e_cparhdr$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e_cparhdr
+     * }
+     */
+    public static void e_cparhdr(MemorySegment struct, short fieldValue) {
+        struct.set(e_cparhdr$LAYOUT, e_cparhdr$OFFSET, fieldValue);
+    }
+
+    private static final OfShort e_minalloc$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e_minalloc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e_minalloc
+     * }
+     */
+    public static final OfShort e_minalloc$layout() {
+        return e_minalloc$LAYOUT;
+    }
+
+    private static final long e_minalloc$OFFSET = 10;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e_minalloc
+     * }
+     */
+    public static final long e_minalloc$offset() {
+        return e_minalloc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e_minalloc
+     * }
+     */
+    public static short e_minalloc(MemorySegment struct) {
+        return struct.get(e_minalloc$LAYOUT, e_minalloc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e_minalloc
+     * }
+     */
+    public static void e_minalloc(MemorySegment struct, short fieldValue) {
+        struct.set(e_minalloc$LAYOUT, e_minalloc$OFFSET, fieldValue);
+    }
+
+    private static final OfShort e_maxalloc$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e_maxalloc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e_maxalloc
+     * }
+     */
+    public static final OfShort e_maxalloc$layout() {
+        return e_maxalloc$LAYOUT;
+    }
+
+    private static final long e_maxalloc$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e_maxalloc
+     * }
+     */
+    public static final long e_maxalloc$offset() {
+        return e_maxalloc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e_maxalloc
+     * }
+     */
+    public static short e_maxalloc(MemorySegment struct) {
+        return struct.get(e_maxalloc$LAYOUT, e_maxalloc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e_maxalloc
+     * }
+     */
+    public static void e_maxalloc(MemorySegment struct, short fieldValue) {
+        struct.set(e_maxalloc$LAYOUT, e_maxalloc$OFFSET, fieldValue);
+    }
+
+    private static final OfShort e_ss$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e_ss"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e_ss
+     * }
+     */
+    public static final OfShort e_ss$layout() {
+        return e_ss$LAYOUT;
+    }
+
+    private static final long e_ss$OFFSET = 14;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e_ss
+     * }
+     */
+    public static final long e_ss$offset() {
+        return e_ss$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e_ss
+     * }
+     */
+    public static short e_ss(MemorySegment struct) {
+        return struct.get(e_ss$LAYOUT, e_ss$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e_ss
+     * }
+     */
+    public static void e_ss(MemorySegment struct, short fieldValue) {
+        struct.set(e_ss$LAYOUT, e_ss$OFFSET, fieldValue);
+    }
+
+    private static final OfShort e_sp$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e_sp"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e_sp
+     * }
+     */
+    public static final OfShort e_sp$layout() {
+        return e_sp$LAYOUT;
+    }
+
+    private static final long e_sp$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e_sp
+     * }
+     */
+    public static final long e_sp$offset() {
+        return e_sp$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e_sp
+     * }
+     */
+    public static short e_sp(MemorySegment struct) {
+        return struct.get(e_sp$LAYOUT, e_sp$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e_sp
+     * }
+     */
+    public static void e_sp(MemorySegment struct, short fieldValue) {
+        struct.set(e_sp$LAYOUT, e_sp$OFFSET, fieldValue);
+    }
+
+    private static final OfShort e_csum$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e_csum"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e_csum
+     * }
+     */
+    public static final OfShort e_csum$layout() {
+        return e_csum$LAYOUT;
+    }
+
+    private static final long e_csum$OFFSET = 18;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e_csum
+     * }
+     */
+    public static final long e_csum$offset() {
+        return e_csum$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e_csum
+     * }
+     */
+    public static short e_csum(MemorySegment struct) {
+        return struct.get(e_csum$LAYOUT, e_csum$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e_csum
+     * }
+     */
+    public static void e_csum(MemorySegment struct, short fieldValue) {
+        struct.set(e_csum$LAYOUT, e_csum$OFFSET, fieldValue);
+    }
+
+    private static final OfShort e_ip$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e_ip"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e_ip
+     * }
+     */
+    public static final OfShort e_ip$layout() {
+        return e_ip$LAYOUT;
+    }
+
+    private static final long e_ip$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e_ip
+     * }
+     */
+    public static final long e_ip$offset() {
+        return e_ip$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e_ip
+     * }
+     */
+    public static short e_ip(MemorySegment struct) {
+        return struct.get(e_ip$LAYOUT, e_ip$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e_ip
+     * }
+     */
+    public static void e_ip(MemorySegment struct, short fieldValue) {
+        struct.set(e_ip$LAYOUT, e_ip$OFFSET, fieldValue);
+    }
+
+    private static final OfShort e_cs$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e_cs"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e_cs
+     * }
+     */
+    public static final OfShort e_cs$layout() {
+        return e_cs$LAYOUT;
+    }
+
+    private static final long e_cs$OFFSET = 22;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e_cs
+     * }
+     */
+    public static final long e_cs$offset() {
+        return e_cs$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e_cs
+     * }
+     */
+    public static short e_cs(MemorySegment struct) {
+        return struct.get(e_cs$LAYOUT, e_cs$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e_cs
+     * }
+     */
+    public static void e_cs(MemorySegment struct, short fieldValue) {
+        struct.set(e_cs$LAYOUT, e_cs$OFFSET, fieldValue);
+    }
+
+    private static final OfShort e_lfarlc$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e_lfarlc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e_lfarlc
+     * }
+     */
+    public static final OfShort e_lfarlc$layout() {
+        return e_lfarlc$LAYOUT;
+    }
+
+    private static final long e_lfarlc$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e_lfarlc
+     * }
+     */
+    public static final long e_lfarlc$offset() {
+        return e_lfarlc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e_lfarlc
+     * }
+     */
+    public static short e_lfarlc(MemorySegment struct) {
+        return struct.get(e_lfarlc$LAYOUT, e_lfarlc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e_lfarlc
+     * }
+     */
+    public static void e_lfarlc(MemorySegment struct, short fieldValue) {
+        struct.set(e_lfarlc$LAYOUT, e_lfarlc$OFFSET, fieldValue);
+    }
+
+    private static final OfShort e_ovno$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e_ovno"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e_ovno
+     * }
+     */
+    public static final OfShort e_ovno$layout() {
+        return e_ovno$LAYOUT;
+    }
+
+    private static final long e_ovno$OFFSET = 26;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e_ovno
+     * }
+     */
+    public static final long e_ovno$offset() {
+        return e_ovno$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e_ovno
+     * }
+     */
+    public static short e_ovno(MemorySegment struct) {
+        return struct.get(e_ovno$LAYOUT, e_ovno$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e_ovno
+     * }
+     */
+    public static void e_ovno(MemorySegment struct, short fieldValue) {
+        struct.set(e_ovno$LAYOUT, e_ovno$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout e_res$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("e_res"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e_res[4]
+     * }
+     */
+    public static final SequenceLayout e_res$layout() {
+        return e_res$LAYOUT;
+    }
+
+    private static final long e_res$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e_res[4]
+     * }
+     */
+    public static final long e_res$offset() {
+        return e_res$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e_res[4]
+     * }
+     */
+    public static MemorySegment e_res(MemorySegment struct) {
+        return struct.asSlice(e_res$OFFSET, e_res$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e_res[4]
+     * }
+     */
+    public static void e_res(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, e_res$OFFSET, e_res$LAYOUT.byteSize());
+    }
+
+    private static long[] e_res$DIMS = { 4 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WORD e_res[4]
+     * }
+     */
+    public static long[] e_res$dimensions() {
+        return e_res$DIMS;
+    }
+    private static final VarHandle e_res$ELEM_HANDLE = e_res$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WORD e_res[4]
+     * }
+     */
+    public static short e_res(MemorySegment struct, long index0) {
+        return (short)e_res$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WORD e_res[4]
+     * }
+     */
+    public static void e_res(MemorySegment struct, long index0, short fieldValue) {
+        e_res$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfShort e_oemid$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e_oemid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e_oemid
+     * }
+     */
+    public static final OfShort e_oemid$layout() {
+        return e_oemid$LAYOUT;
+    }
+
+    private static final long e_oemid$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e_oemid
+     * }
+     */
+    public static final long e_oemid$offset() {
+        return e_oemid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e_oemid
+     * }
+     */
+    public static short e_oemid(MemorySegment struct) {
+        return struct.get(e_oemid$LAYOUT, e_oemid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e_oemid
+     * }
+     */
+    public static void e_oemid(MemorySegment struct, short fieldValue) {
+        struct.set(e_oemid$LAYOUT, e_oemid$OFFSET, fieldValue);
+    }
+
+    private static final OfShort e_oeminfo$LAYOUT = (OfShort)$LAYOUT.select(groupElement("e_oeminfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e_oeminfo
+     * }
+     */
+    public static final OfShort e_oeminfo$layout() {
+        return e_oeminfo$LAYOUT;
+    }
+
+    private static final long e_oeminfo$OFFSET = 38;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e_oeminfo
+     * }
+     */
+    public static final long e_oeminfo$offset() {
+        return e_oeminfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e_oeminfo
+     * }
+     */
+    public static short e_oeminfo(MemorySegment struct) {
+        return struct.get(e_oeminfo$LAYOUT, e_oeminfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e_oeminfo
+     * }
+     */
+    public static void e_oeminfo(MemorySegment struct, short fieldValue) {
+        struct.set(e_oeminfo$LAYOUT, e_oeminfo$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout e_res2$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("e_res2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD e_res2[10]
+     * }
+     */
+    public static final SequenceLayout e_res2$layout() {
+        return e_res2$LAYOUT;
+    }
+
+    private static final long e_res2$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD e_res2[10]
+     * }
+     */
+    public static final long e_res2$offset() {
+        return e_res2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD e_res2[10]
+     * }
+     */
+    public static MemorySegment e_res2(MemorySegment struct) {
+        return struct.asSlice(e_res2$OFFSET, e_res2$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD e_res2[10]
+     * }
+     */
+    public static void e_res2(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, e_res2$OFFSET, e_res2$LAYOUT.byteSize());
+    }
+
+    private static long[] e_res2$DIMS = { 10 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WORD e_res2[10]
+     * }
+     */
+    public static long[] e_res2$dimensions() {
+        return e_res2$DIMS;
+    }
+    private static final VarHandle e_res2$ELEM_HANDLE = e_res2$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WORD e_res2[10]
+     * }
+     */
+    public static short e_res2(MemorySegment struct, long index0) {
+        return (short)e_res2$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WORD e_res2[10]
+     * }
+     */
+    public static void e_res2(MemorySegment struct, long index0, short fieldValue) {
+        e_res2$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt e_lfanew$LAYOUT = (OfInt)$LAYOUT.select(groupElement("e_lfanew"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG e_lfanew
+     * }
+     */
+    public static final OfInt e_lfanew$layout() {
+        return e_lfanew$LAYOUT;
+    }
+
+    private static final long e_lfanew$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG e_lfanew
+     * }
+     */
+    public static final long e_lfanew$offset() {
+        return e_lfanew$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG e_lfanew
+     * }
+     */
+    public static int e_lfanew(MemorySegment struct) {
+        return struct.get(e_lfanew$LAYOUT, e_lfanew$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG e_lfanew
+     * }
+     */
+    public static void e_lfanew(MemorySegment struct, int fieldValue) {
+        struct.set(e_lfanew$LAYOUT, e_lfanew$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

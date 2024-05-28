@@ -2,76 +2,219 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _ENCRYPTION_PROTECTOR {
+ *     DWORD cbTotalLength;
+ *     SID *pUserSid;
+ *     LPWSTR lpProtectorDescriptor;
+ * }
+ * }
+ */
 public class _ENCRYPTION_PROTECTOR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbTotalLength"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pUserSid"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpProtectorDescriptor")
-    ).withName("_ENCRYPTION_PROTECTOR");
-    public static MemoryLayout $LAYOUT() {
-        return _ENCRYPTION_PROTECTOR.$struct$LAYOUT;
+    _ENCRYPTION_PROTECTOR() {
+        // Should not be called directly
     }
-    static final VarHandle cbTotalLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbTotalLength"));
-    public static VarHandle cbTotalLength$VH() {
-        return _ENCRYPTION_PROTECTOR.cbTotalLength$VH;
-    }
-    public static int cbTotalLength$get(MemorySegment seg) {
-        return (int)_ENCRYPTION_PROTECTOR.cbTotalLength$VH.get(seg);
-    }
-    public static void cbTotalLength$set( MemorySegment seg, int x) {
-        _ENCRYPTION_PROTECTOR.cbTotalLength$VH.set(seg, x);
-    }
-    public static int cbTotalLength$get(MemorySegment seg, long index) {
-        return (int)_ENCRYPTION_PROTECTOR.cbTotalLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbTotalLength$set(MemorySegment seg, long index, int x) {
-        _ENCRYPTION_PROTECTOR.cbTotalLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pUserSid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pUserSid"));
-    public static VarHandle pUserSid$VH() {
-        return _ENCRYPTION_PROTECTOR.pUserSid$VH;
-    }
-    public static MemoryAddress pUserSid$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_ENCRYPTION_PROTECTOR.pUserSid$VH.get(seg);
-    }
-    public static void pUserSid$set( MemorySegment seg, MemoryAddress x) {
-        _ENCRYPTION_PROTECTOR.pUserSid$VH.set(seg, x);
-    }
-    public static MemoryAddress pUserSid$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_ENCRYPTION_PROTECTOR.pUserSid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pUserSid$set(MemorySegment seg, long index, MemoryAddress x) {
-        _ENCRYPTION_PROTECTOR.pUserSid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpProtectorDescriptor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpProtectorDescriptor"));
-    public static VarHandle lpProtectorDescriptor$VH() {
-        return _ENCRYPTION_PROTECTOR.lpProtectorDescriptor$VH;
-    }
-    public static MemoryAddress lpProtectorDescriptor$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_ENCRYPTION_PROTECTOR.lpProtectorDescriptor$VH.get(seg);
-    }
-    public static void lpProtectorDescriptor$set( MemorySegment seg, MemoryAddress x) {
-        _ENCRYPTION_PROTECTOR.lpProtectorDescriptor$VH.set(seg, x);
-    }
-    public static MemoryAddress lpProtectorDescriptor$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_ENCRYPTION_PROTECTOR.lpProtectorDescriptor$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpProtectorDescriptor$set(MemorySegment seg, long index, MemoryAddress x) {
-        _ENCRYPTION_PROTECTOR.lpProtectorDescriptor$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbTotalLength"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pUserSid"),
+        wgl_h.C_POINTER.withName("lpProtectorDescriptor")
+    ).withName("_ENCRYPTION_PROTECTOR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbTotalLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbTotalLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbTotalLength
+     * }
+     */
+    public static final OfInt cbTotalLength$layout() {
+        return cbTotalLength$LAYOUT;
+    }
+
+    private static final long cbTotalLength$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbTotalLength
+     * }
+     */
+    public static final long cbTotalLength$offset() {
+        return cbTotalLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbTotalLength
+     * }
+     */
+    public static int cbTotalLength(MemorySegment struct) {
+        return struct.get(cbTotalLength$LAYOUT, cbTotalLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbTotalLength
+     * }
+     */
+    public static void cbTotalLength(MemorySegment struct, int fieldValue) {
+        struct.set(cbTotalLength$LAYOUT, cbTotalLength$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pUserSid$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pUserSid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SID *pUserSid
+     * }
+     */
+    public static final AddressLayout pUserSid$layout() {
+        return pUserSid$LAYOUT;
+    }
+
+    private static final long pUserSid$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SID *pUserSid
+     * }
+     */
+    public static final long pUserSid$offset() {
+        return pUserSid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SID *pUserSid
+     * }
+     */
+    public static MemorySegment pUserSid(MemorySegment struct) {
+        return struct.get(pUserSid$LAYOUT, pUserSid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SID *pUserSid
+     * }
+     */
+    public static void pUserSid(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pUserSid$LAYOUT, pUserSid$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpProtectorDescriptor$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpProtectorDescriptor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR lpProtectorDescriptor
+     * }
+     */
+    public static final AddressLayout lpProtectorDescriptor$layout() {
+        return lpProtectorDescriptor$LAYOUT;
+    }
+
+    private static final long lpProtectorDescriptor$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR lpProtectorDescriptor
+     * }
+     */
+    public static final long lpProtectorDescriptor$offset() {
+        return lpProtectorDescriptor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR lpProtectorDescriptor
+     * }
+     */
+    public static MemorySegment lpProtectorDescriptor(MemorySegment struct) {
+        return struct.get(lpProtectorDescriptor$LAYOUT, lpProtectorDescriptor$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR lpProtectorDescriptor
+     * }
+     */
+    public static void lpProtectorDescriptor(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpProtectorDescriptor$LAYOUT, lpProtectorDescriptor$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

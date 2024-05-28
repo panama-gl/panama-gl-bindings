@@ -2,151 +2,640 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION {
+ *     ULONG_PTR ProcessorMask;
+ *     LOGICAL_PROCESSOR_RELATIONSHIP Relationship;
+ *     union {
+ *         struct {
+ *             BYTE Flags;
+ *         } ProcessorCore;
+ *         struct {
+ *             DWORD NodeNumber;
+ *         } NumaNode;
+ *         CACHE_DESCRIPTOR Cache;
+ *         ULONGLONG Reserved[2];
+ *     };
+ * }
+ * }
+ */
 public class _SYSTEM_LOGICAL_PROCESSOR_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ProcessorMask"),
-        Constants$root.C_LONG$LAYOUT.withName("Relationship"),
-        MemoryLayout.paddingLayout(32),
+    _SYSTEM_LOGICAL_PROCESSOR_INFORMATION() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG_LONG.withName("ProcessorMask"),
+        wgl_h.C_INT.withName("Relationship"),
+        MemoryLayout.paddingLayout(4),
         MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_CHAR$LAYOUT.withName("Flags")
-            ).withName("ProcessorCore"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("NodeNumber")
-            ).withName("NumaNode"),
-            MemoryLayout.structLayout(
-                Constants$root.C_CHAR$LAYOUT.withName("Level"),
-                Constants$root.C_CHAR$LAYOUT.withName("Associativity"),
-                Constants$root.C_SHORT$LAYOUT.withName("LineSize"),
-                Constants$root.C_LONG$LAYOUT.withName("Size"),
-                Constants$root.C_LONG$LAYOUT.withName("Type")
-            ).withName("Cache"),
-            MemoryLayout.sequenceLayout(2, Constants$root.C_LONG_LONG$LAYOUT).withName("Reserved")
-        ).withName("$anon$0")
+            _SYSTEM_LOGICAL_PROCESSOR_INFORMATION.ProcessorCore.layout().withName("ProcessorCore"),
+            _SYSTEM_LOGICAL_PROCESSOR_INFORMATION.NumaNode.layout().withName("NumaNode"),
+            _CACHE_DESCRIPTOR.layout().withName("Cache"),
+            MemoryLayout.sequenceLayout(2, wgl_h.C_LONG_LONG).withName("Reserved")
+        ).withName("$anon$12558:5")
     ).withName("_SYSTEM_LOGICAL_PROCESSOR_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return _SYSTEM_LOGICAL_PROCESSOR_INFORMATION.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle ProcessorMask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProcessorMask"));
-    public static VarHandle ProcessorMask$VH() {
-        return _SYSTEM_LOGICAL_PROCESSOR_INFORMATION.ProcessorMask$VH;
+
+    private static final OfLong ProcessorMask$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ProcessorMask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG_PTR ProcessorMask
+     * }
+     */
+    public static final OfLong ProcessorMask$layout() {
+        return ProcessorMask$LAYOUT;
     }
-    public static long ProcessorMask$get(MemorySegment seg) {
-        return (long)_SYSTEM_LOGICAL_PROCESSOR_INFORMATION.ProcessorMask$VH.get(seg);
+
+    private static final long ProcessorMask$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG_PTR ProcessorMask
+     * }
+     */
+    public static final long ProcessorMask$offset() {
+        return ProcessorMask$OFFSET;
     }
-    public static void ProcessorMask$set( MemorySegment seg, long x) {
-        _SYSTEM_LOGICAL_PROCESSOR_INFORMATION.ProcessorMask$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR ProcessorMask
+     * }
+     */
+    public static long ProcessorMask(MemorySegment struct) {
+        return struct.get(ProcessorMask$LAYOUT, ProcessorMask$OFFSET);
     }
-    public static long ProcessorMask$get(MemorySegment seg, long index) {
-        return (long)_SYSTEM_LOGICAL_PROCESSOR_INFORMATION.ProcessorMask$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR ProcessorMask
+     * }
+     */
+    public static void ProcessorMask(MemorySegment struct, long fieldValue) {
+        struct.set(ProcessorMask$LAYOUT, ProcessorMask$OFFSET, fieldValue);
     }
-    public static void ProcessorMask$set(MemorySegment seg, long index, long x) {
-        _SYSTEM_LOGICAL_PROCESSOR_INFORMATION.ProcessorMask$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfInt Relationship$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Relationship"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LOGICAL_PROCESSOR_RELATIONSHIP Relationship
+     * }
+     */
+    public static final OfInt Relationship$layout() {
+        return Relationship$LAYOUT;
     }
-    static final VarHandle Relationship$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Relationship"));
-    public static VarHandle Relationship$VH() {
-        return _SYSTEM_LOGICAL_PROCESSOR_INFORMATION.Relationship$VH;
+
+    private static final long Relationship$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LOGICAL_PROCESSOR_RELATIONSHIP Relationship
+     * }
+     */
+    public static final long Relationship$offset() {
+        return Relationship$OFFSET;
     }
-    public static int Relationship$get(MemorySegment seg) {
-        return (int)_SYSTEM_LOGICAL_PROCESSOR_INFORMATION.Relationship$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LOGICAL_PROCESSOR_RELATIONSHIP Relationship
+     * }
+     */
+    public static int Relationship(MemorySegment struct) {
+        return struct.get(Relationship$LAYOUT, Relationship$OFFSET);
     }
-    public static void Relationship$set( MemorySegment seg, int x) {
-        _SYSTEM_LOGICAL_PROCESSOR_INFORMATION.Relationship$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LOGICAL_PROCESSOR_RELATIONSHIP Relationship
+     * }
+     */
+    public static void Relationship(MemorySegment struct, int fieldValue) {
+        struct.set(Relationship$LAYOUT, Relationship$OFFSET, fieldValue);
     }
-    public static int Relationship$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_LOGICAL_PROCESSOR_INFORMATION.Relationship$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Relationship$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_LOGICAL_PROCESSOR_INFORMATION.Relationship$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * struct {
+     *     BYTE Flags;
+     * }
+     * }
+     */
     public static class ProcessorCore {
 
-        static final  GroupLayout ProcessorCore$struct$LAYOUT = MemoryLayout.structLayout(
-            Constants$root.C_CHAR$LAYOUT.withName("Flags")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return ProcessorCore.ProcessorCore$struct$LAYOUT;
+        ProcessorCore() {
+            // Should not be called directly
         }
-        static final VarHandle Flags$VH = ProcessorCore$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-        public static VarHandle Flags$VH() {
-            return ProcessorCore.Flags$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+            wgl_h.C_CHAR.withName("Flags")
+        ).withName("$anon$12559:9");
+
+        /**
+         * The layout of this struct
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static byte Flags$get(MemorySegment seg) {
-            return (byte)ProcessorCore.Flags$VH.get(seg);
+
+        private static final OfByte Flags$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Flags"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * BYTE Flags
+         * }
+         */
+        public static final OfByte Flags$layout() {
+            return Flags$LAYOUT;
         }
-        public static void Flags$set( MemorySegment seg, byte x) {
-            ProcessorCore.Flags$VH.set(seg, x);
+
+        private static final long Flags$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * BYTE Flags
+         * }
+         */
+        public static final long Flags$offset() {
+            return Flags$OFFSET;
         }
-        public static byte Flags$get(MemorySegment seg, long index) {
-            return (byte)ProcessorCore.Flags$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * BYTE Flags
+         * }
+         */
+        public static byte Flags(MemorySegment struct) {
+            return struct.get(Flags$LAYOUT, Flags$OFFSET);
         }
-        public static void Flags$set(MemorySegment seg, long index, byte x) {
-            ProcessorCore.Flags$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * BYTE Flags
+         * }
+         */
+        public static void Flags(MemorySegment struct, byte fieldValue) {
+            struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * The size (in bytes) of this struct
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment ProcessorCore$slice(MemorySegment seg) {
-        return seg.asSlice(16, 1);
+    private static final GroupLayout ProcessorCore$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$12558:5"), groupElement("ProcessorCore"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct {
+     *     BYTE Flags;
+     * } ProcessorCore
+     * }
+     */
+    public static final GroupLayout ProcessorCore$layout() {
+        return ProcessorCore$LAYOUT;
     }
+
+    private static final long ProcessorCore$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct {
+     *     BYTE Flags;
+     * } ProcessorCore
+     * }
+     */
+    public static final long ProcessorCore$offset() {
+        return ProcessorCore$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     BYTE Flags;
+     * } ProcessorCore
+     * }
+     */
+    public static MemorySegment ProcessorCore(MemorySegment struct) {
+        return struct.asSlice(ProcessorCore$OFFSET, ProcessorCore$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     BYTE Flags;
+     * } ProcessorCore
+     * }
+     */
+    public static void ProcessorCore(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ProcessorCore$OFFSET, ProcessorCore$LAYOUT.byteSize());
+    }
+
+    /**
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD NodeNumber;
+     * }
+     * }
+     */
     public static class NumaNode {
 
-        static final  GroupLayout NumaNode$struct$LAYOUT = MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("NodeNumber")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return NumaNode.NumaNode$struct$LAYOUT;
+        NumaNode() {
+            // Should not be called directly
         }
-        static final VarHandle NodeNumber$VH = NumaNode$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NodeNumber"));
-        public static VarHandle NodeNumber$VH() {
-            return NumaNode.NodeNumber$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+            wgl_h.C_LONG.withName("NodeNumber")
+        ).withName("$anon$12562:9");
+
+        /**
+         * The layout of this struct
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static int NodeNumber$get(MemorySegment seg) {
-            return (int)NumaNode.NodeNumber$VH.get(seg);
+
+        private static final OfInt NodeNumber$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NodeNumber"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD NodeNumber
+         * }
+         */
+        public static final OfInt NodeNumber$layout() {
+            return NodeNumber$LAYOUT;
         }
-        public static void NodeNumber$set( MemorySegment seg, int x) {
-            NumaNode.NodeNumber$VH.set(seg, x);
+
+        private static final long NodeNumber$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD NodeNumber
+         * }
+         */
+        public static final long NodeNumber$offset() {
+            return NodeNumber$OFFSET;
         }
-        public static int NodeNumber$get(MemorySegment seg, long index) {
-            return (int)NumaNode.NodeNumber$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD NodeNumber
+         * }
+         */
+        public static int NodeNumber(MemorySegment struct) {
+            return struct.get(NodeNumber$LAYOUT, NodeNumber$OFFSET);
         }
-        public static void NodeNumber$set(MemorySegment seg, long index, int x) {
-            NumaNode.NodeNumber$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD NodeNumber
+         * }
+         */
+        public static void NodeNumber(MemorySegment struct, int fieldValue) {
+            struct.set(NodeNumber$LAYOUT, NodeNumber$OFFSET, fieldValue);
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * The size (in bytes) of this struct
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment NumaNode$slice(MemorySegment seg) {
-        return seg.asSlice(16, 4);
+    private static final GroupLayout NumaNode$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$12558:5"), groupElement("NumaNode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD NodeNumber;
+     * } NumaNode
+     * }
+     */
+    public static final GroupLayout NumaNode$layout() {
+        return NumaNode$LAYOUT;
     }
-    public static MemorySegment Cache$slice(MemorySegment seg) {
-        return seg.asSlice(16, 12);
+
+    private static final long NumaNode$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD NodeNumber;
+     * } NumaNode
+     * }
+     */
+    public static final long NumaNode$offset() {
+        return NumaNode$OFFSET;
     }
-    public static MemorySegment Reserved$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD NodeNumber;
+     * } NumaNode
+     * }
+     */
+    public static MemorySegment NumaNode(MemorySegment struct) {
+        return struct.asSlice(NumaNode$OFFSET, NumaNode$LAYOUT.byteSize());
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD NodeNumber;
+     * } NumaNode
+     * }
+     */
+    public static void NumaNode(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, NumaNode$OFFSET, NumaNode$LAYOUT.byteSize());
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    private static final GroupLayout Cache$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$12558:5"), groupElement("Cache"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CACHE_DESCRIPTOR Cache
+     * }
+     */
+    public static final GroupLayout Cache$layout() {
+        return Cache$LAYOUT;
+    }
+
+    private static final long Cache$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CACHE_DESCRIPTOR Cache
+     * }
+     */
+    public static final long Cache$offset() {
+        return Cache$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CACHE_DESCRIPTOR Cache
+     * }
+     */
+    public static MemorySegment Cache(MemorySegment struct) {
+        return struct.asSlice(Cache$OFFSET, Cache$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CACHE_DESCRIPTOR Cache
+     * }
+     */
+    public static void Cache(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Cache$OFFSET, Cache$LAYOUT.byteSize());
+    }
+
+    private static final SequenceLayout Reserved$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("$anon$12558:5"), groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG Reserved[2]
+     * }
+     */
+    public static final SequenceLayout Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG Reserved[2]
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG Reserved[2]
+     * }
+     */
+    public static MemorySegment Reserved(MemorySegment struct) {
+        return struct.asSlice(Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG Reserved[2]
+     * }
+     */
+    public static void Reserved(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved$DIMS = { 2 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * ULONGLONG Reserved[2]
+     * }
+     */
+    public static long[] Reserved$dimensions() {
+        return Reserved$DIMS;
+    }
+    private static final VarHandle Reserved$ELEM_HANDLE = Reserved$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG Reserved[2]
+     * }
+     */
+    public static long Reserved(MemorySegment struct, long index0) {
+        return (long)Reserved$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG Reserved[2]
+     * }
+     */
+    public static void Reserved(MemorySegment struct, long index0, long fieldValue) {
+        Reserved$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

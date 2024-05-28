@@ -2,56 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRL_DIST_POINT {
+ *     CRL_DIST_POINT_NAME DistPointName;
+ *     CRYPT_BIT_BLOB ReasonFlags;
+ *     CERT_ALT_NAME_INFO CRLIssuer;
+ * }
+ * }
+ */
 public class _CRL_DIST_POINT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwDistPointNameChoice"),
-            MemoryLayout.paddingLayout(32),
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("cAltEntry"),
-                    MemoryLayout.paddingLayout(32),
-                    Constants$root.C_POINTER$LAYOUT.withName("rgAltEntry")
-                ).withName("FullName")
-            ).withName("$anon$0")
-        ).withName("DistPointName"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData"),
-            Constants$root.C_LONG$LAYOUT.withName("cUnusedBits"),
-            MemoryLayout.paddingLayout(32)
-        ).withName("ReasonFlags"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cAltEntry"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("rgAltEntry")
-        ).withName("CRLIssuer")
-    ).withName("_CRL_DIST_POINT");
-    public static MemoryLayout $LAYOUT() {
-        return _CRL_DIST_POINT.$struct$LAYOUT;
+    _CRL_DIST_POINT() {
+        // Should not be called directly
     }
-    public static MemorySegment DistPointName$slice(MemorySegment seg) {
-        return seg.asSlice(0, 24);
-    }
-    public static MemorySegment ReasonFlags$slice(MemorySegment seg) {
-        return seg.asSlice(24, 24);
-    }
-    public static MemorySegment CRLIssuer$slice(MemorySegment seg) {
-        return seg.asSlice(48, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _CRL_DIST_POINT_NAME.layout().withName("DistPointName"),
+        _CRYPT_BIT_BLOB.layout().withName("ReasonFlags"),
+        _CERT_ALT_NAME_INFO.layout().withName("CRLIssuer")
+    ).withName("_CRL_DIST_POINT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout DistPointName$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("DistPointName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRL_DIST_POINT_NAME DistPointName
+     * }
+     */
+    public static final GroupLayout DistPointName$layout() {
+        return DistPointName$LAYOUT;
+    }
+
+    private static final long DistPointName$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRL_DIST_POINT_NAME DistPointName
+     * }
+     */
+    public static final long DistPointName$offset() {
+        return DistPointName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRL_DIST_POINT_NAME DistPointName
+     * }
+     */
+    public static MemorySegment DistPointName(MemorySegment struct) {
+        return struct.asSlice(DistPointName$OFFSET, DistPointName$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRL_DIST_POINT_NAME DistPointName
+     * }
+     */
+    public static void DistPointName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, DistPointName$OFFSET, DistPointName$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout ReasonFlags$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ReasonFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB ReasonFlags
+     * }
+     */
+    public static final GroupLayout ReasonFlags$layout() {
+        return ReasonFlags$LAYOUT;
+    }
+
+    private static final long ReasonFlags$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB ReasonFlags
+     * }
+     */
+    public static final long ReasonFlags$offset() {
+        return ReasonFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB ReasonFlags
+     * }
+     */
+    public static MemorySegment ReasonFlags(MemorySegment struct) {
+        return struct.asSlice(ReasonFlags$OFFSET, ReasonFlags$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB ReasonFlags
+     * }
+     */
+    public static void ReasonFlags(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ReasonFlags$OFFSET, ReasonFlags$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout CRLIssuer$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("CRLIssuer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CERT_ALT_NAME_INFO CRLIssuer
+     * }
+     */
+    public static final GroupLayout CRLIssuer$layout() {
+        return CRLIssuer$LAYOUT;
+    }
+
+    private static final long CRLIssuer$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CERT_ALT_NAME_INFO CRLIssuer
+     * }
+     */
+    public static final long CRLIssuer$offset() {
+        return CRLIssuer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CERT_ALT_NAME_INFO CRLIssuer
+     * }
+     */
+    public static MemorySegment CRLIssuer(MemorySegment struct) {
+        return struct.asSlice(CRLIssuer$OFFSET, CRLIssuer$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CERT_ALT_NAME_INFO CRLIssuer
+     * }
+     */
+    public static void CRLIssuer(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, CRLIssuer$OFFSET, CRLIssuer$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

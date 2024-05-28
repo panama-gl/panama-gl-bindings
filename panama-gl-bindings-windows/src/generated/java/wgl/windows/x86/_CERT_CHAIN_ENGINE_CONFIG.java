@@ -2,248 +2,681 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_CHAIN_ENGINE_CONFIG {
+ *     DWORD cbSize;
+ *     HCERTSTORE hRestrictedRoot;
+ *     HCERTSTORE hRestrictedTrust;
+ *     HCERTSTORE hRestrictedOther;
+ *     DWORD cAdditionalStore;
+ *     HCERTSTORE *rghAdditionalStore;
+ *     DWORD dwFlags;
+ *     DWORD dwUrlRetrievalTimeout;
+ *     DWORD MaximumCachedCertificates;
+ *     DWORD CycleDetectionModulus;
+ *     HCERTSTORE hExclusiveRoot;
+ *     HCERTSTORE hExclusiveTrustedPeople;
+ *     DWORD dwExclusiveFlags;
+ * }
+ * }
+ */
 public class _CERT_CHAIN_ENGINE_CONFIG {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("hRestrictedRoot"),
-        Constants$root.C_POINTER$LAYOUT.withName("hRestrictedTrust"),
-        Constants$root.C_POINTER$LAYOUT.withName("hRestrictedOther"),
-        Constants$root.C_LONG$LAYOUT.withName("cAdditionalStore"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rghAdditionalStore"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("dwUrlRetrievalTimeout"),
-        Constants$root.C_LONG$LAYOUT.withName("MaximumCachedCertificates"),
-        Constants$root.C_LONG$LAYOUT.withName("CycleDetectionModulus"),
-        Constants$root.C_POINTER$LAYOUT.withName("hExclusiveRoot"),
-        Constants$root.C_POINTER$LAYOUT.withName("hExclusiveTrustedPeople"),
-        Constants$root.C_LONG$LAYOUT.withName("dwExclusiveFlags"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_CERT_CHAIN_ENGINE_CONFIG");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_CHAIN_ENGINE_CONFIG.$struct$LAYOUT;
+    _CERT_CHAIN_ENGINE_CONFIG() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _CERT_CHAIN_ENGINE_CONFIG.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_CERT_CHAIN_ENGINE_CONFIG.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _CERT_CHAIN_ENGINE_CONFIG.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_CERT_CHAIN_ENGINE_CONFIG.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _CERT_CHAIN_ENGINE_CONFIG.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hRestrictedRoot$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hRestrictedRoot"));
-    public static VarHandle hRestrictedRoot$VH() {
-        return _CERT_CHAIN_ENGINE_CONFIG.hRestrictedRoot$VH;
-    }
-    public static MemoryAddress hRestrictedRoot$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_ENGINE_CONFIG.hRestrictedRoot$VH.get(seg);
-    }
-    public static void hRestrictedRoot$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_CHAIN_ENGINE_CONFIG.hRestrictedRoot$VH.set(seg, x);
-    }
-    public static MemoryAddress hRestrictedRoot$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_ENGINE_CONFIG.hRestrictedRoot$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hRestrictedRoot$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_CHAIN_ENGINE_CONFIG.hRestrictedRoot$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hRestrictedTrust$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hRestrictedTrust"));
-    public static VarHandle hRestrictedTrust$VH() {
-        return _CERT_CHAIN_ENGINE_CONFIG.hRestrictedTrust$VH;
-    }
-    public static MemoryAddress hRestrictedTrust$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_ENGINE_CONFIG.hRestrictedTrust$VH.get(seg);
-    }
-    public static void hRestrictedTrust$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_CHAIN_ENGINE_CONFIG.hRestrictedTrust$VH.set(seg, x);
-    }
-    public static MemoryAddress hRestrictedTrust$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_ENGINE_CONFIG.hRestrictedTrust$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hRestrictedTrust$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_CHAIN_ENGINE_CONFIG.hRestrictedTrust$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hRestrictedOther$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hRestrictedOther"));
-    public static VarHandle hRestrictedOther$VH() {
-        return _CERT_CHAIN_ENGINE_CONFIG.hRestrictedOther$VH;
-    }
-    public static MemoryAddress hRestrictedOther$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_ENGINE_CONFIG.hRestrictedOther$VH.get(seg);
-    }
-    public static void hRestrictedOther$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_CHAIN_ENGINE_CONFIG.hRestrictedOther$VH.set(seg, x);
-    }
-    public static MemoryAddress hRestrictedOther$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_ENGINE_CONFIG.hRestrictedOther$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hRestrictedOther$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_CHAIN_ENGINE_CONFIG.hRestrictedOther$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cAdditionalStore$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cAdditionalStore"));
-    public static VarHandle cAdditionalStore$VH() {
-        return _CERT_CHAIN_ENGINE_CONFIG.cAdditionalStore$VH;
-    }
-    public static int cAdditionalStore$get(MemorySegment seg) {
-        return (int)_CERT_CHAIN_ENGINE_CONFIG.cAdditionalStore$VH.get(seg);
-    }
-    public static void cAdditionalStore$set( MemorySegment seg, int x) {
-        _CERT_CHAIN_ENGINE_CONFIG.cAdditionalStore$VH.set(seg, x);
-    }
-    public static int cAdditionalStore$get(MemorySegment seg, long index) {
-        return (int)_CERT_CHAIN_ENGINE_CONFIG.cAdditionalStore$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cAdditionalStore$set(MemorySegment seg, long index, int x) {
-        _CERT_CHAIN_ENGINE_CONFIG.cAdditionalStore$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rghAdditionalStore$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rghAdditionalStore"));
-    public static VarHandle rghAdditionalStore$VH() {
-        return _CERT_CHAIN_ENGINE_CONFIG.rghAdditionalStore$VH;
-    }
-    public static MemoryAddress rghAdditionalStore$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_ENGINE_CONFIG.rghAdditionalStore$VH.get(seg);
-    }
-    public static void rghAdditionalStore$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_CHAIN_ENGINE_CONFIG.rghAdditionalStore$VH.set(seg, x);
-    }
-    public static MemoryAddress rghAdditionalStore$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_ENGINE_CONFIG.rghAdditionalStore$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rghAdditionalStore$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_CHAIN_ENGINE_CONFIG.rghAdditionalStore$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFlags"));
-    public static VarHandle dwFlags$VH() {
-        return _CERT_CHAIN_ENGINE_CONFIG.dwFlags$VH;
-    }
-    public static int dwFlags$get(MemorySegment seg) {
-        return (int)_CERT_CHAIN_ENGINE_CONFIG.dwFlags$VH.get(seg);
-    }
-    public static void dwFlags$set( MemorySegment seg, int x) {
-        _CERT_CHAIN_ENGINE_CONFIG.dwFlags$VH.set(seg, x);
-    }
-    public static int dwFlags$get(MemorySegment seg, long index) {
-        return (int)_CERT_CHAIN_ENGINE_CONFIG.dwFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFlags$set(MemorySegment seg, long index, int x) {
-        _CERT_CHAIN_ENGINE_CONFIG.dwFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwUrlRetrievalTimeout$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwUrlRetrievalTimeout"));
-    public static VarHandle dwUrlRetrievalTimeout$VH() {
-        return _CERT_CHAIN_ENGINE_CONFIG.dwUrlRetrievalTimeout$VH;
-    }
-    public static int dwUrlRetrievalTimeout$get(MemorySegment seg) {
-        return (int)_CERT_CHAIN_ENGINE_CONFIG.dwUrlRetrievalTimeout$VH.get(seg);
-    }
-    public static void dwUrlRetrievalTimeout$set( MemorySegment seg, int x) {
-        _CERT_CHAIN_ENGINE_CONFIG.dwUrlRetrievalTimeout$VH.set(seg, x);
-    }
-    public static int dwUrlRetrievalTimeout$get(MemorySegment seg, long index) {
-        return (int)_CERT_CHAIN_ENGINE_CONFIG.dwUrlRetrievalTimeout$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwUrlRetrievalTimeout$set(MemorySegment seg, long index, int x) {
-        _CERT_CHAIN_ENGINE_CONFIG.dwUrlRetrievalTimeout$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaximumCachedCertificates$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaximumCachedCertificates"));
-    public static VarHandle MaximumCachedCertificates$VH() {
-        return _CERT_CHAIN_ENGINE_CONFIG.MaximumCachedCertificates$VH;
-    }
-    public static int MaximumCachedCertificates$get(MemorySegment seg) {
-        return (int)_CERT_CHAIN_ENGINE_CONFIG.MaximumCachedCertificates$VH.get(seg);
-    }
-    public static void MaximumCachedCertificates$set( MemorySegment seg, int x) {
-        _CERT_CHAIN_ENGINE_CONFIG.MaximumCachedCertificates$VH.set(seg, x);
-    }
-    public static int MaximumCachedCertificates$get(MemorySegment seg, long index) {
-        return (int)_CERT_CHAIN_ENGINE_CONFIG.MaximumCachedCertificates$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaximumCachedCertificates$set(MemorySegment seg, long index, int x) {
-        _CERT_CHAIN_ENGINE_CONFIG.MaximumCachedCertificates$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CycleDetectionModulus$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CycleDetectionModulus"));
-    public static VarHandle CycleDetectionModulus$VH() {
-        return _CERT_CHAIN_ENGINE_CONFIG.CycleDetectionModulus$VH;
-    }
-    public static int CycleDetectionModulus$get(MemorySegment seg) {
-        return (int)_CERT_CHAIN_ENGINE_CONFIG.CycleDetectionModulus$VH.get(seg);
-    }
-    public static void CycleDetectionModulus$set( MemorySegment seg, int x) {
-        _CERT_CHAIN_ENGINE_CONFIG.CycleDetectionModulus$VH.set(seg, x);
-    }
-    public static int CycleDetectionModulus$get(MemorySegment seg, long index) {
-        return (int)_CERT_CHAIN_ENGINE_CONFIG.CycleDetectionModulus$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CycleDetectionModulus$set(MemorySegment seg, long index, int x) {
-        _CERT_CHAIN_ENGINE_CONFIG.CycleDetectionModulus$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hExclusiveRoot$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hExclusiveRoot"));
-    public static VarHandle hExclusiveRoot$VH() {
-        return _CERT_CHAIN_ENGINE_CONFIG.hExclusiveRoot$VH;
-    }
-    public static MemoryAddress hExclusiveRoot$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_ENGINE_CONFIG.hExclusiveRoot$VH.get(seg);
-    }
-    public static void hExclusiveRoot$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_CHAIN_ENGINE_CONFIG.hExclusiveRoot$VH.set(seg, x);
-    }
-    public static MemoryAddress hExclusiveRoot$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_ENGINE_CONFIG.hExclusiveRoot$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hExclusiveRoot$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_CHAIN_ENGINE_CONFIG.hExclusiveRoot$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hExclusiveTrustedPeople$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hExclusiveTrustedPeople"));
-    public static VarHandle hExclusiveTrustedPeople$VH() {
-        return _CERT_CHAIN_ENGINE_CONFIG.hExclusiveTrustedPeople$VH;
-    }
-    public static MemoryAddress hExclusiveTrustedPeople$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_ENGINE_CONFIG.hExclusiveTrustedPeople$VH.get(seg);
-    }
-    public static void hExclusiveTrustedPeople$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_CHAIN_ENGINE_CONFIG.hExclusiveTrustedPeople$VH.set(seg, x);
-    }
-    public static MemoryAddress hExclusiveTrustedPeople$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_CHAIN_ENGINE_CONFIG.hExclusiveTrustedPeople$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hExclusiveTrustedPeople$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_CHAIN_ENGINE_CONFIG.hExclusiveTrustedPeople$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwExclusiveFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwExclusiveFlags"));
-    public static VarHandle dwExclusiveFlags$VH() {
-        return _CERT_CHAIN_ENGINE_CONFIG.dwExclusiveFlags$VH;
-    }
-    public static int dwExclusiveFlags$get(MemorySegment seg) {
-        return (int)_CERT_CHAIN_ENGINE_CONFIG.dwExclusiveFlags$VH.get(seg);
-    }
-    public static void dwExclusiveFlags$set( MemorySegment seg, int x) {
-        _CERT_CHAIN_ENGINE_CONFIG.dwExclusiveFlags$VH.set(seg, x);
-    }
-    public static int dwExclusiveFlags$get(MemorySegment seg, long index) {
-        return (int)_CERT_CHAIN_ENGINE_CONFIG.dwExclusiveFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwExclusiveFlags$set(MemorySegment seg, long index, int x) {
-        _CERT_CHAIN_ENGINE_CONFIG.dwExclusiveFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("hRestrictedRoot"),
+        wgl_h.C_POINTER.withName("hRestrictedTrust"),
+        wgl_h.C_POINTER.withName("hRestrictedOther"),
+        wgl_h.C_LONG.withName("cAdditionalStore"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rghAdditionalStore"),
+        wgl_h.C_LONG.withName("dwFlags"),
+        wgl_h.C_LONG.withName("dwUrlRetrievalTimeout"),
+        wgl_h.C_LONG.withName("MaximumCachedCertificates"),
+        wgl_h.C_LONG.withName("CycleDetectionModulus"),
+        wgl_h.C_POINTER.withName("hExclusiveRoot"),
+        wgl_h.C_POINTER.withName("hExclusiveTrustedPeople"),
+        wgl_h.C_LONG.withName("dwExclusiveFlags"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_CERT_CHAIN_ENGINE_CONFIG");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hRestrictedRoot$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hRestrictedRoot"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hRestrictedRoot
+     * }
+     */
+    public static final AddressLayout hRestrictedRoot$layout() {
+        return hRestrictedRoot$LAYOUT;
+    }
+
+    private static final long hRestrictedRoot$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hRestrictedRoot
+     * }
+     */
+    public static final long hRestrictedRoot$offset() {
+        return hRestrictedRoot$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hRestrictedRoot
+     * }
+     */
+    public static MemorySegment hRestrictedRoot(MemorySegment struct) {
+        return struct.get(hRestrictedRoot$LAYOUT, hRestrictedRoot$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hRestrictedRoot
+     * }
+     */
+    public static void hRestrictedRoot(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hRestrictedRoot$LAYOUT, hRestrictedRoot$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hRestrictedTrust$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hRestrictedTrust"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hRestrictedTrust
+     * }
+     */
+    public static final AddressLayout hRestrictedTrust$layout() {
+        return hRestrictedTrust$LAYOUT;
+    }
+
+    private static final long hRestrictedTrust$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hRestrictedTrust
+     * }
+     */
+    public static final long hRestrictedTrust$offset() {
+        return hRestrictedTrust$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hRestrictedTrust
+     * }
+     */
+    public static MemorySegment hRestrictedTrust(MemorySegment struct) {
+        return struct.get(hRestrictedTrust$LAYOUT, hRestrictedTrust$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hRestrictedTrust
+     * }
+     */
+    public static void hRestrictedTrust(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hRestrictedTrust$LAYOUT, hRestrictedTrust$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hRestrictedOther$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hRestrictedOther"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hRestrictedOther
+     * }
+     */
+    public static final AddressLayout hRestrictedOther$layout() {
+        return hRestrictedOther$LAYOUT;
+    }
+
+    private static final long hRestrictedOther$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hRestrictedOther
+     * }
+     */
+    public static final long hRestrictedOther$offset() {
+        return hRestrictedOther$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hRestrictedOther
+     * }
+     */
+    public static MemorySegment hRestrictedOther(MemorySegment struct) {
+        return struct.get(hRestrictedOther$LAYOUT, hRestrictedOther$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hRestrictedOther
+     * }
+     */
+    public static void hRestrictedOther(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hRestrictedOther$LAYOUT, hRestrictedOther$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cAdditionalStore$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cAdditionalStore"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cAdditionalStore
+     * }
+     */
+    public static final OfInt cAdditionalStore$layout() {
+        return cAdditionalStore$LAYOUT;
+    }
+
+    private static final long cAdditionalStore$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cAdditionalStore
+     * }
+     */
+    public static final long cAdditionalStore$offset() {
+        return cAdditionalStore$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cAdditionalStore
+     * }
+     */
+    public static int cAdditionalStore(MemorySegment struct) {
+        return struct.get(cAdditionalStore$LAYOUT, cAdditionalStore$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cAdditionalStore
+     * }
+     */
+    public static void cAdditionalStore(MemorySegment struct, int fieldValue) {
+        struct.set(cAdditionalStore$LAYOUT, cAdditionalStore$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rghAdditionalStore$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rghAdditionalStore"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HCERTSTORE *rghAdditionalStore
+     * }
+     */
+    public static final AddressLayout rghAdditionalStore$layout() {
+        return rghAdditionalStore$LAYOUT;
+    }
+
+    private static final long rghAdditionalStore$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HCERTSTORE *rghAdditionalStore
+     * }
+     */
+    public static final long rghAdditionalStore$offset() {
+        return rghAdditionalStore$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE *rghAdditionalStore
+     * }
+     */
+    public static MemorySegment rghAdditionalStore(MemorySegment struct) {
+        return struct.get(rghAdditionalStore$LAYOUT, rghAdditionalStore$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE *rghAdditionalStore
+     * }
+     */
+    public static void rghAdditionalStore(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rghAdditionalStore$LAYOUT, rghAdditionalStore$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final OfInt dwFlags$layout() {
+        return dwFlags$LAYOUT;
+    }
+
+    private static final long dwFlags$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final long dwFlags$offset() {
+        return dwFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static int dwFlags(MemorySegment struct) {
+        return struct.get(dwFlags$LAYOUT, dwFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static void dwFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwFlags$LAYOUT, dwFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwUrlRetrievalTimeout$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwUrlRetrievalTimeout"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwUrlRetrievalTimeout
+     * }
+     */
+    public static final OfInt dwUrlRetrievalTimeout$layout() {
+        return dwUrlRetrievalTimeout$LAYOUT;
+    }
+
+    private static final long dwUrlRetrievalTimeout$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwUrlRetrievalTimeout
+     * }
+     */
+    public static final long dwUrlRetrievalTimeout$offset() {
+        return dwUrlRetrievalTimeout$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwUrlRetrievalTimeout
+     * }
+     */
+    public static int dwUrlRetrievalTimeout(MemorySegment struct) {
+        return struct.get(dwUrlRetrievalTimeout$LAYOUT, dwUrlRetrievalTimeout$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwUrlRetrievalTimeout
+     * }
+     */
+    public static void dwUrlRetrievalTimeout(MemorySegment struct, int fieldValue) {
+        struct.set(dwUrlRetrievalTimeout$LAYOUT, dwUrlRetrievalTimeout$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MaximumCachedCertificates$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MaximumCachedCertificates"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MaximumCachedCertificates
+     * }
+     */
+    public static final OfInt MaximumCachedCertificates$layout() {
+        return MaximumCachedCertificates$LAYOUT;
+    }
+
+    private static final long MaximumCachedCertificates$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MaximumCachedCertificates
+     * }
+     */
+    public static final long MaximumCachedCertificates$offset() {
+        return MaximumCachedCertificates$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MaximumCachedCertificates
+     * }
+     */
+    public static int MaximumCachedCertificates(MemorySegment struct) {
+        return struct.get(MaximumCachedCertificates$LAYOUT, MaximumCachedCertificates$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MaximumCachedCertificates
+     * }
+     */
+    public static void MaximumCachedCertificates(MemorySegment struct, int fieldValue) {
+        struct.set(MaximumCachedCertificates$LAYOUT, MaximumCachedCertificates$OFFSET, fieldValue);
+    }
+
+    private static final OfInt CycleDetectionModulus$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CycleDetectionModulus"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD CycleDetectionModulus
+     * }
+     */
+    public static final OfInt CycleDetectionModulus$layout() {
+        return CycleDetectionModulus$LAYOUT;
+    }
+
+    private static final long CycleDetectionModulus$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD CycleDetectionModulus
+     * }
+     */
+    public static final long CycleDetectionModulus$offset() {
+        return CycleDetectionModulus$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD CycleDetectionModulus
+     * }
+     */
+    public static int CycleDetectionModulus(MemorySegment struct) {
+        return struct.get(CycleDetectionModulus$LAYOUT, CycleDetectionModulus$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD CycleDetectionModulus
+     * }
+     */
+    public static void CycleDetectionModulus(MemorySegment struct, int fieldValue) {
+        struct.set(CycleDetectionModulus$LAYOUT, CycleDetectionModulus$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hExclusiveRoot$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hExclusiveRoot"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hExclusiveRoot
+     * }
+     */
+    public static final AddressLayout hExclusiveRoot$layout() {
+        return hExclusiveRoot$LAYOUT;
+    }
+
+    private static final long hExclusiveRoot$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hExclusiveRoot
+     * }
+     */
+    public static final long hExclusiveRoot$offset() {
+        return hExclusiveRoot$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hExclusiveRoot
+     * }
+     */
+    public static MemorySegment hExclusiveRoot(MemorySegment struct) {
+        return struct.get(hExclusiveRoot$LAYOUT, hExclusiveRoot$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hExclusiveRoot
+     * }
+     */
+    public static void hExclusiveRoot(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hExclusiveRoot$LAYOUT, hExclusiveRoot$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hExclusiveTrustedPeople$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hExclusiveTrustedPeople"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hExclusiveTrustedPeople
+     * }
+     */
+    public static final AddressLayout hExclusiveTrustedPeople$layout() {
+        return hExclusiveTrustedPeople$LAYOUT;
+    }
+
+    private static final long hExclusiveTrustedPeople$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hExclusiveTrustedPeople
+     * }
+     */
+    public static final long hExclusiveTrustedPeople$offset() {
+        return hExclusiveTrustedPeople$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hExclusiveTrustedPeople
+     * }
+     */
+    public static MemorySegment hExclusiveTrustedPeople(MemorySegment struct) {
+        return struct.get(hExclusiveTrustedPeople$LAYOUT, hExclusiveTrustedPeople$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hExclusiveTrustedPeople
+     * }
+     */
+    public static void hExclusiveTrustedPeople(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hExclusiveTrustedPeople$LAYOUT, hExclusiveTrustedPeople$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwExclusiveFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwExclusiveFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwExclusiveFlags
+     * }
+     */
+    public static final OfInt dwExclusiveFlags$layout() {
+        return dwExclusiveFlags$LAYOUT;
+    }
+
+    private static final long dwExclusiveFlags$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwExclusiveFlags
+     * }
+     */
+    public static final long dwExclusiveFlags$offset() {
+        return dwExclusiveFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwExclusiveFlags
+     * }
+     */
+    public static int dwExclusiveFlags(MemorySegment struct) {
+        return struct.get(dwExclusiveFlags$LAYOUT, dwExclusiveFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwExclusiveFlags
+     * }
+     */
+    public static void dwExclusiveFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwExclusiveFlags$LAYOUT, dwExclusiveFlags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

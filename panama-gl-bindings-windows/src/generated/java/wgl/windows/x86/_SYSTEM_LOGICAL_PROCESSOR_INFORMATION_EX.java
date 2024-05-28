@@ -2,116 +2,360 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX {
+ *     LOGICAL_PROCESSOR_RELATIONSHIP Relationship;
+ *     DWORD Size;
+ *     union {
+ *         PROCESSOR_RELATIONSHIP Processor;
+ *         NUMA_NODE_RELATIONSHIP NumaNode;
+ *         CACHE_RELATIONSHIP Cache;
+ *         GROUP_RELATIONSHIP Group;
+ *     };
+ * }
+ * }
+ */
 public class _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Relationship"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_CHAR$LAYOUT.withName("Flags"),
-                Constants$root.C_CHAR$LAYOUT.withName("EfficiencyClass"),
-                MemoryLayout.sequenceLayout(20, Constants$root.C_CHAR$LAYOUT).withName("Reserved"),
-                Constants$root.C_SHORT$LAYOUT.withName("GroupCount"),
-                MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Mask"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Group"),
-                    MemoryLayout.sequenceLayout(3, Constants$root.C_SHORT$LAYOUT).withName("Reserved")
-                ).withName("_GROUP_AFFINITY")).withName("GroupMask")
-            ).withName("Processor"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("NodeNumber"),
-                MemoryLayout.sequenceLayout(20, Constants$root.C_CHAR$LAYOUT).withName("Reserved"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Mask"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Group"),
-                    MemoryLayout.sequenceLayout(3, Constants$root.C_SHORT$LAYOUT).withName("Reserved")
-                ).withName("GroupMask")
-            ).withName("NumaNode"),
-            MemoryLayout.structLayout(
-                Constants$root.C_CHAR$LAYOUT.withName("Level"),
-                Constants$root.C_CHAR$LAYOUT.withName("Associativity"),
-                Constants$root.C_SHORT$LAYOUT.withName("LineSize"),
-                Constants$root.C_LONG$LAYOUT.withName("CacheSize"),
-                Constants$root.C_LONG$LAYOUT.withName("Type"),
-                MemoryLayout.sequenceLayout(20, Constants$root.C_CHAR$LAYOUT).withName("Reserved"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Mask"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Group"),
-                    MemoryLayout.sequenceLayout(3, Constants$root.C_SHORT$LAYOUT).withName("Reserved")
-                ).withName("GroupMask")
-            ).withName("Cache"),
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("MaximumGroupCount"),
-                Constants$root.C_SHORT$LAYOUT.withName("ActiveGroupCount"),
-                MemoryLayout.sequenceLayout(20, Constants$root.C_CHAR$LAYOUT).withName("Reserved"),
-                MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-                    Constants$root.C_CHAR$LAYOUT.withName("MaximumProcessorCount"),
-                    Constants$root.C_CHAR$LAYOUT.withName("ActiveProcessorCount"),
-                    MemoryLayout.sequenceLayout(38, Constants$root.C_CHAR$LAYOUT).withName("Reserved"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("ActiveProcessorMask")
-                ).withName("_PROCESSOR_GROUP_INFO")).withName("GroupInfo")
-            ).withName("Group")
-        ).withName("$anon$0")
-    ).withName("_SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX");
-    public static MemoryLayout $LAYOUT() {
-        return _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX.$struct$LAYOUT;
+    _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX() {
+        // Should not be called directly
     }
-    static final VarHandle Relationship$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Relationship"));
-    public static VarHandle Relationship$VH() {
-        return _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX.Relationship$VH;
-    }
-    public static int Relationship$get(MemorySegment seg) {
-        return (int)_SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX.Relationship$VH.get(seg);
-    }
-    public static void Relationship$set( MemorySegment seg, int x) {
-        _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX.Relationship$VH.set(seg, x);
-    }
-    public static int Relationship$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX.Relationship$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Relationship$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX.Relationship$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Processor$slice(MemorySegment seg) {
-        return seg.asSlice(8, 40);
-    }
-    public static MemorySegment NumaNode$slice(MemorySegment seg) {
-        return seg.asSlice(8, 40);
-    }
-    public static MemorySegment Cache$slice(MemorySegment seg) {
-        return seg.asSlice(8, 48);
-    }
-    public static MemorySegment Group$slice(MemorySegment seg) {
-        return seg.asSlice(8, 72);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("Relationship"),
+        wgl_h.C_LONG.withName("Size"),
+        MemoryLayout.unionLayout(
+            _PROCESSOR_RELATIONSHIP.layout().withName("Processor"),
+            _NUMA_NODE_RELATIONSHIP.layout().withName("NumaNode"),
+            _CACHE_RELATIONSHIP.layout().withName("Cache"),
+            _GROUP_RELATIONSHIP.layout().withName("Group")
+        ).withName("$anon$12611:5")
+    ).withName("_SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Relationship$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Relationship"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LOGICAL_PROCESSOR_RELATIONSHIP Relationship
+     * }
+     */
+    public static final OfInt Relationship$layout() {
+        return Relationship$LAYOUT;
+    }
+
+    private static final long Relationship$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LOGICAL_PROCESSOR_RELATIONSHIP Relationship
+     * }
+     */
+    public static final long Relationship$offset() {
+        return Relationship$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LOGICAL_PROCESSOR_RELATIONSHIP Relationship
+     * }
+     */
+    public static int Relationship(MemorySegment struct) {
+        return struct.get(Relationship$LAYOUT, Relationship$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LOGICAL_PROCESSOR_RELATIONSHIP Relationship
+     * }
+     */
+    public static void Relationship(MemorySegment struct, int fieldValue) {
+        struct.set(Relationship$LAYOUT, Relationship$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout Processor$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$12611:5"), groupElement("Processor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PROCESSOR_RELATIONSHIP Processor
+     * }
+     */
+    public static final GroupLayout Processor$layout() {
+        return Processor$LAYOUT;
+    }
+
+    private static final long Processor$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PROCESSOR_RELATIONSHIP Processor
+     * }
+     */
+    public static final long Processor$offset() {
+        return Processor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PROCESSOR_RELATIONSHIP Processor
+     * }
+     */
+    public static MemorySegment Processor(MemorySegment struct) {
+        return struct.asSlice(Processor$OFFSET, Processor$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PROCESSOR_RELATIONSHIP Processor
+     * }
+     */
+    public static void Processor(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Processor$OFFSET, Processor$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout NumaNode$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$12611:5"), groupElement("NumaNode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * NUMA_NODE_RELATIONSHIP NumaNode
+     * }
+     */
+    public static final GroupLayout NumaNode$layout() {
+        return NumaNode$LAYOUT;
+    }
+
+    private static final long NumaNode$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * NUMA_NODE_RELATIONSHIP NumaNode
+     * }
+     */
+    public static final long NumaNode$offset() {
+        return NumaNode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * NUMA_NODE_RELATIONSHIP NumaNode
+     * }
+     */
+    public static MemorySegment NumaNode(MemorySegment struct) {
+        return struct.asSlice(NumaNode$OFFSET, NumaNode$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * NUMA_NODE_RELATIONSHIP NumaNode
+     * }
+     */
+    public static void NumaNode(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, NumaNode$OFFSET, NumaNode$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Cache$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$12611:5"), groupElement("Cache"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CACHE_RELATIONSHIP Cache
+     * }
+     */
+    public static final GroupLayout Cache$layout() {
+        return Cache$LAYOUT;
+    }
+
+    private static final long Cache$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CACHE_RELATIONSHIP Cache
+     * }
+     */
+    public static final long Cache$offset() {
+        return Cache$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CACHE_RELATIONSHIP Cache
+     * }
+     */
+    public static MemorySegment Cache(MemorySegment struct) {
+        return struct.asSlice(Cache$OFFSET, Cache$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CACHE_RELATIONSHIP Cache
+     * }
+     */
+    public static void Cache(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Cache$OFFSET, Cache$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Group$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$12611:5"), groupElement("Group"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GROUP_RELATIONSHIP Group
+     * }
+     */
+    public static final GroupLayout Group$layout() {
+        return Group$LAYOUT;
+    }
+
+    private static final long Group$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GROUP_RELATIONSHIP Group
+     * }
+     */
+    public static final long Group$offset() {
+        return Group$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GROUP_RELATIONSHIP Group
+     * }
+     */
+    public static MemorySegment Group(MemorySegment struct) {
+        return struct.asSlice(Group$OFFSET, Group$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GROUP_RELATIONSHIP Group
+     * }
+     */
+    public static void Group(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Group$OFFSET, Group$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

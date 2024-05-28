@@ -2,160 +2,448 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagMCI_SEQ_SET_PARMS {
+ *     DWORD_PTR dwCallback;
+ *     DWORD dwTimeFormat;
+ *     DWORD dwAudio;
+ *     DWORD dwTempo;
+ *     DWORD dwPort;
+ *     DWORD dwSlave;
+ *     DWORD dwMaster;
+ *     DWORD dwOffset;
+ * }
+ * }
+ */
 public class tagMCI_SEQ_SET_PARMS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("dwCallback"),
-        Constants$root.C_LONG$LAYOUT.withName("dwTimeFormat"),
-        Constants$root.C_LONG$LAYOUT.withName("dwAudio"),
-        Constants$root.C_LONG$LAYOUT.withName("dwTempo"),
-        Constants$root.C_LONG$LAYOUT.withName("dwPort"),
-        Constants$root.C_LONG$LAYOUT.withName("dwSlave"),
-        Constants$root.C_LONG$LAYOUT.withName("dwMaster"),
-        Constants$root.C_LONG$LAYOUT.withName("dwOffset")
-    ).withName("tagMCI_SEQ_SET_PARMS");
-    public static MemoryLayout $LAYOUT() {
-        return tagMCI_SEQ_SET_PARMS.$struct$LAYOUT;
+    tagMCI_SEQ_SET_PARMS() {
+        // Should not be called directly
     }
-    static final VarHandle dwCallback$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwCallback"));
-    public static VarHandle dwCallback$VH() {
-        return tagMCI_SEQ_SET_PARMS.dwCallback$VH;
-    }
-    public static long dwCallback$get(MemorySegment seg) {
-        return (long)tagMCI_SEQ_SET_PARMS.dwCallback$VH.get(seg);
-    }
-    public static void dwCallback$set( MemorySegment seg, long x) {
-        tagMCI_SEQ_SET_PARMS.dwCallback$VH.set(seg, x);
-    }
-    public static long dwCallback$get(MemorySegment seg, long index) {
-        return (long)tagMCI_SEQ_SET_PARMS.dwCallback$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwCallback$set(MemorySegment seg, long index, long x) {
-        tagMCI_SEQ_SET_PARMS.dwCallback$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwTimeFormat$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwTimeFormat"));
-    public static VarHandle dwTimeFormat$VH() {
-        return tagMCI_SEQ_SET_PARMS.dwTimeFormat$VH;
-    }
-    public static int dwTimeFormat$get(MemorySegment seg) {
-        return (int)tagMCI_SEQ_SET_PARMS.dwTimeFormat$VH.get(seg);
-    }
-    public static void dwTimeFormat$set( MemorySegment seg, int x) {
-        tagMCI_SEQ_SET_PARMS.dwTimeFormat$VH.set(seg, x);
-    }
-    public static int dwTimeFormat$get(MemorySegment seg, long index) {
-        return (int)tagMCI_SEQ_SET_PARMS.dwTimeFormat$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwTimeFormat$set(MemorySegment seg, long index, int x) {
-        tagMCI_SEQ_SET_PARMS.dwTimeFormat$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwAudio$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwAudio"));
-    public static VarHandle dwAudio$VH() {
-        return tagMCI_SEQ_SET_PARMS.dwAudio$VH;
-    }
-    public static int dwAudio$get(MemorySegment seg) {
-        return (int)tagMCI_SEQ_SET_PARMS.dwAudio$VH.get(seg);
-    }
-    public static void dwAudio$set( MemorySegment seg, int x) {
-        tagMCI_SEQ_SET_PARMS.dwAudio$VH.set(seg, x);
-    }
-    public static int dwAudio$get(MemorySegment seg, long index) {
-        return (int)tagMCI_SEQ_SET_PARMS.dwAudio$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwAudio$set(MemorySegment seg, long index, int x) {
-        tagMCI_SEQ_SET_PARMS.dwAudio$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwTempo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwTempo"));
-    public static VarHandle dwTempo$VH() {
-        return tagMCI_SEQ_SET_PARMS.dwTempo$VH;
-    }
-    public static int dwTempo$get(MemorySegment seg) {
-        return (int)tagMCI_SEQ_SET_PARMS.dwTempo$VH.get(seg);
-    }
-    public static void dwTempo$set( MemorySegment seg, int x) {
-        tagMCI_SEQ_SET_PARMS.dwTempo$VH.set(seg, x);
-    }
-    public static int dwTempo$get(MemorySegment seg, long index) {
-        return (int)tagMCI_SEQ_SET_PARMS.dwTempo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwTempo$set(MemorySegment seg, long index, int x) {
-        tagMCI_SEQ_SET_PARMS.dwTempo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwPort$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwPort"));
-    public static VarHandle dwPort$VH() {
-        return tagMCI_SEQ_SET_PARMS.dwPort$VH;
-    }
-    public static int dwPort$get(MemorySegment seg) {
-        return (int)tagMCI_SEQ_SET_PARMS.dwPort$VH.get(seg);
-    }
-    public static void dwPort$set( MemorySegment seg, int x) {
-        tagMCI_SEQ_SET_PARMS.dwPort$VH.set(seg, x);
-    }
-    public static int dwPort$get(MemorySegment seg, long index) {
-        return (int)tagMCI_SEQ_SET_PARMS.dwPort$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwPort$set(MemorySegment seg, long index, int x) {
-        tagMCI_SEQ_SET_PARMS.dwPort$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwSlave$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwSlave"));
-    public static VarHandle dwSlave$VH() {
-        return tagMCI_SEQ_SET_PARMS.dwSlave$VH;
-    }
-    public static int dwSlave$get(MemorySegment seg) {
-        return (int)tagMCI_SEQ_SET_PARMS.dwSlave$VH.get(seg);
-    }
-    public static void dwSlave$set( MemorySegment seg, int x) {
-        tagMCI_SEQ_SET_PARMS.dwSlave$VH.set(seg, x);
-    }
-    public static int dwSlave$get(MemorySegment seg, long index) {
-        return (int)tagMCI_SEQ_SET_PARMS.dwSlave$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwSlave$set(MemorySegment seg, long index, int x) {
-        tagMCI_SEQ_SET_PARMS.dwSlave$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwMaster$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwMaster"));
-    public static VarHandle dwMaster$VH() {
-        return tagMCI_SEQ_SET_PARMS.dwMaster$VH;
-    }
-    public static int dwMaster$get(MemorySegment seg) {
-        return (int)tagMCI_SEQ_SET_PARMS.dwMaster$VH.get(seg);
-    }
-    public static void dwMaster$set( MemorySegment seg, int x) {
-        tagMCI_SEQ_SET_PARMS.dwMaster$VH.set(seg, x);
-    }
-    public static int dwMaster$get(MemorySegment seg, long index) {
-        return (int)tagMCI_SEQ_SET_PARMS.dwMaster$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwMaster$set(MemorySegment seg, long index, int x) {
-        tagMCI_SEQ_SET_PARMS.dwMaster$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwOffset"));
-    public static VarHandle dwOffset$VH() {
-        return tagMCI_SEQ_SET_PARMS.dwOffset$VH;
-    }
-    public static int dwOffset$get(MemorySegment seg) {
-        return (int)tagMCI_SEQ_SET_PARMS.dwOffset$VH.get(seg);
-    }
-    public static void dwOffset$set( MemorySegment seg, int x) {
-        tagMCI_SEQ_SET_PARMS.dwOffset$VH.set(seg, x);
-    }
-    public static int dwOffset$get(MemorySegment seg, long index) {
-        return (int)tagMCI_SEQ_SET_PARMS.dwOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwOffset$set(MemorySegment seg, long index, int x) {
-        tagMCI_SEQ_SET_PARMS.dwOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.align(wgl_h.C_LONG_LONG, 1).withName("dwCallback"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwTimeFormat"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwAudio"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwTempo"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwPort"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwSlave"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwMaster"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwOffset")
+    ).withName("tagMCI_SEQ_SET_PARMS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong dwCallback$LAYOUT = (OfLong)$LAYOUT.select(groupElement("dwCallback"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwCallback
+     * }
+     */
+    public static final OfLong dwCallback$layout() {
+        return dwCallback$LAYOUT;
+    }
+
+    private static final long dwCallback$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwCallback
+     * }
+     */
+    public static final long dwCallback$offset() {
+        return dwCallback$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwCallback
+     * }
+     */
+    public static long dwCallback(MemorySegment struct) {
+        return struct.get(dwCallback$LAYOUT, dwCallback$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwCallback
+     * }
+     */
+    public static void dwCallback(MemorySegment struct, long fieldValue) {
+        struct.set(dwCallback$LAYOUT, dwCallback$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwTimeFormat$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwTimeFormat"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwTimeFormat
+     * }
+     */
+    public static final OfInt dwTimeFormat$layout() {
+        return dwTimeFormat$LAYOUT;
+    }
+
+    private static final long dwTimeFormat$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwTimeFormat
+     * }
+     */
+    public static final long dwTimeFormat$offset() {
+        return dwTimeFormat$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwTimeFormat
+     * }
+     */
+    public static int dwTimeFormat(MemorySegment struct) {
+        return struct.get(dwTimeFormat$LAYOUT, dwTimeFormat$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwTimeFormat
+     * }
+     */
+    public static void dwTimeFormat(MemorySegment struct, int fieldValue) {
+        struct.set(dwTimeFormat$LAYOUT, dwTimeFormat$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwAudio$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwAudio"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwAudio
+     * }
+     */
+    public static final OfInt dwAudio$layout() {
+        return dwAudio$LAYOUT;
+    }
+
+    private static final long dwAudio$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwAudio
+     * }
+     */
+    public static final long dwAudio$offset() {
+        return dwAudio$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwAudio
+     * }
+     */
+    public static int dwAudio(MemorySegment struct) {
+        return struct.get(dwAudio$LAYOUT, dwAudio$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwAudio
+     * }
+     */
+    public static void dwAudio(MemorySegment struct, int fieldValue) {
+        struct.set(dwAudio$LAYOUT, dwAudio$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwTempo$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwTempo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwTempo
+     * }
+     */
+    public static final OfInt dwTempo$layout() {
+        return dwTempo$LAYOUT;
+    }
+
+    private static final long dwTempo$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwTempo
+     * }
+     */
+    public static final long dwTempo$offset() {
+        return dwTempo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwTempo
+     * }
+     */
+    public static int dwTempo(MemorySegment struct) {
+        return struct.get(dwTempo$LAYOUT, dwTempo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwTempo
+     * }
+     */
+    public static void dwTempo(MemorySegment struct, int fieldValue) {
+        struct.set(dwTempo$LAYOUT, dwTempo$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwPort$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwPort"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwPort
+     * }
+     */
+    public static final OfInt dwPort$layout() {
+        return dwPort$LAYOUT;
+    }
+
+    private static final long dwPort$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwPort
+     * }
+     */
+    public static final long dwPort$offset() {
+        return dwPort$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwPort
+     * }
+     */
+    public static int dwPort(MemorySegment struct) {
+        return struct.get(dwPort$LAYOUT, dwPort$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwPort
+     * }
+     */
+    public static void dwPort(MemorySegment struct, int fieldValue) {
+        struct.set(dwPort$LAYOUT, dwPort$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwSlave$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwSlave"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwSlave
+     * }
+     */
+    public static final OfInt dwSlave$layout() {
+        return dwSlave$LAYOUT;
+    }
+
+    private static final long dwSlave$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwSlave
+     * }
+     */
+    public static final long dwSlave$offset() {
+        return dwSlave$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwSlave
+     * }
+     */
+    public static int dwSlave(MemorySegment struct) {
+        return struct.get(dwSlave$LAYOUT, dwSlave$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwSlave
+     * }
+     */
+    public static void dwSlave(MemorySegment struct, int fieldValue) {
+        struct.set(dwSlave$LAYOUT, dwSlave$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwMaster$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwMaster"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwMaster
+     * }
+     */
+    public static final OfInt dwMaster$layout() {
+        return dwMaster$LAYOUT;
+    }
+
+    private static final long dwMaster$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwMaster
+     * }
+     */
+    public static final long dwMaster$offset() {
+        return dwMaster$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwMaster
+     * }
+     */
+    public static int dwMaster(MemorySegment struct) {
+        return struct.get(dwMaster$LAYOUT, dwMaster$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwMaster
+     * }
+     */
+    public static void dwMaster(MemorySegment struct, int fieldValue) {
+        struct.set(dwMaster$LAYOUT, dwMaster$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwOffset
+     * }
+     */
+    public static final OfInt dwOffset$layout() {
+        return dwOffset$LAYOUT;
+    }
+
+    private static final long dwOffset$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwOffset
+     * }
+     */
+    public static final long dwOffset$offset() {
+        return dwOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwOffset
+     * }
+     */
+    public static int dwOffset(MemorySegment struct) {
+        return struct.get(dwOffset$LAYOUT, dwOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwOffset
+     * }
+     */
+    public static void dwOffset(MemorySegment struct, int fieldValue) {
+        struct.set(dwOffset$LAYOUT, dwOffset$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

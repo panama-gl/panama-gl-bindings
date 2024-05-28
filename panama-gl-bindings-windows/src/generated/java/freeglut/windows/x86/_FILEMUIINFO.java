@@ -2,206 +2,777 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _FILEMUIINFO {
+ *     DWORD dwSize;
+ *     DWORD dwVersion;
+ *     DWORD dwFileType;
+ *     BYTE pChecksum[16];
+ *     BYTE pServiceChecksum[16];
+ *     DWORD dwLanguageNameOffset;
+ *     DWORD dwTypeIDMainSize;
+ *     DWORD dwTypeIDMainOffset;
+ *     DWORD dwTypeNameMainOffset;
+ *     DWORD dwTypeIDMUISize;
+ *     DWORD dwTypeIDMUIOffset;
+ *     DWORD dwTypeNameMUIOffset;
+ *     BYTE abBuffer[8];
+ * }
+ * }
+ */
 public class _FILEMUIINFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwSize"),
-        Constants$root.C_LONG$LAYOUT.withName("dwVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFileType"),
-        MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("pChecksum"),
-        MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("pServiceChecksum"),
-        Constants$root.C_LONG$LAYOUT.withName("dwLanguageNameOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("dwTypeIDMainSize"),
-        Constants$root.C_LONG$LAYOUT.withName("dwTypeIDMainOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("dwTypeNameMainOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("dwTypeIDMUISize"),
-        Constants$root.C_LONG$LAYOUT.withName("dwTypeIDMUIOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("dwTypeNameMUIOffset"),
-        MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("abBuffer")
-    ).withName("_FILEMUIINFO");
-    public static MemoryLayout $LAYOUT() {
-        return _FILEMUIINFO.$struct$LAYOUT;
+    _FILEMUIINFO() {
+        // Should not be called directly
     }
-    static final VarHandle dwSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwSize"));
-    public static VarHandle dwSize$VH() {
-        return _FILEMUIINFO.dwSize$VH;
-    }
-    public static int dwSize$get(MemorySegment seg) {
-        return (int)_FILEMUIINFO.dwSize$VH.get(seg);
-    }
-    public static void dwSize$set( MemorySegment seg, int x) {
-        _FILEMUIINFO.dwSize$VH.set(seg, x);
-    }
-    public static int dwSize$get(MemorySegment seg, long index) {
-        return (int)_FILEMUIINFO.dwSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwSize$set(MemorySegment seg, long index, int x) {
-        _FILEMUIINFO.dwSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwVersion"));
-    public static VarHandle dwVersion$VH() {
-        return _FILEMUIINFO.dwVersion$VH;
-    }
-    public static int dwVersion$get(MemorySegment seg) {
-        return (int)_FILEMUIINFO.dwVersion$VH.get(seg);
-    }
-    public static void dwVersion$set( MemorySegment seg, int x) {
-        _FILEMUIINFO.dwVersion$VH.set(seg, x);
-    }
-    public static int dwVersion$get(MemorySegment seg, long index) {
-        return (int)_FILEMUIINFO.dwVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwVersion$set(MemorySegment seg, long index, int x) {
-        _FILEMUIINFO.dwVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFileType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFileType"));
-    public static VarHandle dwFileType$VH() {
-        return _FILEMUIINFO.dwFileType$VH;
-    }
-    public static int dwFileType$get(MemorySegment seg) {
-        return (int)_FILEMUIINFO.dwFileType$VH.get(seg);
-    }
-    public static void dwFileType$set( MemorySegment seg, int x) {
-        _FILEMUIINFO.dwFileType$VH.set(seg, x);
-    }
-    public static int dwFileType$get(MemorySegment seg, long index) {
-        return (int)_FILEMUIINFO.dwFileType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFileType$set(MemorySegment seg, long index, int x) {
-        _FILEMUIINFO.dwFileType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment pChecksum$slice(MemorySegment seg) {
-        return seg.asSlice(12, 16);
-    }
-    public static MemorySegment pServiceChecksum$slice(MemorySegment seg) {
-        return seg.asSlice(28, 16);
-    }
-    static final VarHandle dwLanguageNameOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwLanguageNameOffset"));
-    public static VarHandle dwLanguageNameOffset$VH() {
-        return _FILEMUIINFO.dwLanguageNameOffset$VH;
-    }
-    public static int dwLanguageNameOffset$get(MemorySegment seg) {
-        return (int)_FILEMUIINFO.dwLanguageNameOffset$VH.get(seg);
-    }
-    public static void dwLanguageNameOffset$set( MemorySegment seg, int x) {
-        _FILEMUIINFO.dwLanguageNameOffset$VH.set(seg, x);
-    }
-    public static int dwLanguageNameOffset$get(MemorySegment seg, long index) {
-        return (int)_FILEMUIINFO.dwLanguageNameOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwLanguageNameOffset$set(MemorySegment seg, long index, int x) {
-        _FILEMUIINFO.dwLanguageNameOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwTypeIDMainSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwTypeIDMainSize"));
-    public static VarHandle dwTypeIDMainSize$VH() {
-        return _FILEMUIINFO.dwTypeIDMainSize$VH;
-    }
-    public static int dwTypeIDMainSize$get(MemorySegment seg) {
-        return (int)_FILEMUIINFO.dwTypeIDMainSize$VH.get(seg);
-    }
-    public static void dwTypeIDMainSize$set( MemorySegment seg, int x) {
-        _FILEMUIINFO.dwTypeIDMainSize$VH.set(seg, x);
-    }
-    public static int dwTypeIDMainSize$get(MemorySegment seg, long index) {
-        return (int)_FILEMUIINFO.dwTypeIDMainSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwTypeIDMainSize$set(MemorySegment seg, long index, int x) {
-        _FILEMUIINFO.dwTypeIDMainSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwTypeIDMainOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwTypeIDMainOffset"));
-    public static VarHandle dwTypeIDMainOffset$VH() {
-        return _FILEMUIINFO.dwTypeIDMainOffset$VH;
-    }
-    public static int dwTypeIDMainOffset$get(MemorySegment seg) {
-        return (int)_FILEMUIINFO.dwTypeIDMainOffset$VH.get(seg);
-    }
-    public static void dwTypeIDMainOffset$set( MemorySegment seg, int x) {
-        _FILEMUIINFO.dwTypeIDMainOffset$VH.set(seg, x);
-    }
-    public static int dwTypeIDMainOffset$get(MemorySegment seg, long index) {
-        return (int)_FILEMUIINFO.dwTypeIDMainOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwTypeIDMainOffset$set(MemorySegment seg, long index, int x) {
-        _FILEMUIINFO.dwTypeIDMainOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwTypeNameMainOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwTypeNameMainOffset"));
-    public static VarHandle dwTypeNameMainOffset$VH() {
-        return _FILEMUIINFO.dwTypeNameMainOffset$VH;
-    }
-    public static int dwTypeNameMainOffset$get(MemorySegment seg) {
-        return (int)_FILEMUIINFO.dwTypeNameMainOffset$VH.get(seg);
-    }
-    public static void dwTypeNameMainOffset$set( MemorySegment seg, int x) {
-        _FILEMUIINFO.dwTypeNameMainOffset$VH.set(seg, x);
-    }
-    public static int dwTypeNameMainOffset$get(MemorySegment seg, long index) {
-        return (int)_FILEMUIINFO.dwTypeNameMainOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwTypeNameMainOffset$set(MemorySegment seg, long index, int x) {
-        _FILEMUIINFO.dwTypeNameMainOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwTypeIDMUISize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwTypeIDMUISize"));
-    public static VarHandle dwTypeIDMUISize$VH() {
-        return _FILEMUIINFO.dwTypeIDMUISize$VH;
-    }
-    public static int dwTypeIDMUISize$get(MemorySegment seg) {
-        return (int)_FILEMUIINFO.dwTypeIDMUISize$VH.get(seg);
-    }
-    public static void dwTypeIDMUISize$set( MemorySegment seg, int x) {
-        _FILEMUIINFO.dwTypeIDMUISize$VH.set(seg, x);
-    }
-    public static int dwTypeIDMUISize$get(MemorySegment seg, long index) {
-        return (int)_FILEMUIINFO.dwTypeIDMUISize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwTypeIDMUISize$set(MemorySegment seg, long index, int x) {
-        _FILEMUIINFO.dwTypeIDMUISize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwTypeIDMUIOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwTypeIDMUIOffset"));
-    public static VarHandle dwTypeIDMUIOffset$VH() {
-        return _FILEMUIINFO.dwTypeIDMUIOffset$VH;
-    }
-    public static int dwTypeIDMUIOffset$get(MemorySegment seg) {
-        return (int)_FILEMUIINFO.dwTypeIDMUIOffset$VH.get(seg);
-    }
-    public static void dwTypeIDMUIOffset$set( MemorySegment seg, int x) {
-        _FILEMUIINFO.dwTypeIDMUIOffset$VH.set(seg, x);
-    }
-    public static int dwTypeIDMUIOffset$get(MemorySegment seg, long index) {
-        return (int)_FILEMUIINFO.dwTypeIDMUIOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwTypeIDMUIOffset$set(MemorySegment seg, long index, int x) {
-        _FILEMUIINFO.dwTypeIDMUIOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwTypeNameMUIOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwTypeNameMUIOffset"));
-    public static VarHandle dwTypeNameMUIOffset$VH() {
-        return _FILEMUIINFO.dwTypeNameMUIOffset$VH;
-    }
-    public static int dwTypeNameMUIOffset$get(MemorySegment seg) {
-        return (int)_FILEMUIINFO.dwTypeNameMUIOffset$VH.get(seg);
-    }
-    public static void dwTypeNameMUIOffset$set( MemorySegment seg, int x) {
-        _FILEMUIINFO.dwTypeNameMUIOffset$VH.set(seg, x);
-    }
-    public static int dwTypeNameMUIOffset$get(MemorySegment seg, long index) {
-        return (int)_FILEMUIINFO.dwTypeNameMUIOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwTypeNameMUIOffset$set(MemorySegment seg, long index, int x) {
-        _FILEMUIINFO.dwTypeNameMUIOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment abBuffer$slice(MemorySegment seg) {
-        return seg.asSlice(72, 8);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("dwSize"),
+        freeglut_h.C_LONG.withName("dwVersion"),
+        freeglut_h.C_LONG.withName("dwFileType"),
+        MemoryLayout.sequenceLayout(16, freeglut_h.C_CHAR).withName("pChecksum"),
+        MemoryLayout.sequenceLayout(16, freeglut_h.C_CHAR).withName("pServiceChecksum"),
+        freeglut_h.C_LONG.withName("dwLanguageNameOffset"),
+        freeglut_h.C_LONG.withName("dwTypeIDMainSize"),
+        freeglut_h.C_LONG.withName("dwTypeIDMainOffset"),
+        freeglut_h.C_LONG.withName("dwTypeNameMainOffset"),
+        freeglut_h.C_LONG.withName("dwTypeIDMUISize"),
+        freeglut_h.C_LONG.withName("dwTypeIDMUIOffset"),
+        freeglut_h.C_LONG.withName("dwTypeNameMUIOffset"),
+        MemoryLayout.sequenceLayout(8, freeglut_h.C_CHAR).withName("abBuffer")
+    ).withName("_FILEMUIINFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwSize
+     * }
+     */
+    public static final OfInt dwSize$layout() {
+        return dwSize$LAYOUT;
+    }
+
+    private static final long dwSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwSize
+     * }
+     */
+    public static final long dwSize$offset() {
+        return dwSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwSize
+     * }
+     */
+    public static int dwSize(MemorySegment struct) {
+        return struct.get(dwSize$LAYOUT, dwSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwSize
+     * }
+     */
+    public static void dwSize(MemorySegment struct, int fieldValue) {
+        struct.set(dwSize$LAYOUT, dwSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final OfInt dwVersion$layout() {
+        return dwVersion$LAYOUT;
+    }
+
+    private static final long dwVersion$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final long dwVersion$offset() {
+        return dwVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static int dwVersion(MemorySegment struct) {
+        return struct.get(dwVersion$LAYOUT, dwVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static void dwVersion(MemorySegment struct, int fieldValue) {
+        struct.set(dwVersion$LAYOUT, dwVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFileType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFileType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFileType
+     * }
+     */
+    public static final OfInt dwFileType$layout() {
+        return dwFileType$LAYOUT;
+    }
+
+    private static final long dwFileType$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFileType
+     * }
+     */
+    public static final long dwFileType$offset() {
+        return dwFileType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileType
+     * }
+     */
+    public static int dwFileType(MemorySegment struct) {
+        return struct.get(dwFileType$LAYOUT, dwFileType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileType
+     * }
+     */
+    public static void dwFileType(MemorySegment struct, int fieldValue) {
+        struct.set(dwFileType$LAYOUT, dwFileType$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout pChecksum$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("pChecksum"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE pChecksum[16]
+     * }
+     */
+    public static final SequenceLayout pChecksum$layout() {
+        return pChecksum$LAYOUT;
+    }
+
+    private static final long pChecksum$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE pChecksum[16]
+     * }
+     */
+    public static final long pChecksum$offset() {
+        return pChecksum$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE pChecksum[16]
+     * }
+     */
+    public static MemorySegment pChecksum(MemorySegment struct) {
+        return struct.asSlice(pChecksum$OFFSET, pChecksum$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE pChecksum[16]
+     * }
+     */
+    public static void pChecksum(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, pChecksum$OFFSET, pChecksum$LAYOUT.byteSize());
+    }
+
+    private static long[] pChecksum$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE pChecksum[16]
+     * }
+     */
+    public static long[] pChecksum$dimensions() {
+        return pChecksum$DIMS;
+    }
+    private static final VarHandle pChecksum$ELEM_HANDLE = pChecksum$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE pChecksum[16]
+     * }
+     */
+    public static byte pChecksum(MemorySegment struct, long index0) {
+        return (byte)pChecksum$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE pChecksum[16]
+     * }
+     */
+    public static void pChecksum(MemorySegment struct, long index0, byte fieldValue) {
+        pChecksum$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout pServiceChecksum$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("pServiceChecksum"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE pServiceChecksum[16]
+     * }
+     */
+    public static final SequenceLayout pServiceChecksum$layout() {
+        return pServiceChecksum$LAYOUT;
+    }
+
+    private static final long pServiceChecksum$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE pServiceChecksum[16]
+     * }
+     */
+    public static final long pServiceChecksum$offset() {
+        return pServiceChecksum$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE pServiceChecksum[16]
+     * }
+     */
+    public static MemorySegment pServiceChecksum(MemorySegment struct) {
+        return struct.asSlice(pServiceChecksum$OFFSET, pServiceChecksum$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE pServiceChecksum[16]
+     * }
+     */
+    public static void pServiceChecksum(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, pServiceChecksum$OFFSET, pServiceChecksum$LAYOUT.byteSize());
+    }
+
+    private static long[] pServiceChecksum$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE pServiceChecksum[16]
+     * }
+     */
+    public static long[] pServiceChecksum$dimensions() {
+        return pServiceChecksum$DIMS;
+    }
+    private static final VarHandle pServiceChecksum$ELEM_HANDLE = pServiceChecksum$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE pServiceChecksum[16]
+     * }
+     */
+    public static byte pServiceChecksum(MemorySegment struct, long index0) {
+        return (byte)pServiceChecksum$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE pServiceChecksum[16]
+     * }
+     */
+    public static void pServiceChecksum(MemorySegment struct, long index0, byte fieldValue) {
+        pServiceChecksum$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt dwLanguageNameOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwLanguageNameOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwLanguageNameOffset
+     * }
+     */
+    public static final OfInt dwLanguageNameOffset$layout() {
+        return dwLanguageNameOffset$LAYOUT;
+    }
+
+    private static final long dwLanguageNameOffset$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwLanguageNameOffset
+     * }
+     */
+    public static final long dwLanguageNameOffset$offset() {
+        return dwLanguageNameOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwLanguageNameOffset
+     * }
+     */
+    public static int dwLanguageNameOffset(MemorySegment struct) {
+        return struct.get(dwLanguageNameOffset$LAYOUT, dwLanguageNameOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwLanguageNameOffset
+     * }
+     */
+    public static void dwLanguageNameOffset(MemorySegment struct, int fieldValue) {
+        struct.set(dwLanguageNameOffset$LAYOUT, dwLanguageNameOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwTypeIDMainSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwTypeIDMainSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeIDMainSize
+     * }
+     */
+    public static final OfInt dwTypeIDMainSize$layout() {
+        return dwTypeIDMainSize$LAYOUT;
+    }
+
+    private static final long dwTypeIDMainSize$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeIDMainSize
+     * }
+     */
+    public static final long dwTypeIDMainSize$offset() {
+        return dwTypeIDMainSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeIDMainSize
+     * }
+     */
+    public static int dwTypeIDMainSize(MemorySegment struct) {
+        return struct.get(dwTypeIDMainSize$LAYOUT, dwTypeIDMainSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeIDMainSize
+     * }
+     */
+    public static void dwTypeIDMainSize(MemorySegment struct, int fieldValue) {
+        struct.set(dwTypeIDMainSize$LAYOUT, dwTypeIDMainSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwTypeIDMainOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwTypeIDMainOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeIDMainOffset
+     * }
+     */
+    public static final OfInt dwTypeIDMainOffset$layout() {
+        return dwTypeIDMainOffset$LAYOUT;
+    }
+
+    private static final long dwTypeIDMainOffset$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeIDMainOffset
+     * }
+     */
+    public static final long dwTypeIDMainOffset$offset() {
+        return dwTypeIDMainOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeIDMainOffset
+     * }
+     */
+    public static int dwTypeIDMainOffset(MemorySegment struct) {
+        return struct.get(dwTypeIDMainOffset$LAYOUT, dwTypeIDMainOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeIDMainOffset
+     * }
+     */
+    public static void dwTypeIDMainOffset(MemorySegment struct, int fieldValue) {
+        struct.set(dwTypeIDMainOffset$LAYOUT, dwTypeIDMainOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwTypeNameMainOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwTypeNameMainOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeNameMainOffset
+     * }
+     */
+    public static final OfInt dwTypeNameMainOffset$layout() {
+        return dwTypeNameMainOffset$LAYOUT;
+    }
+
+    private static final long dwTypeNameMainOffset$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeNameMainOffset
+     * }
+     */
+    public static final long dwTypeNameMainOffset$offset() {
+        return dwTypeNameMainOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeNameMainOffset
+     * }
+     */
+    public static int dwTypeNameMainOffset(MemorySegment struct) {
+        return struct.get(dwTypeNameMainOffset$LAYOUT, dwTypeNameMainOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeNameMainOffset
+     * }
+     */
+    public static void dwTypeNameMainOffset(MemorySegment struct, int fieldValue) {
+        struct.set(dwTypeNameMainOffset$LAYOUT, dwTypeNameMainOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwTypeIDMUISize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwTypeIDMUISize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeIDMUISize
+     * }
+     */
+    public static final OfInt dwTypeIDMUISize$layout() {
+        return dwTypeIDMUISize$LAYOUT;
+    }
+
+    private static final long dwTypeIDMUISize$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeIDMUISize
+     * }
+     */
+    public static final long dwTypeIDMUISize$offset() {
+        return dwTypeIDMUISize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeIDMUISize
+     * }
+     */
+    public static int dwTypeIDMUISize(MemorySegment struct) {
+        return struct.get(dwTypeIDMUISize$LAYOUT, dwTypeIDMUISize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeIDMUISize
+     * }
+     */
+    public static void dwTypeIDMUISize(MemorySegment struct, int fieldValue) {
+        struct.set(dwTypeIDMUISize$LAYOUT, dwTypeIDMUISize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwTypeIDMUIOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwTypeIDMUIOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeIDMUIOffset
+     * }
+     */
+    public static final OfInt dwTypeIDMUIOffset$layout() {
+        return dwTypeIDMUIOffset$LAYOUT;
+    }
+
+    private static final long dwTypeIDMUIOffset$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeIDMUIOffset
+     * }
+     */
+    public static final long dwTypeIDMUIOffset$offset() {
+        return dwTypeIDMUIOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeIDMUIOffset
+     * }
+     */
+    public static int dwTypeIDMUIOffset(MemorySegment struct) {
+        return struct.get(dwTypeIDMUIOffset$LAYOUT, dwTypeIDMUIOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeIDMUIOffset
+     * }
+     */
+    public static void dwTypeIDMUIOffset(MemorySegment struct, int fieldValue) {
+        struct.set(dwTypeIDMUIOffset$LAYOUT, dwTypeIDMUIOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwTypeNameMUIOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwTypeNameMUIOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeNameMUIOffset
+     * }
+     */
+    public static final OfInt dwTypeNameMUIOffset$layout() {
+        return dwTypeNameMUIOffset$LAYOUT;
+    }
+
+    private static final long dwTypeNameMUIOffset$OFFSET = 68;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeNameMUIOffset
+     * }
+     */
+    public static final long dwTypeNameMUIOffset$offset() {
+        return dwTypeNameMUIOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeNameMUIOffset
+     * }
+     */
+    public static int dwTypeNameMUIOffset(MemorySegment struct) {
+        return struct.get(dwTypeNameMUIOffset$LAYOUT, dwTypeNameMUIOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeNameMUIOffset
+     * }
+     */
+    public static void dwTypeNameMUIOffset(MemorySegment struct, int fieldValue) {
+        struct.set(dwTypeNameMUIOffset$LAYOUT, dwTypeNameMUIOffset$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout abBuffer$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("abBuffer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE abBuffer[8]
+     * }
+     */
+    public static final SequenceLayout abBuffer$layout() {
+        return abBuffer$LAYOUT;
+    }
+
+    private static final long abBuffer$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE abBuffer[8]
+     * }
+     */
+    public static final long abBuffer$offset() {
+        return abBuffer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE abBuffer[8]
+     * }
+     */
+    public static MemorySegment abBuffer(MemorySegment struct) {
+        return struct.asSlice(abBuffer$OFFSET, abBuffer$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE abBuffer[8]
+     * }
+     */
+    public static void abBuffer(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, abBuffer$OFFSET, abBuffer$LAYOUT.byteSize());
+    }
+
+    private static long[] abBuffer$DIMS = { 8 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE abBuffer[8]
+     * }
+     */
+    public static long[] abBuffer$dimensions() {
+        return abBuffer$DIMS;
+    }
+    private static final VarHandle abBuffer$ELEM_HANDLE = abBuffer$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE abBuffer[8]
+     * }
+     */
+    public static byte abBuffer(MemorySegment struct, long index0) {
+        return (byte)abBuffer$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE abBuffer[8]
+     * }
+     */
+    public static void abBuffer(MemorySegment struct, long index0, byte fieldValue) {
+        abBuffer$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

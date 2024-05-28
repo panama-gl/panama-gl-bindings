@@ -2,41 +2,126 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct PROCESS_PROTECTION_LEVEL_INFORMATION {
+ *     DWORD ProtectionLevel;
+ * }
+ * }
+ */
 public class PROCESS_PROTECTION_LEVEL_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ProtectionLevel")
-    ).withName("PROCESS_PROTECTION_LEVEL_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return PROCESS_PROTECTION_LEVEL_INFORMATION.$struct$LAYOUT;
+    PROCESS_PROTECTION_LEVEL_INFORMATION() {
+        // Should not be called directly
     }
-    static final VarHandle ProtectionLevel$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProtectionLevel"));
-    public static VarHandle ProtectionLevel$VH() {
-        return PROCESS_PROTECTION_LEVEL_INFORMATION.ProtectionLevel$VH;
-    }
-    public static int ProtectionLevel$get(MemorySegment seg) {
-        return (int)PROCESS_PROTECTION_LEVEL_INFORMATION.ProtectionLevel$VH.get(seg);
-    }
-    public static void ProtectionLevel$set( MemorySegment seg, int x) {
-        PROCESS_PROTECTION_LEVEL_INFORMATION.ProtectionLevel$VH.set(seg, x);
-    }
-    public static int ProtectionLevel$get(MemorySegment seg, long index) {
-        return (int)PROCESS_PROTECTION_LEVEL_INFORMATION.ProtectionLevel$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProtectionLevel$set(MemorySegment seg, long index, int x) {
-        PROCESS_PROTECTION_LEVEL_INFORMATION.ProtectionLevel$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("ProtectionLevel")
+    ).withName("PROCESS_PROTECTION_LEVEL_INFORMATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt ProtectionLevel$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ProtectionLevel"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ProtectionLevel
+     * }
+     */
+    public static final OfInt ProtectionLevel$layout() {
+        return ProtectionLevel$LAYOUT;
+    }
+
+    private static final long ProtectionLevel$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ProtectionLevel
+     * }
+     */
+    public static final long ProtectionLevel$offset() {
+        return ProtectionLevel$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ProtectionLevel
+     * }
+     */
+    public static int ProtectionLevel(MemorySegment struct) {
+        return struct.get(ProtectionLevel$LAYOUT, ProtectionLevel$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ProtectionLevel
+     * }
+     */
+    public static void ProtectionLevel(MemorySegment struct, int fieldValue) {
+        struct.set(ProtectionLevel$LAYOUT, ProtectionLevel$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

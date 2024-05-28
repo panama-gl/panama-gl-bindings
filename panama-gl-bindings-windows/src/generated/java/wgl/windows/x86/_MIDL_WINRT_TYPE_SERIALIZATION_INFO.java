@@ -2,111 +2,312 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _MIDL_WINRT_TYPE_SERIALIZATION_INFO {
+ *     unsigned long Version;
+ *     PFORMAT_STRING TypeFormatString;
+ *     unsigned short FormatStringSize;
+ *     unsigned short TypeOffset;
+ *     PMIDL_STUB_DESC StubDesc;
+ * }
+ * }
+ */
 public class _MIDL_WINRT_TYPE_SERIALIZATION_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("TypeFormatString"),
-        Constants$root.C_SHORT$LAYOUT.withName("FormatStringSize"),
-        Constants$root.C_SHORT$LAYOUT.withName("TypeOffset"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("StubDesc")
-    ).withName("_MIDL_WINRT_TYPE_SERIALIZATION_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _MIDL_WINRT_TYPE_SERIALIZATION_INFO.$struct$LAYOUT;
+    _MIDL_WINRT_TYPE_SERIALIZATION_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _MIDL_WINRT_TYPE_SERIALIZATION_INFO.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_MIDL_WINRT_TYPE_SERIALIZATION_INFO.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _MIDL_WINRT_TYPE_SERIALIZATION_INFO.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_MIDL_WINRT_TYPE_SERIALIZATION_INFO.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _MIDL_WINRT_TYPE_SERIALIZATION_INFO.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TypeFormatString$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TypeFormatString"));
-    public static VarHandle TypeFormatString$VH() {
-        return _MIDL_WINRT_TYPE_SERIALIZATION_INFO.TypeFormatString$VH;
-    }
-    public static MemoryAddress TypeFormatString$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_WINRT_TYPE_SERIALIZATION_INFO.TypeFormatString$VH.get(seg);
-    }
-    public static void TypeFormatString$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_WINRT_TYPE_SERIALIZATION_INFO.TypeFormatString$VH.set(seg, x);
-    }
-    public static MemoryAddress TypeFormatString$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_WINRT_TYPE_SERIALIZATION_INFO.TypeFormatString$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TypeFormatString$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_WINRT_TYPE_SERIALIZATION_INFO.TypeFormatString$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FormatStringSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FormatStringSize"));
-    public static VarHandle FormatStringSize$VH() {
-        return _MIDL_WINRT_TYPE_SERIALIZATION_INFO.FormatStringSize$VH;
-    }
-    public static short FormatStringSize$get(MemorySegment seg) {
-        return (short)_MIDL_WINRT_TYPE_SERIALIZATION_INFO.FormatStringSize$VH.get(seg);
-    }
-    public static void FormatStringSize$set( MemorySegment seg, short x) {
-        _MIDL_WINRT_TYPE_SERIALIZATION_INFO.FormatStringSize$VH.set(seg, x);
-    }
-    public static short FormatStringSize$get(MemorySegment seg, long index) {
-        return (short)_MIDL_WINRT_TYPE_SERIALIZATION_INFO.FormatStringSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FormatStringSize$set(MemorySegment seg, long index, short x) {
-        _MIDL_WINRT_TYPE_SERIALIZATION_INFO.FormatStringSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TypeOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TypeOffset"));
-    public static VarHandle TypeOffset$VH() {
-        return _MIDL_WINRT_TYPE_SERIALIZATION_INFO.TypeOffset$VH;
-    }
-    public static short TypeOffset$get(MemorySegment seg) {
-        return (short)_MIDL_WINRT_TYPE_SERIALIZATION_INFO.TypeOffset$VH.get(seg);
-    }
-    public static void TypeOffset$set( MemorySegment seg, short x) {
-        _MIDL_WINRT_TYPE_SERIALIZATION_INFO.TypeOffset$VH.set(seg, x);
-    }
-    public static short TypeOffset$get(MemorySegment seg, long index) {
-        return (short)_MIDL_WINRT_TYPE_SERIALIZATION_INFO.TypeOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TypeOffset$set(MemorySegment seg, long index, short x) {
-        _MIDL_WINRT_TYPE_SERIALIZATION_INFO.TypeOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle StubDesc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StubDesc"));
-    public static VarHandle StubDesc$VH() {
-        return _MIDL_WINRT_TYPE_SERIALIZATION_INFO.StubDesc$VH;
-    }
-    public static MemoryAddress StubDesc$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_WINRT_TYPE_SERIALIZATION_INFO.StubDesc$VH.get(seg);
-    }
-    public static void StubDesc$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_WINRT_TYPE_SERIALIZATION_INFO.StubDesc$VH.set(seg, x);
-    }
-    public static MemoryAddress StubDesc$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_WINRT_TYPE_SERIALIZATION_INFO.StubDesc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StubDesc$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_WINRT_TYPE_SERIALIZATION_INFO.StubDesc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("TypeFormatString"),
+        wgl_h.C_SHORT.withName("FormatStringSize"),
+        wgl_h.C_SHORT.withName("TypeOffset"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("StubDesc")
+    ).withName("_MIDL_WINRT_TYPE_SERIALIZATION_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout TypeFormatString$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("TypeFormatString"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PFORMAT_STRING TypeFormatString
+     * }
+     */
+    public static final AddressLayout TypeFormatString$layout() {
+        return TypeFormatString$LAYOUT;
+    }
+
+    private static final long TypeFormatString$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PFORMAT_STRING TypeFormatString
+     * }
+     */
+    public static final long TypeFormatString$offset() {
+        return TypeFormatString$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PFORMAT_STRING TypeFormatString
+     * }
+     */
+    public static MemorySegment TypeFormatString(MemorySegment struct) {
+        return struct.get(TypeFormatString$LAYOUT, TypeFormatString$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PFORMAT_STRING TypeFormatString
+     * }
+     */
+    public static void TypeFormatString(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(TypeFormatString$LAYOUT, TypeFormatString$OFFSET, fieldValue);
+    }
+
+    private static final OfShort FormatStringSize$LAYOUT = (OfShort)$LAYOUT.select(groupElement("FormatStringSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned short FormatStringSize
+     * }
+     */
+    public static final OfShort FormatStringSize$layout() {
+        return FormatStringSize$LAYOUT;
+    }
+
+    private static final long FormatStringSize$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned short FormatStringSize
+     * }
+     */
+    public static final long FormatStringSize$offset() {
+        return FormatStringSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned short FormatStringSize
+     * }
+     */
+    public static short FormatStringSize(MemorySegment struct) {
+        return struct.get(FormatStringSize$LAYOUT, FormatStringSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned short FormatStringSize
+     * }
+     */
+    public static void FormatStringSize(MemorySegment struct, short fieldValue) {
+        struct.set(FormatStringSize$LAYOUT, FormatStringSize$OFFSET, fieldValue);
+    }
+
+    private static final OfShort TypeOffset$LAYOUT = (OfShort)$LAYOUT.select(groupElement("TypeOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned short TypeOffset
+     * }
+     */
+    public static final OfShort TypeOffset$layout() {
+        return TypeOffset$LAYOUT;
+    }
+
+    private static final long TypeOffset$OFFSET = 18;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned short TypeOffset
+     * }
+     */
+    public static final long TypeOffset$offset() {
+        return TypeOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned short TypeOffset
+     * }
+     */
+    public static short TypeOffset(MemorySegment struct) {
+        return struct.get(TypeOffset$LAYOUT, TypeOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned short TypeOffset
+     * }
+     */
+    public static void TypeOffset(MemorySegment struct, short fieldValue) {
+        struct.set(TypeOffset$LAYOUT, TypeOffset$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout StubDesc$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("StubDesc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PMIDL_STUB_DESC StubDesc
+     * }
+     */
+    public static final AddressLayout StubDesc$layout() {
+        return StubDesc$LAYOUT;
+    }
+
+    private static final long StubDesc$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PMIDL_STUB_DESC StubDesc
+     * }
+     */
+    public static final long StubDesc$offset() {
+        return StubDesc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PMIDL_STUB_DESC StubDesc
+     * }
+     */
+    public static MemorySegment StubDesc(MemorySegment struct) {
+        return struct.get(StubDesc$LAYOUT, StubDesc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PMIDL_STUB_DESC StubDesc
+     * }
+     */
+    public static void StubDesc(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(StubDesc$LAYOUT, StubDesc$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

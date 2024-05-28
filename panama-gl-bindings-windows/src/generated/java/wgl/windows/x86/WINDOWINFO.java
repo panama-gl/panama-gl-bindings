@@ -2,13 +2,36 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagWINDOWINFO {
+ *     DWORD cbSize;
+ *     RECT rcWindow;
+ *     RECT rcClient;
+ *     DWORD dwStyle;
+ *     DWORD dwExStyle;
+ *     DWORD dwWindowStatus;
+ *     UINT cxWindowBorders;
+ *     UINT cyWindowBorders;
+ *     ATOM atomWindowType;
+ *     WORD wCreatorVersion;
+ * } WINDOWINFO
+ * }
+ */
 public class WINDOWINFO extends tagWINDOWINFO {
 
+    WINDOWINFO() {
+        // Should not be called directly
+    }
 }
-
 

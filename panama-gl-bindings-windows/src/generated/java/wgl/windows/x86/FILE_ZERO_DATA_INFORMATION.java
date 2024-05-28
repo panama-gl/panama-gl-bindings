@@ -2,13 +2,28 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _FILE_ZERO_DATA_INFORMATION {
+ *     LARGE_INTEGER FileOffset;
+ *     LARGE_INTEGER BeyondFinalZero;
+ * } FILE_ZERO_DATA_INFORMATION
+ * }
+ */
 public class FILE_ZERO_DATA_INFORMATION extends _FILE_ZERO_DATA_INFORMATION {
 
+    FILE_ZERO_DATA_INFORMATION() {
+        // Should not be called directly
+    }
 }
-
 

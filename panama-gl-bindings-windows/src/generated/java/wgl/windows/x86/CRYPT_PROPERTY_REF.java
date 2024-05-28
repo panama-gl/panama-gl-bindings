@@ -2,13 +2,29 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CRYPT_PROPERTY_REF {
+ *     PWSTR pszProperty;
+ *     ULONG cbValue;
+ *     PUCHAR pbValue;
+ * } CRYPT_PROPERTY_REF
+ * }
+ */
 public class CRYPT_PROPERTY_REF extends _CRYPT_PROPERTY_REF {
 
+    CRYPT_PROPERTY_REF() {
+        // Should not be called directly
+    }
 }
-
 

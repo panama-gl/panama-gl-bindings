@@ -2,27 +2,67 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PENCLAVE_TARGET_FUNCTION {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    java.lang.foreign.Addressable apply(java.lang.foreign.MemoryAddress _x0);
-    static MemorySegment allocate(PENCLAVE_TARGET_FUNCTION fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PENCLAVE_TARGET_FUNCTION.class, fi, constants$76.PENCLAVE_TARGET_FUNCTION$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef ENCLAVE_TARGET_FUNCTION (*PENCLAVE_TARGET_FUNCTION)
+ * }
+ */
+public class PENCLAVE_TARGET_FUNCTION {
+
+    PENCLAVE_TARGET_FUNCTION() {
+        // Should not be called directly
     }
-    static PENCLAVE_TARGET_FUNCTION ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress __x0) -> {
-            try {
-                return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)constants$76.PENCLAVE_TARGET_FUNCTION$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        MemorySegment apply(MemorySegment _x0);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        freeglut_h.C_POINTER,
+        freeglut_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = freeglut_h.upcallHandle(PENCLAVE_TARGET_FUNCTION.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PENCLAVE_TARGET_FUNCTION.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static MemorySegment invoke(MemorySegment funcPtr,MemorySegment _x0) {
+        try {
+            return (MemorySegment) DOWN$MH.invokeExact(funcPtr, _x0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

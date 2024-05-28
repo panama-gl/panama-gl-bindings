@@ -2,148 +2,482 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _FORMAT_EX_PARAMETERS {
+ *     MEDIA_TYPE MediaType;
+ *     DWORD StartCylinderNumber;
+ *     DWORD EndCylinderNumber;
+ *     DWORD StartHeadNumber;
+ *     DWORD EndHeadNumber;
+ *     WORD FormatGapLength;
+ *     WORD SectorsPerTrack;
+ *     WORD SectorNumber[1];
+ * }
+ * }
+ */
 public class _FORMAT_EX_PARAMETERS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("MediaType"),
-        Constants$root.C_LONG$LAYOUT.withName("StartCylinderNumber"),
-        Constants$root.C_LONG$LAYOUT.withName("EndCylinderNumber"),
-        Constants$root.C_LONG$LAYOUT.withName("StartHeadNumber"),
-        Constants$root.C_LONG$LAYOUT.withName("EndHeadNumber"),
-        Constants$root.C_SHORT$LAYOUT.withName("FormatGapLength"),
-        Constants$root.C_SHORT$LAYOUT.withName("SectorsPerTrack"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_SHORT$LAYOUT).withName("SectorNumber"),
-        MemoryLayout.paddingLayout(16)
-    ).withName("_FORMAT_EX_PARAMETERS");
-    public static MemoryLayout $LAYOUT() {
-        return _FORMAT_EX_PARAMETERS.$struct$LAYOUT;
+    _FORMAT_EX_PARAMETERS() {
+        // Should not be called directly
     }
-    static final VarHandle MediaType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MediaType"));
-    public static VarHandle MediaType$VH() {
-        return _FORMAT_EX_PARAMETERS.MediaType$VH;
-    }
-    public static int MediaType$get(MemorySegment seg) {
-        return (int)_FORMAT_EX_PARAMETERS.MediaType$VH.get(seg);
-    }
-    public static void MediaType$set( MemorySegment seg, int x) {
-        _FORMAT_EX_PARAMETERS.MediaType$VH.set(seg, x);
-    }
-    public static int MediaType$get(MemorySegment seg, long index) {
-        return (int)_FORMAT_EX_PARAMETERS.MediaType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MediaType$set(MemorySegment seg, long index, int x) {
-        _FORMAT_EX_PARAMETERS.MediaType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle StartCylinderNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StartCylinderNumber"));
-    public static VarHandle StartCylinderNumber$VH() {
-        return _FORMAT_EX_PARAMETERS.StartCylinderNumber$VH;
-    }
-    public static int StartCylinderNumber$get(MemorySegment seg) {
-        return (int)_FORMAT_EX_PARAMETERS.StartCylinderNumber$VH.get(seg);
-    }
-    public static void StartCylinderNumber$set( MemorySegment seg, int x) {
-        _FORMAT_EX_PARAMETERS.StartCylinderNumber$VH.set(seg, x);
-    }
-    public static int StartCylinderNumber$get(MemorySegment seg, long index) {
-        return (int)_FORMAT_EX_PARAMETERS.StartCylinderNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StartCylinderNumber$set(MemorySegment seg, long index, int x) {
-        _FORMAT_EX_PARAMETERS.StartCylinderNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EndCylinderNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EndCylinderNumber"));
-    public static VarHandle EndCylinderNumber$VH() {
-        return _FORMAT_EX_PARAMETERS.EndCylinderNumber$VH;
-    }
-    public static int EndCylinderNumber$get(MemorySegment seg) {
-        return (int)_FORMAT_EX_PARAMETERS.EndCylinderNumber$VH.get(seg);
-    }
-    public static void EndCylinderNumber$set( MemorySegment seg, int x) {
-        _FORMAT_EX_PARAMETERS.EndCylinderNumber$VH.set(seg, x);
-    }
-    public static int EndCylinderNumber$get(MemorySegment seg, long index) {
-        return (int)_FORMAT_EX_PARAMETERS.EndCylinderNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EndCylinderNumber$set(MemorySegment seg, long index, int x) {
-        _FORMAT_EX_PARAMETERS.EndCylinderNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle StartHeadNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StartHeadNumber"));
-    public static VarHandle StartHeadNumber$VH() {
-        return _FORMAT_EX_PARAMETERS.StartHeadNumber$VH;
-    }
-    public static int StartHeadNumber$get(MemorySegment seg) {
-        return (int)_FORMAT_EX_PARAMETERS.StartHeadNumber$VH.get(seg);
-    }
-    public static void StartHeadNumber$set( MemorySegment seg, int x) {
-        _FORMAT_EX_PARAMETERS.StartHeadNumber$VH.set(seg, x);
-    }
-    public static int StartHeadNumber$get(MemorySegment seg, long index) {
-        return (int)_FORMAT_EX_PARAMETERS.StartHeadNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StartHeadNumber$set(MemorySegment seg, long index, int x) {
-        _FORMAT_EX_PARAMETERS.StartHeadNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EndHeadNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EndHeadNumber"));
-    public static VarHandle EndHeadNumber$VH() {
-        return _FORMAT_EX_PARAMETERS.EndHeadNumber$VH;
-    }
-    public static int EndHeadNumber$get(MemorySegment seg) {
-        return (int)_FORMAT_EX_PARAMETERS.EndHeadNumber$VH.get(seg);
-    }
-    public static void EndHeadNumber$set( MemorySegment seg, int x) {
-        _FORMAT_EX_PARAMETERS.EndHeadNumber$VH.set(seg, x);
-    }
-    public static int EndHeadNumber$get(MemorySegment seg, long index) {
-        return (int)_FORMAT_EX_PARAMETERS.EndHeadNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EndHeadNumber$set(MemorySegment seg, long index, int x) {
-        _FORMAT_EX_PARAMETERS.EndHeadNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FormatGapLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FormatGapLength"));
-    public static VarHandle FormatGapLength$VH() {
-        return _FORMAT_EX_PARAMETERS.FormatGapLength$VH;
-    }
-    public static short FormatGapLength$get(MemorySegment seg) {
-        return (short)_FORMAT_EX_PARAMETERS.FormatGapLength$VH.get(seg);
-    }
-    public static void FormatGapLength$set( MemorySegment seg, short x) {
-        _FORMAT_EX_PARAMETERS.FormatGapLength$VH.set(seg, x);
-    }
-    public static short FormatGapLength$get(MemorySegment seg, long index) {
-        return (short)_FORMAT_EX_PARAMETERS.FormatGapLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FormatGapLength$set(MemorySegment seg, long index, short x) {
-        _FORMAT_EX_PARAMETERS.FormatGapLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SectorsPerTrack$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SectorsPerTrack"));
-    public static VarHandle SectorsPerTrack$VH() {
-        return _FORMAT_EX_PARAMETERS.SectorsPerTrack$VH;
-    }
-    public static short SectorsPerTrack$get(MemorySegment seg) {
-        return (short)_FORMAT_EX_PARAMETERS.SectorsPerTrack$VH.get(seg);
-    }
-    public static void SectorsPerTrack$set( MemorySegment seg, short x) {
-        _FORMAT_EX_PARAMETERS.SectorsPerTrack$VH.set(seg, x);
-    }
-    public static short SectorsPerTrack$get(MemorySegment seg, long index) {
-        return (short)_FORMAT_EX_PARAMETERS.SectorsPerTrack$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SectorsPerTrack$set(MemorySegment seg, long index, short x) {
-        _FORMAT_EX_PARAMETERS.SectorsPerTrack$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment SectorNumber$slice(MemorySegment seg) {
-        return seg.asSlice(24, 2);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("MediaType"),
+        wgl_h.C_LONG.withName("StartCylinderNumber"),
+        wgl_h.C_LONG.withName("EndCylinderNumber"),
+        wgl_h.C_LONG.withName("StartHeadNumber"),
+        wgl_h.C_LONG.withName("EndHeadNumber"),
+        wgl_h.C_SHORT.withName("FormatGapLength"),
+        wgl_h.C_SHORT.withName("SectorsPerTrack"),
+        MemoryLayout.sequenceLayout(1, wgl_h.C_SHORT).withName("SectorNumber"),
+        MemoryLayout.paddingLayout(2)
+    ).withName("_FORMAT_EX_PARAMETERS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt MediaType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MediaType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * MEDIA_TYPE MediaType
+     * }
+     */
+    public static final OfInt MediaType$layout() {
+        return MediaType$LAYOUT;
+    }
+
+    private static final long MediaType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * MEDIA_TYPE MediaType
+     * }
+     */
+    public static final long MediaType$offset() {
+        return MediaType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * MEDIA_TYPE MediaType
+     * }
+     */
+    public static int MediaType(MemorySegment struct) {
+        return struct.get(MediaType$LAYOUT, MediaType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * MEDIA_TYPE MediaType
+     * }
+     */
+    public static void MediaType(MemorySegment struct, int fieldValue) {
+        struct.set(MediaType$LAYOUT, MediaType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt StartCylinderNumber$LAYOUT = (OfInt)$LAYOUT.select(groupElement("StartCylinderNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD StartCylinderNumber
+     * }
+     */
+    public static final OfInt StartCylinderNumber$layout() {
+        return StartCylinderNumber$LAYOUT;
+    }
+
+    private static final long StartCylinderNumber$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD StartCylinderNumber
+     * }
+     */
+    public static final long StartCylinderNumber$offset() {
+        return StartCylinderNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD StartCylinderNumber
+     * }
+     */
+    public static int StartCylinderNumber(MemorySegment struct) {
+        return struct.get(StartCylinderNumber$LAYOUT, StartCylinderNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD StartCylinderNumber
+     * }
+     */
+    public static void StartCylinderNumber(MemorySegment struct, int fieldValue) {
+        struct.set(StartCylinderNumber$LAYOUT, StartCylinderNumber$OFFSET, fieldValue);
+    }
+
+    private static final OfInt EndCylinderNumber$LAYOUT = (OfInt)$LAYOUT.select(groupElement("EndCylinderNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD EndCylinderNumber
+     * }
+     */
+    public static final OfInt EndCylinderNumber$layout() {
+        return EndCylinderNumber$LAYOUT;
+    }
+
+    private static final long EndCylinderNumber$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD EndCylinderNumber
+     * }
+     */
+    public static final long EndCylinderNumber$offset() {
+        return EndCylinderNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD EndCylinderNumber
+     * }
+     */
+    public static int EndCylinderNumber(MemorySegment struct) {
+        return struct.get(EndCylinderNumber$LAYOUT, EndCylinderNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD EndCylinderNumber
+     * }
+     */
+    public static void EndCylinderNumber(MemorySegment struct, int fieldValue) {
+        struct.set(EndCylinderNumber$LAYOUT, EndCylinderNumber$OFFSET, fieldValue);
+    }
+
+    private static final OfInt StartHeadNumber$LAYOUT = (OfInt)$LAYOUT.select(groupElement("StartHeadNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD StartHeadNumber
+     * }
+     */
+    public static final OfInt StartHeadNumber$layout() {
+        return StartHeadNumber$LAYOUT;
+    }
+
+    private static final long StartHeadNumber$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD StartHeadNumber
+     * }
+     */
+    public static final long StartHeadNumber$offset() {
+        return StartHeadNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD StartHeadNumber
+     * }
+     */
+    public static int StartHeadNumber(MemorySegment struct) {
+        return struct.get(StartHeadNumber$LAYOUT, StartHeadNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD StartHeadNumber
+     * }
+     */
+    public static void StartHeadNumber(MemorySegment struct, int fieldValue) {
+        struct.set(StartHeadNumber$LAYOUT, StartHeadNumber$OFFSET, fieldValue);
+    }
+
+    private static final OfInt EndHeadNumber$LAYOUT = (OfInt)$LAYOUT.select(groupElement("EndHeadNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD EndHeadNumber
+     * }
+     */
+    public static final OfInt EndHeadNumber$layout() {
+        return EndHeadNumber$LAYOUT;
+    }
+
+    private static final long EndHeadNumber$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD EndHeadNumber
+     * }
+     */
+    public static final long EndHeadNumber$offset() {
+        return EndHeadNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD EndHeadNumber
+     * }
+     */
+    public static int EndHeadNumber(MemorySegment struct) {
+        return struct.get(EndHeadNumber$LAYOUT, EndHeadNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD EndHeadNumber
+     * }
+     */
+    public static void EndHeadNumber(MemorySegment struct, int fieldValue) {
+        struct.set(EndHeadNumber$LAYOUT, EndHeadNumber$OFFSET, fieldValue);
+    }
+
+    private static final OfShort FormatGapLength$LAYOUT = (OfShort)$LAYOUT.select(groupElement("FormatGapLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD FormatGapLength
+     * }
+     */
+    public static final OfShort FormatGapLength$layout() {
+        return FormatGapLength$LAYOUT;
+    }
+
+    private static final long FormatGapLength$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD FormatGapLength
+     * }
+     */
+    public static final long FormatGapLength$offset() {
+        return FormatGapLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD FormatGapLength
+     * }
+     */
+    public static short FormatGapLength(MemorySegment struct) {
+        return struct.get(FormatGapLength$LAYOUT, FormatGapLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD FormatGapLength
+     * }
+     */
+    public static void FormatGapLength(MemorySegment struct, short fieldValue) {
+        struct.set(FormatGapLength$LAYOUT, FormatGapLength$OFFSET, fieldValue);
+    }
+
+    private static final OfShort SectorsPerTrack$LAYOUT = (OfShort)$LAYOUT.select(groupElement("SectorsPerTrack"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD SectorsPerTrack
+     * }
+     */
+    public static final OfShort SectorsPerTrack$layout() {
+        return SectorsPerTrack$LAYOUT;
+    }
+
+    private static final long SectorsPerTrack$OFFSET = 22;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD SectorsPerTrack
+     * }
+     */
+    public static final long SectorsPerTrack$offset() {
+        return SectorsPerTrack$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD SectorsPerTrack
+     * }
+     */
+    public static short SectorsPerTrack(MemorySegment struct) {
+        return struct.get(SectorsPerTrack$LAYOUT, SectorsPerTrack$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD SectorsPerTrack
+     * }
+     */
+    public static void SectorsPerTrack(MemorySegment struct, short fieldValue) {
+        struct.set(SectorsPerTrack$LAYOUT, SectorsPerTrack$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout SectorNumber$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("SectorNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD SectorNumber[1]
+     * }
+     */
+    public static final SequenceLayout SectorNumber$layout() {
+        return SectorNumber$LAYOUT;
+    }
+
+    private static final long SectorNumber$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD SectorNumber[1]
+     * }
+     */
+    public static final long SectorNumber$offset() {
+        return SectorNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD SectorNumber[1]
+     * }
+     */
+    public static MemorySegment SectorNumber(MemorySegment struct) {
+        return struct.asSlice(SectorNumber$OFFSET, SectorNumber$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD SectorNumber[1]
+     * }
+     */
+    public static void SectorNumber(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, SectorNumber$OFFSET, SectorNumber$LAYOUT.byteSize());
+    }
+
+    private static long[] SectorNumber$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WORD SectorNumber[1]
+     * }
+     */
+    public static long[] SectorNumber$dimensions() {
+        return SectorNumber$DIMS;
+    }
+    private static final VarHandle SectorNumber$ELEM_HANDLE = SectorNumber$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WORD SectorNumber[1]
+     * }
+     */
+    public static short SectorNumber(MemorySegment struct, long index0) {
+        return (short)SectorNumber$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WORD SectorNumber[1]
+     * }
+     */
+    public static void SectorNumber(MemorySegment struct, long index0, short fieldValue) {
+        SectorNumber$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

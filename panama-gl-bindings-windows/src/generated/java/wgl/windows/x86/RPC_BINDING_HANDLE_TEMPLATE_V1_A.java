@@ -2,13 +2,35 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _RPC_BINDING_HANDLE_TEMPLATE_V1_A {
+ *     unsigned long Version;
+ *     unsigned long Flags;
+ *     unsigned long ProtocolSequence;
+ *     unsigned char *NetworkAddress;
+ *     unsigned char *StringEndpoint;
+ *     union {
+ *         unsigned char *Reserved;
+ *     } u1;
+ *     UUID ObjectUuid;
+ * } RPC_BINDING_HANDLE_TEMPLATE_V1_A
+ * }
+ */
 public class RPC_BINDING_HANDLE_TEMPLATE_V1_A extends _RPC_BINDING_HANDLE_TEMPLATE_V1_A {
 
+    RPC_BINDING_HANDLE_TEMPLATE_V1_A() {
+        // Should not be called directly
+    }
 }
-
 

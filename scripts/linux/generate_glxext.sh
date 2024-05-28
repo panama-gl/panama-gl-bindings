@@ -1,12 +1,11 @@
 
 
-JEXTRACT=/usr/lib/jvm/jextract-19/bin/jextract
+JEXTRACT=/usr/lib/jvm/jextract-22/jextract
 
 # Generate GLX bindings
 $JEXTRACT \
-  --target-package glxext.ubuntu.v20 \
+  --target-package glxext.linux.x86 \
   --output ../../panama-gl-bindings-linux/src/generated/java/ \
-  --source \
   --header-class-name glxext_h \
   -lGL \
   -lGLX \

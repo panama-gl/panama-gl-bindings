@@ -2,110 +2,311 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SERVICE_TRIGGER {
+ *     DWORD dwTriggerType;
+ *     DWORD dwAction;
+ *     GUID *pTriggerSubtype;
+ *     DWORD cDataItems;
+ *     PSERVICE_TRIGGER_SPECIFIC_DATA_ITEM pDataItems;
+ * }
+ * }
+ */
 public class _SERVICE_TRIGGER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwTriggerType"),
-        Constants$root.C_LONG$LAYOUT.withName("dwAction"),
-        Constants$root.C_POINTER$LAYOUT.withName("pTriggerSubtype"),
-        Constants$root.C_LONG$LAYOUT.withName("cDataItems"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pDataItems")
-    ).withName("_SERVICE_TRIGGER");
-    public static MemoryLayout $LAYOUT() {
-        return _SERVICE_TRIGGER.$struct$LAYOUT;
+    _SERVICE_TRIGGER() {
+        // Should not be called directly
     }
-    static final VarHandle dwTriggerType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwTriggerType"));
-    public static VarHandle dwTriggerType$VH() {
-        return _SERVICE_TRIGGER.dwTriggerType$VH;
-    }
-    public static int dwTriggerType$get(MemorySegment seg) {
-        return (int)_SERVICE_TRIGGER.dwTriggerType$VH.get(seg);
-    }
-    public static void dwTriggerType$set( MemorySegment seg, int x) {
-        _SERVICE_TRIGGER.dwTriggerType$VH.set(seg, x);
-    }
-    public static int dwTriggerType$get(MemorySegment seg, long index) {
-        return (int)_SERVICE_TRIGGER.dwTriggerType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwTriggerType$set(MemorySegment seg, long index, int x) {
-        _SERVICE_TRIGGER.dwTriggerType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwAction$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwAction"));
-    public static VarHandle dwAction$VH() {
-        return _SERVICE_TRIGGER.dwAction$VH;
-    }
-    public static int dwAction$get(MemorySegment seg) {
-        return (int)_SERVICE_TRIGGER.dwAction$VH.get(seg);
-    }
-    public static void dwAction$set( MemorySegment seg, int x) {
-        _SERVICE_TRIGGER.dwAction$VH.set(seg, x);
-    }
-    public static int dwAction$get(MemorySegment seg, long index) {
-        return (int)_SERVICE_TRIGGER.dwAction$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwAction$set(MemorySegment seg, long index, int x) {
-        _SERVICE_TRIGGER.dwAction$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pTriggerSubtype$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pTriggerSubtype"));
-    public static VarHandle pTriggerSubtype$VH() {
-        return _SERVICE_TRIGGER.pTriggerSubtype$VH;
-    }
-    public static MemoryAddress pTriggerSubtype$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SERVICE_TRIGGER.pTriggerSubtype$VH.get(seg);
-    }
-    public static void pTriggerSubtype$set( MemorySegment seg, MemoryAddress x) {
-        _SERVICE_TRIGGER.pTriggerSubtype$VH.set(seg, x);
-    }
-    public static MemoryAddress pTriggerSubtype$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SERVICE_TRIGGER.pTriggerSubtype$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pTriggerSubtype$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SERVICE_TRIGGER.pTriggerSubtype$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cDataItems$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cDataItems"));
-    public static VarHandle cDataItems$VH() {
-        return _SERVICE_TRIGGER.cDataItems$VH;
-    }
-    public static int cDataItems$get(MemorySegment seg) {
-        return (int)_SERVICE_TRIGGER.cDataItems$VH.get(seg);
-    }
-    public static void cDataItems$set( MemorySegment seg, int x) {
-        _SERVICE_TRIGGER.cDataItems$VH.set(seg, x);
-    }
-    public static int cDataItems$get(MemorySegment seg, long index) {
-        return (int)_SERVICE_TRIGGER.cDataItems$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cDataItems$set(MemorySegment seg, long index, int x) {
-        _SERVICE_TRIGGER.cDataItems$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pDataItems$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pDataItems"));
-    public static VarHandle pDataItems$VH() {
-        return _SERVICE_TRIGGER.pDataItems$VH;
-    }
-    public static MemoryAddress pDataItems$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SERVICE_TRIGGER.pDataItems$VH.get(seg);
-    }
-    public static void pDataItems$set( MemorySegment seg, MemoryAddress x) {
-        _SERVICE_TRIGGER.pDataItems$VH.set(seg, x);
-    }
-    public static MemoryAddress pDataItems$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SERVICE_TRIGGER.pDataItems$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pDataItems$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SERVICE_TRIGGER.pDataItems$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("dwTriggerType"),
+        freeglut_h.C_LONG.withName("dwAction"),
+        freeglut_h.C_POINTER.withName("pTriggerSubtype"),
+        freeglut_h.C_LONG.withName("cDataItems"),
+        MemoryLayout.paddingLayout(4),
+        freeglut_h.C_POINTER.withName("pDataItems")
+    ).withName("_SERVICE_TRIGGER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwTriggerType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwTriggerType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwTriggerType
+     * }
+     */
+    public static final OfInt dwTriggerType$layout() {
+        return dwTriggerType$LAYOUT;
+    }
+
+    private static final long dwTriggerType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwTriggerType
+     * }
+     */
+    public static final long dwTriggerType$offset() {
+        return dwTriggerType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwTriggerType
+     * }
+     */
+    public static int dwTriggerType(MemorySegment struct) {
+        return struct.get(dwTriggerType$LAYOUT, dwTriggerType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwTriggerType
+     * }
+     */
+    public static void dwTriggerType(MemorySegment struct, int fieldValue) {
+        struct.set(dwTriggerType$LAYOUT, dwTriggerType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwAction$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwAction"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwAction
+     * }
+     */
+    public static final OfInt dwAction$layout() {
+        return dwAction$LAYOUT;
+    }
+
+    private static final long dwAction$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwAction
+     * }
+     */
+    public static final long dwAction$offset() {
+        return dwAction$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwAction
+     * }
+     */
+    public static int dwAction(MemorySegment struct) {
+        return struct.get(dwAction$LAYOUT, dwAction$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwAction
+     * }
+     */
+    public static void dwAction(MemorySegment struct, int fieldValue) {
+        struct.set(dwAction$LAYOUT, dwAction$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pTriggerSubtype$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pTriggerSubtype"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID *pTriggerSubtype
+     * }
+     */
+    public static final AddressLayout pTriggerSubtype$layout() {
+        return pTriggerSubtype$LAYOUT;
+    }
+
+    private static final long pTriggerSubtype$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID *pTriggerSubtype
+     * }
+     */
+    public static final long pTriggerSubtype$offset() {
+        return pTriggerSubtype$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID *pTriggerSubtype
+     * }
+     */
+    public static MemorySegment pTriggerSubtype(MemorySegment struct) {
+        return struct.get(pTriggerSubtype$LAYOUT, pTriggerSubtype$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID *pTriggerSubtype
+     * }
+     */
+    public static void pTriggerSubtype(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pTriggerSubtype$LAYOUT, pTriggerSubtype$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cDataItems$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cDataItems"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cDataItems
+     * }
+     */
+    public static final OfInt cDataItems$layout() {
+        return cDataItems$LAYOUT;
+    }
+
+    private static final long cDataItems$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cDataItems
+     * }
+     */
+    public static final long cDataItems$offset() {
+        return cDataItems$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cDataItems
+     * }
+     */
+    public static int cDataItems(MemorySegment struct) {
+        return struct.get(cDataItems$LAYOUT, cDataItems$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cDataItems
+     * }
+     */
+    public static void cDataItems(MemorySegment struct, int fieldValue) {
+        struct.set(cDataItems$LAYOUT, cDataItems$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pDataItems$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pDataItems"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PSERVICE_TRIGGER_SPECIFIC_DATA_ITEM pDataItems
+     * }
+     */
+    public static final AddressLayout pDataItems$layout() {
+        return pDataItems$LAYOUT;
+    }
+
+    private static final long pDataItems$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PSERVICE_TRIGGER_SPECIFIC_DATA_ITEM pDataItems
+     * }
+     */
+    public static final long pDataItems$offset() {
+        return pDataItems$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PSERVICE_TRIGGER_SPECIFIC_DATA_ITEM pDataItems
+     * }
+     */
+    public static MemorySegment pDataItems(MemorySegment struct) {
+        return struct.get(pDataItems$LAYOUT, pDataItems$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PSERVICE_TRIGGER_SPECIFIC_DATA_ITEM pDataItems
+     * }
+     */
+    public static void pDataItems(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pDataItems$LAYOUT, pDataItems$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

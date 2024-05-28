@@ -2,204 +2,587 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CSV_QUERY_MDS_PATH_V2 {
+ *     LONGLONG Version;
+ *     DWORD RequiredSize;
+ *     DWORD MdsNodeId;
+ *     DWORD DsNodeId;
+ *     DWORD Flags;
+ *     CSVFS_DISK_CONNECTIVITY DiskConnectivity;
+ *     GUID VolumeId;
+ *     DWORD IpAddressOffset;
+ *     DWORD IpAddressLength;
+ *     DWORD PathOffset;
+ *     DWORD PathLength;
+ * }
+ * }
+ */
 public class _CSV_QUERY_MDS_PATH_V2 {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("RequiredSize"),
-        Constants$root.C_LONG$LAYOUT.withName("MdsNodeId"),
-        Constants$root.C_LONG$LAYOUT.withName("DsNodeId"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("DiskConnectivity"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("VolumeId"),
-        Constants$root.C_LONG$LAYOUT.withName("IpAddressOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("IpAddressLength"),
-        Constants$root.C_LONG$LAYOUT.withName("PathOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("PathLength"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_CSV_QUERY_MDS_PATH_V2");
-    public static MemoryLayout $LAYOUT() {
-        return _CSV_QUERY_MDS_PATH_V2.$struct$LAYOUT;
+    _CSV_QUERY_MDS_PATH_V2() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _CSV_QUERY_MDS_PATH_V2.Version$VH;
-    }
-    public static long Version$get(MemorySegment seg) {
-        return (long)_CSV_QUERY_MDS_PATH_V2.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, long x) {
-        _CSV_QUERY_MDS_PATH_V2.Version$VH.set(seg, x);
-    }
-    public static long Version$get(MemorySegment seg, long index) {
-        return (long)_CSV_QUERY_MDS_PATH_V2.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, long x) {
-        _CSV_QUERY_MDS_PATH_V2.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RequiredSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RequiredSize"));
-    public static VarHandle RequiredSize$VH() {
-        return _CSV_QUERY_MDS_PATH_V2.RequiredSize$VH;
-    }
-    public static int RequiredSize$get(MemorySegment seg) {
-        return (int)_CSV_QUERY_MDS_PATH_V2.RequiredSize$VH.get(seg);
-    }
-    public static void RequiredSize$set( MemorySegment seg, int x) {
-        _CSV_QUERY_MDS_PATH_V2.RequiredSize$VH.set(seg, x);
-    }
-    public static int RequiredSize$get(MemorySegment seg, long index) {
-        return (int)_CSV_QUERY_MDS_PATH_V2.RequiredSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RequiredSize$set(MemorySegment seg, long index, int x) {
-        _CSV_QUERY_MDS_PATH_V2.RequiredSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MdsNodeId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MdsNodeId"));
-    public static VarHandle MdsNodeId$VH() {
-        return _CSV_QUERY_MDS_PATH_V2.MdsNodeId$VH;
-    }
-    public static int MdsNodeId$get(MemorySegment seg) {
-        return (int)_CSV_QUERY_MDS_PATH_V2.MdsNodeId$VH.get(seg);
-    }
-    public static void MdsNodeId$set( MemorySegment seg, int x) {
-        _CSV_QUERY_MDS_PATH_V2.MdsNodeId$VH.set(seg, x);
-    }
-    public static int MdsNodeId$get(MemorySegment seg, long index) {
-        return (int)_CSV_QUERY_MDS_PATH_V2.MdsNodeId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MdsNodeId$set(MemorySegment seg, long index, int x) {
-        _CSV_QUERY_MDS_PATH_V2.MdsNodeId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DsNodeId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DsNodeId"));
-    public static VarHandle DsNodeId$VH() {
-        return _CSV_QUERY_MDS_PATH_V2.DsNodeId$VH;
-    }
-    public static int DsNodeId$get(MemorySegment seg) {
-        return (int)_CSV_QUERY_MDS_PATH_V2.DsNodeId$VH.get(seg);
-    }
-    public static void DsNodeId$set( MemorySegment seg, int x) {
-        _CSV_QUERY_MDS_PATH_V2.DsNodeId$VH.set(seg, x);
-    }
-    public static int DsNodeId$get(MemorySegment seg, long index) {
-        return (int)_CSV_QUERY_MDS_PATH_V2.DsNodeId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DsNodeId$set(MemorySegment seg, long index, int x) {
-        _CSV_QUERY_MDS_PATH_V2.DsNodeId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _CSV_QUERY_MDS_PATH_V2.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_CSV_QUERY_MDS_PATH_V2.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _CSV_QUERY_MDS_PATH_V2.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_CSV_QUERY_MDS_PATH_V2.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _CSV_QUERY_MDS_PATH_V2.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DiskConnectivity$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DiskConnectivity"));
-    public static VarHandle DiskConnectivity$VH() {
-        return _CSV_QUERY_MDS_PATH_V2.DiskConnectivity$VH;
-    }
-    public static int DiskConnectivity$get(MemorySegment seg) {
-        return (int)_CSV_QUERY_MDS_PATH_V2.DiskConnectivity$VH.get(seg);
-    }
-    public static void DiskConnectivity$set( MemorySegment seg, int x) {
-        _CSV_QUERY_MDS_PATH_V2.DiskConnectivity$VH.set(seg, x);
-    }
-    public static int DiskConnectivity$get(MemorySegment seg, long index) {
-        return (int)_CSV_QUERY_MDS_PATH_V2.DiskConnectivity$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DiskConnectivity$set(MemorySegment seg, long index, int x) {
-        _CSV_QUERY_MDS_PATH_V2.DiskConnectivity$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment VolumeId$slice(MemorySegment seg) {
-        return seg.asSlice(28, 16);
-    }
-    static final VarHandle IpAddressOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("IpAddressOffset"));
-    public static VarHandle IpAddressOffset$VH() {
-        return _CSV_QUERY_MDS_PATH_V2.IpAddressOffset$VH;
-    }
-    public static int IpAddressOffset$get(MemorySegment seg) {
-        return (int)_CSV_QUERY_MDS_PATH_V2.IpAddressOffset$VH.get(seg);
-    }
-    public static void IpAddressOffset$set( MemorySegment seg, int x) {
-        _CSV_QUERY_MDS_PATH_V2.IpAddressOffset$VH.set(seg, x);
-    }
-    public static int IpAddressOffset$get(MemorySegment seg, long index) {
-        return (int)_CSV_QUERY_MDS_PATH_V2.IpAddressOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void IpAddressOffset$set(MemorySegment seg, long index, int x) {
-        _CSV_QUERY_MDS_PATH_V2.IpAddressOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle IpAddressLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("IpAddressLength"));
-    public static VarHandle IpAddressLength$VH() {
-        return _CSV_QUERY_MDS_PATH_V2.IpAddressLength$VH;
-    }
-    public static int IpAddressLength$get(MemorySegment seg) {
-        return (int)_CSV_QUERY_MDS_PATH_V2.IpAddressLength$VH.get(seg);
-    }
-    public static void IpAddressLength$set( MemorySegment seg, int x) {
-        _CSV_QUERY_MDS_PATH_V2.IpAddressLength$VH.set(seg, x);
-    }
-    public static int IpAddressLength$get(MemorySegment seg, long index) {
-        return (int)_CSV_QUERY_MDS_PATH_V2.IpAddressLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void IpAddressLength$set(MemorySegment seg, long index, int x) {
-        _CSV_QUERY_MDS_PATH_V2.IpAddressLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PathOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PathOffset"));
-    public static VarHandle PathOffset$VH() {
-        return _CSV_QUERY_MDS_PATH_V2.PathOffset$VH;
-    }
-    public static int PathOffset$get(MemorySegment seg) {
-        return (int)_CSV_QUERY_MDS_PATH_V2.PathOffset$VH.get(seg);
-    }
-    public static void PathOffset$set( MemorySegment seg, int x) {
-        _CSV_QUERY_MDS_PATH_V2.PathOffset$VH.set(seg, x);
-    }
-    public static int PathOffset$get(MemorySegment seg, long index) {
-        return (int)_CSV_QUERY_MDS_PATH_V2.PathOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PathOffset$set(MemorySegment seg, long index, int x) {
-        _CSV_QUERY_MDS_PATH_V2.PathOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PathLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PathLength"));
-    public static VarHandle PathLength$VH() {
-        return _CSV_QUERY_MDS_PATH_V2.PathLength$VH;
-    }
-    public static int PathLength$get(MemorySegment seg) {
-        return (int)_CSV_QUERY_MDS_PATH_V2.PathLength$VH.get(seg);
-    }
-    public static void PathLength$set( MemorySegment seg, int x) {
-        _CSV_QUERY_MDS_PATH_V2.PathLength$VH.set(seg, x);
-    }
-    public static int PathLength$get(MemorySegment seg, long index) {
-        return (int)_CSV_QUERY_MDS_PATH_V2.PathLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PathLength$set(MemorySegment seg, long index, int x) {
-        _CSV_QUERY_MDS_PATH_V2.PathLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("RequiredSize"),
+        wgl_h.C_LONG.withName("MdsNodeId"),
+        wgl_h.C_LONG.withName("DsNodeId"),
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_INT.withName("DiskConnectivity"),
+        _GUID.layout().withName("VolumeId"),
+        wgl_h.C_LONG.withName("IpAddressOffset"),
+        wgl_h.C_LONG.withName("IpAddressLength"),
+        wgl_h.C_LONG.withName("PathOffset"),
+        wgl_h.C_LONG.withName("PathLength"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_CSV_QUERY_MDS_PATH_V2");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong Version$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONGLONG Version
+     * }
+     */
+    public static final OfLong Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONGLONG Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONGLONG Version
+     * }
+     */
+    public static long Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONGLONG Version
+     * }
+     */
+    public static void Version(MemorySegment struct, long fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt RequiredSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("RequiredSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD RequiredSize
+     * }
+     */
+    public static final OfInt RequiredSize$layout() {
+        return RequiredSize$LAYOUT;
+    }
+
+    private static final long RequiredSize$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD RequiredSize
+     * }
+     */
+    public static final long RequiredSize$offset() {
+        return RequiredSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD RequiredSize
+     * }
+     */
+    public static int RequiredSize(MemorySegment struct) {
+        return struct.get(RequiredSize$LAYOUT, RequiredSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD RequiredSize
+     * }
+     */
+    public static void RequiredSize(MemorySegment struct, int fieldValue) {
+        struct.set(RequiredSize$LAYOUT, RequiredSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MdsNodeId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MdsNodeId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MdsNodeId
+     * }
+     */
+    public static final OfInt MdsNodeId$layout() {
+        return MdsNodeId$LAYOUT;
+    }
+
+    private static final long MdsNodeId$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MdsNodeId
+     * }
+     */
+    public static final long MdsNodeId$offset() {
+        return MdsNodeId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MdsNodeId
+     * }
+     */
+    public static int MdsNodeId(MemorySegment struct) {
+        return struct.get(MdsNodeId$LAYOUT, MdsNodeId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MdsNodeId
+     * }
+     */
+    public static void MdsNodeId(MemorySegment struct, int fieldValue) {
+        struct.set(MdsNodeId$LAYOUT, MdsNodeId$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DsNodeId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DsNodeId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DsNodeId
+     * }
+     */
+    public static final OfInt DsNodeId$layout() {
+        return DsNodeId$LAYOUT;
+    }
+
+    private static final long DsNodeId$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DsNodeId
+     * }
+     */
+    public static final long DsNodeId$offset() {
+        return DsNodeId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DsNodeId
+     * }
+     */
+    public static int DsNodeId(MemorySegment struct) {
+        return struct.get(DsNodeId$LAYOUT, DsNodeId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DsNodeId
+     * }
+     */
+    public static void DsNodeId(MemorySegment struct, int fieldValue) {
+        struct.set(DsNodeId$LAYOUT, DsNodeId$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DiskConnectivity$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DiskConnectivity"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CSVFS_DISK_CONNECTIVITY DiskConnectivity
+     * }
+     */
+    public static final OfInt DiskConnectivity$layout() {
+        return DiskConnectivity$LAYOUT;
+    }
+
+    private static final long DiskConnectivity$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CSVFS_DISK_CONNECTIVITY DiskConnectivity
+     * }
+     */
+    public static final long DiskConnectivity$offset() {
+        return DiskConnectivity$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CSVFS_DISK_CONNECTIVITY DiskConnectivity
+     * }
+     */
+    public static int DiskConnectivity(MemorySegment struct) {
+        return struct.get(DiskConnectivity$LAYOUT, DiskConnectivity$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CSVFS_DISK_CONNECTIVITY DiskConnectivity
+     * }
+     */
+    public static void DiskConnectivity(MemorySegment struct, int fieldValue) {
+        struct.set(DiskConnectivity$LAYOUT, DiskConnectivity$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout VolumeId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("VolumeId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID VolumeId
+     * }
+     */
+    public static final GroupLayout VolumeId$layout() {
+        return VolumeId$LAYOUT;
+    }
+
+    private static final long VolumeId$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID VolumeId
+     * }
+     */
+    public static final long VolumeId$offset() {
+        return VolumeId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID VolumeId
+     * }
+     */
+    public static MemorySegment VolumeId(MemorySegment struct) {
+        return struct.asSlice(VolumeId$OFFSET, VolumeId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID VolumeId
+     * }
+     */
+    public static void VolumeId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, VolumeId$OFFSET, VolumeId$LAYOUT.byteSize());
+    }
+
+    private static final OfInt IpAddressOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("IpAddressOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD IpAddressOffset
+     * }
+     */
+    public static final OfInt IpAddressOffset$layout() {
+        return IpAddressOffset$LAYOUT;
+    }
+
+    private static final long IpAddressOffset$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD IpAddressOffset
+     * }
+     */
+    public static final long IpAddressOffset$offset() {
+        return IpAddressOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD IpAddressOffset
+     * }
+     */
+    public static int IpAddressOffset(MemorySegment struct) {
+        return struct.get(IpAddressOffset$LAYOUT, IpAddressOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD IpAddressOffset
+     * }
+     */
+    public static void IpAddressOffset(MemorySegment struct, int fieldValue) {
+        struct.set(IpAddressOffset$LAYOUT, IpAddressOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt IpAddressLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("IpAddressLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD IpAddressLength
+     * }
+     */
+    public static final OfInt IpAddressLength$layout() {
+        return IpAddressLength$LAYOUT;
+    }
+
+    private static final long IpAddressLength$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD IpAddressLength
+     * }
+     */
+    public static final long IpAddressLength$offset() {
+        return IpAddressLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD IpAddressLength
+     * }
+     */
+    public static int IpAddressLength(MemorySegment struct) {
+        return struct.get(IpAddressLength$LAYOUT, IpAddressLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD IpAddressLength
+     * }
+     */
+    public static void IpAddressLength(MemorySegment struct, int fieldValue) {
+        struct.set(IpAddressLength$LAYOUT, IpAddressLength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt PathOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PathOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PathOffset
+     * }
+     */
+    public static final OfInt PathOffset$layout() {
+        return PathOffset$LAYOUT;
+    }
+
+    private static final long PathOffset$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PathOffset
+     * }
+     */
+    public static final long PathOffset$offset() {
+        return PathOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PathOffset
+     * }
+     */
+    public static int PathOffset(MemorySegment struct) {
+        return struct.get(PathOffset$LAYOUT, PathOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PathOffset
+     * }
+     */
+    public static void PathOffset(MemorySegment struct, int fieldValue) {
+        struct.set(PathOffset$LAYOUT, PathOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt PathLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PathLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PathLength
+     * }
+     */
+    public static final OfInt PathLength$layout() {
+        return PathLength$LAYOUT;
+    }
+
+    private static final long PathLength$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PathLength
+     * }
+     */
+    public static final long PathLength$offset() {
+        return PathLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PathLength
+     * }
+     */
+    public static int PathLength(MemorySegment struct) {
+        return struct.get(PathLength$LAYOUT, PathLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PathLength
+     * }
+     */
+    public static void PathLength(MemorySegment struct, int fieldValue) {
+        struct.set(PathLength$LAYOUT, PathLength$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

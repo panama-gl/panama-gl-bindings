@@ -2,145 +2,404 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_KEY_PROV_INFO {
+ *     LPWSTR pwszContainerName;
+ *     LPWSTR pwszProvName;
+ *     DWORD dwProvType;
+ *     DWORD dwFlags;
+ *     DWORD cProvParam;
+ *     PCRYPT_KEY_PROV_PARAM rgProvParam;
+ *     DWORD dwKeySpec;
+ * }
+ * }
+ */
 public class _CRYPT_KEY_PROV_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("pwszContainerName"),
-        Constants$root.C_POINTER$LAYOUT.withName("pwszProvName"),
-        Constants$root.C_LONG$LAYOUT.withName("dwProvType"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("cProvParam"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgProvParam"),
-        Constants$root.C_LONG$LAYOUT.withName("dwKeySpec"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_CRYPT_KEY_PROV_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_KEY_PROV_INFO.$struct$LAYOUT;
+    _CRYPT_KEY_PROV_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle pwszContainerName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pwszContainerName"));
-    public static VarHandle pwszContainerName$VH() {
-        return _CRYPT_KEY_PROV_INFO.pwszContainerName$VH;
-    }
-    public static MemoryAddress pwszContainerName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_KEY_PROV_INFO.pwszContainerName$VH.get(seg);
-    }
-    public static void pwszContainerName$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_KEY_PROV_INFO.pwszContainerName$VH.set(seg, x);
-    }
-    public static MemoryAddress pwszContainerName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_KEY_PROV_INFO.pwszContainerName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pwszContainerName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_KEY_PROV_INFO.pwszContainerName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pwszProvName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pwszProvName"));
-    public static VarHandle pwszProvName$VH() {
-        return _CRYPT_KEY_PROV_INFO.pwszProvName$VH;
-    }
-    public static MemoryAddress pwszProvName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_KEY_PROV_INFO.pwszProvName$VH.get(seg);
-    }
-    public static void pwszProvName$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_KEY_PROV_INFO.pwszProvName$VH.set(seg, x);
-    }
-    public static MemoryAddress pwszProvName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_KEY_PROV_INFO.pwszProvName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pwszProvName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_KEY_PROV_INFO.pwszProvName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwProvType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwProvType"));
-    public static VarHandle dwProvType$VH() {
-        return _CRYPT_KEY_PROV_INFO.dwProvType$VH;
-    }
-    public static int dwProvType$get(MemorySegment seg) {
-        return (int)_CRYPT_KEY_PROV_INFO.dwProvType$VH.get(seg);
-    }
-    public static void dwProvType$set( MemorySegment seg, int x) {
-        _CRYPT_KEY_PROV_INFO.dwProvType$VH.set(seg, x);
-    }
-    public static int dwProvType$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_KEY_PROV_INFO.dwProvType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwProvType$set(MemorySegment seg, long index, int x) {
-        _CRYPT_KEY_PROV_INFO.dwProvType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFlags"));
-    public static VarHandle dwFlags$VH() {
-        return _CRYPT_KEY_PROV_INFO.dwFlags$VH;
-    }
-    public static int dwFlags$get(MemorySegment seg) {
-        return (int)_CRYPT_KEY_PROV_INFO.dwFlags$VH.get(seg);
-    }
-    public static void dwFlags$set( MemorySegment seg, int x) {
-        _CRYPT_KEY_PROV_INFO.dwFlags$VH.set(seg, x);
-    }
-    public static int dwFlags$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_KEY_PROV_INFO.dwFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFlags$set(MemorySegment seg, long index, int x) {
-        _CRYPT_KEY_PROV_INFO.dwFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cProvParam$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cProvParam"));
-    public static VarHandle cProvParam$VH() {
-        return _CRYPT_KEY_PROV_INFO.cProvParam$VH;
-    }
-    public static int cProvParam$get(MemorySegment seg) {
-        return (int)_CRYPT_KEY_PROV_INFO.cProvParam$VH.get(seg);
-    }
-    public static void cProvParam$set( MemorySegment seg, int x) {
-        _CRYPT_KEY_PROV_INFO.cProvParam$VH.set(seg, x);
-    }
-    public static int cProvParam$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_KEY_PROV_INFO.cProvParam$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cProvParam$set(MemorySegment seg, long index, int x) {
-        _CRYPT_KEY_PROV_INFO.cProvParam$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgProvParam$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgProvParam"));
-    public static VarHandle rgProvParam$VH() {
-        return _CRYPT_KEY_PROV_INFO.rgProvParam$VH;
-    }
-    public static MemoryAddress rgProvParam$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_KEY_PROV_INFO.rgProvParam$VH.get(seg);
-    }
-    public static void rgProvParam$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_KEY_PROV_INFO.rgProvParam$VH.set(seg, x);
-    }
-    public static MemoryAddress rgProvParam$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_KEY_PROV_INFO.rgProvParam$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgProvParam$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_KEY_PROV_INFO.rgProvParam$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwKeySpec$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwKeySpec"));
-    public static VarHandle dwKeySpec$VH() {
-        return _CRYPT_KEY_PROV_INFO.dwKeySpec$VH;
-    }
-    public static int dwKeySpec$get(MemorySegment seg) {
-        return (int)_CRYPT_KEY_PROV_INFO.dwKeySpec$VH.get(seg);
-    }
-    public static void dwKeySpec$set( MemorySegment seg, int x) {
-        _CRYPT_KEY_PROV_INFO.dwKeySpec$VH.set(seg, x);
-    }
-    public static int dwKeySpec$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_KEY_PROV_INFO.dwKeySpec$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwKeySpec$set(MemorySegment seg, long index, int x) {
-        _CRYPT_KEY_PROV_INFO.dwKeySpec$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("pwszContainerName"),
+        wgl_h.C_POINTER.withName("pwszProvName"),
+        wgl_h.C_LONG.withName("dwProvType"),
+        wgl_h.C_LONG.withName("dwFlags"),
+        wgl_h.C_LONG.withName("cProvParam"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgProvParam"),
+        wgl_h.C_LONG.withName("dwKeySpec"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_CRYPT_KEY_PROV_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout pwszContainerName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pwszContainerName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszContainerName
+     * }
+     */
+    public static final AddressLayout pwszContainerName$layout() {
+        return pwszContainerName$LAYOUT;
+    }
+
+    private static final long pwszContainerName$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszContainerName
+     * }
+     */
+    public static final long pwszContainerName$offset() {
+        return pwszContainerName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszContainerName
+     * }
+     */
+    public static MemorySegment pwszContainerName(MemorySegment struct) {
+        return struct.get(pwszContainerName$LAYOUT, pwszContainerName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszContainerName
+     * }
+     */
+    public static void pwszContainerName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pwszContainerName$LAYOUT, pwszContainerName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pwszProvName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pwszProvName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszProvName
+     * }
+     */
+    public static final AddressLayout pwszProvName$layout() {
+        return pwszProvName$LAYOUT;
+    }
+
+    private static final long pwszProvName$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszProvName
+     * }
+     */
+    public static final long pwszProvName$offset() {
+        return pwszProvName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszProvName
+     * }
+     */
+    public static MemorySegment pwszProvName(MemorySegment struct) {
+        return struct.get(pwszProvName$LAYOUT, pwszProvName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszProvName
+     * }
+     */
+    public static void pwszProvName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pwszProvName$LAYOUT, pwszProvName$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwProvType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwProvType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwProvType
+     * }
+     */
+    public static final OfInt dwProvType$layout() {
+        return dwProvType$LAYOUT;
+    }
+
+    private static final long dwProvType$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwProvType
+     * }
+     */
+    public static final long dwProvType$offset() {
+        return dwProvType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwProvType
+     * }
+     */
+    public static int dwProvType(MemorySegment struct) {
+        return struct.get(dwProvType$LAYOUT, dwProvType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwProvType
+     * }
+     */
+    public static void dwProvType(MemorySegment struct, int fieldValue) {
+        struct.set(dwProvType$LAYOUT, dwProvType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final OfInt dwFlags$layout() {
+        return dwFlags$LAYOUT;
+    }
+
+    private static final long dwFlags$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final long dwFlags$offset() {
+        return dwFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static int dwFlags(MemorySegment struct) {
+        return struct.get(dwFlags$LAYOUT, dwFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static void dwFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwFlags$LAYOUT, dwFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cProvParam$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cProvParam"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cProvParam
+     * }
+     */
+    public static final OfInt cProvParam$layout() {
+        return cProvParam$LAYOUT;
+    }
+
+    private static final long cProvParam$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cProvParam
+     * }
+     */
+    public static final long cProvParam$offset() {
+        return cProvParam$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cProvParam
+     * }
+     */
+    public static int cProvParam(MemorySegment struct) {
+        return struct.get(cProvParam$LAYOUT, cProvParam$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cProvParam
+     * }
+     */
+    public static void cProvParam(MemorySegment struct, int fieldValue) {
+        struct.set(cProvParam$LAYOUT, cProvParam$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgProvParam$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgProvParam"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCRYPT_KEY_PROV_PARAM rgProvParam
+     * }
+     */
+    public static final AddressLayout rgProvParam$layout() {
+        return rgProvParam$LAYOUT;
+    }
+
+    private static final long rgProvParam$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCRYPT_KEY_PROV_PARAM rgProvParam
+     * }
+     */
+    public static final long rgProvParam$offset() {
+        return rgProvParam$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCRYPT_KEY_PROV_PARAM rgProvParam
+     * }
+     */
+    public static MemorySegment rgProvParam(MemorySegment struct) {
+        return struct.get(rgProvParam$LAYOUT, rgProvParam$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCRYPT_KEY_PROV_PARAM rgProvParam
+     * }
+     */
+    public static void rgProvParam(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgProvParam$LAYOUT, rgProvParam$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwKeySpec$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwKeySpec"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwKeySpec
+     * }
+     */
+    public static final OfInt dwKeySpec$layout() {
+        return dwKeySpec$LAYOUT;
+    }
+
+    private static final long dwKeySpec$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwKeySpec
+     * }
+     */
+    public static final long dwKeySpec$offset() {
+        return dwKeySpec$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwKeySpec
+     * }
+     */
+    public static int dwKeySpec(MemorySegment struct) {
+        return struct.get(dwKeySpec$LAYOUT, dwKeySpec$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwKeySpec
+     * }
+     */
+    public static void dwKeySpec(MemorySegment struct, int fieldValue) {
+        struct.set(dwKeySpec$LAYOUT, dwKeySpec$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

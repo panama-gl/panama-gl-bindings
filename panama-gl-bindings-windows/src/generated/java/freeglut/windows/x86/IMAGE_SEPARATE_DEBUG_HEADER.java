@@ -2,13 +2,39 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _IMAGE_SEPARATE_DEBUG_HEADER {
+ *     WORD Signature;
+ *     WORD Flags;
+ *     WORD Machine;
+ *     WORD Characteristics;
+ *     DWORD TimeDateStamp;
+ *     DWORD CheckSum;
+ *     DWORD ImageBase;
+ *     DWORD SizeOfImage;
+ *     DWORD NumberOfSections;
+ *     DWORD ExportedNamesSize;
+ *     DWORD DebugDirectorySize;
+ *     DWORD SectionAlignment;
+ *     DWORD Reserved[2];
+ * } IMAGE_SEPARATE_DEBUG_HEADER
+ * }
+ */
 public class IMAGE_SEPARATE_DEBUG_HEADER extends _IMAGE_SEPARATE_DEBUG_HEADER {
 
+    IMAGE_SEPARATE_DEBUG_HEADER() {
+        // Should not be called directly
+    }
 }
-
 

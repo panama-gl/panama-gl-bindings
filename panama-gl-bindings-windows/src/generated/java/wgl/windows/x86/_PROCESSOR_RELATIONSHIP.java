@@ -2,87 +2,380 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PROCESSOR_RELATIONSHIP {
+ *     BYTE Flags;
+ *     BYTE EfficiencyClass;
+ *     BYTE Reserved[20];
+ *     WORD GroupCount;
+ *     GROUP_AFFINITY GroupMask[1];
+ * }
+ * }
+ */
 public class _PROCESSOR_RELATIONSHIP {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("Flags"),
-        Constants$root.C_CHAR$LAYOUT.withName("EfficiencyClass"),
-        MemoryLayout.sequenceLayout(20, Constants$root.C_CHAR$LAYOUT).withName("Reserved"),
-        Constants$root.C_SHORT$LAYOUT.withName("GroupCount"),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Mask"),
-            Constants$root.C_SHORT$LAYOUT.withName("Group"),
-            MemoryLayout.sequenceLayout(3, Constants$root.C_SHORT$LAYOUT).withName("Reserved")
-        ).withName("_GROUP_AFFINITY")).withName("GroupMask")
-    ).withName("_PROCESSOR_RELATIONSHIP");
-    public static MemoryLayout $LAYOUT() {
-        return _PROCESSOR_RELATIONSHIP.$struct$LAYOUT;
+    _PROCESSOR_RELATIONSHIP() {
+        // Should not be called directly
     }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _PROCESSOR_RELATIONSHIP.Flags$VH;
-    }
-    public static byte Flags$get(MemorySegment seg) {
-        return (byte)_PROCESSOR_RELATIONSHIP.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, byte x) {
-        _PROCESSOR_RELATIONSHIP.Flags$VH.set(seg, x);
-    }
-    public static byte Flags$get(MemorySegment seg, long index) {
-        return (byte)_PROCESSOR_RELATIONSHIP.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, byte x) {
-        _PROCESSOR_RELATIONSHIP.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EfficiencyClass$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EfficiencyClass"));
-    public static VarHandle EfficiencyClass$VH() {
-        return _PROCESSOR_RELATIONSHIP.EfficiencyClass$VH;
-    }
-    public static byte EfficiencyClass$get(MemorySegment seg) {
-        return (byte)_PROCESSOR_RELATIONSHIP.EfficiencyClass$VH.get(seg);
-    }
-    public static void EfficiencyClass$set( MemorySegment seg, byte x) {
-        _PROCESSOR_RELATIONSHIP.EfficiencyClass$VH.set(seg, x);
-    }
-    public static byte EfficiencyClass$get(MemorySegment seg, long index) {
-        return (byte)_PROCESSOR_RELATIONSHIP.EfficiencyClass$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EfficiencyClass$set(MemorySegment seg, long index, byte x) {
-        _PROCESSOR_RELATIONSHIP.EfficiencyClass$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Reserved$slice(MemorySegment seg) {
-        return seg.asSlice(2, 20);
-    }
-    static final VarHandle GroupCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GroupCount"));
-    public static VarHandle GroupCount$VH() {
-        return _PROCESSOR_RELATIONSHIP.GroupCount$VH;
-    }
-    public static short GroupCount$get(MemorySegment seg) {
-        return (short)_PROCESSOR_RELATIONSHIP.GroupCount$VH.get(seg);
-    }
-    public static void GroupCount$set( MemorySegment seg, short x) {
-        _PROCESSOR_RELATIONSHIP.GroupCount$VH.set(seg, x);
-    }
-    public static short GroupCount$get(MemorySegment seg, long index) {
-        return (short)_PROCESSOR_RELATIONSHIP.GroupCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GroupCount$set(MemorySegment seg, long index, short x) {
-        _PROCESSOR_RELATIONSHIP.GroupCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment GroupMask$slice(MemorySegment seg) {
-        return seg.asSlice(24, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_CHAR.withName("Flags"),
+        wgl_h.C_CHAR.withName("EfficiencyClass"),
+        MemoryLayout.sequenceLayout(20, wgl_h.C_CHAR).withName("Reserved"),
+        wgl_h.C_SHORT.withName("GroupCount"),
+        MemoryLayout.sequenceLayout(1, _GROUP_AFFINITY.layout()).withName("GroupMask")
+    ).withName("_PROCESSOR_RELATIONSHIP");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte Flags$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Flags
+     * }
+     */
+    public static final OfByte Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Flags
+     * }
+     */
+    public static byte Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, byte fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfByte EfficiencyClass$LAYOUT = (OfByte)$LAYOUT.select(groupElement("EfficiencyClass"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE EfficiencyClass
+     * }
+     */
+    public static final OfByte EfficiencyClass$layout() {
+        return EfficiencyClass$LAYOUT;
+    }
+
+    private static final long EfficiencyClass$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE EfficiencyClass
+     * }
+     */
+    public static final long EfficiencyClass$offset() {
+        return EfficiencyClass$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE EfficiencyClass
+     * }
+     */
+    public static byte EfficiencyClass(MemorySegment struct) {
+        return struct.get(EfficiencyClass$LAYOUT, EfficiencyClass$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE EfficiencyClass
+     * }
+     */
+    public static void EfficiencyClass(MemorySegment struct, byte fieldValue) {
+        struct.set(EfficiencyClass$LAYOUT, EfficiencyClass$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Reserved[20]
+     * }
+     */
+    public static final SequenceLayout Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Reserved[20]
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved[20]
+     * }
+     */
+    public static MemorySegment Reserved(MemorySegment struct) {
+        return struct.asSlice(Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved[20]
+     * }
+     */
+    public static void Reserved(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved$DIMS = { 20 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Reserved[20]
+     * }
+     */
+    public static long[] Reserved$dimensions() {
+        return Reserved$DIMS;
+    }
+    private static final VarHandle Reserved$ELEM_HANDLE = Reserved$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved[20]
+     * }
+     */
+    public static byte Reserved(MemorySegment struct, long index0) {
+        return (byte)Reserved$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved[20]
+     * }
+     */
+    public static void Reserved(MemorySegment struct, long index0, byte fieldValue) {
+        Reserved$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfShort GroupCount$LAYOUT = (OfShort)$LAYOUT.select(groupElement("GroupCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD GroupCount
+     * }
+     */
+    public static final OfShort GroupCount$layout() {
+        return GroupCount$LAYOUT;
+    }
+
+    private static final long GroupCount$OFFSET = 22;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD GroupCount
+     * }
+     */
+    public static final long GroupCount$offset() {
+        return GroupCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD GroupCount
+     * }
+     */
+    public static short GroupCount(MemorySegment struct) {
+        return struct.get(GroupCount$LAYOUT, GroupCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD GroupCount
+     * }
+     */
+    public static void GroupCount(MemorySegment struct, short fieldValue) {
+        struct.set(GroupCount$LAYOUT, GroupCount$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout GroupMask$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("GroupMask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GROUP_AFFINITY GroupMask[1]
+     * }
+     */
+    public static final SequenceLayout GroupMask$layout() {
+        return GroupMask$LAYOUT;
+    }
+
+    private static final long GroupMask$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GROUP_AFFINITY GroupMask[1]
+     * }
+     */
+    public static final long GroupMask$offset() {
+        return GroupMask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GROUP_AFFINITY GroupMask[1]
+     * }
+     */
+    public static MemorySegment GroupMask(MemorySegment struct) {
+        return struct.asSlice(GroupMask$OFFSET, GroupMask$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GROUP_AFFINITY GroupMask[1]
+     * }
+     */
+    public static void GroupMask(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, GroupMask$OFFSET, GroupMask$LAYOUT.byteSize());
+    }
+
+    private static long[] GroupMask$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * GROUP_AFFINITY GroupMask[1]
+     * }
+     */
+    public static long[] GroupMask$dimensions() {
+        return GroupMask$DIMS;
+    }
+    private static final MethodHandle GroupMask$ELEM_HANDLE = GroupMask$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * GROUP_AFFINITY GroupMask[1]
+     * }
+     */
+    public static MemorySegment GroupMask(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)GroupMask$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * GROUP_AFFINITY GroupMask[1]
+     * }
+     */
+    public static void GroupMask(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, GroupMask(struct, index0), 0L, _GROUP_AFFINITY.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

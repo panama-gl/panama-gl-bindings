@@ -2,13 +2,33 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagPOINTER_DEVICE_INFO {
+ *     DWORD displayOrientation;
+ *     HANDLE device;
+ *     POINTER_DEVICE_TYPE pointerDeviceType;
+ *     HMONITOR monitor;
+ *     ULONG startingCursorId;
+ *     USHORT maxActiveContacts;
+ *     WCHAR productString[520];
+ * } POINTER_DEVICE_INFO
+ * }
+ */
 public class POINTER_DEVICE_INFO extends tagPOINTER_DEVICE_INFO {
 
+    POINTER_DEVICE_INFO() {
+        // Should not be called directly
+    }
 }
-
 

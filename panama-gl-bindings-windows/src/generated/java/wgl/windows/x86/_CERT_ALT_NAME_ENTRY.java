@@ -2,145 +2,453 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_ALT_NAME_ENTRY {
+ *     DWORD dwAltNameChoice;
+ *     union {
+ *         PCERT_OTHER_NAME pOtherName;
+ *         LPWSTR pwszRfc822Name;
+ *         LPWSTR pwszDNSName;
+ *         CERT_NAME_BLOB DirectoryName;
+ *         LPWSTR pwszURL;
+ *         CRYPT_DATA_BLOB IPAddress;
+ *         LPSTR pszRegisteredID;
+ *     };
+ * }
+ * }
+ */
 public class _CERT_ALT_NAME_ENTRY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwAltNameChoice"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.unionLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("pOtherName"),
-            Constants$root.C_POINTER$LAYOUT.withName("pwszRfc822Name"),
-            Constants$root.C_POINTER$LAYOUT.withName("pwszDNSName"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                MemoryLayout.paddingLayout(32),
-                Constants$root.C_POINTER$LAYOUT.withName("pbData")
-            ).withName("DirectoryName"),
-            Constants$root.C_POINTER$LAYOUT.withName("pwszURL"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                MemoryLayout.paddingLayout(32),
-                Constants$root.C_POINTER$LAYOUT.withName("pbData")
-            ).withName("IPAddress"),
-            Constants$root.C_POINTER$LAYOUT.withName("pszRegisteredID")
-        ).withName("$anon$0")
-    ).withName("_CERT_ALT_NAME_ENTRY");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_ALT_NAME_ENTRY.$struct$LAYOUT;
+    _CERT_ALT_NAME_ENTRY() {
+        // Should not be called directly
     }
-    static final VarHandle dwAltNameChoice$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwAltNameChoice"));
-    public static VarHandle dwAltNameChoice$VH() {
-        return _CERT_ALT_NAME_ENTRY.dwAltNameChoice$VH;
-    }
-    public static int dwAltNameChoice$get(MemorySegment seg) {
-        return (int)_CERT_ALT_NAME_ENTRY.dwAltNameChoice$VH.get(seg);
-    }
-    public static void dwAltNameChoice$set( MemorySegment seg, int x) {
-        _CERT_ALT_NAME_ENTRY.dwAltNameChoice$VH.set(seg, x);
-    }
-    public static int dwAltNameChoice$get(MemorySegment seg, long index) {
-        return (int)_CERT_ALT_NAME_ENTRY.dwAltNameChoice$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwAltNameChoice$set(MemorySegment seg, long index, int x) {
-        _CERT_ALT_NAME_ENTRY.dwAltNameChoice$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pOtherName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pOtherName"));
-    public static VarHandle pOtherName$VH() {
-        return _CERT_ALT_NAME_ENTRY.pOtherName$VH;
-    }
-    public static MemoryAddress pOtherName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_ALT_NAME_ENTRY.pOtherName$VH.get(seg);
-    }
-    public static void pOtherName$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_ALT_NAME_ENTRY.pOtherName$VH.set(seg, x);
-    }
-    public static MemoryAddress pOtherName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_ALT_NAME_ENTRY.pOtherName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pOtherName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_ALT_NAME_ENTRY.pOtherName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pwszRfc822Name$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pwszRfc822Name"));
-    public static VarHandle pwszRfc822Name$VH() {
-        return _CERT_ALT_NAME_ENTRY.pwszRfc822Name$VH;
-    }
-    public static MemoryAddress pwszRfc822Name$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_ALT_NAME_ENTRY.pwszRfc822Name$VH.get(seg);
-    }
-    public static void pwszRfc822Name$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_ALT_NAME_ENTRY.pwszRfc822Name$VH.set(seg, x);
-    }
-    public static MemoryAddress pwszRfc822Name$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_ALT_NAME_ENTRY.pwszRfc822Name$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pwszRfc822Name$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_ALT_NAME_ENTRY.pwszRfc822Name$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pwszDNSName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pwszDNSName"));
-    public static VarHandle pwszDNSName$VH() {
-        return _CERT_ALT_NAME_ENTRY.pwszDNSName$VH;
-    }
-    public static MemoryAddress pwszDNSName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_ALT_NAME_ENTRY.pwszDNSName$VH.get(seg);
-    }
-    public static void pwszDNSName$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_ALT_NAME_ENTRY.pwszDNSName$VH.set(seg, x);
-    }
-    public static MemoryAddress pwszDNSName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_ALT_NAME_ENTRY.pwszDNSName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pwszDNSName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_ALT_NAME_ENTRY.pwszDNSName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment DirectoryName$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    static final VarHandle pwszURL$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pwszURL"));
-    public static VarHandle pwszURL$VH() {
-        return _CERT_ALT_NAME_ENTRY.pwszURL$VH;
-    }
-    public static MemoryAddress pwszURL$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_ALT_NAME_ENTRY.pwszURL$VH.get(seg);
-    }
-    public static void pwszURL$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_ALT_NAME_ENTRY.pwszURL$VH.set(seg, x);
-    }
-    public static MemoryAddress pwszURL$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_ALT_NAME_ENTRY.pwszURL$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pwszURL$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_ALT_NAME_ENTRY.pwszURL$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment IPAddress$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    static final VarHandle pszRegisteredID$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pszRegisteredID"));
-    public static VarHandle pszRegisteredID$VH() {
-        return _CERT_ALT_NAME_ENTRY.pszRegisteredID$VH;
-    }
-    public static MemoryAddress pszRegisteredID$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_ALT_NAME_ENTRY.pszRegisteredID$VH.get(seg);
-    }
-    public static void pszRegisteredID$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_ALT_NAME_ENTRY.pszRegisteredID$VH.set(seg, x);
-    }
-    public static MemoryAddress pszRegisteredID$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_ALT_NAME_ENTRY.pszRegisteredID$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pszRegisteredID$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_ALT_NAME_ENTRY.pszRegisteredID$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwAltNameChoice"),
+        MemoryLayout.paddingLayout(4),
+        MemoryLayout.unionLayout(
+            wgl_h.C_POINTER.withName("pOtherName"),
+            wgl_h.C_POINTER.withName("pwszRfc822Name"),
+            wgl_h.C_POINTER.withName("pwszDNSName"),
+            _CRYPTOAPI_BLOB.layout().withName("DirectoryName"),
+            wgl_h.C_POINTER.withName("pwszURL"),
+            _CRYPTOAPI_BLOB.layout().withName("IPAddress"),
+            wgl_h.C_POINTER.withName("pszRegisteredID")
+        ).withName("$anon$3957:5")
+    ).withName("_CERT_ALT_NAME_ENTRY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwAltNameChoice$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwAltNameChoice"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwAltNameChoice
+     * }
+     */
+    public static final OfInt dwAltNameChoice$layout() {
+        return dwAltNameChoice$LAYOUT;
+    }
+
+    private static final long dwAltNameChoice$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwAltNameChoice
+     * }
+     */
+    public static final long dwAltNameChoice$offset() {
+        return dwAltNameChoice$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwAltNameChoice
+     * }
+     */
+    public static int dwAltNameChoice(MemorySegment struct) {
+        return struct.get(dwAltNameChoice$LAYOUT, dwAltNameChoice$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwAltNameChoice
+     * }
+     */
+    public static void dwAltNameChoice(MemorySegment struct, int fieldValue) {
+        struct.set(dwAltNameChoice$LAYOUT, dwAltNameChoice$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pOtherName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$3957:5"), groupElement("pOtherName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCERT_OTHER_NAME pOtherName
+     * }
+     */
+    public static final AddressLayout pOtherName$layout() {
+        return pOtherName$LAYOUT;
+    }
+
+    private static final long pOtherName$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCERT_OTHER_NAME pOtherName
+     * }
+     */
+    public static final long pOtherName$offset() {
+        return pOtherName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCERT_OTHER_NAME pOtherName
+     * }
+     */
+    public static MemorySegment pOtherName(MemorySegment struct) {
+        return struct.get(pOtherName$LAYOUT, pOtherName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCERT_OTHER_NAME pOtherName
+     * }
+     */
+    public static void pOtherName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pOtherName$LAYOUT, pOtherName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pwszRfc822Name$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$3957:5"), groupElement("pwszRfc822Name"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszRfc822Name
+     * }
+     */
+    public static final AddressLayout pwszRfc822Name$layout() {
+        return pwszRfc822Name$LAYOUT;
+    }
+
+    private static final long pwszRfc822Name$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszRfc822Name
+     * }
+     */
+    public static final long pwszRfc822Name$offset() {
+        return pwszRfc822Name$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszRfc822Name
+     * }
+     */
+    public static MemorySegment pwszRfc822Name(MemorySegment struct) {
+        return struct.get(pwszRfc822Name$LAYOUT, pwszRfc822Name$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszRfc822Name
+     * }
+     */
+    public static void pwszRfc822Name(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pwszRfc822Name$LAYOUT, pwszRfc822Name$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pwszDNSName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$3957:5"), groupElement("pwszDNSName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszDNSName
+     * }
+     */
+    public static final AddressLayout pwszDNSName$layout() {
+        return pwszDNSName$LAYOUT;
+    }
+
+    private static final long pwszDNSName$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszDNSName
+     * }
+     */
+    public static final long pwszDNSName$offset() {
+        return pwszDNSName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszDNSName
+     * }
+     */
+    public static MemorySegment pwszDNSName(MemorySegment struct) {
+        return struct.get(pwszDNSName$LAYOUT, pwszDNSName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszDNSName
+     * }
+     */
+    public static void pwszDNSName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pwszDNSName$LAYOUT, pwszDNSName$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout DirectoryName$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$3957:5"), groupElement("DirectoryName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB DirectoryName
+     * }
+     */
+    public static final GroupLayout DirectoryName$layout() {
+        return DirectoryName$LAYOUT;
+    }
+
+    private static final long DirectoryName$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB DirectoryName
+     * }
+     */
+    public static final long DirectoryName$offset() {
+        return DirectoryName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB DirectoryName
+     * }
+     */
+    public static MemorySegment DirectoryName(MemorySegment struct) {
+        return struct.asSlice(DirectoryName$OFFSET, DirectoryName$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CERT_NAME_BLOB DirectoryName
+     * }
+     */
+    public static void DirectoryName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, DirectoryName$OFFSET, DirectoryName$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout pwszURL$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$3957:5"), groupElement("pwszURL"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszURL
+     * }
+     */
+    public static final AddressLayout pwszURL$layout() {
+        return pwszURL$LAYOUT;
+    }
+
+    private static final long pwszURL$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszURL
+     * }
+     */
+    public static final long pwszURL$offset() {
+        return pwszURL$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszURL
+     * }
+     */
+    public static MemorySegment pwszURL(MemorySegment struct) {
+        return struct.get(pwszURL$LAYOUT, pwszURL$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszURL
+     * }
+     */
+    public static void pwszURL(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pwszURL$LAYOUT, pwszURL$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout IPAddress$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$3957:5"), groupElement("IPAddress"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB IPAddress
+     * }
+     */
+    public static final GroupLayout IPAddress$layout() {
+        return IPAddress$LAYOUT;
+    }
+
+    private static final long IPAddress$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB IPAddress
+     * }
+     */
+    public static final long IPAddress$offset() {
+        return IPAddress$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB IPAddress
+     * }
+     */
+    public static MemorySegment IPAddress(MemorySegment struct) {
+        return struct.asSlice(IPAddress$OFFSET, IPAddress$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB IPAddress
+     * }
+     */
+    public static void IPAddress(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, IPAddress$OFFSET, IPAddress$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout pszRegisteredID$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$3957:5"), groupElement("pszRegisteredID"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pszRegisteredID
+     * }
+     */
+    public static final AddressLayout pszRegisteredID$layout() {
+        return pszRegisteredID$LAYOUT;
+    }
+
+    private static final long pszRegisteredID$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pszRegisteredID
+     * }
+     */
+    public static final long pszRegisteredID$offset() {
+        return pszRegisteredID$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pszRegisteredID
+     * }
+     */
+    public static MemorySegment pszRegisteredID(MemorySegment struct) {
+        return struct.get(pszRegisteredID$LAYOUT, pszRegisteredID$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pszRegisteredID
+     * }
+     */
+    public static void pszRegisteredID(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pszRegisteredID$LAYOUT, pszRegisteredID$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

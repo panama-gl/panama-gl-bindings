@@ -2,27 +2,71 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNWGLCREATEPBUFFEREXTPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    java.lang.foreign.Addressable apply(java.lang.foreign.MemoryAddress hDC, int iPixelFormat, int iWidth, int iHeight, java.lang.foreign.MemoryAddress piAttribList);
-    static MemorySegment allocate(PFNWGLCREATEPBUFFEREXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNWGLCREATEPBUFFEREXTPROC.class, fi, constants$1389.PFNWGLCREATEPBUFFEREXTPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef HPBUFFEREXT (*PFNWGLCREATEPBUFFEREXTPROC)(HDC, int, int, int, const int *) __attribute__((stdcall))
+ * }
+ */
+public class PFNWGLCREATEPBUFFEREXTPROC {
+
+    PFNWGLCREATEPBUFFEREXTPROC() {
+        // Should not be called directly
     }
-    static PFNWGLCREATEPBUFFEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _hDC, int _iPixelFormat, int _iWidth, int _iHeight, java.lang.foreign.MemoryAddress _piAttribList) -> {
-            try {
-                return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)constants$1389.PFNWGLCREATEPBUFFEREXTPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_hDC, _iPixelFormat, _iWidth, _iHeight, (java.lang.foreign.Addressable)_piAttribList);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        MemorySegment apply(MemorySegment hDC, int iPixelFormat, int iWidth, int iHeight, MemorySegment piAttribList);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNWGLCREATEPBUFFEREXTPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNWGLCREATEPBUFFEREXTPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static MemorySegment invoke(MemorySegment funcPtr,MemorySegment hDC, int iPixelFormat, int iWidth, int iHeight, MemorySegment piAttribList) {
+        try {
+            return (MemorySegment) DOWN$MH.invokeExact(funcPtr, hDC, iPixelFormat, iWidth, iHeight, piAttribList);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

@@ -2,27 +2,68 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface RPCLT_PDU_FILTER_FUNC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    void apply(java.lang.foreign.MemoryAddress Buffer, int BufferLength, int fDatagram);
-    static MemorySegment allocate(RPCLT_PDU_FILTER_FUNC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(RPCLT_PDU_FILTER_FUNC.class, fi, constants$687.RPCLT_PDU_FILTER_FUNC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef void (*RPCLT_PDU_FILTER_FUNC)(void *, unsigned int, int)
+ * }
+ */
+public class RPCLT_PDU_FILTER_FUNC {
+
+    RPCLT_PDU_FILTER_FUNC() {
+        // Should not be called directly
     }
-    static RPCLT_PDU_FILTER_FUNC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _Buffer, int _BufferLength, int _fDatagram) -> {
-            try {
-                constants$687.RPCLT_PDU_FILTER_FUNC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_Buffer, _BufferLength, _fDatagram);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply(MemorySegment Buffer, int BufferLength, int fDatagram);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+        wgl_h.C_POINTER,
+        wgl_h.C_INT,
+        wgl_h.C_INT
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(RPCLT_PDU_FILTER_FUNC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(RPCLT_PDU_FILTER_FUNC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr,MemorySegment Buffer, int BufferLength, int fDatagram) {
+        try {
+             DOWN$MH.invokeExact(funcPtr, Buffer, BufferLength, fDatagram);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

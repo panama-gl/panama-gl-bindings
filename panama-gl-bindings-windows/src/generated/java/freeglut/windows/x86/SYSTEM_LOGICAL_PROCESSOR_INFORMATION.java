@@ -2,13 +2,38 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION {
+ *     ULONG_PTR ProcessorMask;
+ *     LOGICAL_PROCESSOR_RELATIONSHIP Relationship;
+ *     union {
+ *         struct {
+ *             BYTE Flags;
+ *         } ProcessorCore;
+ *         struct {
+ *             DWORD NodeNumber;
+ *         } NumaNode;
+ *         CACHE_DESCRIPTOR Cache;
+ *         ULONGLONG Reserved[2];
+ *     };
+ * } SYSTEM_LOGICAL_PROCESSOR_INFORMATION
+ * }
+ */
 public class SYSTEM_LOGICAL_PROCESSOR_INFORMATION extends _SYSTEM_LOGICAL_PROCESSOR_INFORMATION {
 
+    SYSTEM_LOGICAL_PROCESSOR_INFORMATION() {
+        // Should not be called directly
+    }
 }
-
 

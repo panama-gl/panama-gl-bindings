@@ -2,228 +2,632 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagMONLINKSTRUCT {
+ *     UINT cb;
+ *     DWORD dwTime;
+ *     HANDLE hTask;
+ *     BOOL fEstablished;
+ *     BOOL fNoData;
+ *     HSZ hszSvc;
+ *     HSZ hszTopic;
+ *     HSZ hszItem;
+ *     UINT wFmt;
+ *     BOOL fServer;
+ *     HCONV hConvServer;
+ *     HCONV hConvClient;
+ * }
+ * }
+ */
 public class tagMONLINKSTRUCT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cb"),
-        Constants$root.C_LONG$LAYOUT.withName("dwTime"),
-        Constants$root.C_POINTER$LAYOUT.withName("hTask"),
-        Constants$root.C_LONG$LAYOUT.withName("fEstablished"),
-        Constants$root.C_LONG$LAYOUT.withName("fNoData"),
-        Constants$root.C_POINTER$LAYOUT.withName("hszSvc"),
-        Constants$root.C_POINTER$LAYOUT.withName("hszTopic"),
-        Constants$root.C_POINTER$LAYOUT.withName("hszItem"),
-        Constants$root.C_LONG$LAYOUT.withName("wFmt"),
-        Constants$root.C_LONG$LAYOUT.withName("fServer"),
-        Constants$root.C_POINTER$LAYOUT.withName("hConvServer"),
-        Constants$root.C_POINTER$LAYOUT.withName("hConvClient")
-    ).withName("tagMONLINKSTRUCT");
-    public static MemoryLayout $LAYOUT() {
-        return tagMONLINKSTRUCT.$struct$LAYOUT;
+    tagMONLINKSTRUCT() {
+        // Should not be called directly
     }
-    static final VarHandle cb$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cb"));
-    public static VarHandle cb$VH() {
-        return tagMONLINKSTRUCT.cb$VH;
-    }
-    public static int cb$get(MemorySegment seg) {
-        return (int)tagMONLINKSTRUCT.cb$VH.get(seg);
-    }
-    public static void cb$set( MemorySegment seg, int x) {
-        tagMONLINKSTRUCT.cb$VH.set(seg, x);
-    }
-    public static int cb$get(MemorySegment seg, long index) {
-        return (int)tagMONLINKSTRUCT.cb$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cb$set(MemorySegment seg, long index, int x) {
-        tagMONLINKSTRUCT.cb$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwTime$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwTime"));
-    public static VarHandle dwTime$VH() {
-        return tagMONLINKSTRUCT.dwTime$VH;
-    }
-    public static int dwTime$get(MemorySegment seg) {
-        return (int)tagMONLINKSTRUCT.dwTime$VH.get(seg);
-    }
-    public static void dwTime$set( MemorySegment seg, int x) {
-        tagMONLINKSTRUCT.dwTime$VH.set(seg, x);
-    }
-    public static int dwTime$get(MemorySegment seg, long index) {
-        return (int)tagMONLINKSTRUCT.dwTime$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwTime$set(MemorySegment seg, long index, int x) {
-        tagMONLINKSTRUCT.dwTime$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hTask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hTask"));
-    public static VarHandle hTask$VH() {
-        return tagMONLINKSTRUCT.hTask$VH;
-    }
-    public static MemoryAddress hTask$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMONLINKSTRUCT.hTask$VH.get(seg);
-    }
-    public static void hTask$set( MemorySegment seg, MemoryAddress x) {
-        tagMONLINKSTRUCT.hTask$VH.set(seg, x);
-    }
-    public static MemoryAddress hTask$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMONLINKSTRUCT.hTask$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hTask$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMONLINKSTRUCT.hTask$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fEstablished$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fEstablished"));
-    public static VarHandle fEstablished$VH() {
-        return tagMONLINKSTRUCT.fEstablished$VH;
-    }
-    public static int fEstablished$get(MemorySegment seg) {
-        return (int)tagMONLINKSTRUCT.fEstablished$VH.get(seg);
-    }
-    public static void fEstablished$set( MemorySegment seg, int x) {
-        tagMONLINKSTRUCT.fEstablished$VH.set(seg, x);
-    }
-    public static int fEstablished$get(MemorySegment seg, long index) {
-        return (int)tagMONLINKSTRUCT.fEstablished$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fEstablished$set(MemorySegment seg, long index, int x) {
-        tagMONLINKSTRUCT.fEstablished$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fNoData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fNoData"));
-    public static VarHandle fNoData$VH() {
-        return tagMONLINKSTRUCT.fNoData$VH;
-    }
-    public static int fNoData$get(MemorySegment seg) {
-        return (int)tagMONLINKSTRUCT.fNoData$VH.get(seg);
-    }
-    public static void fNoData$set( MemorySegment seg, int x) {
-        tagMONLINKSTRUCT.fNoData$VH.set(seg, x);
-    }
-    public static int fNoData$get(MemorySegment seg, long index) {
-        return (int)tagMONLINKSTRUCT.fNoData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fNoData$set(MemorySegment seg, long index, int x) {
-        tagMONLINKSTRUCT.fNoData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hszSvc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hszSvc"));
-    public static VarHandle hszSvc$VH() {
-        return tagMONLINKSTRUCT.hszSvc$VH;
-    }
-    public static MemoryAddress hszSvc$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMONLINKSTRUCT.hszSvc$VH.get(seg);
-    }
-    public static void hszSvc$set( MemorySegment seg, MemoryAddress x) {
-        tagMONLINKSTRUCT.hszSvc$VH.set(seg, x);
-    }
-    public static MemoryAddress hszSvc$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMONLINKSTRUCT.hszSvc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hszSvc$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMONLINKSTRUCT.hszSvc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hszTopic$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hszTopic"));
-    public static VarHandle hszTopic$VH() {
-        return tagMONLINKSTRUCT.hszTopic$VH;
-    }
-    public static MemoryAddress hszTopic$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMONLINKSTRUCT.hszTopic$VH.get(seg);
-    }
-    public static void hszTopic$set( MemorySegment seg, MemoryAddress x) {
-        tagMONLINKSTRUCT.hszTopic$VH.set(seg, x);
-    }
-    public static MemoryAddress hszTopic$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMONLINKSTRUCT.hszTopic$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hszTopic$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMONLINKSTRUCT.hszTopic$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hszItem$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hszItem"));
-    public static VarHandle hszItem$VH() {
-        return tagMONLINKSTRUCT.hszItem$VH;
-    }
-    public static MemoryAddress hszItem$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMONLINKSTRUCT.hszItem$VH.get(seg);
-    }
-    public static void hszItem$set( MemorySegment seg, MemoryAddress x) {
-        tagMONLINKSTRUCT.hszItem$VH.set(seg, x);
-    }
-    public static MemoryAddress hszItem$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMONLINKSTRUCT.hszItem$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hszItem$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMONLINKSTRUCT.hszItem$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wFmt$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wFmt"));
-    public static VarHandle wFmt$VH() {
-        return tagMONLINKSTRUCT.wFmt$VH;
-    }
-    public static int wFmt$get(MemorySegment seg) {
-        return (int)tagMONLINKSTRUCT.wFmt$VH.get(seg);
-    }
-    public static void wFmt$set( MemorySegment seg, int x) {
-        tagMONLINKSTRUCT.wFmt$VH.set(seg, x);
-    }
-    public static int wFmt$get(MemorySegment seg, long index) {
-        return (int)tagMONLINKSTRUCT.wFmt$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wFmt$set(MemorySegment seg, long index, int x) {
-        tagMONLINKSTRUCT.wFmt$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fServer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fServer"));
-    public static VarHandle fServer$VH() {
-        return tagMONLINKSTRUCT.fServer$VH;
-    }
-    public static int fServer$get(MemorySegment seg) {
-        return (int)tagMONLINKSTRUCT.fServer$VH.get(seg);
-    }
-    public static void fServer$set( MemorySegment seg, int x) {
-        tagMONLINKSTRUCT.fServer$VH.set(seg, x);
-    }
-    public static int fServer$get(MemorySegment seg, long index) {
-        return (int)tagMONLINKSTRUCT.fServer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fServer$set(MemorySegment seg, long index, int x) {
-        tagMONLINKSTRUCT.fServer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hConvServer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hConvServer"));
-    public static VarHandle hConvServer$VH() {
-        return tagMONLINKSTRUCT.hConvServer$VH;
-    }
-    public static MemoryAddress hConvServer$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMONLINKSTRUCT.hConvServer$VH.get(seg);
-    }
-    public static void hConvServer$set( MemorySegment seg, MemoryAddress x) {
-        tagMONLINKSTRUCT.hConvServer$VH.set(seg, x);
-    }
-    public static MemoryAddress hConvServer$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMONLINKSTRUCT.hConvServer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hConvServer$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMONLINKSTRUCT.hConvServer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hConvClient$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hConvClient"));
-    public static VarHandle hConvClient$VH() {
-        return tagMONLINKSTRUCT.hConvClient$VH;
-    }
-    public static MemoryAddress hConvClient$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMONLINKSTRUCT.hConvClient$VH.get(seg);
-    }
-    public static void hConvClient$set( MemorySegment seg, MemoryAddress x) {
-        tagMONLINKSTRUCT.hConvClient$VH.set(seg, x);
-    }
-    public static MemoryAddress hConvClient$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMONLINKSTRUCT.hConvClient$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hConvClient$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMONLINKSTRUCT.hConvClient$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("cb"),
+        wgl_h.C_LONG.withName("dwTime"),
+        wgl_h.C_POINTER.withName("hTask"),
+        wgl_h.C_INT.withName("fEstablished"),
+        wgl_h.C_INT.withName("fNoData"),
+        wgl_h.C_POINTER.withName("hszSvc"),
+        wgl_h.C_POINTER.withName("hszTopic"),
+        wgl_h.C_POINTER.withName("hszItem"),
+        wgl_h.C_INT.withName("wFmt"),
+        wgl_h.C_INT.withName("fServer"),
+        wgl_h.C_POINTER.withName("hConvServer"),
+        wgl_h.C_POINTER.withName("hConvClient")
+    ).withName("tagMONLINKSTRUCT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cb$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cb"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT cb
+     * }
+     */
+    public static final OfInt cb$layout() {
+        return cb$LAYOUT;
+    }
+
+    private static final long cb$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT cb
+     * }
+     */
+    public static final long cb$offset() {
+        return cb$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT cb
+     * }
+     */
+    public static int cb(MemorySegment struct) {
+        return struct.get(cb$LAYOUT, cb$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT cb
+     * }
+     */
+    public static void cb(MemorySegment struct, int fieldValue) {
+        struct.set(cb$LAYOUT, cb$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwTime$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwTime
+     * }
+     */
+    public static final OfInt dwTime$layout() {
+        return dwTime$LAYOUT;
+    }
+
+    private static final long dwTime$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwTime
+     * }
+     */
+    public static final long dwTime$offset() {
+        return dwTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwTime
+     * }
+     */
+    public static int dwTime(MemorySegment struct) {
+        return struct.get(dwTime$LAYOUT, dwTime$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwTime
+     * }
+     */
+    public static void dwTime(MemorySegment struct, int fieldValue) {
+        struct.set(dwTime$LAYOUT, dwTime$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hTask$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hTask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HANDLE hTask
+     * }
+     */
+    public static final AddressLayout hTask$layout() {
+        return hTask$LAYOUT;
+    }
+
+    private static final long hTask$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HANDLE hTask
+     * }
+     */
+    public static final long hTask$offset() {
+        return hTask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HANDLE hTask
+     * }
+     */
+    public static MemorySegment hTask(MemorySegment struct) {
+        return struct.get(hTask$LAYOUT, hTask$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HANDLE hTask
+     * }
+     */
+    public static void hTask(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hTask$LAYOUT, hTask$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fEstablished$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fEstablished"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL fEstablished
+     * }
+     */
+    public static final OfInt fEstablished$layout() {
+        return fEstablished$LAYOUT;
+    }
+
+    private static final long fEstablished$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL fEstablished
+     * }
+     */
+    public static final long fEstablished$offset() {
+        return fEstablished$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL fEstablished
+     * }
+     */
+    public static int fEstablished(MemorySegment struct) {
+        return struct.get(fEstablished$LAYOUT, fEstablished$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL fEstablished
+     * }
+     */
+    public static void fEstablished(MemorySegment struct, int fieldValue) {
+        struct.set(fEstablished$LAYOUT, fEstablished$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fNoData$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fNoData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL fNoData
+     * }
+     */
+    public static final OfInt fNoData$layout() {
+        return fNoData$LAYOUT;
+    }
+
+    private static final long fNoData$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL fNoData
+     * }
+     */
+    public static final long fNoData$offset() {
+        return fNoData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL fNoData
+     * }
+     */
+    public static int fNoData(MemorySegment struct) {
+        return struct.get(fNoData$LAYOUT, fNoData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL fNoData
+     * }
+     */
+    public static void fNoData(MemorySegment struct, int fieldValue) {
+        struct.set(fNoData$LAYOUT, fNoData$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hszSvc$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hszSvc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HSZ hszSvc
+     * }
+     */
+    public static final AddressLayout hszSvc$layout() {
+        return hszSvc$LAYOUT;
+    }
+
+    private static final long hszSvc$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HSZ hszSvc
+     * }
+     */
+    public static final long hszSvc$offset() {
+        return hszSvc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HSZ hszSvc
+     * }
+     */
+    public static MemorySegment hszSvc(MemorySegment struct) {
+        return struct.get(hszSvc$LAYOUT, hszSvc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HSZ hszSvc
+     * }
+     */
+    public static void hszSvc(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hszSvc$LAYOUT, hszSvc$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hszTopic$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hszTopic"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HSZ hszTopic
+     * }
+     */
+    public static final AddressLayout hszTopic$layout() {
+        return hszTopic$LAYOUT;
+    }
+
+    private static final long hszTopic$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HSZ hszTopic
+     * }
+     */
+    public static final long hszTopic$offset() {
+        return hszTopic$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HSZ hszTopic
+     * }
+     */
+    public static MemorySegment hszTopic(MemorySegment struct) {
+        return struct.get(hszTopic$LAYOUT, hszTopic$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HSZ hszTopic
+     * }
+     */
+    public static void hszTopic(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hszTopic$LAYOUT, hszTopic$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hszItem$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hszItem"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HSZ hszItem
+     * }
+     */
+    public static final AddressLayout hszItem$layout() {
+        return hszItem$LAYOUT;
+    }
+
+    private static final long hszItem$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HSZ hszItem
+     * }
+     */
+    public static final long hszItem$offset() {
+        return hszItem$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HSZ hszItem
+     * }
+     */
+    public static MemorySegment hszItem(MemorySegment struct) {
+        return struct.get(hszItem$LAYOUT, hszItem$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HSZ hszItem
+     * }
+     */
+    public static void hszItem(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hszItem$LAYOUT, hszItem$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wFmt$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wFmt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wFmt
+     * }
+     */
+    public static final OfInt wFmt$layout() {
+        return wFmt$LAYOUT;
+    }
+
+    private static final long wFmt$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wFmt
+     * }
+     */
+    public static final long wFmt$offset() {
+        return wFmt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wFmt
+     * }
+     */
+    public static int wFmt(MemorySegment struct) {
+        return struct.get(wFmt$LAYOUT, wFmt$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wFmt
+     * }
+     */
+    public static void wFmt(MemorySegment struct, int fieldValue) {
+        struct.set(wFmt$LAYOUT, wFmt$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fServer$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fServer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL fServer
+     * }
+     */
+    public static final OfInt fServer$layout() {
+        return fServer$LAYOUT;
+    }
+
+    private static final long fServer$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL fServer
+     * }
+     */
+    public static final long fServer$offset() {
+        return fServer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL fServer
+     * }
+     */
+    public static int fServer(MemorySegment struct) {
+        return struct.get(fServer$LAYOUT, fServer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL fServer
+     * }
+     */
+    public static void fServer(MemorySegment struct, int fieldValue) {
+        struct.set(fServer$LAYOUT, fServer$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hConvServer$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hConvServer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HCONV hConvServer
+     * }
+     */
+    public static final AddressLayout hConvServer$layout() {
+        return hConvServer$LAYOUT;
+    }
+
+    private static final long hConvServer$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HCONV hConvServer
+     * }
+     */
+    public static final long hConvServer$offset() {
+        return hConvServer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HCONV hConvServer
+     * }
+     */
+    public static MemorySegment hConvServer(MemorySegment struct) {
+        return struct.get(hConvServer$LAYOUT, hConvServer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HCONV hConvServer
+     * }
+     */
+    public static void hConvServer(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hConvServer$LAYOUT, hConvServer$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hConvClient$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hConvClient"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HCONV hConvClient
+     * }
+     */
+    public static final AddressLayout hConvClient$layout() {
+        return hConvClient$LAYOUT;
+    }
+
+    private static final long hConvClient$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HCONV hConvClient
+     * }
+     */
+    public static final long hConvClient$offset() {
+        return hConvClient$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HCONV hConvClient
+     * }
+     */
+    public static MemorySegment hConvClient(MemorySegment struct) {
+        return struct.get(hConvClient$LAYOUT, hConvClient$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HCONV hConvClient
+     * }
+     */
+    public static void hConvClient(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hConvClient$LAYOUT, hConvClient$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

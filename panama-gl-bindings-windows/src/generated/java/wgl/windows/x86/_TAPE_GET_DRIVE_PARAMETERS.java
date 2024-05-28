@@ -2,211 +2,586 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _TAPE_GET_DRIVE_PARAMETERS {
+ *     BOOLEAN ECC;
+ *     BOOLEAN Compression;
+ *     BOOLEAN DataPadding;
+ *     BOOLEAN ReportSetmarks;
+ *     DWORD DefaultBlockSize;
+ *     DWORD MaximumBlockSize;
+ *     DWORD MinimumBlockSize;
+ *     DWORD MaximumPartitionCount;
+ *     DWORD FeaturesLow;
+ *     DWORD FeaturesHigh;
+ *     DWORD EOTWarningZoneSize;
+ * }
+ * }
+ */
 public class _TAPE_GET_DRIVE_PARAMETERS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("ECC"),
-        Constants$root.C_CHAR$LAYOUT.withName("Compression"),
-        Constants$root.C_CHAR$LAYOUT.withName("DataPadding"),
-        Constants$root.C_CHAR$LAYOUT.withName("ReportSetmarks"),
-        Constants$root.C_LONG$LAYOUT.withName("DefaultBlockSize"),
-        Constants$root.C_LONG$LAYOUT.withName("MaximumBlockSize"),
-        Constants$root.C_LONG$LAYOUT.withName("MinimumBlockSize"),
-        Constants$root.C_LONG$LAYOUT.withName("MaximumPartitionCount"),
-        Constants$root.C_LONG$LAYOUT.withName("FeaturesLow"),
-        Constants$root.C_LONG$LAYOUT.withName("FeaturesHigh"),
-        Constants$root.C_LONG$LAYOUT.withName("EOTWarningZoneSize")
-    ).withName("_TAPE_GET_DRIVE_PARAMETERS");
-    public static MemoryLayout $LAYOUT() {
-        return _TAPE_GET_DRIVE_PARAMETERS.$struct$LAYOUT;
+    _TAPE_GET_DRIVE_PARAMETERS() {
+        // Should not be called directly
     }
-    static final VarHandle ECC$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ECC"));
-    public static VarHandle ECC$VH() {
-        return _TAPE_GET_DRIVE_PARAMETERS.ECC$VH;
-    }
-    public static byte ECC$get(MemorySegment seg) {
-        return (byte)_TAPE_GET_DRIVE_PARAMETERS.ECC$VH.get(seg);
-    }
-    public static void ECC$set( MemorySegment seg, byte x) {
-        _TAPE_GET_DRIVE_PARAMETERS.ECC$VH.set(seg, x);
-    }
-    public static byte ECC$get(MemorySegment seg, long index) {
-        return (byte)_TAPE_GET_DRIVE_PARAMETERS.ECC$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ECC$set(MemorySegment seg, long index, byte x) {
-        _TAPE_GET_DRIVE_PARAMETERS.ECC$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Compression$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Compression"));
-    public static VarHandle Compression$VH() {
-        return _TAPE_GET_DRIVE_PARAMETERS.Compression$VH;
-    }
-    public static byte Compression$get(MemorySegment seg) {
-        return (byte)_TAPE_GET_DRIVE_PARAMETERS.Compression$VH.get(seg);
-    }
-    public static void Compression$set( MemorySegment seg, byte x) {
-        _TAPE_GET_DRIVE_PARAMETERS.Compression$VH.set(seg, x);
-    }
-    public static byte Compression$get(MemorySegment seg, long index) {
-        return (byte)_TAPE_GET_DRIVE_PARAMETERS.Compression$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Compression$set(MemorySegment seg, long index, byte x) {
-        _TAPE_GET_DRIVE_PARAMETERS.Compression$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DataPadding$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DataPadding"));
-    public static VarHandle DataPadding$VH() {
-        return _TAPE_GET_DRIVE_PARAMETERS.DataPadding$VH;
-    }
-    public static byte DataPadding$get(MemorySegment seg) {
-        return (byte)_TAPE_GET_DRIVE_PARAMETERS.DataPadding$VH.get(seg);
-    }
-    public static void DataPadding$set( MemorySegment seg, byte x) {
-        _TAPE_GET_DRIVE_PARAMETERS.DataPadding$VH.set(seg, x);
-    }
-    public static byte DataPadding$get(MemorySegment seg, long index) {
-        return (byte)_TAPE_GET_DRIVE_PARAMETERS.DataPadding$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DataPadding$set(MemorySegment seg, long index, byte x) {
-        _TAPE_GET_DRIVE_PARAMETERS.DataPadding$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ReportSetmarks$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ReportSetmarks"));
-    public static VarHandle ReportSetmarks$VH() {
-        return _TAPE_GET_DRIVE_PARAMETERS.ReportSetmarks$VH;
-    }
-    public static byte ReportSetmarks$get(MemorySegment seg) {
-        return (byte)_TAPE_GET_DRIVE_PARAMETERS.ReportSetmarks$VH.get(seg);
-    }
-    public static void ReportSetmarks$set( MemorySegment seg, byte x) {
-        _TAPE_GET_DRIVE_PARAMETERS.ReportSetmarks$VH.set(seg, x);
-    }
-    public static byte ReportSetmarks$get(MemorySegment seg, long index) {
-        return (byte)_TAPE_GET_DRIVE_PARAMETERS.ReportSetmarks$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ReportSetmarks$set(MemorySegment seg, long index, byte x) {
-        _TAPE_GET_DRIVE_PARAMETERS.ReportSetmarks$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DefaultBlockSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DefaultBlockSize"));
-    public static VarHandle DefaultBlockSize$VH() {
-        return _TAPE_GET_DRIVE_PARAMETERS.DefaultBlockSize$VH;
-    }
-    public static int DefaultBlockSize$get(MemorySegment seg) {
-        return (int)_TAPE_GET_DRIVE_PARAMETERS.DefaultBlockSize$VH.get(seg);
-    }
-    public static void DefaultBlockSize$set( MemorySegment seg, int x) {
-        _TAPE_GET_DRIVE_PARAMETERS.DefaultBlockSize$VH.set(seg, x);
-    }
-    public static int DefaultBlockSize$get(MemorySegment seg, long index) {
-        return (int)_TAPE_GET_DRIVE_PARAMETERS.DefaultBlockSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DefaultBlockSize$set(MemorySegment seg, long index, int x) {
-        _TAPE_GET_DRIVE_PARAMETERS.DefaultBlockSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaximumBlockSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaximumBlockSize"));
-    public static VarHandle MaximumBlockSize$VH() {
-        return _TAPE_GET_DRIVE_PARAMETERS.MaximumBlockSize$VH;
-    }
-    public static int MaximumBlockSize$get(MemorySegment seg) {
-        return (int)_TAPE_GET_DRIVE_PARAMETERS.MaximumBlockSize$VH.get(seg);
-    }
-    public static void MaximumBlockSize$set( MemorySegment seg, int x) {
-        _TAPE_GET_DRIVE_PARAMETERS.MaximumBlockSize$VH.set(seg, x);
-    }
-    public static int MaximumBlockSize$get(MemorySegment seg, long index) {
-        return (int)_TAPE_GET_DRIVE_PARAMETERS.MaximumBlockSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaximumBlockSize$set(MemorySegment seg, long index, int x) {
-        _TAPE_GET_DRIVE_PARAMETERS.MaximumBlockSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MinimumBlockSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MinimumBlockSize"));
-    public static VarHandle MinimumBlockSize$VH() {
-        return _TAPE_GET_DRIVE_PARAMETERS.MinimumBlockSize$VH;
-    }
-    public static int MinimumBlockSize$get(MemorySegment seg) {
-        return (int)_TAPE_GET_DRIVE_PARAMETERS.MinimumBlockSize$VH.get(seg);
-    }
-    public static void MinimumBlockSize$set( MemorySegment seg, int x) {
-        _TAPE_GET_DRIVE_PARAMETERS.MinimumBlockSize$VH.set(seg, x);
-    }
-    public static int MinimumBlockSize$get(MemorySegment seg, long index) {
-        return (int)_TAPE_GET_DRIVE_PARAMETERS.MinimumBlockSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MinimumBlockSize$set(MemorySegment seg, long index, int x) {
-        _TAPE_GET_DRIVE_PARAMETERS.MinimumBlockSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaximumPartitionCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaximumPartitionCount"));
-    public static VarHandle MaximumPartitionCount$VH() {
-        return _TAPE_GET_DRIVE_PARAMETERS.MaximumPartitionCount$VH;
-    }
-    public static int MaximumPartitionCount$get(MemorySegment seg) {
-        return (int)_TAPE_GET_DRIVE_PARAMETERS.MaximumPartitionCount$VH.get(seg);
-    }
-    public static void MaximumPartitionCount$set( MemorySegment seg, int x) {
-        _TAPE_GET_DRIVE_PARAMETERS.MaximumPartitionCount$VH.set(seg, x);
-    }
-    public static int MaximumPartitionCount$get(MemorySegment seg, long index) {
-        return (int)_TAPE_GET_DRIVE_PARAMETERS.MaximumPartitionCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaximumPartitionCount$set(MemorySegment seg, long index, int x) {
-        _TAPE_GET_DRIVE_PARAMETERS.MaximumPartitionCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FeaturesLow$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FeaturesLow"));
-    public static VarHandle FeaturesLow$VH() {
-        return _TAPE_GET_DRIVE_PARAMETERS.FeaturesLow$VH;
-    }
-    public static int FeaturesLow$get(MemorySegment seg) {
-        return (int)_TAPE_GET_DRIVE_PARAMETERS.FeaturesLow$VH.get(seg);
-    }
-    public static void FeaturesLow$set( MemorySegment seg, int x) {
-        _TAPE_GET_DRIVE_PARAMETERS.FeaturesLow$VH.set(seg, x);
-    }
-    public static int FeaturesLow$get(MemorySegment seg, long index) {
-        return (int)_TAPE_GET_DRIVE_PARAMETERS.FeaturesLow$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FeaturesLow$set(MemorySegment seg, long index, int x) {
-        _TAPE_GET_DRIVE_PARAMETERS.FeaturesLow$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FeaturesHigh$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FeaturesHigh"));
-    public static VarHandle FeaturesHigh$VH() {
-        return _TAPE_GET_DRIVE_PARAMETERS.FeaturesHigh$VH;
-    }
-    public static int FeaturesHigh$get(MemorySegment seg) {
-        return (int)_TAPE_GET_DRIVE_PARAMETERS.FeaturesHigh$VH.get(seg);
-    }
-    public static void FeaturesHigh$set( MemorySegment seg, int x) {
-        _TAPE_GET_DRIVE_PARAMETERS.FeaturesHigh$VH.set(seg, x);
-    }
-    public static int FeaturesHigh$get(MemorySegment seg, long index) {
-        return (int)_TAPE_GET_DRIVE_PARAMETERS.FeaturesHigh$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FeaturesHigh$set(MemorySegment seg, long index, int x) {
-        _TAPE_GET_DRIVE_PARAMETERS.FeaturesHigh$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EOTWarningZoneSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EOTWarningZoneSize"));
-    public static VarHandle EOTWarningZoneSize$VH() {
-        return _TAPE_GET_DRIVE_PARAMETERS.EOTWarningZoneSize$VH;
-    }
-    public static int EOTWarningZoneSize$get(MemorySegment seg) {
-        return (int)_TAPE_GET_DRIVE_PARAMETERS.EOTWarningZoneSize$VH.get(seg);
-    }
-    public static void EOTWarningZoneSize$set( MemorySegment seg, int x) {
-        _TAPE_GET_DRIVE_PARAMETERS.EOTWarningZoneSize$VH.set(seg, x);
-    }
-    public static int EOTWarningZoneSize$get(MemorySegment seg, long index) {
-        return (int)_TAPE_GET_DRIVE_PARAMETERS.EOTWarningZoneSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EOTWarningZoneSize$set(MemorySegment seg, long index, int x) {
-        _TAPE_GET_DRIVE_PARAMETERS.EOTWarningZoneSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_CHAR.withName("ECC"),
+        wgl_h.C_CHAR.withName("Compression"),
+        wgl_h.C_CHAR.withName("DataPadding"),
+        wgl_h.C_CHAR.withName("ReportSetmarks"),
+        wgl_h.C_LONG.withName("DefaultBlockSize"),
+        wgl_h.C_LONG.withName("MaximumBlockSize"),
+        wgl_h.C_LONG.withName("MinimumBlockSize"),
+        wgl_h.C_LONG.withName("MaximumPartitionCount"),
+        wgl_h.C_LONG.withName("FeaturesLow"),
+        wgl_h.C_LONG.withName("FeaturesHigh"),
+        wgl_h.C_LONG.withName("EOTWarningZoneSize")
+    ).withName("_TAPE_GET_DRIVE_PARAMETERS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte ECC$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ECC"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN ECC
+     * }
+     */
+    public static final OfByte ECC$layout() {
+        return ECC$LAYOUT;
+    }
+
+    private static final long ECC$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN ECC
+     * }
+     */
+    public static final long ECC$offset() {
+        return ECC$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN ECC
+     * }
+     */
+    public static byte ECC(MemorySegment struct) {
+        return struct.get(ECC$LAYOUT, ECC$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN ECC
+     * }
+     */
+    public static void ECC(MemorySegment struct, byte fieldValue) {
+        struct.set(ECC$LAYOUT, ECC$OFFSET, fieldValue);
+    }
+
+    private static final OfByte Compression$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Compression"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN Compression
+     * }
+     */
+    public static final OfByte Compression$layout() {
+        return Compression$LAYOUT;
+    }
+
+    private static final long Compression$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN Compression
+     * }
+     */
+    public static final long Compression$offset() {
+        return Compression$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN Compression
+     * }
+     */
+    public static byte Compression(MemorySegment struct) {
+        return struct.get(Compression$LAYOUT, Compression$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN Compression
+     * }
+     */
+    public static void Compression(MemorySegment struct, byte fieldValue) {
+        struct.set(Compression$LAYOUT, Compression$OFFSET, fieldValue);
+    }
+
+    private static final OfByte DataPadding$LAYOUT = (OfByte)$LAYOUT.select(groupElement("DataPadding"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN DataPadding
+     * }
+     */
+    public static final OfByte DataPadding$layout() {
+        return DataPadding$LAYOUT;
+    }
+
+    private static final long DataPadding$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN DataPadding
+     * }
+     */
+    public static final long DataPadding$offset() {
+        return DataPadding$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN DataPadding
+     * }
+     */
+    public static byte DataPadding(MemorySegment struct) {
+        return struct.get(DataPadding$LAYOUT, DataPadding$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN DataPadding
+     * }
+     */
+    public static void DataPadding(MemorySegment struct, byte fieldValue) {
+        struct.set(DataPadding$LAYOUT, DataPadding$OFFSET, fieldValue);
+    }
+
+    private static final OfByte ReportSetmarks$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ReportSetmarks"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN ReportSetmarks
+     * }
+     */
+    public static final OfByte ReportSetmarks$layout() {
+        return ReportSetmarks$LAYOUT;
+    }
+
+    private static final long ReportSetmarks$OFFSET = 3;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN ReportSetmarks
+     * }
+     */
+    public static final long ReportSetmarks$offset() {
+        return ReportSetmarks$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN ReportSetmarks
+     * }
+     */
+    public static byte ReportSetmarks(MemorySegment struct) {
+        return struct.get(ReportSetmarks$LAYOUT, ReportSetmarks$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN ReportSetmarks
+     * }
+     */
+    public static void ReportSetmarks(MemorySegment struct, byte fieldValue) {
+        struct.set(ReportSetmarks$LAYOUT, ReportSetmarks$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DefaultBlockSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DefaultBlockSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DefaultBlockSize
+     * }
+     */
+    public static final OfInt DefaultBlockSize$layout() {
+        return DefaultBlockSize$LAYOUT;
+    }
+
+    private static final long DefaultBlockSize$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DefaultBlockSize
+     * }
+     */
+    public static final long DefaultBlockSize$offset() {
+        return DefaultBlockSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DefaultBlockSize
+     * }
+     */
+    public static int DefaultBlockSize(MemorySegment struct) {
+        return struct.get(DefaultBlockSize$LAYOUT, DefaultBlockSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DefaultBlockSize
+     * }
+     */
+    public static void DefaultBlockSize(MemorySegment struct, int fieldValue) {
+        struct.set(DefaultBlockSize$LAYOUT, DefaultBlockSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MaximumBlockSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MaximumBlockSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MaximumBlockSize
+     * }
+     */
+    public static final OfInt MaximumBlockSize$layout() {
+        return MaximumBlockSize$LAYOUT;
+    }
+
+    private static final long MaximumBlockSize$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MaximumBlockSize
+     * }
+     */
+    public static final long MaximumBlockSize$offset() {
+        return MaximumBlockSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MaximumBlockSize
+     * }
+     */
+    public static int MaximumBlockSize(MemorySegment struct) {
+        return struct.get(MaximumBlockSize$LAYOUT, MaximumBlockSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MaximumBlockSize
+     * }
+     */
+    public static void MaximumBlockSize(MemorySegment struct, int fieldValue) {
+        struct.set(MaximumBlockSize$LAYOUT, MaximumBlockSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MinimumBlockSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MinimumBlockSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MinimumBlockSize
+     * }
+     */
+    public static final OfInt MinimumBlockSize$layout() {
+        return MinimumBlockSize$LAYOUT;
+    }
+
+    private static final long MinimumBlockSize$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MinimumBlockSize
+     * }
+     */
+    public static final long MinimumBlockSize$offset() {
+        return MinimumBlockSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MinimumBlockSize
+     * }
+     */
+    public static int MinimumBlockSize(MemorySegment struct) {
+        return struct.get(MinimumBlockSize$LAYOUT, MinimumBlockSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MinimumBlockSize
+     * }
+     */
+    public static void MinimumBlockSize(MemorySegment struct, int fieldValue) {
+        struct.set(MinimumBlockSize$LAYOUT, MinimumBlockSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MaximumPartitionCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MaximumPartitionCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MaximumPartitionCount
+     * }
+     */
+    public static final OfInt MaximumPartitionCount$layout() {
+        return MaximumPartitionCount$LAYOUT;
+    }
+
+    private static final long MaximumPartitionCount$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MaximumPartitionCount
+     * }
+     */
+    public static final long MaximumPartitionCount$offset() {
+        return MaximumPartitionCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MaximumPartitionCount
+     * }
+     */
+    public static int MaximumPartitionCount(MemorySegment struct) {
+        return struct.get(MaximumPartitionCount$LAYOUT, MaximumPartitionCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MaximumPartitionCount
+     * }
+     */
+    public static void MaximumPartitionCount(MemorySegment struct, int fieldValue) {
+        struct.set(MaximumPartitionCount$LAYOUT, MaximumPartitionCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt FeaturesLow$LAYOUT = (OfInt)$LAYOUT.select(groupElement("FeaturesLow"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD FeaturesLow
+     * }
+     */
+    public static final OfInt FeaturesLow$layout() {
+        return FeaturesLow$LAYOUT;
+    }
+
+    private static final long FeaturesLow$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD FeaturesLow
+     * }
+     */
+    public static final long FeaturesLow$offset() {
+        return FeaturesLow$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD FeaturesLow
+     * }
+     */
+    public static int FeaturesLow(MemorySegment struct) {
+        return struct.get(FeaturesLow$LAYOUT, FeaturesLow$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD FeaturesLow
+     * }
+     */
+    public static void FeaturesLow(MemorySegment struct, int fieldValue) {
+        struct.set(FeaturesLow$LAYOUT, FeaturesLow$OFFSET, fieldValue);
+    }
+
+    private static final OfInt FeaturesHigh$LAYOUT = (OfInt)$LAYOUT.select(groupElement("FeaturesHigh"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD FeaturesHigh
+     * }
+     */
+    public static final OfInt FeaturesHigh$layout() {
+        return FeaturesHigh$LAYOUT;
+    }
+
+    private static final long FeaturesHigh$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD FeaturesHigh
+     * }
+     */
+    public static final long FeaturesHigh$offset() {
+        return FeaturesHigh$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD FeaturesHigh
+     * }
+     */
+    public static int FeaturesHigh(MemorySegment struct) {
+        return struct.get(FeaturesHigh$LAYOUT, FeaturesHigh$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD FeaturesHigh
+     * }
+     */
+    public static void FeaturesHigh(MemorySegment struct, int fieldValue) {
+        struct.set(FeaturesHigh$LAYOUT, FeaturesHigh$OFFSET, fieldValue);
+    }
+
+    private static final OfInt EOTWarningZoneSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("EOTWarningZoneSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD EOTWarningZoneSize
+     * }
+     */
+    public static final OfInt EOTWarningZoneSize$layout() {
+        return EOTWarningZoneSize$LAYOUT;
+    }
+
+    private static final long EOTWarningZoneSize$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD EOTWarningZoneSize
+     * }
+     */
+    public static final long EOTWarningZoneSize$offset() {
+        return EOTWarningZoneSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD EOTWarningZoneSize
+     * }
+     */
+    public static int EOTWarningZoneSize(MemorySegment struct) {
+        return struct.get(EOTWarningZoneSize$LAYOUT, EOTWarningZoneSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD EOTWarningZoneSize
+     * }
+     */
+    public static void EOTWarningZoneSize(MemorySegment struct, int fieldValue) {
+        struct.set(EOTWarningZoneSize$LAYOUT, EOTWarningZoneSize$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

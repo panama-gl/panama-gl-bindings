@@ -2,83 +2,455 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SENDCMDINPARAMS {
+ *     DWORD cBufferSize;
+ *     IDEREGS irDriveRegs;
+ *     BYTE bDriveNumber;
+ *     BYTE bReserved[3];
+ *     DWORD dwReserved[4];
+ *     BYTE bBuffer[1];
+ * }
+ * }
+ */
 public class _SENDCMDINPARAMS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cBufferSize"),
-        MemoryLayout.structLayout(
-            Constants$root.C_CHAR$LAYOUT.withName("bFeaturesReg"),
-            Constants$root.C_CHAR$LAYOUT.withName("bSectorCountReg"),
-            Constants$root.C_CHAR$LAYOUT.withName("bSectorNumberReg"),
-            Constants$root.C_CHAR$LAYOUT.withName("bCylLowReg"),
-            Constants$root.C_CHAR$LAYOUT.withName("bCylHighReg"),
-            Constants$root.C_CHAR$LAYOUT.withName("bDriveHeadReg"),
-            Constants$root.C_CHAR$LAYOUT.withName("bCommandReg"),
-            Constants$root.C_CHAR$LAYOUT.withName("bReserved")
-        ).withName("irDriveRegs"),
-        Constants$root.C_CHAR$LAYOUT.withName("bDriveNumber"),
-        MemoryLayout.sequenceLayout(3, Constants$root.C_CHAR$LAYOUT).withName("bReserved"),
-        MemoryLayout.sequenceLayout(4, Constants$root.C_LONG$LAYOUT).withName("dwReserved"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_CHAR$LAYOUT).withName("bBuffer")
-    ).withName("_SENDCMDINPARAMS");
-    public static MemoryLayout $LAYOUT() {
-        return _SENDCMDINPARAMS.$struct$LAYOUT;
+    _SENDCMDINPARAMS() {
+        // Should not be called directly
     }
-    static final VarHandle cBufferSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cBufferSize"));
-    public static VarHandle cBufferSize$VH() {
-        return _SENDCMDINPARAMS.cBufferSize$VH;
-    }
-    public static int cBufferSize$get(MemorySegment seg) {
-        return (int)_SENDCMDINPARAMS.cBufferSize$VH.get(seg);
-    }
-    public static void cBufferSize$set( MemorySegment seg, int x) {
-        _SENDCMDINPARAMS.cBufferSize$VH.set(seg, x);
-    }
-    public static int cBufferSize$get(MemorySegment seg, long index) {
-        return (int)_SENDCMDINPARAMS.cBufferSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cBufferSize$set(MemorySegment seg, long index, int x) {
-        _SENDCMDINPARAMS.cBufferSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment irDriveRegs$slice(MemorySegment seg) {
-        return seg.asSlice(4, 8);
-    }
-    static final VarHandle bDriveNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bDriveNumber"));
-    public static VarHandle bDriveNumber$VH() {
-        return _SENDCMDINPARAMS.bDriveNumber$VH;
-    }
-    public static byte bDriveNumber$get(MemorySegment seg) {
-        return (byte)_SENDCMDINPARAMS.bDriveNumber$VH.get(seg);
-    }
-    public static void bDriveNumber$set( MemorySegment seg, byte x) {
-        _SENDCMDINPARAMS.bDriveNumber$VH.set(seg, x);
-    }
-    public static byte bDriveNumber$get(MemorySegment seg, long index) {
-        return (byte)_SENDCMDINPARAMS.bDriveNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bDriveNumber$set(MemorySegment seg, long index, byte x) {
-        _SENDCMDINPARAMS.bDriveNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment bReserved$slice(MemorySegment seg) {
-        return seg.asSlice(13, 3);
-    }
-    public static MemorySegment dwReserved$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
-    }
-    public static MemorySegment bBuffer$slice(MemorySegment seg) {
-        return seg.asSlice(32, 1);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.align(wgl_h.C_LONG, 1).withName("cBufferSize"),
+        _IDEREGS.layout().withName("irDriveRegs"),
+        wgl_h.C_CHAR.withName("bDriveNumber"),
+        MemoryLayout.sequenceLayout(3, wgl_h.C_CHAR).withName("bReserved"),
+        MemoryLayout.sequenceLayout(4, wgl_h.align(wgl_h.C_LONG, 1)).withName("dwReserved"),
+        MemoryLayout.sequenceLayout(1, wgl_h.C_CHAR).withName("bBuffer")
+    ).withName("_SENDCMDINPARAMS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cBufferSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cBufferSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cBufferSize
+     * }
+     */
+    public static final OfInt cBufferSize$layout() {
+        return cBufferSize$LAYOUT;
+    }
+
+    private static final long cBufferSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cBufferSize
+     * }
+     */
+    public static final long cBufferSize$offset() {
+        return cBufferSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cBufferSize
+     * }
+     */
+    public static int cBufferSize(MemorySegment struct) {
+        return struct.get(cBufferSize$LAYOUT, cBufferSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cBufferSize
+     * }
+     */
+    public static void cBufferSize(MemorySegment struct, int fieldValue) {
+        struct.set(cBufferSize$LAYOUT, cBufferSize$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout irDriveRegs$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("irDriveRegs"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IDEREGS irDriveRegs
+     * }
+     */
+    public static final GroupLayout irDriveRegs$layout() {
+        return irDriveRegs$LAYOUT;
+    }
+
+    private static final long irDriveRegs$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IDEREGS irDriveRegs
+     * }
+     */
+    public static final long irDriveRegs$offset() {
+        return irDriveRegs$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IDEREGS irDriveRegs
+     * }
+     */
+    public static MemorySegment irDriveRegs(MemorySegment struct) {
+        return struct.asSlice(irDriveRegs$OFFSET, irDriveRegs$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IDEREGS irDriveRegs
+     * }
+     */
+    public static void irDriveRegs(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, irDriveRegs$OFFSET, irDriveRegs$LAYOUT.byteSize());
+    }
+
+    private static final OfByte bDriveNumber$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bDriveNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bDriveNumber
+     * }
+     */
+    public static final OfByte bDriveNumber$layout() {
+        return bDriveNumber$LAYOUT;
+    }
+
+    private static final long bDriveNumber$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bDriveNumber
+     * }
+     */
+    public static final long bDriveNumber$offset() {
+        return bDriveNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bDriveNumber
+     * }
+     */
+    public static byte bDriveNumber(MemorySegment struct) {
+        return struct.get(bDriveNumber$LAYOUT, bDriveNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bDriveNumber
+     * }
+     */
+    public static void bDriveNumber(MemorySegment struct, byte fieldValue) {
+        struct.set(bDriveNumber$LAYOUT, bDriveNumber$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout bReserved$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("bReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bReserved[3]
+     * }
+     */
+    public static final SequenceLayout bReserved$layout() {
+        return bReserved$LAYOUT;
+    }
+
+    private static final long bReserved$OFFSET = 13;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bReserved[3]
+     * }
+     */
+    public static final long bReserved$offset() {
+        return bReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bReserved[3]
+     * }
+     */
+    public static MemorySegment bReserved(MemorySegment struct) {
+        return struct.asSlice(bReserved$OFFSET, bReserved$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bReserved[3]
+     * }
+     */
+    public static void bReserved(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, bReserved$OFFSET, bReserved$LAYOUT.byteSize());
+    }
+
+    private static long[] bReserved$DIMS = { 3 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE bReserved[3]
+     * }
+     */
+    public static long[] bReserved$dimensions() {
+        return bReserved$DIMS;
+    }
+    private static final VarHandle bReserved$ELEM_HANDLE = bReserved$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE bReserved[3]
+     * }
+     */
+    public static byte bReserved(MemorySegment struct, long index0) {
+        return (byte)bReserved$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE bReserved[3]
+     * }
+     */
+    public static void bReserved(MemorySegment struct, long index0, byte fieldValue) {
+        bReserved$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout dwReserved$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("dwReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved[4]
+     * }
+     */
+    public static final SequenceLayout dwReserved$layout() {
+        return dwReserved$LAYOUT;
+    }
+
+    private static final long dwReserved$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved[4]
+     * }
+     */
+    public static final long dwReserved$offset() {
+        return dwReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved[4]
+     * }
+     */
+    public static MemorySegment dwReserved(MemorySegment struct) {
+        return struct.asSlice(dwReserved$OFFSET, dwReserved$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved[4]
+     * }
+     */
+    public static void dwReserved(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, dwReserved$OFFSET, dwReserved$LAYOUT.byteSize());
+    }
+
+    private static long[] dwReserved$DIMS = { 4 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DWORD dwReserved[4]
+     * }
+     */
+    public static long[] dwReserved$dimensions() {
+        return dwReserved$DIMS;
+    }
+    private static final VarHandle dwReserved$ELEM_HANDLE = dwReserved$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved[4]
+     * }
+     */
+    public static int dwReserved(MemorySegment struct, long index0) {
+        return (int)dwReserved$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved[4]
+     * }
+     */
+    public static void dwReserved(MemorySegment struct, long index0, int fieldValue) {
+        dwReserved$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout bBuffer$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("bBuffer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bBuffer[1]
+     * }
+     */
+    public static final SequenceLayout bBuffer$layout() {
+        return bBuffer$LAYOUT;
+    }
+
+    private static final long bBuffer$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bBuffer[1]
+     * }
+     */
+    public static final long bBuffer$offset() {
+        return bBuffer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bBuffer[1]
+     * }
+     */
+    public static MemorySegment bBuffer(MemorySegment struct) {
+        return struct.asSlice(bBuffer$OFFSET, bBuffer$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bBuffer[1]
+     * }
+     */
+    public static void bBuffer(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, bBuffer$OFFSET, bBuffer$LAYOUT.byteSize());
+    }
+
+    private static long[] bBuffer$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE bBuffer[1]
+     * }
+     */
+    public static long[] bBuffer$dimensions() {
+        return bBuffer$DIMS;
+    }
+    private static final VarHandle bBuffer$ELEM_HANDLE = bBuffer$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE bBuffer[1]
+     * }
+     */
+    public static byte bBuffer(MemorySegment struct, long index0) {
+        return (byte)bBuffer$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE bBuffer[1]
+     * }
+     */
+    public static void bBuffer(MemorySegment struct, long index0, byte fieldValue) {
+        bBuffer$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

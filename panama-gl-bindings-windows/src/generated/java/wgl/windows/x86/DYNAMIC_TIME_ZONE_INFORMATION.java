@@ -2,13 +2,35 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _TIME_DYNAMIC_ZONE_INFORMATION {
+ *     LONG Bias;
+ *     WCHAR StandardName[32];
+ *     SYSTEMTIME StandardDate;
+ *     LONG StandardBias;
+ *     WCHAR DaylightName[32];
+ *     SYSTEMTIME DaylightDate;
+ *     LONG DaylightBias;
+ *     WCHAR TimeZoneKeyName[128];
+ *     BOOLEAN DynamicDaylightTimeDisabled;
+ * } DYNAMIC_TIME_ZONE_INFORMATION
+ * }
+ */
 public class DYNAMIC_TIME_ZONE_INFORMATION extends _TIME_DYNAMIC_ZONE_INFORMATION {
 
+    DYNAMIC_TIME_ZONE_INFORMATION() {
+        // Should not be called directly
+    }
 }
-
 

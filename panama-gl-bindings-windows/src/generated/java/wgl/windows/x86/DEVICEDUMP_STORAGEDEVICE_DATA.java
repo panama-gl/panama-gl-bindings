@@ -2,13 +2,33 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _DEVICEDUMP_STORAGEDEVICE_DATA {
+ *     DEVICEDUMP_STRUCTURE_VERSION Descriptor;
+ *     DEVICEDUMP_SECTION_HEADER SectionHeader;
+ *     DWORD dwBufferSize;
+ *     DWORD dwReasonForCollection;
+ *     DEVICEDUMP_SUBSECTION_POINTER PublicData;
+ *     DEVICEDUMP_SUBSECTION_POINTER RestrictedData;
+ *     DEVICEDUMP_SUBSECTION_POINTER PrivateData;
+ * } DEVICEDUMP_STORAGEDEVICE_DATA
+ * }
+ */
 public class DEVICEDUMP_STORAGEDEVICE_DATA extends _DEVICEDUMP_STORAGEDEVICE_DATA {
 
+    DEVICEDUMP_STORAGEDEVICE_DATA() {
+        // Should not be called directly
+    }
 }
-
 

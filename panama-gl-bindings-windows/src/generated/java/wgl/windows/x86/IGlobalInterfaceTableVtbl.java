@@ -2,297 +2,689 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct IGlobalInterfaceTableVtbl {
+ *     HRESULT (*QueryInterface)(IGlobalInterfaceTable *, const IID *const, void **) __attribute__((stdcall));
+ *     ULONG (*AddRef)(IGlobalInterfaceTable *) __attribute__((stdcall));
+ *     ULONG (*Release)(IGlobalInterfaceTable *) __attribute__((stdcall));
+ *     HRESULT (*RegisterInterfaceInGlobal)(IGlobalInterfaceTable *, IUnknown *, const IID *const, DWORD *) __attribute__((stdcall));
+ *     HRESULT (*RevokeInterfaceFromGlobal)(IGlobalInterfaceTable *, DWORD) __attribute__((stdcall));
+ *     HRESULT (*GetInterfaceFromGlobal)(IGlobalInterfaceTable *, DWORD, const IID *const, void **) __attribute__((stdcall));
+ * }
+ * }
+ */
 public class IGlobalInterfaceTableVtbl {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("QueryInterface"),
-        Constants$root.C_POINTER$LAYOUT.withName("AddRef"),
-        Constants$root.C_POINTER$LAYOUT.withName("Release"),
-        Constants$root.C_POINTER$LAYOUT.withName("RegisterInterfaceInGlobal"),
-        Constants$root.C_POINTER$LAYOUT.withName("RevokeInterfaceFromGlobal"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetInterfaceFromGlobal")
+    IGlobalInterfaceTableVtbl() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("QueryInterface"),
+        wgl_h.C_POINTER.withName("AddRef"),
+        wgl_h.C_POINTER.withName("Release"),
+        wgl_h.C_POINTER.withName("RegisterInterfaceInGlobal"),
+        wgl_h.C_POINTER.withName("RevokeInterfaceFromGlobal"),
+        wgl_h.C_POINTER.withName("GetInterfaceFromGlobal")
     ).withName("IGlobalInterfaceTableVtbl");
-    public static MemoryLayout $LAYOUT() {
-        return IGlobalInterfaceTableVtbl.$struct$LAYOUT;
-    }
-    static final FunctionDescriptor QueryInterface$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle QueryInterface$MH = RuntimeHelper.downcallHandle(
-        IGlobalInterfaceTableVtbl.QueryInterface$FUNC
-    );
-    public interface QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(QueryInterface fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(QueryInterface.class, fi, IGlobalInterfaceTableVtbl.QueryInterface$FUNC, session);
-        }
-        static QueryInterface ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IGlobalInterfaceTableVtbl.QueryInterface$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
 
-    static final VarHandle QueryInterface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueryInterface"));
-    public static VarHandle QueryInterface$VH() {
-        return IGlobalInterfaceTableVtbl.QueryInterface$VH;
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IGlobalInterfaceTableVtbl.QueryInterface$VH.get(seg);
-    }
-    public static void QueryInterface$set( MemorySegment seg, MemoryAddress x) {
-        IGlobalInterfaceTableVtbl.QueryInterface$VH.set(seg, x);
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IGlobalInterfaceTableVtbl.QueryInterface$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void QueryInterface$set(MemorySegment seg, long index, MemoryAddress x) {
-        IGlobalInterfaceTableVtbl.QueryInterface$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static QueryInterface QueryInterface (MemorySegment segment, MemorySession session) {
-        return QueryInterface.ofAddress(QueryInterface$get(segment), session);
-    }
-    static final FunctionDescriptor AddRef$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle AddRef$MH = RuntimeHelper.downcallHandle(
-        IGlobalInterfaceTableVtbl.AddRef$FUNC
-    );
-    public interface AddRef {
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IGlobalInterfaceTable *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(AddRef fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(AddRef.class, fi, IGlobalInterfaceTableVtbl.AddRef$FUNC, session);
+        QueryInterface() {
+            // Should not be called directly
         }
-        static AddRef ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IGlobalInterfaceTableVtbl.AddRef$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(QueryInterface.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(QueryInterface.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle AddRef$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddRef"));
-    public static VarHandle AddRef$VH() {
-        return IGlobalInterfaceTableVtbl.AddRef$VH;
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IGlobalInterfaceTableVtbl.AddRef$VH.get(seg);
-    }
-    public static void AddRef$set( MemorySegment seg, MemoryAddress x) {
-        IGlobalInterfaceTableVtbl.AddRef$VH.set(seg, x);
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IGlobalInterfaceTableVtbl.AddRef$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddRef$set(MemorySegment seg, long index, MemoryAddress x) {
-        IGlobalInterfaceTableVtbl.AddRef$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static AddRef AddRef (MemorySegment segment, MemorySession session) {
-        return AddRef.ofAddress(AddRef$get(segment), session);
-    }
-    static final FunctionDescriptor Release$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Release$MH = RuntimeHelper.downcallHandle(
-        IGlobalInterfaceTableVtbl.Release$FUNC
-    );
-    public interface Release {
+    private static final AddressLayout QueryInterface$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("QueryInterface"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Release fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Release.class, fi, IGlobalInterfaceTableVtbl.Release$FUNC, session);
-        }
-        static Release ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IGlobalInterfaceTableVtbl.Release$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IGlobalInterfaceTable *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout QueryInterface$layout() {
+        return QueryInterface$LAYOUT;
     }
 
-    static final VarHandle Release$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Release"));
-    public static VarHandle Release$VH() {
-        return IGlobalInterfaceTableVtbl.Release$VH;
-    }
-    public static MemoryAddress Release$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IGlobalInterfaceTableVtbl.Release$VH.get(seg);
-    }
-    public static void Release$set( MemorySegment seg, MemoryAddress x) {
-        IGlobalInterfaceTableVtbl.Release$VH.set(seg, x);
-    }
-    public static MemoryAddress Release$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IGlobalInterfaceTableVtbl.Release$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Release$set(MemorySegment seg, long index, MemoryAddress x) {
-        IGlobalInterfaceTableVtbl.Release$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Release Release (MemorySegment segment, MemorySession session) {
-        return Release.ofAddress(Release$get(segment), session);
-    }
-    static final FunctionDescriptor RegisterInterfaceInGlobal$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle RegisterInterfaceInGlobal$MH = RuntimeHelper.downcallHandle(
-        IGlobalInterfaceTableVtbl.RegisterInterfaceInGlobal$FUNC
-    );
-    public interface RegisterInterfaceInGlobal {
+    private static final long QueryInterface$OFFSET = 0;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3);
-        static MemorySegment allocate(RegisterInterfaceInGlobal fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(RegisterInterfaceInGlobal.class, fi, IGlobalInterfaceTableVtbl.RegisterInterfaceInGlobal$FUNC, session);
-        }
-        static RegisterInterfaceInGlobal ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3) -> {
-                try {
-                    return (int)IGlobalInterfaceTableVtbl.RegisterInterfaceInGlobal$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IGlobalInterfaceTable *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long QueryInterface$offset() {
+        return QueryInterface$OFFSET;
     }
 
-    static final VarHandle RegisterInterfaceInGlobal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RegisterInterfaceInGlobal"));
-    public static VarHandle RegisterInterfaceInGlobal$VH() {
-        return IGlobalInterfaceTableVtbl.RegisterInterfaceInGlobal$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IGlobalInterfaceTable *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment QueryInterface(MemorySegment struct) {
+        return struct.get(QueryInterface$LAYOUT, QueryInterface$OFFSET);
     }
-    public static MemoryAddress RegisterInterfaceInGlobal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IGlobalInterfaceTableVtbl.RegisterInterfaceInGlobal$VH.get(seg);
-    }
-    public static void RegisterInterfaceInGlobal$set( MemorySegment seg, MemoryAddress x) {
-        IGlobalInterfaceTableVtbl.RegisterInterfaceInGlobal$VH.set(seg, x);
-    }
-    public static MemoryAddress RegisterInterfaceInGlobal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IGlobalInterfaceTableVtbl.RegisterInterfaceInGlobal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RegisterInterfaceInGlobal$set(MemorySegment seg, long index, MemoryAddress x) {
-        IGlobalInterfaceTableVtbl.RegisterInterfaceInGlobal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static RegisterInterfaceInGlobal RegisterInterfaceInGlobal (MemorySegment segment, MemorySession session) {
-        return RegisterInterfaceInGlobal.ofAddress(RegisterInterfaceInGlobal$get(segment), session);
-    }
-    static final FunctionDescriptor RevokeInterfaceFromGlobal$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle RevokeInterfaceFromGlobal$MH = RuntimeHelper.downcallHandle(
-        IGlobalInterfaceTableVtbl.RevokeInterfaceFromGlobal$FUNC
-    );
-    public interface RevokeInterfaceFromGlobal {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1);
-        static MemorySegment allocate(RevokeInterfaceFromGlobal fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(RevokeInterfaceFromGlobal.class, fi, IGlobalInterfaceTableVtbl.RevokeInterfaceFromGlobal$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IGlobalInterfaceTable *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void QueryInterface(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(QueryInterface$LAYOUT, QueryInterface$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IGlobalInterfaceTable *) __attribute__((stdcall))
+     * }
+     */
+    public static class AddRef {
+
+        AddRef() {
+            // Should not be called directly
         }
-        static RevokeInterfaceFromGlobal ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1) -> {
-                try {
-                    return (int)IGlobalInterfaceTableVtbl.RevokeInterfaceFromGlobal$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(AddRef.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(AddRef.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle RevokeInterfaceFromGlobal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RevokeInterfaceFromGlobal"));
-    public static VarHandle RevokeInterfaceFromGlobal$VH() {
-        return IGlobalInterfaceTableVtbl.RevokeInterfaceFromGlobal$VH;
-    }
-    public static MemoryAddress RevokeInterfaceFromGlobal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IGlobalInterfaceTableVtbl.RevokeInterfaceFromGlobal$VH.get(seg);
-    }
-    public static void RevokeInterfaceFromGlobal$set( MemorySegment seg, MemoryAddress x) {
-        IGlobalInterfaceTableVtbl.RevokeInterfaceFromGlobal$VH.set(seg, x);
-    }
-    public static MemoryAddress RevokeInterfaceFromGlobal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IGlobalInterfaceTableVtbl.RevokeInterfaceFromGlobal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RevokeInterfaceFromGlobal$set(MemorySegment seg, long index, MemoryAddress x) {
-        IGlobalInterfaceTableVtbl.RevokeInterfaceFromGlobal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static RevokeInterfaceFromGlobal RevokeInterfaceFromGlobal (MemorySegment segment, MemorySession session) {
-        return RevokeInterfaceFromGlobal.ofAddress(RevokeInterfaceFromGlobal$get(segment), session);
-    }
-    static final FunctionDescriptor GetInterfaceFromGlobal$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetInterfaceFromGlobal$MH = RuntimeHelper.downcallHandle(
-        IGlobalInterfaceTableVtbl.GetInterfaceFromGlobal$FUNC
-    );
-    public interface GetInterfaceFromGlobal {
+    private static final AddressLayout AddRef$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AddRef"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3);
-        static MemorySegment allocate(GetInterfaceFromGlobal fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetInterfaceFromGlobal.class, fi, IGlobalInterfaceTableVtbl.GetInterfaceFromGlobal$FUNC, session);
-        }
-        static GetInterfaceFromGlobal ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3) -> {
-                try {
-                    return (int)IGlobalInterfaceTableVtbl.GetInterfaceFromGlobal$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IGlobalInterfaceTable *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout AddRef$layout() {
+        return AddRef$LAYOUT;
     }
 
-    static final VarHandle GetInterfaceFromGlobal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetInterfaceFromGlobal"));
-    public static VarHandle GetInterfaceFromGlobal$VH() {
-        return IGlobalInterfaceTableVtbl.GetInterfaceFromGlobal$VH;
+    private static final long AddRef$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IGlobalInterfaceTable *) __attribute__((stdcall))
+     * }
+     */
+    public static final long AddRef$offset() {
+        return AddRef$OFFSET;
     }
-    public static MemoryAddress GetInterfaceFromGlobal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IGlobalInterfaceTableVtbl.GetInterfaceFromGlobal$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IGlobalInterfaceTable *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment AddRef(MemorySegment struct) {
+        return struct.get(AddRef$LAYOUT, AddRef$OFFSET);
     }
-    public static void GetInterfaceFromGlobal$set( MemorySegment seg, MemoryAddress x) {
-        IGlobalInterfaceTableVtbl.GetInterfaceFromGlobal$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IGlobalInterfaceTable *) __attribute__((stdcall))
+     * }
+     */
+    public static void AddRef(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AddRef$LAYOUT, AddRef$OFFSET, fieldValue);
     }
-    public static MemoryAddress GetInterfaceFromGlobal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IGlobalInterfaceTableVtbl.GetInterfaceFromGlobal$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*Release)(IGlobalInterfaceTable *) __attribute__((stdcall))
+     * }
+     */
+    public static class Release {
+
+        Release() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Release.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Release.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
     }
-    public static void GetInterfaceFromGlobal$set(MemorySegment seg, long index, MemoryAddress x) {
-        IGlobalInterfaceTableVtbl.GetInterfaceFromGlobal$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final AddressLayout Release$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Release"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IGlobalInterfaceTable *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Release$layout() {
+        return Release$LAYOUT;
     }
-    public static GetInterfaceFromGlobal GetInterfaceFromGlobal (MemorySegment segment, MemorySession session) {
-        return GetInterfaceFromGlobal.ofAddress(GetInterfaceFromGlobal$get(segment), session);
+
+    private static final long Release$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IGlobalInterfaceTable *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Release$offset() {
+        return Release$OFFSET;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IGlobalInterfaceTable *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Release(MemorySegment struct) {
+        return struct.get(Release$LAYOUT, Release$OFFSET);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IGlobalInterfaceTable *) __attribute__((stdcall))
+     * }
+     */
+    public static void Release(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Release$LAYOUT, Release$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*RegisterInterfaceInGlobal)(IGlobalInterfaceTable *, IUnknown *, const IID *const, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static class RegisterInterfaceInGlobal {
+
+        RegisterInterfaceInGlobal() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(RegisterInterfaceInGlobal.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(RegisterInterfaceInGlobal.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout RegisterInterfaceInGlobal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("RegisterInterfaceInGlobal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*RegisterInterfaceInGlobal)(IGlobalInterfaceTable *, IUnknown *, const IID *const, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout RegisterInterfaceInGlobal$layout() {
+        return RegisterInterfaceInGlobal$LAYOUT;
+    }
+
+    private static final long RegisterInterfaceInGlobal$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*RegisterInterfaceInGlobal)(IGlobalInterfaceTable *, IUnknown *, const IID *const, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static final long RegisterInterfaceInGlobal$offset() {
+        return RegisterInterfaceInGlobal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*RegisterInterfaceInGlobal)(IGlobalInterfaceTable *, IUnknown *, const IID *const, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment RegisterInterfaceInGlobal(MemorySegment struct) {
+        return struct.get(RegisterInterfaceInGlobal$LAYOUT, RegisterInterfaceInGlobal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*RegisterInterfaceInGlobal)(IGlobalInterfaceTable *, IUnknown *, const IID *const, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static void RegisterInterfaceInGlobal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(RegisterInterfaceInGlobal$LAYOUT, RegisterInterfaceInGlobal$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*RevokeInterfaceFromGlobal)(IGlobalInterfaceTable *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class RevokeInterfaceFromGlobal {
+
+        RevokeInterfaceFromGlobal() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(RevokeInterfaceFromGlobal.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(RevokeInterfaceFromGlobal.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout RevokeInterfaceFromGlobal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("RevokeInterfaceFromGlobal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*RevokeInterfaceFromGlobal)(IGlobalInterfaceTable *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout RevokeInterfaceFromGlobal$layout() {
+        return RevokeInterfaceFromGlobal$LAYOUT;
+    }
+
+    private static final long RevokeInterfaceFromGlobal$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*RevokeInterfaceFromGlobal)(IGlobalInterfaceTable *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long RevokeInterfaceFromGlobal$offset() {
+        return RevokeInterfaceFromGlobal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*RevokeInterfaceFromGlobal)(IGlobalInterfaceTable *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment RevokeInterfaceFromGlobal(MemorySegment struct) {
+        return struct.get(RevokeInterfaceFromGlobal$LAYOUT, RevokeInterfaceFromGlobal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*RevokeInterfaceFromGlobal)(IGlobalInterfaceTable *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void RevokeInterfaceFromGlobal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(RevokeInterfaceFromGlobal$LAYOUT, RevokeInterfaceFromGlobal$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetInterfaceFromGlobal)(IGlobalInterfaceTable *, DWORD, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class GetInterfaceFromGlobal {
+
+        GetInterfaceFromGlobal() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, MemorySegment _x2, MemorySegment _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetInterfaceFromGlobal.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetInterfaceFromGlobal.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, MemorySegment _x2, MemorySegment _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout GetInterfaceFromGlobal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetInterfaceFromGlobal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetInterfaceFromGlobal)(IGlobalInterfaceTable *, DWORD, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetInterfaceFromGlobal$layout() {
+        return GetInterfaceFromGlobal$LAYOUT;
+    }
+
+    private static final long GetInterfaceFromGlobal$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetInterfaceFromGlobal)(IGlobalInterfaceTable *, DWORD, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetInterfaceFromGlobal$offset() {
+        return GetInterfaceFromGlobal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetInterfaceFromGlobal)(IGlobalInterfaceTable *, DWORD, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetInterfaceFromGlobal(MemorySegment struct) {
+        return struct.get(GetInterfaceFromGlobal$LAYOUT, GetInterfaceFromGlobal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetInterfaceFromGlobal)(IGlobalInterfaceTable *, DWORD, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void GetInterfaceFromGlobal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetInterfaceFromGlobal$LAYOUT, GetInterfaceFromGlobal$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

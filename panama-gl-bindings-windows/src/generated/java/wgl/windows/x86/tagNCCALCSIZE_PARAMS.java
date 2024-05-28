@@ -2,50 +2,209 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagNCCALCSIZE_PARAMS {
+ *     RECT rgrc[3];
+ *     PWINDOWPOS lppos;
+ * }
+ * }
+ */
 public class tagNCCALCSIZE_PARAMS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(3, MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("left"),
-            Constants$root.C_LONG$LAYOUT.withName("top"),
-            Constants$root.C_LONG$LAYOUT.withName("right"),
-            Constants$root.C_LONG$LAYOUT.withName("bottom")
-        ).withName("tagRECT")).withName("rgrc"),
-        Constants$root.C_POINTER$LAYOUT.withName("lppos")
-    ).withName("tagNCCALCSIZE_PARAMS");
-    public static MemoryLayout $LAYOUT() {
-        return tagNCCALCSIZE_PARAMS.$struct$LAYOUT;
+    tagNCCALCSIZE_PARAMS() {
+        // Should not be called directly
     }
-    public static MemorySegment rgrc$slice(MemorySegment seg) {
-        return seg.asSlice(0, 48);
-    }
-    static final VarHandle lppos$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lppos"));
-    public static VarHandle lppos$VH() {
-        return tagNCCALCSIZE_PARAMS.lppos$VH;
-    }
-    public static MemoryAddress lppos$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagNCCALCSIZE_PARAMS.lppos$VH.get(seg);
-    }
-    public static void lppos$set( MemorySegment seg, MemoryAddress x) {
-        tagNCCALCSIZE_PARAMS.lppos$VH.set(seg, x);
-    }
-    public static MemoryAddress lppos$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagNCCALCSIZE_PARAMS.lppos$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lppos$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagNCCALCSIZE_PARAMS.lppos$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        MemoryLayout.sequenceLayout(3, tagRECT.layout()).withName("rgrc"),
+        wgl_h.C_POINTER.withName("lppos")
+    ).withName("tagNCCALCSIZE_PARAMS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final SequenceLayout rgrc$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("rgrc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RECT rgrc[3]
+     * }
+     */
+    public static final SequenceLayout rgrc$layout() {
+        return rgrc$LAYOUT;
+    }
+
+    private static final long rgrc$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RECT rgrc[3]
+     * }
+     */
+    public static final long rgrc$offset() {
+        return rgrc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RECT rgrc[3]
+     * }
+     */
+    public static MemorySegment rgrc(MemorySegment struct) {
+        return struct.asSlice(rgrc$OFFSET, rgrc$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RECT rgrc[3]
+     * }
+     */
+    public static void rgrc(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rgrc$OFFSET, rgrc$LAYOUT.byteSize());
+    }
+
+    private static long[] rgrc$DIMS = { 3 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * RECT rgrc[3]
+     * }
+     */
+    public static long[] rgrc$dimensions() {
+        return rgrc$DIMS;
+    }
+    private static final MethodHandle rgrc$ELEM_HANDLE = rgrc$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * RECT rgrc[3]
+     * }
+     */
+    public static MemorySegment rgrc(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)rgrc$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * RECT rgrc[3]
+     * }
+     */
+    public static void rgrc(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, rgrc(struct, index0), 0L, tagRECT.layout().byteSize());
+    }
+
+    private static final AddressLayout lppos$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lppos"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PWINDOWPOS lppos
+     * }
+     */
+    public static final AddressLayout lppos$layout() {
+        return lppos$LAYOUT;
+    }
+
+    private static final long lppos$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PWINDOWPOS lppos
+     * }
+     */
+    public static final long lppos$offset() {
+        return lppos$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PWINDOWPOS lppos
+     * }
+     */
+    public static MemorySegment lppos(MemorySegment struct) {
+        return struct.get(lppos$LAYOUT, lppos$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PWINDOWPOS lppos
+     * }
+     */
+    public static void lppos(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lppos$LAYOUT, lppos$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

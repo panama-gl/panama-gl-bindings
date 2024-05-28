@@ -2,52 +2,173 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_X942_DH_VALIDATION_PARAMS {
+ *     CRYPT_BIT_BLOB seed;
+ *     DWORD pgenCounter;
+ * }
+ * }
+ */
 public class _CERT_X942_DH_VALIDATION_PARAMS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData"),
-            Constants$root.C_LONG$LAYOUT.withName("cUnusedBits"),
-            MemoryLayout.paddingLayout(32)
-        ).withName("seed"),
-        Constants$root.C_LONG$LAYOUT.withName("pgenCounter"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_CERT_X942_DH_VALIDATION_PARAMS");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_X942_DH_VALIDATION_PARAMS.$struct$LAYOUT;
+    _CERT_X942_DH_VALIDATION_PARAMS() {
+        // Should not be called directly
     }
-    public static MemorySegment seed$slice(MemorySegment seg) {
-        return seg.asSlice(0, 24);
-    }
-    static final VarHandle pgenCounter$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pgenCounter"));
-    public static VarHandle pgenCounter$VH() {
-        return _CERT_X942_DH_VALIDATION_PARAMS.pgenCounter$VH;
-    }
-    public static int pgenCounter$get(MemorySegment seg) {
-        return (int)_CERT_X942_DH_VALIDATION_PARAMS.pgenCounter$VH.get(seg);
-    }
-    public static void pgenCounter$set( MemorySegment seg, int x) {
-        _CERT_X942_DH_VALIDATION_PARAMS.pgenCounter$VH.set(seg, x);
-    }
-    public static int pgenCounter$get(MemorySegment seg, long index) {
-        return (int)_CERT_X942_DH_VALIDATION_PARAMS.pgenCounter$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pgenCounter$set(MemorySegment seg, long index, int x) {
-        _CERT_X942_DH_VALIDATION_PARAMS.pgenCounter$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _CRYPT_BIT_BLOB.layout().withName("seed"),
+        wgl_h.C_LONG.withName("pgenCounter"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_CERT_X942_DH_VALIDATION_PARAMS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout seed$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("seed"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB seed
+     * }
+     */
+    public static final GroupLayout seed$layout() {
+        return seed$LAYOUT;
+    }
+
+    private static final long seed$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB seed
+     * }
+     */
+    public static final long seed$offset() {
+        return seed$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB seed
+     * }
+     */
+    public static MemorySegment seed(MemorySegment struct) {
+        return struct.asSlice(seed$OFFSET, seed$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_BIT_BLOB seed
+     * }
+     */
+    public static void seed(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, seed$OFFSET, seed$LAYOUT.byteSize());
+    }
+
+    private static final OfInt pgenCounter$LAYOUT = (OfInt)$LAYOUT.select(groupElement("pgenCounter"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD pgenCounter
+     * }
+     */
+    public static final OfInt pgenCounter$layout() {
+        return pgenCounter$LAYOUT;
+    }
+
+    private static final long pgenCounter$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD pgenCounter
+     * }
+     */
+    public static final long pgenCounter$offset() {
+        return pgenCounter$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD pgenCounter
+     * }
+     */
+    public static int pgenCounter(MemorySegment struct) {
+        return struct.get(pgenCounter$LAYOUT, pgenCounter$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD pgenCounter
+     * }
+     */
+    public static void pgenCounter(MemorySegment struct, int fieldValue) {
+        struct.set(pgenCounter$LAYOUT, pgenCounter$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

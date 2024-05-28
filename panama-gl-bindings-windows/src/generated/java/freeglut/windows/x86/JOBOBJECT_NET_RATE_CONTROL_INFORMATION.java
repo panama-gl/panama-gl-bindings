@@ -2,76 +2,219 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct JOBOBJECT_NET_RATE_CONTROL_INFORMATION {
+ *     DWORD64 MaxBandwidth;
+ *     JOB_OBJECT_NET_RATE_CONTROL_FLAGS ControlFlags;
+ *     BYTE DscpTag;
+ * }
+ * }
+ */
 public class JOBOBJECT_NET_RATE_CONTROL_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("MaxBandwidth"),
-        Constants$root.C_LONG$LAYOUT.withName("ControlFlags"),
-        Constants$root.C_CHAR$LAYOUT.withName("DscpTag"),
-        MemoryLayout.paddingLayout(24)
-    ).withName("JOBOBJECT_NET_RATE_CONTROL_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return JOBOBJECT_NET_RATE_CONTROL_INFORMATION.$struct$LAYOUT;
+    JOBOBJECT_NET_RATE_CONTROL_INFORMATION() {
+        // Should not be called directly
     }
-    static final VarHandle MaxBandwidth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaxBandwidth"));
-    public static VarHandle MaxBandwidth$VH() {
-        return JOBOBJECT_NET_RATE_CONTROL_INFORMATION.MaxBandwidth$VH;
-    }
-    public static long MaxBandwidth$get(MemorySegment seg) {
-        return (long)JOBOBJECT_NET_RATE_CONTROL_INFORMATION.MaxBandwidth$VH.get(seg);
-    }
-    public static void MaxBandwidth$set( MemorySegment seg, long x) {
-        JOBOBJECT_NET_RATE_CONTROL_INFORMATION.MaxBandwidth$VH.set(seg, x);
-    }
-    public static long MaxBandwidth$get(MemorySegment seg, long index) {
-        return (long)JOBOBJECT_NET_RATE_CONTROL_INFORMATION.MaxBandwidth$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaxBandwidth$set(MemorySegment seg, long index, long x) {
-        JOBOBJECT_NET_RATE_CONTROL_INFORMATION.MaxBandwidth$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ControlFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ControlFlags"));
-    public static VarHandle ControlFlags$VH() {
-        return JOBOBJECT_NET_RATE_CONTROL_INFORMATION.ControlFlags$VH;
-    }
-    public static int ControlFlags$get(MemorySegment seg) {
-        return (int)JOBOBJECT_NET_RATE_CONTROL_INFORMATION.ControlFlags$VH.get(seg);
-    }
-    public static void ControlFlags$set( MemorySegment seg, int x) {
-        JOBOBJECT_NET_RATE_CONTROL_INFORMATION.ControlFlags$VH.set(seg, x);
-    }
-    public static int ControlFlags$get(MemorySegment seg, long index) {
-        return (int)JOBOBJECT_NET_RATE_CONTROL_INFORMATION.ControlFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ControlFlags$set(MemorySegment seg, long index, int x) {
-        JOBOBJECT_NET_RATE_CONTROL_INFORMATION.ControlFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DscpTag$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DscpTag"));
-    public static VarHandle DscpTag$VH() {
-        return JOBOBJECT_NET_RATE_CONTROL_INFORMATION.DscpTag$VH;
-    }
-    public static byte DscpTag$get(MemorySegment seg) {
-        return (byte)JOBOBJECT_NET_RATE_CONTROL_INFORMATION.DscpTag$VH.get(seg);
-    }
-    public static void DscpTag$set( MemorySegment seg, byte x) {
-        JOBOBJECT_NET_RATE_CONTROL_INFORMATION.DscpTag$VH.set(seg, x);
-    }
-    public static byte DscpTag$get(MemorySegment seg, long index) {
-        return (byte)JOBOBJECT_NET_RATE_CONTROL_INFORMATION.DscpTag$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DscpTag$set(MemorySegment seg, long index, byte x) {
-        JOBOBJECT_NET_RATE_CONTROL_INFORMATION.DscpTag$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG_LONG.withName("MaxBandwidth"),
+        freeglut_h.C_INT.withName("ControlFlags"),
+        freeglut_h.C_CHAR.withName("DscpTag"),
+        MemoryLayout.paddingLayout(3)
+    ).withName("JOBOBJECT_NET_RATE_CONTROL_INFORMATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong MaxBandwidth$LAYOUT = (OfLong)$LAYOUT.select(groupElement("MaxBandwidth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 MaxBandwidth
+     * }
+     */
+    public static final OfLong MaxBandwidth$layout() {
+        return MaxBandwidth$LAYOUT;
+    }
+
+    private static final long MaxBandwidth$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 MaxBandwidth
+     * }
+     */
+    public static final long MaxBandwidth$offset() {
+        return MaxBandwidth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 MaxBandwidth
+     * }
+     */
+    public static long MaxBandwidth(MemorySegment struct) {
+        return struct.get(MaxBandwidth$LAYOUT, MaxBandwidth$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 MaxBandwidth
+     * }
+     */
+    public static void MaxBandwidth(MemorySegment struct, long fieldValue) {
+        struct.set(MaxBandwidth$LAYOUT, MaxBandwidth$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ControlFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ControlFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * JOB_OBJECT_NET_RATE_CONTROL_FLAGS ControlFlags
+     * }
+     */
+    public static final OfInt ControlFlags$layout() {
+        return ControlFlags$LAYOUT;
+    }
+
+    private static final long ControlFlags$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * JOB_OBJECT_NET_RATE_CONTROL_FLAGS ControlFlags
+     * }
+     */
+    public static final long ControlFlags$offset() {
+        return ControlFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * JOB_OBJECT_NET_RATE_CONTROL_FLAGS ControlFlags
+     * }
+     */
+    public static int ControlFlags(MemorySegment struct) {
+        return struct.get(ControlFlags$LAYOUT, ControlFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * JOB_OBJECT_NET_RATE_CONTROL_FLAGS ControlFlags
+     * }
+     */
+    public static void ControlFlags(MemorySegment struct, int fieldValue) {
+        struct.set(ControlFlags$LAYOUT, ControlFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfByte DscpTag$LAYOUT = (OfByte)$LAYOUT.select(groupElement("DscpTag"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE DscpTag
+     * }
+     */
+    public static final OfByte DscpTag$layout() {
+        return DscpTag$LAYOUT;
+    }
+
+    private static final long DscpTag$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE DscpTag
+     * }
+     */
+    public static final long DscpTag$offset() {
+        return DscpTag$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE DscpTag
+     * }
+     */
+    public static byte DscpTag(MemorySegment struct) {
+        return struct.get(DscpTag$LAYOUT, DscpTag$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE DscpTag
+     * }
+     */
+    public static void DscpTag(MemorySegment struct, byte fieldValue) {
+        struct.set(DscpTag$LAYOUT, DscpTag$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_PKCS12_PBE_PARAMS {
+ *     int iIterations;
+ *     ULONG cbSalt;
+ * }
+ * }
+ */
 public class _CRYPT_PKCS12_PBE_PARAMS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("iIterations"),
-        Constants$root.C_LONG$LAYOUT.withName("cbSalt")
-    ).withName("_CRYPT_PKCS12_PBE_PARAMS");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_PKCS12_PBE_PARAMS.$struct$LAYOUT;
+    _CRYPT_PKCS12_PBE_PARAMS() {
+        // Should not be called directly
     }
-    static final VarHandle iIterations$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iIterations"));
-    public static VarHandle iIterations$VH() {
-        return _CRYPT_PKCS12_PBE_PARAMS.iIterations$VH;
-    }
-    public static int iIterations$get(MemorySegment seg) {
-        return (int)_CRYPT_PKCS12_PBE_PARAMS.iIterations$VH.get(seg);
-    }
-    public static void iIterations$set( MemorySegment seg, int x) {
-        _CRYPT_PKCS12_PBE_PARAMS.iIterations$VH.set(seg, x);
-    }
-    public static int iIterations$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_PKCS12_PBE_PARAMS.iIterations$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iIterations$set(MemorySegment seg, long index, int x) {
-        _CRYPT_PKCS12_PBE_PARAMS.iIterations$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbSalt$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSalt"));
-    public static VarHandle cbSalt$VH() {
-        return _CRYPT_PKCS12_PBE_PARAMS.cbSalt$VH;
-    }
-    public static int cbSalt$get(MemorySegment seg) {
-        return (int)_CRYPT_PKCS12_PBE_PARAMS.cbSalt$VH.get(seg);
-    }
-    public static void cbSalt$set( MemorySegment seg, int x) {
-        _CRYPT_PKCS12_PBE_PARAMS.cbSalt$VH.set(seg, x);
-    }
-    public static int cbSalt$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_PKCS12_PBE_PARAMS.cbSalt$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSalt$set(MemorySegment seg, long index, int x) {
-        _CRYPT_PKCS12_PBE_PARAMS.cbSalt$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("iIterations"),
+        wgl_h.C_LONG.withName("cbSalt")
+    ).withName("_CRYPT_PKCS12_PBE_PARAMS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt iIterations$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iIterations"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iIterations
+     * }
+     */
+    public static final OfInt iIterations$layout() {
+        return iIterations$LAYOUT;
+    }
+
+    private static final long iIterations$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iIterations
+     * }
+     */
+    public static final long iIterations$offset() {
+        return iIterations$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iIterations
+     * }
+     */
+    public static int iIterations(MemorySegment struct) {
+        return struct.get(iIterations$LAYOUT, iIterations$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iIterations
+     * }
+     */
+    public static void iIterations(MemorySegment struct, int fieldValue) {
+        struct.set(iIterations$LAYOUT, iIterations$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbSalt$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSalt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cbSalt
+     * }
+     */
+    public static final OfInt cbSalt$layout() {
+        return cbSalt$LAYOUT;
+    }
+
+    private static final long cbSalt$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cbSalt
+     * }
+     */
+    public static final long cbSalt$offset() {
+        return cbSalt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cbSalt
+     * }
+     */
+    public static int cbSalt(MemorySegment struct) {
+        return struct.get(cbSalt$LAYOUT, cbSalt$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cbSalt
+     * }
+     */
+    public static void cbSalt(MemorySegment struct, int fieldValue) {
+        struct.set(cbSalt$LAYOUT, cbSalt$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

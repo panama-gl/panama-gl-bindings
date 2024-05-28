@@ -2,13 +2,46 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _MODEMDEVCAPS {
+ *     DWORD dwActualSize;
+ *     DWORD dwRequiredSize;
+ *     DWORD dwDevSpecificOffset;
+ *     DWORD dwDevSpecificSize;
+ *     DWORD dwModemProviderVersion;
+ *     DWORD dwModemManufacturerOffset;
+ *     DWORD dwModemManufacturerSize;
+ *     DWORD dwModemModelOffset;
+ *     DWORD dwModemModelSize;
+ *     DWORD dwModemVersionOffset;
+ *     DWORD dwModemVersionSize;
+ *     DWORD dwDialOptions;
+ *     DWORD dwCallSetupFailTimer;
+ *     DWORD dwInactivityTimeout;
+ *     DWORD dwSpeakerVolume;
+ *     DWORD dwSpeakerMode;
+ *     DWORD dwModemOptions;
+ *     DWORD dwMaxDTERate;
+ *     DWORD dwMaxDCERate;
+ *     BYTE abVariablePortion[1];
+ * } MODEMDEVCAPS
+ * }
+ */
 public class MODEMDEVCAPS extends _MODEMDEVCAPS {
 
+    MODEMDEVCAPS() {
+        // Should not be called directly
+    }
 }
-
 

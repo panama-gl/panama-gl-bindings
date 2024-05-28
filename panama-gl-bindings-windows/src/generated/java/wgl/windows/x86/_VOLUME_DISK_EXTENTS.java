@@ -2,71 +2,210 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _VOLUME_DISK_EXTENTS {
+ *     DWORD NumberOfDiskExtents;
+ *     DISK_EXTENT Extents[1];
+ * }
+ * }
+ */
 public class _VOLUME_DISK_EXTENTS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("NumberOfDiskExtents"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("DiskNumber"),
-            MemoryLayout.paddingLayout(32),
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                    Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                    Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                ).withName("u"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-            ).withName("StartingOffset"),
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                    Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                    Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                ).withName("u"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-            ).withName("ExtentLength")
-        ).withName("_DISK_EXTENT")).withName("Extents")
-    ).withName("_VOLUME_DISK_EXTENTS");
-    public static MemoryLayout $LAYOUT() {
-        return _VOLUME_DISK_EXTENTS.$struct$LAYOUT;
+    _VOLUME_DISK_EXTENTS() {
+        // Should not be called directly
     }
-    static final VarHandle NumberOfDiskExtents$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfDiskExtents"));
-    public static VarHandle NumberOfDiskExtents$VH() {
-        return _VOLUME_DISK_EXTENTS.NumberOfDiskExtents$VH;
-    }
-    public static int NumberOfDiskExtents$get(MemorySegment seg) {
-        return (int)_VOLUME_DISK_EXTENTS.NumberOfDiskExtents$VH.get(seg);
-    }
-    public static void NumberOfDiskExtents$set( MemorySegment seg, int x) {
-        _VOLUME_DISK_EXTENTS.NumberOfDiskExtents$VH.set(seg, x);
-    }
-    public static int NumberOfDiskExtents$get(MemorySegment seg, long index) {
-        return (int)_VOLUME_DISK_EXTENTS.NumberOfDiskExtents$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfDiskExtents$set(MemorySegment seg, long index, int x) {
-        _VOLUME_DISK_EXTENTS.NumberOfDiskExtents$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Extents$slice(MemorySegment seg) {
-        return seg.asSlice(8, 24);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("NumberOfDiskExtents"),
+        MemoryLayout.paddingLayout(4),
+        MemoryLayout.sequenceLayout(1, _DISK_EXTENT.layout()).withName("Extents")
+    ).withName("_VOLUME_DISK_EXTENTS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt NumberOfDiskExtents$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberOfDiskExtents"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfDiskExtents
+     * }
+     */
+    public static final OfInt NumberOfDiskExtents$layout() {
+        return NumberOfDiskExtents$LAYOUT;
+    }
+
+    private static final long NumberOfDiskExtents$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfDiskExtents
+     * }
+     */
+    public static final long NumberOfDiskExtents$offset() {
+        return NumberOfDiskExtents$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfDiskExtents
+     * }
+     */
+    public static int NumberOfDiskExtents(MemorySegment struct) {
+        return struct.get(NumberOfDiskExtents$LAYOUT, NumberOfDiskExtents$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfDiskExtents
+     * }
+     */
+    public static void NumberOfDiskExtents(MemorySegment struct, int fieldValue) {
+        struct.set(NumberOfDiskExtents$LAYOUT, NumberOfDiskExtents$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Extents$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Extents"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DISK_EXTENT Extents[1]
+     * }
+     */
+    public static final SequenceLayout Extents$layout() {
+        return Extents$LAYOUT;
+    }
+
+    private static final long Extents$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DISK_EXTENT Extents[1]
+     * }
+     */
+    public static final long Extents$offset() {
+        return Extents$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DISK_EXTENT Extents[1]
+     * }
+     */
+    public static MemorySegment Extents(MemorySegment struct) {
+        return struct.asSlice(Extents$OFFSET, Extents$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DISK_EXTENT Extents[1]
+     * }
+     */
+    public static void Extents(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Extents$OFFSET, Extents$LAYOUT.byteSize());
+    }
+
+    private static long[] Extents$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DISK_EXTENT Extents[1]
+     * }
+     */
+    public static long[] Extents$dimensions() {
+        return Extents$DIMS;
+    }
+    private static final MethodHandle Extents$ELEM_HANDLE = Extents$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DISK_EXTENT Extents[1]
+     * }
+     */
+    public static MemorySegment Extents(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)Extents$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DISK_EXTENT Extents[1]
+     * }
+     */
+    public static void Extents(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, Extents(struct, index0), 0L, _DISK_EXTENT.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,109 +2,310 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CACHE_DESCRIPTOR {
+ *     BYTE Level;
+ *     BYTE Associativity;
+ *     WORD LineSize;
+ *     DWORD Size;
+ *     PROCESSOR_CACHE_TYPE Type;
+ * }
+ * }
+ */
 public class _CACHE_DESCRIPTOR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("Level"),
-        Constants$root.C_CHAR$LAYOUT.withName("Associativity"),
-        Constants$root.C_SHORT$LAYOUT.withName("LineSize"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("Type")
-    ).withName("_CACHE_DESCRIPTOR");
-    public static MemoryLayout $LAYOUT() {
-        return _CACHE_DESCRIPTOR.$struct$LAYOUT;
+    _CACHE_DESCRIPTOR() {
+        // Should not be called directly
     }
-    static final VarHandle Level$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Level"));
-    public static VarHandle Level$VH() {
-        return _CACHE_DESCRIPTOR.Level$VH;
-    }
-    public static byte Level$get(MemorySegment seg) {
-        return (byte)_CACHE_DESCRIPTOR.Level$VH.get(seg);
-    }
-    public static void Level$set( MemorySegment seg, byte x) {
-        _CACHE_DESCRIPTOR.Level$VH.set(seg, x);
-    }
-    public static byte Level$get(MemorySegment seg, long index) {
-        return (byte)_CACHE_DESCRIPTOR.Level$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Level$set(MemorySegment seg, long index, byte x) {
-        _CACHE_DESCRIPTOR.Level$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Associativity$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Associativity"));
-    public static VarHandle Associativity$VH() {
-        return _CACHE_DESCRIPTOR.Associativity$VH;
-    }
-    public static byte Associativity$get(MemorySegment seg) {
-        return (byte)_CACHE_DESCRIPTOR.Associativity$VH.get(seg);
-    }
-    public static void Associativity$set( MemorySegment seg, byte x) {
-        _CACHE_DESCRIPTOR.Associativity$VH.set(seg, x);
-    }
-    public static byte Associativity$get(MemorySegment seg, long index) {
-        return (byte)_CACHE_DESCRIPTOR.Associativity$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Associativity$set(MemorySegment seg, long index, byte x) {
-        _CACHE_DESCRIPTOR.Associativity$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LineSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LineSize"));
-    public static VarHandle LineSize$VH() {
-        return _CACHE_DESCRIPTOR.LineSize$VH;
-    }
-    public static short LineSize$get(MemorySegment seg) {
-        return (short)_CACHE_DESCRIPTOR.LineSize$VH.get(seg);
-    }
-    public static void LineSize$set( MemorySegment seg, short x) {
-        _CACHE_DESCRIPTOR.LineSize$VH.set(seg, x);
-    }
-    public static short LineSize$get(MemorySegment seg, long index) {
-        return (short)_CACHE_DESCRIPTOR.LineSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LineSize$set(MemorySegment seg, long index, short x) {
-        _CACHE_DESCRIPTOR.LineSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _CACHE_DESCRIPTOR.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_CACHE_DESCRIPTOR.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _CACHE_DESCRIPTOR.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_CACHE_DESCRIPTOR.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _CACHE_DESCRIPTOR.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Type$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Type"));
-    public static VarHandle Type$VH() {
-        return _CACHE_DESCRIPTOR.Type$VH;
-    }
-    public static int Type$get(MemorySegment seg) {
-        return (int)_CACHE_DESCRIPTOR.Type$VH.get(seg);
-    }
-    public static void Type$set( MemorySegment seg, int x) {
-        _CACHE_DESCRIPTOR.Type$VH.set(seg, x);
-    }
-    public static int Type$get(MemorySegment seg, long index) {
-        return (int)_CACHE_DESCRIPTOR.Type$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Type$set(MemorySegment seg, long index, int x) {
-        _CACHE_DESCRIPTOR.Type$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_CHAR.withName("Level"),
+        wgl_h.C_CHAR.withName("Associativity"),
+        wgl_h.C_SHORT.withName("LineSize"),
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_INT.withName("Type")
+    ).withName("_CACHE_DESCRIPTOR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte Level$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Level"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Level
+     * }
+     */
+    public static final OfByte Level$layout() {
+        return Level$LAYOUT;
+    }
+
+    private static final long Level$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Level
+     * }
+     */
+    public static final long Level$offset() {
+        return Level$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Level
+     * }
+     */
+    public static byte Level(MemorySegment struct) {
+        return struct.get(Level$LAYOUT, Level$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Level
+     * }
+     */
+    public static void Level(MemorySegment struct, byte fieldValue) {
+        struct.set(Level$LAYOUT, Level$OFFSET, fieldValue);
+    }
+
+    private static final OfByte Associativity$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Associativity"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Associativity
+     * }
+     */
+    public static final OfByte Associativity$layout() {
+        return Associativity$LAYOUT;
+    }
+
+    private static final long Associativity$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Associativity
+     * }
+     */
+    public static final long Associativity$offset() {
+        return Associativity$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Associativity
+     * }
+     */
+    public static byte Associativity(MemorySegment struct) {
+        return struct.get(Associativity$LAYOUT, Associativity$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Associativity
+     * }
+     */
+    public static void Associativity(MemorySegment struct, byte fieldValue) {
+        struct.set(Associativity$LAYOUT, Associativity$OFFSET, fieldValue);
+    }
+
+    private static final OfShort LineSize$LAYOUT = (OfShort)$LAYOUT.select(groupElement("LineSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD LineSize
+     * }
+     */
+    public static final OfShort LineSize$layout() {
+        return LineSize$LAYOUT;
+    }
+
+    private static final long LineSize$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD LineSize
+     * }
+     */
+    public static final long LineSize$offset() {
+        return LineSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD LineSize
+     * }
+     */
+    public static short LineSize(MemorySegment struct) {
+        return struct.get(LineSize$LAYOUT, LineSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD LineSize
+     * }
+     */
+    public static void LineSize(MemorySegment struct, short fieldValue) {
+        struct.set(LineSize$LAYOUT, LineSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Type$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Type"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PROCESSOR_CACHE_TYPE Type
+     * }
+     */
+    public static final OfInt Type$layout() {
+        return Type$LAYOUT;
+    }
+
+    private static final long Type$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PROCESSOR_CACHE_TYPE Type
+     * }
+     */
+    public static final long Type$offset() {
+        return Type$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PROCESSOR_CACHE_TYPE Type
+     * }
+     */
+    public static int Type(MemorySegment struct) {
+        return struct.get(Type$LAYOUT, Type$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PROCESSOR_CACHE_TYPE Type
+     * }
+     */
+    public static void Type(MemorySegment struct, int fieldValue) {
+        struct.set(Type$LAYOUT, Type$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

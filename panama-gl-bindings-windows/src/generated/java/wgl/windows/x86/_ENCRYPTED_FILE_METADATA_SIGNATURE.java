@@ -2,93 +2,265 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _ENCRYPTED_FILE_METADATA_SIGNATURE {
+ *     DWORD dwEfsAccessType;
+ *     PENCRYPTION_CERTIFICATE_HASH_LIST pCertificatesAdded;
+ *     PENCRYPTION_CERTIFICATE pEncryptionCertificate;
+ *     PEFS_RPC_BLOB pEfsStreamSignature;
+ * }
+ * }
+ */
 public class _ENCRYPTED_FILE_METADATA_SIGNATURE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwEfsAccessType"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pCertificatesAdded"),
-        Constants$root.C_POINTER$LAYOUT.withName("pEncryptionCertificate"),
-        Constants$root.C_POINTER$LAYOUT.withName("pEfsStreamSignature")
-    ).withName("_ENCRYPTED_FILE_METADATA_SIGNATURE");
-    public static MemoryLayout $LAYOUT() {
-        return _ENCRYPTED_FILE_METADATA_SIGNATURE.$struct$LAYOUT;
+    _ENCRYPTED_FILE_METADATA_SIGNATURE() {
+        // Should not be called directly
     }
-    static final VarHandle dwEfsAccessType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwEfsAccessType"));
-    public static VarHandle dwEfsAccessType$VH() {
-        return _ENCRYPTED_FILE_METADATA_SIGNATURE.dwEfsAccessType$VH;
-    }
-    public static int dwEfsAccessType$get(MemorySegment seg) {
-        return (int)_ENCRYPTED_FILE_METADATA_SIGNATURE.dwEfsAccessType$VH.get(seg);
-    }
-    public static void dwEfsAccessType$set( MemorySegment seg, int x) {
-        _ENCRYPTED_FILE_METADATA_SIGNATURE.dwEfsAccessType$VH.set(seg, x);
-    }
-    public static int dwEfsAccessType$get(MemorySegment seg, long index) {
-        return (int)_ENCRYPTED_FILE_METADATA_SIGNATURE.dwEfsAccessType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwEfsAccessType$set(MemorySegment seg, long index, int x) {
-        _ENCRYPTED_FILE_METADATA_SIGNATURE.dwEfsAccessType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pCertificatesAdded$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pCertificatesAdded"));
-    public static VarHandle pCertificatesAdded$VH() {
-        return _ENCRYPTED_FILE_METADATA_SIGNATURE.pCertificatesAdded$VH;
-    }
-    public static MemoryAddress pCertificatesAdded$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_ENCRYPTED_FILE_METADATA_SIGNATURE.pCertificatesAdded$VH.get(seg);
-    }
-    public static void pCertificatesAdded$set( MemorySegment seg, MemoryAddress x) {
-        _ENCRYPTED_FILE_METADATA_SIGNATURE.pCertificatesAdded$VH.set(seg, x);
-    }
-    public static MemoryAddress pCertificatesAdded$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_ENCRYPTED_FILE_METADATA_SIGNATURE.pCertificatesAdded$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pCertificatesAdded$set(MemorySegment seg, long index, MemoryAddress x) {
-        _ENCRYPTED_FILE_METADATA_SIGNATURE.pCertificatesAdded$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pEncryptionCertificate$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pEncryptionCertificate"));
-    public static VarHandle pEncryptionCertificate$VH() {
-        return _ENCRYPTED_FILE_METADATA_SIGNATURE.pEncryptionCertificate$VH;
-    }
-    public static MemoryAddress pEncryptionCertificate$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_ENCRYPTED_FILE_METADATA_SIGNATURE.pEncryptionCertificate$VH.get(seg);
-    }
-    public static void pEncryptionCertificate$set( MemorySegment seg, MemoryAddress x) {
-        _ENCRYPTED_FILE_METADATA_SIGNATURE.pEncryptionCertificate$VH.set(seg, x);
-    }
-    public static MemoryAddress pEncryptionCertificate$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_ENCRYPTED_FILE_METADATA_SIGNATURE.pEncryptionCertificate$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pEncryptionCertificate$set(MemorySegment seg, long index, MemoryAddress x) {
-        _ENCRYPTED_FILE_METADATA_SIGNATURE.pEncryptionCertificate$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pEfsStreamSignature$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pEfsStreamSignature"));
-    public static VarHandle pEfsStreamSignature$VH() {
-        return _ENCRYPTED_FILE_METADATA_SIGNATURE.pEfsStreamSignature$VH;
-    }
-    public static MemoryAddress pEfsStreamSignature$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_ENCRYPTED_FILE_METADATA_SIGNATURE.pEfsStreamSignature$VH.get(seg);
-    }
-    public static void pEfsStreamSignature$set( MemorySegment seg, MemoryAddress x) {
-        _ENCRYPTED_FILE_METADATA_SIGNATURE.pEfsStreamSignature$VH.set(seg, x);
-    }
-    public static MemoryAddress pEfsStreamSignature$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_ENCRYPTED_FILE_METADATA_SIGNATURE.pEfsStreamSignature$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pEfsStreamSignature$set(MemorySegment seg, long index, MemoryAddress x) {
-        _ENCRYPTED_FILE_METADATA_SIGNATURE.pEfsStreamSignature$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwEfsAccessType"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pCertificatesAdded"),
+        wgl_h.C_POINTER.withName("pEncryptionCertificate"),
+        wgl_h.C_POINTER.withName("pEfsStreamSignature")
+    ).withName("_ENCRYPTED_FILE_METADATA_SIGNATURE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwEfsAccessType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwEfsAccessType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwEfsAccessType
+     * }
+     */
+    public static final OfInt dwEfsAccessType$layout() {
+        return dwEfsAccessType$LAYOUT;
+    }
+
+    private static final long dwEfsAccessType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwEfsAccessType
+     * }
+     */
+    public static final long dwEfsAccessType$offset() {
+        return dwEfsAccessType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwEfsAccessType
+     * }
+     */
+    public static int dwEfsAccessType(MemorySegment struct) {
+        return struct.get(dwEfsAccessType$LAYOUT, dwEfsAccessType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwEfsAccessType
+     * }
+     */
+    public static void dwEfsAccessType(MemorySegment struct, int fieldValue) {
+        struct.set(dwEfsAccessType$LAYOUT, dwEfsAccessType$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pCertificatesAdded$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pCertificatesAdded"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PENCRYPTION_CERTIFICATE_HASH_LIST pCertificatesAdded
+     * }
+     */
+    public static final AddressLayout pCertificatesAdded$layout() {
+        return pCertificatesAdded$LAYOUT;
+    }
+
+    private static final long pCertificatesAdded$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PENCRYPTION_CERTIFICATE_HASH_LIST pCertificatesAdded
+     * }
+     */
+    public static final long pCertificatesAdded$offset() {
+        return pCertificatesAdded$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PENCRYPTION_CERTIFICATE_HASH_LIST pCertificatesAdded
+     * }
+     */
+    public static MemorySegment pCertificatesAdded(MemorySegment struct) {
+        return struct.get(pCertificatesAdded$LAYOUT, pCertificatesAdded$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PENCRYPTION_CERTIFICATE_HASH_LIST pCertificatesAdded
+     * }
+     */
+    public static void pCertificatesAdded(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pCertificatesAdded$LAYOUT, pCertificatesAdded$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pEncryptionCertificate$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pEncryptionCertificate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PENCRYPTION_CERTIFICATE pEncryptionCertificate
+     * }
+     */
+    public static final AddressLayout pEncryptionCertificate$layout() {
+        return pEncryptionCertificate$LAYOUT;
+    }
+
+    private static final long pEncryptionCertificate$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PENCRYPTION_CERTIFICATE pEncryptionCertificate
+     * }
+     */
+    public static final long pEncryptionCertificate$offset() {
+        return pEncryptionCertificate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PENCRYPTION_CERTIFICATE pEncryptionCertificate
+     * }
+     */
+    public static MemorySegment pEncryptionCertificate(MemorySegment struct) {
+        return struct.get(pEncryptionCertificate$LAYOUT, pEncryptionCertificate$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PENCRYPTION_CERTIFICATE pEncryptionCertificate
+     * }
+     */
+    public static void pEncryptionCertificate(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pEncryptionCertificate$LAYOUT, pEncryptionCertificate$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pEfsStreamSignature$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pEfsStreamSignature"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PEFS_RPC_BLOB pEfsStreamSignature
+     * }
+     */
+    public static final AddressLayout pEfsStreamSignature$layout() {
+        return pEfsStreamSignature$LAYOUT;
+    }
+
+    private static final long pEfsStreamSignature$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PEFS_RPC_BLOB pEfsStreamSignature
+     * }
+     */
+    public static final long pEfsStreamSignature$offset() {
+        return pEfsStreamSignature$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PEFS_RPC_BLOB pEfsStreamSignature
+     * }
+     */
+    public static MemorySegment pEfsStreamSignature(MemorySegment struct) {
+        return struct.get(pEfsStreamSignature$LAYOUT, pEfsStreamSignature$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PEFS_RPC_BLOB pEfsStreamSignature
+     * }
+     */
+    public static void pEfsStreamSignature(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pEfsStreamSignature$LAYOUT, pEfsStreamSignature$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

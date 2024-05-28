@@ -2,1121 +2,3680 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagPROPVARIANT {
+ *     union {
+ *         struct {
+ *             VARTYPE vt;
+ *             PROPVAR_PAD1 wReserved1;
+ *             PROPVAR_PAD2 wReserved2;
+ *             PROPVAR_PAD3 wReserved3;
+ *             union {
+ *                 CHAR cVal;
+ *                 UCHAR bVal;
+ *                 SHORT iVal;
+ *                 USHORT uiVal;
+ *                 LONG lVal;
+ *                 ULONG ulVal;
+ *                 INT intVal;
+ *                 UINT uintVal;
+ *                 LARGE_INTEGER hVal;
+ *                 ULARGE_INTEGER uhVal;
+ *                 FLOAT fltVal;
+ *                 DOUBLE dblVal;
+ *                 VARIANT_BOOL boolVal;
+ *                 VARIANT_BOOL __OBSOLETE__VARIANT_BOOL;
+ *                 SCODE scode;
+ *                 CY cyVal;
+ *                 DATE date;
+ *                 FILETIME filetime;
+ *                 CLSID *puuid;
+ *                 CLIPDATA *pclipdata;
+ *                 BSTR bstrVal;
+ *                 BSTRBLOB bstrblobVal;
+ *                 BLOB blob;
+ *                 LPSTR pszVal;
+ *                 LPWSTR pwszVal;
+ *                 IUnknown *punkVal;
+ *                 IDispatch *pdispVal;
+ *                 IStream *pStream;
+ *                 IStorage *pStorage;
+ *                 LPVERSIONEDSTREAM pVersionedStream;
+ *                 LPSAFEARRAY parray;
+ *                 CAC cac;
+ *                 CAUB caub;
+ *                 CAI cai;
+ *                 CAUI caui;
+ *                 CAL cal;
+ *                 CAUL caul;
+ *                 CAH cah;
+ *                 CAUH cauh;
+ *                 CAFLT caflt;
+ *                 CADBL cadbl;
+ *                 CABOOL cabool;
+ *                 CASCODE cascode;
+ *                 CACY cacy;
+ *                 CADATE cadate;
+ *                 CAFILETIME cafiletime;
+ *                 CACLSID cauuid;
+ *                 CACLIPDATA caclipdata;
+ *                 CABSTR cabstr;
+ *                 CABSTRBLOB cabstrblob;
+ *                 CALPSTR calpstr;
+ *                 CALPWSTR calpwstr;
+ *                 CAPROPVARIANT capropvar;
+ *                 CHAR *pcVal;
+ *                 UCHAR *pbVal;
+ *                 SHORT *piVal;
+ *                 USHORT *puiVal;
+ *                 LONG *plVal;
+ *                 ULONG *pulVal;
+ *                 INT *pintVal;
+ *                 UINT *puintVal;
+ *                 FLOAT *pfltVal;
+ *                 DOUBLE *pdblVal;
+ *                 VARIANT_BOOL *pboolVal;
+ *                 DECIMAL *pdecVal;
+ *                 SCODE *pscode;
+ *                 CY *pcyVal;
+ *                 DATE *pdate;
+ *                 BSTR *pbstrVal;
+ *                 IUnknown **ppunkVal;
+ *                 IDispatch **ppdispVal;
+ *                 LPSAFEARRAY *pparray;
+ *                 PROPVARIANT *pvarVal;
+ *             };
+ *         };
+ *         DECIMAL decVal;
+ *     };
+ * }
+ * }
+ */
 public class tagPROPVARIANT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
+    tagPROPVARIANT() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
         MemoryLayout.unionLayout(
             MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("vt"),
-                Constants$root.C_SHORT$LAYOUT.withName("wReserved1"),
-                Constants$root.C_SHORT$LAYOUT.withName("wReserved2"),
-                Constants$root.C_SHORT$LAYOUT.withName("wReserved3"),
+                wgl_h.C_SHORT.withName("vt"),
+                wgl_h.C_SHORT.withName("wReserved1"),
+                wgl_h.C_SHORT.withName("wReserved2"),
+                wgl_h.C_SHORT.withName("wReserved3"),
                 MemoryLayout.unionLayout(
-                    Constants$root.C_CHAR$LAYOUT.withName("cVal"),
-                    Constants$root.C_CHAR$LAYOUT.withName("bVal"),
-                    Constants$root.C_SHORT$LAYOUT.withName("iVal"),
-                    Constants$root.C_SHORT$LAYOUT.withName("uiVal"),
-                    Constants$root.C_LONG$LAYOUT.withName("lVal"),
-                    Constants$root.C_LONG$LAYOUT.withName("ulVal"),
-                    Constants$root.C_LONG$LAYOUT.withName("intVal"),
-                    Constants$root.C_LONG$LAYOUT.withName("uintVal"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                            Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                        ).withName("$anon$0"),
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                            Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                        ).withName("u"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-                    ).withName("hVal"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                            Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                        ).withName("$anon$0"),
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                            Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                        ).withName("u"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-                    ).withName("uhVal"),
-                    Constants$root.C_FLOAT$LAYOUT.withName("fltVal"),
-                    Constants$root.C_DOUBLE$LAYOUT.withName("dblVal"),
-                    Constants$root.C_SHORT$LAYOUT.withName("boolVal"),
-                    Constants$root.C_SHORT$LAYOUT.withName("__OBSOLETE__VARIANT_BOOL"),
-                    Constants$root.C_LONG$LAYOUT.withName("scode"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("Lo"),
-                            Constants$root.C_LONG$LAYOUT.withName("Hi")
-                        ).withName("$anon$0"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("int64")
-                    ).withName("cyVal"),
-                    Constants$root.C_DOUBLE$LAYOUT.withName("date"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("dwLowDateTime"),
-                        Constants$root.C_LONG$LAYOUT.withName("dwHighDateTime")
-                    ).withName("filetime"),
-                    Constants$root.C_POINTER$LAYOUT.withName("puuid"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pclipdata"),
-                    Constants$root.C_POINTER$LAYOUT.withName("bstrVal"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pData")
-                    ).withName("bstrblobVal"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pBlobData")
-                    ).withName("blob"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pszVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pwszVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("punkVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pdispVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pStream"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pStorage"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pVersionedStream"),
-                    Constants$root.C_POINTER$LAYOUT.withName("parray"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("cac"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("caub"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("cai"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("caui"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("cal"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("caul"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("cah"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("cauh"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("caflt"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("cadbl"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("cabool"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("cascode"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("cacy"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("cadate"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("cafiletime"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("cauuid"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("caclipdata"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("cabstr"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("cabstrblob"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("calpstr"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("calpwstr"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cElems"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pElems")
-                    ).withName("capropvar"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pcVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pbVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("piVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("puiVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("plVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pulVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pintVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("puintVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pfltVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pdblVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pboolVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pdecVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pscode"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pcyVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pdate"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pbstrVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("ppunkVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("ppdispVal"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pparray"),
-                    Constants$root.C_POINTER$LAYOUT.withName("pvarVal")
-                ).withName("$anon$0")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("wReserved"),
-                MemoryLayout.unionLayout(
-                    MemoryLayout.structLayout(
-                        Constants$root.C_CHAR$LAYOUT.withName("scale"),
-                        Constants$root.C_CHAR$LAYOUT.withName("sign")
-                    ).withName("$anon$0"),
-                    Constants$root.C_SHORT$LAYOUT.withName("signscale")
-                ).withName("$anon$0"),
-                Constants$root.C_LONG$LAYOUT.withName("Hi32"),
-                MemoryLayout.unionLayout(
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("Lo32"),
-                        Constants$root.C_LONG$LAYOUT.withName("Mid32")
-                    ).withName("$anon$0"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Lo64")
-                ).withName("$anon$1")
-            ).withName("decVal")
-        ).withName("$anon$0")
+                    wgl_h.C_CHAR.withName("cVal"),
+                    wgl_h.C_CHAR.withName("bVal"),
+                    wgl_h.C_SHORT.withName("iVal"),
+                    wgl_h.C_SHORT.withName("uiVal"),
+                    wgl_h.C_LONG.withName("lVal"),
+                    wgl_h.C_LONG.withName("ulVal"),
+                    wgl_h.C_INT.withName("intVal"),
+                    wgl_h.C_INT.withName("uintVal"),
+                    _LARGE_INTEGER.layout().withName("hVal"),
+                    _ULARGE_INTEGER.layout().withName("uhVal"),
+                    wgl_h.C_FLOAT.withName("fltVal"),
+                    wgl_h.C_DOUBLE.withName("dblVal"),
+                    wgl_h.C_SHORT.withName("boolVal"),
+                    wgl_h.C_SHORT.withName("__OBSOLETE__VARIANT_BOOL"),
+                    wgl_h.C_LONG.withName("scode"),
+                    tagCY.layout().withName("cyVal"),
+                    wgl_h.C_DOUBLE.withName("date"),
+                    _FILETIME.layout().withName("filetime"),
+                    wgl_h.C_POINTER.withName("puuid"),
+                    wgl_h.C_POINTER.withName("pclipdata"),
+                    wgl_h.C_POINTER.withName("bstrVal"),
+                    tagBSTRBLOB.layout().withName("bstrblobVal"),
+                    tagBLOB.layout().withName("blob"),
+                    wgl_h.C_POINTER.withName("pszVal"),
+                    wgl_h.C_POINTER.withName("pwszVal"),
+                    wgl_h.C_POINTER.withName("punkVal"),
+                    wgl_h.C_POINTER.withName("pdispVal"),
+                    wgl_h.C_POINTER.withName("pStream"),
+                    wgl_h.C_POINTER.withName("pStorage"),
+                    wgl_h.C_POINTER.withName("pVersionedStream"),
+                    wgl_h.C_POINTER.withName("parray"),
+                    tagCAC.layout().withName("cac"),
+                    tagCAUB.layout().withName("caub"),
+                    tagCAI.layout().withName("cai"),
+                    tagCAUI.layout().withName("caui"),
+                    tagCAL.layout().withName("cal"),
+                    tagCAUL.layout().withName("caul"),
+                    tagCAH.layout().withName("cah"),
+                    tagCAUH.layout().withName("cauh"),
+                    tagCAFLT.layout().withName("caflt"),
+                    tagCADBL.layout().withName("cadbl"),
+                    tagCABOOL.layout().withName("cabool"),
+                    tagCASCODE.layout().withName("cascode"),
+                    tagCACY.layout().withName("cacy"),
+                    tagCADATE.layout().withName("cadate"),
+                    tagCAFILETIME.layout().withName("cafiletime"),
+                    tagCACLSID.layout().withName("cauuid"),
+                    tagCACLIPDATA.layout().withName("caclipdata"),
+                    tagCABSTR.layout().withName("cabstr"),
+                    tagCABSTRBLOB.layout().withName("cabstrblob"),
+                    tagCALPSTR.layout().withName("calpstr"),
+                    tagCALPWSTR.layout().withName("calpwstr"),
+                    tagCAPROPVARIANT.layout().withName("capropvar"),
+                    wgl_h.C_POINTER.withName("pcVal"),
+                    wgl_h.C_POINTER.withName("pbVal"),
+                    wgl_h.C_POINTER.withName("piVal"),
+                    wgl_h.C_POINTER.withName("puiVal"),
+                    wgl_h.C_POINTER.withName("plVal"),
+                    wgl_h.C_POINTER.withName("pulVal"),
+                    wgl_h.C_POINTER.withName("pintVal"),
+                    wgl_h.C_POINTER.withName("puintVal"),
+                    wgl_h.C_POINTER.withName("pfltVal"),
+                    wgl_h.C_POINTER.withName("pdblVal"),
+                    wgl_h.C_POINTER.withName("pboolVal"),
+                    wgl_h.C_POINTER.withName("pdecVal"),
+                    wgl_h.C_POINTER.withName("pscode"),
+                    wgl_h.C_POINTER.withName("pcyVal"),
+                    wgl_h.C_POINTER.withName("pdate"),
+                    wgl_h.C_POINTER.withName("pbstrVal"),
+                    wgl_h.C_POINTER.withName("ppunkVal"),
+                    wgl_h.C_POINTER.withName("ppdispVal"),
+                    wgl_h.C_POINTER.withName("pparray"),
+                    wgl_h.C_POINTER.withName("pvarVal")
+                ).withName("$anon$303:43")
+            ).withName("$anon$297:1"),
+            tagDEC.layout().withName("decVal")
+        ).withName("$anon$295:3")
     ).withName("tagPROPVARIANT");
-    public static MemoryLayout $LAYOUT() {
-        return tagPROPVARIANT.$struct$LAYOUT;
-    }
-    static final VarHandle vt$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("vt"));
-    public static VarHandle vt$VH() {
-        return tagPROPVARIANT.vt$VH;
-    }
-    public static short vt$get(MemorySegment seg) {
-        return (short)tagPROPVARIANT.vt$VH.get(seg);
-    }
-    public static void vt$set( MemorySegment seg, short x) {
-        tagPROPVARIANT.vt$VH.set(seg, x);
-    }
-    public static short vt$get(MemorySegment seg, long index) {
-        return (short)tagPROPVARIANT.vt$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void vt$set(MemorySegment seg, long index, short x) {
-        tagPROPVARIANT.vt$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wReserved1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("wReserved1"));
-    public static VarHandle wReserved1$VH() {
-        return tagPROPVARIANT.wReserved1$VH;
-    }
-    public static short wReserved1$get(MemorySegment seg) {
-        return (short)tagPROPVARIANT.wReserved1$VH.get(seg);
-    }
-    public static void wReserved1$set( MemorySegment seg, short x) {
-        tagPROPVARIANT.wReserved1$VH.set(seg, x);
-    }
-    public static short wReserved1$get(MemorySegment seg, long index) {
-        return (short)tagPROPVARIANT.wReserved1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wReserved1$set(MemorySegment seg, long index, short x) {
-        tagPROPVARIANT.wReserved1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wReserved2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("wReserved2"));
-    public static VarHandle wReserved2$VH() {
-        return tagPROPVARIANT.wReserved2$VH;
-    }
-    public static short wReserved2$get(MemorySegment seg) {
-        return (short)tagPROPVARIANT.wReserved2$VH.get(seg);
-    }
-    public static void wReserved2$set( MemorySegment seg, short x) {
-        tagPROPVARIANT.wReserved2$VH.set(seg, x);
-    }
-    public static short wReserved2$get(MemorySegment seg, long index) {
-        return (short)tagPROPVARIANT.wReserved2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wReserved2$set(MemorySegment seg, long index, short x) {
-        tagPROPVARIANT.wReserved2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wReserved3$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("wReserved3"));
-    public static VarHandle wReserved3$VH() {
-        return tagPROPVARIANT.wReserved3$VH;
-    }
-    public static short wReserved3$get(MemorySegment seg) {
-        return (short)tagPROPVARIANT.wReserved3$VH.get(seg);
-    }
-    public static void wReserved3$set( MemorySegment seg, short x) {
-        tagPROPVARIANT.wReserved3$VH.set(seg, x);
-    }
-    public static short wReserved3$get(MemorySegment seg, long index) {
-        return (short)tagPROPVARIANT.wReserved3$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wReserved3$set(MemorySegment seg, long index, short x) {
-        tagPROPVARIANT.wReserved3$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("cVal"));
-    public static VarHandle cVal$VH() {
-        return tagPROPVARIANT.cVal$VH;
-    }
-    public static byte cVal$get(MemorySegment seg) {
-        return (byte)tagPROPVARIANT.cVal$VH.get(seg);
-    }
-    public static void cVal$set( MemorySegment seg, byte x) {
-        tagPROPVARIANT.cVal$VH.set(seg, x);
-    }
-    public static byte cVal$get(MemorySegment seg, long index) {
-        return (byte)tagPROPVARIANT.cVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cVal$set(MemorySegment seg, long index, byte x) {
-        tagPROPVARIANT.cVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("bVal"));
-    public static VarHandle bVal$VH() {
-        return tagPROPVARIANT.bVal$VH;
-    }
-    public static byte bVal$get(MemorySegment seg) {
-        return (byte)tagPROPVARIANT.bVal$VH.get(seg);
-    }
-    public static void bVal$set( MemorySegment seg, byte x) {
-        tagPROPVARIANT.bVal$VH.set(seg, x);
-    }
-    public static byte bVal$get(MemorySegment seg, long index) {
-        return (byte)tagPROPVARIANT.bVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bVal$set(MemorySegment seg, long index, byte x) {
-        tagPROPVARIANT.bVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("iVal"));
-    public static VarHandle iVal$VH() {
-        return tagPROPVARIANT.iVal$VH;
-    }
-    public static short iVal$get(MemorySegment seg) {
-        return (short)tagPROPVARIANT.iVal$VH.get(seg);
-    }
-    public static void iVal$set( MemorySegment seg, short x) {
-        tagPROPVARIANT.iVal$VH.set(seg, x);
-    }
-    public static short iVal$get(MemorySegment seg, long index) {
-        return (short)tagPROPVARIANT.iVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iVal$set(MemorySegment seg, long index, short x) {
-        tagPROPVARIANT.iVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle uiVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("uiVal"));
-    public static VarHandle uiVal$VH() {
-        return tagPROPVARIANT.uiVal$VH;
-    }
-    public static short uiVal$get(MemorySegment seg) {
-        return (short)tagPROPVARIANT.uiVal$VH.get(seg);
-    }
-    public static void uiVal$set( MemorySegment seg, short x) {
-        tagPROPVARIANT.uiVal$VH.set(seg, x);
-    }
-    public static short uiVal$get(MemorySegment seg, long index) {
-        return (short)tagPROPVARIANT.uiVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void uiVal$set(MemorySegment seg, long index, short x) {
-        tagPROPVARIANT.uiVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("lVal"));
-    public static VarHandle lVal$VH() {
-        return tagPROPVARIANT.lVal$VH;
-    }
-    public static int lVal$get(MemorySegment seg) {
-        return (int)tagPROPVARIANT.lVal$VH.get(seg);
-    }
-    public static void lVal$set( MemorySegment seg, int x) {
-        tagPROPVARIANT.lVal$VH.set(seg, x);
-    }
-    public static int lVal$get(MemorySegment seg, long index) {
-        return (int)tagPROPVARIANT.lVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lVal$set(MemorySegment seg, long index, int x) {
-        tagPROPVARIANT.lVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ulVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("ulVal"));
-    public static VarHandle ulVal$VH() {
-        return tagPROPVARIANT.ulVal$VH;
-    }
-    public static int ulVal$get(MemorySegment seg) {
-        return (int)tagPROPVARIANT.ulVal$VH.get(seg);
-    }
-    public static void ulVal$set( MemorySegment seg, int x) {
-        tagPROPVARIANT.ulVal$VH.set(seg, x);
-    }
-    public static int ulVal$get(MemorySegment seg, long index) {
-        return (int)tagPROPVARIANT.ulVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ulVal$set(MemorySegment seg, long index, int x) {
-        tagPROPVARIANT.ulVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle intVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("intVal"));
-    public static VarHandle intVal$VH() {
-        return tagPROPVARIANT.intVal$VH;
-    }
-    public static int intVal$get(MemorySegment seg) {
-        return (int)tagPROPVARIANT.intVal$VH.get(seg);
-    }
-    public static void intVal$set( MemorySegment seg, int x) {
-        tagPROPVARIANT.intVal$VH.set(seg, x);
-    }
-    public static int intVal$get(MemorySegment seg, long index) {
-        return (int)tagPROPVARIANT.intVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void intVal$set(MemorySegment seg, long index, int x) {
-        tagPROPVARIANT.intVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle uintVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("uintVal"));
-    public static VarHandle uintVal$VH() {
-        return tagPROPVARIANT.uintVal$VH;
-    }
-    public static int uintVal$get(MemorySegment seg) {
-        return (int)tagPROPVARIANT.uintVal$VH.get(seg);
-    }
-    public static void uintVal$set( MemorySegment seg, int x) {
-        tagPROPVARIANT.uintVal$VH.set(seg, x);
-    }
-    public static int uintVal$get(MemorySegment seg, long index) {
-        return (int)tagPROPVARIANT.uintVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void uintVal$set(MemorySegment seg, long index, int x) {
-        tagPROPVARIANT.uintVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment hVal$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    public static MemorySegment uhVal$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    static final VarHandle fltVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("fltVal"));
-    public static VarHandle fltVal$VH() {
-        return tagPROPVARIANT.fltVal$VH;
-    }
-    public static float fltVal$get(MemorySegment seg) {
-        return (float)tagPROPVARIANT.fltVal$VH.get(seg);
-    }
-    public static void fltVal$set( MemorySegment seg, float x) {
-        tagPROPVARIANT.fltVal$VH.set(seg, x);
-    }
-    public static float fltVal$get(MemorySegment seg, long index) {
-        return (float)tagPROPVARIANT.fltVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fltVal$set(MemorySegment seg, long index, float x) {
-        tagPROPVARIANT.fltVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dblVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("dblVal"));
-    public static VarHandle dblVal$VH() {
-        return tagPROPVARIANT.dblVal$VH;
-    }
-    public static double dblVal$get(MemorySegment seg) {
-        return (double)tagPROPVARIANT.dblVal$VH.get(seg);
-    }
-    public static void dblVal$set( MemorySegment seg, double x) {
-        tagPROPVARIANT.dblVal$VH.set(seg, x);
-    }
-    public static double dblVal$get(MemorySegment seg, long index) {
-        return (double)tagPROPVARIANT.dblVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dblVal$set(MemorySegment seg, long index, double x) {
-        tagPROPVARIANT.dblVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle boolVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("boolVal"));
-    public static VarHandle boolVal$VH() {
-        return tagPROPVARIANT.boolVal$VH;
-    }
-    public static short boolVal$get(MemorySegment seg) {
-        return (short)tagPROPVARIANT.boolVal$VH.get(seg);
-    }
-    public static void boolVal$set( MemorySegment seg, short x) {
-        tagPROPVARIANT.boolVal$VH.set(seg, x);
-    }
-    public static short boolVal$get(MemorySegment seg, long index) {
-        return (short)tagPROPVARIANT.boolVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void boolVal$set(MemorySegment seg, long index, short x) {
-        tagPROPVARIANT.boolVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle __OBSOLETE__VARIANT_BOOL$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("__OBSOLETE__VARIANT_BOOL"));
-    public static VarHandle __OBSOLETE__VARIANT_BOOL$VH() {
-        return tagPROPVARIANT.__OBSOLETE__VARIANT_BOOL$VH;
-    }
-    public static short __OBSOLETE__VARIANT_BOOL$get(MemorySegment seg) {
-        return (short)tagPROPVARIANT.__OBSOLETE__VARIANT_BOOL$VH.get(seg);
-    }
-    public static void __OBSOLETE__VARIANT_BOOL$set( MemorySegment seg, short x) {
-        tagPROPVARIANT.__OBSOLETE__VARIANT_BOOL$VH.set(seg, x);
-    }
-    public static short __OBSOLETE__VARIANT_BOOL$get(MemorySegment seg, long index) {
-        return (short)tagPROPVARIANT.__OBSOLETE__VARIANT_BOOL$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void __OBSOLETE__VARIANT_BOOL$set(MemorySegment seg, long index, short x) {
-        tagPROPVARIANT.__OBSOLETE__VARIANT_BOOL$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle scode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("scode"));
-    public static VarHandle scode$VH() {
-        return tagPROPVARIANT.scode$VH;
-    }
-    public static int scode$get(MemorySegment seg) {
-        return (int)tagPROPVARIANT.scode$VH.get(seg);
-    }
-    public static void scode$set( MemorySegment seg, int x) {
-        tagPROPVARIANT.scode$VH.set(seg, x);
-    }
-    public static int scode$get(MemorySegment seg, long index) {
-        return (int)tagPROPVARIANT.scode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void scode$set(MemorySegment seg, long index, int x) {
-        tagPROPVARIANT.scode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment cyVal$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    static final VarHandle date$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("date"));
-    public static VarHandle date$VH() {
-        return tagPROPVARIANT.date$VH;
-    }
-    public static double date$get(MemorySegment seg) {
-        return (double)tagPROPVARIANT.date$VH.get(seg);
-    }
-    public static void date$set( MemorySegment seg, double x) {
-        tagPROPVARIANT.date$VH.set(seg, x);
-    }
-    public static double date$get(MemorySegment seg, long index) {
-        return (double)tagPROPVARIANT.date$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void date$set(MemorySegment seg, long index, double x) {
-        tagPROPVARIANT.date$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment filetime$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    static final VarHandle puuid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("puuid"));
-    public static VarHandle puuid$VH() {
-        return tagPROPVARIANT.puuid$VH;
-    }
-    public static MemoryAddress puuid$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.puuid$VH.get(seg);
-    }
-    public static void puuid$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.puuid$VH.set(seg, x);
-    }
-    public static MemoryAddress puuid$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.puuid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void puuid$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.puuid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pclipdata$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pclipdata"));
-    public static VarHandle pclipdata$VH() {
-        return tagPROPVARIANT.pclipdata$VH;
-    }
-    public static MemoryAddress pclipdata$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pclipdata$VH.get(seg);
-    }
-    public static void pclipdata$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pclipdata$VH.set(seg, x);
-    }
-    public static MemoryAddress pclipdata$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pclipdata$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pclipdata$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pclipdata$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bstrVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("bstrVal"));
-    public static VarHandle bstrVal$VH() {
-        return tagPROPVARIANT.bstrVal$VH;
-    }
-    public static MemoryAddress bstrVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.bstrVal$VH.get(seg);
-    }
-    public static void bstrVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.bstrVal$VH.set(seg, x);
-    }
-    public static MemoryAddress bstrVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.bstrVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bstrVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.bstrVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment bstrblobVal$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment blob$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    static final VarHandle pszVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pszVal"));
-    public static VarHandle pszVal$VH() {
-        return tagPROPVARIANT.pszVal$VH;
-    }
-    public static MemoryAddress pszVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pszVal$VH.get(seg);
-    }
-    public static void pszVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pszVal$VH.set(seg, x);
-    }
-    public static MemoryAddress pszVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pszVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pszVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pszVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pwszVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pwszVal"));
-    public static VarHandle pwszVal$VH() {
-        return tagPROPVARIANT.pwszVal$VH;
-    }
-    public static MemoryAddress pwszVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pwszVal$VH.get(seg);
-    }
-    public static void pwszVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pwszVal$VH.set(seg, x);
-    }
-    public static MemoryAddress pwszVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pwszVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pwszVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pwszVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle punkVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("punkVal"));
-    public static VarHandle punkVal$VH() {
-        return tagPROPVARIANT.punkVal$VH;
-    }
-    public static MemoryAddress punkVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.punkVal$VH.get(seg);
-    }
-    public static void punkVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.punkVal$VH.set(seg, x);
-    }
-    public static MemoryAddress punkVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.punkVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void punkVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.punkVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pdispVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pdispVal"));
-    public static VarHandle pdispVal$VH() {
-        return tagPROPVARIANT.pdispVal$VH;
-    }
-    public static MemoryAddress pdispVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pdispVal$VH.get(seg);
-    }
-    public static void pdispVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pdispVal$VH.set(seg, x);
-    }
-    public static MemoryAddress pdispVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pdispVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pdispVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pdispVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pStream$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pStream"));
-    public static VarHandle pStream$VH() {
-        return tagPROPVARIANT.pStream$VH;
-    }
-    public static MemoryAddress pStream$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pStream$VH.get(seg);
-    }
-    public static void pStream$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pStream$VH.set(seg, x);
-    }
-    public static MemoryAddress pStream$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pStream$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pStream$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pStream$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pStorage$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pStorage"));
-    public static VarHandle pStorage$VH() {
-        return tagPROPVARIANT.pStorage$VH;
-    }
-    public static MemoryAddress pStorage$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pStorage$VH.get(seg);
-    }
-    public static void pStorage$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pStorage$VH.set(seg, x);
-    }
-    public static MemoryAddress pStorage$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pStorage$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pStorage$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pStorage$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pVersionedStream$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pVersionedStream"));
-    public static VarHandle pVersionedStream$VH() {
-        return tagPROPVARIANT.pVersionedStream$VH;
-    }
-    public static MemoryAddress pVersionedStream$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pVersionedStream$VH.get(seg);
-    }
-    public static void pVersionedStream$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pVersionedStream$VH.set(seg, x);
-    }
-    public static MemoryAddress pVersionedStream$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pVersionedStream$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pVersionedStream$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pVersionedStream$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle parray$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("parray"));
-    public static VarHandle parray$VH() {
-        return tagPROPVARIANT.parray$VH;
-    }
-    public static MemoryAddress parray$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.parray$VH.get(seg);
-    }
-    public static void parray$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.parray$VH.set(seg, x);
-    }
-    public static MemoryAddress parray$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.parray$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void parray$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.parray$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment cac$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment caub$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment cai$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment caui$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment cal$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment caul$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment cah$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment cauh$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment caflt$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment cadbl$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment cabool$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment cascode$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment cacy$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment cadate$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment cafiletime$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment cauuid$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment caclipdata$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment cabstr$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment cabstrblob$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment calpstr$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment calpwstr$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment capropvar$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    static final VarHandle pcVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pcVal"));
-    public static VarHandle pcVal$VH() {
-        return tagPROPVARIANT.pcVal$VH;
-    }
-    public static MemoryAddress pcVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pcVal$VH.get(seg);
-    }
-    public static void pcVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pcVal$VH.set(seg, x);
-    }
-    public static MemoryAddress pcVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pcVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pcVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pcVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pbVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pbVal"));
-    public static VarHandle pbVal$VH() {
-        return tagPROPVARIANT.pbVal$VH;
-    }
-    public static MemoryAddress pbVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pbVal$VH.get(seg);
-    }
-    public static void pbVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pbVal$VH.set(seg, x);
-    }
-    public static MemoryAddress pbVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pbVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pbVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pbVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle piVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("piVal"));
-    public static VarHandle piVal$VH() {
-        return tagPROPVARIANT.piVal$VH;
-    }
-    public static MemoryAddress piVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.piVal$VH.get(seg);
-    }
-    public static void piVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.piVal$VH.set(seg, x);
-    }
-    public static MemoryAddress piVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.piVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void piVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.piVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle puiVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("puiVal"));
-    public static VarHandle puiVal$VH() {
-        return tagPROPVARIANT.puiVal$VH;
-    }
-    public static MemoryAddress puiVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.puiVal$VH.get(seg);
-    }
-    public static void puiVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.puiVal$VH.set(seg, x);
-    }
-    public static MemoryAddress puiVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.puiVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void puiVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.puiVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle plVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("plVal"));
-    public static VarHandle plVal$VH() {
-        return tagPROPVARIANT.plVal$VH;
-    }
-    public static MemoryAddress plVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.plVal$VH.get(seg);
-    }
-    public static void plVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.plVal$VH.set(seg, x);
-    }
-    public static MemoryAddress plVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.plVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void plVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.plVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pulVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pulVal"));
-    public static VarHandle pulVal$VH() {
-        return tagPROPVARIANT.pulVal$VH;
-    }
-    public static MemoryAddress pulVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pulVal$VH.get(seg);
-    }
-    public static void pulVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pulVal$VH.set(seg, x);
-    }
-    public static MemoryAddress pulVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pulVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pulVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pulVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pintVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pintVal"));
-    public static VarHandle pintVal$VH() {
-        return tagPROPVARIANT.pintVal$VH;
-    }
-    public static MemoryAddress pintVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pintVal$VH.get(seg);
-    }
-    public static void pintVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pintVal$VH.set(seg, x);
-    }
-    public static MemoryAddress pintVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pintVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pintVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pintVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle puintVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("puintVal"));
-    public static VarHandle puintVal$VH() {
-        return tagPROPVARIANT.puintVal$VH;
-    }
-    public static MemoryAddress puintVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.puintVal$VH.get(seg);
-    }
-    public static void puintVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.puintVal$VH.set(seg, x);
-    }
-    public static MemoryAddress puintVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.puintVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void puintVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.puintVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pfltVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pfltVal"));
-    public static VarHandle pfltVal$VH() {
-        return tagPROPVARIANT.pfltVal$VH;
-    }
-    public static MemoryAddress pfltVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pfltVal$VH.get(seg);
-    }
-    public static void pfltVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pfltVal$VH.set(seg, x);
-    }
-    public static MemoryAddress pfltVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pfltVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfltVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pfltVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pdblVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pdblVal"));
-    public static VarHandle pdblVal$VH() {
-        return tagPROPVARIANT.pdblVal$VH;
-    }
-    public static MemoryAddress pdblVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pdblVal$VH.get(seg);
-    }
-    public static void pdblVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pdblVal$VH.set(seg, x);
-    }
-    public static MemoryAddress pdblVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pdblVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pdblVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pdblVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pboolVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pboolVal"));
-    public static VarHandle pboolVal$VH() {
-        return tagPROPVARIANT.pboolVal$VH;
-    }
-    public static MemoryAddress pboolVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pboolVal$VH.get(seg);
-    }
-    public static void pboolVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pboolVal$VH.set(seg, x);
-    }
-    public static MemoryAddress pboolVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pboolVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pboolVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pboolVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pdecVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pdecVal"));
-    public static VarHandle pdecVal$VH() {
-        return tagPROPVARIANT.pdecVal$VH;
-    }
-    public static MemoryAddress pdecVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pdecVal$VH.get(seg);
-    }
-    public static void pdecVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pdecVal$VH.set(seg, x);
-    }
-    public static MemoryAddress pdecVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pdecVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pdecVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pdecVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pscode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pscode"));
-    public static VarHandle pscode$VH() {
-        return tagPROPVARIANT.pscode$VH;
-    }
-    public static MemoryAddress pscode$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pscode$VH.get(seg);
-    }
-    public static void pscode$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pscode$VH.set(seg, x);
-    }
-    public static MemoryAddress pscode$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pscode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pscode$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pscode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pcyVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pcyVal"));
-    public static VarHandle pcyVal$VH() {
-        return tagPROPVARIANT.pcyVal$VH;
-    }
-    public static MemoryAddress pcyVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pcyVal$VH.get(seg);
-    }
-    public static void pcyVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pcyVal$VH.set(seg, x);
-    }
-    public static MemoryAddress pcyVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pcyVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pcyVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pcyVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pdate$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pdate"));
-    public static VarHandle pdate$VH() {
-        return tagPROPVARIANT.pdate$VH;
-    }
-    public static MemoryAddress pdate$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pdate$VH.get(seg);
-    }
-    public static void pdate$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pdate$VH.set(seg, x);
-    }
-    public static MemoryAddress pdate$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pdate$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pdate$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pdate$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pbstrVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pbstrVal"));
-    public static VarHandle pbstrVal$VH() {
-        return tagPROPVARIANT.pbstrVal$VH;
-    }
-    public static MemoryAddress pbstrVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pbstrVal$VH.get(seg);
-    }
-    public static void pbstrVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pbstrVal$VH.set(seg, x);
-    }
-    public static MemoryAddress pbstrVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pbstrVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pbstrVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pbstrVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ppunkVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("ppunkVal"));
-    public static VarHandle ppunkVal$VH() {
-        return tagPROPVARIANT.ppunkVal$VH;
-    }
-    public static MemoryAddress ppunkVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.ppunkVal$VH.get(seg);
-    }
-    public static void ppunkVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.ppunkVal$VH.set(seg, x);
-    }
-    public static MemoryAddress ppunkVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.ppunkVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ppunkVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.ppunkVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ppdispVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("ppdispVal"));
-    public static VarHandle ppdispVal$VH() {
-        return tagPROPVARIANT.ppdispVal$VH;
-    }
-    public static MemoryAddress ppdispVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.ppdispVal$VH.get(seg);
-    }
-    public static void ppdispVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.ppdispVal$VH.set(seg, x);
-    }
-    public static MemoryAddress ppdispVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.ppdispVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ppdispVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.ppdispVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pparray$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pparray"));
-    public static VarHandle pparray$VH() {
-        return tagPROPVARIANT.pparray$VH;
-    }
-    public static MemoryAddress pparray$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pparray$VH.get(seg);
-    }
-    public static void pparray$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pparray$VH.set(seg, x);
-    }
-    public static MemoryAddress pparray$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pparray$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pparray$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pparray$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pvarVal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pvarVal"));
-    public static VarHandle pvarVal$VH() {
-        return tagPROPVARIANT.pvarVal$VH;
-    }
-    public static MemoryAddress pvarVal$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pvarVal$VH.get(seg);
-    }
-    public static void pvarVal$set( MemorySegment seg, MemoryAddress x) {
-        tagPROPVARIANT.pvarVal$VH.set(seg, x);
-    }
-    public static MemoryAddress pvarVal$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPROPVARIANT.pvarVal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pvarVal$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPROPVARIANT.pvarVal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment decVal$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort vt$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("vt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * VARTYPE vt
+     * }
+     */
+    public static final OfShort vt$layout() {
+        return vt$LAYOUT;
+    }
+
+    private static final long vt$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * VARTYPE vt
+     * }
+     */
+    public static final long vt$offset() {
+        return vt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * VARTYPE vt
+     * }
+     */
+    public static short vt(MemorySegment struct) {
+        return struct.get(vt$LAYOUT, vt$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * VARTYPE vt
+     * }
+     */
+    public static void vt(MemorySegment struct, short fieldValue) {
+        struct.set(vt$LAYOUT, vt$OFFSET, fieldValue);
+    }
+
+    private static final OfShort wReserved1$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("wReserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PROPVAR_PAD1 wReserved1
+     * }
+     */
+    public static final OfShort wReserved1$layout() {
+        return wReserved1$LAYOUT;
+    }
+
+    private static final long wReserved1$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PROPVAR_PAD1 wReserved1
+     * }
+     */
+    public static final long wReserved1$offset() {
+        return wReserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PROPVAR_PAD1 wReserved1
+     * }
+     */
+    public static short wReserved1(MemorySegment struct) {
+        return struct.get(wReserved1$LAYOUT, wReserved1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PROPVAR_PAD1 wReserved1
+     * }
+     */
+    public static void wReserved1(MemorySegment struct, short fieldValue) {
+        struct.set(wReserved1$LAYOUT, wReserved1$OFFSET, fieldValue);
+    }
+
+    private static final OfShort wReserved2$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("wReserved2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PROPVAR_PAD2 wReserved2
+     * }
+     */
+    public static final OfShort wReserved2$layout() {
+        return wReserved2$LAYOUT;
+    }
+
+    private static final long wReserved2$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PROPVAR_PAD2 wReserved2
+     * }
+     */
+    public static final long wReserved2$offset() {
+        return wReserved2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PROPVAR_PAD2 wReserved2
+     * }
+     */
+    public static short wReserved2(MemorySegment struct) {
+        return struct.get(wReserved2$LAYOUT, wReserved2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PROPVAR_PAD2 wReserved2
+     * }
+     */
+    public static void wReserved2(MemorySegment struct, short fieldValue) {
+        struct.set(wReserved2$LAYOUT, wReserved2$OFFSET, fieldValue);
+    }
+
+    private static final OfShort wReserved3$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("wReserved3"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PROPVAR_PAD3 wReserved3
+     * }
+     */
+    public static final OfShort wReserved3$layout() {
+        return wReserved3$LAYOUT;
+    }
+
+    private static final long wReserved3$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PROPVAR_PAD3 wReserved3
+     * }
+     */
+    public static final long wReserved3$offset() {
+        return wReserved3$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PROPVAR_PAD3 wReserved3
+     * }
+     */
+    public static short wReserved3(MemorySegment struct) {
+        return struct.get(wReserved3$LAYOUT, wReserved3$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PROPVAR_PAD3 wReserved3
+     * }
+     */
+    public static void wReserved3(MemorySegment struct, short fieldValue) {
+        struct.set(wReserved3$LAYOUT, wReserved3$OFFSET, fieldValue);
+    }
+
+    private static final OfByte cVal$LAYOUT = (OfByte)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("cVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHAR cVal
+     * }
+     */
+    public static final OfByte cVal$layout() {
+        return cVal$LAYOUT;
+    }
+
+    private static final long cVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHAR cVal
+     * }
+     */
+    public static final long cVal$offset() {
+        return cVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHAR cVal
+     * }
+     */
+    public static byte cVal(MemorySegment struct) {
+        return struct.get(cVal$LAYOUT, cVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHAR cVal
+     * }
+     */
+    public static void cVal(MemorySegment struct, byte fieldValue) {
+        struct.set(cVal$LAYOUT, cVal$OFFSET, fieldValue);
+    }
+
+    private static final OfByte bVal$LAYOUT = (OfByte)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("bVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR bVal
+     * }
+     */
+    public static final OfByte bVal$layout() {
+        return bVal$LAYOUT;
+    }
+
+    private static final long bVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR bVal
+     * }
+     */
+    public static final long bVal$offset() {
+        return bVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR bVal
+     * }
+     */
+    public static byte bVal(MemorySegment struct) {
+        return struct.get(bVal$LAYOUT, bVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR bVal
+     * }
+     */
+    public static void bVal(MemorySegment struct, byte fieldValue) {
+        struct.set(bVal$LAYOUT, bVal$OFFSET, fieldValue);
+    }
+
+    private static final OfShort iVal$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("iVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SHORT iVal
+     * }
+     */
+    public static final OfShort iVal$layout() {
+        return iVal$LAYOUT;
+    }
+
+    private static final long iVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SHORT iVal
+     * }
+     */
+    public static final long iVal$offset() {
+        return iVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SHORT iVal
+     * }
+     */
+    public static short iVal(MemorySegment struct) {
+        return struct.get(iVal$LAYOUT, iVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SHORT iVal
+     * }
+     */
+    public static void iVal(MemorySegment struct, short fieldValue) {
+        struct.set(iVal$LAYOUT, iVal$OFFSET, fieldValue);
+    }
+
+    private static final OfShort uiVal$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("uiVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT uiVal
+     * }
+     */
+    public static final OfShort uiVal$layout() {
+        return uiVal$LAYOUT;
+    }
+
+    private static final long uiVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT uiVal
+     * }
+     */
+    public static final long uiVal$offset() {
+        return uiVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT uiVal
+     * }
+     */
+    public static short uiVal(MemorySegment struct) {
+        return struct.get(uiVal$LAYOUT, uiVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT uiVal
+     * }
+     */
+    public static void uiVal(MemorySegment struct, short fieldValue) {
+        struct.set(uiVal$LAYOUT, uiVal$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lVal$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("lVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG lVal
+     * }
+     */
+    public static final OfInt lVal$layout() {
+        return lVal$LAYOUT;
+    }
+
+    private static final long lVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG lVal
+     * }
+     */
+    public static final long lVal$offset() {
+        return lVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG lVal
+     * }
+     */
+    public static int lVal(MemorySegment struct) {
+        return struct.get(lVal$LAYOUT, lVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG lVal
+     * }
+     */
+    public static void lVal(MemorySegment struct, int fieldValue) {
+        struct.set(lVal$LAYOUT, lVal$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ulVal$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("ulVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG ulVal
+     * }
+     */
+    public static final OfInt ulVal$layout() {
+        return ulVal$LAYOUT;
+    }
+
+    private static final long ulVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG ulVal
+     * }
+     */
+    public static final long ulVal$offset() {
+        return ulVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG ulVal
+     * }
+     */
+    public static int ulVal(MemorySegment struct) {
+        return struct.get(ulVal$LAYOUT, ulVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG ulVal
+     * }
+     */
+    public static void ulVal(MemorySegment struct, int fieldValue) {
+        struct.set(ulVal$LAYOUT, ulVal$OFFSET, fieldValue);
+    }
+
+    private static final OfInt intVal$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("intVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * INT intVal
+     * }
+     */
+    public static final OfInt intVal$layout() {
+        return intVal$LAYOUT;
+    }
+
+    private static final long intVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * INT intVal
+     * }
+     */
+    public static final long intVal$offset() {
+        return intVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * INT intVal
+     * }
+     */
+    public static int intVal(MemorySegment struct) {
+        return struct.get(intVal$LAYOUT, intVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * INT intVal
+     * }
+     */
+    public static void intVal(MemorySegment struct, int fieldValue) {
+        struct.set(intVal$LAYOUT, intVal$OFFSET, fieldValue);
+    }
+
+    private static final OfInt uintVal$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("uintVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT uintVal
+     * }
+     */
+    public static final OfInt uintVal$layout() {
+        return uintVal$LAYOUT;
+    }
+
+    private static final long uintVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT uintVal
+     * }
+     */
+    public static final long uintVal$offset() {
+        return uintVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT uintVal
+     * }
+     */
+    public static int uintVal(MemorySegment struct) {
+        return struct.get(uintVal$LAYOUT, uintVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT uintVal
+     * }
+     */
+    public static void uintVal(MemorySegment struct, int fieldValue) {
+        struct.set(uintVal$LAYOUT, uintVal$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout hVal$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("hVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER hVal
+     * }
+     */
+    public static final GroupLayout hVal$layout() {
+        return hVal$LAYOUT;
+    }
+
+    private static final long hVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER hVal
+     * }
+     */
+    public static final long hVal$offset() {
+        return hVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER hVal
+     * }
+     */
+    public static MemorySegment hVal(MemorySegment struct) {
+        return struct.asSlice(hVal$OFFSET, hVal$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER hVal
+     * }
+     */
+    public static void hVal(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, hVal$OFFSET, hVal$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout uhVal$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("uhVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULARGE_INTEGER uhVal
+     * }
+     */
+    public static final GroupLayout uhVal$layout() {
+        return uhVal$LAYOUT;
+    }
+
+    private static final long uhVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULARGE_INTEGER uhVal
+     * }
+     */
+    public static final long uhVal$offset() {
+        return uhVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULARGE_INTEGER uhVal
+     * }
+     */
+    public static MemorySegment uhVal(MemorySegment struct) {
+        return struct.asSlice(uhVal$OFFSET, uhVal$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULARGE_INTEGER uhVal
+     * }
+     */
+    public static void uhVal(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, uhVal$OFFSET, uhVal$LAYOUT.byteSize());
+    }
+
+    private static final OfFloat fltVal$LAYOUT = (OfFloat)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("fltVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FLOAT fltVal
+     * }
+     */
+    public static final OfFloat fltVal$layout() {
+        return fltVal$LAYOUT;
+    }
+
+    private static final long fltVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FLOAT fltVal
+     * }
+     */
+    public static final long fltVal$offset() {
+        return fltVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FLOAT fltVal
+     * }
+     */
+    public static float fltVal(MemorySegment struct) {
+        return struct.get(fltVal$LAYOUT, fltVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FLOAT fltVal
+     * }
+     */
+    public static void fltVal(MemorySegment struct, float fieldValue) {
+        struct.set(fltVal$LAYOUT, fltVal$OFFSET, fieldValue);
+    }
+
+    private static final OfDouble dblVal$LAYOUT = (OfDouble)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("dblVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DOUBLE dblVal
+     * }
+     */
+    public static final OfDouble dblVal$layout() {
+        return dblVal$LAYOUT;
+    }
+
+    private static final long dblVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DOUBLE dblVal
+     * }
+     */
+    public static final long dblVal$offset() {
+        return dblVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DOUBLE dblVal
+     * }
+     */
+    public static double dblVal(MemorySegment struct) {
+        return struct.get(dblVal$LAYOUT, dblVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DOUBLE dblVal
+     * }
+     */
+    public static void dblVal(MemorySegment struct, double fieldValue) {
+        struct.set(dblVal$LAYOUT, dblVal$OFFSET, fieldValue);
+    }
+
+    private static final OfShort boolVal$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("boolVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * VARIANT_BOOL boolVal
+     * }
+     */
+    public static final OfShort boolVal$layout() {
+        return boolVal$LAYOUT;
+    }
+
+    private static final long boolVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * VARIANT_BOOL boolVal
+     * }
+     */
+    public static final long boolVal$offset() {
+        return boolVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * VARIANT_BOOL boolVal
+     * }
+     */
+    public static short boolVal(MemorySegment struct) {
+        return struct.get(boolVal$LAYOUT, boolVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * VARIANT_BOOL boolVal
+     * }
+     */
+    public static void boolVal(MemorySegment struct, short fieldValue) {
+        struct.set(boolVal$LAYOUT, boolVal$OFFSET, fieldValue);
+    }
+
+    private static final OfShort __OBSOLETE__VARIANT_BOOL$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("__OBSOLETE__VARIANT_BOOL"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * VARIANT_BOOL __OBSOLETE__VARIANT_BOOL
+     * }
+     */
+    public static final OfShort __OBSOLETE__VARIANT_BOOL$layout() {
+        return __OBSOLETE__VARIANT_BOOL$LAYOUT;
+    }
+
+    private static final long __OBSOLETE__VARIANT_BOOL$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * VARIANT_BOOL __OBSOLETE__VARIANT_BOOL
+     * }
+     */
+    public static final long __OBSOLETE__VARIANT_BOOL$offset() {
+        return __OBSOLETE__VARIANT_BOOL$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * VARIANT_BOOL __OBSOLETE__VARIANT_BOOL
+     * }
+     */
+    public static short __OBSOLETE__VARIANT_BOOL(MemorySegment struct) {
+        return struct.get(__OBSOLETE__VARIANT_BOOL$LAYOUT, __OBSOLETE__VARIANT_BOOL$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * VARIANT_BOOL __OBSOLETE__VARIANT_BOOL
+     * }
+     */
+    public static void __OBSOLETE__VARIANT_BOOL(MemorySegment struct, short fieldValue) {
+        struct.set(__OBSOLETE__VARIANT_BOOL$LAYOUT, __OBSOLETE__VARIANT_BOOL$OFFSET, fieldValue);
+    }
+
+    private static final OfInt scode$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("scode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SCODE scode
+     * }
+     */
+    public static final OfInt scode$layout() {
+        return scode$LAYOUT;
+    }
+
+    private static final long scode$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SCODE scode
+     * }
+     */
+    public static final long scode$offset() {
+        return scode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SCODE scode
+     * }
+     */
+    public static int scode(MemorySegment struct) {
+        return struct.get(scode$LAYOUT, scode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SCODE scode
+     * }
+     */
+    public static void scode(MemorySegment struct, int fieldValue) {
+        struct.set(scode$LAYOUT, scode$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout cyVal$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("cyVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CY cyVal
+     * }
+     */
+    public static final GroupLayout cyVal$layout() {
+        return cyVal$LAYOUT;
+    }
+
+    private static final long cyVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CY cyVal
+     * }
+     */
+    public static final long cyVal$offset() {
+        return cyVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CY cyVal
+     * }
+     */
+    public static MemorySegment cyVal(MemorySegment struct) {
+        return struct.asSlice(cyVal$OFFSET, cyVal$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CY cyVal
+     * }
+     */
+    public static void cyVal(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, cyVal$OFFSET, cyVal$LAYOUT.byteSize());
+    }
+
+    private static final OfDouble date$LAYOUT = (OfDouble)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("date"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DATE date
+     * }
+     */
+    public static final OfDouble date$layout() {
+        return date$LAYOUT;
+    }
+
+    private static final long date$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DATE date
+     * }
+     */
+    public static final long date$offset() {
+        return date$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DATE date
+     * }
+     */
+    public static double date(MemorySegment struct) {
+        return struct.get(date$LAYOUT, date$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DATE date
+     * }
+     */
+    public static void date(MemorySegment struct, double fieldValue) {
+        struct.set(date$LAYOUT, date$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout filetime$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("filetime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FILETIME filetime
+     * }
+     */
+    public static final GroupLayout filetime$layout() {
+        return filetime$LAYOUT;
+    }
+
+    private static final long filetime$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FILETIME filetime
+     * }
+     */
+    public static final long filetime$offset() {
+        return filetime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FILETIME filetime
+     * }
+     */
+    public static MemorySegment filetime(MemorySegment struct) {
+        return struct.asSlice(filetime$OFFSET, filetime$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FILETIME filetime
+     * }
+     */
+    public static void filetime(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, filetime$OFFSET, filetime$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout puuid$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("puuid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CLSID *puuid
+     * }
+     */
+    public static final AddressLayout puuid$layout() {
+        return puuid$LAYOUT;
+    }
+
+    private static final long puuid$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CLSID *puuid
+     * }
+     */
+    public static final long puuid$offset() {
+        return puuid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CLSID *puuid
+     * }
+     */
+    public static MemorySegment puuid(MemorySegment struct) {
+        return struct.get(puuid$LAYOUT, puuid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CLSID *puuid
+     * }
+     */
+    public static void puuid(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(puuid$LAYOUT, puuid$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pclipdata$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pclipdata"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CLIPDATA *pclipdata
+     * }
+     */
+    public static final AddressLayout pclipdata$layout() {
+        return pclipdata$LAYOUT;
+    }
+
+    private static final long pclipdata$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CLIPDATA *pclipdata
+     * }
+     */
+    public static final long pclipdata$offset() {
+        return pclipdata$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CLIPDATA *pclipdata
+     * }
+     */
+    public static MemorySegment pclipdata(MemorySegment struct) {
+        return struct.get(pclipdata$LAYOUT, pclipdata$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CLIPDATA *pclipdata
+     * }
+     */
+    public static void pclipdata(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pclipdata$LAYOUT, pclipdata$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout bstrVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("bstrVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BSTR bstrVal
+     * }
+     */
+    public static final AddressLayout bstrVal$layout() {
+        return bstrVal$LAYOUT;
+    }
+
+    private static final long bstrVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BSTR bstrVal
+     * }
+     */
+    public static final long bstrVal$offset() {
+        return bstrVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BSTR bstrVal
+     * }
+     */
+    public static MemorySegment bstrVal(MemorySegment struct) {
+        return struct.get(bstrVal$LAYOUT, bstrVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BSTR bstrVal
+     * }
+     */
+    public static void bstrVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(bstrVal$LAYOUT, bstrVal$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout bstrblobVal$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("bstrblobVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BSTRBLOB bstrblobVal
+     * }
+     */
+    public static final GroupLayout bstrblobVal$layout() {
+        return bstrblobVal$LAYOUT;
+    }
+
+    private static final long bstrblobVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BSTRBLOB bstrblobVal
+     * }
+     */
+    public static final long bstrblobVal$offset() {
+        return bstrblobVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BSTRBLOB bstrblobVal
+     * }
+     */
+    public static MemorySegment bstrblobVal(MemorySegment struct) {
+        return struct.asSlice(bstrblobVal$OFFSET, bstrblobVal$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BSTRBLOB bstrblobVal
+     * }
+     */
+    public static void bstrblobVal(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, bstrblobVal$OFFSET, bstrblobVal$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout blob$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("blob"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BLOB blob
+     * }
+     */
+    public static final GroupLayout blob$layout() {
+        return blob$LAYOUT;
+    }
+
+    private static final long blob$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BLOB blob
+     * }
+     */
+    public static final long blob$offset() {
+        return blob$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BLOB blob
+     * }
+     */
+    public static MemorySegment blob(MemorySegment struct) {
+        return struct.asSlice(blob$OFFSET, blob$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BLOB blob
+     * }
+     */
+    public static void blob(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, blob$OFFSET, blob$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout pszVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pszVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pszVal
+     * }
+     */
+    public static final AddressLayout pszVal$layout() {
+        return pszVal$LAYOUT;
+    }
+
+    private static final long pszVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pszVal
+     * }
+     */
+    public static final long pszVal$offset() {
+        return pszVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pszVal
+     * }
+     */
+    public static MemorySegment pszVal(MemorySegment struct) {
+        return struct.get(pszVal$LAYOUT, pszVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pszVal
+     * }
+     */
+    public static void pszVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pszVal$LAYOUT, pszVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pwszVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pwszVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszVal
+     * }
+     */
+    public static final AddressLayout pwszVal$layout() {
+        return pwszVal$LAYOUT;
+    }
+
+    private static final long pwszVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszVal
+     * }
+     */
+    public static final long pwszVal$offset() {
+        return pwszVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszVal
+     * }
+     */
+    public static MemorySegment pwszVal(MemorySegment struct) {
+        return struct.get(pwszVal$LAYOUT, pwszVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszVal
+     * }
+     */
+    public static void pwszVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pwszVal$LAYOUT, pwszVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout punkVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("punkVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IUnknown *punkVal
+     * }
+     */
+    public static final AddressLayout punkVal$layout() {
+        return punkVal$LAYOUT;
+    }
+
+    private static final long punkVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IUnknown *punkVal
+     * }
+     */
+    public static final long punkVal$offset() {
+        return punkVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IUnknown *punkVal
+     * }
+     */
+    public static MemorySegment punkVal(MemorySegment struct) {
+        return struct.get(punkVal$LAYOUT, punkVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IUnknown *punkVal
+     * }
+     */
+    public static void punkVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(punkVal$LAYOUT, punkVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pdispVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pdispVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IDispatch *pdispVal
+     * }
+     */
+    public static final AddressLayout pdispVal$layout() {
+        return pdispVal$LAYOUT;
+    }
+
+    private static final long pdispVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IDispatch *pdispVal
+     * }
+     */
+    public static final long pdispVal$offset() {
+        return pdispVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IDispatch *pdispVal
+     * }
+     */
+    public static MemorySegment pdispVal(MemorySegment struct) {
+        return struct.get(pdispVal$LAYOUT, pdispVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IDispatch *pdispVal
+     * }
+     */
+    public static void pdispVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pdispVal$LAYOUT, pdispVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pStream$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pStream"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IStream *pStream
+     * }
+     */
+    public static final AddressLayout pStream$layout() {
+        return pStream$LAYOUT;
+    }
+
+    private static final long pStream$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IStream *pStream
+     * }
+     */
+    public static final long pStream$offset() {
+        return pStream$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IStream *pStream
+     * }
+     */
+    public static MemorySegment pStream(MemorySegment struct) {
+        return struct.get(pStream$LAYOUT, pStream$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IStream *pStream
+     * }
+     */
+    public static void pStream(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pStream$LAYOUT, pStream$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pStorage$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pStorage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IStorage *pStorage
+     * }
+     */
+    public static final AddressLayout pStorage$layout() {
+        return pStorage$LAYOUT;
+    }
+
+    private static final long pStorage$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IStorage *pStorage
+     * }
+     */
+    public static final long pStorage$offset() {
+        return pStorage$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IStorage *pStorage
+     * }
+     */
+    public static MemorySegment pStorage(MemorySegment struct) {
+        return struct.get(pStorage$LAYOUT, pStorage$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IStorage *pStorage
+     * }
+     */
+    public static void pStorage(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pStorage$LAYOUT, pStorage$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pVersionedStream$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pVersionedStream"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPVERSIONEDSTREAM pVersionedStream
+     * }
+     */
+    public static final AddressLayout pVersionedStream$layout() {
+        return pVersionedStream$LAYOUT;
+    }
+
+    private static final long pVersionedStream$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPVERSIONEDSTREAM pVersionedStream
+     * }
+     */
+    public static final long pVersionedStream$offset() {
+        return pVersionedStream$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPVERSIONEDSTREAM pVersionedStream
+     * }
+     */
+    public static MemorySegment pVersionedStream(MemorySegment struct) {
+        return struct.get(pVersionedStream$LAYOUT, pVersionedStream$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPVERSIONEDSTREAM pVersionedStream
+     * }
+     */
+    public static void pVersionedStream(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pVersionedStream$LAYOUT, pVersionedStream$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout parray$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("parray"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSAFEARRAY parray
+     * }
+     */
+    public static final AddressLayout parray$layout() {
+        return parray$LAYOUT;
+    }
+
+    private static final long parray$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSAFEARRAY parray
+     * }
+     */
+    public static final long parray$offset() {
+        return parray$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSAFEARRAY parray
+     * }
+     */
+    public static MemorySegment parray(MemorySegment struct) {
+        return struct.get(parray$LAYOUT, parray$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSAFEARRAY parray
+     * }
+     */
+    public static void parray(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(parray$LAYOUT, parray$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout cac$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("cac"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CAC cac
+     * }
+     */
+    public static final GroupLayout cac$layout() {
+        return cac$LAYOUT;
+    }
+
+    private static final long cac$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CAC cac
+     * }
+     */
+    public static final long cac$offset() {
+        return cac$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CAC cac
+     * }
+     */
+    public static MemorySegment cac(MemorySegment struct) {
+        return struct.asSlice(cac$OFFSET, cac$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CAC cac
+     * }
+     */
+    public static void cac(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, cac$OFFSET, cac$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout caub$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("caub"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CAUB caub
+     * }
+     */
+    public static final GroupLayout caub$layout() {
+        return caub$LAYOUT;
+    }
+
+    private static final long caub$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CAUB caub
+     * }
+     */
+    public static final long caub$offset() {
+        return caub$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CAUB caub
+     * }
+     */
+    public static MemorySegment caub(MemorySegment struct) {
+        return struct.asSlice(caub$OFFSET, caub$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CAUB caub
+     * }
+     */
+    public static void caub(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, caub$OFFSET, caub$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout cai$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("cai"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CAI cai
+     * }
+     */
+    public static final GroupLayout cai$layout() {
+        return cai$LAYOUT;
+    }
+
+    private static final long cai$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CAI cai
+     * }
+     */
+    public static final long cai$offset() {
+        return cai$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CAI cai
+     * }
+     */
+    public static MemorySegment cai(MemorySegment struct) {
+        return struct.asSlice(cai$OFFSET, cai$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CAI cai
+     * }
+     */
+    public static void cai(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, cai$OFFSET, cai$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout caui$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("caui"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CAUI caui
+     * }
+     */
+    public static final GroupLayout caui$layout() {
+        return caui$LAYOUT;
+    }
+
+    private static final long caui$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CAUI caui
+     * }
+     */
+    public static final long caui$offset() {
+        return caui$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CAUI caui
+     * }
+     */
+    public static MemorySegment caui(MemorySegment struct) {
+        return struct.asSlice(caui$OFFSET, caui$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CAUI caui
+     * }
+     */
+    public static void caui(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, caui$OFFSET, caui$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout cal$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("cal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CAL cal
+     * }
+     */
+    public static final GroupLayout cal$layout() {
+        return cal$LAYOUT;
+    }
+
+    private static final long cal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CAL cal
+     * }
+     */
+    public static final long cal$offset() {
+        return cal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CAL cal
+     * }
+     */
+    public static MemorySegment cal(MemorySegment struct) {
+        return struct.asSlice(cal$OFFSET, cal$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CAL cal
+     * }
+     */
+    public static void cal(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, cal$OFFSET, cal$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout caul$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("caul"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CAUL caul
+     * }
+     */
+    public static final GroupLayout caul$layout() {
+        return caul$LAYOUT;
+    }
+
+    private static final long caul$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CAUL caul
+     * }
+     */
+    public static final long caul$offset() {
+        return caul$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CAUL caul
+     * }
+     */
+    public static MemorySegment caul(MemorySegment struct) {
+        return struct.asSlice(caul$OFFSET, caul$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CAUL caul
+     * }
+     */
+    public static void caul(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, caul$OFFSET, caul$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout cah$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("cah"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CAH cah
+     * }
+     */
+    public static final GroupLayout cah$layout() {
+        return cah$LAYOUT;
+    }
+
+    private static final long cah$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CAH cah
+     * }
+     */
+    public static final long cah$offset() {
+        return cah$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CAH cah
+     * }
+     */
+    public static MemorySegment cah(MemorySegment struct) {
+        return struct.asSlice(cah$OFFSET, cah$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CAH cah
+     * }
+     */
+    public static void cah(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, cah$OFFSET, cah$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout cauh$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("cauh"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CAUH cauh
+     * }
+     */
+    public static final GroupLayout cauh$layout() {
+        return cauh$LAYOUT;
+    }
+
+    private static final long cauh$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CAUH cauh
+     * }
+     */
+    public static final long cauh$offset() {
+        return cauh$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CAUH cauh
+     * }
+     */
+    public static MemorySegment cauh(MemorySegment struct) {
+        return struct.asSlice(cauh$OFFSET, cauh$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CAUH cauh
+     * }
+     */
+    public static void cauh(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, cauh$OFFSET, cauh$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout caflt$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("caflt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CAFLT caflt
+     * }
+     */
+    public static final GroupLayout caflt$layout() {
+        return caflt$LAYOUT;
+    }
+
+    private static final long caflt$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CAFLT caflt
+     * }
+     */
+    public static final long caflt$offset() {
+        return caflt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CAFLT caflt
+     * }
+     */
+    public static MemorySegment caflt(MemorySegment struct) {
+        return struct.asSlice(caflt$OFFSET, caflt$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CAFLT caflt
+     * }
+     */
+    public static void caflt(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, caflt$OFFSET, caflt$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout cadbl$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("cadbl"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CADBL cadbl
+     * }
+     */
+    public static final GroupLayout cadbl$layout() {
+        return cadbl$LAYOUT;
+    }
+
+    private static final long cadbl$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CADBL cadbl
+     * }
+     */
+    public static final long cadbl$offset() {
+        return cadbl$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CADBL cadbl
+     * }
+     */
+    public static MemorySegment cadbl(MemorySegment struct) {
+        return struct.asSlice(cadbl$OFFSET, cadbl$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CADBL cadbl
+     * }
+     */
+    public static void cadbl(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, cadbl$OFFSET, cadbl$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout cabool$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("cabool"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CABOOL cabool
+     * }
+     */
+    public static final GroupLayout cabool$layout() {
+        return cabool$LAYOUT;
+    }
+
+    private static final long cabool$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CABOOL cabool
+     * }
+     */
+    public static final long cabool$offset() {
+        return cabool$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CABOOL cabool
+     * }
+     */
+    public static MemorySegment cabool(MemorySegment struct) {
+        return struct.asSlice(cabool$OFFSET, cabool$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CABOOL cabool
+     * }
+     */
+    public static void cabool(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, cabool$OFFSET, cabool$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout cascode$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("cascode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CASCODE cascode
+     * }
+     */
+    public static final GroupLayout cascode$layout() {
+        return cascode$LAYOUT;
+    }
+
+    private static final long cascode$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CASCODE cascode
+     * }
+     */
+    public static final long cascode$offset() {
+        return cascode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CASCODE cascode
+     * }
+     */
+    public static MemorySegment cascode(MemorySegment struct) {
+        return struct.asSlice(cascode$OFFSET, cascode$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CASCODE cascode
+     * }
+     */
+    public static void cascode(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, cascode$OFFSET, cascode$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout cacy$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("cacy"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CACY cacy
+     * }
+     */
+    public static final GroupLayout cacy$layout() {
+        return cacy$LAYOUT;
+    }
+
+    private static final long cacy$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CACY cacy
+     * }
+     */
+    public static final long cacy$offset() {
+        return cacy$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CACY cacy
+     * }
+     */
+    public static MemorySegment cacy(MemorySegment struct) {
+        return struct.asSlice(cacy$OFFSET, cacy$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CACY cacy
+     * }
+     */
+    public static void cacy(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, cacy$OFFSET, cacy$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout cadate$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("cadate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CADATE cadate
+     * }
+     */
+    public static final GroupLayout cadate$layout() {
+        return cadate$LAYOUT;
+    }
+
+    private static final long cadate$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CADATE cadate
+     * }
+     */
+    public static final long cadate$offset() {
+        return cadate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CADATE cadate
+     * }
+     */
+    public static MemorySegment cadate(MemorySegment struct) {
+        return struct.asSlice(cadate$OFFSET, cadate$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CADATE cadate
+     * }
+     */
+    public static void cadate(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, cadate$OFFSET, cadate$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout cafiletime$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("cafiletime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CAFILETIME cafiletime
+     * }
+     */
+    public static final GroupLayout cafiletime$layout() {
+        return cafiletime$LAYOUT;
+    }
+
+    private static final long cafiletime$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CAFILETIME cafiletime
+     * }
+     */
+    public static final long cafiletime$offset() {
+        return cafiletime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CAFILETIME cafiletime
+     * }
+     */
+    public static MemorySegment cafiletime(MemorySegment struct) {
+        return struct.asSlice(cafiletime$OFFSET, cafiletime$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CAFILETIME cafiletime
+     * }
+     */
+    public static void cafiletime(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, cafiletime$OFFSET, cafiletime$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout cauuid$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("cauuid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CACLSID cauuid
+     * }
+     */
+    public static final GroupLayout cauuid$layout() {
+        return cauuid$LAYOUT;
+    }
+
+    private static final long cauuid$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CACLSID cauuid
+     * }
+     */
+    public static final long cauuid$offset() {
+        return cauuid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CACLSID cauuid
+     * }
+     */
+    public static MemorySegment cauuid(MemorySegment struct) {
+        return struct.asSlice(cauuid$OFFSET, cauuid$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CACLSID cauuid
+     * }
+     */
+    public static void cauuid(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, cauuid$OFFSET, cauuid$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout caclipdata$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("caclipdata"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CACLIPDATA caclipdata
+     * }
+     */
+    public static final GroupLayout caclipdata$layout() {
+        return caclipdata$LAYOUT;
+    }
+
+    private static final long caclipdata$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CACLIPDATA caclipdata
+     * }
+     */
+    public static final long caclipdata$offset() {
+        return caclipdata$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CACLIPDATA caclipdata
+     * }
+     */
+    public static MemorySegment caclipdata(MemorySegment struct) {
+        return struct.asSlice(caclipdata$OFFSET, caclipdata$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CACLIPDATA caclipdata
+     * }
+     */
+    public static void caclipdata(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, caclipdata$OFFSET, caclipdata$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout cabstr$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("cabstr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CABSTR cabstr
+     * }
+     */
+    public static final GroupLayout cabstr$layout() {
+        return cabstr$LAYOUT;
+    }
+
+    private static final long cabstr$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CABSTR cabstr
+     * }
+     */
+    public static final long cabstr$offset() {
+        return cabstr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CABSTR cabstr
+     * }
+     */
+    public static MemorySegment cabstr(MemorySegment struct) {
+        return struct.asSlice(cabstr$OFFSET, cabstr$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CABSTR cabstr
+     * }
+     */
+    public static void cabstr(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, cabstr$OFFSET, cabstr$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout cabstrblob$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("cabstrblob"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CABSTRBLOB cabstrblob
+     * }
+     */
+    public static final GroupLayout cabstrblob$layout() {
+        return cabstrblob$LAYOUT;
+    }
+
+    private static final long cabstrblob$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CABSTRBLOB cabstrblob
+     * }
+     */
+    public static final long cabstrblob$offset() {
+        return cabstrblob$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CABSTRBLOB cabstrblob
+     * }
+     */
+    public static MemorySegment cabstrblob(MemorySegment struct) {
+        return struct.asSlice(cabstrblob$OFFSET, cabstrblob$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CABSTRBLOB cabstrblob
+     * }
+     */
+    public static void cabstrblob(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, cabstrblob$OFFSET, cabstrblob$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout calpstr$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("calpstr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CALPSTR calpstr
+     * }
+     */
+    public static final GroupLayout calpstr$layout() {
+        return calpstr$LAYOUT;
+    }
+
+    private static final long calpstr$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CALPSTR calpstr
+     * }
+     */
+    public static final long calpstr$offset() {
+        return calpstr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CALPSTR calpstr
+     * }
+     */
+    public static MemorySegment calpstr(MemorySegment struct) {
+        return struct.asSlice(calpstr$OFFSET, calpstr$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CALPSTR calpstr
+     * }
+     */
+    public static void calpstr(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, calpstr$OFFSET, calpstr$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout calpwstr$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("calpwstr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CALPWSTR calpwstr
+     * }
+     */
+    public static final GroupLayout calpwstr$layout() {
+        return calpwstr$LAYOUT;
+    }
+
+    private static final long calpwstr$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CALPWSTR calpwstr
+     * }
+     */
+    public static final long calpwstr$offset() {
+        return calpwstr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CALPWSTR calpwstr
+     * }
+     */
+    public static MemorySegment calpwstr(MemorySegment struct) {
+        return struct.asSlice(calpwstr$OFFSET, calpwstr$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CALPWSTR calpwstr
+     * }
+     */
+    public static void calpwstr(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, calpwstr$OFFSET, calpwstr$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout capropvar$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("capropvar"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CAPROPVARIANT capropvar
+     * }
+     */
+    public static final GroupLayout capropvar$layout() {
+        return capropvar$LAYOUT;
+    }
+
+    private static final long capropvar$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CAPROPVARIANT capropvar
+     * }
+     */
+    public static final long capropvar$offset() {
+        return capropvar$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CAPROPVARIANT capropvar
+     * }
+     */
+    public static MemorySegment capropvar(MemorySegment struct) {
+        return struct.asSlice(capropvar$OFFSET, capropvar$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CAPROPVARIANT capropvar
+     * }
+     */
+    public static void capropvar(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, capropvar$OFFSET, capropvar$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout pcVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pcVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHAR *pcVal
+     * }
+     */
+    public static final AddressLayout pcVal$layout() {
+        return pcVal$LAYOUT;
+    }
+
+    private static final long pcVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHAR *pcVal
+     * }
+     */
+    public static final long pcVal$offset() {
+        return pcVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHAR *pcVal
+     * }
+     */
+    public static MemorySegment pcVal(MemorySegment struct) {
+        return struct.get(pcVal$LAYOUT, pcVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHAR *pcVal
+     * }
+     */
+    public static void pcVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pcVal$LAYOUT, pcVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pbVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pbVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR *pbVal
+     * }
+     */
+    public static final AddressLayout pbVal$layout() {
+        return pbVal$LAYOUT;
+    }
+
+    private static final long pbVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR *pbVal
+     * }
+     */
+    public static final long pbVal$offset() {
+        return pbVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR *pbVal
+     * }
+     */
+    public static MemorySegment pbVal(MemorySegment struct) {
+        return struct.get(pbVal$LAYOUT, pbVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR *pbVal
+     * }
+     */
+    public static void pbVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pbVal$LAYOUT, pbVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout piVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("piVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SHORT *piVal
+     * }
+     */
+    public static final AddressLayout piVal$layout() {
+        return piVal$LAYOUT;
+    }
+
+    private static final long piVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SHORT *piVal
+     * }
+     */
+    public static final long piVal$offset() {
+        return piVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SHORT *piVal
+     * }
+     */
+    public static MemorySegment piVal(MemorySegment struct) {
+        return struct.get(piVal$LAYOUT, piVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SHORT *piVal
+     * }
+     */
+    public static void piVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(piVal$LAYOUT, piVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout puiVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("puiVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT *puiVal
+     * }
+     */
+    public static final AddressLayout puiVal$layout() {
+        return puiVal$LAYOUT;
+    }
+
+    private static final long puiVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT *puiVal
+     * }
+     */
+    public static final long puiVal$offset() {
+        return puiVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT *puiVal
+     * }
+     */
+    public static MemorySegment puiVal(MemorySegment struct) {
+        return struct.get(puiVal$LAYOUT, puiVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT *puiVal
+     * }
+     */
+    public static void puiVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(puiVal$LAYOUT, puiVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout plVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("plVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG *plVal
+     * }
+     */
+    public static final AddressLayout plVal$layout() {
+        return plVal$LAYOUT;
+    }
+
+    private static final long plVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG *plVal
+     * }
+     */
+    public static final long plVal$offset() {
+        return plVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG *plVal
+     * }
+     */
+    public static MemorySegment plVal(MemorySegment struct) {
+        return struct.get(plVal$LAYOUT, plVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG *plVal
+     * }
+     */
+    public static void plVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(plVal$LAYOUT, plVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pulVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pulVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG *pulVal
+     * }
+     */
+    public static final AddressLayout pulVal$layout() {
+        return pulVal$LAYOUT;
+    }
+
+    private static final long pulVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG *pulVal
+     * }
+     */
+    public static final long pulVal$offset() {
+        return pulVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG *pulVal
+     * }
+     */
+    public static MemorySegment pulVal(MemorySegment struct) {
+        return struct.get(pulVal$LAYOUT, pulVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG *pulVal
+     * }
+     */
+    public static void pulVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pulVal$LAYOUT, pulVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pintVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pintVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * INT *pintVal
+     * }
+     */
+    public static final AddressLayout pintVal$layout() {
+        return pintVal$LAYOUT;
+    }
+
+    private static final long pintVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * INT *pintVal
+     * }
+     */
+    public static final long pintVal$offset() {
+        return pintVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * INT *pintVal
+     * }
+     */
+    public static MemorySegment pintVal(MemorySegment struct) {
+        return struct.get(pintVal$LAYOUT, pintVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * INT *pintVal
+     * }
+     */
+    public static void pintVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pintVal$LAYOUT, pintVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout puintVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("puintVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT *puintVal
+     * }
+     */
+    public static final AddressLayout puintVal$layout() {
+        return puintVal$LAYOUT;
+    }
+
+    private static final long puintVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT *puintVal
+     * }
+     */
+    public static final long puintVal$offset() {
+        return puintVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT *puintVal
+     * }
+     */
+    public static MemorySegment puintVal(MemorySegment struct) {
+        return struct.get(puintVal$LAYOUT, puintVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT *puintVal
+     * }
+     */
+    public static void puintVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(puintVal$LAYOUT, puintVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pfltVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pfltVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FLOAT *pfltVal
+     * }
+     */
+    public static final AddressLayout pfltVal$layout() {
+        return pfltVal$LAYOUT;
+    }
+
+    private static final long pfltVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FLOAT *pfltVal
+     * }
+     */
+    public static final long pfltVal$offset() {
+        return pfltVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FLOAT *pfltVal
+     * }
+     */
+    public static MemorySegment pfltVal(MemorySegment struct) {
+        return struct.get(pfltVal$LAYOUT, pfltVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FLOAT *pfltVal
+     * }
+     */
+    public static void pfltVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfltVal$LAYOUT, pfltVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pdblVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pdblVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DOUBLE *pdblVal
+     * }
+     */
+    public static final AddressLayout pdblVal$layout() {
+        return pdblVal$LAYOUT;
+    }
+
+    private static final long pdblVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DOUBLE *pdblVal
+     * }
+     */
+    public static final long pdblVal$offset() {
+        return pdblVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DOUBLE *pdblVal
+     * }
+     */
+    public static MemorySegment pdblVal(MemorySegment struct) {
+        return struct.get(pdblVal$LAYOUT, pdblVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DOUBLE *pdblVal
+     * }
+     */
+    public static void pdblVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pdblVal$LAYOUT, pdblVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pboolVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pboolVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * VARIANT_BOOL *pboolVal
+     * }
+     */
+    public static final AddressLayout pboolVal$layout() {
+        return pboolVal$LAYOUT;
+    }
+
+    private static final long pboolVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * VARIANT_BOOL *pboolVal
+     * }
+     */
+    public static final long pboolVal$offset() {
+        return pboolVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * VARIANT_BOOL *pboolVal
+     * }
+     */
+    public static MemorySegment pboolVal(MemorySegment struct) {
+        return struct.get(pboolVal$LAYOUT, pboolVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * VARIANT_BOOL *pboolVal
+     * }
+     */
+    public static void pboolVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pboolVal$LAYOUT, pboolVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pdecVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pdecVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DECIMAL *pdecVal
+     * }
+     */
+    public static final AddressLayout pdecVal$layout() {
+        return pdecVal$LAYOUT;
+    }
+
+    private static final long pdecVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DECIMAL *pdecVal
+     * }
+     */
+    public static final long pdecVal$offset() {
+        return pdecVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DECIMAL *pdecVal
+     * }
+     */
+    public static MemorySegment pdecVal(MemorySegment struct) {
+        return struct.get(pdecVal$LAYOUT, pdecVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DECIMAL *pdecVal
+     * }
+     */
+    public static void pdecVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pdecVal$LAYOUT, pdecVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pscode$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pscode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SCODE *pscode
+     * }
+     */
+    public static final AddressLayout pscode$layout() {
+        return pscode$LAYOUT;
+    }
+
+    private static final long pscode$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SCODE *pscode
+     * }
+     */
+    public static final long pscode$offset() {
+        return pscode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SCODE *pscode
+     * }
+     */
+    public static MemorySegment pscode(MemorySegment struct) {
+        return struct.get(pscode$LAYOUT, pscode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SCODE *pscode
+     * }
+     */
+    public static void pscode(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pscode$LAYOUT, pscode$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pcyVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pcyVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CY *pcyVal
+     * }
+     */
+    public static final AddressLayout pcyVal$layout() {
+        return pcyVal$LAYOUT;
+    }
+
+    private static final long pcyVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CY *pcyVal
+     * }
+     */
+    public static final long pcyVal$offset() {
+        return pcyVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CY *pcyVal
+     * }
+     */
+    public static MemorySegment pcyVal(MemorySegment struct) {
+        return struct.get(pcyVal$LAYOUT, pcyVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CY *pcyVal
+     * }
+     */
+    public static void pcyVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pcyVal$LAYOUT, pcyVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pdate$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pdate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DATE *pdate
+     * }
+     */
+    public static final AddressLayout pdate$layout() {
+        return pdate$LAYOUT;
+    }
+
+    private static final long pdate$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DATE *pdate
+     * }
+     */
+    public static final long pdate$offset() {
+        return pdate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DATE *pdate
+     * }
+     */
+    public static MemorySegment pdate(MemorySegment struct) {
+        return struct.get(pdate$LAYOUT, pdate$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DATE *pdate
+     * }
+     */
+    public static void pdate(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pdate$LAYOUT, pdate$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pbstrVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pbstrVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BSTR *pbstrVal
+     * }
+     */
+    public static final AddressLayout pbstrVal$layout() {
+        return pbstrVal$LAYOUT;
+    }
+
+    private static final long pbstrVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BSTR *pbstrVal
+     * }
+     */
+    public static final long pbstrVal$offset() {
+        return pbstrVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BSTR *pbstrVal
+     * }
+     */
+    public static MemorySegment pbstrVal(MemorySegment struct) {
+        return struct.get(pbstrVal$LAYOUT, pbstrVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BSTR *pbstrVal
+     * }
+     */
+    public static void pbstrVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pbstrVal$LAYOUT, pbstrVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ppunkVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("ppunkVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IUnknown **ppunkVal
+     * }
+     */
+    public static final AddressLayout ppunkVal$layout() {
+        return ppunkVal$LAYOUT;
+    }
+
+    private static final long ppunkVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IUnknown **ppunkVal
+     * }
+     */
+    public static final long ppunkVal$offset() {
+        return ppunkVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IUnknown **ppunkVal
+     * }
+     */
+    public static MemorySegment ppunkVal(MemorySegment struct) {
+        return struct.get(ppunkVal$LAYOUT, ppunkVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IUnknown **ppunkVal
+     * }
+     */
+    public static void ppunkVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ppunkVal$LAYOUT, ppunkVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ppdispVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("ppdispVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IDispatch **ppdispVal
+     * }
+     */
+    public static final AddressLayout ppdispVal$layout() {
+        return ppdispVal$LAYOUT;
+    }
+
+    private static final long ppdispVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IDispatch **ppdispVal
+     * }
+     */
+    public static final long ppdispVal$offset() {
+        return ppdispVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IDispatch **ppdispVal
+     * }
+     */
+    public static MemorySegment ppdispVal(MemorySegment struct) {
+        return struct.get(ppdispVal$LAYOUT, ppdispVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IDispatch **ppdispVal
+     * }
+     */
+    public static void ppdispVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ppdispVal$LAYOUT, ppdispVal$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pparray$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pparray"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSAFEARRAY *pparray
+     * }
+     */
+    public static final AddressLayout pparray$layout() {
+        return pparray$LAYOUT;
+    }
+
+    private static final long pparray$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSAFEARRAY *pparray
+     * }
+     */
+    public static final long pparray$offset() {
+        return pparray$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSAFEARRAY *pparray
+     * }
+     */
+    public static MemorySegment pparray(MemorySegment struct) {
+        return struct.get(pparray$LAYOUT, pparray$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSAFEARRAY *pparray
+     * }
+     */
+    public static void pparray(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pparray$LAYOUT, pparray$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pvarVal$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("$anon$297:1"), groupElement("$anon$303:43"), groupElement("pvarVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PROPVARIANT *pvarVal
+     * }
+     */
+    public static final AddressLayout pvarVal$layout() {
+        return pvarVal$LAYOUT;
+    }
+
+    private static final long pvarVal$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PROPVARIANT *pvarVal
+     * }
+     */
+    public static final long pvarVal$offset() {
+        return pvarVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PROPVARIANT *pvarVal
+     * }
+     */
+    public static MemorySegment pvarVal(MemorySegment struct) {
+        return struct.get(pvarVal$LAYOUT, pvarVal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PROPVARIANT *pvarVal
+     * }
+     */
+    public static void pvarVal(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pvarVal$LAYOUT, pvarVal$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout decVal$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$295:3"), groupElement("decVal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DECIMAL decVal
+     * }
+     */
+    public static final GroupLayout decVal$layout() {
+        return decVal$LAYOUT;
+    }
+
+    private static final long decVal$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DECIMAL decVal
+     * }
+     */
+    public static final long decVal$offset() {
+        return decVal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DECIMAL decVal
+     * }
+     */
+    public static MemorySegment decVal(MemorySegment struct) {
+        return struct.asSlice(decVal$OFFSET, decVal$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DECIMAL decVal
+     * }
+     */
+    public static void decVal(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, decVal$OFFSET, decVal$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

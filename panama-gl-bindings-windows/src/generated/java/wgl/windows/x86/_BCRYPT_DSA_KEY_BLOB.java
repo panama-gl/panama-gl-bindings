@@ -2,70 +2,409 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _BCRYPT_DSA_KEY_BLOB {
+ *     ULONG dwMagic;
+ *     ULONG cbKey;
+ *     UCHAR Count[4];
+ *     UCHAR Seed[20];
+ *     UCHAR q[20];
+ * }
+ * }
+ */
 public class _BCRYPT_DSA_KEY_BLOB {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwMagic"),
-        Constants$root.C_LONG$LAYOUT.withName("cbKey"),
-        MemoryLayout.sequenceLayout(4, Constants$root.C_CHAR$LAYOUT).withName("Count"),
-        MemoryLayout.sequenceLayout(20, Constants$root.C_CHAR$LAYOUT).withName("Seed"),
-        MemoryLayout.sequenceLayout(20, Constants$root.C_CHAR$LAYOUT).withName("q")
-    ).withName("_BCRYPT_DSA_KEY_BLOB");
-    public static MemoryLayout $LAYOUT() {
-        return _BCRYPT_DSA_KEY_BLOB.$struct$LAYOUT;
+    _BCRYPT_DSA_KEY_BLOB() {
+        // Should not be called directly
     }
-    static final VarHandle dwMagic$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwMagic"));
-    public static VarHandle dwMagic$VH() {
-        return _BCRYPT_DSA_KEY_BLOB.dwMagic$VH;
-    }
-    public static int dwMagic$get(MemorySegment seg) {
-        return (int)_BCRYPT_DSA_KEY_BLOB.dwMagic$VH.get(seg);
-    }
-    public static void dwMagic$set( MemorySegment seg, int x) {
-        _BCRYPT_DSA_KEY_BLOB.dwMagic$VH.set(seg, x);
-    }
-    public static int dwMagic$get(MemorySegment seg, long index) {
-        return (int)_BCRYPT_DSA_KEY_BLOB.dwMagic$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwMagic$set(MemorySegment seg, long index, int x) {
-        _BCRYPT_DSA_KEY_BLOB.dwMagic$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbKey$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbKey"));
-    public static VarHandle cbKey$VH() {
-        return _BCRYPT_DSA_KEY_BLOB.cbKey$VH;
-    }
-    public static int cbKey$get(MemorySegment seg) {
-        return (int)_BCRYPT_DSA_KEY_BLOB.cbKey$VH.get(seg);
-    }
-    public static void cbKey$set( MemorySegment seg, int x) {
-        _BCRYPT_DSA_KEY_BLOB.cbKey$VH.set(seg, x);
-    }
-    public static int cbKey$get(MemorySegment seg, long index) {
-        return (int)_BCRYPT_DSA_KEY_BLOB.cbKey$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbKey$set(MemorySegment seg, long index, int x) {
-        _BCRYPT_DSA_KEY_BLOB.cbKey$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Count$slice(MemorySegment seg) {
-        return seg.asSlice(8, 4);
-    }
-    public static MemorySegment Seed$slice(MemorySegment seg) {
-        return seg.asSlice(12, 20);
-    }
-    public static MemorySegment q$slice(MemorySegment seg) {
-        return seg.asSlice(32, 20);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwMagic"),
+        wgl_h.C_LONG.withName("cbKey"),
+        MemoryLayout.sequenceLayout(4, wgl_h.C_CHAR).withName("Count"),
+        MemoryLayout.sequenceLayout(20, wgl_h.C_CHAR).withName("Seed"),
+        MemoryLayout.sequenceLayout(20, wgl_h.C_CHAR).withName("q")
+    ).withName("_BCRYPT_DSA_KEY_BLOB");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwMagic$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwMagic"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG dwMagic
+     * }
+     */
+    public static final OfInt dwMagic$layout() {
+        return dwMagic$LAYOUT;
+    }
+
+    private static final long dwMagic$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG dwMagic
+     * }
+     */
+    public static final long dwMagic$offset() {
+        return dwMagic$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG dwMagic
+     * }
+     */
+    public static int dwMagic(MemorySegment struct) {
+        return struct.get(dwMagic$LAYOUT, dwMagic$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG dwMagic
+     * }
+     */
+    public static void dwMagic(MemorySegment struct, int fieldValue) {
+        struct.set(dwMagic$LAYOUT, dwMagic$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbKey$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbKey"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cbKey
+     * }
+     */
+    public static final OfInt cbKey$layout() {
+        return cbKey$LAYOUT;
+    }
+
+    private static final long cbKey$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cbKey
+     * }
+     */
+    public static final long cbKey$offset() {
+        return cbKey$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cbKey
+     * }
+     */
+    public static int cbKey(MemorySegment struct) {
+        return struct.get(cbKey$LAYOUT, cbKey$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cbKey
+     * }
+     */
+    public static void cbKey(MemorySegment struct, int fieldValue) {
+        struct.set(cbKey$LAYOUT, cbKey$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Count$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Count"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR Count[4]
+     * }
+     */
+    public static final SequenceLayout Count$layout() {
+        return Count$LAYOUT;
+    }
+
+    private static final long Count$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR Count[4]
+     * }
+     */
+    public static final long Count$offset() {
+        return Count$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR Count[4]
+     * }
+     */
+    public static MemorySegment Count(MemorySegment struct) {
+        return struct.asSlice(Count$OFFSET, Count$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR Count[4]
+     * }
+     */
+    public static void Count(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Count$OFFSET, Count$LAYOUT.byteSize());
+    }
+
+    private static long[] Count$DIMS = { 4 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * UCHAR Count[4]
+     * }
+     */
+    public static long[] Count$dimensions() {
+        return Count$DIMS;
+    }
+    private static final VarHandle Count$ELEM_HANDLE = Count$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * UCHAR Count[4]
+     * }
+     */
+    public static byte Count(MemorySegment struct, long index0) {
+        return (byte)Count$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * UCHAR Count[4]
+     * }
+     */
+    public static void Count(MemorySegment struct, long index0, byte fieldValue) {
+        Count$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout Seed$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Seed"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR Seed[20]
+     * }
+     */
+    public static final SequenceLayout Seed$layout() {
+        return Seed$LAYOUT;
+    }
+
+    private static final long Seed$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR Seed[20]
+     * }
+     */
+    public static final long Seed$offset() {
+        return Seed$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR Seed[20]
+     * }
+     */
+    public static MemorySegment Seed(MemorySegment struct) {
+        return struct.asSlice(Seed$OFFSET, Seed$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR Seed[20]
+     * }
+     */
+    public static void Seed(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Seed$OFFSET, Seed$LAYOUT.byteSize());
+    }
+
+    private static long[] Seed$DIMS = { 20 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * UCHAR Seed[20]
+     * }
+     */
+    public static long[] Seed$dimensions() {
+        return Seed$DIMS;
+    }
+    private static final VarHandle Seed$ELEM_HANDLE = Seed$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * UCHAR Seed[20]
+     * }
+     */
+    public static byte Seed(MemorySegment struct, long index0) {
+        return (byte)Seed$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * UCHAR Seed[20]
+     * }
+     */
+    public static void Seed(MemorySegment struct, long index0, byte fieldValue) {
+        Seed$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout q$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("q"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR q[20]
+     * }
+     */
+    public static final SequenceLayout q$layout() {
+        return q$LAYOUT;
+    }
+
+    private static final long q$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR q[20]
+     * }
+     */
+    public static final long q$offset() {
+        return q$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR q[20]
+     * }
+     */
+    public static MemorySegment q(MemorySegment struct) {
+        return struct.asSlice(q$OFFSET, q$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR q[20]
+     * }
+     */
+    public static void q(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, q$OFFSET, q$LAYOUT.byteSize());
+    }
+
+    private static long[] q$DIMS = { 20 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * UCHAR q[20]
+     * }
+     */
+    public static long[] q$dimensions() {
+        return q$DIMS;
+    }
+    private static final VarHandle q$ELEM_HANDLE = q$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * UCHAR q[20]
+     * }
+     */
+    public static byte q(MemorySegment struct, long index0) {
+        return (byte)q$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * UCHAR q[20]
+     * }
+     */
+    public static void q(MemorySegment struct, long index0, byte fieldValue) {
+        q$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

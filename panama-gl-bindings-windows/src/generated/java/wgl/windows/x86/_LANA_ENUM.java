@@ -2,45 +2,205 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _LANA_ENUM {
+ *     UCHAR length;
+ *     UCHAR lana[255];
+ * }
+ * }
+ */
 public class _LANA_ENUM {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("length"),
-        MemoryLayout.sequenceLayout(255, Constants$root.C_CHAR$LAYOUT).withName("lana")
-    ).withName("_LANA_ENUM");
-    public static MemoryLayout $LAYOUT() {
-        return _LANA_ENUM.$struct$LAYOUT;
+    _LANA_ENUM() {
+        // Should not be called directly
     }
-    static final VarHandle length$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("length"));
-    public static VarHandle length$VH() {
-        return _LANA_ENUM.length$VH;
-    }
-    public static byte length$get(MemorySegment seg) {
-        return (byte)_LANA_ENUM.length$VH.get(seg);
-    }
-    public static void length$set( MemorySegment seg, byte x) {
-        _LANA_ENUM.length$VH.set(seg, x);
-    }
-    public static byte length$get(MemorySegment seg, long index) {
-        return (byte)_LANA_ENUM.length$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void length$set(MemorySegment seg, long index, byte x) {
-        _LANA_ENUM.length$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment lana$slice(MemorySegment seg) {
-        return seg.asSlice(1, 255);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_CHAR.withName("length"),
+        MemoryLayout.sequenceLayout(255, wgl_h.C_CHAR).withName("lana")
+    ).withName("_LANA_ENUM");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte length$LAYOUT = (OfByte)$LAYOUT.select(groupElement("length"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR length
+     * }
+     */
+    public static final OfByte length$layout() {
+        return length$LAYOUT;
+    }
+
+    private static final long length$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR length
+     * }
+     */
+    public static final long length$offset() {
+        return length$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR length
+     * }
+     */
+    public static byte length(MemorySegment struct) {
+        return struct.get(length$LAYOUT, length$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR length
+     * }
+     */
+    public static void length(MemorySegment struct, byte fieldValue) {
+        struct.set(length$LAYOUT, length$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout lana$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("lana"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR lana[255]
+     * }
+     */
+    public static final SequenceLayout lana$layout() {
+        return lana$LAYOUT;
+    }
+
+    private static final long lana$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR lana[255]
+     * }
+     */
+    public static final long lana$offset() {
+        return lana$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR lana[255]
+     * }
+     */
+    public static MemorySegment lana(MemorySegment struct) {
+        return struct.asSlice(lana$OFFSET, lana$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR lana[255]
+     * }
+     */
+    public static void lana(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, lana$OFFSET, lana$LAYOUT.byteSize());
+    }
+
+    private static long[] lana$DIMS = { 255 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * UCHAR lana[255]
+     * }
+     */
+    public static long[] lana$dimensions() {
+        return lana$DIMS;
+    }
+    private static final VarHandle lana$ELEM_HANDLE = lana$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * UCHAR lana[255]
+     * }
+     */
+    public static byte lana(MemorySegment struct, long index0) {
+        return (byte)lana$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * UCHAR lana[255]
+     * }
+     */
+    public static void lana(MemorySegment struct, long index0, byte fieldValue) {
+        lana$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

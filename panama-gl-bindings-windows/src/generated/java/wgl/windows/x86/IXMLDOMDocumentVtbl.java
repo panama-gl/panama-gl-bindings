@@ -2,4321 +2,7793 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct IXMLDOMDocumentVtbl {
+ *     HRESULT (*QueryInterface)(IXMLDOMDocument *, const IID *const, void **) __attribute__((stdcall));
+ *     ULONG (*AddRef)(IXMLDOMDocument *) __attribute__((stdcall));
+ *     ULONG (*Release)(IXMLDOMDocument *) __attribute__((stdcall));
+ *     HRESULT (*GetTypeInfoCount)(IXMLDOMDocument *, UINT *) __attribute__((stdcall));
+ *     HRESULT (*GetTypeInfo)(IXMLDOMDocument *, UINT, LCID, ITypeInfo **) __attribute__((stdcall));
+ *     HRESULT (*GetIDsOfNames)(IXMLDOMDocument *, const IID *const, LPOLESTR *, UINT, LCID, DISPID *) __attribute__((stdcall));
+ *     HRESULT (*Invoke)(IXMLDOMDocument *, DISPID, const IID *const, LCID, WORD, DISPPARAMS *, VARIANT *, EXCEPINFO *, UINT *) __attribute__((stdcall));
+ *     HRESULT (*get_nodeName)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall));
+ *     HRESULT (*get_nodeValue)(IXMLDOMDocument *, VARIANT *) __attribute__((stdcall));
+ *     HRESULT (*put_nodeValue)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall));
+ *     HRESULT (*get_nodeType)(IXMLDOMDocument *, DOMNodeType *) __attribute__((stdcall));
+ *     HRESULT (*get_parentNode)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall));
+ *     HRESULT (*get_childNodes)(IXMLDOMDocument *, IXMLDOMNodeList **) __attribute__((stdcall));
+ *     HRESULT (*get_firstChild)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall));
+ *     HRESULT (*get_lastChild)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall));
+ *     HRESULT (*get_previousSibling)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall));
+ *     HRESULT (*get_nextSibling)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall));
+ *     HRESULT (*get_attributes)(IXMLDOMDocument *, IXMLDOMNamedNodeMap **) __attribute__((stdcall));
+ *     HRESULT (*insertBefore)(IXMLDOMDocument *, IXMLDOMNode *, VARIANT, IXMLDOMNode **) __attribute__((stdcall));
+ *     HRESULT (*replaceChild)(IXMLDOMDocument *, IXMLDOMNode *, IXMLDOMNode *, IXMLDOMNode **) __attribute__((stdcall));
+ *     HRESULT (*removeChild)(IXMLDOMDocument *, IXMLDOMNode *, IXMLDOMNode **) __attribute__((stdcall));
+ *     HRESULT (*appendChild)(IXMLDOMDocument *, IXMLDOMNode *, IXMLDOMNode **) __attribute__((stdcall));
+ *     HRESULT (*hasChildNodes)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall));
+ *     HRESULT (*get_ownerDocument)(IXMLDOMDocument *, IXMLDOMDocument **) __attribute__((stdcall));
+ *     HRESULT (*cloneNode)(IXMLDOMDocument *, VARIANT_BOOL, IXMLDOMNode **) __attribute__((stdcall));
+ *     HRESULT (*get_nodeTypeString)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall));
+ *     HRESULT (*get_text)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall));
+ *     HRESULT (*put_text)(IXMLDOMDocument *, BSTR) __attribute__((stdcall));
+ *     HRESULT (*get_specified)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall));
+ *     HRESULT (*get_definition)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall));
+ *     HRESULT (*get_nodeTypedValue)(IXMLDOMDocument *, VARIANT *) __attribute__((stdcall));
+ *     HRESULT (*put_nodeTypedValue)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall));
+ *     HRESULT (*get_dataType)(IXMLDOMDocument *, VARIANT *) __attribute__((stdcall));
+ *     HRESULT (*put_dataType)(IXMLDOMDocument *, BSTR) __attribute__((stdcall));
+ *     HRESULT (*get_xml)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall));
+ *     HRESULT (*transformNode)(IXMLDOMDocument *, IXMLDOMNode *, BSTR *) __attribute__((stdcall));
+ *     HRESULT (*selectNodes)(IXMLDOMDocument *, BSTR, IXMLDOMNodeList **) __attribute__((stdcall));
+ *     HRESULT (*selectSingleNode)(IXMLDOMDocument *, BSTR, IXMLDOMNode **) __attribute__((stdcall));
+ *     HRESULT (*get_parsed)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall));
+ *     HRESULT (*get_namespaceURI)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall));
+ *     HRESULT (*get_prefix)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall));
+ *     HRESULT (*get_baseName)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall));
+ *     HRESULT (*transformNodeToObject)(IXMLDOMDocument *, IXMLDOMNode *, VARIANT) __attribute__((stdcall));
+ *     HRESULT (*get_doctype)(IXMLDOMDocument *, IXMLDOMDocumentType **) __attribute__((stdcall));
+ *     HRESULT (*get_implementation)(IXMLDOMDocument *, IXMLDOMImplementation **) __attribute__((stdcall));
+ *     HRESULT (*get_documentElement)(IXMLDOMDocument *, IXMLDOMElement **) __attribute__((stdcall));
+ *     HRESULT (*putref_documentElement)(IXMLDOMDocument *, IXMLDOMElement *) __attribute__((stdcall));
+ *     HRESULT (*createElement)(IXMLDOMDocument *, BSTR, IXMLDOMElement **) __attribute__((stdcall));
+ *     HRESULT (*createDocumentFragment)(IXMLDOMDocument *, IXMLDOMDocumentFragment **) __attribute__((stdcall));
+ *     HRESULT (*createTextNode)(IXMLDOMDocument *, BSTR, IXMLDOMText **) __attribute__((stdcall));
+ *     HRESULT (*createComment)(IXMLDOMDocument *, BSTR, IXMLDOMComment **) __attribute__((stdcall));
+ *     HRESULT (*createCDATASection)(IXMLDOMDocument *, BSTR, IXMLDOMCDATASection **) __attribute__((stdcall));
+ *     HRESULT (*createProcessingInstruction)(IXMLDOMDocument *, BSTR, BSTR, IXMLDOMProcessingInstruction **) __attribute__((stdcall));
+ *     HRESULT (*createAttribute)(IXMLDOMDocument *, BSTR, IXMLDOMAttribute **) __attribute__((stdcall));
+ *     HRESULT (*createEntityReference)(IXMLDOMDocument *, BSTR, IXMLDOMEntityReference **) __attribute__((stdcall));
+ *     HRESULT (*getElementsByTagName)(IXMLDOMDocument *, BSTR, IXMLDOMNodeList **) __attribute__((stdcall));
+ *     HRESULT (*createNode)(IXMLDOMDocument *, VARIANT, BSTR, BSTR, IXMLDOMNode **) __attribute__((stdcall));
+ *     HRESULT (*nodeFromID)(IXMLDOMDocument *, BSTR, IXMLDOMNode **) __attribute__((stdcall));
+ *     HRESULT (*load)(IXMLDOMDocument *, VARIANT, VARIANT_BOOL *) __attribute__((stdcall));
+ *     HRESULT (*get_readyState)(IXMLDOMDocument *, long *) __attribute__((stdcall));
+ *     HRESULT (*get_parseError)(IXMLDOMDocument *, IXMLDOMParseError **) __attribute__((stdcall));
+ *     HRESULT (*get_url)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall));
+ *     HRESULT (*get_async)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall));
+ *     HRESULT (*put_async)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall));
+ *     HRESULT (*abort)(IXMLDOMDocument *) __attribute__((stdcall));
+ *     HRESULT (*loadXML)(IXMLDOMDocument *, BSTR, VARIANT_BOOL *) __attribute__((stdcall));
+ *     HRESULT (*save)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall));
+ *     HRESULT (*get_validateOnParse)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall));
+ *     HRESULT (*put_validateOnParse)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall));
+ *     HRESULT (*get_resolveExternals)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall));
+ *     HRESULT (*put_resolveExternals)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall));
+ *     HRESULT (*get_preserveWhiteSpace)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall));
+ *     HRESULT (*put_preserveWhiteSpace)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall));
+ *     HRESULT (*put_onreadystatechange)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall));
+ *     HRESULT (*put_ondataavailable)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall));
+ *     HRESULT (*put_ontransformnode)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall));
+ * }
+ * }
+ */
 public class IXMLDOMDocumentVtbl {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("QueryInterface"),
-        Constants$root.C_POINTER$LAYOUT.withName("AddRef"),
-        Constants$root.C_POINTER$LAYOUT.withName("Release"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetTypeInfoCount"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetTypeInfo"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetIDsOfNames"),
-        Constants$root.C_POINTER$LAYOUT.withName("Invoke"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_nodeName"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_nodeValue"),
-        Constants$root.C_POINTER$LAYOUT.withName("put_nodeValue"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_nodeType"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_parentNode"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_childNodes"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_firstChild"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_lastChild"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_previousSibling"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_nextSibling"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_attributes"),
-        Constants$root.C_POINTER$LAYOUT.withName("insertBefore"),
-        Constants$root.C_POINTER$LAYOUT.withName("replaceChild"),
-        Constants$root.C_POINTER$LAYOUT.withName("removeChild"),
-        Constants$root.C_POINTER$LAYOUT.withName("appendChild"),
-        Constants$root.C_POINTER$LAYOUT.withName("hasChildNodes"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_ownerDocument"),
-        Constants$root.C_POINTER$LAYOUT.withName("cloneNode"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_nodeTypeString"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_text"),
-        Constants$root.C_POINTER$LAYOUT.withName("put_text"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_specified"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_definition"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_nodeTypedValue"),
-        Constants$root.C_POINTER$LAYOUT.withName("put_nodeTypedValue"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_dataType"),
-        Constants$root.C_POINTER$LAYOUT.withName("put_dataType"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_xml"),
-        Constants$root.C_POINTER$LAYOUT.withName("transformNode"),
-        Constants$root.C_POINTER$LAYOUT.withName("selectNodes"),
-        Constants$root.C_POINTER$LAYOUT.withName("selectSingleNode"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_parsed"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_namespaceURI"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_prefix"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_baseName"),
-        Constants$root.C_POINTER$LAYOUT.withName("transformNodeToObject"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_doctype"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_implementation"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_documentElement"),
-        Constants$root.C_POINTER$LAYOUT.withName("putref_documentElement"),
-        Constants$root.C_POINTER$LAYOUT.withName("createElement"),
-        Constants$root.C_POINTER$LAYOUT.withName("createDocumentFragment"),
-        Constants$root.C_POINTER$LAYOUT.withName("createTextNode"),
-        Constants$root.C_POINTER$LAYOUT.withName("createComment"),
-        Constants$root.C_POINTER$LAYOUT.withName("createCDATASection"),
-        Constants$root.C_POINTER$LAYOUT.withName("createProcessingInstruction"),
-        Constants$root.C_POINTER$LAYOUT.withName("createAttribute"),
-        Constants$root.C_POINTER$LAYOUT.withName("createEntityReference"),
-        Constants$root.C_POINTER$LAYOUT.withName("getElementsByTagName"),
-        Constants$root.C_POINTER$LAYOUT.withName("createNode"),
-        Constants$root.C_POINTER$LAYOUT.withName("nodeFromID"),
-        Constants$root.C_POINTER$LAYOUT.withName("load"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_readyState"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_parseError"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_url"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_async"),
-        Constants$root.C_POINTER$LAYOUT.withName("put_async"),
-        Constants$root.C_POINTER$LAYOUT.withName("abort"),
-        Constants$root.C_POINTER$LAYOUT.withName("loadXML"),
-        Constants$root.C_POINTER$LAYOUT.withName("save"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_validateOnParse"),
-        Constants$root.C_POINTER$LAYOUT.withName("put_validateOnParse"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_resolveExternals"),
-        Constants$root.C_POINTER$LAYOUT.withName("put_resolveExternals"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_preserveWhiteSpace"),
-        Constants$root.C_POINTER$LAYOUT.withName("put_preserveWhiteSpace"),
-        Constants$root.C_POINTER$LAYOUT.withName("put_onreadystatechange"),
-        Constants$root.C_POINTER$LAYOUT.withName("put_ondataavailable"),
-        Constants$root.C_POINTER$LAYOUT.withName("put_ontransformnode")
+    IXMLDOMDocumentVtbl() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("QueryInterface"),
+        wgl_h.C_POINTER.withName("AddRef"),
+        wgl_h.C_POINTER.withName("Release"),
+        wgl_h.C_POINTER.withName("GetTypeInfoCount"),
+        wgl_h.C_POINTER.withName("GetTypeInfo"),
+        wgl_h.C_POINTER.withName("GetIDsOfNames"),
+        wgl_h.C_POINTER.withName("Invoke"),
+        wgl_h.C_POINTER.withName("get_nodeName"),
+        wgl_h.C_POINTER.withName("get_nodeValue"),
+        wgl_h.C_POINTER.withName("put_nodeValue"),
+        wgl_h.C_POINTER.withName("get_nodeType"),
+        wgl_h.C_POINTER.withName("get_parentNode"),
+        wgl_h.C_POINTER.withName("get_childNodes"),
+        wgl_h.C_POINTER.withName("get_firstChild"),
+        wgl_h.C_POINTER.withName("get_lastChild"),
+        wgl_h.C_POINTER.withName("get_previousSibling"),
+        wgl_h.C_POINTER.withName("get_nextSibling"),
+        wgl_h.C_POINTER.withName("get_attributes"),
+        wgl_h.C_POINTER.withName("insertBefore"),
+        wgl_h.C_POINTER.withName("replaceChild"),
+        wgl_h.C_POINTER.withName("removeChild"),
+        wgl_h.C_POINTER.withName("appendChild"),
+        wgl_h.C_POINTER.withName("hasChildNodes"),
+        wgl_h.C_POINTER.withName("get_ownerDocument"),
+        wgl_h.C_POINTER.withName("cloneNode"),
+        wgl_h.C_POINTER.withName("get_nodeTypeString"),
+        wgl_h.C_POINTER.withName("get_text"),
+        wgl_h.C_POINTER.withName("put_text"),
+        wgl_h.C_POINTER.withName("get_specified"),
+        wgl_h.C_POINTER.withName("get_definition"),
+        wgl_h.C_POINTER.withName("get_nodeTypedValue"),
+        wgl_h.C_POINTER.withName("put_nodeTypedValue"),
+        wgl_h.C_POINTER.withName("get_dataType"),
+        wgl_h.C_POINTER.withName("put_dataType"),
+        wgl_h.C_POINTER.withName("get_xml"),
+        wgl_h.C_POINTER.withName("transformNode"),
+        wgl_h.C_POINTER.withName("selectNodes"),
+        wgl_h.C_POINTER.withName("selectSingleNode"),
+        wgl_h.C_POINTER.withName("get_parsed"),
+        wgl_h.C_POINTER.withName("get_namespaceURI"),
+        wgl_h.C_POINTER.withName("get_prefix"),
+        wgl_h.C_POINTER.withName("get_baseName"),
+        wgl_h.C_POINTER.withName("transformNodeToObject"),
+        wgl_h.C_POINTER.withName("get_doctype"),
+        wgl_h.C_POINTER.withName("get_implementation"),
+        wgl_h.C_POINTER.withName("get_documentElement"),
+        wgl_h.C_POINTER.withName("putref_documentElement"),
+        wgl_h.C_POINTER.withName("createElement"),
+        wgl_h.C_POINTER.withName("createDocumentFragment"),
+        wgl_h.C_POINTER.withName("createTextNode"),
+        wgl_h.C_POINTER.withName("createComment"),
+        wgl_h.C_POINTER.withName("createCDATASection"),
+        wgl_h.C_POINTER.withName("createProcessingInstruction"),
+        wgl_h.C_POINTER.withName("createAttribute"),
+        wgl_h.C_POINTER.withName("createEntityReference"),
+        wgl_h.C_POINTER.withName("getElementsByTagName"),
+        wgl_h.C_POINTER.withName("createNode"),
+        wgl_h.C_POINTER.withName("nodeFromID"),
+        wgl_h.C_POINTER.withName("load"),
+        wgl_h.C_POINTER.withName("get_readyState"),
+        wgl_h.C_POINTER.withName("get_parseError"),
+        wgl_h.C_POINTER.withName("get_url"),
+        wgl_h.C_POINTER.withName("get_async"),
+        wgl_h.C_POINTER.withName("put_async"),
+        wgl_h.C_POINTER.withName("abort"),
+        wgl_h.C_POINTER.withName("loadXML"),
+        wgl_h.C_POINTER.withName("save"),
+        wgl_h.C_POINTER.withName("get_validateOnParse"),
+        wgl_h.C_POINTER.withName("put_validateOnParse"),
+        wgl_h.C_POINTER.withName("get_resolveExternals"),
+        wgl_h.C_POINTER.withName("put_resolveExternals"),
+        wgl_h.C_POINTER.withName("get_preserveWhiteSpace"),
+        wgl_h.C_POINTER.withName("put_preserveWhiteSpace"),
+        wgl_h.C_POINTER.withName("put_onreadystatechange"),
+        wgl_h.C_POINTER.withName("put_ondataavailable"),
+        wgl_h.C_POINTER.withName("put_ontransformnode")
     ).withName("IXMLDOMDocumentVtbl");
-    public static MemoryLayout $LAYOUT() {
-        return IXMLDOMDocumentVtbl.$struct$LAYOUT;
-    }
-    static final FunctionDescriptor QueryInterface$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle QueryInterface$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.QueryInterface$FUNC
-    );
-    public interface QueryInterface {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(QueryInterface fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(QueryInterface.class, fi, IXMLDOMDocumentVtbl.QueryInterface$FUNC, session);
-        }
-        static QueryInterface ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.QueryInterface$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
 
-    static final VarHandle QueryInterface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueryInterface"));
-    public static VarHandle QueryInterface$VH() {
-        return IXMLDOMDocumentVtbl.QueryInterface$VH;
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IXMLDOMDocument *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class QueryInterface {
+
+        QueryInterface() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(QueryInterface.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(QueryInterface.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout QueryInterface$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("QueryInterface"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IXMLDOMDocument *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout QueryInterface$layout() {
+        return QueryInterface$LAYOUT;
+    }
+
+    private static final long QueryInterface$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IXMLDOMDocument *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long QueryInterface$offset() {
+        return QueryInterface$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IXMLDOMDocument *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment QueryInterface(MemorySegment struct) {
+        return struct.get(QueryInterface$LAYOUT, QueryInterface$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IXMLDOMDocument *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void QueryInterface(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(QueryInterface$LAYOUT, QueryInterface$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IXMLDOMDocument *) __attribute__((stdcall))
+     * }
+     */
+    public static class AddRef {
+
+        AddRef() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(AddRef.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(AddRef.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout AddRef$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AddRef"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IXMLDOMDocument *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout AddRef$layout() {
+        return AddRef$LAYOUT;
+    }
+
+    private static final long AddRef$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IXMLDOMDocument *) __attribute__((stdcall))
+     * }
+     */
+    public static final long AddRef$offset() {
+        return AddRef$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IXMLDOMDocument *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment AddRef(MemorySegment struct) {
+        return struct.get(AddRef$LAYOUT, AddRef$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IXMLDOMDocument *) __attribute__((stdcall))
+     * }
+     */
+    public static void AddRef(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AddRef$LAYOUT, AddRef$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*Release)(IXMLDOMDocument *) __attribute__((stdcall))
+     * }
+     */
+    public static class Release {
+
+        Release() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Release.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Release.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout Release$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Release"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IXMLDOMDocument *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Release$layout() {
+        return Release$LAYOUT;
+    }
+
+    private static final long Release$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IXMLDOMDocument *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Release$offset() {
+        return Release$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IXMLDOMDocument *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Release(MemorySegment struct) {
+        return struct.get(Release$LAYOUT, Release$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IXMLDOMDocument *) __attribute__((stdcall))
+     * }
+     */
+    public static void Release(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Release$LAYOUT, Release$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfoCount)(IXMLDOMDocument *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static class GetTypeInfoCount {
+
+        GetTypeInfoCount() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetTypeInfoCount.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetTypeInfoCount.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout GetTypeInfoCount$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetTypeInfoCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfoCount)(IXMLDOMDocument *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetTypeInfoCount$layout() {
+        return GetTypeInfoCount$LAYOUT;
+    }
+
+    private static final long GetTypeInfoCount$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfoCount)(IXMLDOMDocument *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetTypeInfoCount$offset() {
+        return GetTypeInfoCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfoCount)(IXMLDOMDocument *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetTypeInfoCount(MemorySegment struct) {
+        return struct.get(GetTypeInfoCount$LAYOUT, GetTypeInfoCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfoCount)(IXMLDOMDocument *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static void GetTypeInfoCount(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetTypeInfoCount$LAYOUT, GetTypeInfoCount$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfo)(IXMLDOMDocument *, UINT, LCID, ITypeInfo **) __attribute__((stdcall))
+     * }
+     */
+    public static class GetTypeInfo {
+
+        GetTypeInfo() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, int _x2, MemorySegment _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_INT,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetTypeInfo.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetTypeInfo.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, int _x2, MemorySegment _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout GetTypeInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetTypeInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfo)(IXMLDOMDocument *, UINT, LCID, ITypeInfo **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetTypeInfo$layout() {
+        return GetTypeInfo$LAYOUT;
+    }
+
+    private static final long GetTypeInfo$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfo)(IXMLDOMDocument *, UINT, LCID, ITypeInfo **) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetTypeInfo$offset() {
+        return GetTypeInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfo)(IXMLDOMDocument *, UINT, LCID, ITypeInfo **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetTypeInfo(MemorySegment struct) {
+        return struct.get(GetTypeInfo$LAYOUT, GetTypeInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfo)(IXMLDOMDocument *, UINT, LCID, ITypeInfo **) __attribute__((stdcall))
+     * }
+     */
+    public static void GetTypeInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetTypeInfo$LAYOUT, GetTypeInfo$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetIDsOfNames)(IXMLDOMDocument *, const IID *const, LPOLESTR *, UINT, LCID, DISPID *) __attribute__((stdcall))
+     * }
+     */
+    public static class GetIDsOfNames {
+
+        GetIDsOfNames() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3, int _x4, MemorySegment _x5);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_INT,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetIDsOfNames.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetIDsOfNames.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3, int _x4, MemorySegment _x5) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout GetIDsOfNames$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetIDsOfNames"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetIDsOfNames)(IXMLDOMDocument *, const IID *const, LPOLESTR *, UINT, LCID, DISPID *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetIDsOfNames$layout() {
+        return GetIDsOfNames$LAYOUT;
+    }
+
+    private static final long GetIDsOfNames$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetIDsOfNames)(IXMLDOMDocument *, const IID *const, LPOLESTR *, UINT, LCID, DISPID *) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetIDsOfNames$offset() {
+        return GetIDsOfNames$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetIDsOfNames)(IXMLDOMDocument *, const IID *const, LPOLESTR *, UINT, LCID, DISPID *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetIDsOfNames(MemorySegment struct) {
+        return struct.get(GetIDsOfNames$LAYOUT, GetIDsOfNames$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetIDsOfNames)(IXMLDOMDocument *, const IID *const, LPOLESTR *, UINT, LCID, DISPID *) __attribute__((stdcall))
+     * }
+     */
+    public static void GetIDsOfNames(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetIDsOfNames$LAYOUT, GetIDsOfNames$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*Invoke)(IXMLDOMDocument *, DISPID, const IID *const, LCID, WORD, DISPPARAMS *, VARIANT *, EXCEPINFO *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static class Invoke {
+
+        Invoke() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, MemorySegment _x2, int _x3, short _x4, MemorySegment _x5, MemorySegment _x6, MemorySegment _x7, MemorySegment _x8);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_SHORT,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Invoke.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Invoke.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, MemorySegment _x2, int _x3, short _x4, MemorySegment _x5, MemorySegment _x6, MemorySegment _x7, MemorySegment _x8) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5, _x6, _x7, _x8);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout Invoke$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Invoke"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*Invoke)(IXMLDOMDocument *, DISPID, const IID *const, LCID, WORD, DISPPARAMS *, VARIANT *, EXCEPINFO *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Invoke$layout() {
+        return Invoke$LAYOUT;
+    }
+
+    private static final long Invoke$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*Invoke)(IXMLDOMDocument *, DISPID, const IID *const, LCID, WORD, DISPPARAMS *, VARIANT *, EXCEPINFO *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Invoke$offset() {
+        return Invoke$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Invoke)(IXMLDOMDocument *, DISPID, const IID *const, LCID, WORD, DISPPARAMS *, VARIANT *, EXCEPINFO *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Invoke(MemorySegment struct) {
+        return struct.get(Invoke$LAYOUT, Invoke$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Invoke)(IXMLDOMDocument *, DISPID, const IID *const, LCID, WORD, DISPPARAMS *, VARIANT *, EXCEPINFO *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static void Invoke(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Invoke$LAYOUT, Invoke$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeName)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_nodeName {
+
+        get_nodeName() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_nodeName.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_nodeName.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_nodeName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_nodeName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeName)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_nodeName$layout() {
+        return get_nodeName$LAYOUT;
+    }
+
+    private static final long get_nodeName$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeName)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_nodeName$offset() {
+        return get_nodeName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeName)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_nodeName(MemorySegment struct) {
+        return struct.get(get_nodeName$LAYOUT, get_nodeName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeName)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_nodeName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_nodeName$LAYOUT, get_nodeName$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeValue)(IXMLDOMDocument *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_nodeValue {
+
+        get_nodeValue() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_nodeValue.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_nodeValue.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_nodeValue$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_nodeValue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeValue)(IXMLDOMDocument *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_nodeValue$layout() {
+        return get_nodeValue$LAYOUT;
+    }
+
+    private static final long get_nodeValue$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeValue)(IXMLDOMDocument *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_nodeValue$offset() {
+        return get_nodeValue$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeValue)(IXMLDOMDocument *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_nodeValue(MemorySegment struct) {
+        return struct.get(get_nodeValue$LAYOUT, get_nodeValue$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeValue)(IXMLDOMDocument *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_nodeValue(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_nodeValue$LAYOUT, get_nodeValue$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*put_nodeValue)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static class put_nodeValue {
+
+        put_nodeValue() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            tagVARIANT.layout()
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(put_nodeValue.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(put_nodeValue.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout put_nodeValue$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("put_nodeValue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_nodeValue)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout put_nodeValue$layout() {
+        return put_nodeValue$LAYOUT;
+    }
+
+    private static final long put_nodeValue$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_nodeValue)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static final long put_nodeValue$offset() {
+        return put_nodeValue$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_nodeValue)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment put_nodeValue(MemorySegment struct) {
+        return struct.get(put_nodeValue$LAYOUT, put_nodeValue$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_nodeValue)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static void put_nodeValue(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(put_nodeValue$LAYOUT, put_nodeValue$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeType)(IXMLDOMDocument *, DOMNodeType *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_nodeType {
+
+        get_nodeType() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_nodeType.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_nodeType.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_nodeType$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_nodeType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeType)(IXMLDOMDocument *, DOMNodeType *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_nodeType$layout() {
+        return get_nodeType$LAYOUT;
+    }
+
+    private static final long get_nodeType$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeType)(IXMLDOMDocument *, DOMNodeType *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_nodeType$offset() {
+        return get_nodeType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeType)(IXMLDOMDocument *, DOMNodeType *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_nodeType(MemorySegment struct) {
+        return struct.get(get_nodeType$LAYOUT, get_nodeType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeType)(IXMLDOMDocument *, DOMNodeType *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_nodeType(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_nodeType$LAYOUT, get_nodeType$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_parentNode)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static class get_parentNode {
+
+        get_parentNode() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_parentNode.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_parentNode.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_parentNode$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_parentNode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_parentNode)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_parentNode$layout() {
+        return get_parentNode$LAYOUT;
+    }
+
+    private static final long get_parentNode$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_parentNode)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_parentNode$offset() {
+        return get_parentNode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_parentNode)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_parentNode(MemorySegment struct) {
+        return struct.get(get_parentNode$LAYOUT, get_parentNode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_parentNode)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static void get_parentNode(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_parentNode$LAYOUT, get_parentNode$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_childNodes)(IXMLDOMDocument *, IXMLDOMNodeList **) __attribute__((stdcall))
+     * }
+     */
+    public static class get_childNodes {
+
+        get_childNodes() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_childNodes.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_childNodes.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_childNodes$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_childNodes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_childNodes)(IXMLDOMDocument *, IXMLDOMNodeList **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_childNodes$layout() {
+        return get_childNodes$LAYOUT;
+    }
+
+    private static final long get_childNodes$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_childNodes)(IXMLDOMDocument *, IXMLDOMNodeList **) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_childNodes$offset() {
+        return get_childNodes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_childNodes)(IXMLDOMDocument *, IXMLDOMNodeList **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_childNodes(MemorySegment struct) {
+        return struct.get(get_childNodes$LAYOUT, get_childNodes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_childNodes)(IXMLDOMDocument *, IXMLDOMNodeList **) __attribute__((stdcall))
+     * }
+     */
+    public static void get_childNodes(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_childNodes$LAYOUT, get_childNodes$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_firstChild)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static class get_firstChild {
+
+        get_firstChild() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_firstChild.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_firstChild.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_firstChild$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_firstChild"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_firstChild)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_firstChild$layout() {
+        return get_firstChild$LAYOUT;
+    }
+
+    private static final long get_firstChild$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_firstChild)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_firstChild$offset() {
+        return get_firstChild$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_firstChild)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_firstChild(MemorySegment struct) {
+        return struct.get(get_firstChild$LAYOUT, get_firstChild$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_firstChild)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static void get_firstChild(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_firstChild$LAYOUT, get_firstChild$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_lastChild)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static class get_lastChild {
+
+        get_lastChild() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_lastChild.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_lastChild.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_lastChild$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_lastChild"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_lastChild)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_lastChild$layout() {
+        return get_lastChild$LAYOUT;
+    }
+
+    private static final long get_lastChild$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_lastChild)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_lastChild$offset() {
+        return get_lastChild$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_lastChild)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_lastChild(MemorySegment struct) {
+        return struct.get(get_lastChild$LAYOUT, get_lastChild$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_lastChild)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static void get_lastChild(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_lastChild$LAYOUT, get_lastChild$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_previousSibling)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static class get_previousSibling {
+
+        get_previousSibling() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_previousSibling.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_previousSibling.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_previousSibling$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_previousSibling"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_previousSibling)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_previousSibling$layout() {
+        return get_previousSibling$LAYOUT;
+    }
+
+    private static final long get_previousSibling$OFFSET = 120;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_previousSibling)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_previousSibling$offset() {
+        return get_previousSibling$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_previousSibling)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_previousSibling(MemorySegment struct) {
+        return struct.get(get_previousSibling$LAYOUT, get_previousSibling$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_previousSibling)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static void get_previousSibling(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_previousSibling$LAYOUT, get_previousSibling$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_nextSibling)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static class get_nextSibling {
+
+        get_nextSibling() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_nextSibling.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_nextSibling.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_nextSibling$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_nextSibling"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nextSibling)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_nextSibling$layout() {
+        return get_nextSibling$LAYOUT;
+    }
+
+    private static final long get_nextSibling$OFFSET = 128;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nextSibling)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_nextSibling$offset() {
+        return get_nextSibling$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nextSibling)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_nextSibling(MemorySegment struct) {
+        return struct.get(get_nextSibling$LAYOUT, get_nextSibling$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nextSibling)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static void get_nextSibling(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_nextSibling$LAYOUT, get_nextSibling$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_attributes)(IXMLDOMDocument *, IXMLDOMNamedNodeMap **) __attribute__((stdcall))
+     * }
+     */
+    public static class get_attributes {
+
+        get_attributes() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_attributes.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_attributes.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_attributes$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_attributes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_attributes)(IXMLDOMDocument *, IXMLDOMNamedNodeMap **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_attributes$layout() {
+        return get_attributes$LAYOUT;
+    }
+
+    private static final long get_attributes$OFFSET = 136;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_attributes)(IXMLDOMDocument *, IXMLDOMNamedNodeMap **) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_attributes$offset() {
+        return get_attributes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_attributes)(IXMLDOMDocument *, IXMLDOMNamedNodeMap **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_attributes(MemorySegment struct) {
+        return struct.get(get_attributes$LAYOUT, get_attributes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_attributes)(IXMLDOMDocument *, IXMLDOMNamedNodeMap **) __attribute__((stdcall))
+     * }
+     */
+    public static void get_attributes(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_attributes$LAYOUT, get_attributes$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*insertBefore)(IXMLDOMDocument *, IXMLDOMNode *, VARIANT, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static class insertBefore {
+
+        insertBefore() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            tagVARIANT.layout(),
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(insertBefore.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(insertBefore.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout insertBefore$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("insertBefore"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*insertBefore)(IXMLDOMDocument *, IXMLDOMNode *, VARIANT, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout insertBefore$layout() {
+        return insertBefore$LAYOUT;
+    }
+
+    private static final long insertBefore$OFFSET = 144;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*insertBefore)(IXMLDOMDocument *, IXMLDOMNode *, VARIANT, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final long insertBefore$offset() {
+        return insertBefore$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*insertBefore)(IXMLDOMDocument *, IXMLDOMNode *, VARIANT, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment insertBefore(MemorySegment struct) {
+        return struct.get(insertBefore$LAYOUT, insertBefore$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*insertBefore)(IXMLDOMDocument *, IXMLDOMNode *, VARIANT, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static void insertBefore(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(insertBefore$LAYOUT, insertBefore$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*replaceChild)(IXMLDOMDocument *, IXMLDOMNode *, IXMLDOMNode *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static class replaceChild {
+
+        replaceChild() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(replaceChild.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(replaceChild.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout replaceChild$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("replaceChild"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*replaceChild)(IXMLDOMDocument *, IXMLDOMNode *, IXMLDOMNode *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout replaceChild$layout() {
+        return replaceChild$LAYOUT;
+    }
+
+    private static final long replaceChild$OFFSET = 152;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*replaceChild)(IXMLDOMDocument *, IXMLDOMNode *, IXMLDOMNode *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final long replaceChild$offset() {
+        return replaceChild$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*replaceChild)(IXMLDOMDocument *, IXMLDOMNode *, IXMLDOMNode *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment replaceChild(MemorySegment struct) {
+        return struct.get(replaceChild$LAYOUT, replaceChild$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*replaceChild)(IXMLDOMDocument *, IXMLDOMNode *, IXMLDOMNode *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static void replaceChild(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(replaceChild$LAYOUT, replaceChild$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*removeChild)(IXMLDOMDocument *, IXMLDOMNode *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static class removeChild {
+
+        removeChild() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(removeChild.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(removeChild.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout removeChild$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("removeChild"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*removeChild)(IXMLDOMDocument *, IXMLDOMNode *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout removeChild$layout() {
+        return removeChild$LAYOUT;
+    }
+
+    private static final long removeChild$OFFSET = 160;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*removeChild)(IXMLDOMDocument *, IXMLDOMNode *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final long removeChild$offset() {
+        return removeChild$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*removeChild)(IXMLDOMDocument *, IXMLDOMNode *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment removeChild(MemorySegment struct) {
+        return struct.get(removeChild$LAYOUT, removeChild$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*removeChild)(IXMLDOMDocument *, IXMLDOMNode *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static void removeChild(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(removeChild$LAYOUT, removeChild$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*appendChild)(IXMLDOMDocument *, IXMLDOMNode *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static class appendChild {
+
+        appendChild() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(appendChild.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(appendChild.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout appendChild$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("appendChild"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*appendChild)(IXMLDOMDocument *, IXMLDOMNode *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout appendChild$layout() {
+        return appendChild$LAYOUT;
+    }
+
+    private static final long appendChild$OFFSET = 168;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*appendChild)(IXMLDOMDocument *, IXMLDOMNode *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final long appendChild$offset() {
+        return appendChild$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*appendChild)(IXMLDOMDocument *, IXMLDOMNode *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment appendChild(MemorySegment struct) {
+        return struct.get(appendChild$LAYOUT, appendChild$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*appendChild)(IXMLDOMDocument *, IXMLDOMNode *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static void appendChild(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(appendChild$LAYOUT, appendChild$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*hasChildNodes)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static class hasChildNodes {
+
+        hasChildNodes() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(hasChildNodes.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(hasChildNodes.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout hasChildNodes$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hasChildNodes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*hasChildNodes)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout hasChildNodes$layout() {
+        return hasChildNodes$LAYOUT;
+    }
+
+    private static final long hasChildNodes$OFFSET = 176;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*hasChildNodes)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final long hasChildNodes$offset() {
+        return hasChildNodes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*hasChildNodes)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment hasChildNodes(MemorySegment struct) {
+        return struct.get(hasChildNodes$LAYOUT, hasChildNodes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*hasChildNodes)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static void hasChildNodes(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hasChildNodes$LAYOUT, hasChildNodes$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_ownerDocument)(IXMLDOMDocument *, IXMLDOMDocument **) __attribute__((stdcall))
+     * }
+     */
+    public static class get_ownerDocument {
+
+        get_ownerDocument() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_ownerDocument.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_ownerDocument.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_ownerDocument$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_ownerDocument"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_ownerDocument)(IXMLDOMDocument *, IXMLDOMDocument **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_ownerDocument$layout() {
+        return get_ownerDocument$LAYOUT;
+    }
+
+    private static final long get_ownerDocument$OFFSET = 184;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_ownerDocument)(IXMLDOMDocument *, IXMLDOMDocument **) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_ownerDocument$offset() {
+        return get_ownerDocument$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_ownerDocument)(IXMLDOMDocument *, IXMLDOMDocument **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_ownerDocument(MemorySegment struct) {
+        return struct.get(get_ownerDocument$LAYOUT, get_ownerDocument$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_ownerDocument)(IXMLDOMDocument *, IXMLDOMDocument **) __attribute__((stdcall))
+     * }
+     */
+    public static void get_ownerDocument(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_ownerDocument$LAYOUT, get_ownerDocument$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*cloneNode)(IXMLDOMDocument *, VARIANT_BOOL, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static class cloneNode {
+
+        cloneNode() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, short _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_SHORT,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(cloneNode.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(cloneNode.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, short _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout cloneNode$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("cloneNode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*cloneNode)(IXMLDOMDocument *, VARIANT_BOOL, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout cloneNode$layout() {
+        return cloneNode$LAYOUT;
+    }
+
+    private static final long cloneNode$OFFSET = 192;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*cloneNode)(IXMLDOMDocument *, VARIANT_BOOL, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final long cloneNode$offset() {
+        return cloneNode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*cloneNode)(IXMLDOMDocument *, VARIANT_BOOL, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment cloneNode(MemorySegment struct) {
+        return struct.get(cloneNode$LAYOUT, cloneNode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*cloneNode)(IXMLDOMDocument *, VARIANT_BOOL, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static void cloneNode(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(cloneNode$LAYOUT, cloneNode$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeTypeString)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_nodeTypeString {
+
+        get_nodeTypeString() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_nodeTypeString.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_nodeTypeString.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_nodeTypeString$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_nodeTypeString"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeTypeString)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_nodeTypeString$layout() {
+        return get_nodeTypeString$LAYOUT;
+    }
+
+    private static final long get_nodeTypeString$OFFSET = 200;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeTypeString)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_nodeTypeString$offset() {
+        return get_nodeTypeString$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeTypeString)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_nodeTypeString(MemorySegment struct) {
+        return struct.get(get_nodeTypeString$LAYOUT, get_nodeTypeString$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeTypeString)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_nodeTypeString(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_nodeTypeString$LAYOUT, get_nodeTypeString$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_text)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_text {
+
+        get_text() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_text.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_text.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_text$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_text"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_text)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_text$layout() {
+        return get_text$LAYOUT;
+    }
+
+    private static final long get_text$OFFSET = 208;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_text)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_text$offset() {
+        return get_text$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_text)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_text(MemorySegment struct) {
+        return struct.get(get_text$LAYOUT, get_text$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_text)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_text(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_text$LAYOUT, get_text$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*put_text)(IXMLDOMDocument *, BSTR) __attribute__((stdcall))
+     * }
+     */
+    public static class put_text {
+
+        put_text() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(put_text.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(put_text.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout put_text$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("put_text"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_text)(IXMLDOMDocument *, BSTR) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout put_text$layout() {
+        return put_text$LAYOUT;
+    }
+
+    private static final long put_text$OFFSET = 216;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_text)(IXMLDOMDocument *, BSTR) __attribute__((stdcall))
+     * }
+     */
+    public static final long put_text$offset() {
+        return put_text$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_text)(IXMLDOMDocument *, BSTR) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment put_text(MemorySegment struct) {
+        return struct.get(put_text$LAYOUT, put_text$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_text)(IXMLDOMDocument *, BSTR) __attribute__((stdcall))
+     * }
+     */
+    public static void put_text(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(put_text$LAYOUT, put_text$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_specified)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_specified {
+
+        get_specified() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_specified.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_specified.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_specified$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_specified"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_specified)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_specified$layout() {
+        return get_specified$LAYOUT;
+    }
+
+    private static final long get_specified$OFFSET = 224;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_specified)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_specified$offset() {
+        return get_specified$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_specified)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_specified(MemorySegment struct) {
+        return struct.get(get_specified$LAYOUT, get_specified$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_specified)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_specified(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_specified$LAYOUT, get_specified$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_definition)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static class get_definition {
+
+        get_definition() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_definition.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_definition.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_definition$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_definition"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_definition)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_definition$layout() {
+        return get_definition$LAYOUT;
+    }
+
+    private static final long get_definition$OFFSET = 232;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_definition)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_definition$offset() {
+        return get_definition$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_definition)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_definition(MemorySegment struct) {
+        return struct.get(get_definition$LAYOUT, get_definition$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_definition)(IXMLDOMDocument *, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static void get_definition(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_definition$LAYOUT, get_definition$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeTypedValue)(IXMLDOMDocument *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_nodeTypedValue {
+
+        get_nodeTypedValue() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_nodeTypedValue.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_nodeTypedValue.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_nodeTypedValue$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_nodeTypedValue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeTypedValue)(IXMLDOMDocument *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_nodeTypedValue$layout() {
+        return get_nodeTypedValue$LAYOUT;
+    }
+
+    private static final long get_nodeTypedValue$OFFSET = 240;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeTypedValue)(IXMLDOMDocument *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_nodeTypedValue$offset() {
+        return get_nodeTypedValue$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeTypedValue)(IXMLDOMDocument *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_nodeTypedValue(MemorySegment struct) {
+        return struct.get(get_nodeTypedValue$LAYOUT, get_nodeTypedValue$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_nodeTypedValue)(IXMLDOMDocument *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_nodeTypedValue(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_nodeTypedValue$LAYOUT, get_nodeTypedValue$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*put_nodeTypedValue)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static class put_nodeTypedValue {
+
+        put_nodeTypedValue() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            tagVARIANT.layout()
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(put_nodeTypedValue.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(put_nodeTypedValue.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout put_nodeTypedValue$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("put_nodeTypedValue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_nodeTypedValue)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout put_nodeTypedValue$layout() {
+        return put_nodeTypedValue$LAYOUT;
+    }
+
+    private static final long put_nodeTypedValue$OFFSET = 248;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_nodeTypedValue)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static final long put_nodeTypedValue$offset() {
+        return put_nodeTypedValue$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_nodeTypedValue)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment put_nodeTypedValue(MemorySegment struct) {
+        return struct.get(put_nodeTypedValue$LAYOUT, put_nodeTypedValue$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_nodeTypedValue)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static void put_nodeTypedValue(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(put_nodeTypedValue$LAYOUT, put_nodeTypedValue$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_dataType)(IXMLDOMDocument *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_dataType {
+
+        get_dataType() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_dataType.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_dataType.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_dataType$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_dataType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_dataType)(IXMLDOMDocument *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_dataType$layout() {
+        return get_dataType$LAYOUT;
+    }
+
+    private static final long get_dataType$OFFSET = 256;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_dataType)(IXMLDOMDocument *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_dataType$offset() {
+        return get_dataType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_dataType)(IXMLDOMDocument *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_dataType(MemorySegment struct) {
+        return struct.get(get_dataType$LAYOUT, get_dataType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_dataType)(IXMLDOMDocument *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_dataType(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_dataType$LAYOUT, get_dataType$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*put_dataType)(IXMLDOMDocument *, BSTR) __attribute__((stdcall))
+     * }
+     */
+    public static class put_dataType {
+
+        put_dataType() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(put_dataType.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(put_dataType.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout put_dataType$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("put_dataType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_dataType)(IXMLDOMDocument *, BSTR) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout put_dataType$layout() {
+        return put_dataType$LAYOUT;
+    }
+
+    private static final long put_dataType$OFFSET = 264;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_dataType)(IXMLDOMDocument *, BSTR) __attribute__((stdcall))
+     * }
+     */
+    public static final long put_dataType$offset() {
+        return put_dataType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_dataType)(IXMLDOMDocument *, BSTR) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment put_dataType(MemorySegment struct) {
+        return struct.get(put_dataType$LAYOUT, put_dataType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_dataType)(IXMLDOMDocument *, BSTR) __attribute__((stdcall))
+     * }
+     */
+    public static void put_dataType(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(put_dataType$LAYOUT, put_dataType$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_xml)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_xml {
+
+        get_xml() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_xml.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_xml.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_xml$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_xml"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_xml)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_xml$layout() {
+        return get_xml$LAYOUT;
+    }
+
+    private static final long get_xml$OFFSET = 272;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_xml)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_xml$offset() {
+        return get_xml$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_xml)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_xml(MemorySegment struct) {
+        return struct.get(get_xml$LAYOUT, get_xml$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_xml)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_xml(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_xml$LAYOUT, get_xml$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*transformNode)(IXMLDOMDocument *, IXMLDOMNode *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static class transformNode {
+
+        transformNode() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(transformNode.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(transformNode.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout transformNode$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("transformNode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*transformNode)(IXMLDOMDocument *, IXMLDOMNode *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout transformNode$layout() {
+        return transformNode$LAYOUT;
+    }
+
+    private static final long transformNode$OFFSET = 280;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*transformNode)(IXMLDOMDocument *, IXMLDOMNode *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final long transformNode$offset() {
+        return transformNode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*transformNode)(IXMLDOMDocument *, IXMLDOMNode *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment transformNode(MemorySegment struct) {
+        return struct.get(transformNode$LAYOUT, transformNode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*transformNode)(IXMLDOMDocument *, IXMLDOMNode *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static void transformNode(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(transformNode$LAYOUT, transformNode$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*selectNodes)(IXMLDOMDocument *, BSTR, IXMLDOMNodeList **) __attribute__((stdcall))
+     * }
+     */
+    public static class selectNodes {
+
+        selectNodes() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(selectNodes.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(selectNodes.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout selectNodes$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("selectNodes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*selectNodes)(IXMLDOMDocument *, BSTR, IXMLDOMNodeList **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout selectNodes$layout() {
+        return selectNodes$LAYOUT;
+    }
+
+    private static final long selectNodes$OFFSET = 288;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*selectNodes)(IXMLDOMDocument *, BSTR, IXMLDOMNodeList **) __attribute__((stdcall))
+     * }
+     */
+    public static final long selectNodes$offset() {
+        return selectNodes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*selectNodes)(IXMLDOMDocument *, BSTR, IXMLDOMNodeList **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment selectNodes(MemorySegment struct) {
+        return struct.get(selectNodes$LAYOUT, selectNodes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*selectNodes)(IXMLDOMDocument *, BSTR, IXMLDOMNodeList **) __attribute__((stdcall))
+     * }
+     */
+    public static void selectNodes(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(selectNodes$LAYOUT, selectNodes$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*selectSingleNode)(IXMLDOMDocument *, BSTR, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static class selectSingleNode {
+
+        selectSingleNode() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(selectSingleNode.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(selectSingleNode.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout selectSingleNode$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("selectSingleNode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*selectSingleNode)(IXMLDOMDocument *, BSTR, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout selectSingleNode$layout() {
+        return selectSingleNode$LAYOUT;
+    }
+
+    private static final long selectSingleNode$OFFSET = 296;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*selectSingleNode)(IXMLDOMDocument *, BSTR, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final long selectSingleNode$offset() {
+        return selectSingleNode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*selectSingleNode)(IXMLDOMDocument *, BSTR, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment selectSingleNode(MemorySegment struct) {
+        return struct.get(selectSingleNode$LAYOUT, selectSingleNode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*selectSingleNode)(IXMLDOMDocument *, BSTR, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static void selectSingleNode(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(selectSingleNode$LAYOUT, selectSingleNode$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_parsed)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_parsed {
+
+        get_parsed() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_parsed.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_parsed.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_parsed$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_parsed"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_parsed)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_parsed$layout() {
+        return get_parsed$LAYOUT;
+    }
+
+    private static final long get_parsed$OFFSET = 304;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_parsed)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_parsed$offset() {
+        return get_parsed$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_parsed)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_parsed(MemorySegment struct) {
+        return struct.get(get_parsed$LAYOUT, get_parsed$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_parsed)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_parsed(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_parsed$LAYOUT, get_parsed$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_namespaceURI)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_namespaceURI {
+
+        get_namespaceURI() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_namespaceURI.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_namespaceURI.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_namespaceURI$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_namespaceURI"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_namespaceURI)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_namespaceURI$layout() {
+        return get_namespaceURI$LAYOUT;
+    }
+
+    private static final long get_namespaceURI$OFFSET = 312;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_namespaceURI)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_namespaceURI$offset() {
+        return get_namespaceURI$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_namespaceURI)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_namespaceURI(MemorySegment struct) {
+        return struct.get(get_namespaceURI$LAYOUT, get_namespaceURI$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_namespaceURI)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_namespaceURI(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_namespaceURI$LAYOUT, get_namespaceURI$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_prefix)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_prefix {
+
+        get_prefix() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_prefix.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_prefix.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_prefix$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_prefix"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_prefix)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_prefix$layout() {
+        return get_prefix$LAYOUT;
+    }
+
+    private static final long get_prefix$OFFSET = 320;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_prefix)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_prefix$offset() {
+        return get_prefix$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_prefix)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_prefix(MemorySegment struct) {
+        return struct.get(get_prefix$LAYOUT, get_prefix$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_prefix)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_prefix(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_prefix$LAYOUT, get_prefix$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_baseName)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_baseName {
+
+        get_baseName() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_baseName.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_baseName.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_baseName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_baseName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_baseName)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_baseName$layout() {
+        return get_baseName$LAYOUT;
+    }
+
+    private static final long get_baseName$OFFSET = 328;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_baseName)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_baseName$offset() {
+        return get_baseName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_baseName)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_baseName(MemorySegment struct) {
+        return struct.get(get_baseName$LAYOUT, get_baseName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_baseName)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_baseName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_baseName$LAYOUT, get_baseName$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*transformNodeToObject)(IXMLDOMDocument *, IXMLDOMNode *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static class transformNodeToObject {
+
+        transformNodeToObject() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            tagVARIANT.layout()
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(transformNodeToObject.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(transformNodeToObject.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout transformNodeToObject$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("transformNodeToObject"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*transformNodeToObject)(IXMLDOMDocument *, IXMLDOMNode *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout transformNodeToObject$layout() {
+        return transformNodeToObject$LAYOUT;
+    }
+
+    private static final long transformNodeToObject$OFFSET = 336;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*transformNodeToObject)(IXMLDOMDocument *, IXMLDOMNode *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static final long transformNodeToObject$offset() {
+        return transformNodeToObject$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*transformNodeToObject)(IXMLDOMDocument *, IXMLDOMNode *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment transformNodeToObject(MemorySegment struct) {
+        return struct.get(transformNodeToObject$LAYOUT, transformNodeToObject$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*transformNodeToObject)(IXMLDOMDocument *, IXMLDOMNode *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static void transformNodeToObject(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(transformNodeToObject$LAYOUT, transformNodeToObject$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_doctype)(IXMLDOMDocument *, IXMLDOMDocumentType **) __attribute__((stdcall))
+     * }
+     */
+    public static class get_doctype {
+
+        get_doctype() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_doctype.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_doctype.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_doctype$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_doctype"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_doctype)(IXMLDOMDocument *, IXMLDOMDocumentType **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_doctype$layout() {
+        return get_doctype$LAYOUT;
+    }
+
+    private static final long get_doctype$OFFSET = 344;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_doctype)(IXMLDOMDocument *, IXMLDOMDocumentType **) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_doctype$offset() {
+        return get_doctype$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_doctype)(IXMLDOMDocument *, IXMLDOMDocumentType **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_doctype(MemorySegment struct) {
+        return struct.get(get_doctype$LAYOUT, get_doctype$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_doctype)(IXMLDOMDocument *, IXMLDOMDocumentType **) __attribute__((stdcall))
+     * }
+     */
+    public static void get_doctype(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_doctype$LAYOUT, get_doctype$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_implementation)(IXMLDOMDocument *, IXMLDOMImplementation **) __attribute__((stdcall))
+     * }
+     */
+    public static class get_implementation {
+
+        get_implementation() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_implementation.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_implementation.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_implementation$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_implementation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_implementation)(IXMLDOMDocument *, IXMLDOMImplementation **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_implementation$layout() {
+        return get_implementation$LAYOUT;
+    }
+
+    private static final long get_implementation$OFFSET = 352;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_implementation)(IXMLDOMDocument *, IXMLDOMImplementation **) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_implementation$offset() {
+        return get_implementation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_implementation)(IXMLDOMDocument *, IXMLDOMImplementation **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_implementation(MemorySegment struct) {
+        return struct.get(get_implementation$LAYOUT, get_implementation$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_implementation)(IXMLDOMDocument *, IXMLDOMImplementation **) __attribute__((stdcall))
+     * }
+     */
+    public static void get_implementation(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_implementation$LAYOUT, get_implementation$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_documentElement)(IXMLDOMDocument *, IXMLDOMElement **) __attribute__((stdcall))
+     * }
+     */
+    public static class get_documentElement {
+
+        get_documentElement() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_documentElement.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_documentElement.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_documentElement$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_documentElement"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_documentElement)(IXMLDOMDocument *, IXMLDOMElement **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_documentElement$layout() {
+        return get_documentElement$LAYOUT;
+    }
+
+    private static final long get_documentElement$OFFSET = 360;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_documentElement)(IXMLDOMDocument *, IXMLDOMElement **) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_documentElement$offset() {
+        return get_documentElement$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_documentElement)(IXMLDOMDocument *, IXMLDOMElement **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_documentElement(MemorySegment struct) {
+        return struct.get(get_documentElement$LAYOUT, get_documentElement$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_documentElement)(IXMLDOMDocument *, IXMLDOMElement **) __attribute__((stdcall))
+     * }
+     */
+    public static void get_documentElement(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_documentElement$LAYOUT, get_documentElement$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*putref_documentElement)(IXMLDOMDocument *, IXMLDOMElement *) __attribute__((stdcall))
+     * }
+     */
+    public static class putref_documentElement {
+
+        putref_documentElement() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(putref_documentElement.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(putref_documentElement.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout putref_documentElement$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("putref_documentElement"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*putref_documentElement)(IXMLDOMDocument *, IXMLDOMElement *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout putref_documentElement$layout() {
+        return putref_documentElement$LAYOUT;
+    }
+
+    private static final long putref_documentElement$OFFSET = 368;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*putref_documentElement)(IXMLDOMDocument *, IXMLDOMElement *) __attribute__((stdcall))
+     * }
+     */
+    public static final long putref_documentElement$offset() {
+        return putref_documentElement$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*putref_documentElement)(IXMLDOMDocument *, IXMLDOMElement *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment putref_documentElement(MemorySegment struct) {
+        return struct.get(putref_documentElement$LAYOUT, putref_documentElement$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*putref_documentElement)(IXMLDOMDocument *, IXMLDOMElement *) __attribute__((stdcall))
+     * }
+     */
+    public static void putref_documentElement(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(putref_documentElement$LAYOUT, putref_documentElement$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*createElement)(IXMLDOMDocument *, BSTR, IXMLDOMElement **) __attribute__((stdcall))
+     * }
+     */
+    public static class createElement {
+
+        createElement() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(createElement.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(createElement.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout createElement$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("createElement"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*createElement)(IXMLDOMDocument *, BSTR, IXMLDOMElement **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout createElement$layout() {
+        return createElement$LAYOUT;
+    }
+
+    private static final long createElement$OFFSET = 376;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*createElement)(IXMLDOMDocument *, BSTR, IXMLDOMElement **) __attribute__((stdcall))
+     * }
+     */
+    public static final long createElement$offset() {
+        return createElement$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*createElement)(IXMLDOMDocument *, BSTR, IXMLDOMElement **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment createElement(MemorySegment struct) {
+        return struct.get(createElement$LAYOUT, createElement$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*createElement)(IXMLDOMDocument *, BSTR, IXMLDOMElement **) __attribute__((stdcall))
+     * }
+     */
+    public static void createElement(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(createElement$LAYOUT, createElement$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*createDocumentFragment)(IXMLDOMDocument *, IXMLDOMDocumentFragment **) __attribute__((stdcall))
+     * }
+     */
+    public static class createDocumentFragment {
+
+        createDocumentFragment() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(createDocumentFragment.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(createDocumentFragment.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout createDocumentFragment$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("createDocumentFragment"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*createDocumentFragment)(IXMLDOMDocument *, IXMLDOMDocumentFragment **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout createDocumentFragment$layout() {
+        return createDocumentFragment$LAYOUT;
+    }
+
+    private static final long createDocumentFragment$OFFSET = 384;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*createDocumentFragment)(IXMLDOMDocument *, IXMLDOMDocumentFragment **) __attribute__((stdcall))
+     * }
+     */
+    public static final long createDocumentFragment$offset() {
+        return createDocumentFragment$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*createDocumentFragment)(IXMLDOMDocument *, IXMLDOMDocumentFragment **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment createDocumentFragment(MemorySegment struct) {
+        return struct.get(createDocumentFragment$LAYOUT, createDocumentFragment$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*createDocumentFragment)(IXMLDOMDocument *, IXMLDOMDocumentFragment **) __attribute__((stdcall))
+     * }
+     */
+    public static void createDocumentFragment(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(createDocumentFragment$LAYOUT, createDocumentFragment$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*createTextNode)(IXMLDOMDocument *, BSTR, IXMLDOMText **) __attribute__((stdcall))
+     * }
+     */
+    public static class createTextNode {
+
+        createTextNode() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(createTextNode.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(createTextNode.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout createTextNode$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("createTextNode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*createTextNode)(IXMLDOMDocument *, BSTR, IXMLDOMText **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout createTextNode$layout() {
+        return createTextNode$LAYOUT;
+    }
+
+    private static final long createTextNode$OFFSET = 392;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*createTextNode)(IXMLDOMDocument *, BSTR, IXMLDOMText **) __attribute__((stdcall))
+     * }
+     */
+    public static final long createTextNode$offset() {
+        return createTextNode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*createTextNode)(IXMLDOMDocument *, BSTR, IXMLDOMText **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment createTextNode(MemorySegment struct) {
+        return struct.get(createTextNode$LAYOUT, createTextNode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*createTextNode)(IXMLDOMDocument *, BSTR, IXMLDOMText **) __attribute__((stdcall))
+     * }
+     */
+    public static void createTextNode(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(createTextNode$LAYOUT, createTextNode$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*createComment)(IXMLDOMDocument *, BSTR, IXMLDOMComment **) __attribute__((stdcall))
+     * }
+     */
+    public static class createComment {
+
+        createComment() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(createComment.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(createComment.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout createComment$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("createComment"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*createComment)(IXMLDOMDocument *, BSTR, IXMLDOMComment **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout createComment$layout() {
+        return createComment$LAYOUT;
+    }
+
+    private static final long createComment$OFFSET = 400;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*createComment)(IXMLDOMDocument *, BSTR, IXMLDOMComment **) __attribute__((stdcall))
+     * }
+     */
+    public static final long createComment$offset() {
+        return createComment$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*createComment)(IXMLDOMDocument *, BSTR, IXMLDOMComment **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment createComment(MemorySegment struct) {
+        return struct.get(createComment$LAYOUT, createComment$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*createComment)(IXMLDOMDocument *, BSTR, IXMLDOMComment **) __attribute__((stdcall))
+     * }
+     */
+    public static void createComment(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(createComment$LAYOUT, createComment$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*createCDATASection)(IXMLDOMDocument *, BSTR, IXMLDOMCDATASection **) __attribute__((stdcall))
+     * }
+     */
+    public static class createCDATASection {
+
+        createCDATASection() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(createCDATASection.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(createCDATASection.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout createCDATASection$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("createCDATASection"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*createCDATASection)(IXMLDOMDocument *, BSTR, IXMLDOMCDATASection **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout createCDATASection$layout() {
+        return createCDATASection$LAYOUT;
+    }
+
+    private static final long createCDATASection$OFFSET = 408;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*createCDATASection)(IXMLDOMDocument *, BSTR, IXMLDOMCDATASection **) __attribute__((stdcall))
+     * }
+     */
+    public static final long createCDATASection$offset() {
+        return createCDATASection$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*createCDATASection)(IXMLDOMDocument *, BSTR, IXMLDOMCDATASection **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment createCDATASection(MemorySegment struct) {
+        return struct.get(createCDATASection$LAYOUT, createCDATASection$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*createCDATASection)(IXMLDOMDocument *, BSTR, IXMLDOMCDATASection **) __attribute__((stdcall))
+     * }
+     */
+    public static void createCDATASection(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(createCDATASection$LAYOUT, createCDATASection$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*createProcessingInstruction)(IXMLDOMDocument *, BSTR, BSTR, IXMLDOMProcessingInstruction **) __attribute__((stdcall))
+     * }
+     */
+    public static class createProcessingInstruction {
+
+        createProcessingInstruction() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(createProcessingInstruction.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(createProcessingInstruction.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout createProcessingInstruction$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("createProcessingInstruction"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*createProcessingInstruction)(IXMLDOMDocument *, BSTR, BSTR, IXMLDOMProcessingInstruction **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout createProcessingInstruction$layout() {
+        return createProcessingInstruction$LAYOUT;
+    }
+
+    private static final long createProcessingInstruction$OFFSET = 416;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*createProcessingInstruction)(IXMLDOMDocument *, BSTR, BSTR, IXMLDOMProcessingInstruction **) __attribute__((stdcall))
+     * }
+     */
+    public static final long createProcessingInstruction$offset() {
+        return createProcessingInstruction$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*createProcessingInstruction)(IXMLDOMDocument *, BSTR, BSTR, IXMLDOMProcessingInstruction **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment createProcessingInstruction(MemorySegment struct) {
+        return struct.get(createProcessingInstruction$LAYOUT, createProcessingInstruction$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*createProcessingInstruction)(IXMLDOMDocument *, BSTR, BSTR, IXMLDOMProcessingInstruction **) __attribute__((stdcall))
+     * }
+     */
+    public static void createProcessingInstruction(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(createProcessingInstruction$LAYOUT, createProcessingInstruction$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*createAttribute)(IXMLDOMDocument *, BSTR, IXMLDOMAttribute **) __attribute__((stdcall))
+     * }
+     */
+    public static class createAttribute {
+
+        createAttribute() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(createAttribute.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(createAttribute.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout createAttribute$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("createAttribute"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*createAttribute)(IXMLDOMDocument *, BSTR, IXMLDOMAttribute **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout createAttribute$layout() {
+        return createAttribute$LAYOUT;
+    }
+
+    private static final long createAttribute$OFFSET = 424;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*createAttribute)(IXMLDOMDocument *, BSTR, IXMLDOMAttribute **) __attribute__((stdcall))
+     * }
+     */
+    public static final long createAttribute$offset() {
+        return createAttribute$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*createAttribute)(IXMLDOMDocument *, BSTR, IXMLDOMAttribute **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment createAttribute(MemorySegment struct) {
+        return struct.get(createAttribute$LAYOUT, createAttribute$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*createAttribute)(IXMLDOMDocument *, BSTR, IXMLDOMAttribute **) __attribute__((stdcall))
+     * }
+     */
+    public static void createAttribute(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(createAttribute$LAYOUT, createAttribute$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*createEntityReference)(IXMLDOMDocument *, BSTR, IXMLDOMEntityReference **) __attribute__((stdcall))
+     * }
+     */
+    public static class createEntityReference {
+
+        createEntityReference() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(createEntityReference.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(createEntityReference.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout createEntityReference$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("createEntityReference"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*createEntityReference)(IXMLDOMDocument *, BSTR, IXMLDOMEntityReference **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout createEntityReference$layout() {
+        return createEntityReference$LAYOUT;
+    }
+
+    private static final long createEntityReference$OFFSET = 432;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*createEntityReference)(IXMLDOMDocument *, BSTR, IXMLDOMEntityReference **) __attribute__((stdcall))
+     * }
+     */
+    public static final long createEntityReference$offset() {
+        return createEntityReference$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*createEntityReference)(IXMLDOMDocument *, BSTR, IXMLDOMEntityReference **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment createEntityReference(MemorySegment struct) {
+        return struct.get(createEntityReference$LAYOUT, createEntityReference$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*createEntityReference)(IXMLDOMDocument *, BSTR, IXMLDOMEntityReference **) __attribute__((stdcall))
+     * }
+     */
+    public static void createEntityReference(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(createEntityReference$LAYOUT, createEntityReference$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*getElementsByTagName)(IXMLDOMDocument *, BSTR, IXMLDOMNodeList **) __attribute__((stdcall))
+     * }
+     */
+    public static class getElementsByTagName {
+
+        getElementsByTagName() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(getElementsByTagName.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(getElementsByTagName.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout getElementsByTagName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("getElementsByTagName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*getElementsByTagName)(IXMLDOMDocument *, BSTR, IXMLDOMNodeList **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout getElementsByTagName$layout() {
+        return getElementsByTagName$LAYOUT;
+    }
+
+    private static final long getElementsByTagName$OFFSET = 440;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*getElementsByTagName)(IXMLDOMDocument *, BSTR, IXMLDOMNodeList **) __attribute__((stdcall))
+     * }
+     */
+    public static final long getElementsByTagName$offset() {
+        return getElementsByTagName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*getElementsByTagName)(IXMLDOMDocument *, BSTR, IXMLDOMNodeList **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment getElementsByTagName(MemorySegment struct) {
+        return struct.get(getElementsByTagName$LAYOUT, getElementsByTagName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*getElementsByTagName)(IXMLDOMDocument *, BSTR, IXMLDOMNodeList **) __attribute__((stdcall))
+     * }
+     */
+    public static void getElementsByTagName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(getElementsByTagName$LAYOUT, getElementsByTagName$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*createNode)(IXMLDOMDocument *, VARIANT, BSTR, BSTR, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static class createNode {
+
+        createNode() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            tagVARIANT.layout(),
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(createNode.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(createNode.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout createNode$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("createNode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*createNode)(IXMLDOMDocument *, VARIANT, BSTR, BSTR, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout createNode$layout() {
+        return createNode$LAYOUT;
+    }
+
+    private static final long createNode$OFFSET = 448;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*createNode)(IXMLDOMDocument *, VARIANT, BSTR, BSTR, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final long createNode$offset() {
+        return createNode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*createNode)(IXMLDOMDocument *, VARIANT, BSTR, BSTR, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment createNode(MemorySegment struct) {
+        return struct.get(createNode$LAYOUT, createNode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*createNode)(IXMLDOMDocument *, VARIANT, BSTR, BSTR, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static void createNode(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(createNode$LAYOUT, createNode$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*nodeFromID)(IXMLDOMDocument *, BSTR, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static class nodeFromID {
+
+        nodeFromID() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(nodeFromID.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(nodeFromID.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout nodeFromID$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("nodeFromID"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*nodeFromID)(IXMLDOMDocument *, BSTR, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout nodeFromID$layout() {
+        return nodeFromID$LAYOUT;
+    }
+
+    private static final long nodeFromID$OFFSET = 456;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*nodeFromID)(IXMLDOMDocument *, BSTR, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static final long nodeFromID$offset() {
+        return nodeFromID$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*nodeFromID)(IXMLDOMDocument *, BSTR, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment nodeFromID(MemorySegment struct) {
+        return struct.get(nodeFromID$LAYOUT, nodeFromID$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*nodeFromID)(IXMLDOMDocument *, BSTR, IXMLDOMNode **) __attribute__((stdcall))
+     * }
+     */
+    public static void nodeFromID(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(nodeFromID$LAYOUT, nodeFromID$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*load)(IXMLDOMDocument *, VARIANT, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static class load {
+
+        load() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            tagVARIANT.layout(),
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(load.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(load.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout load$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("load"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*load)(IXMLDOMDocument *, VARIANT, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout load$layout() {
+        return load$LAYOUT;
+    }
+
+    private static final long load$OFFSET = 464;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*load)(IXMLDOMDocument *, VARIANT, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final long load$offset() {
+        return load$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*load)(IXMLDOMDocument *, VARIANT, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment load(MemorySegment struct) {
+        return struct.get(load$LAYOUT, load$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*load)(IXMLDOMDocument *, VARIANT, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static void load(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(load$LAYOUT, load$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_readyState)(IXMLDOMDocument *, long *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_readyState {
+
+        get_readyState() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_readyState.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_readyState.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_readyState$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_readyState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_readyState)(IXMLDOMDocument *, long *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_readyState$layout() {
+        return get_readyState$LAYOUT;
+    }
+
+    private static final long get_readyState$OFFSET = 472;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_readyState)(IXMLDOMDocument *, long *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_readyState$offset() {
+        return get_readyState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_readyState)(IXMLDOMDocument *, long *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_readyState(MemorySegment struct) {
+        return struct.get(get_readyState$LAYOUT, get_readyState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_readyState)(IXMLDOMDocument *, long *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_readyState(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_readyState$LAYOUT, get_readyState$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_parseError)(IXMLDOMDocument *, IXMLDOMParseError **) __attribute__((stdcall))
+     * }
+     */
+    public static class get_parseError {
+
+        get_parseError() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_parseError.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_parseError.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_parseError$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_parseError"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_parseError)(IXMLDOMDocument *, IXMLDOMParseError **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_parseError$layout() {
+        return get_parseError$LAYOUT;
+    }
+
+    private static final long get_parseError$OFFSET = 480;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_parseError)(IXMLDOMDocument *, IXMLDOMParseError **) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_parseError$offset() {
+        return get_parseError$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_parseError)(IXMLDOMDocument *, IXMLDOMParseError **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_parseError(MemorySegment struct) {
+        return struct.get(get_parseError$LAYOUT, get_parseError$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_parseError)(IXMLDOMDocument *, IXMLDOMParseError **) __attribute__((stdcall))
+     * }
+     */
+    public static void get_parseError(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_parseError$LAYOUT, get_parseError$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_url)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_url {
+
+        get_url() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_url.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_url.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_url$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_url"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_url)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_url$layout() {
+        return get_url$LAYOUT;
+    }
+
+    private static final long get_url$OFFSET = 488;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_url)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_url$offset() {
+        return get_url$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_url)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_url(MemorySegment struct) {
+        return struct.get(get_url$LAYOUT, get_url$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_url)(IXMLDOMDocument *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_url(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_url$LAYOUT, get_url$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_async)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_async {
+
+        get_async() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_async.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_async.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_async$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_async"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_async)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_async$layout() {
+        return get_async$LAYOUT;
+    }
+
+    private static final long get_async$OFFSET = 496;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_async)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_async$offset() {
+        return get_async$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_async)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_async(MemorySegment struct) {
+        return struct.get(get_async$LAYOUT, get_async$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_async)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_async(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_async$LAYOUT, get_async$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*put_async)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static class put_async {
+
+        put_async() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, short _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_SHORT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(put_async.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(put_async.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, short _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout put_async$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("put_async"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_async)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout put_async$layout() {
+        return put_async$LAYOUT;
+    }
+
+    private static final long put_async$OFFSET = 504;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_async)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final long put_async$offset() {
+        return put_async$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_async)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment put_async(MemorySegment struct) {
+        return struct.get(put_async$LAYOUT, put_async$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_async)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static void put_async(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(put_async$LAYOUT, put_async$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*abort)(IXMLDOMDocument *) __attribute__((stdcall))
+     * }
+     */
+    public static class abort {
+
+        abort() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(abort.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(abort.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout abort$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("abort"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*abort)(IXMLDOMDocument *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout abort$layout() {
+        return abort$LAYOUT;
+    }
+
+    private static final long abort$OFFSET = 512;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*abort)(IXMLDOMDocument *) __attribute__((stdcall))
+     * }
+     */
+    public static final long abort$offset() {
+        return abort$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*abort)(IXMLDOMDocument *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment abort(MemorySegment struct) {
+        return struct.get(abort$LAYOUT, abort$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*abort)(IXMLDOMDocument *) __attribute__((stdcall))
+     * }
+     */
+    public static void abort(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(abort$LAYOUT, abort$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*loadXML)(IXMLDOMDocument *, BSTR, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static class loadXML {
+
+        loadXML() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(loadXML.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(loadXML.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout loadXML$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("loadXML"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*loadXML)(IXMLDOMDocument *, BSTR, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout loadXML$layout() {
+        return loadXML$LAYOUT;
+    }
+
+    private static final long loadXML$OFFSET = 520;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*loadXML)(IXMLDOMDocument *, BSTR, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final long loadXML$offset() {
+        return loadXML$OFFSET;
     }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.QueryInterface$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*loadXML)(IXMLDOMDocument *, BSTR, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment loadXML(MemorySegment struct) {
+        return struct.get(loadXML$LAYOUT, loadXML$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*loadXML)(IXMLDOMDocument *, BSTR, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static void loadXML(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(loadXML$LAYOUT, loadXML$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*save)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static class save {
+
+        save() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            tagVARIANT.layout()
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(save.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(save.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout save$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("save"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*save)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout save$layout() {
+        return save$LAYOUT;
+    }
+
+    private static final long save$OFFSET = 528;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*save)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static final long save$offset() {
+        return save$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*save)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment save(MemorySegment struct) {
+        return struct.get(save$LAYOUT, save$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*save)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static void save(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(save$LAYOUT, save$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_validateOnParse)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_validateOnParse {
+
+        get_validateOnParse() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_validateOnParse.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_validateOnParse.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_validateOnParse$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_validateOnParse"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_validateOnParse)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_validateOnParse$layout() {
+        return get_validateOnParse$LAYOUT;
+    }
+
+    private static final long get_validateOnParse$OFFSET = 536;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_validateOnParse)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_validateOnParse$offset() {
+        return get_validateOnParse$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_validateOnParse)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_validateOnParse(MemorySegment struct) {
+        return struct.get(get_validateOnParse$LAYOUT, get_validateOnParse$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_validateOnParse)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_validateOnParse(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_validateOnParse$LAYOUT, get_validateOnParse$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*put_validateOnParse)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static class put_validateOnParse {
+
+        put_validateOnParse() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, short _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_SHORT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(put_validateOnParse.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(put_validateOnParse.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, short _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout put_validateOnParse$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("put_validateOnParse"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_validateOnParse)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout put_validateOnParse$layout() {
+        return put_validateOnParse$LAYOUT;
+    }
+
+    private static final long put_validateOnParse$OFFSET = 544;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_validateOnParse)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final long put_validateOnParse$offset() {
+        return put_validateOnParse$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_validateOnParse)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment put_validateOnParse(MemorySegment struct) {
+        return struct.get(put_validateOnParse$LAYOUT, put_validateOnParse$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_validateOnParse)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static void put_validateOnParse(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(put_validateOnParse$LAYOUT, put_validateOnParse$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_resolveExternals)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_resolveExternals {
+
+        get_resolveExternals() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_resolveExternals.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_resolveExternals.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_resolveExternals$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_resolveExternals"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_resolveExternals)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_resolveExternals$layout() {
+        return get_resolveExternals$LAYOUT;
+    }
+
+    private static final long get_resolveExternals$OFFSET = 552;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_resolveExternals)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_resolveExternals$offset() {
+        return get_resolveExternals$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_resolveExternals)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_resolveExternals(MemorySegment struct) {
+        return struct.get(get_resolveExternals$LAYOUT, get_resolveExternals$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_resolveExternals)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_resolveExternals(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_resolveExternals$LAYOUT, get_resolveExternals$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*put_resolveExternals)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static class put_resolveExternals {
+
+        put_resolveExternals() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, short _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_SHORT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(put_resolveExternals.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(put_resolveExternals.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, short _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout put_resolveExternals$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("put_resolveExternals"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_resolveExternals)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout put_resolveExternals$layout() {
+        return put_resolveExternals$LAYOUT;
+    }
+
+    private static final long put_resolveExternals$OFFSET = 560;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_resolveExternals)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final long put_resolveExternals$offset() {
+        return put_resolveExternals$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_resolveExternals)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment put_resolveExternals(MemorySegment struct) {
+        return struct.get(put_resolveExternals$LAYOUT, put_resolveExternals$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_resolveExternals)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static void put_resolveExternals(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(put_resolveExternals$LAYOUT, put_resolveExternals$OFFSET, fieldValue);
     }
-    public static void QueryInterface$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.QueryInterface$VH.set(seg, x);
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.QueryInterface$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void QueryInterface$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.QueryInterface$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static QueryInterface QueryInterface (MemorySegment segment, MemorySession session) {
-        return QueryInterface.ofAddress(QueryInterface$get(segment), session);
-    }
-    static final FunctionDescriptor AddRef$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle AddRef$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.AddRef$FUNC
-    );
-    public interface AddRef {
-
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(AddRef fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(AddRef.class, fi, IXMLDOMDocumentVtbl.AddRef$FUNC, session);
-        }
-        static AddRef ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.AddRef$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle AddRef$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddRef"));
-    public static VarHandle AddRef$VH() {
-        return IXMLDOMDocumentVtbl.AddRef$VH;
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_preserveWhiteSpace)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_preserveWhiteSpace {
+
+        get_preserveWhiteSpace() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_preserveWhiteSpace.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_preserveWhiteSpace.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_preserveWhiteSpace$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_preserveWhiteSpace"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_preserveWhiteSpace)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_preserveWhiteSpace$layout() {
+        return get_preserveWhiteSpace$LAYOUT;
+    }
+
+    private static final long get_preserveWhiteSpace$OFFSET = 568;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_preserveWhiteSpace)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_preserveWhiteSpace$offset() {
+        return get_preserveWhiteSpace$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_preserveWhiteSpace)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_preserveWhiteSpace(MemorySegment struct) {
+        return struct.get(get_preserveWhiteSpace$LAYOUT, get_preserveWhiteSpace$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_preserveWhiteSpace)(IXMLDOMDocument *, VARIANT_BOOL *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_preserveWhiteSpace(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_preserveWhiteSpace$LAYOUT, get_preserveWhiteSpace$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*put_preserveWhiteSpace)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static class put_preserveWhiteSpace {
+
+        put_preserveWhiteSpace() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, short _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_SHORT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(put_preserveWhiteSpace.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(put_preserveWhiteSpace.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, short _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout put_preserveWhiteSpace$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("put_preserveWhiteSpace"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_preserveWhiteSpace)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout put_preserveWhiteSpace$layout() {
+        return put_preserveWhiteSpace$LAYOUT;
+    }
+
+    private static final long put_preserveWhiteSpace$OFFSET = 576;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_preserveWhiteSpace)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final long put_preserveWhiteSpace$offset() {
+        return put_preserveWhiteSpace$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_preserveWhiteSpace)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment put_preserveWhiteSpace(MemorySegment struct) {
+        return struct.get(put_preserveWhiteSpace$LAYOUT, put_preserveWhiteSpace$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_preserveWhiteSpace)(IXMLDOMDocument *, VARIANT_BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static void put_preserveWhiteSpace(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(put_preserveWhiteSpace$LAYOUT, put_preserveWhiteSpace$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*put_onreadystatechange)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static class put_onreadystatechange {
+
+        put_onreadystatechange() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            tagVARIANT.layout()
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(put_onreadystatechange.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(put_onreadystatechange.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
     }
-    public static MemoryAddress AddRef$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.AddRef$VH.get(seg);
+
+    private static final AddressLayout put_onreadystatechange$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("put_onreadystatechange"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_onreadystatechange)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout put_onreadystatechange$layout() {
+        return put_onreadystatechange$LAYOUT;
+    }
+
+    private static final long put_onreadystatechange$OFFSET = 584;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_onreadystatechange)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static final long put_onreadystatechange$offset() {
+        return put_onreadystatechange$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_onreadystatechange)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment put_onreadystatechange(MemorySegment struct) {
+        return struct.get(put_onreadystatechange$LAYOUT, put_onreadystatechange$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_onreadystatechange)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static void put_onreadystatechange(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(put_onreadystatechange$LAYOUT, put_onreadystatechange$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*put_ondataavailable)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static class put_ondataavailable {
+
+        put_ondataavailable() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            tagVARIANT.layout()
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(put_ondataavailable.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(put_ondataavailable.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout put_ondataavailable$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("put_ondataavailable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_ondataavailable)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout put_ondataavailable$layout() {
+        return put_ondataavailable$LAYOUT;
+    }
+
+    private static final long put_ondataavailable$OFFSET = 592;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_ondataavailable)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static final long put_ondataavailable$offset() {
+        return put_ondataavailable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_ondataavailable)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment put_ondataavailable(MemorySegment struct) {
+        return struct.get(put_ondataavailable$LAYOUT, put_ondataavailable$OFFSET);
     }
-    public static void AddRef$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.AddRef$VH.set(seg, x);
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.AddRef$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddRef$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.AddRef$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static AddRef AddRef (MemorySegment segment, MemorySession session) {
-        return AddRef.ofAddress(AddRef$get(segment), session);
-    }
-    static final FunctionDescriptor Release$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Release$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.Release$FUNC
-    );
-    public interface Release {
-
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Release fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Release.class, fi, IXMLDOMDocumentVtbl.Release$FUNC, session);
-        }
-        static Release ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.Release$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_ondataavailable)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static void put_ondataavailable(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(put_ondataavailable$LAYOUT, put_ondataavailable$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*put_ontransformnode)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static class put_ontransformnode {
+
+        put_ontransformnode() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            tagVARIANT.layout()
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(put_ontransformnode.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(put_ontransformnode.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
         }
-    }
-
-    static final VarHandle Release$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Release"));
-    public static VarHandle Release$VH() {
-        return IXMLDOMDocumentVtbl.Release$VH;
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout put_ontransformnode$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("put_ontransformnode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_ontransformnode)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout put_ontransformnode$layout() {
+        return put_ontransformnode$LAYOUT;
+    }
+
+    private static final long put_ontransformnode$OFFSET = 600;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_ontransformnode)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static final long put_ontransformnode$offset() {
+        return put_ontransformnode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_ontransformnode)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment put_ontransformnode(MemorySegment struct) {
+        return struct.get(put_ontransformnode$LAYOUT, put_ontransformnode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_ontransformnode)(IXMLDOMDocument *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static void put_ontransformnode(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(put_ontransformnode$LAYOUT, put_ontransformnode$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
     }
-    public static MemoryAddress Release$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.Release$VH.get(seg);
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
     }
-    public static void Release$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.Release$VH.set(seg, x);
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
     }
-    public static MemoryAddress Release$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.Release$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
     }
-    public static void Release$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.Release$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Release Release (MemorySegment segment, MemorySession session) {
-        return Release.ofAddress(Release$get(segment), session);
-    }
-    static final FunctionDescriptor GetTypeInfoCount$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetTypeInfoCount$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.GetTypeInfoCount$FUNC
-    );
-    public interface GetTypeInfoCount {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(GetTypeInfoCount fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetTypeInfoCount.class, fi, IXMLDOMDocumentVtbl.GetTypeInfoCount$FUNC, session);
-        }
-        static GetTypeInfoCount ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.GetTypeInfoCount$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle GetTypeInfoCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetTypeInfoCount"));
-    public static VarHandle GetTypeInfoCount$VH() {
-        return IXMLDOMDocumentVtbl.GetTypeInfoCount$VH;
-    }
-    public static MemoryAddress GetTypeInfoCount$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.GetTypeInfoCount$VH.get(seg);
-    }
-    public static void GetTypeInfoCount$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.GetTypeInfoCount$VH.set(seg, x);
-    }
-    public static MemoryAddress GetTypeInfoCount$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.GetTypeInfoCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetTypeInfoCount$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.GetTypeInfoCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetTypeInfoCount GetTypeInfoCount (MemorySegment segment, MemorySession session) {
-        return GetTypeInfoCount.ofAddress(GetTypeInfoCount$get(segment), session);
-    }
-    static final FunctionDescriptor GetTypeInfo$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetTypeInfo$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.GetTypeInfo$FUNC
-    );
-    public interface GetTypeInfo {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, int _x2, java.lang.foreign.MemoryAddress _x3);
-        static MemorySegment allocate(GetTypeInfo fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetTypeInfo.class, fi, IXMLDOMDocumentVtbl.GetTypeInfo$FUNC, session);
-        }
-        static GetTypeInfo ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, int __x2, java.lang.foreign.MemoryAddress __x3) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.GetTypeInfo$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, __x2, (java.lang.foreign.Addressable)__x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle GetTypeInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetTypeInfo"));
-    public static VarHandle GetTypeInfo$VH() {
-        return IXMLDOMDocumentVtbl.GetTypeInfo$VH;
-    }
-    public static MemoryAddress GetTypeInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.GetTypeInfo$VH.get(seg);
-    }
-    public static void GetTypeInfo$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.GetTypeInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress GetTypeInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.GetTypeInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetTypeInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.GetTypeInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetTypeInfo GetTypeInfo (MemorySegment segment, MemorySession session) {
-        return GetTypeInfo.ofAddress(GetTypeInfo$get(segment), session);
-    }
-    static final FunctionDescriptor GetIDsOfNames$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetIDsOfNames$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.GetIDsOfNames$FUNC
-    );
-    public interface GetIDsOfNames {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, int _x3, int _x4, java.lang.foreign.MemoryAddress _x5);
-        static MemorySegment allocate(GetIDsOfNames fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetIDsOfNames.class, fi, IXMLDOMDocumentVtbl.GetIDsOfNames$FUNC, session);
-        }
-        static GetIDsOfNames ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, int __x3, int __x4, java.lang.foreign.MemoryAddress __x5) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.GetIDsOfNames$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, __x3, __x4, (java.lang.foreign.Addressable)__x5);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle GetIDsOfNames$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetIDsOfNames"));
-    public static VarHandle GetIDsOfNames$VH() {
-        return IXMLDOMDocumentVtbl.GetIDsOfNames$VH;
-    }
-    public static MemoryAddress GetIDsOfNames$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.GetIDsOfNames$VH.get(seg);
-    }
-    public static void GetIDsOfNames$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.GetIDsOfNames$VH.set(seg, x);
-    }
-    public static MemoryAddress GetIDsOfNames$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.GetIDsOfNames$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetIDsOfNames$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.GetIDsOfNames$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetIDsOfNames GetIDsOfNames (MemorySegment segment, MemorySession session) {
-        return GetIDsOfNames.ofAddress(GetIDsOfNames$get(segment), session);
-    }
-    static final FunctionDescriptor Invoke$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Invoke$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.Invoke$FUNC
-    );
-    public interface Invoke {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, java.lang.foreign.MemoryAddress _x2, int _x3, short _x4, java.lang.foreign.MemoryAddress _x5, java.lang.foreign.MemoryAddress _x6, java.lang.foreign.MemoryAddress _x7, java.lang.foreign.MemoryAddress _x8);
-        static MemorySegment allocate(Invoke fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Invoke.class, fi, IXMLDOMDocumentVtbl.Invoke$FUNC, session);
-        }
-        static Invoke ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, java.lang.foreign.MemoryAddress __x2, int __x3, short __x4, java.lang.foreign.MemoryAddress __x5, java.lang.foreign.MemoryAddress __x6, java.lang.foreign.MemoryAddress __x7, java.lang.foreign.MemoryAddress __x8) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.Invoke$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, (java.lang.foreign.Addressable)__x2, __x3, __x4, (java.lang.foreign.Addressable)__x5, (java.lang.foreign.Addressable)__x6, (java.lang.foreign.Addressable)__x7, (java.lang.foreign.Addressable)__x8);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle Invoke$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Invoke"));
-    public static VarHandle Invoke$VH() {
-        return IXMLDOMDocumentVtbl.Invoke$VH;
-    }
-    public static MemoryAddress Invoke$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.Invoke$VH.get(seg);
-    }
-    public static void Invoke$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.Invoke$VH.set(seg, x);
-    }
-    public static MemoryAddress Invoke$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.Invoke$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Invoke$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.Invoke$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Invoke Invoke (MemorySegment segment, MemorySession session) {
-        return Invoke.ofAddress(Invoke$get(segment), session);
-    }
-    static final FunctionDescriptor get_nodeName$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_nodeName$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_nodeName$FUNC
-    );
-    public interface get_nodeName {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_nodeName fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_nodeName.class, fi, IXMLDOMDocumentVtbl.get_nodeName$FUNC, session);
-        }
-        static get_nodeName ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_nodeName$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_nodeName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_nodeName"));
-    public static VarHandle get_nodeName$VH() {
-        return IXMLDOMDocumentVtbl.get_nodeName$VH;
-    }
-    public static MemoryAddress get_nodeName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_nodeName$VH.get(seg);
-    }
-    public static void get_nodeName$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_nodeName$VH.set(seg, x);
-    }
-    public static MemoryAddress get_nodeName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_nodeName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_nodeName$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_nodeName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_nodeName get_nodeName (MemorySegment segment, MemorySession session) {
-        return get_nodeName.ofAddress(get_nodeName$get(segment), session);
-    }
-    static final FunctionDescriptor get_nodeValue$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_nodeValue$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_nodeValue$FUNC
-    );
-    public interface get_nodeValue {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_nodeValue fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_nodeValue.class, fi, IXMLDOMDocumentVtbl.get_nodeValue$FUNC, session);
-        }
-        static get_nodeValue ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_nodeValue$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_nodeValue$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_nodeValue"));
-    public static VarHandle get_nodeValue$VH() {
-        return IXMLDOMDocumentVtbl.get_nodeValue$VH;
-    }
-    public static MemoryAddress get_nodeValue$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_nodeValue$VH.get(seg);
-    }
-    public static void get_nodeValue$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_nodeValue$VH.set(seg, x);
-    }
-    public static MemoryAddress get_nodeValue$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_nodeValue$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_nodeValue$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_nodeValue$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_nodeValue get_nodeValue (MemorySegment segment, MemorySession session) {
-        return get_nodeValue.ofAddress(get_nodeValue$get(segment), session);
-    }
-    static final FunctionDescriptor put_nodeValue$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("vt"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved3"),
-                    MemoryLayout.unionLayout(
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("llVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("lVal"),
-                        Constants$root.C_CHAR$LAYOUT.withName("bVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("iVal"),
-                        Constants$root.C_FLOAT$LAYOUT.withName("fltVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("dblVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("boolVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("__OBSOLETE__VARIANT_BOOL"),
-                        Constants$root.C_LONG$LAYOUT.withName("scode"),
-                        MemoryLayout.unionLayout(
-                            MemoryLayout.structLayout(
-                                Constants$root.C_LONG$LAYOUT.withName("Lo"),
-                                Constants$root.C_LONG$LAYOUT.withName("Hi")
-                            ).withName("$anon$0"),
-                            Constants$root.C_LONG_LONG$LAYOUT.withName("int64")
-                        ).withName("cyVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("date"),
-                        Constants$root.C_POINTER$LAYOUT.withName("bstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("punkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("parray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("piVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("plVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pllVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pfltVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdblVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pboolVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("__OBSOLETE__VARIANT_PBOOL"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pscode"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcyVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdate"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppunkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pparray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pvarVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("byref"),
-                        Constants$root.C_CHAR$LAYOUT.withName("cVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("uiVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("ulVal"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("ullVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("intVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("uintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdecVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puiVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pulVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pullVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puintVal"),
-                        MemoryLayout.structLayout(
-                            Constants$root.C_POINTER$LAYOUT.withName("pvRecord"),
-                            Constants$root.C_POINTER$LAYOUT.withName("pRecInfo")
-                        ).withName("$anon$0")
-                    ).withName("$anon$0")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_CHAR$LAYOUT.withName("scale"),
-                            Constants$root.C_CHAR$LAYOUT.withName("sign")
-                        ).withName("$anon$0"),
-                        Constants$root.C_SHORT$LAYOUT.withName("signscale")
-                    ).withName("$anon$0"),
-                    Constants$root.C_LONG$LAYOUT.withName("Hi32"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("Lo32"),
-                            Constants$root.C_LONG$LAYOUT.withName("Mid32")
-                        ).withName("$anon$0"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("Lo64")
-                    ).withName("$anon$1")
-                ).withName("decVal")
-            ).withName("$anon$0")
-        ).withName("tagVARIANT")
-    );
-    static final MethodHandle put_nodeValue$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.put_nodeValue$FUNC
-    );
-    public interface put_nodeValue {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemorySegment _x1);
-        static MemorySegment allocate(put_nodeValue fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(put_nodeValue.class, fi, IXMLDOMDocumentVtbl.put_nodeValue$FUNC, session);
-        }
-        static put_nodeValue ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemorySegment __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.put_nodeValue$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle put_nodeValue$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("put_nodeValue"));
-    public static VarHandle put_nodeValue$VH() {
-        return IXMLDOMDocumentVtbl.put_nodeValue$VH;
-    }
-    public static MemoryAddress put_nodeValue$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_nodeValue$VH.get(seg);
-    }
-    public static void put_nodeValue$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_nodeValue$VH.set(seg, x);
-    }
-    public static MemoryAddress put_nodeValue$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_nodeValue$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void put_nodeValue$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_nodeValue$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static put_nodeValue put_nodeValue (MemorySegment segment, MemorySession session) {
-        return put_nodeValue.ofAddress(put_nodeValue$get(segment), session);
-    }
-    static final FunctionDescriptor get_nodeType$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_nodeType$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_nodeType$FUNC
-    );
-    public interface get_nodeType {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_nodeType fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_nodeType.class, fi, IXMLDOMDocumentVtbl.get_nodeType$FUNC, session);
-        }
-        static get_nodeType ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_nodeType$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_nodeType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_nodeType"));
-    public static VarHandle get_nodeType$VH() {
-        return IXMLDOMDocumentVtbl.get_nodeType$VH;
-    }
-    public static MemoryAddress get_nodeType$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_nodeType$VH.get(seg);
-    }
-    public static void get_nodeType$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_nodeType$VH.set(seg, x);
-    }
-    public static MemoryAddress get_nodeType$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_nodeType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_nodeType$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_nodeType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_nodeType get_nodeType (MemorySegment segment, MemorySession session) {
-        return get_nodeType.ofAddress(get_nodeType$get(segment), session);
-    }
-    static final FunctionDescriptor get_parentNode$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_parentNode$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_parentNode$FUNC
-    );
-    public interface get_parentNode {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_parentNode fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_parentNode.class, fi, IXMLDOMDocumentVtbl.get_parentNode$FUNC, session);
-        }
-        static get_parentNode ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_parentNode$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_parentNode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_parentNode"));
-    public static VarHandle get_parentNode$VH() {
-        return IXMLDOMDocumentVtbl.get_parentNode$VH;
-    }
-    public static MemoryAddress get_parentNode$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_parentNode$VH.get(seg);
-    }
-    public static void get_parentNode$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_parentNode$VH.set(seg, x);
-    }
-    public static MemoryAddress get_parentNode$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_parentNode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_parentNode$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_parentNode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_parentNode get_parentNode (MemorySegment segment, MemorySession session) {
-        return get_parentNode.ofAddress(get_parentNode$get(segment), session);
-    }
-    static final FunctionDescriptor get_childNodes$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_childNodes$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_childNodes$FUNC
-    );
-    public interface get_childNodes {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_childNodes fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_childNodes.class, fi, IXMLDOMDocumentVtbl.get_childNodes$FUNC, session);
-        }
-        static get_childNodes ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_childNodes$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_childNodes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_childNodes"));
-    public static VarHandle get_childNodes$VH() {
-        return IXMLDOMDocumentVtbl.get_childNodes$VH;
-    }
-    public static MemoryAddress get_childNodes$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_childNodes$VH.get(seg);
-    }
-    public static void get_childNodes$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_childNodes$VH.set(seg, x);
-    }
-    public static MemoryAddress get_childNodes$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_childNodes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_childNodes$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_childNodes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_childNodes get_childNodes (MemorySegment segment, MemorySession session) {
-        return get_childNodes.ofAddress(get_childNodes$get(segment), session);
-    }
-    static final FunctionDescriptor get_firstChild$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_firstChild$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_firstChild$FUNC
-    );
-    public interface get_firstChild {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_firstChild fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_firstChild.class, fi, IXMLDOMDocumentVtbl.get_firstChild$FUNC, session);
-        }
-        static get_firstChild ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_firstChild$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_firstChild$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_firstChild"));
-    public static VarHandle get_firstChild$VH() {
-        return IXMLDOMDocumentVtbl.get_firstChild$VH;
-    }
-    public static MemoryAddress get_firstChild$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_firstChild$VH.get(seg);
-    }
-    public static void get_firstChild$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_firstChild$VH.set(seg, x);
-    }
-    public static MemoryAddress get_firstChild$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_firstChild$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_firstChild$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_firstChild$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_firstChild get_firstChild (MemorySegment segment, MemorySession session) {
-        return get_firstChild.ofAddress(get_firstChild$get(segment), session);
-    }
-    static final FunctionDescriptor get_lastChild$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_lastChild$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_lastChild$FUNC
-    );
-    public interface get_lastChild {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_lastChild fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_lastChild.class, fi, IXMLDOMDocumentVtbl.get_lastChild$FUNC, session);
-        }
-        static get_lastChild ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_lastChild$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_lastChild$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_lastChild"));
-    public static VarHandle get_lastChild$VH() {
-        return IXMLDOMDocumentVtbl.get_lastChild$VH;
-    }
-    public static MemoryAddress get_lastChild$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_lastChild$VH.get(seg);
-    }
-    public static void get_lastChild$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_lastChild$VH.set(seg, x);
-    }
-    public static MemoryAddress get_lastChild$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_lastChild$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_lastChild$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_lastChild$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_lastChild get_lastChild (MemorySegment segment, MemorySession session) {
-        return get_lastChild.ofAddress(get_lastChild$get(segment), session);
-    }
-    static final FunctionDescriptor get_previousSibling$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_previousSibling$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_previousSibling$FUNC
-    );
-    public interface get_previousSibling {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_previousSibling fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_previousSibling.class, fi, IXMLDOMDocumentVtbl.get_previousSibling$FUNC, session);
-        }
-        static get_previousSibling ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_previousSibling$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_previousSibling$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_previousSibling"));
-    public static VarHandle get_previousSibling$VH() {
-        return IXMLDOMDocumentVtbl.get_previousSibling$VH;
-    }
-    public static MemoryAddress get_previousSibling$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_previousSibling$VH.get(seg);
-    }
-    public static void get_previousSibling$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_previousSibling$VH.set(seg, x);
-    }
-    public static MemoryAddress get_previousSibling$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_previousSibling$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_previousSibling$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_previousSibling$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_previousSibling get_previousSibling (MemorySegment segment, MemorySession session) {
-        return get_previousSibling.ofAddress(get_previousSibling$get(segment), session);
-    }
-    static final FunctionDescriptor get_nextSibling$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_nextSibling$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_nextSibling$FUNC
-    );
-    public interface get_nextSibling {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_nextSibling fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_nextSibling.class, fi, IXMLDOMDocumentVtbl.get_nextSibling$FUNC, session);
-        }
-        static get_nextSibling ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_nextSibling$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_nextSibling$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_nextSibling"));
-    public static VarHandle get_nextSibling$VH() {
-        return IXMLDOMDocumentVtbl.get_nextSibling$VH;
-    }
-    public static MemoryAddress get_nextSibling$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_nextSibling$VH.get(seg);
-    }
-    public static void get_nextSibling$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_nextSibling$VH.set(seg, x);
-    }
-    public static MemoryAddress get_nextSibling$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_nextSibling$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_nextSibling$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_nextSibling$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_nextSibling get_nextSibling (MemorySegment segment, MemorySession session) {
-        return get_nextSibling.ofAddress(get_nextSibling$get(segment), session);
-    }
-    static final FunctionDescriptor get_attributes$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_attributes$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_attributes$FUNC
-    );
-    public interface get_attributes {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_attributes fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_attributes.class, fi, IXMLDOMDocumentVtbl.get_attributes$FUNC, session);
-        }
-        static get_attributes ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_attributes$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_attributes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_attributes"));
-    public static VarHandle get_attributes$VH() {
-        return IXMLDOMDocumentVtbl.get_attributes$VH;
-    }
-    public static MemoryAddress get_attributes$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_attributes$VH.get(seg);
-    }
-    public static void get_attributes$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_attributes$VH.set(seg, x);
-    }
-    public static MemoryAddress get_attributes$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_attributes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_attributes$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_attributes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_attributes get_attributes (MemorySegment segment, MemorySession session) {
-        return get_attributes.ofAddress(get_attributes$get(segment), session);
-    }
-    static final FunctionDescriptor insertBefore$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("vt"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved3"),
-                    MemoryLayout.unionLayout(
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("llVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("lVal"),
-                        Constants$root.C_CHAR$LAYOUT.withName("bVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("iVal"),
-                        Constants$root.C_FLOAT$LAYOUT.withName("fltVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("dblVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("boolVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("__OBSOLETE__VARIANT_BOOL"),
-                        Constants$root.C_LONG$LAYOUT.withName("scode"),
-                        MemoryLayout.unionLayout(
-                            MemoryLayout.structLayout(
-                                Constants$root.C_LONG$LAYOUT.withName("Lo"),
-                                Constants$root.C_LONG$LAYOUT.withName("Hi")
-                            ).withName("$anon$0"),
-                            Constants$root.C_LONG_LONG$LAYOUT.withName("int64")
-                        ).withName("cyVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("date"),
-                        Constants$root.C_POINTER$LAYOUT.withName("bstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("punkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("parray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("piVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("plVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pllVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pfltVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdblVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pboolVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("__OBSOLETE__VARIANT_PBOOL"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pscode"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcyVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdate"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppunkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pparray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pvarVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("byref"),
-                        Constants$root.C_CHAR$LAYOUT.withName("cVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("uiVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("ulVal"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("ullVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("intVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("uintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdecVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puiVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pulVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pullVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puintVal"),
-                        MemoryLayout.structLayout(
-                            Constants$root.C_POINTER$LAYOUT.withName("pvRecord"),
-                            Constants$root.C_POINTER$LAYOUT.withName("pRecInfo")
-                        ).withName("$anon$0")
-                    ).withName("$anon$0")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_CHAR$LAYOUT.withName("scale"),
-                            Constants$root.C_CHAR$LAYOUT.withName("sign")
-                        ).withName("$anon$0"),
-                        Constants$root.C_SHORT$LAYOUT.withName("signscale")
-                    ).withName("$anon$0"),
-                    Constants$root.C_LONG$LAYOUT.withName("Hi32"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("Lo32"),
-                            Constants$root.C_LONG$LAYOUT.withName("Mid32")
-                        ).withName("$anon$0"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("Lo64")
-                    ).withName("$anon$1")
-                ).withName("decVal")
-            ).withName("$anon$0")
-        ).withName("tagVARIANT"),
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle insertBefore$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.insertBefore$FUNC
-    );
-    public interface insertBefore {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemorySegment _x2, java.lang.foreign.MemoryAddress _x3);
-        static MemorySegment allocate(insertBefore fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(insertBefore.class, fi, IXMLDOMDocumentVtbl.insertBefore$FUNC, session);
-        }
-        static insertBefore ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemorySegment __x2, java.lang.foreign.MemoryAddress __x3) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.insertBefore$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, __x2, (java.lang.foreign.Addressable)__x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle insertBefore$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("insertBefore"));
-    public static VarHandle insertBefore$VH() {
-        return IXMLDOMDocumentVtbl.insertBefore$VH;
-    }
-    public static MemoryAddress insertBefore$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.insertBefore$VH.get(seg);
-    }
-    public static void insertBefore$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.insertBefore$VH.set(seg, x);
-    }
-    public static MemoryAddress insertBefore$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.insertBefore$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void insertBefore$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.insertBefore$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static insertBefore insertBefore (MemorySegment segment, MemorySession session) {
-        return insertBefore.ofAddress(insertBefore$get(segment), session);
-    }
-    static final FunctionDescriptor replaceChild$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle replaceChild$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.replaceChild$FUNC
-    );
-    public interface replaceChild {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3);
-        static MemorySegment allocate(replaceChild fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(replaceChild.class, fi, IXMLDOMDocumentVtbl.replaceChild$FUNC, session);
-        }
-        static replaceChild ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.replaceChild$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle replaceChild$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("replaceChild"));
-    public static VarHandle replaceChild$VH() {
-        return IXMLDOMDocumentVtbl.replaceChild$VH;
-    }
-    public static MemoryAddress replaceChild$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.replaceChild$VH.get(seg);
-    }
-    public static void replaceChild$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.replaceChild$VH.set(seg, x);
-    }
-    public static MemoryAddress replaceChild$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.replaceChild$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void replaceChild$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.replaceChild$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static replaceChild replaceChild (MemorySegment segment, MemorySession session) {
-        return replaceChild.ofAddress(replaceChild$get(segment), session);
-    }
-    static final FunctionDescriptor removeChild$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle removeChild$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.removeChild$FUNC
-    );
-    public interface removeChild {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(removeChild fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(removeChild.class, fi, IXMLDOMDocumentVtbl.removeChild$FUNC, session);
-        }
-        static removeChild ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.removeChild$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle removeChild$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("removeChild"));
-    public static VarHandle removeChild$VH() {
-        return IXMLDOMDocumentVtbl.removeChild$VH;
-    }
-    public static MemoryAddress removeChild$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.removeChild$VH.get(seg);
-    }
-    public static void removeChild$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.removeChild$VH.set(seg, x);
-    }
-    public static MemoryAddress removeChild$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.removeChild$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void removeChild$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.removeChild$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static removeChild removeChild (MemorySegment segment, MemorySession session) {
-        return removeChild.ofAddress(removeChild$get(segment), session);
-    }
-    static final FunctionDescriptor appendChild$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle appendChild$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.appendChild$FUNC
-    );
-    public interface appendChild {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(appendChild fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(appendChild.class, fi, IXMLDOMDocumentVtbl.appendChild$FUNC, session);
-        }
-        static appendChild ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.appendChild$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle appendChild$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("appendChild"));
-    public static VarHandle appendChild$VH() {
-        return IXMLDOMDocumentVtbl.appendChild$VH;
-    }
-    public static MemoryAddress appendChild$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.appendChild$VH.get(seg);
-    }
-    public static void appendChild$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.appendChild$VH.set(seg, x);
-    }
-    public static MemoryAddress appendChild$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.appendChild$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void appendChild$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.appendChild$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static appendChild appendChild (MemorySegment segment, MemorySession session) {
-        return appendChild.ofAddress(appendChild$get(segment), session);
-    }
-    static final FunctionDescriptor hasChildNodes$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle hasChildNodes$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.hasChildNodes$FUNC
-    );
-    public interface hasChildNodes {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(hasChildNodes fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(hasChildNodes.class, fi, IXMLDOMDocumentVtbl.hasChildNodes$FUNC, session);
-        }
-        static hasChildNodes ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.hasChildNodes$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle hasChildNodes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hasChildNodes"));
-    public static VarHandle hasChildNodes$VH() {
-        return IXMLDOMDocumentVtbl.hasChildNodes$VH;
-    }
-    public static MemoryAddress hasChildNodes$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.hasChildNodes$VH.get(seg);
-    }
-    public static void hasChildNodes$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.hasChildNodes$VH.set(seg, x);
-    }
-    public static MemoryAddress hasChildNodes$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.hasChildNodes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hasChildNodes$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.hasChildNodes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static hasChildNodes hasChildNodes (MemorySegment segment, MemorySession session) {
-        return hasChildNodes.ofAddress(hasChildNodes$get(segment), session);
-    }
-    static final FunctionDescriptor get_ownerDocument$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_ownerDocument$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_ownerDocument$FUNC
-    );
-    public interface get_ownerDocument {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_ownerDocument fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_ownerDocument.class, fi, IXMLDOMDocumentVtbl.get_ownerDocument$FUNC, session);
-        }
-        static get_ownerDocument ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_ownerDocument$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_ownerDocument$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_ownerDocument"));
-    public static VarHandle get_ownerDocument$VH() {
-        return IXMLDOMDocumentVtbl.get_ownerDocument$VH;
-    }
-    public static MemoryAddress get_ownerDocument$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_ownerDocument$VH.get(seg);
-    }
-    public static void get_ownerDocument$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_ownerDocument$VH.set(seg, x);
-    }
-    public static MemoryAddress get_ownerDocument$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_ownerDocument$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_ownerDocument$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_ownerDocument$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_ownerDocument get_ownerDocument (MemorySegment segment, MemorySession session) {
-        return get_ownerDocument.ofAddress(get_ownerDocument$get(segment), session);
-    }
-    static final FunctionDescriptor cloneNode$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle cloneNode$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.cloneNode$FUNC
-    );
-    public interface cloneNode {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, short _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(cloneNode fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(cloneNode.class, fi, IXMLDOMDocumentVtbl.cloneNode$FUNC, session);
-        }
-        static cloneNode ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, short __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.cloneNode$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle cloneNode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cloneNode"));
-    public static VarHandle cloneNode$VH() {
-        return IXMLDOMDocumentVtbl.cloneNode$VH;
-    }
-    public static MemoryAddress cloneNode$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.cloneNode$VH.get(seg);
-    }
-    public static void cloneNode$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.cloneNode$VH.set(seg, x);
-    }
-    public static MemoryAddress cloneNode$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.cloneNode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cloneNode$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.cloneNode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static cloneNode cloneNode (MemorySegment segment, MemorySession session) {
-        return cloneNode.ofAddress(cloneNode$get(segment), session);
-    }
-    static final FunctionDescriptor get_nodeTypeString$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_nodeTypeString$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_nodeTypeString$FUNC
-    );
-    public interface get_nodeTypeString {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_nodeTypeString fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_nodeTypeString.class, fi, IXMLDOMDocumentVtbl.get_nodeTypeString$FUNC, session);
-        }
-        static get_nodeTypeString ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_nodeTypeString$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_nodeTypeString$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_nodeTypeString"));
-    public static VarHandle get_nodeTypeString$VH() {
-        return IXMLDOMDocumentVtbl.get_nodeTypeString$VH;
-    }
-    public static MemoryAddress get_nodeTypeString$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_nodeTypeString$VH.get(seg);
-    }
-    public static void get_nodeTypeString$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_nodeTypeString$VH.set(seg, x);
-    }
-    public static MemoryAddress get_nodeTypeString$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_nodeTypeString$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_nodeTypeString$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_nodeTypeString$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_nodeTypeString get_nodeTypeString (MemorySegment segment, MemorySession session) {
-        return get_nodeTypeString.ofAddress(get_nodeTypeString$get(segment), session);
-    }
-    static final FunctionDescriptor get_text$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_text$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_text$FUNC
-    );
-    public interface get_text {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_text fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_text.class, fi, IXMLDOMDocumentVtbl.get_text$FUNC, session);
-        }
-        static get_text ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_text$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_text$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_text"));
-    public static VarHandle get_text$VH() {
-        return IXMLDOMDocumentVtbl.get_text$VH;
-    }
-    public static MemoryAddress get_text$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_text$VH.get(seg);
-    }
-    public static void get_text$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_text$VH.set(seg, x);
-    }
-    public static MemoryAddress get_text$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_text$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_text$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_text$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_text get_text (MemorySegment segment, MemorySession session) {
-        return get_text.ofAddress(get_text$get(segment), session);
-    }
-    static final FunctionDescriptor put_text$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle put_text$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.put_text$FUNC
-    );
-    public interface put_text {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(put_text fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(put_text.class, fi, IXMLDOMDocumentVtbl.put_text$FUNC, session);
-        }
-        static put_text ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.put_text$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle put_text$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("put_text"));
-    public static VarHandle put_text$VH() {
-        return IXMLDOMDocumentVtbl.put_text$VH;
-    }
-    public static MemoryAddress put_text$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_text$VH.get(seg);
-    }
-    public static void put_text$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_text$VH.set(seg, x);
-    }
-    public static MemoryAddress put_text$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_text$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void put_text$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_text$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static put_text put_text (MemorySegment segment, MemorySession session) {
-        return put_text.ofAddress(put_text$get(segment), session);
-    }
-    static final FunctionDescriptor get_specified$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_specified$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_specified$FUNC
-    );
-    public interface get_specified {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_specified fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_specified.class, fi, IXMLDOMDocumentVtbl.get_specified$FUNC, session);
-        }
-        static get_specified ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_specified$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_specified$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_specified"));
-    public static VarHandle get_specified$VH() {
-        return IXMLDOMDocumentVtbl.get_specified$VH;
-    }
-    public static MemoryAddress get_specified$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_specified$VH.get(seg);
-    }
-    public static void get_specified$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_specified$VH.set(seg, x);
-    }
-    public static MemoryAddress get_specified$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_specified$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_specified$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_specified$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_specified get_specified (MemorySegment segment, MemorySession session) {
-        return get_specified.ofAddress(get_specified$get(segment), session);
-    }
-    static final FunctionDescriptor get_definition$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_definition$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_definition$FUNC
-    );
-    public interface get_definition {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_definition fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_definition.class, fi, IXMLDOMDocumentVtbl.get_definition$FUNC, session);
-        }
-        static get_definition ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_definition$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_definition$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_definition"));
-    public static VarHandle get_definition$VH() {
-        return IXMLDOMDocumentVtbl.get_definition$VH;
-    }
-    public static MemoryAddress get_definition$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_definition$VH.get(seg);
-    }
-    public static void get_definition$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_definition$VH.set(seg, x);
-    }
-    public static MemoryAddress get_definition$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_definition$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_definition$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_definition$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_definition get_definition (MemorySegment segment, MemorySession session) {
-        return get_definition.ofAddress(get_definition$get(segment), session);
-    }
-    static final FunctionDescriptor get_nodeTypedValue$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_nodeTypedValue$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_nodeTypedValue$FUNC
-    );
-    public interface get_nodeTypedValue {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_nodeTypedValue fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_nodeTypedValue.class, fi, IXMLDOMDocumentVtbl.get_nodeTypedValue$FUNC, session);
-        }
-        static get_nodeTypedValue ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_nodeTypedValue$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_nodeTypedValue$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_nodeTypedValue"));
-    public static VarHandle get_nodeTypedValue$VH() {
-        return IXMLDOMDocumentVtbl.get_nodeTypedValue$VH;
-    }
-    public static MemoryAddress get_nodeTypedValue$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_nodeTypedValue$VH.get(seg);
-    }
-    public static void get_nodeTypedValue$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_nodeTypedValue$VH.set(seg, x);
-    }
-    public static MemoryAddress get_nodeTypedValue$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_nodeTypedValue$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_nodeTypedValue$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_nodeTypedValue$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_nodeTypedValue get_nodeTypedValue (MemorySegment segment, MemorySession session) {
-        return get_nodeTypedValue.ofAddress(get_nodeTypedValue$get(segment), session);
-    }
-    static final FunctionDescriptor put_nodeTypedValue$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("vt"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved3"),
-                    MemoryLayout.unionLayout(
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("llVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("lVal"),
-                        Constants$root.C_CHAR$LAYOUT.withName("bVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("iVal"),
-                        Constants$root.C_FLOAT$LAYOUT.withName("fltVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("dblVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("boolVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("__OBSOLETE__VARIANT_BOOL"),
-                        Constants$root.C_LONG$LAYOUT.withName("scode"),
-                        MemoryLayout.unionLayout(
-                            MemoryLayout.structLayout(
-                                Constants$root.C_LONG$LAYOUT.withName("Lo"),
-                                Constants$root.C_LONG$LAYOUT.withName("Hi")
-                            ).withName("$anon$0"),
-                            Constants$root.C_LONG_LONG$LAYOUT.withName("int64")
-                        ).withName("cyVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("date"),
-                        Constants$root.C_POINTER$LAYOUT.withName("bstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("punkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("parray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("piVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("plVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pllVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pfltVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdblVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pboolVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("__OBSOLETE__VARIANT_PBOOL"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pscode"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcyVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdate"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppunkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pparray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pvarVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("byref"),
-                        Constants$root.C_CHAR$LAYOUT.withName("cVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("uiVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("ulVal"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("ullVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("intVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("uintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdecVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puiVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pulVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pullVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puintVal"),
-                        MemoryLayout.structLayout(
-                            Constants$root.C_POINTER$LAYOUT.withName("pvRecord"),
-                            Constants$root.C_POINTER$LAYOUT.withName("pRecInfo")
-                        ).withName("$anon$0")
-                    ).withName("$anon$0")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_CHAR$LAYOUT.withName("scale"),
-                            Constants$root.C_CHAR$LAYOUT.withName("sign")
-                        ).withName("$anon$0"),
-                        Constants$root.C_SHORT$LAYOUT.withName("signscale")
-                    ).withName("$anon$0"),
-                    Constants$root.C_LONG$LAYOUT.withName("Hi32"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("Lo32"),
-                            Constants$root.C_LONG$LAYOUT.withName("Mid32")
-                        ).withName("$anon$0"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("Lo64")
-                    ).withName("$anon$1")
-                ).withName("decVal")
-            ).withName("$anon$0")
-        ).withName("tagVARIANT")
-    );
-    static final MethodHandle put_nodeTypedValue$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.put_nodeTypedValue$FUNC
-    );
-    public interface put_nodeTypedValue {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemorySegment _x1);
-        static MemorySegment allocate(put_nodeTypedValue fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(put_nodeTypedValue.class, fi, IXMLDOMDocumentVtbl.put_nodeTypedValue$FUNC, session);
-        }
-        static put_nodeTypedValue ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemorySegment __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.put_nodeTypedValue$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle put_nodeTypedValue$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("put_nodeTypedValue"));
-    public static VarHandle put_nodeTypedValue$VH() {
-        return IXMLDOMDocumentVtbl.put_nodeTypedValue$VH;
-    }
-    public static MemoryAddress put_nodeTypedValue$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_nodeTypedValue$VH.get(seg);
-    }
-    public static void put_nodeTypedValue$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_nodeTypedValue$VH.set(seg, x);
-    }
-    public static MemoryAddress put_nodeTypedValue$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_nodeTypedValue$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void put_nodeTypedValue$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_nodeTypedValue$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static put_nodeTypedValue put_nodeTypedValue (MemorySegment segment, MemorySession session) {
-        return put_nodeTypedValue.ofAddress(put_nodeTypedValue$get(segment), session);
-    }
-    static final FunctionDescriptor get_dataType$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_dataType$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_dataType$FUNC
-    );
-    public interface get_dataType {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_dataType fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_dataType.class, fi, IXMLDOMDocumentVtbl.get_dataType$FUNC, session);
-        }
-        static get_dataType ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_dataType$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_dataType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_dataType"));
-    public static VarHandle get_dataType$VH() {
-        return IXMLDOMDocumentVtbl.get_dataType$VH;
-    }
-    public static MemoryAddress get_dataType$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_dataType$VH.get(seg);
-    }
-    public static void get_dataType$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_dataType$VH.set(seg, x);
-    }
-    public static MemoryAddress get_dataType$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_dataType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_dataType$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_dataType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_dataType get_dataType (MemorySegment segment, MemorySession session) {
-        return get_dataType.ofAddress(get_dataType$get(segment), session);
-    }
-    static final FunctionDescriptor put_dataType$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle put_dataType$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.put_dataType$FUNC
-    );
-    public interface put_dataType {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(put_dataType fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(put_dataType.class, fi, IXMLDOMDocumentVtbl.put_dataType$FUNC, session);
-        }
-        static put_dataType ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.put_dataType$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle put_dataType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("put_dataType"));
-    public static VarHandle put_dataType$VH() {
-        return IXMLDOMDocumentVtbl.put_dataType$VH;
-    }
-    public static MemoryAddress put_dataType$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_dataType$VH.get(seg);
-    }
-    public static void put_dataType$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_dataType$VH.set(seg, x);
-    }
-    public static MemoryAddress put_dataType$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_dataType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void put_dataType$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_dataType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static put_dataType put_dataType (MemorySegment segment, MemorySession session) {
-        return put_dataType.ofAddress(put_dataType$get(segment), session);
-    }
-    static final FunctionDescriptor get_xml$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_xml$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_xml$FUNC
-    );
-    public interface get_xml {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_xml fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_xml.class, fi, IXMLDOMDocumentVtbl.get_xml$FUNC, session);
-        }
-        static get_xml ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_xml$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_xml$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_xml"));
-    public static VarHandle get_xml$VH() {
-        return IXMLDOMDocumentVtbl.get_xml$VH;
-    }
-    public static MemoryAddress get_xml$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_xml$VH.get(seg);
-    }
-    public static void get_xml$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_xml$VH.set(seg, x);
-    }
-    public static MemoryAddress get_xml$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_xml$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_xml$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_xml$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_xml get_xml (MemorySegment segment, MemorySession session) {
-        return get_xml.ofAddress(get_xml$get(segment), session);
-    }
-    static final FunctionDescriptor transformNode$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle transformNode$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.transformNode$FUNC
-    );
-    public interface transformNode {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(transformNode fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(transformNode.class, fi, IXMLDOMDocumentVtbl.transformNode$FUNC, session);
-        }
-        static transformNode ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.transformNode$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle transformNode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("transformNode"));
-    public static VarHandle transformNode$VH() {
-        return IXMLDOMDocumentVtbl.transformNode$VH;
-    }
-    public static MemoryAddress transformNode$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.transformNode$VH.get(seg);
-    }
-    public static void transformNode$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.transformNode$VH.set(seg, x);
-    }
-    public static MemoryAddress transformNode$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.transformNode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void transformNode$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.transformNode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static transformNode transformNode (MemorySegment segment, MemorySession session) {
-        return transformNode.ofAddress(transformNode$get(segment), session);
-    }
-    static final FunctionDescriptor selectNodes$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle selectNodes$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.selectNodes$FUNC
-    );
-    public interface selectNodes {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(selectNodes fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(selectNodes.class, fi, IXMLDOMDocumentVtbl.selectNodes$FUNC, session);
-        }
-        static selectNodes ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.selectNodes$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle selectNodes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("selectNodes"));
-    public static VarHandle selectNodes$VH() {
-        return IXMLDOMDocumentVtbl.selectNodes$VH;
-    }
-    public static MemoryAddress selectNodes$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.selectNodes$VH.get(seg);
-    }
-    public static void selectNodes$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.selectNodes$VH.set(seg, x);
-    }
-    public static MemoryAddress selectNodes$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.selectNodes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void selectNodes$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.selectNodes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static selectNodes selectNodes (MemorySegment segment, MemorySession session) {
-        return selectNodes.ofAddress(selectNodes$get(segment), session);
-    }
-    static final FunctionDescriptor selectSingleNode$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle selectSingleNode$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.selectSingleNode$FUNC
-    );
-    public interface selectSingleNode {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(selectSingleNode fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(selectSingleNode.class, fi, IXMLDOMDocumentVtbl.selectSingleNode$FUNC, session);
-        }
-        static selectSingleNode ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.selectSingleNode$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle selectSingleNode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("selectSingleNode"));
-    public static VarHandle selectSingleNode$VH() {
-        return IXMLDOMDocumentVtbl.selectSingleNode$VH;
-    }
-    public static MemoryAddress selectSingleNode$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.selectSingleNode$VH.get(seg);
-    }
-    public static void selectSingleNode$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.selectSingleNode$VH.set(seg, x);
-    }
-    public static MemoryAddress selectSingleNode$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.selectSingleNode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void selectSingleNode$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.selectSingleNode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static selectSingleNode selectSingleNode (MemorySegment segment, MemorySession session) {
-        return selectSingleNode.ofAddress(selectSingleNode$get(segment), session);
-    }
-    static final FunctionDescriptor get_parsed$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_parsed$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_parsed$FUNC
-    );
-    public interface get_parsed {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_parsed fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_parsed.class, fi, IXMLDOMDocumentVtbl.get_parsed$FUNC, session);
-        }
-        static get_parsed ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_parsed$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_parsed$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_parsed"));
-    public static VarHandle get_parsed$VH() {
-        return IXMLDOMDocumentVtbl.get_parsed$VH;
-    }
-    public static MemoryAddress get_parsed$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_parsed$VH.get(seg);
-    }
-    public static void get_parsed$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_parsed$VH.set(seg, x);
-    }
-    public static MemoryAddress get_parsed$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_parsed$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_parsed$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_parsed$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_parsed get_parsed (MemorySegment segment, MemorySession session) {
-        return get_parsed.ofAddress(get_parsed$get(segment), session);
-    }
-    static final FunctionDescriptor get_namespaceURI$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_namespaceURI$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_namespaceURI$FUNC
-    );
-    public interface get_namespaceURI {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_namespaceURI fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_namespaceURI.class, fi, IXMLDOMDocumentVtbl.get_namespaceURI$FUNC, session);
-        }
-        static get_namespaceURI ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_namespaceURI$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_namespaceURI$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_namespaceURI"));
-    public static VarHandle get_namespaceURI$VH() {
-        return IXMLDOMDocumentVtbl.get_namespaceURI$VH;
-    }
-    public static MemoryAddress get_namespaceURI$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_namespaceURI$VH.get(seg);
-    }
-    public static void get_namespaceURI$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_namespaceURI$VH.set(seg, x);
-    }
-    public static MemoryAddress get_namespaceURI$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_namespaceURI$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_namespaceURI$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_namespaceURI$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_namespaceURI get_namespaceURI (MemorySegment segment, MemorySession session) {
-        return get_namespaceURI.ofAddress(get_namespaceURI$get(segment), session);
-    }
-    static final FunctionDescriptor get_prefix$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_prefix$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_prefix$FUNC
-    );
-    public interface get_prefix {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_prefix fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_prefix.class, fi, IXMLDOMDocumentVtbl.get_prefix$FUNC, session);
-        }
-        static get_prefix ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_prefix$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_prefix$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_prefix"));
-    public static VarHandle get_prefix$VH() {
-        return IXMLDOMDocumentVtbl.get_prefix$VH;
-    }
-    public static MemoryAddress get_prefix$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_prefix$VH.get(seg);
-    }
-    public static void get_prefix$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_prefix$VH.set(seg, x);
-    }
-    public static MemoryAddress get_prefix$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_prefix$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_prefix$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_prefix$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_prefix get_prefix (MemorySegment segment, MemorySession session) {
-        return get_prefix.ofAddress(get_prefix$get(segment), session);
-    }
-    static final FunctionDescriptor get_baseName$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_baseName$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_baseName$FUNC
-    );
-    public interface get_baseName {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_baseName fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_baseName.class, fi, IXMLDOMDocumentVtbl.get_baseName$FUNC, session);
-        }
-        static get_baseName ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_baseName$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_baseName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_baseName"));
-    public static VarHandle get_baseName$VH() {
-        return IXMLDOMDocumentVtbl.get_baseName$VH;
-    }
-    public static MemoryAddress get_baseName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_baseName$VH.get(seg);
-    }
-    public static void get_baseName$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_baseName$VH.set(seg, x);
-    }
-    public static MemoryAddress get_baseName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_baseName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_baseName$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_baseName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_baseName get_baseName (MemorySegment segment, MemorySession session) {
-        return get_baseName.ofAddress(get_baseName$get(segment), session);
-    }
-    static final FunctionDescriptor transformNodeToObject$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("vt"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved3"),
-                    MemoryLayout.unionLayout(
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("llVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("lVal"),
-                        Constants$root.C_CHAR$LAYOUT.withName("bVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("iVal"),
-                        Constants$root.C_FLOAT$LAYOUT.withName("fltVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("dblVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("boolVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("__OBSOLETE__VARIANT_BOOL"),
-                        Constants$root.C_LONG$LAYOUT.withName("scode"),
-                        MemoryLayout.unionLayout(
-                            MemoryLayout.structLayout(
-                                Constants$root.C_LONG$LAYOUT.withName("Lo"),
-                                Constants$root.C_LONG$LAYOUT.withName("Hi")
-                            ).withName("$anon$0"),
-                            Constants$root.C_LONG_LONG$LAYOUT.withName("int64")
-                        ).withName("cyVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("date"),
-                        Constants$root.C_POINTER$LAYOUT.withName("bstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("punkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("parray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("piVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("plVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pllVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pfltVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdblVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pboolVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("__OBSOLETE__VARIANT_PBOOL"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pscode"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcyVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdate"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppunkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pparray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pvarVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("byref"),
-                        Constants$root.C_CHAR$LAYOUT.withName("cVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("uiVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("ulVal"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("ullVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("intVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("uintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdecVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puiVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pulVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pullVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puintVal"),
-                        MemoryLayout.structLayout(
-                            Constants$root.C_POINTER$LAYOUT.withName("pvRecord"),
-                            Constants$root.C_POINTER$LAYOUT.withName("pRecInfo")
-                        ).withName("$anon$0")
-                    ).withName("$anon$0")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_CHAR$LAYOUT.withName("scale"),
-                            Constants$root.C_CHAR$LAYOUT.withName("sign")
-                        ).withName("$anon$0"),
-                        Constants$root.C_SHORT$LAYOUT.withName("signscale")
-                    ).withName("$anon$0"),
-                    Constants$root.C_LONG$LAYOUT.withName("Hi32"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("Lo32"),
-                            Constants$root.C_LONG$LAYOUT.withName("Mid32")
-                        ).withName("$anon$0"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("Lo64")
-                    ).withName("$anon$1")
-                ).withName("decVal")
-            ).withName("$anon$0")
-        ).withName("tagVARIANT")
-    );
-    static final MethodHandle transformNodeToObject$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.transformNodeToObject$FUNC
-    );
-    public interface transformNodeToObject {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemorySegment _x2);
-        static MemorySegment allocate(transformNodeToObject fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(transformNodeToObject.class, fi, IXMLDOMDocumentVtbl.transformNodeToObject$FUNC, session);
-        }
-        static transformNodeToObject ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemorySegment __x2) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.transformNodeToObject$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, __x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle transformNodeToObject$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("transformNodeToObject"));
-    public static VarHandle transformNodeToObject$VH() {
-        return IXMLDOMDocumentVtbl.transformNodeToObject$VH;
-    }
-    public static MemoryAddress transformNodeToObject$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.transformNodeToObject$VH.get(seg);
-    }
-    public static void transformNodeToObject$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.transformNodeToObject$VH.set(seg, x);
-    }
-    public static MemoryAddress transformNodeToObject$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.transformNodeToObject$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void transformNodeToObject$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.transformNodeToObject$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static transformNodeToObject transformNodeToObject (MemorySegment segment, MemorySession session) {
-        return transformNodeToObject.ofAddress(transformNodeToObject$get(segment), session);
-    }
-    static final FunctionDescriptor get_doctype$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_doctype$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_doctype$FUNC
-    );
-    public interface get_doctype {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_doctype fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_doctype.class, fi, IXMLDOMDocumentVtbl.get_doctype$FUNC, session);
-        }
-        static get_doctype ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_doctype$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_doctype$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_doctype"));
-    public static VarHandle get_doctype$VH() {
-        return IXMLDOMDocumentVtbl.get_doctype$VH;
-    }
-    public static MemoryAddress get_doctype$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_doctype$VH.get(seg);
-    }
-    public static void get_doctype$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_doctype$VH.set(seg, x);
-    }
-    public static MemoryAddress get_doctype$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_doctype$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_doctype$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_doctype$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_doctype get_doctype (MemorySegment segment, MemorySession session) {
-        return get_doctype.ofAddress(get_doctype$get(segment), session);
-    }
-    static final FunctionDescriptor get_implementation$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_implementation$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_implementation$FUNC
-    );
-    public interface get_implementation {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_implementation fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_implementation.class, fi, IXMLDOMDocumentVtbl.get_implementation$FUNC, session);
-        }
-        static get_implementation ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_implementation$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_implementation$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_implementation"));
-    public static VarHandle get_implementation$VH() {
-        return IXMLDOMDocumentVtbl.get_implementation$VH;
-    }
-    public static MemoryAddress get_implementation$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_implementation$VH.get(seg);
-    }
-    public static void get_implementation$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_implementation$VH.set(seg, x);
-    }
-    public static MemoryAddress get_implementation$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_implementation$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_implementation$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_implementation$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_implementation get_implementation (MemorySegment segment, MemorySession session) {
-        return get_implementation.ofAddress(get_implementation$get(segment), session);
-    }
-    static final FunctionDescriptor get_documentElement$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_documentElement$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_documentElement$FUNC
-    );
-    public interface get_documentElement {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_documentElement fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_documentElement.class, fi, IXMLDOMDocumentVtbl.get_documentElement$FUNC, session);
-        }
-        static get_documentElement ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_documentElement$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_documentElement$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_documentElement"));
-    public static VarHandle get_documentElement$VH() {
-        return IXMLDOMDocumentVtbl.get_documentElement$VH;
-    }
-    public static MemoryAddress get_documentElement$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_documentElement$VH.get(seg);
-    }
-    public static void get_documentElement$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_documentElement$VH.set(seg, x);
-    }
-    public static MemoryAddress get_documentElement$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_documentElement$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_documentElement$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_documentElement$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_documentElement get_documentElement (MemorySegment segment, MemorySession session) {
-        return get_documentElement.ofAddress(get_documentElement$get(segment), session);
-    }
-    static final FunctionDescriptor putref_documentElement$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle putref_documentElement$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.putref_documentElement$FUNC
-    );
-    public interface putref_documentElement {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(putref_documentElement fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(putref_documentElement.class, fi, IXMLDOMDocumentVtbl.putref_documentElement$FUNC, session);
-        }
-        static putref_documentElement ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.putref_documentElement$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle putref_documentElement$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("putref_documentElement"));
-    public static VarHandle putref_documentElement$VH() {
-        return IXMLDOMDocumentVtbl.putref_documentElement$VH;
-    }
-    public static MemoryAddress putref_documentElement$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.putref_documentElement$VH.get(seg);
-    }
-    public static void putref_documentElement$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.putref_documentElement$VH.set(seg, x);
-    }
-    public static MemoryAddress putref_documentElement$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.putref_documentElement$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void putref_documentElement$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.putref_documentElement$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static putref_documentElement putref_documentElement (MemorySegment segment, MemorySession session) {
-        return putref_documentElement.ofAddress(putref_documentElement$get(segment), session);
-    }
-    static final FunctionDescriptor createElement$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle createElement$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.createElement$FUNC
-    );
-    public interface createElement {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(createElement fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(createElement.class, fi, IXMLDOMDocumentVtbl.createElement$FUNC, session);
-        }
-        static createElement ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.createElement$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle createElement$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("createElement"));
-    public static VarHandle createElement$VH() {
-        return IXMLDOMDocumentVtbl.createElement$VH;
-    }
-    public static MemoryAddress createElement$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.createElement$VH.get(seg);
-    }
-    public static void createElement$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.createElement$VH.set(seg, x);
-    }
-    public static MemoryAddress createElement$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.createElement$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void createElement$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.createElement$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static createElement createElement (MemorySegment segment, MemorySession session) {
-        return createElement.ofAddress(createElement$get(segment), session);
-    }
-    static final FunctionDescriptor createDocumentFragment$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle createDocumentFragment$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.createDocumentFragment$FUNC
-    );
-    public interface createDocumentFragment {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(createDocumentFragment fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(createDocumentFragment.class, fi, IXMLDOMDocumentVtbl.createDocumentFragment$FUNC, session);
-        }
-        static createDocumentFragment ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.createDocumentFragment$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle createDocumentFragment$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("createDocumentFragment"));
-    public static VarHandle createDocumentFragment$VH() {
-        return IXMLDOMDocumentVtbl.createDocumentFragment$VH;
-    }
-    public static MemoryAddress createDocumentFragment$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.createDocumentFragment$VH.get(seg);
-    }
-    public static void createDocumentFragment$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.createDocumentFragment$VH.set(seg, x);
-    }
-    public static MemoryAddress createDocumentFragment$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.createDocumentFragment$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void createDocumentFragment$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.createDocumentFragment$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static createDocumentFragment createDocumentFragment (MemorySegment segment, MemorySession session) {
-        return createDocumentFragment.ofAddress(createDocumentFragment$get(segment), session);
-    }
-    static final FunctionDescriptor createTextNode$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle createTextNode$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.createTextNode$FUNC
-    );
-    public interface createTextNode {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(createTextNode fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(createTextNode.class, fi, IXMLDOMDocumentVtbl.createTextNode$FUNC, session);
-        }
-        static createTextNode ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.createTextNode$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle createTextNode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("createTextNode"));
-    public static VarHandle createTextNode$VH() {
-        return IXMLDOMDocumentVtbl.createTextNode$VH;
-    }
-    public static MemoryAddress createTextNode$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.createTextNode$VH.get(seg);
-    }
-    public static void createTextNode$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.createTextNode$VH.set(seg, x);
-    }
-    public static MemoryAddress createTextNode$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.createTextNode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void createTextNode$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.createTextNode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static createTextNode createTextNode (MemorySegment segment, MemorySession session) {
-        return createTextNode.ofAddress(createTextNode$get(segment), session);
-    }
-    static final FunctionDescriptor createComment$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle createComment$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.createComment$FUNC
-    );
-    public interface createComment {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(createComment fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(createComment.class, fi, IXMLDOMDocumentVtbl.createComment$FUNC, session);
-        }
-        static createComment ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.createComment$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle createComment$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("createComment"));
-    public static VarHandle createComment$VH() {
-        return IXMLDOMDocumentVtbl.createComment$VH;
-    }
-    public static MemoryAddress createComment$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.createComment$VH.get(seg);
-    }
-    public static void createComment$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.createComment$VH.set(seg, x);
-    }
-    public static MemoryAddress createComment$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.createComment$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void createComment$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.createComment$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static createComment createComment (MemorySegment segment, MemorySession session) {
-        return createComment.ofAddress(createComment$get(segment), session);
-    }
-    static final FunctionDescriptor createCDATASection$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle createCDATASection$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.createCDATASection$FUNC
-    );
-    public interface createCDATASection {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(createCDATASection fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(createCDATASection.class, fi, IXMLDOMDocumentVtbl.createCDATASection$FUNC, session);
-        }
-        static createCDATASection ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.createCDATASection$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle createCDATASection$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("createCDATASection"));
-    public static VarHandle createCDATASection$VH() {
-        return IXMLDOMDocumentVtbl.createCDATASection$VH;
-    }
-    public static MemoryAddress createCDATASection$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.createCDATASection$VH.get(seg);
-    }
-    public static void createCDATASection$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.createCDATASection$VH.set(seg, x);
-    }
-    public static MemoryAddress createCDATASection$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.createCDATASection$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void createCDATASection$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.createCDATASection$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static createCDATASection createCDATASection (MemorySegment segment, MemorySession session) {
-        return createCDATASection.ofAddress(createCDATASection$get(segment), session);
-    }
-    static final FunctionDescriptor createProcessingInstruction$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle createProcessingInstruction$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.createProcessingInstruction$FUNC
-    );
-    public interface createProcessingInstruction {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3);
-        static MemorySegment allocate(createProcessingInstruction fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(createProcessingInstruction.class, fi, IXMLDOMDocumentVtbl.createProcessingInstruction$FUNC, session);
-        }
-        static createProcessingInstruction ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.createProcessingInstruction$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle createProcessingInstruction$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("createProcessingInstruction"));
-    public static VarHandle createProcessingInstruction$VH() {
-        return IXMLDOMDocumentVtbl.createProcessingInstruction$VH;
-    }
-    public static MemoryAddress createProcessingInstruction$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.createProcessingInstruction$VH.get(seg);
-    }
-    public static void createProcessingInstruction$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.createProcessingInstruction$VH.set(seg, x);
-    }
-    public static MemoryAddress createProcessingInstruction$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.createProcessingInstruction$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void createProcessingInstruction$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.createProcessingInstruction$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static createProcessingInstruction createProcessingInstruction (MemorySegment segment, MemorySession session) {
-        return createProcessingInstruction.ofAddress(createProcessingInstruction$get(segment), session);
-    }
-    static final FunctionDescriptor createAttribute$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle createAttribute$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.createAttribute$FUNC
-    );
-    public interface createAttribute {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(createAttribute fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(createAttribute.class, fi, IXMLDOMDocumentVtbl.createAttribute$FUNC, session);
-        }
-        static createAttribute ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.createAttribute$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle createAttribute$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("createAttribute"));
-    public static VarHandle createAttribute$VH() {
-        return IXMLDOMDocumentVtbl.createAttribute$VH;
-    }
-    public static MemoryAddress createAttribute$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.createAttribute$VH.get(seg);
-    }
-    public static void createAttribute$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.createAttribute$VH.set(seg, x);
-    }
-    public static MemoryAddress createAttribute$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.createAttribute$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void createAttribute$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.createAttribute$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static createAttribute createAttribute (MemorySegment segment, MemorySession session) {
-        return createAttribute.ofAddress(createAttribute$get(segment), session);
-    }
-    static final FunctionDescriptor createEntityReference$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle createEntityReference$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.createEntityReference$FUNC
-    );
-    public interface createEntityReference {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(createEntityReference fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(createEntityReference.class, fi, IXMLDOMDocumentVtbl.createEntityReference$FUNC, session);
-        }
-        static createEntityReference ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.createEntityReference$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle createEntityReference$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("createEntityReference"));
-    public static VarHandle createEntityReference$VH() {
-        return IXMLDOMDocumentVtbl.createEntityReference$VH;
-    }
-    public static MemoryAddress createEntityReference$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.createEntityReference$VH.get(seg);
-    }
-    public static void createEntityReference$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.createEntityReference$VH.set(seg, x);
-    }
-    public static MemoryAddress createEntityReference$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.createEntityReference$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void createEntityReference$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.createEntityReference$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static createEntityReference createEntityReference (MemorySegment segment, MemorySession session) {
-        return createEntityReference.ofAddress(createEntityReference$get(segment), session);
-    }
-    static final FunctionDescriptor getElementsByTagName$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle getElementsByTagName$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.getElementsByTagName$FUNC
-    );
-    public interface getElementsByTagName {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(getElementsByTagName fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(getElementsByTagName.class, fi, IXMLDOMDocumentVtbl.getElementsByTagName$FUNC, session);
-        }
-        static getElementsByTagName ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.getElementsByTagName$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle getElementsByTagName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("getElementsByTagName"));
-    public static VarHandle getElementsByTagName$VH() {
-        return IXMLDOMDocumentVtbl.getElementsByTagName$VH;
-    }
-    public static MemoryAddress getElementsByTagName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.getElementsByTagName$VH.get(seg);
-    }
-    public static void getElementsByTagName$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.getElementsByTagName$VH.set(seg, x);
-    }
-    public static MemoryAddress getElementsByTagName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.getElementsByTagName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void getElementsByTagName$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.getElementsByTagName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static getElementsByTagName getElementsByTagName (MemorySegment segment, MemorySession session) {
-        return getElementsByTagName.ofAddress(getElementsByTagName$get(segment), session);
-    }
-    static final FunctionDescriptor createNode$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("vt"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved3"),
-                    MemoryLayout.unionLayout(
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("llVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("lVal"),
-                        Constants$root.C_CHAR$LAYOUT.withName("bVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("iVal"),
-                        Constants$root.C_FLOAT$LAYOUT.withName("fltVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("dblVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("boolVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("__OBSOLETE__VARIANT_BOOL"),
-                        Constants$root.C_LONG$LAYOUT.withName("scode"),
-                        MemoryLayout.unionLayout(
-                            MemoryLayout.structLayout(
-                                Constants$root.C_LONG$LAYOUT.withName("Lo"),
-                                Constants$root.C_LONG$LAYOUT.withName("Hi")
-                            ).withName("$anon$0"),
-                            Constants$root.C_LONG_LONG$LAYOUT.withName("int64")
-                        ).withName("cyVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("date"),
-                        Constants$root.C_POINTER$LAYOUT.withName("bstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("punkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("parray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("piVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("plVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pllVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pfltVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdblVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pboolVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("__OBSOLETE__VARIANT_PBOOL"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pscode"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcyVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdate"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppunkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pparray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pvarVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("byref"),
-                        Constants$root.C_CHAR$LAYOUT.withName("cVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("uiVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("ulVal"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("ullVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("intVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("uintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdecVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puiVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pulVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pullVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puintVal"),
-                        MemoryLayout.structLayout(
-                            Constants$root.C_POINTER$LAYOUT.withName("pvRecord"),
-                            Constants$root.C_POINTER$LAYOUT.withName("pRecInfo")
-                        ).withName("$anon$0")
-                    ).withName("$anon$0")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_CHAR$LAYOUT.withName("scale"),
-                            Constants$root.C_CHAR$LAYOUT.withName("sign")
-                        ).withName("$anon$0"),
-                        Constants$root.C_SHORT$LAYOUT.withName("signscale")
-                    ).withName("$anon$0"),
-                    Constants$root.C_LONG$LAYOUT.withName("Hi32"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("Lo32"),
-                            Constants$root.C_LONG$LAYOUT.withName("Mid32")
-                        ).withName("$anon$0"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("Lo64")
-                    ).withName("$anon$1")
-                ).withName("decVal")
-            ).withName("$anon$0")
-        ).withName("tagVARIANT"),
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle createNode$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.createNode$FUNC
-    );
-    public interface createNode {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemorySegment _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, java.lang.foreign.MemoryAddress _x4);
-        static MemorySegment allocate(createNode fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(createNode.class, fi, IXMLDOMDocumentVtbl.createNode$FUNC, session);
-        }
-        static createNode ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemorySegment __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, java.lang.foreign.MemoryAddress __x4) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.createNode$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, (java.lang.foreign.Addressable)__x4);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle createNode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("createNode"));
-    public static VarHandle createNode$VH() {
-        return IXMLDOMDocumentVtbl.createNode$VH;
-    }
-    public static MemoryAddress createNode$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.createNode$VH.get(seg);
-    }
-    public static void createNode$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.createNode$VH.set(seg, x);
-    }
-    public static MemoryAddress createNode$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.createNode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void createNode$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.createNode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static createNode createNode (MemorySegment segment, MemorySession session) {
-        return createNode.ofAddress(createNode$get(segment), session);
-    }
-    static final FunctionDescriptor nodeFromID$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle nodeFromID$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.nodeFromID$FUNC
-    );
-    public interface nodeFromID {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(nodeFromID fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(nodeFromID.class, fi, IXMLDOMDocumentVtbl.nodeFromID$FUNC, session);
-        }
-        static nodeFromID ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.nodeFromID$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle nodeFromID$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nodeFromID"));
-    public static VarHandle nodeFromID$VH() {
-        return IXMLDOMDocumentVtbl.nodeFromID$VH;
-    }
-    public static MemoryAddress nodeFromID$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.nodeFromID$VH.get(seg);
-    }
-    public static void nodeFromID$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.nodeFromID$VH.set(seg, x);
-    }
-    public static MemoryAddress nodeFromID$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.nodeFromID$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nodeFromID$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.nodeFromID$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static nodeFromID nodeFromID (MemorySegment segment, MemorySession session) {
-        return nodeFromID.ofAddress(nodeFromID$get(segment), session);
-    }
-    static final FunctionDescriptor load$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("vt"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved3"),
-                    MemoryLayout.unionLayout(
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("llVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("lVal"),
-                        Constants$root.C_CHAR$LAYOUT.withName("bVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("iVal"),
-                        Constants$root.C_FLOAT$LAYOUT.withName("fltVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("dblVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("boolVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("__OBSOLETE__VARIANT_BOOL"),
-                        Constants$root.C_LONG$LAYOUT.withName("scode"),
-                        MemoryLayout.unionLayout(
-                            MemoryLayout.structLayout(
-                                Constants$root.C_LONG$LAYOUT.withName("Lo"),
-                                Constants$root.C_LONG$LAYOUT.withName("Hi")
-                            ).withName("$anon$0"),
-                            Constants$root.C_LONG_LONG$LAYOUT.withName("int64")
-                        ).withName("cyVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("date"),
-                        Constants$root.C_POINTER$LAYOUT.withName("bstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("punkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("parray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("piVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("plVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pllVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pfltVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdblVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pboolVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("__OBSOLETE__VARIANT_PBOOL"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pscode"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcyVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdate"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppunkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pparray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pvarVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("byref"),
-                        Constants$root.C_CHAR$LAYOUT.withName("cVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("uiVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("ulVal"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("ullVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("intVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("uintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdecVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puiVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pulVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pullVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puintVal"),
-                        MemoryLayout.structLayout(
-                            Constants$root.C_POINTER$LAYOUT.withName("pvRecord"),
-                            Constants$root.C_POINTER$LAYOUT.withName("pRecInfo")
-                        ).withName("$anon$0")
-                    ).withName("$anon$0")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_CHAR$LAYOUT.withName("scale"),
-                            Constants$root.C_CHAR$LAYOUT.withName("sign")
-                        ).withName("$anon$0"),
-                        Constants$root.C_SHORT$LAYOUT.withName("signscale")
-                    ).withName("$anon$0"),
-                    Constants$root.C_LONG$LAYOUT.withName("Hi32"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("Lo32"),
-                            Constants$root.C_LONG$LAYOUT.withName("Mid32")
-                        ).withName("$anon$0"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("Lo64")
-                    ).withName("$anon$1")
-                ).withName("decVal")
-            ).withName("$anon$0")
-        ).withName("tagVARIANT"),
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle load$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.load$FUNC
-    );
-    public interface load {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemorySegment _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(load fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(load.class, fi, IXMLDOMDocumentVtbl.load$FUNC, session);
-        }
-        static load ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemorySegment __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.load$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle load$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("load"));
-    public static VarHandle load$VH() {
-        return IXMLDOMDocumentVtbl.load$VH;
-    }
-    public static MemoryAddress load$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.load$VH.get(seg);
-    }
-    public static void load$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.load$VH.set(seg, x);
-    }
-    public static MemoryAddress load$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.load$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void load$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.load$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static load load (MemorySegment segment, MemorySession session) {
-        return load.ofAddress(load$get(segment), session);
-    }
-    static final FunctionDescriptor get_readyState$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_readyState$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_readyState$FUNC
-    );
-    public interface get_readyState {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_readyState fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_readyState.class, fi, IXMLDOMDocumentVtbl.get_readyState$FUNC, session);
-        }
-        static get_readyState ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_readyState$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_readyState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_readyState"));
-    public static VarHandle get_readyState$VH() {
-        return IXMLDOMDocumentVtbl.get_readyState$VH;
-    }
-    public static MemoryAddress get_readyState$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_readyState$VH.get(seg);
-    }
-    public static void get_readyState$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_readyState$VH.set(seg, x);
-    }
-    public static MemoryAddress get_readyState$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_readyState$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_readyState$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_readyState$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_readyState get_readyState (MemorySegment segment, MemorySession session) {
-        return get_readyState.ofAddress(get_readyState$get(segment), session);
-    }
-    static final FunctionDescriptor get_parseError$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_parseError$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_parseError$FUNC
-    );
-    public interface get_parseError {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_parseError fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_parseError.class, fi, IXMLDOMDocumentVtbl.get_parseError$FUNC, session);
-        }
-        static get_parseError ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_parseError$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_parseError$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_parseError"));
-    public static VarHandle get_parseError$VH() {
-        return IXMLDOMDocumentVtbl.get_parseError$VH;
-    }
-    public static MemoryAddress get_parseError$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_parseError$VH.get(seg);
-    }
-    public static void get_parseError$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_parseError$VH.set(seg, x);
-    }
-    public static MemoryAddress get_parseError$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_parseError$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_parseError$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_parseError$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_parseError get_parseError (MemorySegment segment, MemorySession session) {
-        return get_parseError.ofAddress(get_parseError$get(segment), session);
-    }
-    static final FunctionDescriptor get_url$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_url$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_url$FUNC
-    );
-    public interface get_url {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_url fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_url.class, fi, IXMLDOMDocumentVtbl.get_url$FUNC, session);
-        }
-        static get_url ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_url$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_url$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_url"));
-    public static VarHandle get_url$VH() {
-        return IXMLDOMDocumentVtbl.get_url$VH;
-    }
-    public static MemoryAddress get_url$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_url$VH.get(seg);
-    }
-    public static void get_url$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_url$VH.set(seg, x);
-    }
-    public static MemoryAddress get_url$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_url$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_url$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_url$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_url get_url (MemorySegment segment, MemorySession session) {
-        return get_url.ofAddress(get_url$get(segment), session);
-    }
-    static final FunctionDescriptor get_async$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_async$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_async$FUNC
-    );
-    public interface get_async {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_async fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_async.class, fi, IXMLDOMDocumentVtbl.get_async$FUNC, session);
-        }
-        static get_async ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_async$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_async$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_async"));
-    public static VarHandle get_async$VH() {
-        return IXMLDOMDocumentVtbl.get_async$VH;
-    }
-    public static MemoryAddress get_async$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_async$VH.get(seg);
-    }
-    public static void get_async$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_async$VH.set(seg, x);
-    }
-    public static MemoryAddress get_async$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_async$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_async$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_async$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_async get_async (MemorySegment segment, MemorySession session) {
-        return get_async.ofAddress(get_async$get(segment), session);
-    }
-    static final FunctionDescriptor put_async$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle put_async$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.put_async$FUNC
-    );
-    public interface put_async {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, short _x1);
-        static MemorySegment allocate(put_async fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(put_async.class, fi, IXMLDOMDocumentVtbl.put_async$FUNC, session);
-        }
-        static put_async ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, short __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.put_async$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle put_async$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("put_async"));
-    public static VarHandle put_async$VH() {
-        return IXMLDOMDocumentVtbl.put_async$VH;
-    }
-    public static MemoryAddress put_async$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_async$VH.get(seg);
-    }
-    public static void put_async$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_async$VH.set(seg, x);
-    }
-    public static MemoryAddress put_async$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_async$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void put_async$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_async$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static put_async put_async (MemorySegment segment, MemorySession session) {
-        return put_async.ofAddress(put_async$get(segment), session);
-    }
-    static final FunctionDescriptor abort$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle abort$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.abort$FUNC
-    );
-    public interface abort {
-
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(abort fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(abort.class, fi, IXMLDOMDocumentVtbl.abort$FUNC, session);
-        }
-        static abort ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.abort$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle abort$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("abort"));
-    public static VarHandle abort$VH() {
-        return IXMLDOMDocumentVtbl.abort$VH;
-    }
-    public static MemoryAddress abort$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.abort$VH.get(seg);
-    }
-    public static void abort$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.abort$VH.set(seg, x);
-    }
-    public static MemoryAddress abort$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.abort$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void abort$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.abort$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static abort abort (MemorySegment segment, MemorySession session) {
-        return abort.ofAddress(abort$get(segment), session);
-    }
-    static final FunctionDescriptor loadXML$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle loadXML$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.loadXML$FUNC
-    );
-    public interface loadXML {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(loadXML fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(loadXML.class, fi, IXMLDOMDocumentVtbl.loadXML$FUNC, session);
-        }
-        static loadXML ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.loadXML$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle loadXML$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("loadXML"));
-    public static VarHandle loadXML$VH() {
-        return IXMLDOMDocumentVtbl.loadXML$VH;
-    }
-    public static MemoryAddress loadXML$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.loadXML$VH.get(seg);
-    }
-    public static void loadXML$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.loadXML$VH.set(seg, x);
-    }
-    public static MemoryAddress loadXML$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.loadXML$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void loadXML$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.loadXML$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static loadXML loadXML (MemorySegment segment, MemorySession session) {
-        return loadXML.ofAddress(loadXML$get(segment), session);
-    }
-    static final FunctionDescriptor save$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("vt"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved3"),
-                    MemoryLayout.unionLayout(
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("llVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("lVal"),
-                        Constants$root.C_CHAR$LAYOUT.withName("bVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("iVal"),
-                        Constants$root.C_FLOAT$LAYOUT.withName("fltVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("dblVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("boolVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("__OBSOLETE__VARIANT_BOOL"),
-                        Constants$root.C_LONG$LAYOUT.withName("scode"),
-                        MemoryLayout.unionLayout(
-                            MemoryLayout.structLayout(
-                                Constants$root.C_LONG$LAYOUT.withName("Lo"),
-                                Constants$root.C_LONG$LAYOUT.withName("Hi")
-                            ).withName("$anon$0"),
-                            Constants$root.C_LONG_LONG$LAYOUT.withName("int64")
-                        ).withName("cyVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("date"),
-                        Constants$root.C_POINTER$LAYOUT.withName("bstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("punkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("parray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("piVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("plVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pllVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pfltVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdblVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pboolVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("__OBSOLETE__VARIANT_PBOOL"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pscode"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcyVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdate"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppunkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pparray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pvarVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("byref"),
-                        Constants$root.C_CHAR$LAYOUT.withName("cVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("uiVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("ulVal"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("ullVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("intVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("uintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdecVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puiVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pulVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pullVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puintVal"),
-                        MemoryLayout.structLayout(
-                            Constants$root.C_POINTER$LAYOUT.withName("pvRecord"),
-                            Constants$root.C_POINTER$LAYOUT.withName("pRecInfo")
-                        ).withName("$anon$0")
-                    ).withName("$anon$0")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_CHAR$LAYOUT.withName("scale"),
-                            Constants$root.C_CHAR$LAYOUT.withName("sign")
-                        ).withName("$anon$0"),
-                        Constants$root.C_SHORT$LAYOUT.withName("signscale")
-                    ).withName("$anon$0"),
-                    Constants$root.C_LONG$LAYOUT.withName("Hi32"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("Lo32"),
-                            Constants$root.C_LONG$LAYOUT.withName("Mid32")
-                        ).withName("$anon$0"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("Lo64")
-                    ).withName("$anon$1")
-                ).withName("decVal")
-            ).withName("$anon$0")
-        ).withName("tagVARIANT")
-    );
-    static final MethodHandle save$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.save$FUNC
-    );
-    public interface save {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemorySegment _x1);
-        static MemorySegment allocate(save fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(save.class, fi, IXMLDOMDocumentVtbl.save$FUNC, session);
-        }
-        static save ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemorySegment __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.save$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle save$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("save"));
-    public static VarHandle save$VH() {
-        return IXMLDOMDocumentVtbl.save$VH;
-    }
-    public static MemoryAddress save$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.save$VH.get(seg);
-    }
-    public static void save$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.save$VH.set(seg, x);
-    }
-    public static MemoryAddress save$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.save$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void save$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.save$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static save save (MemorySegment segment, MemorySession session) {
-        return save.ofAddress(save$get(segment), session);
-    }
-    static final FunctionDescriptor get_validateOnParse$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_validateOnParse$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_validateOnParse$FUNC
-    );
-    public interface get_validateOnParse {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_validateOnParse fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_validateOnParse.class, fi, IXMLDOMDocumentVtbl.get_validateOnParse$FUNC, session);
-        }
-        static get_validateOnParse ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_validateOnParse$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_validateOnParse$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_validateOnParse"));
-    public static VarHandle get_validateOnParse$VH() {
-        return IXMLDOMDocumentVtbl.get_validateOnParse$VH;
-    }
-    public static MemoryAddress get_validateOnParse$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_validateOnParse$VH.get(seg);
-    }
-    public static void get_validateOnParse$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_validateOnParse$VH.set(seg, x);
-    }
-    public static MemoryAddress get_validateOnParse$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_validateOnParse$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_validateOnParse$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_validateOnParse$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_validateOnParse get_validateOnParse (MemorySegment segment, MemorySession session) {
-        return get_validateOnParse.ofAddress(get_validateOnParse$get(segment), session);
-    }
-    static final FunctionDescriptor put_validateOnParse$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle put_validateOnParse$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.put_validateOnParse$FUNC
-    );
-    public interface put_validateOnParse {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, short _x1);
-        static MemorySegment allocate(put_validateOnParse fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(put_validateOnParse.class, fi, IXMLDOMDocumentVtbl.put_validateOnParse$FUNC, session);
-        }
-        static put_validateOnParse ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, short __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.put_validateOnParse$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle put_validateOnParse$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("put_validateOnParse"));
-    public static VarHandle put_validateOnParse$VH() {
-        return IXMLDOMDocumentVtbl.put_validateOnParse$VH;
-    }
-    public static MemoryAddress put_validateOnParse$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_validateOnParse$VH.get(seg);
-    }
-    public static void put_validateOnParse$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_validateOnParse$VH.set(seg, x);
-    }
-    public static MemoryAddress put_validateOnParse$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_validateOnParse$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void put_validateOnParse$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_validateOnParse$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static put_validateOnParse put_validateOnParse (MemorySegment segment, MemorySession session) {
-        return put_validateOnParse.ofAddress(put_validateOnParse$get(segment), session);
-    }
-    static final FunctionDescriptor get_resolveExternals$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_resolveExternals$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_resolveExternals$FUNC
-    );
-    public interface get_resolveExternals {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_resolveExternals fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_resolveExternals.class, fi, IXMLDOMDocumentVtbl.get_resolveExternals$FUNC, session);
-        }
-        static get_resolveExternals ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_resolveExternals$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_resolveExternals$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_resolveExternals"));
-    public static VarHandle get_resolveExternals$VH() {
-        return IXMLDOMDocumentVtbl.get_resolveExternals$VH;
-    }
-    public static MemoryAddress get_resolveExternals$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_resolveExternals$VH.get(seg);
-    }
-    public static void get_resolveExternals$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_resolveExternals$VH.set(seg, x);
-    }
-    public static MemoryAddress get_resolveExternals$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_resolveExternals$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_resolveExternals$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_resolveExternals$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_resolveExternals get_resolveExternals (MemorySegment segment, MemorySession session) {
-        return get_resolveExternals.ofAddress(get_resolveExternals$get(segment), session);
-    }
-    static final FunctionDescriptor put_resolveExternals$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle put_resolveExternals$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.put_resolveExternals$FUNC
-    );
-    public interface put_resolveExternals {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, short _x1);
-        static MemorySegment allocate(put_resolveExternals fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(put_resolveExternals.class, fi, IXMLDOMDocumentVtbl.put_resolveExternals$FUNC, session);
-        }
-        static put_resolveExternals ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, short __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.put_resolveExternals$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle put_resolveExternals$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("put_resolveExternals"));
-    public static VarHandle put_resolveExternals$VH() {
-        return IXMLDOMDocumentVtbl.put_resolveExternals$VH;
-    }
-    public static MemoryAddress put_resolveExternals$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_resolveExternals$VH.get(seg);
-    }
-    public static void put_resolveExternals$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_resolveExternals$VH.set(seg, x);
-    }
-    public static MemoryAddress put_resolveExternals$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_resolveExternals$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void put_resolveExternals$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_resolveExternals$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static put_resolveExternals put_resolveExternals (MemorySegment segment, MemorySession session) {
-        return put_resolveExternals.ofAddress(put_resolveExternals$get(segment), session);
-    }
-    static final FunctionDescriptor get_preserveWhiteSpace$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_preserveWhiteSpace$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.get_preserveWhiteSpace$FUNC
-    );
-    public interface get_preserveWhiteSpace {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_preserveWhiteSpace fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_preserveWhiteSpace.class, fi, IXMLDOMDocumentVtbl.get_preserveWhiteSpace$FUNC, session);
-        }
-        static get_preserveWhiteSpace ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.get_preserveWhiteSpace$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle get_preserveWhiteSpace$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_preserveWhiteSpace"));
-    public static VarHandle get_preserveWhiteSpace$VH() {
-        return IXMLDOMDocumentVtbl.get_preserveWhiteSpace$VH;
-    }
-    public static MemoryAddress get_preserveWhiteSpace$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_preserveWhiteSpace$VH.get(seg);
-    }
-    public static void get_preserveWhiteSpace$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_preserveWhiteSpace$VH.set(seg, x);
-    }
-    public static MemoryAddress get_preserveWhiteSpace$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.get_preserveWhiteSpace$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_preserveWhiteSpace$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.get_preserveWhiteSpace$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_preserveWhiteSpace get_preserveWhiteSpace (MemorySegment segment, MemorySession session) {
-        return get_preserveWhiteSpace.ofAddress(get_preserveWhiteSpace$get(segment), session);
-    }
-    static final FunctionDescriptor put_preserveWhiteSpace$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle put_preserveWhiteSpace$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.put_preserveWhiteSpace$FUNC
-    );
-    public interface put_preserveWhiteSpace {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, short _x1);
-        static MemorySegment allocate(put_preserveWhiteSpace fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(put_preserveWhiteSpace.class, fi, IXMLDOMDocumentVtbl.put_preserveWhiteSpace$FUNC, session);
-        }
-        static put_preserveWhiteSpace ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, short __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.put_preserveWhiteSpace$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle put_preserveWhiteSpace$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("put_preserveWhiteSpace"));
-    public static VarHandle put_preserveWhiteSpace$VH() {
-        return IXMLDOMDocumentVtbl.put_preserveWhiteSpace$VH;
-    }
-    public static MemoryAddress put_preserveWhiteSpace$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_preserveWhiteSpace$VH.get(seg);
-    }
-    public static void put_preserveWhiteSpace$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_preserveWhiteSpace$VH.set(seg, x);
-    }
-    public static MemoryAddress put_preserveWhiteSpace$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_preserveWhiteSpace$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void put_preserveWhiteSpace$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_preserveWhiteSpace$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static put_preserveWhiteSpace put_preserveWhiteSpace (MemorySegment segment, MemorySession session) {
-        return put_preserveWhiteSpace.ofAddress(put_preserveWhiteSpace$get(segment), session);
-    }
-    static final FunctionDescriptor put_onreadystatechange$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("vt"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved3"),
-                    MemoryLayout.unionLayout(
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("llVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("lVal"),
-                        Constants$root.C_CHAR$LAYOUT.withName("bVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("iVal"),
-                        Constants$root.C_FLOAT$LAYOUT.withName("fltVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("dblVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("boolVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("__OBSOLETE__VARIANT_BOOL"),
-                        Constants$root.C_LONG$LAYOUT.withName("scode"),
-                        MemoryLayout.unionLayout(
-                            MemoryLayout.structLayout(
-                                Constants$root.C_LONG$LAYOUT.withName("Lo"),
-                                Constants$root.C_LONG$LAYOUT.withName("Hi")
-                            ).withName("$anon$0"),
-                            Constants$root.C_LONG_LONG$LAYOUT.withName("int64")
-                        ).withName("cyVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("date"),
-                        Constants$root.C_POINTER$LAYOUT.withName("bstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("punkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("parray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("piVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("plVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pllVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pfltVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdblVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pboolVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("__OBSOLETE__VARIANT_PBOOL"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pscode"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcyVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdate"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppunkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pparray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pvarVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("byref"),
-                        Constants$root.C_CHAR$LAYOUT.withName("cVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("uiVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("ulVal"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("ullVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("intVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("uintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdecVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puiVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pulVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pullVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puintVal"),
-                        MemoryLayout.structLayout(
-                            Constants$root.C_POINTER$LAYOUT.withName("pvRecord"),
-                            Constants$root.C_POINTER$LAYOUT.withName("pRecInfo")
-                        ).withName("$anon$0")
-                    ).withName("$anon$0")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_CHAR$LAYOUT.withName("scale"),
-                            Constants$root.C_CHAR$LAYOUT.withName("sign")
-                        ).withName("$anon$0"),
-                        Constants$root.C_SHORT$LAYOUT.withName("signscale")
-                    ).withName("$anon$0"),
-                    Constants$root.C_LONG$LAYOUT.withName("Hi32"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("Lo32"),
-                            Constants$root.C_LONG$LAYOUT.withName("Mid32")
-                        ).withName("$anon$0"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("Lo64")
-                    ).withName("$anon$1")
-                ).withName("decVal")
-            ).withName("$anon$0")
-        ).withName("tagVARIANT")
-    );
-    static final MethodHandle put_onreadystatechange$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.put_onreadystatechange$FUNC
-    );
-    public interface put_onreadystatechange {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemorySegment _x1);
-        static MemorySegment allocate(put_onreadystatechange fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(put_onreadystatechange.class, fi, IXMLDOMDocumentVtbl.put_onreadystatechange$FUNC, session);
-        }
-        static put_onreadystatechange ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemorySegment __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.put_onreadystatechange$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle put_onreadystatechange$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("put_onreadystatechange"));
-    public static VarHandle put_onreadystatechange$VH() {
-        return IXMLDOMDocumentVtbl.put_onreadystatechange$VH;
-    }
-    public static MemoryAddress put_onreadystatechange$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_onreadystatechange$VH.get(seg);
-    }
-    public static void put_onreadystatechange$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_onreadystatechange$VH.set(seg, x);
-    }
-    public static MemoryAddress put_onreadystatechange$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_onreadystatechange$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void put_onreadystatechange$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_onreadystatechange$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static put_onreadystatechange put_onreadystatechange (MemorySegment segment, MemorySession session) {
-        return put_onreadystatechange.ofAddress(put_onreadystatechange$get(segment), session);
-    }
-    static final FunctionDescriptor put_ondataavailable$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("vt"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved3"),
-                    MemoryLayout.unionLayout(
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("llVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("lVal"),
-                        Constants$root.C_CHAR$LAYOUT.withName("bVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("iVal"),
-                        Constants$root.C_FLOAT$LAYOUT.withName("fltVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("dblVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("boolVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("__OBSOLETE__VARIANT_BOOL"),
-                        Constants$root.C_LONG$LAYOUT.withName("scode"),
-                        MemoryLayout.unionLayout(
-                            MemoryLayout.structLayout(
-                                Constants$root.C_LONG$LAYOUT.withName("Lo"),
-                                Constants$root.C_LONG$LAYOUT.withName("Hi")
-                            ).withName("$anon$0"),
-                            Constants$root.C_LONG_LONG$LAYOUT.withName("int64")
-                        ).withName("cyVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("date"),
-                        Constants$root.C_POINTER$LAYOUT.withName("bstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("punkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("parray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("piVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("plVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pllVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pfltVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdblVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pboolVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("__OBSOLETE__VARIANT_PBOOL"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pscode"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcyVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdate"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppunkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pparray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pvarVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("byref"),
-                        Constants$root.C_CHAR$LAYOUT.withName("cVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("uiVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("ulVal"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("ullVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("intVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("uintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdecVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puiVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pulVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pullVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puintVal"),
-                        MemoryLayout.structLayout(
-                            Constants$root.C_POINTER$LAYOUT.withName("pvRecord"),
-                            Constants$root.C_POINTER$LAYOUT.withName("pRecInfo")
-                        ).withName("$anon$0")
-                    ).withName("$anon$0")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_CHAR$LAYOUT.withName("scale"),
-                            Constants$root.C_CHAR$LAYOUT.withName("sign")
-                        ).withName("$anon$0"),
-                        Constants$root.C_SHORT$LAYOUT.withName("signscale")
-                    ).withName("$anon$0"),
-                    Constants$root.C_LONG$LAYOUT.withName("Hi32"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("Lo32"),
-                            Constants$root.C_LONG$LAYOUT.withName("Mid32")
-                        ).withName("$anon$0"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("Lo64")
-                    ).withName("$anon$1")
-                ).withName("decVal")
-            ).withName("$anon$0")
-        ).withName("tagVARIANT")
-    );
-    static final MethodHandle put_ondataavailable$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.put_ondataavailable$FUNC
-    );
-    public interface put_ondataavailable {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemorySegment _x1);
-        static MemorySegment allocate(put_ondataavailable fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(put_ondataavailable.class, fi, IXMLDOMDocumentVtbl.put_ondataavailable$FUNC, session);
-        }
-        static put_ondataavailable ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemorySegment __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.put_ondataavailable$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle put_ondataavailable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("put_ondataavailable"));
-    public static VarHandle put_ondataavailable$VH() {
-        return IXMLDOMDocumentVtbl.put_ondataavailable$VH;
-    }
-    public static MemoryAddress put_ondataavailable$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_ondataavailable$VH.get(seg);
-    }
-    public static void put_ondataavailable$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_ondataavailable$VH.set(seg, x);
-    }
-    public static MemoryAddress put_ondataavailable$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_ondataavailable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void put_ondataavailable$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_ondataavailable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static put_ondataavailable put_ondataavailable (MemorySegment segment, MemorySession session) {
-        return put_ondataavailable.ofAddress(put_ondataavailable$get(segment), session);
-    }
-    static final FunctionDescriptor put_ontransformnode$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("vt"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved3"),
-                    MemoryLayout.unionLayout(
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("llVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("lVal"),
-                        Constants$root.C_CHAR$LAYOUT.withName("bVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("iVal"),
-                        Constants$root.C_FLOAT$LAYOUT.withName("fltVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("dblVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("boolVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("__OBSOLETE__VARIANT_BOOL"),
-                        Constants$root.C_LONG$LAYOUT.withName("scode"),
-                        MemoryLayout.unionLayout(
-                            MemoryLayout.structLayout(
-                                Constants$root.C_LONG$LAYOUT.withName("Lo"),
-                                Constants$root.C_LONG$LAYOUT.withName("Hi")
-                            ).withName("$anon$0"),
-                            Constants$root.C_LONG_LONG$LAYOUT.withName("int64")
-                        ).withName("cyVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("date"),
-                        Constants$root.C_POINTER$LAYOUT.withName("bstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("punkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("parray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("piVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("plVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pllVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pfltVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdblVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pboolVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("__OBSOLETE__VARIANT_PBOOL"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pscode"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcyVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdate"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppunkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pparray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pvarVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("byref"),
-                        Constants$root.C_CHAR$LAYOUT.withName("cVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("uiVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("ulVal"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("ullVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("intVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("uintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdecVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puiVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pulVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pullVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puintVal"),
-                        MemoryLayout.structLayout(
-                            Constants$root.C_POINTER$LAYOUT.withName("pvRecord"),
-                            Constants$root.C_POINTER$LAYOUT.withName("pRecInfo")
-                        ).withName("$anon$0")
-                    ).withName("$anon$0")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_CHAR$LAYOUT.withName("scale"),
-                            Constants$root.C_CHAR$LAYOUT.withName("sign")
-                        ).withName("$anon$0"),
-                        Constants$root.C_SHORT$LAYOUT.withName("signscale")
-                    ).withName("$anon$0"),
-                    Constants$root.C_LONG$LAYOUT.withName("Hi32"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("Lo32"),
-                            Constants$root.C_LONG$LAYOUT.withName("Mid32")
-                        ).withName("$anon$0"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("Lo64")
-                    ).withName("$anon$1")
-                ).withName("decVal")
-            ).withName("$anon$0")
-        ).withName("tagVARIANT")
-    );
-    static final MethodHandle put_ontransformnode$MH = RuntimeHelper.downcallHandle(
-        IXMLDOMDocumentVtbl.put_ontransformnode$FUNC
-    );
-    public interface put_ontransformnode {
-
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemorySegment _x1);
-        static MemorySegment allocate(put_ontransformnode fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(put_ontransformnode.class, fi, IXMLDOMDocumentVtbl.put_ontransformnode$FUNC, session);
-        }
-        static put_ontransformnode ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemorySegment __x1) -> {
-                try {
-                    return (int)IXMLDOMDocumentVtbl.put_ontransformnode$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
-    }
-
-    static final VarHandle put_ontransformnode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("put_ontransformnode"));
-    public static VarHandle put_ontransformnode$VH() {
-        return IXMLDOMDocumentVtbl.put_ontransformnode$VH;
-    }
-    public static MemoryAddress put_ontransformnode$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_ontransformnode$VH.get(seg);
-    }
-    public static void put_ontransformnode$set( MemorySegment seg, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_ontransformnode$VH.set(seg, x);
-    }
-    public static MemoryAddress put_ontransformnode$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLDOMDocumentVtbl.put_ontransformnode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void put_ontransformnode$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLDOMDocumentVtbl.put_ontransformnode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static put_ontransformnode put_ontransformnode (MemorySegment segment, MemorySession session) {
-        return put_ontransformnode.ofAddress(put_ontransformnode$get(segment), session);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
-
 

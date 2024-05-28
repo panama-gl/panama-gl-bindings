@@ -2,13 +2,32 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _STORAGE_CRYPTO_CAPABILITY {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     DWORD CryptoCapabilityIndex;
+ *     STORAGE_CRYPTO_ALGORITHM_ID AlgorithmId;
+ *     STORAGE_CRYPTO_KEY_SIZE KeySize;
+ *     DWORD DataUnitSizeBitmask;
+ * } STORAGE_CRYPTO_CAPABILITY
+ * }
+ */
 public class STORAGE_CRYPTO_CAPABILITY extends _STORAGE_CRYPTO_CAPABILITY {
 
+    STORAGE_CRYPTO_CAPABILITY() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,13 +2,29 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _JOBOBJECT_BASIC_PROCESS_ID_LIST {
+ *     DWORD NumberOfAssignedProcesses;
+ *     DWORD NumberOfProcessIdsInList;
+ *     ULONG_PTR ProcessIdList[1];
+ * } JOBOBJECT_BASIC_PROCESS_ID_LIST
+ * }
+ */
 public class JOBOBJECT_BASIC_PROCESS_ID_LIST extends _JOBOBJECT_BASIC_PROCESS_ID_LIST {
 
+    JOBOBJECT_BASIC_PROCESS_ID_LIST() {
+        // Should not be called directly
+    }
 }
-
 

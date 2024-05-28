@@ -2,13 +2,35 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _ENCLAVE_INIT_INFO_VBS_BASIC {
+ *     BYTE FamilyId[16];
+ *     BYTE ImageId[16];
+ *     ULONGLONG EnclaveSize;
+ *     DWORD EnclaveSvn;
+ *     DWORD Reserved;
+ *     union {
+ *         HANDLE SignatureInfoHandle;
+ *         ULONGLONG Unused;
+ *     };
+ * } ENCLAVE_INIT_INFO_VBS_BASIC
+ * }
+ */
 public class ENCLAVE_INIT_INFO_VBS_BASIC extends _ENCLAVE_INIT_INFO_VBS_BASIC {
 
+    ENCLAVE_INIT_INFO_VBS_BASIC() {
+        // Should not be called directly
+    }
 }
-
 

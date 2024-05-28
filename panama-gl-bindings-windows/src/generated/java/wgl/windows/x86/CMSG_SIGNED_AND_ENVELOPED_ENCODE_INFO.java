@@ -2,13 +2,29 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CMSG_SIGNED_AND_ENVELOPED_ENCODE_INFO {
+ *     DWORD cbSize;
+ *     CMSG_SIGNED_ENCODE_INFO SignedInfo;
+ *     CMSG_ENVELOPED_ENCODE_INFO EnvelopedInfo;
+ * } CMSG_SIGNED_AND_ENVELOPED_ENCODE_INFO
+ * }
+ */
 public class CMSG_SIGNED_AND_ENVELOPED_ENCODE_INFO extends _CMSG_SIGNED_AND_ENVELOPED_ENCODE_INFO {
 
+    CMSG_SIGNED_AND_ENVELOPED_ENCODE_INFO() {
+        // Should not be called directly
+    }
 }
-
 

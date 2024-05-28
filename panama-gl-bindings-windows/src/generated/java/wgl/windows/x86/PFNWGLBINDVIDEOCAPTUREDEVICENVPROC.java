@@ -2,27 +2,68 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNWGLBINDVIDEOCAPTUREDEVICENVPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(int uVideoSlot, java.lang.foreign.MemoryAddress hDevice);
-    static MemorySegment allocate(PFNWGLBINDVIDEOCAPTUREDEVICENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNWGLBINDVIDEOCAPTUREDEVICENVPROC.class, fi, constants$1411.PFNWGLBINDVIDEOCAPTUREDEVICENVPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PFNWGLBINDVIDEOCAPTUREDEVICENVPROC)(UINT, HVIDEOINPUTDEVICENV) __attribute__((stdcall))
+ * }
+ */
+public class PFNWGLBINDVIDEOCAPTUREDEVICENVPROC {
+
+    PFNWGLBINDVIDEOCAPTUREDEVICENVPROC() {
+        // Should not be called directly
     }
-    static PFNWGLBINDVIDEOCAPTUREDEVICENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _uVideoSlot, java.lang.foreign.MemoryAddress _hDevice) -> {
-            try {
-                return (int)constants$1411.PFNWGLBINDVIDEOCAPTUREDEVICENVPROC$MH.invokeExact((Addressable)symbol, _uVideoSlot, (java.lang.foreign.Addressable)_hDevice);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(int uVideoSlot, MemorySegment hDevice);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNWGLBINDVIDEOCAPTUREDEVICENVPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNWGLBINDVIDEOCAPTUREDEVICENVPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,int uVideoSlot, MemorySegment hDevice) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, uVideoSlot, hDevice);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

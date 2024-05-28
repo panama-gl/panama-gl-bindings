@@ -2,13 +2,28 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _IMAGE_HOT_PATCH_HASHES {
+ *     BYTE SHA256[32];
+ *     BYTE SHA1[20];
+ * } IMAGE_HOT_PATCH_HASHES
+ * }
+ */
 public class IMAGE_HOT_PATCH_HASHES extends _IMAGE_HOT_PATCH_HASHES {
 
+    IMAGE_HOT_PATCH_HASHES() {
+        // Should not be called directly
+    }
 }
-
 

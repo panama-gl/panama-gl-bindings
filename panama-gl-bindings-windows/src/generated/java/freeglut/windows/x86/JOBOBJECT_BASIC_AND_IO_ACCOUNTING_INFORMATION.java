@@ -2,13 +2,28 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION {
+ *     JOBOBJECT_BASIC_ACCOUNTING_INFORMATION BasicInfo;
+ *     IO_COUNTERS IoInfo;
+ * } JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION
+ * }
+ */
 public class JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION extends _JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION {
 
+    JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION() {
+        // Should not be called directly
+    }
 }
-
 

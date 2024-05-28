@@ -2,430 +2,990 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct IRpcChannelBuffer2Vtbl {
+ *     HRESULT (*QueryInterface)(IRpcChannelBuffer2 *, const IID *const, void **) __attribute__((stdcall));
+ *     ULONG (*AddRef)(IRpcChannelBuffer2 *) __attribute__((stdcall));
+ *     ULONG (*Release)(IRpcChannelBuffer2 *) __attribute__((stdcall));
+ *     HRESULT (*GetBuffer)(IRpcChannelBuffer2 *, RPCOLEMESSAGE *, const IID *const) __attribute__((stdcall));
+ *     HRESULT (*SendReceive)(IRpcChannelBuffer2 *, RPCOLEMESSAGE *, ULONG *) __attribute__((stdcall));
+ *     HRESULT (*FreeBuffer)(IRpcChannelBuffer2 *, RPCOLEMESSAGE *) __attribute__((stdcall));
+ *     HRESULT (*GetDestCtx)(IRpcChannelBuffer2 *, DWORD *, void **) __attribute__((stdcall));
+ *     HRESULT (*IsConnected)(IRpcChannelBuffer2 *) __attribute__((stdcall));
+ *     HRESULT (*GetProtocolVersion)(IRpcChannelBuffer2 *, DWORD *) __attribute__((stdcall));
+ * }
+ * }
+ */
 public class IRpcChannelBuffer2Vtbl {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("QueryInterface"),
-        Constants$root.C_POINTER$LAYOUT.withName("AddRef"),
-        Constants$root.C_POINTER$LAYOUT.withName("Release"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetBuffer"),
-        Constants$root.C_POINTER$LAYOUT.withName("SendReceive"),
-        Constants$root.C_POINTER$LAYOUT.withName("FreeBuffer"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetDestCtx"),
-        Constants$root.C_POINTER$LAYOUT.withName("IsConnected"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetProtocolVersion")
+    IRpcChannelBuffer2Vtbl() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("QueryInterface"),
+        wgl_h.C_POINTER.withName("AddRef"),
+        wgl_h.C_POINTER.withName("Release"),
+        wgl_h.C_POINTER.withName("GetBuffer"),
+        wgl_h.C_POINTER.withName("SendReceive"),
+        wgl_h.C_POINTER.withName("FreeBuffer"),
+        wgl_h.C_POINTER.withName("GetDestCtx"),
+        wgl_h.C_POINTER.withName("IsConnected"),
+        wgl_h.C_POINTER.withName("GetProtocolVersion")
     ).withName("IRpcChannelBuffer2Vtbl");
-    public static MemoryLayout $LAYOUT() {
-        return IRpcChannelBuffer2Vtbl.$struct$LAYOUT;
-    }
-    static final FunctionDescriptor QueryInterface$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle QueryInterface$MH = RuntimeHelper.downcallHandle(
-        IRpcChannelBuffer2Vtbl.QueryInterface$FUNC
-    );
-    public interface QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(QueryInterface fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(QueryInterface.class, fi, IRpcChannelBuffer2Vtbl.QueryInterface$FUNC, session);
-        }
-        static QueryInterface ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IRpcChannelBuffer2Vtbl.QueryInterface$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
 
-    static final VarHandle QueryInterface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueryInterface"));
-    public static VarHandle QueryInterface$VH() {
-        return IRpcChannelBuffer2Vtbl.QueryInterface$VH;
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IRpcChannelBuffer2Vtbl.QueryInterface$VH.get(seg);
-    }
-    public static void QueryInterface$set( MemorySegment seg, MemoryAddress x) {
-        IRpcChannelBuffer2Vtbl.QueryInterface$VH.set(seg, x);
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IRpcChannelBuffer2Vtbl.QueryInterface$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void QueryInterface$set(MemorySegment seg, long index, MemoryAddress x) {
-        IRpcChannelBuffer2Vtbl.QueryInterface$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static QueryInterface QueryInterface (MemorySegment segment, MemorySession session) {
-        return QueryInterface.ofAddress(QueryInterface$get(segment), session);
-    }
-    static final FunctionDescriptor AddRef$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle AddRef$MH = RuntimeHelper.downcallHandle(
-        IRpcChannelBuffer2Vtbl.AddRef$FUNC
-    );
-    public interface AddRef {
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IRpcChannelBuffer2 *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(AddRef fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(AddRef.class, fi, IRpcChannelBuffer2Vtbl.AddRef$FUNC, session);
+        QueryInterface() {
+            // Should not be called directly
         }
-        static AddRef ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IRpcChannelBuffer2Vtbl.AddRef$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(QueryInterface.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(QueryInterface.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle AddRef$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddRef"));
-    public static VarHandle AddRef$VH() {
-        return IRpcChannelBuffer2Vtbl.AddRef$VH;
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IRpcChannelBuffer2Vtbl.AddRef$VH.get(seg);
-    }
-    public static void AddRef$set( MemorySegment seg, MemoryAddress x) {
-        IRpcChannelBuffer2Vtbl.AddRef$VH.set(seg, x);
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IRpcChannelBuffer2Vtbl.AddRef$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddRef$set(MemorySegment seg, long index, MemoryAddress x) {
-        IRpcChannelBuffer2Vtbl.AddRef$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static AddRef AddRef (MemorySegment segment, MemorySession session) {
-        return AddRef.ofAddress(AddRef$get(segment), session);
-    }
-    static final FunctionDescriptor Release$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Release$MH = RuntimeHelper.downcallHandle(
-        IRpcChannelBuffer2Vtbl.Release$FUNC
-    );
-    public interface Release {
+    private static final AddressLayout QueryInterface$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("QueryInterface"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Release fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Release.class, fi, IRpcChannelBuffer2Vtbl.Release$FUNC, session);
-        }
-        static Release ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IRpcChannelBuffer2Vtbl.Release$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IRpcChannelBuffer2 *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout QueryInterface$layout() {
+        return QueryInterface$LAYOUT;
     }
 
-    static final VarHandle Release$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Release"));
-    public static VarHandle Release$VH() {
-        return IRpcChannelBuffer2Vtbl.Release$VH;
-    }
-    public static MemoryAddress Release$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IRpcChannelBuffer2Vtbl.Release$VH.get(seg);
-    }
-    public static void Release$set( MemorySegment seg, MemoryAddress x) {
-        IRpcChannelBuffer2Vtbl.Release$VH.set(seg, x);
-    }
-    public static MemoryAddress Release$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IRpcChannelBuffer2Vtbl.Release$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Release$set(MemorySegment seg, long index, MemoryAddress x) {
-        IRpcChannelBuffer2Vtbl.Release$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Release Release (MemorySegment segment, MemorySession session) {
-        return Release.ofAddress(Release$get(segment), session);
-    }
-    static final FunctionDescriptor GetBuffer$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetBuffer$MH = RuntimeHelper.downcallHandle(
-        IRpcChannelBuffer2Vtbl.GetBuffer$FUNC
-    );
-    public interface GetBuffer {
+    private static final long QueryInterface$OFFSET = 0;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(GetBuffer fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetBuffer.class, fi, IRpcChannelBuffer2Vtbl.GetBuffer$FUNC, session);
-        }
-        static GetBuffer ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IRpcChannelBuffer2Vtbl.GetBuffer$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IRpcChannelBuffer2 *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long QueryInterface$offset() {
+        return QueryInterface$OFFSET;
     }
 
-    static final VarHandle GetBuffer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetBuffer"));
-    public static VarHandle GetBuffer$VH() {
-        return IRpcChannelBuffer2Vtbl.GetBuffer$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IRpcChannelBuffer2 *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment QueryInterface(MemorySegment struct) {
+        return struct.get(QueryInterface$LAYOUT, QueryInterface$OFFSET);
     }
-    public static MemoryAddress GetBuffer$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IRpcChannelBuffer2Vtbl.GetBuffer$VH.get(seg);
-    }
-    public static void GetBuffer$set( MemorySegment seg, MemoryAddress x) {
-        IRpcChannelBuffer2Vtbl.GetBuffer$VH.set(seg, x);
-    }
-    public static MemoryAddress GetBuffer$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IRpcChannelBuffer2Vtbl.GetBuffer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetBuffer$set(MemorySegment seg, long index, MemoryAddress x) {
-        IRpcChannelBuffer2Vtbl.GetBuffer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetBuffer GetBuffer (MemorySegment segment, MemorySession session) {
-        return GetBuffer.ofAddress(GetBuffer$get(segment), session);
-    }
-    static final FunctionDescriptor SendReceive$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle SendReceive$MH = RuntimeHelper.downcallHandle(
-        IRpcChannelBuffer2Vtbl.SendReceive$FUNC
-    );
-    public interface SendReceive {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(SendReceive fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(SendReceive.class, fi, IRpcChannelBuffer2Vtbl.SendReceive$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IRpcChannelBuffer2 *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void QueryInterface(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(QueryInterface$LAYOUT, QueryInterface$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IRpcChannelBuffer2 *) __attribute__((stdcall))
+     * }
+     */
+    public static class AddRef {
+
+        AddRef() {
+            // Should not be called directly
         }
-        static SendReceive ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IRpcChannelBuffer2Vtbl.SendReceive$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(AddRef.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(AddRef.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle SendReceive$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SendReceive"));
-    public static VarHandle SendReceive$VH() {
-        return IRpcChannelBuffer2Vtbl.SendReceive$VH;
-    }
-    public static MemoryAddress SendReceive$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IRpcChannelBuffer2Vtbl.SendReceive$VH.get(seg);
-    }
-    public static void SendReceive$set( MemorySegment seg, MemoryAddress x) {
-        IRpcChannelBuffer2Vtbl.SendReceive$VH.set(seg, x);
-    }
-    public static MemoryAddress SendReceive$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IRpcChannelBuffer2Vtbl.SendReceive$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SendReceive$set(MemorySegment seg, long index, MemoryAddress x) {
-        IRpcChannelBuffer2Vtbl.SendReceive$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static SendReceive SendReceive (MemorySegment segment, MemorySession session) {
-        return SendReceive.ofAddress(SendReceive$get(segment), session);
-    }
-    static final FunctionDescriptor FreeBuffer$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle FreeBuffer$MH = RuntimeHelper.downcallHandle(
-        IRpcChannelBuffer2Vtbl.FreeBuffer$FUNC
-    );
-    public interface FreeBuffer {
+    private static final AddressLayout AddRef$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AddRef"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(FreeBuffer fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(FreeBuffer.class, fi, IRpcChannelBuffer2Vtbl.FreeBuffer$FUNC, session);
-        }
-        static FreeBuffer ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IRpcChannelBuffer2Vtbl.FreeBuffer$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IRpcChannelBuffer2 *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout AddRef$layout() {
+        return AddRef$LAYOUT;
     }
 
-    static final VarHandle FreeBuffer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FreeBuffer"));
-    public static VarHandle FreeBuffer$VH() {
-        return IRpcChannelBuffer2Vtbl.FreeBuffer$VH;
-    }
-    public static MemoryAddress FreeBuffer$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IRpcChannelBuffer2Vtbl.FreeBuffer$VH.get(seg);
-    }
-    public static void FreeBuffer$set( MemorySegment seg, MemoryAddress x) {
-        IRpcChannelBuffer2Vtbl.FreeBuffer$VH.set(seg, x);
-    }
-    public static MemoryAddress FreeBuffer$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IRpcChannelBuffer2Vtbl.FreeBuffer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FreeBuffer$set(MemorySegment seg, long index, MemoryAddress x) {
-        IRpcChannelBuffer2Vtbl.FreeBuffer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static FreeBuffer FreeBuffer (MemorySegment segment, MemorySession session) {
-        return FreeBuffer.ofAddress(FreeBuffer$get(segment), session);
-    }
-    static final FunctionDescriptor GetDestCtx$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetDestCtx$MH = RuntimeHelper.downcallHandle(
-        IRpcChannelBuffer2Vtbl.GetDestCtx$FUNC
-    );
-    public interface GetDestCtx {
+    private static final long AddRef$OFFSET = 8;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(GetDestCtx fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetDestCtx.class, fi, IRpcChannelBuffer2Vtbl.GetDestCtx$FUNC, session);
-        }
-        static GetDestCtx ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IRpcChannelBuffer2Vtbl.GetDestCtx$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IRpcChannelBuffer2 *) __attribute__((stdcall))
+     * }
+     */
+    public static final long AddRef$offset() {
+        return AddRef$OFFSET;
     }
 
-    static final VarHandle GetDestCtx$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetDestCtx"));
-    public static VarHandle GetDestCtx$VH() {
-        return IRpcChannelBuffer2Vtbl.GetDestCtx$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IRpcChannelBuffer2 *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment AddRef(MemorySegment struct) {
+        return struct.get(AddRef$LAYOUT, AddRef$OFFSET);
     }
-    public static MemoryAddress GetDestCtx$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IRpcChannelBuffer2Vtbl.GetDestCtx$VH.get(seg);
-    }
-    public static void GetDestCtx$set( MemorySegment seg, MemoryAddress x) {
-        IRpcChannelBuffer2Vtbl.GetDestCtx$VH.set(seg, x);
-    }
-    public static MemoryAddress GetDestCtx$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IRpcChannelBuffer2Vtbl.GetDestCtx$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetDestCtx$set(MemorySegment seg, long index, MemoryAddress x) {
-        IRpcChannelBuffer2Vtbl.GetDestCtx$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetDestCtx GetDestCtx (MemorySegment segment, MemorySession session) {
-        return GetDestCtx.ofAddress(GetDestCtx$get(segment), session);
-    }
-    static final FunctionDescriptor IsConnected$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle IsConnected$MH = RuntimeHelper.downcallHandle(
-        IRpcChannelBuffer2Vtbl.IsConnected$FUNC
-    );
-    public interface IsConnected {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(IsConnected fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(IsConnected.class, fi, IRpcChannelBuffer2Vtbl.IsConnected$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IRpcChannelBuffer2 *) __attribute__((stdcall))
+     * }
+     */
+    public static void AddRef(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AddRef$LAYOUT, AddRef$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*Release)(IRpcChannelBuffer2 *) __attribute__((stdcall))
+     * }
+     */
+    public static class Release {
+
+        Release() {
+            // Should not be called directly
         }
-        static IsConnected ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IRpcChannelBuffer2Vtbl.IsConnected$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Release.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Release.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle IsConnected$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("IsConnected"));
-    public static VarHandle IsConnected$VH() {
-        return IRpcChannelBuffer2Vtbl.IsConnected$VH;
-    }
-    public static MemoryAddress IsConnected$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IRpcChannelBuffer2Vtbl.IsConnected$VH.get(seg);
-    }
-    public static void IsConnected$set( MemorySegment seg, MemoryAddress x) {
-        IRpcChannelBuffer2Vtbl.IsConnected$VH.set(seg, x);
-    }
-    public static MemoryAddress IsConnected$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IRpcChannelBuffer2Vtbl.IsConnected$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void IsConnected$set(MemorySegment seg, long index, MemoryAddress x) {
-        IRpcChannelBuffer2Vtbl.IsConnected$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static IsConnected IsConnected (MemorySegment segment, MemorySession session) {
-        return IsConnected.ofAddress(IsConnected$get(segment), session);
-    }
-    static final FunctionDescriptor GetProtocolVersion$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetProtocolVersion$MH = RuntimeHelper.downcallHandle(
-        IRpcChannelBuffer2Vtbl.GetProtocolVersion$FUNC
-    );
-    public interface GetProtocolVersion {
+    private static final AddressLayout Release$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Release"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(GetProtocolVersion fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetProtocolVersion.class, fi, IRpcChannelBuffer2Vtbl.GetProtocolVersion$FUNC, session);
-        }
-        static GetProtocolVersion ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IRpcChannelBuffer2Vtbl.GetProtocolVersion$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IRpcChannelBuffer2 *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Release$layout() {
+        return Release$LAYOUT;
     }
 
-    static final VarHandle GetProtocolVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetProtocolVersion"));
-    public static VarHandle GetProtocolVersion$VH() {
-        return IRpcChannelBuffer2Vtbl.GetProtocolVersion$VH;
+    private static final long Release$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IRpcChannelBuffer2 *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Release$offset() {
+        return Release$OFFSET;
     }
-    public static MemoryAddress GetProtocolVersion$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IRpcChannelBuffer2Vtbl.GetProtocolVersion$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IRpcChannelBuffer2 *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Release(MemorySegment struct) {
+        return struct.get(Release$LAYOUT, Release$OFFSET);
     }
-    public static void GetProtocolVersion$set( MemorySegment seg, MemoryAddress x) {
-        IRpcChannelBuffer2Vtbl.GetProtocolVersion$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IRpcChannelBuffer2 *) __attribute__((stdcall))
+     * }
+     */
+    public static void Release(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Release$LAYOUT, Release$OFFSET, fieldValue);
     }
-    public static MemoryAddress GetProtocolVersion$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IRpcChannelBuffer2Vtbl.GetProtocolVersion$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetBuffer)(IRpcChannelBuffer2 *, RPCOLEMESSAGE *, const IID *const) __attribute__((stdcall))
+     * }
+     */
+    public static class GetBuffer {
+
+        GetBuffer() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetBuffer.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetBuffer.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
     }
-    public static void GetProtocolVersion$set(MemorySegment seg, long index, MemoryAddress x) {
-        IRpcChannelBuffer2Vtbl.GetProtocolVersion$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final AddressLayout GetBuffer$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetBuffer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetBuffer)(IRpcChannelBuffer2 *, RPCOLEMESSAGE *, const IID *const) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetBuffer$layout() {
+        return GetBuffer$LAYOUT;
     }
-    public static GetProtocolVersion GetProtocolVersion (MemorySegment segment, MemorySession session) {
-        return GetProtocolVersion.ofAddress(GetProtocolVersion$get(segment), session);
+
+    private static final long GetBuffer$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetBuffer)(IRpcChannelBuffer2 *, RPCOLEMESSAGE *, const IID *const) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetBuffer$offset() {
+        return GetBuffer$OFFSET;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetBuffer)(IRpcChannelBuffer2 *, RPCOLEMESSAGE *, const IID *const) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetBuffer(MemorySegment struct) {
+        return struct.get(GetBuffer$LAYOUT, GetBuffer$OFFSET);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetBuffer)(IRpcChannelBuffer2 *, RPCOLEMESSAGE *, const IID *const) __attribute__((stdcall))
+     * }
+     */
+    public static void GetBuffer(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetBuffer$LAYOUT, GetBuffer$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*SendReceive)(IRpcChannelBuffer2 *, RPCOLEMESSAGE *, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static class SendReceive {
+
+        SendReceive() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(SendReceive.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(SendReceive.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout SendReceive$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SendReceive"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*SendReceive)(IRpcChannelBuffer2 *, RPCOLEMESSAGE *, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout SendReceive$layout() {
+        return SendReceive$LAYOUT;
+    }
+
+    private static final long SendReceive$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*SendReceive)(IRpcChannelBuffer2 *, RPCOLEMESSAGE *, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static final long SendReceive$offset() {
+        return SendReceive$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SendReceive)(IRpcChannelBuffer2 *, RPCOLEMESSAGE *, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment SendReceive(MemorySegment struct) {
+        return struct.get(SendReceive$LAYOUT, SendReceive$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SendReceive)(IRpcChannelBuffer2 *, RPCOLEMESSAGE *, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static void SendReceive(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SendReceive$LAYOUT, SendReceive$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*FreeBuffer)(IRpcChannelBuffer2 *, RPCOLEMESSAGE *) __attribute__((stdcall))
+     * }
+     */
+    public static class FreeBuffer {
+
+        FreeBuffer() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(FreeBuffer.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(FreeBuffer.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout FreeBuffer$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("FreeBuffer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*FreeBuffer)(IRpcChannelBuffer2 *, RPCOLEMESSAGE *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout FreeBuffer$layout() {
+        return FreeBuffer$LAYOUT;
+    }
+
+    private static final long FreeBuffer$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*FreeBuffer)(IRpcChannelBuffer2 *, RPCOLEMESSAGE *) __attribute__((stdcall))
+     * }
+     */
+    public static final long FreeBuffer$offset() {
+        return FreeBuffer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*FreeBuffer)(IRpcChannelBuffer2 *, RPCOLEMESSAGE *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment FreeBuffer(MemorySegment struct) {
+        return struct.get(FreeBuffer$LAYOUT, FreeBuffer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*FreeBuffer)(IRpcChannelBuffer2 *, RPCOLEMESSAGE *) __attribute__((stdcall))
+     * }
+     */
+    public static void FreeBuffer(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(FreeBuffer$LAYOUT, FreeBuffer$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetDestCtx)(IRpcChannelBuffer2 *, DWORD *, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class GetDestCtx {
+
+        GetDestCtx() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetDestCtx.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetDestCtx.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout GetDestCtx$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetDestCtx"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetDestCtx)(IRpcChannelBuffer2 *, DWORD *, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetDestCtx$layout() {
+        return GetDestCtx$LAYOUT;
+    }
+
+    private static final long GetDestCtx$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetDestCtx)(IRpcChannelBuffer2 *, DWORD *, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetDestCtx$offset() {
+        return GetDestCtx$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetDestCtx)(IRpcChannelBuffer2 *, DWORD *, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetDestCtx(MemorySegment struct) {
+        return struct.get(GetDestCtx$LAYOUT, GetDestCtx$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetDestCtx)(IRpcChannelBuffer2 *, DWORD *, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void GetDestCtx(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetDestCtx$LAYOUT, GetDestCtx$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*IsConnected)(IRpcChannelBuffer2 *) __attribute__((stdcall))
+     * }
+     */
+    public static class IsConnected {
+
+        IsConnected() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(IsConnected.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(IsConnected.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout IsConnected$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("IsConnected"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*IsConnected)(IRpcChannelBuffer2 *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout IsConnected$layout() {
+        return IsConnected$LAYOUT;
+    }
+
+    private static final long IsConnected$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*IsConnected)(IRpcChannelBuffer2 *) __attribute__((stdcall))
+     * }
+     */
+    public static final long IsConnected$offset() {
+        return IsConnected$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*IsConnected)(IRpcChannelBuffer2 *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment IsConnected(MemorySegment struct) {
+        return struct.get(IsConnected$LAYOUT, IsConnected$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*IsConnected)(IRpcChannelBuffer2 *) __attribute__((stdcall))
+     * }
+     */
+    public static void IsConnected(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(IsConnected$LAYOUT, IsConnected$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetProtocolVersion)(IRpcChannelBuffer2 *, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static class GetProtocolVersion {
+
+        GetProtocolVersion() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetProtocolVersion.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetProtocolVersion.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout GetProtocolVersion$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetProtocolVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetProtocolVersion)(IRpcChannelBuffer2 *, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetProtocolVersion$layout() {
+        return GetProtocolVersion$LAYOUT;
+    }
+
+    private static final long GetProtocolVersion$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetProtocolVersion)(IRpcChannelBuffer2 *, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetProtocolVersion$offset() {
+        return GetProtocolVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetProtocolVersion)(IRpcChannelBuffer2 *, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetProtocolVersion(MemorySegment struct) {
+        return struct.get(GetProtocolVersion$LAYOUT, GetProtocolVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetProtocolVersion)(IRpcChannelBuffer2 *, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static void GetProtocolVersion(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetProtocolVersion$LAYOUT, GetProtocolVersion$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

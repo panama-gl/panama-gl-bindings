@@ -2,279 +2,770 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _FILESYSTEM_STATISTICS {
+ *     WORD FileSystemType;
+ *     WORD Version;
+ *     DWORD SizeOfCompleteStructure;
+ *     DWORD UserFileReads;
+ *     DWORD UserFileReadBytes;
+ *     DWORD UserDiskReads;
+ *     DWORD UserFileWrites;
+ *     DWORD UserFileWriteBytes;
+ *     DWORD UserDiskWrites;
+ *     DWORD MetaDataReads;
+ *     DWORD MetaDataReadBytes;
+ *     DWORD MetaDataDiskReads;
+ *     DWORD MetaDataWrites;
+ *     DWORD MetaDataWriteBytes;
+ *     DWORD MetaDataDiskWrites;
+ * }
+ * }
+ */
 public class _FILESYSTEM_STATISTICS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("FileSystemType"),
-        Constants$root.C_SHORT$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("SizeOfCompleteStructure"),
-        Constants$root.C_LONG$LAYOUT.withName("UserFileReads"),
-        Constants$root.C_LONG$LAYOUT.withName("UserFileReadBytes"),
-        Constants$root.C_LONG$LAYOUT.withName("UserDiskReads"),
-        Constants$root.C_LONG$LAYOUT.withName("UserFileWrites"),
-        Constants$root.C_LONG$LAYOUT.withName("UserFileWriteBytes"),
-        Constants$root.C_LONG$LAYOUT.withName("UserDiskWrites"),
-        Constants$root.C_LONG$LAYOUT.withName("MetaDataReads"),
-        Constants$root.C_LONG$LAYOUT.withName("MetaDataReadBytes"),
-        Constants$root.C_LONG$LAYOUT.withName("MetaDataDiskReads"),
-        Constants$root.C_LONG$LAYOUT.withName("MetaDataWrites"),
-        Constants$root.C_LONG$LAYOUT.withName("MetaDataWriteBytes"),
-        Constants$root.C_LONG$LAYOUT.withName("MetaDataDiskWrites")
-    ).withName("_FILESYSTEM_STATISTICS");
-    public static MemoryLayout $LAYOUT() {
-        return _FILESYSTEM_STATISTICS.$struct$LAYOUT;
+    _FILESYSTEM_STATISTICS() {
+        // Should not be called directly
     }
-    static final VarHandle FileSystemType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FileSystemType"));
-    public static VarHandle FileSystemType$VH() {
-        return _FILESYSTEM_STATISTICS.FileSystemType$VH;
-    }
-    public static short FileSystemType$get(MemorySegment seg) {
-        return (short)_FILESYSTEM_STATISTICS.FileSystemType$VH.get(seg);
-    }
-    public static void FileSystemType$set( MemorySegment seg, short x) {
-        _FILESYSTEM_STATISTICS.FileSystemType$VH.set(seg, x);
-    }
-    public static short FileSystemType$get(MemorySegment seg, long index) {
-        return (short)_FILESYSTEM_STATISTICS.FileSystemType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FileSystemType$set(MemorySegment seg, long index, short x) {
-        _FILESYSTEM_STATISTICS.FileSystemType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _FILESYSTEM_STATISTICS.Version$VH;
-    }
-    public static short Version$get(MemorySegment seg) {
-        return (short)_FILESYSTEM_STATISTICS.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, short x) {
-        _FILESYSTEM_STATISTICS.Version$VH.set(seg, x);
-    }
-    public static short Version$get(MemorySegment seg, long index) {
-        return (short)_FILESYSTEM_STATISTICS.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, short x) {
-        _FILESYSTEM_STATISTICS.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SizeOfCompleteStructure$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SizeOfCompleteStructure"));
-    public static VarHandle SizeOfCompleteStructure$VH() {
-        return _FILESYSTEM_STATISTICS.SizeOfCompleteStructure$VH;
-    }
-    public static int SizeOfCompleteStructure$get(MemorySegment seg) {
-        return (int)_FILESYSTEM_STATISTICS.SizeOfCompleteStructure$VH.get(seg);
-    }
-    public static void SizeOfCompleteStructure$set( MemorySegment seg, int x) {
-        _FILESYSTEM_STATISTICS.SizeOfCompleteStructure$VH.set(seg, x);
-    }
-    public static int SizeOfCompleteStructure$get(MemorySegment seg, long index) {
-        return (int)_FILESYSTEM_STATISTICS.SizeOfCompleteStructure$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SizeOfCompleteStructure$set(MemorySegment seg, long index, int x) {
-        _FILESYSTEM_STATISTICS.SizeOfCompleteStructure$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle UserFileReads$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UserFileReads"));
-    public static VarHandle UserFileReads$VH() {
-        return _FILESYSTEM_STATISTICS.UserFileReads$VH;
-    }
-    public static int UserFileReads$get(MemorySegment seg) {
-        return (int)_FILESYSTEM_STATISTICS.UserFileReads$VH.get(seg);
-    }
-    public static void UserFileReads$set( MemorySegment seg, int x) {
-        _FILESYSTEM_STATISTICS.UserFileReads$VH.set(seg, x);
-    }
-    public static int UserFileReads$get(MemorySegment seg, long index) {
-        return (int)_FILESYSTEM_STATISTICS.UserFileReads$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UserFileReads$set(MemorySegment seg, long index, int x) {
-        _FILESYSTEM_STATISTICS.UserFileReads$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle UserFileReadBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UserFileReadBytes"));
-    public static VarHandle UserFileReadBytes$VH() {
-        return _FILESYSTEM_STATISTICS.UserFileReadBytes$VH;
-    }
-    public static int UserFileReadBytes$get(MemorySegment seg) {
-        return (int)_FILESYSTEM_STATISTICS.UserFileReadBytes$VH.get(seg);
-    }
-    public static void UserFileReadBytes$set( MemorySegment seg, int x) {
-        _FILESYSTEM_STATISTICS.UserFileReadBytes$VH.set(seg, x);
-    }
-    public static int UserFileReadBytes$get(MemorySegment seg, long index) {
-        return (int)_FILESYSTEM_STATISTICS.UserFileReadBytes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UserFileReadBytes$set(MemorySegment seg, long index, int x) {
-        _FILESYSTEM_STATISTICS.UserFileReadBytes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle UserDiskReads$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UserDiskReads"));
-    public static VarHandle UserDiskReads$VH() {
-        return _FILESYSTEM_STATISTICS.UserDiskReads$VH;
-    }
-    public static int UserDiskReads$get(MemorySegment seg) {
-        return (int)_FILESYSTEM_STATISTICS.UserDiskReads$VH.get(seg);
-    }
-    public static void UserDiskReads$set( MemorySegment seg, int x) {
-        _FILESYSTEM_STATISTICS.UserDiskReads$VH.set(seg, x);
-    }
-    public static int UserDiskReads$get(MemorySegment seg, long index) {
-        return (int)_FILESYSTEM_STATISTICS.UserDiskReads$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UserDiskReads$set(MemorySegment seg, long index, int x) {
-        _FILESYSTEM_STATISTICS.UserDiskReads$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle UserFileWrites$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UserFileWrites"));
-    public static VarHandle UserFileWrites$VH() {
-        return _FILESYSTEM_STATISTICS.UserFileWrites$VH;
-    }
-    public static int UserFileWrites$get(MemorySegment seg) {
-        return (int)_FILESYSTEM_STATISTICS.UserFileWrites$VH.get(seg);
-    }
-    public static void UserFileWrites$set( MemorySegment seg, int x) {
-        _FILESYSTEM_STATISTICS.UserFileWrites$VH.set(seg, x);
-    }
-    public static int UserFileWrites$get(MemorySegment seg, long index) {
-        return (int)_FILESYSTEM_STATISTICS.UserFileWrites$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UserFileWrites$set(MemorySegment seg, long index, int x) {
-        _FILESYSTEM_STATISTICS.UserFileWrites$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle UserFileWriteBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UserFileWriteBytes"));
-    public static VarHandle UserFileWriteBytes$VH() {
-        return _FILESYSTEM_STATISTICS.UserFileWriteBytes$VH;
-    }
-    public static int UserFileWriteBytes$get(MemorySegment seg) {
-        return (int)_FILESYSTEM_STATISTICS.UserFileWriteBytes$VH.get(seg);
-    }
-    public static void UserFileWriteBytes$set( MemorySegment seg, int x) {
-        _FILESYSTEM_STATISTICS.UserFileWriteBytes$VH.set(seg, x);
-    }
-    public static int UserFileWriteBytes$get(MemorySegment seg, long index) {
-        return (int)_FILESYSTEM_STATISTICS.UserFileWriteBytes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UserFileWriteBytes$set(MemorySegment seg, long index, int x) {
-        _FILESYSTEM_STATISTICS.UserFileWriteBytes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle UserDiskWrites$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UserDiskWrites"));
-    public static VarHandle UserDiskWrites$VH() {
-        return _FILESYSTEM_STATISTICS.UserDiskWrites$VH;
-    }
-    public static int UserDiskWrites$get(MemorySegment seg) {
-        return (int)_FILESYSTEM_STATISTICS.UserDiskWrites$VH.get(seg);
-    }
-    public static void UserDiskWrites$set( MemorySegment seg, int x) {
-        _FILESYSTEM_STATISTICS.UserDiskWrites$VH.set(seg, x);
-    }
-    public static int UserDiskWrites$get(MemorySegment seg, long index) {
-        return (int)_FILESYSTEM_STATISTICS.UserDiskWrites$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UserDiskWrites$set(MemorySegment seg, long index, int x) {
-        _FILESYSTEM_STATISTICS.UserDiskWrites$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MetaDataReads$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MetaDataReads"));
-    public static VarHandle MetaDataReads$VH() {
-        return _FILESYSTEM_STATISTICS.MetaDataReads$VH;
-    }
-    public static int MetaDataReads$get(MemorySegment seg) {
-        return (int)_FILESYSTEM_STATISTICS.MetaDataReads$VH.get(seg);
-    }
-    public static void MetaDataReads$set( MemorySegment seg, int x) {
-        _FILESYSTEM_STATISTICS.MetaDataReads$VH.set(seg, x);
-    }
-    public static int MetaDataReads$get(MemorySegment seg, long index) {
-        return (int)_FILESYSTEM_STATISTICS.MetaDataReads$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MetaDataReads$set(MemorySegment seg, long index, int x) {
-        _FILESYSTEM_STATISTICS.MetaDataReads$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MetaDataReadBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MetaDataReadBytes"));
-    public static VarHandle MetaDataReadBytes$VH() {
-        return _FILESYSTEM_STATISTICS.MetaDataReadBytes$VH;
-    }
-    public static int MetaDataReadBytes$get(MemorySegment seg) {
-        return (int)_FILESYSTEM_STATISTICS.MetaDataReadBytes$VH.get(seg);
-    }
-    public static void MetaDataReadBytes$set( MemorySegment seg, int x) {
-        _FILESYSTEM_STATISTICS.MetaDataReadBytes$VH.set(seg, x);
-    }
-    public static int MetaDataReadBytes$get(MemorySegment seg, long index) {
-        return (int)_FILESYSTEM_STATISTICS.MetaDataReadBytes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MetaDataReadBytes$set(MemorySegment seg, long index, int x) {
-        _FILESYSTEM_STATISTICS.MetaDataReadBytes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MetaDataDiskReads$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MetaDataDiskReads"));
-    public static VarHandle MetaDataDiskReads$VH() {
-        return _FILESYSTEM_STATISTICS.MetaDataDiskReads$VH;
-    }
-    public static int MetaDataDiskReads$get(MemorySegment seg) {
-        return (int)_FILESYSTEM_STATISTICS.MetaDataDiskReads$VH.get(seg);
-    }
-    public static void MetaDataDiskReads$set( MemorySegment seg, int x) {
-        _FILESYSTEM_STATISTICS.MetaDataDiskReads$VH.set(seg, x);
-    }
-    public static int MetaDataDiskReads$get(MemorySegment seg, long index) {
-        return (int)_FILESYSTEM_STATISTICS.MetaDataDiskReads$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MetaDataDiskReads$set(MemorySegment seg, long index, int x) {
-        _FILESYSTEM_STATISTICS.MetaDataDiskReads$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MetaDataWrites$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MetaDataWrites"));
-    public static VarHandle MetaDataWrites$VH() {
-        return _FILESYSTEM_STATISTICS.MetaDataWrites$VH;
-    }
-    public static int MetaDataWrites$get(MemorySegment seg) {
-        return (int)_FILESYSTEM_STATISTICS.MetaDataWrites$VH.get(seg);
-    }
-    public static void MetaDataWrites$set( MemorySegment seg, int x) {
-        _FILESYSTEM_STATISTICS.MetaDataWrites$VH.set(seg, x);
-    }
-    public static int MetaDataWrites$get(MemorySegment seg, long index) {
-        return (int)_FILESYSTEM_STATISTICS.MetaDataWrites$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MetaDataWrites$set(MemorySegment seg, long index, int x) {
-        _FILESYSTEM_STATISTICS.MetaDataWrites$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MetaDataWriteBytes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MetaDataWriteBytes"));
-    public static VarHandle MetaDataWriteBytes$VH() {
-        return _FILESYSTEM_STATISTICS.MetaDataWriteBytes$VH;
-    }
-    public static int MetaDataWriteBytes$get(MemorySegment seg) {
-        return (int)_FILESYSTEM_STATISTICS.MetaDataWriteBytes$VH.get(seg);
-    }
-    public static void MetaDataWriteBytes$set( MemorySegment seg, int x) {
-        _FILESYSTEM_STATISTICS.MetaDataWriteBytes$VH.set(seg, x);
-    }
-    public static int MetaDataWriteBytes$get(MemorySegment seg, long index) {
-        return (int)_FILESYSTEM_STATISTICS.MetaDataWriteBytes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MetaDataWriteBytes$set(MemorySegment seg, long index, int x) {
-        _FILESYSTEM_STATISTICS.MetaDataWriteBytes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MetaDataDiskWrites$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MetaDataDiskWrites"));
-    public static VarHandle MetaDataDiskWrites$VH() {
-        return _FILESYSTEM_STATISTICS.MetaDataDiskWrites$VH;
-    }
-    public static int MetaDataDiskWrites$get(MemorySegment seg) {
-        return (int)_FILESYSTEM_STATISTICS.MetaDataDiskWrites$VH.get(seg);
-    }
-    public static void MetaDataDiskWrites$set( MemorySegment seg, int x) {
-        _FILESYSTEM_STATISTICS.MetaDataDiskWrites$VH.set(seg, x);
-    }
-    public static int MetaDataDiskWrites$get(MemorySegment seg, long index) {
-        return (int)_FILESYSTEM_STATISTICS.MetaDataDiskWrites$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MetaDataDiskWrites$set(MemorySegment seg, long index, int x) {
-        _FILESYSTEM_STATISTICS.MetaDataDiskWrites$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("FileSystemType"),
+        wgl_h.C_SHORT.withName("Version"),
+        wgl_h.C_LONG.withName("SizeOfCompleteStructure"),
+        wgl_h.C_LONG.withName("UserFileReads"),
+        wgl_h.C_LONG.withName("UserFileReadBytes"),
+        wgl_h.C_LONG.withName("UserDiskReads"),
+        wgl_h.C_LONG.withName("UserFileWrites"),
+        wgl_h.C_LONG.withName("UserFileWriteBytes"),
+        wgl_h.C_LONG.withName("UserDiskWrites"),
+        wgl_h.C_LONG.withName("MetaDataReads"),
+        wgl_h.C_LONG.withName("MetaDataReadBytes"),
+        wgl_h.C_LONG.withName("MetaDataDiskReads"),
+        wgl_h.C_LONG.withName("MetaDataWrites"),
+        wgl_h.C_LONG.withName("MetaDataWriteBytes"),
+        wgl_h.C_LONG.withName("MetaDataDiskWrites")
+    ).withName("_FILESYSTEM_STATISTICS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort FileSystemType$LAYOUT = (OfShort)$LAYOUT.select(groupElement("FileSystemType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD FileSystemType
+     * }
+     */
+    public static final OfShort FileSystemType$layout() {
+        return FileSystemType$LAYOUT;
+    }
+
+    private static final long FileSystemType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD FileSystemType
+     * }
+     */
+    public static final long FileSystemType$offset() {
+        return FileSystemType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD FileSystemType
+     * }
+     */
+    public static short FileSystemType(MemorySegment struct) {
+        return struct.get(FileSystemType$LAYOUT, FileSystemType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD FileSystemType
+     * }
+     */
+    public static void FileSystemType(MemorySegment struct, short fieldValue) {
+        struct.set(FileSystemType$LAYOUT, FileSystemType$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Version$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Version
+     * }
+     */
+    public static final OfShort Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Version
+     * }
+     */
+    public static short Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, short fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt SizeOfCompleteStructure$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SizeOfCompleteStructure"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SizeOfCompleteStructure
+     * }
+     */
+    public static final OfInt SizeOfCompleteStructure$layout() {
+        return SizeOfCompleteStructure$LAYOUT;
+    }
+
+    private static final long SizeOfCompleteStructure$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SizeOfCompleteStructure
+     * }
+     */
+    public static final long SizeOfCompleteStructure$offset() {
+        return SizeOfCompleteStructure$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SizeOfCompleteStructure
+     * }
+     */
+    public static int SizeOfCompleteStructure(MemorySegment struct) {
+        return struct.get(SizeOfCompleteStructure$LAYOUT, SizeOfCompleteStructure$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SizeOfCompleteStructure
+     * }
+     */
+    public static void SizeOfCompleteStructure(MemorySegment struct, int fieldValue) {
+        struct.set(SizeOfCompleteStructure$LAYOUT, SizeOfCompleteStructure$OFFSET, fieldValue);
+    }
+
+    private static final OfInt UserFileReads$LAYOUT = (OfInt)$LAYOUT.select(groupElement("UserFileReads"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD UserFileReads
+     * }
+     */
+    public static final OfInt UserFileReads$layout() {
+        return UserFileReads$LAYOUT;
+    }
+
+    private static final long UserFileReads$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD UserFileReads
+     * }
+     */
+    public static final long UserFileReads$offset() {
+        return UserFileReads$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD UserFileReads
+     * }
+     */
+    public static int UserFileReads(MemorySegment struct) {
+        return struct.get(UserFileReads$LAYOUT, UserFileReads$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD UserFileReads
+     * }
+     */
+    public static void UserFileReads(MemorySegment struct, int fieldValue) {
+        struct.set(UserFileReads$LAYOUT, UserFileReads$OFFSET, fieldValue);
+    }
+
+    private static final OfInt UserFileReadBytes$LAYOUT = (OfInt)$LAYOUT.select(groupElement("UserFileReadBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD UserFileReadBytes
+     * }
+     */
+    public static final OfInt UserFileReadBytes$layout() {
+        return UserFileReadBytes$LAYOUT;
+    }
+
+    private static final long UserFileReadBytes$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD UserFileReadBytes
+     * }
+     */
+    public static final long UserFileReadBytes$offset() {
+        return UserFileReadBytes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD UserFileReadBytes
+     * }
+     */
+    public static int UserFileReadBytes(MemorySegment struct) {
+        return struct.get(UserFileReadBytes$LAYOUT, UserFileReadBytes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD UserFileReadBytes
+     * }
+     */
+    public static void UserFileReadBytes(MemorySegment struct, int fieldValue) {
+        struct.set(UserFileReadBytes$LAYOUT, UserFileReadBytes$OFFSET, fieldValue);
+    }
+
+    private static final OfInt UserDiskReads$LAYOUT = (OfInt)$LAYOUT.select(groupElement("UserDiskReads"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD UserDiskReads
+     * }
+     */
+    public static final OfInt UserDiskReads$layout() {
+        return UserDiskReads$LAYOUT;
+    }
+
+    private static final long UserDiskReads$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD UserDiskReads
+     * }
+     */
+    public static final long UserDiskReads$offset() {
+        return UserDiskReads$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD UserDiskReads
+     * }
+     */
+    public static int UserDiskReads(MemorySegment struct) {
+        return struct.get(UserDiskReads$LAYOUT, UserDiskReads$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD UserDiskReads
+     * }
+     */
+    public static void UserDiskReads(MemorySegment struct, int fieldValue) {
+        struct.set(UserDiskReads$LAYOUT, UserDiskReads$OFFSET, fieldValue);
+    }
+
+    private static final OfInt UserFileWrites$LAYOUT = (OfInt)$LAYOUT.select(groupElement("UserFileWrites"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD UserFileWrites
+     * }
+     */
+    public static final OfInt UserFileWrites$layout() {
+        return UserFileWrites$LAYOUT;
+    }
+
+    private static final long UserFileWrites$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD UserFileWrites
+     * }
+     */
+    public static final long UserFileWrites$offset() {
+        return UserFileWrites$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD UserFileWrites
+     * }
+     */
+    public static int UserFileWrites(MemorySegment struct) {
+        return struct.get(UserFileWrites$LAYOUT, UserFileWrites$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD UserFileWrites
+     * }
+     */
+    public static void UserFileWrites(MemorySegment struct, int fieldValue) {
+        struct.set(UserFileWrites$LAYOUT, UserFileWrites$OFFSET, fieldValue);
+    }
+
+    private static final OfInt UserFileWriteBytes$LAYOUT = (OfInt)$LAYOUT.select(groupElement("UserFileWriteBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD UserFileWriteBytes
+     * }
+     */
+    public static final OfInt UserFileWriteBytes$layout() {
+        return UserFileWriteBytes$LAYOUT;
+    }
+
+    private static final long UserFileWriteBytes$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD UserFileWriteBytes
+     * }
+     */
+    public static final long UserFileWriteBytes$offset() {
+        return UserFileWriteBytes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD UserFileWriteBytes
+     * }
+     */
+    public static int UserFileWriteBytes(MemorySegment struct) {
+        return struct.get(UserFileWriteBytes$LAYOUT, UserFileWriteBytes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD UserFileWriteBytes
+     * }
+     */
+    public static void UserFileWriteBytes(MemorySegment struct, int fieldValue) {
+        struct.set(UserFileWriteBytes$LAYOUT, UserFileWriteBytes$OFFSET, fieldValue);
+    }
+
+    private static final OfInt UserDiskWrites$LAYOUT = (OfInt)$LAYOUT.select(groupElement("UserDiskWrites"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD UserDiskWrites
+     * }
+     */
+    public static final OfInt UserDiskWrites$layout() {
+        return UserDiskWrites$LAYOUT;
+    }
+
+    private static final long UserDiskWrites$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD UserDiskWrites
+     * }
+     */
+    public static final long UserDiskWrites$offset() {
+        return UserDiskWrites$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD UserDiskWrites
+     * }
+     */
+    public static int UserDiskWrites(MemorySegment struct) {
+        return struct.get(UserDiskWrites$LAYOUT, UserDiskWrites$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD UserDiskWrites
+     * }
+     */
+    public static void UserDiskWrites(MemorySegment struct, int fieldValue) {
+        struct.set(UserDiskWrites$LAYOUT, UserDiskWrites$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MetaDataReads$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MetaDataReads"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataReads
+     * }
+     */
+    public static final OfInt MetaDataReads$layout() {
+        return MetaDataReads$LAYOUT;
+    }
+
+    private static final long MetaDataReads$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataReads
+     * }
+     */
+    public static final long MetaDataReads$offset() {
+        return MetaDataReads$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataReads
+     * }
+     */
+    public static int MetaDataReads(MemorySegment struct) {
+        return struct.get(MetaDataReads$LAYOUT, MetaDataReads$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataReads
+     * }
+     */
+    public static void MetaDataReads(MemorySegment struct, int fieldValue) {
+        struct.set(MetaDataReads$LAYOUT, MetaDataReads$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MetaDataReadBytes$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MetaDataReadBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataReadBytes
+     * }
+     */
+    public static final OfInt MetaDataReadBytes$layout() {
+        return MetaDataReadBytes$LAYOUT;
+    }
+
+    private static final long MetaDataReadBytes$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataReadBytes
+     * }
+     */
+    public static final long MetaDataReadBytes$offset() {
+        return MetaDataReadBytes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataReadBytes
+     * }
+     */
+    public static int MetaDataReadBytes(MemorySegment struct) {
+        return struct.get(MetaDataReadBytes$LAYOUT, MetaDataReadBytes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataReadBytes
+     * }
+     */
+    public static void MetaDataReadBytes(MemorySegment struct, int fieldValue) {
+        struct.set(MetaDataReadBytes$LAYOUT, MetaDataReadBytes$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MetaDataDiskReads$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MetaDataDiskReads"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataDiskReads
+     * }
+     */
+    public static final OfInt MetaDataDiskReads$layout() {
+        return MetaDataDiskReads$LAYOUT;
+    }
+
+    private static final long MetaDataDiskReads$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataDiskReads
+     * }
+     */
+    public static final long MetaDataDiskReads$offset() {
+        return MetaDataDiskReads$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataDiskReads
+     * }
+     */
+    public static int MetaDataDiskReads(MemorySegment struct) {
+        return struct.get(MetaDataDiskReads$LAYOUT, MetaDataDiskReads$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataDiskReads
+     * }
+     */
+    public static void MetaDataDiskReads(MemorySegment struct, int fieldValue) {
+        struct.set(MetaDataDiskReads$LAYOUT, MetaDataDiskReads$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MetaDataWrites$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MetaDataWrites"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataWrites
+     * }
+     */
+    public static final OfInt MetaDataWrites$layout() {
+        return MetaDataWrites$LAYOUT;
+    }
+
+    private static final long MetaDataWrites$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataWrites
+     * }
+     */
+    public static final long MetaDataWrites$offset() {
+        return MetaDataWrites$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataWrites
+     * }
+     */
+    public static int MetaDataWrites(MemorySegment struct) {
+        return struct.get(MetaDataWrites$LAYOUT, MetaDataWrites$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataWrites
+     * }
+     */
+    public static void MetaDataWrites(MemorySegment struct, int fieldValue) {
+        struct.set(MetaDataWrites$LAYOUT, MetaDataWrites$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MetaDataWriteBytes$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MetaDataWriteBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataWriteBytes
+     * }
+     */
+    public static final OfInt MetaDataWriteBytes$layout() {
+        return MetaDataWriteBytes$LAYOUT;
+    }
+
+    private static final long MetaDataWriteBytes$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataWriteBytes
+     * }
+     */
+    public static final long MetaDataWriteBytes$offset() {
+        return MetaDataWriteBytes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataWriteBytes
+     * }
+     */
+    public static int MetaDataWriteBytes(MemorySegment struct) {
+        return struct.get(MetaDataWriteBytes$LAYOUT, MetaDataWriteBytes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataWriteBytes
+     * }
+     */
+    public static void MetaDataWriteBytes(MemorySegment struct, int fieldValue) {
+        struct.set(MetaDataWriteBytes$LAYOUT, MetaDataWriteBytes$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MetaDataDiskWrites$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MetaDataDiskWrites"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataDiskWrites
+     * }
+     */
+    public static final OfInt MetaDataDiskWrites$layout() {
+        return MetaDataDiskWrites$LAYOUT;
+    }
+
+    private static final long MetaDataDiskWrites$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataDiskWrites
+     * }
+     */
+    public static final long MetaDataDiskWrites$offset() {
+        return MetaDataDiskWrites$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataDiskWrites
+     * }
+     */
+    public static int MetaDataDiskWrites(MemorySegment struct) {
+        return struct.get(MetaDataDiskWrites$LAYOUT, MetaDataDiskWrites$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MetaDataDiskWrites
+     * }
+     */
+    public static void MetaDataDiskWrites(MemorySegment struct, int fieldValue) {
+        struct.set(MetaDataDiskWrites$LAYOUT, MetaDataDiskWrites$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

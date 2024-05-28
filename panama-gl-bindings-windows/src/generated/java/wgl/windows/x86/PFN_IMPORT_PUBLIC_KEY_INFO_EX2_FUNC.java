@@ -2,27 +2,71 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(int dwCertEncodingType, java.lang.foreign.MemoryAddress pInfo, int dwFlags, java.lang.foreign.MemoryAddress pvAuxInfo, java.lang.foreign.MemoryAddress phKey);
-    static MemorySegment allocate(PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC.class, fi, constants$795.PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC)(DWORD, PCERT_PUBLIC_KEY_INFO, DWORD, void *, BCRYPT_KEY_HANDLE *) __attribute__((stdcall))
+ * }
+ */
+public class PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC {
+
+    PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC() {
+        // Should not be called directly
     }
-    static PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _dwCertEncodingType, java.lang.foreign.MemoryAddress _pInfo, int _dwFlags, java.lang.foreign.MemoryAddress _pvAuxInfo, java.lang.foreign.MemoryAddress _phKey) -> {
-            try {
-                return (int)constants$795.PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC$MH.invokeExact((Addressable)symbol, _dwCertEncodingType, (java.lang.foreign.Addressable)_pInfo, _dwFlags, (java.lang.foreign.Addressable)_pvAuxInfo, (java.lang.foreign.Addressable)_phKey);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(int dwCertEncodingType, MemorySegment pInfo, int dwFlags, MemorySegment pvAuxInfo, MemorySegment phKey);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_LONG,
+        wgl_h.C_POINTER,
+        wgl_h.C_LONG,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,int dwCertEncodingType, MemorySegment pInfo, int dwFlags, MemorySegment pvAuxInfo, MemorySegment phKey) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, dwCertEncodingType, pInfo, dwFlags, pvAuxInfo, phKey);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

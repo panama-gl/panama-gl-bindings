@@ -2,87 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CMSG_RECIPIENT_ENCRYPTED_KEY_INFO {
+ *     CERT_ID RecipientId;
+ *     CRYPT_DATA_BLOB EncryptedKey;
+ *     FILETIME Date;
+ *     PCRYPT_ATTRIBUTE_TYPE_VALUE pOtherAttr;
+ * }
+ * }
+ */
 public class _CMSG_RECIPIENT_ENCRYPTED_KEY_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwIdChoice"),
-            MemoryLayout.paddingLayout(32),
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbData")
-                    ).withName("Issuer"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbData")
-                    ).withName("SerialNumber")
-                ).withName("IssuerSerialNumber"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                    MemoryLayout.paddingLayout(32),
-                    Constants$root.C_POINTER$LAYOUT.withName("pbData")
-                ).withName("KeyId"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                    MemoryLayout.paddingLayout(32),
-                    Constants$root.C_POINTER$LAYOUT.withName("pbData")
-                ).withName("HashId")
-            ).withName("$anon$0")
-        ).withName("RecipientId"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData")
-        ).withName("EncryptedKey"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwLowDateTime"),
-            Constants$root.C_LONG$LAYOUT.withName("dwHighDateTime")
-        ).withName("Date"),
-        Constants$root.C_POINTER$LAYOUT.withName("pOtherAttr")
-    ).withName("_CMSG_RECIPIENT_ENCRYPTED_KEY_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CMSG_RECIPIENT_ENCRYPTED_KEY_INFO.$struct$LAYOUT;
+    _CMSG_RECIPIENT_ENCRYPTED_KEY_INFO() {
+        // Should not be called directly
     }
-    public static MemorySegment RecipientId$slice(MemorySegment seg) {
-        return seg.asSlice(0, 40);
-    }
-    public static MemorySegment EncryptedKey$slice(MemorySegment seg) {
-        return seg.asSlice(40, 16);
-    }
-    public static MemorySegment Date$slice(MemorySegment seg) {
-        return seg.asSlice(56, 8);
-    }
-    static final VarHandle pOtherAttr$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pOtherAttr"));
-    public static VarHandle pOtherAttr$VH() {
-        return _CMSG_RECIPIENT_ENCRYPTED_KEY_INFO.pOtherAttr$VH;
-    }
-    public static MemoryAddress pOtherAttr$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_RECIPIENT_ENCRYPTED_KEY_INFO.pOtherAttr$VH.get(seg);
-    }
-    public static void pOtherAttr$set( MemorySegment seg, MemoryAddress x) {
-        _CMSG_RECIPIENT_ENCRYPTED_KEY_INFO.pOtherAttr$VH.set(seg, x);
-    }
-    public static MemoryAddress pOtherAttr$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_RECIPIENT_ENCRYPTED_KEY_INFO.pOtherAttr$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pOtherAttr$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMSG_RECIPIENT_ENCRYPTED_KEY_INFO.pOtherAttr$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _CERT_ID.layout().withName("RecipientId"),
+        _CRYPTOAPI_BLOB.layout().withName("EncryptedKey"),
+        _FILETIME.layout().withName("Date"),
+        wgl_h.C_POINTER.withName("pOtherAttr")
+    ).withName("_CMSG_RECIPIENT_ENCRYPTED_KEY_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout RecipientId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("RecipientId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CERT_ID RecipientId
+     * }
+     */
+    public static final GroupLayout RecipientId$layout() {
+        return RecipientId$LAYOUT;
+    }
+
+    private static final long RecipientId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CERT_ID RecipientId
+     * }
+     */
+    public static final long RecipientId$offset() {
+        return RecipientId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CERT_ID RecipientId
+     * }
+     */
+    public static MemorySegment RecipientId(MemorySegment struct) {
+        return struct.asSlice(RecipientId$OFFSET, RecipientId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CERT_ID RecipientId
+     * }
+     */
+    public static void RecipientId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, RecipientId$OFFSET, RecipientId$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout EncryptedKey$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("EncryptedKey"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB EncryptedKey
+     * }
+     */
+    public static final GroupLayout EncryptedKey$layout() {
+        return EncryptedKey$LAYOUT;
+    }
+
+    private static final long EncryptedKey$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB EncryptedKey
+     * }
+     */
+    public static final long EncryptedKey$offset() {
+        return EncryptedKey$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB EncryptedKey
+     * }
+     */
+    public static MemorySegment EncryptedKey(MemorySegment struct) {
+        return struct.asSlice(EncryptedKey$OFFSET, EncryptedKey$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB EncryptedKey
+     * }
+     */
+    public static void EncryptedKey(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, EncryptedKey$OFFSET, EncryptedKey$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Date$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Date"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FILETIME Date
+     * }
+     */
+    public static final GroupLayout Date$layout() {
+        return Date$LAYOUT;
+    }
+
+    private static final long Date$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FILETIME Date
+     * }
+     */
+    public static final long Date$offset() {
+        return Date$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FILETIME Date
+     * }
+     */
+    public static MemorySegment Date(MemorySegment struct) {
+        return struct.asSlice(Date$OFFSET, Date$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FILETIME Date
+     * }
+     */
+    public static void Date(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Date$OFFSET, Date$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout pOtherAttr$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pOtherAttr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCRYPT_ATTRIBUTE_TYPE_VALUE pOtherAttr
+     * }
+     */
+    public static final AddressLayout pOtherAttr$layout() {
+        return pOtherAttr$LAYOUT;
+    }
+
+    private static final long pOtherAttr$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCRYPT_ATTRIBUTE_TYPE_VALUE pOtherAttr
+     * }
+     */
+    public static final long pOtherAttr$offset() {
+        return pOtherAttr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCRYPT_ATTRIBUTE_TYPE_VALUE pOtherAttr
+     * }
+     */
+    public static MemorySegment pOtherAttr(MemorySegment struct) {
+        return struct.get(pOtherAttr$LAYOUT, pOtherAttr$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCRYPT_ATTRIBUTE_TYPE_VALUE pOtherAttr
+     * }
+     */
+    public static void pOtherAttr(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pOtherAttr$LAYOUT, pOtherAttr$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,427 +2,1472 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SYSTEM_POWER_POLICY {
+ *     DWORD Revision;
+ *     POWER_ACTION_POLICY PowerButton;
+ *     POWER_ACTION_POLICY SleepButton;
+ *     POWER_ACTION_POLICY LidClose;
+ *     SYSTEM_POWER_STATE LidOpenWake;
+ *     DWORD Reserved;
+ *     POWER_ACTION_POLICY Idle;
+ *     DWORD IdleTimeout;
+ *     BYTE IdleSensitivity;
+ *     BYTE DynamicThrottle;
+ *     BYTE Spare2[2];
+ *     SYSTEM_POWER_STATE MinSleep;
+ *     SYSTEM_POWER_STATE MaxSleep;
+ *     SYSTEM_POWER_STATE ReducedLatencySleep;
+ *     DWORD WinLogonFlags;
+ *     DWORD Spare3;
+ *     DWORD DozeS4Timeout;
+ *     DWORD BroadcastCapacityResolution;
+ *     SYSTEM_POWER_LEVEL DischargePolicy[4];
+ *     DWORD VideoTimeout;
+ *     BOOLEAN VideoDimDisplay;
+ *     DWORD VideoReserved[3];
+ *     DWORD SpindownTimeout;
+ *     BOOLEAN OptimizeForPower;
+ *     BYTE FanThrottleTolerance;
+ *     BYTE ForcedThrottle;
+ *     BYTE MinThrottle;
+ *     POWER_ACTION_POLICY OverThrottled;
+ * }
+ * }
+ */
 public class _SYSTEM_POWER_POLICY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Revision"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Action"),
-            Constants$root.C_LONG$LAYOUT.withName("Flags"),
-            Constants$root.C_LONG$LAYOUT.withName("EventCode")
-        ).withName("PowerButton"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Action"),
-            Constants$root.C_LONG$LAYOUT.withName("Flags"),
-            Constants$root.C_LONG$LAYOUT.withName("EventCode")
-        ).withName("SleepButton"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Action"),
-            Constants$root.C_LONG$LAYOUT.withName("Flags"),
-            Constants$root.C_LONG$LAYOUT.withName("EventCode")
-        ).withName("LidClose"),
-        Constants$root.C_LONG$LAYOUT.withName("LidOpenWake"),
-        Constants$root.C_LONG$LAYOUT.withName("Reserved"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Action"),
-            Constants$root.C_LONG$LAYOUT.withName("Flags"),
-            Constants$root.C_LONG$LAYOUT.withName("EventCode")
-        ).withName("Idle"),
-        Constants$root.C_LONG$LAYOUT.withName("IdleTimeout"),
-        Constants$root.C_CHAR$LAYOUT.withName("IdleSensitivity"),
-        Constants$root.C_CHAR$LAYOUT.withName("DynamicThrottle"),
-        MemoryLayout.sequenceLayout(2, Constants$root.C_CHAR$LAYOUT).withName("Spare2"),
-        Constants$root.C_LONG$LAYOUT.withName("MinSleep"),
-        Constants$root.C_LONG$LAYOUT.withName("MaxSleep"),
-        Constants$root.C_LONG$LAYOUT.withName("ReducedLatencySleep"),
-        Constants$root.C_LONG$LAYOUT.withName("WinLogonFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("Spare3"),
-        Constants$root.C_LONG$LAYOUT.withName("DozeS4Timeout"),
-        Constants$root.C_LONG$LAYOUT.withName("BroadcastCapacityResolution"),
-        MemoryLayout.sequenceLayout(4, MemoryLayout.structLayout(
-            Constants$root.C_CHAR$LAYOUT.withName("Enable"),
-            MemoryLayout.sequenceLayout(3, Constants$root.C_CHAR$LAYOUT).withName("Spare"),
-            Constants$root.C_LONG$LAYOUT.withName("BatteryLevel"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("Action"),
-                Constants$root.C_LONG$LAYOUT.withName("Flags"),
-                Constants$root.C_LONG$LAYOUT.withName("EventCode")
-            ).withName("PowerPolicy"),
-            Constants$root.C_LONG$LAYOUT.withName("MinSystemState")
-        )).withName("DischargePolicy"),
-        Constants$root.C_LONG$LAYOUT.withName("VideoTimeout"),
-        Constants$root.C_CHAR$LAYOUT.withName("VideoDimDisplay"),
-        MemoryLayout.paddingLayout(24),
-        MemoryLayout.sequenceLayout(3, Constants$root.C_LONG$LAYOUT).withName("VideoReserved"),
-        Constants$root.C_LONG$LAYOUT.withName("SpindownTimeout"),
-        Constants$root.C_CHAR$LAYOUT.withName("OptimizeForPower"),
-        Constants$root.C_CHAR$LAYOUT.withName("FanThrottleTolerance"),
-        Constants$root.C_CHAR$LAYOUT.withName("ForcedThrottle"),
-        Constants$root.C_CHAR$LAYOUT.withName("MinThrottle"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Action"),
-            Constants$root.C_LONG$LAYOUT.withName("Flags"),
-            Constants$root.C_LONG$LAYOUT.withName("EventCode")
-        ).withName("OverThrottled")
-    ).withName("_SYSTEM_POWER_POLICY");
-    public static MemoryLayout $LAYOUT() {
-        return _SYSTEM_POWER_POLICY.$struct$LAYOUT;
+    _SYSTEM_POWER_POLICY() {
+        // Should not be called directly
     }
-    static final VarHandle Revision$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Revision"));
-    public static VarHandle Revision$VH() {
-        return _SYSTEM_POWER_POLICY.Revision$VH;
-    }
-    public static int Revision$get(MemorySegment seg) {
-        return (int)_SYSTEM_POWER_POLICY.Revision$VH.get(seg);
-    }
-    public static void Revision$set( MemorySegment seg, int x) {
-        _SYSTEM_POWER_POLICY.Revision$VH.set(seg, x);
-    }
-    public static int Revision$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_POWER_POLICY.Revision$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Revision$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_POWER_POLICY.Revision$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment PowerButton$slice(MemorySegment seg) {
-        return seg.asSlice(4, 12);
-    }
-    public static MemorySegment SleepButton$slice(MemorySegment seg) {
-        return seg.asSlice(16, 12);
-    }
-    public static MemorySegment LidClose$slice(MemorySegment seg) {
-        return seg.asSlice(28, 12);
-    }
-    static final VarHandle LidOpenWake$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LidOpenWake"));
-    public static VarHandle LidOpenWake$VH() {
-        return _SYSTEM_POWER_POLICY.LidOpenWake$VH;
-    }
-    public static int LidOpenWake$get(MemorySegment seg) {
-        return (int)_SYSTEM_POWER_POLICY.LidOpenWake$VH.get(seg);
-    }
-    public static void LidOpenWake$set( MemorySegment seg, int x) {
-        _SYSTEM_POWER_POLICY.LidOpenWake$VH.set(seg, x);
-    }
-    public static int LidOpenWake$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_POWER_POLICY.LidOpenWake$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LidOpenWake$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_POWER_POLICY.LidOpenWake$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved"));
-    public static VarHandle Reserved$VH() {
-        return _SYSTEM_POWER_POLICY.Reserved$VH;
-    }
-    public static int Reserved$get(MemorySegment seg) {
-        return (int)_SYSTEM_POWER_POLICY.Reserved$VH.get(seg);
-    }
-    public static void Reserved$set( MemorySegment seg, int x) {
-        _SYSTEM_POWER_POLICY.Reserved$VH.set(seg, x);
-    }
-    public static int Reserved$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_POWER_POLICY.Reserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_POWER_POLICY.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Idle$slice(MemorySegment seg) {
-        return seg.asSlice(48, 12);
-    }
-    static final VarHandle IdleTimeout$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("IdleTimeout"));
-    public static VarHandle IdleTimeout$VH() {
-        return _SYSTEM_POWER_POLICY.IdleTimeout$VH;
-    }
-    public static int IdleTimeout$get(MemorySegment seg) {
-        return (int)_SYSTEM_POWER_POLICY.IdleTimeout$VH.get(seg);
-    }
-    public static void IdleTimeout$set( MemorySegment seg, int x) {
-        _SYSTEM_POWER_POLICY.IdleTimeout$VH.set(seg, x);
-    }
-    public static int IdleTimeout$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_POWER_POLICY.IdleTimeout$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void IdleTimeout$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_POWER_POLICY.IdleTimeout$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle IdleSensitivity$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("IdleSensitivity"));
-    public static VarHandle IdleSensitivity$VH() {
-        return _SYSTEM_POWER_POLICY.IdleSensitivity$VH;
-    }
-    public static byte IdleSensitivity$get(MemorySegment seg) {
-        return (byte)_SYSTEM_POWER_POLICY.IdleSensitivity$VH.get(seg);
-    }
-    public static void IdleSensitivity$set( MemorySegment seg, byte x) {
-        _SYSTEM_POWER_POLICY.IdleSensitivity$VH.set(seg, x);
-    }
-    public static byte IdleSensitivity$get(MemorySegment seg, long index) {
-        return (byte)_SYSTEM_POWER_POLICY.IdleSensitivity$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void IdleSensitivity$set(MemorySegment seg, long index, byte x) {
-        _SYSTEM_POWER_POLICY.IdleSensitivity$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DynamicThrottle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DynamicThrottle"));
-    public static VarHandle DynamicThrottle$VH() {
-        return _SYSTEM_POWER_POLICY.DynamicThrottle$VH;
-    }
-    public static byte DynamicThrottle$get(MemorySegment seg) {
-        return (byte)_SYSTEM_POWER_POLICY.DynamicThrottle$VH.get(seg);
-    }
-    public static void DynamicThrottle$set( MemorySegment seg, byte x) {
-        _SYSTEM_POWER_POLICY.DynamicThrottle$VH.set(seg, x);
-    }
-    public static byte DynamicThrottle$get(MemorySegment seg, long index) {
-        return (byte)_SYSTEM_POWER_POLICY.DynamicThrottle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DynamicThrottle$set(MemorySegment seg, long index, byte x) {
-        _SYSTEM_POWER_POLICY.DynamicThrottle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Spare2$slice(MemorySegment seg) {
-        return seg.asSlice(66, 2);
-    }
-    static final VarHandle MinSleep$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MinSleep"));
-    public static VarHandle MinSleep$VH() {
-        return _SYSTEM_POWER_POLICY.MinSleep$VH;
-    }
-    public static int MinSleep$get(MemorySegment seg) {
-        return (int)_SYSTEM_POWER_POLICY.MinSleep$VH.get(seg);
-    }
-    public static void MinSleep$set( MemorySegment seg, int x) {
-        _SYSTEM_POWER_POLICY.MinSleep$VH.set(seg, x);
-    }
-    public static int MinSleep$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_POWER_POLICY.MinSleep$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MinSleep$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_POWER_POLICY.MinSleep$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaxSleep$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaxSleep"));
-    public static VarHandle MaxSleep$VH() {
-        return _SYSTEM_POWER_POLICY.MaxSleep$VH;
-    }
-    public static int MaxSleep$get(MemorySegment seg) {
-        return (int)_SYSTEM_POWER_POLICY.MaxSleep$VH.get(seg);
-    }
-    public static void MaxSleep$set( MemorySegment seg, int x) {
-        _SYSTEM_POWER_POLICY.MaxSleep$VH.set(seg, x);
-    }
-    public static int MaxSleep$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_POWER_POLICY.MaxSleep$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaxSleep$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_POWER_POLICY.MaxSleep$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ReducedLatencySleep$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ReducedLatencySleep"));
-    public static VarHandle ReducedLatencySleep$VH() {
-        return _SYSTEM_POWER_POLICY.ReducedLatencySleep$VH;
-    }
-    public static int ReducedLatencySleep$get(MemorySegment seg) {
-        return (int)_SYSTEM_POWER_POLICY.ReducedLatencySleep$VH.get(seg);
-    }
-    public static void ReducedLatencySleep$set( MemorySegment seg, int x) {
-        _SYSTEM_POWER_POLICY.ReducedLatencySleep$VH.set(seg, x);
-    }
-    public static int ReducedLatencySleep$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_POWER_POLICY.ReducedLatencySleep$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ReducedLatencySleep$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_POWER_POLICY.ReducedLatencySleep$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle WinLogonFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("WinLogonFlags"));
-    public static VarHandle WinLogonFlags$VH() {
-        return _SYSTEM_POWER_POLICY.WinLogonFlags$VH;
-    }
-    public static int WinLogonFlags$get(MemorySegment seg) {
-        return (int)_SYSTEM_POWER_POLICY.WinLogonFlags$VH.get(seg);
-    }
-    public static void WinLogonFlags$set( MemorySegment seg, int x) {
-        _SYSTEM_POWER_POLICY.WinLogonFlags$VH.set(seg, x);
-    }
-    public static int WinLogonFlags$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_POWER_POLICY.WinLogonFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void WinLogonFlags$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_POWER_POLICY.WinLogonFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Spare3$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Spare3"));
-    public static VarHandle Spare3$VH() {
-        return _SYSTEM_POWER_POLICY.Spare3$VH;
-    }
-    public static int Spare3$get(MemorySegment seg) {
-        return (int)_SYSTEM_POWER_POLICY.Spare3$VH.get(seg);
-    }
-    public static void Spare3$set( MemorySegment seg, int x) {
-        _SYSTEM_POWER_POLICY.Spare3$VH.set(seg, x);
-    }
-    public static int Spare3$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_POWER_POLICY.Spare3$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Spare3$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_POWER_POLICY.Spare3$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DozeS4Timeout$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DozeS4Timeout"));
-    public static VarHandle DozeS4Timeout$VH() {
-        return _SYSTEM_POWER_POLICY.DozeS4Timeout$VH;
-    }
-    public static int DozeS4Timeout$get(MemorySegment seg) {
-        return (int)_SYSTEM_POWER_POLICY.DozeS4Timeout$VH.get(seg);
-    }
-    public static void DozeS4Timeout$set( MemorySegment seg, int x) {
-        _SYSTEM_POWER_POLICY.DozeS4Timeout$VH.set(seg, x);
-    }
-    public static int DozeS4Timeout$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_POWER_POLICY.DozeS4Timeout$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DozeS4Timeout$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_POWER_POLICY.DozeS4Timeout$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BroadcastCapacityResolution$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BroadcastCapacityResolution"));
-    public static VarHandle BroadcastCapacityResolution$VH() {
-        return _SYSTEM_POWER_POLICY.BroadcastCapacityResolution$VH;
-    }
-    public static int BroadcastCapacityResolution$get(MemorySegment seg) {
-        return (int)_SYSTEM_POWER_POLICY.BroadcastCapacityResolution$VH.get(seg);
-    }
-    public static void BroadcastCapacityResolution$set( MemorySegment seg, int x) {
-        _SYSTEM_POWER_POLICY.BroadcastCapacityResolution$VH.set(seg, x);
-    }
-    public static int BroadcastCapacityResolution$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_POWER_POLICY.BroadcastCapacityResolution$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BroadcastCapacityResolution$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_POWER_POLICY.BroadcastCapacityResolution$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment DischargePolicy$slice(MemorySegment seg) {
-        return seg.asSlice(96, 96);
-    }
-    static final VarHandle VideoTimeout$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VideoTimeout"));
-    public static VarHandle VideoTimeout$VH() {
-        return _SYSTEM_POWER_POLICY.VideoTimeout$VH;
-    }
-    public static int VideoTimeout$get(MemorySegment seg) {
-        return (int)_SYSTEM_POWER_POLICY.VideoTimeout$VH.get(seg);
-    }
-    public static void VideoTimeout$set( MemorySegment seg, int x) {
-        _SYSTEM_POWER_POLICY.VideoTimeout$VH.set(seg, x);
-    }
-    public static int VideoTimeout$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_POWER_POLICY.VideoTimeout$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void VideoTimeout$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_POWER_POLICY.VideoTimeout$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle VideoDimDisplay$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VideoDimDisplay"));
-    public static VarHandle VideoDimDisplay$VH() {
-        return _SYSTEM_POWER_POLICY.VideoDimDisplay$VH;
-    }
-    public static byte VideoDimDisplay$get(MemorySegment seg) {
-        return (byte)_SYSTEM_POWER_POLICY.VideoDimDisplay$VH.get(seg);
-    }
-    public static void VideoDimDisplay$set( MemorySegment seg, byte x) {
-        _SYSTEM_POWER_POLICY.VideoDimDisplay$VH.set(seg, x);
-    }
-    public static byte VideoDimDisplay$get(MemorySegment seg, long index) {
-        return (byte)_SYSTEM_POWER_POLICY.VideoDimDisplay$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void VideoDimDisplay$set(MemorySegment seg, long index, byte x) {
-        _SYSTEM_POWER_POLICY.VideoDimDisplay$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment VideoReserved$slice(MemorySegment seg) {
-        return seg.asSlice(200, 12);
-    }
-    static final VarHandle SpindownTimeout$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SpindownTimeout"));
-    public static VarHandle SpindownTimeout$VH() {
-        return _SYSTEM_POWER_POLICY.SpindownTimeout$VH;
-    }
-    public static int SpindownTimeout$get(MemorySegment seg) {
-        return (int)_SYSTEM_POWER_POLICY.SpindownTimeout$VH.get(seg);
-    }
-    public static void SpindownTimeout$set( MemorySegment seg, int x) {
-        _SYSTEM_POWER_POLICY.SpindownTimeout$VH.set(seg, x);
-    }
-    public static int SpindownTimeout$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_POWER_POLICY.SpindownTimeout$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SpindownTimeout$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_POWER_POLICY.SpindownTimeout$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle OptimizeForPower$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OptimizeForPower"));
-    public static VarHandle OptimizeForPower$VH() {
-        return _SYSTEM_POWER_POLICY.OptimizeForPower$VH;
-    }
-    public static byte OptimizeForPower$get(MemorySegment seg) {
-        return (byte)_SYSTEM_POWER_POLICY.OptimizeForPower$VH.get(seg);
-    }
-    public static void OptimizeForPower$set( MemorySegment seg, byte x) {
-        _SYSTEM_POWER_POLICY.OptimizeForPower$VH.set(seg, x);
-    }
-    public static byte OptimizeForPower$get(MemorySegment seg, long index) {
-        return (byte)_SYSTEM_POWER_POLICY.OptimizeForPower$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void OptimizeForPower$set(MemorySegment seg, long index, byte x) {
-        _SYSTEM_POWER_POLICY.OptimizeForPower$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FanThrottleTolerance$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FanThrottleTolerance"));
-    public static VarHandle FanThrottleTolerance$VH() {
-        return _SYSTEM_POWER_POLICY.FanThrottleTolerance$VH;
-    }
-    public static byte FanThrottleTolerance$get(MemorySegment seg) {
-        return (byte)_SYSTEM_POWER_POLICY.FanThrottleTolerance$VH.get(seg);
-    }
-    public static void FanThrottleTolerance$set( MemorySegment seg, byte x) {
-        _SYSTEM_POWER_POLICY.FanThrottleTolerance$VH.set(seg, x);
-    }
-    public static byte FanThrottleTolerance$get(MemorySegment seg, long index) {
-        return (byte)_SYSTEM_POWER_POLICY.FanThrottleTolerance$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FanThrottleTolerance$set(MemorySegment seg, long index, byte x) {
-        _SYSTEM_POWER_POLICY.FanThrottleTolerance$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ForcedThrottle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ForcedThrottle"));
-    public static VarHandle ForcedThrottle$VH() {
-        return _SYSTEM_POWER_POLICY.ForcedThrottle$VH;
-    }
-    public static byte ForcedThrottle$get(MemorySegment seg) {
-        return (byte)_SYSTEM_POWER_POLICY.ForcedThrottle$VH.get(seg);
-    }
-    public static void ForcedThrottle$set( MemorySegment seg, byte x) {
-        _SYSTEM_POWER_POLICY.ForcedThrottle$VH.set(seg, x);
-    }
-    public static byte ForcedThrottle$get(MemorySegment seg, long index) {
-        return (byte)_SYSTEM_POWER_POLICY.ForcedThrottle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ForcedThrottle$set(MemorySegment seg, long index, byte x) {
-        _SYSTEM_POWER_POLICY.ForcedThrottle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MinThrottle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MinThrottle"));
-    public static VarHandle MinThrottle$VH() {
-        return _SYSTEM_POWER_POLICY.MinThrottle$VH;
-    }
-    public static byte MinThrottle$get(MemorySegment seg) {
-        return (byte)_SYSTEM_POWER_POLICY.MinThrottle$VH.get(seg);
-    }
-    public static void MinThrottle$set( MemorySegment seg, byte x) {
-        _SYSTEM_POWER_POLICY.MinThrottle$VH.set(seg, x);
-    }
-    public static byte MinThrottle$get(MemorySegment seg, long index) {
-        return (byte)_SYSTEM_POWER_POLICY.MinThrottle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MinThrottle$set(MemorySegment seg, long index, byte x) {
-        _SYSTEM_POWER_POLICY.MinThrottle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment OverThrottled$slice(MemorySegment seg) {
-        return seg.asSlice(220, 12);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Revision"),
+        POWER_ACTION_POLICY.layout().withName("PowerButton"),
+        POWER_ACTION_POLICY.layout().withName("SleepButton"),
+        POWER_ACTION_POLICY.layout().withName("LidClose"),
+        wgl_h.C_INT.withName("LidOpenWake"),
+        wgl_h.C_LONG.withName("Reserved"),
+        POWER_ACTION_POLICY.layout().withName("Idle"),
+        wgl_h.C_LONG.withName("IdleTimeout"),
+        wgl_h.C_CHAR.withName("IdleSensitivity"),
+        wgl_h.C_CHAR.withName("DynamicThrottle"),
+        MemoryLayout.sequenceLayout(2, wgl_h.C_CHAR).withName("Spare2"),
+        wgl_h.C_INT.withName("MinSleep"),
+        wgl_h.C_INT.withName("MaxSleep"),
+        wgl_h.C_INT.withName("ReducedLatencySleep"),
+        wgl_h.C_LONG.withName("WinLogonFlags"),
+        wgl_h.C_LONG.withName("Spare3"),
+        wgl_h.C_LONG.withName("DozeS4Timeout"),
+        wgl_h.C_LONG.withName("BroadcastCapacityResolution"),
+        MemoryLayout.sequenceLayout(4, SYSTEM_POWER_LEVEL.layout()).withName("DischargePolicy"),
+        wgl_h.C_LONG.withName("VideoTimeout"),
+        wgl_h.C_CHAR.withName("VideoDimDisplay"),
+        MemoryLayout.paddingLayout(3),
+        MemoryLayout.sequenceLayout(3, wgl_h.C_LONG).withName("VideoReserved"),
+        wgl_h.C_LONG.withName("SpindownTimeout"),
+        wgl_h.C_CHAR.withName("OptimizeForPower"),
+        wgl_h.C_CHAR.withName("FanThrottleTolerance"),
+        wgl_h.C_CHAR.withName("ForcedThrottle"),
+        wgl_h.C_CHAR.withName("MinThrottle"),
+        POWER_ACTION_POLICY.layout().withName("OverThrottled")
+    ).withName("_SYSTEM_POWER_POLICY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Revision$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Revision"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Revision
+     * }
+     */
+    public static final OfInt Revision$layout() {
+        return Revision$LAYOUT;
+    }
+
+    private static final long Revision$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Revision
+     * }
+     */
+    public static final long Revision$offset() {
+        return Revision$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Revision
+     * }
+     */
+    public static int Revision(MemorySegment struct) {
+        return struct.get(Revision$LAYOUT, Revision$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Revision
+     * }
+     */
+    public static void Revision(MemorySegment struct, int fieldValue) {
+        struct.set(Revision$LAYOUT, Revision$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout PowerButton$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("PowerButton"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY PowerButton
+     * }
+     */
+    public static final GroupLayout PowerButton$layout() {
+        return PowerButton$LAYOUT;
+    }
+
+    private static final long PowerButton$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY PowerButton
+     * }
+     */
+    public static final long PowerButton$offset() {
+        return PowerButton$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY PowerButton
+     * }
+     */
+    public static MemorySegment PowerButton(MemorySegment struct) {
+        return struct.asSlice(PowerButton$OFFSET, PowerButton$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY PowerButton
+     * }
+     */
+    public static void PowerButton(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, PowerButton$OFFSET, PowerButton$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout SleepButton$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("SleepButton"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY SleepButton
+     * }
+     */
+    public static final GroupLayout SleepButton$layout() {
+        return SleepButton$LAYOUT;
+    }
+
+    private static final long SleepButton$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY SleepButton
+     * }
+     */
+    public static final long SleepButton$offset() {
+        return SleepButton$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY SleepButton
+     * }
+     */
+    public static MemorySegment SleepButton(MemorySegment struct) {
+        return struct.asSlice(SleepButton$OFFSET, SleepButton$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY SleepButton
+     * }
+     */
+    public static void SleepButton(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, SleepButton$OFFSET, SleepButton$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout LidClose$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("LidClose"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY LidClose
+     * }
+     */
+    public static final GroupLayout LidClose$layout() {
+        return LidClose$LAYOUT;
+    }
+
+    private static final long LidClose$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY LidClose
+     * }
+     */
+    public static final long LidClose$offset() {
+        return LidClose$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY LidClose
+     * }
+     */
+    public static MemorySegment LidClose(MemorySegment struct) {
+        return struct.asSlice(LidClose$OFFSET, LidClose$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY LidClose
+     * }
+     */
+    public static void LidClose(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, LidClose$OFFSET, LidClose$LAYOUT.byteSize());
+    }
+
+    private static final OfInt LidOpenWake$LAYOUT = (OfInt)$LAYOUT.select(groupElement("LidOpenWake"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE LidOpenWake
+     * }
+     */
+    public static final OfInt LidOpenWake$layout() {
+        return LidOpenWake$LAYOUT;
+    }
+
+    private static final long LidOpenWake$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE LidOpenWake
+     * }
+     */
+    public static final long LidOpenWake$offset() {
+        return LidOpenWake$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE LidOpenWake
+     * }
+     */
+    public static int LidOpenWake(MemorySegment struct) {
+        return struct.get(LidOpenWake$LAYOUT, LidOpenWake$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE LidOpenWake
+     * }
+     */
+    public static void LidOpenWake(MemorySegment struct, int fieldValue) {
+        struct.set(LidOpenWake$LAYOUT, LidOpenWake$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Reserved$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static final OfInt Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static int Reserved(MemorySegment struct) {
+        return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static void Reserved(MemorySegment struct, int fieldValue) {
+        struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout Idle$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Idle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY Idle
+     * }
+     */
+    public static final GroupLayout Idle$layout() {
+        return Idle$LAYOUT;
+    }
+
+    private static final long Idle$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY Idle
+     * }
+     */
+    public static final long Idle$offset() {
+        return Idle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY Idle
+     * }
+     */
+    public static MemorySegment Idle(MemorySegment struct) {
+        return struct.asSlice(Idle$OFFSET, Idle$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY Idle
+     * }
+     */
+    public static void Idle(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Idle$OFFSET, Idle$LAYOUT.byteSize());
+    }
+
+    private static final OfInt IdleTimeout$LAYOUT = (OfInt)$LAYOUT.select(groupElement("IdleTimeout"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD IdleTimeout
+     * }
+     */
+    public static final OfInt IdleTimeout$layout() {
+        return IdleTimeout$LAYOUT;
+    }
+
+    private static final long IdleTimeout$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD IdleTimeout
+     * }
+     */
+    public static final long IdleTimeout$offset() {
+        return IdleTimeout$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD IdleTimeout
+     * }
+     */
+    public static int IdleTimeout(MemorySegment struct) {
+        return struct.get(IdleTimeout$LAYOUT, IdleTimeout$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD IdleTimeout
+     * }
+     */
+    public static void IdleTimeout(MemorySegment struct, int fieldValue) {
+        struct.set(IdleTimeout$LAYOUT, IdleTimeout$OFFSET, fieldValue);
+    }
+
+    private static final OfByte IdleSensitivity$LAYOUT = (OfByte)$LAYOUT.select(groupElement("IdleSensitivity"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE IdleSensitivity
+     * }
+     */
+    public static final OfByte IdleSensitivity$layout() {
+        return IdleSensitivity$LAYOUT;
+    }
+
+    private static final long IdleSensitivity$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE IdleSensitivity
+     * }
+     */
+    public static final long IdleSensitivity$offset() {
+        return IdleSensitivity$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE IdleSensitivity
+     * }
+     */
+    public static byte IdleSensitivity(MemorySegment struct) {
+        return struct.get(IdleSensitivity$LAYOUT, IdleSensitivity$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE IdleSensitivity
+     * }
+     */
+    public static void IdleSensitivity(MemorySegment struct, byte fieldValue) {
+        struct.set(IdleSensitivity$LAYOUT, IdleSensitivity$OFFSET, fieldValue);
+    }
+
+    private static final OfByte DynamicThrottle$LAYOUT = (OfByte)$LAYOUT.select(groupElement("DynamicThrottle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE DynamicThrottle
+     * }
+     */
+    public static final OfByte DynamicThrottle$layout() {
+        return DynamicThrottle$LAYOUT;
+    }
+
+    private static final long DynamicThrottle$OFFSET = 65;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE DynamicThrottle
+     * }
+     */
+    public static final long DynamicThrottle$offset() {
+        return DynamicThrottle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE DynamicThrottle
+     * }
+     */
+    public static byte DynamicThrottle(MemorySegment struct) {
+        return struct.get(DynamicThrottle$LAYOUT, DynamicThrottle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE DynamicThrottle
+     * }
+     */
+    public static void DynamicThrottle(MemorySegment struct, byte fieldValue) {
+        struct.set(DynamicThrottle$LAYOUT, DynamicThrottle$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Spare2$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Spare2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Spare2[2]
+     * }
+     */
+    public static final SequenceLayout Spare2$layout() {
+        return Spare2$LAYOUT;
+    }
+
+    private static final long Spare2$OFFSET = 66;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Spare2[2]
+     * }
+     */
+    public static final long Spare2$offset() {
+        return Spare2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Spare2[2]
+     * }
+     */
+    public static MemorySegment Spare2(MemorySegment struct) {
+        return struct.asSlice(Spare2$OFFSET, Spare2$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Spare2[2]
+     * }
+     */
+    public static void Spare2(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Spare2$OFFSET, Spare2$LAYOUT.byteSize());
+    }
+
+    private static long[] Spare2$DIMS = { 2 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Spare2[2]
+     * }
+     */
+    public static long[] Spare2$dimensions() {
+        return Spare2$DIMS;
+    }
+    private static final VarHandle Spare2$ELEM_HANDLE = Spare2$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Spare2[2]
+     * }
+     */
+    public static byte Spare2(MemorySegment struct, long index0) {
+        return (byte)Spare2$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Spare2[2]
+     * }
+     */
+    public static void Spare2(MemorySegment struct, long index0, byte fieldValue) {
+        Spare2$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt MinSleep$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MinSleep"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MinSleep
+     * }
+     */
+    public static final OfInt MinSleep$layout() {
+        return MinSleep$LAYOUT;
+    }
+
+    private static final long MinSleep$OFFSET = 68;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MinSleep
+     * }
+     */
+    public static final long MinSleep$offset() {
+        return MinSleep$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MinSleep
+     * }
+     */
+    public static int MinSleep(MemorySegment struct) {
+        return struct.get(MinSleep$LAYOUT, MinSleep$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MinSleep
+     * }
+     */
+    public static void MinSleep(MemorySegment struct, int fieldValue) {
+        struct.set(MinSleep$LAYOUT, MinSleep$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MaxSleep$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MaxSleep"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MaxSleep
+     * }
+     */
+    public static final OfInt MaxSleep$layout() {
+        return MaxSleep$LAYOUT;
+    }
+
+    private static final long MaxSleep$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MaxSleep
+     * }
+     */
+    public static final long MaxSleep$offset() {
+        return MaxSleep$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MaxSleep
+     * }
+     */
+    public static int MaxSleep(MemorySegment struct) {
+        return struct.get(MaxSleep$LAYOUT, MaxSleep$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MaxSleep
+     * }
+     */
+    public static void MaxSleep(MemorySegment struct, int fieldValue) {
+        struct.set(MaxSleep$LAYOUT, MaxSleep$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ReducedLatencySleep$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ReducedLatencySleep"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE ReducedLatencySleep
+     * }
+     */
+    public static final OfInt ReducedLatencySleep$layout() {
+        return ReducedLatencySleep$LAYOUT;
+    }
+
+    private static final long ReducedLatencySleep$OFFSET = 76;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE ReducedLatencySleep
+     * }
+     */
+    public static final long ReducedLatencySleep$offset() {
+        return ReducedLatencySleep$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE ReducedLatencySleep
+     * }
+     */
+    public static int ReducedLatencySleep(MemorySegment struct) {
+        return struct.get(ReducedLatencySleep$LAYOUT, ReducedLatencySleep$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE ReducedLatencySleep
+     * }
+     */
+    public static void ReducedLatencySleep(MemorySegment struct, int fieldValue) {
+        struct.set(ReducedLatencySleep$LAYOUT, ReducedLatencySleep$OFFSET, fieldValue);
+    }
+
+    private static final OfInt WinLogonFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("WinLogonFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD WinLogonFlags
+     * }
+     */
+    public static final OfInt WinLogonFlags$layout() {
+        return WinLogonFlags$LAYOUT;
+    }
+
+    private static final long WinLogonFlags$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD WinLogonFlags
+     * }
+     */
+    public static final long WinLogonFlags$offset() {
+        return WinLogonFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD WinLogonFlags
+     * }
+     */
+    public static int WinLogonFlags(MemorySegment struct) {
+        return struct.get(WinLogonFlags$LAYOUT, WinLogonFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD WinLogonFlags
+     * }
+     */
+    public static void WinLogonFlags(MemorySegment struct, int fieldValue) {
+        struct.set(WinLogonFlags$LAYOUT, WinLogonFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Spare3$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Spare3"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Spare3
+     * }
+     */
+    public static final OfInt Spare3$layout() {
+        return Spare3$LAYOUT;
+    }
+
+    private static final long Spare3$OFFSET = 84;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Spare3
+     * }
+     */
+    public static final long Spare3$offset() {
+        return Spare3$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Spare3
+     * }
+     */
+    public static int Spare3(MemorySegment struct) {
+        return struct.get(Spare3$LAYOUT, Spare3$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Spare3
+     * }
+     */
+    public static void Spare3(MemorySegment struct, int fieldValue) {
+        struct.set(Spare3$LAYOUT, Spare3$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DozeS4Timeout$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DozeS4Timeout"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DozeS4Timeout
+     * }
+     */
+    public static final OfInt DozeS4Timeout$layout() {
+        return DozeS4Timeout$LAYOUT;
+    }
+
+    private static final long DozeS4Timeout$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DozeS4Timeout
+     * }
+     */
+    public static final long DozeS4Timeout$offset() {
+        return DozeS4Timeout$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DozeS4Timeout
+     * }
+     */
+    public static int DozeS4Timeout(MemorySegment struct) {
+        return struct.get(DozeS4Timeout$LAYOUT, DozeS4Timeout$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DozeS4Timeout
+     * }
+     */
+    public static void DozeS4Timeout(MemorySegment struct, int fieldValue) {
+        struct.set(DozeS4Timeout$LAYOUT, DozeS4Timeout$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BroadcastCapacityResolution$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BroadcastCapacityResolution"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BroadcastCapacityResolution
+     * }
+     */
+    public static final OfInt BroadcastCapacityResolution$layout() {
+        return BroadcastCapacityResolution$LAYOUT;
+    }
+
+    private static final long BroadcastCapacityResolution$OFFSET = 92;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BroadcastCapacityResolution
+     * }
+     */
+    public static final long BroadcastCapacityResolution$offset() {
+        return BroadcastCapacityResolution$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BroadcastCapacityResolution
+     * }
+     */
+    public static int BroadcastCapacityResolution(MemorySegment struct) {
+        return struct.get(BroadcastCapacityResolution$LAYOUT, BroadcastCapacityResolution$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BroadcastCapacityResolution
+     * }
+     */
+    public static void BroadcastCapacityResolution(MemorySegment struct, int fieldValue) {
+        struct.set(BroadcastCapacityResolution$LAYOUT, BroadcastCapacityResolution$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout DischargePolicy$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("DischargePolicy"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_LEVEL DischargePolicy[4]
+     * }
+     */
+    public static final SequenceLayout DischargePolicy$layout() {
+        return DischargePolicy$LAYOUT;
+    }
+
+    private static final long DischargePolicy$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_LEVEL DischargePolicy[4]
+     * }
+     */
+    public static final long DischargePolicy$offset() {
+        return DischargePolicy$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_LEVEL DischargePolicy[4]
+     * }
+     */
+    public static MemorySegment DischargePolicy(MemorySegment struct) {
+        return struct.asSlice(DischargePolicy$OFFSET, DischargePolicy$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_LEVEL DischargePolicy[4]
+     * }
+     */
+    public static void DischargePolicy(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, DischargePolicy$OFFSET, DischargePolicy$LAYOUT.byteSize());
+    }
+
+    private static long[] DischargePolicy$DIMS = { 4 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_LEVEL DischargePolicy[4]
+     * }
+     */
+    public static long[] DischargePolicy$dimensions() {
+        return DischargePolicy$DIMS;
+    }
+    private static final MethodHandle DischargePolicy$ELEM_HANDLE = DischargePolicy$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_LEVEL DischargePolicy[4]
+     * }
+     */
+    public static MemorySegment DischargePolicy(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)DischargePolicy$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_LEVEL DischargePolicy[4]
+     * }
+     */
+    public static void DischargePolicy(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, DischargePolicy(struct, index0), 0L, SYSTEM_POWER_LEVEL.layout().byteSize());
+    }
+
+    private static final OfInt VideoTimeout$LAYOUT = (OfInt)$LAYOUT.select(groupElement("VideoTimeout"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD VideoTimeout
+     * }
+     */
+    public static final OfInt VideoTimeout$layout() {
+        return VideoTimeout$LAYOUT;
+    }
+
+    private static final long VideoTimeout$OFFSET = 192;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD VideoTimeout
+     * }
+     */
+    public static final long VideoTimeout$offset() {
+        return VideoTimeout$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD VideoTimeout
+     * }
+     */
+    public static int VideoTimeout(MemorySegment struct) {
+        return struct.get(VideoTimeout$LAYOUT, VideoTimeout$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD VideoTimeout
+     * }
+     */
+    public static void VideoTimeout(MemorySegment struct, int fieldValue) {
+        struct.set(VideoTimeout$LAYOUT, VideoTimeout$OFFSET, fieldValue);
+    }
+
+    private static final OfByte VideoDimDisplay$LAYOUT = (OfByte)$LAYOUT.select(groupElement("VideoDimDisplay"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN VideoDimDisplay
+     * }
+     */
+    public static final OfByte VideoDimDisplay$layout() {
+        return VideoDimDisplay$LAYOUT;
+    }
+
+    private static final long VideoDimDisplay$OFFSET = 196;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN VideoDimDisplay
+     * }
+     */
+    public static final long VideoDimDisplay$offset() {
+        return VideoDimDisplay$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN VideoDimDisplay
+     * }
+     */
+    public static byte VideoDimDisplay(MemorySegment struct) {
+        return struct.get(VideoDimDisplay$LAYOUT, VideoDimDisplay$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN VideoDimDisplay
+     * }
+     */
+    public static void VideoDimDisplay(MemorySegment struct, byte fieldValue) {
+        struct.set(VideoDimDisplay$LAYOUT, VideoDimDisplay$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout VideoReserved$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("VideoReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD VideoReserved[3]
+     * }
+     */
+    public static final SequenceLayout VideoReserved$layout() {
+        return VideoReserved$LAYOUT;
+    }
+
+    private static final long VideoReserved$OFFSET = 200;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD VideoReserved[3]
+     * }
+     */
+    public static final long VideoReserved$offset() {
+        return VideoReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD VideoReserved[3]
+     * }
+     */
+    public static MemorySegment VideoReserved(MemorySegment struct) {
+        return struct.asSlice(VideoReserved$OFFSET, VideoReserved$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD VideoReserved[3]
+     * }
+     */
+    public static void VideoReserved(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, VideoReserved$OFFSET, VideoReserved$LAYOUT.byteSize());
+    }
+
+    private static long[] VideoReserved$DIMS = { 3 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DWORD VideoReserved[3]
+     * }
+     */
+    public static long[] VideoReserved$dimensions() {
+        return VideoReserved$DIMS;
+    }
+    private static final VarHandle VideoReserved$ELEM_HANDLE = VideoReserved$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DWORD VideoReserved[3]
+     * }
+     */
+    public static int VideoReserved(MemorySegment struct, long index0) {
+        return (int)VideoReserved$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DWORD VideoReserved[3]
+     * }
+     */
+    public static void VideoReserved(MemorySegment struct, long index0, int fieldValue) {
+        VideoReserved$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt SpindownTimeout$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SpindownTimeout"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SpindownTimeout
+     * }
+     */
+    public static final OfInt SpindownTimeout$layout() {
+        return SpindownTimeout$LAYOUT;
+    }
+
+    private static final long SpindownTimeout$OFFSET = 212;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SpindownTimeout
+     * }
+     */
+    public static final long SpindownTimeout$offset() {
+        return SpindownTimeout$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SpindownTimeout
+     * }
+     */
+    public static int SpindownTimeout(MemorySegment struct) {
+        return struct.get(SpindownTimeout$LAYOUT, SpindownTimeout$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SpindownTimeout
+     * }
+     */
+    public static void SpindownTimeout(MemorySegment struct, int fieldValue) {
+        struct.set(SpindownTimeout$LAYOUT, SpindownTimeout$OFFSET, fieldValue);
+    }
+
+    private static final OfByte OptimizeForPower$LAYOUT = (OfByte)$LAYOUT.select(groupElement("OptimizeForPower"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN OptimizeForPower
+     * }
+     */
+    public static final OfByte OptimizeForPower$layout() {
+        return OptimizeForPower$LAYOUT;
+    }
+
+    private static final long OptimizeForPower$OFFSET = 216;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN OptimizeForPower
+     * }
+     */
+    public static final long OptimizeForPower$offset() {
+        return OptimizeForPower$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN OptimizeForPower
+     * }
+     */
+    public static byte OptimizeForPower(MemorySegment struct) {
+        return struct.get(OptimizeForPower$LAYOUT, OptimizeForPower$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN OptimizeForPower
+     * }
+     */
+    public static void OptimizeForPower(MemorySegment struct, byte fieldValue) {
+        struct.set(OptimizeForPower$LAYOUT, OptimizeForPower$OFFSET, fieldValue);
+    }
+
+    private static final OfByte FanThrottleTolerance$LAYOUT = (OfByte)$LAYOUT.select(groupElement("FanThrottleTolerance"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE FanThrottleTolerance
+     * }
+     */
+    public static final OfByte FanThrottleTolerance$layout() {
+        return FanThrottleTolerance$LAYOUT;
+    }
+
+    private static final long FanThrottleTolerance$OFFSET = 217;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE FanThrottleTolerance
+     * }
+     */
+    public static final long FanThrottleTolerance$offset() {
+        return FanThrottleTolerance$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE FanThrottleTolerance
+     * }
+     */
+    public static byte FanThrottleTolerance(MemorySegment struct) {
+        return struct.get(FanThrottleTolerance$LAYOUT, FanThrottleTolerance$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE FanThrottleTolerance
+     * }
+     */
+    public static void FanThrottleTolerance(MemorySegment struct, byte fieldValue) {
+        struct.set(FanThrottleTolerance$LAYOUT, FanThrottleTolerance$OFFSET, fieldValue);
+    }
+
+    private static final OfByte ForcedThrottle$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ForcedThrottle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE ForcedThrottle
+     * }
+     */
+    public static final OfByte ForcedThrottle$layout() {
+        return ForcedThrottle$LAYOUT;
+    }
+
+    private static final long ForcedThrottle$OFFSET = 218;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE ForcedThrottle
+     * }
+     */
+    public static final long ForcedThrottle$offset() {
+        return ForcedThrottle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE ForcedThrottle
+     * }
+     */
+    public static byte ForcedThrottle(MemorySegment struct) {
+        return struct.get(ForcedThrottle$LAYOUT, ForcedThrottle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE ForcedThrottle
+     * }
+     */
+    public static void ForcedThrottle(MemorySegment struct, byte fieldValue) {
+        struct.set(ForcedThrottle$LAYOUT, ForcedThrottle$OFFSET, fieldValue);
+    }
+
+    private static final OfByte MinThrottle$LAYOUT = (OfByte)$LAYOUT.select(groupElement("MinThrottle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE MinThrottle
+     * }
+     */
+    public static final OfByte MinThrottle$layout() {
+        return MinThrottle$LAYOUT;
+    }
+
+    private static final long MinThrottle$OFFSET = 219;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE MinThrottle
+     * }
+     */
+    public static final long MinThrottle$offset() {
+        return MinThrottle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE MinThrottle
+     * }
+     */
+    public static byte MinThrottle(MemorySegment struct) {
+        return struct.get(MinThrottle$LAYOUT, MinThrottle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE MinThrottle
+     * }
+     */
+    public static void MinThrottle(MemorySegment struct, byte fieldValue) {
+        struct.set(MinThrottle$LAYOUT, MinThrottle$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout OverThrottled$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("OverThrottled"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY OverThrottled
+     * }
+     */
+    public static final GroupLayout OverThrottled$layout() {
+        return OverThrottled$LAYOUT;
+    }
+
+    private static final long OverThrottled$OFFSET = 220;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY OverThrottled
+     * }
+     */
+    public static final long OverThrottled$offset() {
+        return OverThrottled$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY OverThrottled
+     * }
+     */
+    public static MemorySegment OverThrottled(MemorySegment struct) {
+        return struct.asSlice(OverThrottled$OFFSET, OverThrottled$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY OverThrottled
+     * }
+     */
+    public static void OverThrottled(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, OverThrottled$OFFSET, OverThrottled$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

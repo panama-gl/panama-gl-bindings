@@ -2,99 +2,265 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct __GENERIC_BINDING_INFO {
+ *     void *pObj;
+ *     unsigned int Size;
+ *     GENERIC_BINDING_ROUTINE pfnBind;
+ *     GENERIC_UNBIND_ROUTINE pfnUnbind;
+ * }
+ * }
+ */
 public class __GENERIC_BINDING_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("pObj"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pfnBind"),
-        Constants$root.C_POINTER$LAYOUT.withName("pfnUnbind")
-    ).withName("__GENERIC_BINDING_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return __GENERIC_BINDING_INFO.$struct$LAYOUT;
+    __GENERIC_BINDING_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle pObj$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pObj"));
-    public static VarHandle pObj$VH() {
-        return __GENERIC_BINDING_INFO.pObj$VH;
-    }
-    public static MemoryAddress pObj$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)__GENERIC_BINDING_INFO.pObj$VH.get(seg);
-    }
-    public static void pObj$set( MemorySegment seg, MemoryAddress x) {
-        __GENERIC_BINDING_INFO.pObj$VH.set(seg, x);
-    }
-    public static MemoryAddress pObj$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)__GENERIC_BINDING_INFO.pObj$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pObj$set(MemorySegment seg, long index, MemoryAddress x) {
-        __GENERIC_BINDING_INFO.pObj$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return __GENERIC_BINDING_INFO.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)__GENERIC_BINDING_INFO.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        __GENERIC_BINDING_INFO.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)__GENERIC_BINDING_INFO.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        __GENERIC_BINDING_INFO.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pfnBind$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnBind"));
-    public static VarHandle pfnBind$VH() {
-        return __GENERIC_BINDING_INFO.pfnBind$VH;
-    }
-    public static MemoryAddress pfnBind$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)__GENERIC_BINDING_INFO.pfnBind$VH.get(seg);
-    }
-    public static void pfnBind$set( MemorySegment seg, MemoryAddress x) {
-        __GENERIC_BINDING_INFO.pfnBind$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnBind$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)__GENERIC_BINDING_INFO.pfnBind$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnBind$set(MemorySegment seg, long index, MemoryAddress x) {
-        __GENERIC_BINDING_INFO.pfnBind$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GENERIC_BINDING_ROUTINE pfnBind (MemorySegment segment, MemorySession session) {
-        return GENERIC_BINDING_ROUTINE.ofAddress(pfnBind$get(segment), session);
-    }
-    static final VarHandle pfnUnbind$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnUnbind"));
-    public static VarHandle pfnUnbind$VH() {
-        return __GENERIC_BINDING_INFO.pfnUnbind$VH;
-    }
-    public static MemoryAddress pfnUnbind$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)__GENERIC_BINDING_INFO.pfnUnbind$VH.get(seg);
-    }
-    public static void pfnUnbind$set( MemorySegment seg, MemoryAddress x) {
-        __GENERIC_BINDING_INFO.pfnUnbind$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnUnbind$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)__GENERIC_BINDING_INFO.pfnUnbind$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnUnbind$set(MemorySegment seg, long index, MemoryAddress x) {
-        __GENERIC_BINDING_INFO.pfnUnbind$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GENERIC_UNBIND_ROUTINE pfnUnbind (MemorySegment segment, MemorySession session) {
-        return GENERIC_UNBIND_ROUTINE.ofAddress(pfnUnbind$get(segment), session);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("pObj"),
+        wgl_h.C_INT.withName("Size"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pfnBind"),
+        wgl_h.C_POINTER.withName("pfnUnbind")
+    ).withName("__GENERIC_BINDING_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout pObj$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pObj"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *pObj
+     * }
+     */
+    public static final AddressLayout pObj$layout() {
+        return pObj$LAYOUT;
+    }
+
+    private static final long pObj$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *pObj
+     * }
+     */
+    public static final long pObj$offset() {
+        return pObj$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *pObj
+     * }
+     */
+    public static MemorySegment pObj(MemorySegment struct) {
+        return struct.get(pObj$LAYOUT, pObj$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *pObj
+     * }
+     */
+    public static void pObj(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pObj$LAYOUT, pObj$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned int Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned int Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned int Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned int Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pfnBind$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnBind"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GENERIC_BINDING_ROUTINE pfnBind
+     * }
+     */
+    public static final AddressLayout pfnBind$layout() {
+        return pfnBind$LAYOUT;
+    }
+
+    private static final long pfnBind$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GENERIC_BINDING_ROUTINE pfnBind
+     * }
+     */
+    public static final long pfnBind$offset() {
+        return pfnBind$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GENERIC_BINDING_ROUTINE pfnBind
+     * }
+     */
+    public static MemorySegment pfnBind(MemorySegment struct) {
+        return struct.get(pfnBind$LAYOUT, pfnBind$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GENERIC_BINDING_ROUTINE pfnBind
+     * }
+     */
+    public static void pfnBind(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnBind$LAYOUT, pfnBind$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pfnUnbind$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnUnbind"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GENERIC_UNBIND_ROUTINE pfnUnbind
+     * }
+     */
+    public static final AddressLayout pfnUnbind$layout() {
+        return pfnUnbind$LAYOUT;
+    }
+
+    private static final long pfnUnbind$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GENERIC_UNBIND_ROUTINE pfnUnbind
+     * }
+     */
+    public static final long pfnUnbind$offset() {
+        return pfnUnbind$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GENERIC_UNBIND_ROUTINE pfnUnbind
+     * }
+     */
+    public static MemorySegment pfnUnbind(MemorySegment struct) {
+        return struct.get(pfnUnbind$LAYOUT, pfnUnbind$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GENERIC_UNBIND_ROUTINE pfnUnbind
+     * }
+     */
+    public static void pfnUnbind(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnUnbind$LAYOUT, pfnUnbind$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

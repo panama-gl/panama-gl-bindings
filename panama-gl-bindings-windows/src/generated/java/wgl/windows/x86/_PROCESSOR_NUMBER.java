@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PROCESSOR_NUMBER {
+ *     WORD Group;
+ *     BYTE Number;
+ *     BYTE Reserved;
+ * }
+ * }
+ */
 public class _PROCESSOR_NUMBER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("Group"),
-        Constants$root.C_CHAR$LAYOUT.withName("Number"),
-        Constants$root.C_CHAR$LAYOUT.withName("Reserved")
-    ).withName("_PROCESSOR_NUMBER");
-    public static MemoryLayout $LAYOUT() {
-        return _PROCESSOR_NUMBER.$struct$LAYOUT;
+    _PROCESSOR_NUMBER() {
+        // Should not be called directly
     }
-    static final VarHandle Group$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Group"));
-    public static VarHandle Group$VH() {
-        return _PROCESSOR_NUMBER.Group$VH;
-    }
-    public static short Group$get(MemorySegment seg) {
-        return (short)_PROCESSOR_NUMBER.Group$VH.get(seg);
-    }
-    public static void Group$set( MemorySegment seg, short x) {
-        _PROCESSOR_NUMBER.Group$VH.set(seg, x);
-    }
-    public static short Group$get(MemorySegment seg, long index) {
-        return (short)_PROCESSOR_NUMBER.Group$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Group$set(MemorySegment seg, long index, short x) {
-        _PROCESSOR_NUMBER.Group$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Number$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Number"));
-    public static VarHandle Number$VH() {
-        return _PROCESSOR_NUMBER.Number$VH;
-    }
-    public static byte Number$get(MemorySegment seg) {
-        return (byte)_PROCESSOR_NUMBER.Number$VH.get(seg);
-    }
-    public static void Number$set( MemorySegment seg, byte x) {
-        _PROCESSOR_NUMBER.Number$VH.set(seg, x);
-    }
-    public static byte Number$get(MemorySegment seg, long index) {
-        return (byte)_PROCESSOR_NUMBER.Number$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Number$set(MemorySegment seg, long index, byte x) {
-        _PROCESSOR_NUMBER.Number$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved"));
-    public static VarHandle Reserved$VH() {
-        return _PROCESSOR_NUMBER.Reserved$VH;
-    }
-    public static byte Reserved$get(MemorySegment seg) {
-        return (byte)_PROCESSOR_NUMBER.Reserved$VH.get(seg);
-    }
-    public static void Reserved$set( MemorySegment seg, byte x) {
-        _PROCESSOR_NUMBER.Reserved$VH.set(seg, x);
-    }
-    public static byte Reserved$get(MemorySegment seg, long index) {
-        return (byte)_PROCESSOR_NUMBER.Reserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved$set(MemorySegment seg, long index, byte x) {
-        _PROCESSOR_NUMBER.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("Group"),
+        wgl_h.C_CHAR.withName("Number"),
+        wgl_h.C_CHAR.withName("Reserved")
+    ).withName("_PROCESSOR_NUMBER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort Group$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Group"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Group
+     * }
+     */
+    public static final OfShort Group$layout() {
+        return Group$LAYOUT;
+    }
+
+    private static final long Group$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Group
+     * }
+     */
+    public static final long Group$offset() {
+        return Group$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Group
+     * }
+     */
+    public static short Group(MemorySegment struct) {
+        return struct.get(Group$LAYOUT, Group$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Group
+     * }
+     */
+    public static void Group(MemorySegment struct, short fieldValue) {
+        struct.set(Group$LAYOUT, Group$OFFSET, fieldValue);
+    }
+
+    private static final OfByte Number$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Number"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Number
+     * }
+     */
+    public static final OfByte Number$layout() {
+        return Number$LAYOUT;
+    }
+
+    private static final long Number$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Number
+     * }
+     */
+    public static final long Number$offset() {
+        return Number$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Number
+     * }
+     */
+    public static byte Number(MemorySegment struct) {
+        return struct.get(Number$LAYOUT, Number$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Number
+     * }
+     */
+    public static void Number(MemorySegment struct, byte fieldValue) {
+        struct.set(Number$LAYOUT, Number$OFFSET, fieldValue);
+    }
+
+    private static final OfByte Reserved$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Reserved
+     * }
+     */
+    public static final OfByte Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 3;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Reserved
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved
+     * }
+     */
+    public static byte Reserved(MemorySegment struct) {
+        return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved
+     * }
+     */
+    public static void Reserved(MemorySegment struct, byte fieldValue) {
+        struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

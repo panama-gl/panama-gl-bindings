@@ -2,93 +2,265 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _RPC_CALL_LOCAL_ADDRESS_V1 {
+ *     unsigned int Version;
+ *     void *Buffer;
+ *     unsigned long BufferSize;
+ *     RpcLocalAddressFormat AddressFormat;
+ * }
+ * }
+ */
 public class _RPC_CALL_LOCAL_ADDRESS_V1 {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("Buffer"),
-        Constants$root.C_LONG$LAYOUT.withName("BufferSize"),
-        Constants$root.C_LONG$LAYOUT.withName("AddressFormat")
-    ).withName("_RPC_CALL_LOCAL_ADDRESS_V1");
-    public static MemoryLayout $LAYOUT() {
-        return _RPC_CALL_LOCAL_ADDRESS_V1.$struct$LAYOUT;
+    _RPC_CALL_LOCAL_ADDRESS_V1() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _RPC_CALL_LOCAL_ADDRESS_V1.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_RPC_CALL_LOCAL_ADDRESS_V1.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _RPC_CALL_LOCAL_ADDRESS_V1.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_RPC_CALL_LOCAL_ADDRESS_V1.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _RPC_CALL_LOCAL_ADDRESS_V1.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Buffer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Buffer"));
-    public static VarHandle Buffer$VH() {
-        return _RPC_CALL_LOCAL_ADDRESS_V1.Buffer$VH;
-    }
-    public static MemoryAddress Buffer$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RPC_CALL_LOCAL_ADDRESS_V1.Buffer$VH.get(seg);
-    }
-    public static void Buffer$set( MemorySegment seg, MemoryAddress x) {
-        _RPC_CALL_LOCAL_ADDRESS_V1.Buffer$VH.set(seg, x);
-    }
-    public static MemoryAddress Buffer$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RPC_CALL_LOCAL_ADDRESS_V1.Buffer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Buffer$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RPC_CALL_LOCAL_ADDRESS_V1.Buffer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BufferSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BufferSize"));
-    public static VarHandle BufferSize$VH() {
-        return _RPC_CALL_LOCAL_ADDRESS_V1.BufferSize$VH;
-    }
-    public static int BufferSize$get(MemorySegment seg) {
-        return (int)_RPC_CALL_LOCAL_ADDRESS_V1.BufferSize$VH.get(seg);
-    }
-    public static void BufferSize$set( MemorySegment seg, int x) {
-        _RPC_CALL_LOCAL_ADDRESS_V1.BufferSize$VH.set(seg, x);
-    }
-    public static int BufferSize$get(MemorySegment seg, long index) {
-        return (int)_RPC_CALL_LOCAL_ADDRESS_V1.BufferSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BufferSize$set(MemorySegment seg, long index, int x) {
-        _RPC_CALL_LOCAL_ADDRESS_V1.BufferSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AddressFormat$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddressFormat"));
-    public static VarHandle AddressFormat$VH() {
-        return _RPC_CALL_LOCAL_ADDRESS_V1.AddressFormat$VH;
-    }
-    public static int AddressFormat$get(MemorySegment seg) {
-        return (int)_RPC_CALL_LOCAL_ADDRESS_V1.AddressFormat$VH.get(seg);
-    }
-    public static void AddressFormat$set( MemorySegment seg, int x) {
-        _RPC_CALL_LOCAL_ADDRESS_V1.AddressFormat$VH.set(seg, x);
-    }
-    public static int AddressFormat$get(MemorySegment seg, long index) {
-        return (int)_RPC_CALL_LOCAL_ADDRESS_V1.AddressFormat$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddressFormat$set(MemorySegment seg, long index, int x) {
-        _RPC_CALL_LOCAL_ADDRESS_V1.AddressFormat$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("Version"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("Buffer"),
+        wgl_h.C_LONG.withName("BufferSize"),
+        wgl_h.C_INT.withName("AddressFormat")
+    ).withName("_RPC_CALL_LOCAL_ADDRESS_V1");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned int Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned int Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned int Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned int Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout Buffer$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Buffer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *Buffer
+     * }
+     */
+    public static final AddressLayout Buffer$layout() {
+        return Buffer$LAYOUT;
+    }
+
+    private static final long Buffer$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *Buffer
+     * }
+     */
+    public static final long Buffer$offset() {
+        return Buffer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *Buffer
+     * }
+     */
+    public static MemorySegment Buffer(MemorySegment struct) {
+        return struct.get(Buffer$LAYOUT, Buffer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *Buffer
+     * }
+     */
+    public static void Buffer(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Buffer$LAYOUT, Buffer$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BufferSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BufferSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long BufferSize
+     * }
+     */
+    public static final OfInt BufferSize$layout() {
+        return BufferSize$LAYOUT;
+    }
+
+    private static final long BufferSize$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long BufferSize
+     * }
+     */
+    public static final long BufferSize$offset() {
+        return BufferSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long BufferSize
+     * }
+     */
+    public static int BufferSize(MemorySegment struct) {
+        return struct.get(BufferSize$LAYOUT, BufferSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long BufferSize
+     * }
+     */
+    public static void BufferSize(MemorySegment struct, int fieldValue) {
+        struct.set(BufferSize$LAYOUT, BufferSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt AddressFormat$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AddressFormat"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RpcLocalAddressFormat AddressFormat
+     * }
+     */
+    public static final OfInt AddressFormat$layout() {
+        return AddressFormat$LAYOUT;
+    }
+
+    private static final long AddressFormat$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RpcLocalAddressFormat AddressFormat
+     * }
+     */
+    public static final long AddressFormat$offset() {
+        return AddressFormat$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RpcLocalAddressFormat AddressFormat
+     * }
+     */
+    public static int AddressFormat(MemorySegment struct) {
+        return struct.get(AddressFormat$LAYOUT, AddressFormat$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RpcLocalAddressFormat AddressFormat
+     * }
+     */
+    public static void AddressFormat(MemorySegment struct, int fieldValue) {
+        struct.set(AddressFormat$LAYOUT, AddressFormat$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

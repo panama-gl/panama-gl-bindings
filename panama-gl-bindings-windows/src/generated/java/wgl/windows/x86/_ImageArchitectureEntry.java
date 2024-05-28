@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _ImageArchitectureEntry {
+ *     DWORD FixupInstRVA;
+ *     DWORD NewInst;
+ * }
+ * }
+ */
 public class _ImageArchitectureEntry {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("FixupInstRVA"),
-        Constants$root.C_LONG$LAYOUT.withName("NewInst")
-    ).withName("_ImageArchitectureEntry");
-    public static MemoryLayout $LAYOUT() {
-        return _ImageArchitectureEntry.$struct$LAYOUT;
+    _ImageArchitectureEntry() {
+        // Should not be called directly
     }
-    static final VarHandle FixupInstRVA$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FixupInstRVA"));
-    public static VarHandle FixupInstRVA$VH() {
-        return _ImageArchitectureEntry.FixupInstRVA$VH;
-    }
-    public static int FixupInstRVA$get(MemorySegment seg) {
-        return (int)_ImageArchitectureEntry.FixupInstRVA$VH.get(seg);
-    }
-    public static void FixupInstRVA$set( MemorySegment seg, int x) {
-        _ImageArchitectureEntry.FixupInstRVA$VH.set(seg, x);
-    }
-    public static int FixupInstRVA$get(MemorySegment seg, long index) {
-        return (int)_ImageArchitectureEntry.FixupInstRVA$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FixupInstRVA$set(MemorySegment seg, long index, int x) {
-        _ImageArchitectureEntry.FixupInstRVA$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NewInst$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NewInst"));
-    public static VarHandle NewInst$VH() {
-        return _ImageArchitectureEntry.NewInst$VH;
-    }
-    public static int NewInst$get(MemorySegment seg) {
-        return (int)_ImageArchitectureEntry.NewInst$VH.get(seg);
-    }
-    public static void NewInst$set( MemorySegment seg, int x) {
-        _ImageArchitectureEntry.NewInst$VH.set(seg, x);
-    }
-    public static int NewInst$get(MemorySegment seg, long index) {
-        return (int)_ImageArchitectureEntry.NewInst$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NewInst$set(MemorySegment seg, long index, int x) {
-        _ImageArchitectureEntry.NewInst$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("FixupInstRVA"),
+        wgl_h.C_LONG.withName("NewInst")
+    ).withName("_ImageArchitectureEntry");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt FixupInstRVA$LAYOUT = (OfInt)$LAYOUT.select(groupElement("FixupInstRVA"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD FixupInstRVA
+     * }
+     */
+    public static final OfInt FixupInstRVA$layout() {
+        return FixupInstRVA$LAYOUT;
+    }
+
+    private static final long FixupInstRVA$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD FixupInstRVA
+     * }
+     */
+    public static final long FixupInstRVA$offset() {
+        return FixupInstRVA$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD FixupInstRVA
+     * }
+     */
+    public static int FixupInstRVA(MemorySegment struct) {
+        return struct.get(FixupInstRVA$LAYOUT, FixupInstRVA$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD FixupInstRVA
+     * }
+     */
+    public static void FixupInstRVA(MemorySegment struct, int fieldValue) {
+        struct.set(FixupInstRVA$LAYOUT, FixupInstRVA$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NewInst$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NewInst"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NewInst
+     * }
+     */
+    public static final OfInt NewInst$layout() {
+        return NewInst$LAYOUT;
+    }
+
+    private static final long NewInst$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NewInst
+     * }
+     */
+    public static final long NewInst$offset() {
+        return NewInst$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NewInst
+     * }
+     */
+    public static int NewInst(MemorySegment struct) {
+        return struct.get(NewInst$LAYOUT, NewInst$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NewInst
+     * }
+     */
+    public static void NewInst(MemorySegment struct, int fieldValue) {
+        struct.set(NewInst$LAYOUT, NewInst$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

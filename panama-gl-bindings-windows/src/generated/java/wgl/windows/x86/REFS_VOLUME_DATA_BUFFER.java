@@ -2,275 +2,853 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     DWORD ByteCount;
+ *     DWORD MajorVersion;
+ *     DWORD MinorVersion;
+ *     DWORD BytesPerPhysicalSector;
+ *     LARGE_INTEGER VolumeSerialNumber;
+ *     LARGE_INTEGER NumberSectors;
+ *     LARGE_INTEGER TotalClusters;
+ *     LARGE_INTEGER FreeClusters;
+ *     LARGE_INTEGER TotalReserved;
+ *     DWORD BytesPerSector;
+ *     DWORD BytesPerCluster;
+ *     LARGE_INTEGER MaximumSizeOfResidentFile;
+ *     WORD FastTierDataFillRatio;
+ *     WORD SlowTierDataFillRatio;
+ *     DWORD DestagesFastTierToSlowTierRate;
+ *     LARGE_INTEGER Reserved[9];
+ * }
+ * }
+ */
 public class REFS_VOLUME_DATA_BUFFER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ByteCount"),
-        Constants$root.C_LONG$LAYOUT.withName("MajorVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("MinorVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("BytesPerPhysicalSector"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("VolumeSerialNumber"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("NumberSectors"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("TotalClusters"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("FreeClusters"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("TotalReserved"),
-        Constants$root.C_LONG$LAYOUT.withName("BytesPerSector"),
-        Constants$root.C_LONG$LAYOUT.withName("BytesPerCluster"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("MaximumSizeOfResidentFile"),
-        Constants$root.C_SHORT$LAYOUT.withName("FastTierDataFillRatio"),
-        Constants$root.C_SHORT$LAYOUT.withName("SlowTierDataFillRatio"),
-        Constants$root.C_LONG$LAYOUT.withName("DestagesFastTierToSlowTierRate"),
-        MemoryLayout.sequenceLayout(9, MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("_LARGE_INTEGER")).withName("Reserved")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return REFS_VOLUME_DATA_BUFFER.$struct$LAYOUT;
+    REFS_VOLUME_DATA_BUFFER() {
+        // Should not be called directly
     }
-    static final VarHandle ByteCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ByteCount"));
-    public static VarHandle ByteCount$VH() {
-        return REFS_VOLUME_DATA_BUFFER.ByteCount$VH;
-    }
-    public static int ByteCount$get(MemorySegment seg) {
-        return (int)REFS_VOLUME_DATA_BUFFER.ByteCount$VH.get(seg);
-    }
-    public static void ByteCount$set( MemorySegment seg, int x) {
-        REFS_VOLUME_DATA_BUFFER.ByteCount$VH.set(seg, x);
-    }
-    public static int ByteCount$get(MemorySegment seg, long index) {
-        return (int)REFS_VOLUME_DATA_BUFFER.ByteCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ByteCount$set(MemorySegment seg, long index, int x) {
-        REFS_VOLUME_DATA_BUFFER.ByteCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MajorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MajorVersion"));
-    public static VarHandle MajorVersion$VH() {
-        return REFS_VOLUME_DATA_BUFFER.MajorVersion$VH;
-    }
-    public static int MajorVersion$get(MemorySegment seg) {
-        return (int)REFS_VOLUME_DATA_BUFFER.MajorVersion$VH.get(seg);
-    }
-    public static void MajorVersion$set( MemorySegment seg, int x) {
-        REFS_VOLUME_DATA_BUFFER.MajorVersion$VH.set(seg, x);
-    }
-    public static int MajorVersion$get(MemorySegment seg, long index) {
-        return (int)REFS_VOLUME_DATA_BUFFER.MajorVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MajorVersion$set(MemorySegment seg, long index, int x) {
-        REFS_VOLUME_DATA_BUFFER.MajorVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MinorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MinorVersion"));
-    public static VarHandle MinorVersion$VH() {
-        return REFS_VOLUME_DATA_BUFFER.MinorVersion$VH;
-    }
-    public static int MinorVersion$get(MemorySegment seg) {
-        return (int)REFS_VOLUME_DATA_BUFFER.MinorVersion$VH.get(seg);
-    }
-    public static void MinorVersion$set( MemorySegment seg, int x) {
-        REFS_VOLUME_DATA_BUFFER.MinorVersion$VH.set(seg, x);
-    }
-    public static int MinorVersion$get(MemorySegment seg, long index) {
-        return (int)REFS_VOLUME_DATA_BUFFER.MinorVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MinorVersion$set(MemorySegment seg, long index, int x) {
-        REFS_VOLUME_DATA_BUFFER.MinorVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BytesPerPhysicalSector$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BytesPerPhysicalSector"));
-    public static VarHandle BytesPerPhysicalSector$VH() {
-        return REFS_VOLUME_DATA_BUFFER.BytesPerPhysicalSector$VH;
-    }
-    public static int BytesPerPhysicalSector$get(MemorySegment seg) {
-        return (int)REFS_VOLUME_DATA_BUFFER.BytesPerPhysicalSector$VH.get(seg);
-    }
-    public static void BytesPerPhysicalSector$set( MemorySegment seg, int x) {
-        REFS_VOLUME_DATA_BUFFER.BytesPerPhysicalSector$VH.set(seg, x);
-    }
-    public static int BytesPerPhysicalSector$get(MemorySegment seg, long index) {
-        return (int)REFS_VOLUME_DATA_BUFFER.BytesPerPhysicalSector$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BytesPerPhysicalSector$set(MemorySegment seg, long index, int x) {
-        REFS_VOLUME_DATA_BUFFER.BytesPerPhysicalSector$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment VolumeSerialNumber$slice(MemorySegment seg) {
-        return seg.asSlice(16, 8);
-    }
-    public static MemorySegment NumberSectors$slice(MemorySegment seg) {
-        return seg.asSlice(24, 8);
-    }
-    public static MemorySegment TotalClusters$slice(MemorySegment seg) {
-        return seg.asSlice(32, 8);
-    }
-    public static MemorySegment FreeClusters$slice(MemorySegment seg) {
-        return seg.asSlice(40, 8);
-    }
-    public static MemorySegment TotalReserved$slice(MemorySegment seg) {
-        return seg.asSlice(48, 8);
-    }
-    static final VarHandle BytesPerSector$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BytesPerSector"));
-    public static VarHandle BytesPerSector$VH() {
-        return REFS_VOLUME_DATA_BUFFER.BytesPerSector$VH;
-    }
-    public static int BytesPerSector$get(MemorySegment seg) {
-        return (int)REFS_VOLUME_DATA_BUFFER.BytesPerSector$VH.get(seg);
-    }
-    public static void BytesPerSector$set( MemorySegment seg, int x) {
-        REFS_VOLUME_DATA_BUFFER.BytesPerSector$VH.set(seg, x);
-    }
-    public static int BytesPerSector$get(MemorySegment seg, long index) {
-        return (int)REFS_VOLUME_DATA_BUFFER.BytesPerSector$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BytesPerSector$set(MemorySegment seg, long index, int x) {
-        REFS_VOLUME_DATA_BUFFER.BytesPerSector$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BytesPerCluster$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BytesPerCluster"));
-    public static VarHandle BytesPerCluster$VH() {
-        return REFS_VOLUME_DATA_BUFFER.BytesPerCluster$VH;
-    }
-    public static int BytesPerCluster$get(MemorySegment seg) {
-        return (int)REFS_VOLUME_DATA_BUFFER.BytesPerCluster$VH.get(seg);
-    }
-    public static void BytesPerCluster$set( MemorySegment seg, int x) {
-        REFS_VOLUME_DATA_BUFFER.BytesPerCluster$VH.set(seg, x);
-    }
-    public static int BytesPerCluster$get(MemorySegment seg, long index) {
-        return (int)REFS_VOLUME_DATA_BUFFER.BytesPerCluster$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BytesPerCluster$set(MemorySegment seg, long index, int x) {
-        REFS_VOLUME_DATA_BUFFER.BytesPerCluster$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment MaximumSizeOfResidentFile$slice(MemorySegment seg) {
-        return seg.asSlice(64, 8);
-    }
-    static final VarHandle FastTierDataFillRatio$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FastTierDataFillRatio"));
-    public static VarHandle FastTierDataFillRatio$VH() {
-        return REFS_VOLUME_DATA_BUFFER.FastTierDataFillRatio$VH;
-    }
-    public static short FastTierDataFillRatio$get(MemorySegment seg) {
-        return (short)REFS_VOLUME_DATA_BUFFER.FastTierDataFillRatio$VH.get(seg);
-    }
-    public static void FastTierDataFillRatio$set( MemorySegment seg, short x) {
-        REFS_VOLUME_DATA_BUFFER.FastTierDataFillRatio$VH.set(seg, x);
-    }
-    public static short FastTierDataFillRatio$get(MemorySegment seg, long index) {
-        return (short)REFS_VOLUME_DATA_BUFFER.FastTierDataFillRatio$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FastTierDataFillRatio$set(MemorySegment seg, long index, short x) {
-        REFS_VOLUME_DATA_BUFFER.FastTierDataFillRatio$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SlowTierDataFillRatio$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SlowTierDataFillRatio"));
-    public static VarHandle SlowTierDataFillRatio$VH() {
-        return REFS_VOLUME_DATA_BUFFER.SlowTierDataFillRatio$VH;
-    }
-    public static short SlowTierDataFillRatio$get(MemorySegment seg) {
-        return (short)REFS_VOLUME_DATA_BUFFER.SlowTierDataFillRatio$VH.get(seg);
-    }
-    public static void SlowTierDataFillRatio$set( MemorySegment seg, short x) {
-        REFS_VOLUME_DATA_BUFFER.SlowTierDataFillRatio$VH.set(seg, x);
-    }
-    public static short SlowTierDataFillRatio$get(MemorySegment seg, long index) {
-        return (short)REFS_VOLUME_DATA_BUFFER.SlowTierDataFillRatio$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SlowTierDataFillRatio$set(MemorySegment seg, long index, short x) {
-        REFS_VOLUME_DATA_BUFFER.SlowTierDataFillRatio$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DestagesFastTierToSlowTierRate$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DestagesFastTierToSlowTierRate"));
-    public static VarHandle DestagesFastTierToSlowTierRate$VH() {
-        return REFS_VOLUME_DATA_BUFFER.DestagesFastTierToSlowTierRate$VH;
-    }
-    public static int DestagesFastTierToSlowTierRate$get(MemorySegment seg) {
-        return (int)REFS_VOLUME_DATA_BUFFER.DestagesFastTierToSlowTierRate$VH.get(seg);
-    }
-    public static void DestagesFastTierToSlowTierRate$set( MemorySegment seg, int x) {
-        REFS_VOLUME_DATA_BUFFER.DestagesFastTierToSlowTierRate$VH.set(seg, x);
-    }
-    public static int DestagesFastTierToSlowTierRate$get(MemorySegment seg, long index) {
-        return (int)REFS_VOLUME_DATA_BUFFER.DestagesFastTierToSlowTierRate$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DestagesFastTierToSlowTierRate$set(MemorySegment seg, long index, int x) {
-        REFS_VOLUME_DATA_BUFFER.DestagesFastTierToSlowTierRate$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Reserved$slice(MemorySegment seg) {
-        return seg.asSlice(80, 72);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("ByteCount"),
+        wgl_h.C_LONG.withName("MajorVersion"),
+        wgl_h.C_LONG.withName("MinorVersion"),
+        wgl_h.C_LONG.withName("BytesPerPhysicalSector"),
+        _LARGE_INTEGER.layout().withName("VolumeSerialNumber"),
+        _LARGE_INTEGER.layout().withName("NumberSectors"),
+        _LARGE_INTEGER.layout().withName("TotalClusters"),
+        _LARGE_INTEGER.layout().withName("FreeClusters"),
+        _LARGE_INTEGER.layout().withName("TotalReserved"),
+        wgl_h.C_LONG.withName("BytesPerSector"),
+        wgl_h.C_LONG.withName("BytesPerCluster"),
+        _LARGE_INTEGER.layout().withName("MaximumSizeOfResidentFile"),
+        wgl_h.C_SHORT.withName("FastTierDataFillRatio"),
+        wgl_h.C_SHORT.withName("SlowTierDataFillRatio"),
+        wgl_h.C_LONG.withName("DestagesFastTierToSlowTierRate"),
+        MemoryLayout.sequenceLayout(9, _LARGE_INTEGER.layout()).withName("Reserved")
+    ).withName("$anon$10499:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt ByteCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ByteCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ByteCount
+     * }
+     */
+    public static final OfInt ByteCount$layout() {
+        return ByteCount$LAYOUT;
+    }
+
+    private static final long ByteCount$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ByteCount
+     * }
+     */
+    public static final long ByteCount$offset() {
+        return ByteCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ByteCount
+     * }
+     */
+    public static int ByteCount(MemorySegment struct) {
+        return struct.get(ByteCount$LAYOUT, ByteCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ByteCount
+     * }
+     */
+    public static void ByteCount(MemorySegment struct, int fieldValue) {
+        struct.set(ByteCount$LAYOUT, ByteCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MajorVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MajorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MajorVersion
+     * }
+     */
+    public static final OfInt MajorVersion$layout() {
+        return MajorVersion$LAYOUT;
+    }
+
+    private static final long MajorVersion$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MajorVersion
+     * }
+     */
+    public static final long MajorVersion$offset() {
+        return MajorVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MajorVersion
+     * }
+     */
+    public static int MajorVersion(MemorySegment struct) {
+        return struct.get(MajorVersion$LAYOUT, MajorVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MajorVersion
+     * }
+     */
+    public static void MajorVersion(MemorySegment struct, int fieldValue) {
+        struct.set(MajorVersion$LAYOUT, MajorVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MinorVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MinorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MinorVersion
+     * }
+     */
+    public static final OfInt MinorVersion$layout() {
+        return MinorVersion$LAYOUT;
+    }
+
+    private static final long MinorVersion$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MinorVersion
+     * }
+     */
+    public static final long MinorVersion$offset() {
+        return MinorVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MinorVersion
+     * }
+     */
+    public static int MinorVersion(MemorySegment struct) {
+        return struct.get(MinorVersion$LAYOUT, MinorVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MinorVersion
+     * }
+     */
+    public static void MinorVersion(MemorySegment struct, int fieldValue) {
+        struct.set(MinorVersion$LAYOUT, MinorVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BytesPerPhysicalSector$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BytesPerPhysicalSector"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerPhysicalSector
+     * }
+     */
+    public static final OfInt BytesPerPhysicalSector$layout() {
+        return BytesPerPhysicalSector$LAYOUT;
+    }
+
+    private static final long BytesPerPhysicalSector$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerPhysicalSector
+     * }
+     */
+    public static final long BytesPerPhysicalSector$offset() {
+        return BytesPerPhysicalSector$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerPhysicalSector
+     * }
+     */
+    public static int BytesPerPhysicalSector(MemorySegment struct) {
+        return struct.get(BytesPerPhysicalSector$LAYOUT, BytesPerPhysicalSector$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerPhysicalSector
+     * }
+     */
+    public static void BytesPerPhysicalSector(MemorySegment struct, int fieldValue) {
+        struct.set(BytesPerPhysicalSector$LAYOUT, BytesPerPhysicalSector$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout VolumeSerialNumber$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("VolumeSerialNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER VolumeSerialNumber
+     * }
+     */
+    public static final GroupLayout VolumeSerialNumber$layout() {
+        return VolumeSerialNumber$LAYOUT;
+    }
+
+    private static final long VolumeSerialNumber$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER VolumeSerialNumber
+     * }
+     */
+    public static final long VolumeSerialNumber$offset() {
+        return VolumeSerialNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER VolumeSerialNumber
+     * }
+     */
+    public static MemorySegment VolumeSerialNumber(MemorySegment struct) {
+        return struct.asSlice(VolumeSerialNumber$OFFSET, VolumeSerialNumber$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER VolumeSerialNumber
+     * }
+     */
+    public static void VolumeSerialNumber(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, VolumeSerialNumber$OFFSET, VolumeSerialNumber$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout NumberSectors$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("NumberSectors"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER NumberSectors
+     * }
+     */
+    public static final GroupLayout NumberSectors$layout() {
+        return NumberSectors$LAYOUT;
+    }
+
+    private static final long NumberSectors$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER NumberSectors
+     * }
+     */
+    public static final long NumberSectors$offset() {
+        return NumberSectors$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER NumberSectors
+     * }
+     */
+    public static MemorySegment NumberSectors(MemorySegment struct) {
+        return struct.asSlice(NumberSectors$OFFSET, NumberSectors$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER NumberSectors
+     * }
+     */
+    public static void NumberSectors(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, NumberSectors$OFFSET, NumberSectors$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout TotalClusters$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("TotalClusters"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER TotalClusters
+     * }
+     */
+    public static final GroupLayout TotalClusters$layout() {
+        return TotalClusters$LAYOUT;
+    }
+
+    private static final long TotalClusters$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER TotalClusters
+     * }
+     */
+    public static final long TotalClusters$offset() {
+        return TotalClusters$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER TotalClusters
+     * }
+     */
+    public static MemorySegment TotalClusters(MemorySegment struct) {
+        return struct.asSlice(TotalClusters$OFFSET, TotalClusters$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER TotalClusters
+     * }
+     */
+    public static void TotalClusters(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, TotalClusters$OFFSET, TotalClusters$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout FreeClusters$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("FreeClusters"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FreeClusters
+     * }
+     */
+    public static final GroupLayout FreeClusters$layout() {
+        return FreeClusters$LAYOUT;
+    }
+
+    private static final long FreeClusters$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FreeClusters
+     * }
+     */
+    public static final long FreeClusters$offset() {
+        return FreeClusters$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FreeClusters
+     * }
+     */
+    public static MemorySegment FreeClusters(MemorySegment struct) {
+        return struct.asSlice(FreeClusters$OFFSET, FreeClusters$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FreeClusters
+     * }
+     */
+    public static void FreeClusters(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, FreeClusters$OFFSET, FreeClusters$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout TotalReserved$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("TotalReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER TotalReserved
+     * }
+     */
+    public static final GroupLayout TotalReserved$layout() {
+        return TotalReserved$LAYOUT;
+    }
+
+    private static final long TotalReserved$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER TotalReserved
+     * }
+     */
+    public static final long TotalReserved$offset() {
+        return TotalReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER TotalReserved
+     * }
+     */
+    public static MemorySegment TotalReserved(MemorySegment struct) {
+        return struct.asSlice(TotalReserved$OFFSET, TotalReserved$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER TotalReserved
+     * }
+     */
+    public static void TotalReserved(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, TotalReserved$OFFSET, TotalReserved$LAYOUT.byteSize());
+    }
+
+    private static final OfInt BytesPerSector$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BytesPerSector"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerSector
+     * }
+     */
+    public static final OfInt BytesPerSector$layout() {
+        return BytesPerSector$LAYOUT;
+    }
+
+    private static final long BytesPerSector$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerSector
+     * }
+     */
+    public static final long BytesPerSector$offset() {
+        return BytesPerSector$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerSector
+     * }
+     */
+    public static int BytesPerSector(MemorySegment struct) {
+        return struct.get(BytesPerSector$LAYOUT, BytesPerSector$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerSector
+     * }
+     */
+    public static void BytesPerSector(MemorySegment struct, int fieldValue) {
+        struct.set(BytesPerSector$LAYOUT, BytesPerSector$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BytesPerCluster$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BytesPerCluster"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerCluster
+     * }
+     */
+    public static final OfInt BytesPerCluster$layout() {
+        return BytesPerCluster$LAYOUT;
+    }
+
+    private static final long BytesPerCluster$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerCluster
+     * }
+     */
+    public static final long BytesPerCluster$offset() {
+        return BytesPerCluster$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerCluster
+     * }
+     */
+    public static int BytesPerCluster(MemorySegment struct) {
+        return struct.get(BytesPerCluster$LAYOUT, BytesPerCluster$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerCluster
+     * }
+     */
+    public static void BytesPerCluster(MemorySegment struct, int fieldValue) {
+        struct.set(BytesPerCluster$LAYOUT, BytesPerCluster$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout MaximumSizeOfResidentFile$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("MaximumSizeOfResidentFile"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MaximumSizeOfResidentFile
+     * }
+     */
+    public static final GroupLayout MaximumSizeOfResidentFile$layout() {
+        return MaximumSizeOfResidentFile$LAYOUT;
+    }
+
+    private static final long MaximumSizeOfResidentFile$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MaximumSizeOfResidentFile
+     * }
+     */
+    public static final long MaximumSizeOfResidentFile$offset() {
+        return MaximumSizeOfResidentFile$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MaximumSizeOfResidentFile
+     * }
+     */
+    public static MemorySegment MaximumSizeOfResidentFile(MemorySegment struct) {
+        return struct.asSlice(MaximumSizeOfResidentFile$OFFSET, MaximumSizeOfResidentFile$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MaximumSizeOfResidentFile
+     * }
+     */
+    public static void MaximumSizeOfResidentFile(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, MaximumSizeOfResidentFile$OFFSET, MaximumSizeOfResidentFile$LAYOUT.byteSize());
+    }
+
+    private static final OfShort FastTierDataFillRatio$LAYOUT = (OfShort)$LAYOUT.select(groupElement("FastTierDataFillRatio"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD FastTierDataFillRatio
+     * }
+     */
+    public static final OfShort FastTierDataFillRatio$layout() {
+        return FastTierDataFillRatio$LAYOUT;
+    }
+
+    private static final long FastTierDataFillRatio$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD FastTierDataFillRatio
+     * }
+     */
+    public static final long FastTierDataFillRatio$offset() {
+        return FastTierDataFillRatio$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD FastTierDataFillRatio
+     * }
+     */
+    public static short FastTierDataFillRatio(MemorySegment struct) {
+        return struct.get(FastTierDataFillRatio$LAYOUT, FastTierDataFillRatio$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD FastTierDataFillRatio
+     * }
+     */
+    public static void FastTierDataFillRatio(MemorySegment struct, short fieldValue) {
+        struct.set(FastTierDataFillRatio$LAYOUT, FastTierDataFillRatio$OFFSET, fieldValue);
+    }
+
+    private static final OfShort SlowTierDataFillRatio$LAYOUT = (OfShort)$LAYOUT.select(groupElement("SlowTierDataFillRatio"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD SlowTierDataFillRatio
+     * }
+     */
+    public static final OfShort SlowTierDataFillRatio$layout() {
+        return SlowTierDataFillRatio$LAYOUT;
+    }
+
+    private static final long SlowTierDataFillRatio$OFFSET = 74;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD SlowTierDataFillRatio
+     * }
+     */
+    public static final long SlowTierDataFillRatio$offset() {
+        return SlowTierDataFillRatio$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD SlowTierDataFillRatio
+     * }
+     */
+    public static short SlowTierDataFillRatio(MemorySegment struct) {
+        return struct.get(SlowTierDataFillRatio$LAYOUT, SlowTierDataFillRatio$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD SlowTierDataFillRatio
+     * }
+     */
+    public static void SlowTierDataFillRatio(MemorySegment struct, short fieldValue) {
+        struct.set(SlowTierDataFillRatio$LAYOUT, SlowTierDataFillRatio$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DestagesFastTierToSlowTierRate$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DestagesFastTierToSlowTierRate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DestagesFastTierToSlowTierRate
+     * }
+     */
+    public static final OfInt DestagesFastTierToSlowTierRate$layout() {
+        return DestagesFastTierToSlowTierRate$LAYOUT;
+    }
+
+    private static final long DestagesFastTierToSlowTierRate$OFFSET = 76;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DestagesFastTierToSlowTierRate
+     * }
+     */
+    public static final long DestagesFastTierToSlowTierRate$offset() {
+        return DestagesFastTierToSlowTierRate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DestagesFastTierToSlowTierRate
+     * }
+     */
+    public static int DestagesFastTierToSlowTierRate(MemorySegment struct) {
+        return struct.get(DestagesFastTierToSlowTierRate$LAYOUT, DestagesFastTierToSlowTierRate$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DestagesFastTierToSlowTierRate
+     * }
+     */
+    public static void DestagesFastTierToSlowTierRate(MemorySegment struct, int fieldValue) {
+        struct.set(DestagesFastTierToSlowTierRate$LAYOUT, DestagesFastTierToSlowTierRate$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Reserved[9]
+     * }
+     */
+    public static final SequenceLayout Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Reserved[9]
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Reserved[9]
+     * }
+     */
+    public static MemorySegment Reserved(MemorySegment struct) {
+        return struct.asSlice(Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Reserved[9]
+     * }
+     */
+    public static void Reserved(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved$DIMS = { 9 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Reserved[9]
+     * }
+     */
+    public static long[] Reserved$dimensions() {
+        return Reserved$DIMS;
+    }
+    private static final MethodHandle Reserved$ELEM_HANDLE = Reserved$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Reserved[9]
+     * }
+     */
+    public static MemorySegment Reserved(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)Reserved$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Reserved[9]
+     * }
+     */
+    public static void Reserved(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, Reserved(struct, index0), 0L, _LARGE_INTEGER.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

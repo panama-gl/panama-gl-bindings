@@ -2,13 +2,35 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _QUERY_SERVICE_CONFIGW {
+ *     DWORD dwServiceType;
+ *     DWORD dwStartType;
+ *     DWORD dwErrorControl;
+ *     LPWSTR lpBinaryPathName;
+ *     LPWSTR lpLoadOrderGroup;
+ *     DWORD dwTagId;
+ *     LPWSTR lpDependencies;
+ *     LPWSTR lpServiceStartName;
+ *     LPWSTR lpDisplayName;
+ * } QUERY_SERVICE_CONFIGW
+ * }
+ */
 public class QUERY_SERVICE_CONFIGW extends _QUERY_SERVICE_CONFIGW {
 
+    QUERY_SERVICE_CONFIGW() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,60 +2,148 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY {
+ *     union {
+ *         DWORD Flags;
+ *         struct {
+ *             DWORD EnableExportAddressFilter : 1;
+ *             DWORD AuditExportAddressFilter : 1;
+ *             DWORD EnableExportAddressFilterPlus : 1;
+ *             DWORD AuditExportAddressFilterPlus : 1;
+ *             DWORD EnableImportAddressFilter : 1;
+ *             DWORD AuditImportAddressFilter : 1;
+ *             DWORD EnableRopStackPivot : 1;
+ *             DWORD AuditRopStackPivot : 1;
+ *             DWORD EnableRopCallerCheck : 1;
+ *             DWORD AuditRopCallerCheck : 1;
+ *             DWORD EnableRopSimExec : 1;
+ *             DWORD AuditRopSimExec : 1;
+ *             DWORD ReservedFlags : 20;
+ *         };
+ *     };
+ * }
+ * }
+ */
 public class _PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Flags"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    MemoryLayout.paddingLayout(1).withName("EnableExportAddressFilter"),
-                    MemoryLayout.paddingLayout(1).withName("AuditExportAddressFilter"),
-                    MemoryLayout.paddingLayout(1).withName("EnableExportAddressFilterPlus"),
-                    MemoryLayout.paddingLayout(1).withName("AuditExportAddressFilterPlus"),
-                    MemoryLayout.paddingLayout(1).withName("EnableImportAddressFilter"),
-                    MemoryLayout.paddingLayout(1).withName("AuditImportAddressFilter"),
-                    MemoryLayout.paddingLayout(1).withName("EnableRopStackPivot"),
-                    MemoryLayout.paddingLayout(1).withName("AuditRopStackPivot"),
-                    MemoryLayout.paddingLayout(1).withName("EnableRopCallerCheck"),
-                    MemoryLayout.paddingLayout(1).withName("AuditRopCallerCheck"),
-                    MemoryLayout.paddingLayout(1).withName("EnableRopSimExec"),
-                    MemoryLayout.paddingLayout(1).withName("AuditRopSimExec"),
-                    MemoryLayout.paddingLayout(20).withName("ReservedFlags")
-                )
-            ).withName("$anon$0")
-        ).withName("$anon$0")
-    ).withName("_PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY");
-    public static MemoryLayout $LAYOUT() {
-        return _PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY.$struct$LAYOUT;
+    _PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY() {
+        // Should not be called directly
     }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        MemoryLayout.unionLayout(
+            freeglut_h.C_LONG.withName("Flags"),
+            MemoryLayout.structLayout(
+                MemoryLayout.paddingLayout(4)
+            ).withName("$anon$11863:9")
+        ).withName("$anon$11861:5")
+    ).withName("_PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$11861:5"), groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

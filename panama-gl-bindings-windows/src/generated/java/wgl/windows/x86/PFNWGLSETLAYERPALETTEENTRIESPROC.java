@@ -2,27 +2,71 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNWGLSETLAYERPALETTEENTRIESPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemoryAddress hdc, int iLayerPlane, int iStart, int cEntries, java.lang.foreign.MemoryAddress pcr);
-    static MemorySegment allocate(PFNWGLSETLAYERPALETTEENTRIESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNWGLSETLAYERPALETTEENTRIESPROC.class, fi, constants$1374.PFNWGLSETLAYERPALETTEENTRIESPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef int (*PFNWGLSETLAYERPALETTEENTRIESPROC)(HDC, int, int, int, const COLORREF *) __attribute__((stdcall))
+ * }
+ */
+public class PFNWGLSETLAYERPALETTEENTRIESPROC {
+
+    PFNWGLSETLAYERPALETTEENTRIESPROC() {
+        // Should not be called directly
     }
-    static PFNWGLSETLAYERPALETTEENTRIESPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _hdc, int _iLayerPlane, int _iStart, int _cEntries, java.lang.foreign.MemoryAddress _pcr) -> {
-            try {
-                return (int)constants$1374.PFNWGLSETLAYERPALETTEENTRIESPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_hdc, _iLayerPlane, _iStart, _cEntries, (java.lang.foreign.Addressable)_pcr);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment hdc, int iLayerPlane, int iStart, int cEntries, MemorySegment pcr);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_POINTER,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNWGLSETLAYERPALETTEENTRIESPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNWGLSETLAYERPALETTEENTRIESPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment hdc, int iLayerPlane, int iStart, int cEntries, MemorySegment pcr) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, hdc, iLayerPlane, iStart, cEntries, pcr);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

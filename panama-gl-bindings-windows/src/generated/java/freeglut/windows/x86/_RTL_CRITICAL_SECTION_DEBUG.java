@@ -2,168 +2,495 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _RTL_CRITICAL_SECTION_DEBUG {
+ *     WORD Type;
+ *     WORD CreatorBackTraceIndex;
+ *     struct _RTL_CRITICAL_SECTION *CriticalSection;
+ *     LIST_ENTRY ProcessLocksList;
+ *     DWORD EntryCount;
+ *     DWORD ContentionCount;
+ *     DWORD Flags;
+ *     WORD CreatorBackTraceIndexHigh;
+ *     WORD SpareWORD;
+ * }
+ * }
+ */
 public class _RTL_CRITICAL_SECTION_DEBUG {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("Type"),
-        Constants$root.C_SHORT$LAYOUT.withName("CreatorBackTraceIndex"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("CriticalSection"),
-        MemoryLayout.structLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("Flink"),
-            Constants$root.C_POINTER$LAYOUT.withName("Blink")
-        ).withName("ProcessLocksList"),
-        Constants$root.C_LONG$LAYOUT.withName("EntryCount"),
-        Constants$root.C_LONG$LAYOUT.withName("ContentionCount"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_SHORT$LAYOUT.withName("CreatorBackTraceIndexHigh"),
-        Constants$root.C_SHORT$LAYOUT.withName("SpareWORD")
-    ).withName("_RTL_CRITICAL_SECTION_DEBUG");
-    public static MemoryLayout $LAYOUT() {
-        return _RTL_CRITICAL_SECTION_DEBUG.$struct$LAYOUT;
+    _RTL_CRITICAL_SECTION_DEBUG() {
+        // Should not be called directly
     }
-    static final VarHandle Type$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Type"));
-    public static VarHandle Type$VH() {
-        return _RTL_CRITICAL_SECTION_DEBUG.Type$VH;
-    }
-    public static short Type$get(MemorySegment seg) {
-        return (short)_RTL_CRITICAL_SECTION_DEBUG.Type$VH.get(seg);
-    }
-    public static void Type$set( MemorySegment seg, short x) {
-        _RTL_CRITICAL_SECTION_DEBUG.Type$VH.set(seg, x);
-    }
-    public static short Type$get(MemorySegment seg, long index) {
-        return (short)_RTL_CRITICAL_SECTION_DEBUG.Type$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Type$set(MemorySegment seg, long index, short x) {
-        _RTL_CRITICAL_SECTION_DEBUG.Type$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CreatorBackTraceIndex$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CreatorBackTraceIndex"));
-    public static VarHandle CreatorBackTraceIndex$VH() {
-        return _RTL_CRITICAL_SECTION_DEBUG.CreatorBackTraceIndex$VH;
-    }
-    public static short CreatorBackTraceIndex$get(MemorySegment seg) {
-        return (short)_RTL_CRITICAL_SECTION_DEBUG.CreatorBackTraceIndex$VH.get(seg);
-    }
-    public static void CreatorBackTraceIndex$set( MemorySegment seg, short x) {
-        _RTL_CRITICAL_SECTION_DEBUG.CreatorBackTraceIndex$VH.set(seg, x);
-    }
-    public static short CreatorBackTraceIndex$get(MemorySegment seg, long index) {
-        return (short)_RTL_CRITICAL_SECTION_DEBUG.CreatorBackTraceIndex$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CreatorBackTraceIndex$set(MemorySegment seg, long index, short x) {
-        _RTL_CRITICAL_SECTION_DEBUG.CreatorBackTraceIndex$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CriticalSection$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CriticalSection"));
-    public static VarHandle CriticalSection$VH() {
-        return _RTL_CRITICAL_SECTION_DEBUG.CriticalSection$VH;
-    }
-    public static MemoryAddress CriticalSection$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RTL_CRITICAL_SECTION_DEBUG.CriticalSection$VH.get(seg);
-    }
-    public static void CriticalSection$set( MemorySegment seg, MemoryAddress x) {
-        _RTL_CRITICAL_SECTION_DEBUG.CriticalSection$VH.set(seg, x);
-    }
-    public static MemoryAddress CriticalSection$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RTL_CRITICAL_SECTION_DEBUG.CriticalSection$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CriticalSection$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RTL_CRITICAL_SECTION_DEBUG.CriticalSection$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment ProcessLocksList$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
-    }
-    static final VarHandle EntryCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EntryCount"));
-    public static VarHandle EntryCount$VH() {
-        return _RTL_CRITICAL_SECTION_DEBUG.EntryCount$VH;
-    }
-    public static int EntryCount$get(MemorySegment seg) {
-        return (int)_RTL_CRITICAL_SECTION_DEBUG.EntryCount$VH.get(seg);
-    }
-    public static void EntryCount$set( MemorySegment seg, int x) {
-        _RTL_CRITICAL_SECTION_DEBUG.EntryCount$VH.set(seg, x);
-    }
-    public static int EntryCount$get(MemorySegment seg, long index) {
-        return (int)_RTL_CRITICAL_SECTION_DEBUG.EntryCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EntryCount$set(MemorySegment seg, long index, int x) {
-        _RTL_CRITICAL_SECTION_DEBUG.EntryCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ContentionCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ContentionCount"));
-    public static VarHandle ContentionCount$VH() {
-        return _RTL_CRITICAL_SECTION_DEBUG.ContentionCount$VH;
-    }
-    public static int ContentionCount$get(MemorySegment seg) {
-        return (int)_RTL_CRITICAL_SECTION_DEBUG.ContentionCount$VH.get(seg);
-    }
-    public static void ContentionCount$set( MemorySegment seg, int x) {
-        _RTL_CRITICAL_SECTION_DEBUG.ContentionCount$VH.set(seg, x);
-    }
-    public static int ContentionCount$get(MemorySegment seg, long index) {
-        return (int)_RTL_CRITICAL_SECTION_DEBUG.ContentionCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ContentionCount$set(MemorySegment seg, long index, int x) {
-        _RTL_CRITICAL_SECTION_DEBUG.ContentionCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _RTL_CRITICAL_SECTION_DEBUG.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_RTL_CRITICAL_SECTION_DEBUG.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _RTL_CRITICAL_SECTION_DEBUG.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_RTL_CRITICAL_SECTION_DEBUG.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _RTL_CRITICAL_SECTION_DEBUG.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CreatorBackTraceIndexHigh$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CreatorBackTraceIndexHigh"));
-    public static VarHandle CreatorBackTraceIndexHigh$VH() {
-        return _RTL_CRITICAL_SECTION_DEBUG.CreatorBackTraceIndexHigh$VH;
-    }
-    public static short CreatorBackTraceIndexHigh$get(MemorySegment seg) {
-        return (short)_RTL_CRITICAL_SECTION_DEBUG.CreatorBackTraceIndexHigh$VH.get(seg);
-    }
-    public static void CreatorBackTraceIndexHigh$set( MemorySegment seg, short x) {
-        _RTL_CRITICAL_SECTION_DEBUG.CreatorBackTraceIndexHigh$VH.set(seg, x);
-    }
-    public static short CreatorBackTraceIndexHigh$get(MemorySegment seg, long index) {
-        return (short)_RTL_CRITICAL_SECTION_DEBUG.CreatorBackTraceIndexHigh$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CreatorBackTraceIndexHigh$set(MemorySegment seg, long index, short x) {
-        _RTL_CRITICAL_SECTION_DEBUG.CreatorBackTraceIndexHigh$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SpareWORD$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SpareWORD"));
-    public static VarHandle SpareWORD$VH() {
-        return _RTL_CRITICAL_SECTION_DEBUG.SpareWORD$VH;
-    }
-    public static short SpareWORD$get(MemorySegment seg) {
-        return (short)_RTL_CRITICAL_SECTION_DEBUG.SpareWORD$VH.get(seg);
-    }
-    public static void SpareWORD$set( MemorySegment seg, short x) {
-        _RTL_CRITICAL_SECTION_DEBUG.SpareWORD$VH.set(seg, x);
-    }
-    public static short SpareWORD$get(MemorySegment seg, long index) {
-        return (short)_RTL_CRITICAL_SECTION_DEBUG.SpareWORD$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SpareWORD$set(MemorySegment seg, long index, short x) {
-        _RTL_CRITICAL_SECTION_DEBUG.SpareWORD$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_SHORT.withName("Type"),
+        freeglut_h.C_SHORT.withName("CreatorBackTraceIndex"),
+        MemoryLayout.paddingLayout(4),
+        freeglut_h.C_POINTER.withName("CriticalSection"),
+        _LIST_ENTRY.layout().withName("ProcessLocksList"),
+        freeglut_h.C_LONG.withName("EntryCount"),
+        freeglut_h.C_LONG.withName("ContentionCount"),
+        freeglut_h.C_LONG.withName("Flags"),
+        freeglut_h.C_SHORT.withName("CreatorBackTraceIndexHigh"),
+        freeglut_h.C_SHORT.withName("SpareWORD")
+    ).withName("_RTL_CRITICAL_SECTION_DEBUG");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort Type$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Type"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Type
+     * }
+     */
+    public static final OfShort Type$layout() {
+        return Type$LAYOUT;
+    }
+
+    private static final long Type$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Type
+     * }
+     */
+    public static final long Type$offset() {
+        return Type$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Type
+     * }
+     */
+    public static short Type(MemorySegment struct) {
+        return struct.get(Type$LAYOUT, Type$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Type
+     * }
+     */
+    public static void Type(MemorySegment struct, short fieldValue) {
+        struct.set(Type$LAYOUT, Type$OFFSET, fieldValue);
+    }
+
+    private static final OfShort CreatorBackTraceIndex$LAYOUT = (OfShort)$LAYOUT.select(groupElement("CreatorBackTraceIndex"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD CreatorBackTraceIndex
+     * }
+     */
+    public static final OfShort CreatorBackTraceIndex$layout() {
+        return CreatorBackTraceIndex$LAYOUT;
+    }
+
+    private static final long CreatorBackTraceIndex$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD CreatorBackTraceIndex
+     * }
+     */
+    public static final long CreatorBackTraceIndex$offset() {
+        return CreatorBackTraceIndex$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD CreatorBackTraceIndex
+     * }
+     */
+    public static short CreatorBackTraceIndex(MemorySegment struct) {
+        return struct.get(CreatorBackTraceIndex$LAYOUT, CreatorBackTraceIndex$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD CreatorBackTraceIndex
+     * }
+     */
+    public static void CreatorBackTraceIndex(MemorySegment struct, short fieldValue) {
+        struct.set(CreatorBackTraceIndex$LAYOUT, CreatorBackTraceIndex$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout CriticalSection$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("CriticalSection"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct _RTL_CRITICAL_SECTION *CriticalSection
+     * }
+     */
+    public static final AddressLayout CriticalSection$layout() {
+        return CriticalSection$LAYOUT;
+    }
+
+    private static final long CriticalSection$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct _RTL_CRITICAL_SECTION *CriticalSection
+     * }
+     */
+    public static final long CriticalSection$offset() {
+        return CriticalSection$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct _RTL_CRITICAL_SECTION *CriticalSection
+     * }
+     */
+    public static MemorySegment CriticalSection(MemorySegment struct) {
+        return struct.get(CriticalSection$LAYOUT, CriticalSection$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct _RTL_CRITICAL_SECTION *CriticalSection
+     * }
+     */
+    public static void CriticalSection(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(CriticalSection$LAYOUT, CriticalSection$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout ProcessLocksList$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ProcessLocksList"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LIST_ENTRY ProcessLocksList
+     * }
+     */
+    public static final GroupLayout ProcessLocksList$layout() {
+        return ProcessLocksList$LAYOUT;
+    }
+
+    private static final long ProcessLocksList$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LIST_ENTRY ProcessLocksList
+     * }
+     */
+    public static final long ProcessLocksList$offset() {
+        return ProcessLocksList$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LIST_ENTRY ProcessLocksList
+     * }
+     */
+    public static MemorySegment ProcessLocksList(MemorySegment struct) {
+        return struct.asSlice(ProcessLocksList$OFFSET, ProcessLocksList$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LIST_ENTRY ProcessLocksList
+     * }
+     */
+    public static void ProcessLocksList(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ProcessLocksList$OFFSET, ProcessLocksList$LAYOUT.byteSize());
+    }
+
+    private static final OfInt EntryCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("EntryCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD EntryCount
+     * }
+     */
+    public static final OfInt EntryCount$layout() {
+        return EntryCount$LAYOUT;
+    }
+
+    private static final long EntryCount$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD EntryCount
+     * }
+     */
+    public static final long EntryCount$offset() {
+        return EntryCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD EntryCount
+     * }
+     */
+    public static int EntryCount(MemorySegment struct) {
+        return struct.get(EntryCount$LAYOUT, EntryCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD EntryCount
+     * }
+     */
+    public static void EntryCount(MemorySegment struct, int fieldValue) {
+        struct.set(EntryCount$LAYOUT, EntryCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ContentionCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ContentionCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ContentionCount
+     * }
+     */
+    public static final OfInt ContentionCount$layout() {
+        return ContentionCount$LAYOUT;
+    }
+
+    private static final long ContentionCount$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ContentionCount
+     * }
+     */
+    public static final long ContentionCount$offset() {
+        return ContentionCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ContentionCount
+     * }
+     */
+    public static int ContentionCount(MemorySegment struct) {
+        return struct.get(ContentionCount$LAYOUT, ContentionCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ContentionCount
+     * }
+     */
+    public static void ContentionCount(MemorySegment struct, int fieldValue) {
+        struct.set(ContentionCount$LAYOUT, ContentionCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfShort CreatorBackTraceIndexHigh$LAYOUT = (OfShort)$LAYOUT.select(groupElement("CreatorBackTraceIndexHigh"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD CreatorBackTraceIndexHigh
+     * }
+     */
+    public static final OfShort CreatorBackTraceIndexHigh$layout() {
+        return CreatorBackTraceIndexHigh$LAYOUT;
+    }
+
+    private static final long CreatorBackTraceIndexHigh$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD CreatorBackTraceIndexHigh
+     * }
+     */
+    public static final long CreatorBackTraceIndexHigh$offset() {
+        return CreatorBackTraceIndexHigh$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD CreatorBackTraceIndexHigh
+     * }
+     */
+    public static short CreatorBackTraceIndexHigh(MemorySegment struct) {
+        return struct.get(CreatorBackTraceIndexHigh$LAYOUT, CreatorBackTraceIndexHigh$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD CreatorBackTraceIndexHigh
+     * }
+     */
+    public static void CreatorBackTraceIndexHigh(MemorySegment struct, short fieldValue) {
+        struct.set(CreatorBackTraceIndexHigh$LAYOUT, CreatorBackTraceIndexHigh$OFFSET, fieldValue);
+    }
+
+    private static final OfShort SpareWORD$LAYOUT = (OfShort)$LAYOUT.select(groupElement("SpareWORD"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD SpareWORD
+     * }
+     */
+    public static final OfShort SpareWORD$layout() {
+        return SpareWORD$LAYOUT;
+    }
+
+    private static final long SpareWORD$OFFSET = 46;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD SpareWORD
+     * }
+     */
+    public static final long SpareWORD$offset() {
+        return SpareWORD$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD SpareWORD
+     * }
+     */
+    public static short SpareWORD(MemorySegment struct) {
+        return struct.get(SpareWORD$LAYOUT, SpareWORD$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD SpareWORD
+     * }
+     */
+    public static void SpareWORD(MemorySegment struct, short fieldValue) {
+        struct.set(SpareWORD$LAYOUT, SpareWORD$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

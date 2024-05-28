@@ -2,126 +2,356 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT {
+ *     UINT32 Magic;
+ *     UINT32 Version;
+ *     UINT32 HeaderSize;
+ *     UINT32 cbCertifyInfo;
+ *     UINT32 cbSignature;
+ *     UINT32 cbTpmPublic;
+ * }
+ * }
+ */
 public class __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Magic"),
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("HeaderSize"),
-        Constants$root.C_LONG$LAYOUT.withName("cbCertifyInfo"),
-        Constants$root.C_LONG$LAYOUT.withName("cbSignature"),
-        Constants$root.C_LONG$LAYOUT.withName("cbTpmPublic")
-    ).withName("__NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT");
-    public static MemoryLayout $LAYOUT() {
-        return __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.$struct$LAYOUT;
+    __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT() {
+        // Should not be called directly
     }
-    static final VarHandle Magic$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Magic"));
-    public static VarHandle Magic$VH() {
-        return __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.Magic$VH;
-    }
-    public static int Magic$get(MemorySegment seg) {
-        return (int)__NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.Magic$VH.get(seg);
-    }
-    public static void Magic$set( MemorySegment seg, int x) {
-        __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.Magic$VH.set(seg, x);
-    }
-    public static int Magic$get(MemorySegment seg, long index) {
-        return (int)__NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.Magic$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Magic$set(MemorySegment seg, long index, int x) {
-        __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.Magic$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)__NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)__NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle HeaderSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HeaderSize"));
-    public static VarHandle HeaderSize$VH() {
-        return __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.HeaderSize$VH;
-    }
-    public static int HeaderSize$get(MemorySegment seg) {
-        return (int)__NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.HeaderSize$VH.get(seg);
-    }
-    public static void HeaderSize$set( MemorySegment seg, int x) {
-        __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.HeaderSize$VH.set(seg, x);
-    }
-    public static int HeaderSize$get(MemorySegment seg, long index) {
-        return (int)__NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.HeaderSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HeaderSize$set(MemorySegment seg, long index, int x) {
-        __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.HeaderSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbCertifyInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbCertifyInfo"));
-    public static VarHandle cbCertifyInfo$VH() {
-        return __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.cbCertifyInfo$VH;
-    }
-    public static int cbCertifyInfo$get(MemorySegment seg) {
-        return (int)__NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.cbCertifyInfo$VH.get(seg);
-    }
-    public static void cbCertifyInfo$set( MemorySegment seg, int x) {
-        __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.cbCertifyInfo$VH.set(seg, x);
-    }
-    public static int cbCertifyInfo$get(MemorySegment seg, long index) {
-        return (int)__NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.cbCertifyInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbCertifyInfo$set(MemorySegment seg, long index, int x) {
-        __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.cbCertifyInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbSignature$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSignature"));
-    public static VarHandle cbSignature$VH() {
-        return __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.cbSignature$VH;
-    }
-    public static int cbSignature$get(MemorySegment seg) {
-        return (int)__NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.cbSignature$VH.get(seg);
-    }
-    public static void cbSignature$set( MemorySegment seg, int x) {
-        __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.cbSignature$VH.set(seg, x);
-    }
-    public static int cbSignature$get(MemorySegment seg, long index) {
-        return (int)__NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.cbSignature$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSignature$set(MemorySegment seg, long index, int x) {
-        __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.cbSignature$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbTpmPublic$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbTpmPublic"));
-    public static VarHandle cbTpmPublic$VH() {
-        return __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.cbTpmPublic$VH;
-    }
-    public static int cbTpmPublic$get(MemorySegment seg) {
-        return (int)__NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.cbTpmPublic$VH.get(seg);
-    }
-    public static void cbTpmPublic$set( MemorySegment seg, int x) {
-        __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.cbTpmPublic$VH.set(seg, x);
-    }
-    public static int cbTpmPublic$get(MemorySegment seg, long index) {
-        return (int)__NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.cbTpmPublic$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbTpmPublic$set(MemorySegment seg, long index, int x) {
-        __NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT.cbTpmPublic$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("Magic"),
+        wgl_h.C_INT.withName("Version"),
+        wgl_h.C_INT.withName("HeaderSize"),
+        wgl_h.C_INT.withName("cbCertifyInfo"),
+        wgl_h.C_INT.withName("cbSignature"),
+        wgl_h.C_INT.withName("cbTpmPublic")
+    ).withName("__NCRYPT_PCP_TPM_WEB_AUTHN_ATTESTATION_STATEMENT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Magic$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Magic"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 Magic
+     * }
+     */
+    public static final OfInt Magic$layout() {
+        return Magic$LAYOUT;
+    }
+
+    private static final long Magic$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 Magic
+     * }
+     */
+    public static final long Magic$offset() {
+        return Magic$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 Magic
+     * }
+     */
+    public static int Magic(MemorySegment struct) {
+        return struct.get(Magic$LAYOUT, Magic$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 Magic
+     * }
+     */
+    public static void Magic(MemorySegment struct, int fieldValue) {
+        struct.set(Magic$LAYOUT, Magic$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt HeaderSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("HeaderSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 HeaderSize
+     * }
+     */
+    public static final OfInt HeaderSize$layout() {
+        return HeaderSize$LAYOUT;
+    }
+
+    private static final long HeaderSize$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 HeaderSize
+     * }
+     */
+    public static final long HeaderSize$offset() {
+        return HeaderSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 HeaderSize
+     * }
+     */
+    public static int HeaderSize(MemorySegment struct) {
+        return struct.get(HeaderSize$LAYOUT, HeaderSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 HeaderSize
+     * }
+     */
+    public static void HeaderSize(MemorySegment struct, int fieldValue) {
+        struct.set(HeaderSize$LAYOUT, HeaderSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbCertifyInfo$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbCertifyInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 cbCertifyInfo
+     * }
+     */
+    public static final OfInt cbCertifyInfo$layout() {
+        return cbCertifyInfo$LAYOUT;
+    }
+
+    private static final long cbCertifyInfo$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 cbCertifyInfo
+     * }
+     */
+    public static final long cbCertifyInfo$offset() {
+        return cbCertifyInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 cbCertifyInfo
+     * }
+     */
+    public static int cbCertifyInfo(MemorySegment struct) {
+        return struct.get(cbCertifyInfo$LAYOUT, cbCertifyInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 cbCertifyInfo
+     * }
+     */
+    public static void cbCertifyInfo(MemorySegment struct, int fieldValue) {
+        struct.set(cbCertifyInfo$LAYOUT, cbCertifyInfo$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbSignature$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSignature"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 cbSignature
+     * }
+     */
+    public static final OfInt cbSignature$layout() {
+        return cbSignature$LAYOUT;
+    }
+
+    private static final long cbSignature$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 cbSignature
+     * }
+     */
+    public static final long cbSignature$offset() {
+        return cbSignature$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 cbSignature
+     * }
+     */
+    public static int cbSignature(MemorySegment struct) {
+        return struct.get(cbSignature$LAYOUT, cbSignature$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 cbSignature
+     * }
+     */
+    public static void cbSignature(MemorySegment struct, int fieldValue) {
+        struct.set(cbSignature$LAYOUT, cbSignature$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbTpmPublic$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbTpmPublic"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 cbTpmPublic
+     * }
+     */
+    public static final OfInt cbTpmPublic$layout() {
+        return cbTpmPublic$LAYOUT;
+    }
+
+    private static final long cbTpmPublic$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 cbTpmPublic
+     * }
+     */
+    public static final long cbTpmPublic$offset() {
+        return cbTpmPublic$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 cbTpmPublic
+     * }
+     */
+    public static int cbTpmPublic(MemorySegment struct) {
+        return struct.get(cbTpmPublic$LAYOUT, cbTpmPublic$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 cbTpmPublic
+     * }
+     */
+    public static void cbTpmPublic(MemorySegment struct, int fieldValue) {
+        struct.set(cbTpmPublic$LAYOUT, cbTpmPublic$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

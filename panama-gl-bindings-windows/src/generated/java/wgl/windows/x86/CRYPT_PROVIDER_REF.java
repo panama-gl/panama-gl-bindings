@@ -2,13 +2,33 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CRYPT_PROVIDER_REF {
+ *     ULONG dwInterface;
+ *     PWSTR pszFunction;
+ *     PWSTR pszProvider;
+ *     ULONG cProperties;
+ *     PCRYPT_PROPERTY_REF *rgpProperties;
+ *     PCRYPT_IMAGE_REF pUM;
+ *     PCRYPT_IMAGE_REF pKM;
+ * } CRYPT_PROVIDER_REF
+ * }
+ */
 public class CRYPT_PROVIDER_REF extends _CRYPT_PROVIDER_REF {
 
+    CRYPT_PROVIDER_REF() {
+        // Should not be called directly
+    }
 }
-
 

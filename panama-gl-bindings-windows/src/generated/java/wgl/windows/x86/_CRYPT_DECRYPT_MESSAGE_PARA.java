@@ -2,93 +2,265 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_DECRYPT_MESSAGE_PARA {
+ *     DWORD cbSize;
+ *     DWORD dwMsgAndCertEncodingType;
+ *     DWORD cCertStore;
+ *     HCERTSTORE *rghCertStore;
+ * }
+ * }
+ */
 public class _CRYPT_DECRYPT_MESSAGE_PARA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        Constants$root.C_LONG$LAYOUT.withName("dwMsgAndCertEncodingType"),
-        Constants$root.C_LONG$LAYOUT.withName("cCertStore"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rghCertStore")
-    ).withName("_CRYPT_DECRYPT_MESSAGE_PARA");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_DECRYPT_MESSAGE_PARA.$struct$LAYOUT;
+    _CRYPT_DECRYPT_MESSAGE_PARA() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _CRYPT_DECRYPT_MESSAGE_PARA.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_CRYPT_DECRYPT_MESSAGE_PARA.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _CRYPT_DECRYPT_MESSAGE_PARA.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_DECRYPT_MESSAGE_PARA.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _CRYPT_DECRYPT_MESSAGE_PARA.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwMsgAndCertEncodingType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwMsgAndCertEncodingType"));
-    public static VarHandle dwMsgAndCertEncodingType$VH() {
-        return _CRYPT_DECRYPT_MESSAGE_PARA.dwMsgAndCertEncodingType$VH;
-    }
-    public static int dwMsgAndCertEncodingType$get(MemorySegment seg) {
-        return (int)_CRYPT_DECRYPT_MESSAGE_PARA.dwMsgAndCertEncodingType$VH.get(seg);
-    }
-    public static void dwMsgAndCertEncodingType$set( MemorySegment seg, int x) {
-        _CRYPT_DECRYPT_MESSAGE_PARA.dwMsgAndCertEncodingType$VH.set(seg, x);
-    }
-    public static int dwMsgAndCertEncodingType$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_DECRYPT_MESSAGE_PARA.dwMsgAndCertEncodingType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwMsgAndCertEncodingType$set(MemorySegment seg, long index, int x) {
-        _CRYPT_DECRYPT_MESSAGE_PARA.dwMsgAndCertEncodingType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cCertStore$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cCertStore"));
-    public static VarHandle cCertStore$VH() {
-        return _CRYPT_DECRYPT_MESSAGE_PARA.cCertStore$VH;
-    }
-    public static int cCertStore$get(MemorySegment seg) {
-        return (int)_CRYPT_DECRYPT_MESSAGE_PARA.cCertStore$VH.get(seg);
-    }
-    public static void cCertStore$set( MemorySegment seg, int x) {
-        _CRYPT_DECRYPT_MESSAGE_PARA.cCertStore$VH.set(seg, x);
-    }
-    public static int cCertStore$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_DECRYPT_MESSAGE_PARA.cCertStore$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cCertStore$set(MemorySegment seg, long index, int x) {
-        _CRYPT_DECRYPT_MESSAGE_PARA.cCertStore$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rghCertStore$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rghCertStore"));
-    public static VarHandle rghCertStore$VH() {
-        return _CRYPT_DECRYPT_MESSAGE_PARA.rghCertStore$VH;
-    }
-    public static MemoryAddress rghCertStore$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_DECRYPT_MESSAGE_PARA.rghCertStore$VH.get(seg);
-    }
-    public static void rghCertStore$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_DECRYPT_MESSAGE_PARA.rghCertStore$VH.set(seg, x);
-    }
-    public static MemoryAddress rghCertStore$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_DECRYPT_MESSAGE_PARA.rghCertStore$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rghCertStore$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_DECRYPT_MESSAGE_PARA.rghCertStore$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        wgl_h.C_LONG.withName("dwMsgAndCertEncodingType"),
+        wgl_h.C_LONG.withName("cCertStore"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rghCertStore")
+    ).withName("_CRYPT_DECRYPT_MESSAGE_PARA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwMsgAndCertEncodingType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwMsgAndCertEncodingType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwMsgAndCertEncodingType
+     * }
+     */
+    public static final OfInt dwMsgAndCertEncodingType$layout() {
+        return dwMsgAndCertEncodingType$LAYOUT;
+    }
+
+    private static final long dwMsgAndCertEncodingType$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwMsgAndCertEncodingType
+     * }
+     */
+    public static final long dwMsgAndCertEncodingType$offset() {
+        return dwMsgAndCertEncodingType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwMsgAndCertEncodingType
+     * }
+     */
+    public static int dwMsgAndCertEncodingType(MemorySegment struct) {
+        return struct.get(dwMsgAndCertEncodingType$LAYOUT, dwMsgAndCertEncodingType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwMsgAndCertEncodingType
+     * }
+     */
+    public static void dwMsgAndCertEncodingType(MemorySegment struct, int fieldValue) {
+        struct.set(dwMsgAndCertEncodingType$LAYOUT, dwMsgAndCertEncodingType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cCertStore$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cCertStore"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cCertStore
+     * }
+     */
+    public static final OfInt cCertStore$layout() {
+        return cCertStore$LAYOUT;
+    }
+
+    private static final long cCertStore$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cCertStore
+     * }
+     */
+    public static final long cCertStore$offset() {
+        return cCertStore$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cCertStore
+     * }
+     */
+    public static int cCertStore(MemorySegment struct) {
+        return struct.get(cCertStore$LAYOUT, cCertStore$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cCertStore
+     * }
+     */
+    public static void cCertStore(MemorySegment struct, int fieldValue) {
+        struct.set(cCertStore$LAYOUT, cCertStore$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rghCertStore$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rghCertStore"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HCERTSTORE *rghCertStore
+     * }
+     */
+    public static final AddressLayout rghCertStore$layout() {
+        return rghCertStore$LAYOUT;
+    }
+
+    private static final long rghCertStore$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HCERTSTORE *rghCertStore
+     * }
+     */
+    public static final long rghCertStore$offset() {
+        return rghCertStore$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE *rghCertStore
+     * }
+     */
+    public static MemorySegment rghCertStore(MemorySegment struct) {
+        return struct.get(rghCertStore$LAYOUT, rghCertStore$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE *rghCertStore
+     * }
+     */
+    public static void rghCertStore(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rghCertStore$LAYOUT, rghCertStore$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 
