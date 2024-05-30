@@ -42,3 +42,9 @@ Repositories:
   </repository>
 </repositories>
 ```
+
+## Deploy
+
+```
+mvn deploy -DskipTests -Denv.MAVEN_REPO_URL=ftp://ftp.cluster013.ovh.net/                                                                
+```
