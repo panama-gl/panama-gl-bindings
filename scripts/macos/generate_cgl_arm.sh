@@ -14,8 +14,8 @@ $JEXTRACT \
   -I $SDK_DIR/usr/include \
   -I /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Headers \
   -I /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/ \
-  -lOpenGL.framework \
-  -lGLUT.framework \
+#  -lOpenGL.framework \
+#  -lGLUT.framework \
   --target-package cgl.macos.arm \
   --output ../../panama-gl-bindings-macos/src/generated/java/ \
   --header-class-name cgl_h \

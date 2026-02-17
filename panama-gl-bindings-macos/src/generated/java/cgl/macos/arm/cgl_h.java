@@ -55,9 +55,7 @@ public class cgl_h {
         };
     }
 
-    static final SymbolLookup SYMBOL_LOOKUP = SymbolLookup.libraryLookup(System.mapLibraryName("OpenGL.framework"), LIBRARY_ARENA)
-            .or(SymbolLookup.libraryLookup(System.mapLibraryName("GLUT.framework"), LIBRARY_ARENA))
-            .or(SymbolLookup.loaderLookup())
+    static final SymbolLookup SYMBOL_LOOKUP = SymbolLookup.loaderLookup()
             .or(Linker.nativeLinker().defaultLookup());
 
     public static final ValueLayout.OfBoolean C_BOOL = ValueLayout.JAVA_BOOLEAN;
