@@ -1,5 +1,5 @@
 <project xmlns="https://maven.apache.org/POM/4.0.0" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	
+
 	<!-- mvn deploy -DskipTests -Denv.MAVEN_REPO_URL=ftp://ftp.cluster013.ovh.net/ -->
 
 	<modelVersion>4.0.0</modelVersion>
@@ -8,23 +8,23 @@
 	<version>1.2.0-SNAPSHOT</version>
 	<name>Panama GL Bindings</name>
 	<packaging>pom</packaging>
-	
+
 	<scm>
 		<connection>scm:git:https://gitlab.org/jzy3d/panama-gl-bindings</connection>
 		<tag>panama-gl-bindings-1.2.0</tag>
 	</scm>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>22</jdk.version>
 	</properties>
-	
+
 	<modules>
 		<module>panama-gl-bindings-linux</module>
 		<module>panama-gl-bindings-macos</module>
 		<module>panama-gl-bindings-windows</module>
 	</modules>
-	
+
 	<dependencies>
 		<!-- OTHER MODULES -->
 		<dependency>
@@ -95,6 +95,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
+				<version>3.3.1</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -118,7 +119,7 @@
 					</includes>
 				</configuration>
 			</plugin>
-			
+
 			<!-- RELEASE PLUGIN TO HELP CREATE RELEASE BRANCHES -->
 			<plugin>
 				<artifactId>maven-release-plugin</artifactId>
@@ -130,7 +131,7 @@
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
 				<artifactId>wagon-ftp</artifactId>
-				<version>2.10</version>
+				<version>3.5.3</version>
 			</extension>
 		</extensions>
 	</build>

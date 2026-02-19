@@ -2,9 +2,25 @@ package opengl.linux;
 
 public class NativeLibLoader {
   public static void load() {
-    System.loadLibrary("GL");
-    System.loadLibrary("glut");
-    System.loadLibrary("GLU");
+    loadGL();
+    loadGLUT();
+    loadGLU();
+    loadGLX();
+  }
+
+  public static void loadGLX() {
     System.loadLibrary("GLX");
+  }
+
+  public static void loadGLU() {
+    System.loadLibrary("GLU");
+  }
+
+  public static void loadGLUT() {
+    System.loadLibrary("glut");
+  }
+
+  public static void loadGL() {
+    System.loadLibrary("GL");
   }
 }
