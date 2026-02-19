@@ -1,0 +1,61 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# Limit concurrent deployments on the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    # Minimal token permissions (read-only on contents)
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java 22
+        uses: actions/setup-java@v4
+        with:
+          java-version: '22'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      # Inject FTP credentials into Maven settings.xml
+      # The server id "panama-ftp" must match the distributionManagement id in pom.xml
+      - name: Configure Maven settings
+        run: |
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml <<EOF
+          <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                                        https://maven.apache.org/xsd/settings-1.0.0.xsd">
+            <servers>
+              <server>
+                <id>panama-ftp</id>
+                <username>${{ secrets.FTP_USERNAME }}</username>
+                <password>${{ secrets.FTP_PASSWORD }}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
+
+      - name: Build
+        run: mvn --batch-mode --no-transfer-progress package -DskipTests
+
+      # Deploy only on push to main (not on pull requests)
+      - name: Deploy
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          MAVEN_REPO_URL: ${{ secrets.MAVEN_REPO_URL }}
+        run: mvn --batch-mode --no-transfer-progress deploy -DskipTests
