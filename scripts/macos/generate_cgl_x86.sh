@@ -1,4 +1,4 @@
-sudo xattr -r -d com.apple.quarantine /Library/Java/JavaVirtualMachines/jextract-19/bin/
+sudo xattr -r -d com.apple.quarantine /Library/Java/JavaVirtualMachines/jextract-22/
 
 JEXTRACT=/Library/Java/JavaVirtualMachines/jextract-22/jextract
 
@@ -18,6 +18,5 @@ $JEXTRACT \
 #  -lGLUT.framework \
   --target-package cgl.macos.x86 \
   --output ../../panama-gl-bindings-macos/src/generated/java/ \
-  --source \
   --header-class-name cgl_h \
  include_cgl.h
