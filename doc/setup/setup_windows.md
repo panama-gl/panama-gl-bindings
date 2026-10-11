@@ -26,6 +26,15 @@ Either build freeglut using Msys2 or Microsoft Visual Studio
 * Install Visual Studio
 * Open the `scripts/windows/build-freeglut-msvsc.bat` script and follow the steps provided there on how to setup the required environment and how to run the script.
 
+### 2.3 : cross-compiling from Linux or macOS with Zig
+
+* Install CMake, Ninja and [Zig](https://ziglang.org/download/) (or `pip install ziglang`)
+* Open the `scripts/windows/build-freeglut-cross.sh` script and follow the steps provided there on how to run the script. It builds a `freeglut.dll` for x64 or ARM64 CPUs, e.g. :
+
+`build-freeglut-cross.sh v3.8.0 arm64 <destination-dir>`
+
+This is how the `freeglut.dll` embedded in `panama-gl-wrappers-windows` are built.
+
 ### Build OpenGL java wrappers with JExtract
 
 * Navigate to `scripts/windows` and run on the CLI the following command:
