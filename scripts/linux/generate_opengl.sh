@@ -4,7 +4,7 @@ JEXTRACT=/usr/lib/jvm/jextract-22/jextract
 
 # Generate OpenGL Binding
 $JEXTRACT \
-  --target-package opengl.linux.x86 \
+  --target-package opengl.linux \
   --output ../../panama-gl-bindings-linux/src/generated/java/ \
   --header-class-name glut_h \
   -lGL \
