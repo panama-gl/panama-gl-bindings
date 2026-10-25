@@ -10,7 +10,7 @@ on:
     paths:
       - "scripts/windows/include_windows.h"
       - "scripts/windows/symbols_windows.txt"
-      - "scripts/windows/filter_includes.py"
+      - "scripts/windows/generate_opengl.py"
       - "scripts/windows/generate_opengl.bat"
       - ".github/workflows/generate-windows.yml"
 
