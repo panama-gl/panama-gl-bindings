@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jzy3d</groupId>
 	<artifactId>panama-gl-bindings</artifactId>
-	<version>1.4.0</version>
+	<version>1.4.1</version>
 	<name>Panama GL Bindings</name>
 	<packaging>pom</packaging>
 
@@ -20,7 +20,7 @@
 	</properties>
 
 	<modules>
-		<module>panama-gl-bindings-gl</module>
+		<module>panama-gl-bindings-glext</module>
 		<module>panama-gl-bindings-linux</module>
 		<module>panama-gl-bindings-macos</module>
 		<module>panama-gl-bindings-windows</module>
