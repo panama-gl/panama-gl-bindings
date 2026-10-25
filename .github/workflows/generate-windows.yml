@@ -1,0 +1,81 @@
+# Generate the Windows binding on a Windows runner, with the headers of the Windows SDK, compile it,
+# then commit it on the branch that triggered the workflow.
+
+name: Generate Windows binding
+
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore: [ "main" ]
+    paths:
+      - "scripts/windows/include_windows.h"
+      - "scripts/windows/symbols_windows.txt"
+      - "scripts/windows/filter_includes.py"
+      - "scripts/windows/generate_opengl.bat"
+      - ".github/workflows/generate-windows.yml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java 22
+        uses: actions/setup-java@v4
+        with:
+          java-version: '22'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      # The jextract 22 build that generated the previous bindings
+      - name: Download jextract 22
+        shell: pwsh
+        run: |
+          $url = 'https://download.java.net/java/early_access/jextract/22/6/openjdk-22-jextract+6-47_windows-x64_bin.tar.gz'
+          Invoke-WebRequest -Uri $url -OutFile jextract.tar.gz
+          New-Item -ItemType Directory -Force -Path "$env:RUNNER_TEMP\jextract" | Out-Null
+          tar -xzf jextract.tar.gz -C "$env:RUNNER_TEMP\jextract"
+          Remove-Item jextract.tar.gz
+          $bin = Get-ChildItem -Recurse "$env:RUNNER_TEMP\jextract" -Filter jextract.bat | Select-Object -First 1
+          "JEXTRACT=$($bin.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          & $bin.FullName --version
+
+      - name: Find the Windows SDK
+        shell: pwsh
+        run: |
+          $sdk = Get-ChildItem 'C:\Program Files (x86)\Windows Kits\10\Include' -Directory |
+            Where-Object { Test-Path "$($_.FullName)\um\windows.h" } | Sort-Object Name | Select-Object -Last 1
+          Write-Host "Windows SDK : $($sdk.FullName)"
+          "SDK_DIR=$($sdk.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Generate
+        shell: cmd
+        working-directory: scripts/windows
+        run: call generate_opengl.bat "%JEXTRACT%" "%SDK_DIR%"
+
+      - name: Compile
+        shell: pwsh
+        run: |
+          mvn --batch-mode --no-transfer-progress package -DskipTests -pl panama-gl-bindings-windows
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          Get-ChildItem panama-gl-bindings-windows\target\*.jar | Format-Table Name, Length
+          (Get-ChildItem -Recurse panama-gl-bindings-windows\src\generated\java -Filter *.java).Count
+
+      - name: Commit
+        shell: pwsh
+        run: |
+          git config user.name "Martin Pernollet"
+          git config user.email "martin@jzy3d.org"
+          git add -A panama-gl-bindings-windows/src/generated
+          git diff --cached --quiet
+          if ($LASTEXITCODE -eq 0) { Write-Host 'Binding unchanged'; exit 0 }
+          git commit -q -m "Generate the Windows binding with scripts/windows/generate_opengl.bat"
+          git push origin "HEAD:${{ github.ref_name }}"

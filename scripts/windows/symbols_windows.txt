@@ -1,0 +1,45 @@
+# Win32 declarations of the binding, besides all the declarations of gl.h, glu.h, freeglut and wgl.h.
+# One name per line, * matches any characters. Add here a declaration needed by PanamaGL, then
+# regenerate the binding.
+
+NULL
+
+# wingdi.h : pixel formats and WGL
+ChoosePixelFormat
+DescribePixelFormat
+GetPixelFormat
+SetPixelFormat
+SwapBuffers
+PIXELFORMATDESCRIPTOR
+tagPIXELFORMATDESCRIPTOR
+PFD_*
+wgl*
+
+# winuser.h : windows
+CreateWindowExA
+DefWindowProcA
+DestroyWindow
+GetDC
+ReleaseDC
+RegisterClassExA
+UnregisterClassA
+ShowWindow
+WNDPROC
+WNDCLASSEXA
+tagWNDCLASSEXA
+CS_OWNDC
+CS_HREDRAW
+CS_VREDRAW
+WS_POPUP
+WS_OVERLAPPEDWINDOW
+SW_HIDE
+SW_SHOW
+
+# libloaderapi.h, errhandlingapi.h, winbase.h : errors
+GetModuleHandleA
+GetLastError
+FormatMessageW
+LocalFree
+FORMAT_MESSAGE_*
+LANG_NEUTRAL
+SUBLANG_DEFAULT
