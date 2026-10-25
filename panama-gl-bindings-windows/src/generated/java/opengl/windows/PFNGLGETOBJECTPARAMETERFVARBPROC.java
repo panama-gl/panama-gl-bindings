@@ -14,12 +14,12 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
 
 /**
  * {@snippet lang=c :
- * typedef void (*PFNGLARRAYELEMENTEXTPROC)(GLint) __attribute__((stdcall))
+ * typedef void (*PFNGLGETOBJECTPARAMETERFVARBPROC)(GLhandleARB, GLenum, GLfloat *) __attribute__((stdcall))
  * }
  */
-public class PFNGLARRAYELEMENTEXTPROC {
+public class PFNGLGETOBJECTPARAMETERFVARBPROC {
 
-    PFNGLARRAYELEMENTEXTPROC() {
+    PFNGLGETOBJECTPARAMETERFVARBPROC() {
         // Should not be called directly
     }
 
@@ -27,11 +27,13 @@ public class PFNGLARRAYELEMENTEXTPROC {
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(int i);
+        void apply(int obj, int pname, MemorySegment params);
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        gl_h.C_INT
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_POINTER
     );
 
     /**
@@ -41,13 +43,13 @@ public class PFNGLARRAYELEMENTEXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLARRAYELEMENTEXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETOBJECTPARAMETERFVARBPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
      * The lifetime of the returned segment is managed by {@code arena}
      */
-    public static MemorySegment allocate(PFNGLARRAYELEMENTEXTPROC.Function fi, Arena arena) {
+    public static MemorySegment allocate(PFNGLGETOBJECTPARAMETERFVARBPROC.Function fi, Arena arena) {
         return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
     }
 
@@ -56,9 +58,9 @@ public class PFNGLARRAYELEMENTEXTPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,int i) {
+    public static void invoke(MemorySegment funcPtr,int obj, int pname, MemorySegment params) {
         try {
-             DOWN$MH.invokeExact(funcPtr, i);
+             DOWN$MH.invokeExact(funcPtr, obj, pname, params);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

@@ -14,12 +14,12 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
 
 /**
  * {@snippet lang=c :
- * typedef void (*PFNGLCOLORTABLEEXTPROC)(GLenum, GLenum, GLsizei, GLenum, GLenum, const GLvoid *) __attribute__((stdcall))
+ * typedef void (*PFNGLDELETEOBJECTARBPROC)(GLhandleARB) __attribute__((stdcall))
  * }
  */
-public class PFNGLCOLORTABLEEXTPROC {
+public class PFNGLDELETEOBJECTARBPROC {
 
-    PFNGLCOLORTABLEEXTPROC() {
+    PFNGLDELETEOBJECTARBPROC() {
         // Should not be called directly
     }
 
@@ -27,16 +27,11 @@ public class PFNGLCOLORTABLEEXTPROC {
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(int target, int internalFormat, int width, int format, int type, MemorySegment data);
+        void apply(int obj);
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        gl_h.C_INT,
-        gl_h.C_INT,
-        gl_h.C_INT,
-        gl_h.C_INT,
-        gl_h.C_INT,
-        gl_h.C_POINTER
+        gl_h.C_INT
     );
 
     /**
@@ -46,13 +41,13 @@ public class PFNGLCOLORTABLEEXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLCOLORTABLEEXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLDELETEOBJECTARBPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
      * The lifetime of the returned segment is managed by {@code arena}
      */
-    public static MemorySegment allocate(PFNGLCOLORTABLEEXTPROC.Function fi, Arena arena) {
+    public static MemorySegment allocate(PFNGLDELETEOBJECTARBPROC.Function fi, Arena arena) {
         return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
     }
 
@@ -61,9 +56,9 @@ public class PFNGLCOLORTABLEEXTPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,int target, int internalFormat, int width, int format, int type, MemorySegment data) {
+    public static void invoke(MemorySegment funcPtr,int obj) {
         try {
-             DOWN$MH.invokeExact(funcPtr, target, internalFormat, width, format, type, data);
+             DOWN$MH.invokeExact(funcPtr, obj);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

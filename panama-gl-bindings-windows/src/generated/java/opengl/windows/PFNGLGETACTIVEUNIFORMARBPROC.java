@@ -14,12 +14,12 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
 
 /**
  * {@snippet lang=c :
- * typedef void (*PFNGLGETCOLORTABLEPARAMETERIVEXTPROC)(GLenum, GLenum, GLint *) __attribute__((stdcall))
+ * typedef void (*PFNGLGETACTIVEUNIFORMARBPROC)(GLhandleARB, GLuint, GLsizei, GLsizei *, GLint *, GLenum *, GLcharARB *) __attribute__((stdcall))
  * }
  */
-public class PFNGLGETCOLORTABLEPARAMETERIVEXTPROC {
+public class PFNGLGETACTIVEUNIFORMARBPROC {
 
-    PFNGLGETCOLORTABLEPARAMETERIVEXTPROC() {
+    PFNGLGETACTIVEUNIFORMARBPROC() {
         // Should not be called directly
     }
 
@@ -27,12 +27,16 @@ public class PFNGLGETCOLORTABLEPARAMETERIVEXTPROC {
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(int target, int pname, MemorySegment params);
+        void apply(int programObj, int index, int maxLength, MemorySegment length, MemorySegment size, MemorySegment type, MemorySegment name);
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
         gl_h.C_INT,
         gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_POINTER,
+        gl_h.C_POINTER,
+        gl_h.C_POINTER,
         gl_h.C_POINTER
     );
 
@@ -43,13 +47,13 @@ public class PFNGLGETCOLORTABLEPARAMETERIVEXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETCOLORTABLEPARAMETERIVEXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETACTIVEUNIFORMARBPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
      * The lifetime of the returned segment is managed by {@code arena}
      */
-    public static MemorySegment allocate(PFNGLGETCOLORTABLEPARAMETERIVEXTPROC.Function fi, Arena arena) {
+    public static MemorySegment allocate(PFNGLGETACTIVEUNIFORMARBPROC.Function fi, Arena arena) {
         return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
     }
 
@@ -58,9 +62,9 @@ public class PFNGLGETCOLORTABLEPARAMETERIVEXTPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,int target, int pname, MemorySegment params) {
+    public static void invoke(MemorySegment funcPtr,int programObj, int index, int maxLength, MemorySegment length, MemorySegment size, MemorySegment type, MemorySegment name) {
         try {
-             DOWN$MH.invokeExact(funcPtr, target, pname, params);
+             DOWN$MH.invokeExact(funcPtr, programObj, index, maxLength, length, size, type, name);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

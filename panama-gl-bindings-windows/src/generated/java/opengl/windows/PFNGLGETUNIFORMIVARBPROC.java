@@ -14,12 +14,12 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
 
 /**
  * {@snippet lang=c :
- * typedef void (*PFNGLCOLORSUBTABLEEXTPROC)(GLenum, GLsizei, GLsizei, GLenum, GLenum, const GLvoid *) __attribute__((stdcall))
+ * typedef void (*PFNGLGETUNIFORMIVARBPROC)(GLhandleARB, GLint, GLint *) __attribute__((stdcall))
  * }
  */
-public class PFNGLCOLORSUBTABLEEXTPROC {
+public class PFNGLGETUNIFORMIVARBPROC {
 
-    PFNGLCOLORSUBTABLEEXTPROC() {
+    PFNGLGETUNIFORMIVARBPROC() {
         // Should not be called directly
     }
 
@@ -27,13 +27,10 @@ public class PFNGLCOLORSUBTABLEEXTPROC {
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(int target, int start, int count, int format, int type, MemorySegment data);
+        void apply(int programObj, int location, MemorySegment params);
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        gl_h.C_INT,
-        gl_h.C_INT,
-        gl_h.C_INT,
         gl_h.C_INT,
         gl_h.C_INT,
         gl_h.C_POINTER
@@ -46,13 +43,13 @@ public class PFNGLCOLORSUBTABLEEXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLCOLORSUBTABLEEXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETUNIFORMIVARBPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
      * The lifetime of the returned segment is managed by {@code arena}
      */
-    public static MemorySegment allocate(PFNGLCOLORSUBTABLEEXTPROC.Function fi, Arena arena) {
+    public static MemorySegment allocate(PFNGLGETUNIFORMIVARBPROC.Function fi, Arena arena) {
         return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
     }
 
@@ -61,9 +58,9 @@ public class PFNGLCOLORSUBTABLEEXTPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,int target, int start, int count, int format, int type, MemorySegment data) {
+    public static void invoke(MemorySegment funcPtr,int programObj, int location, MemorySegment params) {
         try {
-             DOWN$MH.invokeExact(funcPtr, target, start, count, format, type, data);
+             DOWN$MH.invokeExact(funcPtr, programObj, location, params);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

@@ -14,12 +14,12 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
 
 /**
  * {@snippet lang=c :
- * typedef void (*PFNGLGETCOLORTABLEEXTPROC)(GLenum, GLenum, GLenum, GLvoid *) __attribute__((stdcall))
+ * typedef void (*PFNGLATTACHOBJECTARBPROC)(GLhandleARB, GLhandleARB) __attribute__((stdcall))
  * }
  */
-public class PFNGLGETCOLORTABLEEXTPROC {
+public class PFNGLATTACHOBJECTARBPROC {
 
-    PFNGLGETCOLORTABLEEXTPROC() {
+    PFNGLATTACHOBJECTARBPROC() {
         // Should not be called directly
     }
 
@@ -27,14 +27,12 @@ public class PFNGLGETCOLORTABLEEXTPROC {
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(int target, int format, int type, MemorySegment data);
+        void apply(int containerObj, int obj);
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
         gl_h.C_INT,
-        gl_h.C_INT,
-        gl_h.C_INT,
-        gl_h.C_POINTER
+        gl_h.C_INT
     );
 
     /**
@@ -44,13 +42,13 @@ public class PFNGLGETCOLORTABLEEXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETCOLORTABLEEXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLATTACHOBJECTARBPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
      * The lifetime of the returned segment is managed by {@code arena}
      */
-    public static MemorySegment allocate(PFNGLGETCOLORTABLEEXTPROC.Function fi, Arena arena) {
+    public static MemorySegment allocate(PFNGLATTACHOBJECTARBPROC.Function fi, Arena arena) {
         return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
     }
 
@@ -59,9 +57,9 @@ public class PFNGLGETCOLORTABLEEXTPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,int target, int format, int type, MemorySegment data) {
+    public static void invoke(MemorySegment funcPtr,int containerObj, int obj) {
         try {
-             DOWN$MH.invokeExact(funcPtr, target, format, type, data);
+             DOWN$MH.invokeExact(funcPtr, containerObj, obj);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

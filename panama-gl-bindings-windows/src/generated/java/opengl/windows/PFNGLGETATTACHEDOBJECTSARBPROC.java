@@ -14,12 +14,12 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
 
 /**
  * {@snippet lang=c :
- * typedef void (*PFNGLDRAWRANGEELEMENTSWINPROC)(GLenum, GLuint, GLuint, GLsizei, GLenum, const GLvoid *) __attribute__((stdcall))
+ * typedef void (*PFNGLGETATTACHEDOBJECTSARBPROC)(GLhandleARB, GLsizei, GLsizei *, GLhandleARB *) __attribute__((stdcall))
  * }
  */
-public class PFNGLDRAWRANGEELEMENTSWINPROC {
+public class PFNGLGETATTACHEDOBJECTSARBPROC {
 
-    PFNGLDRAWRANGEELEMENTSWINPROC() {
+    PFNGLGETATTACHEDOBJECTSARBPROC() {
         // Should not be called directly
     }
 
@@ -27,15 +27,13 @@ public class PFNGLDRAWRANGEELEMENTSWINPROC {
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(int mode, int start, int end, int count, int type, MemorySegment indices);
+        void apply(int containerObj, int maxCount, MemorySegment count, MemorySegment obj);
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
         gl_h.C_INT,
         gl_h.C_INT,
-        gl_h.C_INT,
-        gl_h.C_INT,
-        gl_h.C_INT,
+        gl_h.C_POINTER,
         gl_h.C_POINTER
     );
 
@@ -46,13 +44,13 @@ public class PFNGLDRAWRANGEELEMENTSWINPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLDRAWRANGEELEMENTSWINPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETATTACHEDOBJECTSARBPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
      * The lifetime of the returned segment is managed by {@code arena}
      */
-    public static MemorySegment allocate(PFNGLDRAWRANGEELEMENTSWINPROC.Function fi, Arena arena) {
+    public static MemorySegment allocate(PFNGLGETATTACHEDOBJECTSARBPROC.Function fi, Arena arena) {
         return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
     }
 
@@ -61,9 +59,9 @@ public class PFNGLDRAWRANGEELEMENTSWINPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,int mode, int start, int end, int count, int type, MemorySegment indices) {
+    public static void invoke(MemorySegment funcPtr,int containerObj, int maxCount, MemorySegment count, MemorySegment obj) {
         try {
-             DOWN$MH.invokeExact(funcPtr, mode, start, end, count, type, indices);
+             DOWN$MH.invokeExact(funcPtr, containerObj, maxCount, count, obj);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

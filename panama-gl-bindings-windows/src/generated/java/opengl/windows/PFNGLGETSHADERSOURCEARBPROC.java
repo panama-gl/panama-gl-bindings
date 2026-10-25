@@ -14,12 +14,12 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
 
 /**
  * {@snippet lang=c :
- * typedef void (*PFNGLADDSWAPHINTRECTWINPROC)(GLint, GLint, GLsizei, GLsizei) __attribute__((stdcall))
+ * typedef void (*PFNGLGETSHADERSOURCEARBPROC)(GLhandleARB, GLsizei, GLsizei *, GLcharARB *) __attribute__((stdcall))
  * }
  */
-public class PFNGLADDSWAPHINTRECTWINPROC {
+public class PFNGLGETSHADERSOURCEARBPROC {
 
-    PFNGLADDSWAPHINTRECTWINPROC() {
+    PFNGLGETSHADERSOURCEARBPROC() {
         // Should not be called directly
     }
 
@@ -27,14 +27,14 @@ public class PFNGLADDSWAPHINTRECTWINPROC {
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(int x, int y, int width, int height);
+        void apply(int obj, int maxLength, MemorySegment length, MemorySegment source);
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
         gl_h.C_INT,
         gl_h.C_INT,
-        gl_h.C_INT,
-        gl_h.C_INT
+        gl_h.C_POINTER,
+        gl_h.C_POINTER
     );
 
     /**
@@ -44,13 +44,13 @@ public class PFNGLADDSWAPHINTRECTWINPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLADDSWAPHINTRECTWINPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETSHADERSOURCEARBPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
      * The lifetime of the returned segment is managed by {@code arena}
      */
-    public static MemorySegment allocate(PFNGLADDSWAPHINTRECTWINPROC.Function fi, Arena arena) {
+    public static MemorySegment allocate(PFNGLGETSHADERSOURCEARBPROC.Function fi, Arena arena) {
         return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
     }
 
@@ -59,9 +59,9 @@ public class PFNGLADDSWAPHINTRECTWINPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,int x, int y, int width, int height) {
+    public static void invoke(MemorySegment funcPtr,int obj, int maxLength, MemorySegment length, MemorySegment source) {
         try {
-             DOWN$MH.invokeExact(funcPtr, x, y, width, height);
+             DOWN$MH.invokeExact(funcPtr, obj, maxLength, length, source);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

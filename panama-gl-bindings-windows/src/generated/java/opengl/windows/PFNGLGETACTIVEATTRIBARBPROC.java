@@ -14,12 +14,12 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
 
 /**
  * {@snippet lang=c :
- * typedef void (*PFNGLINDEXPOINTEREXTPROC)(GLenum, GLsizei, GLsizei, const GLvoid *) __attribute__((stdcall))
+ * typedef void (*PFNGLGETACTIVEATTRIBARBPROC)(GLhandleARB, GLuint, GLsizei, GLsizei *, GLint *, GLenum *, GLcharARB *) __attribute__((stdcall))
  * }
  */
-public class PFNGLINDEXPOINTEREXTPROC {
+public class PFNGLGETACTIVEATTRIBARBPROC {
 
-    PFNGLINDEXPOINTEREXTPROC() {
+    PFNGLGETACTIVEATTRIBARBPROC() {
         // Should not be called directly
     }
 
@@ -27,13 +27,16 @@ public class PFNGLINDEXPOINTEREXTPROC {
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(int type, int stride, int count, MemorySegment pointer);
+        void apply(int programObj, int index, int maxLength, MemorySegment length, MemorySegment size, MemorySegment type, MemorySegment name);
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
         gl_h.C_INT,
         gl_h.C_INT,
         gl_h.C_INT,
+        gl_h.C_POINTER,
+        gl_h.C_POINTER,
+        gl_h.C_POINTER,
         gl_h.C_POINTER
     );
 
@@ -44,13 +47,13 @@ public class PFNGLINDEXPOINTEREXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLINDEXPOINTEREXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETACTIVEATTRIBARBPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
      * The lifetime of the returned segment is managed by {@code arena}
      */
-    public static MemorySegment allocate(PFNGLINDEXPOINTEREXTPROC.Function fi, Arena arena) {
+    public static MemorySegment allocate(PFNGLGETACTIVEATTRIBARBPROC.Function fi, Arena arena) {
         return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
     }
 
@@ -59,9 +62,9 @@ public class PFNGLINDEXPOINTEREXTPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,int type, int stride, int count, MemorySegment pointer) {
+    public static void invoke(MemorySegment funcPtr,int programObj, int index, int maxLength, MemorySegment length, MemorySegment size, MemorySegment type, MemorySegment name) {
         try {
-             DOWN$MH.invokeExact(funcPtr, type, stride, count, pointer);
+             DOWN$MH.invokeExact(funcPtr, programObj, index, maxLength, length, size, type, name);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

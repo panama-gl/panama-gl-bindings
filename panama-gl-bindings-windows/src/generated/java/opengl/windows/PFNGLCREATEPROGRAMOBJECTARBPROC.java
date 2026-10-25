@@ -14,12 +14,12 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
 
 /**
  * {@snippet lang=c :
- * typedef void (*PFNGLTEXCOORDPOINTEREXTPROC)(GLint, GLenum, GLsizei, GLsizei, const GLvoid *) __attribute__((stdcall))
+ * typedef GLhandleARB (*PFNGLCREATEPROGRAMOBJECTARBPROC)(void) __attribute__((stdcall))
  * }
  */
-public class PFNGLTEXCOORDPOINTEREXTPROC {
+public class PFNGLCREATEPROGRAMOBJECTARBPROC {
 
-    PFNGLTEXCOORDPOINTEREXTPROC() {
+    PFNGLCREATEPROGRAMOBJECTARBPROC() {
         // Should not be called directly
     }
 
@@ -27,16 +27,11 @@ public class PFNGLTEXCOORDPOINTEREXTPROC {
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(int size, int type, int stride, int count, MemorySegment pointer);
+        int apply();
     }
 
-    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        gl_h.C_INT,
-        gl_h.C_INT,
-        gl_h.C_INT,
-        gl_h.C_INT,
-        gl_h.C_POINTER
-    );
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        gl_h.C_INT);
 
     /**
      * The descriptor of this function pointer
@@ -45,13 +40,13 @@ public class PFNGLTEXCOORDPOINTEREXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLTEXCOORDPOINTEREXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLCREATEPROGRAMOBJECTARBPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
      * The lifetime of the returned segment is managed by {@code arena}
      */
-    public static MemorySegment allocate(PFNGLTEXCOORDPOINTEREXTPROC.Function fi, Arena arena) {
+    public static MemorySegment allocate(PFNGLCREATEPROGRAMOBJECTARBPROC.Function fi, Arena arena) {
         return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
     }
 
@@ -60,9 +55,9 @@ public class PFNGLTEXCOORDPOINTEREXTPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,int size, int type, int stride, int count, MemorySegment pointer) {
+    public static int invoke(MemorySegment funcPtr) {
         try {
-             DOWN$MH.invokeExact(funcPtr, size, type, stride, count, pointer);
+            return (int) DOWN$MH.invokeExact(funcPtr);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

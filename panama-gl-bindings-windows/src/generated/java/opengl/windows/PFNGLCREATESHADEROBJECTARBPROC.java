@@ -14,12 +14,12 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
 
 /**
  * {@snippet lang=c :
- * typedef void (*PFNGLVERTEXPOINTEREXTPROC)(GLint, GLenum, GLsizei, GLsizei, const GLvoid *) __attribute__((stdcall))
+ * typedef GLhandleARB (*PFNGLCREATESHADEROBJECTARBPROC)(GLenum) __attribute__((stdcall))
  * }
  */
-public class PFNGLVERTEXPOINTEREXTPROC {
+public class PFNGLCREATESHADEROBJECTARBPROC {
 
-    PFNGLVERTEXPOINTEREXTPROC() {
+    PFNGLCREATESHADEROBJECTARBPROC() {
         // Should not be called directly
     }
 
@@ -27,15 +27,12 @@ public class PFNGLVERTEXPOINTEREXTPROC {
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(int size, int type, int stride, int count, MemorySegment pointer);
+        int apply(int shaderType);
     }
 
-    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
         gl_h.C_INT,
-        gl_h.C_INT,
-        gl_h.C_INT,
-        gl_h.C_INT,
-        gl_h.C_POINTER
+        gl_h.C_INT
     );
 
     /**
@@ -45,13 +42,13 @@ public class PFNGLVERTEXPOINTEREXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLVERTEXPOINTEREXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLCREATESHADEROBJECTARBPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
      * The lifetime of the returned segment is managed by {@code arena}
      */
-    public static MemorySegment allocate(PFNGLVERTEXPOINTEREXTPROC.Function fi, Arena arena) {
+    public static MemorySegment allocate(PFNGLCREATESHADEROBJECTARBPROC.Function fi, Arena arena) {
         return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
     }
 
@@ -60,9 +57,9 @@ public class PFNGLVERTEXPOINTEREXTPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,int size, int type, int stride, int count, MemorySegment pointer) {
+    public static int invoke(MemorySegment funcPtr,int shaderType) {
         try {
-             DOWN$MH.invokeExact(funcPtr, size, type, stride, count, pointer);
+            return (int) DOWN$MH.invokeExact(funcPtr, shaderType);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

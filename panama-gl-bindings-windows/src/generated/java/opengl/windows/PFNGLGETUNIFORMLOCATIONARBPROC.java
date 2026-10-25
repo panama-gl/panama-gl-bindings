@@ -14,12 +14,12 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
 
 /**
  * {@snippet lang=c :
- * typedef void (*PFNGLCOLORPOINTEREXTPROC)(GLint, GLenum, GLsizei, GLsizei, const GLvoid *) __attribute__((stdcall))
+ * typedef GLint (*PFNGLGETUNIFORMLOCATIONARBPROC)(GLhandleARB, const GLcharARB *) __attribute__((stdcall))
  * }
  */
-public class PFNGLCOLORPOINTEREXTPROC {
+public class PFNGLGETUNIFORMLOCATIONARBPROC {
 
-    PFNGLCOLORPOINTEREXTPROC() {
+    PFNGLGETUNIFORMLOCATIONARBPROC() {
         // Should not be called directly
     }
 
@@ -27,12 +27,10 @@ public class PFNGLCOLORPOINTEREXTPROC {
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(int size, int type, int stride, int count, MemorySegment pointer);
+        int apply(int programObj, MemorySegment name);
     }
 
-    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        gl_h.C_INT,
-        gl_h.C_INT,
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
         gl_h.C_INT,
         gl_h.C_INT,
         gl_h.C_POINTER
@@ -45,13 +43,13 @@ public class PFNGLCOLORPOINTEREXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLCOLORPOINTEREXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETUNIFORMLOCATIONARBPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
      * The lifetime of the returned segment is managed by {@code arena}
      */
-    public static MemorySegment allocate(PFNGLCOLORPOINTEREXTPROC.Function fi, Arena arena) {
+    public static MemorySegment allocate(PFNGLGETUNIFORMLOCATIONARBPROC.Function fi, Arena arena) {
         return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
     }
 
@@ -60,9 +58,9 @@ public class PFNGLCOLORPOINTEREXTPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,int size, int type, int stride, int count, MemorySegment pointer) {
+    public static int invoke(MemorySegment funcPtr,int programObj, MemorySegment name) {
         try {
-             DOWN$MH.invokeExact(funcPtr, size, type, stride, count, pointer);
+            return (int) DOWN$MH.invokeExact(funcPtr, programObj, name);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

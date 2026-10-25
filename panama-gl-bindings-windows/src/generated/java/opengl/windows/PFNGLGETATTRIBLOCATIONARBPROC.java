@@ -14,12 +14,12 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
 
 /**
  * {@snippet lang=c :
- * typedef void (*PFNGLARRAYELEMENTARRAYEXTPROC)(GLenum, GLsizei, const GLvoid *) __attribute__((stdcall))
+ * typedef GLint (*PFNGLGETATTRIBLOCATIONARBPROC)(GLhandleARB, const GLcharARB *) __attribute__((stdcall))
  * }
  */
-public class PFNGLARRAYELEMENTARRAYEXTPROC {
+public class PFNGLGETATTRIBLOCATIONARBPROC {
 
-    PFNGLARRAYELEMENTARRAYEXTPROC() {
+    PFNGLGETATTRIBLOCATIONARBPROC() {
         // Should not be called directly
     }
 
@@ -27,10 +27,10 @@ public class PFNGLARRAYELEMENTARRAYEXTPROC {
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(int mode, int count, MemorySegment pi);
+        int apply(int programObj, MemorySegment name);
     }
 
-    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
         gl_h.C_INT,
         gl_h.C_INT,
         gl_h.C_POINTER
@@ -43,13 +43,13 @@ public class PFNGLARRAYELEMENTARRAYEXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLARRAYELEMENTARRAYEXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETATTRIBLOCATIONARBPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
      * The lifetime of the returned segment is managed by {@code arena}
      */
-    public static MemorySegment allocate(PFNGLARRAYELEMENTARRAYEXTPROC.Function fi, Arena arena) {
+    public static MemorySegment allocate(PFNGLGETATTRIBLOCATIONARBPROC.Function fi, Arena arena) {
         return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
     }
 
@@ -58,9 +58,9 @@ public class PFNGLARRAYELEMENTARRAYEXTPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,int mode, int count, MemorySegment pi) {
+    public static int invoke(MemorySegment funcPtr,int programObj, MemorySegment name) {
         try {
-             DOWN$MH.invokeExact(funcPtr, mode, count, pi);
+            return (int) DOWN$MH.invokeExact(funcPtr, programObj, name);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

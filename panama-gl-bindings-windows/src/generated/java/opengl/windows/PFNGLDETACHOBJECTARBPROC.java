@@ -14,12 +14,12 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
 
 /**
  * {@snippet lang=c :
- * typedef void (*PFNGLNORMALPOINTEREXTPROC)(GLenum, GLsizei, GLsizei, const GLvoid *) __attribute__((stdcall))
+ * typedef void (*PFNGLDETACHOBJECTARBPROC)(GLhandleARB, GLhandleARB) __attribute__((stdcall))
  * }
  */
-public class PFNGLNORMALPOINTEREXTPROC {
+public class PFNGLDETACHOBJECTARBPROC {
 
-    PFNGLNORMALPOINTEREXTPROC() {
+    PFNGLDETACHOBJECTARBPROC() {
         // Should not be called directly
     }
 
@@ -27,14 +27,12 @@ public class PFNGLNORMALPOINTEREXTPROC {
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(int type, int stride, int count, MemorySegment pointer);
+        void apply(int containerObj, int attachedObj);
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
         gl_h.C_INT,
-        gl_h.C_INT,
-        gl_h.C_INT,
-        gl_h.C_POINTER
+        gl_h.C_INT
     );
 
     /**
@@ -44,13 +42,13 @@ public class PFNGLNORMALPOINTEREXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLNORMALPOINTEREXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLDETACHOBJECTARBPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
      * The lifetime of the returned segment is managed by {@code arena}
      */
-    public static MemorySegment allocate(PFNGLNORMALPOINTEREXTPROC.Function fi, Arena arena) {
+    public static MemorySegment allocate(PFNGLDETACHOBJECTARBPROC.Function fi, Arena arena) {
         return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
     }
 
@@ -59,9 +57,9 @@ public class PFNGLNORMALPOINTEREXTPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,int type, int stride, int count, MemorySegment pointer) {
+    public static void invoke(MemorySegment funcPtr,int containerObj, int attachedObj) {
         try {
-             DOWN$MH.invokeExact(funcPtr, type, stride, count, pointer);
+             DOWN$MH.invokeExact(funcPtr, containerObj, attachedObj);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

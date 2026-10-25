@@ -14,12 +14,12 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
 
 /**
  * {@snippet lang=c :
- * typedef void (*PFNGLGETPOINTERVEXTPROC)(GLenum, GLvoid **) __attribute__((stdcall))
+ * typedef void (*PFNGLLINKPROGRAMARBPROC)(GLhandleARB) __attribute__((stdcall))
  * }
  */
-public class PFNGLGETPOINTERVEXTPROC {
+public class PFNGLLINKPROGRAMARBPROC {
 
-    PFNGLGETPOINTERVEXTPROC() {
+    PFNGLLINKPROGRAMARBPROC() {
         // Should not be called directly
     }
 
@@ -27,12 +27,11 @@ public class PFNGLGETPOINTERVEXTPROC {
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(int pname, MemorySegment params);
+        void apply(int programObj);
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        gl_h.C_INT,
-        gl_h.C_POINTER
+        gl_h.C_INT
     );
 
     /**
@@ -42,13 +41,13 @@ public class PFNGLGETPOINTERVEXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETPOINTERVEXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLLINKPROGRAMARBPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
      * The lifetime of the returned segment is managed by {@code arena}
      */
-    public static MemorySegment allocate(PFNGLGETPOINTERVEXTPROC.Function fi, Arena arena) {
+    public static MemorySegment allocate(PFNGLLINKPROGRAMARBPROC.Function fi, Arena arena) {
         return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
     }
 
@@ -57,9 +56,9 @@ public class PFNGLGETPOINTERVEXTPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,int pname, MemorySegment params) {
+    public static void invoke(MemorySegment funcPtr,int programObj) {
         try {
-             DOWN$MH.invokeExact(funcPtr, pname, params);
+             DOWN$MH.invokeExact(funcPtr, programObj);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

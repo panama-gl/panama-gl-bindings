@@ -14,12 +14,12 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
 
 /**
  * {@snippet lang=c :
- * typedef void (*PFNGLGETCOLORTABLEPARAMETERFVEXTPROC)(GLenum, GLenum, GLfloat *) __attribute__((stdcall))
+ * typedef GLhandleARB (*PFNGLGETHANDLEARBPROC)(GLenum) __attribute__((stdcall))
  * }
  */
-public class PFNGLGETCOLORTABLEPARAMETERFVEXTPROC {
+public class PFNGLGETHANDLEARBPROC {
 
-    PFNGLGETCOLORTABLEPARAMETERFVEXTPROC() {
+    PFNGLGETHANDLEARBPROC() {
         // Should not be called directly
     }
 
@@ -27,13 +27,12 @@ public class PFNGLGETCOLORTABLEPARAMETERFVEXTPROC {
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(int target, int pname, MemorySegment params);
+        int apply(int pname);
     }
 
-    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
         gl_h.C_INT,
-        gl_h.C_INT,
-        gl_h.C_POINTER
+        gl_h.C_INT
     );
 
     /**
@@ -43,13 +42,13 @@ public class PFNGLGETCOLORTABLEPARAMETERFVEXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETCOLORTABLEPARAMETERFVEXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETHANDLEARBPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
      * The lifetime of the returned segment is managed by {@code arena}
      */
-    public static MemorySegment allocate(PFNGLGETCOLORTABLEPARAMETERFVEXTPROC.Function fi, Arena arena) {
+    public static MemorySegment allocate(PFNGLGETHANDLEARBPROC.Function fi, Arena arena) {
         return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
     }
 
@@ -58,9 +57,9 @@ public class PFNGLGETCOLORTABLEPARAMETERFVEXTPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,int target, int pname, MemorySegment params) {
+    public static int invoke(MemorySegment funcPtr,int pname) {
         try {
-             DOWN$MH.invokeExact(funcPtr, target, pname, params);
+            return (int) DOWN$MH.invokeExact(funcPtr, pname);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
