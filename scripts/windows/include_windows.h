@@ -6,3 +6,5 @@
 #include <GL/glu.h>
 #include "GL/freeglut.h"
 #include "WGL/wgl.h"
+// The function pointer types depending on the OS, not in the glext binding (see ../glext/os_dependent.py)
+#include <GL/glext.h>

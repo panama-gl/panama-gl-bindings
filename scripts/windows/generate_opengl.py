@@ -5,6 +5,10 @@ The declarations are selected among the ones dumped by jextract --dump-includes 
 OpenGL, GLU, freeglut and WGL headers, the Win32 ones named in symbols_windows.txt, and the ones they
 depend on, added each time jextract reports "X depends on Y which has been excluded".
 
+The function pointer types of the OpenGL functions (PFNGL...PROC) are in the glext binding, shared by
+all OS, except the ones depending on the OS listed by ../glext/os_dependent.py, generated here from the
+Khronos glext.h.
+
 Usage : python generate_opengl.py <jextract> <Windows SDK include dir> <output dir>
 """
 import fnmatch
@@ -30,7 +34,7 @@ def jextract(command, options):
 
 
 def main(jextract_bin, sdk, output):
-  includes = ['-I', '.', '-I', sdk + r'\um', '-I', sdk + r'\shared', '-I', sdk + r'\ucrt']
+  includes = ['-I', '.', '-I', sdk + r'\um', '-I', sdk + r'\shared', '-I', sdk + r'\ucrt', '-I', r'..\glext']
   command = [jextract_bin]
 
   code, _ = jextract(command, ['--dump-includes', 'all.includes'] + includes + ['include_windows.h'])
@@ -46,10 +50,13 @@ def main(jextract_bin, sdk, output):
 
   with open('symbols_windows.txt', encoding='utf-8') as f:
     patterns = [line.strip() for line in f if line.strip() and not line.startswith('#')]
+  patterns += subprocess.run([sys.executable, r'..\glext\os_dependent.py', r'..\glext\GL\glext.h'],
+                             capture_output=True, text=True, check=True).stdout.split()
   selected = set()
   for name, options in dumped.items():
     for option, header in options:
-      if header is not None and ntpath.basename(header.strip()).lower() in HEADERS:
+      if header is not None and ntpath.basename(header.strip()).lower() in HEADERS \
+          and not (option == '--include-typedef' and name.startswith('PFNGL')):
         selected.add((option, name))
   for pattern in patterns:
     names = [name for name in dumped if fnmatch.fnmatchcase(name, pattern)]

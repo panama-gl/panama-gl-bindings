@@ -12,6 +12,7 @@ on:
       - "scripts/windows/symbols_windows.txt"
       - "scripts/windows/generate_opengl.py"
       - "scripts/windows/generate_opengl.bat"
+      - "scripts/glext/**"
       - ".github/workflows/generate-windows.yml"
 
 concurrency:
