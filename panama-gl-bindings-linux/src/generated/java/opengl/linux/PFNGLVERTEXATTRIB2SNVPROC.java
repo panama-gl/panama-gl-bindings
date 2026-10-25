@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLVERTEXATTRIB2SNVPROC {
 
-    PFNGLVERTEXATTRIB2SNVPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,9 +27,9 @@ public class PFNGLVERTEXATTRIB2SNVPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_INT,
-        glut_h.C_SHORT,
-        glut_h.C_SHORT
+        gl_h.C_INT,
+        gl_h.C_SHORT,
+        gl_h.C_SHORT
     );
 
     /**
@@ -43,7 +39,7 @@ public class PFNGLVERTEXATTRIB2SNVPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLVERTEXATTRIB2SNVPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLVERTEXATTRIB2SNVPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

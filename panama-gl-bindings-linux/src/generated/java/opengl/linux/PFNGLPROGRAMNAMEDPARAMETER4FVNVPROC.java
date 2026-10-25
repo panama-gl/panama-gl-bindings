@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLPROGRAMNAMEDPARAMETER4FVNVPROC {
 
-    PFNGLPROGRAMNAMEDPARAMETER4FVNVPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,10 +27,10 @@ public class PFNGLPROGRAMNAMEDPARAMETER4FVNVPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_POINTER,
-        glut_h.C_POINTER
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_POINTER,
+        gl_h.C_POINTER
     );
 
     /**
@@ -44,7 +40,7 @@ public class PFNGLPROGRAMNAMEDPARAMETER4FVNVPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLPROGRAMNAMEDPARAMETER4FVNVPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLPROGRAMNAMEDPARAMETER4FVNVPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

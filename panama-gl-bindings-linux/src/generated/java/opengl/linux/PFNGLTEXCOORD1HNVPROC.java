@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLTEXCOORD1HNVPROC {
 
-    PFNGLTEXCOORD1HNVPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,7 +27,7 @@ public class PFNGLTEXCOORD1HNVPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_SHORT
+        gl_h.C_SHORT
     );
 
     /**
@@ -41,7 +37,7 @@ public class PFNGLTEXCOORD1HNVPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLTEXCOORD1HNVPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLTEXCOORD1HNVPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

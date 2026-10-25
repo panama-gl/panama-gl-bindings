@@ -27,8 +27,8 @@ public class timeval {
     }
 
     private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
-        glut_h.C_LONG.withName("tv_sec"),
-        glut_h.C_LONG.withName("tv_usec")
+        gl_h.C_LONG.withName("tv_sec"),
+        gl_h.C_LONG.withName("tv_usec")
     ).withName("timeval");
 
     /**
@@ -155,7 +155,7 @@ public class timeval {
     }
 
     /**
-     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction) (if any).
      * The returned segment has size {@code layout().byteSize()}
      */
     public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
@@ -163,7 +163,7 @@ public class timeval {
     }
 
     /**
-     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction) (if any).
      * The returned segment has size {@code elementCount * layout().byteSize()}
      */
     public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {

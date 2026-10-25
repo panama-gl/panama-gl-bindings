@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLFRAMETERMINATORGREMEDYPROC {
 
-    PFNGLFRAMETERMINATORGREMEDYPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -39,7 +35,7 @@ public class PFNGLFRAMETERMINATORGREMEDYPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLFRAMETERMINATORGREMEDYPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLFRAMETERMINATORGREMEDYPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

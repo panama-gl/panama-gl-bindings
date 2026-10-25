@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class glutEntryFunc$callback {
 
-    glutEntryFunc$callback() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,7 +27,7 @@ public class glutEntryFunc$callback {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_INT
+        gl_h.C_INT
     );
 
     /**
@@ -41,7 +37,7 @@ public class glutEntryFunc$callback {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(glutEntryFunc$callback.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(glutEntryFunc$callback.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

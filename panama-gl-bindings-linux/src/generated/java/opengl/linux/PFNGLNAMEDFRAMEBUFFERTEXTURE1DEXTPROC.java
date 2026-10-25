@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC {
 
-    PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,11 +27,11 @@ public class PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_INT
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_INT
     );
 
     /**
@@ -45,7 +41,7 @@ public class PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

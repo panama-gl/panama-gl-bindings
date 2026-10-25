@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLBINDSHADINGRATEIMAGENVPROC {
 
-    PFNGLBINDSHADINGRATEIMAGENVPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,7 +27,7 @@ public class PFNGLBINDSHADINGRATEIMAGENVPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_INT
+        gl_h.C_INT
     );
 
     /**
@@ -41,7 +37,7 @@ public class PFNGLBINDSHADINGRATEIMAGENVPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLBINDSHADINGRATEIMAGENVPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLBINDSHADINGRATEIMAGENVPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

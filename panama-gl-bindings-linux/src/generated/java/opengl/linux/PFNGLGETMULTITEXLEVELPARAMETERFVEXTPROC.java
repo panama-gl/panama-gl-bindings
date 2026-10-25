@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLGETMULTITEXLEVELPARAMETERFVEXTPROC {
 
-    PFNGLGETMULTITEXLEVELPARAMETERFVEXTPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,11 +27,11 @@ public class PFNGLGETMULTITEXLEVELPARAMETERFVEXTPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_POINTER
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_POINTER
     );
 
     /**
@@ -45,7 +41,7 @@ public class PFNGLGETMULTITEXLEVELPARAMETERFVEXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLGETMULTITEXLEVELPARAMETERFVEXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETMULTITEXLEVELPARAMETERFVEXTPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

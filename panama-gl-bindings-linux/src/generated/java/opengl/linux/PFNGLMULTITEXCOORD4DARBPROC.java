@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLMULTITEXCOORD4DARBPROC {
 
-    PFNGLMULTITEXCOORD4DARBPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,11 +27,11 @@ public class PFNGLMULTITEXCOORD4DARBPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_INT,
-        glut_h.C_DOUBLE,
-        glut_h.C_DOUBLE,
-        glut_h.C_DOUBLE,
-        glut_h.C_DOUBLE
+        gl_h.C_INT,
+        gl_h.C_DOUBLE,
+        gl_h.C_DOUBLE,
+        gl_h.C_DOUBLE,
+        gl_h.C_DOUBLE
     );
 
     /**
@@ -45,7 +41,7 @@ public class PFNGLMULTITEXCOORD4DARBPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLMULTITEXCOORD4DARBPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLMULTITEXCOORD4DARBPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

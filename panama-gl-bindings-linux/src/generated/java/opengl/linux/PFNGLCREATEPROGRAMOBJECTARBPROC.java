@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLCREATEPROGRAMOBJECTARBPROC {
 
-    PFNGLCREATEPROGRAMOBJECTARBPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,7 +27,7 @@ public class PFNGLCREATEPROGRAMOBJECTARBPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
-        glut_h.C_INT);
+        gl_h.C_INT);
 
     /**
      * The descriptor of this function pointer
@@ -40,7 +36,7 @@ public class PFNGLCREATEPROGRAMOBJECTARBPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLCREATEPROGRAMOBJECTARBPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLCREATEPROGRAMOBJECTARBPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

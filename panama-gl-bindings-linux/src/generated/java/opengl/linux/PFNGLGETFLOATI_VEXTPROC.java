@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLGETFLOATI_VEXTPROC {
 
-    PFNGLGETFLOATI_VEXTPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,9 +27,9 @@ public class PFNGLGETFLOATI_VEXTPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_POINTER
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_POINTER
     );
 
     /**
@@ -43,7 +39,7 @@ public class PFNGLGETFLOATI_VEXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLGETFLOATI_VEXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETFLOATI_VEXTPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

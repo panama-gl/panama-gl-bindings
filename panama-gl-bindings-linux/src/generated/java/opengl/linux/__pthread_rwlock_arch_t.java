@@ -37,18 +37,18 @@ public class __pthread_rwlock_arch_t {
     }
 
     private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
-        glut_h.C_INT.withName("__readers"),
-        glut_h.C_INT.withName("__writers"),
-        glut_h.C_INT.withName("__wrphase_futex"),
-        glut_h.C_INT.withName("__writers_futex"),
-        glut_h.C_INT.withName("__pad3"),
-        glut_h.C_INT.withName("__pad4"),
-        glut_h.C_INT.withName("__cur_writer"),
-        glut_h.C_INT.withName("__shared"),
-        glut_h.C_CHAR.withName("__rwelision"),
-        MemoryLayout.sequenceLayout(7, glut_h.C_CHAR).withName("__pad1"),
-        glut_h.C_LONG.withName("__pad2"),
-        glut_h.C_INT.withName("__flags"),
+        gl_h.C_INT.withName("__readers"),
+        gl_h.C_INT.withName("__writers"),
+        gl_h.C_INT.withName("__wrphase_futex"),
+        gl_h.C_INT.withName("__writers_futex"),
+        gl_h.C_INT.withName("__pad3"),
+        gl_h.C_INT.withName("__pad4"),
+        gl_h.C_INT.withName("__cur_writer"),
+        gl_h.C_INT.withName("__shared"),
+        gl_h.C_CHAR.withName("__rwelision"),
+        MemoryLayout.sequenceLayout(7, gl_h.C_CHAR).withName("__pad1"),
+        gl_h.C_LONG.withName("__pad2"),
+        gl_h.C_INT.withName("__flags"),
         MemoryLayout.paddingLayout(4)
     ).withName("__pthread_rwlock_arch_t");
 
@@ -649,7 +649,7 @@ public class __pthread_rwlock_arch_t {
     }
 
     /**
-     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction) (if any).
      * The returned segment has size {@code layout().byteSize()}
      */
     public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
@@ -657,7 +657,7 @@ public class __pthread_rwlock_arch_t {
     }
 
     /**
-     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction) (if any).
      * The returned segment has size {@code elementCount * layout().byteSize()}
      */
     public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {

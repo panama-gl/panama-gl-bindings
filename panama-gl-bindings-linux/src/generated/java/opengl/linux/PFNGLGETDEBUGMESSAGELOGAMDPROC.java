@@ -19,26 +19,22 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLGETDEBUGMESSAGELOGAMDPROC {
 
-    PFNGLGETDEBUGMESSAGELOGAMDPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        int apply(int count, int bufsize, MemorySegment categories, MemorySegment severities, MemorySegment ids, MemorySegment lengths, MemorySegment message);
+        int apply(int count, int bufSize, MemorySegment categories, MemorySegment severities, MemorySegment ids, MemorySegment lengths, MemorySegment message);
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_POINTER,
-        glut_h.C_POINTER,
-        glut_h.C_POINTER,
-        glut_h.C_POINTER,
-        glut_h.C_POINTER
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_POINTER,
+        gl_h.C_POINTER,
+        gl_h.C_POINTER,
+        gl_h.C_POINTER,
+        gl_h.C_POINTER
     );
 
     /**
@@ -48,7 +44,7 @@ public class PFNGLGETDEBUGMESSAGELOGAMDPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLGETDEBUGMESSAGELOGAMDPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETDEBUGMESSAGELOGAMDPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
@@ -63,9 +59,9 @@ public class PFNGLGETDEBUGMESSAGELOGAMDPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static int invoke(MemorySegment funcPtr,int count, int bufsize, MemorySegment categories, MemorySegment severities, MemorySegment ids, MemorySegment lengths, MemorySegment message) {
+    public static int invoke(MemorySegment funcPtr,int count, int bufSize, MemorySegment categories, MemorySegment severities, MemorySegment ids, MemorySegment lengths, MemorySegment message) {
         try {
-            return (int) DOWN$MH.invokeExact(funcPtr, count, bufsize, categories, severities, ids, lengths, message);
+            return (int) DOWN$MH.invokeExact(funcPtr, count, bufSize, categories, severities, ids, lengths, message);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

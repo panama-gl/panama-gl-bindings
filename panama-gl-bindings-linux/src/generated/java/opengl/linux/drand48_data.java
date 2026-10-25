@@ -30,11 +30,11 @@ public class drand48_data {
     }
 
     private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(3, glut_h.C_SHORT).withName("__x"),
-        MemoryLayout.sequenceLayout(3, glut_h.C_SHORT).withName("__old_x"),
-        glut_h.C_SHORT.withName("__c"),
-        glut_h.C_SHORT.withName("__init"),
-        glut_h.C_LONG_LONG.withName("__a")
+        MemoryLayout.sequenceLayout(3, gl_h.C_SHORT).withName("__x"),
+        MemoryLayout.sequenceLayout(3, gl_h.C_SHORT).withName("__old_x"),
+        gl_h.C_SHORT.withName("__c"),
+        gl_h.C_SHORT.withName("__init"),
+        gl_h.C_LONG_LONG.withName("__a")
     ).withName("drand48_data");
 
     /**
@@ -359,7 +359,7 @@ public class drand48_data {
     }
 
     /**
-     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction) (if any).
      * The returned segment has size {@code layout().byteSize()}
      */
     public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
@@ -367,7 +367,7 @@ public class drand48_data {
     }
 
     /**
-     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction) (if any).
      * The returned segment has size {@code elementCount * layout().byteSize()}
      */
     public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {

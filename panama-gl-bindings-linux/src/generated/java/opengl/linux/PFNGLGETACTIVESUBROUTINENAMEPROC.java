@@ -19,24 +19,20 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLGETACTIVESUBROUTINENAMEPROC {
 
-    PFNGLGETACTIVESUBROUTINENAMEPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(int program, int shadertype, int index, int bufsize, MemorySegment length, MemorySegment name);
+        void apply(int program, int shadertype, int index, int bufSize, MemorySegment length, MemorySegment name);
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_POINTER,
-        glut_h.C_POINTER
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_POINTER,
+        gl_h.C_POINTER
     );
 
     /**
@@ -46,7 +42,7 @@ public class PFNGLGETACTIVESUBROUTINENAMEPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLGETACTIVESUBROUTINENAMEPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETACTIVESUBROUTINENAMEPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
@@ -61,9 +57,9 @@ public class PFNGLGETACTIVESUBROUTINENAMEPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,int program, int shadertype, int index, int bufsize, MemorySegment length, MemorySegment name) {
+    public static void invoke(MemorySegment funcPtr,int program, int shadertype, int index, int bufSize, MemorySegment length, MemorySegment name) {
         try {
-             DOWN$MH.invokeExact(funcPtr, program, shadertype, index, bufsize, length, name);
+             DOWN$MH.invokeExact(funcPtr, program, shadertype, index, bufSize, length, name);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
