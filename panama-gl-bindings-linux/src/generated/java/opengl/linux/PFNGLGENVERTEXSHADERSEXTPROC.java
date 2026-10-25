@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLGENVERTEXSHADERSEXTPROC {
 
-    PFNGLGENVERTEXSHADERSEXTPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,8 +27,8 @@ public class PFNGLGENVERTEXSHADERSEXTPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
-        glut_h.C_INT,
-        glut_h.C_INT
+        gl_h.C_INT,
+        gl_h.C_INT
     );
 
     /**
@@ -42,7 +38,7 @@ public class PFNGLGENVERTEXSHADERSEXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLGENVERTEXSHADERSEXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGENVERTEXSHADERSEXTPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

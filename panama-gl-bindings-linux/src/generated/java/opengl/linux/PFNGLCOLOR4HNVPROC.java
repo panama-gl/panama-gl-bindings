@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLCOLOR4HNVPROC {
 
-    PFNGLCOLOR4HNVPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,10 +27,10 @@ public class PFNGLCOLOR4HNVPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_SHORT,
-        glut_h.C_SHORT,
-        glut_h.C_SHORT,
-        glut_h.C_SHORT
+        gl_h.C_SHORT,
+        gl_h.C_SHORT,
+        gl_h.C_SHORT,
+        gl_h.C_SHORT
     );
 
     /**
@@ -44,7 +40,7 @@ public class PFNGLCOLOR4HNVPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLCOLOR4HNVPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLCOLOR4HNVPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

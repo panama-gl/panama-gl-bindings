@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLREPLACEMENTCODEUITEXCOORD2FVERTEX3FVSUNPROC {
 
-    PFNGLREPLACEMENTCODEUITEXCOORD2FVERTEX3FVSUNPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,9 +27,9 @@ public class PFNGLREPLACEMENTCODEUITEXCOORD2FVERTEX3FVSUNPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_POINTER,
-        glut_h.C_POINTER,
-        glut_h.C_POINTER
+        gl_h.C_POINTER,
+        gl_h.C_POINTER,
+        gl_h.C_POINTER
     );
 
     /**
@@ -43,7 +39,7 @@ public class PFNGLREPLACEMENTCODEUITEXCOORD2FVERTEX3FVSUNPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLREPLACEMENTCODEUITEXCOORD2FVERTEX3FVSUNPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLREPLACEMENTCODEUITEXCOORD2FVERTEX3FVSUNPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

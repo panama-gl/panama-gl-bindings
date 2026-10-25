@@ -26,7 +26,7 @@ public class __pthread_internal_slist {
     }
 
     private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
-        glut_h.C_POINTER.withName("__next")
+        gl_h.C_POINTER.withName("__next")
     ).withName("__pthread_internal_slist");
 
     /**
@@ -109,7 +109,7 @@ public class __pthread_internal_slist {
     }
 
     /**
-     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction) (if any).
      * The returned segment has size {@code layout().byteSize()}
      */
     public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
@@ -117,7 +117,7 @@ public class __pthread_internal_slist {
     }
 
     /**
-     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction) (if any).
      * The returned segment has size {@code elementCount * layout().byteSize()}
      */
     public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {

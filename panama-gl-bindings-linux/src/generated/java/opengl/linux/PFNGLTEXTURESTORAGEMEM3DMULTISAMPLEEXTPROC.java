@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLTEXTURESTORAGEMEM3DMULTISAMPLEEXTPROC {
 
-    PFNGLTEXTURESTORAGEMEM3DMULTISAMPLEEXTPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,15 +27,15 @@ public class PFNGLTEXTURESTORAGEMEM3DMULTISAMPLEEXTPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_CHAR,
-        glut_h.C_INT,
-        glut_h.C_LONG
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_CHAR,
+        gl_h.C_INT,
+        gl_h.C_LONG
     );
 
     /**
@@ -49,7 +45,7 @@ public class PFNGLTEXTURESTORAGEMEM3DMULTISAMPLEEXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLTEXTURESTORAGEMEM3DMULTISAMPLEEXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLTEXTURESTORAGEMEM3DMULTISAMPLEEXTPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

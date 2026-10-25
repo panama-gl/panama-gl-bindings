@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLISNAMEAMDPROC {
 
-    PFNGLISNAMEAMDPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,9 +27,9 @@ public class PFNGLISNAMEAMDPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
-        glut_h.C_CHAR,
-        glut_h.C_INT,
-        glut_h.C_INT
+        gl_h.C_CHAR,
+        gl_h.C_INT,
+        gl_h.C_INT
     );
 
     /**
@@ -43,7 +39,7 @@ public class PFNGLISNAMEAMDPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLISNAMEAMDPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLISNAMEAMDPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

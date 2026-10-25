@@ -29,8 +29,8 @@ public class pthread_rwlock_t {
 
     private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
         __pthread_rwlock_arch_t.layout().withName("__data"),
-        MemoryLayout.sequenceLayout(56, glut_h.C_CHAR).withName("__size"),
-        glut_h.C_LONG.withName("__align")
+        MemoryLayout.sequenceLayout(56, gl_h.C_CHAR).withName("__size"),
+        gl_h.C_LONG.withName("__align")
     ).withName("$anon$86:9");
 
     /**
@@ -234,7 +234,7 @@ public class pthread_rwlock_t {
     }
 
     /**
-     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction) (if any).
      * The returned segment has size {@code layout().byteSize()}
      */
     public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
@@ -242,7 +242,7 @@ public class pthread_rwlock_t {
     }
 
     /**
-     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction) (if any).
      * The returned segment has size {@code elementCount * layout().byteSize()}
      */
     public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {

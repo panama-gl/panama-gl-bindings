@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLSECONDARYCOLOR3UBEXTPROC {
 
-    PFNGLSECONDARYCOLOR3UBEXTPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,9 +27,9 @@ public class PFNGLSECONDARYCOLOR3UBEXTPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_CHAR,
-        glut_h.C_CHAR,
-        glut_h.C_CHAR
+        gl_h.C_CHAR,
+        gl_h.C_CHAR,
+        gl_h.C_CHAR
     );
 
     /**
@@ -43,7 +39,7 @@ public class PFNGLSECONDARYCOLOR3UBEXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLSECONDARYCOLOR3UBEXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLSECONDARYCOLOR3UBEXTPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

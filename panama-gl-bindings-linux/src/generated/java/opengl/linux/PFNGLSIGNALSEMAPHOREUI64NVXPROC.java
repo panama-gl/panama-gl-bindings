@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLSIGNALSEMAPHOREUI64NVXPROC {
 
-    PFNGLSIGNALSEMAPHOREUI64NVXPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,10 +27,10 @@ public class PFNGLSIGNALSEMAPHOREUI64NVXPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_POINTER,
-        glut_h.C_POINTER
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_POINTER,
+        gl_h.C_POINTER
     );
 
     /**
@@ -44,7 +40,7 @@ public class PFNGLSIGNALSEMAPHOREUI64NVXPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLSIGNALSEMAPHOREUI64NVXPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLSIGNALSEMAPHOREUI64NVXPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

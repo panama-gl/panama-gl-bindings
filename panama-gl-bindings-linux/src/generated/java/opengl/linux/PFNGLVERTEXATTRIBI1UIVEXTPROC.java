@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLVERTEXATTRIBI1UIVEXTPROC {
 
-    PFNGLVERTEXATTRIBI1UIVEXTPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,8 +27,8 @@ public class PFNGLVERTEXATTRIBI1UIVEXTPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_INT,
-        glut_h.C_POINTER
+        gl_h.C_INT,
+        gl_h.C_POINTER
     );
 
     /**
@@ -42,7 +38,7 @@ public class PFNGLVERTEXATTRIBI1UIVEXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLVERTEXATTRIBI1UIVEXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLVERTEXATTRIBI1UIVEXTPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

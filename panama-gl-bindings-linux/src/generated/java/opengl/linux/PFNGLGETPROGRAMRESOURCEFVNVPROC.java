@@ -19,26 +19,22 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLGETPROGRAMRESOURCEFVNVPROC {
 
-    PFNGLGETPROGRAMRESOURCEFVNVPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(int program, int programInterface, int index, int propCount, MemorySegment props, int bufSize, MemorySegment length, MemorySegment params);
+        void apply(int program, int programInterface, int index, int propCount, MemorySegment props, int count, MemorySegment length, MemorySegment params);
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_POINTER,
-        glut_h.C_INT,
-        glut_h.C_POINTER,
-        glut_h.C_POINTER
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_POINTER,
+        gl_h.C_INT,
+        gl_h.C_POINTER,
+        gl_h.C_POINTER
     );
 
     /**
@@ -48,7 +44,7 @@ public class PFNGLGETPROGRAMRESOURCEFVNVPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLGETPROGRAMRESOURCEFVNVPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETPROGRAMRESOURCEFVNVPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
@@ -63,9 +59,9 @@ public class PFNGLGETPROGRAMRESOURCEFVNVPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,int program, int programInterface, int index, int propCount, MemorySegment props, int bufSize, MemorySegment length, MemorySegment params) {
+    public static void invoke(MemorySegment funcPtr,int program, int programInterface, int index, int propCount, MemorySegment props, int count, MemorySegment length, MemorySegment params) {
         try {
-             DOWN$MH.invokeExact(funcPtr, program, programInterface, index, propCount, props, bufSize, length, params);
+             DOWN$MH.invokeExact(funcPtr, program, programInterface, index, propCount, props, count, length, params);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

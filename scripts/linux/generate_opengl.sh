@@ -1,20 +1,18 @@
 
-
 JEXTRACT=/usr/lib/jvm/jextract-22/jextract
 
-# Generate OpenGL Binding
+# Generate a single binding of OpenGL, GLU, GLUT, GLX and X11 : gl.h includes glext.h,
+# and glx.h includes gl.h, glxext.h and Xlib.h.
+#
+# No library is given with -l : the generated code looks the functions up in the libraries
+# loaded by opengl.linux.NativeLibLoader (SymbolLookup.loaderLookup()), then in the default
+# lookup of the native linker.
+#
+# The binding is the same for x86_64 and ARM64.
+rm -rf ../../panama-gl-bindings-linux/src/generated/java/opengl
 $JEXTRACT \
   --target-package opengl.linux \
   --output ../../panama-gl-bindings-linux/src/generated/java/ \
-  --header-class-name glut_h \
-  -lGL \
-  -lglut \
-  -lGLU \
-  -lGLEW \
+  --header-class-name gl_h \
   -I /usr/include/GL \
-  /usr/include/GL/glut.h
-
-
-#  -l/usr/lib/x86_64-linux-gnu/libglut.so.3.9.0 \
-#  -l/usr/lib/x86_64-linux-gnu/libGLU.so.1.3.1 \
-#  -l/usr/lib/x86_64-linux-gnu/libGLEW.so \
+  include_linux.h

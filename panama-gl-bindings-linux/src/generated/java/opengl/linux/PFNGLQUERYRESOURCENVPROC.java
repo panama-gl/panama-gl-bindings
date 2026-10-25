@@ -19,23 +19,19 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLQUERYRESOURCENVPROC {
 
-    PFNGLQUERYRESOURCENVPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        int apply(int queryType, int tagId, int bufSize, MemorySegment buffer);
+        int apply(int queryType, int tagId, int count, MemorySegment buffer);
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_POINTER
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_POINTER
     );
 
     /**
@@ -45,7 +41,7 @@ public class PFNGLQUERYRESOURCENVPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLQUERYRESOURCENVPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLQUERYRESOURCENVPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
@@ -60,9 +56,9 @@ public class PFNGLQUERYRESOURCENVPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static int invoke(MemorySegment funcPtr,int queryType, int tagId, int bufSize, MemorySegment buffer) {
+    public static int invoke(MemorySegment funcPtr,int queryType, int tagId, int count, MemorySegment buffer) {
         try {
-            return (int) DOWN$MH.invokeExact(funcPtr, queryType, tagId, bufSize, buffer);
+            return (int) DOWN$MH.invokeExact(funcPtr, queryType, tagId, count, buffer);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

@@ -19,23 +19,19 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLVDPAUGETSURFACEIVNVPROC {
 
-    PFNGLVDPAUGETSURFACEIVNVPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(long surface, int pname, int bufSize, MemorySegment length, MemorySegment values);
+        void apply(long surface, int pname, int count, MemorySegment length, MemorySegment values);
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_LONG,
-        glut_h.C_INT,
-        glut_h.C_INT,
-        glut_h.C_POINTER,
-        glut_h.C_POINTER
+        gl_h.C_LONG,
+        gl_h.C_INT,
+        gl_h.C_INT,
+        gl_h.C_POINTER,
+        gl_h.C_POINTER
     );
 
     /**
@@ -45,7 +41,7 @@ public class PFNGLVDPAUGETSURFACEIVNVPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLVDPAUGETSURFACEIVNVPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLVDPAUGETSURFACEIVNVPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
@@ -60,9 +56,9 @@ public class PFNGLVDPAUGETSURFACEIVNVPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,long surface, int pname, int bufSize, MemorySegment length, MemorySegment values) {
+    public static void invoke(MemorySegment funcPtr,long surface, int pname, int count, MemorySegment length, MemorySegment values) {
         try {
-             DOWN$MH.invokeExact(funcPtr, surface, pname, bufSize, length, values);
+             DOWN$MH.invokeExact(funcPtr, surface, pname, count, length, values);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLGETVKPROCADDRNVPROC {
 
-    PFNGLGETVKPROCADDRNVPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,8 +27,8 @@ public class PFNGLGETVKPROCADDRNVPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
-        glut_h.C_POINTER,
-        glut_h.C_POINTER
+        gl_h.C_POINTER,
+        gl_h.C_POINTER
     );
 
     /**
@@ -42,7 +38,7 @@ public class PFNGLGETVKPROCADDRNVPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLGETVKPROCADDRNVPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETVKPROCADDRNVPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

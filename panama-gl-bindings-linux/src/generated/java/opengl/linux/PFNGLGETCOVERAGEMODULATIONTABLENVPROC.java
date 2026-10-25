@@ -19,20 +19,16 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLGETCOVERAGEMODULATIONTABLENVPROC {
 
-    PFNGLGETCOVERAGEMODULATIONTABLENVPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(int bufsize, MemorySegment v);
+        void apply(int bufSize, MemorySegment v);
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_INT,
-        glut_h.C_POINTER
+        gl_h.C_INT,
+        gl_h.C_POINTER
     );
 
     /**
@@ -42,7 +38,7 @@ public class PFNGLGETCOVERAGEMODULATIONTABLENVPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLGETCOVERAGEMODULATIONTABLENVPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLGETCOVERAGEMODULATIONTABLENVPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
@@ -57,9 +53,9 @@ public class PFNGLGETCOVERAGEMODULATIONTABLENVPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,int bufsize, MemorySegment v) {
+    public static void invoke(MemorySegment funcPtr,int bufSize, MemorySegment v) {
         try {
-             DOWN$MH.invokeExact(funcPtr, bufsize, v);
+             DOWN$MH.invokeExact(funcPtr, bufSize, v);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLISIMAGEHANDLERESIDENTNVPROC {
 
-    PFNGLISIMAGEHANDLERESIDENTNVPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,8 +27,8 @@ public class PFNGLISIMAGEHANDLERESIDENTNVPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
-        glut_h.C_CHAR,
-        glut_h.C_LONG
+        gl_h.C_CHAR,
+        gl_h.C_LONG
     );
 
     /**
@@ -42,7 +38,7 @@ public class PFNGLISIMAGEHANDLERESIDENTNVPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLISIMAGEHANDLERESIDENTNVPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLISIMAGEHANDLERESIDENTNVPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

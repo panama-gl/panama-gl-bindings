@@ -19,23 +19,19 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLSHADERBINARYPROC {
 
-    PFNGLSHADERBINARYPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
     public interface Function {
-        void apply(int count, MemorySegment shaders, int binaryformat, MemorySegment binary, int length);
+        void apply(int count, MemorySegment shaders, int binaryFormat, MemorySegment binary, int length);
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_INT,
-        glut_h.C_POINTER,
-        glut_h.C_INT,
-        glut_h.C_POINTER,
-        glut_h.C_INT
+        gl_h.C_INT,
+        gl_h.C_POINTER,
+        gl_h.C_INT,
+        gl_h.C_POINTER,
+        gl_h.C_INT
     );
 
     /**
@@ -45,7 +41,7 @@ public class PFNGLSHADERBINARYPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLSHADERBINARYPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLSHADERBINARYPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
@@ -60,9 +56,9 @@ public class PFNGLSHADERBINARYPROC {
     /**
      * Invoke the upcall stub {@code funcPtr}, with given parameters
      */
-    public static void invoke(MemorySegment funcPtr,int count, MemorySegment shaders, int binaryformat, MemorySegment binary, int length) {
+    public static void invoke(MemorySegment funcPtr,int count, MemorySegment shaders, int binaryFormat, MemorySegment binary, int length) {
         try {
-             DOWN$MH.invokeExact(funcPtr, count, shaders, binaryformat, binary, length);
+             DOWN$MH.invokeExact(funcPtr, count, shaders, binaryFormat, binary, length);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

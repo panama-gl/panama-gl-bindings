@@ -19,10 +19,6 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
  */
 public class PFNGLSAMPLEMASKEXTPROC {
 
-    PFNGLSAMPLEMASKEXTPROC() {
-        // Should not be called directly
-    }
-
     /**
      * The function pointer signature, expressed as a functional interface
      */
@@ -31,8 +27,8 @@ public class PFNGLSAMPLEMASKEXTPROC {
     }
 
     private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
-        glut_h.C_FLOAT,
-        glut_h.C_CHAR
+        gl_h.C_FLOAT,
+        gl_h.C_CHAR
     );
 
     /**
@@ -42,7 +38,7 @@ public class PFNGLSAMPLEMASKEXTPROC {
         return $DESC;
     }
 
-    private static final MethodHandle UP$MH = glut_h.upcallHandle(PFNGLSAMPLEMASKEXTPROC.Function.class, "apply", $DESC);
+    private static final MethodHandle UP$MH = gl_h.upcallHandle(PFNGLSAMPLEMASKEXTPROC.Function.class, "apply", $DESC);
 
     /**
      * Allocates a new upcall stub, whose implementation is defined by {@code fi}.

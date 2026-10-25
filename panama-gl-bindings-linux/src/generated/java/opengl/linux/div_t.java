@@ -27,9 +27,9 @@ public class div_t {
     }
 
     private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
-        glut_h.C_INT.withName("quot"),
-        glut_h.C_INT.withName("rem")
-    ).withName("$anon$58:9");
+        gl_h.C_INT.withName("quot"),
+        gl_h.C_INT.withName("rem")
+    ).withName("$anon$59:9");
 
     /**
      * The layout of this struct
@@ -155,7 +155,7 @@ public class div_t {
     }
 
     /**
-     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction) (if any).
      * The returned segment has size {@code layout().byteSize()}
      */
     public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
@@ -163,7 +163,7 @@ public class div_t {
     }
 
     /**
-     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction) (if any).
      * The returned segment has size {@code elementCount * layout().byteSize()}
      */
     public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
