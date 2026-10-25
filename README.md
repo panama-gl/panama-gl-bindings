@@ -6,23 +6,31 @@ Separating generated bindings from a wrapper API helps compile API code faster.
 
 ## Get Panama GL Bindings via Maven
 
+* `panama-gl-bindings-gl` : the declarations of OpenGL that do not depend on the OS, used by the wrappers of all OS : the function pointer types of the OpenGL functions (e.g. `PFNGLGENBUFFERSPROC`) and the OpenGL constants, in package `opengl.gl`.
+* `panama-gl-bindings-linux`, `panama-gl-bindings-macos`, `panama-gl-bindings-windows` : the OpenGL, GLU, GLUT and windowing system (GLX, CGL, WGL) functions of each OS. A binding serves both x86_64 and ARM64.
+
 Dependencies:
 ```xml
 <dependencies>
   <dependency>
     <groupId>org.jzy3d</groupId>
+    <artifactId>panama-gl-bindings-gl</artifactId>
+    <version>1.4.0</version>
+  </dependency>
+  <dependency>
+    <groupId>org.jzy3d</groupId>
     <artifactId>panama-gl-bindings-linux</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.4.0</version>
   </dependency>
   <dependency>
     <groupId>org.jzy3d</groupId>
     <artifactId>panama-gl-bindings-macos</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.4.0</version>
   </dependency>
   <dependency>
     <groupId>org.jzy3d</groupId>
     <artifactId>panama-gl-bindings-windows</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.4.0</version>
   </dependency>
 </dependencies>
 ```
