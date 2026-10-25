@@ -6,7 +6,7 @@ set JEXTRACT="C:\Program Files\Java\jextract-22\jextract"
 call %JEXTRACT%^
  -I "%SDK_DIR%\um" ^
  -I "%SDK_DIR%\shared" ^
- --target-package wglext.windows.x86^
+ --target-package wglext.windows^
  --header-class-name wglext_h^
  --output ../../panama-gl-bindings-windows/src/generated/java^
  include_wglext.h

@@ -2,7 +2,7 @@
 @echo off
 "C:\Program Files\Java\jextract-22\jextract"^
  -I .^
- --target-package freeglut.windows.x86^
+ --target-package freeglut.windows^
  --header-class-name freeglut_h^
  --output ../../panama-gl-bindings-windows/src/generated/java^
  GL/freeglut.h
