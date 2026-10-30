@@ -8,7 +8,7 @@
 	</parent>
 
 	<artifactId>panama-gl-bindings-glext</artifactId>
-	<name>Panama GL Bindings for the OpenGL extensions, on all OS</name>
+	<name>Panama GL Bindings for GLEXT (Extensions all OS)</name>
 
 	<dependencies>
 	</dependencies>
