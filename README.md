@@ -55,3 +55,7 @@ Repositories:
 ```
 mvn deploy -DskipTests -Denv.MAVEN_REPO_URL=ftp://ftp.cluster013.ovh.net/                                                                
 ```
+
+The `Build and Deploy` workflow builds the bindings on each push and pull request, and deploys them on each push to `main`. After a deployment, it triggers the CI of [panama-gl](https://github.com/panama-gl/panama-gl) (`repository_dispatch` event `bindings-deployed`), which rebuilds and tests PanamaGL on all OS and CPU against the bindings just deployed.
+
+This requires a `PANAMA_GL_DISPATCH_TOKEN` secret in this repository : a fine-grained personal access token with the `Contents: read and write` permission on `panama-gl/panama-gl` only.
