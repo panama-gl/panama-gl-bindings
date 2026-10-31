@@ -24,6 +24,7 @@
 		<module>panama-gl-bindings-linux</module>
 		<module>panama-gl-bindings-macos</module>
 		<module>panama-gl-bindings-windows</module>
+		<module>panama-gl-bindings-windows-freeglut</module>
 	</modules>
 
 	<dependencies>

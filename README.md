@@ -8,6 +8,7 @@ Separating generated bindings from a wrapper API helps compile API code faster.
 
 * `panama-gl-bindings-glext` : the declarations of the Khronos `glext.h` that do not depend on the OS, used by the wrappers of all OS : the function pointer types of the OpenGL functions (e.g. `PFNGLGENBUFFERSPROC`) and the OpenGL constants, in package `opengl.glext`. Generated the same way on Linux, Windows and macOS, they are identical, except the 23 function pointer types using `GLhandleARB` (`unsigned int`, `void*` on macOS), which are in the Linux and Windows bindings instead (see `scripts/glext`).
 * `panama-gl-bindings-linux`, `panama-gl-bindings-macos`, `panama-gl-bindings-windows` : the OpenGL, GLU, GLUT and windowing system (GLX, CGL, WGL) functions of each OS. A binding serves both x86_64 and ARM64. The Windows binding only contains OpenGL 1.1, GLU, freeglut, WGL and the Win32 declarations used by PanamaGL (see `scripts/windows/symbols_windows.txt`), instead of the whole `windows.h`.
+* `panama-gl-bindings-windows-freeglut` : **optional**, `freeglut.dll` for Windows x86_64 and ARM64, only needed by applications using GLUT functions (e.g. `glutSolidTeapot`) or the GLUT context on computers where freeglut is not installed. See [its README](panama-gl-bindings-windows-freeglut/README.md).
 
 Dependencies:
 ```xml

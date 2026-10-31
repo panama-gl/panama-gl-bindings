@@ -1,0 +1,61 @@
+# Rebuild the freeglut.dll of panama-gl-bindings-windows-freeglut for x86_64 and ARM64 on Linux and
+# macOS, and fail if they differ from the committed ones : this guarantees that the DLLs of the jar
+# are built from the freeglut sources by build-freeglut-cross.sh, and that this build still works
+# on both OS.
+
+name: freeglut for Windows
+
+on:
+  push:
+    paths:
+      - 'panama-gl-bindings-windows-freeglut/**'
+      - '.github/workflows/freeglut-windows.yml'
+  pull_request:
+    paths:
+      - 'panama-gl-bindings-windows-freeglut/**'
+      - '.github/workflows/freeglut-windows.yml'
+  workflow_dispatch:
+
+env:
+  # Keep in sync with panama-gl-bindings-windows-freeglut/README.md
+  FREEGLUT_VERSION: v3.8.0
+  ZIG_VERSION: 0.17.0
+
+jobs:
+  rebuild:
+    name: Rebuild freeglut.dll (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Zig, CMake and Ninja
+        run: pip install "ziglang==$ZIG_VERSION" cmake ninja
+
+      - name: Build freeglut.dll for x86_64
+        run: panama-gl-bindings-windows-freeglut/build-freeglut-cross.sh $FREEGLUT_VERSION x64
+
+      - name: Build freeglut.dll for ARM64
+        run: panama-gl-bindings-windows-freeglut/build-freeglut-cross.sh $FREEGLUT_VERSION arm64
+
+      - name: Compare with the committed DLLs
+        run: |
+          shasum -a 256 panama-gl-bindings-windows-freeglut/src/main/resources/natives/*/freeglut.dll
+          git status --porcelain panama-gl-bindings-windows-freeglut
+          if [ -n "$(git status --porcelain panama-gl-bindings-windows-freeglut)" ]; then
+            echo "::error::The DLLs built differ from the committed ones"
+            exit 1
+          fi
