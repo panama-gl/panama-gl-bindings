@@ -3,8 +3,13 @@
 @REM - Visual Studio 2022 (Community Edition): https://visualstudio.microsoft.com/de/downloads/
 @REM	-> Install Community Edition and select component 'Desktop development with C++'
 @REM
-@REM To run this script, navigate on the CLI to the directory containing this script and call it in the following way, passing the desired freeglut version:
-@REM	build-freeglut-msvsc.bat v<freeglut-version>`
+@REM Call this script passing the desired freeglut version:
+@REM	build-freeglut-msvsc.bat v<freeglut-version>
+@REM
+@REM It builds freeglut.dll for the CPU of the computer in target\freeglut-<version>-msvsc\output\bin, to be
+@REM used locally from the java.library.path, and copies the freeglut headers in scripts\windows, from
+@REM which the Windows binding is generated. The DLLs embedded by this module are built by
+@REM build-freeglut-cross.sh instead, whose build is reproducible.
 
 @echo off
 
@@ -13,7 +18,7 @@ if "%~1"=="" (
 	exit 1
 )
 
-cd ../../panama-gl-bindings-windows
+cd /d "%~dp0"
 echo Running in %cd%
 
 SET releaseVersion=%1
@@ -32,8 +37,6 @@ cmake -G "Visual Studio 17 2022" -S %srcDir% -B %buildDir% -DFREEGLUT_BUILD_DEMO
 cmake --build %buildDir% --config Release 
 cmake --install %buildDir% --prefix %outDir%
 
-@REM Copy compiled header and .dll files to the corresponding locations
+@REM Copy the headers where the Windows binding is generated from
 ROBOCOPY %outDir%\include\ ..\scripts\windows /S
-SET libDir=src\main\resources\msvsc
-MKDIR %libDir%
-ROBOCOPY %outDir%\bin\ %libDir% *.dll /S
+echo freeglut.dll built in %cd%\%outDir%\bin

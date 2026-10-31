@@ -49,12 +49,12 @@ The DLLs only depend on DLLs of Windows 10 and later : `OPENGL32`, `GDI32`, `USE
 
 ## How the DLLs are built
 
-They are cross-compiled with [Zig](https://ziglang.org) 0.17.0 by [`scripts/windows/build-freeglut-cross.sh`](../scripts/windows/build-freeglut-cross.sh), from any Linux or macOS computer : neither Windows nor Visual Studio is required, Zig providing the C compiler, resource compiler, linker and the MinGW-w64 headers and libraries of both CPUs.
+They are cross-compiled with [Zig](https://ziglang.org) 0.17.0 by [`build-freeglut-cross.sh`](build-freeglut-cross.sh), from any Linux or macOS computer : neither Windows nor Visual Studio is required, Zig providing the C compiler, resource compiler, linker and the MinGW-w64 headers and libraries of both CPUs.
 
 ```
 pip install ziglang==0.17.0 cmake ninja
-scripts/windows/build-freeglut-cross.sh v3.8.0 x64
-scripts/windows/build-freeglut-cross.sh v3.8.0 arm64
+panama-gl-bindings-windows-freeglut/build-freeglut-cross.sh v3.8.0 x64
+panama-gl-bindings-windows-freeglut/build-freeglut-cross.sh v3.8.0 arm64
 ```
 
 Each command writes `freeglut.dll` and the freeglut license in `src/main/resources/natives/windows-<cpu>` of this module.
@@ -65,6 +65,8 @@ The build is reproducible : the same freeglut tag built with the same Zig versio
 |---|---|
 | `windows-x86_64/freeglut.dll` | `4b0fef403a0401340583b1fd1dd9606d0902f146faf2188fcc0f62bad3b5c30f` |
 | `windows-aarch64/freeglut.dll` | `e34ed8370e340d962ff634fdd9837b74a0cca7d4ac2cf8618fafcfa45bfc0bf9` |
+
+`build-freeglut-msvsc.bat` (Visual Studio) and `build-freeglut-msys2.sh` (MSYS2) build freeglut on Windows, for the CPU of the computer, in `target`. They are not used for the DLLs of this jar, as their build is neither reproducible nor cross-CPU, but to get a local `freeglut.dll` and to update the freeglut headers in `scripts/windows`, from which the Windows binding is generated.
 
 To upgrade freeglut, run the script with the new tag, update the version in this file and the hashes above, and commit the DLLs.
 

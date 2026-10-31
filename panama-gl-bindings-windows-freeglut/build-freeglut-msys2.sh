@@ -5,11 +5,16 @@
 # Install (run the following commands):
 #	pacman -S mingw-w64-ucrt-x86_64-gcc
 #	pacman -S mingw-w64-ucrt-x86_64-cmake
-#	pacman -S mingw-w64-ucrt-x86_64-cninja
+#	pacman -S mingw-w64-ucrt-x86_64-ninja
 #	pacman -S git
 #
-# To run this script, navigate within the MSYS2's UCRT64 environment to the directory containing this script and call it in the following way, passing the desired freeglut version:
-#	build-freeglut-msys2.sh v<freeglut-version>`
+# Call this script within the MSYS2's UCRT64 environment passing the desired freeglut version:
+#	build-freeglut-msys2.sh v<freeglut-version>
+#
+# It builds freeglut.dll for x64 in target/freeglut-<version>-mingw-w64/output/bin, to be used locally
+# from the java.library.path, and copies the freeglut headers in scripts/windows, from which the
+# Windows binding is generated. The DLLs embedded by this module are built by
+# build-freeglut-cross.sh instead, whose build is reproducible.
 #
 # Further reading:
 #	https://www.msys2.org/docs/environments/ -> Use UCRT64 (or CLANG64?) for recent Windows 10
@@ -21,7 +26,7 @@ if [[ $# < 1 ]]; then
 	exit 1
 fi
 
-cd ../../panama-gl-bindings-windows
+cd "$(dirname "$0")"
 echo Running in $PWD
 
 releaseVersion=$1
@@ -41,14 +46,11 @@ cmake -G "Ninja" -S $srcDir -B $buildDir -DFREEGLUT_BUILD_DEMOS=OFF
 cmake --build $buildDir --config Release
 cmake --install $buildDir --prefix $outDir
 
-# Copy compiled header and .dll files to the corresponding locations
+# Copy the headers where the Windows binding is generated from
 cp -rv $outDir/include/* ../scripts/windows
-libDir=src/main/resources/mingw-w64
-mkdir -p $libDir
-cp -v $outDir/bin/*.dll $libDir
-# Remove undesired 'lib' prefix or resulting .dll file (looks like a bug that it is added
-pushd $libDir
-for file in lib*.dll; do
-	mv -v "$file" "${file#lib}"
+# Remove undesired 'lib' prefix that MinGW adds to the .dll files
+for file in $outDir/bin/lib*.dll; do
+	name=$(basename "$file")
+	mv -v "$file" "$outDir/bin/${name#lib}"
 done
-popd
+echo freeglut.dll built in $PWD/$outDir/bin

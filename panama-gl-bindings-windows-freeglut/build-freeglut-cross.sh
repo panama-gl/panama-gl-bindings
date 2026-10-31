@@ -14,7 +14,7 @@
 #
 # Call this script passing the desired freeglut version, the target CPU (x64 or arm64), and
 # optionally the directory where freeglut.dll and its license should be copied, which defaults to
-# panama-gl-bindings-windows-freeglut/src/main/resources/natives/windows-<x86_64|aarch64> :
+# src/main/resources/natives/windows-<x86_64|aarch64> of this module :
 #	build-freeglut-cross.sh v<freeglut-version> <x64|arm64> [destination-dir]
 #
 # Example :
@@ -53,7 +53,7 @@ if [[ -z "$ZIG" ]]; then
 	fi
 fi
 
-moduleDir=$(cd "$(dirname "$0")/../.." && pwd)/panama-gl-bindings-windows-freeglut
+moduleDir=$(cd "$(dirname "$0")" && pwd)
 
 # Make the destination absolute before changing directory
 if [[ -z "$destDir" ]]; then
