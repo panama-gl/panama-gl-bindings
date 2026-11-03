@@ -29,7 +29,7 @@ Add this jar if the application uses GLUT and freeglut may not be installed on t
 <dependency>
   <groupId>org.jzy3d</groupId>
   <artifactId>panama-gl-bindings-windows-freeglut</artifactId>
-  <version>1.4.1</version>
+  <version>1.4.2</version>
   <scope>runtime</scope>
 </dependency>
 ```

@@ -16,22 +16,22 @@ Dependencies:
   <dependency>
     <groupId>org.jzy3d</groupId>
     <artifactId>panama-gl-bindings-glext</artifactId>
-    <version>1.4.1</version>
+    <version>1.4.2</version>
   </dependency>
   <dependency>
     <groupId>org.jzy3d</groupId>
     <artifactId>panama-gl-bindings-linux</artifactId>
-    <version>1.4.1</version>
+    <version>1.4.2</version>
   </dependency>
   <dependency>
     <groupId>org.jzy3d</groupId>
     <artifactId>panama-gl-bindings-macos</artifactId>
-    <version>1.4.1</version>
+    <version>1.4.2</version>
   </dependency>
   <dependency>
     <groupId>org.jzy3d</groupId>
     <artifactId>panama-gl-bindings-windows</artifactId>
-    <version>1.4.1</version>
+    <version>1.4.2</version>
   </dependency>
 </dependencies>
 ```
