@@ -1,12 +1,16 @@
-# Rebuild the freeglut.dll of panama-gl-bindings-windows-freeglut for x86_64 and ARM64 on Linux and
-# macOS, and fail if they differ from the committed ones : this guarantees that the DLLs of the jar
-# are built from the freeglut sources by build-freeglut-cross.sh, and that this build still works
-# on both OS.
+# Rebuild the freeglut.dll of panama-gl-bindings-windows-freeglut for x86_64 and ARM64 on Linux, and
+# fail if they differ from the committed ones : this guarantees that the DLLs of the jar are built
+# from the freeglut sources by build-freeglut-cross.sh. A single Linux runner is enough : Zig
+# cross-compiles, so the DLLs do not depend on the OS they are built on. The DLLs are tested on
+# Windows by the CI of panama-gl (TestGL_windows_GLUTInit).
 
 name: freeglut for Windows
 
+# On pull requests, and on main for changes pushed without pull request : not on the push of a
+# branch, which would rebuild a second time the DLLs of its pull request.
 on:
   push:
+    branches: [ "main" ]
     paths:
       - 'panama-gl-bindings-windows-freeglut/**'
       - '.github/workflows/freeglut-windows.yml'
@@ -23,17 +27,10 @@ env:
 
 jobs:
   rebuild:
-    name: Rebuild freeglut.dll (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
+    name: Rebuild freeglut.dll
+    runs-on: ubuntu-latest
     permissions:
       contents: read
-
-    strategy:
-      fail-fast: false
-      matrix:
-        os:
-          - ubuntu-latest
-          - macos-latest
 
     steps:
       - uses: actions/checkout@v4

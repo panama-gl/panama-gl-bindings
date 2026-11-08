@@ -29,7 +29,7 @@ Add this jar if the application uses GLUT and freeglut may not be installed on t
 <dependency>
   <groupId>org.jzy3d</groupId>
   <artifactId>panama-gl-bindings-windows-freeglut</artifactId>
-  <version>1.4.1</version>
+  <version>1.4.2</version>
   <scope>runtime</scope>
 </dependency>
 ```
@@ -59,7 +59,7 @@ panama-gl-bindings-windows-freeglut/build-freeglut-cross.sh v3.8.0 arm64
 
 Each command writes `freeglut.dll` and the freeglut license in `src/main/resources/natives/windows-<cpu>` of this module.
 
-The build is reproducible : the same freeglut tag built with the same Zig version gives a byte for byte identical DLL, whatever the computer and directory it is built in. The [freeglut for Windows](../.github/workflows/freeglut-windows.yml) workflow rebuilds both DLLs on Linux and macOS and fails if they differ from the committed ones, which guarantees the jar contains what the script builds from the freeglut sources.
+The build is reproducible : the same freeglut tag built with the same Zig version gives a byte for byte identical DLL, whatever the computer and directory it is built in. The [freeglut for Windows](../.github/workflows/freeglut-windows.yml) workflow rebuilds both DLLs on Linux and fails if they differ from the committed ones, which guarantees the jar contains what the script builds from the freeglut sources.
 
 | DLL | SHA-256 |
 |---|---|
